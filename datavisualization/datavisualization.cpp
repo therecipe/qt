@@ -992,6 +992,7 @@ class MyQ3DLight: public Q3DLight
 {
 public:
 	MyQ3DLight(QObject *parent = Q_NULLPTR) : Q3DLight(parent) {};
+	void Signal_AutoPositionChanged(bool autoPosition) { callbackQ3DLight_AutoPositionChanged(this, autoPosition); };
 	 ~MyQ3DLight() { callbackQ3DLight_DestroyQ3DLight(this); };
 };
 
@@ -1034,6 +1035,31 @@ void* Q3DLight_NewQ3DLight(void* parent)
 	} else {
 		return new MyQ3DLight(static_cast<QObject*>(parent));
 	}
+}
+
+char Q3DLight_IsAutoPosition(void* ptr)
+{
+	return static_cast<Q3DLight*>(ptr)->isAutoPosition();
+}
+
+void Q3DLight_ConnectAutoPositionChanged(void* ptr)
+{
+	QObject::connect(static_cast<Q3DLight*>(ptr), static_cast<void (Q3DLight::*)(bool)>(&Q3DLight::autoPositionChanged), static_cast<MyQ3DLight*>(ptr), static_cast<void (MyQ3DLight::*)(bool)>(&MyQ3DLight::Signal_AutoPositionChanged));
+}
+
+void Q3DLight_DisconnectAutoPositionChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<Q3DLight*>(ptr), static_cast<void (Q3DLight::*)(bool)>(&Q3DLight::autoPositionChanged), static_cast<MyQ3DLight*>(ptr), static_cast<void (MyQ3DLight::*)(bool)>(&MyQ3DLight::Signal_AutoPositionChanged));
+}
+
+void Q3DLight_AutoPositionChanged(void* ptr, char autoPosition)
+{
+	static_cast<Q3DLight*>(ptr)->autoPositionChanged(autoPosition != 0);
+}
+
+void Q3DLight_SetAutoPosition(void* ptr, char enabled)
+{
+	static_cast<Q3DLight*>(ptr)->setAutoPosition(enabled != 0);
 }
 
 void Q3DLight_DestroyQ3DLight(void* ptr)

@@ -480,6 +480,48 @@ func (ptr *QTextToSpeech) SetRateDefault(rate float64) {
 	}
 }
 
+//export callbackQTextToSpeech_SetVoice
+func callbackQTextToSpeech_SetVoice(ptr unsafe.Pointer, voice unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setVoice"); signal != nil {
+		signal.(func(*QVoice))(NewQVoiceFromPointer(voice))
+	} else {
+		NewQTextToSpeechFromPointer(ptr).SetVoiceDefault(NewQVoiceFromPointer(voice))
+	}
+}
+
+func (ptr *QTextToSpeech) ConnectSetVoice(f func(voice *QVoice)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setVoice"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setVoice", func(voice *QVoice) {
+				signal.(func(*QVoice))(voice)
+				f(voice)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setVoice", f)
+		}
+	}
+}
+
+func (ptr *QTextToSpeech) DisconnectSetVoice() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setVoice")
+	}
+}
+
+func (ptr *QTextToSpeech) SetVoice(voice QVoice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextToSpeech_SetVoice(ptr.Pointer(), PointerFromQVoice(voice))
+	}
+}
+
+func (ptr *QTextToSpeech) SetVoiceDefault(voice QVoice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextToSpeech_SetVoiceDefault(ptr.Pointer(), PointerFromQVoice(voice))
+	}
+}
+
 //export callbackQTextToSpeech_SetVolume
 func callbackQTextToSpeech_SetVolume(ptr unsafe.Pointer, volume C.double) {
 	if signal := qt.GetSignal(ptr, "setVolume"); signal != nil {
@@ -664,6 +706,28 @@ func (ptr *QTextToSpeech) AvailableLocales() []*core.QLocale {
 	return make([]*core.QLocale, 0)
 }
 
+func (ptr *QTextToSpeech) AvailableVoices() []*QVoice {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSpeech_PackedList) []*QVoice {
+			var out = make([]*QVoice, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextToSpeechFromPointer(l.data).__availableVoices_atList(i)
+			}
+			return out
+		}(C.QTextToSpeech_AvailableVoices(ptr.Pointer()))
+	}
+	return make([]*QVoice, 0)
+}
+
+func (ptr *QTextToSpeech) Voice() *QVoice {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVoiceFromPointer(C.QTextToSpeech_Voice(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextToSpeech) State() QTextToSpeech__State {
 	if ptr.Pointer() != nil {
 		return QTextToSpeech__State(C.QTextToSpeech_State(ptr.Pointer()))
@@ -709,6 +773,21 @@ func (ptr *QTextToSpeech) __availableLocales_setList(i core.QLocale_ITF) {
 
 func (ptr *QTextToSpeech) __availableLocales_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QTextToSpeech___availableLocales_newList(ptr.Pointer()))
+}
+
+func (ptr *QTextToSpeech) __availableVoices_atList(i int) *QVoice {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVoiceFromPointer(C.QTextToSpeech___availableVoices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextToSpeech) __availableVoices_setList(i QVoice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextToSpeech___availableVoices_setList(ptr.Pointer(), PointerFromQVoice(i))
+	}
 }
 
 func (ptr *QTextToSpeech) __availableVoices_newList() unsafe.Pointer {
@@ -1120,4 +1199,121 @@ func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_setList(i s
 
 func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(ptr.Pointer()))
+}
+
+type QVoice struct {
+	ptr unsafe.Pointer
+}
+
+type QVoice_ITF interface {
+	QVoice_PTR() *QVoice
+}
+
+func (ptr *QVoice) QVoice_PTR() *QVoice {
+	return ptr
+}
+
+func (ptr *QVoice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QVoice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQVoice(ptr QVoice_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QVoice_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQVoiceFromPointer(ptr unsafe.Pointer) *QVoice {
+	var n = new(QVoice)
+	n.SetPointer(ptr)
+	return n
+}
+
+//go:generate stringer -type=QVoice__Age
+//QVoice::Age
+type QVoice__Age int64
+
+const (
+	QVoice__Child    QVoice__Age = QVoice__Age(0)
+	QVoice__Teenager QVoice__Age = QVoice__Age(1)
+	QVoice__Adult    QVoice__Age = QVoice__Age(2)
+	QVoice__Senior   QVoice__Age = QVoice__Age(3)
+	QVoice__Other    QVoice__Age = QVoice__Age(4)
+)
+
+//go:generate stringer -type=QVoice__Gender
+//QVoice::Gender
+type QVoice__Gender int64
+
+const (
+	QVoice__Male    QVoice__Gender = QVoice__Gender(0)
+	QVoice__Female  QVoice__Gender = QVoice__Gender(1)
+	QVoice__Unknown QVoice__Gender = QVoice__Gender(2)
+)
+
+func QVoice_AgeName(age QVoice__Age) string {
+	return cGoUnpackString(C.QVoice_QVoice_AgeName(C.longlong(age)))
+}
+
+func (ptr *QVoice) AgeName(age QVoice__Age) string {
+	return cGoUnpackString(C.QVoice_QVoice_AgeName(C.longlong(age)))
+}
+
+func QVoice_GenderName(gender QVoice__Gender) string {
+	return cGoUnpackString(C.QVoice_QVoice_GenderName(C.longlong(gender)))
+}
+
+func (ptr *QVoice) GenderName(gender QVoice__Gender) string {
+	return cGoUnpackString(C.QVoice_QVoice_GenderName(C.longlong(gender)))
+}
+
+func NewQVoice() *QVoice {
+	var tmpValue = NewQVoiceFromPointer(C.QVoice_NewQVoice())
+	runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+	return tmpValue
+}
+
+func NewQVoice2(other QVoice_ITF) *QVoice {
+	var tmpValue = NewQVoiceFromPointer(C.QVoice_NewQVoice2(PointerFromQVoice(other)))
+	runtime.SetFinalizer(tmpValue, (*QVoice).DestroyQVoice)
+	return tmpValue
+}
+
+func (ptr *QVoice) DestroyQVoice() {
+	if ptr.Pointer() != nil {
+		C.QVoice_DestroyQVoice(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QVoice) Age() QVoice__Age {
+	if ptr.Pointer() != nil {
+		return QVoice__Age(C.QVoice_Age(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QVoice) Gender() QVoice__Gender {
+	if ptr.Pointer() != nil {
+		return QVoice__Gender(C.QVoice_Gender(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QVoice) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVoice_Name(ptr.Pointer()))
+	}
+	return ""
 }

@@ -9,6 +9,7 @@ package quickcontrols2
 import "C"
 import (
 	"runtime"
+	"strings"
 	"unsafe"
 )
 
@@ -79,6 +80,14 @@ func QQuickStyle_Path() string {
 
 func (ptr *QQuickStyle) Path() string {
 	return cGoUnpackString(C.QQuickStyle_QQuickStyle_Path())
+}
+
+func QQuickStyle_AvailableStyles() []string {
+	return strings.Split(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()), "|")
+}
+
+func (ptr *QQuickStyle) AvailableStyles() []string {
+	return strings.Split(cGoUnpackString(C.QQuickStyle_QQuickStyle_AvailableStyles()), "|")
 }
 
 func QQuickStyle_SetFallbackStyle(style string) {

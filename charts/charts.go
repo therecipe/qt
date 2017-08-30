@@ -16185,6 +16185,18 @@ func NewQLegendFromPointer(ptr unsafe.Pointer) *QLegend {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLegend__MarkerShape
+//QLegend::MarkerShape
+type QLegend__MarkerShape int64
+
+const (
+	QLegend__MarkerShapeDefault    QLegend__MarkerShape = QLegend__MarkerShape(0)
+	QLegend__MarkerShapeRectangle  QLegend__MarkerShape = QLegend__MarkerShape(1)
+	QLegend__MarkerShapeCircle     QLegend__MarkerShape = QLegend__MarkerShape(2)
+	QLegend__MarkerShapeFromSeries QLegend__MarkerShape = QLegend__MarkerShape(3)
+)
+
 func (ptr *QLegend) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQColorFromPointer(C.QLegend_BorderColor(ptr.Pointer()))
@@ -16424,6 +16436,45 @@ func (ptr *QLegend) LabelColorChanged(color gui.QColor_ITF) {
 	}
 }
 
+//export callbackQLegend_MarkerShapeChanged
+func callbackQLegend_MarkerShapeChanged(ptr unsafe.Pointer, shape C.longlong) {
+	if signal := qt.GetSignal(ptr, "markerShapeChanged"); signal != nil {
+		signal.(func(QLegend__MarkerShape))(QLegend__MarkerShape(shape))
+	}
+
+}
+
+func (ptr *QLegend) ConnectMarkerShapeChanged(f func(shape QLegend__MarkerShape)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "markerShapeChanged") {
+			C.QLegend_ConnectMarkerShapeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "markerShapeChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "markerShapeChanged", func(shape QLegend__MarkerShape) {
+				signal.(func(QLegend__MarkerShape))(shape)
+				f(shape)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "markerShapeChanged", f)
+		}
+	}
+}
+
+func (ptr *QLegend) DisconnectMarkerShapeChanged() {
+	if ptr.Pointer() != nil {
+		C.QLegend_DisconnectMarkerShapeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "markerShapeChanged")
+	}
+}
+
+func (ptr *QLegend) MarkerShapeChanged(shape QLegend__MarkerShape) {
+	if ptr.Pointer() != nil {
+		C.QLegend_MarkerShapeChanged(ptr.Pointer(), C.longlong(shape))
+	}
+}
+
 //export callbackQLegend_ReverseMarkersChanged
 func callbackQLegend_ReverseMarkersChanged(ptr unsafe.Pointer, reverseMarkers C.char) {
 	if signal := qt.GetSignal(ptr, "reverseMarkersChanged"); signal != nil {
@@ -16505,6 +16556,12 @@ func (ptr *QLegend) SetLabelColor(color gui.QColor_ITF) {
 	}
 }
 
+func (ptr *QLegend) SetMarkerShape(shape QLegend__MarkerShape) {
+	if ptr.Pointer() != nil {
+		C.QLegend_SetMarkerShape(ptr.Pointer(), C.longlong(shape))
+	}
+}
+
 func (ptr *QLegend) SetPen(pen gui.QPen_ITF) {
 	if ptr.Pointer() != nil {
 		C.QLegend_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
@@ -16568,6 +16625,13 @@ func (ptr *QLegend) DestroyQLegend() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QLegend) MarkerShape() QLegend__MarkerShape {
+	if ptr.Pointer() != nil {
+		return QLegend__MarkerShape(C.QLegend_MarkerShape(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLegend) Brush() *gui.QBrush {
@@ -18407,9 +18471,54 @@ func (ptr *QLegendMarker) SetPen(pen gui.QPen_ITF) {
 	}
 }
 
+func (ptr *QLegendMarker) SetShape(shape QLegend__MarkerShape) {
+	if ptr.Pointer() != nil {
+		C.QLegendMarker_SetShape(ptr.Pointer(), C.longlong(shape))
+	}
+}
+
 func (ptr *QLegendMarker) SetVisible(visible bool) {
 	if ptr.Pointer() != nil {
 		C.QLegendMarker_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
+	}
+}
+
+//export callbackQLegendMarker_ShapeChanged
+func callbackQLegendMarker_ShapeChanged(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "shapeChanged"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QLegendMarker) ConnectShapeChanged(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "shapeChanged") {
+			C.QLegendMarker_ConnectShapeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "shapeChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "shapeChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "shapeChanged", f)
+		}
+	}
+}
+
+func (ptr *QLegendMarker) DisconnectShapeChanged() {
+	if ptr.Pointer() != nil {
+		C.QLegendMarker_DisconnectShapeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "shapeChanged")
+	}
+}
+
+func (ptr *QLegendMarker) ShapeChanged() {
+	if ptr.Pointer() != nil {
+		C.QLegendMarker_ShapeChanged(ptr.Pointer())
 	}
 }
 
@@ -18523,6 +18632,13 @@ func (ptr *QLegendMarker) Font() *gui.QFont {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QLegendMarker) Shape() QLegend__MarkerShape {
+	if ptr.Pointer() != nil {
+		return QLegend__MarkerShape(C.QLegendMarker_Shape(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLegendMarker) Pen() *gui.QPen {
@@ -18845,6 +18961,45 @@ func (ptr *QLogValueAxis) MinChanged(min float64) {
 	}
 }
 
+//export callbackQLogValueAxis_MinorTickCountChanged
+func callbackQLogValueAxis_MinorTickCountChanged(ptr unsafe.Pointer, minorTickCount C.int) {
+	if signal := qt.GetSignal(ptr, "minorTickCountChanged"); signal != nil {
+		signal.(func(int))(int(int32(minorTickCount)))
+	}
+
+}
+
+func (ptr *QLogValueAxis) ConnectMinorTickCountChanged(f func(minorTickCount int)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "minorTickCountChanged") {
+			C.QLogValueAxis_ConnectMinorTickCountChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "minorTickCountChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "minorTickCountChanged", func(minorTickCount int) {
+				signal.(func(int))(minorTickCount)
+				f(minorTickCount)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "minorTickCountChanged", f)
+		}
+	}
+}
+
+func (ptr *QLogValueAxis) DisconnectMinorTickCountChanged() {
+	if ptr.Pointer() != nil {
+		C.QLogValueAxis_DisconnectMinorTickCountChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "minorTickCountChanged")
+	}
+}
+
+func (ptr *QLogValueAxis) MinorTickCountChanged(minorTickCount int) {
+	if ptr.Pointer() != nil {
+		C.QLogValueAxis_MinorTickCountChanged(ptr.Pointer(), C.int(int32(minorTickCount)))
+	}
+}
+
 //export callbackQLogValueAxis_RangeChanged
 func callbackQLogValueAxis_RangeChanged(ptr unsafe.Pointer, min C.double, max C.double) {
 	if signal := qt.GetSignal(ptr, "rangeChanged"); signal != nil {
@@ -18913,9 +19068,54 @@ func (ptr *QLogValueAxis) SetMin(min float64) {
 	}
 }
 
+func (ptr *QLogValueAxis) SetMinorTickCount(minorTickCount int) {
+	if ptr.Pointer() != nil {
+		C.QLogValueAxis_SetMinorTickCount(ptr.Pointer(), C.int(int32(minorTickCount)))
+	}
+}
+
 func (ptr *QLogValueAxis) SetRange(min float64, max float64) {
 	if ptr.Pointer() != nil {
 		C.QLogValueAxis_SetRange(ptr.Pointer(), C.double(min), C.double(max))
+	}
+}
+
+//export callbackQLogValueAxis_TickCountChanged
+func callbackQLogValueAxis_TickCountChanged(ptr unsafe.Pointer, tickCount C.int) {
+	if signal := qt.GetSignal(ptr, "tickCountChanged"); signal != nil {
+		signal.(func(int))(int(int32(tickCount)))
+	}
+
+}
+
+func (ptr *QLogValueAxis) ConnectTickCountChanged(f func(tickCount int)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "tickCountChanged") {
+			C.QLogValueAxis_ConnectTickCountChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "tickCountChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "tickCountChanged", func(tickCount int) {
+				signal.(func(int))(tickCount)
+				f(tickCount)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "tickCountChanged", f)
+		}
+	}
+}
+
+func (ptr *QLogValueAxis) DisconnectTickCountChanged() {
+	if ptr.Pointer() != nil {
+		C.QLogValueAxis_DisconnectTickCountChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "tickCountChanged")
+	}
+}
+
+func (ptr *QLogValueAxis) TickCountChanged(tickCount int) {
+	if ptr.Pointer() != nil {
+		C.QLogValueAxis_TickCountChanged(ptr.Pointer(), C.int(int32(tickCount)))
 	}
 }
 
@@ -18975,6 +19175,20 @@ func (ptr *QLogValueAxis) LabelFormat() string {
 		return cGoUnpackString(C.QLogValueAxis_LabelFormat(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QLogValueAxis) MinorTickCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QLogValueAxis_MinorTickCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QLogValueAxis) TickCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QLogValueAxis_TickCount(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QLogValueAxis) Base() float64 {

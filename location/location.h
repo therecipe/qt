@@ -74,6 +74,9 @@ void* QGeoRouteReply_NewQGeoRouteReply(long long error, struct QtLocation_Packed
 void* QGeoRouteReply_NewQGeoRouteReply2(void* request, void* parent);
 void QGeoRouteReply_Abort(void* ptr);
 void QGeoRouteReply_AbortDefault(void* ptr);
+void QGeoRouteReply_ConnectAborted(void* ptr);
+void QGeoRouteReply_DisconnectAborted(void* ptr);
+void QGeoRouteReply_Aborted(void* ptr);
 void QGeoRouteReply_AddRoutes(void* ptr, void* routes);
 void QGeoRouteReply_ConnectError2(void* ptr);
 void QGeoRouteReply_DisconnectError2(void* ptr);

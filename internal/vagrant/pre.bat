@@ -32,7 +32,7 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.8.3.windows-amd64.msi
+set GO=go1.9.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% http://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
@@ -103,12 +103,12 @@ if "%QT_MSYS2%" == "true" (
   C:\msys64\usr\bin\bash -l -c "pacman -Scc --noconfirm --noprogress"
 ) else (
   ::install Qt
-  set QT=qt-opensource-windows-x86-android-5.8.0.exe
-  curl -sL --retry 10 --retry-delay 10 -o %TMP%\!QT! https://download.qt.io/official_releases/qt/5.8/5.8.0/!QT!
+  set QT=qt-unified-windows-x86-online.exe
+  curl -sL --retry 10 --retry-delay 10 -o %TMP%\!QT! https://download.qt.io/official_releases/online_installers/!QT!
   %TMP%\!QT! --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
   del %TMP%\!QT! /Q
-  setx /M PATH "%PATH%;C:\Qt\Qt5.8.0\Tools\mingw530_32\bin"
-  set PATH=%PATH%;C:\Qt\Qt5.8.0\Tools\mingw530_32\bin
+  setx /M PATH "%PATH%;C:\Qt\Tools\mingw530_32\bin"
+  set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
 )
 
 
@@ -129,14 +129,14 @@ if "%ANDROID%" == "true" (
 
 
   ::install Android SDK
-  set SDK=tools_r25.2.5-windows.zip
+  set SDK=sdk-tools-windows-3859397.zip
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!SDK! https://dl.google.com/android/repository/!SDK!
   7z x %TMP%\!SDK! -oC:\android-sdk-windows\
   del %TMP%\!SDK! /Q
 
-  cmd /C "C:\android-sdk-windows\tools\android.bat list sdk"
-  cmd /C "echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -t 1,2,3,4,5,6"
-  cmd /C "echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -a -f -u -t 5"
+  cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --list --verbose"
+  cmd /C "echo y | C:\android-sdk-windows\tools\bin\sdkmanager.bat 'platform-tools' 'build-tools;26.0.0' 'platforms;android-25'"
+  cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --update"
 
 
   ::install Android NDK

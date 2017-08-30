@@ -25,6 +25,3213 @@ func cGoUnpackString(s C.struct_QtMultimedia_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type QAbstractAudioDeviceInfo struct {
+	core.QObject
+}
+
+type QAbstractAudioDeviceInfo_ITF interface {
+	core.QObject_ITF
+	QAbstractAudioDeviceInfo_PTR() *QAbstractAudioDeviceInfo
+}
+
+func (ptr *QAbstractAudioDeviceInfo) QAbstractAudioDeviceInfo_PTR() *QAbstractAudioDeviceInfo {
+	return ptr
+}
+
+func (ptr *QAbstractAudioDeviceInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQAbstractAudioDeviceInfo(ptr QAbstractAudioDeviceInfo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractAudioDeviceInfo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractAudioDeviceInfoFromPointer(ptr unsafe.Pointer) *QAbstractAudioDeviceInfo {
+	var n = new(QAbstractAudioDeviceInfo)
+	n.SetPointer(ptr)
+	return n
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedByteOrders
+func callbackQAbstractAudioDeviceInfo_SupportedByteOrders(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "supportedByteOrders"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedByteOrders_newList())
+			for _, v := range signal.(func() []QAudioFormat__Endian)() {
+				tmpList.__supportedByteOrders_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedByteOrders_newList())
+		for _, v := range make([]QAudioFormat__Endian, 0) {
+			tmpList.__supportedByteOrders_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedByteOrders(f func() []QAudioFormat__Endian) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedByteOrders"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedByteOrders", func() []QAudioFormat__Endian {
+				signal.(func() []QAudioFormat__Endian)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedByteOrders", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedByteOrders() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedByteOrders")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedByteOrders() []QAudioFormat__Endian {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__Endian {
+			var out = make([]QAudioFormat__Endian, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractAudioDeviceInfoFromPointer(l.data).__supportedByteOrders_atList(i)
+			}
+			return out
+		}(C.QAbstractAudioDeviceInfo_SupportedByteOrders(ptr.Pointer()))
+	}
+	return make([]QAudioFormat__Endian, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedSampleTypes
+func callbackQAbstractAudioDeviceInfo_SupportedSampleTypes(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "supportedSampleTypes"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleTypes_newList())
+			for _, v := range signal.(func() []QAudioFormat__SampleType)() {
+				tmpList.__supportedSampleTypes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleTypes_newList())
+		for _, v := range make([]QAudioFormat__SampleType, 0) {
+			tmpList.__supportedSampleTypes_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedSampleTypes(f func() []QAudioFormat__SampleType) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedSampleTypes"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleTypes", func() []QAudioFormat__SampleType {
+				signal.(func() []QAudioFormat__SampleType)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleTypes", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedSampleTypes() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedSampleTypes")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedSampleTypes() []QAudioFormat__SampleType {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__SampleType {
+			var out = make([]QAudioFormat__SampleType, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractAudioDeviceInfoFromPointer(l.data).__supportedSampleTypes_atList(i)
+			}
+			return out
+		}(C.QAbstractAudioDeviceInfo_SupportedSampleTypes(ptr.Pointer()))
+	}
+	return make([]QAudioFormat__SampleType, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedChannelCounts
+func callbackQAbstractAudioDeviceInfo_SupportedChannelCounts(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "supportedChannelCounts"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedChannelCounts_newList())
+			for _, v := range signal.(func() []int)() {
+				tmpList.__supportedChannelCounts_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedChannelCounts_newList())
+		for _, v := range make([]int, 0) {
+			tmpList.__supportedChannelCounts_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedChannelCounts(f func() []int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedChannelCounts"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedChannelCounts", func() []int {
+				signal.(func() []int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedChannelCounts", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedChannelCounts() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedChannelCounts")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedChannelCounts() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractAudioDeviceInfoFromPointer(l.data).__supportedChannelCounts_atList(i)
+			}
+			return out
+		}(C.QAbstractAudioDeviceInfo_SupportedChannelCounts(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedSampleRates
+func callbackQAbstractAudioDeviceInfo_SupportedSampleRates(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "supportedSampleRates"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleRates_newList())
+			for _, v := range signal.(func() []int)() {
+				tmpList.__supportedSampleRates_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleRates_newList())
+		for _, v := range make([]int, 0) {
+			tmpList.__supportedSampleRates_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedSampleRates(f func() []int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedSampleRates"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleRates", func() []int {
+				signal.(func() []int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleRates", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedSampleRates() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedSampleRates")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedSampleRates() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractAudioDeviceInfoFromPointer(l.data).__supportedSampleRates_atList(i)
+			}
+			return out
+		}(C.QAbstractAudioDeviceInfo_SupportedSampleRates(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedSampleSizes
+func callbackQAbstractAudioDeviceInfo_SupportedSampleSizes(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "supportedSampleSizes"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleSizes_newList())
+			for _, v := range signal.(func() []int)() {
+				tmpList.__supportedSampleSizes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleSizes_newList())
+		for _, v := range make([]int, 0) {
+			tmpList.__supportedSampleSizes_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedSampleSizes(f func() []int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedSampleSizes"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleSizes", func() []int {
+				signal.(func() []int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleSizes", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedSampleSizes() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedSampleSizes")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedSampleSizes() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractAudioDeviceInfoFromPointer(l.data).__supportedSampleSizes_atList(i)
+			}
+			return out
+		}(C.QAbstractAudioDeviceInfo_SupportedSampleSizes(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_SupportedCodecs
+func callbackQAbstractAudioDeviceInfo_SupportedCodecs(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
+	if signal := qt.GetSignal(ptr, "supportedCodecs"); signal != nil {
+		tempVal := signal.(func() []string)()
+		return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	}
+	tempVal := make([]string, 0)
+	return C.struct_QtMultimedia_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectSupportedCodecs(f func() []string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedCodecs"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedCodecs", func() []string {
+				signal.(func() []string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedCodecs", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectSupportedCodecs() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "supportedCodecs")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) SupportedCodecs() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QAbstractAudioDeviceInfo_SupportedCodecs(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackQAbstractAudioDeviceInfo_PreferredFormat
+func callbackQAbstractAudioDeviceInfo_PreferredFormat(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "preferredFormat"); signal != nil {
+		return PointerFromQAudioFormat(signal.(func() *QAudioFormat)())
+	}
+
+	return PointerFromQAudioFormat(NewQAudioFormat())
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectPreferredFormat(f func() *QAudioFormat) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "preferredFormat"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "preferredFormat", func() *QAudioFormat {
+				signal.(func() *QAudioFormat)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "preferredFormat", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectPreferredFormat() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "preferredFormat")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) PreferredFormat() *QAudioFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAudioFormatFromPointer(C.QAbstractAudioDeviceInfo_PreferredFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractAudioDeviceInfo_DeviceName
+func callbackQAbstractAudioDeviceInfo_DeviceName(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
+	if signal := qt.GetSignal(ptr, "deviceName"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := ""
+	return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectDeviceName(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "deviceName"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "deviceName", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "deviceName", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectDeviceName() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "deviceName")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DeviceName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractAudioDeviceInfo_DeviceName(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQAbstractAudioDeviceInfo_IsFormatSupported
+func callbackQAbstractAudioDeviceInfo_IsFormatSupported(ptr unsafe.Pointer, format unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "isFormatSupported"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QAudioFormat) bool)(NewQAudioFormatFromPointer(format)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectIsFormatSupported(f func(format *QAudioFormat) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "isFormatSupported"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "isFormatSupported", func(format *QAudioFormat) bool {
+				signal.(func(*QAudioFormat) bool)(format)
+				return f(format)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "isFormatSupported", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectIsFormatSupported() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "isFormatSupported")
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) IsFormatSupported(format QAudioFormat_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(format)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_atList(i int) QAudioFormat__Endian {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__Endian(C.QAbstractAudioDeviceInfo___supportedByteOrders_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_setList(i QAudioFormat__Endian) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedByteOrders_setList(ptr.Pointer(), C.longlong(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___supportedByteOrders_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_atList(i int) QAudioFormat__SampleType {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__SampleType(C.QAbstractAudioDeviceInfo___supportedSampleTypes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_setList(i QAudioFormat__SampleType) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleTypes_setList(ptr.Pointer(), C.longlong(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___supportedSampleTypes_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedChannelCounts_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedChannelCounts_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___supportedChannelCounts_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___supportedSampleRates_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleSizes_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleSizes_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___supportedSampleSizes_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___dynamicPropertyNames_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___findChildren_newList2(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList3() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___findChildren_newList3(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___findChildren_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) __children_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioDeviceInfo___children_newList(ptr.Pointer()))
+}
+
+//export callbackQAbstractAudioDeviceInfo_Event
+func callbackQAbstractAudioDeviceInfo_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioDeviceInfoFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioDeviceInfo_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioDeviceInfo_EventFilter
+func callbackQAbstractAudioDeviceInfo_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioDeviceInfoFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractAudioDeviceInfo) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioDeviceInfo_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioDeviceInfo_ChildEvent
+func callbackQAbstractAudioDeviceInfo_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_ConnectNotify
+func callbackQAbstractAudioDeviceInfo_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_CustomEvent
+func callbackQAbstractAudioDeviceInfo_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_DeleteLater
+func callbackQAbstractAudioDeviceInfo_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_Destroyed
+func callbackQAbstractAudioDeviceInfo_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQAbstractAudioDeviceInfo_DisconnectNotify
+func callbackQAbstractAudioDeviceInfo_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_ObjectNameChanged
+func callbackQAbstractAudioDeviceInfo_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQAbstractAudioDeviceInfo_TimerEvent
+func callbackQAbstractAudioDeviceInfo_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractAudioDeviceInfoFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioDeviceInfo) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioDeviceInfo_MetaObject
+func callbackQAbstractAudioDeviceInfo_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioDeviceInfoFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioDeviceInfo) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioDeviceInfo_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+type QAbstractAudioInput struct {
+	core.QObject
+}
+
+type QAbstractAudioInput_ITF interface {
+	core.QObject_ITF
+	QAbstractAudioInput_PTR() *QAbstractAudioInput
+}
+
+func (ptr *QAbstractAudioInput) QAbstractAudioInput_PTR() *QAbstractAudioInput {
+	return ptr
+}
+
+func (ptr *QAbstractAudioInput) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQAbstractAudioInput(ptr QAbstractAudioInput_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractAudioInput_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractAudioInputFromPointer(ptr unsafe.Pointer) *QAbstractAudioInput {
+	var n = new(QAbstractAudioInput)
+	n.SetPointer(ptr)
+	return n
+}
+
+//export callbackQAbstractAudioInput_Start2
+func callbackQAbstractAudioInput_Start2(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "start2"); signal != nil {
+		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
+	}
+
+	return core.PointerFromQIODevice(core.NewQIODevice())
+}
+
+func (ptr *QAbstractAudioInput) ConnectStart2(f func() *core.QIODevice) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "start2"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "start2", func() *core.QIODevice {
+				signal.(func() *core.QIODevice)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "start2", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectStart2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "start2")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Start2() *core.QIODevice {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQIODeviceFromPointer(C.QAbstractAudioInput_Start2(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractAudioInput_ErrorChanged
+func callbackQAbstractAudioInput_ErrorChanged(ptr unsafe.Pointer, error C.longlong) {
+	if signal := qt.GetSignal(ptr, "errorChanged"); signal != nil {
+		signal.(func(QAudio__Error))(QAudio__Error(error))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectErrorChanged(f func(error QAudio__Error)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "errorChanged") {
+			C.QAbstractAudioInput_ConnectErrorChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "errorChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "errorChanged", func(error QAudio__Error) {
+				signal.(func(QAudio__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "errorChanged", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectErrorChanged() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_DisconnectErrorChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "errorChanged")
+	}
+}
+
+func (ptr *QAbstractAudioInput) ErrorChanged(error QAudio__Error) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_ErrorChanged(ptr.Pointer(), C.longlong(error))
+	}
+}
+
+//export callbackQAbstractAudioInput_Notify
+func callbackQAbstractAudioInput_Notify(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "notify"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectNotify(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "notify") {
+			C.QAbstractAudioInput_ConnectNotify(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "notify"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "notify", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notify", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectNotify() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_DisconnectNotify(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "notify")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Notify() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Notify(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioInput_Reset
+func callbackQAbstractAudioInput_Reset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectReset(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "reset"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "reset", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "reset", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectReset() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "reset")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Reset() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Reset(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioInput_Resume
+func callbackQAbstractAudioInput_Resume(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resume"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectResume(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resume", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectResume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "resume")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Resume() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Resume(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioInput_SetBufferSize
+func callbackQAbstractAudioInput_SetBufferSize(ptr unsafe.Pointer, value C.int) {
+	if signal := qt.GetSignal(ptr, "setBufferSize"); signal != nil {
+		signal.(func(int))(int(int32(value)))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectSetBufferSize(f func(value int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setBufferSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setBufferSize", func(value int) {
+				signal.(func(int))(value)
+				f(value)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setBufferSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectSetBufferSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setBufferSize")
+	}
+}
+
+func (ptr *QAbstractAudioInput) SetBufferSize(value int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_SetBufferSize(ptr.Pointer(), C.int(int32(value)))
+	}
+}
+
+//export callbackQAbstractAudioInput_SetFormat
+func callbackQAbstractAudioInput_SetFormat(ptr unsafe.Pointer, fo unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setFormat"); signal != nil {
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fo))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectSetFormat(f func(fo *QAudioFormat)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setFormat"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fo *QAudioFormat) {
+				signal.(func(*QAudioFormat))(fo)
+				f(fo)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectSetFormat() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setFormat")
+	}
+}
+
+func (ptr *QAbstractAudioInput) SetFormat(fo QAudioFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fo))
+	}
+}
+
+//export callbackQAbstractAudioInput_SetNotifyInterval
+func callbackQAbstractAudioInput_SetNotifyInterval(ptr unsafe.Pointer, ms C.int) {
+	if signal := qt.GetSignal(ptr, "setNotifyInterval"); signal != nil {
+		signal.(func(int))(int(int32(ms)))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectSetNotifyInterval(f func(ms int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setNotifyInterval"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setNotifyInterval", func(ms int) {
+				signal.(func(int))(ms)
+				f(ms)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setNotifyInterval", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectSetNotifyInterval() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setNotifyInterval")
+	}
+}
+
+func (ptr *QAbstractAudioInput) SetNotifyInterval(ms int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_SetNotifyInterval(ptr.Pointer(), C.int(int32(ms)))
+	}
+}
+
+//export callbackQAbstractAudioInput_SetVolume
+func callbackQAbstractAudioInput_SetVolume(ptr unsafe.Pointer, vqr C.double) {
+	if signal := qt.GetSignal(ptr, "setVolume"); signal != nil {
+		signal.(func(float64))(float64(vqr))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectSetVolume(f func(vqr float64)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setVolume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setVolume", func(vqr float64) {
+				signal.(func(float64))(vqr)
+				f(vqr)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setVolume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectSetVolume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setVolume")
+	}
+}
+
+func (ptr *QAbstractAudioInput) SetVolume(vqr float64) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_SetVolume(ptr.Pointer(), C.double(vqr))
+	}
+}
+
+//export callbackQAbstractAudioInput_Start
+func callbackQAbstractAudioInput_Start(ptr unsafe.Pointer, device unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "start"); signal != nil {
+		signal.(func(*core.QIODevice))(core.NewQIODeviceFromPointer(device))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectStart(f func(device *core.QIODevice)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "start", func(device *core.QIODevice) {
+				signal.(func(*core.QIODevice))(device)
+				f(device)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "start", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectStart() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "start")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Start(device core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Start(ptr.Pointer(), core.PointerFromQIODevice(device))
+	}
+}
+
+//export callbackQAbstractAudioInput_StateChanged
+func callbackQAbstractAudioInput_StateChanged(ptr unsafe.Pointer, state C.longlong) {
+	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
+		signal.(func(QAudio__State))(QAudio__State(state))
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectStateChanged(f func(state QAudio__State)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
+			C.QAbstractAudioInput_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(state QAudio__State) {
+				signal.(func(QAudio__State))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectStateChanged() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_DisconnectStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
+	}
+}
+
+func (ptr *QAbstractAudioInput) StateChanged(state QAudio__State) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_StateChanged(ptr.Pointer(), C.longlong(state))
+	}
+}
+
+//export callbackQAbstractAudioInput_Stop
+func callbackQAbstractAudioInput_Stop(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectStop(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stop", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectStop() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "stop")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Stop() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Stop(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioInput_Suspend
+func callbackQAbstractAudioInput_Suspend(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "suspend"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioInput) ConnectSuspend(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "suspend"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "suspend", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "suspend", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectSuspend() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "suspend")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Suspend() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_Suspend(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioInput_Error
+func callbackQAbstractAudioInput_Error(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "error"); signal != nil {
+		return C.longlong(signal.(func() QAudio__Error)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioInput) ConnectError(f func() QAudio__Error) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "error", func() QAudio__Error {
+				signal.(func() QAudio__Error)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "error", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "error")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Error() QAudio__Error {
+	if ptr.Pointer() != nil {
+		return QAudio__Error(C.QAbstractAudioInput_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_State
+func callbackQAbstractAudioInput_State(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "state"); signal != nil {
+		return C.longlong(signal.(func() QAudio__State)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioInput) ConnectState(f func() QAudio__State) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "state"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "state", func() QAudio__State {
+				signal.(func() QAudio__State)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "state", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectState() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "state")
+	}
+}
+
+func (ptr *QAbstractAudioInput) State() QAudio__State {
+	if ptr.Pointer() != nil {
+		return QAudio__State(C.QAbstractAudioInput_State(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_Format
+func callbackQAbstractAudioInput_Format(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "format"); signal != nil {
+		return PointerFromQAudioFormat(signal.(func() *QAudioFormat)())
+	}
+
+	return PointerFromQAudioFormat(NewQAudioFormat())
+}
+
+func (ptr *QAbstractAudioInput) ConnectFormat(f func() *QAudioFormat) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "format"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "format", func() *QAudioFormat {
+				signal.(func() *QAudioFormat)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "format", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectFormat() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "format")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Format() *QAudioFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAudioFormatFromPointer(C.QAbstractAudioInput_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractAudioInput_BufferSize
+func callbackQAbstractAudioInput_BufferSize(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "bufferSize"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioInput) ConnectBufferSize(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bufferSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "bufferSize", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bufferSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectBufferSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bufferSize")
+	}
+}
+
+func (ptr *QAbstractAudioInput) BufferSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioInput_BufferSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_BytesReady
+func callbackQAbstractAudioInput_BytesReady(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "bytesReady"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioInput) ConnectBytesReady(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bytesReady"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "bytesReady", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bytesReady", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectBytesReady() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bytesReady")
+	}
+}
+
+func (ptr *QAbstractAudioInput) BytesReady() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioInput_BytesReady(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_NotifyInterval
+func callbackQAbstractAudioInput_NotifyInterval(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "notifyInterval"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioInput) ConnectNotifyInterval(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "notifyInterval"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "notifyInterval", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notifyInterval", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectNotifyInterval() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "notifyInterval")
+	}
+}
+
+func (ptr *QAbstractAudioInput) NotifyInterval() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioInput_NotifyInterval(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_PeriodSize
+func callbackQAbstractAudioInput_PeriodSize(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "periodSize"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioInput) ConnectPeriodSize(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "periodSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "periodSize", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "periodSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectPeriodSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "periodSize")
+	}
+}
+
+func (ptr *QAbstractAudioInput) PeriodSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioInput_PeriodSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_ElapsedUSecs
+func callbackQAbstractAudioInput_ElapsedUSecs(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "elapsedUSecs"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioInput) ConnectElapsedUSecs(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "elapsedUSecs"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "elapsedUSecs", func() int64 {
+				signal.(func() int64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "elapsedUSecs", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectElapsedUSecs() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "elapsedUSecs")
+	}
+}
+
+func (ptr *QAbstractAudioInput) ElapsedUSecs() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractAudioInput_ElapsedUSecs(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_ProcessedUSecs
+func callbackQAbstractAudioInput_ProcessedUSecs(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "processedUSecs"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioInput) ConnectProcessedUSecs(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "processedUSecs"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "processedUSecs", func() int64 {
+				signal.(func() int64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "processedUSecs", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectProcessedUSecs() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "processedUSecs")
+	}
+}
+
+func (ptr *QAbstractAudioInput) ProcessedUSecs() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractAudioInput_ProcessedUSecs(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioInput_Volume
+func callbackQAbstractAudioInput_Volume(ptr unsafe.Pointer) C.double {
+	if signal := qt.GetSignal(ptr, "volume"); signal != nil {
+		return C.double(signal.(func() float64)())
+	}
+
+	return C.double(0)
+}
+
+func (ptr *QAbstractAudioInput) ConnectVolume(f func() float64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "volume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "volume", func() float64 {
+				signal.(func() float64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "volume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectVolume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "volume")
+	}
+}
+
+func (ptr *QAbstractAudioInput) Volume() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QAbstractAudioInput_Volume(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioInput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAbstractAudioInput) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioInput___dynamicPropertyNames_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioInput___findChildren_newList2(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_newList3() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioInput___findChildren_newList3(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioInput) __findChildren_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioInput___findChildren_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioInput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioInput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioInput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioInput) __children_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioInput___children_newList(ptr.Pointer()))
+}
+
+//export callbackQAbstractAudioInput_Event
+func callbackQAbstractAudioInput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioInputFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractAudioInput) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioInput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioInput_EventFilter
+func callbackQAbstractAudioInput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioInputFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractAudioInput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioInput_ChildEvent
+func callbackQAbstractAudioInput_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioInput) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioInput_ConnectNotify
+func callbackQAbstractAudioInput_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioInput) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioInput_CustomEvent
+func callbackQAbstractAudioInput_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioInput) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioInput_DeleteLater
+func callbackQAbstractAudioInput_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAbstractAudioInput) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAbstractAudioInput_Destroyed
+func callbackQAbstractAudioInput_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQAbstractAudioInput_DisconnectNotify
+func callbackQAbstractAudioInput_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioInput) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioInput_ObjectNameChanged
+func callbackQAbstractAudioInput_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQAbstractAudioInput_TimerEvent
+func callbackQAbstractAudioInput_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractAudioInputFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioInput) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioInput_MetaObject
+func callbackQAbstractAudioInput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioInputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioInput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioInput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+type QAbstractAudioOutput struct {
+	core.QObject
+}
+
+type QAbstractAudioOutput_ITF interface {
+	core.QObject_ITF
+	QAbstractAudioOutput_PTR() *QAbstractAudioOutput
+}
+
+func (ptr *QAbstractAudioOutput) QAbstractAudioOutput_PTR() *QAbstractAudioOutput {
+	return ptr
+}
+
+func (ptr *QAbstractAudioOutput) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQAbstractAudioOutput(ptr QAbstractAudioOutput_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractAudioOutput_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractAudioOutputFromPointer(ptr unsafe.Pointer) *QAbstractAudioOutput {
+	var n = new(QAbstractAudioOutput)
+	n.SetPointer(ptr)
+	return n
+}
+
+//export callbackQAbstractAudioOutput_Start2
+func callbackQAbstractAudioOutput_Start2(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "start2"); signal != nil {
+		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
+	}
+
+	return core.PointerFromQIODevice(core.NewQIODevice())
+}
+
+func (ptr *QAbstractAudioOutput) ConnectStart2(f func() *core.QIODevice) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "start2"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "start2", func() *core.QIODevice {
+				signal.(func() *core.QIODevice)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "start2", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectStart2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "start2")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Start2() *core.QIODevice {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQIODeviceFromPointer(C.QAbstractAudioOutput_Start2(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractAudioOutput_ErrorChanged
+func callbackQAbstractAudioOutput_ErrorChanged(ptr unsafe.Pointer, error C.longlong) {
+	if signal := qt.GetSignal(ptr, "errorChanged"); signal != nil {
+		signal.(func(QAudio__Error))(QAudio__Error(error))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectErrorChanged(f func(error QAudio__Error)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "errorChanged") {
+			C.QAbstractAudioOutput_ConnectErrorChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "errorChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "errorChanged", func(error QAudio__Error) {
+				signal.(func(QAudio__Error))(error)
+				f(error)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "errorChanged", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectErrorChanged() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_DisconnectErrorChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "errorChanged")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ErrorChanged(error QAudio__Error) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_ErrorChanged(ptr.Pointer(), C.longlong(error))
+	}
+}
+
+//export callbackQAbstractAudioOutput_Notify
+func callbackQAbstractAudioOutput_Notify(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "notify"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectNotify(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "notify") {
+			C.QAbstractAudioOutput_ConnectNotify(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "notify"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "notify", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notify", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectNotify() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_DisconnectNotify(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "notify")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Notify() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Notify(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioOutput_Reset
+func callbackQAbstractAudioOutput_Reset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectReset(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "reset"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "reset", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "reset", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectReset() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "reset")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Reset() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Reset(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioOutput_Resume
+func callbackQAbstractAudioOutput_Resume(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resume"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectResume(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resume", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectResume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "resume")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Resume() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Resume(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioOutput_SetBufferSize
+func callbackQAbstractAudioOutput_SetBufferSize(ptr unsafe.Pointer, value C.int) {
+	if signal := qt.GetSignal(ptr, "setBufferSize"); signal != nil {
+		signal.(func(int))(int(int32(value)))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSetBufferSize(f func(value int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setBufferSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setBufferSize", func(value int) {
+				signal.(func(int))(value)
+				f(value)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setBufferSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSetBufferSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setBufferSize")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetBufferSize(value int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_SetBufferSize(ptr.Pointer(), C.int(int32(value)))
+	}
+}
+
+//export callbackQAbstractAudioOutput_SetCategory
+func callbackQAbstractAudioOutput_SetCategory(ptr unsafe.Pointer, vqs C.struct_QtMultimedia_PackedString) {
+	if signal := qt.GetSignal(ptr, "setCategory"); signal != nil {
+		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).SetCategoryDefault(cGoUnpackString(vqs))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSetCategory(f func(vqs string)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setCategory"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setCategory", func(vqs string) {
+				signal.(func(string))(vqs)
+				f(vqs)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setCategory", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSetCategory() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setCategory")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetCategory(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
+		C.QAbstractAudioOutput_SetCategory(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vqsC, len: C.longlong(len(vqs))})
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetCategoryDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
+		}
+		C.QAbstractAudioOutput_SetCategoryDefault(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vqsC, len: C.longlong(len(vqs))})
+	}
+}
+
+//export callbackQAbstractAudioOutput_SetFormat
+func callbackQAbstractAudioOutput_SetFormat(ptr unsafe.Pointer, fo unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setFormat"); signal != nil {
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fo))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSetFormat(f func(fo *QAudioFormat)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setFormat"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fo *QAudioFormat) {
+				signal.(func(*QAudioFormat))(fo)
+				f(fo)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSetFormat() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setFormat")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetFormat(fo QAudioFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fo))
+	}
+}
+
+//export callbackQAbstractAudioOutput_SetNotifyInterval
+func callbackQAbstractAudioOutput_SetNotifyInterval(ptr unsafe.Pointer, ms C.int) {
+	if signal := qt.GetSignal(ptr, "setNotifyInterval"); signal != nil {
+		signal.(func(int))(int(int32(ms)))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSetNotifyInterval(f func(ms int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setNotifyInterval"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setNotifyInterval", func(ms int) {
+				signal.(func(int))(ms)
+				f(ms)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setNotifyInterval", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSetNotifyInterval() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setNotifyInterval")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetNotifyInterval(ms int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_SetNotifyInterval(ptr.Pointer(), C.int(int32(ms)))
+	}
+}
+
+//export callbackQAbstractAudioOutput_SetVolume
+func callbackQAbstractAudioOutput_SetVolume(ptr unsafe.Pointer, volume C.double) {
+	if signal := qt.GetSignal(ptr, "setVolume"); signal != nil {
+		signal.(func(float64))(float64(volume))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).SetVolumeDefault(float64(volume))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSetVolume(f func(volume float64)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setVolume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setVolume", func(volume float64) {
+				signal.(func(float64))(volume)
+				f(volume)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setVolume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSetVolume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setVolume")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetVolume(volume float64) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_SetVolume(ptr.Pointer(), C.double(volume))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) SetVolumeDefault(volume float64) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_SetVolumeDefault(ptr.Pointer(), C.double(volume))
+	}
+}
+
+//export callbackQAbstractAudioOutput_Start
+func callbackQAbstractAudioOutput_Start(ptr unsafe.Pointer, device unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "start"); signal != nil {
+		signal.(func(*core.QIODevice))(core.NewQIODeviceFromPointer(device))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectStart(f func(device *core.QIODevice)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "start", func(device *core.QIODevice) {
+				signal.(func(*core.QIODevice))(device)
+				f(device)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "start", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectStart() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "start")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Start(device core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Start(ptr.Pointer(), core.PointerFromQIODevice(device))
+	}
+}
+
+//export callbackQAbstractAudioOutput_StateChanged
+func callbackQAbstractAudioOutput_StateChanged(ptr unsafe.Pointer, state C.longlong) {
+	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
+		signal.(func(QAudio__State))(QAudio__State(state))
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectStateChanged(f func(state QAudio__State)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
+			C.QAbstractAudioOutput_ConnectStateChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(state QAudio__State) {
+				signal.(func(QAudio__State))(state)
+				f(state)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectStateChanged() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_DisconnectStateChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) StateChanged(state QAudio__State) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_StateChanged(ptr.Pointer(), C.longlong(state))
+	}
+}
+
+//export callbackQAbstractAudioOutput_Stop
+func callbackQAbstractAudioOutput_Stop(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectStop(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "stop", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "stop", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectStop() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "stop")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Stop() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Stop(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioOutput_Suspend
+func callbackQAbstractAudioOutput_Suspend(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "suspend"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QAbstractAudioOutput) ConnectSuspend(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "suspend"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "suspend", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "suspend", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectSuspend() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "suspend")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Suspend() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_Suspend(ptr.Pointer())
+	}
+}
+
+//export callbackQAbstractAudioOutput_Error
+func callbackQAbstractAudioOutput_Error(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "error"); signal != nil {
+		return C.longlong(signal.(func() QAudio__Error)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioOutput) ConnectError(f func() QAudio__Error) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "error", func() QAudio__Error {
+				signal.(func() QAudio__Error)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "error", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "error")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Error() QAudio__Error {
+	if ptr.Pointer() != nil {
+		return QAudio__Error(C.QAbstractAudioOutput_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_State
+func callbackQAbstractAudioOutput_State(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "state"); signal != nil {
+		return C.longlong(signal.(func() QAudio__State)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioOutput) ConnectState(f func() QAudio__State) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "state"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "state", func() QAudio__State {
+				signal.(func() QAudio__State)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "state", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectState() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "state")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) State() QAudio__State {
+	if ptr.Pointer() != nil {
+		return QAudio__State(C.QAbstractAudioOutput_State(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_Format
+func callbackQAbstractAudioOutput_Format(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "format"); signal != nil {
+		return PointerFromQAudioFormat(signal.(func() *QAudioFormat)())
+	}
+
+	return PointerFromQAudioFormat(NewQAudioFormat())
+}
+
+func (ptr *QAbstractAudioOutput) ConnectFormat(f func() *QAudioFormat) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "format"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "format", func() *QAudioFormat {
+				signal.(func() *QAudioFormat)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "format", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectFormat() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "format")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Format() *QAudioFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAudioFormatFromPointer(C.QAbstractAudioOutput_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractAudioOutput_Category
+func callbackQAbstractAudioOutput_Category(ptr unsafe.Pointer) C.struct_QtMultimedia_PackedString {
+	if signal := qt.GetSignal(ptr, "category"); signal != nil {
+		tempVal := signal.(func() string)()
+		return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+	}
+	tempVal := NewQAbstractAudioOutputFromPointer(ptr).CategoryDefault()
+	return C.struct_QtMultimedia_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
+}
+
+func (ptr *QAbstractAudioOutput) ConnectCategory(f func() string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "category"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "category", func() string {
+				signal.(func() string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "category", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectCategory() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "category")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Category() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractAudioOutput_Category(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAbstractAudioOutput) CategoryDefault() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractAudioOutput_CategoryDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQAbstractAudioOutput_BufferSize
+func callbackQAbstractAudioOutput_BufferSize(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "bufferSize"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioOutput) ConnectBufferSize(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bufferSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "bufferSize", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bufferSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectBufferSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bufferSize")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) BufferSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioOutput_BufferSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_BytesFree
+func callbackQAbstractAudioOutput_BytesFree(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "bytesFree"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioOutput) ConnectBytesFree(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "bytesFree"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "bytesFree", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "bytesFree", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectBytesFree() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "bytesFree")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) BytesFree() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioOutput_BytesFree(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_NotifyInterval
+func callbackQAbstractAudioOutput_NotifyInterval(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "notifyInterval"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioOutput) ConnectNotifyInterval(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "notifyInterval"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "notifyInterval", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "notifyInterval", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectNotifyInterval() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "notifyInterval")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) NotifyInterval() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioOutput_NotifyInterval(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_PeriodSize
+func callbackQAbstractAudioOutput_PeriodSize(ptr unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "periodSize"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
+	}
+
+	return C.int(int32(0))
+}
+
+func (ptr *QAbstractAudioOutput) ConnectPeriodSize(f func() int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "periodSize"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "periodSize", func() int {
+				signal.(func() int)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "periodSize", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectPeriodSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "periodSize")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) PeriodSize() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioOutput_PeriodSize(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_ElapsedUSecs
+func callbackQAbstractAudioOutput_ElapsedUSecs(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "elapsedUSecs"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioOutput) ConnectElapsedUSecs(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "elapsedUSecs"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "elapsedUSecs", func() int64 {
+				signal.(func() int64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "elapsedUSecs", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectElapsedUSecs() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "elapsedUSecs")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ElapsedUSecs() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractAudioOutput_ElapsedUSecs(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_ProcessedUSecs
+func callbackQAbstractAudioOutput_ProcessedUSecs(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "processedUSecs"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QAbstractAudioOutput) ConnectProcessedUSecs(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "processedUSecs"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "processedUSecs", func() int64 {
+				signal.(func() int64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "processedUSecs", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectProcessedUSecs() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "processedUSecs")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ProcessedUSecs() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QAbstractAudioOutput_ProcessedUSecs(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQAbstractAudioOutput_Volume
+func callbackQAbstractAudioOutput_Volume(ptr unsafe.Pointer) C.double {
+	if signal := qt.GetSignal(ptr, "volume"); signal != nil {
+		return C.double(signal.(func() float64)())
+	}
+
+	return C.double(NewQAbstractAudioOutputFromPointer(ptr).VolumeDefault())
+}
+
+func (ptr *QAbstractAudioOutput) ConnectVolume(f func() float64) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "volume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "volume", func() float64 {
+				signal.(func() float64)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "volume", f)
+		}
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectVolume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "volume")
+	}
+}
+
+func (ptr *QAbstractAudioOutput) Volume() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QAbstractAudioOutput_Volume(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioOutput) VolumeDefault() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QAbstractAudioOutput_VolumeDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioOutput___dynamicPropertyNames_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioOutput___findChildren_newList2(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_newList3() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioOutput___findChildren_newList3(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) __findChildren_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioOutput___findChildren_newList(ptr.Pointer()))
+}
+
+func (ptr *QAbstractAudioOutput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAbstractAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractAudioOutput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) __children_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAbstractAudioOutput___children_newList(ptr.Pointer()))
+}
+
+//export callbackQAbstractAudioOutput_Event
+func callbackQAbstractAudioOutput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioOutputFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAbstractAudioOutput) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioOutput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioOutput_EventFilter
+func callbackQAbstractAudioOutput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractAudioOutputFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAbstractAudioOutput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractAudioOutput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQAbstractAudioOutput_ChildEvent
+func callbackQAbstractAudioOutput_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioOutput_ConnectNotify
+func callbackQAbstractAudioOutput_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioOutput_CustomEvent
+func callbackQAbstractAudioOutput_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioOutput_DeleteLater
+func callbackQAbstractAudioOutput_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAbstractAudioOutput_Destroyed
+func callbackQAbstractAudioOutput_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQAbstractAudioOutput_DisconnectNotify
+func callbackQAbstractAudioOutput_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAbstractAudioOutput_ObjectNameChanged
+func callbackQAbstractAudioOutput_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQAbstractAudioOutput_TimerEvent
+func callbackQAbstractAudioOutput_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAbstractAudioOutputFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAbstractAudioOutput) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQAbstractAudioOutput_MetaObject
+func callbackQAbstractAudioOutput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractAudioOutputFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractAudioOutput) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractAudioOutput_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QAbstractPlanarVideoBuffer struct {
 	QAbstractVideoBuffer
 }
@@ -7296,6 +10503,517 @@ func (ptr *QAudioRoleControl) __supportedAudioRoles_setList(i QAudio__Role) {
 
 func (ptr *QAudioRoleControl) __supportedAudioRoles_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QAudioRoleControl___supportedAudioRoles_newList(ptr.Pointer()))
+}
+
+type QAudioSystemPlugin struct {
+	core.QObject
+}
+
+type QAudioSystemPlugin_ITF interface {
+	core.QObject_ITF
+	QAudioSystemPlugin_PTR() *QAudioSystemPlugin
+}
+
+func (ptr *QAudioSystemPlugin) QAudioSystemPlugin_PTR() *QAudioSystemPlugin {
+	return ptr
+}
+
+func (ptr *QAudioSystemPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQAudioSystemPlugin(ptr QAudioSystemPlugin_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAudioSystemPlugin_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAudioSystemPluginFromPointer(ptr unsafe.Pointer) *QAudioSystemPlugin {
+	var n = new(QAudioSystemPlugin)
+	n.SetPointer(ptr)
+	return n
+}
+
+//export callbackQAudioSystemPlugin_CreateDeviceInfo
+func callbackQAudioSystemPlugin_CreateDeviceInfo(ptr unsafe.Pointer, device unsafe.Pointer, mode C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createDeviceInfo"); signal != nil {
+		return PointerFromQAbstractAudioDeviceInfo(signal.(func(*core.QByteArray, QAudio__Mode) *QAbstractAudioDeviceInfo)(core.NewQByteArrayFromPointer(device), QAudio__Mode(mode)))
+	}
+
+	return PointerFromQAbstractAudioDeviceInfo(nil)
+}
+
+func (ptr *QAudioSystemPlugin) ConnectCreateDeviceInfo(f func(device *core.QByteArray, mode QAudio__Mode) *QAbstractAudioDeviceInfo) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "createDeviceInfo"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "createDeviceInfo", func(device *core.QByteArray, mode QAudio__Mode) *QAbstractAudioDeviceInfo {
+				signal.(func(*core.QByteArray, QAudio__Mode) *QAbstractAudioDeviceInfo)(device, mode)
+				return f(device, mode)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "createDeviceInfo", f)
+		}
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DisconnectCreateDeviceInfo() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "createDeviceInfo")
+	}
+}
+
+func (ptr *QAudioSystemPlugin) CreateDeviceInfo(device core.QByteArray_ITF, mode QAudio__Mode) *QAbstractAudioDeviceInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractAudioDeviceInfoFromPointer(C.QAudioSystemPlugin_CreateDeviceInfo(ptr.Pointer(), core.PointerFromQByteArray(device), C.longlong(mode)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAudioSystemPlugin_CreateInput
+func callbackQAudioSystemPlugin_CreateInput(ptr unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createInput"); signal != nil {
+		return PointerFromQAbstractAudioInput(signal.(func(*core.QByteArray) *QAbstractAudioInput)(core.NewQByteArrayFromPointer(device)))
+	}
+
+	return PointerFromQAbstractAudioInput(nil)
+}
+
+func (ptr *QAudioSystemPlugin) ConnectCreateInput(f func(device *core.QByteArray) *QAbstractAudioInput) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "createInput"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "createInput", func(device *core.QByteArray) *QAbstractAudioInput {
+				signal.(func(*core.QByteArray) *QAbstractAudioInput)(device)
+				return f(device)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "createInput", f)
+		}
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DisconnectCreateInput() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "createInput")
+	}
+}
+
+func (ptr *QAudioSystemPlugin) CreateInput(device core.QByteArray_ITF) *QAbstractAudioInput {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractAudioInputFromPointer(C.QAudioSystemPlugin_CreateInput(ptr.Pointer(), core.PointerFromQByteArray(device)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAudioSystemPlugin_CreateOutput
+func callbackQAudioSystemPlugin_CreateOutput(ptr unsafe.Pointer, device unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createOutput"); signal != nil {
+		return PointerFromQAbstractAudioOutput(signal.(func(*core.QByteArray) *QAbstractAudioOutput)(core.NewQByteArrayFromPointer(device)))
+	}
+
+	return PointerFromQAbstractAudioOutput(nil)
+}
+
+func (ptr *QAudioSystemPlugin) ConnectCreateOutput(f func(device *core.QByteArray) *QAbstractAudioOutput) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "createOutput"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "createOutput", func(device *core.QByteArray) *QAbstractAudioOutput {
+				signal.(func(*core.QByteArray) *QAbstractAudioOutput)(device)
+				return f(device)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "createOutput", f)
+		}
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DisconnectCreateOutput() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "createOutput")
+	}
+}
+
+func (ptr *QAudioSystemPlugin) CreateOutput(device core.QByteArray_ITF) *QAbstractAudioOutput {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractAudioOutputFromPointer(C.QAudioSystemPlugin_CreateOutput(ptr.Pointer(), core.PointerFromQByteArray(device)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func NewQAudioSystemPlugin(parent core.QObject_ITF) *QAudioSystemPlugin {
+	var tmpValue = NewQAudioSystemPluginFromPointer(C.QAudioSystemPlugin_NewQAudioSystemPlugin(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPlugin() {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_DestroyQAudioSystemPlugin(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAudioSystemPlugin_AvailableDevices
+func callbackQAudioSystemPlugin_AvailableDevices(ptr unsafe.Pointer, mode C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "availableDevices"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQAudioSystemPluginFromPointer(NewQAudioSystemPluginFromPointer(nil).__availableDevices_newList())
+			for _, v := range signal.(func(QAudio__Mode) []*core.QByteArray)(QAudio__Mode(mode)) {
+				tmpList.__availableDevices_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQAudioSystemPluginFromPointer(NewQAudioSystemPluginFromPointer(nil).__availableDevices_newList())
+		for _, v := range make([]*core.QByteArray, 0) {
+			tmpList.__availableDevices_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QAudioSystemPlugin) ConnectAvailableDevices(f func(mode QAudio__Mode) []*core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "availableDevices"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "availableDevices", func(mode QAudio__Mode) []*core.QByteArray {
+				signal.(func(QAudio__Mode) []*core.QByteArray)(mode)
+				return f(mode)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "availableDevices", f)
+		}
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DisconnectAvailableDevices() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "availableDevices")
+	}
+}
+
+func (ptr *QAudioSystemPlugin) AvailableDevices(mode QAudio__Mode) []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAudioSystemPluginFromPointer(l.data).__availableDevices_atList(i)
+			}
+			return out
+		}(C.QAudioSystemPlugin_AvailableDevices(ptr.Pointer(), C.longlong(mode)))
+	}
+	return make([]*core.QByteArray, 0)
+}
+
+func (ptr *QAudioSystemPlugin) __availableDevices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __availableDevices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __availableDevices_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___availableDevices_newList(ptr.Pointer()))
+}
+
+func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___dynamicPropertyNames_newList(ptr.Pointer()))
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___findChildren_newList2(ptr.Pointer()))
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_newList3() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___findChildren_newList3(ptr.Pointer()))
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __findChildren_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___findChildren_newList(ptr.Pointer()))
+}
+
+func (ptr *QAudioSystemPlugin) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QAudioSystemPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAudioSystemPlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) __children_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QAudioSystemPlugin___children_newList(ptr.Pointer()))
+}
+
+//export callbackQAudioSystemPlugin_Event
+func callbackQAudioSystemPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAudioSystemPluginFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QAudioSystemPlugin) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAudioSystemPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQAudioSystemPlugin_EventFilter
+func callbackQAudioSystemPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQAudioSystemPluginFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QAudioSystemPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAudioSystemPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQAudioSystemPlugin_ChildEvent
+func callbackQAudioSystemPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQAudioSystemPlugin_ConnectNotify
+func callbackQAudioSystemPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAudioSystemPlugin_CustomEvent
+func callbackQAudioSystemPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQAudioSystemPlugin_DeleteLater
+func callbackQAudioSystemPlugin_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQAudioSystemPlugin_Destroyed
+func callbackQAudioSystemPlugin_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQAudioSystemPlugin_DisconnectNotify
+func callbackQAudioSystemPlugin_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQAudioSystemPlugin_ObjectNameChanged
+func callbackQAudioSystemPlugin_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtMultimedia_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQAudioSystemPlugin_TimerEvent
+func callbackQAudioSystemPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQAudioSystemPluginFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QAudioSystemPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQAudioSystemPlugin_MetaObject
+func callbackQAudioSystemPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQAudioSystemPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAudioSystemPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAudioSystemPlugin_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QCamera struct {

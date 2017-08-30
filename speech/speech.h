@@ -38,6 +38,8 @@ void QTextToSpeech_SetPitch(void* ptr, double pitch);
 void QTextToSpeech_SetPitchDefault(void* ptr, double pitch);
 void QTextToSpeech_SetRate(void* ptr, double rate);
 void QTextToSpeech_SetRateDefault(void* ptr, double rate);
+void QTextToSpeech_SetVoice(void* ptr, void* voice);
+void QTextToSpeech_SetVoiceDefault(void* ptr, void* voice);
 void QTextToSpeech_SetVolume(void* ptr, double volume);
 void QTextToSpeech_SetVolumeDefault(void* ptr, double volume);
 void QTextToSpeech_ConnectStateChanged(void* ptr);
@@ -50,6 +52,8 @@ void QTextToSpeech_DisconnectVolumeChanged(void* ptr);
 void QTextToSpeech_VolumeChanged(void* ptr, int volume);
 void* QTextToSpeech_Locale(void* ptr);
 struct QtSpeech_PackedList QTextToSpeech_AvailableLocales(void* ptr);
+struct QtSpeech_PackedList QTextToSpeech_AvailableVoices(void* ptr);
+void* QTextToSpeech_Voice(void* ptr);
 long long QTextToSpeech_State(void* ptr);
 double QTextToSpeech_Pitch(void* ptr);
 double QTextToSpeech_Rate(void* ptr);
@@ -57,6 +61,8 @@ double QTextToSpeech_Volume(void* ptr);
 void* QTextToSpeech___availableLocales_atList(void* ptr, int i);
 void QTextToSpeech___availableLocales_setList(void* ptr, void* i);
 void* QTextToSpeech___availableLocales_newList(void* ptr);
+void* QTextToSpeech___availableVoices_atList(void* ptr, int i);
+void QTextToSpeech___availableVoices_setList(void* ptr, void* i);
 void* QTextToSpeech___availableVoices_newList(void* ptr);
 void* QTextToSpeech___dynamicPropertyNames_atList(void* ptr, int i);
 void QTextToSpeech___dynamicPropertyNames_setList(void* ptr, void* i);
@@ -91,6 +97,14 @@ struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_keyLis
 struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_atList(void* ptr, int i);
 void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, struct QtSpeech_PackedString i);
 void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr);
+struct QtSpeech_PackedString QVoice_QVoice_AgeName(long long age);
+struct QtSpeech_PackedString QVoice_QVoice_GenderName(long long gender);
+void* QVoice_NewQVoice();
+void* QVoice_NewQVoice2(void* other);
+void QVoice_DestroyQVoice(void* ptr);
+long long QVoice_Age(void* ptr);
+long long QVoice_Gender(void* ptr);
+struct QtSpeech_PackedString QVoice_Name(void* ptr);
 
 #ifdef __cplusplus
 }

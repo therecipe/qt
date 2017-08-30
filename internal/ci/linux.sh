@@ -29,12 +29,8 @@ then
   sudo apt-get -y -qq install qt583d qt58base qt58canvas3d qt58charts-no-lgpl qt58connectivity qt58creator qt58datavis3d-no-lgpl qt58declarative qt58doc qt58gamepad qt58graphicaleffects qt58imageformats qt58location qt58multimedia qt58qbs qt58quickcontrols qt58quickcontrols2 qt58script qt58scxml qt58sensors qt58serialbus qt58serialport qt58svg qt58tools qt58translations qt58virtualkeyboard-no-lgpl qt58webchannel qt58webengine qt58websockets qt58x11extras qt58xmlpatterns qt58speech qt58networkauth-no-lgpl && sudo apt-get -qq clean
 else
   #download and install qt
-  if [ "$ANDROID" == "true" ]; then
-    QT=qt-opensource-linux-x64-android-5.8.0.run
-  else
-    QT=qt-opensource-linux-x64-5.8.0.run
-  fi
-  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT
+  QT=qt-unified-linux-x64-online.run
+  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/online_installers/$QT
   chmod +x /tmp/$QT
   /tmp/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
   rm -f /tmp/$QT
@@ -76,15 +72,15 @@ if [ "$ANDROID" == "true" ]; then
   sudo apt-get -y -qq install openjdk-8-jdk && sudo apt-get -qq clean
 
   #download and install android sdk
-  SDK=tools_r25.2.5-linux.zip
+  SDK=sdk-tools-linux-3859397.zip
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK
   unzip -qq /tmp/$SDK -d $HOME/android-sdk-linux/
   rm -f /tmp/$SDK
 
   #install deps for android sdk
-  $HOME/android-sdk-linux/tools/android list sdk
-  echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,4,5,6
-  echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -a -f -u -t 5
+  $HOME/android-sdk-linux/tools/bin/sdkmanager --list --verbose
+  echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
+  $HOME/android-sdk-linux/tools/bin/sdkmanager --update
 
   #download and install android ndk
   NDK=android-ndk-r14b-linux-x86_64.zip

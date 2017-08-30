@@ -34,6 +34,11 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function()
 {
+  if (installer.value("IOS") != "true")
+  {
+    gui.currentPageWidget().deselectComponent("qt.591.ios")
+  }
+  gui.currentPageWidget().selectComponent("qt.591.android_x86")
   gui.clickButton(buttons.NextButton);
 }
 

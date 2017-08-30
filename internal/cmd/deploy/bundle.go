@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"time"
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
@@ -87,8 +86,11 @@ func bundle(mode, target, path, name, depPath string) {
 				return
 			}
 
-			tempLib := "lib" + time.Now().Format("20060102150405")
-			utils.MkdirAll(filepath.Join(depPath, tempLib))
+			libDir := "lib"
+			if name == libDir {
+				libDir = "libs"
+			}
+			utils.MkdirAll(filepath.Join(depPath, libDir))
 
 			var (
 				libraryPath   = strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS)))
@@ -123,7 +125,7 @@ func bundle(mode, target, path, name, depPath string) {
 					}
 
 					if utils.ExistsFile(filepath.Join(libraryPath, libName)) {
-						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, tempLib, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 					}
 
 					if strings.Contains(dep, "WebEngine") {
@@ -141,11 +143,11 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 			for _, libName := range libs {
 				if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
-					utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, tempLib, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+					utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, libDir, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 				}
 			}
 			if utils.ExistsFile(filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0")) {
-				utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0"), filepath.Join(depPath, tempLib, "libqgsttools_p.so.1")), fmt.Sprintf("copy libqgsttools_p.so.1 for %v on %v", target, runtime.GOOS))
+				utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0"), filepath.Join(depPath, libDir, "libqgsttools_p.so.1")), fmt.Sprintf("copy libqgsttools_p.so.1 for %v on %v", target, runtime.GOOS))
 			}
 
 			libraryPath = filepath.Dir(libraryPath)

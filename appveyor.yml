@@ -3,21 +3,21 @@ clone_depth: 1
 clone_folder: C:\work\src\github.com\therecipe\qt
 install:
 - cmd: >-
-    set PATH=%PATH%;C:\Qt\Qt5.8.0\Tools\mingw530_32\bin
+    set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
 
     set GOPATH=C:\work
 
 
-    set QT=qt-opensource-windows-x86-android-5.8.0.exe
+    set QT=qt-unified-windows-x86-online.exe
 
-    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%QT% https://download.qt.io/official_releases/qt/5.8/5.8.0/%QT%
+    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%QT% https://download.qt.io/official_releases/online_installers/%QT%
 
     %TMP%\%QT% --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
 
     del %TMP%\%QT% /Q
 
 
-    set SDK=tools_r25.2.5-windows.zip
+    set SDK=sdk-tools-windows-3859397.zip
 
     curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SDK% https://dl.google.com/android/repository/%SDK%
 
@@ -26,11 +26,11 @@ install:
     del %TMP%\%SDK% /Q
 
 
-    C:\android-sdk-windows\tools\android.bat list sdk
+    C:\android-sdk-windows\tools\bin\sdkmanager.bat --list --verbose
 
-    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -t 1,2,3,4,5,6
+    echo y | C:\android-sdk-windows\tools\bin\sdkmanager.bat "platform-tools" "build-tools;26.0.0" "platforms;android-25"
 
-    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -a -f -u -t 5
+    C:\android-sdk-windows\tools\bin\sdkmanager.bat --update
 
     set NDK=android-ndk-r14b-windows-x86_64.zip
 

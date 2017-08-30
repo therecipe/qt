@@ -662,6 +662,45 @@ func (ptr *QGeoRouteReply) AbortDefault() {
 	}
 }
 
+//export callbackQGeoRouteReply_Aborted
+func callbackQGeoRouteReply_Aborted(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "aborted"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QGeoRouteReply) ConnectAborted(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "aborted") {
+			C.QGeoRouteReply_ConnectAborted(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "aborted"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "aborted", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "aborted", f)
+		}
+	}
+}
+
+func (ptr *QGeoRouteReply) DisconnectAborted() {
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_DisconnectAborted(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "aborted")
+	}
+}
+
+func (ptr *QGeoRouteReply) Aborted() {
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_Aborted(ptr.Pointer())
+	}
+}
+
 func (ptr *QGeoRouteReply) AddRoutes(routes []*QGeoRoute) {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_AddRoutes(ptr.Pointer(), func() unsafe.Pointer {

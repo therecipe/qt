@@ -1949,11 +1949,6 @@ Q_DECLARE_METATYPE(MyQQuickItemGrabResult*)
 
 int QQuickItemGrabResult_QQuickItemGrabResult_QRegisterMetaType(){qRegisterMetaType<QQuickItemGrabResult*>(); return qRegisterMetaType<MyQQuickItemGrabResult*>();}
 
-char QQuickItemGrabResult_SaveToFile(void* ptr, struct QtQuick_PackedString fileName)
-{
-	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString::fromUtf8(fileName.data, fileName.len));
-}
-
 void QQuickItemGrabResult_ConnectReady(void* ptr)
 {
 	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));
@@ -1977,6 +1972,11 @@ void* QQuickItemGrabResult_Image(void* ptr)
 void* QQuickItemGrabResult_Url(void* ptr)
 {
 	return new QUrl(static_cast<QQuickItemGrabResult*>(ptr)->url());
+}
+
+char QQuickItemGrabResult_SaveToFile(void* ptr, struct QtQuick_PackedString fileName)
+{
+	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString::fromUtf8(fileName.data, fileName.len));
 }
 
 void* QQuickItemGrabResult___dynamicPropertyNames_atList(void* ptr, int i)
@@ -3285,12 +3285,28 @@ public:
 	MyQQuickWidget(QQmlEngine *engine, QWidget *parent) : QQuickWidget(engine, parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
 	MyQQuickWidget(QWidget *parent = Q_NULLPTR) : QQuickWidget(parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
 	MyQQuickWidget(const QUrl &source, QWidget *parent = Q_NULLPTR) : QQuickWidget(source, parent) {QQuickWidget_QQuickWidget_QRegisterMetaType();};
+	bool event(QEvent * e) { return callbackQQuickWidget_Event(this, e) != 0; };
+	void dragEnterEvent(QDragEnterEvent * e) { callbackQQuickWidget_DragEnterEvent(this, e); };
+	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQQuickWidget_DragLeaveEvent(this, e); };
+	void dragMoveEvent(QDragMoveEvent * e) { callbackQQuickWidget_DragMoveEvent(this, e); };
+	void dropEvent(QDropEvent * e) { callbackQQuickWidget_DropEvent(this, e); };
+	void focusInEvent(QFocusEvent * event) { callbackQQuickWidget_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQQuickWidget_FocusOutEvent(this, event); };
+	void hideEvent(QHideEvent * vqh) { callbackQQuickWidget_HideEvent(this, vqh); };
+	void keyPressEvent(QKeyEvent * e) { callbackQQuickWidget_KeyPressEvent(this, e); };
+	void keyReleaseEvent(QKeyEvent * e) { callbackQQuickWidget_KeyReleaseEvent(this, e); };
+	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQQuickWidget_MouseDoubleClickEvent(this, e); };
+	void mouseMoveEvent(QMouseEvent * e) { callbackQQuickWidget_MouseMoveEvent(this, e); };
+	void mousePressEvent(QMouseEvent * e) { callbackQQuickWidget_MousePressEvent(this, e); };
+	void mouseReleaseEvent(QMouseEvent * e) { callbackQQuickWidget_MouseReleaseEvent(this, e); };
+	void paintEvent(QPaintEvent * event) { callbackQQuickWidget_PaintEvent(this, event); };
 	void Signal_SceneGraphError(QQuickWindow::SceneGraphError error, const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtQuick_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQQuickWidget_SceneGraphError(this, error, messagePacked); };
 	void setSource(const QUrl & url) { callbackQQuickWidget_SetSource(this, const_cast<QUrl*>(&url)); };
+	void showEvent(QShowEvent * vqs) { callbackQQuickWidget_ShowEvent(this, vqs); };
 	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidget_StatusChanged(this, status); };
+	void wheelEvent(QWheelEvent * e) { callbackQQuickWidget_WheelEvent(this, e); };
 	 ~MyQQuickWidget() { callbackQQuickWidget_DestroyQQuickWidget(this); };
 	bool close() { return callbackQQuickWidget_Close(this) != 0; };
-	bool event(QEvent * event) { return callbackQQuickWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQQuickWidget_FocusNextPrevChild(this, next) != 0; };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQQuickWidget_ActionEvent(this, event); };
@@ -3298,26 +3314,12 @@ public:
 	void closeEvent(QCloseEvent * event) { callbackQQuickWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQQuickWidget_ContextMenuEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQQuickWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackQQuickWidget_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQQuickWidget_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackQQuickWidget_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackQQuickWidget_DropEvent(this, event); };
 	void enterEvent(QEvent * event) { callbackQQuickWidget_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQQuickWidget_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQQuickWidget_FocusOutEvent(this, event); };
 	void hide() { callbackQQuickWidget_Hide(this); };
-	void hideEvent(QHideEvent * event) { callbackQQuickWidget_HideEvent(this, event); };
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQQuickWidget_InputMethodEvent(this, event); };
-	void keyPressEvent(QKeyEvent * event) { callbackQQuickWidget_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQQuickWidget_KeyReleaseEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQQuickWidget_LeaveEvent(this, event); };
 	void lower() { callbackQQuickWidget_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQQuickWidget_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQQuickWidget_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQQuickWidget_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQQuickWidget_MouseReleaseEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQQuickWidget_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQQuickWidget_PaintEvent(this, event); };
 	void raise() { callbackQQuickWidget_Raise(this); };
 	void repaint() { callbackQQuickWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQQuickWidget_ResizeEvent(this, event); };
@@ -3330,7 +3332,6 @@ public:
 	void setWindowModified(bool vbo) { callbackQQuickWidget_SetWindowModified(this, vbo); };
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtQuick_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQQuickWidget_SetWindowTitle(this, vqsPacked); };
 	void show() { callbackQQuickWidget_Show(this); };
-	void showEvent(QShowEvent * event) { callbackQQuickWidget_ShowEvent(this, event); };
 	void showFullScreen() { callbackQQuickWidget_ShowFullScreen(this); };
 	void showMaximized() { callbackQQuickWidget_ShowMaximized(this); };
 	void showMinimized() { callbackQQuickWidget_ShowMinimized(this); };
@@ -3338,7 +3339,6 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQQuickWidget_TabletEvent(this, event); };
 	void update() { callbackQQuickWidget_Update(this); };
 	void updateMicroFocus() { callbackQQuickWidget_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackQQuickWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQQuickWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
 	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtQuick_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQQuickWidget_WindowTitleChanged(this, titlePacked); };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQQuickWidget_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3377,6 +3377,81 @@ void* QQuickWidget_NewQQuickWidget(void* parent)
 void* QQuickWidget_NewQQuickWidget3(void* source, void* parent)
 {
 		return new MyQQuickWidget(*static_cast<QUrl*>(source), static_cast<QWidget*>(parent));
+}
+
+char QQuickWidget_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::event(static_cast<QEvent*>(e));
+}
+
+void QQuickWidget_DragEnterEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(e));
+}
+
+void QQuickWidget_DragLeaveEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
+}
+
+void QQuickWidget_DragMoveEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(e));
+}
+
+void QQuickWidget_DropEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dropEvent(static_cast<QDropEvent*>(e));
+}
+
+void QQuickWidget_FocusInEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QQuickWidget_FocusOutEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QQuickWidget_HideEventDefault(void* ptr, void* vqh)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::hideEvent(static_cast<QHideEvent*>(vqh));
+}
+
+void QQuickWidget_KeyPressEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::keyPressEvent(static_cast<QKeyEvent*>(e));
+}
+
+void QQuickWidget_KeyReleaseEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::keyReleaseEvent(static_cast<QKeyEvent*>(e));
+}
+
+void QQuickWidget_MouseDoubleClickEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(e));
+}
+
+void QQuickWidget_MouseMoveEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseMoveEvent(static_cast<QMouseEvent*>(e));
+}
+
+void QQuickWidget_MousePressEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mousePressEvent(static_cast<QMouseEvent*>(e));
+}
+
+void QQuickWidget_MouseReleaseEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(e));
+}
+
+void QQuickWidget_PaintEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
 void QQuickWidget_ConnectSceneGraphError(void* ptr)
@@ -3420,6 +3495,11 @@ void QQuickWidget_SetSourceDefault(void* ptr, void* url)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::setSource(*static_cast<QUrl*>(url));
 }
 
+void QQuickWidget_ShowEventDefault(void* ptr, void* vqs)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::showEvent(static_cast<QShowEvent*>(vqs));
+}
+
 void QQuickWidget_ConnectStatusChanged(void* ptr)
 {
 	qRegisterMetaType<QQuickWidget::Status>();
@@ -3434,6 +3514,11 @@ void QQuickWidget_DisconnectStatusChanged(void* ptr)
 void QQuickWidget_StatusChanged(void* ptr, long long status)
 {
 	static_cast<QQuickWidget*>(ptr)->statusChanged(static_cast<QQuickWidget::Status>(status));
+}
+
+void QQuickWidget_WheelEventDefault(void* ptr, void* e)
+{
+		static_cast<QQuickWidget*>(ptr)->QQuickWidget::wheelEvent(static_cast<QWheelEvent*>(e));
 }
 
 void QQuickWidget_DestroyQQuickWidget(void* ptr)
@@ -3667,11 +3752,6 @@ char QQuickWidget_CloseDefault(void* ptr)
 		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::close();
 }
 
-char QQuickWidget_EventDefault(void* ptr, void* event)
-{
-		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::event(static_cast<QEvent*>(event));
-}
-
 char QQuickWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusNextPrevChild(next != 0);
@@ -3702,39 +3782,9 @@ void QQuickWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 }
 
-void QQuickWidget_DragEnterEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-}
-
-void QQuickWidget_DragLeaveEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-}
-
-void QQuickWidget_DragMoveEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-}
-
-void QQuickWidget_DropEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::dropEvent(static_cast<QDropEvent*>(event));
-}
-
 void QQuickWidget_EnterEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::enterEvent(static_cast<QEvent*>(event));
-}
-
-void QQuickWidget_FocusInEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusInEvent(static_cast<QFocusEvent*>(event));
-}
-
-void QQuickWidget_FocusOutEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 }
 
 void QQuickWidget_HideDefault(void* ptr)
@@ -3742,24 +3792,9 @@ void QQuickWidget_HideDefault(void* ptr)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::hide();
 }
 
-void QQuickWidget_HideEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::hideEvent(static_cast<QHideEvent*>(event));
-}
-
 void QQuickWidget_InputMethodEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-}
-
-void QQuickWidget_KeyPressEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
-}
-
-void QQuickWidget_KeyReleaseEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 }
 
 void QQuickWidget_LeaveEventDefault(void* ptr, void* event)
@@ -3772,34 +3807,9 @@ void QQuickWidget_LowerDefault(void* ptr)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::lower();
 }
 
-void QQuickWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-}
-
-void QQuickWidget_MouseMoveEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-}
-
-void QQuickWidget_MousePressEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
-}
-
-void QQuickWidget_MouseReleaseEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-}
-
 void QQuickWidget_MoveEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::moveEvent(static_cast<QMoveEvent*>(event));
-}
-
-void QQuickWidget_PaintEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
 void QQuickWidget_RaiseDefault(void* ptr)
@@ -3862,11 +3872,6 @@ void QQuickWidget_ShowDefault(void* ptr)
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::show();
 }
 
-void QQuickWidget_ShowEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::showEvent(static_cast<QShowEvent*>(event));
-}
-
 void QQuickWidget_ShowFullScreenDefault(void* ptr)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::showFullScreen();
@@ -3900,11 +3905,6 @@ void QQuickWidget_UpdateDefault(void* ptr)
 void QQuickWidget_UpdateMicroFocusDefault(void* ptr)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::updateMicroFocus();
-}
-
-void QQuickWidget_WheelEventDefault(void* ptr, void* event)
-{
-		static_cast<QQuickWidget*>(ptr)->QQuickWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
 void* QQuickWidget_PaintEngineDefault(void* ptr)
@@ -4096,6 +4096,11 @@ void* QQuickWindow_NewQQuickWindow(void* parent)
 	} else {
 		return new MyQQuickWindow(static_cast<QWindow*>(parent));
 	}
+}
+
+struct QtQuick_PackedString QQuickWindow_QQuickWindow_SceneGraphBackend()
+{
+	return ({ QByteArray t3cc258 = QQuickWindow::sceneGraphBackend().toUtf8(); QtQuick_PackedString { const_cast<char*>(t3cc258.prepend("WHITESPACE").constData()+10), t3cc258.size()-10 }; });
 }
 
 char QQuickWindow_EventDefault(void* ptr, void* e)
@@ -6432,6 +6437,11 @@ void* QSGOpaqueTextureMaterial_NewQSGOpaqueTextureMaterial()
 	return new MyQSGOpaqueTextureMaterial();
 }
 
+void QSGOpaqueTextureMaterial_SetAnisotropyLevel(void* ptr, long long level)
+{
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setAnisotropyLevel(static_cast<QSGTexture::AnisotropyLevel>(level));
+}
+
 void QSGOpaqueTextureMaterial_SetFiltering(void* ptr, long long filtering)
 {
 	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
@@ -6460,6 +6470,11 @@ void QSGOpaqueTextureMaterial_SetVerticalWrapMode(void* ptr, long long mode)
 void* QSGOpaqueTextureMaterial_Texture(void* ptr)
 {
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->texture();
+}
+
+long long QSGOpaqueTextureMaterial_AnisotropyLevel(void* ptr)
+{
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->anisotropyLevel();
 }
 
 long long QSGOpaqueTextureMaterial_Filtering(void* ptr)
@@ -6741,6 +6756,11 @@ void QSGTexture_Bind(void* ptr)
 	static_cast<QSGTexture*>(ptr)->bind();
 }
 
+void QSGTexture_SetAnisotropyLevel(void* ptr, long long level)
+{
+	static_cast<QSGTexture*>(ptr)->setAnisotropyLevel(static_cast<QSGTexture::AnisotropyLevel>(level));
+}
+
 void QSGTexture_SetFiltering(void* ptr, long long filter)
 {
 	static_cast<QSGTexture*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filter));
@@ -6802,6 +6822,11 @@ void* QSGTexture_RemovedFromAtlasDefault(void* ptr)
 	} else {
 		return static_cast<QSGTexture*>(ptr)->QSGTexture::removedFromAtlas();
 	}
+}
+
+long long QSGTexture_AnisotropyLevel(void* ptr)
+{
+	return static_cast<QSGTexture*>(ptr)->anisotropyLevel();
 }
 
 long long QSGTexture_Filtering(void* ptr)

@@ -21,7 +21,7 @@ func QT_VERSION() string {
 		}
 		return qT_VERSION_CACHE
 	}
-	return "5.8.0"
+	return "5.9.1"
 }
 
 func QT_VERSION_NUM() int {
@@ -46,9 +46,17 @@ func QT_DIR() string {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
-		return "C:\\Qt\\Qt" + QT_VERSION()
+		dir := "C:\\Qt"
+		if ExistsDir(dir) {
+			return dir
+		}
+		return dir + "\\Qt" + QT_VERSION()
 	}
-	return filepath.Join(os.Getenv("HOME"), "Qt"+QT_VERSION())
+	dir := filepath.Join(os.Getenv("HOME"), "Qt")
+	if ExistsDir(dir) {
+		return dir
+	}
+	return dir + QT_VERSION()
 }
 
 func QT_FAT() bool {

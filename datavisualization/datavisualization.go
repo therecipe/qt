@@ -1856,6 +1856,58 @@ func NewQ3DLight(parent core.QObject_ITF) *Q3DLight {
 	return NewQ3DLightFromPointer(C.Q3DLight_NewQ3DLight(core.PointerFromQObject(parent)))
 }
 
+func (ptr *Q3DLight) IsAutoPosition() bool {
+	if ptr.Pointer() != nil {
+		return C.Q3DLight_IsAutoPosition(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQ3DLight_AutoPositionChanged
+func callbackQ3DLight_AutoPositionChanged(ptr unsafe.Pointer, autoPosition C.char) {
+	if signal := qt.GetSignal(ptr, "autoPositionChanged"); signal != nil {
+		signal.(func(bool))(int8(autoPosition) != 0)
+	}
+
+}
+
+func (ptr *Q3DLight) ConnectAutoPositionChanged(f func(autoPosition bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "autoPositionChanged") {
+			C.Q3DLight_ConnectAutoPositionChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "autoPositionChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "autoPositionChanged", func(autoPosition bool) {
+				signal.(func(bool))(autoPosition)
+				f(autoPosition)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "autoPositionChanged", f)
+		}
+	}
+}
+
+func (ptr *Q3DLight) DisconnectAutoPositionChanged() {
+	if ptr.Pointer() != nil {
+		C.Q3DLight_DisconnectAutoPositionChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "autoPositionChanged")
+	}
+}
+
+func (ptr *Q3DLight) AutoPositionChanged(autoPosition bool) {
+	if ptr.Pointer() != nil {
+		C.Q3DLight_AutoPositionChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(autoPosition))))
+	}
+}
+
+func (ptr *Q3DLight) SetAutoPosition(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.Q3DLight_SetAutoPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
 //export callbackQ3DLight_DestroyQ3DLight
 func callbackQ3DLight_DestroyQ3DLight(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~Q3DLight"); signal != nil {

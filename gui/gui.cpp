@@ -3685,6 +3685,11 @@ void* QColor_ToRgb(void* ptr)
 	return new QColor(static_cast<QColor*>(ptr)->toRgb());
 }
 
+void* QColor_Rgba64(void* ptr)
+{
+	return new QRgba64(static_cast<QColor*>(ptr)->rgba64());
+}
+
 struct QtGui_PackedString QColor_Name(void* ptr)
 {
 	return ({ QByteArray t9b3be4 = static_cast<QColor*>(ptr)->name().toUtf8(); QtGui_PackedString { const_cast<char*>(t9b3be4.prepend("WHITESPACE").constData()+10), t9b3be4.size()-10 }; });
@@ -7466,6 +7471,11 @@ void* QIconEngine_PixmapDefault(void* ptr, void* size, long long mode, long long
 		return new QPixmap(static_cast<QIconEngine*>(ptr)->QIconEngine::pixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
 
+void* QIconEngine_ScaledPixmap(void* ptr, void* size, long long mode, long long state, double scale)
+{
+	return new QPixmap(static_cast<QIconEngine*>(ptr)->scaledPixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state), scale));
+}
+
 void* QIconEngine_ActualSize(void* ptr, void* size, long long mode, long long state)
 {
 	return ({ QSize tmpValue = static_cast<QIconEngine*>(ptr)->actualSize(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -7932,6 +7942,11 @@ char QImage_LoadFromData2(void* ptr, void* data, char* format)
 char QImage_LoadFromData(void* ptr, char* data, int l, char* format)
 {
 	return static_cast<QImage*>(ptr)->loadFromData(const_cast<const uchar*>(static_cast<uchar*>(static_cast<void*>(data))), l, const_cast<const char*>(format));
+}
+
+char QImage_ReinterpretAsFormat(void* ptr, long long format)
+{
+	return static_cast<QImage*>(ptr)->reinterpretAsFormat(static_cast<QImage::Format>(format));
 }
 
 struct QtGui_PackedString QImage_Bits(void* ptr)
@@ -11453,6 +11468,11 @@ void QOffscreenSurface_SetFormat(void* ptr, void* format)
 		static_cast<QOffscreenSurface*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
 }
 
+void QOffscreenSurface_SetNativeHandle(void* ptr, void* handle)
+{
+		static_cast<QOffscreenSurface*>(ptr)->setNativeHandle(handle);
+}
+
 void QOffscreenSurface_SetScreen(void* ptr, void* newScreen)
 {
 		static_cast<QOffscreenSurface*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
@@ -11512,6 +11532,11 @@ long long QOffscreenSurface_SurfaceTypeDefault(void* ptr)
 char QOffscreenSurface_IsValid(void* ptr)
 {
 		return static_cast<QOffscreenSurface*>(ptr)->isValid();
+}
+
+void* QOffscreenSurface_NativeHandle(void* ptr)
+{
+		return static_cast<QOffscreenSurface*>(ptr)->nativeHandle();
 }
 
 void* QOffscreenSurface___dynamicPropertyNames_atList(void* ptr, int i)
@@ -76224,7 +76249,7 @@ public:
 	void ensureActiveTarget() { callbackQOpenGLPaintDevice_EnsureActiveTarget(this); };
 	 ~MyQOpenGLPaintDevice() { callbackQOpenGLPaintDevice_DestroyQOpenGLPaintDevice(this); };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQOpenGLPaintDevice_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQOpenGLPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
 };
 
 void* QOpenGLPaintDevice_NewQOpenGLPaintDevice()
@@ -76293,6 +76318,16 @@ void* QOpenGLPaintDevice_Context(void* ptr)
 	return static_cast<QOpenGLPaintDevice*>(ptr)->context();
 }
 
+void* QOpenGLPaintDevice_PaintEngine(void* ptr)
+{
+	return static_cast<QOpenGLPaintDevice*>(ptr)->paintEngine();
+}
+
+void* QOpenGLPaintDevice_PaintEngineDefault(void* ptr)
+{
+		return static_cast<QOpenGLPaintDevice*>(ptr)->QOpenGLPaintDevice::paintEngine();
+}
+
 void* QOpenGLPaintDevice_Size(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QOpenGLPaintDevice*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -76303,6 +76338,16 @@ char QOpenGLPaintDevice_PaintFlipped(void* ptr)
 	return static_cast<QOpenGLPaintDevice*>(ptr)->paintFlipped();
 }
 
+int QOpenGLPaintDevice_Metric(void* ptr, long long metric)
+{
+	return static_cast<QOpenGLPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QOpenGLPaintDevice_MetricDefault(void* ptr, long long metric)
+{
+		return static_cast<QOpenGLPaintDevice*>(ptr)->QOpenGLPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
 double QOpenGLPaintDevice_DotsPerMeterX(void* ptr)
 {
 	return static_cast<QOpenGLPaintDevice*>(ptr)->dotsPerMeterX();
@@ -76311,16 +76356,6 @@ double QOpenGLPaintDevice_DotsPerMeterX(void* ptr)
 double QOpenGLPaintDevice_DotsPerMeterY(void* ptr)
 {
 	return static_cast<QOpenGLPaintDevice*>(ptr)->dotsPerMeterY();
-}
-
-void* QOpenGLPaintDevice_PaintEngine(void* ptr)
-{
-	return static_cast<QOpenGLPaintDevice*>(ptr)->paintEngine();
-}
-
-void* QOpenGLPaintDevice_PaintEngineDefault(void* ptr)
-{
-		return static_cast<QOpenGLPaintDevice*>(ptr)->QOpenGLPaintDevice::paintEngine();
 }
 
 void* QOpenGLPixelTransferOptions_NewQOpenGLPixelTransferOptions()
@@ -76774,6 +76809,26 @@ void* QOpenGLShaderProgram_NewQOpenGLShaderProgram(void* parent)
 	} else {
 		return new MyQOpenGLShaderProgram(static_cast<QObject*>(parent));
 	}
+}
+
+char QOpenGLShaderProgram_AddCacheableShaderFromSourceCode2(void* ptr, long long ty, void* source)
+{
+	return static_cast<QOpenGLShaderProgram*>(ptr)->addCacheableShaderFromSourceCode(static_cast<QOpenGLShader::ShaderTypeBit>(ty), *static_cast<QByteArray*>(source));
+}
+
+char QOpenGLShaderProgram_AddCacheableShaderFromSourceCode3(void* ptr, long long ty, struct QtGui_PackedString source)
+{
+	return static_cast<QOpenGLShaderProgram*>(ptr)->addCacheableShaderFromSourceCode(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(source.data, source.len));
+}
+
+char QOpenGLShaderProgram_AddCacheableShaderFromSourceCode(void* ptr, long long ty, char* source)
+{
+	return static_cast<QOpenGLShaderProgram*>(ptr)->addCacheableShaderFromSourceCode(static_cast<QOpenGLShader::ShaderTypeBit>(ty), const_cast<const char*>(source));
+}
+
+char QOpenGLShaderProgram_AddCacheableShaderFromSourceFile(void* ptr, long long ty, struct QtGui_PackedString fileName)
+{
+	return static_cast<QOpenGLShaderProgram*>(ptr)->addCacheableShaderFromSourceFile(static_cast<QOpenGLShader::ShaderTypeBit>(ty), QString::fromUtf8(fileName.data, fileName.len));
 }
 
 char QOpenGLShaderProgram_AddShader(void* ptr, void* shader)
@@ -77722,12 +77777,12 @@ void QOpenGLTexture_SetComparisonMode(void* ptr, long long mode)
 	static_cast<QOpenGLTexture*>(ptr)->setComparisonMode(static_cast<QOpenGLTexture::ComparisonMode>(mode));
 }
 
-void QOpenGLTexture_SetCompressedData8(void* ptr, int dataSize, void* data, void* options)
+void QOpenGLTexture_SetCompressedData9(void* ptr, int dataSize, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setCompressedData(dataSize, data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
-void QOpenGLTexture_SetCompressedData7(void* ptr, int mipLevel, int dataSize, void* data, void* options)
+void QOpenGLTexture_SetCompressedData8(void* ptr, int mipLevel, int dataSize, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setCompressedData(mipLevel, dataSize, data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
@@ -77737,22 +77792,27 @@ void QOpenGLTexture_SetCompressedData(void* ptr, int mipLevel, int layer, long l
 	static_cast<QOpenGLTexture*>(ptr)->setCompressedData(mipLevel, layer, static_cast<QOpenGLTexture::CubeMapFace>(cubeFace), dataSize, data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
-void QOpenGLTexture_SetCompressedData6(void* ptr, int mipLevel, int layer, int dataSize, void* data, void* options)
+void QOpenGLTexture_SetCompressedData7(void* ptr, int mipLevel, int layer, int dataSize, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setCompressedData(mipLevel, layer, dataSize, data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
-void QOpenGLTexture_SetData8(void* ptr, long long sourceFormat, long long sourceType, void* data, void* options)
+void QOpenGLTexture_SetCompressedData6(void* ptr, int mipLevel, int layer, int layerCount, long long cubeFace, int dataSize, void* data, void* options)
+{
+	static_cast<QOpenGLTexture*>(ptr)->setCompressedData(mipLevel, layer, layerCount, static_cast<QOpenGLTexture::CubeMapFace>(cubeFace), dataSize, data, static_cast<QOpenGLPixelTransferOptions*>(options));
+}
+
+void QOpenGLTexture_SetData9(void* ptr, long long sourceFormat, long long sourceType, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setData(static_cast<QOpenGLTexture::PixelFormat>(sourceFormat), static_cast<QOpenGLTexture::PixelType>(sourceType), data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
-void QOpenGLTexture_SetData9(void* ptr, void* image, long long genMipMaps)
+void QOpenGLTexture_SetData10(void* ptr, void* image, long long genMipMaps)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setData(*static_cast<QImage*>(image), static_cast<QOpenGLTexture::MipMapGeneration>(genMipMaps));
 }
 
-void QOpenGLTexture_SetData7(void* ptr, int mipLevel, long long sourceFormat, long long sourceType, void* data, void* options)
+void QOpenGLTexture_SetData8(void* ptr, int mipLevel, long long sourceFormat, long long sourceType, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setData(mipLevel, static_cast<QOpenGLTexture::PixelFormat>(sourceFormat), static_cast<QOpenGLTexture::PixelType>(sourceType), data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
@@ -77762,9 +77822,14 @@ void QOpenGLTexture_SetData(void* ptr, int mipLevel, int layer, long long cubeFa
 	static_cast<QOpenGLTexture*>(ptr)->setData(mipLevel, layer, static_cast<QOpenGLTexture::CubeMapFace>(cubeFace), static_cast<QOpenGLTexture::PixelFormat>(sourceFormat), static_cast<QOpenGLTexture::PixelType>(sourceType), data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
-void QOpenGLTexture_SetData6(void* ptr, int mipLevel, int layer, long long sourceFormat, long long sourceType, void* data, void* options)
+void QOpenGLTexture_SetData7(void* ptr, int mipLevel, int layer, long long sourceFormat, long long sourceType, void* data, void* options)
 {
 	static_cast<QOpenGLTexture*>(ptr)->setData(mipLevel, layer, static_cast<QOpenGLTexture::PixelFormat>(sourceFormat), static_cast<QOpenGLTexture::PixelType>(sourceType), data, static_cast<QOpenGLPixelTransferOptions*>(options));
+}
+
+void QOpenGLTexture_SetData6(void* ptr, int mipLevel, int layer, int layerCount, long long cubeFace, long long sourceFormat, long long sourceType, void* data, void* options)
+{
+	static_cast<QOpenGLTexture*>(ptr)->setData(mipLevel, layer, layerCount, static_cast<QOpenGLTexture::CubeMapFace>(cubeFace), static_cast<QOpenGLTexture::PixelFormat>(sourceFormat), static_cast<QOpenGLTexture::PixelType>(sourceType), data, static_cast<QOpenGLPixelTransferOptions*>(options));
 }
 
 void QOpenGLTexture_SetDepthStencilMode(void* ptr, long long mode)
@@ -82326,6 +82391,8 @@ class MyQPdfWriter: public QPdfWriter
 public:
 	MyQPdfWriter(QIODevice *device) : QPdfWriter(device) {QPdfWriter_QPdfWriter_QRegisterMetaType();};
 	MyQPdfWriter(const QString &filename) : QPdfWriter(filename) {QPdfWriter_QPdfWriter_QRegisterMetaType();};
+	bool newPage() { return callbackQPdfWriter_NewPage(this) != 0; };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPdfWriter_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQPdfWriter_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPdfWriter_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQPdfWriter_ChildEvent(this, event); };
@@ -82337,10 +82404,8 @@ public:
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGui_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQPdfWriter_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQPdfWriter_TimerEvent(this, event); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPdfWriter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool newPage() { return callbackQPdfWriter_NewPage(this) != 0; };
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPagedPaintDevice_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPagedPaintDevice_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPagedPaintDevice_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
 };
 
@@ -82356,6 +82421,16 @@ void* QPdfWriter_NewQPdfWriter2(void* device)
 void* QPdfWriter_NewQPdfWriter(struct QtGui_PackedString filename)
 {
 	return new MyQPdfWriter(QString::fromUtf8(filename.data, filename.len));
+}
+
+char QPdfWriter_NewPage(void* ptr)
+{
+		return static_cast<QPdfWriter*>(ptr)->newPage();
+}
+
+char QPdfWriter_NewPageDefault(void* ptr)
+{
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::newPage();
 }
 
 void QPdfWriter_SetCreator(void* ptr, struct QtGui_PackedString creator)
@@ -82376,6 +82451,16 @@ void QPdfWriter_SetTitle(void* ptr, struct QtGui_PackedString title)
 void QPdfWriter_DestroyQPdfWriter(void* ptr)
 {
 	static_cast<QPdfWriter*>(ptr)->~QPdfWriter();
+}
+
+void* QPdfWriter_PaintEngine(void* ptr)
+{
+		return static_cast<QPdfWriter*>(ptr)->paintEngine();
+}
+
+void* QPdfWriter_PaintEngineDefault(void* ptr)
+{
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::paintEngine();
 }
 
 struct QtGui_PackedString QPdfWriter_Creator(void* ptr)
@@ -82621,16 +82706,6 @@ void* QPdfWriter_MetaObject(void* ptr)
 void* QPdfWriter_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->QPdfWriter::metaObject());
-}
-
-char QPdfWriter_NewPage(void* ptr)
-{
-		return static_cast<QPdfWriter*>(ptr)->newPage();
-}
-
-char QPdfWriter_NewPageDefault(void* ptr)
-{
-		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::newPage();
 }
 
 void* QPen_NewQPen()
@@ -84583,6 +84658,11 @@ void* QRasterWindow_NewQRasterWindow(void* parent)
 	}
 }
 
+void QRasterWindow_DestroyQRasterWindow(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->~QRasterWindow();
+}
+
 void* QRawFont_QRawFont_FromFont(void* font, long long writingSystem)
 {
 	return new QRawFont(QRawFont::fromFont(*static_cast<QFont*>(font), static_cast<QFontDatabase::WritingSystem>(writingSystem)));
@@ -85342,6 +85422,31 @@ void* QResizeEvent_Size(void* ptr)
 	return const_cast<QSize*>(&static_cast<QResizeEvent*>(ptr)->size());
 }
 
+void* QRgba64_QRgba64_FromArgb32(unsigned int rgb)
+{
+	return new QRgba64(QRgba64::fromArgb32(rgb));
+}
+
+void* QRgba64_QRgba64_FromRgba(char* red, char* green, char* blue, char* alpha)
+{
+	return new QRgba64(QRgba64::fromRgba(*static_cast<quint8*>(static_cast<void*>(red)), *static_cast<quint8*>(static_cast<void*>(green)), *static_cast<quint8*>(static_cast<void*>(blue)), *static_cast<quint8*>(static_cast<void*>(alpha))));
+}
+
+void* QRgba64_QRgba64_FromRgba642(unsigned short r, unsigned short g, unsigned short b, unsigned short a)
+{
+	return new QRgba64(QRgba64::fromRgba64(r, g, b, a));
+}
+
+void* QRgba64_QRgba64_FromRgba64(unsigned long long c)
+{
+	return new QRgba64(QRgba64::fromRgba64(c));
+}
+
+void* QRgba64_NewQRgba64()
+{
+	return new QRgba64();
+}
+
 void QRgba64_SetAlpha(void* ptr, unsigned short alpha)
 {
 	static_cast<QRgba64*>(ptr)->setAlpha(alpha);
@@ -85360,6 +85465,16 @@ void QRgba64_SetGreen(void* ptr, unsigned short green)
 void QRgba64_SetRed(void* ptr, unsigned short red)
 {
 	static_cast<QRgba64*>(ptr)->setRed(red);
+}
+
+void* QRgba64_Premultiplied(void* ptr)
+{
+	return new QRgba64(static_cast<QRgba64*>(ptr)->premultiplied());
+}
+
+void* QRgba64_Unpremultiplied(void* ptr)
+{
+	return new QRgba64(static_cast<QRgba64*>(ptr)->unpremultiplied());
 }
 
 char QRgba64_IsOpaque(void* ptr)
@@ -85658,9 +85773,26 @@ void* QScreen_PhysicalSize(void* ptr)
 	return ({ QSizeF tmpValue = static_cast<QScreen*>(ptr)->physicalSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
+struct QtGui_PackedString QScreen_Manufacturer(void* ptr)
+{
+	return ({ QByteArray tb12da7 = static_cast<QScreen*>(ptr)->manufacturer().toUtf8(); QtGui_PackedString { const_cast<char*>(tb12da7.prepend("WHITESPACE").constData()+10), tb12da7.size()-10 }; });
+}
+
+struct QtGui_PackedString QScreen_Model(void* ptr)
+{
+#ifndef Q_OS_WIN
+	return ({ QByteArray t131f94 = static_cast<QScreen*>(ptr)->model().toUtf8(); QtGui_PackedString { const_cast<char*>(t131f94.prepend("WHITESPACE").constData()+10), t131f94.size()-10 }; });
+#endif
+}
+
 struct QtGui_PackedString QScreen_Name(void* ptr)
 {
 	return ({ QByteArray tc60f02 = static_cast<QScreen*>(ptr)->name().toUtf8(); QtGui_PackedString { const_cast<char*>(tc60f02.prepend("WHITESPACE").constData()+10), tc60f02.size()-10 }; });
+}
+
+struct QtGui_PackedString QScreen_SerialNumber(void* ptr)
+{
+	return ({ QByteArray tff6367 = static_cast<QScreen*>(ptr)->serialNumber().toUtf8(); QtGui_PackedString { const_cast<char*>(tff6367.prepend("WHITESPACE").constData()+10), tff6367.size()-10 }; });
 }
 
 void* QScreen_TransformBetween(void* ptr, long long a, long long b, void* target)
@@ -88234,6 +88366,7 @@ public:
 	void Signal_StartDragTimeChanged(int startDragTime) { callbackQStyleHints_StartDragTimeChanged(this, startDragTime); };
 	void Signal_TabFocusBehaviorChanged(Qt::TabFocusBehavior tabFocusBehavior) { callbackQStyleHints_TabFocusBehaviorChanged(this, tabFocusBehavior); };
 	void Signal_UseHoverEffectsChanged(bool useHoverEffects) { callbackQStyleHints_UseHoverEffectsChanged(this, useHoverEffects); };
+	void Signal_WheelScrollLinesChanged(int scrollLines) { callbackQStyleHints_WheelScrollLinesChanged(this, scrollLines); };
 	bool event(QEvent * e) { return callbackQStyleHints_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyleHints_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQStyleHints_ChildEvent(this, event); };
@@ -88377,6 +88510,21 @@ void QStyleHints_UseHoverEffectsChanged(void* ptr, char useHoverEffects)
 	static_cast<QStyleHints*>(ptr)->useHoverEffectsChanged(useHoverEffects != 0);
 }
 
+void QStyleHints_ConnectWheelScrollLinesChanged(void* ptr)
+{
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::wheelScrollLinesChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_WheelScrollLinesChanged));
+}
+
+void QStyleHints_DisconnectWheelScrollLinesChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::wheelScrollLinesChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_WheelScrollLinesChanged));
+}
+
+void QStyleHints_WheelScrollLinesChanged(void* ptr, int scrollLines)
+{
+	static_cast<QStyleHints*>(ptr)->wheelScrollLinesChanged(scrollLines);
+}
+
 void* QStyleHints_PasswordMaskCharacter(void* ptr)
 {
 	return new QChar(static_cast<QStyleHints*>(ptr)->passwordMaskCharacter());
@@ -88460,6 +88608,11 @@ int QStyleHints_StartDragTime(void* ptr)
 int QStyleHints_StartDragVelocity(void* ptr)
 {
 	return static_cast<QStyleHints*>(ptr)->startDragVelocity();
+}
+
+int QStyleHints_WheelScrollLines(void* ptr)
+{
+	return static_cast<QStyleHints*>(ptr)->wheelScrollLines();
 }
 
 double QStyleHints_FontSmoothingGamma(void* ptr)
@@ -90947,6 +91100,11 @@ struct QtGui_PackedString QTextDocument_ToHtml(void* ptr, void* encoding)
 struct QtGui_PackedString QTextDocument_ToPlainText(void* ptr)
 {
 	return ({ QByteArray t7d8da3 = static_cast<QTextDocument*>(ptr)->toPlainText().toUtf8(); QtGui_PackedString { const_cast<char*>(t7d8da3.prepend("WHITESPACE").constData()+10), t7d8da3.size()-10 }; });
+}
+
+struct QtGui_PackedString QTextDocument_ToRawText(void* ptr)
+{
+	return ({ QByteArray td710b1 = static_cast<QTextDocument*>(ptr)->toRawText().toUtf8(); QtGui_PackedString { const_cast<char*>(td710b1.prepend("WHITESPACE").constData()+10), td710b1.size()-10 }; });
 }
 
 void* QTextDocument_Begin(void* ptr)
@@ -95934,6 +96092,15 @@ void QWindow_SetFilePath(void* ptr, struct QtGui_PackedString filePath)
 	}
 }
 
+void QWindow_SetFlag(void* ptr, long long flag, char on)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setFlag(static_cast<Qt::WindowType>(flag), on != 0);
+	} else {
+		static_cast<QWindow*>(ptr)->setFlag(static_cast<Qt::WindowType>(flag), on != 0);
+	}
+}
+
 void QWindow_SetFlags(void* ptr, long long flags)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -96931,12 +97098,21 @@ void* QWindow_RequestedFormat(void* ptr)
 	}
 }
 
-void* QWindow_Parent(void* ptr)
+void* QWindow_Parent2(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPaintDeviceWindow*>(ptr)->parent();
 	} else {
 		return static_cast<QWindow*>(ptr)->parent();
+	}
+}
+
+void* QWindow_Parent(void* ptr, long long mode)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->parent(static_cast<QWindow::AncestorMode>(mode));
+	} else {
+		return static_cast<QWindow*>(ptr)->parent(static_cast<QWindow::AncestorMode>(mode));
 	}
 }
 

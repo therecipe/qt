@@ -714,11 +714,6 @@ Q_DECLARE_METATYPE(MyQQmlApplicationEngine*)
 
 int QQmlApplicationEngine_QQmlApplicationEngine_QRegisterMetaType(){qRegisterMetaType<QQmlApplicationEngine*>(); return qRegisterMetaType<MyQQmlApplicationEngine*>();}
 
-struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
-{
-	return ({ QList<QObject *>* tmpValue = new QList<QObject *>(static_cast<QQmlApplicationEngine*>(ptr)->rootObjects()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 void* QQmlApplicationEngine_NewQQmlApplicationEngine(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -890,6 +885,27 @@ void QQmlApplicationEngine_ObjectCreated(void* ptr, void* object, void* url)
 void QQmlApplicationEngine_DestroyQQmlApplicationEngine(void* ptr)
 {
 	static_cast<QQmlApplicationEngine*>(ptr)->~QQmlApplicationEngine();
+}
+
+struct QtQml_PackedList QQmlApplicationEngine_RootObjects(void* ptr)
+{
+	return ({ QList<QObject *>* tmpValue = new QList<QObject *>(static_cast<QQmlApplicationEngine*>(ptr)->rootObjects()); QtQml_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QQmlApplicationEngine___rootObjects_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQmlApplicationEngine___rootObjects_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQmlApplicationEngine___rootObjects_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
 }
 
 void* QQmlApplicationEngine___rootObjects_atList(void* ptr, int i)
@@ -1977,6 +1993,11 @@ void* QQmlEngine_IncubationController(void* ptr)
 void* QQmlEngine_NetworkAccessManagerFactory(void* ptr)
 {
 	return static_cast<QQmlEngine*>(ptr)->networkAccessManagerFactory();
+}
+
+struct QtQml_PackedString QQmlEngine_OfflineStorageDatabaseFilePath(void* ptr, struct QtQml_PackedString databaseName)
+{
+	return ({ QByteArray t7b641b = static_cast<QQmlEngine*>(ptr)->offlineStorageDatabaseFilePath(QString::fromUtf8(databaseName.data, databaseName.len)).toUtf8(); QtQml_PackedString { const_cast<char*>(t7b641b.prepend("WHITESPACE").constData()+10), t7b641b.size()-10 }; });
 }
 
 struct QtQml_PackedString QQmlEngine_OfflineStoragePath(void* ptr)

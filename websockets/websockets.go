@@ -2743,6 +2743,12 @@ func (ptr *QWebSocketServer) ServerPort() uint16 {
 	return 0
 }
 
+func (ptr *QWebSocketServer) HandleConnection(socket network.QTcpSocket_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebSocketServer_HandleConnection(ptr.Pointer(), network.PointerFromQTcpSocket(socket))
+	}
+}
+
 func (ptr *QWebSocketServer) __sslErrors_errors_atList(i int) *network.QSslError {
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQSslErrorFromPointer(C.QWebSocketServer___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))

@@ -265,6 +265,7 @@ public:
 	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent = Q_NULLPTR) : QGeoRouteReply(error, errorString, parent) {QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();};
 	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent = Q_NULLPTR) : QGeoRouteReply(request, parent) {QGeoRouteReply_QGeoRouteReply_QRegisterMetaType();};
 	void abort() { callbackQGeoRouteReply_Abort(this); };
+	void Signal_Aborted() { callbackQGeoRouteReply_Aborted(this); };
 	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRouteReply_Error2(this, error, errorStringPacked); };
 	void Signal_Finished() { callbackQGeoRouteReply_Finished(this); };
 	 ~MyQGeoRouteReply() { callbackQGeoRouteReply_DestroyQGeoRouteReply(this); };
@@ -375,6 +376,21 @@ void QGeoRouteReply_Abort(void* ptr)
 void QGeoRouteReply_AbortDefault(void* ptr)
 {
 		static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::abort();
+}
+
+void QGeoRouteReply_ConnectAborted(void* ptr)
+{
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::aborted), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Aborted));
+}
+
+void QGeoRouteReply_DisconnectAborted(void* ptr)
+{
+	QObject::disconnect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::aborted), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Aborted));
+}
+
+void QGeoRouteReply_Aborted(void* ptr)
+{
+	static_cast<QGeoRouteReply*>(ptr)->aborted();
 }
 
 void QGeoRouteReply_AddRoutes(void* ptr, void* routes)

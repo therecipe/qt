@@ -12807,6 +12807,11 @@ struct QtWidgets_PackedString QFileDialog_LabelText(void* ptr, long long label)
 	return ({ QByteArray td750f3 = static_cast<QFileDialog*>(ptr)->labelText(static_cast<QFileDialog::DialogLabel>(label)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(td750f3.prepend("WHITESPACE").constData()+10), td750f3.size()-10 }; });
 }
 
+struct QtWidgets_PackedString QFileDialog_SelectedMimeTypeFilter(void* ptr)
+{
+	return ({ QByteArray t1558ba = static_cast<QFileDialog*>(ptr)->selectedMimeTypeFilter().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1558ba.prepend("WHITESPACE").constData()+10), t1558ba.size()-10 }; });
+}
+
 struct QtWidgets_PackedString QFileDialog_SelectedNameFilter(void* ptr)
 {
 	return ({ QByteArray tca1caa = static_cast<QFileDialog*>(ptr)->selectedNameFilter().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tca1caa.prepend("WHITESPACE").constData()+10), tca1caa.size()-10 }; });
@@ -40980,6 +40985,11 @@ long long QSizePolicy_VerticalPolicy(void* ptr)
 	return static_cast<QSizePolicy*>(ptr)->verticalPolicy();
 }
 
+void* QSizePolicy_Transposed(void* ptr)
+{
+	return new QSizePolicy(static_cast<QSizePolicy*>(ptr)->transposed());
+}
+
 long long QSizePolicy_ExpandingDirections(void* ptr)
 {
 	return static_cast<QSizePolicy*>(ptr)->expandingDirections();
@@ -41757,6 +41767,11 @@ void* QSplitter_CreateHandle(void* ptr)
 void* QSplitter_CreateHandleDefault(void* ptr)
 {
 		return static_cast<QSplitter*>(ptr)->QSplitter::createHandle();
+}
+
+void* QSplitter_ReplaceWidget(void* ptr, int index, void* widget)
+{
+		return static_cast<QSplitter*>(ptr)->replaceWidget(index, static_cast<QWidget*>(widget));
 }
 
 char QSplitter_RestoreState(void* ptr, void* state)
@@ -47517,13 +47532,14 @@ class MyQSystemTrayIcon: public QSystemTrayIcon
 public:
 	MyQSystemTrayIcon(QObject *parent = Q_NULLPTR) : QSystemTrayIcon(parent) {QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType();};
 	MyQSystemTrayIcon(const QIcon &icon, QObject *parent = Q_NULLPTR) : QSystemTrayIcon(icon, parent) {QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType();};
-	bool event(QEvent * e) { return callbackQSystemTrayIcon_Event(this, e) != 0; };
 	void Signal_Activated(QSystemTrayIcon::ActivationReason reason) { callbackQSystemTrayIcon_Activated(this, reason); };
-	void hide() { callbackQSystemTrayIcon_Hide(this); };
 	void Signal_MessageClicked() { callbackQSystemTrayIcon_MessageClicked(this); };
+	bool event(QEvent * e) { return callbackQSystemTrayIcon_Event(this, e) != 0; };
+	void hide() { callbackQSystemTrayIcon_Hide(this); };
 	void setVisible(bool visible) { callbackQSystemTrayIcon_SetVisible(this, visible); };
 	void show() { callbackQSystemTrayIcon_Show(this); };
 	void showMessage(const QString & title, const QString & message, QSystemTrayIcon::MessageIcon icon, int millisecondsTimeoutHint) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSystemTrayIcon_ShowMessage(this, titlePacked, messagePacked, icon, millisecondsTimeoutHint); };
+	void showMessage(const QString & title, const QString & message, const QIcon & icon, int millisecondsTimeoutHint) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSystemTrayIcon_ShowMessage2(this, titlePacked, messagePacked, const_cast<QIcon*>(&icon), millisecondsTimeoutHint); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSystemTrayIcon_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSystemTrayIcon_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSystemTrayIcon_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -47539,6 +47555,51 @@ public:
 Q_DECLARE_METATYPE(MyQSystemTrayIcon*)
 
 int QSystemTrayIcon_QSystemTrayIcon_QRegisterMetaType(){qRegisterMetaType<QSystemTrayIcon*>(); return qRegisterMetaType<MyQSystemTrayIcon*>();}
+
+char QSystemTrayIcon_QSystemTrayIcon_SupportsMessages()
+{
+	return QSystemTrayIcon::supportsMessages();
+}
+
+void QSystemTrayIcon_ConnectActivated(void* ptr)
+{
+	QObject::connect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&QSystemTrayIcon::activated), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&MyQSystemTrayIcon::Signal_Activated));
+}
+
+void QSystemTrayIcon_DisconnectActivated(void* ptr)
+{
+	QObject::disconnect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&QSystemTrayIcon::activated), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&MyQSystemTrayIcon::Signal_Activated));
+}
+
+void QSystemTrayIcon_Activated(void* ptr, long long reason)
+{
+	static_cast<QSystemTrayIcon*>(ptr)->activated(static_cast<QSystemTrayIcon::ActivationReason>(reason));
+}
+
+void QSystemTrayIcon_ConnectMessageClicked(void* ptr)
+{
+	QObject::connect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)()>(&QSystemTrayIcon::messageClicked), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)()>(&MyQSystemTrayIcon::Signal_MessageClicked));
+}
+
+void QSystemTrayIcon_DisconnectMessageClicked(void* ptr)
+{
+	QObject::disconnect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)()>(&QSystemTrayIcon::messageClicked), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)()>(&MyQSystemTrayIcon::Signal_MessageClicked));
+}
+
+void QSystemTrayIcon_MessageClicked(void* ptr)
+{
+	static_cast<QSystemTrayIcon*>(ptr)->messageClicked();
+}
+
+void QSystemTrayIcon_SetIcon(void* ptr, void* icon)
+{
+	static_cast<QSystemTrayIcon*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
+}
+
+void* QSystemTrayIcon_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QSystemTrayIcon*>(ptr)->icon());
+}
 
 void* QSystemTrayIcon_NewQSystemTrayIcon(void* parent)
 {
@@ -47632,26 +47693,6 @@ char QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable()
 	return QSystemTrayIcon::isSystemTrayAvailable();
 }
 
-char QSystemTrayIcon_QSystemTrayIcon_SupportsMessages()
-{
-	return QSystemTrayIcon::supportsMessages();
-}
-
-void QSystemTrayIcon_ConnectActivated(void* ptr)
-{
-	QObject::connect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&QSystemTrayIcon::activated), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&MyQSystemTrayIcon::Signal_Activated));
-}
-
-void QSystemTrayIcon_DisconnectActivated(void* ptr)
-{
-	QObject::disconnect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&QSystemTrayIcon::activated), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)(QSystemTrayIcon::ActivationReason)>(&MyQSystemTrayIcon::Signal_Activated));
-}
-
-void QSystemTrayIcon_Activated(void* ptr, long long reason)
-{
-	static_cast<QSystemTrayIcon*>(ptr)->activated(static_cast<QSystemTrayIcon::ActivationReason>(reason));
-}
-
 void QSystemTrayIcon_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "hide");
@@ -47662,29 +47703,9 @@ void QSystemTrayIcon_HideDefault(void* ptr)
 		static_cast<QSystemTrayIcon*>(ptr)->QSystemTrayIcon::hide();
 }
 
-void QSystemTrayIcon_ConnectMessageClicked(void* ptr)
-{
-	QObject::connect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)()>(&QSystemTrayIcon::messageClicked), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)()>(&MyQSystemTrayIcon::Signal_MessageClicked));
-}
-
-void QSystemTrayIcon_DisconnectMessageClicked(void* ptr)
-{
-	QObject::disconnect(static_cast<QSystemTrayIcon*>(ptr), static_cast<void (QSystemTrayIcon::*)()>(&QSystemTrayIcon::messageClicked), static_cast<MyQSystemTrayIcon*>(ptr), static_cast<void (MyQSystemTrayIcon::*)()>(&MyQSystemTrayIcon::Signal_MessageClicked));
-}
-
-void QSystemTrayIcon_MessageClicked(void* ptr)
-{
-	static_cast<QSystemTrayIcon*>(ptr)->messageClicked();
-}
-
 void QSystemTrayIcon_SetContextMenu(void* ptr, void* menu)
 {
 	static_cast<QSystemTrayIcon*>(ptr)->setContextMenu(static_cast<QMenu*>(menu));
-}
-
-void QSystemTrayIcon_SetIcon(void* ptr, void* icon)
-{
-	static_cast<QSystemTrayIcon*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
 }
 
 void QSystemTrayIcon_SetToolTip(void* ptr, struct QtWidgets_PackedString tip)
@@ -47722,9 +47743,19 @@ void QSystemTrayIcon_ShowMessageDefault(void* ptr, struct QtWidgets_PackedString
 		static_cast<QSystemTrayIcon*>(ptr)->QSystemTrayIcon::showMessage(QString::fromUtf8(title.data, title.len), QString::fromUtf8(message.data, message.len), static_cast<QSystemTrayIcon::MessageIcon>(icon), millisecondsTimeoutHint);
 }
 
-void* QSystemTrayIcon_Icon(void* ptr)
+void QSystemTrayIcon_ShowMessage2(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, void* icon, int millisecondsTimeoutHint)
 {
-	return new QIcon(static_cast<QSystemTrayIcon*>(ptr)->icon());
+	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(const QString, QString::fromUtf8(title.data, title.len)), Q_ARG(const QString, QString::fromUtf8(message.data, message.len)), Q_ARG(const QIcon, *static_cast<QIcon*>(icon)), Q_ARG(int, millisecondsTimeoutHint));
+}
+
+void QSystemTrayIcon_ShowMessage2Default(void* ptr, struct QtWidgets_PackedString title, struct QtWidgets_PackedString message, void* icon, int millisecondsTimeoutHint)
+{
+		static_cast<QSystemTrayIcon*>(ptr)->QSystemTrayIcon::showMessage(QString::fromUtf8(title.data, title.len), QString::fromUtf8(message.data, message.len), *static_cast<QIcon*>(icon), millisecondsTimeoutHint);
+}
+
+void QSystemTrayIcon_DestroyQSystemTrayIcon(void* ptr)
+{
+	static_cast<QSystemTrayIcon*>(ptr)->~QSystemTrayIcon();
 }
 
 void* QSystemTrayIcon_ContextMenu(void* ptr)
@@ -47745,11 +47776,6 @@ struct QtWidgets_PackedString QSystemTrayIcon_ToolTip(void* ptr)
 char QSystemTrayIcon_IsVisible(void* ptr)
 {
 	return static_cast<QSystemTrayIcon*>(ptr)->isVisible();
-}
-
-void QSystemTrayIcon_DestroyQSystemTrayIcon(void* ptr)
-{
-	static_cast<QSystemTrayIcon*>(ptr)->~QSystemTrayIcon();
 }
 
 void* QSystemTrayIcon___dynamicPropertyNames_atList(void* ptr, int i)
@@ -55137,6 +55163,11 @@ void QUndoCommand_RedoDefault(void* ptr)
 		static_cast<QUndoCommand*>(ptr)->QUndoCommand::redo();
 }
 
+void QUndoCommand_SetObsolete(void* ptr, char obsolete)
+{
+	static_cast<QUndoCommand*>(ptr)->setObsolete(obsolete != 0);
+}
+
 void QUndoCommand_SetText(void* ptr, struct QtWidgets_PackedString text)
 {
 	static_cast<QUndoCommand*>(ptr)->setText(QString::fromUtf8(text.data, text.len));
@@ -55171,6 +55202,11 @@ struct QtWidgets_PackedString QUndoCommand_ActionText(void* ptr)
 struct QtWidgets_PackedString QUndoCommand_Text(void* ptr)
 {
 	return ({ QByteArray t68d93e = static_cast<QUndoCommand*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t68d93e.prepend("WHITESPACE").constData()+10), t68d93e.size()-10 }; });
+}
+
+char QUndoCommand_IsObsolete(void* ptr)
+{
+	return static_cast<QUndoCommand*>(ptr)->isObsolete();
 }
 
 void* QUndoCommand_Child(void* ptr, int index)
@@ -63381,6 +63417,11 @@ void QWidget_QWidget_SetTabOrder(void* first, void* second)
 		QWidget::setTabOrder(static_cast<QWidget*>(first), static_cast<QWidget*>(second));
 }
 
+void QWidget_SetTabletTracking(void* ptr, char enable)
+{
+		static_cast<QWidget*>(ptr)->setTabletTracking(enable != 0);
+}
+
 void QWidget_SetToolTip(void* ptr, struct QtWidgets_PackedString vqs)
 {
 		static_cast<QWidget*>(ptr)->setToolTip(QString::fromUtf8(vqs.data, vqs.len));
@@ -63580,6 +63621,11 @@ void QWidget_SetWhatsThis(void* ptr, struct QtWidgets_PackedString vqs)
 void QWidget_SetWindowFilePath(void* ptr, struct QtWidgets_PackedString filePath)
 {
 		static_cast<QWidget*>(ptr)->setWindowFilePath(QString::fromUtf8(filePath.data, filePath.len));
+}
+
+void QWidget_SetWindowFlag(void* ptr, long long flag, char on)
+{
+		static_cast<QWidget*>(ptr)->setWindowFlag(static_cast<Qt::WindowType>(flag), on != 0);
 }
 
 void QWidget_SetWindowFlags(void* ptr, long long ty)
@@ -66825,34 +66871,14 @@ long long QWidget_LayoutDirection(void* ptr)
 		return static_cast<QWidget*>(ptr)->layoutDirection();
 }
 
-long long QWidget_WindowModality(void* ptr)
-{
-		return static_cast<QWidget*>(ptr)->windowModality();
-}
-
-uintptr_t QWidget_WinId(void* ptr)
-{
-		return static_cast<QWidget*>(ptr)->winId();
-}
-
-char QWidget_AcceptDrops(void* ptr)
-{
-		return static_cast<QWidget*>(ptr)->acceptDrops();
-}
-
-char QWidget_AutoFillBackground(void* ptr)
-{
-		return static_cast<QWidget*>(ptr)->autoFillBackground();
-}
-
-char QWidget_HasFocus(void* ptr)
-{
-		return static_cast<QWidget*>(ptr)->hasFocus();
-}
-
 long long QWidget_WindowFlags(void* ptr)
 {
 		return static_cast<QWidget*>(ptr)->windowFlags();
+}
+
+long long QWidget_WindowModality(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->windowModality();
 }
 
 long long QWidget_WindowState(void* ptr)
@@ -66870,6 +66896,21 @@ uintptr_t QWidget_EffectiveWinId(void* ptr)
 		return static_cast<QWidget*>(ptr)->effectiveWinId();
 }
 
+uintptr_t QWidget_WinId(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->winId();
+}
+
+char QWidget_AcceptDrops(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->acceptDrops();
+}
+
+char QWidget_AutoFillBackground(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->autoFillBackground();
+}
+
 char QWidget_HasEditFocus(void* ptr)
 {
 #ifdef QT_KEYPAD_NAVIGATION
@@ -66877,6 +66918,11 @@ char QWidget_HasEditFocus(void* ptr)
 #else
 	return false;
 #endif
+}
+
+char QWidget_HasFocus(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->hasFocus();
 }
 
 char QWidget_HasHeightForWidth(void* ptr)
@@ -67058,6 +67104,11 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 char QWidget_HasMouseTracking(void* ptr)
 {
 		return static_cast<QWidget*>(ptr)->hasMouseTracking();
+}
+
+char QWidget_HasTabletTracking(void* ptr)
+{
+		return static_cast<QWidget*>(ptr)->hasTabletTracking();
 }
 
 char QWidget_IsActiveWindow(void* ptr)

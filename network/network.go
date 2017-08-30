@@ -4502,6 +4502,142 @@ func (ptr *QHostInfo) __addresses_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QHostInfo___addresses_newList(ptr.Pointer()))
 }
 
+type QHstsPolicy struct {
+	ptr unsafe.Pointer
+}
+
+type QHstsPolicy_ITF interface {
+	QHstsPolicy_PTR() *QHstsPolicy
+}
+
+func (ptr *QHstsPolicy) QHstsPolicy_PTR() *QHstsPolicy {
+	return ptr
+}
+
+func (ptr *QHstsPolicy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QHstsPolicy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQHstsPolicy(ptr QHstsPolicy_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHstsPolicy_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHstsPolicyFromPointer(ptr unsafe.Pointer) *QHstsPolicy {
+	var n = new(QHstsPolicy)
+	n.SetPointer(ptr)
+	return n
+}
+
+//go:generate stringer -type=QHstsPolicy__PolicyFlag
+//QHstsPolicy::PolicyFlag
+type QHstsPolicy__PolicyFlag int64
+
+const (
+	QHstsPolicy__IncludeSubDomains QHstsPolicy__PolicyFlag = QHstsPolicy__PolicyFlag(1)
+)
+
+func NewQHstsPolicy() *QHstsPolicy {
+	var tmpValue = NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy())
+	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	return tmpValue
+}
+
+func NewQHstsPolicy2(expiry core.QDateTime_ITF, flags QHstsPolicy__PolicyFlag, host string, mode core.QUrl__ParsingMode) *QHstsPolicy {
+	var hostC *C.char
+	if host != "" {
+		hostC = C.CString(host)
+		defer C.free(unsafe.Pointer(hostC))
+	}
+	var tmpValue = NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy2(core.PointerFromQDateTime(expiry), C.longlong(flags), C.struct_QtNetwork_PackedString{data: hostC, len: C.longlong(len(host))}, C.longlong(mode)))
+	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	return tmpValue
+}
+
+func NewQHstsPolicy3(other QHstsPolicy_ITF) *QHstsPolicy {
+	var tmpValue = NewQHstsPolicyFromPointer(C.QHstsPolicy_NewQHstsPolicy3(PointerFromQHstsPolicy(other)))
+	runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+	return tmpValue
+}
+
+func (ptr *QHstsPolicy) SetExpiry(expiry core.QDateTime_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHstsPolicy_SetExpiry(ptr.Pointer(), core.PointerFromQDateTime(expiry))
+	}
+}
+
+func (ptr *QHstsPolicy) SetHost(host string, mode core.QUrl__ParsingMode) {
+	if ptr.Pointer() != nil {
+		var hostC *C.char
+		if host != "" {
+			hostC = C.CString(host)
+			defer C.free(unsafe.Pointer(hostC))
+		}
+		C.QHstsPolicy_SetHost(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: hostC, len: C.longlong(len(host))}, C.longlong(mode))
+	}
+}
+
+func (ptr *QHstsPolicy) SetIncludesSubDomains(include bool) {
+	if ptr.Pointer() != nil {
+		C.QHstsPolicy_SetIncludesSubDomains(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(include))))
+	}
+}
+
+func (ptr *QHstsPolicy) Swap(other QHstsPolicy_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHstsPolicy_Swap(ptr.Pointer(), PointerFromQHstsPolicy(other))
+	}
+}
+
+func (ptr *QHstsPolicy) DestroyQHstsPolicy() {
+	if ptr.Pointer() != nil {
+		C.QHstsPolicy_DestroyQHstsPolicy(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHstsPolicy) Expiry() *core.QDateTime {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQDateTimeFromPointer(C.QHstsPolicy_Expiry(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHstsPolicy) Host(options core.QUrl__ComponentFormattingOption) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QHstsPolicy_Host(ptr.Pointer(), C.longlong(options)))
+	}
+	return ""
+}
+
+func (ptr *QHstsPolicy) IncludesSubDomains() bool {
+	if ptr.Pointer() != nil {
+		return C.QHstsPolicy_IncludesSubDomains(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QHstsPolicy) IsExpired() bool {
+	if ptr.Pointer() != nil {
+		return C.QHstsPolicy_IsExpired(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 type QHttpMultiPart struct {
 	core.QObject
 }
@@ -6631,21 +6767,21 @@ func NewQNetworkAccessManager(parent core.QObject_ITF) *QNetworkAccessManager {
 }
 
 //export callbackQNetworkAccessManager_CreateRequest
-func callbackQNetworkAccessManager_CreateRequest(ptr unsafe.Pointer, op C.longlong, req unsafe.Pointer, outgoingData unsafe.Pointer) unsafe.Pointer {
+func callbackQNetworkAccessManager_CreateRequest(ptr unsafe.Pointer, op C.longlong, originalReq unsafe.Pointer, outgoingData unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "createRequest"); signal != nil {
-		return PointerFromQNetworkReply(signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(req), core.NewQIODeviceFromPointer(outgoingData)))
+		return PointerFromQNetworkReply(signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(originalReq), core.NewQIODeviceFromPointer(outgoingData)))
 	}
 
-	return PointerFromQNetworkReply(NewQNetworkAccessManagerFromPointer(ptr).CreateRequestDefault(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(req), core.NewQIODeviceFromPointer(outgoingData)))
+	return PointerFromQNetworkReply(NewQNetworkAccessManagerFromPointer(ptr).CreateRequestDefault(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(originalReq), core.NewQIODeviceFromPointer(outgoingData)))
 }
 
-func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessManager__Operation, req *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply) {
+func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessManager__Operation, originalReq *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "createRequest"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "createRequest", func(op QNetworkAccessManager__Operation, req *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply {
-				signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(op, req, outgoingData)
-				return f(op, req, outgoingData)
+			qt.ConnectSignal(ptr.Pointer(), "createRequest", func(op QNetworkAccessManager__Operation, originalReq *QNetworkRequest, outgoingData *core.QIODevice) *QNetworkReply {
+				signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(op, originalReq, outgoingData)
+				return f(op, originalReq, outgoingData)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "createRequest", f)
@@ -6660,9 +6796,9 @@ func (ptr *QNetworkAccessManager) DisconnectCreateRequest() {
 	}
 }
 
-func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operation, req QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
+func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operation, originalReq QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(originalReq), core.PointerFromQIODevice(outgoingData)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6671,9 +6807,9 @@ func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operat
 	return nil
 }
 
-func (ptr *QNetworkAccessManager) CreateRequestDefault(op QNetworkAccessManager__Operation, req QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
+func (ptr *QNetworkAccessManager) CreateRequestDefault(op QNetworkAccessManager__Operation, originalReq QNetworkRequest_ITF, outgoingData core.QIODevice_ITF) *QNetworkReply {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequestDefault(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequestDefault(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(originalReq), core.PointerFromQIODevice(outgoingData)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6814,6 +6950,18 @@ func (ptr *QNetworkAccessManager) SendCustomRequest2(request QNetworkRequest_ITF
 	return nil
 }
 
+func (ptr *QNetworkAccessManager) AddStrictTransportSecurityHosts(knownHosts []*QHstsPolicy) {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_AddStrictTransportSecurityHosts(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQNetworkAccessManagerFromPointer(NewQNetworkAccessManagerFromPointer(nil).__addStrictTransportSecurityHosts_knownHosts_newList())
+			for _, v := range knownHosts {
+				tmpList.__addStrictTransportSecurityHosts_knownHosts_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 //export callbackQNetworkAccessManager_AuthenticationRequired
 func callbackQNetworkAccessManager_AuthenticationRequired(ptr unsafe.Pointer, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "authenticationRequired"); signal != nil {
@@ -6856,6 +7004,12 @@ func (ptr *QNetworkAccessManager) AuthenticationRequired(reply QNetworkReply_ITF
 func (ptr *QNetworkAccessManager) ClearAccessCache() {
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ClearAccessCache(ptr.Pointer())
+	}
+}
+
+func (ptr *QNetworkAccessManager) ClearConnectionCache() {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_ClearConnectionCache(ptr.Pointer())
 	}
 }
 
@@ -7112,6 +7266,18 @@ func (ptr *QNetworkAccessManager) SetProxyFactory(factory QNetworkProxyFactory_I
 	}
 }
 
+func (ptr *QNetworkAccessManager) SetRedirectPolicy(policy QNetworkRequest__RedirectPolicy) {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_SetRedirectPolicy(ptr.Pointer(), C.longlong(policy))
+	}
+}
+
+func (ptr *QNetworkAccessManager) SetStrictTransportSecurityEnabled(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_SetStrictTransportSecurityEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
 //export callbackQNetworkAccessManager_SslErrors
 func callbackQNetworkAccessManager_SslErrors(ptr unsafe.Pointer, reply unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
@@ -7234,6 +7400,13 @@ func (ptr *QNetworkAccessManager) ProxyFactory() *QNetworkProxyFactory {
 	return nil
 }
 
+func (ptr *QNetworkAccessManager) RedirectPolicy() QNetworkRequest__RedirectPolicy {
+	if ptr.Pointer() != nil {
+		return QNetworkRequest__RedirectPolicy(C.QNetworkAccessManager_RedirectPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QNetworkAccessManager_SupportedSchemes(ptr.Pointer())), "|")
@@ -7286,6 +7459,45 @@ func (ptr *QNetworkAccessManager) SupportedSchemesImplementationDefault() []stri
 	return make([]string, 0)
 }
 
+func (ptr *QNetworkAccessManager) StrictTransportSecurityHosts() []*QHstsPolicy {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []*QHstsPolicy {
+			var out = make([]*QHstsPolicy, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQNetworkAccessManagerFromPointer(l.data).__strictTransportSecurityHosts_atList(i)
+			}
+			return out
+		}(C.QNetworkAccessManager_StrictTransportSecurityHosts(ptr.Pointer()))
+	}
+	return make([]*QHstsPolicy, 0)
+}
+
+func (ptr *QNetworkAccessManager) IsStrictTransportSecurityEnabled() bool {
+	if ptr.Pointer() != nil {
+		return C.QNetworkAccessManager_IsStrictTransportSecurityEnabled(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_atList(i int) *QHstsPolicy {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHstsPolicyFromPointer(C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_setList(i QHstsPolicy_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_setList(ptr.Pointer(), PointerFromQHstsPolicy(i))
+	}
+}
+
+func (ptr *QNetworkAccessManager) __addStrictTransportSecurityHosts_knownHosts_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_newList(ptr.Pointer()))
+}
+
 func (ptr *QNetworkAccessManager) __sslErrors_errors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslErrorFromPointer(C.QNetworkAccessManager___sslErrors_errors_atList(ptr.Pointer(), C.int(int32(i))))
@@ -7303,6 +7515,25 @@ func (ptr *QNetworkAccessManager) __sslErrors_errors_setList(i QSslError_ITF) {
 
 func (ptr *QNetworkAccessManager) __sslErrors_errors_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QNetworkAccessManager___sslErrors_errors_newList(ptr.Pointer()))
+}
+
+func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_atList(i int) *QHstsPolicy {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHstsPolicyFromPointer(C.QNetworkAccessManager___strictTransportSecurityHosts_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QHstsPolicy).DestroyQHstsPolicy)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_setList(i QHstsPolicy_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager___strictTransportSecurityHosts_setList(ptr.Pointer(), PointerFromQHstsPolicy(i))
+	}
+}
+
+func (ptr *QNetworkAccessManager) __strictTransportSecurityHosts_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QNetworkAccessManager___strictTransportSecurityHosts_newList(ptr.Pointer()))
 }
 
 func (ptr *QNetworkAccessManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -7916,6 +8147,13 @@ func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfigu
 	return tmpValue
 }
 
+func (ptr *QNetworkConfiguration) SetConnectTimeout(timeout int) bool {
+	if ptr.Pointer() != nil {
+		return C.QNetworkConfiguration_SetConnectTimeout(ptr.Pointer(), C.int(int32(timeout))) != 0
+	}
+	return false
+}
+
 func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
 	if ptr.Pointer() != nil {
 		C.QNetworkConfiguration_Swap(ptr.Pointer(), PointerFromQNetworkConfiguration(other))
@@ -8011,6 +8249,13 @@ func (ptr *QNetworkConfiguration) IsValid() bool {
 		return C.QNetworkConfiguration_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QNetworkConfiguration) ConnectTimeout() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QNetworkConfiguration_ConnectTimeout(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QNetworkConfiguration) __children_atList(i int) *QNetworkConfiguration {
@@ -12015,6 +12260,45 @@ func (ptr *QNetworkReply) PreSharedKeyAuthenticationRequired(authenticator QSslP
 	}
 }
 
+//export callbackQNetworkReply_RedirectAllowed
+func callbackQNetworkReply_RedirectAllowed(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "redirectAllowed"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QNetworkReply) ConnectRedirectAllowed(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "redirectAllowed") {
+			C.QNetworkReply_ConnectRedirectAllowed(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "redirectAllowed"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "redirectAllowed", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "redirectAllowed", f)
+		}
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectRedirectAllowed() {
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DisconnectRedirectAllowed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "redirectAllowed")
+	}
+}
+
+func (ptr *QNetworkReply) RedirectAllowed() {
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_RedirectAllowed(ptr.Pointer())
+	}
+}
+
 //export callbackQNetworkReply_Redirected
 func callbackQNetworkReply_Redirected(ptr unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "redirected"); signal != nil {
@@ -13197,6 +13481,8 @@ const (
 	QNetworkRequest__FollowRedirectsAttribute              QNetworkRequest__Attribute = QNetworkRequest__Attribute(21)
 	QNetworkRequest__HTTP2AllowedAttribute                 QNetworkRequest__Attribute = QNetworkRequest__Attribute(22)
 	QNetworkRequest__HTTP2WasUsedAttribute                 QNetworkRequest__Attribute = QNetworkRequest__Attribute(23)
+	QNetworkRequest__OriginalContentLengthAttribute        QNetworkRequest__Attribute = QNetworkRequest__Attribute(24)
+	QNetworkRequest__RedirectPolicyAttribute               QNetworkRequest__Attribute = QNetworkRequest__Attribute(25)
 	QNetworkRequest__User                                  QNetworkRequest__Attribute = QNetworkRequest__Attribute(1000)
 	QNetworkRequest__UserMax                               QNetworkRequest__Attribute = QNetworkRequest__Attribute(32767)
 )
@@ -13245,6 +13531,17 @@ const (
 	QNetworkRequest__HighPriority   QNetworkRequest__Priority = QNetworkRequest__Priority(1)
 	QNetworkRequest__NormalPriority QNetworkRequest__Priority = QNetworkRequest__Priority(3)
 	QNetworkRequest__LowPriority    QNetworkRequest__Priority = QNetworkRequest__Priority(5)
+)
+
+//go:generate stringer -type=QNetworkRequest__RedirectPolicy
+//QNetworkRequest::RedirectPolicy
+type QNetworkRequest__RedirectPolicy int64
+
+const (
+	QNetworkRequest__ManualRedirectPolicy       QNetworkRequest__RedirectPolicy = QNetworkRequest__RedirectPolicy(0)
+	QNetworkRequest__NoLessSafeRedirectPolicy   QNetworkRequest__RedirectPolicy = QNetworkRequest__RedirectPolicy(1)
+	QNetworkRequest__SameOriginRedirectPolicy   QNetworkRequest__RedirectPolicy = QNetworkRequest__RedirectPolicy(2)
+	QNetworkRequest__UserVerifiedRedirectPolicy QNetworkRequest__RedirectPolicy = QNetworkRequest__RedirectPolicy(3)
 )
 
 func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
@@ -19016,3 +19313,83 @@ func (ptr *QUdpSocket) PendingDatagramSize() int64 {
 	}
 	return 0
 }
+
+type WinRTSocketEngine struct {
+	ptr unsafe.Pointer
+}
+
+type WinRTSocketEngine_ITF interface {
+	WinRTSocketEngine_PTR() *WinRTSocketEngine
+}
+
+func (ptr *WinRTSocketEngine) WinRTSocketEngine_PTR() *WinRTSocketEngine {
+	return ptr
+}
+
+func (ptr *WinRTSocketEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *WinRTSocketEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromWinRTSocketEngine(ptr WinRTSocketEngine_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.WinRTSocketEngine_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewWinRTSocketEngineFromPointer(ptr unsafe.Pointer) *WinRTSocketEngine {
+	var n = new(WinRTSocketEngine)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *WinRTSocketEngine) DestroyWinRTSocketEngine() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=WinRTSocketEngine__ErrorString
+//WinRTSocketEngine::ErrorString
+type WinRTSocketEngine__ErrorString int64
+
+const (
+	WinRTSocketEngine__NonBlockingInitFailedErrorString  WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(0)
+	WinRTSocketEngine__BroadcastingInitFailedErrorString WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(1)
+	WinRTSocketEngine__NoIpV6ErrorString                 WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(2)
+	WinRTSocketEngine__RemoteHostClosedErrorString       WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(3)
+	WinRTSocketEngine__TimeOutErrorString                WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(4)
+	WinRTSocketEngine__ResourceErrorString               WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(5)
+	WinRTSocketEngine__OperationUnsupportedErrorString   WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(6)
+	WinRTSocketEngine__ProtocolUnsupportedErrorString    WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(7)
+	WinRTSocketEngine__InvalidSocketErrorString          WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(8)
+	WinRTSocketEngine__HostUnreachableErrorString        WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(9)
+	WinRTSocketEngine__NetworkUnreachableErrorString     WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(10)
+	WinRTSocketEngine__AccessErrorString                 WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(11)
+	WinRTSocketEngine__ConnectionTimeOutErrorString      WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(12)
+	WinRTSocketEngine__ConnectionRefusedErrorString      WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(13)
+	WinRTSocketEngine__AddressInuseErrorString           WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(14)
+	WinRTSocketEngine__AddressNotAvailableErrorString    WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(15)
+	WinRTSocketEngine__AddressProtectedErrorString       WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(16)
+	WinRTSocketEngine__DatagramTooLargeErrorString       WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(17)
+	WinRTSocketEngine__SendDatagramErrorString           WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(18)
+	WinRTSocketEngine__ReceiveDatagramErrorString        WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(19)
+	WinRTSocketEngine__WriteErrorString                  WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(20)
+	WinRTSocketEngine__ReadErrorString                   WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(21)
+	WinRTSocketEngine__PortInuseErrorString              WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(22)
+	WinRTSocketEngine__NotSocketErrorString              WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(23)
+	WinRTSocketEngine__InvalidProxyTypeString            WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(24)
+	WinRTSocketEngine__TemporaryErrorString              WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(25)
+	WinRTSocketEngine__UnknownSocketErrorString          WinRTSocketEngine__ErrorString = WinRTSocketEngine__ErrorString(-1)
+)

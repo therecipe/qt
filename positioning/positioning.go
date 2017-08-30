@@ -1630,6 +1630,12 @@ func NewQGeoCircle4(other QGeoShape_ITF) *QGeoCircle {
 	return tmpValue
 }
 
+func (ptr *QGeoCircle) ExtendCircle(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoCircle_ExtendCircle(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
 func (ptr *QGeoCircle) SetCenter(center QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoCircle_SetCenter(ptr.Pointer(), PointerFromQGeoCoordinate(center))
@@ -1884,6 +1890,245 @@ func NewQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
 	var n = new(QGeoLocation)
 	n.SetPointer(ptr)
 	return n
+}
+
+type QGeoPath struct {
+	QGeoShape
+}
+
+type QGeoPath_ITF interface {
+	QGeoShape_ITF
+	QGeoPath_PTR() *QGeoPath
+}
+
+func (ptr *QGeoPath) QGeoPath_PTR() *QGeoPath {
+	return ptr
+}
+
+func (ptr *QGeoPath) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoShape_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoShape_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQGeoPath(ptr QGeoPath_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoPath_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGeoPathFromPointer(ptr unsafe.Pointer) *QGeoPath {
+	var n = new(QGeoPath)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQGeoPath() *QGeoPath {
+	var tmpValue = NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath())
+	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	return tmpValue
+}
+
+func NewQGeoPath3(other QGeoPath_ITF) *QGeoPath {
+	var tmpValue = NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath3(PointerFromQGeoPath(other)))
+	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	return tmpValue
+}
+
+func NewQGeoPath4(other QGeoShape_ITF) *QGeoPath {
+	var tmpValue = NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath4(PointerFromQGeoShape(other)))
+	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	return tmpValue
+}
+
+func NewQGeoPath2(path []*QGeoCoordinate, width float64) *QGeoPath {
+	var tmpValue = NewQGeoPathFromPointer(C.QGeoPath_NewQGeoPath2(func() unsafe.Pointer {
+		var tmpList = NewQGeoPathFromPointer(NewQGeoPathFromPointer(nil).__QGeoPath_path_newList2())
+		for _, v := range path {
+			tmpList.__QGeoPath_path_setList2(v)
+		}
+		return tmpList.Pointer()
+	}(), C.double(width)))
+	runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+	return tmpValue
+}
+
+func (ptr *QGeoPath) AddCoordinate(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_AddCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPath) InsertCoordinate(index int, coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_InsertCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPath) RemoveCoordinate(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_RemoveCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPath) RemoveCoordinate2(index int) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_RemoveCoordinate2(ptr.Pointer(), C.int(int32(index)))
+	}
+}
+
+func (ptr *QGeoPath) ReplaceCoordinate(index int, coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_ReplaceCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPath) SetPath(path []*QGeoCoordinate) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_SetPath(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQGeoPathFromPointer(NewQGeoPathFromPointer(nil).__setPath_path_newList())
+			for _, v := range path {
+				tmpList.__setPath_path_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QGeoPath) SetWidth(width float64) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_SetWidth(ptr.Pointer(), C.double(width))
+	}
+}
+
+func (ptr *QGeoPath) Translate(degreesLatitude float64, degreesLongitude float64) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_Translate(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude))
+	}
+}
+
+func (ptr *QGeoPath) DestroyQGeoPath() {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_DestroyQGeoPath(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QGeoPath) CoordinateAt(index int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPath_CoordinateAt(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoPath {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoPathFromPointer(C.QGeoPath_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
+		runtime.SetFinalizer(tmpValue, (*QGeoPath).DestroyQGeoPath)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGeoPath_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
+	}
+	return false
+}
+
+func (ptr *QGeoPath) Path() []*QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*QGeoCoordinate {
+			var out = make([]*QGeoCoordinate, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoPathFromPointer(l.data).__path_atList(i)
+			}
+			return out
+		}(C.QGeoPath_Path(ptr.Pointer()))
+	}
+	return make([]*QGeoCoordinate, 0)
+}
+
+func (ptr *QGeoPath) Length(indexFrom int, indexTo int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGeoPath_Length(ptr.Pointer(), C.int(int32(indexFrom)), C.int(int32(indexTo))))
+	}
+	return 0
+}
+
+func (ptr *QGeoPath) Width() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGeoPath_Width(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGeoPath) __QGeoPath_path_atList2(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPath___QGeoPath_path_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) __QGeoPath_path_setList2(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath___QGeoPath_path_setList2(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPath) __QGeoPath_path_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPath___QGeoPath_path_newList2(ptr.Pointer()))
+}
+
+func (ptr *QGeoPath) __setPath_path_atList(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPath___setPath_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) __setPath_path_setList(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath___setPath_path_setList(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPath) __setPath_path_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPath___setPath_path_newList(ptr.Pointer()))
+}
+
+func (ptr *QGeoPath) __path_atList(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPath___path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) __path_setList(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath___path_setList(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPath) __path_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPath___path_newList(ptr.Pointer()))
 }
 
 type QGeoPositionInfo struct {
@@ -3212,6 +3457,12 @@ func NewQGeoRectangle4(coordinates []*QGeoCoordinate) *QGeoRectangle {
 	return tmpValue
 }
 
+func (ptr *QGeoRectangle) ExtendRectangle(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoRectangle_ExtendRectangle(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
 func (ptr *QGeoRectangle) SetBottomLeft(bottomLeft QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoRectangle_SetBottomLeft(ptr.Pointer(), PointerFromQGeoCoordinate(bottomLeft))
@@ -4423,6 +4674,7 @@ const (
 	QGeoShape__UnknownType   QGeoShape__ShapeType = QGeoShape__ShapeType(0)
 	QGeoShape__RectangleType QGeoShape__ShapeType = QGeoShape__ShapeType(1)
 	QGeoShape__CircleType    QGeoShape__ShapeType = QGeoShape__ShapeType(2)
+	QGeoShape__PathType      QGeoShape__ShapeType = QGeoShape__ShapeType(3)
 )
 
 func NewQGeoShape() *QGeoShape {
@@ -4437,12 +4689,6 @@ func NewQGeoShape2(other QGeoShape_ITF) *QGeoShape {
 	return tmpValue
 }
 
-func (ptr *QGeoShape) ExtendShape(coordinate QGeoCoordinate_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoShape_ExtendShape(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
-	}
-}
-
 func (ptr *QGeoShape) DestroyQGeoShape() {
 	if ptr.Pointer() != nil {
 		C.QGeoShape_DestroyQGeoShape(ptr.Pointer())
@@ -4455,6 +4701,15 @@ func (ptr *QGeoShape) Center() *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoShape_Center(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoShape) BoundingGeoRectangle() *QGeoRectangle {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoRectangleFromPointer(C.QGeoShape_BoundingGeoRectangle(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRectangle).DestroyQGeoRectangle)
 		return tmpValue
 	}
 	return nil

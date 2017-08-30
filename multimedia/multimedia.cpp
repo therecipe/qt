@@ -6,6 +6,9 @@
 #include "multimedia.h"
 #include "_cgo_export.h"
 
+#include <QAbstractAudioDeviceInfo>
+#include <QAbstractAudioInput>
+#include <QAbstractAudioOutput>
 #include <QAbstractPlanarVideoBuffer>
 #include <QAbstractVideoBuffer>
 #include <QAbstractVideoFilter>
@@ -26,6 +29,7 @@
 #include <QAudioProbe>
 #include <QAudioRecorder>
 #include <QAudioRoleControl>
+#include <QAudioSystemPlugin>
 #include <QByteArray>
 #include <QCamera>
 #include <QCameraCaptureBufferFormatControl>
@@ -171,6 +175,1157 @@
 #include <QWheelEvent>
 #include <QWidget>
 #include <QWindow>
+
+class MyQAbstractAudioDeviceInfo: public QAbstractAudioDeviceInfo
+{
+public:
+	QList<QAudioFormat::Endian> supportedByteOrders() { return *static_cast<QList<QAudioFormat::Endian>*>(callbackQAbstractAudioDeviceInfo_SupportedByteOrders(this)); };
+	QList<QAudioFormat::SampleType> supportedSampleTypes() { return *static_cast<QList<QAudioFormat::SampleType>*>(callbackQAbstractAudioDeviceInfo_SupportedSampleTypes(this)); };
+	QList<int> supportedChannelCounts() { return *static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedChannelCounts(this)); };
+	QList<int> supportedSampleRates() { return *static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedSampleRates(this)); };
+	QList<int> supportedSampleSizes() { return *static_cast<QList<int>*>(callbackQAbstractAudioDeviceInfo_SupportedSampleSizes(this)); };
+	QStringList supportedCodecs() { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_SupportedCodecs(this); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QAudioFormat preferredFormat() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioDeviceInfo_PreferredFormat(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString deviceName() const { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_DeviceName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	bool isFormatSupported(const QAudioFormat & format) const { return callbackQAbstractAudioDeviceInfo_IsFormatSupported(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioFormat*>(&format)) != 0; };
+	bool event(QEvent * e) { return callbackQAbstractAudioDeviceInfo_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioDeviceInfo_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractAudioDeviceInfo_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAudioDeviceInfo_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractAudioDeviceInfo_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractAudioDeviceInfo_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractAudioDeviceInfo_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioDeviceInfo_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioDeviceInfo_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioDeviceInfo_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioDeviceInfo_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQAbstractAudioDeviceInfo*)
+
+int QAbstractAudioDeviceInfo_QAbstractAudioDeviceInfo_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioDeviceInfo*>(); return qRegisterMetaType<MyQAbstractAudioDeviceInfo*>();}
+
+struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedByteOrders(void* ptr)
+{
+	return ({ QList<QAudioFormat::Endian>* tmpValue = new QList<QAudioFormat::Endian>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedByteOrders()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedSampleTypes(void* ptr)
+{
+	return ({ QList<QAudioFormat::SampleType>* tmpValue = new QList<QAudioFormat::SampleType>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedSampleTypes()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedChannelCounts(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedChannelCounts()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedSampleRates(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedSampleRates()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedSampleSizes(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedSampleSizes()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_SupportedCodecs(void* ptr)
+{
+	return ({ QByteArray t6d2a0e = static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e.prepend("WHITESPACE").constData()+10), t6d2a0e.size()-10 }; });
+}
+
+void* QAbstractAudioDeviceInfo_PreferredFormat(void* ptr)
+{
+	return new QAudioFormat(static_cast<QAbstractAudioDeviceInfo*>(ptr)->preferredFormat());
+}
+
+struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_DeviceName(void* ptr)
+{
+	return ({ QByteArray tdecf08 = static_cast<QAbstractAudioDeviceInfo*>(ptr)->deviceName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdecf08.prepend("WHITESPACE").constData()+10), tdecf08.size()-10 }; });
+}
+
+char QAbstractAudioDeviceInfo_IsFormatSupported(void* ptr, void* format)
+{
+	return static_cast<QAbstractAudioDeviceInfo*>(ptr)->isFormatSupported(*static_cast<QAudioFormat*>(format));
+}
+
+long long QAbstractAudioDeviceInfo___supportedByteOrders_atList(void* ptr, int i)
+{
+	return static_cast<QList<QAudioFormat::Endian>*>(ptr)->at(i);
+}
+
+void QAbstractAudioDeviceInfo___supportedByteOrders_setList(void* ptr, long long i)
+{
+	static_cast<QList<QAudioFormat::Endian>*>(ptr)->append(static_cast<QAudioFormat::Endian>(i));
+}
+
+void* QAbstractAudioDeviceInfo___supportedByteOrders_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QAudioFormat::Endian>;
+}
+
+long long QAbstractAudioDeviceInfo___supportedSampleTypes_atList(void* ptr, int i)
+{
+	return static_cast<QList<QAudioFormat::SampleType>*>(ptr)->at(i);
+}
+
+void QAbstractAudioDeviceInfo___supportedSampleTypes_setList(void* ptr, long long i)
+{
+	static_cast<QList<QAudioFormat::SampleType>*>(ptr)->append(static_cast<QAudioFormat::SampleType>(i));
+}
+
+void* QAbstractAudioDeviceInfo___supportedSampleTypes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QAudioFormat::SampleType>;
+}
+
+int QAbstractAudioDeviceInfo___supportedChannelCounts_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QAbstractAudioDeviceInfo___supportedChannelCounts_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QAbstractAudioDeviceInfo___supportedChannelCounts_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>;
+}
+
+int QAbstractAudioDeviceInfo___supportedSampleRates_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QAbstractAudioDeviceInfo___supportedSampleRates_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QAbstractAudioDeviceInfo___supportedSampleRates_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>;
+}
+
+int QAbstractAudioDeviceInfo___supportedSampleSizes_atList(void* ptr, int i)
+{
+	return static_cast<QList<int>*>(ptr)->at(i);
+}
+
+void QAbstractAudioDeviceInfo___supportedSampleSizes_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QAbstractAudioDeviceInfo___supportedSampleSizes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>;
+}
+
+void* QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractAudioDeviceInfo___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractAudioDeviceInfo___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioDeviceInfo___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioDeviceInfo___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioDeviceInfo___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioDeviceInfo___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioDeviceInfo___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractAudioDeviceInfo___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioDeviceInfo___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
+}
+
+char QAbstractAudioDeviceInfo_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::event(static_cast<QEvent*>(e));
+}
+
+char QAbstractAudioDeviceInfo_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QAbstractAudioDeviceInfo_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAbstractAudioDeviceInfo_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioDeviceInfo_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::customEvent(static_cast<QEvent*>(event));
+}
+
+void QAbstractAudioDeviceInfo_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::deleteLater();
+}
+
+void QAbstractAudioDeviceInfo_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioDeviceInfo_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QAbstractAudioDeviceInfo_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::metaObject());
+}
+
+class MyQAbstractAudioInput: public QAbstractAudioInput
+{
+public:
+	QIODevice * start() { return static_cast<QIODevice*>(callbackQAbstractAudioInput_Start2(this)); };
+	void Signal_ErrorChanged(QAudio::Error error) { callbackQAbstractAudioInput_ErrorChanged(this, error); };
+	void Signal_Notify() { callbackQAbstractAudioInput_Notify(this); };
+	void reset() { callbackQAbstractAudioInput_Reset(this); };
+	void resume() { callbackQAbstractAudioInput_Resume(this); };
+	void setBufferSize(int value) { callbackQAbstractAudioInput_SetBufferSize(this, value); };
+	void setFormat(const QAudioFormat & fo) { callbackQAbstractAudioInput_SetFormat(this, const_cast<QAudioFormat*>(&fo)); };
+	void setNotifyInterval(int ms) { callbackQAbstractAudioInput_SetNotifyInterval(this, ms); };
+	void setVolume(qreal vqr) { callbackQAbstractAudioInput_SetVolume(this, vqr); };
+	void start(QIODevice * device) { callbackQAbstractAudioInput_Start(this, device); };
+	void Signal_StateChanged(QAudio::State state) { callbackQAbstractAudioInput_StateChanged(this, state); };
+	void stop() { callbackQAbstractAudioInput_Stop(this); };
+	void suspend() { callbackQAbstractAudioInput_Suspend(this); };
+	QAudio::Error error() const { return static_cast<QAudio::Error>(callbackQAbstractAudioInput_Error(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAudio::State state() const { return static_cast<QAudio::State>(callbackQAbstractAudioInput_State(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAudioFormat format() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioInput_Format(const_cast<void*>(static_cast<const void*>(this)))); };
+	int bufferSize() const { return callbackQAbstractAudioInput_BufferSize(const_cast<void*>(static_cast<const void*>(this))); };
+	int bytesReady() const { return callbackQAbstractAudioInput_BytesReady(const_cast<void*>(static_cast<const void*>(this))); };
+	int notifyInterval() const { return callbackQAbstractAudioInput_NotifyInterval(const_cast<void*>(static_cast<const void*>(this))); };
+	int periodSize() const { return callbackQAbstractAudioInput_PeriodSize(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 elapsedUSecs() const { return callbackQAbstractAudioInput_ElapsedUSecs(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 processedUSecs() const { return callbackQAbstractAudioInput_ProcessedUSecs(const_cast<void*>(static_cast<const void*>(this))); };
+	qreal volume() const { return callbackQAbstractAudioInput_Volume(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractAudioInput_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioInput_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractAudioInput_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAudioInput_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractAudioInput_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractAudioInput_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractAudioInput_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioInput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioInput_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioInput_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQAbstractAudioInput*)
+
+int QAbstractAudioInput_QAbstractAudioInput_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioInput*>(); return qRegisterMetaType<MyQAbstractAudioInput*>();}
+
+void* QAbstractAudioInput_Start2(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->start();
+}
+
+void QAbstractAudioInput_ConnectErrorChanged(void* ptr)
+{
+	qRegisterMetaType<QAudio::Error>();
+	QObject::connect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)(QAudio::Error)>(&QAbstractAudioInput::errorChanged), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)(QAudio::Error)>(&MyQAbstractAudioInput::Signal_ErrorChanged));
+}
+
+void QAbstractAudioInput_DisconnectErrorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)(QAudio::Error)>(&QAbstractAudioInput::errorChanged), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)(QAudio::Error)>(&MyQAbstractAudioInput::Signal_ErrorChanged));
+}
+
+void QAbstractAudioInput_ErrorChanged(void* ptr, long long error)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->errorChanged(static_cast<QAudio::Error>(error));
+}
+
+void QAbstractAudioInput_ConnectNotify(void* ptr)
+{
+	QObject::connect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)()>(&QAbstractAudioInput::notify), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)()>(&MyQAbstractAudioInput::Signal_Notify));
+}
+
+void QAbstractAudioInput_DisconnectNotify(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)()>(&QAbstractAudioInput::notify), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)()>(&MyQAbstractAudioInput::Signal_Notify));
+}
+
+void QAbstractAudioInput_Notify(void* ptr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->notify();
+}
+
+void QAbstractAudioInput_Reset(void* ptr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->reset();
+}
+
+void QAbstractAudioInput_Resume(void* ptr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->resume();
+}
+
+void QAbstractAudioInput_SetBufferSize(void* ptr, int value)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->setBufferSize(value);
+}
+
+void QAbstractAudioInput_SetFormat(void* ptr, void* fo)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fo));
+}
+
+void QAbstractAudioInput_SetNotifyInterval(void* ptr, int ms)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->setNotifyInterval(ms);
+}
+
+void QAbstractAudioInput_SetVolume(void* ptr, double vqr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->setVolume(vqr);
+}
+
+void QAbstractAudioInput_Start(void* ptr, void* device)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->start(static_cast<QIODevice*>(device));
+}
+
+void QAbstractAudioInput_ConnectStateChanged(void* ptr)
+{
+	qRegisterMetaType<QAudio::State>();
+	QObject::connect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)(QAudio::State)>(&QAbstractAudioInput::stateChanged), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)(QAudio::State)>(&MyQAbstractAudioInput::Signal_StateChanged));
+}
+
+void QAbstractAudioInput_DisconnectStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioInput*>(ptr), static_cast<void (QAbstractAudioInput::*)(QAudio::State)>(&QAbstractAudioInput::stateChanged), static_cast<MyQAbstractAudioInput*>(ptr), static_cast<void (MyQAbstractAudioInput::*)(QAudio::State)>(&MyQAbstractAudioInput::Signal_StateChanged));
+}
+
+void QAbstractAudioInput_StateChanged(void* ptr, long long state)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->stateChanged(static_cast<QAudio::State>(state));
+}
+
+void QAbstractAudioInput_Stop(void* ptr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->stop();
+}
+
+void QAbstractAudioInput_Suspend(void* ptr)
+{
+	static_cast<QAbstractAudioInput*>(ptr)->suspend();
+}
+
+long long QAbstractAudioInput_Error(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->error();
+}
+
+long long QAbstractAudioInput_State(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->state();
+}
+
+void* QAbstractAudioInput_Format(void* ptr)
+{
+	return new QAudioFormat(static_cast<QAbstractAudioInput*>(ptr)->format());
+}
+
+int QAbstractAudioInput_BufferSize(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->bufferSize();
+}
+
+int QAbstractAudioInput_BytesReady(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->bytesReady();
+}
+
+int QAbstractAudioInput_NotifyInterval(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->notifyInterval();
+}
+
+int QAbstractAudioInput_PeriodSize(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->periodSize();
+}
+
+long long QAbstractAudioInput_ElapsedUSecs(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->elapsedUSecs();
+}
+
+long long QAbstractAudioInput_ProcessedUSecs(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->processedUSecs();
+}
+
+double QAbstractAudioInput_Volume(void* ptr)
+{
+	return static_cast<QAbstractAudioInput*>(ptr)->volume();
+}
+
+void* QAbstractAudioInput___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractAudioInput___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractAudioInput___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QAbstractAudioInput___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioInput___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioInput___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioInput___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioInput___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioInput___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioInput___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioInput___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioInput___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioInput___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractAudioInput___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioInput___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
+}
+
+char QAbstractAudioInput_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::event(static_cast<QEvent*>(e));
+}
+
+char QAbstractAudioInput_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QAbstractAudioInput_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAbstractAudioInput_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioInput_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::customEvent(static_cast<QEvent*>(event));
+}
+
+void QAbstractAudioInput_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::deleteLater();
+}
+
+void QAbstractAudioInput_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioInput_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QAbstractAudioInput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::metaObject());
+}
+
+class MyQAbstractAudioOutput: public QAbstractAudioOutput
+{
+public:
+	QIODevice * start() { return static_cast<QIODevice*>(callbackQAbstractAudioOutput_Start2(this)); };
+	void Signal_ErrorChanged(QAudio::Error error) { callbackQAbstractAudioOutput_ErrorChanged(this, error); };
+	void Signal_Notify() { callbackQAbstractAudioOutput_Notify(this); };
+	void reset() { callbackQAbstractAudioOutput_Reset(this); };
+	void resume() { callbackQAbstractAudioOutput_Resume(this); };
+	void setBufferSize(int value) { callbackQAbstractAudioOutput_SetBufferSize(this, value); };
+	void setCategory(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractAudioOutput_SetCategory(this, vqsPacked); };
+	void setFormat(const QAudioFormat & fo) { callbackQAbstractAudioOutput_SetFormat(this, const_cast<QAudioFormat*>(&fo)); };
+	void setNotifyInterval(int ms) { callbackQAbstractAudioOutput_SetNotifyInterval(this, ms); };
+	void setVolume(qreal volume) { callbackQAbstractAudioOutput_SetVolume(this, volume); };
+	void start(QIODevice * device) { callbackQAbstractAudioOutput_Start(this, device); };
+	void Signal_StateChanged(QAudio::State state) { callbackQAbstractAudioOutput_StateChanged(this, state); };
+	void stop() { callbackQAbstractAudioOutput_Stop(this); };
+	void suspend() { callbackQAbstractAudioOutput_Suspend(this); };
+	QAudio::Error error() const { return static_cast<QAudio::Error>(callbackQAbstractAudioOutput_Error(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAudio::State state() const { return static_cast<QAudio::State>(callbackQAbstractAudioOutput_State(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAudioFormat format() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioOutput_Format(const_cast<void*>(static_cast<const void*>(this)))); };
+	QString category() const { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioOutput_Category(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	int bufferSize() const { return callbackQAbstractAudioOutput_BufferSize(const_cast<void*>(static_cast<const void*>(this))); };
+	int bytesFree() const { return callbackQAbstractAudioOutput_BytesFree(const_cast<void*>(static_cast<const void*>(this))); };
+	int notifyInterval() const { return callbackQAbstractAudioOutput_NotifyInterval(const_cast<void*>(static_cast<const void*>(this))); };
+	int periodSize() const { return callbackQAbstractAudioOutput_PeriodSize(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 elapsedUSecs() const { return callbackQAbstractAudioOutput_ElapsedUSecs(const_cast<void*>(static_cast<const void*>(this))); };
+	qint64 processedUSecs() const { return callbackQAbstractAudioOutput_ProcessedUSecs(const_cast<void*>(static_cast<const void*>(this))); };
+	qreal volume() const { return callbackQAbstractAudioOutput_Volume(const_cast<void*>(static_cast<const void*>(this))); };
+	bool event(QEvent * e) { return callbackQAbstractAudioOutput_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioOutput_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAbstractAudioOutput_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAudioOutput_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAbstractAudioOutput_CustomEvent(this, event); };
+	void deleteLater() { callbackQAbstractAudioOutput_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAbstractAudioOutput_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioOutput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioOutput_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioOutput_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQAbstractAudioOutput*)
+
+int QAbstractAudioOutput_QAbstractAudioOutput_QRegisterMetaType(){qRegisterMetaType<QAbstractAudioOutput*>(); return qRegisterMetaType<MyQAbstractAudioOutput*>();}
+
+void* QAbstractAudioOutput_Start2(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->start();
+}
+
+void QAbstractAudioOutput_ConnectErrorChanged(void* ptr)
+{
+	qRegisterMetaType<QAudio::Error>();
+	QObject::connect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)(QAudio::Error)>(&QAbstractAudioOutput::errorChanged), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)(QAudio::Error)>(&MyQAbstractAudioOutput::Signal_ErrorChanged));
+}
+
+void QAbstractAudioOutput_DisconnectErrorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)(QAudio::Error)>(&QAbstractAudioOutput::errorChanged), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)(QAudio::Error)>(&MyQAbstractAudioOutput::Signal_ErrorChanged));
+}
+
+void QAbstractAudioOutput_ErrorChanged(void* ptr, long long error)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->errorChanged(static_cast<QAudio::Error>(error));
+}
+
+void QAbstractAudioOutput_ConnectNotify(void* ptr)
+{
+	QObject::connect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)()>(&QAbstractAudioOutput::notify), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)()>(&MyQAbstractAudioOutput::Signal_Notify));
+}
+
+void QAbstractAudioOutput_DisconnectNotify(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)()>(&QAbstractAudioOutput::notify), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)()>(&MyQAbstractAudioOutput::Signal_Notify));
+}
+
+void QAbstractAudioOutput_Notify(void* ptr)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->notify();
+}
+
+void QAbstractAudioOutput_Reset(void* ptr)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->reset();
+}
+
+void QAbstractAudioOutput_Resume(void* ptr)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->resume();
+}
+
+void QAbstractAudioOutput_SetBufferSize(void* ptr, int value)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->setBufferSize(value);
+}
+
+void QAbstractAudioOutput_SetCategory(void* ptr, struct QtMultimedia_PackedString vqs)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->setCategory(QString::fromUtf8(vqs.data, vqs.len));
+}
+
+void QAbstractAudioOutput_SetCategoryDefault(void* ptr, struct QtMultimedia_PackedString vqs)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::setCategory(QString::fromUtf8(vqs.data, vqs.len));
+}
+
+void QAbstractAudioOutput_SetFormat(void* ptr, void* fo)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fo));
+}
+
+void QAbstractAudioOutput_SetNotifyInterval(void* ptr, int ms)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->setNotifyInterval(ms);
+}
+
+void QAbstractAudioOutput_SetVolume(void* ptr, double volume)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->setVolume(volume);
+}
+
+void QAbstractAudioOutput_SetVolumeDefault(void* ptr, double volume)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::setVolume(volume);
+}
+
+void QAbstractAudioOutput_Start(void* ptr, void* device)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->start(static_cast<QIODevice*>(device));
+}
+
+void QAbstractAudioOutput_ConnectStateChanged(void* ptr)
+{
+	qRegisterMetaType<QAudio::State>();
+	QObject::connect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)(QAudio::State)>(&QAbstractAudioOutput::stateChanged), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)(QAudio::State)>(&MyQAbstractAudioOutput::Signal_StateChanged));
+}
+
+void QAbstractAudioOutput_DisconnectStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QAbstractAudioOutput*>(ptr), static_cast<void (QAbstractAudioOutput::*)(QAudio::State)>(&QAbstractAudioOutput::stateChanged), static_cast<MyQAbstractAudioOutput*>(ptr), static_cast<void (MyQAbstractAudioOutput::*)(QAudio::State)>(&MyQAbstractAudioOutput::Signal_StateChanged));
+}
+
+void QAbstractAudioOutput_StateChanged(void* ptr, long long state)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->stateChanged(static_cast<QAudio::State>(state));
+}
+
+void QAbstractAudioOutput_Stop(void* ptr)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->stop();
+}
+
+void QAbstractAudioOutput_Suspend(void* ptr)
+{
+	static_cast<QAbstractAudioOutput*>(ptr)->suspend();
+}
+
+long long QAbstractAudioOutput_Error(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->error();
+}
+
+long long QAbstractAudioOutput_State(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->state();
+}
+
+void* QAbstractAudioOutput_Format(void* ptr)
+{
+	return new QAudioFormat(static_cast<QAbstractAudioOutput*>(ptr)->format());
+}
+
+struct QtMultimedia_PackedString QAbstractAudioOutput_Category(void* ptr)
+{
+	return ({ QByteArray t6fd386 = static_cast<QAbstractAudioOutput*>(ptr)->category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6fd386.prepend("WHITESPACE").constData()+10), t6fd386.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractAudioOutput_CategoryDefault(void* ptr)
+{
+		return ({ QByteArray tf25276 = static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf25276.prepend("WHITESPACE").constData()+10), tf25276.size()-10 }; });
+}
+
+int QAbstractAudioOutput_BufferSize(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->bufferSize();
+}
+
+int QAbstractAudioOutput_BytesFree(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->bytesFree();
+}
+
+int QAbstractAudioOutput_NotifyInterval(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->notifyInterval();
+}
+
+int QAbstractAudioOutput_PeriodSize(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->periodSize();
+}
+
+long long QAbstractAudioOutput_ElapsedUSecs(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->elapsedUSecs();
+}
+
+long long QAbstractAudioOutput_ProcessedUSecs(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->processedUSecs();
+}
+
+double QAbstractAudioOutput_Volume(void* ptr)
+{
+	return static_cast<QAbstractAudioOutput*>(ptr)->volume();
+}
+
+double QAbstractAudioOutput_VolumeDefault(void* ptr)
+{
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::volume();
+}
+
+void* QAbstractAudioOutput___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAbstractAudioOutput___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAbstractAudioOutput___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QAbstractAudioOutput___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioOutput___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioOutput___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioOutput___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioOutput___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioOutput___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioOutput___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAbstractAudioOutput___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioOutput___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAbstractAudioOutput___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAbstractAudioOutput___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAbstractAudioOutput___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
+}
+
+char QAbstractAudioOutput_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::event(static_cast<QEvent*>(e));
+}
+
+char QAbstractAudioOutput_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QAbstractAudioOutput_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAbstractAudioOutput_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioOutput_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::customEvent(static_cast<QEvent*>(event));
+}
+
+void QAbstractAudioOutput_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::deleteLater();
+}
+
+void QAbstractAudioOutput_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAbstractAudioOutput_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QAbstractAudioOutput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::metaObject());
+}
 
 class MyQAbstractPlanarVideoBuffer: public QAbstractPlanarVideoBuffer
 {
@@ -3953,6 +5108,308 @@ void* QAudioRoleControl___supportedAudioRoles_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QAudio::Role>;
+}
+
+class MyQAudioSystemPlugin: public QAudioSystemPlugin
+{
+public:
+	MyQAudioSystemPlugin(QObject *parent = Q_NULLPTR) : QAudioSystemPlugin(parent) {QAudioSystemPlugin_QAudioSystemPlugin_QRegisterMetaType();};
+	QAbstractAudioDeviceInfo * createDeviceInfo(const QByteArray & device, QAudio::Mode mode) { return static_cast<QAbstractAudioDeviceInfo*>(callbackQAudioSystemPlugin_CreateDeviceInfo(this, const_cast<QByteArray*>(&device), mode)); };
+	QAbstractAudioInput * createInput(const QByteArray & device) { return static_cast<QAbstractAudioInput*>(callbackQAudioSystemPlugin_CreateInput(this, const_cast<QByteArray*>(&device))); };
+	QAbstractAudioOutput * createOutput(const QByteArray & device) { return static_cast<QAbstractAudioOutput*>(callbackQAudioSystemPlugin_CreateOutput(this, const_cast<QByteArray*>(&device))); };
+	QList<QByteArray> availableDevices(QAudio::Mode mode) const { return *static_cast<QList<QByteArray>*>(callbackQAudioSystemPlugin_AvailableDevices(const_cast<void*>(static_cast<const void*>(this)), mode)); };
+	bool event(QEvent * e) { return callbackQAudioSystemPlugin_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioSystemPlugin_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQAudioSystemPlugin_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAudioSystemPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQAudioSystemPlugin_CustomEvent(this, event); };
+	void deleteLater() { callbackQAudioSystemPlugin_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQAudioSystemPlugin_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAudioSystemPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioSystemPlugin_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQAudioSystemPlugin_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioSystemPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQAudioSystemPlugin*)
+
+int QAudioSystemPlugin_QAudioSystemPlugin_QRegisterMetaType(){qRegisterMetaType<QAudioSystemPlugin*>(); return qRegisterMetaType<MyQAudioSystemPlugin*>();}
+
+void* QAudioSystemPlugin_CreateDeviceInfo(void* ptr, void* device, long long mode)
+{
+	return static_cast<QAudioSystemPlugin*>(ptr)->createDeviceInfo(*static_cast<QByteArray*>(device), static_cast<QAudio::Mode>(mode));
+}
+
+void* QAudioSystemPlugin_CreateInput(void* ptr, void* device)
+{
+	return static_cast<QAudioSystemPlugin*>(ptr)->createInput(*static_cast<QByteArray*>(device));
+}
+
+void* QAudioSystemPlugin_CreateOutput(void* ptr, void* device)
+{
+	return static_cast<QAudioSystemPlugin*>(ptr)->createOutput(*static_cast<QByteArray*>(device));
+}
+
+void* QAudioSystemPlugin_NewQAudioSystemPlugin(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAudioSystemPlugin(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAudioSystemPlugin(static_cast<QObject*>(parent));
+	}
+}
+
+void QAudioSystemPlugin_DestroyQAudioSystemPlugin(void* ptr)
+{
+	static_cast<QAudioSystemPlugin*>(ptr)->~QAudioSystemPlugin();
+}
+
+struct QtMultimedia_PackedList QAudioSystemPlugin_AvailableDevices(void* ptr, long long mode)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QAudioSystemPlugin*>(ptr)->availableDevices(static_cast<QAudio::Mode>(mode))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QAudioSystemPlugin___availableDevices_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___availableDevices_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAudioSystemPlugin___availableDevices_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QAudioSystemPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QAudioSystemPlugin___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QAudioSystemPlugin___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAudioSystemPlugin___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAudioSystemPlugin___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAudioSystemPlugin___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAudioSystemPlugin___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAudioSystemPlugin___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QAudioSystemPlugin___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QAudioSystemPlugin___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QRadioData*>(i));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QVideoWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QAudioSystemPlugin___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
+}
+
+char QAudioSystemPlugin_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::event(static_cast<QEvent*>(e));
+}
+
+char QAudioSystemPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QAudioSystemPlugin_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QAudioSystemPlugin_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAudioSystemPlugin_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::customEvent(static_cast<QEvent*>(event));
+}
+
+void QAudioSystemPlugin_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::deleteLater();
+}
+
+void QAudioSystemPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QAudioSystemPlugin_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QAudioSystemPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::metaObject());
 }
 
 class MyQCamera: public QCamera

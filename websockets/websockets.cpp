@@ -41,6 +41,7 @@
 #include <QSslError>
 #include <QSslPreSharedKeyAuthenticator>
 #include <QString>
+#include <QTcpSocket>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
@@ -1317,6 +1318,11 @@ int QWebSocketServer_SocketDescriptor(void* ptr)
 unsigned short QWebSocketServer_ServerPort(void* ptr)
 {
 	return static_cast<QWebSocketServer*>(ptr)->serverPort();
+}
+
+void QWebSocketServer_HandleConnection(void* ptr, void* socket)
+{
+	static_cast<QWebSocketServer*>(ptr)->handleConnection(static_cast<QTcpSocket*>(socket));
 }
 
 void* QWebSocketServer___sslErrors_errors_atList(void* ptr, int i)

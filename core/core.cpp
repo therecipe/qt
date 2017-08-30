@@ -112,6 +112,7 @@
 #include <QObject>
 #include <QObjectCleanupHandler>
 #include <QOffscreenSurface>
+#include <QOperatingSystemVersion>
 #include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QParallelAnimationGroup>
@@ -615,7 +616,6 @@ public:
 	int remainingTime(int timerId) { return callbackQAbstractEventDispatcher_RemainingTime(this, timerId); };
 	void Signal_AboutToBlock() { callbackQAbstractEventDispatcher_AboutToBlock(this); };
 	void Signal_Awake() { callbackQAbstractEventDispatcher_Awake(this); };
-	void flush() { callbackQAbstractEventDispatcher_Flush(this); };
 	void interrupt() { callbackQAbstractEventDispatcher_Interrupt(this); };
 	void registerSocketNotifier(QSocketNotifier * notifier) { callbackQAbstractEventDispatcher_RegisterSocketNotifier(this, notifier); };
 	void registerTimer(int timerId, int interval, Qt::TimerType timerType, QObject * object) { callbackQAbstractEventDispatcher_RegisterTimer4(this, timerId, interval, timerType, object); };
@@ -713,11 +713,6 @@ void QAbstractEventDispatcher_DisconnectAwake(void* ptr)
 void QAbstractEventDispatcher_Awake(void* ptr)
 {
 	static_cast<QAbstractEventDispatcher*>(ptr)->awake();
-}
-
-void QAbstractEventDispatcher_Flush(void* ptr)
-{
-	static_cast<QAbstractEventDispatcher*>(ptr)->flush();
 }
 
 void QAbstractEventDispatcher_InstallNativeEventFilter(void* ptr, void* filterObj)
@@ -4186,6 +4181,11 @@ void* QByteArray_ToHex(void* ptr)
 	return new QByteArray(static_cast<QByteArray*>(ptr)->toHex());
 }
 
+void* QByteArray_ToHex2(void* ptr, char* separator)
+{
+	return new QByteArray(static_cast<QByteArray*>(ptr)->toHex(*separator));
+}
+
 void* QByteArray_ToLower(void* ptr)
 {
 	return new QByteArray(static_cast<QByteArray*>(ptr)->toLower());
@@ -5490,11 +5490,6 @@ void QCoreApplication_QCoreApplication_Exit(int returnCode)
 	QCoreApplication::exit(returnCode);
 }
 
-void QCoreApplication_QCoreApplication_Flush()
-{
-	QCoreApplication::flush();
-}
-
 void QCoreApplication_InstallNativeEventFilter(void* ptr, void* filterObj)
 {
 	static_cast<QCoreApplication*>(ptr)->installNativeEventFilter(static_cast<QAbstractNativeEventFilter*>(filterObj));
@@ -6180,9 +6175,9 @@ long long QDateTime_ToSecsSinceEpoch(void* ptr)
 	return static_cast<QDateTime*>(ptr)->toSecsSinceEpoch();
 }
 
-void* QDeadlineTimer_NewQDeadlineTimer2(long long foreverConstant, long long timerType)
+void* QDeadlineTimer_NewQDeadlineTimer2(long long forev, long long timerType)
 {
-	return new QDeadlineTimer(static_cast<QDeadlineTimer::ForeverConstant>(foreverConstant), static_cast<Qt::TimerType>(timerType));
+	return new QDeadlineTimer(static_cast<QDeadlineTimer::ForeverConstant>(forev), static_cast<Qt::TimerType>(timerType));
 }
 
 void* QDeadlineTimer_NewQDeadlineTimer(long long timerType)
@@ -6240,7 +6235,7 @@ char QDeadlineTimer_IsForever(void* ptr)
 	return static_cast<QDeadlineTimer*>(ptr)->isForever();
 }
 
-long long QDeadlineTimer_Deadline2(void* ptr)
+long long QDeadlineTimer_Deadline(void* ptr)
 {
 	return static_cast<QDeadlineTimer*>(ptr)->deadline();
 }
@@ -6618,6 +6613,11 @@ char QDir_Exists(void* ptr, struct QtCore_PackedString name)
 char QDir_IsAbsolute(void* ptr)
 {
 	return static_cast<QDir*>(ptr)->isAbsolute();
+}
+
+char QDir_IsEmpty(void* ptr, long long filters)
+{
+	return static_cast<QDir*>(ptr)->isEmpty(static_cast<QDir::Filter>(filters));
 }
 
 char QDir_IsReadable(void* ptr)
@@ -13022,6 +13022,11 @@ void QMutex_Unlock(void* ptr)
 	static_cast<QMutex*>(ptr)->unlock();
 }
 
+void QMutex_DestroyQMutex(void* ptr)
+{
+	static_cast<QMutex*>(ptr)->~QMutex();
+}
+
 char QMutex_IsRecursive(void* ptr)
 {
 	return static_cast<QMutex*>(ptr)->isRecursive();
@@ -13866,16 +13871,6 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 	}
 }
 
-void QObject_DumpObjectInfo(void* ptr)
-{
-	static_cast<QObject*>(ptr)->dumpObjectInfo();
-}
-
-void QObject_DumpObjectTree(void* ptr)
-{
-	static_cast<QObject*>(ptr)->dumpObjectTree();
-}
-
 void QObject_InstallEventFilter(void* ptr, void* filterObj)
 {
 	static_cast<QObject*>(ptr)->installEventFilter(static_cast<QObject*>(filterObj));
@@ -14239,6 +14234,16 @@ int QObject_SenderSignalIndex(void* ptr)
 	return static_cast<QObject*>(ptr)->senderSignalIndex();
 }
 
+void QObject_DumpObjectInfo(void* ptr)
+{
+	static_cast<QObject*>(ptr)->dumpObjectInfo();
+}
+
+void QObject_DumpObjectTree(void* ptr)
+{
+	static_cast<QObject*>(ptr)->dumpObjectTree();
+}
+
 void* QObject_ToVariant(void* ptr)
 {
 	return new QVariant(QVariant::fromValue(static_cast<QObject*>(ptr)));
@@ -14373,6 +14378,141 @@ void QObjectCleanupHandler_DestroyQObjectCleanupHandler(void* ptr)
 char QObjectCleanupHandler_IsEmpty(void* ptr)
 {
 	return static_cast<QObjectCleanupHandler*>(ptr)->isEmpty();
+}
+
+void* QOperatingSystemVersion_NewQOperatingSystemVersion2(long long osType, int vmajor, int vminor, int vmicro)
+{
+	return new QOperatingSystemVersion(static_cast<QOperatingSystemVersion::OSType>(osType), vmajor, vminor, vmicro);
+}
+
+void* QOperatingSystemVersion_NewQOperatingSystemVersion(void* other)
+{
+	return new QOperatingSystemVersion(*static_cast<QOperatingSystemVersion*>(other));
+}
+
+long long QOperatingSystemVersion_Type(void* ptr)
+{
+	return static_cast<QOperatingSystemVersion*>(ptr)->type();
+}
+
+struct QtCore_PackedString QOperatingSystemVersion_Name(void* ptr)
+{
+	return ({ QByteArray t3696c4 = static_cast<QOperatingSystemVersion*>(ptr)->name().toUtf8(); QtCore_PackedString { const_cast<char*>(t3696c4.prepend("WHITESPACE").constData()+10), t3696c4.size()-10 }; });
+}
+
+int QOperatingSystemVersion_MajorVersion(void* ptr)
+{
+	return static_cast<QOperatingSystemVersion*>(ptr)->majorVersion();
+}
+
+int QOperatingSystemVersion_MicroVersion(void* ptr)
+{
+	return static_cast<QOperatingSystemVersion*>(ptr)->microVersion();
+}
+
+int QOperatingSystemVersion_MinorVersion(void* ptr)
+{
+	return static_cast<QOperatingSystemVersion*>(ptr)->minorVersion();
+}
+
+int QOperatingSystemVersion_SegmentCount(void* ptr)
+{
+	return static_cast<QOperatingSystemVersion*>(ptr)->segmentCount();
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_Current()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::current());
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidJellyBean);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR1()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidJellyBean_MR1);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR2()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidJellyBean_MR2);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidKitKat()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidKitKat);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidLollipop);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop_MR1()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidLollipop_MR1);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidMarshmallow()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidMarshmallow);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidNougat);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidNougat_MR1);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::MacOSHighSierra);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::MacOSSierra);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_OSXElCapitan()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::OSXElCapitan);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_OSXMavericks()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::OSXMavericks);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_OSXYosemite()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::OSXYosemite);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_Windows10()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::Windows10);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_Windows7()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::Windows7);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_Windows8()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::Windows8);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::Windows8_1);
 }
 
 class MyQParallelAnimationGroup: public QParallelAnimationGroup
@@ -18934,6 +19074,11 @@ void* QStorageInfo_FileSystemType(void* ptr)
 	return new QByteArray(static_cast<QStorageInfo*>(ptr)->fileSystemType());
 }
 
+void* QStorageInfo_Subvolume(void* ptr)
+{
+	return new QByteArray(static_cast<QStorageInfo*>(ptr)->subvolume());
+}
+
 struct QtCore_PackedString QStorageInfo_DisplayName(void* ptr)
 {
 	return ({ QByteArray t7b3b54 = static_cast<QStorageInfo*>(ptr)->displayName().toUtf8(); QtCore_PackedString { const_cast<char*>(t7b3b54.prepend("WHITESPACE").constData()+10), t7b3b54.size()-10 }; });
@@ -19427,6 +19572,11 @@ char QStringRef_IsNull(void* ptr)
 	return static_cast<QStringRef*>(ptr)->isNull();
 }
 
+char QStringRef_IsRightToLeft(void* ptr)
+{
+	return static_cast<QStringRef*>(ptr)->isRightToLeft();
+}
+
 char QStringRef_StartsWith3(void* ptr, void* ch, long long cs)
 {
 	return static_cast<QStringRef*>(ptr)->startsWith(*static_cast<QChar*>(ch), static_cast<Qt::CaseSensitivity>(cs));
@@ -19685,392 +19835,9 @@ void* QStringRef___toUcs4_newList(void* ptr)
 	return new QVector<uint>;
 }
 
-int QSysInfo_MV_9_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_9;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_2_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_2;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_3_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_3;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_4_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_4;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_5_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_5;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_6_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_6;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_7_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_7;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_8_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_8;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_9_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_9;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_10_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_10;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_11_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_11;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_10_12_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_10_12;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_4_3_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_4_3;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_5_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_5_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_5_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_5_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_6_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_6_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_6_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_6_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_7_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_7_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_7_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_7_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_8_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_8_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_8_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_8_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_8_2_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_8_2;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_8_3_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_8_3;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_8_4_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_8_4;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_9_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_9_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_9_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_9_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_9_2_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_9_2;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_9_3_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_9_3;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_IOS_10_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_IOS_10_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_TVOS_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_TVOS;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_TVOS_9_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_TVOS_9_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_TVOS_9_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_TVOS_9_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_TVOS_9_2_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_TVOS_9_2;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_TVOS_10_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_TVOS_10_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_WATCHOS_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_WATCHOS;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_WATCHOS_2_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_WATCHOS_2_0;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_WATCHOS_2_1_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_WATCHOS_2_1;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_WATCHOS_2_2_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_WATCHOS_2_2;
-	#else
-		return 0;
-	#endif
-}
-
-int QSysInfo_MV_WATCHOS_3_0_Type()
-{
-	#if QT_VERSION >= 0x056000
-		return QSysInfo::MV_WATCHOS_3_0;
-	#else
-		return 0;
-	#endif
-}
-
 int QSysInfo_WordSize_Type()
 {
 	return QSysInfo::WordSize;
-}
-
-long long QSysInfo_QSysInfo_MacVersion()
-{
-	return QSysInfo::macVersion();
 }
 
 struct QtCore_PackedString QSysInfo_QSysInfo_BuildAbi()
@@ -20116,16 +19883,6 @@ struct QtCore_PackedString QSysInfo_QSysInfo_ProductType()
 struct QtCore_PackedString QSysInfo_QSysInfo_ProductVersion()
 {
 	return ({ QByteArray tf9eb38 = QSysInfo::productVersion().toUtf8(); QtCore_PackedString { const_cast<char*>(tf9eb38.prepend("WHITESPACE").constData()+10), tf9eb38.size()-10 }; });
-}
-
-long long QSysInfo_QSysInfo_WindowsVersion()
-{
-	return QSysInfo::windowsVersion();
-}
-
-long long QSysInfo_QSysInfo_MacintoshVersion()
-{
-	return QSysInfo::MacintoshVersion;
 }
 
 void* QSystemSemaphore_NewQSystemSemaphore(struct QtCore_PackedString key, int initialValue, long long mode)
@@ -20196,6 +19953,11 @@ void QTemporaryDir_DestroyQTemporaryDir(void* ptr)
 struct QtCore_PackedString QTemporaryDir_ErrorString(void* ptr)
 {
 	return ({ QByteArray t501345 = static_cast<QTemporaryDir*>(ptr)->errorString().toUtf8(); QtCore_PackedString { const_cast<char*>(t501345.prepend("WHITESPACE").constData()+10), t501345.size()-10 }; });
+}
+
+struct QtCore_PackedString QTemporaryDir_FilePath(void* ptr, struct QtCore_PackedString fileName)
+{
+	return ({ QByteArray ted61dd = static_cast<QTemporaryDir*>(ptr)->filePath(QString::fromUtf8(fileName.data, fileName.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(ted61dd.prepend("WHITESPACE").constData()+10), ted61dd.size()-10 }; });
 }
 
 struct QtCore_PackedString QTemporaryDir_Path(void* ptr)
@@ -21260,14 +21022,14 @@ char QThreadPool_TryStart(void* ptr, void* runnable)
 	return static_cast<QThreadPool*>(ptr)->tryStart(static_cast<QRunnable*>(runnable));
 }
 
+char QThreadPool_TryTake(void* ptr, void* runnable)
+{
+	return static_cast<QThreadPool*>(ptr)->tryTake(static_cast<QRunnable*>(runnable));
+}
+
 char QThreadPool_WaitForDone(void* ptr, int msecs)
 {
 	return static_cast<QThreadPool*>(ptr)->waitForDone(msecs);
-}
-
-void QThreadPool_Cancel(void* ptr, void* runnable)
-{
-	static_cast<QThreadPool*>(ptr)->cancel(static_cast<QRunnable*>(runnable));
 }
 
 void QThreadPool_Clear(void* ptr)

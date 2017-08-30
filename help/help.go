@@ -4740,6 +4740,24 @@ func (ptr *QHelpEngineCore) LinksForIdentifier(id string) map[string]*core.QUrl 
 	return make(map[string]*core.QUrl, 0)
 }
 
+func (ptr *QHelpEngineCore) LinksForKeyword(keyword string) map[string]*core.QUrl {
+	if ptr.Pointer() != nil {
+		var keywordC *C.char
+		if keyword != "" {
+			keywordC = C.CString(keyword)
+			defer C.free(unsafe.Pointer(keywordC))
+		}
+		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
+			var out = make(map[string]*core.QUrl, int(l.len))
+			for _, i := range NewQHelpEngineCoreFromPointer(l.data).__linksForKeyword_keyList() {
+				out[i] = NewQHelpEngineCoreFromPointer(l.data).__linksForKeyword_atList(i)
+			}
+			return out
+		}(C.QHelpEngineCore_LinksForKeyword(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keywordC, len: C.longlong(len(keyword))}))
+	}
+	return make(map[string]*core.QUrl, 0)
+}
+
 func (ptr *QHelpEngineCore) CollectionFile() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QHelpEngineCore_CollectionFile(ptr.Pointer()))
@@ -4904,6 +4922,48 @@ func (ptr *QHelpEngineCore) __linksForIdentifier_keyList() []string {
 	return make([]string, 0)
 }
 
+func (ptr *QHelpEngineCore) __linksForKeyword_atList(i string) *core.QUrl {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore___linksForKeyword_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHelpEngineCore) __linksForKeyword_setList(key string, i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QHelpEngineCore___linksForKeyword_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i))
+	}
+}
+
+func (ptr *QHelpEngineCore) __linksForKeyword_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QHelpEngineCore___linksForKeyword_newList(ptr.Pointer()))
+}
+
+func (ptr *QHelpEngineCore) __linksForKeyword_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtHelp_PackedList) []string {
+			var out = make([]string, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQHelpEngineCoreFromPointer(l.data).____linksForKeyword_keyList_atList(i)
+			}
+			return out
+		}(C.QHelpEngineCore___linksForKeyword_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
 func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QHelpEngineCore_____linksForIdentifier_keyList_atList(ptr.Pointer(), C.int(int32(i))))
@@ -4924,6 +4984,28 @@ func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_setList(i string) {
 
 func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QHelpEngineCore_____linksForIdentifier_keyList_newList(ptr.Pointer()))
+}
+
+func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QHelpEngineCore_____linksForKeyword_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QHelpEngineCore_____linksForKeyword_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+	}
+}
+
+func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QHelpEngineCore_____linksForKeyword_keyList_newList(ptr.Pointer()))
 }
 
 func (ptr *QHelpEngineCore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -5329,24 +5411,6 @@ func (ptr *QHelpIndexModel) IndexCreationStarted() {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_IndexCreationStarted(ptr.Pointer())
 	}
-}
-
-func (ptr *QHelpIndexModel) LinksForKeyword(keyword string) map[string]*core.QUrl {
-	if ptr.Pointer() != nil {
-		var keywordC *C.char
-		if keyword != "" {
-			keywordC = C.CString(keyword)
-			defer C.free(unsafe.Pointer(keywordC))
-		}
-		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
-			var out = make(map[string]*core.QUrl, int(l.len))
-			for _, i := range NewQHelpIndexModelFromPointer(l.data).__linksForKeyword_keyList() {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__linksForKeyword_atList(i)
-			}
-			return out
-		}(C.QHelpIndexModel_LinksForKeyword(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keywordC, len: C.longlong(len(keyword))}))
-	}
-	return make(map[string]*core.QUrl, 0)
 }
 
 func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
@@ -9179,35 +9243,6 @@ func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
 	n.SetPointer(ptr)
 	return n
 }
-func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
-	var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
 
 //export callbackQHelpSearchEngine_CancelIndexing
 func callbackQHelpSearchEngine_CancelIndexing(ptr unsafe.Pointer) {
@@ -9291,6 +9326,36 @@ func (ptr *QHelpSearchEngine) CancelSearchingDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelSearchingDefault(ptr.Pointer())
 	}
+}
+
+func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
+	var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQHelpSearchEngine_IndexingFinished
@@ -9414,33 +9479,21 @@ func (ptr *QHelpSearchEngine) ReindexDocumentationDefault() {
 }
 
 //export callbackQHelpSearchEngine_Search
-func callbackQHelpSearchEngine_Search(ptr unsafe.Pointer, queryList C.struct_QtHelp_PackedList) {
+func callbackQHelpSearchEngine_Search(ptr unsafe.Pointer, searchInput C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "search"); signal != nil {
-		signal.(func([]*QHelpSearchQuery))(func(l C.struct_QtHelp_PackedList) []*QHelpSearchQuery {
-			var out = make([]*QHelpSearchQuery, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpSearchEngineFromPointer(l.data).__search_queryList_atList(i)
-			}
-			return out
-		}(queryList))
+		signal.(func(string))(cGoUnpackString(searchInput))
 	} else {
-		NewQHelpSearchEngineFromPointer(ptr).SearchDefault(func(l C.struct_QtHelp_PackedList) []*QHelpSearchQuery {
-			var out = make([]*QHelpSearchQuery, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpSearchEngineFromPointer(l.data).__search_queryList_atList(i)
-			}
-			return out
-		}(queryList))
+		NewQHelpSearchEngineFromPointer(ptr).SearchDefault(cGoUnpackString(searchInput))
 	}
 }
 
-func (ptr *QHelpSearchEngine) ConnectSearch(f func(queryList []*QHelpSearchQuery)) {
+func (ptr *QHelpSearchEngine) ConnectSearch(f func(searchInput string)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "search"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "search", func(queryList []*QHelpSearchQuery) {
-				signal.(func([]*QHelpSearchQuery))(queryList)
-				f(queryList)
+			qt.ConnectSignal(ptr.Pointer(), "search", func(searchInput string) {
+				signal.(func(string))(searchInput)
+				f(searchInput)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "search", f)
@@ -9455,39 +9508,37 @@ func (ptr *QHelpSearchEngine) DisconnectSearch() {
 	}
 }
 
-func (ptr *QHelpSearchEngine) Search(queryList []*QHelpSearchQuery) {
+func (ptr *QHelpSearchEngine) Search(searchInput string) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_Search(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpSearchEngineFromPointer(NewQHelpSearchEngineFromPointer(nil).__search_queryList_newList())
-			for _, v := range queryList {
-				tmpList.__search_queryList_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
+		var searchInputC *C.char
+		if searchInput != "" {
+			searchInputC = C.CString(searchInput)
+			defer C.free(unsafe.Pointer(searchInputC))
+		}
+		C.QHelpSearchEngine_Search(ptr.Pointer(), C.struct_QtHelp_PackedString{data: searchInputC, len: C.longlong(len(searchInput))})
 	}
 }
 
-func (ptr *QHelpSearchEngine) SearchDefault(queryList []*QHelpSearchQuery) {
+func (ptr *QHelpSearchEngine) SearchDefault(searchInput string) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_SearchDefault(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpSearchEngineFromPointer(NewQHelpSearchEngineFromPointer(nil).__search_queryList_newList())
-			for _, v := range queryList {
-				tmpList.__search_queryList_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
+		var searchInputC *C.char
+		if searchInput != "" {
+			searchInputC = C.CString(searchInput)
+			defer C.free(unsafe.Pointer(searchInputC))
+		}
+		C.QHelpSearchEngine_SearchDefault(ptr.Pointer(), C.struct_QtHelp_PackedString{data: searchInputC, len: C.longlong(len(searchInput))})
 	}
 }
 
 //export callbackQHelpSearchEngine_SearchingFinished
-func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, hits C.int) {
+func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, searchResultCount C.int) {
 	if signal := qt.GetSignal(ptr, "searchingFinished"); signal != nil {
-		signal.(func(int))(int(int32(hits)))
+		signal.(func(int))(int(int32(searchResultCount)))
 	}
 
 }
 
-func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
+func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(searchResultCount int)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "searchingFinished") {
@@ -9495,9 +9546,9 @@ func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "searchingFinished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "searchingFinished", func(hits int) {
-				signal.(func(int))(hits)
-				f(hits)
+			qt.ConnectSignal(ptr.Pointer(), "searchingFinished", func(searchResultCount int) {
+				signal.(func(int))(searchResultCount)
+				f(searchResultCount)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "searchingFinished", f)
@@ -9512,9 +9563,9 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 	}
 }
 
-func (ptr *QHelpSearchEngine) SearchingFinished(hits int) {
+func (ptr *QHelpSearchEngine) SearchingFinished(searchResultCount int) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_SearchingFinished(ptr.Pointer(), C.int(int32(hits)))
+		C.QHelpSearchEngine_SearchingFinished(ptr.Pointer(), C.int(int32(searchResultCount)))
 	}
 }
 
@@ -9565,49 +9616,58 @@ func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	}
 }
 
-func (ptr *QHelpSearchEngine) HitCount() int {
+func (ptr *QHelpSearchEngine) SearchInput() string {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpSearchEngine_HitCount(ptr.Pointer())))
+		return cGoUnpackString(C.QHelpSearchEngine_SearchInput(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QHelpSearchEngine) SearchResults(start int, end int) []*QHelpSearchResult {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtHelp_PackedList) []*QHelpSearchResult {
+			var out = make([]*QHelpSearchResult, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQHelpSearchEngineFromPointer(l.data).__searchResults_atList(i)
+			}
+			return out
+		}(C.QHelpSearchEngine_SearchResults(ptr.Pointer(), C.int(int32(start)), C.int(int32(end))))
+	}
+	return make([]*QHelpSearchResult, 0)
+}
+
+func (ptr *QHelpSearchEngine) SearchResultCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QHelpSearchEngine_SearchResultCount(ptr.Pointer())))
 	}
 	return 0
-}
-
-func (ptr *QHelpSearchEngine) __search_queryList_atList(i int) *QHelpSearchQuery {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchEngine___search_queryList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchEngine) __search_queryList_setList(i QHelpSearchQuery_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___search_queryList_setList(ptr.Pointer(), PointerFromQHelpSearchQuery(i))
-	}
 }
 
 func (ptr *QHelpSearchEngine) __search_queryList_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QHelpSearchEngine___search_queryList_newList(ptr.Pointer()))
 }
 
-func (ptr *QHelpSearchEngine) __query_atList(i int) *QHelpSearchQuery {
+func (ptr *QHelpSearchEngine) __query_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QHelpSearchEngine___query_newList(ptr.Pointer()))
+}
+
+func (ptr *QHelpSearchEngine) __searchResults_atList(i int) *QHelpSearchResult {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchEngine___query_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
+		var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchEngine___searchResults_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QHelpSearchEngine) __query_setList(i QHelpSearchQuery_ITF) {
+func (ptr *QHelpSearchEngine) __searchResults_setList(i QHelpSearchResult_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___query_setList(ptr.Pointer(), PointerFromQHelpSearchQuery(i))
+		C.QHelpSearchEngine___searchResults_setList(ptr.Pointer(), PointerFromQHelpSearchResult(i))
 	}
 }
 
-func (ptr *QHelpSearchEngine) __query_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___query_newList(ptr.Pointer()))
+func (ptr *QHelpSearchEngine) __searchResults_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QHelpSearchEngine___searchResults_newList(ptr.Pointer()))
 }
 
 func (ptr *QHelpSearchEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -9869,107 +9929,6 @@ func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-type QHelpSearchQuery struct {
-	ptr unsafe.Pointer
-}
-
-type QHelpSearchQuery_ITF interface {
-	QHelpSearchQuery_PTR() *QHelpSearchQuery
-}
-
-func (ptr *QHelpSearchQuery) QHelpSearchQuery_PTR() *QHelpSearchQuery {
-	return ptr
-}
-
-func (ptr *QHelpSearchQuery) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchQuery) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQHelpSearchQuery(ptr QHelpSearchQuery_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QHelpSearchQuery_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
-	var n = new(QHelpSearchQuery)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//go:generate stringer -type=QHelpSearchQuery__FieldName
-//QHelpSearchQuery::FieldName
-type QHelpSearchQuery__FieldName int64
-
-const (
-	QHelpSearchQuery__DEFAULT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(0)
-	QHelpSearchQuery__FUZZY   QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(1)
-	QHelpSearchQuery__WITHOUT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(2)
-	QHelpSearchQuery__PHRASE  QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(3)
-	QHelpSearchQuery__ALL     QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(4)
-	QHelpSearchQuery__ATLEAST QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(5)
-)
-
-func NewQHelpSearchQuery() *QHelpSearchQuery {
-	var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
-	runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
-	return tmpValue
-}
-
-func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
-	var wordListC = C.CString(strings.Join(wordList, "|"))
-	defer C.free(unsafe.Pointer(wordListC))
-	var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.longlong(field), C.struct_QtHelp_PackedString{data: wordListC, len: C.longlong(len(strings.Join(wordList, "|")))}))
-	runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
-	return tmpValue
-}
-
-func (ptr *QHelpSearchQuery) FieldName() QHelpSearchQuery__FieldName {
-	if ptr.Pointer() != nil {
-		return QHelpSearchQuery__FieldName(C.QHelpSearchQuery_FieldName(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QHelpSearchQuery) SetFieldName(vfi QHelpSearchQuery__FieldName) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQuery_SetFieldName(ptr.Pointer(), C.longlong(vfi))
-	}
-}
-
-func (ptr *QHelpSearchQuery) WordList() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QHelpSearchQuery) SetWordList(vqs []string) {
-	if ptr.Pointer() != nil {
-		var vqsC = C.CString(strings.Join(vqs, "|"))
-		defer C.free(unsafe.Pointer(vqsC))
-		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vqsC, len: C.longlong(len(strings.Join(vqs, "|")))})
-	}
-}
-
 type QHelpSearchQueryWidget struct {
 	widgets.QWidget
 }
@@ -10067,15 +10026,14 @@ func (ptr *QHelpSearchQueryWidget) Search() {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) SetQuery(queryList []*QHelpSearchQuery) {
+func (ptr *QHelpSearchQueryWidget) SetSearchInput(searchInput string) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_SetQuery(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpSearchQueryWidgetFromPointer(NewQHelpSearchQueryWidgetFromPointer(nil).__setQuery_queryList_newList())
-			for _, v := range queryList {
-				tmpList.__setQuery_queryList_setList(v)
-			}
-			return tmpList.Pointer()
-		}())
+		var searchInputC *C.char
+		if searchInput != "" {
+			searchInputC = C.CString(searchInput)
+			defer C.free(unsafe.Pointer(searchInputC))
+		}
+		C.QHelpSearchQueryWidget_SetSearchInput(ptr.Pointer(), C.struct_QtHelp_PackedString{data: searchInputC, len: C.longlong(len(searchInput))})
 	}
 }
 
@@ -10087,6 +10045,13 @@ func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SearchInput() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QHelpSearchQueryWidget_SearchInput(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
@@ -10094,38 +10059,8 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 	return false
 }
 
-func (ptr *QHelpSearchQueryWidget) __setQuery_queryList_atList(i int) *QHelpSearchQuery {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQueryWidget___setQuery_queryList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchQueryWidget) __setQuery_queryList_setList(i QHelpSearchQuery_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___setQuery_queryList_setList(ptr.Pointer(), PointerFromQHelpSearchQuery(i))
-	}
-}
-
 func (ptr *QHelpSearchQueryWidget) __setQuery_queryList_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QHelpSearchQueryWidget___setQuery_queryList_newList(ptr.Pointer()))
-}
-
-func (ptr *QHelpSearchQueryWidget) __query_atList(i int) *QHelpSearchQuery {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQueryWidget___query_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchQueryWidget) __query_setList(i QHelpSearchQuery_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___query_setList(ptr.Pointer(), PointerFromQHelpSearchQuery(i))
-	}
 }
 
 func (ptr *QHelpSearchQueryWidget) __query_newList() unsafe.Pointer {
@@ -11325,6 +11260,102 @@ func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointe
 func (ptr *QHelpSearchQueryWidget) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+type QHelpSearchResult struct {
+	ptr unsafe.Pointer
+}
+
+type QHelpSearchResult_ITF interface {
+	QHelpSearchResult_PTR() *QHelpSearchResult
+}
+
+func (ptr *QHelpSearchResult) QHelpSearchResult_PTR() *QHelpSearchResult {
+	return ptr
+}
+
+func (ptr *QHelpSearchResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QHelpSearchResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQHelpSearchResult(ptr QHelpSearchResult_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHelpSearchResult_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHelpSearchResultFromPointer(ptr unsafe.Pointer) *QHelpSearchResult {
+	var n = new(QHelpSearchResult)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQHelpSearchResult() *QHelpSearchResult {
+	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult())
+	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
+	return tmpValue
+}
+
+func NewQHelpSearchResult2(other QHelpSearchResult_ITF) *QHelpSearchResult {
+	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult2(PointerFromQHelpSearchResult(other)))
+	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
+	return tmpValue
+}
+
+func NewQHelpSearchResult3(url core.QUrl_ITF, title string, snippet string) *QHelpSearchResult {
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var snippetC *C.char
+	if snippet != "" {
+		snippetC = C.CString(snippet)
+		defer C.free(unsafe.Pointer(snippetC))
+	}
+	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult3(core.PointerFromQUrl(url), C.struct_QtHelp_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtHelp_PackedString{data: snippetC, len: C.longlong(len(snippet))}))
+	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
+	return tmpValue
+}
+
+func (ptr *QHelpSearchResult) DestroyQHelpSearchResult() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResult_DestroyQHelpSearchResult(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHelpSearchResult) Snippet() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QHelpSearchResult_Snippet(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QHelpSearchResult) Title() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QHelpSearchResult_Title(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QHelpSearchResult) Url() *core.QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpSearchResult_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }

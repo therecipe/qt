@@ -225,11 +225,53 @@ func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string, errorMessa
 	return nil
 }
 
+func (ptr *QCanBus) AvailableDevices(plugin string, errorMessage string) []*QCanBusDeviceInfo {
+	if ptr.Pointer() != nil {
+		var pluginC *C.char
+		if plugin != "" {
+			pluginC = C.CString(plugin)
+			defer C.free(unsafe.Pointer(pluginC))
+		}
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
+		return func(l C.struct_QtSerialBus_PackedList) []*QCanBusDeviceInfo {
+			var out = make([]*QCanBusDeviceInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCanBusFromPointer(l.data).__availableDevices_atList(i)
+			}
+			return out
+		}(C.QCanBus_AvailableDevices(ptr.Pointer(), C.struct_QtSerialBus_PackedString{data: pluginC, len: C.longlong(len(plugin))}, C.struct_QtSerialBus_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}))
+	}
+	return make([]*QCanBusDeviceInfo, 0)
+}
+
 func (ptr *QCanBus) Plugins() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QCanBus_Plugins(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
+}
+
+func (ptr *QCanBus) __availableDevices_atList(i int) *QCanBusDeviceInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCanBusDeviceInfoFromPointer(C.QCanBus___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBus) __availableDevices_setList(i QCanBusDeviceInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBus___availableDevices_setList(ptr.Pointer(), PointerFromQCanBusDeviceInfo(i))
+	}
+}
+
+func (ptr *QCanBus) __availableDevices_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QCanBus___availableDevices_newList(ptr.Pointer()))
 }
 
 func (ptr *QCanBus) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -565,6 +607,7 @@ const (
 	QCanBusDevice__ReceiveOwnKey  QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(3)
 	QCanBusDevice__BitRateKey     QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(4)
 	QCanBusDevice__CanFdKey       QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(5)
+	QCanBusDevice__DataBitRateKey QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(6)
 	QCanBusDevice__UserKey        QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(30)
 )
 
@@ -1407,45 +1450,116 @@ func (ptr *QCanBusDevice) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-type QCanBusFactory struct {
+type QCanBusDeviceInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QCanBusFactory_ITF interface {
-	QCanBusFactory_PTR() *QCanBusFactory
+type QCanBusDeviceInfo_ITF interface {
+	QCanBusDeviceInfo_PTR() *QCanBusDeviceInfo
 }
 
-func (ptr *QCanBusFactory) QCanBusFactory_PTR() *QCanBusFactory {
+func (ptr *QCanBusDeviceInfo) QCanBusDeviceInfo_PTR() *QCanBusDeviceInfo {
 	return ptr
 }
 
-func (ptr *QCanBusFactory) Pointer() unsafe.Pointer {
+func (ptr *QCanBusDeviceInfo) Pointer() unsafe.Pointer {
 	if ptr != nil {
 		return ptr.ptr
 	}
 	return nil
 }
 
-func (ptr *QCanBusFactory) SetPointer(p unsafe.Pointer) {
+func (ptr *QCanBusDeviceInfo) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.ptr = p
 	}
 }
 
-func PointerFromQCanBusFactory(ptr QCanBusFactory_ITF) unsafe.Pointer {
+func PointerFromQCanBusDeviceInfo(ptr QCanBusDeviceInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCanBusFactory_PTR().Pointer()
+		return ptr.QCanBusDeviceInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) *QCanBusFactory {
-	var n = new(QCanBusFactory)
+func NewQCanBusDeviceInfoFromPointer(ptr unsafe.Pointer) *QCanBusDeviceInfo {
+	var n = new(QCanBusDeviceInfo)
+	n.SetPointer(ptr)
+	return n
+}
+func (ptr *QCanBusDeviceInfo) Swap(other QCanBusDeviceInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDeviceInfo_Swap(ptr.Pointer(), PointerFromQCanBusDeviceInfo(other))
+	}
+}
+
+func (ptr *QCanBusDeviceInfo) DestroyQCanBusDeviceInfo() {
+	if ptr.Pointer() != nil {
+		C.QCanBusDeviceInfo_DestroyQCanBusDeviceInfo(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCanBusDeviceInfo) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCanBusDeviceInfo_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QCanBusDeviceInfo) HasFlexibleDataRate() bool {
+	if ptr.Pointer() != nil {
+		return C.QCanBusDeviceInfo_HasFlexibleDataRate(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QCanBusDeviceInfo) IsVirtual() bool {
+	if ptr.Pointer() != nil {
+		return C.QCanBusDeviceInfo_IsVirtual(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+type QCanBusFactoryV2 struct {
+	ptr unsafe.Pointer
+}
+
+type QCanBusFactoryV2_ITF interface {
+	QCanBusFactoryV2_PTR() *QCanBusFactoryV2
+}
+
+func (ptr *QCanBusFactoryV2) QCanBusFactoryV2_PTR() *QCanBusFactoryV2 {
+	return ptr
+}
+
+func (ptr *QCanBusFactoryV2) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCanBusFactoryV2) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCanBusFactoryV2(ptr QCanBusFactoryV2_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCanBusFactoryV2_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCanBusFactoryV2FromPointer(ptr unsafe.Pointer) *QCanBusFactoryV2 {
+	var n = new(QCanBusFactoryV2)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
+func (ptr *QCanBusFactoryV2) DestroyQCanBusFactoryV2() {
 	if ptr != nil {
 		C.free(ptr.Pointer())
 		qt.DisconnectAllSignals(ptr.Pointer(), "")
@@ -1454,8 +1568,8 @@ func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 	}
 }
 
-//export callbackQCanBusFactory_CreateDevice
-func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName C.struct_QtSerialBus_PackedString, errorMessage C.struct_QtSerialBus_PackedString) unsafe.Pointer {
+//export callbackQCanBusFactoryV2_CreateDevice
+func callbackQCanBusFactoryV2_CreateDevice(ptr unsafe.Pointer, interfaceName C.struct_QtSerialBus_PackedString, errorMessage C.struct_QtSerialBus_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "createDevice"); signal != nil {
 		return PointerFromQCanBusDevice(signal.(func(string, string) *QCanBusDevice)(cGoUnpackString(interfaceName), cGoUnpackString(errorMessage)))
 	}
@@ -1463,7 +1577,7 @@ func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName C.str
 	return PointerFromQCanBusDevice(NewQCanBusDevice(nil))
 }
 
-func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string, errorMessage string) *QCanBusDevice) {
+func (ptr *QCanBusFactoryV2) ConnectCreateDevice(f func(interfaceName string, errorMessage string) *QCanBusDevice) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "createDevice"); signal != nil {
@@ -1477,14 +1591,14 @@ func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string, erro
 	}
 }
 
-func (ptr *QCanBusFactory) DisconnectCreateDevice() {
+func (ptr *QCanBusFactoryV2) DisconnectCreateDevice() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(ptr.Pointer(), "createDevice")
 	}
 }
 
-func (ptr *QCanBusFactory) CreateDevice(interfaceName string, errorMessage string) *QCanBusDevice {
+func (ptr *QCanBusFactoryV2) CreateDevice(interfaceName string, errorMessage string) *QCanBusDevice {
 	if ptr.Pointer() != nil {
 		var interfaceNameC *C.char
 		if interfaceName != "" {
@@ -1496,13 +1610,92 @@ func (ptr *QCanBusFactory) CreateDevice(interfaceName string, errorMessage strin
 			errorMessageC = C.CString(errorMessage)
 			defer C.free(unsafe.Pointer(errorMessageC))
 		}
-		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), C.struct_QtSerialBus_PackedString{data: interfaceNameC, len: C.longlong(len(interfaceName))}, C.struct_QtSerialBus_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}))
+		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactoryV2_CreateDevice(ptr.Pointer(), C.struct_QtSerialBus_PackedString{data: interfaceNameC, len: C.longlong(len(interfaceName))}, C.struct_QtSerialBus_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQCanBusFactoryV2_AvailableDevices
+func callbackQCanBusFactoryV2_AvailableDevices(ptr unsafe.Pointer, errorMessage C.struct_QtSerialBus_PackedString) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "availableDevices"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQCanBusFactoryV2FromPointer(NewQCanBusFactoryV2FromPointer(nil).__availableDevices_newList())
+			for _, v := range signal.(func(string) []*QCanBusDeviceInfo)(cGoUnpackString(errorMessage)) {
+				tmpList.__availableDevices_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQCanBusFactoryV2FromPointer(NewQCanBusFactoryV2FromPointer(nil).__availableDevices_newList())
+		for _, v := range make([]*QCanBusDeviceInfo, 0) {
+			tmpList.__availableDevices_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QCanBusFactoryV2) ConnectAvailableDevices(f func(errorMessage string) []*QCanBusDeviceInfo) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "availableDevices"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "availableDevices", func(errorMessage string) []*QCanBusDeviceInfo {
+				signal.(func(string) []*QCanBusDeviceInfo)(errorMessage)
+				return f(errorMessage)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "availableDevices", f)
+		}
+	}
+}
+
+func (ptr *QCanBusFactoryV2) DisconnectAvailableDevices() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "availableDevices")
+	}
+}
+
+func (ptr *QCanBusFactoryV2) AvailableDevices(errorMessage string) []*QCanBusDeviceInfo {
+	if ptr.Pointer() != nil {
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
+		return func(l C.struct_QtSerialBus_PackedList) []*QCanBusDeviceInfo {
+			var out = make([]*QCanBusDeviceInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCanBusFactoryV2FromPointer(l.data).__availableDevices_atList(i)
+			}
+			return out
+		}(C.QCanBusFactoryV2_AvailableDevices(ptr.Pointer(), C.struct_QtSerialBus_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}))
+	}
+	return make([]*QCanBusDeviceInfo, 0)
+}
+
+func (ptr *QCanBusFactoryV2) __availableDevices_atList(i int) *QCanBusDeviceInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCanBusDeviceInfoFromPointer(C.QCanBusFactoryV2___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCanBusDeviceInfo).DestroyQCanBusDeviceInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCanBusFactoryV2) __availableDevices_setList(i QCanBusDeviceInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCanBusFactoryV2___availableDevices_setList(ptr.Pointer(), PointerFromQCanBusDeviceInfo(i))
+	}
+}
+
+func (ptr *QCanBusFactoryV2) __availableDevices_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QCanBusFactoryV2___availableDevices_newList(ptr.Pointer()))
 }
 
 type QCanBusFrame struct {
@@ -1594,9 +1787,21 @@ func NewQCanBusFrame2(identifier uint, data core.QByteArray_ITF) *QCanBusFrame {
 	return tmpValue
 }
 
+func (ptr *QCanBusFrame) SetBitrateSwitch(bitrateSwitch bool) {
+	if ptr.Pointer() != nil {
+		C.QCanBusFrame_SetBitrateSwitch(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(bitrateSwitch))))
+	}
+}
+
 func (ptr *QCanBusFrame) SetError(error QCanBusFrame__FrameError) {
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetError(ptr.Pointer(), C.longlong(error))
+	}
+}
+
+func (ptr *QCanBusFrame) SetErrorStateIndicator(errorStateIndicator bool) {
+	if ptr.Pointer() != nil {
+		C.QCanBusFrame_SetErrorStateIndicator(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(errorStateIndicator))))
 	}
 }
 
@@ -1658,6 +1863,20 @@ func (ptr *QCanBusFrame) ToString() string {
 		return cGoUnpackString(C.QCanBusFrame_ToString(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QCanBusFrame) HasBitrateSwitch() bool {
+	if ptr.Pointer() != nil {
+		return C.QCanBusFrame_HasBitrateSwitch(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QCanBusFrame) HasErrorStateIndicator() bool {
+	if ptr.Pointer() != nil {
+		return C.QCanBusFrame_HasErrorStateIndicator(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QCanBusFrame) HasExtendedFrameFormat() bool {
@@ -3926,6 +4145,92 @@ func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster 
 	return tmpValue
 }
 
+//export callbackQModbusRtuSerialMaster_Open
+func callbackQModbusRtuSerialMaster_Open(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "open"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusRtuSerialMasterFromPointer(ptr).OpenDefault())))
+}
+
+func (ptr *QModbusRtuSerialMaster) ConnectOpen(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "open", func() bool {
+				signal.(func() bool)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "open", f)
+		}
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) DisconnectOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "open")
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) Open() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialMaster_Open(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusRtuSerialMaster) OpenDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialMaster_OpenDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusRtuSerialMaster_Close
+func callbackQModbusRtuSerialMaster_Close(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQModbusRtuSerialMasterFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "close", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "close", f)
+		}
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "close")
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) Close() {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QModbusRtuSerialMaster) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialMaster_CloseDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QModbusRtuSerialMaster) SetInterFrameDelay(microseconds int) {
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_SetInterFrameDelay(ptr.Pointer(), C.int(int32(microseconds)))
@@ -3983,6 +4288,92 @@ func NewQModbusRtuSerialSlave(parent core.QObject_ITF) *QModbusRtuSerialSlave {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+//export callbackQModbusRtuSerialSlave_Open
+func callbackQModbusRtuSerialSlave_Open(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "open"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusRtuSerialSlaveFromPointer(ptr).OpenDefault())))
+}
+
+func (ptr *QModbusRtuSerialSlave) ConnectOpen(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "open", func() bool {
+				signal.(func() bool)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "open", f)
+		}
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) DisconnectOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "open")
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) Open() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialSlave_Open(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusRtuSerialSlave) OpenDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialSlave_OpenDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusRtuSerialSlave_Close
+func callbackQModbusRtuSerialSlave_Close(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQModbusRtuSerialSlaveFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "close", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "close", f)
+		}
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "close")
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) Close() {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QModbusRtuSerialSlave_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
@@ -4547,6 +4938,92 @@ func NewQModbusTcpClient(parent core.QObject_ITF) *QModbusTcpClient {
 	return tmpValue
 }
 
+//export callbackQModbusTcpClient_Open
+func callbackQModbusTcpClient_Open(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "open"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusTcpClientFromPointer(ptr).OpenDefault())))
+}
+
+func (ptr *QModbusTcpClient) ConnectOpen(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "open", func() bool {
+				signal.(func() bool)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "open", f)
+		}
+	}
+}
+
+func (ptr *QModbusTcpClient) DisconnectOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "open")
+	}
+}
+
+func (ptr *QModbusTcpClient) Open() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpClient_Open(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusTcpClient) OpenDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpClient_OpenDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusTcpClient_Close
+func callbackQModbusTcpClient_Close(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQModbusTcpClientFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QModbusTcpClient) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "close", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "close", f)
+		}
+	}
+}
+
+func (ptr *QModbusTcpClient) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "close")
+	}
+}
+
+func (ptr *QModbusTcpClient) Close() {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QModbusTcpClient) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpClient_CloseDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
@@ -4599,6 +5076,92 @@ func NewQModbusTcpServer(parent core.QObject_ITF) *QModbusTcpServer {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+//export callbackQModbusTcpServer_Open
+func callbackQModbusTcpServer_Open(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "open"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusTcpServerFromPointer(ptr).OpenDefault())))
+}
+
+func (ptr *QModbusTcpServer) ConnectOpen(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "open"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "open", func() bool {
+				signal.(func() bool)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "open", f)
+		}
+	}
+}
+
+func (ptr *QModbusTcpServer) DisconnectOpen() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "open")
+	}
+}
+
+func (ptr *QModbusTcpServer) Open() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpServer_Open(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusTcpServer) OpenDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpServer_OpenDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusTcpServer_Close
+func callbackQModbusTcpServer_Close(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQModbusTcpServerFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QModbusTcpServer) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "close"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "close", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "close", f)
+		}
+	}
+}
+
+func (ptr *QModbusTcpServer) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "close")
+	}
+}
+
+func (ptr *QModbusTcpServer) Close() {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QModbusTcpServer) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QModbusTcpServer_CloseDefault(ptr.Pointer())
+	}
 }
 
 func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {

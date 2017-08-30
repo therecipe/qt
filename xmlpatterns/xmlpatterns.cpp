@@ -983,6 +983,11 @@ void* QXmlName_NewQXmlName2(void* namePool, struct QtXmlPatterns_PackedString lo
 	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString::fromUtf8(localName.data, localName.len), QString::fromUtf8(namespaceURI.data, namespaceURI.len), QString::fromUtf8(prefix.data, prefix.len));
 }
 
+void* QXmlName_NewQXmlName3(void* other)
+{
+	return new QXmlName(*static_cast<QXmlName*>(other));
+}
+
 char QXmlName_QXmlName_IsNCName(struct QtXmlPatterns_PackedString candidate)
 {
 	return QXmlName::isNCName(QString::fromUtf8(candidate.data, candidate.len));

@@ -1185,19 +1185,6 @@ func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEng
 	n.SetPointer(ptr)
 	return n
 }
-func (ptr *QQmlApplicationEngine) RootObjects() []*core.QObject {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtQml_PackedList) []*core.QObject {
-			var out = make([]*core.QObject, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQQmlApplicationEngineFromPointer(l.data).__rootObjects_atList(i)
-			}
-			return out
-		}(C.QQmlApplicationEngine_RootObjects(ptr.Pointer()))
-	}
-	return make([]*core.QObject, 0)
-}
-
 func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -1408,6 +1395,40 @@ func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QQmlApplicationEngine) RootObjects() []*core.QObject {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQml_PackedList) []*core.QObject {
+			var out = make([]*core.QObject, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQmlApplicationEngineFromPointer(l.data).__rootObjects_atList(i)
+			}
+			return out
+		}(C.QQmlApplicationEngine_RootObjects(ptr.Pointer()))
+	}
+	return make([]*core.QObject, 0)
+}
+
+func (ptr *QQmlApplicationEngine) __rootObjects_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQmlApplicationEngine___rootObjects_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQmlApplicationEngine) __rootObjects_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine___rootObjects_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QQmlApplicationEngine) __rootObjects_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QQmlApplicationEngine___rootObjects_newList2(ptr.Pointer()))
 }
 
 func (ptr *QQmlApplicationEngine) __rootObjects_atList(i int) *core.QObject {
@@ -3214,6 +3235,18 @@ func (ptr *QQmlEngine) NetworkAccessManagerFactory() *QQmlNetworkAccessManagerFa
 		return NewQQmlNetworkAccessManagerFactoryFromPointer(C.QQmlEngine_NetworkAccessManagerFactory(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QQmlEngine) OfflineStorageDatabaseFilePath(databaseName string) string {
+	if ptr.Pointer() != nil {
+		var databaseNameC *C.char
+		if databaseName != "" {
+			databaseNameC = C.CString(databaseName)
+			defer C.free(unsafe.Pointer(databaseNameC))
+		}
+		return cGoUnpackString(C.QQmlEngine_OfflineStorageDatabaseFilePath(ptr.Pointer(), C.struct_QtQml_PackedString{data: databaseNameC, len: C.longlong(len(databaseName))}))
+	}
+	return ""
 }
 
 func (ptr *QQmlEngine) OfflineStoragePath() string {

@@ -41,6 +41,7 @@
 #include <QTimerEvent>
 #include <QVariant>
 #include <QVector>
+#include <QVoice>
 #include <QWidget>
 #include <QWindow>
 
@@ -58,6 +59,7 @@ public:
 	void setLocale(const QLocale & locale) { callbackQTextToSpeech_SetLocale(this, const_cast<QLocale*>(&locale)); };
 	void setPitch(double pitch) { callbackQTextToSpeech_SetPitch(this, pitch); };
 	void setRate(double rate) { callbackQTextToSpeech_SetRate(this, rate); };
+	void setVoice(const QVoice & voice) { callbackQTextToSpeech_SetVoice(this, const_cast<QVoice*>(&voice)); };
 	void setVolume(double volume) { callbackQTextToSpeech_SetVolume(this, volume); };
 	void Signal_StateChanged(QTextToSpeech::State state) { callbackQTextToSpeech_StateChanged(this, state); };
 	void stop() { callbackQTextToSpeech_Stop(this); };
@@ -271,6 +273,16 @@ void QTextToSpeech_SetRateDefault(void* ptr, double rate)
 		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setRate(rate);
 }
 
+void QTextToSpeech_SetVoice(void* ptr, void* voice)
+{
+	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "setVoice", Q_ARG(const QVoice, *static_cast<QVoice*>(voice)));
+}
+
+void QTextToSpeech_SetVoiceDefault(void* ptr, void* voice)
+{
+		static_cast<QTextToSpeech*>(ptr)->QTextToSpeech::setVoice(*static_cast<QVoice*>(voice));
+}
+
 void QTextToSpeech_SetVolume(void* ptr, double volume)
 {
 	QMetaObject::invokeMethod(static_cast<QTextToSpeech*>(ptr), "setVolume", Q_ARG(double, volume));
@@ -332,6 +344,16 @@ struct QtSpeech_PackedList QTextToSpeech_AvailableLocales(void* ptr)
 	return ({ QVector<QLocale>* tmpValue = new QVector<QLocale>(static_cast<QTextToSpeech*>(ptr)->availableLocales()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtSpeech_PackedList QTextToSpeech_AvailableVoices(void* ptr)
+{
+	return ({ QVector<QVoice>* tmpValue = new QVector<QVoice>(static_cast<QTextToSpeech*>(ptr)->availableVoices()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QTextToSpeech_Voice(void* ptr)
+{
+	return new QVoice(static_cast<QTextToSpeech*>(ptr)->voice());
+}
+
 long long QTextToSpeech_State(void* ptr)
 {
 	return static_cast<QTextToSpeech*>(ptr)->state();
@@ -366,6 +388,16 @@ void* QTextToSpeech___availableLocales_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<QLocale>;
+}
+
+void* QTextToSpeech___availableVoices_atList(void* ptr, int i)
+{
+	return new QVoice(static_cast<QVector<QVoice>*>(ptr)->at(i));
+}
+
+void QTextToSpeech___availableVoices_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QVoice>*>(ptr)->append(*static_cast<QVoice*>(i));
 }
 
 void* QTextToSpeech___availableVoices_newList(void* ptr)
@@ -551,5 +583,45 @@ void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>;
+}
+
+struct QtSpeech_PackedString QVoice_QVoice_AgeName(long long age)
+{
+	return ({ QByteArray t3dc0ed = QVoice::ageName(static_cast<QVoice::Age>(age)).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t3dc0ed.prepend("WHITESPACE").constData()+10), t3dc0ed.size()-10 }; });
+}
+
+struct QtSpeech_PackedString QVoice_QVoice_GenderName(long long gender)
+{
+	return ({ QByteArray t94d66c = QVoice::genderName(static_cast<QVoice::Gender>(gender)).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t94d66c.prepend("WHITESPACE").constData()+10), t94d66c.size()-10 }; });
+}
+
+void* QVoice_NewQVoice()
+{
+	return new QVoice();
+}
+
+void* QVoice_NewQVoice2(void* other)
+{
+	return new QVoice(*static_cast<QVoice*>(other));
+}
+
+void QVoice_DestroyQVoice(void* ptr)
+{
+	static_cast<QVoice*>(ptr)->~QVoice();
+}
+
+long long QVoice_Age(void* ptr)
+{
+	return static_cast<QVoice*>(ptr)->age();
+}
+
+long long QVoice_Gender(void* ptr)
+{
+	return static_cast<QVoice*>(ptr)->gender();
+}
+
+struct QtSpeech_PackedString QVoice_Name(void* ptr)
+{
+	return ({ QByteArray t889245 = static_cast<QVoice*>(ptr)->name().toUtf8(); QtSpeech_PackedString { const_cast<char*>(t889245.prepend("WHITESPACE").constData()+10), t889245.size()-10 }; });
 }
 

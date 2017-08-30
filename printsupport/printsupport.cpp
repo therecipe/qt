@@ -3627,16 +3627,6 @@ void* QPrinterInfo___supportedDuplexModes_newList(void* ptr)
 	return new QList<QPrinter::DuplexMode>;
 }
 
-long long QPrinterInfo___supportedPaperSizes_atList(void* ptr, int i)
-{
-	return static_cast<QList<QPrinter::PaperSize>*>(ptr)->at(i);
-}
-
-void QPrinterInfo___supportedPaperSizes_setList(void* ptr, long long i)
-{
-	static_cast<QList<QPrinter::PaperSize>*>(ptr)->append(static_cast<QPrinter::PaperSize>(i));
-}
-
 void* QPrinterInfo___supportedPaperSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);

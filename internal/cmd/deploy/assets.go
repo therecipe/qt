@@ -44,7 +44,11 @@ func linux_sh(target, name string) string {
 		fmt.Fprintf(bb, "export QML_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
 		fmt.Fprintf(bb, "export QML2_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
 	} else {
-		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname/lib\n")
+		libDir := "lib"
+		if name == libDir {
+			libDir = "libs"
+		}
+		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname/"+libDir+"\n")
 		fmt.Fprint(bb, "export QT_PLUGIN_PATH=$dirname/plugins\n")
 		fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/qml\n")
 		fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/qml\n")

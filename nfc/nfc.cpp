@@ -1447,6 +1447,11 @@ void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 	}
 }
 
+char QNearFieldTarget_Disconnect(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->disconnect();
+}
+
 char QNearFieldTarget_HasNdefMessage(void* ptr)
 {
 	return static_cast<QNearFieldTarget*>(ptr)->hasNdefMessage();
@@ -1455,6 +1460,11 @@ char QNearFieldTarget_HasNdefMessage(void* ptr)
 char QNearFieldTarget_HasNdefMessageDefault(void* ptr)
 {
 		return static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::hasNdefMessage();
+}
+
+char QNearFieldTarget_SetKeepConnection(void* ptr, char isPersistent)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->setKeepConnection(isPersistent != 0);
 }
 
 void QNearFieldTarget_ConnectDisconnected(void* ptr)
@@ -1541,6 +1551,16 @@ long long QNearFieldTarget_Type(void* ptr)
 char QNearFieldTarget_IsProcessingCommand(void* ptr)
 {
 	return static_cast<QNearFieldTarget*>(ptr)->isProcessingCommand();
+}
+
+char QNearFieldTarget_KeepConnection(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->keepConnection();
+}
+
+int QNearFieldTarget_MaxCommandLength(void* ptr)
+{
+	return static_cast<QNearFieldTarget*>(ptr)->maxCommandLength();
 }
 
 void* QNearFieldTarget___sendCommands_commands_atList(void* ptr, int i)

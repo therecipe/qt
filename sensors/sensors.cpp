@@ -41,10 +41,16 @@
 #include <QHolsterFilter>
 #include <QHolsterReading>
 #include <QHolsterSensor>
+#include <QHumidityFilter>
+#include <QHumidityReading>
+#include <QHumiditySensor>
 #include <QIRProximityFilter>
 #include <QIRProximityReading>
 #include <QIRProximitySensor>
 #include <QLayout>
+#include <QLidFilter>
+#include <QLidReading>
+#include <QLidSensor>
 #include <QLightFilter>
 #include <QLightReading>
 #include <QLightSensor>
@@ -1279,6 +1285,150 @@ struct QtSensors_PackedString QHolsterSensor_QHolsterSensor_Type()
 	return QtSensors_PackedString { const_cast<char*>(QHolsterSensor::type), -1 };
 }
 
+class MyQHumidityFilter: public QHumidityFilter
+{
+public:
+	bool filter(QHumidityReading * reading) { return callbackQHumidityFilter_Filter(this, reading) != 0; };
+};
+
+char QHumidityFilter_Filter(void* ptr, void* reading)
+{
+	return static_cast<QHumidityFilter*>(ptr)->filter(static_cast<QHumidityReading*>(reading));
+}
+
+class MyQHumidityReading: public QHumidityReading
+{
+public:
+	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSensorReading_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSensorReading_CustomEvent(this, event); };
+	void deleteLater() { callbackQSensorReading_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSensorReading_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQHumidityReading*)
+
+int QHumidityReading_QHumidityReading_QRegisterMetaType(){qRegisterMetaType<QHumidityReading*>(); return qRegisterMetaType<MyQHumidityReading*>();}
+
+void QHumidityReading_SetAbsoluteHumidity(void* ptr, double value)
+{
+	static_cast<QHumidityReading*>(ptr)->setAbsoluteHumidity(value);
+}
+
+void QHumidityReading_SetRelativeHumidity(void* ptr, double humidity)
+{
+	static_cast<QHumidityReading*>(ptr)->setRelativeHumidity(humidity);
+}
+
+double QHumidityReading_AbsoluteHumidity(void* ptr)
+{
+	return static_cast<QHumidityReading*>(ptr)->absoluteHumidity();
+}
+
+double QHumidityReading_RelativeHumidity(void* ptr)
+{
+	return static_cast<QHumidityReading*>(ptr)->relativeHumidity();
+}
+
+class MyQHumiditySensor: public QHumiditySensor
+{
+public:
+	MyQHumiditySensor(QObject *parent = Q_NULLPTR) : QHumiditySensor(parent) {QHumiditySensor_QHumiditySensor_QRegisterMetaType();};
+	bool start() { return callbackQSensor_Start(this) != 0; };
+	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
+	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
+	void Signal_AvailableSensorsChanged() { callbackQSensor_AvailableSensorsChanged(this); };
+	void Signal_AxesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode) { callbackQSensor_AxesOrientationModeChanged(this, axesOrientationMode); };
+	void Signal_BufferSizeChanged(int bufferSize) { callbackQSensor_BufferSizeChanged(this, bufferSize); };
+	void Signal_BusyChanged() { callbackQSensor_BusyChanged(this); };
+	void Signal_CurrentOrientationChanged(int currentOrientation) { callbackQSensor_CurrentOrientationChanged(this, currentOrientation); };
+	void Signal_DataRateChanged() { callbackQSensor_DataRateChanged(this); };
+	void Signal_EfficientBufferSizeChanged(int efficientBufferSize) { callbackQSensor_EfficientBufferSizeChanged(this, efficientBufferSize); };
+	void Signal_MaxBufferSizeChanged(int maxBufferSize) { callbackQSensor_MaxBufferSizeChanged(this, maxBufferSize); };
+	void Signal_ReadingChanged() { callbackQSensor_ReadingChanged(this); };
+	void Signal_SensorError(int error) { callbackQSensor_SensorError(this, error); };
+	void Signal_SkipDuplicatesChanged(bool skipDuplicates) { callbackQSensor_SkipDuplicatesChanged(this, skipDuplicates); };
+	void stop() { callbackQSensor_Stop(this); };
+	void Signal_UserOrientationChanged(int userOrientation) { callbackQSensor_UserOrientationChanged(this, userOrientation); };
+	bool event(QEvent * e) { return callbackQSensor_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensor_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQSensor_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSensor_CustomEvent(this, event); };
+	void deleteLater() { callbackQSensor_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSensor_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQHumiditySensor*)
+
+int QHumiditySensor_QHumiditySensor_QRegisterMetaType(){qRegisterMetaType<QHumiditySensor*>(); return qRegisterMetaType<MyQHumiditySensor*>();}
+
+void* QHumiditySensor_NewQHumiditySensor(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHumiditySensor(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHumiditySensor(static_cast<QObject*>(parent));
+	}
+}
+
+void QHumiditySensor_DestroyQHumiditySensor(void* ptr)
+{
+	static_cast<QHumiditySensor*>(ptr)->~QHumiditySensor();
+}
+
+void* QHumiditySensor_Reading(void* ptr)
+{
+	return static_cast<QHumiditySensor*>(ptr)->reading();
+}
+
+struct QtSensors_PackedString QHumiditySensor_QHumiditySensor_Type()
+{
+	return QtSensors_PackedString { const_cast<char*>(QHumiditySensor::type), -1 };
+}
+
 class MyQIRProximityFilter: public QIRProximityFilter
 {
 public:
@@ -1418,6 +1568,182 @@ void* QIRProximitySensor_Reading(void* ptr)
 struct QtSensors_PackedString QIRProximitySensor_QIRProximitySensor_Type()
 {
 	return QtSensors_PackedString { const_cast<char*>(QIRProximitySensor::type), -1 };
+}
+
+class MyQLidFilter: public QLidFilter
+{
+public:
+	bool filter(QLidReading * reading) { return callbackQLidFilter_Filter(this, reading) != 0; };
+};
+
+char QLidFilter_Filter(void* ptr, void* reading)
+{
+	return static_cast<QLidFilter*>(ptr)->filter(static_cast<QLidReading*>(reading));
+}
+
+class MyQLidReading: public QLidReading
+{
+public:
+	void Signal_BackLidChanged(bool closed) { callbackQLidReading_BackLidChanged(this, closed); };
+	void Signal_FrontLidChanged(bool closed) { callbackQLidReading_FrontLidChanged(this, closed); };
+	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSensorReading_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSensorReading_CustomEvent(this, event); };
+	void deleteLater() { callbackQSensorReading_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSensorReading_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQLidReading*)
+
+int QLidReading_QLidReading_QRegisterMetaType(){qRegisterMetaType<QLidReading*>(); return qRegisterMetaType<MyQLidReading*>();}
+
+void QLidReading_ConnectBackLidChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLidReading*>(ptr), static_cast<void (QLidReading::*)(bool)>(&QLidReading::backLidChanged), static_cast<MyQLidReading*>(ptr), static_cast<void (MyQLidReading::*)(bool)>(&MyQLidReading::Signal_BackLidChanged));
+}
+
+void QLidReading_DisconnectBackLidChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLidReading*>(ptr), static_cast<void (QLidReading::*)(bool)>(&QLidReading::backLidChanged), static_cast<MyQLidReading*>(ptr), static_cast<void (MyQLidReading::*)(bool)>(&MyQLidReading::Signal_BackLidChanged));
+}
+
+void QLidReading_BackLidChanged(void* ptr, char closed)
+{
+	static_cast<QLidReading*>(ptr)->backLidChanged(closed != 0);
+}
+
+void QLidReading_ConnectFrontLidChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLidReading*>(ptr), static_cast<void (QLidReading::*)(bool)>(&QLidReading::frontLidChanged), static_cast<MyQLidReading*>(ptr), static_cast<void (MyQLidReading::*)(bool)>(&MyQLidReading::Signal_FrontLidChanged));
+}
+
+void QLidReading_DisconnectFrontLidChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLidReading*>(ptr), static_cast<void (QLidReading::*)(bool)>(&QLidReading::frontLidChanged), static_cast<MyQLidReading*>(ptr), static_cast<void (MyQLidReading::*)(bool)>(&MyQLidReading::Signal_FrontLidChanged));
+}
+
+void QLidReading_FrontLidChanged(void* ptr, char closed)
+{
+	static_cast<QLidReading*>(ptr)->frontLidChanged(closed != 0);
+}
+
+void QLidReading_SetBackLidClosed(void* ptr, char closed)
+{
+	static_cast<QLidReading*>(ptr)->setBackLidClosed(closed != 0);
+}
+
+void QLidReading_SetFrontLidClosed(void* ptr, char closed)
+{
+	static_cast<QLidReading*>(ptr)->setFrontLidClosed(closed != 0);
+}
+
+char QLidReading_BackLidClosed(void* ptr)
+{
+	return static_cast<QLidReading*>(ptr)->backLidClosed();
+}
+
+char QLidReading_FrontLidClosed(void* ptr)
+{
+	return static_cast<QLidReading*>(ptr)->frontLidClosed();
+}
+
+class MyQLidSensor: public QLidSensor
+{
+public:
+	MyQLidSensor(QObject *parent = Q_NULLPTR) : QLidSensor(parent) {QLidSensor_QLidSensor_QRegisterMetaType();};
+	bool start() { return callbackQSensor_Start(this) != 0; };
+	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
+	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
+	void Signal_AvailableSensorsChanged() { callbackQSensor_AvailableSensorsChanged(this); };
+	void Signal_AxesOrientationModeChanged(QSensor::AxesOrientationMode axesOrientationMode) { callbackQSensor_AxesOrientationModeChanged(this, axesOrientationMode); };
+	void Signal_BufferSizeChanged(int bufferSize) { callbackQSensor_BufferSizeChanged(this, bufferSize); };
+	void Signal_BusyChanged() { callbackQSensor_BusyChanged(this); };
+	void Signal_CurrentOrientationChanged(int currentOrientation) { callbackQSensor_CurrentOrientationChanged(this, currentOrientation); };
+	void Signal_DataRateChanged() { callbackQSensor_DataRateChanged(this); };
+	void Signal_EfficientBufferSizeChanged(int efficientBufferSize) { callbackQSensor_EfficientBufferSizeChanged(this, efficientBufferSize); };
+	void Signal_MaxBufferSizeChanged(int maxBufferSize) { callbackQSensor_MaxBufferSizeChanged(this, maxBufferSize); };
+	void Signal_ReadingChanged() { callbackQSensor_ReadingChanged(this); };
+	void Signal_SensorError(int error) { callbackQSensor_SensorError(this, error); };
+	void Signal_SkipDuplicatesChanged(bool skipDuplicates) { callbackQSensor_SkipDuplicatesChanged(this, skipDuplicates); };
+	void stop() { callbackQSensor_Stop(this); };
+	void Signal_UserOrientationChanged(int userOrientation) { callbackQSensor_UserOrientationChanged(this, userOrientation); };
+	bool event(QEvent * e) { return callbackQSensor_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensor_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQSensor_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSensor_CustomEvent(this, event); };
+	void deleteLater() { callbackQSensor_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQSensor_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQLidSensor*)
+
+int QLidSensor_QLidSensor_QRegisterMetaType(){qRegisterMetaType<QLidSensor*>(); return qRegisterMetaType<MyQLidSensor*>();}
+
+void* QLidSensor_NewQLidSensor(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLidSensor(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQLidSensor(static_cast<QObject*>(parent));
+	}
+}
+
+void QLidSensor_DestroyQLidSensor(void* ptr)
+{
+	static_cast<QLidSensor*>(ptr)->~QLidSensor();
+}
+
+void* QLidSensor_Reading(void* ptr)
+{
+	return static_cast<QLidSensor*>(ptr)->reading();
+}
+
+struct QtSensors_PackedString QLidSensor_QLidSensor_Type()
+{
+	return QtSensors_PackedString { const_cast<char*>(QLidSensor::type), -1 };
 }
 
 class MyQLightFilter: public QLightFilter
@@ -2511,8 +2837,12 @@ char QSensor_StartDefault(void* ptr)
 		return static_cast<QMagnetometer*>(ptr)->QMagnetometer::start();
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLightSensor*>(ptr)->QLightSensor::start();
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLidSensor*>(ptr)->QLidSensor::start();
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::start();
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::start();
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::start();
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -2822,8 +3152,12 @@ void QSensor_StopDefault(void* ptr)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::stop();
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::stop();
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::stop();
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::stop();
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::stop();
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::stop();
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3117,8 +3451,12 @@ char QSensor_EventDefault(void* ptr, void* e)
 		return static_cast<QMagnetometer*>(ptr)->QMagnetometer::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLightSensor*>(ptr)->QLightSensor::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLidSensor*>(ptr)->QLidSensor::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3158,8 +3496,12 @@ char QSensor_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QMagnetometer*>(ptr)->QMagnetometer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLightSensor*>(ptr)->QLightSensor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLidSensor*>(ptr)->QLidSensor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3199,8 +3541,12 @@ void QSensor_ChildEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3240,8 +3586,12 @@ void QSensor_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3281,8 +3631,12 @@ void QSensor_CustomEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3322,8 +3676,12 @@ void QSensor_DeleteLaterDefault(void* ptr)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::deleteLater();
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::deleteLater();
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::deleteLater();
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::deleteLater();
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::deleteLater();
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::deleteLater();
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3363,8 +3721,12 @@ void QSensor_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3404,8 +3766,12 @@ void QSensor_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometer*>(ptr)->QMagnetometer::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightSensor*>(ptr)->QLightSensor::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidSensor*>(ptr)->QLidSensor::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -3445,8 +3811,12 @@ void* QSensor_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QMagnetometer*>(ptr)->QMagnetometer::metaObject());
 	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QLightSensor*>(ptr)->QLightSensor::metaObject());
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLidSensor*>(ptr)->QLidSensor::metaObject());
 	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::metaObject());
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::metaObject());
 	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::metaObject());
 	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
@@ -4711,8 +5081,12 @@ char QSensorReading_EventDefault(void* ptr, void* e)
 		return static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLightReading*>(ptr)->QLightReading::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLidReading*>(ptr)->QLidReading::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHumidityReading*>(ptr)->QHumidityReading::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHolsterReading*>(ptr)->QHolsterReading::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4752,8 +5126,12 @@ char QSensorReading_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLightReading*>(ptr)->QLightReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLidReading*>(ptr)->QLidReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QHumidityReading*>(ptr)->QHumidityReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHolsterReading*>(ptr)->QHolsterReading::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4793,8 +5171,12 @@ void QSensorReading_ChildEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4834,8 +5216,12 @@ void QSensorReading_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4875,8 +5261,12 @@ void QSensorReading_CustomEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4916,8 +5306,12 @@ void QSensorReading_DeleteLaterDefault(void* ptr)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::deleteLater();
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::deleteLater();
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::deleteLater();
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::deleteLater();
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::deleteLater();
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::deleteLater();
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4957,8 +5351,12 @@ void QSensorReading_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -4998,8 +5396,12 @@ void QSensorReading_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLightReading*>(ptr)->QLightReading::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLidReading*>(ptr)->QLidReading::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHolsterReading*>(ptr)->QHolsterReading::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
@@ -5039,8 +5441,12 @@ void* QSensorReading_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::metaObject());
 	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QLightReading*>(ptr)->QLightReading::metaObject());
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLidReading*>(ptr)->QLidReading::metaObject());
 	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::metaObject());
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHumidityReading*>(ptr)->QHumidityReading::metaObject());
 	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QHolsterReading*>(ptr)->QHolsterReading::metaObject());
 	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {

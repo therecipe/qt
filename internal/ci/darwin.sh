@@ -17,33 +17,34 @@ then
   ln -s /usr/local/Cellar/qt/5.9.1 $HOME/Desktop/Qt5.9.1
 else
   #download and install qt
+  QT=qt-unified-mac-x64-online
+  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/online_installers/$QT.dmg
+  hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
+  QT=qt-unified-mac-x64-3.0.0-online
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
   then
-    QT=qt-opensource-mac-x64-android-ios-5.8.0
+    /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs IOS=true
   else
-    QT=qt-opensource-mac-x64-android-5.8.0
+    /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
   fi
-  curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT.dmg
-  hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
-  /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
   diskutil unmountDisk disk1
   rm -f /tmp/$QT.dmg
-  ln -s $HOME/Qt5.8.0 $HOME/Desktop
+  ln -s $HOME/Qt $HOME/Desktop
 fi
 
 if [ "$ANDROID" == "true" ]
 then
   #download and install android sdk
-  SDK=tools_r25.2.5-macosx.zip
+  SDK=sdk-tools-darwin-3859397.zip
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK
   unzip -qq /tmp/$SDK -d $HOME/android-sdk-macosx/
   rm -f /tmp/$SDK
   ln -s $HOME/android-sdk-macosx $HOME/Desktop
 
   #install deps for android sdk
-  $HOME/android-sdk-macosx/tools/android list sdk
-  echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -f -u -t 1,2,3,4,5,6
-  echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -a -f -u -t 5
+  $HOME/android-sdk-macosx/tools/bin/sdkmanager --list --verbose
+  echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
+  $HOME/android-sdk-macosx/tools/bin/sdkmanager --update
 
   #download and install android ndk
   NDK=android-ndk-r14b-darwin-x86_64.zip

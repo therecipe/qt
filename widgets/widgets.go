@@ -22029,6 +22029,13 @@ func (ptr *QFileDialog) LabelText(label QFileDialog__DialogLabel) string {
 	return ""
 }
 
+func (ptr *QFileDialog) SelectedMimeTypeFilter() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QFileDialog_SelectedMimeTypeFilter(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QFileDialog) SelectedNameFilter() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QFileDialog_SelectedNameFilter(ptr.Pointer()))
@@ -65980,6 +65987,15 @@ func (ptr *QSizePolicy) VerticalPolicy() QSizePolicy__Policy {
 	return 0
 }
 
+func (ptr *QSizePolicy) Transposed() *QSizePolicy {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSizePolicyFromPointer(C.QSizePolicy_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSizePolicy).DestroyQSizePolicy)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSizePolicy) ExpandingDirections() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QSizePolicy_ExpandingDirections(ptr.Pointer()))
@@ -67314,6 +67330,17 @@ func (ptr *QSplitter) CreateHandle() *QSplitterHandle {
 func (ptr *QSplitter) CreateHandleDefault() *QSplitterHandle {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSplitterHandleFromPointer(C.QSplitter_CreateHandleDefault(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSplitter) ReplaceWidget(index int, widget QWidget_ITF) *QWidget {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWidgetFromPointer(C.QSplitter_ReplaceWidget(ptr.Pointer(), C.int(int32(index)), PointerFromQWidget(widget)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -76224,17 +76251,6 @@ func NewQSystemTrayIconFromPointer(ptr unsafe.Pointer) *QSystemTrayIcon {
 	return n
 }
 
-//go:generate stringer -type=QSystemTrayIcon__MessageIcon
-//QSystemTrayIcon::MessageIcon
-type QSystemTrayIcon__MessageIcon int64
-
-const (
-	QSystemTrayIcon__NoIcon      QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(0)
-	QSystemTrayIcon__Information QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(1)
-	QSystemTrayIcon__Warning     QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(2)
-	QSystemTrayIcon__Critical    QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(3)
-)
-
 //go:generate stringer -type=QSystemTrayIcon__ActivationReason
 //QSystemTrayIcon::ActivationReason
 type QSystemTrayIcon__ActivationReason int64
@@ -76247,45 +76263,16 @@ const (
 	QSystemTrayIcon__MiddleClick QSystemTrayIcon__ActivationReason = QSystemTrayIcon__ActivationReason(4)
 )
 
-func NewQSystemTrayIcon(parent core.QObject_ITF) *QSystemTrayIcon {
-	var tmpValue = NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon(core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
+//go:generate stringer -type=QSystemTrayIcon__MessageIcon
+//QSystemTrayIcon::MessageIcon
+type QSystemTrayIcon__MessageIcon int64
 
-func NewQSystemTrayIcon2(icon gui.QIcon_ITF, parent core.QObject_ITF) *QSystemTrayIcon {
-	var tmpValue = NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon2(gui.PointerFromQIcon(icon), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-//export callbackQSystemTrayIcon_Event
-func callbackQSystemTrayIcon_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSystemTrayIconFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSystemTrayIcon) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSystemTrayIcon_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-func QSystemTrayIcon_IsSystemTrayAvailable() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
-}
-
-func (ptr *QSystemTrayIcon) IsSystemTrayAvailable() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
-}
+const (
+	QSystemTrayIcon__NoIcon      QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(0)
+	QSystemTrayIcon__Information QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(1)
+	QSystemTrayIcon__Warning     QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(2)
+	QSystemTrayIcon__Critical    QSystemTrayIcon__MessageIcon = QSystemTrayIcon__MessageIcon(3)
+)
 
 func QSystemTrayIcon_SupportsMessages() bool {
 	return C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages() != 0
@@ -76334,6 +76321,100 @@ func (ptr *QSystemTrayIcon) Activated(reason QSystemTrayIcon__ActivationReason) 
 	}
 }
 
+//export callbackQSystemTrayIcon_MessageClicked
+func callbackQSystemTrayIcon_MessageClicked(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "messageClicked"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QSystemTrayIcon) ConnectMessageClicked(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "messageClicked") {
+			C.QSystemTrayIcon_ConnectMessageClicked(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "messageClicked"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "messageClicked", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "messageClicked", f)
+		}
+	}
+}
+
+func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_DisconnectMessageClicked(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "messageClicked")
+	}
+}
+
+func (ptr *QSystemTrayIcon) MessageClicked() {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_MessageClicked(ptr.Pointer())
+	}
+}
+
+func (ptr *QSystemTrayIcon) SetIcon(icon gui.QIcon_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
+	}
+}
+
+func (ptr *QSystemTrayIcon) Icon() *gui.QIcon {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQIconFromPointer(C.QSystemTrayIcon_Icon(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
+	}
+	return nil
+}
+
+func NewQSystemTrayIcon(parent core.QObject_ITF) *QSystemTrayIcon {
+	var tmpValue = NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQSystemTrayIcon2(icon gui.QIcon_ITF, parent core.QObject_ITF) *QSystemTrayIcon {
+	var tmpValue = NewQSystemTrayIconFromPointer(C.QSystemTrayIcon_NewQSystemTrayIcon2(gui.PointerFromQIcon(icon), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQSystemTrayIcon_Event
+func callbackQSystemTrayIcon_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSystemTrayIconFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSystemTrayIcon) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QSystemTrayIcon_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func QSystemTrayIcon_IsSystemTrayAvailable() bool {
+	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
+}
+
+func (ptr *QSystemTrayIcon) IsSystemTrayAvailable() bool {
+	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
+}
+
 //export callbackQSystemTrayIcon_Hide
 func callbackQSystemTrayIcon_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "hide"); signal != nil {
@@ -76376,54 +76457,9 @@ func (ptr *QSystemTrayIcon) HideDefault() {
 	}
 }
 
-//export callbackQSystemTrayIcon_MessageClicked
-func callbackQSystemTrayIcon_MessageClicked(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "messageClicked"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-func (ptr *QSystemTrayIcon) ConnectMessageClicked(f func()) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "messageClicked") {
-			C.QSystemTrayIcon_ConnectMessageClicked(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "messageClicked"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "messageClicked", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "messageClicked", f)
-		}
-	}
-}
-
-func (ptr *QSystemTrayIcon) DisconnectMessageClicked() {
-	if ptr.Pointer() != nil {
-		C.QSystemTrayIcon_DisconnectMessageClicked(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "messageClicked")
-	}
-}
-
-func (ptr *QSystemTrayIcon) MessageClicked() {
-	if ptr.Pointer() != nil {
-		C.QSystemTrayIcon_MessageClicked(ptr.Pointer())
-	}
-}
-
 func (ptr *QSystemTrayIcon) SetContextMenu(menu QMenu_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSystemTrayIcon_SetContextMenu(ptr.Pointer(), PointerFromQMenu(menu))
-	}
-}
-
-func (ptr *QSystemTrayIcon) SetIcon(icon gui.QIcon_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSystemTrayIcon_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
@@ -76584,13 +76620,74 @@ func (ptr *QSystemTrayIcon) ShowMessageDefault(title string, message string, ico
 	}
 }
 
-func (ptr *QSystemTrayIcon) Icon() *gui.QIcon {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQIconFromPointer(C.QSystemTrayIcon_Icon(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
-		return tmpValue
+//export callbackQSystemTrayIcon_ShowMessage2
+func callbackQSystemTrayIcon_ShowMessage2(ptr unsafe.Pointer, title C.struct_QtWidgets_PackedString, message C.struct_QtWidgets_PackedString, icon unsafe.Pointer, millisecondsTimeoutHint C.int) {
+	if signal := qt.GetSignal(ptr, "showMessage2"); signal != nil {
+		signal.(func(string, string, *gui.QIcon, int))(cGoUnpackString(title), cGoUnpackString(message), gui.NewQIconFromPointer(icon), int(int32(millisecondsTimeoutHint)))
+	} else {
+		NewQSystemTrayIconFromPointer(ptr).ShowMessage2Default(cGoUnpackString(title), cGoUnpackString(message), gui.NewQIconFromPointer(icon), int(int32(millisecondsTimeoutHint)))
 	}
-	return nil
+}
+
+func (ptr *QSystemTrayIcon) ConnectShowMessage2(f func(title string, message string, icon *gui.QIcon, millisecondsTimeoutHint int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "showMessage2"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "showMessage2", func(title string, message string, icon *gui.QIcon, millisecondsTimeoutHint int) {
+				signal.(func(string, string, *gui.QIcon, int))(title, message, icon, millisecondsTimeoutHint)
+				f(title, message, icon, millisecondsTimeoutHint)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "showMessage2", f)
+		}
+	}
+}
+
+func (ptr *QSystemTrayIcon) DisconnectShowMessage2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "showMessage2")
+	}
+}
+
+func (ptr *QSystemTrayIcon) ShowMessage2(title string, message string, icon gui.QIcon_ITF, millisecondsTimeoutHint int) {
+	if ptr.Pointer() != nil {
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.QSystemTrayIcon_ShowMessage2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, gui.PointerFromQIcon(icon), C.int(int32(millisecondsTimeoutHint)))
+	}
+}
+
+func (ptr *QSystemTrayIcon) ShowMessage2Default(title string, message string, icon gui.QIcon_ITF, millisecondsTimeoutHint int) {
+	if ptr.Pointer() != nil {
+		var titleC *C.char
+		if title != "" {
+			titleC = C.CString(title)
+			defer C.free(unsafe.Pointer(titleC))
+		}
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.QSystemTrayIcon_ShowMessage2Default(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: messageC, len: C.longlong(len(message))}, gui.PointerFromQIcon(icon), C.int(int32(millisecondsTimeoutHint)))
+	}
+}
+
+func (ptr *QSystemTrayIcon) DestroyQSystemTrayIcon() {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon_DestroyQSystemTrayIcon(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 func (ptr *QSystemTrayIcon) ContextMenu() *QMenu {
@@ -76625,14 +76722,6 @@ func (ptr *QSystemTrayIcon) IsVisible() bool {
 		return C.QSystemTrayIcon_IsVisible(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QSystemTrayIcon) DestroyQSystemTrayIcon() {
-	if ptr.Pointer() != nil {
-		C.QSystemTrayIcon_DestroyQSystemTrayIcon(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
 }
 
 func (ptr *QSystemTrayIcon) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -91103,6 +91192,12 @@ func (ptr *QUndoCommand) RedoDefault() {
 	}
 }
 
+func (ptr *QUndoCommand) SetObsolete(obsolete bool) {
+	if ptr.Pointer() != nil {
+		C.QUndoCommand_SetObsolete(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(obsolete))))
+	}
+}
+
 func (ptr *QUndoCommand) SetText(text string) {
 	if ptr.Pointer() != nil {
 		var textC *C.char
@@ -91212,6 +91307,13 @@ func (ptr *QUndoCommand) Text() string {
 		return cGoUnpackString(C.QUndoCommand_Text(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QUndoCommand) IsObsolete() bool {
+	if ptr.Pointer() != nil {
+		return C.QUndoCommand_IsObsolete(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QUndoCommand) Child(index int) *QUndoCommand {
@@ -95712,6 +95814,12 @@ func (ptr *QWidget) SetTabOrder(first QWidget_ITF, second QWidget_ITF) {
 	C.QWidget_QWidget_SetTabOrder(PointerFromQWidget(first), PointerFromQWidget(second))
 }
 
+func (ptr *QWidget) SetTabletTracking(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QWidget_SetTabletTracking(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
 func (ptr *QWidget) SetToolTip(vqs string) {
 	if ptr.Pointer() != nil {
 		var vqsC *C.char
@@ -95796,6 +95904,12 @@ func (ptr *QWidget) SetWindowFilePath(filePath string) {
 			defer C.free(unsafe.Pointer(filePathC))
 		}
 		C.QWidget_SetWindowFilePath(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filePathC, len: C.longlong(len(filePath))})
+	}
+}
+
+func (ptr *QWidget) SetWindowFlag(flag core.Qt__WindowType, on bool) {
+	if ptr.Pointer() != nil {
+		C.QWidget_SetWindowFlag(ptr.Pointer(), C.longlong(flag), C.char(int8(qt.GoBoolToInt(on))))
 	}
 }
 
@@ -97251,44 +97365,16 @@ func (ptr *QWidget) LayoutDirection() core.Qt__LayoutDirection {
 	return 0
 }
 
-func (ptr *QWidget) WindowModality() core.Qt__WindowModality {
-	if ptr.Pointer() != nil {
-		return core.Qt__WindowModality(C.QWidget_WindowModality(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWidget) WinId() uintptr {
-	if ptr.Pointer() != nil {
-		return uintptr(C.QWidget_WinId(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWidget) AcceptDrops() bool {
-	if ptr.Pointer() != nil {
-		return C.QWidget_AcceptDrops(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWidget) AutoFillBackground() bool {
-	if ptr.Pointer() != nil {
-		return C.QWidget_AutoFillBackground(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWidget) HasFocus() bool {
-	if ptr.Pointer() != nil {
-		return C.QWidget_HasFocus(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 func (ptr *QWidget) WindowFlags() core.Qt__WindowType {
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowType(C.QWidget_WindowFlags(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWidget) WindowModality() core.Qt__WindowModality {
+	if ptr.Pointer() != nil {
+		return core.Qt__WindowModality(C.QWidget_WindowModality(ptr.Pointer()))
 	}
 	return 0
 }
@@ -97314,9 +97400,37 @@ func (ptr *QWidget) EffectiveWinId() uintptr {
 	return 0
 }
 
+func (ptr *QWidget) WinId() uintptr {
+	if ptr.Pointer() != nil {
+		return uintptr(C.QWidget_WinId(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWidget) AcceptDrops() bool {
+	if ptr.Pointer() != nil {
+		return C.QWidget_AcceptDrops(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWidget) AutoFillBackground() bool {
+	if ptr.Pointer() != nil {
+		return C.QWidget_AutoFillBackground(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QWidget) HasEditFocus() bool {
 	if ptr.Pointer() != nil {
 		return C.QWidget_HasEditFocus(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWidget) HasFocus() bool {
+	if ptr.Pointer() != nil {
+		return C.QWidget_HasFocus(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -97368,6 +97482,13 @@ func (ptr *QWidget) HasHeightForWidthDefault() bool {
 func (ptr *QWidget) HasMouseTracking() bool {
 	if ptr.Pointer() != nil {
 		return C.QWidget_HasMouseTracking(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWidget) HasTabletTracking() bool {
+	if ptr.Pointer() != nil {
+		return C.QWidget_HasTabletTracking(ptr.Pointer()) != 0
 	}
 	return false
 }

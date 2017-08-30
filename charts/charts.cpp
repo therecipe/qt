@@ -1466,6 +1466,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 
@@ -2141,6 +2142,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 
@@ -2723,6 +2725,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 
@@ -3510,6 +3513,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 
@@ -8799,6 +8803,7 @@ public:
 	void Signal_ColorChanged(QColor color) { callbackQLegend_ColorChanged(this, new QColor(color)); };
 	void Signal_FontChanged(QFont font) { callbackQLegend_FontChanged(this, new QFont(font)); };
 	void Signal_LabelColorChanged(QColor color) { callbackQLegend_LabelColorChanged(this, new QColor(color)); };
+	void Signal_MarkerShapeChanged(QLegend::MarkerShape shape) { callbackQLegend_MarkerShapeChanged(this, shape); };
 	void Signal_ReverseMarkersChanged(bool reverseMarkers) { callbackQLegend_ReverseMarkersChanged(this, reverseMarkers); };
 	void Signal_ShowToolTipsChanged(bool showToolTips) { callbackQLegend_ShowToolTipsChanged(this, showToolTips); };
 	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQLegend_ItemChange(this, change, const_cast<QVariant*>(&value))); };
@@ -8987,6 +8992,21 @@ void QLegend_LabelColorChanged(void* ptr, void* color)
 	static_cast<QLegend*>(ptr)->labelColorChanged(*static_cast<QColor*>(color));
 }
 
+void QLegend_ConnectMarkerShapeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLegend*>(ptr), static_cast<void (QLegend::*)(QLegend::MarkerShape)>(&QLegend::markerShapeChanged), static_cast<MyQLegend*>(ptr), static_cast<void (MyQLegend::*)(QLegend::MarkerShape)>(&MyQLegend::Signal_MarkerShapeChanged));
+}
+
+void QLegend_DisconnectMarkerShapeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLegend*>(ptr), static_cast<void (QLegend::*)(QLegend::MarkerShape)>(&QLegend::markerShapeChanged), static_cast<MyQLegend*>(ptr), static_cast<void (MyQLegend::*)(QLegend::MarkerShape)>(&MyQLegend::Signal_MarkerShapeChanged));
+}
+
+void QLegend_MarkerShapeChanged(void* ptr, long long shape)
+{
+	static_cast<QLegend*>(ptr)->markerShapeChanged(static_cast<QLegend::MarkerShape>(shape));
+}
+
 void QLegend_ConnectReverseMarkersChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLegend*>(ptr), static_cast<void (QLegend::*)(bool)>(&QLegend::reverseMarkersChanged), static_cast<MyQLegend*>(ptr), static_cast<void (MyQLegend::*)(bool)>(&MyQLegend::Signal_ReverseMarkersChanged));
@@ -9037,6 +9057,11 @@ void QLegend_SetLabelColor(void* ptr, void* color)
 	static_cast<QLegend*>(ptr)->setLabelColor(*static_cast<QColor*>(color));
 }
 
+void QLegend_SetMarkerShape(void* ptr, long long shape)
+{
+	static_cast<QLegend*>(ptr)->setMarkerShape(static_cast<QLegend::MarkerShape>(shape));
+}
+
 void QLegend_SetPen(void* ptr, void* pen)
 {
 	static_cast<QLegend*>(ptr)->setPen(*static_cast<QPen*>(pen));
@@ -9070,6 +9095,11 @@ void QLegend_ShowToolTipsChanged(void* ptr, char showToolTips)
 void QLegend_DestroyQLegend(void* ptr)
 {
 	static_cast<QLegend*>(ptr)->~QLegend();
+}
+
+long long QLegend_MarkerShape(void* ptr)
+{
+	return static_cast<QLegend*>(ptr)->markerShape();
 }
 
 void* QLegend_Brush(void* ptr)
@@ -9647,6 +9677,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 	 ~MyQLegendMarker() { callbackQLegendMarker_DestroyQLegendMarker(this); };
 };
@@ -9791,9 +9822,29 @@ void QLegendMarker_SetPen(void* ptr, void* pen)
 	static_cast<QLegendMarker*>(ptr)->setPen(*static_cast<QPen*>(pen));
 }
 
+void QLegendMarker_SetShape(void* ptr, long long shape)
+{
+	static_cast<QLegendMarker*>(ptr)->setShape(static_cast<QLegend::MarkerShape>(shape));
+}
+
 void QLegendMarker_SetVisible(void* ptr, char visible)
 {
 	static_cast<QLegendMarker*>(ptr)->setVisible(visible != 0);
+}
+
+void QLegendMarker_ConnectShapeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLegendMarker*>(ptr), static_cast<void (QLegendMarker::*)()>(&QLegendMarker::shapeChanged), static_cast<MyQLegendMarker*>(ptr), static_cast<void (MyQLegendMarker::*)()>(&MyQLegendMarker::Signal_ShapeChanged));
+}
+
+void QLegendMarker_DisconnectShapeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLegendMarker*>(ptr), static_cast<void (QLegendMarker::*)()>(&QLegendMarker::shapeChanged), static_cast<MyQLegendMarker*>(ptr), static_cast<void (MyQLegendMarker::*)()>(&MyQLegendMarker::Signal_ShapeChanged));
+}
+
+void QLegendMarker_ShapeChanged(void* ptr)
+{
+	static_cast<QLegendMarker*>(ptr)->shapeChanged();
 }
 
 void QLegendMarker_ConnectVisibleChanged(void* ptr)
@@ -9835,6 +9886,11 @@ void* QLegendMarker_LabelBrush(void* ptr)
 void* QLegendMarker_Font(void* ptr)
 {
 	return new QFont(static_cast<QLegendMarker*>(ptr)->font());
+}
+
+long long QLegendMarker_Shape(void* ptr)
+{
+	return static_cast<QLegendMarker*>(ptr)->shape();
 }
 
 void* QLegendMarker_Pen(void* ptr)
@@ -9952,7 +10008,9 @@ public:
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQLogValueAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_MaxChanged(qreal max) { callbackQLogValueAxis_MaxChanged(this, max); };
 	void Signal_MinChanged(qreal min) { callbackQLogValueAxis_MinChanged(this, min); };
+	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQLogValueAxis_MinorTickCountChanged(this, minorTickCount); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQLogValueAxis_RangeChanged(this, min, max); };
+	void Signal_TickCountChanged(int tickCount) { callbackQLogValueAxis_TickCountChanged(this, tickCount); };
 	AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQLogValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
 	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
@@ -10082,6 +10140,21 @@ void QLogValueAxis_MinChanged(void* ptr, double min)
 	static_cast<QLogValueAxis*>(ptr)->minChanged(min);
 }
 
+void QLogValueAxis_ConnectMinorTickCountChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(int)>(&QLogValueAxis::minorTickCountChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(int)>(&MyQLogValueAxis::Signal_MinorTickCountChanged));
+}
+
+void QLogValueAxis_DisconnectMinorTickCountChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(int)>(&QLogValueAxis::minorTickCountChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(int)>(&MyQLogValueAxis::Signal_MinorTickCountChanged));
+}
+
+void QLogValueAxis_MinorTickCountChanged(void* ptr, int minorTickCount)
+{
+	static_cast<QLogValueAxis*>(ptr)->minorTickCountChanged(minorTickCount);
+}
+
 void QLogValueAxis_ConnectRangeChanged(void* ptr)
 {
 	QObject::connect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(qreal, qreal)>(&QLogValueAxis::rangeChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(qreal, qreal)>(&MyQLogValueAxis::Signal_RangeChanged));
@@ -10117,9 +10190,29 @@ void QLogValueAxis_SetMin(void* ptr, double min)
 	static_cast<QLogValueAxis*>(ptr)->setMin(min);
 }
 
+void QLogValueAxis_SetMinorTickCount(void* ptr, int minorTickCount)
+{
+	static_cast<QLogValueAxis*>(ptr)->setMinorTickCount(minorTickCount);
+}
+
 void QLogValueAxis_SetRange(void* ptr, double min, double max)
 {
 	static_cast<QLogValueAxis*>(ptr)->setRange(min, max);
+}
+
+void QLogValueAxis_ConnectTickCountChanged(void* ptr)
+{
+	QObject::connect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(int)>(&QLogValueAxis::tickCountChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(int)>(&MyQLogValueAxis::Signal_TickCountChanged));
+}
+
+void QLogValueAxis_DisconnectTickCountChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QLogValueAxis*>(ptr), static_cast<void (QLogValueAxis::*)(int)>(&QLogValueAxis::tickCountChanged), static_cast<MyQLogValueAxis*>(ptr), static_cast<void (MyQLogValueAxis::*)(int)>(&MyQLogValueAxis::Signal_TickCountChanged));
+}
+
+void QLogValueAxis_TickCountChanged(void* ptr, int tickCount)
+{
+	static_cast<QLogValueAxis*>(ptr)->tickCountChanged(tickCount);
 }
 
 void QLogValueAxis_DestroyQLogValueAxis(void* ptr)
@@ -10140,6 +10233,16 @@ long long QLogValueAxis_TypeDefault(void* ptr)
 struct QtCharts_PackedString QLogValueAxis_LabelFormat(void* ptr)
 {
 	return ({ QByteArray tb0d38b = static_cast<QLogValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(tb0d38b.prepend("WHITESPACE").constData()+10), tb0d38b.size()-10 }; });
+}
+
+int QLogValueAxis_MinorTickCount(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->minorTickCount();
+}
+
+int QLogValueAxis_TickCount(void* ptr)
+{
+	return static_cast<QLogValueAxis*>(ptr)->tickCount();
 }
 
 double QLogValueAxis_Base(void* ptr)
@@ -10249,6 +10352,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 
@@ -13330,6 +13434,7 @@ public:
 	void Signal_LabelBrushChanged() { callbackQLegendMarker_LabelBrushChanged(this); };
 	void Signal_LabelChanged() { callbackQLegendMarker_LabelChanged(this); };
 	void Signal_PenChanged() { callbackQLegendMarker_PenChanged(this); };
+	void Signal_ShapeChanged() { callbackQLegendMarker_ShapeChanged(this); };
 	void Signal_VisibleChanged() { callbackQLegendMarker_VisibleChanged(this); };
 };
 

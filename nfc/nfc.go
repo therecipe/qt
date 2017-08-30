@@ -2586,6 +2586,7 @@ const (
 	QNearFieldTarget__InvalidParametersError QNearFieldTarget__Error = QNearFieldTarget__Error(6)
 	QNearFieldTarget__NdefReadError          QNearFieldTarget__Error = QNearFieldTarget__Error(7)
 	QNearFieldTarget__NdefWriteError         QNearFieldTarget__Error = QNearFieldTarget__Error(8)
+	QNearFieldTarget__CommandError           QNearFieldTarget__Error = QNearFieldTarget__Error(9)
 )
 
 //go:generate stringer -type=QNearFieldTarget__Type
@@ -2607,6 +2608,13 @@ func NewQNearFieldTarget(parent core.QObject_ITF) *QNearFieldTarget {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func (ptr *QNearFieldTarget) Disconnect() bool {
+	if ptr.Pointer() != nil {
+		return C.QNearFieldTarget_Disconnect(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 //export callbackQNearFieldTarget_HasNdefMessage
@@ -2649,6 +2657,13 @@ func (ptr *QNearFieldTarget) HasNdefMessage() bool {
 func (ptr *QNearFieldTarget) HasNdefMessageDefault() bool {
 	if ptr.Pointer() != nil {
 		return C.QNearFieldTarget_HasNdefMessageDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldTarget) SetKeepConnection(isPersistent bool) bool {
+	if ptr.Pointer() != nil {
+		return C.QNearFieldTarget_SetKeepConnection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent)))) != 0
 	}
 	return false
 }
@@ -2982,6 +2997,20 @@ func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
 		return C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QNearFieldTarget) KeepConnection() bool {
+	if ptr.Pointer() != nil {
+		return C.QNearFieldTarget_KeepConnection(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldTarget) MaxCommandLength() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QNearFieldTarget_MaxCommandLength(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QNearFieldTarget) __sendCommands_commands_atList(i int) *core.QByteArray {

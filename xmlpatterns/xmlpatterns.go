@@ -2961,6 +2961,12 @@ func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI stri
 	return tmpValue
 }
 
+func NewQXmlName3(other QXmlName_ITF) *QXmlName {
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName3(PointerFromQXmlName(other)))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
+}
+
 func QXmlName_IsNCName(candidate string) bool {
 	var candidateC *C.char
 	if candidate != "" {

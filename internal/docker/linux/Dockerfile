@@ -17,7 +17,7 @@ RUN rm -f /usr/bin/gcc; sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
 RUN rm -f /usr/bin/g++; sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 
 
-ENV GO go1.8.3.linux-amd64.tar.gz
+ENV GO go1.9.linux-amd64.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C /usr/local && rm -f /tmp/$GO
 ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work
@@ -28,12 +28,12 @@ RUN rm -r /home/user/work/src/github.com/Sirupsen/ && rm -r /home/user/work/src/
 RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
 
 
-ENV QT qt-opensource-linux-x64-android-5.8.0.run
+ENV QT qt-unified-linux-x64-online.run
 ENV QT_QPA_PLATFORM minimal
-RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.8/5.8.0/$QT && chmod +x /tmp/$QT && /tmp/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs && rm -f /tmp/$QT
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/online_installers/$QT && chmod +x /tmp/$QT && /tmp/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs && rm -f /tmp/$QT
 
 
-ENV QT_DIR /opt/Qt5.8.0
+ENV QT_DIR /opt/Qt
 RUN $GOPATH/bin/qtsetup prep linux
 RUN $GOPATH/bin/qtsetup check linux
 RUN $GOPATH/bin/qtsetup generate linux

@@ -32,6 +32,7 @@
 #include <QHash>
 #include <QHostAddress>
 #include <QHostInfo>
+#include <QHstsPolicy>
 #include <QHttpMultiPart>
 #include <QHttpPart>
 #include <QIODevice>
@@ -2397,6 +2398,66 @@ void* QHostInfo___addresses_newList(void* ptr)
 	return new QList<QHostAddress>;
 }
 
+void* QHstsPolicy_NewQHstsPolicy()
+{
+	return new QHstsPolicy();
+}
+
+void* QHstsPolicy_NewQHstsPolicy2(void* expiry, long long flags, struct QtNetwork_PackedString host, long long mode)
+{
+	return new QHstsPolicy(*static_cast<QDateTime*>(expiry), static_cast<QHstsPolicy::PolicyFlag>(flags), QString::fromUtf8(host.data, host.len), static_cast<QUrl::ParsingMode>(mode));
+}
+
+void* QHstsPolicy_NewQHstsPolicy3(void* other)
+{
+	return new QHstsPolicy(*static_cast<QHstsPolicy*>(other));
+}
+
+void QHstsPolicy_SetExpiry(void* ptr, void* expiry)
+{
+	static_cast<QHstsPolicy*>(ptr)->setExpiry(*static_cast<QDateTime*>(expiry));
+}
+
+void QHstsPolicy_SetHost(void* ptr, struct QtNetwork_PackedString host, long long mode)
+{
+	static_cast<QHstsPolicy*>(ptr)->setHost(QString::fromUtf8(host.data, host.len), static_cast<QUrl::ParsingMode>(mode));
+}
+
+void QHstsPolicy_SetIncludesSubDomains(void* ptr, char include)
+{
+	static_cast<QHstsPolicy*>(ptr)->setIncludesSubDomains(include != 0);
+}
+
+void QHstsPolicy_Swap(void* ptr, void* other)
+{
+	static_cast<QHstsPolicy*>(ptr)->swap(*static_cast<QHstsPolicy*>(other));
+}
+
+void QHstsPolicy_DestroyQHstsPolicy(void* ptr)
+{
+	static_cast<QHstsPolicy*>(ptr)->~QHstsPolicy();
+}
+
+void* QHstsPolicy_Expiry(void* ptr)
+{
+	return new QDateTime(static_cast<QHstsPolicy*>(ptr)->expiry());
+}
+
+struct QtNetwork_PackedString QHstsPolicy_Host(void* ptr, long long options)
+{
+	return ({ QByteArray tfcde23 = static_cast<QHstsPolicy*>(ptr)->host(static_cast<QUrl::ComponentFormattingOption>(options)).toUtf8(); QtNetwork_PackedString { const_cast<char*>(tfcde23.prepend("WHITESPACE").constData()+10), tfcde23.size()-10 }; });
+}
+
+char QHstsPolicy_IncludesSubDomains(void* ptr)
+{
+	return static_cast<QHstsPolicy*>(ptr)->includesSubDomains();
+}
+
+char QHstsPolicy_IsExpired(void* ptr)
+{
+	return static_cast<QHstsPolicy*>(ptr)->isExpired();
+}
+
 class MyQHttpMultiPart: public QHttpMultiPart
 {
 public:
@@ -3445,7 +3506,7 @@ class MyQNetworkAccessManager: public QNetworkAccessManager
 {
 public:
 	MyQNetworkAccessManager(QObject *parent = Q_NULLPTR) : QNetworkAccessManager(parent) {QNetworkAccessManager_QNetworkAccessManager_QRegisterMetaType();};
-	QNetworkReply * createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest & req, QIODevice * outgoingData) { return static_cast<QNetworkReply*>(callbackQNetworkAccessManager_CreateRequest(this, op, const_cast<QNetworkRequest*>(&req), outgoingData)); };
+	QNetworkReply * createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest & originalReq, QIODevice * outgoingData) { return static_cast<QNetworkReply*>(callbackQNetworkAccessManager_CreateRequest(this, op, const_cast<QNetworkRequest*>(&originalReq), outgoingData)); };
 	void Signal_AuthenticationRequired(QNetworkReply * reply, QAuthenticator * authenticator) { callbackQNetworkAccessManager_AuthenticationRequired(this, reply, authenticator); };
 	void Signal_Encrypted(QNetworkReply * reply) { callbackQNetworkAccessManager_Encrypted(this, reply); };
 	void Signal_Finished(QNetworkReply * reply) { callbackQNetworkAccessManager_Finished(this, reply); };
@@ -3512,14 +3573,14 @@ void* QNetworkAccessManager_NewQNetworkAccessManager(void* parent)
 	}
 }
 
-void* QNetworkAccessManager_CreateRequest(void* ptr, long long op, void* req, void* outgoingData)
+void* QNetworkAccessManager_CreateRequest(void* ptr, long long op, void* originalReq, void* outgoingData)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(req), static_cast<QIODevice*>(outgoingData));
+	return static_cast<QNetworkAccessManager*>(ptr)->createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(originalReq), static_cast<QIODevice*>(outgoingData));
 }
 
-void* QNetworkAccessManager_CreateRequestDefault(void* ptr, long long op, void* req, void* outgoingData)
+void* QNetworkAccessManager_CreateRequestDefault(void* ptr, long long op, void* originalReq, void* outgoingData)
 {
-		return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(req), static_cast<QIODevice*>(outgoingData));
+		return static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::createRequest(static_cast<QNetworkAccessManager::Operation>(op), *static_cast<QNetworkRequest*>(originalReq), static_cast<QIODevice*>(outgoingData));
 }
 
 void* QNetworkAccessManager_DeleteResource(void* ptr, void* request)
@@ -3582,6 +3643,11 @@ void* QNetworkAccessManager_SendCustomRequest2(void* ptr, void* request, void* v
 	return static_cast<QNetworkAccessManager*>(ptr)->sendCustomRequest(*static_cast<QNetworkRequest*>(request), *static_cast<QByteArray*>(verb), *static_cast<QByteArray*>(data));
 }
 
+void QNetworkAccessManager_AddStrictTransportSecurityHosts(void* ptr, void* knownHosts)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->addStrictTransportSecurityHosts(*static_cast<QVector<QHstsPolicy>*>(knownHosts));
+}
+
 void QNetworkAccessManager_ConnectAuthenticationRequired(void* ptr)
 {
 	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&QNetworkAccessManager::authenticationRequired), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, QAuthenticator *)>(&MyQNetworkAccessManager::Signal_AuthenticationRequired));
@@ -3600,6 +3666,11 @@ void QNetworkAccessManager_AuthenticationRequired(void* ptr, void* reply, void* 
 void QNetworkAccessManager_ClearAccessCache(void* ptr)
 {
 	static_cast<QNetworkAccessManager*>(ptr)->clearAccessCache();
+}
+
+void QNetworkAccessManager_ClearConnectionCache(void* ptr)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->clearConnectionCache();
 }
 
 void QNetworkAccessManager_ConnectToHost(void* ptr, struct QtNetwork_PackedString hostName, unsigned short port)
@@ -3718,6 +3789,16 @@ void QNetworkAccessManager_SetProxyFactory(void* ptr, void* factory)
 	static_cast<QNetworkAccessManager*>(ptr)->setProxyFactory(static_cast<QNetworkProxyFactory*>(factory));
 }
 
+void QNetworkAccessManager_SetRedirectPolicy(void* ptr, long long policy)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->setRedirectPolicy(static_cast<QNetworkRequest::RedirectPolicy>(policy));
+}
+
+void QNetworkAccessManager_SetStrictTransportSecurityEnabled(void* ptr, char enabled)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->setStrictTransportSecurityEnabled(enabled != 0);
+}
+
 void QNetworkAccessManager_ConnectSslErrors(void* ptr)
 {
 	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors));
@@ -3773,6 +3854,11 @@ void* QNetworkAccessManager_ProxyFactory(void* ptr)
 	return static_cast<QNetworkAccessManager*>(ptr)->proxyFactory();
 }
 
+long long QNetworkAccessManager_RedirectPolicy(void* ptr)
+{
+	return static_cast<QNetworkAccessManager*>(ptr)->redirectPolicy();
+}
+
 struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemes(void* ptr)
 {
 	return ({ QByteArray tda9ca8 = static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(tda9ca8.prepend("WHITESPACE").constData()+10), tda9ca8.size()-10 }; });
@@ -3790,6 +3876,32 @@ struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementati
 		return ({ QByteArray t5e649f = static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::supportedSchemesImplementation().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5e649f.prepend("WHITESPACE").constData()+10), t5e649f.size()-10 }; });
 }
 
+struct QtNetwork_PackedList QNetworkAccessManager_StrictTransportSecurityHosts(void* ptr)
+{
+	return ({ QVector<QHstsPolicy>* tmpValue = new QVector<QHstsPolicy>(static_cast<QNetworkAccessManager*>(ptr)->strictTransportSecurityHosts()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QNetworkAccessManager_IsStrictTransportSecurityEnabled(void* ptr)
+{
+	return static_cast<QNetworkAccessManager*>(ptr)->isStrictTransportSecurityEnabled();
+}
+
+void* QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_atList(void* ptr, int i)
+{
+	return new QHstsPolicy(static_cast<QVector<QHstsPolicy>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QHstsPolicy>*>(ptr)->append(*static_cast<QHstsPolicy*>(i));
+}
+
+void* QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<QHstsPolicy>;
+}
+
 void* QNetworkAccessManager___sslErrors_errors_atList(void* ptr, int i)
 {
 	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
@@ -3804,6 +3916,22 @@ void* QNetworkAccessManager___sslErrors_errors_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QSslError>;
+}
+
+void* QNetworkAccessManager___strictTransportSecurityHosts_atList(void* ptr, int i)
+{
+	return new QHstsPolicy(static_cast<QVector<QHstsPolicy>*>(ptr)->at(i));
+}
+
+void QNetworkAccessManager___strictTransportSecurityHosts_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QHstsPolicy>*>(ptr)->append(*static_cast<QHstsPolicy*>(i));
+}
+
+void* QNetworkAccessManager___strictTransportSecurityHosts_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<QHstsPolicy>;
 }
 
 void* QNetworkAccessManager___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4066,6 +4194,11 @@ void* QNetworkConfiguration_NewQNetworkConfiguration2(void* other)
 	return new QNetworkConfiguration(*static_cast<QNetworkConfiguration*>(other));
 }
 
+char QNetworkConfiguration_SetConnectTimeout(void* ptr, int timeout)
+{
+	return static_cast<QNetworkConfiguration*>(ptr)->setConnectTimeout(timeout);
+}
+
 void QNetworkConfiguration_Swap(void* ptr, void* other)
 {
 	static_cast<QNetworkConfiguration*>(ptr)->swap(*static_cast<QNetworkConfiguration*>(other));
@@ -4129,6 +4262,11 @@ char QNetworkConfiguration_IsRoamingAvailable(void* ptr)
 char QNetworkConfiguration_IsValid(void* ptr)
 {
 	return static_cast<QNetworkConfiguration*>(ptr)->isValid();
+}
+
+int QNetworkConfiguration_ConnectTimeout(void* ptr)
+{
+	return static_cast<QNetworkConfiguration*>(ptr)->connectTimeout();
 }
 
 void* QNetworkConfiguration___children_atList(void* ptr, int i)
@@ -5769,6 +5907,7 @@ public:
 	void ignoreSslErrorsImplementation(const QList<QSslError> & errors) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_MetaDataChanged() { callbackQNetworkReply_MetaDataChanged(this); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkReply_PreSharedKeyAuthenticationRequired(this, authenticator); };
+	void Signal_RedirectAllowed() { callbackQNetworkReply_RedirectAllowed(this); };
 	void Signal_Redirected(const QUrl & url) { callbackQNetworkReply_Redirected(this, const_cast<QUrl*>(&url)); };
 	void setReadBufferSize(qint64 size) { callbackQNetworkReply_SetReadBufferSize(this, size); };
 	void setSslConfigurationImplementation(const QSslConfiguration & configuration) { callbackQNetworkReply_SetSslConfigurationImplementation(this, const_cast<QSslConfiguration*>(&configuration)); };
@@ -5978,6 +6117,21 @@ void QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(void* ptr)
 void QNetworkReply_PreSharedKeyAuthenticationRequired(void* ptr, void* authenticator)
 {
 	static_cast<QNetworkReply*>(ptr)->preSharedKeyAuthenticationRequired(static_cast<QSslPreSharedKeyAuthenticator*>(authenticator));
+}
+
+void QNetworkReply_ConnectRedirectAllowed(void* ptr)
+{
+	QObject::connect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::redirectAllowed), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_RedirectAllowed));
+}
+
+void QNetworkReply_DisconnectRedirectAllowed(void* ptr)
+{
+	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)()>(&QNetworkReply::redirectAllowed), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)()>(&MyQNetworkReply::Signal_RedirectAllowed));
+}
+
+void QNetworkReply_RedirectAllowed(void* ptr)
+{
+	static_cast<QNetworkReply*>(ptr)->redirectAllowed();
 }
 
 void QNetworkReply_ConnectRedirected(void* ptr)

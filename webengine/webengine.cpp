@@ -39,6 +39,7 @@
 #include <QKeyEvent>
 #include <QLayout>
 #include <QList>
+#include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -58,6 +59,7 @@
 #include <QPointF>
 #include <QQuickItem>
 #include <QQuickWebEngineProfile>
+#include <QQuickWebEngineScript>
 #include <QRadioData>
 #include <QRect>
 #include <QResizeEvent>
@@ -73,6 +75,7 @@
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
+#include <QVector>
 #include <QWebChannel>
 #include <QWebEngineCertificateError>
 #include <QWebEngineContextMenuData>
@@ -81,6 +84,7 @@
 #include <QWebEngineFullScreenRequest>
 #include <QWebEngineHistory>
 #include <QWebEngineHistoryItem>
+#include <QWebEngineHttpRequest>
 #include <QWebEnginePage>
 #include <QWebEngineProfile>
 #include <QWebEngineScript>
@@ -614,6 +618,356 @@ void* QQuickWebEngineProfile_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QQuickWebEngineProfile*>(ptr)->QQuickWebEngineProfile::metaObject());
 }
 
+class MyQQuickWebEngineScript: public QQuickWebEngineScript
+{
+public:
+	MyQQuickWebEngineScript(QObject *parent = Q_NULLPTR) : QQuickWebEngineScript(parent) {QQuickWebEngineScript_QQuickWebEngineScript_QRegisterMetaType();};
+	void Signal_InjectionPointChanged(QQuickWebEngineScript::InjectionPoint injectionPoint) { callbackQQuickWebEngineScript_InjectionPointChanged(this, injectionPoint); };
+	void Signal_NameChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtWebEngine_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQQuickWebEngineScript_NameChanged(this, namePacked); };
+	void Signal_RunOnSubframesChanged(bool on) { callbackQQuickWebEngineScript_RunOnSubframesChanged(this, on); };
+	void Signal_SourceCodeChanged(const QString & code) { QByteArray te6fb06 = code.toUtf8(); QtWebEngine_PackedString codePacked = { const_cast<char*>(te6fb06.prepend("WHITESPACE").constData()+10), te6fb06.size()-10 };callbackQQuickWebEngineScript_SourceCodeChanged(this, codePacked); };
+	void Signal_SourceUrlChanged(const QUrl & url) { callbackQQuickWebEngineScript_SourceUrlChanged(this, const_cast<QUrl*>(&url)); };
+	void Signal_WorldIdChanged(QQuickWebEngineScript::ScriptWorldId scriptWorldId) { callbackQQuickWebEngineScript_WorldIdChanged(this, scriptWorldId); };
+	bool event(QEvent * e) { return callbackQQuickWebEngineScript_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWebEngineScript_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQQuickWebEngineScript_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineScript_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQQuickWebEngineScript_CustomEvent(this, event); };
+	void deleteLater() { callbackQQuickWebEngineScript_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQQuickWebEngineScript_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineScript_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWebEngine_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQQuickWebEngineScript_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineScript_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineScript_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQQuickWebEngineScript*)
+
+int QQuickWebEngineScript_QQuickWebEngineScript_QRegisterMetaType(){qRegisterMetaType<QQuickWebEngineScript*>(); return qRegisterMetaType<MyQQuickWebEngineScript*>();}
+
+void* QQuickWebEngineScript_NewQQuickWebEngineScript(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQQuickWebEngineScript(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQQuickWebEngineScript(static_cast<QObject*>(parent));
+	}
+}
+
+void QQuickWebEngineScript_ConnectInjectionPointChanged(void* ptr)
+{
+	qRegisterMetaType<QQuickWebEngineScript::InjectionPoint>();
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(QQuickWebEngineScript::InjectionPoint)>(&QQuickWebEngineScript::injectionPointChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(QQuickWebEngineScript::InjectionPoint)>(&MyQQuickWebEngineScript::Signal_InjectionPointChanged));
+}
+
+void QQuickWebEngineScript_DisconnectInjectionPointChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(QQuickWebEngineScript::InjectionPoint)>(&QQuickWebEngineScript::injectionPointChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(QQuickWebEngineScript::InjectionPoint)>(&MyQQuickWebEngineScript::Signal_InjectionPointChanged));
+}
+
+void QQuickWebEngineScript_InjectionPointChanged(void* ptr, long long injectionPoint)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->injectionPointChanged(static_cast<QQuickWebEngineScript::InjectionPoint>(injectionPoint));
+}
+
+void QQuickWebEngineScript_ConnectNameChanged(void* ptr)
+{
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QString &)>(&QQuickWebEngineScript::nameChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QString &)>(&MyQQuickWebEngineScript::Signal_NameChanged));
+}
+
+void QQuickWebEngineScript_DisconnectNameChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QString &)>(&QQuickWebEngineScript::nameChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QString &)>(&MyQQuickWebEngineScript::Signal_NameChanged));
+}
+
+void QQuickWebEngineScript_NameChanged(void* ptr, struct QtWebEngine_PackedString name)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->nameChanged(QString::fromUtf8(name.data, name.len));
+}
+
+void QQuickWebEngineScript_ConnectRunOnSubframesChanged(void* ptr)
+{
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(bool)>(&QQuickWebEngineScript::runOnSubframesChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(bool)>(&MyQQuickWebEngineScript::Signal_RunOnSubframesChanged));
+}
+
+void QQuickWebEngineScript_DisconnectRunOnSubframesChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(bool)>(&QQuickWebEngineScript::runOnSubframesChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(bool)>(&MyQQuickWebEngineScript::Signal_RunOnSubframesChanged));
+}
+
+void QQuickWebEngineScript_RunOnSubframesChanged(void* ptr, char on)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->runOnSubframesChanged(on != 0);
+}
+
+void QQuickWebEngineScript_SetInjectionPoint(void* ptr, long long injectionPoint)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setInjectionPoint(static_cast<QQuickWebEngineScript::InjectionPoint>(injectionPoint));
+}
+
+void QQuickWebEngineScript_SetName(void* ptr, struct QtWebEngine_PackedString name)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setName(QString::fromUtf8(name.data, name.len));
+}
+
+void QQuickWebEngineScript_SetRunOnSubframes(void* ptr, char on)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setRunOnSubframes(on != 0);
+}
+
+void QQuickWebEngineScript_SetSourceCode(void* ptr, struct QtWebEngine_PackedString code)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setSourceCode(QString::fromUtf8(code.data, code.len));
+}
+
+void QQuickWebEngineScript_SetSourceUrl(void* ptr, void* url)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setSourceUrl(*static_cast<QUrl*>(url));
+}
+
+void QQuickWebEngineScript_SetWorldId(void* ptr, long long scriptWorldId)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->setWorldId(static_cast<QQuickWebEngineScript::ScriptWorldId>(scriptWorldId));
+}
+
+void QQuickWebEngineScript_ConnectSourceCodeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QString &)>(&QQuickWebEngineScript::sourceCodeChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QString &)>(&MyQQuickWebEngineScript::Signal_SourceCodeChanged));
+}
+
+void QQuickWebEngineScript_DisconnectSourceCodeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QString &)>(&QQuickWebEngineScript::sourceCodeChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QString &)>(&MyQQuickWebEngineScript::Signal_SourceCodeChanged));
+}
+
+void QQuickWebEngineScript_SourceCodeChanged(void* ptr, struct QtWebEngine_PackedString code)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->sourceCodeChanged(QString::fromUtf8(code.data, code.len));
+}
+
+void QQuickWebEngineScript_ConnectSourceUrlChanged(void* ptr)
+{
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QUrl &)>(&QQuickWebEngineScript::sourceUrlChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QUrl &)>(&MyQQuickWebEngineScript::Signal_SourceUrlChanged));
+}
+
+void QQuickWebEngineScript_DisconnectSourceUrlChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(const QUrl &)>(&QQuickWebEngineScript::sourceUrlChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(const QUrl &)>(&MyQQuickWebEngineScript::Signal_SourceUrlChanged));
+}
+
+void QQuickWebEngineScript_SourceUrlChanged(void* ptr, void* url)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->sourceUrlChanged(*static_cast<QUrl*>(url));
+}
+
+void QQuickWebEngineScript_ConnectWorldIdChanged(void* ptr)
+{
+	qRegisterMetaType<QQuickWebEngineScript::ScriptWorldId>();
+	QObject::connect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(QQuickWebEngineScript::ScriptWorldId)>(&QQuickWebEngineScript::worldIdChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(QQuickWebEngineScript::ScriptWorldId)>(&MyQQuickWebEngineScript::Signal_WorldIdChanged));
+}
+
+void QQuickWebEngineScript_DisconnectWorldIdChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QQuickWebEngineScript*>(ptr), static_cast<void (QQuickWebEngineScript::*)(QQuickWebEngineScript::ScriptWorldId)>(&QQuickWebEngineScript::worldIdChanged), static_cast<MyQQuickWebEngineScript*>(ptr), static_cast<void (MyQQuickWebEngineScript::*)(QQuickWebEngineScript::ScriptWorldId)>(&MyQQuickWebEngineScript::Signal_WorldIdChanged));
+}
+
+void QQuickWebEngineScript_WorldIdChanged(void* ptr, long long scriptWorldId)
+{
+	static_cast<QQuickWebEngineScript*>(ptr)->worldIdChanged(static_cast<QQuickWebEngineScript::ScriptWorldId>(scriptWorldId));
+}
+
+long long QQuickWebEngineScript_InjectionPoint(void* ptr)
+{
+	return static_cast<QQuickWebEngineScript*>(ptr)->injectionPoint();
+}
+
+struct QtWebEngine_PackedString QQuickWebEngineScript_Name(void* ptr)
+{
+	return ({ QByteArray te34dea = static_cast<QQuickWebEngineScript*>(ptr)->name().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(te34dea.prepend("WHITESPACE").constData()+10), te34dea.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QQuickWebEngineScript_SourceCode(void* ptr)
+{
+	return ({ QByteArray ta033c9 = static_cast<QQuickWebEngineScript*>(ptr)->sourceCode().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(ta033c9.prepend("WHITESPACE").constData()+10), ta033c9.size()-10 }; });
+}
+
+struct QtWebEngine_PackedString QQuickWebEngineScript_ToString(void* ptr)
+{
+	return ({ QByteArray t0f4281 = static_cast<QQuickWebEngineScript*>(ptr)->toString().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0f4281.prepend("WHITESPACE").constData()+10), t0f4281.size()-10 }; });
+}
+
+void* QQuickWebEngineScript_SourceUrl(void* ptr)
+{
+	return new QUrl(static_cast<QQuickWebEngineScript*>(ptr)->sourceUrl());
+}
+
+long long QQuickWebEngineScript_WorldId(void* ptr)
+{
+	return static_cast<QQuickWebEngineScript*>(ptr)->worldId();
+}
+
+char QQuickWebEngineScript_RunOnSubframes(void* ptr)
+{
+	return static_cast<QQuickWebEngineScript*>(ptr)->runOnSubframes();
+}
+
+void* QQuickWebEngineScript___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineScript___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QQuickWebEngineScript___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>;
+}
+
+void* QQuickWebEngineScript___findChildren_atList2(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineScript___findChildren_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineScript___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QQuickWebEngineScript___findChildren_atList3(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineScript___findChildren_setList3(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineScript___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QQuickWebEngineScript___findChildren_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineScript___findChildren_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineScript___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>;
+}
+
+void* QQuickWebEngineScript___children_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
+void QQuickWebEngineScript___children_setList(void* ptr, void* i)
+{
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+}
+
+void* QQuickWebEngineScript___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>;
+}
+
+char QQuickWebEngineScript_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::event(static_cast<QEvent*>(e));
+}
+
+char QQuickWebEngineScript_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+		return static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void QQuickWebEngineScript_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QQuickWebEngineScript_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QQuickWebEngineScript_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::customEvent(static_cast<QEvent*>(event));
+}
+
+void QQuickWebEngineScript_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::deleteLater();
+}
+
+void QQuickWebEngineScript_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QQuickWebEngineScript_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QQuickWebEngineScript_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::metaObject());
+}
+
 long long QWebEngineCertificateError_Error(void* ptr)
 {
 	return static_cast<QWebEngineCertificateError*>(ptr)->error();
@@ -1014,6 +1368,11 @@ void QWebEngineDownloadItem_StateChanged(void* ptr, long long state)
 	static_cast<QWebEngineDownloadItem*>(ptr)->stateChanged(static_cast<QWebEngineDownloadItem::DownloadState>(state));
 }
 
+long long QWebEngineDownloadItem_InterruptReason(void* ptr)
+{
+	return static_cast<QWebEngineDownloadItem*>(ptr)->interruptReason();
+}
+
 long long QWebEngineDownloadItem_State(void* ptr)
 {
 	return static_cast<QWebEngineDownloadItem*>(ptr)->state();
@@ -1022,6 +1381,11 @@ long long QWebEngineDownloadItem_State(void* ptr)
 long long QWebEngineDownloadItem_Type(void* ptr)
 {
 	return static_cast<QWebEngineDownloadItem*>(ptr)->type();
+}
+
+struct QtWebEngine_PackedString QWebEngineDownloadItem_InterruptReasonString(void* ptr)
+{
+	return ({ QByteArray t32ab81 = static_cast<QWebEngineDownloadItem*>(ptr)->interruptReasonString().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t32ab81.prepend("WHITESPACE").constData()+10), t32ab81.size()-10 }; });
 }
 
 struct QtWebEngine_PackedString QWebEngineDownloadItem_MimeType(void* ptr)
@@ -1377,6 +1741,139 @@ char QWebEngineHistoryItem_IsValid(void* ptr)
 	return static_cast<QWebEngineHistoryItem*>(ptr)->isValid();
 }
 
+void* QWebEngineHttpRequest_QWebEngineHttpRequest_PostRequest(void* url, void* postData)
+{
+	return new QWebEngineHttpRequest(QWebEngineHttpRequest::postRequest(*static_cast<QUrl*>(url), *static_cast<QMap<QString, QString>*>(postData)));
+}
+
+void* QWebEngineHttpRequest_NewQWebEngineHttpRequest(void* url, long long method)
+{
+	return new QWebEngineHttpRequest(*static_cast<QUrl*>(url), static_cast<QWebEngineHttpRequest::Method>(method));
+}
+
+void* QWebEngineHttpRequest_NewQWebEngineHttpRequest2(void* other)
+{
+	return new QWebEngineHttpRequest(*static_cast<QWebEngineHttpRequest*>(other));
+}
+
+void QWebEngineHttpRequest_SetHeader(void* ptr, void* headerName, void* headerValue)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->setHeader(*static_cast<QByteArray*>(headerName), *static_cast<QByteArray*>(headerValue));
+}
+
+void QWebEngineHttpRequest_SetMethod(void* ptr, long long method)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->setMethod(static_cast<QWebEngineHttpRequest::Method>(method));
+}
+
+void QWebEngineHttpRequest_SetPostData(void* ptr, void* postData)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->setPostData(*static_cast<QByteArray*>(postData));
+}
+
+void QWebEngineHttpRequest_SetUrl(void* ptr, void* url)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->setUrl(*static_cast<QUrl*>(url));
+}
+
+void QWebEngineHttpRequest_Swap(void* ptr, void* other)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->swap(*static_cast<QWebEngineHttpRequest*>(other));
+}
+
+void QWebEngineHttpRequest_UnsetHeader(void* ptr, void* key)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->unsetHeader(*static_cast<QByteArray*>(key));
+}
+
+void QWebEngineHttpRequest_DestroyQWebEngineHttpRequest(void* ptr)
+{
+	static_cast<QWebEngineHttpRequest*>(ptr)->~QWebEngineHttpRequest();
+}
+
+long long QWebEngineHttpRequest_Method(void* ptr)
+{
+	return static_cast<QWebEngineHttpRequest*>(ptr)->method();
+}
+
+void* QWebEngineHttpRequest_Header(void* ptr, void* headerName)
+{
+	return new QByteArray(static_cast<QWebEngineHttpRequest*>(ptr)->header(*static_cast<QByteArray*>(headerName)));
+}
+
+void* QWebEngineHttpRequest_PostData(void* ptr)
+{
+	return new QByteArray(static_cast<QWebEngineHttpRequest*>(ptr)->postData());
+}
+
+void* QWebEngineHttpRequest_Url(void* ptr)
+{
+	return new QUrl(static_cast<QWebEngineHttpRequest*>(ptr)->url());
+}
+
+struct QtWebEngine_PackedList QWebEngineHttpRequest_Headers(void* ptr)
+{
+	return ({ QVector<QByteArray>* tmpValue = new QVector<QByteArray>(static_cast<QWebEngineHttpRequest*>(ptr)->headers()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QWebEngineHttpRequest_HasHeader(void* ptr, void* headerName)
+{
+	return static_cast<QWebEngineHttpRequest*>(ptr)->hasHeader(*static_cast<QByteArray*>(headerName));
+}
+
+struct QtWebEngine_PackedString QWebEngineHttpRequest___postRequest_postData_atList(void* ptr, struct QtWebEngine_PackedString i)
+{
+	return ({ QByteArray t4ff70b = static_cast<QMap<QString, QString>*>(ptr)->value(QString::fromUtf8(i.data, i.len)).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t4ff70b.prepend("WHITESPACE").constData()+10), t4ff70b.size()-10 }; });
+}
+
+void QWebEngineHttpRequest___postRequest_postData_setList(void* ptr, struct QtWebEngine_PackedString key, struct QtWebEngine_PackedString i)
+{
+	static_cast<QMap<QString, QString>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), QString::fromUtf8(i.data, i.len));
+}
+
+void* QWebEngineHttpRequest___postRequest_postData_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<QString, QString>;
+}
+
+struct QtWebEngine_PackedList QWebEngineHttpRequest___postRequest_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QString>*>(ptr)->keys()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QWebEngineHttpRequest___headers_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QVector<QByteArray>*>(ptr)->at(i));
+}
+
+void QWebEngineHttpRequest___headers_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QWebEngineHttpRequest___headers_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<QByteArray>;
+}
+
+struct QtWebEngine_PackedString QWebEngineHttpRequest_____postRequest_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
+void QWebEngineHttpRequest_____postRequest_keyList_setList(void* ptr, struct QtWebEngine_PackedString i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
+}
+
+void* QWebEngineHttpRequest_____postRequest_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QString>;
+}
+
 class MyQWebEnginePage: public QWebEnginePage
 {
 public:
@@ -1403,6 +1900,7 @@ public:
 	void Signal_LoadFinished(bool ok) { callbackQWebEnginePage_LoadFinished(this, ok); };
 	void Signal_LoadProgress(int progress) { callbackQWebEnginePage_LoadProgress(this, progress); };
 	void Signal_LoadStarted() { callbackQWebEnginePage_LoadStarted(this); };
+	void Signal_PdfPrintingFinished(const QString & filePath, bool success) { QByteArray t7df503 = filePath.toUtf8(); QtWebEngine_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };callbackQWebEnginePage_PdfPrintingFinished(this, filePathPacked, success); };
 	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { QByteArray teddfac = proxyHost.toUtf8(); QtWebEngine_PackedString proxyHostPacked = { const_cast<char*>(teddfac.prepend("WHITESPACE").constData()+10), teddfac.size()-10 };callbackQWebEnginePage_ProxyAuthenticationRequired(this, const_cast<QUrl*>(&requestUrl), authenticator, proxyHostPacked); };
 	void Signal_RecentlyAudibleChanged(bool recentlyAudible) { callbackQWebEnginePage_RecentlyAudibleChanged(this, recentlyAudible); };
 	void Signal_RenderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode) { callbackQWebEnginePage_RenderProcessTerminated(this, terminationStatus, exitCode); };
@@ -1745,6 +2243,11 @@ void QWebEnginePage_Load(void* ptr, void* url)
 	static_cast<QWebEnginePage*>(ptr)->load(*static_cast<QUrl*>(url));
 }
 
+void QWebEnginePage_Load2(void* ptr, void* request)
+{
+	static_cast<QWebEnginePage*>(ptr)->load(*static_cast<QWebEngineHttpRequest*>(request));
+}
+
 void QWebEnginePage_ConnectLoadFinished(void* ptr)
 {
 	QObject::connect(static_cast<QWebEnginePage*>(ptr), static_cast<void (QWebEnginePage::*)(bool)>(&QWebEnginePage::loadFinished), static_cast<MyQWebEnginePage*>(ptr), static_cast<void (MyQWebEnginePage::*)(bool)>(&MyQWebEnginePage::Signal_LoadFinished));
@@ -1788,6 +2291,21 @@ void QWebEnginePage_DisconnectLoadStarted(void* ptr)
 void QWebEnginePage_LoadStarted(void* ptr)
 {
 	static_cast<QWebEnginePage*>(ptr)->loadStarted();
+}
+
+void QWebEnginePage_ConnectPdfPrintingFinished(void* ptr)
+{
+	QObject::connect(static_cast<QWebEnginePage*>(ptr), static_cast<void (QWebEnginePage::*)(const QString &, bool)>(&QWebEnginePage::pdfPrintingFinished), static_cast<MyQWebEnginePage*>(ptr), static_cast<void (MyQWebEnginePage::*)(const QString &, bool)>(&MyQWebEnginePage::Signal_PdfPrintingFinished));
+}
+
+void QWebEnginePage_DisconnectPdfPrintingFinished(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebEnginePage*>(ptr), static_cast<void (QWebEnginePage::*)(const QString &, bool)>(&QWebEnginePage::pdfPrintingFinished), static_cast<MyQWebEnginePage*>(ptr), static_cast<void (MyQWebEnginePage::*)(const QString &, bool)>(&MyQWebEnginePage::Signal_PdfPrintingFinished));
+}
+
+void QWebEnginePage_PdfPrintingFinished(void* ptr, struct QtWebEngine_PackedString filePath, char success)
+{
+	static_cast<QWebEnginePage*>(ptr)->pdfPrintingFinished(QString::fromUtf8(filePath.data, filePath.len), success != 0);
 }
 
 void QWebEnginePage_PrintToPdf(void* ptr, struct QtWebEngine_PackedString filePath, void* pageLayout)
@@ -2844,11 +3362,6 @@ void* QWebEngineSettings_QWebEngineSettings_DefaultSettings()
 	return QWebEngineSettings::defaultSettings();
 }
 
-void* QWebEngineSettings_QWebEngineSettings_GlobalSettings()
-{
-	return QWebEngineSettings::globalSettings();
-}
-
 void QWebEngineSettings_ResetAttribute(void* ptr, long long attribute)
 {
 	static_cast<QWebEngineSettings*>(ptr)->resetAttribute(static_cast<QWebEngineSettings::WebAttribute>(attribute));
@@ -3702,6 +4215,11 @@ void QWebEngineView_IconUrlChanged(void* ptr, void* url)
 void QWebEngineView_Load(void* ptr, void* url)
 {
 	static_cast<QWebEngineView*>(ptr)->load(*static_cast<QUrl*>(url));
+}
+
+void QWebEngineView_Load2(void* ptr, void* request)
+{
+	static_cast<QWebEngineView*>(ptr)->load(*static_cast<QWebEngineHttpRequest*>(request));
 }
 
 void QWebEngineView_ConnectLoadFinished(void* ptr)

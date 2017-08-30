@@ -2058,6 +2058,228 @@ func (ptr *QHolsterSensor) Type() string {
 	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
 }
 
+type QHumidityFilter struct {
+	QSensorFilter
+}
+
+type QHumidityFilter_ITF interface {
+	QSensorFilter_ITF
+	QHumidityFilter_PTR() *QHumidityFilter
+}
+
+func (ptr *QHumidityFilter) QHumidityFilter_PTR() *QHumidityFilter {
+	return ptr
+}
+
+func (ptr *QHumidityFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QHumidityFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQHumidityFilter(ptr QHumidityFilter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHumidityFilter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHumidityFilterFromPointer(ptr unsafe.Pointer) *QHumidityFilter {
+	var n = new(QHumidityFilter)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QHumidityFilter) DestroyQHumidityFilter() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQHumidityFilter_Filter
+func callbackQHumidityFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QHumidityReading) bool)(NewQHumidityReadingFromPointer(reading)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QHumidityFilter) ConnectFilter(f func(reading *QHumidityReading) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "filter", func(reading *QHumidityReading) bool {
+				signal.(func(*QHumidityReading) bool)(reading)
+				return f(reading)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "filter", f)
+		}
+	}
+}
+
+func (ptr *QHumidityFilter) DisconnectFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "filter")
+	}
+}
+
+func (ptr *QHumidityFilter) Filter(reading QHumidityReading_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHumidityFilter_Filter(ptr.Pointer(), PointerFromQHumidityReading(reading)) != 0
+	}
+	return false
+}
+
+type QHumidityReading struct {
+	QSensorReading
+}
+
+type QHumidityReading_ITF interface {
+	QSensorReading_ITF
+	QHumidityReading_PTR() *QHumidityReading
+}
+
+func (ptr *QHumidityReading) QHumidityReading_PTR() *QHumidityReading {
+	return ptr
+}
+
+func (ptr *QHumidityReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QHumidityReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQHumidityReading(ptr QHumidityReading_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHumidityReading_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHumidityReadingFromPointer(ptr unsafe.Pointer) *QHumidityReading {
+	var n = new(QHumidityReading)
+	n.SetPointer(ptr)
+	return n
+}
+func (ptr *QHumidityReading) SetAbsoluteHumidity(value float64) {
+	if ptr.Pointer() != nil {
+		C.QHumidityReading_SetAbsoluteHumidity(ptr.Pointer(), C.double(value))
+	}
+}
+
+func (ptr *QHumidityReading) SetRelativeHumidity(humidity float64) {
+	if ptr.Pointer() != nil {
+		C.QHumidityReading_SetRelativeHumidity(ptr.Pointer(), C.double(humidity))
+	}
+}
+
+func (ptr *QHumidityReading) AbsoluteHumidity() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QHumidityReading_AbsoluteHumidity(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QHumidityReading) RelativeHumidity() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QHumidityReading_RelativeHumidity(ptr.Pointer()))
+	}
+	return 0
+}
+
+type QHumiditySensor struct {
+	QSensor
+}
+
+type QHumiditySensor_ITF interface {
+	QSensor_ITF
+	QHumiditySensor_PTR() *QHumiditySensor
+}
+
+func (ptr *QHumiditySensor) QHumiditySensor_PTR() *QHumiditySensor {
+	return ptr
+}
+
+func (ptr *QHumiditySensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QHumiditySensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQHumiditySensor(ptr QHumiditySensor_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHumiditySensor_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQHumiditySensorFromPointer(ptr unsafe.Pointer) *QHumiditySensor {
+	var n = new(QHumiditySensor)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQHumiditySensor(parent core.QObject_ITF) *QHumiditySensor {
+	var tmpValue = NewQHumiditySensorFromPointer(C.QHumiditySensor_NewQHumiditySensor(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QHumiditySensor) DestroyQHumiditySensor() {
+	if ptr.Pointer() != nil {
+		C.QHumiditySensor_DestroyQHumiditySensor(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHumiditySensor) Reading() *QHumidityReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHumidityReadingFromPointer(C.QHumiditySensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func QHumiditySensor_Type() string {
+	return cGoUnpackString(C.QHumiditySensor_QHumiditySensor_Type())
+}
+
+func (ptr *QHumiditySensor) Type() string {
+	return cGoUnpackString(C.QHumiditySensor_QHumiditySensor_Type())
+}
+
 type QIRProximityFilter struct {
 	QSensorFilter
 }
@@ -2303,6 +2525,307 @@ func QIRProximitySensor_Type() string {
 
 func (ptr *QIRProximitySensor) Type() string {
 	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
+}
+
+type QLidFilter struct {
+	QSensorFilter
+}
+
+type QLidFilter_ITF interface {
+	QSensorFilter_ITF
+	QLidFilter_PTR() *QLidFilter
+}
+
+func (ptr *QLidFilter) QLidFilter_PTR() *QLidFilter {
+	return ptr
+}
+
+func (ptr *QLidFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QLidFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQLidFilter(ptr QLidFilter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLidFilter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLidFilterFromPointer(ptr unsafe.Pointer) *QLidFilter {
+	var n = new(QLidFilter)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QLidFilter) DestroyQLidFilter() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQLidFilter_Filter
+func callbackQLidFilter_Filter(ptr unsafe.Pointer, reading unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "filter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QLidReading) bool)(NewQLidReadingFromPointer(reading)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(false)))
+}
+
+func (ptr *QLidFilter) ConnectFilter(f func(reading *QLidReading) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "filter"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "filter", func(reading *QLidReading) bool {
+				signal.(func(*QLidReading) bool)(reading)
+				return f(reading)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "filter", f)
+		}
+	}
+}
+
+func (ptr *QLidFilter) DisconnectFilter() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "filter")
+	}
+}
+
+func (ptr *QLidFilter) Filter(reading QLidReading_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QLidFilter_Filter(ptr.Pointer(), PointerFromQLidReading(reading)) != 0
+	}
+	return false
+}
+
+type QLidReading struct {
+	QSensorReading
+}
+
+type QLidReading_ITF interface {
+	QSensorReading_ITF
+	QLidReading_PTR() *QLidReading
+}
+
+func (ptr *QLidReading) QLidReading_PTR() *QLidReading {
+	return ptr
+}
+
+func (ptr *QLidReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QLidReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQLidReading(ptr QLidReading_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLidReading_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLidReadingFromPointer(ptr unsafe.Pointer) *QLidReading {
+	var n = new(QLidReading)
+	n.SetPointer(ptr)
+	return n
+}
+
+//export callbackQLidReading_BackLidChanged
+func callbackQLidReading_BackLidChanged(ptr unsafe.Pointer, closed C.char) {
+	if signal := qt.GetSignal(ptr, "backLidChanged"); signal != nil {
+		signal.(func(bool))(int8(closed) != 0)
+	}
+
+}
+
+func (ptr *QLidReading) ConnectBackLidChanged(f func(closed bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "backLidChanged") {
+			C.QLidReading_ConnectBackLidChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "backLidChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "backLidChanged", func(closed bool) {
+				signal.(func(bool))(closed)
+				f(closed)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "backLidChanged", f)
+		}
+	}
+}
+
+func (ptr *QLidReading) DisconnectBackLidChanged() {
+	if ptr.Pointer() != nil {
+		C.QLidReading_DisconnectBackLidChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "backLidChanged")
+	}
+}
+
+func (ptr *QLidReading) BackLidChanged(closed bool) {
+	if ptr.Pointer() != nil {
+		C.QLidReading_BackLidChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
+	}
+}
+
+//export callbackQLidReading_FrontLidChanged
+func callbackQLidReading_FrontLidChanged(ptr unsafe.Pointer, closed C.char) {
+	if signal := qt.GetSignal(ptr, "frontLidChanged"); signal != nil {
+		signal.(func(bool))(int8(closed) != 0)
+	}
+
+}
+
+func (ptr *QLidReading) ConnectFrontLidChanged(f func(closed bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "frontLidChanged") {
+			C.QLidReading_ConnectFrontLidChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "frontLidChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "frontLidChanged", func(closed bool) {
+				signal.(func(bool))(closed)
+				f(closed)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "frontLidChanged", f)
+		}
+	}
+}
+
+func (ptr *QLidReading) DisconnectFrontLidChanged() {
+	if ptr.Pointer() != nil {
+		C.QLidReading_DisconnectFrontLidChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "frontLidChanged")
+	}
+}
+
+func (ptr *QLidReading) FrontLidChanged(closed bool) {
+	if ptr.Pointer() != nil {
+		C.QLidReading_FrontLidChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
+	}
+}
+
+func (ptr *QLidReading) SetBackLidClosed(closed bool) {
+	if ptr.Pointer() != nil {
+		C.QLidReading_SetBackLidClosed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
+	}
+}
+
+func (ptr *QLidReading) SetFrontLidClosed(closed bool) {
+	if ptr.Pointer() != nil {
+		C.QLidReading_SetFrontLidClosed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(closed))))
+	}
+}
+
+func (ptr *QLidReading) BackLidClosed() bool {
+	if ptr.Pointer() != nil {
+		return C.QLidReading_BackLidClosed(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLidReading) FrontLidClosed() bool {
+	if ptr.Pointer() != nil {
+		return C.QLidReading_FrontLidClosed(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+type QLidSensor struct {
+	QSensor
+}
+
+type QLidSensor_ITF interface {
+	QSensor_ITF
+	QLidSensor_PTR() *QLidSensor
+}
+
+func (ptr *QLidSensor) QLidSensor_PTR() *QLidSensor {
+	return ptr
+}
+
+func (ptr *QLidSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QLidSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQLidSensor(ptr QLidSensor_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLidSensor_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLidSensorFromPointer(ptr unsafe.Pointer) *QLidSensor {
+	var n = new(QLidSensor)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQLidSensor(parent core.QObject_ITF) *QLidSensor {
+	var tmpValue = NewQLidSensorFromPointer(C.QLidSensor_NewQLidSensor(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QLidSensor) DestroyQLidSensor() {
+	if ptr.Pointer() != nil {
+		C.QLidSensor_DestroyQLidSensor(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QLidSensor) Reading() *QLidReading {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQLidReadingFromPointer(C.QLidSensor_Reading(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func QLidSensor_Type() string {
+	return cGoUnpackString(C.QLidSensor_QLidSensor_Type())
+}
+
+func (ptr *QLidSensor) Type() string {
+	return cGoUnpackString(C.QLidSensor_QLidSensor_Type())
 }
 
 type QLightFilter struct {

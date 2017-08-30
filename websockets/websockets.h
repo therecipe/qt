@@ -225,6 +225,7 @@ char QWebSocketServer_IsListening(void* ptr);
 int QWebSocketServer_MaxPendingConnections(void* ptr);
 int QWebSocketServer_SocketDescriptor(void* ptr);
 unsigned short QWebSocketServer_ServerPort(void* ptr);
+void QWebSocketServer_HandleConnection(void* ptr, void* socket);
 void* QWebSocketServer___sslErrors_errors_atList(void* ptr, int i);
 void QWebSocketServer___sslErrors_errors_setList(void* ptr, void* i);
 void* QWebSocketServer___sslErrors_errors_newList(void* ptr);

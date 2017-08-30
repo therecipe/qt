@@ -577,8 +577,6 @@ void* QPrinterInfo___supportedPageSizes_newList(void* ptr);
 long long QPrinterInfo___supportedDuplexModes_atList(void* ptr, int i);
 void QPrinterInfo___supportedDuplexModes_setList(void* ptr, long long i);
 void* QPrinterInfo___supportedDuplexModes_newList(void* ptr);
-long long QPrinterInfo___supportedPaperSizes_atList(void* ptr, int i);
-void QPrinterInfo___supportedPaperSizes_setList(void* ptr, long long i);
 void* QPrinterInfo___supportedPaperSizes_newList(void* ptr);
 int QPrinterInfo___supportedResolutions_atList(void* ptr, int i);
 void QPrinterInfo___supportedResolutions_setList(void* ptr, int i);

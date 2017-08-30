@@ -1109,41 +1109,6 @@ func (ptr *QAbstractEventDispatcher) Awake() {
 	}
 }
 
-//export callbackQAbstractEventDispatcher_Flush
-func callbackQAbstractEventDispatcher_Flush(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "flush"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-func (ptr *QAbstractEventDispatcher) ConnectFlush(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "flush"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "flush", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "flush", f)
-		}
-	}
-}
-
-func (ptr *QAbstractEventDispatcher) DisconnectFlush() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "flush")
-	}
-}
-
-func (ptr *QAbstractEventDispatcher) Flush() {
-	if ptr.Pointer() != nil {
-		C.QAbstractEventDispatcher_Flush(ptr.Pointer())
-	}
-}
-
 func (ptr *QAbstractEventDispatcher) InstallNativeEventFilter(filterObj QAbstractNativeEventFilter_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractEventDispatcher_InstallNativeEventFilter(ptr.Pointer(), PointerFromQAbstractNativeEventFilter(filterObj))
@@ -8013,6 +7978,20 @@ func (ptr *QByteArray) ToHex() *QByteArray {
 	return nil
 }
 
+func (ptr *QByteArray) ToHex2(separator string) *QByteArray {
+	if ptr.Pointer() != nil {
+		var separatorC *C.char
+		if separator != "" {
+			separatorC = C.CString(separator)
+			defer C.free(unsafe.Pointer(separatorC))
+		}
+		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_ToHex2(ptr.Pointer(), separatorC))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QByteArray) ToLower() *QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_ToLower(ptr.Pointer()))
@@ -10868,14 +10847,6 @@ func (ptr *QCoreApplication) Exit(returnCode int) {
 	C.QCoreApplication_QCoreApplication_Exit(C.int(int32(returnCode)))
 }
 
-func QCoreApplication_Flush() {
-	C.QCoreApplication_QCoreApplication_Flush()
-}
-
-func (ptr *QCoreApplication) Flush() {
-	C.QCoreApplication_QCoreApplication_Flush()
-}
-
 func (ptr *QCoreApplication) InstallNativeEventFilter(filterObj QAbstractNativeEventFilter_ITF) {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_InstallNativeEventFilter(ptr.Pointer(), PointerFromQAbstractNativeEventFilter(filterObj))
@@ -11338,7 +11309,8 @@ const (
 	QDataStream__Qt_5_6                    QDataStream__Version = QDataStream__Version(17)
 	QDataStream__Qt_5_7                    QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_6)
 	QDataStream__Qt_5_8                    QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_7)
-	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_8)
+	QDataStream__Qt_5_9                    QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_8)
+	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_9)
 )
 
 func NewQDataStream() *QDataStream {
@@ -12403,8 +12375,8 @@ const (
 	QDeadlineTimer__Forever QDeadlineTimer__ForeverConstant = QDeadlineTimer__ForeverConstant(0)
 )
 
-func NewQDeadlineTimer2(foreverConstant QDeadlineTimer__ForeverConstant, timerType Qt__TimerType) *QDeadlineTimer {
-	var tmpValue = NewQDeadlineTimerFromPointer(C.QDeadlineTimer_NewQDeadlineTimer2(C.longlong(foreverConstant), C.longlong(timerType)))
+func NewQDeadlineTimer2(forev QDeadlineTimer__ForeverConstant, timerType Qt__TimerType) *QDeadlineTimer {
+	var tmpValue = NewQDeadlineTimerFromPointer(C.QDeadlineTimer_NewQDeadlineTimer2(C.longlong(forev), C.longlong(timerType)))
 	runtime.SetFinalizer(tmpValue, (*QDeadlineTimer).DestroyQDeadlineTimer)
 	return tmpValue
 }
@@ -12478,9 +12450,9 @@ func (ptr *QDeadlineTimer) IsForever() bool {
 	return false
 }
 
-func (ptr *QDeadlineTimer) Deadline2() int64 {
+func (ptr *QDeadlineTimer) Deadline() int64 {
 	if ptr.Pointer() != nil {
-		return int64(C.QDeadlineTimer_Deadline2(ptr.Pointer()))
+		return int64(C.QDeadlineTimer_Deadline(ptr.Pointer()))
 	}
 	return 0
 }
@@ -13454,6 +13426,13 @@ func (ptr *QDir) IsAbsolute() bool {
 	return false
 }
 
+func (ptr *QDir) IsEmpty(filters QDir__Filter) bool {
+	if ptr.Pointer() != nil {
+		return C.QDir_IsEmpty(ptr.Pointer(), C.longlong(filters)) != 0
+	}
+	return false
+}
+
 func (ptr *QDir) IsReadable() bool {
 	if ptr.Pointer() != nil {
 		return C.QDir_IsReadable(ptr.Pointer()) != 0
@@ -14358,6 +14337,7 @@ const (
 	QEvent__ScreenChangeInternal             QEvent__Type = QEvent__Type(216)
 	QEvent__PlatformSurface                  QEvent__Type = QEvent__Type(217)
 	QEvent__Pointer                          QEvent__Type = QEvent__Type(218)
+	QEvent__TabletTrackingChange             QEvent__Type = QEvent__Type(219)
 	QEvent__User                             QEvent__Type = QEvent__Type(1000)
 	QEvent__MaxUser                          QEvent__Type = QEvent__Type(65535)
 )
@@ -23628,11 +23608,13 @@ const (
 type QLocale__NumberOption int64
 
 const (
-	QLocale__DefaultNumberOptions        QLocale__NumberOption = QLocale__NumberOption(0x0)
-	QLocale__OmitGroupSeparator          QLocale__NumberOption = QLocale__NumberOption(0x01)
-	QLocale__RejectGroupSeparator        QLocale__NumberOption = QLocale__NumberOption(0x02)
-	QLocale__OmitLeadingZeroInExponent   QLocale__NumberOption = QLocale__NumberOption(0x04)
-	QLocale__RejectLeadingZeroInExponent QLocale__NumberOption = QLocale__NumberOption(0x08)
+	QLocale__DefaultNumberOptions          QLocale__NumberOption = QLocale__NumberOption(0x0)
+	QLocale__OmitGroupSeparator            QLocale__NumberOption = QLocale__NumberOption(0x01)
+	QLocale__RejectGroupSeparator          QLocale__NumberOption = QLocale__NumberOption(0x02)
+	QLocale__OmitLeadingZeroInExponent     QLocale__NumberOption = QLocale__NumberOption(0x04)
+	QLocale__RejectLeadingZeroInExponent   QLocale__NumberOption = QLocale__NumberOption(0x08)
+	QLocale__IncludeTrailingZeroesAfterDot QLocale__NumberOption = QLocale__NumberOption(0x10)
+	QLocale__RejectTrailingZeroesAfterDot  QLocale__NumberOption = QLocale__NumberOption(0x20)
 )
 
 //go:generate stringer -type=QLocale__QuotationStyle
@@ -28469,14 +28451,6 @@ func NewQMutexFromPointer(ptr unsafe.Pointer) *QMutex {
 	return n
 }
 
-func (ptr *QMutex) DestroyQMutex() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
 //go:generate stringer -type=QMutex__RecursionMode
 //QMutex::RecursionMode
 type QMutex__RecursionMode int64
@@ -28515,6 +28489,14 @@ func (ptr *QMutex) Try_lock() bool {
 func (ptr *QMutex) Unlock() {
 	if ptr.Pointer() != nil {
 		C.QMutex_Unlock(ptr.Pointer())
+	}
+}
+
+func (ptr *QMutex) DestroyQMutex() {
+	if ptr.Pointer() != nil {
+		C.QMutex_DestroyQMutex(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -29071,18 +29053,6 @@ func (ptr *QObject) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 	}
 }
 
-func (ptr *QObject) DumpObjectInfo() {
-	if ptr.Pointer() != nil {
-		C.QObject_DumpObjectInfo(ptr.Pointer())
-	}
-}
-
-func (ptr *QObject) DumpObjectTree() {
-	if ptr.Pointer() != nil {
-		C.QObject_DumpObjectTree(ptr.Pointer())
-	}
-}
-
 func (ptr *QObject) InstallEventFilter(filterObj QObject_ITF) {
 	if ptr.Pointer() != nil {
 		C.QObject_InstallEventFilter(ptr.Pointer(), PointerFromQObject(filterObj))
@@ -29517,6 +29487,18 @@ func (ptr *QObject) SenderSignalIndex() int {
 	return 0
 }
 
+func (ptr *QObject) DumpObjectInfo() {
+	if ptr.Pointer() != nil {
+		C.QObject_DumpObjectInfo(ptr.Pointer())
+	}
+}
+
+func (ptr *QObject) DumpObjectTree() {
+	if ptr.Pointer() != nil {
+		C.QObject_DumpObjectTree(ptr.Pointer())
+	}
+}
+
 func (ptr *QObject) ToVariant() *QVariant {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQVariantFromPointer(C.QObject_ToVariant(ptr.Pointer()))
@@ -29711,6 +29693,348 @@ func (ptr *QObjectCleanupHandler) IsEmpty() bool {
 		return C.QObjectCleanupHandler_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+type QOperatingSystemVersion struct {
+	ptr unsafe.Pointer
+}
+
+type QOperatingSystemVersion_ITF interface {
+	QOperatingSystemVersion_PTR() *QOperatingSystemVersion
+}
+
+func (ptr *QOperatingSystemVersion) QOperatingSystemVersion_PTR() *QOperatingSystemVersion {
+	return ptr
+}
+
+func (ptr *QOperatingSystemVersion) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QOperatingSystemVersion) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQOperatingSystemVersion(ptr QOperatingSystemVersion_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOperatingSystemVersion_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQOperatingSystemVersionFromPointer(ptr unsafe.Pointer) *QOperatingSystemVersion {
+	var n = new(QOperatingSystemVersion)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QOperatingSystemVersion) DestroyQOperatingSystemVersion() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QOperatingSystemVersion__OSType
+//QOperatingSystemVersion::OSType
+type QOperatingSystemVersion__OSType int64
+
+const (
+	QOperatingSystemVersion__Unknown QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(0)
+	QOperatingSystemVersion__Windows QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(1)
+	QOperatingSystemVersion__MacOS   QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(2)
+	QOperatingSystemVersion__IOS     QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(3)
+	QOperatingSystemVersion__TvOS    QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(4)
+	QOperatingSystemVersion__WatchOS QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(5)
+	QOperatingSystemVersion__Android QOperatingSystemVersion__OSType = QOperatingSystemVersion__OSType(6)
+)
+
+func NewQOperatingSystemVersion2(osType QOperatingSystemVersion__OSType, vmajor int, vminor int, vmicro int) *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion2(C.longlong(osType), C.int(int32(vmajor)), C.int(int32(vminor)), C.int(int32(vmicro))))
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func NewQOperatingSystemVersion(other QOperatingSystemVersion_ITF) *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion(PointerFromQOperatingSystemVersion(other)))
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Type() QOperatingSystemVersion__OSType {
+	if ptr.Pointer() != nil {
+		return QOperatingSystemVersion__OSType(C.QOperatingSystemVersion_Type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QOperatingSystemVersion) Name() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QOperatingSystemVersion_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QOperatingSystemVersion) MajorVersion() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QOperatingSystemVersion_MajorVersion(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QOperatingSystemVersion) MicroVersion() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QOperatingSystemVersion_MicroVersion(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QOperatingSystemVersion) MinorVersion() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QOperatingSystemVersion_MinorVersion(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QOperatingSystemVersion) SegmentCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QOperatingSystemVersion_SegmentCount(ptr.Pointer())))
+	}
+	return 0
+}
+
+func QOperatingSystemVersion_Current() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Current())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Current() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Current())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidJellyBean() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidJellyBean() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidJellyBean_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidJellyBean_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidJellyBean_MR2() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR2())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidJellyBean_MR2() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidJellyBean_MR2())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidKitKat() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidKitKat())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidKitKat() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidKitKat())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidLollipop() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidLollipop() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidLollipop_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidLollipop_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidLollipop_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidMarshmallow() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidMarshmallow())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidMarshmallow() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidMarshmallow())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidNougat() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidNougat() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_AndroidNougat_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidNougat_MR1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_MacOSHighSierra() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) MacOSHighSierra() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_MacOSSierra() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) MacOSSierra() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_OSXElCapitan() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXElCapitan())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) OSXElCapitan() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXElCapitan())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_OSXMavericks() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXMavericks())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) OSXMavericks() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXMavericks())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_OSXYosemite() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXYosemite())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) OSXYosemite() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_OSXYosemite())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_Windows10() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows10())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Windows10() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows10())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_Windows7() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows7())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Windows7() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows7())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_Windows8() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Windows8() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_Windows8_1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) Windows8_1() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
 }
 
 type QPair struct {
@@ -37942,6 +38266,52 @@ func (ptr *QStateMachine) __defaultAnimations_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QStateMachine___defaultAnimations_newList(ptr.Pointer()))
 }
 
+type QStaticByteArrayMatcher struct {
+	ptr unsafe.Pointer
+}
+
+type QStaticByteArrayMatcher_ITF interface {
+	QStaticByteArrayMatcher_PTR() *QStaticByteArrayMatcher
+}
+
+func (ptr *QStaticByteArrayMatcher) QStaticByteArrayMatcher_PTR() *QStaticByteArrayMatcher {
+	return ptr
+}
+
+func (ptr *QStaticByteArrayMatcher) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QStaticByteArrayMatcher) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQStaticByteArrayMatcher(ptr QStaticByteArrayMatcher_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QStaticByteArrayMatcher_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQStaticByteArrayMatcherFromPointer(ptr unsafe.Pointer) *QStaticByteArrayMatcher {
+	var n = new(QStaticByteArrayMatcher)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QStaticByteArrayMatcher) DestroyQStaticByteArrayMatcher() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QStaticPlugin struct {
 	ptr unsafe.Pointer
 }
@@ -38156,6 +38526,15 @@ func (ptr *QStorageInfo) Device() *QByteArray {
 func (ptr *QStorageInfo) FileSystemType() *QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQByteArrayFromPointer(C.QStorageInfo_FileSystemType(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStorageInfo) Subvolume() *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QStorageInfo_Subvolume(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
@@ -39033,6 +39412,13 @@ func (ptr *QStringRef) IsNull() bool {
 	return false
 }
 
+func (ptr *QStringRef) IsRightToLeft() bool {
+	if ptr.Pointer() != nil {
+		return C.QStringRef_IsRightToLeft(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QStringRef) StartsWith3(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
 		return C.QStringRef_StartsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
@@ -39455,70 +39841,6 @@ const (
 	QSysInfo__LittleEndian QSysInfo__Endian = QSysInfo__Endian(1)
 )
 
-//go:generate stringer -type=QSysInfo__MacVersion
-//QSysInfo::MacVersion
-type QSysInfo__MacVersion int64
-
-var (
-	QSysInfo__MV_None         QSysInfo__MacVersion = QSysInfo__MacVersion(0xffff)
-	QSysInfo__MV_Unknown      QSysInfo__MacVersion = QSysInfo__MacVersion(0x0000)
-	QSysInfo__MV_9            QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_9_Type())
-	QSysInfo__MV_10_0         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_0_Type())
-	QSysInfo__MV_10_1         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_1_Type())
-	QSysInfo__MV_10_2         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_2_Type())
-	QSysInfo__MV_10_3         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_3_Type())
-	QSysInfo__MV_10_4         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_4_Type())
-	QSysInfo__MV_10_5         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_5_Type())
-	QSysInfo__MV_10_6         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_6_Type())
-	QSysInfo__MV_10_7         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_7_Type())
-	QSysInfo__MV_10_8         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_8_Type())
-	QSysInfo__MV_10_9         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_9_Type())
-	QSysInfo__MV_10_10        QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_10_Type())
-	QSysInfo__MV_10_11        QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_11_Type())
-	QSysInfo__MV_10_12        QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_10_12_Type())
-	QSysInfo__MV_CHEETAH      QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_0)
-	QSysInfo__MV_PUMA         QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_1)
-	QSysInfo__MV_JAGUAR       QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_2)
-	QSysInfo__MV_PANTHER      QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_3)
-	QSysInfo__MV_TIGER        QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_4)
-	QSysInfo__MV_LEOPARD      QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_5)
-	QSysInfo__MV_SNOWLEOPARD  QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_6)
-	QSysInfo__MV_LION         QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_7)
-	QSysInfo__MV_MOUNTAINLION QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_8)
-	QSysInfo__MV_MAVERICKS    QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_9)
-	QSysInfo__MV_YOSEMITE     QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_10)
-	QSysInfo__MV_ELCAPITAN    QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_11)
-	QSysInfo__MV_SIERRA       QSysInfo__MacVersion = QSysInfo__MacVersion(QSysInfo__MV_10_12)
-	QSysInfo__MV_IOS          QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_Type())
-	QSysInfo__MV_IOS_4_3      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_4_3_Type())
-	QSysInfo__MV_IOS_5_0      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_5_0_Type())
-	QSysInfo__MV_IOS_5_1      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_5_1_Type())
-	QSysInfo__MV_IOS_6_0      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_6_0_Type())
-	QSysInfo__MV_IOS_6_1      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_6_1_Type())
-	QSysInfo__MV_IOS_7_0      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_7_0_Type())
-	QSysInfo__MV_IOS_7_1      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_7_1_Type())
-	QSysInfo__MV_IOS_8_0      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_8_0_Type())
-	QSysInfo__MV_IOS_8_1      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_8_1_Type())
-	QSysInfo__MV_IOS_8_2      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_8_2_Type())
-	QSysInfo__MV_IOS_8_3      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_8_3_Type())
-	QSysInfo__MV_IOS_8_4      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_8_4_Type())
-	QSysInfo__MV_IOS_9_0      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_9_0_Type())
-	QSysInfo__MV_IOS_9_1      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_9_1_Type())
-	QSysInfo__MV_IOS_9_2      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_9_2_Type())
-	QSysInfo__MV_IOS_9_3      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_9_3_Type())
-	QSysInfo__MV_IOS_10_0     QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_IOS_10_0_Type())
-	QSysInfo__MV_TVOS         QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_TVOS_Type())
-	QSysInfo__MV_TVOS_9_0     QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_TVOS_9_0_Type())
-	QSysInfo__MV_TVOS_9_1     QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_TVOS_9_1_Type())
-	QSysInfo__MV_TVOS_9_2     QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_TVOS_9_2_Type())
-	QSysInfo__MV_TVOS_10_0    QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_TVOS_10_0_Type())
-	QSysInfo__MV_WATCHOS      QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_WATCHOS_Type())
-	QSysInfo__MV_WATCHOS_2_0  QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_WATCHOS_2_0_Type())
-	QSysInfo__MV_WATCHOS_2_1  QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_WATCHOS_2_1_Type())
-	QSysInfo__MV_WATCHOS_2_2  QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_WATCHOS_2_2_Type())
-	QSysInfo__MV_WATCHOS_3_0  QSysInfo__MacVersion = QSysInfo__MacVersion(C.QSysInfo_MV_WATCHOS_3_0_Type())
-)
-
 //go:generate stringer -type=QSysInfo__Sizes
 //QSysInfo::Sizes
 type QSysInfo__Sizes int64
@@ -39526,51 +39848,6 @@ type QSysInfo__Sizes int64
 var (
 	QSysInfo__WordSize QSysInfo__Sizes = QSysInfo__Sizes(C.QSysInfo_WordSize_Type())
 )
-
-//go:generate stringer -type=QSysInfo__WinVersion
-//QSysInfo::WinVersion
-type QSysInfo__WinVersion int64
-
-const (
-	QSysInfo__WV_None       QSysInfo__WinVersion = QSysInfo__WinVersion(0x0000)
-	QSysInfo__WV_32s        QSysInfo__WinVersion = QSysInfo__WinVersion(0x0001)
-	QSysInfo__WV_95         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0002)
-	QSysInfo__WV_98         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0003)
-	QSysInfo__WV_Me         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0004)
-	QSysInfo__WV_DOS_based  QSysInfo__WinVersion = QSysInfo__WinVersion(0x000f)
-	QSysInfo__WV_NT         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0010)
-	QSysInfo__WV_2000       QSysInfo__WinVersion = QSysInfo__WinVersion(0x0020)
-	QSysInfo__WV_XP         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0030)
-	QSysInfo__WV_2003       QSysInfo__WinVersion = QSysInfo__WinVersion(0x0040)
-	QSysInfo__WV_VISTA      QSysInfo__WinVersion = QSysInfo__WinVersion(0x0080)
-	QSysInfo__WV_WINDOWS7   QSysInfo__WinVersion = QSysInfo__WinVersion(0x0090)
-	QSysInfo__WV_WINDOWS8   QSysInfo__WinVersion = QSysInfo__WinVersion(0x00a0)
-	QSysInfo__WV_WINDOWS8_1 QSysInfo__WinVersion = QSysInfo__WinVersion(0x00b0)
-	QSysInfo__WV_WINDOWS10  QSysInfo__WinVersion = QSysInfo__WinVersion(0x00c0)
-	QSysInfo__WV_NT_based   QSysInfo__WinVersion = QSysInfo__WinVersion(0x00f0)
-	QSysInfo__WV_4_0        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_NT)
-	QSysInfo__WV_5_0        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_2000)
-	QSysInfo__WV_5_1        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_XP)
-	QSysInfo__WV_5_2        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_2003)
-	QSysInfo__WV_6_0        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_VISTA)
-	QSysInfo__WV_6_1        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_WINDOWS7)
-	QSysInfo__WV_6_2        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_WINDOWS8)
-	QSysInfo__WV_6_3        QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_WINDOWS8_1)
-	QSysInfo__WV_10_0       QSysInfo__WinVersion = QSysInfo__WinVersion(QSysInfo__WV_WINDOWS10)
-	QSysInfo__WV_CE         QSysInfo__WinVersion = QSysInfo__WinVersion(0x0100)
-	QSysInfo__WV_CENET      QSysInfo__WinVersion = QSysInfo__WinVersion(0x0200)
-	QSysInfo__WV_CE_5       QSysInfo__WinVersion = QSysInfo__WinVersion(0x0300)
-	QSysInfo__WV_CE_6       QSysInfo__WinVersion = QSysInfo__WinVersion(0x0400)
-	QSysInfo__WV_CE_based   QSysInfo__WinVersion = QSysInfo__WinVersion(0x0f00)
-)
-
-func QSysInfo_MacVersion() QSysInfo__MacVersion {
-	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacVersion())
-}
-
-func (ptr *QSysInfo) MacVersion() QSysInfo__MacVersion {
-	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacVersion())
-}
 
 func QSysInfo_BuildAbi() string {
 	return cGoUnpackString(C.QSysInfo_QSysInfo_BuildAbi())
@@ -39642,22 +39919,6 @@ func QSysInfo_ProductVersion() string {
 
 func (ptr *QSysInfo) ProductVersion() string {
 	return cGoUnpackString(C.QSysInfo_QSysInfo_ProductVersion())
-}
-
-func QSysInfo_WindowsVersion() QSysInfo__WinVersion {
-	return QSysInfo__WinVersion(C.QSysInfo_QSysInfo_WindowsVersion())
-}
-
-func (ptr *QSysInfo) WindowsVersion() QSysInfo__WinVersion {
-	return QSysInfo__WinVersion(C.QSysInfo_QSysInfo_WindowsVersion())
-}
-
-func QSysInfo_MacintoshVersion() QSysInfo__MacVersion {
-	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacintoshVersion())
-}
-
-func (ptr *QSysInfo) MacintoshVersion() QSysInfo__MacVersion {
-	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacintoshVersion())
 }
 
 type QSystemSemaphore struct {
@@ -39864,6 +40125,18 @@ func (ptr *QTemporaryDir) DestroyQTemporaryDir() {
 func (ptr *QTemporaryDir) ErrorString() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QTemporaryDir_ErrorString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QTemporaryDir) FilePath(fileName string) string {
+	if ptr.Pointer() != nil {
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		return cGoUnpackString(C.QTemporaryDir_FilePath(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
 	}
 	return ""
 }
@@ -41849,17 +42122,18 @@ func (ptr *QThreadPool) TryStart(runnable QRunnable_ITF) bool {
 	return false
 }
 
+func (ptr *QThreadPool) TryTake(runnable QRunnable_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QThreadPool_TryTake(ptr.Pointer(), PointerFromQRunnable(runnable)) != 0
+	}
+	return false
+}
+
 func (ptr *QThreadPool) WaitForDone(msecs int) bool {
 	if ptr.Pointer() != nil {
 		return C.QThreadPool_WaitForDone(ptr.Pointer(), C.int(int32(msecs))) != 0
 	}
 	return false
-}
-
-func (ptr *QThreadPool) Cancel(runnable QRunnable_ITF) {
-	if ptr.Pointer() != nil {
-		C.QThreadPool_Cancel(ptr.Pointer(), PointerFromQRunnable(runnable))
-	}
 }
 
 func (ptr *QThreadPool) Clear() {
@@ -49570,7 +49844,8 @@ const (
 	Qt__AA_SynthesizeMouseForUnhandledTabletEvents Qt__ApplicationAttribute = Qt__ApplicationAttribute(24)
 	Qt__AA_CompressHighFrequencyEvents             Qt__ApplicationAttribute = Qt__ApplicationAttribute(25)
 	Qt__AA_DontCheckOpenGLContextThreadAffinity    Qt__ApplicationAttribute = Qt__ApplicationAttribute(26)
-	Qt__AA_AttributeCount                          Qt__ApplicationAttribute = Qt__ApplicationAttribute(27)
+	Qt__AA_DisableShaderDiskCache                  Qt__ApplicationAttribute = Qt__ApplicationAttribute(27)
+	Qt__AA_AttributeCount                          Qt__ApplicationAttribute = Qt__ApplicationAttribute(28)
 )
 
 //go:generate stringer -type=Qt__ApplicationState
@@ -49668,6 +49943,15 @@ const (
 	Qt__Unchecked        Qt__CheckState = Qt__CheckState(0)
 	Qt__PartiallyChecked Qt__CheckState = Qt__CheckState(1)
 	Qt__Checked          Qt__CheckState = Qt__CheckState(2)
+)
+
+//go:generate stringer -type=Qt__ChecksumType
+//Qt::ChecksumType
+type Qt__ChecksumType int64
+
+const (
+	Qt__ChecksumIso3309 Qt__ChecksumType = Qt__ChecksumType(0)
+	Qt__ChecksumItuV41  Qt__ChecksumType = Qt__ChecksumType(1)
 )
 
 //go:generate stringer -type=Qt__ClipOperation
@@ -51134,7 +51418,8 @@ const (
 	Qt__WA_X11DoNotAcceptFocus             Qt__WidgetAttribute = Qt__WidgetAttribute(126)
 	Qt__WA_MacNoShadow                     Qt__WidgetAttribute = Qt__WidgetAttribute(127)
 	Qt__WA_AlwaysStackOnTop                Qt__WidgetAttribute = Qt__WidgetAttribute(128)
-	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(129)
+	Qt__WA_TabletTracking                  Qt__WidgetAttribute = Qt__WidgetAttribute(129)
+	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(130)
 )
 
 //go:generate stringer -type=Qt__WindowFrameSection

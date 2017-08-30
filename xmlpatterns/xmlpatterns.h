@@ -162,6 +162,7 @@ char QXmlItem_IsNull(void* ptr);
 void* QXmlName_QXmlName_FromClarkName(struct QtXmlPatterns_PackedString clarkName, void* namePool);
 void* QXmlName_NewQXmlName();
 void* QXmlName_NewQXmlName2(void* namePool, struct QtXmlPatterns_PackedString localName, struct QtXmlPatterns_PackedString namespaceURI, struct QtXmlPatterns_PackedString prefix);
+void* QXmlName_NewQXmlName3(void* other);
 char QXmlName_QXmlName_IsNCName(struct QtXmlPatterns_PackedString candidate);
 struct QtXmlPatterns_PackedString QXmlName_LocalName(void* ptr, void* namePool);
 struct QtXmlPatterns_PackedString QXmlName_NamespaceUri(void* ptr, void* namePool);
