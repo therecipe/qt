@@ -67,8 +67,8 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 		createCgo(module, path, target, mode, ipkg, tags)
 	}
 
-	utils.RemoveAll(filepath.Join(path, "Makefile"))
-	utils.RemoveAll(filepath.Join(path, "Makefile.Release"))
+	utils.RemoveAll(filepath.Join(path, "Mfile"))
+	utils.RemoveAll(filepath.Join(path, "Mfile.Release"))
 
 	return
 }
@@ -150,7 +150,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 }
 
 func createMakefile(module, path, target string, mode int) {
-	cmd := exec.Command(utils.ToolPath("qmake", target), filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
+	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", "Mfile", filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -196,7 +196,7 @@ func createMakefile(module, path, target string, mode int) {
 
 	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {
 		//TODO: -->
-		utils.SaveExec(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
+		utils.SaveExec(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\nset ANDROID_NDK_HOST=windows-x86_64\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
 		cmd = exec.Command(".\\qmake.bat")
 		cmd.Dir = path
 		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
@@ -222,7 +222,7 @@ func createMakefile(module, path, target string, mode int) {
 				utils.RemoveAll(pPath)
 			}
 		}
-		for _, n := range []string{"Makefile", "Makefile.Debug", "release", "debug"} {
+		for _, n := range []string{"Mfile", "Mfile.Debug", "release", "debug"} {
 			utils.RemoveAll(filepath.Join(path, n))
 		}
 	case "linux":
@@ -301,7 +301,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 
 	//
 
-	file := "Makefile"
+	file := "Mfile"
 	if target == "windows" {
 		file += ".Release"
 	}

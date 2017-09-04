@@ -134,8 +134,16 @@ if "%ANDROID%" == "true" (
   7z x %TMP%\!SDK! -oC:\android-sdk-windows\
   del %TMP%\!SDK! /Q
 
+  mkdir C:\android-sdk-windows\licenses
+  echo fc946e8f231f3e3159bf0b7c655c924cb2e38330>> C:\android-sdk-windows\licenses\android-googletv-license
+  echo 8933bad161af4178b1185d1a37fbf41ea5269c55>> C:\android-sdk-windows\licenses\android-sdk-license
+  echo 504667f4c0de7af1a06de9f4b1727b84351f2910>> C:\android-sdk-windows\licenses\android-sdk-preview-license
+  echo 33b6a2b64607f11b759f320ef9dff4ae5c47d97a>> C:\android-sdk-windows\licenses\google-gdk-license
+  echo d975f751698a77b662f1254ddbeed3901e976f5a>> C:\android-sdk-windows\licenses\intel-android-extra-license
+  echo 63d703f5692fd891d5acacfbd8e09f40fc976105>> C:\android-sdk-windows\licenses\mips-android-sysimage-license
+
   cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --list --verbose"
-  cmd /C "echo y | C:\android-sdk-windows\tools\bin\sdkmanager.bat 'platform-tools' 'build-tools;26.0.0' 'platforms;android-25'"
+  cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat "platform-tools" "build-tools;26.0.0" "platforms;android-25""
   cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --update"
 
 
