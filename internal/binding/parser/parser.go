@@ -66,7 +66,7 @@ func LoadModule(m string) *Module {
 		if utils.QT_HOMEBREW() {
 			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.1", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		} else {
-			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.8.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	case utils.QT_MSYS2() && utils.QT_MSYS2_STATIC():

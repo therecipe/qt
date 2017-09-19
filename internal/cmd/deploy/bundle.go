@@ -63,12 +63,10 @@ func bundle(mode, target, path, name, depPath string) {
 		utils.MkdirAll(assets)
 		copy(assets+"/", filepath.Join(depPath, name+".app"))
 
-		if !utils.QT_HOMEBREW() {
-			dep := exec.Command(filepath.Join(utils.QT_DARWIN_DIR(), "bin", "macdeployqt"))
-			dep.Args = append(dep.Args, filepath.Join(depPath, name+".app"), "-qmldir="+path)
-			dep.Dir = filepath.Join(utils.QT_DARWIN_DIR(), "bin")
-			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
-		}
+		dep := exec.Command(filepath.Join(utils.QT_DARWIN_DIR(), "bin", "macdeployqt"))
+		dep.Args = append(dep.Args, filepath.Join(depPath, name+".app"), "-qmldir="+path)
+		dep.Dir = filepath.Join(utils.QT_DARWIN_DIR(), "bin")
+		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
 	case "linux", "rpi1", "rpi2", "rpi3":
 
