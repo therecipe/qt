@@ -100,3 +100,7 @@ func QT_MXE_DIR() string {
 func QT_MXE_BIN(tool string) string {
 	return filepath.Join(QT_MXE_DIR(), "usr", "bin", fmt.Sprintf("%v-%v", QT_MXE_TRIPLET(), tool))
 }
+
+func QT_MXE() bool {
+	return os.Getenv("QT_MXE") == "true"
+}
