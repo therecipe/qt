@@ -40,6 +40,9 @@ func main() {
 	var tags string
 	flag.StringVar(&tags, "tags", "", "a list of build tags to consider satisfied during the build")
 
+	var slow bool
+	flag.BoolVar(&slow, "slow", false, "reduce qtmoc's resource usage")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -84,6 +87,6 @@ func main() {
 	} else if vagrant {
 		cmd.Vagrant([]string{"qtmoc", "-debug", "-tags=" + tags}, target, path, false, vagrantsystem)
 	} else {
-		moc.Moc(path, target, tags, fast)
+		moc.Moc(path, target, tags, fast, slow)
 	}
 }

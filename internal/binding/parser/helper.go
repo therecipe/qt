@@ -322,7 +322,7 @@ func GetLibs() []string {
 		case utils.QT_VERSION_NUM() < 5080 && libs[i] == "Speech":
 			libs = append(libs[:i], libs[i+1:]...)
 
-		case utils.QT_VERSION_NUM() < 5090 && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
+		case (utils.QT_VERSION_NUM() < 5090 || utils.QT_MXE()) && (libs[i] == "NetworkAuth" || libs[i] == "RemoteObjects"):
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case !utils.QT_WEBKIT() && libs[i] == "WebKit":

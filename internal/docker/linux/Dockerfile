@@ -2,6 +2,9 @@ FROM ubuntu:14.04
 LABEL maintainer therecipe
 
 
+RUN df -h
+
+
 ENV USER user
 ENV HOME /home/$USER
 ENV QT_DOCKER true

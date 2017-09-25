@@ -35,17 +35,21 @@ var (
 	goImportsCacheMutex = new(sync.Mutex)
 )
 
-func Moc(path, target, tags string, fast bool) {
-	moc(path, target, tags, fast, true)
+func Moc(path, target, tags string, fast, slow bool) {
+	moc(path, target, tags, fast, slow, true)
 }
 
-func moc(path, target, tags string, fast, root bool) {
+func moc(path, target, tags string, fast, slow, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
 	if root {
+		ngr := 50
+		if slow {
+			ngr = 1
+		}
 		defer rootWg.Wait()
 		wg := new(sync.WaitGroup)
-		wc := make(chan bool, 50)
+		wc := make(chan bool, ngr)
 		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
 
 		wg.Add(len(allImports) * 2)
@@ -80,7 +84,7 @@ func moc(path, target, tags string, fast, root bool) {
 	for i, path := range append([]string{path}, goImportsCache[path]...) {
 		if _, ok := done[path]; !ok && i > 0 && !fast {
 			done[path] = struct{}{}
-			moc(path, target, tags, false, false)
+			moc(path, target, tags, false, slow, false)
 		}
 
 		for _, fpath := range goFilesCache[path] {
