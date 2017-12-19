@@ -14385,11 +14385,6 @@ void* QOperatingSystemVersion_NewQOperatingSystemVersion2(long long osType, int 
 	return new QOperatingSystemVersion(static_cast<QOperatingSystemVersion::OSType>(osType), vmajor, vminor, vmicro);
 }
 
-void* QOperatingSystemVersion_NewQOperatingSystemVersion(void* other)
-{
-	return new QOperatingSystemVersion(*static_cast<QOperatingSystemVersion*>(other));
-}
-
 long long QOperatingSystemVersion_Type(void* ptr)
 {
 	return static_cast<QOperatingSystemVersion*>(ptr)->type();
@@ -14470,6 +14465,11 @@ void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidNougat_MR1()
 	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidNougat_MR1);
 }
 
+void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::AndroidOreo);
+}
+
 void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra()
 {
 	return new QOperatingSystemVersion(QOperatingSystemVersion::MacOSHighSierra);
@@ -14513,6 +14513,11 @@ void* QOperatingSystemVersion_QOperatingSystemVersion_Windows8()
 void* QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1()
 {
 	return new QOperatingSystemVersion(QOperatingSystemVersion::Windows8_1);
+}
+
+void* QOperatingSystemVersion_NewQOperatingSystemVersion(void* other)
+{
+	return new QOperatingSystemVersion(*static_cast<QOperatingSystemVersion*>(other));
 }
 
 class MyQParallelAnimationGroup: public QParallelAnimationGroup

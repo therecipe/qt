@@ -88,6 +88,14 @@ func (f *Function) fixGeneral_Version() {
 			}()
 			f.Fullname = fmt.Sprintf("%v::%v", f.ClassName(), f.Name)
 		}
+
+	case "QOperatingSystemVersion::QOperatingSystemVersion":
+		{
+			if len(f.Parameters) > 1 {
+				f.OverloadNumber = "2"
+				f.Overload = true
+			}
+		}
 	}
 }
 

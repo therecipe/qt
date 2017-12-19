@@ -269,7 +269,9 @@ func (c *Class) IsSupported() bool {
 
 		strings.HasPrefix(c.Name, "QAtomic"), //other
 
-		strings.HasSuffix(c.Name, "terator"), strings.Contains(c.Brief, "emplate"): //needs template
+		strings.HasSuffix(c.Name, "terator"), strings.Contains(c.Brief, "emplate"), //needs template
+
+		strings.HasPrefix(c.Name, "QVulkan"):
 
 		{
 			c.Access = "unsupported_isBlockedClass"

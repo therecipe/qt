@@ -690,22 +690,6 @@ func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
 	return n
 }
 
-//go:generate stringer -type=QSqlDriver__DbmsType
-//QSqlDriver::DbmsType
-type QSqlDriver__DbmsType int64
-
-const (
-	QSqlDriver__UnknownDbms QSqlDriver__DbmsType = QSqlDriver__DbmsType(0)
-	QSqlDriver__MSSqlServer QSqlDriver__DbmsType = QSqlDriver__DbmsType(1)
-	QSqlDriver__MySqlServer QSqlDriver__DbmsType = QSqlDriver__DbmsType(2)
-	QSqlDriver__PostgreSQL  QSqlDriver__DbmsType = QSqlDriver__DbmsType(3)
-	QSqlDriver__Oracle      QSqlDriver__DbmsType = QSqlDriver__DbmsType(4)
-	QSqlDriver__Sybase      QSqlDriver__DbmsType = QSqlDriver__DbmsType(5)
-	QSqlDriver__SQLite      QSqlDriver__DbmsType = QSqlDriver__DbmsType(6)
-	QSqlDriver__Interbase   QSqlDriver__DbmsType = QSqlDriver__DbmsType(7)
-	QSqlDriver__DB2         QSqlDriver__DbmsType = QSqlDriver__DbmsType(8)
-)
-
 //go:generate stringer -type=QSqlDriver__DriverFeature
 //QSqlDriver::DriverFeature
 type QSqlDriver__DriverFeature int64
@@ -1330,13 +1314,6 @@ func (ptr *QSqlDriver) DestroyQSqlDriver() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QSqlDriver) DbmsType() QSqlDriver__DbmsType {
-	if ptr.Pointer() != nil {
-		return QSqlDriver__DbmsType(C.QSqlDriver_DbmsType(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QSqlDriver) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {

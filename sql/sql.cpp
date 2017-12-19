@@ -525,11 +525,6 @@ void QSqlDriver_DestroyQSqlDriver(void* ptr)
 	static_cast<QSqlDriver*>(ptr)->~QSqlDriver();
 }
 
-long long QSqlDriver_DbmsType(void* ptr)
-{
-	return static_cast<QSqlDriver*>(ptr)->dbmsType();
-}
-
 long long QSqlDriver_NumericalPrecisionPolicy(void* ptr)
 {
 	return static_cast<QSqlDriver*>(ptr)->numericalPrecisionPolicy();

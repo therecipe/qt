@@ -327,6 +327,10 @@ func (f *Function) IsSupported() bool {
 
 		f.Name == "glShaderSource", //OpenGL
 
+		f.Name == "qt_test_iobluetooth_runloop",
+
+		f.Name == "setVulkanInstance", f.Name == "vulkanInstance",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {

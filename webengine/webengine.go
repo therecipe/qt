@@ -10365,3 +10365,18 @@ const (
 	QtWebEngineCore__ExternalTarget  QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(0)
 	QtWebEngineCore__RectangleTarget QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(1)
 )
+
+//go:generate stringer -type=QtWebEngineCore__ReferrerPolicy
+//QtWebEngineCore::ReferrerPolicy
+type QtWebEngineCore__ReferrerPolicy int64
+
+const (
+	QtWebEngineCore__Always                                       QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(0)
+	QtWebEngineCore__Default                                      QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(1)
+	QtWebEngineCore__NoReferrerWhenDowngrade                      QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(2)
+	QtWebEngineCore__Never                                        QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(3)
+	QtWebEngineCore__Origin                                       QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(4)
+	QtWebEngineCore__OriginWhenCrossOrigin                        QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(5)
+	QtWebEngineCore__NoReferrerWhenDowngradeOriginWhenCrossOrigin QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(6)
+	QtWebEngineCore__Last                                         QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(QtWebEngineCore__NoReferrerWhenDowngradeOriginWhenCrossOrigin)
+)

@@ -32,7 +32,7 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.9.windows-amd64.msi
+set GO=go1.9.2.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% http://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
@@ -136,7 +136,7 @@ if "%ANDROID%" == "true" (
 
   mkdir C:\android-sdk-windows\licenses
   echo fc946e8f231f3e3159bf0b7c655c924cb2e38330>> C:\android-sdk-windows\licenses\android-googletv-license
-  echo 8933bad161af4178b1185d1a37fbf41ea5269c55>> C:\android-sdk-windows\licenses\android-sdk-license
+  echo d56f5187479451eabf01fb78af6dfcb131a6481e>> C:\android-sdk-windows\licenses\android-sdk-license
   echo 504667f4c0de7af1a06de9f4b1727b84351f2910>> C:\android-sdk-windows\licenses\android-sdk-preview-license
   echo 33b6a2b64607f11b759f320ef9dff4ae5c47d97a>> C:\android-sdk-windows\licenses\google-gdk-license
   echo d975f751698a77b662f1254ddbeed3901e976f5a>> C:\android-sdk-windows\licenses\intel-android-extra-license

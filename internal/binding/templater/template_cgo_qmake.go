@@ -99,6 +99,11 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 				}
 			}
 
+			if !strings.Contains(file, utils.QT_VERSION()) {
+				utils.Log.Debugln("wrong cgo file qt version, re-creating ...")
+				return false
+			}
+
 			switch target {
 			case "darwin", "linux", "windows":
 				//TODO: msys pkg-config mxe brew

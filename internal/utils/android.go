@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+//TODO: support for JDK 9
 func JDK_DIR() string {
 	if dir, ok := os.LookupEnv("JDK_DIR"); ok {
 		return filepath.Clean(dir)

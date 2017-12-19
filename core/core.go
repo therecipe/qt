@@ -11134,17 +11134,25 @@ func NewQCryptographicHashFromPointer(ptr unsafe.Pointer) *QCryptographicHash {
 type QCryptographicHash__Algorithm int64
 
 const (
-	QCryptographicHash__Md4      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(0)
-	QCryptographicHash__Md5      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(1)
-	QCryptographicHash__Sha1     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(2)
-	QCryptographicHash__Sha224   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(3)
-	QCryptographicHash__Sha256   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(4)
-	QCryptographicHash__Sha384   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(5)
-	QCryptographicHash__Sha512   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(6)
-	QCryptographicHash__Sha3_224 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(7)
-	QCryptographicHash__Sha3_256 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(8)
-	QCryptographicHash__Sha3_384 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(9)
-	QCryptographicHash__Sha3_512 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(10)
+	QCryptographicHash__Md4          QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(0)
+	QCryptographicHash__Md5          QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(1)
+	QCryptographicHash__Sha1         QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(2)
+	QCryptographicHash__Sha224       QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(3)
+	QCryptographicHash__Sha256       QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(4)
+	QCryptographicHash__Sha384       QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(5)
+	QCryptographicHash__Sha512       QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(6)
+	QCryptographicHash__Keccak_224   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(7)
+	QCryptographicHash__Keccak_256   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(8)
+	QCryptographicHash__Keccak_384   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(9)
+	QCryptographicHash__Keccak_512   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(10)
+	QCryptographicHash__RealSha3_224 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(11)
+	QCryptographicHash__RealSha3_256 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(12)
+	QCryptographicHash__RealSha3_384 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(13)
+	QCryptographicHash__RealSha3_512 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(14)
+	QCryptographicHash__Sha3_224     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(QCryptographicHash__RealSha3_224)
+	QCryptographicHash__Sha3_256     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(QCryptographicHash__RealSha3_256)
+	QCryptographicHash__Sha3_384     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(QCryptographicHash__RealSha3_384)
+	QCryptographicHash__Sha3_512     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(QCryptographicHash__RealSha3_512)
 )
 
 func QCryptographicHash_Hash(data QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
@@ -29761,12 +29769,6 @@ func NewQOperatingSystemVersion2(osType QOperatingSystemVersion__OSType, vmajor 
 	return tmpValue
 }
 
-func NewQOperatingSystemVersion(other QOperatingSystemVersion_ITF) *QOperatingSystemVersion {
-	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion(PointerFromQOperatingSystemVersion(other)))
-	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
-	return tmpValue
-}
-
 func (ptr *QOperatingSystemVersion) Type() QOperatingSystemVersion__OSType {
 	if ptr.Pointer() != nil {
 		return QOperatingSystemVersion__OSType(C.QOperatingSystemVersion_Type(ptr.Pointer()))
@@ -29929,6 +29931,18 @@ func (ptr *QOperatingSystemVersion) AndroidNougat_MR1() *QOperatingSystemVersion
 	return tmpValue
 }
 
+func QOperatingSystemVersion_AndroidOreo() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) AndroidOreo() *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
 func QOperatingSystemVersion_MacOSHighSierra() *QOperatingSystemVersion {
 	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
 	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
@@ -30033,6 +30047,12 @@ func QOperatingSystemVersion_Windows8_1() *QOperatingSystemVersion {
 
 func (ptr *QOperatingSystemVersion) Windows8_1() *QOperatingSystemVersion {
 	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_Windows8_1())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func NewQOperatingSystemVersion(other QOperatingSystemVersion_ITF) *QOperatingSystemVersion {
+	var tmpValue = NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_NewQOperatingSystemVersion(PointerFromQOperatingSystemVersion(other)))
 	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }

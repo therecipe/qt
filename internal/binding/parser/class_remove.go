@@ -42,6 +42,13 @@ func (c *Class) removeFunctions_Version() {
 			{
 				c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
 			}
+
+		case "QSemaphoreReleaser::QSemaphoreReleaser":
+			{
+				if c.Functions[i].OverloadNumber == "4" {
+					c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
+				}
+			}
 		}
 	}
 }

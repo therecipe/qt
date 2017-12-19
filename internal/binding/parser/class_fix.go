@@ -120,6 +120,27 @@ func (c *Class) fixGeneral_Version() {
 				Signature: "()",
 			})
 		}
+
+	case "QOperatingSystemVersion":
+		{
+			if utils.QT_VERSION_NUM() >= 5093 {
+				c.Functions = append(c.Functions, &Function{
+					Name:     "QOperatingSystemVersion",
+					Fullname: fmt.Sprintf("%v::QOperatingSystemVersion", c.Name),
+					Access:   "public",
+					Virtual:  "non",
+					Meta:     CONSTRUCTOR,
+					Status:   "active",
+					Parameters: []*Parameter{
+						{
+							Name:  "other",
+							Value: "const QOperatingSystemVersion &amp;",
+						},
+					},
+					Signature: "QOperatingSystemVersion(const QOperatingSystemVersion &amp;other) = default",
+				})
+			}
+		}
 	}
 }
 

@@ -93,7 +93,6 @@ void QSqlDriver_SetOpenDefault(void* ptr, char open);
 void QSqlDriver_SetOpenError(void* ptr, char error);
 void QSqlDriver_SetOpenErrorDefault(void* ptr, char error);
 void QSqlDriver_DestroyQSqlDriver(void* ptr);
-long long QSqlDriver_DbmsType(void* ptr);
 long long QSqlDriver_NumericalPrecisionPolicy(void* ptr);
 void* QSqlDriver_LastError(void* ptr);
 void* QSqlDriver_PrimaryIndex(void* ptr, struct QtSql_PackedString tableName);

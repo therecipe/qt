@@ -22,6 +22,9 @@ func MACOS_SDK_DIR() string {
 				return fmt.Sprintf("MacOSX10.%v.sdk", i)
 			}
 		}
+		if ExistsDir(filepath.Join(basePath, "MacOSX.sdk")) {
+			return "MacOSX.sdk"
+		}
 		Log.Errorf("failed to find MacOSX sdk in %v", basePath)
 	}
 	return ""
@@ -35,6 +38,9 @@ func IPHONEOS_SDK_DIR() string {
 				return fmt.Sprintf("iPhoneOS%v.sdk", i)
 			}
 		}
+		if ExistsDir(filepath.Join(basePath, "iPhoneOS.sdk")) {
+			return "iPhoneOS.sdk"
+		}
 		Log.Errorf("failed to find iPhoneOS sdk in %v", basePath)
 	}
 	return ""
@@ -47,6 +53,9 @@ func IPHONESIMULATOR_SDK_DIR() string {
 			if ExistsDir(filepath.Join(basePath, fmt.Sprintf("iPhoneSimulator%v.sdk", i))) {
 				return fmt.Sprintf("iPhoneSimulator%v.sdk", i)
 			}
+		}
+		if ExistsDir(filepath.Join(basePath, "iPhoneSimulator.sdk")) {
+			return "iPhoneSimulator.sdk"
 		}
 		Log.Errorf("failed to find iPhoneSimulator sdk in %v", basePath)
 	}
