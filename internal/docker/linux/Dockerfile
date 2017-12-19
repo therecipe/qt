@@ -33,7 +33,7 @@ RUN rm -r /home/user/work/pkg/linux_amd64/github.com/Sirupsen/ && rm -r /home/us
 
 ENV QT qt-unified-linux-x64-online.run
 ENV QT_QPA_PLATFORM minimal
-RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/online_installers/$QT && chmod +x /tmp/$QT && /tmp/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs && rm -f /tmp/$QT
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT https://download.qt.io/official_releases/online_installers/$QT && chmod +x /tmp/$QT && /tmp/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true && rm -f /tmp/$QT
 
 
 ENV QT_DIR /opt/Qt

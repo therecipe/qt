@@ -12,7 +12,7 @@ install:
 
     curl -sL --retry 10 --retry-delay 10 -o %TMP%\%QT% https://download.qt.io/official_releases/online_installers/%QT%
 
-    %TMP%\%QT% --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
+    %TMP%\%QT% --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs WINDOWS=true
 
     del %TMP%\%QT% /Q
 

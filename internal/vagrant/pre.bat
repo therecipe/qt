@@ -105,7 +105,7 @@ if "%QT_MSYS2%" == "true" (
   ::install Qt
   set QT=qt-unified-windows-x86-online.exe
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!QT! https://download.qt.io/official_releases/online_installers/!QT!
-  %TMP%\!QT! --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
+  %TMP%\!QT! --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs WINDOWS=true
   del %TMP%\!QT! /Q
   setx /M PATH "%PATH%;C:\Qt\Tools\mingw530_32\bin"
   set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
