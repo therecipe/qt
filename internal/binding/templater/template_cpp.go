@@ -525,7 +525,8 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				"QPlatformGraphicsBuffer",
 				"QDBusPendingReplyTypes",
 				"QRemoteObjectPackets",
-				"QRemoteObjectStringLiterals":
+				"QRemoteObjectStringLiterals",
+				"ui":
 				{
 					continue
 				}
