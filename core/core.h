@@ -3502,6 +3502,7 @@ void* QVariant_ToFont(void* ptr);
 void* QVariant_ToImage(void* ptr);
 void* QVariant_ToObject(void* ptr);
 void* QVariant_ToIcon(void* ptr);
+void* QVariant_ToBrush(void* ptr);
 void* QVariant___QVariant_val_atList26(void* ptr, struct QtCore_PackedString i);
 void QVariant___QVariant_val_setList26(void* ptr, struct QtCore_PackedString key, void* i);
 void* QVariant___QVariant_val_newList26(void* ptr);

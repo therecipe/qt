@@ -46813,6 +46813,13 @@ func (ptr *QVariant) ToIcon() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QVariant) ToBrush() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QVariant_ToBrush(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVariant) __QVariant_val_atList26(i string) *QVariant {
 	if ptr.Pointer() != nil {
 		var iC *C.char

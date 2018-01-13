@@ -441,6 +441,7 @@ long long QBrush_Style(void* ptr);
 char QBrush_IsOpaque(void* ptr);
 void* QBrush_Color(void* ptr);
 void* QBrush_Gradient(void* ptr);
+void* QBrush_ToVariant(void* ptr);
 void QClipboard_ConnectChanged(void* ptr);
 void QClipboard_DisconnectChanged(void* ptr);
 void QClipboard_Changed(void* ptr, long long mode);

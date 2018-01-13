@@ -19,6 +19,7 @@
 #include <QAssociativeIterable>
 #include <QBasicTimer>
 #include <QBitArray>
+#include <QBrush>
 #include <QBuffer>
 #include <QByteArray>
 #include <QByteArrayList>
@@ -23126,6 +23127,11 @@ void* QVariant_ToObject(void* ptr)
 void* QVariant_ToIcon(void* ptr)
 {
 	return new QIcon(qvariant_cast<QIcon>(*static_cast<QVariant*>(ptr)));
+}
+
+void* QVariant_ToBrush(void* ptr)
+{
+	return new QBrush(qvariant_cast<QBrush>(*static_cast<QVariant*>(ptr)));
 }
 
 void* QVariant___QVariant_val_atList26(void* ptr, struct QtCore_PackedString i)
