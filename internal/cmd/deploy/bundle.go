@@ -211,6 +211,12 @@ func bundle(mode, target, path, name, depPath string) {
 				return
 			}
 
+			paths := make([]string, 0)
+			// make windeployqt run correctly
+			paths = append(paths, filepath.Join(utils.QT_MSYS2_DIR(), "bin"))
+			paths = append(paths, os.Getenv("PATH"))
+			os.Setenv("PATH", strings.Join(paths, ";"))
+
 			var copyCmd = "xcopy"
 			if utils.MSYSTEM() != "" {
 				copyCmd = "cp"
@@ -251,10 +257,10 @@ func bundle(mode, target, path, name, depPath string) {
 					for _, lib := range append(deps, lib) {
 						if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib))) {
 							if utils.MSYSTEM() != "" {
-								utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+                utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 							} else {
 								utils.RunCmd(exec.Command("xcopy", "/Y", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
-							}							
+							}
 						}
 					}
 				}
@@ -265,7 +271,11 @@ func bundle(mode, target, path, name, depPath string) {
 				deps = append(deps, []string{"libjpeg-8", "libsqlite3-0", "libwebp-7", "libxml2-2", "liblzma-5", "libxslt-1"}...)
 			}
 			for _, lib := range deps {
-				utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+				if utils.MSYSTEM() != "" {
+					utils.RunCmd(exec.Command("copyCmd", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+				} else {
+					utils.RunCmd(exec.Command("xcopy", "/Y", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+				}
 			}
 
 			var walkFn = func(path string, info os.FileInfo, err error) error {
@@ -277,6 +287,12 @@ func bundle(mode, target, path, name, depPath string) {
 			filepath.Walk(depPath, walkFn)
 
 		default:
+			paths := make([]string, 0)
+			// make windeployqt run correctly
+			paths = append(paths, filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin"))
+			paths = append(paths, filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin"))
+			paths = append(paths, os.Getenv("PATH"))
+			os.Setenv("PATH", strings.Join(paths, ";"))
 
 			//copy default assets
 			//TODO: windres icon

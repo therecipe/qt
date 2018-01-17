@@ -390,6 +390,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if runtime.GOOS == target {
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
+				// use gcc shipped with msys2
+				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
+			} else {
+				// use gcc shipped with qt installation
+				env["PATH"] = filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin") + ";" + env["PATH"]
 			}
 		} else {
 			delete(env, "TMP")
