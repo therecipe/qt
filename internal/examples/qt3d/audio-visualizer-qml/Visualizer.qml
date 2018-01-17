@@ -189,8 +189,8 @@ Entity {
 
             NormalDiffuseMapAlphaMaterial {
                 id: titlePlaneMaterial
-                diffuse: "qrc:/images/demotitle.png"
-                normal: "qrc:/images/normalmap.png"
+                diffuse: TextureLoader { source: "qrc:/images/demotitle.png" }
+                normal: TextureLoader { source: "qrc:/images/normalmap.png" }
                 shininess: 1.0
             }
 
@@ -215,8 +215,8 @@ Entity {
             }
 
             property Material songPlaneMaterial: NormalDiffuseMapAlphaMaterial {
-                diffuse: "qrc:/images/songtitle.png"
-                normal: "qrc:/images/normalmap.png"
+                diffuse: TextureLoader { source: "qrc:/images/songtitle.png" }
+                normal: TextureLoader { source: "qrc:/images/normalmap.png" }
                 shininess: 1.0
             }
 
