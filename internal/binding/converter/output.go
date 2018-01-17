@@ -641,7 +641,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 			}
 
 			switch f.Fullname {
-			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant", "QObject::toVariant", "QIcon::toVariant":
+			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant", "QObject::toVariant", "QIcon::toVariant", "QBrush::toVariant":
 				{
 					if f.Fullname == "QObject::toVariant" {
 						return fmt.Sprintf("new %v(QVariant::fromValue(%v))", value, strings.Split(name, "->")[0])
@@ -649,7 +649,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 					return fmt.Sprintf("new %v(*%v)", value, strings.Split(name, "->")[0])
 				}
 
-			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage", "QVariant::toObject", "QVariant::toIcon":
+			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage", "QVariant::toObject", "QVariant::toIcon", "QVariant::toBrush":
 				{
 					f.NeedsFinalizer = false
 

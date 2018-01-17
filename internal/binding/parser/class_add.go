@@ -15,7 +15,7 @@ func (c *Class) add() {
 
 func (c *Class) addGeneralFuncs() {
 	switch c.Name {
-	case "QColor", "QFont", "QImage", "QObject", "QIcon":
+	case "QColor", "QFont", "QImage", "QObject", "QIcon", "QBrush":
 		{
 			c.Functions = append(c.Functions, &Function{
 				Name:       "toVariant",
@@ -31,7 +31,7 @@ func (c *Class) addGeneralFuncs() {
 
 	case "QVariant":
 		{
-			for _, name := range []string{"toColor", "toFont", "toImage", "toObject", "toIcon"} {
+			for _, name := range []string{"toColor", "toFont", "toImage", "toObject", "toIcon", "toBrush"} {
 				c.Functions = append(c.Functions, &Function{
 					Name:       name,
 					Fullname:   fmt.Sprintf("%v::%v", c.Name, name),

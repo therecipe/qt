@@ -3090,6 +3090,11 @@ void* QBrush_Gradient(void* ptr)
 	return const_cast<QGradient*>(static_cast<QBrush*>(ptr)->gradient());
 }
 
+void* QBrush_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QBrush*>(ptr));
+}
+
 class MyQClipboard: public QClipboard
 {
 public:
