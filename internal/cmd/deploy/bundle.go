@@ -257,7 +257,7 @@ func bundle(mode, target, path, name, depPath string) {
 					for _, lib := range append(deps, lib) {
 						if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib))) {
 							if utils.MSYSTEM() != "" {
-								utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+                utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 							} else {
 								utils.RunCmd(exec.Command("xcopy", "/Y", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 							}
@@ -272,7 +272,7 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 			for _, lib := range deps {
 				if utils.MSYSTEM() != "" {
-					utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+					utils.RunCmd(exec.Command("copyCmd", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 				} else {
 					utils.RunCmd(exec.Command("xcopy", "/Y", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 				}
