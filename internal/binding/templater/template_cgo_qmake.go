@@ -64,7 +64,7 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 	default:
 		createProject(module, path, target, mode, libs)
 		createMakefile(module, path, target, mode)
-		createCgo(module, path, target, mode, ipkg, tags)
+		o = createCgo(module, path, target, mode, ipkg, tags)
 	}
 
 	utils.RemoveAll(filepath.Join(path, "Mfile"))
@@ -151,11 +151,20 @@ func createProject(module, path, target string, mode int, libs []string) {
 		out[i] = strings.ToLower(out[i])
 	}
 
-	utils.Save(filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))), fmt.Sprintf("QT += %v", strings.Join(out, " ")))
+	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+	if module == "build_ios" {
+		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+	}
+	utils.Save(proPath, fmt.Sprintf("QT += %v", strings.Join(out, " ")))
 }
 
 func createMakefile(module, path, target string, mode int) {
-	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", "Mfile", filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
+	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+	if module == "build_ios" {
+		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+	}
+
+	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", "Mfile", proPath)
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -211,7 +220,7 @@ func createMakefile(module, path, target string, mode int) {
 		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
 	}
 
-	utils.RemoveAll(filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path))))
+	utils.RemoveAll(proPath)
 	utils.RemoveAll(filepath.Join(path, ".qmake.stash"))
 	switch target {
 	case "darwin":
@@ -241,7 +250,7 @@ func createMakefile(module, path, target string, mode int) {
 				}
 			}
 			*/
-			if true /*TODO: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
+			if module != "build_ios" /*TODO: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -299,7 +308,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	//<--
 
 	pkg := strings.ToLower(module)
-	if mode == MOC {
+	if mode == MOC || pkg == "build_ios" {
 		pkg = ipkg
 	}
 	fmt.Fprintf(bb, "package %v\n\n/*\n", pkg)
@@ -350,6 +359,12 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-shlib-undefined\n")
 	case "windows":
 		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
+	case "ios":
+		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
+	case "ios-simulator":
+		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 	}
 
 	fmt.Fprint(bb, "*/\nimport \"C\"\n")
@@ -402,7 +417,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 				tmp = strings.Replace(tmp, "-lQt5"+lib, "-framework Qt"+lib, -1)
 			}
 		case "windows":
-			if utils.QT_MSYS2() && !utils.QT_MSYS2_STATIC() {
+			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)
 			}
 			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
@@ -454,9 +469,9 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	case "android-emulator":
 		sFixes = []string{"linux_386"}
 	case "ios":
-		sFixes = []string{"darwin_arm64", "darwin_arm"}
+		sFixes = []string{"darwin_arm64"}
 	case "ios-simulator":
-		sFixes = []string{"darwin_amd64", "darwin_386"}
+		sFixes = []string{"darwin_amd64"}
 	case "sailfish":
 		sFixes = []string{"linux_arm"}
 	case "sailfish-emulator":

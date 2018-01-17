@@ -40,7 +40,6 @@
 #include <QSimpleXmlNodeModel>
 #include <QSourceLocation>
 #include <QString>
-#include <QStringList>
 #include <QStringRef>
 #include <QTextCodec>
 #include <QTime>

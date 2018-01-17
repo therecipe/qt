@@ -4024,6 +4024,13 @@ func (ptr *QAbstractItemView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	return false
 }
 
+func (ptr *QAbstractItemView) IsPersistentEditorOpen(index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractItemView_IsPersistentEditorOpen(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
 func (ptr *QAbstractItemView) ShowDropIndicator() bool {
 	if ptr.Pointer() != nil {
 		return C.QAbstractItemView_ShowDropIndicator(ptr.Pointer()) != 0
@@ -7405,6 +7412,12 @@ func (ptr *QAction) SetShortcutContext(context core.Qt__ShortcutContext) {
 	}
 }
 
+func (ptr *QAction) SetShortcutVisibleInContextMenu(show bool) {
+	if ptr.Pointer() != nil {
+		C.QAction_SetShortcutVisibleInContextMenu(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(show))))
+	}
+}
+
 func (ptr *QAction) SetShortcuts2(key gui.QKeySequence__StandardKey) {
 	if ptr.Pointer() != nil {
 		C.QAction_SetShortcuts2(ptr.Pointer(), C.longlong(key))
@@ -7881,6 +7894,13 @@ func (ptr *QAction) IsIconVisibleInMenu() bool {
 func (ptr *QAction) IsSeparator() bool {
 	if ptr.Pointer() != nil {
 		return C.QAction_IsSeparator(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QAction) IsShortcutVisibleInContextMenu() bool {
+	if ptr.Pointer() != nil {
+		return C.QAction_IsShortcutVisibleInContextMenu(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -19356,11 +19376,12 @@ func NewQDialogButtonBoxFromPointer(ptr unsafe.Pointer) *QDialogButtonBox {
 //QDialogButtonBox::ButtonLayout
 type QDialogButtonBox__ButtonLayout int64
 
-const (
-	QDialogButtonBox__WinLayout   QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(0)
-	QDialogButtonBox__MacLayout   QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(1)
-	QDialogButtonBox__KdeLayout   QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(2)
-	QDialogButtonBox__GnomeLayout QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(3)
+var (
+	QDialogButtonBox__WinLayout     QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(0)
+	QDialogButtonBox__MacLayout     QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(1)
+	QDialogButtonBox__KdeLayout     QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(2)
+	QDialogButtonBox__GnomeLayout   QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(3)
+	QDialogButtonBox__AndroidLayout QDialogButtonBox__ButtonLayout = QDialogButtonBox__ButtonLayout(C.QDialogButtonBox_AndroidLayout_Type())
 )
 
 //go:generate stringer -type=QDialogButtonBox__ButtonRole
@@ -46247,6 +46268,34 @@ func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label strin
 	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
 }
 
+func QInputDialog_GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType, step float64) float64 {
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.double(step)))
+}
+
+func (ptr *QInputDialog) GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType, step float64) float64 {
+	var titleC *C.char
+	if title != "" {
+		titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+	}
+	var labelC *C.char
+	if label != "" {
+		labelC = C.CString(label)
+		defer C.free(unsafe.Pointer(labelC))
+	}
+	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.double(step)))
+}
+
 func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
 	var titleC *C.char
 	if title != "" {
@@ -46533,6 +46582,12 @@ func (ptr *QInputDialog) SetDoubleRange(min float64, max float64) {
 	}
 }
 
+func (ptr *QInputDialog) SetDoubleStep(step float64) {
+	if ptr.Pointer() != nil {
+		C.QInputDialog_SetDoubleStep(ptr.Pointer(), C.double(step))
+	}
+}
+
 func (ptr *QInputDialog) SetDoubleValue(value float64) {
 	if ptr.Pointer() != nil {
 		C.QInputDialog_SetDoubleValue(ptr.Pointer(), C.double(value))
@@ -46802,6 +46857,13 @@ func (ptr *QInputDialog) DoubleMaximum() float64 {
 func (ptr *QInputDialog) DoubleMinimum() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QInputDialog_DoubleMinimum(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QInputDialog) DoubleStep() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QInputDialog_DoubleStep(ptr.Pointer()))
 	}
 	return 0
 }
@@ -51376,15 +51438,6 @@ func NewQLineEditFromPointer(ptr unsafe.Pointer) *QLineEdit {
 	return n
 }
 
-//go:generate stringer -type=QLineEdit__ActionPosition
-//QLineEdit::ActionPosition
-type QLineEdit__ActionPosition int64
-
-const (
-	QLineEdit__LeadingPosition  QLineEdit__ActionPosition = QLineEdit__ActionPosition(0)
-	QLineEdit__TrailingPosition QLineEdit__ActionPosition = QLineEdit__ActionPosition(1)
-)
-
 //go:generate stringer -type=QLineEdit__EchoMode
 //QLineEdit::EchoMode
 type QLineEdit__EchoMode int64
@@ -51394,6 +51447,15 @@ const (
 	QLineEdit__NoEcho             QLineEdit__EchoMode = QLineEdit__EchoMode(1)
 	QLineEdit__Password           QLineEdit__EchoMode = QLineEdit__EchoMode(2)
 	QLineEdit__PasswordEchoOnEdit QLineEdit__EchoMode = QLineEdit__EchoMode(3)
+)
+
+//go:generate stringer -type=QLineEdit__ActionPosition
+//QLineEdit::ActionPosition
+type QLineEdit__ActionPosition int64
+
+const (
+	QLineEdit__LeadingPosition  QLineEdit__ActionPosition = QLineEdit__ActionPosition(0)
+	QLineEdit__TrailingPosition QLineEdit__ActionPosition = QLineEdit__ActionPosition(1)
 )
 
 func (ptr *QLineEdit) AddAction2(icon gui.QIcon_ITF, position QLineEdit__ActionPosition) *QAction {
@@ -52354,6 +52416,20 @@ func (ptr *QLineEdit) CursorPosition() int {
 func (ptr *QLineEdit) MaxLength() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QLineEdit_MaxLength(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QLineEdit) SelectionEnd() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QLineEdit_SelectionEnd(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QLineEdit) SelectionLength() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QLineEdit_SelectionLength(ptr.Pointer())))
 	}
 	return 0
 }
@@ -54399,6 +54475,13 @@ func (ptr *QListWidget) SupportedDropActionsDefault() core.Qt__DropAction {
 		return core.Qt__DropAction(C.QListWidget_SupportedDropActionsDefault(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QListWidget) IsPersistentEditorOpen(item QListWidgetItem_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QListWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQListWidgetItem(item)) != 0
+	}
+	return false
 }
 
 func (ptr *QListWidget) IsSortingEnabled() bool {
@@ -59478,6 +59561,12 @@ func (ptr *QOpenGLWidget) SetFormat(format gui.QSurfaceFormat_ITF) {
 	}
 }
 
+func (ptr *QOpenGLWidget) SetTextureFormat(texFormat uint) {
+	if ptr.Pointer() != nil {
+		C.QOpenGLWidget_SetTextureFormat(ptr.Pointer(), C.uint(uint32(texFormat)))
+	}
+}
+
 func (ptr *QOpenGLWidget) SetUpdateBehavior(updateBehavior QOpenGLWidget__UpdateBehavior) {
 	if ptr.Pointer() != nil {
 		C.QOpenGLWidget_SetUpdateBehavior(ptr.Pointer(), C.longlong(updateBehavior))
@@ -59490,6 +59579,13 @@ func (ptr *QOpenGLWidget) DestroyQOpenGLWidget() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QOpenGLWidget) TextureFormat() uint {
+	if ptr.Pointer() != nil {
+		return uint(uint32(C.QOpenGLWidget_TextureFormat(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QOpenGLWidget) DefaultFramebufferObject() uint {
@@ -60627,6 +60723,38 @@ func (ptr *QPlainTextEdit) CreateStandardContextMenu() *QMenu {
 	return nil
 }
 
+func (ptr *QPlainTextEdit) CreateStandardContextMenu2(position core.QPoint_ITF) *QMenu {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMenuFromPointer(C.QPlainTextEdit_CreateStandardContextMenu2(ptr.Pointer(), core.PointerFromQPoint(position)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func NewQPlainTextEdit(parent QWidget_ITF) *QPlainTextEdit {
+	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit(PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQPlainTextEdit2(text string, parent QWidget_ITF) *QPlainTextEdit {
+	var textC *C.char
+	if text != "" {
+		textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+	}
+	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 //export callbackQPlainTextEdit_LoadResource
 func callbackQPlainTextEdit_LoadResource(ptr unsafe.Pointer, ty C.int, name unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "loadResource"); signal != nil {
@@ -60680,38 +60808,6 @@ func (ptr *QPlainTextEdit) Find2(exp core.QRegExp_ITF, options gui.QTextDocument
 		return C.QPlainTextEdit_Find2(ptr.Pointer(), core.PointerFromQRegExp(exp), C.longlong(options)) != 0
 	}
 	return false
-}
-
-func (ptr *QPlainTextEdit) CreateStandardContextMenu2(position core.QPoint_ITF) *QMenu {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMenuFromPointer(C.QPlainTextEdit_CreateStandardContextMenu2(ptr.Pointer(), core.PointerFromQPoint(position)))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func NewQPlainTextEdit(parent QWidget_ITF) *QPlainTextEdit {
-	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit(PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func NewQPlainTextEdit2(text string, parent QWidget_ITF) *QPlainTextEdit {
-	var textC *C.char
-	if text != "" {
-		textC = C.CString(text)
-		defer C.free(unsafe.Pointer(textC))
-	}
-	var tmpValue = NewQPlainTextEditFromPointer(C.QPlainTextEdit_NewQPlainTextEdit2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
 }
 
 func (ptr *QPlainTextEdit) Find(exp string, options gui.QTextDocument__FindFlag) bool {
@@ -61604,9 +61700,9 @@ func (ptr *QPlainTextEdit) SetTabChangesFocus(b bool) {
 	}
 }
 
-func (ptr *QPlainTextEdit) SetTabStopWidth(width int) {
+func (ptr *QPlainTextEdit) SetTabStopDistance(distance float64) {
 	if ptr.Pointer() != nil {
-		C.QPlainTextEdit_SetTabStopWidth(ptr.Pointer(), C.int(int32(width)))
+		C.QPlainTextEdit_SetTabStopDistance(ptr.Pointer(), C.double(distance))
 	}
 }
 
@@ -62230,9 +62326,9 @@ func (ptr *QPlainTextEdit) MaximumBlockCount() int {
 	return 0
 }
 
-func (ptr *QPlainTextEdit) TabStopWidth() int {
+func (ptr *QPlainTextEdit) TabStopDistance() float64 {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QPlainTextEdit_TabStopWidth(ptr.Pointer())))
+		return float64(C.QPlainTextEdit_TabStopDistance(ptr.Pointer()))
 	}
 	return 0
 }
@@ -69409,6 +69505,8 @@ var (
 	QStyle__SH_Menu_SubMenuResetWhenReenteringParent          QStyle__StyleHint = QStyle__StyleHint(C.QStyle_SH_Menu_SubMenuResetWhenReenteringParent_Type())
 	QStyle__SH_Menu_SubMenuDontStartSloppyOnLeave             QStyle__StyleHint = QStyle__StyleHint(C.QStyle_SH_Menu_SubMenuDontStartSloppyOnLeave_Type())
 	QStyle__SH_ItemView_ScrollMode                            QStyle__StyleHint = QStyle__StyleHint(C.QStyle_SH_ItemView_ScrollMode_Type())
+	QStyle__SH_TitleBar_ShowToolTipsOnButtons                 QStyle__StyleHint = QStyle__StyleHint(C.QStyle_SH_TitleBar_ShowToolTipsOnButtons_Type())
+	QStyle__SH_Widget_Animation_Duration                      QStyle__StyleHint = QStyle__StyleHint(C.QStyle_SH_Widget_Animation_Duration_Type())
 	QStyle__SH_CustomBase                                     QStyle__StyleHint = QStyle__StyleHint(0xf0000000)
 )
 
@@ -70944,6 +71042,63 @@ func (ptr *QStyleFactory) Create(key string) *QStyle {
 	}
 	return tmpValue
 }
+
+type QStyleHelper struct {
+	ptr unsafe.Pointer
+}
+
+type QStyleHelper_ITF interface {
+	QStyleHelper_PTR() *QStyleHelper
+}
+
+func (ptr *QStyleHelper) QStyleHelper_PTR() *QStyleHelper {
+	return ptr
+}
+
+func (ptr *QStyleHelper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QStyleHelper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQStyleHelper(ptr QStyleHelper_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QStyleHelper_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQStyleHelperFromPointer(ptr unsafe.Pointer) *QStyleHelper {
+	var n = new(QStyleHelper)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QStyleHelper) DestroyQStyleHelper() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QStyleHelper__WidgetSizePolicy
+//QStyleHelper::WidgetSizePolicy
+type QStyleHelper__WidgetSizePolicy int64
+
+const (
+	QStyleHelper__SizeLarge   QStyleHelper__WidgetSizePolicy = QStyleHelper__WidgetSizePolicy(0)
+	QStyleHelper__SizeSmall   QStyleHelper__WidgetSizePolicy = QStyleHelper__WidgetSizePolicy(1)
+	QStyleHelper__SizeMini    QStyleHelper__WidgetSizePolicy = QStyleHelper__WidgetSizePolicy(2)
+	QStyleHelper__SizeDefault QStyleHelper__WidgetSizePolicy = QStyleHelper__WidgetSizePolicy(-1)
+)
 
 type QStyleHintReturn struct {
 	ptr unsafe.Pointer
@@ -81570,6 +81725,13 @@ func (ptr *QTableWidget) SupportedDropActionsDefault() core.Qt__DropAction {
 	return 0
 }
 
+func (ptr *QTableWidget) IsPersistentEditorOpen(item QTableWidgetItem_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QTableWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTableWidgetItem(item)) != 0
+	}
+	return false
+}
+
 func (ptr *QTableWidget) ItemPrototype() *QTableWidgetItem {
 	if ptr.Pointer() != nil {
 		return NewQTableWidgetItemFromPointer(C.QTableWidget_ItemPrototype(ptr.Pointer()))
@@ -84502,18 +84664,6 @@ func (ptr *QTextEdit) SetPlaceholderText(placeholderText string) {
 	}
 }
 
-func (ptr *QTextEdit) SetTabChangesFocus(b bool) {
-	if ptr.Pointer() != nil {
-		C.QTextEdit_SetTabChangesFocus(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(b))))
-	}
-}
-
-func (ptr *QTextEdit) SetTabStopWidth(width int) {
-	if ptr.Pointer() != nil {
-		C.QTextEdit_SetTabStopWidth(ptr.Pointer(), C.int(int32(width)))
-	}
-}
-
 //export callbackQTextEdit_SetPlainText
 func callbackQTextEdit_SetPlainText(ptr unsafe.Pointer, text C.struct_QtWidgets_PackedString) {
 	if signal := qt.GetSignal(ptr, "setPlainText"); signal != nil {
@@ -84569,6 +84719,18 @@ func (ptr *QTextEdit) SetPlainTextDefault(text string) {
 func (ptr *QTextEdit) SetReadOnly(ro bool) {
 	if ptr.Pointer() != nil {
 		C.QTextEdit_SetReadOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ro))))
+	}
+}
+
+func (ptr *QTextEdit) SetTabChangesFocus(b bool) {
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetTabChangesFocus(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(b))))
+	}
+}
+
+func (ptr *QTextEdit) SetTabStopDistance(distance float64) {
+	if ptr.Pointer() != nil {
+		C.QTextEdit_SetTabStopDistance(ptr.Pointer(), C.double(distance))
 	}
 }
 
@@ -85315,16 +85477,16 @@ func (ptr *QTextEdit) LineWrapColumnOrWidth() int {
 	return 0
 }
 
-func (ptr *QTextEdit) TabStopWidth() int {
+func (ptr *QTextEdit) FontPointSize() float64 {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QTextEdit_TabStopWidth(ptr.Pointer())))
+		return float64(C.QTextEdit_FontPointSize(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QTextEdit) FontPointSize() float64 {
+func (ptr *QTextEdit) TabStopDistance() float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QTextEdit_FontPointSize(ptr.Pointer()))
+		return float64(C.QTextEdit_TabStopDistance(ptr.Pointer()))
 	}
 	return 0
 }
@@ -90049,6 +90211,13 @@ func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItem_ITF) bool 
 	return false
 }
 
+func (ptr *QTreeWidget) IsPersistentEditorOpen(item QTreeWidgetItem_ITF, column int) bool {
+	if ptr.Pointer() != nil {
+		return C.QTreeWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(int32(column))) != 0
+	}
+	return false
+}
+
 func (ptr *QTreeWidget) ColumnCount() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTreeWidget_ColumnCount(ptr.Pointer())))
@@ -93838,50 +94007,6 @@ func (ptr *QWidget) FocusNextPrevChildDefault(next bool) bool {
 func (ptr *QWidget) FocusPreviousChild() bool {
 	if ptr.Pointer() != nil {
 		return C.QWidget_FocusPreviousChild(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQWidget_NativeEvent
-func callbackQWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "nativeEvent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool {
-				signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(eventType, message, result)
-				return f(eventType, message, result)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", f)
-		}
-	}
-}
-
-func (ptr *QWidget) DisconnectNativeEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "nativeEvent")
-	}
-}
-
-func (ptr *QWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
-func (ptr *QWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }

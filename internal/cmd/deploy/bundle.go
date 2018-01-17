@@ -257,7 +257,7 @@ func bundle(mode, target, path, name, depPath string) {
 					for _, lib := range append(deps, lib) {
 						if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib))) {
 							if utils.MSYSTEM() != "" {
-                utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
+								utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 							} else {
 								utils.RunCmd(exec.Command("xcopy", "/Y", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, target, runtime.GOOS))
 							}
@@ -455,42 +455,28 @@ func bundle(mode, target, path, name, depPath string) {
 		copy(assets+"/", depPath)
 
 		//add c_main_wrappers
-		utils.Save(filepath.Join(depPath, "gallery_plugin_import.cpp"), ios_plugins())
-		utils.Save(filepath.Join(depPath, "gallery_qml_plugin_import.cpp"), ios_qmlplugins())
+		if !utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
+			utils.Save(filepath.Join(depPath, target+"_qml_plugin_import.cpp"), "")
+		}
 		utils.Save(filepath.Join(depPath, "qt.conf"), ios_qtconf())
 
-		var targets []string
+		var t string
 		switch target {
 		case "ios":
-			targets = []string{"arm64", "armv7"}
+			t = "arm64"
 		case "ios-simulator":
-			targets = []string{"x86_64", "i386"}
+			t = "x86_64"
 		}
 
-		for i, t := range targets {
-			var lib string
-			if i == 1 {
-				if t == "i386" {
-					lib += "_386"
-				} else {
-					lib += "_" + t
-				}
-			}
-			utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), "#include \"libgo"+lib+".h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
-			cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_"+t, "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo"+lib)
-			cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t)...) //TODO: parse cached core instead
-			cmd.Dir = depPath
-			utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
+		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp", target+"_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
+		cmd.Dir = depPath
+		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 
-			strip := exec.Command("strip", "main_"+t)
-			strip.Dir = filepath.Join(depPath, "build")
-			utils.RunCmd(strip, fmt.Sprintf("strip binary for %v (%v) on %v", target, t, runtime.GOOS))
-		}
-
-		//binary size limits	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
-		lipo := exec.Command("xcrun", "lipo", "-create", "-arch", targets[0], "main_"+targets[0], "-arch", targets[1], "main_"+targets[1], "-output", "main")
-		lipo.Dir = filepath.Join(depPath, "build")
-		utils.RunCmdOptional(lipo, fmt.Sprintf("create fat binary for %v on %v", target, runtime.GOOS))
+		strip := exec.Command("strip", "main")
+		strip.Dir = filepath.Join(depPath, "build")
+		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v (%v) on %v", target, t, runtime.GOOS))
 
 		//run xcodebuild
 		utils.RunCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))

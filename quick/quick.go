@@ -1215,6 +1215,22 @@ func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
 	return n
 }
 
+//go:generate stringer -type=QQuickItem__TransformOrigin
+//QQuickItem::TransformOrigin
+type QQuickItem__TransformOrigin int64
+
+const (
+	QQuickItem__TopLeft     QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(0)
+	QQuickItem__Top         QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(1)
+	QQuickItem__TopRight    QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(2)
+	QQuickItem__Left        QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(3)
+	QQuickItem__Center      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(4)
+	QQuickItem__Right       QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(5)
+	QQuickItem__BottomLeft  QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(6)
+	QQuickItem__Bottom      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(7)
+	QQuickItem__BottomRight QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(8)
+)
+
 //go:generate stringer -type=QQuickItem__Flag
 //QQuickItem::Flag
 type QQuickItem__Flag int64
@@ -1242,23 +1258,16 @@ const (
 	QQuickItem__ItemRotationHasChanged         QQuickItem__ItemChange = QQuickItem__ItemChange(7)
 	QQuickItem__ItemAntialiasingHasChanged     QQuickItem__ItemChange = QQuickItem__ItemChange(8)
 	QQuickItem__ItemDevicePixelRatioHasChanged QQuickItem__ItemChange = QQuickItem__ItemChange(9)
+	QQuickItem__ItemEnabledHasChanged          QQuickItem__ItemChange = QQuickItem__ItemChange(10)
 )
 
-//go:generate stringer -type=QQuickItem__TransformOrigin
-//QQuickItem::TransformOrigin
-type QQuickItem__TransformOrigin int64
-
-const (
-	QQuickItem__TopLeft     QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(0)
-	QQuickItem__Top         QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(1)
-	QQuickItem__TopRight    QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(2)
-	QQuickItem__Left        QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(3)
-	QQuickItem__Center      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(4)
-	QQuickItem__Right       QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(5)
-	QQuickItem__BottomLeft  QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(6)
-	QQuickItem__Bottom      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(7)
-	QQuickItem__BottomRight QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(8)
-)
+func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
+	var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
 
 func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
 	if ptr.Pointer() != nil {
@@ -1269,14 +1278,6 @@ func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
 		return tmpValue
 	}
 	return nil
-}
-
-func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
-	var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
 }
 
 func (ptr *QQuickItem) ChildrenRect() *core.QRectF {
@@ -2318,6 +2319,12 @@ func (ptr *QQuickItem) SetAcceptHoverEvents(enabled bool) {
 	}
 }
 
+func (ptr *QQuickItem) SetAcceptTouchEvents(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QQuickItem_SetAcceptTouchEvents(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
 func (ptr *QQuickItem) SetAcceptedMouseButtons(buttons core.Qt__MouseButton) {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetAcceptedMouseButtons(ptr.Pointer(), C.longlong(buttons))
@@ -2441,6 +2448,12 @@ func (ptr *QQuickItem) SetRotation(vqr float64) {
 func (ptr *QQuickItem) SetScale(vqr float64) {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_SetScale(ptr.Pointer(), C.double(vqr))
+	}
+}
+
+func (ptr *QQuickItem) SetSize(size core.QSizeF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickItem_SetSize(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
 }
 
@@ -3043,6 +3056,15 @@ func (ptr *QQuickItem) TextureProviderDefault() *QSGTextureProvider {
 	return nil
 }
 
+func (ptr *QQuickItem) Size() *core.QSizeF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFFromPointer(C.QQuickItem_Size(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QQuickItem) State() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QQuickItem_State(ptr.Pointer()))
@@ -3115,6 +3137,13 @@ func (ptr *QQuickItem) TransformOrigin() QQuickItem__TransformOrigin {
 func (ptr *QQuickItem) AcceptHoverEvents() bool {
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_AcceptHoverEvents(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickItem) AcceptTouchEvents() bool {
+	if ptr.Pointer() != nil {
+		return C.QQuickItem_AcceptTouchEvents(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -7077,22 +7106,6 @@ func (ptr *QQuickWidget) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQQuickWidget_NativeEvent
-func callbackQQuickWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QQuickWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QQuickWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQQuickWidget_ActionEvent
 func callbackQQuickWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -7892,6 +7905,15 @@ const (
 	QQuickWindow__ContextNotAvailable QQuickWindow__SceneGraphError = QQuickWindow__SceneGraphError(1)
 )
 
+//go:generate stringer -type=QQuickWindow__TextRenderType
+//QQuickWindow::TextRenderType
+type QQuickWindow__TextRenderType int64
+
+const (
+	QQuickWindow__QtTextRendering     QQuickWindow__TextRenderType = QQuickWindow__TextRenderType(0)
+	QQuickWindow__NativeTextRendering QQuickWindow__TextRenderType = QQuickWindow__TextRenderType(1)
+)
+
 func (ptr *QQuickWindow) GrabWindow() *gui.QImage {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQImageFromPointer(C.QQuickWindow_GrabWindow(ptr.Pointer()))
@@ -7915,6 +7937,14 @@ func QQuickWindow_SceneGraphBackend() string {
 
 func (ptr *QQuickWindow) SceneGraphBackend() string {
 	return cGoUnpackString(C.QQuickWindow_QQuickWindow_SceneGraphBackend())
+}
+
+func QQuickWindow_TextRenderType() QQuickWindow__TextRenderType {
+	return QQuickWindow__TextRenderType(C.QQuickWindow_QQuickWindow_TextRenderType())
+}
+
+func (ptr *QQuickWindow) TextRenderType() QQuickWindow__TextRenderType {
+	return QQuickWindow__TextRenderType(C.QQuickWindow_QQuickWindow_TextRenderType())
 }
 
 //export callbackQQuickWindow_Event
@@ -8742,6 +8772,14 @@ func (ptr *QQuickWindow) SetSceneGraphBackend2(backend string) {
 	C.QQuickWindow_QQuickWindow_SetSceneGraphBackend2(C.struct_QtQuick_PackedString{data: backendC, len: C.longlong(len(backend))})
 }
 
+func QQuickWindow_SetTextRenderType(renderType QQuickWindow__TextRenderType) {
+	C.QQuickWindow_QQuickWindow_SetTextRenderType(C.longlong(renderType))
+}
+
+func (ptr *QQuickWindow) SetTextRenderType(renderType QQuickWindow__TextRenderType) {
+	C.QQuickWindow_QQuickWindow_SetTextRenderType(C.longlong(renderType))
+}
+
 //export callbackQQuickWindow_ShowEvent
 func callbackQQuickWindow_ShowEvent(ptr unsafe.Pointer, vqs unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "showEvent"); signal != nil {
@@ -9158,22 +9196,6 @@ func (ptr *QQuickWindow) CloseDefault() bool {
 	return false
 }
 
-//export callbackQQuickWindow_NativeEvent
-func callbackQQuickWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QQuickWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QQuickWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQQuickWindow_ActiveChanged
 func callbackQQuickWindow_ActiveChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "activeChanged"); signal != nil {
@@ -9365,6 +9387,36 @@ func callbackQQuickWindow_ScreenChanged(ptr unsafe.Pointer, screen unsafe.Pointe
 		signal.(func(*gui.QScreen))(gui.NewQScreenFromPointer(screen))
 	}
 
+}
+
+//export callbackQQuickWindow_SetGeometry2
+func callbackQQuickWindow_SetGeometry2(ptr unsafe.Pointer, rect unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setGeometry2"); signal != nil {
+		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetGeometry2Default(core.NewQRectFromPointer(rect))
+	}
+}
+
+func (ptr *QQuickWindow) SetGeometry2Default(rect core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetGeometry2Default(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+//export callbackQQuickWindow_SetGeometry
+func callbackQQuickWindow_SetGeometry(ptr unsafe.Pointer, posx C.int, posy C.int, w C.int, h C.int) {
+	if signal := qt.GetSignal(ptr, "setGeometry"); signal != nil {
+		signal.(func(int, int, int, int))(int(int32(posx)), int(int32(posy)), int(int32(w)), int(int32(h)))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetGeometryDefault(int(int32(posx)), int(int32(posy)), int(int32(w)), int(int32(h)))
+	}
+}
+
+func (ptr *QQuickWindow) SetGeometryDefault(posx int, posy int, w int, h int) {
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetGeometryDefault(ptr.Pointer(), C.int(int32(posx)), C.int(int32(posy)), C.int(int32(w)), C.int(int32(h)))
+	}
 }
 
 //export callbackQQuickWindow_SetHeight
@@ -14498,8 +14550,9 @@ const (
 type QSGTexture__WrapMode int64
 
 const (
-	QSGTexture__Repeat      QSGTexture__WrapMode = QSGTexture__WrapMode(0)
-	QSGTexture__ClampToEdge QSGTexture__WrapMode = QSGTexture__WrapMode(1)
+	QSGTexture__Repeat         QSGTexture__WrapMode = QSGTexture__WrapMode(0)
+	QSGTexture__ClampToEdge    QSGTexture__WrapMode = QSGTexture__WrapMode(1)
+	QSGTexture__MirroredRepeat QSGTexture__WrapMode = QSGTexture__WrapMode(2)
 )
 
 func NewQSGTexture() *QSGTexture {

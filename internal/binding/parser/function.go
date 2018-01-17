@@ -331,6 +331,10 @@ func (f *Function) IsSupported() bool {
 
 		f.Name == "setVulkanInstance", f.Name == "vulkanInstance",
 
+		f.Name == "QRandomGenerator" && f.OverloadNumber == "4",
+
+		f.Fullname == "QAndroidBinder::onTransact", f.Fullname == "QtAndroid::checkPermission",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -367,6 +371,12 @@ func (f *Function) IsSupported() bool {
 			return !strings.HasPrefix(f.Name, "__")
 		}
 
+		return false
+	}
+
+	//TODO:
+	if f.Name == "nativeEvent" {
+		f.Access = "unsupported_isBlockedFunction"
 		return false
 	}
 

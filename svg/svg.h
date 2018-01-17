@@ -208,7 +208,6 @@ void* QSvgWidget___children_newList(void* ptr);
 char QSvgWidget_CloseDefault(void* ptr);
 char QSvgWidget_EventDefault(void* ptr, void* event);
 char QSvgWidget_FocusNextPrevChildDefault(void* ptr, char next);
-char QSvgWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 void QSvgWidget_ActionEventDefault(void* ptr, void* event);
 void QSvgWidget_ChangeEventDefault(void* ptr, void* event);
 void QSvgWidget_CloseEventDefault(void* ptr, void* event);

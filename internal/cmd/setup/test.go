@@ -31,7 +31,12 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		moc.Moc(path, target, "", false, false)
 		minimal.Minimal(path, target, "")
 
-		cmd := exec.Command("go", "test", "-v", "-tags=minimal", "-ldflags=\"-s\"")
+		var pattern string
+		if strings.Contains(runtime.Version(), "1.10") {
+			pattern = "all="
+		}
+
+		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern))
 		cmd.Dir = path
 		if runtime.GOOS == "windows" {
 			for key, value := range map[string]string{
@@ -67,7 +72,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				filepath.Join("threejs", "planets"),
 			},
 
-			//"charts": []string{"audio"}, //TODO: ios, ios-simulator
+			"charts": []string{"audio"},
 
 			"common": []string{"qml_demo", "widgets_demo"},
 

@@ -2506,22 +2506,6 @@ func (ptr *QSvgWidget) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQSvgWidget_NativeEvent
-func callbackQSvgWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QSvgWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQSvgWidget_ActionEvent
 func callbackQSvgWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {

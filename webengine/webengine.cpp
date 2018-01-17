@@ -68,7 +68,6 @@
 #include <QSize>
 #include <QSizeF>
 #include <QString>
-#include <QStringList>
 #include <QTabletEvent>
 #include <QTime>
 #include <QTimer>
@@ -1274,6 +1273,9 @@ public:
 	void cancel() { callbackQWebEngineDownloadItem_Cancel(this); };
 	void Signal_DownloadProgress(qint64 bytesReceived, qint64 bytesTotal) { callbackQWebEngineDownloadItem_DownloadProgress(this, bytesReceived, bytesTotal); };
 	void Signal_Finished() { callbackQWebEngineDownloadItem_Finished(this); };
+	void Signal_IsPausedChanged(bool isPaused) { callbackQWebEngineDownloadItem_IsPausedChanged(this, isPaused); };
+	void pause() { callbackQWebEngineDownloadItem_Pause(this); };
+	void resume() { callbackQWebEngineDownloadItem_Resume(this); };
 	void Signal_StateChanged(QWebEngineDownloadItem::DownloadState state) { callbackQWebEngineDownloadItem_StateChanged(this, state); };
 	bool event(QEvent * e) { return callbackQWebEngineDownloadItem_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineDownloadItem_EventFilter(this, watched, event) != 0; };
@@ -1340,6 +1342,41 @@ void QWebEngineDownloadItem_DisconnectFinished(void* ptr)
 void QWebEngineDownloadItem_Finished(void* ptr)
 {
 	static_cast<QWebEngineDownloadItem*>(ptr)->finished();
+}
+
+void QWebEngineDownloadItem_ConnectIsPausedChanged(void* ptr)
+{
+	QObject::connect(static_cast<QWebEngineDownloadItem*>(ptr), static_cast<void (QWebEngineDownloadItem::*)(bool)>(&QWebEngineDownloadItem::isPausedChanged), static_cast<MyQWebEngineDownloadItem*>(ptr), static_cast<void (MyQWebEngineDownloadItem::*)(bool)>(&MyQWebEngineDownloadItem::Signal_IsPausedChanged));
+}
+
+void QWebEngineDownloadItem_DisconnectIsPausedChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebEngineDownloadItem*>(ptr), static_cast<void (QWebEngineDownloadItem::*)(bool)>(&QWebEngineDownloadItem::isPausedChanged), static_cast<MyQWebEngineDownloadItem*>(ptr), static_cast<void (MyQWebEngineDownloadItem::*)(bool)>(&MyQWebEngineDownloadItem::Signal_IsPausedChanged));
+}
+
+void QWebEngineDownloadItem_IsPausedChanged(void* ptr, char isPaused)
+{
+	static_cast<QWebEngineDownloadItem*>(ptr)->isPausedChanged(isPaused != 0);
+}
+
+void QWebEngineDownloadItem_Pause(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QWebEngineDownloadItem*>(ptr), "pause");
+}
+
+void QWebEngineDownloadItem_PauseDefault(void* ptr)
+{
+		static_cast<QWebEngineDownloadItem*>(ptr)->QWebEngineDownloadItem::pause();
+}
+
+void QWebEngineDownloadItem_Resume(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QWebEngineDownloadItem*>(ptr), "resume");
+}
+
+void QWebEngineDownloadItem_ResumeDefault(void* ptr)
+{
+		static_cast<QWebEngineDownloadItem*>(ptr)->QWebEngineDownloadItem::resume();
 }
 
 void QWebEngineDownloadItem_SetPath(void* ptr, struct QtWebEngine_PackedString path)
@@ -1411,6 +1448,11 @@ long long QWebEngineDownloadItem_SavePageFormat(void* ptr)
 char QWebEngineDownloadItem_IsFinished(void* ptr)
 {
 	return static_cast<QWebEngineDownloadItem*>(ptr)->isFinished();
+}
+
+char QWebEngineDownloadItem_IsPaused(void* ptr)
+{
+	return static_cast<QWebEngineDownloadItem*>(ptr)->isPaused();
 }
 
 long long QWebEngineDownloadItem_ReceivedBytes(void* ptr)
@@ -2121,6 +2163,11 @@ void QWebEnginePage_DisconnectContentsSizeChanged(void* ptr)
 void QWebEnginePage_ContentsSizeChanged(void* ptr, void* size)
 {
 	static_cast<QWebEnginePage*>(ptr)->contentsSizeChanged(*static_cast<QSizeF*>(size));
+}
+
+void QWebEnginePage_Download(void* ptr, void* url, struct QtWebEngine_PackedString filename)
+{
+	static_cast<QWebEnginePage*>(ptr)->download(*static_cast<QUrl*>(url), QString::fromUtf8(filename.data, filename.len));
 }
 
 void QWebEnginePage_ConnectFeaturePermissionRequestCanceled(void* ptr)
@@ -4043,7 +4090,6 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWebEngineView_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQWebEngineView_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWebEngineView_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQWebEngineView_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQWebEngineView_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQWebEngineView_CloseEvent(this, event); };
@@ -4589,11 +4635,6 @@ char QWebEngineView_CloseDefault(void* ptr)
 char QWebEngineView_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::focusNextPrevChild(next != 0);
-}
-
-char QWebEngineView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QWebEngineView_ActionEventDefault(void* ptr, void* event)

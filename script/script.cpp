@@ -48,7 +48,6 @@
 #include <QScriptable>
 #include <QSignalSpy>
 #include <QString>
-#include <QStringList>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>

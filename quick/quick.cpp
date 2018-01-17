@@ -108,6 +108,7 @@
 #include <QShowEvent>
 #include <QSignalSpy>
 #include <QSize>
+#include <QSizeF>
 #include <QString>
 #include <QSurface>
 #include <QSurfaceFormat>
@@ -643,14 +644,14 @@ Q_DECLARE_METATYPE(MyQQuickItem*)
 
 int QQuickItem_QQuickItem_QRegisterMetaType(){qRegisterMetaType<QQuickItem*>(); return qRegisterMetaType<MyQQuickItem*>();}
 
-void* QQuickItem_NextItemInFocusChain(void* ptr, char forward)
-{
-		return static_cast<QQuickItem*>(ptr)->nextItemInFocusChain(forward != 0);
-}
-
 void* QQuickItem_NewQQuickItem(void* parent)
 {
 	return new MyQQuickItem(static_cast<QQuickItem*>(parent));
+}
+
+void* QQuickItem_NextItemInFocusChain(void* ptr, char forward)
+{
+		return static_cast<QQuickItem*>(ptr)->nextItemInFocusChain(forward != 0);
 }
 
 void* QQuickItem_ChildrenRect(void* ptr)
@@ -1071,6 +1072,11 @@ void QQuickItem_SetAcceptHoverEvents(void* ptr, char enabled)
 		static_cast<QQuickItem*>(ptr)->setAcceptHoverEvents(enabled != 0);
 }
 
+void QQuickItem_SetAcceptTouchEvents(void* ptr, char enabled)
+{
+		static_cast<QQuickItem*>(ptr)->setAcceptTouchEvents(enabled != 0);
+}
+
 void QQuickItem_SetAcceptedMouseButtons(void* ptr, long long buttons)
 {
 		static_cast<QQuickItem*>(ptr)->setAcceptedMouseButtons(static_cast<Qt::MouseButton>(buttons));
@@ -1174,6 +1180,11 @@ void QQuickItem_SetRotation(void* ptr, double vqr)
 void QQuickItem_SetScale(void* ptr, double vqr)
 {
 		static_cast<QQuickItem*>(ptr)->setScale(vqr);
+}
+
+void QQuickItem_SetSize(void* ptr, void* size)
+{
+		static_cast<QQuickItem*>(ptr)->setSize(*static_cast<QSizeF*>(size));
 }
 
 void QQuickItem_SetSmooth(void* ptr, char vbo)
@@ -1453,6 +1464,11 @@ void* QQuickItem_TextureProviderDefault(void* ptr)
 	}
 }
 
+void* QQuickItem_Size(void* ptr)
+{
+		return ({ QSizeF tmpValue = static_cast<QQuickItem*>(ptr)->size(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
 struct QtQuick_PackedString QQuickItem_State(void* ptr)
 {
 		return ({ QByteArray t803f42 = static_cast<QQuickItem*>(ptr)->state().toUtf8(); QtQuick_PackedString { const_cast<char*>(t803f42.prepend("WHITESPACE").constData()+10), t803f42.size()-10 }; });
@@ -1487,6 +1503,11 @@ long long QQuickItem_TransformOrigin(void* ptr)
 char QQuickItem_AcceptHoverEvents(void* ptr)
 {
 		return static_cast<QQuickItem*>(ptr)->acceptHoverEvents();
+}
+
+char QQuickItem_AcceptTouchEvents(void* ptr)
+{
+		return static_cast<QQuickItem*>(ptr)->acceptTouchEvents();
 }
 
 char QQuickItem_ActiveFocusOnTab(void* ptr)
@@ -3091,7 +3112,6 @@ public:
 	void update() { callbackQQuickWindow_Update(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQQuickWindow_WheelEvent(this, event); };
 	bool close() { return callbackQQuickWindow_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQQuickWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQQuickWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQQuickWindow_ContentOrientationChanged(this, orientation); };
@@ -3110,6 +3130,8 @@ public:
 	void requestActivate() { callbackQQuickWindow_RequestActivate(this); };
 	void requestUpdate() { callbackQQuickWindow_RequestUpdate(this); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQQuickWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQQuickWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQQuickWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQQuickWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQQuickWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQQuickWindow_SetMaximumWidth(this, w); };
@@ -3308,7 +3330,6 @@ public:
 	 ~MyQQuickWidget() { callbackQQuickWidget_DestroyQQuickWidget(this); };
 	bool close() { return callbackQQuickWidget_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQQuickWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQQuickWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQQuickWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQQuickWidget_CloseEvent(this, event); };
@@ -3757,11 +3778,6 @@ char QQuickWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::focusNextPrevChild(next != 0);
 }
 
-char QQuickWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-}
-
 void QQuickWidget_ActionEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::actionEvent(static_cast<QActionEvent*>(event));
@@ -4021,7 +4037,6 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQQuickWindow_WheelEvent(this, event); };
 	 ~MyQQuickWindow() { callbackQQuickWindow_DestroyQQuickWindow(this); };
 	bool close() { return callbackQQuickWindow_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQQuickWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQQuickWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQQuickWindow_ContentOrientationChanged(this, orientation); };
@@ -4040,6 +4055,8 @@ public:
 	void requestActivate() { callbackQQuickWindow_RequestActivate(this); };
 	void requestUpdate() { callbackQQuickWindow_RequestUpdate(this); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQQuickWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQQuickWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQQuickWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQQuickWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQQuickWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQQuickWindow_SetMaximumWidth(this, w); };
@@ -4101,6 +4118,11 @@ void* QQuickWindow_NewQQuickWindow(void* parent)
 struct QtQuick_PackedString QQuickWindow_QQuickWindow_SceneGraphBackend()
 {
 	return ({ QByteArray t3cc258 = QQuickWindow::sceneGraphBackend().toUtf8(); QtQuick_PackedString { const_cast<char*>(t3cc258.prepend("WHITESPACE").constData()+10), t3cc258.size()-10 }; });
+}
+
+long long QQuickWindow_QQuickWindow_TextRenderType()
+{
+	return QQuickWindow::textRenderType();
 }
 
 char QQuickWindow_EventDefault(void* ptr, void* e)
@@ -4481,6 +4503,11 @@ void QQuickWindow_QQuickWindow_SetSceneGraphBackend2(struct QtQuick_PackedString
 	QQuickWindow::setSceneGraphBackend(QString::fromUtf8(backend.data, backend.len));
 }
 
+void QQuickWindow_QQuickWindow_SetTextRenderType(long long renderType)
+{
+	QQuickWindow::setTextRenderType(static_cast<QQuickWindow::TextRenderType>(renderType));
+}
+
 void QQuickWindow_ShowEventDefault(void* ptr, void* vqs)
 {
 	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
@@ -4734,15 +4761,6 @@ char QQuickWindow_CloseDefault(void* ptr)
 	}
 }
 
-char QQuickWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QQuickView*>(ptr)->QQuickView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else {
-		return static_cast<QQuickWindow*>(ptr)->QQuickWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	}
-}
-
 void QQuickWindow_AlertDefault(void* ptr, int msec)
 {
 	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
@@ -4803,6 +4821,24 @@ void QQuickWindow_RequestUpdateDefault(void* ptr)
 		static_cast<QQuickView*>(ptr)->QQuickView::requestUpdate();
 	} else {
 		static_cast<QQuickWindow*>(ptr)->QQuickWindow::requestUpdate();
+	}
+}
+
+void QQuickWindow_SetGeometry2Default(void* ptr, void* rect)
+{
+	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QQuickView*>(ptr)->QQuickView::setGeometry(*static_cast<QRect*>(rect));
+	} else {
+		static_cast<QQuickWindow*>(ptr)->QQuickWindow::setGeometry(*static_cast<QRect*>(rect));
+	}
+}
+
+void QQuickWindow_SetGeometryDefault(void* ptr, int posx, int posy, int w, int h)
+{
+	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QQuickView*>(ptr)->QQuickView::setGeometry(posx, posy, w, h);
+	} else {
+		static_cast<QQuickWindow*>(ptr)->QQuickWindow::setGeometry(posx, posy, w, h);
 	}
 }
 

@@ -2656,6 +2656,129 @@ func (ptr *QWebEngineDownloadItem) Finished() {
 	}
 }
 
+//export callbackQWebEngineDownloadItem_IsPausedChanged
+func callbackQWebEngineDownloadItem_IsPausedChanged(ptr unsafe.Pointer, isPaused C.char) {
+	if signal := qt.GetSignal(ptr, "isPausedChanged"); signal != nil {
+		signal.(func(bool))(int8(isPaused) != 0)
+	}
+
+}
+
+func (ptr *QWebEngineDownloadItem) ConnectIsPausedChanged(f func(isPaused bool)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "isPausedChanged") {
+			C.QWebEngineDownloadItem_ConnectIsPausedChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "isPausedChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "isPausedChanged", func(isPaused bool) {
+				signal.(func(bool))(isPaused)
+				f(isPaused)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "isPausedChanged", f)
+		}
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) DisconnectIsPausedChanged() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_DisconnectIsPausedChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "isPausedChanged")
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) IsPausedChanged(isPaused bool) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_IsPausedChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPaused))))
+	}
+}
+
+//export callbackQWebEngineDownloadItem_Pause
+func callbackQWebEngineDownloadItem_Pause(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "pause"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineDownloadItemFromPointer(ptr).PauseDefault()
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) ConnectPause(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "pause"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "pause", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "pause", f)
+		}
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) DisconnectPause() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "pause")
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) Pause() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_Pause(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) PauseDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_PauseDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQWebEngineDownloadItem_Resume
+func callbackQWebEngineDownloadItem_Resume(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resume"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineDownloadItemFromPointer(ptr).ResumeDefault()
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) ConnectResume(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resume"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resume", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resume", f)
+		}
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) DisconnectResume() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "resume")
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) Resume() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_Resume(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) ResumeDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_ResumeDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QWebEngineDownloadItem) SetPath(path string) {
 	if ptr.Pointer() != nil {
 		var pathC *C.char
@@ -2773,6 +2896,13 @@ func (ptr *QWebEngineDownloadItem) SavePageFormat() QWebEngineDownloadItem__Save
 func (ptr *QWebEngineDownloadItem) IsFinished() bool {
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_IsFinished(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineDownloadItem) IsPaused() bool {
+	if ptr.Pointer() != nil {
+		return C.QWebEngineDownloadItem_IsPaused(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -3777,11 +3907,13 @@ func NewQWebEnginePageFromPointer(ptr unsafe.Pointer) *QWebEnginePage {
 type QWebEnginePage__Feature int64
 
 const (
-	QWebEnginePage__Geolocation            QWebEnginePage__Feature = QWebEnginePage__Feature(1)
-	QWebEnginePage__MediaAudioCapture      QWebEnginePage__Feature = QWebEnginePage__Feature(2)
-	QWebEnginePage__MediaVideoCapture      QWebEnginePage__Feature = QWebEnginePage__Feature(3)
-	QWebEnginePage__MediaAudioVideoCapture QWebEnginePage__Feature = QWebEnginePage__Feature(4)
-	QWebEnginePage__MouseLock              QWebEnginePage__Feature = QWebEnginePage__Feature(5)
+	QWebEnginePage__Geolocation              QWebEnginePage__Feature = QWebEnginePage__Feature(1)
+	QWebEnginePage__MediaAudioCapture        QWebEnginePage__Feature = QWebEnginePage__Feature(2)
+	QWebEnginePage__MediaVideoCapture        QWebEnginePage__Feature = QWebEnginePage__Feature(3)
+	QWebEnginePage__MediaAudioVideoCapture   QWebEnginePage__Feature = QWebEnginePage__Feature(4)
+	QWebEnginePage__MouseLock                QWebEnginePage__Feature = QWebEnginePage__Feature(5)
+	QWebEnginePage__DesktopVideoCapture      QWebEnginePage__Feature = QWebEnginePage__Feature(6)
+	QWebEnginePage__DesktopAudioVideoCapture QWebEnginePage__Feature = QWebEnginePage__Feature(7)
 )
 
 //go:generate stringer -type=QWebEnginePage__FileSelectionMode
@@ -3885,7 +4017,19 @@ const (
 	QWebEnginePage__SavePage                   QWebEnginePage__WebAction = QWebEnginePage__WebAction(30)
 	QWebEnginePage__OpenLinkInNewBackgroundTab QWebEnginePage__WebAction = QWebEnginePage__WebAction(31)
 	QWebEnginePage__ViewSource                 QWebEnginePage__WebAction = QWebEnginePage__WebAction(32)
-	QWebEnginePage__WebActionCount             QWebEnginePage__WebAction = QWebEnginePage__WebAction(33)
+	QWebEnginePage__ToggleBold                 QWebEnginePage__WebAction = QWebEnginePage__WebAction(33)
+	QWebEnginePage__ToggleItalic               QWebEnginePage__WebAction = QWebEnginePage__WebAction(34)
+	QWebEnginePage__ToggleUnderline            QWebEnginePage__WebAction = QWebEnginePage__WebAction(35)
+	QWebEnginePage__ToggleStrikethrough        QWebEnginePage__WebAction = QWebEnginePage__WebAction(36)
+	QWebEnginePage__AlignLeft                  QWebEnginePage__WebAction = QWebEnginePage__WebAction(37)
+	QWebEnginePage__AlignCenter                QWebEnginePage__WebAction = QWebEnginePage__WebAction(38)
+	QWebEnginePage__AlignRight                 QWebEnginePage__WebAction = QWebEnginePage__WebAction(39)
+	QWebEnginePage__AlignJustified             QWebEnginePage__WebAction = QWebEnginePage__WebAction(40)
+	QWebEnginePage__Indent                     QWebEnginePage__WebAction = QWebEnginePage__WebAction(41)
+	QWebEnginePage__Outdent                    QWebEnginePage__WebAction = QWebEnginePage__WebAction(42)
+	QWebEnginePage__InsertOrderedList          QWebEnginePage__WebAction = QWebEnginePage__WebAction(43)
+	QWebEnginePage__InsertUnorderedList        QWebEnginePage__WebAction = QWebEnginePage__WebAction(44)
+	QWebEnginePage__WebActionCount             QWebEnginePage__WebAction = QWebEnginePage__WebAction(45)
 )
 
 //go:generate stringer -type=QWebEnginePage__WebWindowType
@@ -4377,6 +4521,17 @@ func (ptr *QWebEnginePage) DisconnectContentsSizeChanged() {
 func (ptr *QWebEnginePage) ContentsSizeChanged(size core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ContentsSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(size))
+	}
+}
+
+func (ptr *QWebEnginePage) Download(url core.QUrl_ITF, filename string) {
+	if ptr.Pointer() != nil {
+		var filenameC *C.char
+		if filename != "" {
+			filenameC = C.CString(filename)
+			defer C.free(unsafe.Pointer(filenameC))
+		}
+		C.QWebEnginePage_Download(ptr.Pointer(), core.PointerFromQUrl(url), C.struct_QtWebEngine_PackedString{data: filenameC, len: C.longlong(len(filename))})
 	}
 }
 
@@ -6938,30 +7093,32 @@ const (
 type QWebEngineSettings__WebAttribute int64
 
 const (
-	QWebEngineSettings__AutoLoadImages                    QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(0)
-	QWebEngineSettings__JavascriptEnabled                 QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(1)
-	QWebEngineSettings__JavascriptCanOpenWindows          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(2)
-	QWebEngineSettings__JavascriptCanAccessClipboard      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(3)
-	QWebEngineSettings__LinksIncludedInFocusChain         QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(4)
-	QWebEngineSettings__LocalStorageEnabled               QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(5)
-	QWebEngineSettings__LocalContentCanAccessRemoteUrls   QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(6)
-	QWebEngineSettings__XSSAuditingEnabled                QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(7)
-	QWebEngineSettings__SpatialNavigationEnabled          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(8)
-	QWebEngineSettings__LocalContentCanAccessFileUrls     QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(9)
-	QWebEngineSettings__HyperlinkAuditingEnabled          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(10)
-	QWebEngineSettings__ScrollAnimatorEnabled             QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(11)
-	QWebEngineSettings__ErrorPageEnabled                  QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(12)
-	QWebEngineSettings__PluginsEnabled                    QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(13)
-	QWebEngineSettings__FullScreenSupportEnabled          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(14)
-	QWebEngineSettings__ScreenCaptureEnabled              QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(15)
-	QWebEngineSettings__WebGLEnabled                      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(16)
-	QWebEngineSettings__Accelerated2dCanvasEnabled        QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(17)
-	QWebEngineSettings__AutoLoadIconsForPage              QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(18)
-	QWebEngineSettings__TouchIconsEnabled                 QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(19)
-	QWebEngineSettings__FocusOnNavigationEnabled          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(20)
-	QWebEngineSettings__PrintElementBackgrounds           QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(21)
-	QWebEngineSettings__AllowRunningInsecureContent       QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(22)
-	QWebEngineSettings__AllowGeolocationOnInsecureOrigins QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(23)
+	QWebEngineSettings__AutoLoadImages                      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(0)
+	QWebEngineSettings__JavascriptEnabled                   QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(1)
+	QWebEngineSettings__JavascriptCanOpenWindows            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(2)
+	QWebEngineSettings__JavascriptCanAccessClipboard        QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(3)
+	QWebEngineSettings__LinksIncludedInFocusChain           QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(4)
+	QWebEngineSettings__LocalStorageEnabled                 QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(5)
+	QWebEngineSettings__LocalContentCanAccessRemoteUrls     QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(6)
+	QWebEngineSettings__XSSAuditingEnabled                  QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(7)
+	QWebEngineSettings__SpatialNavigationEnabled            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(8)
+	QWebEngineSettings__LocalContentCanAccessFileUrls       QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(9)
+	QWebEngineSettings__HyperlinkAuditingEnabled            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(10)
+	QWebEngineSettings__ScrollAnimatorEnabled               QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(11)
+	QWebEngineSettings__ErrorPageEnabled                    QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(12)
+	QWebEngineSettings__PluginsEnabled                      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(13)
+	QWebEngineSettings__FullScreenSupportEnabled            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(14)
+	QWebEngineSettings__ScreenCaptureEnabled                QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(15)
+	QWebEngineSettings__WebGLEnabled                        QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(16)
+	QWebEngineSettings__Accelerated2dCanvasEnabled          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(17)
+	QWebEngineSettings__AutoLoadIconsForPage                QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(18)
+	QWebEngineSettings__TouchIconsEnabled                   QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(19)
+	QWebEngineSettings__FocusOnNavigationEnabled            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(20)
+	QWebEngineSettings__PrintElementBackgrounds             QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(21)
+	QWebEngineSettings__AllowRunningInsecureContent         QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(22)
+	QWebEngineSettings__AllowGeolocationOnInsecureOrigins   QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(23)
+	QWebEngineSettings__AllowWindowActivationFromJavaScript QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(24)
+	QWebEngineSettings__ShowScrollBars                      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(25)
 )
 
 func (ptr *QWebEngineSettings) SetAttribute(attribute QWebEngineSettings__WebAttribute, on bool) {
@@ -9397,22 +9554,6 @@ func (ptr *QWebEngineView) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQWebEngineView_NativeEvent
-func callbackQWebEngineView_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQWebEngineViewFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QWebEngineView) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineView_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQWebEngineView_ActionEvent
 func callbackQWebEngineView_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -10378,5 +10519,7 @@ const (
 	QtWebEngineCore__Origin                                       QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(4)
 	QtWebEngineCore__OriginWhenCrossOrigin                        QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(5)
 	QtWebEngineCore__NoReferrerWhenDowngradeOriginWhenCrossOrigin QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(6)
-	QtWebEngineCore__Last                                         QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(QtWebEngineCore__NoReferrerWhenDowngradeOriginWhenCrossOrigin)
+	QtWebEngineCore__SameOrigin                                   QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(7)
+	QtWebEngineCore__StrictOrigin                                 QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(8)
+	QtWebEngineCore__Last                                         QtWebEngineCore__ReferrerPolicy = QtWebEngineCore__ReferrerPolicy(QtWebEngineCore__StrictOrigin)
 )

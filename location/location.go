@@ -1282,6 +1282,7 @@ const (
 	QGeoRouteRequest__DirtRoadFeature      QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000020)
 	QGeoRouteRequest__ParksFeature         QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000040)
 	QGeoRouteRequest__MotorPoolLaneFeature QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000080)
+	QGeoRouteRequest__TrafficFeature       QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000100)
 )
 
 //go:generate stringer -type=QGeoRouteRequest__FeatureWeight

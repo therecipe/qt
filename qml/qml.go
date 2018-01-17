@@ -3019,6 +3019,48 @@ func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
 	}
 }
 
+//export callbackQQmlEngine_Retranslate
+func callbackQQmlEngine_Retranslate(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "retranslate"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlEngineFromPointer(ptr).RetranslateDefault()
+	}
+}
+
+func (ptr *QQmlEngine) ConnectRetranslate(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "retranslate"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "retranslate", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "retranslate", f)
+		}
+	}
+}
+
+func (ptr *QQmlEngine) DisconnectRetranslate() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "retranslate")
+	}
+}
+
+func (ptr *QQmlEngine) Retranslate() {
+	if ptr.Pointer() != nil {
+		C.QQmlEngine_Retranslate(ptr.Pointer())
+	}
+}
+
+func (ptr *QQmlEngine) RetranslateDefault() {
+	if ptr.Pointer() != nil {
+		C.QQmlEngine_RetranslateDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QQmlEngine) SetBaseUrl(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetBaseUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -4974,6 +5016,61 @@ func (ptr *QQmlImageProviderBase) ImageType() QQmlImageProviderBase__ImageType {
 	}
 	return 0
 }
+
+type QQmlImport struct {
+	ptr unsafe.Pointer
+}
+
+type QQmlImport_ITF interface {
+	QQmlImport_PTR() *QQmlImport
+}
+
+func (ptr *QQmlImport) QQmlImport_PTR() *QQmlImport {
+	return ptr
+}
+
+func (ptr *QQmlImport) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QQmlImport) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQQmlImport(ptr QQmlImport_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQmlImport_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQmlImportFromPointer(ptr unsafe.Pointer) *QQmlImport {
+	var n = new(QQmlImport)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QQmlImport) DestroyQQmlImport() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QQmlImport__RecursionRestriction
+//QQmlImport::RecursionRestriction
+type QQmlImport__RecursionRestriction int64
+
+const (
+	QQmlImport__PreventRecursion QQmlImport__RecursionRestriction = QQmlImport__RecursionRestriction(0)
+	QQmlImport__AllowRecursion   QQmlImport__RecursionRestriction = QQmlImport__RecursionRestriction(1)
+)
 
 type QQmlIncubationController struct {
 	ptr unsafe.Pointer
@@ -7007,13 +7104,14 @@ func (ptr *QV4) DestroyQV4() {
 type QV4__PropertyFlag int64
 
 const (
-	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
-	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
-	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
-	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
-	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
-	QV4__Attr_ReadOnly        QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
-	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
+	QV4__Attr_Data                     QV4__PropertyFlag = QV4__PropertyFlag(0)
+	QV4__Attr_Accessor                 QV4__PropertyFlag = QV4__PropertyFlag(0x1)
+	QV4__Attr_NotWritable              QV4__PropertyFlag = QV4__PropertyFlag(0x2)
+	QV4__Attr_NotEnumerable            QV4__PropertyFlag = QV4__PropertyFlag(0x4)
+	QV4__Attr_NotConfigurable          QV4__PropertyFlag = QV4__PropertyFlag(0x8)
+	QV4__Attr_ReadOnly                 QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
+	QV4__Attr_ReadOnly_ButConfigurable QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable)
+	QV4__Attr_Invalid                  QV4__PropertyFlag = QV4__PropertyFlag(0xff)
 )
 
 //go:generate stringer -type=QV4__TypeHint
@@ -7024,4 +7122,15 @@ const (
 	QV4__PREFERREDTYPE_HINT QV4__TypeHint = QV4__TypeHint(0)
 	QV4__NUMBER_HINT        QV4__TypeHint = QV4__TypeHint(1)
 	QV4__STRING_HINT        QV4__TypeHint = QV4__TypeHint(2)
+)
+
+//go:generate stringer -type=QV4__MarkFlags
+//QV4::MarkFlags
+type QV4__MarkFlags int64
+
+const (
+	QV4__Mark_NoMark     QV4__MarkFlags = QV4__MarkFlags(0)
+	QV4__Mark_Value      QV4__MarkFlags = QV4__MarkFlags(1)
+	QV4__Mark_Pointer    QV4__MarkFlags = QV4__MarkFlags(2)
+	QV4__Mark_ValueArray QV4__MarkFlags = QV4__MarkFlags(3)
 )

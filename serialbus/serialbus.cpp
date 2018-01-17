@@ -805,6 +805,11 @@ void QCanBusFrame_SetFrameType(void* ptr, long long newType)
 	static_cast<QCanBusFrame*>(ptr)->setFrameType(static_cast<QCanBusFrame::FrameType>(newType));
 }
 
+void QCanBusFrame_SetLocalEcho(void* ptr, char echo)
+{
+	static_cast<QCanBusFrame*>(ptr)->setLocalEcho(echo != 0);
+}
+
 void QCanBusFrame_SetPayload(void* ptr, void* data)
 {
 	static_cast<QCanBusFrame*>(ptr)->setPayload(*static_cast<QByteArray*>(data));
@@ -848,6 +853,11 @@ char QCanBusFrame_HasExtendedFrameFormat(void* ptr)
 char QCanBusFrame_HasFlexibleDataRateFormat(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->hasFlexibleDataRateFormat();
+}
+
+char QCanBusFrame_HasLocalEcho(void* ptr)
+{
+	return static_cast<QCanBusFrame*>(ptr)->hasLocalEcho();
 }
 
 char QCanBusFrame_IsValid(void* ptr)

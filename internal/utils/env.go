@@ -21,7 +21,7 @@ func QT_VERSION() string {
 		}
 		return qT_VERSION_CACHE
 	}
-	return "5.9.3"
+	return "5.10.0"
 }
 
 func QT_VERSION_NUM() int {

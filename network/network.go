@@ -4415,6 +4415,12 @@ func (ptr *QHostInfo) SetLookupId(id int) {
 	}
 }
 
+func (ptr *QHostInfo) Swap(other QHostInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHostInfo_Swap(ptr.Pointer(), PointerFromQHostInfo(other))
+	}
+}
+
 func (ptr *QHostInfo) DestroyQHostInfo() {
 	if ptr.Pointer() != nil {
 		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
@@ -7035,6 +7041,17 @@ func (ptr *QNetworkAccessManager) ConnectToHostEncrypted(hostName string, port u
 	}
 }
 
+func (ptr *QNetworkAccessManager) EnableStrictTransportSecurityStore(enabled bool, storeDir string) {
+	if ptr.Pointer() != nil {
+		var storeDirC *C.char
+		if storeDir != "" {
+			storeDirC = C.CString(storeDir)
+			defer C.free(unsafe.Pointer(storeDirC))
+		}
+		C.QNetworkAccessManager_EnableStrictTransportSecurityStore(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))), C.struct_QtNetwork_PackedString{data: storeDirC, len: C.longlong(len(storeDir))})
+	}
+}
+
 //export callbackQNetworkAccessManager_Encrypted
 func callbackQNetworkAccessManager_Encrypted(ptr unsafe.Pointer, reply unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "encrypted"); signal != nil {
@@ -7475,6 +7492,13 @@ func (ptr *QNetworkAccessManager) StrictTransportSecurityHosts() []*QHstsPolicy 
 func (ptr *QNetworkAccessManager) IsStrictTransportSecurityEnabled() bool {
 	if ptr.Pointer() != nil {
 		return C.QNetworkAccessManager_IsStrictTransportSecurityEnabled(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QNetworkAccessManager) IsStrictTransportSecurityStoreEnabled() bool {
+	if ptr.Pointer() != nil {
+		return C.QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -11577,41 +11601,8 @@ func NewQNetworkProxyQuery() *QNetworkProxyQuery {
 	return tmpValue
 }
 
-func NewQNetworkProxyQuery6(networkConfiguration QNetworkConfiguration_ITF, hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	var hostnameC *C.char
-	if hostname != "" {
-		hostnameC = C.CString(hostname)
-		defer C.free(unsafe.Pointer(hostnameC))
-	}
-	var protocolTagC *C.char
-	if protocolTag != "" {
-		protocolTagC = C.CString(protocolTag)
-		defer C.free(unsafe.Pointer(protocolTagC))
-	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), C.struct_QtNetwork_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.int(int32(port)), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
-}
-
-func NewQNetworkProxyQuery5(networkConfiguration QNetworkConfiguration_ITF, requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkConfiguration(networkConfiguration), core.PointerFromQUrl(requestUrl), C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
-}
-
-func NewQNetworkProxyQuery7(networkConfiguration QNetworkConfiguration_ITF, bindPort uint16, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
-	var protocolTagC *C.char
-	if protocolTag != "" {
-		protocolTagC = C.CString(protocolTag)
-		defer C.free(unsafe.Pointer(protocolTagC))
-	}
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.ushort(bindPort), C.struct_QtNetwork_PackedString{data: protocolTagC, len: C.longlong(len(protocolTag))}, C.longlong(queryType)))
-	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
-	return tmpValue
-}
-
-func NewQNetworkProxyQuery8(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
-	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery8(PointerFromQNetworkProxyQuery(other)))
+func NewQNetworkProxyQuery5(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
+	var tmpValue = NewQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkProxyQuery(other)))
 	runtime.SetFinalizer(tmpValue, (*QNetworkProxyQuery).DestroyQNetworkProxyQuery)
 	return tmpValue
 }
@@ -11652,12 +11643,6 @@ func NewQNetworkProxyQuery4(bindPort uint16, protocolTag string, queryType QNetw
 func (ptr *QNetworkProxyQuery) SetLocalPort(port int) {
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyQuery_SetLocalPort(ptr.Pointer(), C.int(int32(port)))
-	}
-}
-
-func (ptr *QNetworkProxyQuery) SetNetworkConfiguration(networkConfiguration QNetworkConfiguration_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNetworkProxyQuery_SetNetworkConfiguration(ptr.Pointer(), PointerFromQNetworkConfiguration(networkConfiguration))
 	}
 }
 
@@ -11713,15 +11698,6 @@ func (ptr *QNetworkProxyQuery) DestroyQNetworkProxyQuery() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QNetworkProxyQuery) NetworkConfiguration() *QNetworkConfiguration {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQNetworkConfigurationFromPointer(C.QNetworkProxyQuery_NetworkConfiguration(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QNetworkConfiguration).DestroyQNetworkConfiguration)
-		return tmpValue
-	}
-	return nil
 }
 
 func (ptr *QNetworkProxyQuery) PeerHostName() string {

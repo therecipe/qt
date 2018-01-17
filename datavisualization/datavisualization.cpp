@@ -71,7 +71,6 @@
 #include <QSize>
 #include <QSizeF>
 #include <QString>
-#include <QStringList>
 #include <QSurface>
 #include <QSurface3DSeries>
 #include <QSurfaceDataItem>

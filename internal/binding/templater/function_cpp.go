@@ -354,7 +354,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 		{
 			return fmt.Sprintf("%v\treturn new %v%v(%v);",
 				func() string {
-					if parser.State.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") {
+					if parser.State.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") || function.Name == "QAndroidService" {
 						return `	static int argcs = argc;
 	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
 

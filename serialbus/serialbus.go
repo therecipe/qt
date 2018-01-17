@@ -1829,6 +1829,12 @@ func (ptr *QCanBusFrame) SetFrameType(newType QCanBusFrame__FrameType) {
 	}
 }
 
+func (ptr *QCanBusFrame) SetLocalEcho(echo bool) {
+	if ptr.Pointer() != nil {
+		C.QCanBusFrame_SetLocalEcho(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(echo))))
+	}
+}
+
 func (ptr *QCanBusFrame) SetPayload(data core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetPayload(ptr.Pointer(), core.PointerFromQByteArray(data))
@@ -1889,6 +1895,13 @@ func (ptr *QCanBusFrame) HasExtendedFrameFormat() bool {
 func (ptr *QCanBusFrame) HasFlexibleDataRateFormat() bool {
 	if ptr.Pointer() != nil {
 		return C.QCanBusFrame_HasFlexibleDataRateFormat(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QCanBusFrame) HasLocalEcho() bool {
+	if ptr.Pointer() != nil {
+		return C.QCanBusFrame_HasLocalEcho(ptr.Pointer()) != 0
 	}
 	return false
 }

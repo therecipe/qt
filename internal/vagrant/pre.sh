@@ -27,9 +27,9 @@ if [[ "$QT_HOMEBREW" == "true" ]]; then echo "export QT_HOMEBREW=true" >> $HOME/
 #linux
 if [[ "$QT_PKG_CONFIG" == "true" ]]; then
   echo "export QT_PKG_CONFIG=true" >> $HOME/$PROF
-  echo "export PKG_CONFIG_PATH=/opt/qt58/lib/pkgconfig" >> $HOME/$PROF
-  echo "export QT_DOC_DIR=/opt/qt58/doc" >> $HOME/$PROF
-  echo "export QT_MISC_DIR=/opt/qt58" >> $HOME/$PROF
+  echo "export PKG_CONFIG_PATH=/opt/qt510/lib/pkgconfig" >> $HOME/$PROF
+  echo "export QT_DOC_DIR=/opt/qt510/doc" >> $HOME/$PROF
+  echo "export QT_MISC_DIR=/opt/qt510" >> $HOME/$PROF
 fi
 
 if [[ "$QT_MXE" == "true" ]]; then
@@ -53,7 +53,8 @@ go get -v github.com/therecipe/qt/cmd/...
 
 if [[ "$OS" == "darwin" ]]; then
   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-  if [[ "$ANDROID" == "true" ]]; then brew update; brew cask install java; fi
+  if [[ "$IOS" == "true" ]]; then rm -R /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform; rm -R /Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform; fi
+  if [[ "$ANDROID" == "true" ]]; then brew update; brew tap caskroom/versions; brew cask install java8; fi
 else if [[ "$OS" == "linux" ]]; then
   sudo rm -f -R $HOME/.config
   sudo rm -f -R $HOME/.cache

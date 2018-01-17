@@ -14,7 +14,7 @@ function Controller()
 
 Controller.prototype.WelcomePageCallback = function()
 {
-  gui.clickButton(buttons.NextButton, 2000);
+  gui.clickButton(buttons.NextButton, 30000);
 }
 
 Controller.prototype.CredentialsPageCallback = function()
@@ -34,33 +34,39 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function()
 {
-  if (installer.value("IOS") != "true")
+  if (installer.value("DARWIN") == "true")
   {
-    gui.currentPageWidget().deselectComponent("qt.593.ios");
-  }
+    gui.currentPageWidget().selectComponent("qt.qt5.5100.clang_64");
+  } 
+
+  if (installer.value("IOS") == "true")
+  {
+    gui.currentPageWidget().selectComponent("qt.qt5.5100.ios");
+  } 
 
   if (installer.value("WINDOWS") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.593.win32_mingw53");
+    gui.currentPageWidget().selectComponent("qt.qt5.5100.win32_mingw53");
   }
 
   if (installer.value("LINUX") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.593.gcc_64");
+    gui.currentPageWidget().selectComponent("qt.qt5.5100.gcc_64");
   }
 
-  gui.currentPageWidget().selectComponent("qt.593.qtvirtualkeyboard");
-  gui.currentPageWidget().selectComponent("qt.593.qtspeech");
-  gui.currentPageWidget().selectComponent("qt.593.qtscript");
-  gui.currentPageWidget().selectComponent("qt.593.qtremoteobjects");
-  gui.currentPageWidget().selectComponent("qt.593.qtpurchasing");
-  gui.currentPageWidget().selectComponent("qt.593.qtnetworkauth");
-  gui.currentPageWidget().selectComponent("qt.593.qtdatavis3d");
-  gui.currentPageWidget().selectComponent("qt.593.qtcharts");
-  gui.currentPageWidget().selectComponent("qt.593.qtwebengine");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtvirtualkeyboard");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtscript");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtremoteobjects");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtpurchasing");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtnetworkauth");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtdatavis3d");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtcharts");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtwebengine");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.qtwebglplugin");
 
-  gui.currentPageWidget().selectComponent("qt.593.android_armv7");
-  gui.currentPageWidget().selectComponent("qt.593.android_x86");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.android_armv7");
+  gui.currentPageWidget().selectComponent("qt.qt5.5100.android_x86");
+
   gui.clickButton(buttons.NextButton);
 }
 

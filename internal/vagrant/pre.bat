@@ -144,7 +144,9 @@ if "%ANDROID%" == "true" (
 
   cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --list --verbose"
   cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat "platform-tools" "build-tools;26.0.0" "platforms;android-25""
-  cmd /C "C:\android-sdk-windows\tools\bin\sdkmanager.bat --update"
+  cmd /C "mv C:\android-sdk-windows\tools\ C:\android-sdk-windows\toolsOLD\"
+  cmd /C "C:\android-sdk-windows\toolsOLD\bin\sdkmanager.bat --update"
+  cmd /C "rm -R C:\android-sdk-windows\toolsOLD\"
 
 
   ::install Android NDK

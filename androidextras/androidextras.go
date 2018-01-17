@@ -3,6 +3,7 @@
 package androidextras
 
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -62,6 +63,185 @@ func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult() {
 
 func (ptr *QAndroidActivityResultReceiver) HandleActivityResult(receiverRequestCode int, resultCode int, data QAndroidJniObject_ITF) {
 
+}
+
+type QAndroidBinder struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidBinder_ITF interface {
+	QAndroidBinder_PTR() *QAndroidBinder
+}
+
+func (ptr *QAndroidBinder) QAndroidBinder_PTR() *QAndroidBinder {
+	return ptr
+}
+
+func (ptr *QAndroidBinder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidBinder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidBinder(ptr QAndroidBinder_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidBinder_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidBinderFromPointer(ptr unsafe.Pointer) *QAndroidBinder {
+	var n = new(QAndroidBinder)
+	n.SetPointer(ptr)
+	return n
+}
+
+//go:generate stringer -type=QAndroidBinder__CallType
+//QAndroidBinder::CallType
+type QAndroidBinder__CallType int64
+
+const (
+	QAndroidBinder__Normal QAndroidBinder__CallType = QAndroidBinder__CallType(0)
+	QAndroidBinder__OneWay QAndroidBinder__CallType = QAndroidBinder__CallType(1)
+)
+
+func (ptr *QAndroidBinder) ConnectDestroyQAndroidBinder(f func()) {
+
+}
+
+func (ptr *QAndroidBinder) DisconnectDestroyQAndroidBinder() {
+
+}
+
+func (ptr *QAndroidBinder) DestroyQAndroidBinder() {
+
+}
+
+func (ptr *QAndroidBinder) DestroyQAndroidBinderDefault() {
+
+}
+
+func NewQAndroidBinder() *QAndroidBinder {
+
+	return nil
+}
+
+func NewQAndroidBinder2(binder QAndroidJniObject_ITF) *QAndroidBinder {
+
+	return nil
+}
+
+func (ptr *QAndroidBinder) Handle() *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidBinder) Transact(code int, data QAndroidParcel_ITF, reply QAndroidParcel_ITF, flags QAndroidBinder__CallType) bool {
+
+	return false
+}
+
+type QAndroidIntent struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidIntent_ITF interface {
+	QAndroidIntent_PTR() *QAndroidIntent
+}
+
+func (ptr *QAndroidIntent) QAndroidIntent_PTR() *QAndroidIntent {
+	return ptr
+}
+
+func (ptr *QAndroidIntent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidIntent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidIntent(ptr QAndroidIntent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidIntent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidIntentFromPointer(ptr unsafe.Pointer) *QAndroidIntent {
+	var n = new(QAndroidIntent)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQAndroidIntent() *QAndroidIntent {
+
+	return nil
+}
+
+func NewQAndroidIntent2(intent QAndroidJniObject_ITF) *QAndroidIntent {
+
+	return nil
+}
+
+func NewQAndroidIntent4(packageContext QAndroidJniObject_ITF, className string) *QAndroidIntent {
+
+	return nil
+}
+
+func NewQAndroidIntent3(action string) *QAndroidIntent {
+
+	return nil
+}
+
+func (ptr *QAndroidIntent) ExtraBytes(key string) *core.QByteArray {
+
+	return nil
+}
+
+func (ptr *QAndroidIntent) ExtraVariant(key string) *core.QVariant {
+
+	return nil
+}
+
+func (ptr *QAndroidIntent) PutExtra(key string, data core.QByteArray_ITF) {
+
+}
+
+func (ptr *QAndroidIntent) PutExtra2(key string, value core.QVariant_ITF) {
+
+}
+
+func (ptr *QAndroidIntent) ConnectDestroyQAndroidIntent(f func()) {
+
+}
+
+func (ptr *QAndroidIntent) DisconnectDestroyQAndroidIntent() {
+
+}
+
+func (ptr *QAndroidIntent) DestroyQAndroidIntent() {
+
+}
+
+func (ptr *QAndroidIntent) DestroyQAndroidIntentDefault() {
+
+}
+
+func (ptr *QAndroidIntent) Handle() *QAndroidJniObject {
+
+	return nil
 }
 
 type QAndroidJniEnvironment struct {
@@ -154,6 +334,66 @@ func QAndroidJniEnvironment_ExceptionOccurred() unsafe.Pointer {
 func (ptr *QAndroidJniEnvironment) ExceptionOccurred() unsafe.Pointer {
 
 	return nil
+}
+
+type QAndroidJniExceptionCleaner struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidJniExceptionCleaner_ITF interface {
+	QAndroidJniExceptionCleaner_PTR() *QAndroidJniExceptionCleaner
+}
+
+func (ptr *QAndroidJniExceptionCleaner) QAndroidJniExceptionCleaner_PTR() *QAndroidJniExceptionCleaner {
+	return ptr
+}
+
+func (ptr *QAndroidJniExceptionCleaner) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidJniExceptionCleaner) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidJniExceptionCleaner(ptr QAndroidJniExceptionCleaner_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidJniExceptionCleaner_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidJniExceptionCleanerFromPointer(ptr unsafe.Pointer) *QAndroidJniExceptionCleaner {
+	var n = new(QAndroidJniExceptionCleaner)
+	n.SetPointer(ptr)
+	return n
+}
+
+//go:generate stringer -type=QAndroidJniExceptionCleaner__OutputMode
+//QAndroidJniExceptionCleaner::OutputMode
+type QAndroidJniExceptionCleaner__OutputMode int64
+
+const (
+	QAndroidJniExceptionCleaner__Silent  QAndroidJniExceptionCleaner__OutputMode = QAndroidJniExceptionCleaner__OutputMode(0)
+	QAndroidJniExceptionCleaner__Verbose QAndroidJniExceptionCleaner__OutputMode = QAndroidJniExceptionCleaner__OutputMode(1)
+)
+
+func NewQAndroidJniExceptionCleaner(outputMode QAndroidJniExceptionCleaner__OutputMode) *QAndroidJniExceptionCleaner {
+
+	return nil
+}
+
+func (ptr *QAndroidJniExceptionCleaner) Clean() {
+
+}
+
+func (ptr *QAndroidJniExceptionCleaner) DestroyQAndroidJniExceptionCleaner() {
+
 }
 
 type QAndroidJniObject struct {
@@ -806,6 +1046,278 @@ func (ptr *QAndroidJniObject) IsValid() bool {
 	return false
 }
 
+type QAndroidParcel struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidParcel_ITF interface {
+	QAndroidParcel_PTR() *QAndroidParcel
+}
+
+func (ptr *QAndroidParcel) QAndroidParcel_PTR() *QAndroidParcel {
+	return ptr
+}
+
+func (ptr *QAndroidParcel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidParcel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidParcel(ptr QAndroidParcel_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidParcel_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidParcelFromPointer(ptr unsafe.Pointer) *QAndroidParcel {
+	var n = new(QAndroidParcel)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQAndroidParcel() *QAndroidParcel {
+
+	return nil
+}
+
+func NewQAndroidParcel2(parcel QAndroidJniObject_ITF) *QAndroidParcel {
+
+	return nil
+}
+
+func (ptr *QAndroidParcel) ConnectDestroyQAndroidParcel(f func()) {
+
+}
+
+func (ptr *QAndroidParcel) DisconnectDestroyQAndroidParcel() {
+
+}
+
+func (ptr *QAndroidParcel) DestroyQAndroidParcel() {
+
+}
+
+func (ptr *QAndroidParcel) DestroyQAndroidParcelDefault() {
+
+}
+
+func (ptr *QAndroidParcel) ReadBinder() *QAndroidBinder {
+
+	return nil
+}
+
+func (ptr *QAndroidParcel) Handle() *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidParcel) ReadData() *core.QByteArray {
+
+	return nil
+}
+
+func (ptr *QAndroidParcel) ReadVariant() *core.QVariant {
+
+	return nil
+}
+
+func (ptr *QAndroidParcel) ReadFileDescriptor() int {
+
+	return 0
+}
+
+func (ptr *QAndroidParcel) WriteBinder(binder QAndroidBinder_ITF) {
+
+}
+
+func (ptr *QAndroidParcel) WriteData(data core.QByteArray_ITF) {
+
+}
+
+func (ptr *QAndroidParcel) WriteFileDescriptor(fd int) {
+
+}
+
+func (ptr *QAndroidParcel) WriteVariant(value core.QVariant_ITF) {
+
+}
+
+type QAndroidService struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidService_ITF interface {
+	QAndroidService_PTR() *QAndroidService
+}
+
+func (ptr *QAndroidService) QAndroidService_PTR() *QAndroidService {
+	return ptr
+}
+
+func (ptr *QAndroidService) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidService) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidService(ptr QAndroidService_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidService_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidServiceFromPointer(ptr unsafe.Pointer) *QAndroidService {
+	var n = new(QAndroidService)
+	n.SetPointer(ptr)
+	return n
+}
+func (ptr *QAndroidService) ConnectOnBind(f func(intent *QAndroidIntent) *QAndroidBinder) {
+
+}
+
+func (ptr *QAndroidService) DisconnectOnBind() {
+
+}
+
+func (ptr *QAndroidService) OnBind(intent QAndroidIntent_ITF) *QAndroidBinder {
+
+	return nil
+}
+
+func (ptr *QAndroidService) OnBindDefault(intent QAndroidIntent_ITF) *QAndroidBinder {
+
+	return nil
+}
+
+func NewQAndroidService(argc int, argv []string) *QAndroidService {
+
+	return nil
+}
+
+func (ptr *QAndroidService) ConnectDestroyQAndroidService(f func()) {
+
+}
+
+func (ptr *QAndroidService) DisconnectDestroyQAndroidService() {
+
+}
+
+func (ptr *QAndroidService) DestroyQAndroidService() {
+
+}
+
+func (ptr *QAndroidService) DestroyQAndroidServiceDefault() {
+
+}
+
+type QAndroidServiceConnection struct {
+	ptr unsafe.Pointer
+}
+
+type QAndroidServiceConnection_ITF interface {
+	QAndroidServiceConnection_PTR() *QAndroidServiceConnection
+}
+
+func (ptr *QAndroidServiceConnection) QAndroidServiceConnection_PTR() *QAndroidServiceConnection {
+	return ptr
+}
+
+func (ptr *QAndroidServiceConnection) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAndroidServiceConnection) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAndroidServiceConnection(ptr QAndroidServiceConnection_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAndroidServiceConnection_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAndroidServiceConnectionFromPointer(ptr unsafe.Pointer) *QAndroidServiceConnection {
+	var n = new(QAndroidServiceConnection)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQAndroidServiceConnection() *QAndroidServiceConnection {
+
+	return nil
+}
+
+func NewQAndroidServiceConnection2(serviceConnection QAndroidJniObject_ITF) *QAndroidServiceConnection {
+
+	return nil
+}
+
+func (ptr *QAndroidServiceConnection) ConnectOnServiceConnected(f func(name string, serviceBinder *QAndroidBinder)) {
+
+}
+
+func (ptr *QAndroidServiceConnection) DisconnectOnServiceConnected() {
+
+}
+
+func (ptr *QAndroidServiceConnection) OnServiceConnected(name string, serviceBinder QAndroidBinder_ITF) {
+
+}
+
+func (ptr *QAndroidServiceConnection) ConnectOnServiceDisconnected(f func(name string)) {
+
+}
+
+func (ptr *QAndroidServiceConnection) DisconnectOnServiceDisconnected() {
+
+}
+
+func (ptr *QAndroidServiceConnection) OnServiceDisconnected(name string) {
+
+}
+
+func (ptr *QAndroidServiceConnection) ConnectDestroyQAndroidServiceConnection(f func()) {
+
+}
+
+func (ptr *QAndroidServiceConnection) DisconnectDestroyQAndroidServiceConnection() {
+
+}
+
+func (ptr *QAndroidServiceConnection) DestroyQAndroidServiceConnection() {
+
+}
+
+func (ptr *QAndroidServiceConnection) DestroyQAndroidServiceConnectionDefault() {
+
+}
+
+func (ptr *QAndroidServiceConnection) Handle() *QAndroidJniObject {
+
+	return nil
+}
+
 type QtAndroid struct {
 	ptr unsafe.Pointer
 }
@@ -846,6 +1358,32 @@ func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
 
 func (ptr *QtAndroid) DestroyQtAndroid() {}
 
+//go:generate stringer -type=QtAndroid__BindFlag
+//QtAndroid::BindFlag
+type QtAndroid__BindFlag int64
+
+const (
+	QtAndroid__None               QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000000)
+	QtAndroid__AutoCreate         QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000001)
+	QtAndroid__DebugUnbind        QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000002)
+	QtAndroid__NotForeground      QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000004)
+	QtAndroid__AboveClient        QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000008)
+	QtAndroid__AllowOomManagement QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000010)
+	QtAndroid__WaivePriority      QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000020)
+	QtAndroid__Important          QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000040)
+	QtAndroid__AdjustWithActivity QtAndroid__BindFlag = QtAndroid__BindFlag(0x00000080)
+	QtAndroid__ExternalService    QtAndroid__BindFlag = QtAndroid__BindFlag(-2147483648)
+)
+
+//go:generate stringer -type=QtAndroid__PermissionResult
+//QtAndroid::PermissionResult
+type QtAndroid__PermissionResult int64
+
+const (
+	QtAndroid__Granted QtAndroid__PermissionResult = QtAndroid__PermissionResult(0)
+	QtAndroid__Denied  QtAndroid__PermissionResult = QtAndroid__PermissionResult(1)
+)
+
 func QtAndroid_AndroidActivity() *QAndroidJniObject {
 
 	return nil
@@ -876,6 +1414,26 @@ func (ptr *QtAndroid) AndroidService() *QAndroidJniObject {
 	return nil
 }
 
+func QtAndroid_BindService(serviceIntent QAndroidIntent_ITF, serviceConnection QAndroidServiceConnection_ITF, flags QtAndroid__BindFlag) bool {
+
+	return false
+}
+
+func (ptr *QtAndroid) BindService(serviceIntent QAndroidIntent_ITF, serviceConnection QAndroidServiceConnection_ITF, flags QtAndroid__BindFlag) bool {
+
+	return false
+}
+
+func QtAndroid_ShouldShowRequestPermissionRationale(permission string) bool {
+
+	return false
+}
+
+func (ptr *QtAndroid) ShouldShowRequestPermissionRationale(permission string) bool {
+
+	return false
+}
+
 func QtAndroid_AndroidSdkVersion() int {
 
 	return 0
@@ -891,6 +1449,14 @@ func QtAndroid_HideSplashScreen() {
 }
 
 func (ptr *QtAndroid) HideSplashScreen() {
+
+}
+
+func QtAndroid_HideSplashScreen2(duration int) {
+
+}
+
+func (ptr *QtAndroid) HideSplashScreen2(duration int) {
 
 }
 

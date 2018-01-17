@@ -23,6 +23,7 @@
 #include <QGeoCircle>
 #include <QGeoCoordinate>
 #include <QGeoPath>
+#include <QGeoPolygon>
 #include <QGeoPositionInfo>
 #include <QGeoPositionInfoSource>
 #include <QGeoPositionInfoSourceFactory>
@@ -935,6 +936,11 @@ double QGeoPath_Length(void* ptr, int indexFrom, int indexTo)
 	return static_cast<QGeoPath*>(ptr)->length(indexFrom, indexTo);
 }
 
+int QGeoPath_Size(void* ptr)
+{
+	return static_cast<QGeoPath*>(ptr)->size();
+}
+
 double QGeoPath_Width(void* ptr)
 {
 	return static_cast<QGeoPath*>(ptr)->width();
@@ -983,6 +989,144 @@ void QGeoPath___path_setList(void* ptr, void* i)
 }
 
 void* QGeoPath___path_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoPolygon_NewQGeoPolygon()
+{
+	return new QGeoPolygon();
+}
+
+void* QGeoPolygon_NewQGeoPolygon3(void* other)
+{
+	return new QGeoPolygon(*static_cast<QGeoPolygon*>(other));
+}
+
+void* QGeoPolygon_NewQGeoPolygon4(void* other)
+{
+	return new QGeoPolygon(*static_cast<QGeoShape*>(other));
+}
+
+void* QGeoPolygon_NewQGeoPolygon2(void* path)
+{
+	return new QGeoPolygon(*static_cast<QList<QGeoCoordinate>*>(path));
+}
+
+void QGeoPolygon_AddCoordinate(void* ptr, void* coordinate)
+{
+	static_cast<QGeoPolygon*>(ptr)->addCoordinate(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+void QGeoPolygon_InsertCoordinate(void* ptr, int index, void* coordinate)
+{
+	static_cast<QGeoPolygon*>(ptr)->insertCoordinate(index, *static_cast<QGeoCoordinate*>(coordinate));
+}
+
+void QGeoPolygon_RemoveCoordinate(void* ptr, void* coordinate)
+{
+	static_cast<QGeoPolygon*>(ptr)->removeCoordinate(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+void QGeoPolygon_RemoveCoordinate2(void* ptr, int index)
+{
+	static_cast<QGeoPolygon*>(ptr)->removeCoordinate(index);
+}
+
+void QGeoPolygon_ReplaceCoordinate(void* ptr, int index, void* coordinate)
+{
+	static_cast<QGeoPolygon*>(ptr)->replaceCoordinate(index, *static_cast<QGeoCoordinate*>(coordinate));
+}
+
+void QGeoPolygon_SetPath(void* ptr, void* path)
+{
+	static_cast<QGeoPolygon*>(ptr)->setPath(*static_cast<QList<QGeoCoordinate>*>(path));
+}
+
+void QGeoPolygon_Translate(void* ptr, double degreesLatitude, double degreesLongitude)
+{
+	static_cast<QGeoPolygon*>(ptr)->translate(degreesLatitude, degreesLongitude);
+}
+
+void QGeoPolygon_DestroyQGeoPolygon(void* ptr)
+{
+	static_cast<QGeoPolygon*>(ptr)->~QGeoPolygon();
+}
+
+void* QGeoPolygon_CoordinateAt(void* ptr, int index)
+{
+	return new QGeoCoordinate(static_cast<QGeoPolygon*>(ptr)->coordinateAt(index));
+}
+
+void* QGeoPolygon_Translated(void* ptr, double degreesLatitude, double degreesLongitude)
+{
+	return new QGeoPolygon(static_cast<QGeoPolygon*>(ptr)->translated(degreesLatitude, degreesLongitude));
+}
+
+char QGeoPolygon_ContainsCoordinate(void* ptr, void* coordinate)
+{
+	return static_cast<QGeoPolygon*>(ptr)->containsCoordinate(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+struct QtPositioning_PackedList QGeoPolygon_Path(void* ptr)
+{
+	return ({ QList<QGeoCoordinate>* tmpValue = const_cast<QList<QGeoCoordinate>*>(&static_cast<QGeoPolygon*>(ptr)->path()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+double QGeoPolygon_Length(void* ptr, int indexFrom, int indexTo)
+{
+	return static_cast<QGeoPolygon*>(ptr)->length(indexFrom, indexTo);
+}
+
+int QGeoPolygon_Size(void* ptr)
+{
+	return static_cast<QGeoPolygon*>(ptr)->size();
+}
+
+void* QGeoPolygon___QGeoPolygon_path_atList2(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoPolygon___QGeoPolygon_path_setList2(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoPolygon___QGeoPolygon_path_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoPolygon___setPath_path_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoPolygon___setPath_path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoPolygon___setPath_path_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QGeoCoordinate>;
+}
+
+void* QGeoPolygon___path_atList(void* ptr, int i)
+{
+	return new QGeoCoordinate(static_cast<QList<QGeoCoordinate>*>(ptr)->at(i));
+}
+
+void QGeoPolygon___path_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoCoordinate>*>(ptr)->append(*static_cast<QGeoCoordinate*>(i));
+}
+
+void* QGeoPolygon___path_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>;

@@ -2067,6 +2067,13 @@ func (ptr *QGeoPath) Length(indexFrom int, indexTo int) float64 {
 	return 0
 }
 
+func (ptr *QGeoPath) Size() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGeoPath_Size(ptr.Pointer())))
+	}
+	return 0
+}
+
 func (ptr *QGeoPath) Width() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoPath_Width(ptr.Pointer()))
@@ -2129,6 +2136,239 @@ func (ptr *QGeoPath) __path_setList(i QGeoCoordinate_ITF) {
 
 func (ptr *QGeoPath) __path_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QGeoPath___path_newList(ptr.Pointer()))
+}
+
+type QGeoPolygon struct {
+	QGeoShape
+}
+
+type QGeoPolygon_ITF interface {
+	QGeoShape_ITF
+	QGeoPolygon_PTR() *QGeoPolygon
+}
+
+func (ptr *QGeoPolygon) QGeoPolygon_PTR() *QGeoPolygon {
+	return ptr
+}
+
+func (ptr *QGeoPolygon) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoShape_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoShape_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQGeoPolygon(ptr QGeoPolygon_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoPolygon_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGeoPolygonFromPointer(ptr unsafe.Pointer) *QGeoPolygon {
+	var n = new(QGeoPolygon)
+	n.SetPointer(ptr)
+	return n
+}
+func NewQGeoPolygon() *QGeoPolygon {
+	var tmpValue = NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon())
+	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	return tmpValue
+}
+
+func NewQGeoPolygon3(other QGeoPolygon_ITF) *QGeoPolygon {
+	var tmpValue = NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon3(PointerFromQGeoPolygon(other)))
+	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	return tmpValue
+}
+
+func NewQGeoPolygon4(other QGeoShape_ITF) *QGeoPolygon {
+	var tmpValue = NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon4(PointerFromQGeoShape(other)))
+	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	return tmpValue
+}
+
+func NewQGeoPolygon2(path []*QGeoCoordinate) *QGeoPolygon {
+	var tmpValue = NewQGeoPolygonFromPointer(C.QGeoPolygon_NewQGeoPolygon2(func() unsafe.Pointer {
+		var tmpList = NewQGeoPolygonFromPointer(NewQGeoPolygonFromPointer(nil).__QGeoPolygon_path_newList2())
+		for _, v := range path {
+			tmpList.__QGeoPolygon_path_setList2(v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+	return tmpValue
+}
+
+func (ptr *QGeoPolygon) AddCoordinate(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_AddCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPolygon) InsertCoordinate(index int, coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_InsertCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPolygon) RemoveCoordinate(coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_RemoveCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPolygon) RemoveCoordinate2(index int) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_RemoveCoordinate2(ptr.Pointer(), C.int(int32(index)))
+	}
+}
+
+func (ptr *QGeoPolygon) ReplaceCoordinate(index int, coordinate QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_ReplaceCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
+	}
+}
+
+func (ptr *QGeoPolygon) SetPath(path []*QGeoCoordinate) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_SetPath(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQGeoPolygonFromPointer(NewQGeoPolygonFromPointer(nil).__setPath_path_newList())
+			for _, v := range path {
+				tmpList.__setPath_path_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QGeoPolygon) Translate(degreesLatitude float64, degreesLongitude float64) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_Translate(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude))
+	}
+}
+
+func (ptr *QGeoPolygon) DestroyQGeoPolygon() {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_DestroyQGeoPolygon(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QGeoPolygon) CoordinateAt(index int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPolygon_CoordinateAt(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) Translated(degreesLatitude float64, degreesLongitude float64) *QGeoPolygon {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoPolygonFromPointer(C.QGeoPolygon_Translated(ptr.Pointer(), C.double(degreesLatitude), C.double(degreesLongitude)))
+		runtime.SetFinalizer(tmpValue, (*QGeoPolygon).DestroyQGeoPolygon)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGeoPolygon_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
+	}
+	return false
+}
+
+func (ptr *QGeoPolygon) Path() []*QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*QGeoCoordinate {
+			var out = make([]*QGeoCoordinate, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoPolygonFromPointer(l.data).__path_atList(i)
+			}
+			return out
+		}(C.QGeoPolygon_Path(ptr.Pointer()))
+	}
+	return make([]*QGeoCoordinate, 0)
+}
+
+func (ptr *QGeoPolygon) Length(indexFrom int, indexTo int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGeoPolygon_Length(ptr.Pointer(), C.int(int32(indexFrom)), C.int(int32(indexTo))))
+	}
+	return 0
+}
+
+func (ptr *QGeoPolygon) Size() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGeoPolygon_Size(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QGeoPolygon) __QGeoPolygon_path_atList2(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPolygon___QGeoPolygon_path_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __QGeoPolygon_path_setList2(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___QGeoPolygon_path_setList2(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __QGeoPolygon_path_newList2() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPolygon___QGeoPolygon_path_newList2(ptr.Pointer()))
+}
+
+func (ptr *QGeoPolygon) __setPath_path_atList(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPolygon___setPath_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __setPath_path_setList(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___setPath_path_setList(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __setPath_path_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPolygon___setPath_path_newList(ptr.Pointer()))
+}
+
+func (ptr *QGeoPolygon) __path_atList(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoPolygon___path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __path_setList(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___path_setList(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __path_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QGeoPolygon___path_newList(ptr.Pointer()))
 }
 
 type QGeoPositionInfo struct {
@@ -4675,6 +4915,7 @@ const (
 	QGeoShape__RectangleType QGeoShape__ShapeType = QGeoShape__ShapeType(1)
 	QGeoShape__CircleType    QGeoShape__ShapeType = QGeoShape__ShapeType(2)
 	QGeoShape__PathType      QGeoShape__ShapeType = QGeoShape__ShapeType(3)
+	QGeoShape__PolygonType   QGeoShape__ShapeType = QGeoShape__ShapeType(4)
 )
 
 func NewQGeoShape() *QGeoShape {

@@ -191,7 +191,7 @@ var LibDeps = map[string][]string{
 	"WebKit": {"WebKitWidgets", "Multimedia", "Positioning", "Widgets", "Sql", "Network", "Gui", "Sensors", "Core"},
 
 	MOC:         make([]string, 0),
-	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport", "WebView"},
+	"build_ios": {"Qml"},
 }
 
 func ShouldBuildForTarget(module, target string) bool {

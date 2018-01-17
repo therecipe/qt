@@ -5010,10 +5010,11 @@ const (
 type QAudio__State int64
 
 const (
-	QAudio__ActiveState    QAudio__State = QAudio__State(0)
-	QAudio__SuspendedState QAudio__State = QAudio__State(1)
-	QAudio__StoppedState   QAudio__State = QAudio__State(2)
-	QAudio__IdleState      QAudio__State = QAudio__State(3)
+	QAudio__ActiveState      QAudio__State = QAudio__State(0)
+	QAudio__SuspendedState   QAudio__State = QAudio__State(1)
+	QAudio__StoppedState     QAudio__State = QAudio__State(2)
+	QAudio__IdleState        QAudio__State = QAudio__State(3)
+	QAudio__InterruptedState QAudio__State = QAudio__State(4)
 )
 
 //go:generate stringer -type=QAudio__VolumeScale
@@ -44161,29 +44162,6 @@ func (ptr *QVideoWidget) FocusNextPrevChild(next bool) bool {
 func (ptr *QVideoWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
 		return C.QVideoWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQVideoWidget_NativeEvent
-func callbackQVideoWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QVideoWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QVideoWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
-func (ptr *QVideoWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QVideoWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }

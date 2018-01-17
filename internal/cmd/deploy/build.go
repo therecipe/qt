@@ -40,64 +40,41 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		return
 	}
 
-	builds := []struct{}{{}}
-	if target == "ios" || target == "ios-simulator" {
-		builds = append(builds, struct{}{})
+	var pattern string
+	if strings.Contains(runtime.Version(), "1.10") {
+		pattern = "all="
 	}
-	for i := range builds {
-		if i == 1 {
-			switch target {
-			case "ios":
-				out = strings.Replace(out, "libgo.a", "libgo_armv7.a", -1)
-			case "ios-simulator":
-				out = strings.Replace(out, "libgo.a", "libgo_386.a", -1)
-			}
-		}
 
-		cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", out+ending)
-		cmd.Dir = path
+	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=%v\"%v\"", pattern, strings.Join(ldFlags, "\" \"")), "-o", out+ending)
+	cmd.Dir = path
 
-		if fast && !utils.QT_STUB() {
-			cmd.Args = append(cmd.Args, "-i")
-		}
+	if fast && !utils.QT_STUB() {
+		cmd.Args = append(cmd.Args, "-i")
+	}
 
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 
-		if target != runtime.GOOS {
-			cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
-		}
+	if target != runtime.GOOS {
+		cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+	}
 
-		switch target {
-		case "android", "android-emulator":
-			cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
-		case "ios", "ios-simulator":
-			cmd.Args = append(cmd.Args, "-buildmode", "c-archive")
-		}
+	switch target {
+	case "android", "android-emulator":
+		cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
+	case "ios", "ios-simulator":
+		cmd.Args = append(cmd.Args, "-buildmode", "c-archive")
+	}
 
-		for key, value := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
-		}
+	for key, value := range env {
+		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+	}
 
-		if i == 1 {
-			switch target {
-			case "ios":
-				var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
-				tmp = strings.Replace(tmp, "GOARCH=arm64", "GOARCH=arm", -1)
-				cmd.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-			case "ios-simulator":
-				var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch x86_64", "-arch i386", -1)
-				tmp = strings.Replace(tmp, "GOARCH=amd64", "GOARCH=386", -1)
-				cmd.Env = strings.Split(tmp, "|")
-			}
-		}
+	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 
-		utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
-
-		if target == "darwin" {
-			strip := exec.Command("strip", "-x", out)
-			strip.Dir = path
-			utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
-		}
+	if target == "darwin" {
+		strip := exec.Command("strip", "-x", out) //TODO: -u -r
+		strip.Dir = path
+		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 	}
 
 	utils.RemoveAll(filepath.Join(path, "cgo_main_wrapper.go"))

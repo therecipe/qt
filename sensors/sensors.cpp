@@ -95,7 +95,6 @@
 #include <QSensorReading>
 #include <QSignalSpy>
 #include <QString>
-#include <QStringList>
 #include <QTapFilter>
 #include <QTapReading>
 #include <QTapSensor>

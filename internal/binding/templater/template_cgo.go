@@ -11,167 +11,47 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func cgoIos(module, mocPath string, mode int, pkg string) string {
-	var (
-		bb   = new(bytes.Buffer)
-		libs = cleanLibs(module, mode)
-	)
-	defer bb.Reset()
+func cleanLibs(module string, mode int) []string {
 
-	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
-		if mode == MINIMAL {
-			return ",minimal"
-		}
-		if mode == MOC {
-			return ""
-		}
-		return ",!minimal"
-	}())
+	var out []string
 
-	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if mode == MOC {
-			return pkg
-		}
-		return strings.ToLower(module)
-	}())
-	fmt.Fprint(bb, "/*\n")
-
-	fmt.Fprintf(bb, "#cgo CFLAGS: -pipe -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -O2 -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=8.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -pipe -stdlib=libc++ -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -fvisibility-inlines-hidden -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -O2 -std=gnu++11 -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=8.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
-
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -DDARWIN_NO_CARBON -DQT_COMPILER_SUPPORTS_SSE2 -DQT_NO_DEBUG")
-	for _, m := range libs {
-		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
-	}
-	fmt.Fprint(bb, "\n")
-
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/ios/mkspecs/common/uikit -I%v/%v/ios/include -I%v/%v/ios/mkspecs/macx-ios-clang\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-
-	fmt.Fprint(bb, "#cgo CXXFLAGS:")
-	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/%v/ios/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
-	}
-	fmt.Fprint(bb, "\n\n")
-
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=8.0 -arch x86_64\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
-
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/ios/plugins/platforms -framework Foundation -framework UIKit -framework QuartzCore -framework AudioToolbox -framework AssetsLibrary -L%v/%v/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework OpenGLES -framework CoreText -framework CoreGraphics -framework Security -framework SystemConfiguration -framework WebKit -framework CoreBluetooth -lqios -lQt5FontDatabaseSupport -lQt5GraphicsSupport -lQt5ClipboardSupport -lqtfreetype -L%v/%v/ios/plugins/imageformats -lqgif -lqicns -lqico -lqjpeg -lqmacjp2 -framework ImageIO -lqtga -lqtiff -lqwbmp -lqwebp -lqtlibpng -lqtharfbuzz -lm -lz -lqtpcre", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-	for _, m := range libs {
-		if m != "UiPlugin" {
-			fmt.Fprintf(bb, " -lQt5%v", m)
-		}
+	switch {
+	case mode == RCC:
+		out = []string{"Core"}
+	case mode == MOC, module == "build_ios":
+		out = parser.LibDeps[module]
+	case mode == MINIMAL, mode == NONE:
+		out = append([]string{module}, parser.LibDeps[module]...)
 	}
 
-	if !strings.Contains(bb.String(), "-lQt5Gui") {
-		fmt.Fprint(bb, " -lQt5Gui")
-	}
-
-	switch module {
-	case
-		"Multimedia":
-		{
-			fmt.Fprint(bb, " -lQt5OpenGL")
-		}
-
-	case "TestLib":
-		{
-			//fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
-		}
-
-	case "Qml", "WebChannel", "Quick", "QuickControls2":
-		{
-			if module != "Quick" {
-				fmt.Fprint(bb, " -lQt5Quick -lQt5QuickParticles -lQt5QuickTest -lQt5QuickWidgets")
-			}
-			fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger -lqmldbg_inspector -lqmldbg_local -lqmldbg_native -lqmldbg_profiler -lqmldbg_quickprofiler -lqmldbg_server -lQt5PacketProtocol -lqmldbg_tcp", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-
-			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick.2 -lqtquick2plugin -L%v/%v/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin -L%v/%v/ios/qml/QtQuick/Dialogs -ldialogplugin -L%v/%v/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin -L%v/%v/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin -L%v/%v/ios/qml/Qt/labs/settings -lqmlsettingsplugin -L%v/%v/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin -L%v/%v/ios/qml/QtQuick/Window.2 -lwindowplugin -L%v/%v/ios/qml/QtQml/Models.2 -lmodelsplugin -L%v/%v/ios/qml/QtQuick/Extras -lqtquickextrasplugin -L%v/%v/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Controls.2 -lqtquickcontrols2plugin -L%v/%v/ios/qml/QtQuick/Controls.2/Material -lqtquickcontrols2materialstyleplugin -L%v/%v/ios/qml/QtQuick/Controls.2/Universal -lqtquickcontrols2universalstyleplugin -lQt5QuickControls2", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Templates.2 -lqtquicktemplates2plugin -lQt5QuickTemplates2 -L%v/%v/ios/qml/QtGraphicalEffects -lqtgraphicaleffectsplugin", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-		}
-
-	case "Purchasing":
-		{
-			fmt.Fprint(bb, " -framework StoreKit")
-		}
-
-	case "WebView":
-		{
-			fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtWebView -ldeclarative_webview", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+	for i, v := range out {
+		if v == "Speech" {
+			out[i] = "TextToSpeech"
 		}
 	}
+	return out
+}
 
-	if module == "build_ios" {
-		fmt.Fprint(bb, " -lQt5OpenGL")
-		//fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
-		fmt.Fprint(bb, " -lQt5Quick -lQt5QuickParticles -lQt5QuickTest -lQt5QuickWidgets")
-		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger -lqmldbg_inspector -lqmldbg_local -lqmldbg_native -lqmldbg_profiler -lqmldbg_quickprofiler -lqmldbg_server -lQt5PacketProtocol -lqmldbg_tcp", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+//needed for static linking
+func GetiOSClang(buildTarget, buildARM, path string) []string {
+	var tmp = CgoTemplate("build_ios", path, buildTarget, NONE, "main", "")
 
-		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick.2 -lqtquick2plugin -L%v/%v/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin -L%v/%v/ios/qml/QtQuick/Dialogs -ldialogplugin -L%v/%v/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin -L%v/%v/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin -L%v/%v/ios/qml/Qt/labs/settings -lqmlsettingsplugin -L%v/%v/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin -L%v/%v/ios/qml/QtQuick/Window.2 -lwindowplugin -L%v/%v/ios/qml/QtQml/Models.2 -lmodelsplugin -L%v/%v/ios/qml/QtQuick/Extras -lqtquickextrasplugin -L%v/%v/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Controls.2 -lqtquickcontrols2plugin -L%v/%v/ios/qml/QtQuick/Controls.2/Material -lqtquickcontrols2materialstyleplugin -L%v/%v/ios/qml/QtQuick/Controls.2/Universal -lqtquickcontrols2universalstyleplugin -lQt5QuickControls2", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Templates.2 -lqtquicktemplates2plugin -lQt5QuickTemplates2 -L%v/%v/ios/qml/QtGraphicalEffects -lqtgraphicaleffectsplugin", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+	tmp = strings.Split(tmp, "/*")[1]
+	tmp = strings.Split(tmp, "*/")[0]
 
-		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtMultimedia -ldeclarative_multimedia -lQt5MultimediaQuick_p", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/mediaservice -lqtmedia_audioengine -L%v/%v/ios/plugins/audio -lqtaudio_coreaudio -L%v/%v/ios/plugins/playlistformats -lqtmultimedia_m3u -lQt5Multimedia", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-		fmt.Fprint(bb, " -lqavfcamera -framework AudioToolbox -framework CoreAudio -framework AVFoundation -framework CoreMedia -framework CoreVideo -lqavfmediaplayer -lQt5MultimediaWidgets")
+	tmp = strings.Replace(tmp, "#cgo CFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "#cgo CXXFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "\n", " ", -1)
 
-		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtWebView -ldeclarative_webview", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+	if buildTarget == "ios" {
+		tmp = strings.Replace(tmp, "_iphonesimulator", "", -1)
+		tmp = strings.Replace(tmp, "x86_64", "arm64", -1)
+		tmp = strings.Replace(tmp, "iPhoneSimulator", "iPhoneOS", -1)
+		tmp = strings.Replace(tmp, "ios-simulator", "iphoneos", -1)
 	}
 
-	fmt.Fprint(bb, "\n*/\n")
-
-	fmt.Fprint(bb, "import \"C\"\n")
-
-	if utils.QT_VERSION_NUM() >= 5090 {
-		tmp := bb.String()
-		bb.Reset()
-		tmp = strings.Replace(tmp, "min=7.0", "min=8.0", -1)
-		bb.WriteString(strings.Replace(tmp, "-lqtpcre", "-lqtpcre2", -1))
-	}
-
-	if module == "build_ios" {
-		return bb.String()
-	}
-
-	var path, prefix = func() (string, string) {
-		switch {
-		case mode == MOC:
-			{
-				return mocPath, "moc_"
-			}
-
-		case mode == MINIMAL:
-			{
-				return utils.GoQtPkgPath(strings.ToLower(module)), "minimal_"
-			}
-
-		default:
-			{
-				return utils.GoQtPkgPath(strings.ToLower(module)), ""
-			}
-		}
-	}()
-
-	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "ios", -1)
-
-	//amd64
-	utils.Save(filepath.Join(path, prefix+"cgo_ios_simulator_darwin_amd64.go"), tmp)
-
-	//386
-	utils.Save(filepath.Join(path, prefix+"cgo_ios_simulator_darwin_386.go"), strings.Replace(tmp, "x86_64", "i386", -1))
-
-	tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "ios", -1)
-	tmp = strings.Replace(tmp, "_iphonesimulator", "", -1)
-	tmp = strings.Replace(tmp, "iPhoneSimulator", "iPhoneOS", -1)
-	tmp = strings.Replace(tmp, "ios-simulator", "iphoneos", -1)
-
-	//arm64
-	utils.Save(filepath.Join(path, prefix+"cgo_ios_darwin_arm64.go"), strings.Replace(tmp, "x86_64", "arm64", -1))
-
-	//armv7
-	utils.Save(filepath.Join(path, prefix+"cgo_ios_darwin_arm.go"), strings.Replace(tmp, "x86_64", "armv7", -1))
-
-	return ""
+	return strings.Split(tmp, " ")
 }
 
 func cgoSailfish(module, mocPath string, mode int, pkg string) {
@@ -281,56 +161,6 @@ func cgoSailfish(module, mocPath string, mode int, pkg string) {
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_sailfish_linux_arm.go"), tmp)
 		}
 	}
-}
-
-func cleanLibs(module string, mode int) []string {
-
-	var out []string
-
-	switch {
-	case mode == RCC:
-		out = []string{"Core"}
-	case mode == MOC, module == "build_ios":
-		out = parser.LibDeps[module]
-	case mode == MINIMAL, mode == NONE:
-		out = append([]string{module}, parser.LibDeps[module]...)
-	}
-
-	for i, v := range out {
-		if v == "Speech" {
-			out[i] = "TextToSpeech"
-		}
-	}
-	return out
-}
-
-//needed for static linking
-func GetiOSClang(buildTarget, buildARM string) []string {
-	var tmp = cgoIos("build_ios", "", NONE, "main")
-
-	tmp = strings.Split(tmp, "/*")[1]
-	tmp = strings.Split(tmp, "*/")[0]
-
-	tmp = strings.Replace(tmp, "#cgo CFLAGS: ", "", -1)
-	tmp = strings.Replace(tmp, "#cgo CXXFLAGS: ", "", -1)
-	tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
-	tmp = strings.Replace(tmp, "\n", " ", -1)
-
-	if buildTarget == "ios" {
-		tmp = strings.Replace(tmp, "_iphonesimulator", "", -1)
-		tmp = strings.Replace(tmp, "x86_64", "arm64", -1)
-		tmp = strings.Replace(tmp, "iPhoneSimulator", "iPhoneOS", -1)
-		tmp = strings.Replace(tmp, "ios-simulator", "iphoneos", -1)
-	}
-
-	if buildARM == "armv7" {
-		tmp = strings.Replace(tmp, "arm64", "armv7", -1)
-	}
-	if buildARM == "i386" {
-		tmp = strings.Replace(tmp, "x86_64", "i386", -1)
-	}
-
-	return strings.Split(tmp, " ")
 }
 
 func cgoAsteroid(module, mocPath string, mode int, pkg string) {

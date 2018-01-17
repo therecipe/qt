@@ -79,7 +79,6 @@
 #include <QSignalSpy>
 #include <QSize>
 #include <QString>
-#include <QStringList>
 #include <QStyle>
 #include <QStyleOption>
 #include <QStyleOptionViewItem>
@@ -945,7 +944,6 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQHelpContentWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQHelpContentWidget_ChangeEvent(this, ev); };
 	bool close() { return callbackQHelpContentWidget_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpContentWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpContentWidget_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpContentWidget_CloseEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQHelpContentWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1581,11 +1579,6 @@ void QHelpContentWidget_ChangeEventDefault(void* ptr, void* ev)
 char QHelpContentWidget_CloseDefault(void* ptr)
 {
 		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::close();
-}
-
-char QHelpContentWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QHelpContentWidget_ActionEventDefault(void* ptr, void* event)
@@ -3241,7 +3234,6 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQHelpIndexWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQHelpIndexWidget_ChangeEvent(this, ev); };
 	bool close() { return callbackQHelpIndexWidget_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpIndexWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpIndexWidget_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpIndexWidget_CloseEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQHelpIndexWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -3895,11 +3887,6 @@ char QHelpIndexWidget_CloseDefault(void* ptr)
 		return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::close();
 }
 
-char QHelpIndexWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-}
-
 void QHelpIndexWidget_ActionEventDefault(void* ptr, void* event)
 {
 		static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::actionEvent(static_cast<QActionEvent*>(event));
@@ -4451,7 +4438,6 @@ public:
 	bool close() { return callbackQHelpSearchQueryWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQHelpSearchQueryWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchQueryWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchQueryWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpSearchQueryWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQHelpSearchQueryWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchQueryWidget_CloseEvent(this, event); };
@@ -4726,11 +4712,6 @@ char QHelpSearchQueryWidget_EventDefault(void* ptr, void* event)
 char QHelpSearchQueryWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::focusNextPrevChild(next != 0);
-}
-
-char QHelpSearchQueryWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QHelpSearchQueryWidget_ActionEventDefault(void* ptr, void* event)
@@ -5075,7 +5056,6 @@ public:
 	bool close() { return callbackQHelpSearchResultWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQHelpSearchResultWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchResultWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchResultWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpSearchResultWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQHelpSearchResultWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchResultWidget_CloseEvent(this, event); };
@@ -5313,11 +5293,6 @@ char QHelpSearchResultWidget_EventDefault(void* ptr, void* event)
 char QHelpSearchResultWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::focusNextPrevChild(next != 0);
-}
-
-char QHelpSearchResultWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QHelpSearchResultWidget_ActionEventDefault(void* ptr, void* event)

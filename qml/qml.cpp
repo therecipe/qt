@@ -59,7 +59,6 @@
 #include <QRadioData>
 #include <QSignalSpy>
 #include <QString>
-#include <QStringList>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
@@ -697,6 +696,7 @@ public:
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
+	void retranslate() { callbackQQmlEngine_Retranslate(this); };
 	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = const_cast<QList<QQmlError>*>(&warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
@@ -1765,6 +1765,7 @@ public:
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
+	void retranslate() { callbackQQmlEngine_Retranslate(this); };
 	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = const_cast<QList<QQmlError>*>(&warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQQmlEngine() { callbackQQmlEngine_DestroyQQmlEngine(this); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
@@ -1892,6 +1893,20 @@ void QQmlEngine_Quit(void* ptr)
 void QQmlEngine_RemoveImageProvider(void* ptr, struct QtQml_PackedString providerId)
 {
 	static_cast<QQmlEngine*>(ptr)->removeImageProvider(QString::fromUtf8(providerId.data, providerId.len));
+}
+
+void QQmlEngine_Retranslate(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QQmlEngine*>(ptr), "retranslate");
+}
+
+void QQmlEngine_RetranslateDefault(void* ptr)
+{
+	if (dynamic_cast<QQmlApplicationEngine*>(static_cast<QObject*>(ptr))) {
+		static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::retranslate();
+	} else {
+		static_cast<QQmlEngine*>(ptr)->QQmlEngine::retranslate();
+	}
 }
 
 void QQmlEngine_SetBaseUrl(void* ptr, void* url)

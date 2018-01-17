@@ -338,6 +338,50 @@ import "C"
 				if mode == MOC {
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], m)
 				}
+
+				if strings.HasPrefix(target, "ios") && mode == MINIMAL {
+					oldModuleGo := strings.TrimPrefix(oldModule, "Qt")
+
+					var (
+						containsSub  bool
+						containsSelf bool
+					)
+
+					for _, l := range parser.LibDeps["build_ios"] {
+						if l == m {
+							containsSub = true
+						}
+						if l == oldModuleGo {
+							containsSelf = true
+						}
+					}
+
+					if !containsSelf || !containsSub {
+
+						if !containsSelf {
+							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], oldModuleGo)
+
+							switch oldModuleGo {
+							case "Multimedia":
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+							case "Quick":
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+							}
+						}
+
+						if !containsSub {
+							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], m)
+
+							switch m {
+							case "Multimedia":
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+							case "Quick":
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+							}
+						}
+
+					}
+				}
 			}
 		}
 	}

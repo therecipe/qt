@@ -151,7 +151,6 @@
 #include <QSound>
 #include <QSoundEffect>
 #include <QString>
-#include <QStringList>
 #include <QStyle>
 #include <QStyleOption>
 #include <QStyleOptionGraphicsItem>
@@ -9398,7 +9397,6 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQVideoWidget_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQVideoWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQVideoWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQVideoWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQVideoWidget_CloseEvent(this, event); };
@@ -21992,7 +21990,6 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQVideoWidget_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQVideoWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQVideoWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQVideoWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQVideoWidget_CloseEvent(this, event); };
@@ -22582,20 +22579,6 @@ char QVideoWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::focusNextPrevChild(next != 0);
 	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::focusNextPrevChild(next != 0);
-	}
-}
-
-char QVideoWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QVideoWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-}
-
-char QVideoWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else {
-		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	}
 }
 

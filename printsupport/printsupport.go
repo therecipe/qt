@@ -667,22 +667,6 @@ func (ptr *QAbstractPrintDialog) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQAbstractPrintDialog_NativeEvent
-func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQAbstractPrintDialog_ActionEvent
 func callbackQAbstractPrintDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -2069,22 +2053,6 @@ func callbackQPageSetupDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char
 func (ptr *QPageSetupDialog) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
 		return C.QPageSetupDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
-	}
-	return false
-}
-
-//export callbackQPageSetupDialog_NativeEvent
-func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPageSetupDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -4174,22 +4142,6 @@ func (ptr *QPrintPreviewDialog) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQPrintPreviewDialog_NativeEvent
-func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQPrintPreviewDialog_ActionEvent
 func callbackQPrintPreviewDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -6146,22 +6098,6 @@ func (ptr *QPrintPreviewWidget) FocusNextPrevChildDefault(next bool) bool {
 	return false
 }
 
-//export callbackQPrintPreviewWidget_NativeEvent
-func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
-}
-
-func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
-	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
-	}
-	return false
-}
-
 //export callbackQPrintPreviewWidget_ActionEvent
 func callbackQPrintPreviewWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -7428,6 +7364,12 @@ func (ptr *QPrinter) SetPaperSource(source QPrinter__PaperSource) {
 	}
 }
 
+func (ptr *QPrinter) SetPdfVersion(version gui.QPagedPaintDevice__PdfVersion) {
+	if ptr.Pointer() != nil {
+		C.QPrinter_SetPdfVersion(ptr.Pointer(), C.longlong(version))
+	}
+}
+
 func (ptr *QPrinter) SetPrintProgram(printProg string) {
 	if ptr.Pointer() != nil {
 		var printProgC *C.char
@@ -7512,6 +7454,13 @@ func (ptr *QPrinter) PageOrder() QPrinter__PageOrder {
 func (ptr *QPrinter) PaperSource() QPrinter__PaperSource {
 	if ptr.Pointer() != nil {
 		return QPrinter__PaperSource(C.QPrinter_PaperSource(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPrinter) PdfVersion() gui.QPagedPaintDevice__PdfVersion {
+	if ptr.Pointer() != nil {
+		return gui.QPagedPaintDevice__PdfVersion(C.QPrinter_PdfVersion(ptr.Pointer()))
 	}
 	return 0
 }

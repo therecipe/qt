@@ -526,7 +526,8 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				"QDBusPendingReplyTypes",
 				"QRemoteObjectPackets",
 				"QRemoteObjectStringLiterals",
-				"ui":
+				"ui",
+				"QStringList":
 				{
 					continue
 				}

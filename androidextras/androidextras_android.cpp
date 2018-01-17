@@ -7,10 +7,18 @@
 #include "_cgo_export.h"
 
 #include <QAndroidActivityResultReceiver>
+#include <QAndroidBinder>
+#include <QAndroidIntent>
 #include <QAndroidJniEnvironment>
+#include <QAndroidJniExceptionCleaner>
 #include <QAndroidJniObject>
+#include <QAndroidParcel>
+#include <QAndroidService>
+#include <QAndroidServiceConnection>
 #include <QByteArray>
+#include <QList>
 #include <QString>
+#include <QVariant>
 #include <QtAndroid>
 
 class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver
@@ -22,6 +30,111 @@ public:
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data)
 {
 	static_cast<QAndroidActivityResultReceiver*>(ptr)->handleActivityResult(receiverRequestCode, resultCode, *static_cast<QAndroidJniObject*>(data));
+}
+
+class MyQAndroidBinder: public QAndroidBinder
+{
+public:
+	MyQAndroidBinder() : QAndroidBinder() {};
+	MyQAndroidBinder(const QAndroidJniObject &binder) : QAndroidBinder(binder) {};
+	 ~MyQAndroidBinder() { callbackQAndroidBinder_DestroyQAndroidBinder(this); };
+};
+
+void QAndroidBinder_DestroyQAndroidBinder(void* ptr)
+{
+	static_cast<QAndroidBinder*>(ptr)->~QAndroidBinder();
+}
+
+void QAndroidBinder_DestroyQAndroidBinderDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QAndroidBinder_NewQAndroidBinder()
+{
+	return new MyQAndroidBinder();
+}
+
+void* QAndroidBinder_NewQAndroidBinder2(void* binder)
+{
+	return new MyQAndroidBinder(*static_cast<QAndroidJniObject*>(binder));
+}
+
+void* QAndroidBinder_Handle(void* ptr)
+{
+	return new QAndroidJniObject(static_cast<QAndroidBinder*>(ptr)->handle().object());
+}
+
+char QAndroidBinder_Transact(void* ptr, int code, void* data, void* reply, long long flags)
+{
+	return static_cast<QAndroidBinder*>(ptr)->transact(code, *static_cast<QAndroidParcel*>(data), static_cast<QAndroidParcel*>(reply), static_cast<QAndroidBinder::CallType>(flags));
+}
+
+class MyQAndroidIntent: public QAndroidIntent
+{
+public:
+	MyQAndroidIntent() : QAndroidIntent() {};
+	MyQAndroidIntent(const QAndroidJniObject &intent) : QAndroidIntent(intent) {};
+	MyQAndroidIntent(const QAndroidJniObject &packageContext, const char *className) : QAndroidIntent(packageContext, className) {};
+	MyQAndroidIntent(const QString &action) : QAndroidIntent(action) {};
+	 ~MyQAndroidIntent() { callbackQAndroidIntent_DestroyQAndroidIntent(this); };
+};
+
+void* QAndroidIntent_NewQAndroidIntent()
+{
+	return new MyQAndroidIntent();
+}
+
+void* QAndroidIntent_NewQAndroidIntent2(void* intent)
+{
+	return new MyQAndroidIntent(*static_cast<QAndroidJniObject*>(intent));
+}
+
+void* QAndroidIntent_NewQAndroidIntent4(void* packageContext, char* className)
+{
+	return new MyQAndroidIntent(*static_cast<QAndroidJniObject*>(packageContext), const_cast<const char*>(className));
+}
+
+void* QAndroidIntent_NewQAndroidIntent3(struct QtAndroidExtras_PackedString action)
+{
+	return new MyQAndroidIntent(QString::fromUtf8(action.data, action.len));
+}
+
+void* QAndroidIntent_ExtraBytes(void* ptr, struct QtAndroidExtras_PackedString key)
+{
+	return new QByteArray(static_cast<QAndroidIntent*>(ptr)->extraBytes(QString::fromUtf8(key.data, key.len)));
+}
+
+void* QAndroidIntent_ExtraVariant(void* ptr, struct QtAndroidExtras_PackedString key)
+{
+	return new QVariant(static_cast<QAndroidIntent*>(ptr)->extraVariant(QString::fromUtf8(key.data, key.len)));
+}
+
+void QAndroidIntent_PutExtra(void* ptr, struct QtAndroidExtras_PackedString key, void* data)
+{
+	static_cast<QAndroidIntent*>(ptr)->putExtra(QString::fromUtf8(key.data, key.len), *static_cast<QByteArray*>(data));
+}
+
+void QAndroidIntent_PutExtra2(void* ptr, struct QtAndroidExtras_PackedString key, void* value)
+{
+	static_cast<QAndroidIntent*>(ptr)->putExtra(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(value));
+}
+
+void QAndroidIntent_DestroyQAndroidIntent(void* ptr)
+{
+	static_cast<QAndroidIntent*>(ptr)->~QAndroidIntent();
+}
+
+void QAndroidIntent_DestroyQAndroidIntentDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QAndroidIntent_Handle(void* ptr)
+{
+	return new QAndroidJniObject(static_cast<QAndroidIntent*>(ptr)->handle().object());
 }
 
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM()
@@ -57,6 +170,21 @@ void QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionClear()
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionOccurred()
 {
 	return ({ QAndroidJniEnvironment env; env->ExceptionOccurred(); });
+}
+
+void* QAndroidJniExceptionCleaner_NewQAndroidJniExceptionCleaner(long long outputMode)
+{
+	return new QAndroidJniExceptionCleaner(static_cast<QAndroidJniExceptionCleaner::OutputMode>(outputMode));
+}
+
+void QAndroidJniExceptionCleaner_Clean(void* ptr)
+{
+	static_cast<QAndroidJniExceptionCleaner*>(ptr)->clean();
+}
+
+void QAndroidJniExceptionCleaner_DestroyQAndroidJniExceptionCleaner(void* ptr)
+{
+	static_cast<QAndroidJniExceptionCleaner*>(ptr)->~QAndroidJniExceptionCleaner();
 }
 
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod(char* className, char* methodName)
@@ -664,6 +792,167 @@ char QAndroidJniObject_IsValid(void* ptr)
 	return static_cast<QAndroidJniObject*>(ptr)->isValid();
 }
 
+class MyQAndroidParcel: public QAndroidParcel
+{
+public:
+	MyQAndroidParcel() : QAndroidParcel() {};
+	MyQAndroidParcel(const QAndroidJniObject &parcel) : QAndroidParcel(parcel) {};
+	 ~MyQAndroidParcel() { callbackQAndroidParcel_DestroyQAndroidParcel(this); };
+};
+
+void* QAndroidParcel_NewQAndroidParcel()
+{
+	return new MyQAndroidParcel();
+}
+
+void* QAndroidParcel_NewQAndroidParcel2(void* parcel)
+{
+	return new MyQAndroidParcel(*static_cast<QAndroidJniObject*>(parcel));
+}
+
+void QAndroidParcel_DestroyQAndroidParcel(void* ptr)
+{
+	static_cast<QAndroidParcel*>(ptr)->~QAndroidParcel();
+}
+
+void QAndroidParcel_DestroyQAndroidParcelDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QAndroidParcel_ReadBinder(void* ptr)
+{
+	return new QAndroidBinder(static_cast<QAndroidParcel*>(ptr)->readBinder());
+}
+
+void* QAndroidParcel_Handle(void* ptr)
+{
+	return new QAndroidJniObject(static_cast<QAndroidParcel*>(ptr)->handle().object());
+}
+
+void* QAndroidParcel_ReadData(void* ptr)
+{
+	return new QByteArray(static_cast<QAndroidParcel*>(ptr)->readData());
+}
+
+void* QAndroidParcel_ReadVariant(void* ptr)
+{
+	return new QVariant(static_cast<QAndroidParcel*>(ptr)->readVariant());
+}
+
+int QAndroidParcel_ReadFileDescriptor(void* ptr)
+{
+	return static_cast<QAndroidParcel*>(ptr)->readFileDescriptor();
+}
+
+void QAndroidParcel_WriteBinder(void* ptr, void* binder)
+{
+	static_cast<QAndroidParcel*>(ptr)->writeBinder(*static_cast<QAndroidBinder*>(binder));
+}
+
+void QAndroidParcel_WriteData(void* ptr, void* data)
+{
+	static_cast<QAndroidParcel*>(ptr)->writeData(*static_cast<QByteArray*>(data));
+}
+
+void QAndroidParcel_WriteFileDescriptor(void* ptr, int fd)
+{
+	static_cast<QAndroidParcel*>(ptr)->writeFileDescriptor(fd);
+}
+
+void QAndroidParcel_WriteVariant(void* ptr, void* value)
+{
+	static_cast<QAndroidParcel*>(ptr)->writeVariant(*static_cast<QVariant*>(value));
+}
+
+class MyQAndroidService: public QAndroidService
+{
+public:
+	MyQAndroidService(int &argc, char **argv) : QAndroidService(argc, argv) {};
+	QAndroidBinder * onBind(const QAndroidIntent & intent) { return static_cast<QAndroidBinder*>(callbackQAndroidService_OnBind(this, const_cast<QAndroidIntent*>(&intent))); };
+	 ~MyQAndroidService() { callbackQAndroidService_DestroyQAndroidService(this); };
+};
+
+void* QAndroidService_OnBind(void* ptr, void* intent)
+{
+	return static_cast<QAndroidService*>(ptr)->onBind(*static_cast<QAndroidIntent*>(intent));
+}
+
+void* QAndroidService_OnBindDefault(void* ptr, void* intent)
+{
+		return static_cast<QAndroidService*>(ptr)->QAndroidService::onBind(*static_cast<QAndroidIntent*>(intent));
+}
+
+void* QAndroidService_NewQAndroidService(int argc, char* argv)
+{
+	static int argcs = argc;
+	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
+
+	QList<QByteArray> aList = QByteArray(argv).split('|');
+	for (int i = 0; i < argcs; i++)
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
+
+	return new MyQAndroidService(argcs, argvs);
+}
+
+void QAndroidService_DestroyQAndroidService(void* ptr)
+{
+	static_cast<QAndroidService*>(ptr)->~QAndroidService();
+}
+
+void QAndroidService_DestroyQAndroidServiceDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+class MyQAndroidServiceConnection: public QAndroidServiceConnection
+{
+public:
+	MyQAndroidServiceConnection() : QAndroidServiceConnection() {};
+	MyQAndroidServiceConnection(const QAndroidJniObject &serviceConnection) : QAndroidServiceConnection(serviceConnection) {};
+	void onServiceConnected(const QString & name, const QAndroidBinder & serviceBinder) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceConnected(this, namePacked, const_cast<QAndroidBinder*>(&serviceBinder)); };
+	void onServiceDisconnected(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtAndroidExtras_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAndroidServiceConnection_OnServiceDisconnected(this, namePacked); };
+	 ~MyQAndroidServiceConnection() { callbackQAndroidServiceConnection_DestroyQAndroidServiceConnection(this); };
+};
+
+void* QAndroidServiceConnection_NewQAndroidServiceConnection()
+{
+	return new MyQAndroidServiceConnection();
+}
+
+void* QAndroidServiceConnection_NewQAndroidServiceConnection2(void* serviceConnection)
+{
+	return new MyQAndroidServiceConnection(*static_cast<QAndroidJniObject*>(serviceConnection));
+}
+
+void QAndroidServiceConnection_OnServiceConnected(void* ptr, struct QtAndroidExtras_PackedString name, void* serviceBinder)
+{
+	static_cast<QAndroidServiceConnection*>(ptr)->onServiceConnected(QString::fromUtf8(name.data, name.len), *static_cast<QAndroidBinder*>(serviceBinder));
+}
+
+void QAndroidServiceConnection_OnServiceDisconnected(void* ptr, struct QtAndroidExtras_PackedString name)
+{
+	static_cast<QAndroidServiceConnection*>(ptr)->onServiceDisconnected(QString::fromUtf8(name.data, name.len));
+}
+
+void QAndroidServiceConnection_DestroyQAndroidServiceConnection(void* ptr)
+{
+	static_cast<QAndroidServiceConnection*>(ptr)->~QAndroidServiceConnection();
+}
+
+void QAndroidServiceConnection_DestroyQAndroidServiceConnectionDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QAndroidServiceConnection_Handle(void* ptr)
+{
+	return new QAndroidJniObject(static_cast<QAndroidServiceConnection*>(ptr)->handle().object());
+}
+
 void* QtAndroid_QtAndroid_AndroidActivity()
 {
 	return new QAndroidJniObject(QtAndroid::androidActivity().object());
@@ -679,6 +968,16 @@ void* QtAndroid_QtAndroid_AndroidService()
 	return new QAndroidJniObject(QtAndroid::androidService().object());
 }
 
+char QtAndroid_QtAndroid_BindService(void* serviceIntent, void* serviceConnection, long long flags)
+{
+	return QtAndroid::bindService(*static_cast<QAndroidIntent*>(serviceIntent), *static_cast<QAndroidServiceConnection*>(serviceConnection), static_cast<QtAndroid::BindFlag>(flags));
+}
+
+char QtAndroid_QtAndroid_ShouldShowRequestPermissionRationale(struct QtAndroidExtras_PackedString permission)
+{
+	return QtAndroid::shouldShowRequestPermissionRationale(QString::fromUtf8(permission.data, permission.len));
+}
+
 int QtAndroid_QtAndroid_AndroidSdkVersion()
 {
 	return QtAndroid::androidSdkVersion();
@@ -687,6 +986,11 @@ int QtAndroid_QtAndroid_AndroidSdkVersion()
 void QtAndroid_QtAndroid_HideSplashScreen()
 {
 	QtAndroid::hideSplashScreen();
+}
+
+void QtAndroid_QtAndroid_HideSplashScreen2(int duration)
+{
+	QtAndroid::hideSplashScreen(duration);
 }
 
 void QtAndroid_QtAndroid_StartActivity(void* intent, int receiverRequestCode, void* resultReceiver)

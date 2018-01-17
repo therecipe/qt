@@ -219,7 +219,7 @@
 #include <QStaticText>
 #include <QStatusTipEvent>
 #include <QString>
-#include <QStringList>
+#include <QStringView>
 #include <QStyle>
 #include <QStyleHints>
 #include <QSurface>
@@ -2848,12 +2848,12 @@ void QBackingStore_EndPaint(void* ptr)
 	static_cast<QBackingStore*>(ptr)->endPaint();
 }
 
-void QBackingStore_Flush(void* ptr, void* region, void* win, void* offset)
+void QBackingStore_Flush(void* ptr, void* region, void* window, void* offset)
 {
-	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(win))) {
-		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QPaintDeviceWindow*>(win), *static_cast<QPoint*>(offset));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(window))) {
+		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QPaintDeviceWindow*>(window), *static_cast<QPoint*>(offset));
 	} else {
-		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QWindow*>(win), *static_cast<QPoint*>(offset));
+		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QWindow*>(window), *static_cast<QPoint*>(offset));
 	}
 }
 
@@ -3445,9 +3445,9 @@ void* QColor_QColor_FromHsv(int h, int s, int v, int a)
 	return new QColor(QColor::fromHsv(h, s, v, a));
 }
 
-void* QColor_QColor_FromRgb2(int r, int g, int b, int a)
+void* QColor_QColor_FromRgbF(double r, double g, double b, double a)
 {
-	return new QColor(QColor::fromRgb(r, g, b, a));
+	return new QColor(QColor::fromRgbF(r, g, b, a));
 }
 
 void QColor_SetRgbF(void* ptr, double r, double g, double b, double a)
@@ -3485,9 +3485,9 @@ void* QColor_QColor_FromHsvF(double h, double s, double v, double a)
 	return new QColor(QColor::fromHsvF(h, s, v, a));
 }
 
-void* QColor_QColor_FromRgbF(double r, double g, double b, double a)
+void* QColor_QColor_FromRgb2(int r, int g, int b, int a)
 {
-	return new QColor(QColor::fromRgbF(r, g, b, a));
+	return new QColor(QColor::fromRgb(r, g, b, a));
 }
 
 void* QColor_QColor_FromRgba642(void* rgba64)
@@ -3505,12 +3505,12 @@ void* QColor_NewQColor()
 	return new QColor();
 }
 
-void* QColor_NewQColor11(void* other)
+void* QColor_NewQColor12(void* other)
 {
 	return new QColor(*static_cast<QColor*>(other));
 }
 
-void* QColor_NewQColor8(void* name)
+void* QColor_NewQColor9(void* name)
 {
 	return new QColor(*static_cast<QLatin1String*>(name));
 }
@@ -3520,12 +3520,17 @@ void* QColor_NewQColor5(void* rgba64)
 	return new QColor(*static_cast<QRgba64*>(rgba64));
 }
 
+void* QColor_NewQColor7(void* name)
+{
+	return new QColor(*static_cast<QStringView*>(name));
+}
+
 void* QColor_NewQColor2(long long color)
 {
 	return new QColor(static_cast<Qt::GlobalColor>(color));
 }
 
-void* QColor_NewQColor10(void* color)
+void* QColor_NewQColor11(void* color)
 {
 	return new QColor(*static_cast<QColor*>(color));
 }
@@ -3535,7 +3540,7 @@ void* QColor_NewQColor6(struct QtGui_PackedString name)
 	return new QColor(QString::fromUtf8(name.data, name.len));
 }
 
-void* QColor_NewQColor7(char* name)
+void* QColor_NewQColor8(char* name)
 {
 	return new QColor(const_cast<const char*>(name));
 }
@@ -3550,9 +3555,14 @@ struct QtGui_PackedString QColor_QColor_ColorNames()
 	return ({ QByteArray t1b28c6 = QColor::colorNames().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t1b28c6.prepend("WHITESPACE").constData()+10), t1b28c6.size()-10 }; });
 }
 
-char QColor_QColor_IsValidColor2(void* name)
+char QColor_QColor_IsValidColor3(void* name)
 {
 	return QColor::isValidColor(*static_cast<QLatin1String*>(name));
+}
+
+char QColor_QColor_IsValidColor2(void* name)
+{
+	return QColor::isValidColor(*static_cast<QStringView*>(name));
 }
 
 char QColor_QColor_IsValidColor(struct QtGui_PackedString name)
@@ -3630,9 +3640,14 @@ void QColor_SetHsvF(void* ptr, double h, double s, double v, double a)
 	static_cast<QColor*>(ptr)->setHsvF(h, s, v, a);
 }
 
-void QColor_SetNamedColor2(void* ptr, void* name)
+void QColor_SetNamedColor3(void* ptr, void* name)
 {
 	static_cast<QColor*>(ptr)->setNamedColor(*static_cast<QLatin1String*>(name));
+}
+
+void QColor_SetNamedColor2(void* ptr, void* name)
+{
+	static_cast<QColor*>(ptr)->setNamedColor(*static_cast<QStringView*>(name));
 }
 
 void QColor_SetNamedColor(void* ptr, struct QtGui_PackedString name)
@@ -6566,6 +6581,11 @@ void* QGuiApplication_QGuiApplication_PrimaryScreen()
 	return QGuiApplication::primaryScreen();
 }
 
+void* QGuiApplication_QGuiApplication_ScreenAt(void* point)
+{
+	return QGuiApplication::screenAt(*static_cast<QPoint*>(point));
+}
+
 struct QtGui_PackedString QGuiApplication_QGuiApplication_ApplicationDisplayName()
 {
 	return ({ QByteArray tb2b492 = QGuiApplication::applicationDisplayName().toUtf8(); QtGui_PackedString { const_cast<char*>(tb2b492.prepend("WHITESPACE").constData()+10), tb2b492.size()-10 }; });
@@ -8217,11 +8237,6 @@ struct QtGui_PackedString QImage_ScanLine2(void* ptr, int i)
 int QImage_BitPlaneCount(void* ptr)
 {
 	return static_cast<QImage*>(ptr)->bitPlaneCount();
-}
-
-int QImage_ByteCount(void* ptr)
-{
-	return static_cast<QImage*>(ptr)->byteCount();
 }
 
 int QImage_BytesPerLine(void* ptr)
@@ -10670,10 +10685,10 @@ public:
 	MyQMovie(QIODevice *device, const QByteArray &format = QByteArray(), QObject *parent = Q_NULLPTR) : QMovie(device, format, parent) {QMovie_QMovie_QRegisterMetaType();};
 	MyQMovie(QObject *parent = Q_NULLPTR) : QMovie(parent) {QMovie_QMovie_QRegisterMetaType();};
 	MyQMovie(const QString &fileName, const QByteArray &format = QByteArray(), QObject *parent = Q_NULLPTR) : QMovie(fileName, format, parent) {QMovie_QMovie_QRegisterMetaType();};
+	void Signal_FrameChanged(int frameNumber) { callbackQMovie_FrameChanged(this, frameNumber); };
 	bool jumpToNextFrame() { return callbackQMovie_JumpToNextFrame(this) != 0; };
 	void Signal_Error(QImageReader::ImageReaderError error) { callbackQMovie_Error(this, error); };
 	void Signal_Finished() { callbackQMovie_Finished(this); };
-	void Signal_FrameChanged(int frameNumber) { callbackQMovie_FrameChanged(this, frameNumber); };
 	void Signal_Resized(const QSize & size) { callbackQMovie_Resized(this, const_cast<QSize*>(&size)); };
 	void setPaused(bool paused) { callbackQMovie_SetPaused(this, paused); };
 	void setSpeed(int percentSpeed) { callbackQMovie_SetSpeed(this, percentSpeed); };
@@ -10698,6 +10713,26 @@ public:
 Q_DECLARE_METATYPE(MyQMovie*)
 
 int QMovie_QMovie_QRegisterMetaType(){qRegisterMetaType<QMovie*>(); return qRegisterMetaType<MyQMovie*>();}
+
+void QMovie_ConnectFrameChanged(void* ptr)
+{
+	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));
+}
+
+void QMovie_DisconnectFrameChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));
+}
+
+void QMovie_FrameChanged(void* ptr, int frameNumber)
+{
+	static_cast<QMovie*>(ptr)->frameChanged(frameNumber);
+}
+
+void QMovie_SetCacheMode(void* ptr, long long mode)
+{
+	static_cast<QMovie*>(ptr)->setCacheMode(static_cast<QMovie::CacheMode>(mode));
+}
 
 struct QtGui_PackedList QMovie_QMovie_SupportedFormats()
 {
@@ -10879,21 +10914,6 @@ void QMovie_Finished(void* ptr)
 	static_cast<QMovie*>(ptr)->finished();
 }
 
-void QMovie_ConnectFrameChanged(void* ptr)
-{
-	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));
-}
-
-void QMovie_DisconnectFrameChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(int)>(&QMovie::frameChanged), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(int)>(&MyQMovie::Signal_FrameChanged));
-}
-
-void QMovie_FrameChanged(void* ptr, int frameNumber)
-{
-	static_cast<QMovie*>(ptr)->frameChanged(frameNumber);
-}
-
 void QMovie_ConnectResized(void* ptr)
 {
 	QObject::connect(static_cast<QMovie*>(ptr), static_cast<void (QMovie::*)(const QSize &)>(&QMovie::resized), static_cast<MyQMovie*>(ptr), static_cast<void (MyQMovie::*)(const QSize &)>(&MyQMovie::Signal_Resized));
@@ -10912,11 +10932,6 @@ void QMovie_Resized(void* ptr, void* size)
 void QMovie_SetBackgroundColor(void* ptr, void* color)
 {
 	static_cast<QMovie*>(ptr)->setBackgroundColor(*static_cast<QColor*>(color));
-}
-
-void QMovie_SetCacheMode(void* ptr, long long mode)
-{
-	static_cast<QMovie*>(ptr)->setCacheMode(static_cast<QMovie::CacheMode>(mode));
 }
 
 void QMovie_SetDevice(void* ptr, void* device)
@@ -11060,6 +11075,11 @@ void* QMovie_CurrentImage(void* ptr)
 	return new QImage(static_cast<QMovie*>(ptr)->currentImage());
 }
 
+long long QMovie_LastError(void* ptr)
+{
+	return static_cast<QMovie*>(ptr)->lastError();
+}
+
 void* QMovie_CurrentPixmap(void* ptr)
 {
 	return new QPixmap(static_cast<QMovie*>(ptr)->currentPixmap());
@@ -11073,6 +11093,11 @@ void* QMovie_FrameRect(void* ptr)
 struct QtGui_PackedString QMovie_FileName(void* ptr)
 {
 	return ({ QByteArray t73bc7e = static_cast<QMovie*>(ptr)->fileName().toUtf8(); QtGui_PackedString { const_cast<char*>(t73bc7e.prepend("WHITESPACE").constData()+10), t73bc7e.size()-10 }; });
+}
+
+struct QtGui_PackedString QMovie_LastErrorString(void* ptr)
+{
+	return ({ QByteArray tc1e035 = static_cast<QMovie*>(ptr)->lastErrorString().toUtf8(); QtGui_PackedString { const_cast<char*>(tc1e035.prepend("WHITESPACE").constData()+10), tc1e035.size()-10 }; });
 }
 
 char QMovie_IsValid(void* ptr)
@@ -11299,12 +11324,17 @@ void* QMovie_MetaObjectDefault(void* ptr)
 class MyQNativeGestureEvent: public QNativeGestureEvent
 {
 public:
-	MyQNativeGestureEvent(Qt::NativeGestureType ty, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, qreal realValue, ulong sequenceId, quint64 intValue) : QNativeGestureEvent(ty, localPos, windowPos, screenPos, realValue, sequenceId, intValue) {};
+	MyQNativeGestureEvent(Qt::NativeGestureType ty, const QTouchDevice *device, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, qreal realValue, ulong sequenceId, quint64 intValue) : QNativeGestureEvent(ty, device, localPos, windowPos, screenPos, realValue, sequenceId, intValue) {};
 };
 
-void* QNativeGestureEvent_NewQNativeGestureEvent(long long ty, void* localPos, void* windowPos, void* screenPos, double realValue, unsigned long sequenceId, unsigned long long intValue)
+void* QNativeGestureEvent_NewQNativeGestureEvent(long long ty, void* device, void* localPos, void* windowPos, void* screenPos, double realValue, unsigned long sequenceId, unsigned long long intValue)
 {
-	return new MyQNativeGestureEvent(static_cast<Qt::NativeGestureType>(ty), *static_cast<QPointF*>(localPos), *static_cast<QPointF*>(windowPos), *static_cast<QPointF*>(screenPos), realValue, sequenceId, intValue);
+	return new MyQNativeGestureEvent(static_cast<Qt::NativeGestureType>(ty), static_cast<QTouchDevice*>(device), *static_cast<QPointF*>(localPos), *static_cast<QPointF*>(windowPos), *static_cast<QPointF*>(screenPos), realValue, sequenceId, intValue);
+}
+
+void QNativeGestureEvent_DestroyQNativeGestureEvent(void* ptr)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->~QNativeGestureEvent();
 }
 
 long long QNativeGestureEvent_GestureType(void* ptr)
@@ -11335,6 +11365,11 @@ void* QNativeGestureEvent_ScreenPos(void* ptr)
 void* QNativeGestureEvent_WindowPos(void* ptr)
 {
 	return const_cast<QPointF*>(&static_cast<QNativeGestureEvent*>(ptr)->windowPos());
+}
+
+void* QNativeGestureEvent_Device(void* ptr)
+{
+	return const_cast<QTouchDevice*>(static_cast<QNativeGestureEvent*>(ptr)->device());
 }
 
 double QNativeGestureEvent_Value(void* ptr)
@@ -11416,6 +11451,7 @@ class MyQOffscreenSurface: public QOffscreenSurface
 {
 public:
 	MyQOffscreenSurface(QScreen *targetScreen = Q_NULLPTR) : QOffscreenSurface(targetScreen) {QOffscreenSurface_QOffscreenSurface_QRegisterMetaType();};
+	MyQOffscreenSurface(QScreen *targetScreen, QObject *parent) : QOffscreenSurface(targetScreen, parent) {QOffscreenSurface_QOffscreenSurface_QRegisterMetaType();};
 	void Signal_ScreenChanged(QScreen * screen) { callbackQOffscreenSurface_ScreenChanged(this, screen); };
 	 ~MyQOffscreenSurface() { callbackQOffscreenSurface_DestroyQOffscreenSurface(this); };
 	QSize size() const { return *static_cast<QSize*>(callbackQOffscreenSurface_Size(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -11438,9 +11474,14 @@ Q_DECLARE_METATYPE(MyQOffscreenSurface*)
 
 int QOffscreenSurface_QOffscreenSurface_QRegisterMetaType(){qRegisterMetaType<QOffscreenSurface*>(); return qRegisterMetaType<MyQOffscreenSurface*>();}
 
-void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen)
+void* QOffscreenSurface_NewQOffscreenSurface2(void* targetScreen)
 {
 	return new MyQOffscreenSurface(static_cast<QScreen*>(targetScreen));
+}
+
+void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen, void* parent)
+{
+	return new MyQOffscreenSurface(static_cast<QScreen*>(targetScreen), static_cast<QObject*>(parent));
 }
 
 void QOffscreenSurface_Create(void* ptr)
@@ -12964,6 +13005,11 @@ long long QOpenGLDebugMessage_Type(void* ptr)
 	return static_cast<QOpenGLDebugMessage*>(ptr)->type();
 }
 
+char QOpenGLExtraFunctions_GlIsEnabledi(void* ptr, unsigned int target, unsigned int index)
+{
+	return static_cast<QOpenGLExtraFunctions*>(ptr)->glIsEnabledi(target, index);
+}
+
 char QOpenGLExtraFunctions_GlIsProgramPipeline(void* ptr, unsigned int pipeline)
 {
 	return static_cast<QOpenGLExtraFunctions*>(ptr)->glIsProgramPipeline(pipeline);
@@ -13054,6 +13100,26 @@ void QOpenGLExtraFunctions_GlBindVertexArray(void* ptr, unsigned int array)
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glBindVertexArray(array);
 }
 
+void QOpenGLExtraFunctions_GlBlendEquationSeparatei(void* ptr, unsigned int buf, unsigned int modeRGB, unsigned int modeAlpha)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glBlendEquationSeparatei(buf, modeRGB, modeAlpha);
+}
+
+void QOpenGLExtraFunctions_GlBlendEquationi(void* ptr, unsigned int buf, unsigned int mode)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glBlendEquationi(buf, mode);
+}
+
+void QOpenGLExtraFunctions_GlBlendFuncSeparatei(void* ptr, unsigned int buf, unsigned int srcRGB, unsigned int dstRGB, unsigned int srcAlpha, unsigned int dstAlpha)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glBlendFuncSeparatei(buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
+}
+
+void QOpenGLExtraFunctions_GlBlendFunci(void* ptr, unsigned int buf, unsigned int src, unsigned int dst)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glBlendFunci(buf, src, dst);
+}
+
 void QOpenGLExtraFunctions_GlBlitFramebuffer(void* ptr, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, unsigned int mask, unsigned int filter)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
@@ -13079,6 +13145,11 @@ void QOpenGLExtraFunctions_GlClearBufferuiv(void* ptr, unsigned int buffer, int 
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glClearBufferuiv(buffer, drawbuffer, const_cast<const GLuint*>(&value));
 }
 
+void QOpenGLExtraFunctions_GlColorMaski(void* ptr, unsigned int index, char r, char g, char b, char a)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glColorMaski(index, r != 0, g != 0, b != 0, a != 0);
+}
+
 void QOpenGLExtraFunctions_GlCompressedTexImage3D(void* ptr, unsigned int target, int level, unsigned int internalformat, int width, int height, int depth, int border, int imageSize, void* data)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glCompressedTexImage3D(target, level, internalformat, width, height, depth, border, imageSize, data);
@@ -13089,9 +13160,19 @@ void QOpenGLExtraFunctions_GlCompressedTexSubImage3D(void* ptr, unsigned int tar
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glCompressedTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
 }
 
+void QOpenGLExtraFunctions_GlCopyImageSubData(void* ptr, unsigned int srcName, unsigned int srcTarget, int srcLevel, int srcX, int srcY, int srcZ, unsigned int dstName, unsigned int dstTarget, int dstLevel, int dstX, int dstY, int dstZ, int srcWidth, int srcHeight, int srcDepth)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glCopyImageSubData(srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
+}
+
 void QOpenGLExtraFunctions_GlCopyTexSubImage3D(void* ptr, unsigned int target, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glCopyTexSubImage3D(target, level, xoffset, yoffset, zoffset, x, y, width, height);
+}
+
+void QOpenGLExtraFunctions_GlDebugMessageControl(void* ptr, unsigned int source, unsigned int ty, unsigned int severity, int count, unsigned int ids, char enabled)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glDebugMessageControl(source, ty, severity, count, const_cast<const GLuint*>(&ids), enabled != 0);
 }
 
 void QOpenGLExtraFunctions_GlDeleteProgramPipelines(void* ptr, int n, unsigned int pipelines)
@@ -13119,6 +13200,11 @@ void QOpenGLExtraFunctions_GlDeleteVertexArrays(void* ptr, int n, unsigned int a
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDeleteVertexArrays(n, const_cast<const GLuint*>(&arrays));
 }
 
+void QOpenGLExtraFunctions_GlDisablei(void* ptr, unsigned int target, unsigned int index)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glDisablei(target, index);
+}
+
 void QOpenGLExtraFunctions_GlDispatchCompute(void* ptr, unsigned int num_groups_x, unsigned int num_groups_y, unsigned int num_groups_z)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDispatchCompute(num_groups_x, num_groups_y, num_groups_z);
@@ -13139,6 +13225,11 @@ void QOpenGLExtraFunctions_GlDrawBuffers(void* ptr, int n, unsigned int bufs)
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawBuffers(n, const_cast<const GLenum*>(&bufs));
 }
 
+void QOpenGLExtraFunctions_GlDrawElementsBaseVertex(void* ptr, unsigned int mode, int count, unsigned int ty, void* indices, int basevertex)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawElementsBaseVertex(mode, count, ty, indices, basevertex);
+}
+
 void QOpenGLExtraFunctions_GlDrawElementsIndirect(void* ptr, unsigned int mode, unsigned int ty, void* indirect)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawElementsIndirect(mode, ty, indirect);
@@ -13149,9 +13240,24 @@ void QOpenGLExtraFunctions_GlDrawElementsInstanced(void* ptr, unsigned int mode,
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawElementsInstanced(mode, count, ty, indices, instancecount);
 }
 
+void QOpenGLExtraFunctions_GlDrawElementsInstancedBaseVertex(void* ptr, unsigned int mode, int count, unsigned int ty, void* indices, int instancecount, int basevertex)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawElementsInstancedBaseVertex(mode, count, ty, indices, instancecount, basevertex);
+}
+
 void QOpenGLExtraFunctions_GlDrawRangeElements(void* ptr, unsigned int mode, unsigned int start, unsigned int end, int count, unsigned int ty, void* indices)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawRangeElements(mode, start, end, count, ty, indices);
+}
+
+void QOpenGLExtraFunctions_GlDrawRangeElementsBaseVertex(void* ptr, unsigned int mode, unsigned int start, unsigned int end, int count, unsigned int ty, void* indices, int basevertex)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glDrawRangeElementsBaseVertex(mode, start, end, count, ty, indices, basevertex);
+}
+
+void QOpenGLExtraFunctions_GlEnablei(void* ptr, unsigned int target, unsigned int index)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glEnablei(target, index);
 }
 
 void QOpenGLExtraFunctions_GlEndQuery(void* ptr, unsigned int target)
@@ -13162,6 +13268,11 @@ void QOpenGLExtraFunctions_GlEndQuery(void* ptr, unsigned int target)
 void QOpenGLExtraFunctions_GlFramebufferParameteri(void* ptr, unsigned int target, unsigned int pname, int param)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glFramebufferParameteri(target, pname, param);
+}
+
+void QOpenGLExtraFunctions_GlFramebufferTexture(void* ptr, unsigned int target, unsigned int attachment, unsigned int texture, int level)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glFramebufferTexture(target, attachment, texture, level);
 }
 
 void QOpenGLExtraFunctions_GlFramebufferTextureLayer(void* ptr, unsigned int target, unsigned int attachment, unsigned int texture, int level, int layer)
@@ -13235,6 +13346,11 @@ void QOpenGLExtraFunctions_GlGetMultisamplefv(void* ptr, unsigned int pname, uns
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetMultisamplefv(pname, index, &val);
 }
 
+void QOpenGLExtraFunctions_GlGetPointerv(void* ptr, unsigned int pname, void* params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetPointerv(pname, &params);
+}
+
 void QOpenGLExtraFunctions_GlGetProgramBinary(void* ptr, unsigned int program, int bufSize, int length, unsigned int binaryFormat, void* binary)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetProgramBinary(program, bufSize, &length, &binaryFormat, binary);
@@ -13265,6 +13381,16 @@ void QOpenGLExtraFunctions_GlGetQueryiv(void* ptr, unsigned int target, unsigned
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetQueryiv(target, pname, &params);
 }
 
+void QOpenGLExtraFunctions_GlGetSamplerParameterIiv(void* ptr, unsigned int sampler, unsigned int pname, int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetSamplerParameterIiv(sampler, pname, &params);
+}
+
+void QOpenGLExtraFunctions_GlGetSamplerParameterIuiv(void* ptr, unsigned int sampler, unsigned int pname, unsigned int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetSamplerParameterIuiv(sampler, pname, &params);
+}
+
 void QOpenGLExtraFunctions_GlGetSamplerParameterfv(void* ptr, unsigned int sampler, unsigned int pname, float params)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetSamplerParameterfv(sampler, pname, &params);
@@ -13285,6 +13411,16 @@ void QOpenGLExtraFunctions_GlGetTexLevelParameteriv(void* ptr, unsigned int targ
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetTexLevelParameteriv(target, level, pname, &params);
 }
 
+void QOpenGLExtraFunctions_GlGetTexParameterIiv(void* ptr, unsigned int target, unsigned int pname, int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetTexParameterIiv(target, pname, &params);
+}
+
+void QOpenGLExtraFunctions_GlGetTexParameterIuiv(void* ptr, unsigned int target, unsigned int pname, unsigned int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetTexParameterIuiv(target, pname, &params);
+}
+
 void QOpenGLExtraFunctions_GlGetUniformuiv(void* ptr, unsigned int program, int location, unsigned int params)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetUniformuiv(program, location, &params);
@@ -13298,6 +13434,21 @@ void QOpenGLExtraFunctions_GlGetVertexAttribIiv(void* ptr, unsigned int index, u
 void QOpenGLExtraFunctions_GlGetVertexAttribIuiv(void* ptr, unsigned int index, unsigned int pname, unsigned int params)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetVertexAttribIuiv(index, pname, &params);
+}
+
+void QOpenGLExtraFunctions_GlGetnUniformfv(void* ptr, unsigned int program, int location, int bufSize, float params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetnUniformfv(program, location, bufSize, &params);
+}
+
+void QOpenGLExtraFunctions_GlGetnUniformiv(void* ptr, unsigned int program, int location, int bufSize, int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetnUniformiv(program, location, bufSize, &params);
+}
+
+void QOpenGLExtraFunctions_GlGetnUniformuiv(void* ptr, unsigned int program, int location, int bufSize, unsigned int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetnUniformuiv(program, location, bufSize, &params);
 }
 
 void QOpenGLExtraFunctions_GlInvalidateFramebuffer(void* ptr, unsigned int target, int numAttachments, unsigned int attachments)
@@ -13318,6 +13469,21 @@ void QOpenGLExtraFunctions_GlMemoryBarrier(void* ptr, unsigned int barriers)
 void QOpenGLExtraFunctions_GlMemoryBarrierByRegion(void* ptr, unsigned int barriers)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glMemoryBarrierByRegion(barriers);
+}
+
+void QOpenGLExtraFunctions_GlMinSampleShading(void* ptr, float value)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glMinSampleShading(value);
+}
+
+void QOpenGLExtraFunctions_GlPatchParameteri(void* ptr, unsigned int pname, int value)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glPatchParameteri(pname, value);
+}
+
+void QOpenGLExtraFunctions_GlPrimitiveBoundingBox(void* ptr, float minX, float minY, float minZ, float minW, float maxX, float maxY, float maxZ, float maxW)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glPrimitiveBoundingBox(minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
 }
 
 void QOpenGLExtraFunctions_GlProgramBinary(void* ptr, unsigned int program, unsigned int binaryFormat, void* binary, int length)
@@ -13500,6 +13666,11 @@ void QOpenGLExtraFunctions_GlReadBuffer(void* ptr, unsigned int src)
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glReadBuffer(src);
 }
 
+void QOpenGLExtraFunctions_GlReadnPixels(void* ptr, int x, int y, int width, int height, unsigned int format, unsigned int ty, int bufSize, void* data)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glReadnPixels(x, y, width, height, format, ty, bufSize, data);
+}
+
 void QOpenGLExtraFunctions_GlRenderbufferStorageMultisample(void* ptr, unsigned int target, int samples, unsigned int internalformat, int width, int height)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glRenderbufferStorageMultisample(target, samples, internalformat, width, height);
@@ -13508,6 +13679,16 @@ void QOpenGLExtraFunctions_GlRenderbufferStorageMultisample(void* ptr, unsigned 
 void QOpenGLExtraFunctions_GlSampleMaski(void* ptr, unsigned int maskNumber, unsigned int mask)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glSampleMaski(maskNumber, mask);
+}
+
+void QOpenGLExtraFunctions_GlSamplerParameterIiv(void* ptr, unsigned int sampler, unsigned int pname, int param)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glSamplerParameterIiv(sampler, pname, const_cast<const GLint*>(&param));
+}
+
+void QOpenGLExtraFunctions_GlSamplerParameterIuiv(void* ptr, unsigned int sampler, unsigned int pname, unsigned int param)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glSamplerParameterIuiv(sampler, pname, const_cast<const GLuint*>(&param));
 }
 
 void QOpenGLExtraFunctions_GlSamplerParameterf(void* ptr, unsigned int sampler, unsigned int pname, float param)
@@ -13530,9 +13711,24 @@ void QOpenGLExtraFunctions_GlSamplerParameteriv(void* ptr, unsigned int sampler,
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glSamplerParameteriv(sampler, pname, const_cast<const GLint*>(&param));
 }
 
+void QOpenGLExtraFunctions_GlTexBuffer(void* ptr, unsigned int target, unsigned int internalformat, unsigned int buffer)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexBuffer(target, internalformat, buffer);
+}
+
 void QOpenGLExtraFunctions_GlTexImage3D(void* ptr, unsigned int target, int level, int internalformat, int width, int height, int depth, int border, unsigned int format, unsigned int ty, void* pixels)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexImage3D(target, level, internalformat, width, height, depth, border, format, ty, pixels);
+}
+
+void QOpenGLExtraFunctions_GlTexParameterIiv(void* ptr, unsigned int target, unsigned int pname, int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexParameterIiv(target, pname, const_cast<const GLint*>(&params));
+}
+
+void QOpenGLExtraFunctions_GlTexParameterIuiv(void* ptr, unsigned int target, unsigned int pname, unsigned int params)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexParameterIuiv(target, pname, const_cast<const GLuint*>(&params));
 }
 
 void QOpenGLExtraFunctions_GlTexStorage2D(void* ptr, unsigned int target, int levels, unsigned int internalformat, int width, int height)
@@ -13548,6 +13744,11 @@ void QOpenGLExtraFunctions_GlTexStorage2DMultisample(void* ptr, unsigned int tar
 void QOpenGLExtraFunctions_GlTexStorage3D(void* ptr, unsigned int target, int levels, unsigned int internalformat, int width, int height, int depth)
 {
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexStorage3D(target, levels, internalformat, width, height, depth);
+}
+
+void QOpenGLExtraFunctions_GlTexStorage3DMultisample(void* ptr, unsigned int target, int samples, unsigned int internalformat, int width, int height, int depth, char fixedsamplelocations)
+{
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glTexStorage3DMultisample(target, samples, internalformat, width, height, depth, fixedsamplelocations != 0);
 }
 
 void QOpenGLExtraFunctions_GlTexSubImage3D(void* ptr, unsigned int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, unsigned int format, unsigned int ty, void* pixels)
@@ -79122,7 +79323,6 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -79151,6 +79351,8 @@ public:
 	void requestActivate() { callbackQWindow_RequestActivate(this); };
 	void requestUpdate() { callbackQWindow_RequestUpdate(this); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQWindow_SetMaximumWidth(this, w); };
@@ -80064,7 +80266,6 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -80094,6 +80295,8 @@ public:
 	void requestUpdate() { callbackQWindow_RequestUpdate(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQWindow_ResizeEvent(this, ev); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQWindow_SetMaximumWidth(this, w); };
@@ -82443,6 +82646,11 @@ void QPdfWriter_SetCreator(void* ptr, struct QtGui_PackedString creator)
 		static_cast<QPdfWriter*>(ptr)->setCreator(QString::fromUtf8(creator.data, creator.len));
 }
 
+void QPdfWriter_SetPdfVersion(void* ptr, long long version)
+{
+		static_cast<QPdfWriter*>(ptr)->setPdfVersion(static_cast<QPagedPaintDevice::PdfVersion>(version));
+}
+
 void QPdfWriter_SetResolution(void* ptr, int resolution)
 {
 		static_cast<QPdfWriter*>(ptr)->setResolution(resolution);
@@ -82456,6 +82664,11 @@ void QPdfWriter_SetTitle(void* ptr, struct QtGui_PackedString title)
 void QPdfWriter_DestroyQPdfWriter(void* ptr)
 {
 	static_cast<QPdfWriter*>(ptr)->~QPdfWriter();
+}
+
+long long QPdfWriter_PdfVersion(void* ptr)
+{
+		return static_cast<QPdfWriter*>(ptr)->pdfVersion();
 }
 
 void* QPdfWriter_PaintEngine(void* ptr)
@@ -83579,6 +83792,11 @@ char QPolygon_ContainsPoint(void* ptr, void* point, long long fillRule)
 	return static_cast<QPolygon*>(ptr)->containsPoint(*static_cast<QPoint*>(point), static_cast<Qt::FillRule>(fillRule));
 }
 
+char QPolygon_Intersects(void* ptr, void* p)
+{
+	return static_cast<QPolygon*>(ptr)->intersects(*static_cast<QPolygon*>(p));
+}
+
 void QPolygon_Point(void* ptr, int index, int x, int y)
 {
 	static_cast<QPolygon*>(ptr)->point(index, &x, &y);
@@ -83974,6 +84192,11 @@ void* QPolygonF_BoundingRect(void* ptr)
 char QPolygonF_ContainsPoint(void* ptr, void* point, long long fillRule)
 {
 	return static_cast<QPolygonF*>(ptr)->containsPoint(*static_cast<QPointF*>(point), static_cast<Qt::FillRule>(fillRule));
+}
+
+char QPolygonF_Intersects(void* ptr, void* p)
+{
+	return static_cast<QPolygonF*>(ptr)->intersects(*static_cast<QPolygonF*>(p));
 }
 
 char QPolygonF_IsClosed(void* ptr)
@@ -84576,7 +84799,6 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -84606,6 +84828,8 @@ public:
 	void requestUpdate() { callbackQWindow_RequestUpdate(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQWindow_ResizeEvent(this, ev); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQWindow_SetMaximumWidth(this, w); };
@@ -88555,6 +88779,11 @@ char QStyleHints_ShowIsMaximized(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->showIsMaximized();
 }
 
+char QStyleHints_ShowShortcutsInContextMenus(void* ptr)
+{
+	return static_cast<QStyleHints*>(ptr)->showShortcutsInContextMenus();
+}
+
 char QStyleHints_SingleClickActivation(void* ptr)
 {
 	return static_cast<QStyleHints*>(ptr)->singleClickActivation();
@@ -88941,6 +89170,11 @@ void QSurfaceFormat_SetBlueBufferSize(void* ptr, int size)
 	static_cast<QSurfaceFormat*>(ptr)->setBlueBufferSize(size);
 }
 
+void QSurfaceFormat_SetColorSpace(void* ptr, long long colorSpace)
+{
+	static_cast<QSurfaceFormat*>(ptr)->setColorSpace(static_cast<QSurfaceFormat::ColorSpace>(colorSpace));
+}
+
 void QSurfaceFormat_QSurfaceFormat_SetDefaultFormat(void* format)
 {
 	QSurfaceFormat::setDefaultFormat(*static_cast<QSurfaceFormat*>(format));
@@ -89024,6 +89258,11 @@ void QSurfaceFormat_SetVersion(void* ptr, int major, int minor)
 void QSurfaceFormat_DestroyQSurfaceFormat(void* ptr)
 {
 	static_cast<QSurfaceFormat*>(ptr)->~QSurfaceFormat();
+}
+
+long long QSurfaceFormat_ColorSpace(void* ptr)
+{
+	return static_cast<QSurfaceFormat*>(ptr)->colorSpace();
 }
 
 long long QSurfaceFormat_Profile(void* ptr)
@@ -93340,9 +93579,9 @@ void QTextOption_SetTabArray(void* ptr, void* tabStops)
 	static_cast<QTextOption*>(ptr)->setTabArray(*static_cast<QList<qreal>*>(tabStops));
 }
 
-void QTextOption_SetTabStop(void* ptr, double tabStop)
+void QTextOption_SetTabStopDistance(void* ptr, double tabStopDistance)
 {
-	static_cast<QTextOption*>(ptr)->setTabStop(tabStop);
+	static_cast<QTextOption*>(ptr)->setTabStopDistance(tabStopDistance);
 }
 
 void QTextOption_SetTextDirection(void* ptr, long long direction)
@@ -93395,9 +93634,9 @@ char QTextOption_UseDesignMetrics(void* ptr)
 	return static_cast<QTextOption*>(ptr)->useDesignMetrics();
 }
 
-double QTextOption_TabStop(void* ptr)
+double QTextOption_TabStopDistance(void* ptr)
 {
-	return static_cast<QTextOption*>(ptr)->tabStop();
+	return static_cast<QTextOption*>(ptr)->tabStopDistance();
 }
 
 double QTextOption___setTabArray_tabStops_atList(void* ptr, int i)
@@ -95218,7 +95457,6 @@ public:
 	MyQWindow(QWindow *parent) : QWindow(parent) {QWindow_QWindow_QRegisterMetaType();};
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -95248,6 +95486,8 @@ public:
 	void requestUpdate() { callbackQWindow_RequestUpdate(this); };
 	void resizeEvent(QResizeEvent * ev) { callbackQWindow_ResizeEvent(this, ev); };
 	void Signal_ScreenChanged(QScreen * screen) { callbackQWindow_ScreenChanged(this, screen); };
+	void setGeometry(const QRect & rect) { callbackQWindow_SetGeometry2(this, const_cast<QRect*>(&rect)); };
+	void setGeometry(int posx, int posy, int w, int h) { callbackQWindow_SetGeometry(this, posx, posy, w, h); };
 	void setHeight(int arg) { callbackQWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQWindow_SetMaximumWidth(this, w); };
@@ -95355,28 +95595,6 @@ char QWindow_EventDefault(void* ptr, void* ev)
 		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::event(static_cast<QEvent*>(ev));
 	} else {
 		return static_cast<QWindow*>(ptr)->QWindow::event(static_cast<QEvent*>(ev));
-	}
-}
-
-char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
-{
-	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else {
-		return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	}
-}
-
-char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-	if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else if (dynamic_cast<QOpenGLWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
-	} else {
-		return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	}
 }
 
@@ -96136,18 +96354,44 @@ void QWindow_SetFramePosition(void* ptr, void* point)
 void QWindow_SetGeometry2(void* ptr, void* rect)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPaintDeviceWindow*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setGeometry", Q_ARG(const QRect, *static_cast<QRect*>(rect)));
 	} else {
-		static_cast<QWindow*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setGeometry", Q_ARG(const QRect, *static_cast<QRect*>(rect)));
+	}
+}
+
+void QWindow_SetGeometry2Default(void* ptr, void* rect)
+{
+	if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QRasterWindow*>(ptr)->QRasterWindow::setGeometry(*static_cast<QRect*>(rect));
+	} else if (dynamic_cast<QOpenGLWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::setGeometry(*static_cast<QRect*>(rect));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setGeometry(*static_cast<QRect*>(rect));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setGeometry(*static_cast<QRect*>(rect));
 	}
 }
 
 void QWindow_SetGeometry(void* ptr, int posx, int posy, int w, int h)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPaintDeviceWindow*>(ptr)->setGeometry(posx, posy, w, h);
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setGeometry", Q_ARG(int, posx), Q_ARG(int, posy), Q_ARG(int, w), Q_ARG(int, h));
 	} else {
-		static_cast<QWindow*>(ptr)->setGeometry(posx, posy, w, h);
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setGeometry", Q_ARG(int, posx), Q_ARG(int, posy), Q_ARG(int, w), Q_ARG(int, h));
+	}
+}
+
+void QWindow_SetGeometryDefault(void* ptr, int posx, int posy, int w, int h)
+{
+	if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QRasterWindow*>(ptr)->QRasterWindow::setGeometry(posx, posy, w, h);
+	} else if (dynamic_cast<QOpenGLWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::setGeometry(posx, posy, w, h);
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setGeometry(posx, posy, w, h);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setGeometry(posx, posy, w, h);
 	}
 }
 
@@ -96475,6 +96719,15 @@ void QWindow_SetWindowState(void* ptr, long long state)
 		static_cast<QPaintDeviceWindow*>(ptr)->setWindowState(static_cast<Qt::WindowState>(state));
 	} else {
 		static_cast<QWindow*>(ptr)->setWindowState(static_cast<Qt::WindowState>(state));
+	}
+}
+
+void QWindow_SetWindowStates(void* ptr, long long state)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setWindowStates(static_cast<Qt::WindowState>(state));
+	} else {
+		static_cast<QWindow*>(ptr)->setWindowStates(static_cast<Qt::WindowState>(state));
 	}
 }
 
@@ -97163,6 +97416,15 @@ long long QWindow_WindowState(void* ptr)
 		return static_cast<QPaintDeviceWindow*>(ptr)->windowState();
 	} else {
 		return static_cast<QWindow*>(ptr)->windowState();
+	}
+}
+
+long long QWindow_WindowStates(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->windowStates();
+	} else {
+		return static_cast<QWindow*>(ptr)->windowStates();
 	}
 }
 

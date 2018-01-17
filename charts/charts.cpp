@@ -6274,7 +6274,6 @@ public:
 	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQChartView_ViewportSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQChartView_ChangeEvent(this, ev); };
 	bool close() { return callbackQChartView_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQChartView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQChartView_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQChartView_CloseEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQChartView_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -6799,11 +6798,6 @@ void QChartView_ChangeEventDefault(void* ptr, void* ev)
 char QChartView_CloseDefault(void* ptr)
 {
 		return static_cast<QChartView*>(ptr)->QChartView::close();
-}
-
-char QChartView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QChartView*>(ptr)->QChartView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QChartView_ActionEventDefault(void* ptr, void* event)

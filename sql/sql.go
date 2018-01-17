@@ -2815,11 +2815,10 @@ const (
 	QSqlError__UnknownError     QSqlError__ErrorType = QSqlError__ErrorType(4)
 )
 
-func (ptr *QSqlError) NativeErrorCode() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
-	}
-	return ""
+func NewQSqlError4(other QSqlError_ITF) *QSqlError {
+	var tmpValue = NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError4(PointerFromQSqlError(other)))
+	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
+	return tmpValue
 }
 
 func NewQSqlError3(other QSqlError_ITF) *QSqlError {
@@ -2849,6 +2848,12 @@ func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorTyp
 	return tmpValue
 }
 
+func (ptr *QSqlError) Swap(other QSqlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlError_Swap(ptr.Pointer(), PointerFromQSqlError(other))
+	}
+}
+
 func (ptr *QSqlError) DestroyQSqlError() {
 	if ptr.Pointer() != nil {
 		C.QSqlError_DestroyQSqlError(ptr.Pointer())
@@ -2874,6 +2879,13 @@ func (ptr *QSqlError) DatabaseText() string {
 func (ptr *QSqlError) DriverText() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlError_DriverText(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlError) NativeErrorCode() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2940,8 +2952,8 @@ const (
 	QSqlField__Required QSqlField__RequiredStatus = QSqlField__RequiredStatus(1)
 )
 
-func NewQSqlField2(other QSqlField_ITF) *QSqlField {
-	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(PointerFromQSqlField(other)))
+func NewQSqlField3(other QSqlField_ITF) *QSqlField {
+	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField3(PointerFromQSqlField(other)))
 	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
 	return tmpValue
 }
@@ -2953,6 +2965,22 @@ func NewQSqlField(fieldName string, ty core.QVariant__Type) *QSqlField {
 		defer C.free(unsafe.Pointer(fieldNameC))
 	}
 	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField(C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))}, C.longlong(ty)))
+	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
+	return tmpValue
+}
+
+func NewQSqlField2(fieldName string, ty core.QVariant__Type, table string) *QSqlField {
+	var fieldNameC *C.char
+	if fieldName != "" {
+		fieldNameC = C.CString(fieldName)
+		defer C.free(unsafe.Pointer(fieldNameC))
+	}
+	var tableC *C.char
+	if table != "" {
+		tableC = C.CString(table)
+		defer C.free(unsafe.Pointer(tableC))
+	}
+	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(C.struct_QtSql_PackedString{data: fieldNameC, len: C.longlong(len(fieldName))}, C.longlong(ty), C.struct_QtSql_PackedString{data: tableC, len: C.longlong(len(table))}))
 	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
 	return tmpValue
 }
@@ -3022,6 +3050,17 @@ func (ptr *QSqlField) SetRequiredStatus(required QSqlField__RequiredStatus) {
 	}
 }
 
+func (ptr *QSqlField) SetTableName(table string) {
+	if ptr.Pointer() != nil {
+		var tableC *C.char
+		if table != "" {
+			tableC = C.CString(table)
+			defer C.free(unsafe.Pointer(tableC))
+		}
+		C.QSqlField_SetTableName(ptr.Pointer(), C.struct_QtSql_PackedString{data: tableC, len: C.longlong(len(table))})
+	}
+}
+
 func (ptr *QSqlField) SetType(ty core.QVariant__Type) {
 	if ptr.Pointer() != nil {
 		C.QSqlField_SetType(ptr.Pointer(), C.longlong(ty))
@@ -3045,6 +3084,13 @@ func (ptr *QSqlField) DestroyQSqlField() {
 func (ptr *QSqlField) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSqlField_Name(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSqlField) TableName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSqlField_TableName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3983,6 +4029,40 @@ func (ptr *QSqlQueryModel) DestroyQSqlQueryModelDefault() {
 	}
 }
 
+//export callbackQSqlQueryModel_RoleNames
+func callbackQSqlQueryModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			var tmpList = NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
+			for k, v := range signal.(func() map[int]*core.QByteArray)() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		var tmpList = NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewQSqlQueryModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QSqlQueryModel) RoleNamesDefault() map[int]*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) map[int]*core.QByteArray {
+			var out = make(map[int]*core.QByteArray, int(l.len))
+			for _, i := range NewQSqlQueryModelFromPointer(l.data).__roleNames_keyList() {
+				out[i] = NewQSqlQueryModelFromPointer(l.data).__roleNames_atList(i)
+			}
+			return out
+		}(C.QSqlQueryModel_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*core.QByteArray, 0)
+}
+
 //export callbackQSqlQueryModel_IndexInQuery
 func callbackQSqlQueryModel_IndexInQuery(ptr unsafe.Pointer, item unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "indexInQuery"); signal != nil {
@@ -4237,21 +4317,36 @@ func (ptr *QSqlQueryModel) RowCountDefault(parent core.QModelIndex_ITF) int {
 	return 0
 }
 
-func (ptr *QSqlQueryModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QSqlQueryModel) __roleNames_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QSqlQueryModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSqlQueryModel___roleNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return 0
+	return nil
 }
 
-func (ptr *QSqlQueryModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QSqlQueryModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QSqlQueryModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *QSqlQueryModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSqlQueryModel_____setItemData_keyList_newList(ptr.Pointer()))
+func (ptr *QSqlQueryModel) __roleNames_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QSqlQueryModel___roleNames_newList(ptr.Pointer()))
+}
+
+func (ptr *QSqlQueryModel) __roleNames_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []int {
+			var out = make([]int, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSqlQueryModelFromPointer(l.data).____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.QSqlQueryModel___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
 func (ptr *QSqlQueryModel) ____roleNames_keyList_atList(i int) int {
@@ -4269,6 +4364,23 @@ func (ptr *QSqlQueryModel) ____roleNames_keyList_setList(i int) {
 
 func (ptr *QSqlQueryModel) ____roleNames_keyList_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QSqlQueryModel_____roleNames_keyList_newList(ptr.Pointer()))
+}
+
+func (ptr *QSqlQueryModel) ____setItemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSqlQueryModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QSqlQueryModel) ____setItemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QSqlQueryModel) ____setItemData_keyList_newList() unsafe.Pointer {
+	return unsafe.Pointer(C.QSqlQueryModel_____setItemData_keyList_newList(ptr.Pointer()))
 }
 
 func (ptr *QSqlQueryModel) ____itemData_keyList_atList(i int) int {
@@ -4411,38 +4523,6 @@ func (ptr *QSqlQueryModel) __layoutChanged_parents_setList(i core.QPersistentMod
 
 func (ptr *QSqlQueryModel) __layoutChanged_parents_newList() unsafe.Pointer {
 	return unsafe.Pointer(C.QSqlQueryModel___layoutChanged_parents_newList(ptr.Pointer()))
-}
-
-func (ptr *QSqlQueryModel) __roleNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSqlQueryModel___roleNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QSqlQueryModel) __roleNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSqlQueryModel___roleNames_newList(ptr.Pointer()))
-}
-
-func (ptr *QSqlQueryModel) __roleNames_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSqlQueryModelFromPointer(l.data).____roleNames_keyList_atList(i)
-			}
-			return out
-		}(C.QSqlQueryModel___roleNames_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
 }
 
 func (ptr *QSqlQueryModel) __itemData_atList(i int) *core.QVariant {
@@ -5074,40 +5154,6 @@ func (ptr *QSqlQueryModel) SortDefault(column int, order core.Qt__SortOrder) {
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
-}
-
-//export callbackQSqlQueryModel_RoleNames
-func callbackQSqlQueryModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
-		return func() unsafe.Pointer {
-			var tmpList = NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
-			for k, v := range signal.(func() map[int]*core.QByteArray)() {
-				tmpList.__roleNames_setList(k, v)
-			}
-			return tmpList.Pointer()
-		}()
-	}
-
-	return func() unsafe.Pointer {
-		var tmpList = NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__roleNames_newList())
-		for k, v := range NewQSqlQueryModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
-		}
-		return tmpList.Pointer()
-	}()
-}
-
-func (ptr *QSqlQueryModel) RoleNamesDefault() map[int]*core.QByteArray {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtSql_PackedList) map[int]*core.QByteArray {
-			var out = make(map[int]*core.QByteArray, int(l.len))
-			for _, i := range NewQSqlQueryModelFromPointer(l.data).__roleNames_keyList() {
-				out[i] = NewQSqlQueryModelFromPointer(l.data).__roleNames_atList(i)
-			}
-			return out
-		}(C.QSqlQueryModel_RoleNamesDefault(ptr.Pointer()))
-	}
-	return make(map[int]*core.QByteArray, 0)
 }
 
 //export callbackQSqlQueryModel_ItemData

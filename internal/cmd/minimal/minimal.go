@@ -25,6 +25,7 @@ func Minimal(path, target, tags string) {
 		}
 	}
 	parser.LibDeps[parser.MOC] = make([]string, 0)
+	parser.LibDeps["build_ios"] = []string{"Qml"}
 	//<--
 
 	wg := new(sync.WaitGroup)
@@ -145,6 +146,8 @@ func Minimal(path, target, tags string) {
 		}(f)
 	}
 	wg.Wait()
+
+	parser.State.ClassMap["QVariant"].Export = true
 
 	//TODO: cleanup state
 	parser.State.Minimal = true
@@ -278,6 +281,14 @@ func exportFunction(f *parser.Function, files []string) {
 		}
 		if c, ok := parser.State.ClassMap[value]; ok {
 			exportClass(c, files)
+		}
+	}
+
+	if c, ok := parser.State.ClassMap[parser.CleanValue(f.Output)]; ok && f.Virtual == parser.PURE {
+		for _, f := range c.Functions {
+			if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 0 {
+				exportFunction(f, files)
+			}
 		}
 	}
 }

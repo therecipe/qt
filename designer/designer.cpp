@@ -78,7 +78,6 @@
 #include <QSignalSpy>
 #include <QSize>
 #include <QString>
-#include <QStringList>
 #include <QTabletEvent>
 #include <QTime>
 #include <QTimer>
@@ -261,7 +260,6 @@ public:
 	bool close() { return callbackQDesignerActionEditorInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerActionEditorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerActionEditorInterface_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerActionEditorInterface_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQDesignerActionEditorInterface_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDesignerActionEditorInterface_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerActionEditorInterface_CloseEvent(this, event); };
@@ -539,11 +537,6 @@ char QDesignerActionEditorInterface_EventDefault(void* ptr, void* event)
 char QDesignerActionEditorInterface_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::focusNextPrevChild(next != 0);
-}
-
-char QDesignerActionEditorInterface_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesignerActionEditorInterface_ActionEventDefault(void* ptr, void* event)
@@ -1610,7 +1603,6 @@ public:
 	bool close() { return callbackQDesignerFormWindowInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerFormWindowInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerFormWindowInterface_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerFormWindowInterface_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQDesignerFormWindowInterface_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDesignerFormWindowInterface_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerFormWindowInterface_CloseEvent(this, event); };
@@ -2328,11 +2320,6 @@ char QDesignerFormWindowInterface_EventDefault(void* ptr, void* event)
 char QDesignerFormWindowInterface_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::focusNextPrevChild(next != 0);
-}
-
-char QDesignerFormWindowInterface_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesignerFormWindowInterface_ActionEventDefault(void* ptr, void* event)
@@ -3125,7 +3112,6 @@ public:
 	bool close() { return callbackQDesignerObjectInspectorInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerObjectInspectorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerObjectInspectorInterface_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerObjectInspectorInterface_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQDesignerObjectInspectorInterface_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDesignerObjectInspectorInterface_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerObjectInspectorInterface_CloseEvent(this, event); };
@@ -3393,11 +3379,6 @@ char QDesignerObjectInspectorInterface_EventDefault(void* ptr, void* event)
 char QDesignerObjectInspectorInterface_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::focusNextPrevChild(next != 0);
-}
-
-char QDesignerObjectInspectorInterface_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesignerObjectInspectorInterface_ActionEventDefault(void* ptr, void* event)
@@ -3722,7 +3703,6 @@ public:
 	bool close() { return callbackQDesignerPropertyEditorInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerPropertyEditorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerPropertyEditorInterface_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerPropertyEditorInterface_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQDesignerPropertyEditorInterface_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDesignerPropertyEditorInterface_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerPropertyEditorInterface_CloseEvent(this, event); };
@@ -4030,11 +4010,6 @@ char QDesignerPropertyEditorInterface_EventDefault(void* ptr, void* event)
 char QDesignerPropertyEditorInterface_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::focusNextPrevChild(next != 0);
-}
-
-char QDesignerPropertyEditorInterface_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesignerPropertyEditorInterface_ActionEventDefault(void* ptr, void* event)
@@ -4522,7 +4497,6 @@ public:
 	bool close() { return callbackQDesignerWidgetBoxInterface_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQDesignerWidgetBoxInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerWidgetBoxInterface_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQDesignerWidgetBoxInterface_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDesignerWidgetBoxInterface_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerWidgetBoxInterface_CloseEvent(this, event); };
@@ -4796,11 +4770,6 @@ char QDesignerWidgetBoxInterface_EventDefault(void* ptr, void* event)
 char QDesignerWidgetBoxInterface_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::focusNextPrevChild(next != 0);
-}
-
-char QDesignerWidgetBoxInterface_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
-{
-		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesignerWidgetBoxInterface_ActionEventDefault(void* ptr, void* event)

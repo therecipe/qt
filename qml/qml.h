@@ -256,6 +256,8 @@ void QQmlEngine_ConnectQuit(void* ptr);
 void QQmlEngine_DisconnectQuit(void* ptr);
 void QQmlEngine_Quit(void* ptr);
 void QQmlEngine_RemoveImageProvider(void* ptr, struct QtQml_PackedString providerId);
+void QQmlEngine_Retranslate(void* ptr);
+void QQmlEngine_RetranslateDefault(void* ptr);
 void QQmlEngine_SetBaseUrl(void* ptr, void* url);
 void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context);
 void QQmlEngine_SetImportPathList(void* ptr, struct QtQml_PackedString paths);

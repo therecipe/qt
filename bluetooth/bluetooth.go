@@ -4013,6 +4013,7 @@ type QBluetoothSocket__SocketError int64
 const (
 	QBluetoothSocket__NoSocketError            QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(-2)
 	QBluetoothSocket__UnknownSocketError       QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__UnknownSocketError)
+	QBluetoothSocket__RemoteHostClosedError    QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__RemoteHostClosedError)
 	QBluetoothSocket__HostNotFoundError        QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__HostNotFoundError)
 	QBluetoothSocket__ServiceNotFoundError     QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__SocketAddressNotAvailableError)
 	QBluetoothSocket__NetworkError             QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__NetworkError)
@@ -7540,6 +7541,7 @@ const (
 	QLowEnergyController__InvalidBluetoothAdapterError QLowEnergyController__Error = QLowEnergyController__Error(4)
 	QLowEnergyController__ConnectionError              QLowEnergyController__Error = QLowEnergyController__Error(5)
 	QLowEnergyController__AdvertisingError             QLowEnergyController__Error = QLowEnergyController__Error(6)
+	QLowEnergyController__RemoteHostClosedError        QLowEnergyController__Error = QLowEnergyController__Error(7)
 )
 
 //go:generate stringer -type=QLowEnergyController__RemoteAddressType

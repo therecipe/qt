@@ -14,18 +14,18 @@ then
   brew update
   brew install qt5
   brew outdated qt5 || brew upgrade qt5
-  ln -s /usr/local/Cellar/qt/5.9.3 $HOME/Desktop/Qt5.9.3
+  ln -s /usr/local/Cellar/qt/5.10.0 $HOME/Desktop/Qt5.10.0
 else
   #download and install qt
   QT=qt-unified-mac-x64-online
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/online_installers/$QT.dmg
   hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
-  QT=qt-unified-mac-x64-3.0.0-online
+  QT=qt-unified-mac-x64-3.0.2-online
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
   then
     /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs IOS=true
   else
-    /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
+    /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs DARWIN=true
   fi
   diskutil unmountDisk disk1
   rm -f /tmp/$QT.dmg
@@ -44,7 +44,7 @@ then
   #install deps for android sdk
   $HOME/android-sdk-macosx/tools/bin/sdkmanager --list --verbose
   echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
-  $HOME/android-sdk-macosx/tools/bin/sdkmanager --update
+  echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager --update
 
   #download and install android ndk
   NDK=android-ndk-r14b-darwin-x86_64.zip

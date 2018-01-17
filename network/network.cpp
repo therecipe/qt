@@ -81,7 +81,6 @@
 #include <QSslPreSharedKeyAuthenticator>
 #include <QSslSocket>
 #include <QString>
-#include <QStringList>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTime>
@@ -2336,6 +2335,11 @@ void QHostInfo_SetLookupId(void* ptr, int id)
 	static_cast<QHostInfo*>(ptr)->setLookupId(id);
 }
 
+void QHostInfo_Swap(void* ptr, void* other)
+{
+	static_cast<QHostInfo*>(ptr)->swap(*static_cast<QHostInfo*>(other));
+}
+
 void QHostInfo_DestroyQHostInfo(void* ptr)
 {
 	static_cast<QHostInfo*>(ptr)->~QHostInfo();
@@ -3683,6 +3687,11 @@ void QNetworkAccessManager_ConnectToHostEncrypted(void* ptr, struct QtNetwork_Pa
 	static_cast<QNetworkAccessManager*>(ptr)->connectToHostEncrypted(QString::fromUtf8(hostName.data, hostName.len), port, *static_cast<QSslConfiguration*>(sslConfiguration));
 }
 
+void QNetworkAccessManager_EnableStrictTransportSecurityStore(void* ptr, char enabled, struct QtNetwork_PackedString storeDir)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->enableStrictTransportSecurityStore(enabled != 0, QString::fromUtf8(storeDir.data, storeDir.len));
+}
+
 void QNetworkAccessManager_ConnectEncrypted(void* ptr)
 {
 	QObject::connect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *)>(&QNetworkAccessManager::encrypted), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *)>(&MyQNetworkAccessManager::Signal_Encrypted));
@@ -3884,6 +3893,11 @@ struct QtNetwork_PackedList QNetworkAccessManager_StrictTransportSecurityHosts(v
 char QNetworkAccessManager_IsStrictTransportSecurityEnabled(void* ptr)
 {
 	return static_cast<QNetworkAccessManager*>(ptr)->isStrictTransportSecurityEnabled();
+}
+
+char QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(void* ptr)
+{
+	return static_cast<QNetworkAccessManager*>(ptr)->isStrictTransportSecurityStoreEnabled();
 }
 
 void* QNetworkAccessManager___addStrictTransportSecurityHosts_knownHosts_atList(void* ptr, int i)
@@ -5778,22 +5792,7 @@ void* QNetworkProxyQuery_NewQNetworkProxyQuery()
 	return new QNetworkProxyQuery();
 }
 
-void* QNetworkProxyQuery_NewQNetworkProxyQuery6(void* networkConfiguration, struct QtNetwork_PackedString hostname, int port, struct QtNetwork_PackedString protocolTag, long long queryType)
-{
-	return new QNetworkProxyQuery(*static_cast<QNetworkConfiguration*>(networkConfiguration), QString::fromUtf8(hostname.data, hostname.len), port, QString::fromUtf8(protocolTag.data, protocolTag.len), static_cast<QNetworkProxyQuery::QueryType>(queryType));
-}
-
-void* QNetworkProxyQuery_NewQNetworkProxyQuery5(void* networkConfiguration, void* requestUrl, long long queryType)
-{
-	return new QNetworkProxyQuery(*static_cast<QNetworkConfiguration*>(networkConfiguration), *static_cast<QUrl*>(requestUrl), static_cast<QNetworkProxyQuery::QueryType>(queryType));
-}
-
-void* QNetworkProxyQuery_NewQNetworkProxyQuery7(void* networkConfiguration, unsigned short bindPort, struct QtNetwork_PackedString protocolTag, long long queryType)
-{
-	return new QNetworkProxyQuery(*static_cast<QNetworkConfiguration*>(networkConfiguration), bindPort, QString::fromUtf8(protocolTag.data, protocolTag.len), static_cast<QNetworkProxyQuery::QueryType>(queryType));
-}
-
-void* QNetworkProxyQuery_NewQNetworkProxyQuery8(void* other)
+void* QNetworkProxyQuery_NewQNetworkProxyQuery5(void* other)
 {
 	return new QNetworkProxyQuery(*static_cast<QNetworkProxyQuery*>(other));
 }
@@ -5816,11 +5815,6 @@ void* QNetworkProxyQuery_NewQNetworkProxyQuery4(unsigned short bindPort, struct 
 void QNetworkProxyQuery_SetLocalPort(void* ptr, int port)
 {
 	static_cast<QNetworkProxyQuery*>(ptr)->setLocalPort(port);
-}
-
-void QNetworkProxyQuery_SetNetworkConfiguration(void* ptr, void* networkConfiguration)
-{
-	static_cast<QNetworkProxyQuery*>(ptr)->setNetworkConfiguration(*static_cast<QNetworkConfiguration*>(networkConfiguration));
 }
 
 void QNetworkProxyQuery_SetPeerHostName(void* ptr, struct QtNetwork_PackedString hostname)
@@ -5856,11 +5850,6 @@ void QNetworkProxyQuery_Swap(void* ptr, void* other)
 void QNetworkProxyQuery_DestroyQNetworkProxyQuery(void* ptr)
 {
 	static_cast<QNetworkProxyQuery*>(ptr)->~QNetworkProxyQuery();
-}
-
-void* QNetworkProxyQuery_NetworkConfiguration(void* ptr)
-{
-	return new QNetworkConfiguration(static_cast<QNetworkProxyQuery*>(ptr)->networkConfiguration());
 }
 
 struct QtNetwork_PackedString QNetworkProxyQuery_PeerHostName(void* ptr)
