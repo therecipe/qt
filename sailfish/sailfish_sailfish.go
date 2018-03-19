@@ -18,7 +18,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtSailfish_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromSailfishApp(ptr SailfishApp_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
-	var n = new(SailfishApp)
+func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
+	n = new(SailfishApp)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *SailfishApp) DestroySailfishApp() {
@@ -71,9 +71,9 @@ func (ptr *SailfishApp) DestroySailfishApp() {
 }
 
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
-	var argvC = C.CString(strings.Join(argv, "|"))
+	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	var tmpValue = gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
+	tmpValue := gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -81,9 +81,9 @@ func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 }
 
 func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplication {
-	var argvC = C.CString(strings.Join(argv, "|"))
+	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	var tmpValue = gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
+	tmpValue := gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -91,19 +91,19 @@ func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplicatio
 }
 
 func SailfishApp_Main(argc int, argv []string) int {
-	var argvC = C.CString(strings.Join(argv, "|"))
+	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
 	return int(int32(C.SailfishApp_SailfishApp_Main(C.int(int32(argc)), argvC)))
 }
 
 func (ptr *SailfishApp) Main(argc int, argv []string) int {
-	var argvC = C.CString(strings.Join(argv, "|"))
+	argvC := C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
 	return int(int32(C.SailfishApp_SailfishApp_Main(C.int(int32(argc)), argvC)))
 }
 
 func SailfishApp_CreateView() *quick.QQuickView {
-	var tmpValue = quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
+	tmpValue := quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -111,7 +111,7 @@ func SailfishApp_CreateView() *quick.QQuickView {
 }
 
 func (ptr *SailfishApp) CreateView() *quick.QQuickView {
-	var tmpValue = quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
+	tmpValue := quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -124,7 +124,7 @@ func SailfishApp_PathTo(filename string) *core.QUrl {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
+	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }
@@ -135,7 +135,7 @@ func (ptr *SailfishApp) PathTo(filename string) *core.QUrl {
 		filenameC = C.CString(filename)
 		defer C.free(unsafe.Pointer(filenameC))
 	}
-	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
+	tmpValue := core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.struct_QtSailfish_PackedString{data: filenameC, len: C.longlong(len(filename))}))
 	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 	return tmpValue
 }

@@ -72,7 +72,7 @@ func goFunctionBody(function *parser.Function) string {
 		)
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_atList") || strings.Contains(function.Name, "_setList") || strings.Contains(function.Name, "_keyList")) {
 		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")
 	}
 
@@ -85,11 +85,11 @@ func goFunctionBody(function *parser.Function) string {
 		for _, parameter := range function.Parameters {
 			if parameter.Value == "..." {
 				for i := 0; i < 10; i++ {
-					fmt.Fprintf(bb, "var p%v, d%v = assertion(%v, v...)\n", i, i, i)
+					fmt.Fprintf(bb, "p%v, d%v := assertion(%v, v...)\n", i, i, i)
 					fmt.Fprintf(bb, "if d%v != nil {\ndefer d%v()\n}\n", i, i)
 				}
 			} else if parameter.Value == "T" && function.TemplateModeJNI == "" {
-				fmt.Fprintf(bb, "var p0, d0 = assertion(0, %v)\n", parameter.Name)
+				fmt.Fprintf(bb, "p0, d0 := assertion(0, %v)\n", parameter.Name)
 				fmt.Fprint(bb, "if d0 != nil {\ndefer d0()\n}\n")
 			}
 		}
@@ -150,7 +150,7 @@ func goFunctionBody(function *parser.Function) string {
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
 
-					fmt.Fprintf(bb, "var tmpValue = %v\n", body)
+					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
 					if class.Name != "QAndroidJniObject" || class.Name == "QAndroidJniObject" && (function.TemplateModeJNI == "String" || function.Output == "QAndroidJniObject" || function.Meta == parser.CONSTRUCTOR) {
 						if function.TemplateModeJNI == "String" {
@@ -199,7 +199,7 @@ func goFunctionBody(function *parser.Function) string {
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
 
-					fmt.Fprintf(bb, "var tmpValue = %v\n", body)
+					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
 					fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
 						func() string {
@@ -226,7 +226,7 @@ func goFunctionBody(function *parser.Function) string {
 			default:
 				{
 					if function.Name == "readData" && len(function.Parameters) == 2 {
-						return fmt.Sprintf("var ret = %v\nif ret > 0 {\n*data = C.GoStringN(dataC, C.int(ret))\n}\nreturn ret", body)
+						return fmt.Sprintf("ret := %v\nif ret > 0 {\n*data = C.GoStringN(dataC, C.int(ret))\n}\nreturn ret", body)
 					} else {
 						if function.Exception && converter.GoHeaderOutput(function) == "(error)" {
 							return fmt.Sprintf("%v\nreturn QAndroidJniEnvironment_ExceptionCatch()", body)
@@ -278,8 +278,8 @@ func goFunctionBody(function *parser.Function) string {
 				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
 			} else {
 				if function.Name == "readData" && len(function.Parameters) == 2 {
-					fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
-					fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+					fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
+					fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
 					fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
 					fmt.Fprint(bb, "return ret")
 				} else {
@@ -335,8 +335,8 @@ func goFunctionBody(function *parser.Function) string {
 			} else {
 				if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
-						fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
-						fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+						fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
+						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
 						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
 						fmt.Fprint(bb, "return ret")
 					} else {
@@ -522,7 +522,7 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_atList") || strings.Contains(function.Name, "_setList") || strings.Contains(function.Name, "_keyList")) {
 		fmt.Fprint(bb, "\n}")
 
 		if converter.GoHeaderOutput(function) == "" {

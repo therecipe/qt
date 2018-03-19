@@ -41,10 +41,10 @@ func PointerFromSailfishApp(ptr SailfishApp_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
-	var n = new(SailfishApp)
+func NewSailfishAppFromPointer(ptr unsafe.Pointer) (n *SailfishApp) {
+	n = new(SailfishApp)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *SailfishApp) DestroySailfishApp() {}

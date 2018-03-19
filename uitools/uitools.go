@@ -17,7 +17,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtUiTools_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromQUiLoader(ptr QUiLoader_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQUiLoaderFromPointer(ptr unsafe.Pointer) *QUiLoader {
-	var n = new(QUiLoader)
+func NewQUiLoaderFromPointer(ptr unsafe.Pointer) (n *QUiLoader) {
+	n = new(QUiLoader)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQUiLoader_CreateAction
@@ -99,7 +99,7 @@ func (ptr *QUiLoader) CreateAction(parent core.QObject_ITF, name string) *widget
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQActionFromPointer(C.QUiLoader_CreateAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQActionFromPointer(C.QUiLoader_CreateAction(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -115,7 +115,7 @@ func (ptr *QUiLoader) CreateActionDefault(parent core.QObject_ITF, name string) 
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQActionFromPointer(C.QUiLoader_CreateActionDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQActionFromPointer(C.QUiLoader_CreateActionDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -161,7 +161,7 @@ func (ptr *QUiLoader) CreateActionGroup(parent core.QObject_ITF, name string) *w
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroup(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroup(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -177,7 +177,7 @@ func (ptr *QUiLoader) CreateActionGroupDefault(parent core.QObject_ITF, name str
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroupDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroupDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -228,7 +228,7 @@ func (ptr *QUiLoader) CreateLayout(className string, parent core.QObject_ITF, na
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayout(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayout(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -249,7 +249,7 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayoutDefault(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayoutDefault(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, core.PointerFromQObject(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -259,7 +259,7 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 }
 
 func NewQUiLoader(parent core.QObject_ITF) *QUiLoader {
-	var tmpValue = NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
+	tmpValue := NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -308,7 +308,7 @@ func (ptr *QUiLoader) CreateWidget(className string, parent widgets.QWidget_ITF,
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidget(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, widgets.PointerFromQWidget(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidget(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, widgets.PointerFromQWidget(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -329,7 +329,7 @@ func (ptr *QUiLoader) CreateWidgetDefault(className string, parent widgets.QWidg
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidgetDefault(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, widgets.PointerFromQWidget(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidgetDefault(ptr.Pointer(), C.struct_QtUiTools_PackedString{data: classNameC, len: C.longlong(len(className))}, widgets.PointerFromQWidget(parent), C.struct_QtUiTools_PackedString{data: nameC, len: C.longlong(len(name))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -340,7 +340,7 @@ func (ptr *QUiLoader) CreateWidgetDefault(className string, parent widgets.QWidg
 
 func (ptr *QUiLoader) Load(device core.QIODevice_ITF, parentWidget widgets.QWidget_ITF) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QUiLoader_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parentWidget)))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QUiLoader_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parentWidget)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -426,7 +426,7 @@ func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
 
 func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
+		tmpValue := core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
@@ -468,107 +468,82 @@ func (ptr *QUiLoader) IsLanguageChangeEnabled() bool {
 	return false
 }
 
-func (ptr *QUiLoader) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QUiLoader___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QUiLoader) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QUiLoader___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QUiLoader) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QUiLoader) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QUiLoader___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QUiLoader) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QUiLoader___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QUiLoader___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QUiLoader) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QUiLoader) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QUiLoader) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QUiLoader) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QUiLoader___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QUiLoader) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QUiLoader___findChildren_newList2(ptr.Pointer()))
+	return C.QUiLoader___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QUiLoader) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QUiLoader) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QUiLoader) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QUiLoader) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QUiLoader___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QUiLoader) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QUiLoader___findChildren_newList3(ptr.Pointer()))
+	return C.QUiLoader___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QUiLoader) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QUiLoader) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QUiLoader___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QUiLoader) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QUiLoader) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QUiLoader___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QUiLoader) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QUiLoader___findChildren_newList(ptr.Pointer()))
+	return C.QUiLoader___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QUiLoader) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QUiLoader___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QUiLoader) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QUiLoader___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QUiLoader) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QUiLoader___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QUiLoader) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QUiLoader___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QUiLoader) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QUiLoader___children_newList(ptr.Pointer()))
+	return C.QUiLoader___children_newList(ptr.Pointer())
 }
 
 //export callbackQUiLoader_Event

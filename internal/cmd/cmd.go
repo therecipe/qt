@@ -366,6 +366,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	case "darwin":
 		ldFlags = []string{"-w", fmt.Sprintf("-r=%v", filepath.Join(utils.QT_DARWIN_DIR(), "lib"))}
 		out = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", name, name))
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "darwin",
+			"GOARCH": "amd64",
+
+			"CGO_ENABLED": "1",
+		}
 
 	case "windows":
 		ldFlags = []string{"-s", "-w", "-H=windowsgui"}
@@ -408,6 +418,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	case "linux":
 		ldFlags = []string{"-s", "-w"}
 		out = filepath.Join(depPath, name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "linux",
+			"GOARCH": "amd64",
+
+			"CGO_ENABLED": "1",
+		}
 
 	case "rpi1", "rpi2", "rpi3":
 		tags = []string{target}
@@ -432,5 +452,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["GOARM"] = "6"
 		}
 	}
+
+	env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
+	env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
+	env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
+
 	return env, tags, ldFlags, out
 }

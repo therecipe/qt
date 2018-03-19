@@ -17,7 +17,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtDataVisualization_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -55,10 +55,10 @@ func PointerFromQ3DBars(ptr Q3DBars_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DBarsFromPointer(ptr unsafe.Pointer) *Q3DBars {
-	var n = new(Q3DBars)
+func NewQ3DBarsFromPointer(ptr unsafe.Pointer) (n *Q3DBars) {
+	n = new(Q3DBars)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DBars(format gui.QSurfaceFormat_ITF, parent gui.QWindow_ITF) *Q3DBars {
 	return NewQ3DBarsFromPointer(C.Q3DBars_NewQ3DBars(gui.PointerFromQSurfaceFormat(format), gui.PointerFromQWindow(parent)))
@@ -615,9 +615,9 @@ func (ptr *Q3DBars) RowAxis() *QCategory3DAxis {
 func (ptr *Q3DBars) Axes() []*QAbstract3DAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QAbstract3DAxis {
-			var out = make([]*QAbstract3DAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DBarsFromPointer(l.data).__axes_atList(i)
+			out := make([]*QAbstract3DAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DBars)(nil).__axes_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DBars_Axes(ptr.Pointer()))
@@ -628,9 +628,9 @@ func (ptr *Q3DBars) Axes() []*QAbstract3DAxis {
 func (ptr *Q3DBars) SeriesList() []*QBar3DSeries {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QBar3DSeries {
-			var out = make([]*QBar3DSeries, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DBarsFromPointer(l.data).__seriesList_atList(i)
+			out := make([]*QBar3DSeries, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DBars)(nil).__seriesList_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DBars_SeriesList(ptr.Pointer()))
@@ -640,7 +640,7 @@ func (ptr *Q3DBars) SeriesList() []*QBar3DSeries {
 
 func (ptr *Q3DBars) BarSpacing() *core.QSizeF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFFromPointer(C.Q3DBars_BarSpacing(ptr.Pointer()))
+		tmpValue := core.NewQSizeFFromPointer(C.Q3DBars_BarSpacing(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
@@ -682,38 +682,28 @@ func (ptr *Q3DBars) FloorLevel() float32 {
 	return 0
 }
 
-func (ptr *Q3DBars) __axes_atList(i int) *QAbstract3DAxis {
-	if ptr.Pointer() != nil {
-		return NewQAbstract3DAxisFromPointer(C.Q3DBars___axes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DBars) __axes_atList(i int, p unsafe.Pointer) *QAbstract3DAxis {
+	return NewQAbstract3DAxisFromPointer(C.Q3DBars___axes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DBars) __axes_setList(i QAbstract3DAxis_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DBars___axes_setList(ptr.Pointer(), PointerFromQAbstract3DAxis(i))
-	}
+func (ptr *Q3DBars) __axes_setList(i QAbstract3DAxis_ITF, p unsafe.Pointer) {
+	C.Q3DBars___axes_setList(ptr.Pointer(), PointerFromQAbstract3DAxis(i), p)
 }
 
 func (ptr *Q3DBars) __axes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DBars___axes_newList(ptr.Pointer()))
+	return C.Q3DBars___axes_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DBars) __seriesList_atList(i int) *QBar3DSeries {
-	if ptr.Pointer() != nil {
-		return NewQBar3DSeriesFromPointer(C.Q3DBars___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DBars) __seriesList_atList(i int, p unsafe.Pointer) *QBar3DSeries {
+	return NewQBar3DSeriesFromPointer(C.Q3DBars___seriesList_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DBars) __seriesList_setList(i QBar3DSeries_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DBars___seriesList_setList(ptr.Pointer(), PointerFromQBar3DSeries(i))
-	}
+func (ptr *Q3DBars) __seriesList_setList(i QBar3DSeries_ITF, p unsafe.Pointer) {
+	C.Q3DBars___seriesList_setList(ptr.Pointer(), PointerFromQBar3DSeries(i), p)
 }
 
 func (ptr *Q3DBars) __seriesList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DBars___seriesList_newList(ptr.Pointer()))
+	return C.Q3DBars___seriesList_newList(ptr.Pointer())
 }
 
 type Q3DCamera struct {
@@ -748,10 +738,10 @@ func PointerFromQ3DCamera(ptr Q3DCamera_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DCameraFromPointer(ptr unsafe.Pointer) *Q3DCamera {
-	var n = new(Q3DCamera)
+func NewQ3DCameraFromPointer(ptr unsafe.Pointer) (n *Q3DCamera) {
+	n = new(Q3DCamera)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=Q3DCamera__CameraPreset
@@ -1298,7 +1288,7 @@ func (ptr *Q3DCamera) CameraPreset() Q3DCamera__CameraPreset {
 
 func (ptr *Q3DCamera) Target() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.Q3DCamera_Target(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.Q3DCamera_Target(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -1386,10 +1376,10 @@ func PointerFromQ3DInputHandler(ptr Q3DInputHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DInputHandlerFromPointer(ptr unsafe.Pointer) *Q3DInputHandler {
-	var n = new(Q3DInputHandler)
+func NewQ3DInputHandlerFromPointer(ptr unsafe.Pointer) (n *Q3DInputHandler) {
+	n = new(Q3DInputHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DInputHandler(parent core.QObject_ITF) *Q3DInputHandler {
 	return NewQ3DInputHandlerFromPointer(C.Q3DInputHandler_NewQ3DInputHandler(core.PointerFromQObject(parent)))
@@ -1847,10 +1837,10 @@ func PointerFromQ3DLight(ptr Q3DLight_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DLightFromPointer(ptr unsafe.Pointer) *Q3DLight {
-	var n = new(Q3DLight)
+func NewQ3DLightFromPointer(ptr unsafe.Pointer) (n *Q3DLight) {
+	n = new(Q3DLight)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DLight(parent core.QObject_ITF) *Q3DLight {
 	return NewQ3DLightFromPointer(C.Q3DLight_NewQ3DLight(core.PointerFromQObject(parent)))
@@ -1984,10 +1974,10 @@ func PointerFromQ3DObject(ptr Q3DObject_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DObjectFromPointer(ptr unsafe.Pointer) *Q3DObject {
-	var n = new(Q3DObject)
+func NewQ3DObjectFromPointer(ptr unsafe.Pointer) (n *Q3DObject) {
+	n = new(Q3DObject)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DObject(parent core.QObject_ITF) *Q3DObject {
 	return NewQ3DObjectFromPointer(C.Q3DObject_NewQ3DObject(core.PointerFromQObject(parent)))
@@ -2141,7 +2131,7 @@ func (ptr *Q3DObject) DestroyQ3DObjectDefault() {
 
 func (ptr *Q3DObject) Position() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.Q3DObject_Position(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.Q3DObject_Position(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -2187,10 +2177,10 @@ func PointerFromQ3DScatter(ptr Q3DScatter_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DScatterFromPointer(ptr unsafe.Pointer) *Q3DScatter {
-	var n = new(Q3DScatter)
+func NewQ3DScatterFromPointer(ptr unsafe.Pointer) (n *Q3DScatter) {
+	n = new(Q3DScatter)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DScatter(format gui.QSurfaceFormat_ITF, parent gui.QWindow_ITF) *Q3DScatter {
 	return NewQ3DScatterFromPointer(C.Q3DScatter_NewQ3DScatter(gui.PointerFromQSurfaceFormat(format), gui.PointerFromQWindow(parent)))
@@ -2441,9 +2431,9 @@ func (ptr *Q3DScatter) DestroyQ3DScatterDefault() {
 func (ptr *Q3DScatter) SeriesList() []*QScatter3DSeries {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QScatter3DSeries {
-			var out = make([]*QScatter3DSeries, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DScatterFromPointer(l.data).__seriesList_atList(i)
+			out := make([]*QScatter3DSeries, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DScatter)(nil).__seriesList_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DScatter_SeriesList(ptr.Pointer()))
@@ -2454,9 +2444,9 @@ func (ptr *Q3DScatter) SeriesList() []*QScatter3DSeries {
 func (ptr *Q3DScatter) Axes() []*QValue3DAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QValue3DAxis {
-			var out = make([]*QValue3DAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DScatterFromPointer(l.data).__axes_atList(i)
+			out := make([]*QValue3DAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DScatter)(nil).__axes_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DScatter_Axes(ptr.Pointer()))
@@ -2492,38 +2482,28 @@ func (ptr *Q3DScatter) AxisZ() *QValue3DAxis {
 	return nil
 }
 
-func (ptr *Q3DScatter) __seriesList_atList(i int) *QScatter3DSeries {
-	if ptr.Pointer() != nil {
-		return NewQScatter3DSeriesFromPointer(C.Q3DScatter___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DScatter) __seriesList_atList(i int, p unsafe.Pointer) *QScatter3DSeries {
+	return NewQScatter3DSeriesFromPointer(C.Q3DScatter___seriesList_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DScatter) __seriesList_setList(i QScatter3DSeries_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DScatter___seriesList_setList(ptr.Pointer(), PointerFromQScatter3DSeries(i))
-	}
+func (ptr *Q3DScatter) __seriesList_setList(i QScatter3DSeries_ITF, p unsafe.Pointer) {
+	C.Q3DScatter___seriesList_setList(ptr.Pointer(), PointerFromQScatter3DSeries(i), p)
 }
 
 func (ptr *Q3DScatter) __seriesList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DScatter___seriesList_newList(ptr.Pointer()))
+	return C.Q3DScatter___seriesList_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DScatter) __axes_atList(i int) *QValue3DAxis {
-	if ptr.Pointer() != nil {
-		return NewQValue3DAxisFromPointer(C.Q3DScatter___axes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DScatter) __axes_atList(i int, p unsafe.Pointer) *QValue3DAxis {
+	return NewQValue3DAxisFromPointer(C.Q3DScatter___axes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DScatter) __axes_setList(i QValue3DAxis_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DScatter___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i))
-	}
+func (ptr *Q3DScatter) __axes_setList(i QValue3DAxis_ITF, p unsafe.Pointer) {
+	C.Q3DScatter___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i), p)
 }
 
 func (ptr *Q3DScatter) __axes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DScatter___axes_newList(ptr.Pointer()))
+	return C.Q3DScatter___axes_newList(ptr.Pointer())
 }
 
 type Q3DScene struct {
@@ -2558,23 +2538,23 @@ func PointerFromQ3DScene(ptr Q3DScene_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DSceneFromPointer(ptr unsafe.Pointer) *Q3DScene {
-	var n = new(Q3DScene)
+func NewQ3DSceneFromPointer(ptr unsafe.Pointer) (n *Q3DScene) {
+	n = new(Q3DScene)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DScene(parent core.QObject_ITF) *Q3DScene {
 	return NewQ3DSceneFromPointer(C.Q3DScene_NewQ3DScene(core.PointerFromQObject(parent)))
 }
 
 func Q3DScene_InvalidSelectionPoint() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.Q3DScene_Q3DScene_InvalidSelectionPoint())
+	tmpValue := core.NewQPointFromPointer(C.Q3DScene_Q3DScene_InvalidSelectionPoint())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func (ptr *Q3DScene) InvalidSelectionPoint() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.Q3DScene_Q3DScene_InvalidSelectionPoint())
+	tmpValue := core.NewQPointFromPointer(C.Q3DScene_Q3DScene_InvalidSelectionPoint())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
@@ -3099,7 +3079,7 @@ func (ptr *Q3DScene) ActiveLight() *Q3DLight {
 
 func (ptr *Q3DScene) GraphPositionQuery() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.Q3DScene_GraphPositionQuery(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.Q3DScene_GraphPositionQuery(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -3108,7 +3088,7 @@ func (ptr *Q3DScene) GraphPositionQuery() *core.QPoint {
 
 func (ptr *Q3DScene) SelectionQueryPosition() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.Q3DScene_SelectionQueryPosition(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.Q3DScene_SelectionQueryPosition(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -3117,7 +3097,7 @@ func (ptr *Q3DScene) SelectionQueryPosition() *core.QPoint {
 
 func (ptr *Q3DScene) PrimarySubViewport() *core.QRect {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFromPointer(C.Q3DScene_PrimarySubViewport(ptr.Pointer()))
+		tmpValue := core.NewQRectFromPointer(C.Q3DScene_PrimarySubViewport(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -3126,7 +3106,7 @@ func (ptr *Q3DScene) PrimarySubViewport() *core.QRect {
 
 func (ptr *Q3DScene) SecondarySubViewport() *core.QRect {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFromPointer(C.Q3DScene_SecondarySubViewport(ptr.Pointer()))
+		tmpValue := core.NewQRectFromPointer(C.Q3DScene_SecondarySubViewport(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -3135,7 +3115,7 @@ func (ptr *Q3DScene) SecondarySubViewport() *core.QRect {
 
 func (ptr *Q3DScene) Viewport() *core.QRect {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFromPointer(C.Q3DScene_Viewport(ptr.Pointer()))
+		tmpValue := core.NewQRectFromPointer(C.Q3DScene_Viewport(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -3195,10 +3175,10 @@ func PointerFromQ3DSurface(ptr Q3DSurface_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DSurfaceFromPointer(ptr unsafe.Pointer) *Q3DSurface {
-	var n = new(Q3DSurface)
+func NewQ3DSurfaceFromPointer(ptr unsafe.Pointer) (n *Q3DSurface) {
+	n = new(Q3DSurface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQ3DSurface(format gui.QSurfaceFormat_ITF, parent gui.QWindow_ITF) *Q3DSurface {
 	return NewQ3DSurfaceFromPointer(C.Q3DSurface_NewQ3DSurface(gui.PointerFromQSurfaceFormat(format), gui.PointerFromQWindow(parent)))
@@ -3494,9 +3474,9 @@ func (ptr *Q3DSurface) DestroyQ3DSurfaceDefault() {
 func (ptr *Q3DSurface) SeriesList() []*QSurface3DSeries {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QSurface3DSeries {
-			var out = make([]*QSurface3DSeries, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DSurfaceFromPointer(l.data).__seriesList_atList(i)
+			out := make([]*QSurface3DSeries, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DSurface)(nil).__seriesList_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DSurface_SeriesList(ptr.Pointer()))
@@ -3507,9 +3487,9 @@ func (ptr *Q3DSurface) SeriesList() []*QSurface3DSeries {
 func (ptr *Q3DSurface) Axes() []*QValue3DAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QValue3DAxis {
-			var out = make([]*QValue3DAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DSurfaceFromPointer(l.data).__axes_atList(i)
+			out := make([]*QValue3DAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DSurface)(nil).__axes_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DSurface_Axes(ptr.Pointer()))
@@ -3552,38 +3532,28 @@ func (ptr *Q3DSurface) FlipHorizontalGrid() bool {
 	return false
 }
 
-func (ptr *Q3DSurface) __seriesList_atList(i int) *QSurface3DSeries {
-	if ptr.Pointer() != nil {
-		return NewQSurface3DSeriesFromPointer(C.Q3DSurface___seriesList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DSurface) __seriesList_atList(i int, p unsafe.Pointer) *QSurface3DSeries {
+	return NewQSurface3DSeriesFromPointer(C.Q3DSurface___seriesList_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DSurface) __seriesList_setList(i QSurface3DSeries_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DSurface___seriesList_setList(ptr.Pointer(), PointerFromQSurface3DSeries(i))
-	}
+func (ptr *Q3DSurface) __seriesList_setList(i QSurface3DSeries_ITF, p unsafe.Pointer) {
+	C.Q3DSurface___seriesList_setList(ptr.Pointer(), PointerFromQSurface3DSeries(i), p)
 }
 
 func (ptr *Q3DSurface) __seriesList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DSurface___seriesList_newList(ptr.Pointer()))
+	return C.Q3DSurface___seriesList_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DSurface) __axes_atList(i int) *QValue3DAxis {
-	if ptr.Pointer() != nil {
-		return NewQValue3DAxisFromPointer(C.Q3DSurface___axes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *Q3DSurface) __axes_atList(i int, p unsafe.Pointer) *QValue3DAxis {
+	return NewQValue3DAxisFromPointer(C.Q3DSurface___axes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *Q3DSurface) __axes_setList(i QValue3DAxis_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DSurface___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i))
-	}
+func (ptr *Q3DSurface) __axes_setList(i QValue3DAxis_ITF, p unsafe.Pointer) {
+	C.Q3DSurface___axes_setList(ptr.Pointer(), PointerFromQValue3DAxis(i), p)
 }
 
 func (ptr *Q3DSurface) __axes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DSurface___axes_newList(ptr.Pointer()))
+	return C.Q3DSurface___axes_newList(ptr.Pointer())
 }
 
 type Q3DTheme struct {
@@ -3618,10 +3588,10 @@ func PointerFromQ3DTheme(ptr Q3DTheme_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQ3DThemeFromPointer(ptr unsafe.Pointer) *Q3DTheme {
-	var n = new(Q3DTheme)
+func NewQ3DThemeFromPointer(ptr unsafe.Pointer) (n *Q3DTheme) {
+	n = new(Q3DTheme)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=Q3DTheme__ColorStyle
@@ -3779,9 +3749,9 @@ func (ptr *Q3DTheme) BackgroundEnabledChanged(enabled bool) {
 func callbackQ3DTheme_BaseColorsChanged(ptr unsafe.Pointer, colors C.struct_QtDataVisualization_PackedList) {
 	if signal := qt.GetSignal(ptr, "baseColorsChanged"); signal != nil {
 		signal.(func([]*gui.QColor))(func(l C.struct_QtDataVisualization_PackedList) []*gui.QColor {
-			var out = make([]*gui.QColor, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).__baseColorsChanged_colors_atList(i)
+			out := make([]*gui.QColor, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DTheme)(nil).__baseColorsChanged_colors_atList(i, l.data)
 			}
 			return out
 		}(colors))
@@ -3817,11 +3787,11 @@ func (ptr *Q3DTheme) DisconnectBaseColorsChanged() {
 func (ptr *Q3DTheme) BaseColorsChanged(colors []*gui.QColor) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_BaseColorsChanged(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(nil).__baseColorsChanged_colors_newList())
+			tmpList := (*Q3DTheme)(nil).__baseColorsChanged_colors_newList()
 			for _, v := range colors {
-				tmpList.__baseColorsChanged_colors_setList(v)
+				(*Q3DTheme)(nil).__baseColorsChanged_colors_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -3830,9 +3800,9 @@ func (ptr *Q3DTheme) BaseColorsChanged(colors []*gui.QColor) {
 func callbackQ3DTheme_BaseGradientsChanged(ptr unsafe.Pointer, gradients C.struct_QtDataVisualization_PackedList) {
 	if signal := qt.GetSignal(ptr, "baseGradientsChanged"); signal != nil {
 		signal.(func([]*gui.QLinearGradient))(func(l C.struct_QtDataVisualization_PackedList) []*gui.QLinearGradient {
-			var out = make([]*gui.QLinearGradient, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).__baseGradientsChanged_gradients_atList(i)
+			out := make([]*gui.QLinearGradient, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DTheme)(nil).__baseGradientsChanged_gradients_atList(i, l.data)
 			}
 			return out
 		}(gradients))
@@ -3868,11 +3838,11 @@ func (ptr *Q3DTheme) DisconnectBaseGradientsChanged() {
 func (ptr *Q3DTheme) BaseGradientsChanged(gradients []*gui.QLinearGradient) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_BaseGradientsChanged(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(nil).__baseGradientsChanged_gradients_newList())
+			tmpList := (*Q3DTheme)(nil).__baseGradientsChanged_gradients_newList()
 			for _, v := range gradients {
-				tmpList.__baseGradientsChanged_gradients_setList(v)
+				(*Q3DTheme)(nil).__baseGradientsChanged_gradients_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -4405,11 +4375,11 @@ func (ptr *Q3DTheme) SetBackgroundEnabled(enabled bool) {
 func (ptr *Q3DTheme) SetBaseColors(colors []*gui.QColor) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_SetBaseColors(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(nil).__setBaseColors_colors_newList())
+			tmpList := (*Q3DTheme)(nil).__setBaseColors_colors_newList()
 			for _, v := range colors {
-				tmpList.__setBaseColors_colors_setList(v)
+				(*Q3DTheme)(nil).__setBaseColors_colors_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -4417,11 +4387,11 @@ func (ptr *Q3DTheme) SetBaseColors(colors []*gui.QColor) {
 func (ptr *Q3DTheme) SetBaseGradients(gradients []*gui.QLinearGradient) {
 	if ptr.Pointer() != nil {
 		C.Q3DTheme_SetBaseGradients(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQ3DThemeFromPointer(NewQ3DThemeFromPointer(nil).__setBaseGradients_gradients_newList())
+			tmpList := (*Q3DTheme)(nil).__setBaseGradients_gradients_newList()
 			for _, v := range gradients {
-				tmpList.__setBaseGradients_gradients_setList(v)
+				(*Q3DTheme)(nil).__setBaseGradients_gradients_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -4739,7 +4709,7 @@ func (ptr *Q3DTheme) ColorStyle() Q3DTheme__ColorStyle {
 
 func (ptr *Q3DTheme) BackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_BackgroundColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_BackgroundColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4748,7 +4718,7 @@ func (ptr *Q3DTheme) BackgroundColor() *gui.QColor {
 
 func (ptr *Q3DTheme) GridLineColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_GridLineColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_GridLineColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4757,7 +4727,7 @@ func (ptr *Q3DTheme) GridLineColor() *gui.QColor {
 
 func (ptr *Q3DTheme) LabelBackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_LabelBackgroundColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_LabelBackgroundColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4766,7 +4736,7 @@ func (ptr *Q3DTheme) LabelBackgroundColor() *gui.QColor {
 
 func (ptr *Q3DTheme) LabelTextColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_LabelTextColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_LabelTextColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4775,7 +4745,7 @@ func (ptr *Q3DTheme) LabelTextColor() *gui.QColor {
 
 func (ptr *Q3DTheme) LightColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_LightColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_LightColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4784,7 +4754,7 @@ func (ptr *Q3DTheme) LightColor() *gui.QColor {
 
 func (ptr *Q3DTheme) MultiHighlightColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_MultiHighlightColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_MultiHighlightColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4793,7 +4763,7 @@ func (ptr *Q3DTheme) MultiHighlightColor() *gui.QColor {
 
 func (ptr *Q3DTheme) SingleHighlightColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_SingleHighlightColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_SingleHighlightColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4802,7 +4772,7 @@ func (ptr *Q3DTheme) SingleHighlightColor() *gui.QColor {
 
 func (ptr *Q3DTheme) WindowColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme_WindowColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.Q3DTheme_WindowColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4811,7 +4781,7 @@ func (ptr *Q3DTheme) WindowColor() *gui.QColor {
 
 func (ptr *Q3DTheme) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.Q3DTheme_Font(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.Q3DTheme_Font(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -4820,7 +4790,7 @@ func (ptr *Q3DTheme) Font() *gui.QFont {
 
 func (ptr *Q3DTheme) MultiHighlightGradient() *gui.QLinearGradient {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme_MultiHighlightGradient(ptr.Pointer()))
+		tmpValue := gui.NewQLinearGradientFromPointer(C.Q3DTheme_MultiHighlightGradient(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
 	}
@@ -4829,7 +4799,7 @@ func (ptr *Q3DTheme) MultiHighlightGradient() *gui.QLinearGradient {
 
 func (ptr *Q3DTheme) SingleHighlightGradient() *gui.QLinearGradient {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme_SingleHighlightGradient(ptr.Pointer()))
+		tmpValue := gui.NewQLinearGradientFromPointer(C.Q3DTheme_SingleHighlightGradient(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
 	}
@@ -4839,9 +4809,9 @@ func (ptr *Q3DTheme) SingleHighlightGradient() *gui.QLinearGradient {
 func (ptr *Q3DTheme) BaseColors() []*gui.QColor {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*gui.QColor {
-			var out = make([]*gui.QColor, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).__baseColors_atList(i)
+			out := make([]*gui.QColor, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DTheme)(nil).__baseColors_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DTheme_BaseColors(ptr.Pointer()))
@@ -4852,9 +4822,9 @@ func (ptr *Q3DTheme) BaseColors() []*gui.QColor {
 func (ptr *Q3DTheme) BaseGradients() []*gui.QLinearGradient {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*gui.QLinearGradient {
-			var out = make([]*gui.QLinearGradient, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQ3DThemeFromPointer(l.data).__baseGradients_atList(i)
+			out := make([]*gui.QLinearGradient, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*Q3DTheme)(nil).__baseGradients_atList(i, l.data)
 			}
 			return out
 		}(C.Q3DTheme_BaseGradients(ptr.Pointer()))
@@ -4918,118 +4888,88 @@ func (ptr *Q3DTheme) LightStrength() float32 {
 	return 0
 }
 
-func (ptr *Q3DTheme) __baseColorsChanged_colors_atList(i int) *gui.QColor {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___baseColorsChanged_colors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __baseColorsChanged_colors_atList(i int, p unsafe.Pointer) *gui.QColor {
+	tmpValue := gui.NewQColorFromPointer(C.Q3DTheme___baseColorsChanged_colors_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __baseColorsChanged_colors_setList(i gui.QColor_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___baseColorsChanged_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
-	}
+func (ptr *Q3DTheme) __baseColorsChanged_colors_setList(i gui.QColor_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___baseColorsChanged_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i), p)
 }
 
 func (ptr *Q3DTheme) __baseColorsChanged_colors_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___baseColorsChanged_colors_newList(ptr.Pointer()))
+	return C.Q3DTheme___baseColorsChanged_colors_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DTheme) __baseGradientsChanged_gradients_atList(i int) *gui.QLinearGradient {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradientsChanged_gradients_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __baseGradientsChanged_gradients_atList(i int, p unsafe.Pointer) *gui.QLinearGradient {
+	tmpValue := gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradientsChanged_gradients_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __baseGradientsChanged_gradients_setList(i gui.QLinearGradient_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___baseGradientsChanged_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
-	}
+func (ptr *Q3DTheme) __baseGradientsChanged_gradients_setList(i gui.QLinearGradient_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___baseGradientsChanged_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i), p)
 }
 
 func (ptr *Q3DTheme) __baseGradientsChanged_gradients_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___baseGradientsChanged_gradients_newList(ptr.Pointer()))
+	return C.Q3DTheme___baseGradientsChanged_gradients_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DTheme) __setBaseColors_colors_atList(i int) *gui.QColor {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___setBaseColors_colors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __setBaseColors_colors_atList(i int, p unsafe.Pointer) *gui.QColor {
+	tmpValue := gui.NewQColorFromPointer(C.Q3DTheme___setBaseColors_colors_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __setBaseColors_colors_setList(i gui.QColor_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___setBaseColors_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
-	}
+func (ptr *Q3DTheme) __setBaseColors_colors_setList(i gui.QColor_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___setBaseColors_colors_setList(ptr.Pointer(), gui.PointerFromQColor(i), p)
 }
 
 func (ptr *Q3DTheme) __setBaseColors_colors_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___setBaseColors_colors_newList(ptr.Pointer()))
+	return C.Q3DTheme___setBaseColors_colors_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DTheme) __setBaseGradients_gradients_atList(i int) *gui.QLinearGradient {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___setBaseGradients_gradients_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __setBaseGradients_gradients_atList(i int, p unsafe.Pointer) *gui.QLinearGradient {
+	tmpValue := gui.NewQLinearGradientFromPointer(C.Q3DTheme___setBaseGradients_gradients_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __setBaseGradients_gradients_setList(i gui.QLinearGradient_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___setBaseGradients_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
-	}
+func (ptr *Q3DTheme) __setBaseGradients_gradients_setList(i gui.QLinearGradient_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___setBaseGradients_gradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i), p)
 }
 
 func (ptr *Q3DTheme) __setBaseGradients_gradients_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___setBaseGradients_gradients_newList(ptr.Pointer()))
+	return C.Q3DTheme___setBaseGradients_gradients_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DTheme) __baseColors_atList(i int) *gui.QColor {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.Q3DTheme___baseColors_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __baseColors_atList(i int, p unsafe.Pointer) *gui.QColor {
+	tmpValue := gui.NewQColorFromPointer(C.Q3DTheme___baseColors_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __baseColors_setList(i gui.QColor_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___baseColors_setList(ptr.Pointer(), gui.PointerFromQColor(i))
-	}
+func (ptr *Q3DTheme) __baseColors_setList(i gui.QColor_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___baseColors_setList(ptr.Pointer(), gui.PointerFromQColor(i), p)
 }
 
 func (ptr *Q3DTheme) __baseColors_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___baseColors_newList(ptr.Pointer()))
+	return C.Q3DTheme___baseColors_newList(ptr.Pointer())
 }
 
-func (ptr *Q3DTheme) __baseGradients_atList(i int) *gui.QLinearGradient {
-	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradients_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
-		return tmpValue
-	}
-	return nil
+func (ptr *Q3DTheme) __baseGradients_atList(i int, p unsafe.Pointer) *gui.QLinearGradient {
+	tmpValue := gui.NewQLinearGradientFromPointer(C.Q3DTheme___baseGradients_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
+	return tmpValue
 }
 
-func (ptr *Q3DTheme) __baseGradients_setList(i gui.QLinearGradient_ITF) {
-	if ptr.Pointer() != nil {
-		C.Q3DTheme___baseGradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i))
-	}
+func (ptr *Q3DTheme) __baseGradients_setList(i gui.QLinearGradient_ITF, p unsafe.Pointer) {
+	C.Q3DTheme___baseGradients_setList(ptr.Pointer(), gui.PointerFromQLinearGradient(i), p)
 }
 
 func (ptr *Q3DTheme) __baseGradients_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.Q3DTheme___baseGradients_newList(ptr.Pointer()))
+	return C.Q3DTheme___baseGradients_newList(ptr.Pointer())
 }
 
 type QAbstract3DAxis struct {
@@ -5064,10 +5004,10 @@ func PointerFromQAbstract3DAxis(ptr QAbstract3DAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstract3DAxisFromPointer(ptr unsafe.Pointer) *QAbstract3DAxis {
-	var n = new(QAbstract3DAxis)
+func NewQAbstract3DAxisFromPointer(ptr unsafe.Pointer) (n *QAbstract3DAxis) {
+	n = new(QAbstract3DAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstract3DAxis__AxisOrientation
@@ -5384,7 +5324,7 @@ func (ptr *QAbstract3DAxis) SetLabelAutoRotation(angle float32) {
 
 func (ptr *QAbstract3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		var labelsC = C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
 		C.QAbstract3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
@@ -5693,10 +5633,10 @@ func PointerFromQAbstract3DGraph(ptr QAbstract3DGraph_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstract3DGraphFromPointer(ptr unsafe.Pointer) *QAbstract3DGraph {
-	var n = new(QAbstract3DGraph)
+func NewQAbstract3DGraphFromPointer(ptr unsafe.Pointer) (n *QAbstract3DGraph) {
+	n = new(QAbstract3DGraph)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstract3DGraph__ElementType
@@ -5754,7 +5694,7 @@ const (
 
 func (ptr *QAbstract3DGraph) RenderToImage(msaaSamples int, imageSize core.QSize_ITF) *gui.QImage {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQImageFromPointer(C.QAbstract3DGraph_RenderToImage(ptr.Pointer(), C.int(int32(msaaSamples)), core.PointerFromQSize(imageSize)))
+		tmpValue := gui.NewQImageFromPointer(C.QAbstract3DGraph_RenderToImage(ptr.Pointer(), C.int(int32(msaaSamples)), core.PointerFromQSize(imageSize)))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -6712,9 +6652,9 @@ func (ptr *QAbstract3DGraph) SelectedCustomItem() *QCustom3DItem {
 func (ptr *QAbstract3DGraph) Themes() []*Q3DTheme {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*Q3DTheme {
-			var out = make([]*Q3DTheme, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).__themes_atList(i)
+			out := make([]*Q3DTheme, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstract3DGraph)(nil).__themes_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstract3DGraph_Themes(ptr.Pointer()))
@@ -6725,9 +6665,9 @@ func (ptr *QAbstract3DGraph) Themes() []*Q3DTheme {
 func (ptr *QAbstract3DGraph) InputHandlers() []*QAbstract3DInputHandler {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QAbstract3DInputHandler {
-			var out = make([]*QAbstract3DInputHandler, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).__inputHandlers_atList(i)
+			out := make([]*QAbstract3DInputHandler, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstract3DGraph)(nil).__inputHandlers_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstract3DGraph_InputHandlers(ptr.Pointer()))
@@ -6738,9 +6678,9 @@ func (ptr *QAbstract3DGraph) InputHandlers() []*QAbstract3DInputHandler {
 func (ptr *QAbstract3DGraph) CustomItems() []*QCustom3DItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []*QCustom3DItem {
-			var out = make([]*QCustom3DItem, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstract3DGraphFromPointer(l.data).__customItems_atList(i)
+			out := make([]*QCustom3DItem, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstract3DGraph)(nil).__customItems_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstract3DGraph_CustomItems(ptr.Pointer()))
@@ -6750,7 +6690,7 @@ func (ptr *QAbstract3DGraph) CustomItems() []*QCustom3DItem {
 
 func (ptr *QAbstract3DGraph) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQLocaleFromPointer(C.QAbstract3DGraph_Locale(ptr.Pointer()))
+		tmpValue := core.NewQLocaleFromPointer(C.QAbstract3DGraph_Locale(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
@@ -6759,7 +6699,7 @@ func (ptr *QAbstract3DGraph) Locale() *core.QLocale {
 
 func (ptr *QAbstract3DGraph) QueriedGraphPosition() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QAbstract3DGraph_QueriedGraphPosition(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QAbstract3DGraph_QueriedGraphPosition(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -6915,55 +6855,40 @@ func (ptr *QAbstract3DGraph) Reflectivity() float64 {
 	return 0
 }
 
-func (ptr *QAbstract3DGraph) __themes_atList(i int) *Q3DTheme {
-	if ptr.Pointer() != nil {
-		return NewQ3DThemeFromPointer(C.QAbstract3DGraph___themes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstract3DGraph) __themes_atList(i int, p unsafe.Pointer) *Q3DTheme {
+	return NewQ3DThemeFromPointer(C.QAbstract3DGraph___themes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstract3DGraph) __themes_setList(i Q3DTheme_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstract3DGraph___themes_setList(ptr.Pointer(), PointerFromQ3DTheme(i))
-	}
+func (ptr *QAbstract3DGraph) __themes_setList(i Q3DTheme_ITF, p unsafe.Pointer) {
+	C.QAbstract3DGraph___themes_setList(ptr.Pointer(), PointerFromQ3DTheme(i), p)
 }
 
 func (ptr *QAbstract3DGraph) __themes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstract3DGraph___themes_newList(ptr.Pointer()))
+	return C.QAbstract3DGraph___themes_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstract3DGraph) __inputHandlers_atList(i int) *QAbstract3DInputHandler {
-	if ptr.Pointer() != nil {
-		return NewQAbstract3DInputHandlerFromPointer(C.QAbstract3DGraph___inputHandlers_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstract3DGraph) __inputHandlers_atList(i int, p unsafe.Pointer) *QAbstract3DInputHandler {
+	return NewQAbstract3DInputHandlerFromPointer(C.QAbstract3DGraph___inputHandlers_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstract3DGraph) __inputHandlers_setList(i QAbstract3DInputHandler_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstract3DGraph___inputHandlers_setList(ptr.Pointer(), PointerFromQAbstract3DInputHandler(i))
-	}
+func (ptr *QAbstract3DGraph) __inputHandlers_setList(i QAbstract3DInputHandler_ITF, p unsafe.Pointer) {
+	C.QAbstract3DGraph___inputHandlers_setList(ptr.Pointer(), PointerFromQAbstract3DInputHandler(i), p)
 }
 
 func (ptr *QAbstract3DGraph) __inputHandlers_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstract3DGraph___inputHandlers_newList(ptr.Pointer()))
+	return C.QAbstract3DGraph___inputHandlers_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstract3DGraph) __customItems_atList(i int) *QCustom3DItem {
-	if ptr.Pointer() != nil {
-		return NewQCustom3DItemFromPointer(C.QAbstract3DGraph___customItems_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstract3DGraph) __customItems_atList(i int, p unsafe.Pointer) *QCustom3DItem {
+	return NewQCustom3DItemFromPointer(C.QAbstract3DGraph___customItems_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstract3DGraph) __customItems_setList(i QCustom3DItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstract3DGraph___customItems_setList(ptr.Pointer(), PointerFromQCustom3DItem(i))
-	}
+func (ptr *QAbstract3DGraph) __customItems_setList(i QCustom3DItem_ITF, p unsafe.Pointer) {
+	C.QAbstract3DGraph___customItems_setList(ptr.Pointer(), PointerFromQCustom3DItem(i), p)
 }
 
 func (ptr *QAbstract3DGraph) __customItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstract3DGraph___customItems_newList(ptr.Pointer()))
+	return C.QAbstract3DGraph___customItems_newList(ptr.Pointer())
 }
 
 type QAbstract3DInputHandler struct {
@@ -6998,10 +6923,10 @@ func PointerFromQAbstract3DInputHandler(ptr QAbstract3DInputHandler_ITF) unsafe.
 	return nil
 }
 
-func NewQAbstract3DInputHandlerFromPointer(ptr unsafe.Pointer) *QAbstract3DInputHandler {
-	var n = new(QAbstract3DInputHandler)
+func NewQAbstract3DInputHandlerFromPointer(ptr unsafe.Pointer) (n *QAbstract3DInputHandler) {
+	n = new(QAbstract3DInputHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstract3DInputHandler__InputView
@@ -7479,7 +7404,7 @@ func (ptr *QAbstract3DInputHandler) Scene() *Q3DScene {
 
 func (ptr *QAbstract3DInputHandler) InputPosition() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.QAbstract3DInputHandler_InputPosition(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.QAbstract3DInputHandler_InputPosition(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -7488,7 +7413,7 @@ func (ptr *QAbstract3DInputHandler) InputPosition() *core.QPoint {
 
 func (ptr *QAbstract3DInputHandler) PreviousInputPos() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.QAbstract3DInputHandler_PreviousInputPos(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.QAbstract3DInputHandler_PreviousInputPos(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -7534,10 +7459,10 @@ func PointerFromQAbstract3DSeries(ptr QAbstract3DSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstract3DSeriesFromPointer(ptr unsafe.Pointer) *QAbstract3DSeries {
-	var n = new(QAbstract3DSeries)
+func NewQAbstract3DSeriesFromPointer(ptr unsafe.Pointer) (n *QAbstract3DSeries) {
+	n = new(QAbstract3DSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstract3DSeries__Mesh
@@ -8387,7 +8312,7 @@ func (ptr *QAbstract3DSeries) ColorStyle() Q3DTheme__ColorStyle {
 
 func (ptr *QAbstract3DSeries) BaseColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstract3DSeries_BaseColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstract3DSeries_BaseColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -8396,7 +8321,7 @@ func (ptr *QAbstract3DSeries) BaseColor() *gui.QColor {
 
 func (ptr *QAbstract3DSeries) MultiHighlightColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstract3DSeries_MultiHighlightColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstract3DSeries_MultiHighlightColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -8405,7 +8330,7 @@ func (ptr *QAbstract3DSeries) MultiHighlightColor() *gui.QColor {
 
 func (ptr *QAbstract3DSeries) SingleHighlightColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstract3DSeries_SingleHighlightColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstract3DSeries_SingleHighlightColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -8414,7 +8339,7 @@ func (ptr *QAbstract3DSeries) SingleHighlightColor() *gui.QColor {
 
 func (ptr *QAbstract3DSeries) BaseGradient() *gui.QLinearGradient {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_BaseGradient(ptr.Pointer()))
+		tmpValue := gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_BaseGradient(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
 	}
@@ -8423,7 +8348,7 @@ func (ptr *QAbstract3DSeries) BaseGradient() *gui.QLinearGradient {
 
 func (ptr *QAbstract3DSeries) MultiHighlightGradient() *gui.QLinearGradient {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_MultiHighlightGradient(ptr.Pointer()))
+		tmpValue := gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_MultiHighlightGradient(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
 	}
@@ -8432,7 +8357,7 @@ func (ptr *QAbstract3DSeries) MultiHighlightGradient() *gui.QLinearGradient {
 
 func (ptr *QAbstract3DSeries) SingleHighlightGradient() *gui.QLinearGradient {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_SingleHighlightGradient(ptr.Pointer()))
+		tmpValue := gui.NewQLinearGradientFromPointer(C.QAbstract3DSeries_SingleHighlightGradient(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QLinearGradient).DestroyQLinearGradient)
 		return tmpValue
 	}
@@ -8441,7 +8366,7 @@ func (ptr *QAbstract3DSeries) SingleHighlightGradient() *gui.QLinearGradient {
 
 func (ptr *QAbstract3DSeries) MeshRotation() *gui.QQuaternion {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQQuaternionFromPointer(C.QAbstract3DSeries_MeshRotation(ptr.Pointer()))
+		tmpValue := gui.NewQQuaternionFromPointer(C.QAbstract3DSeries_MeshRotation(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QQuaternion).DestroyQQuaternion)
 		return tmpValue
 	}
@@ -8536,10 +8461,10 @@ func PointerFromQAbstractDataProxy(ptr QAbstractDataProxy_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstractDataProxyFromPointer(ptr unsafe.Pointer) *QAbstractDataProxy {
-	var n = new(QAbstractDataProxy)
+func NewQAbstractDataProxyFromPointer(ptr unsafe.Pointer) (n *QAbstractDataProxy) {
+	n = new(QAbstractDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstractDataProxy__DataType
@@ -8636,10 +8561,10 @@ func PointerFromQBar3DSeries(ptr QBar3DSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBar3DSeriesFromPointer(ptr unsafe.Pointer) *QBar3DSeries {
-	var n = new(QBar3DSeries)
+func NewQBar3DSeriesFromPointer(ptr unsafe.Pointer) (n *QBar3DSeries) {
+	n = new(QBar3DSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBar3DSeries2(dataProxy QBarDataProxy_ITF, parent core.QObject_ITF) *QBar3DSeries {
 	return NewQBar3DSeriesFromPointer(C.QBar3DSeries_NewQBar3DSeries2(PointerFromQBarDataProxy(dataProxy), core.PointerFromQObject(parent)))
@@ -8650,13 +8575,13 @@ func NewQBar3DSeries(parent core.QObject_ITF) *QBar3DSeries {
 }
 
 func QBar3DSeries_InvalidSelectionPosition() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.QBar3DSeries_QBar3DSeries_InvalidSelectionPosition())
+	tmpValue := core.NewQPointFromPointer(C.QBar3DSeries_QBar3DSeries_InvalidSelectionPosition())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func (ptr *QBar3DSeries) InvalidSelectionPosition() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.QBar3DSeries_QBar3DSeries_InvalidSelectionPosition())
+	tmpValue := core.NewQPointFromPointer(C.QBar3DSeries_QBar3DSeries_InvalidSelectionPosition())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
@@ -8851,7 +8776,7 @@ func (ptr *QBar3DSeries) DataProxy() *QBarDataProxy {
 
 func (ptr *QBar3DSeries) SelectedBar() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.QBar3DSeries_SelectedBar(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.QBar3DSeries_SelectedBar(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -8897,31 +8822,31 @@ func PointerFromQBarDataItem(ptr QBarDataItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarDataItemFromPointer(ptr unsafe.Pointer) *QBarDataItem {
-	var n = new(QBarDataItem)
+func NewQBarDataItemFromPointer(ptr unsafe.Pointer) (n *QBarDataItem) {
+	n = new(QBarDataItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBarDataItem() *QBarDataItem {
-	var tmpValue = NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem())
+	tmpValue := NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem())
 	runtime.SetFinalizer(tmpValue, (*QBarDataItem).DestroyQBarDataItem)
 	return tmpValue
 }
 
 func NewQBarDataItem4(other QBarDataItem_ITF) *QBarDataItem {
-	var tmpValue = NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem4(PointerFromQBarDataItem(other)))
+	tmpValue := NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem4(PointerFromQBarDataItem(other)))
 	runtime.SetFinalizer(tmpValue, (*QBarDataItem).DestroyQBarDataItem)
 	return tmpValue
 }
 
 func NewQBarDataItem2(value float32) *QBarDataItem {
-	var tmpValue = NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem2(C.float(value)))
+	tmpValue := NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem2(C.float(value)))
 	runtime.SetFinalizer(tmpValue, (*QBarDataItem).DestroyQBarDataItem)
 	return tmpValue
 }
 
 func NewQBarDataItem3(value float32, angle float32) *QBarDataItem {
-	var tmpValue = NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem3(C.float(value), C.float(angle)))
+	tmpValue := NewQBarDataItemFromPointer(C.QBarDataItem_NewQBarDataItem3(C.float(value), C.float(angle)))
 	runtime.SetFinalizer(tmpValue, (*QBarDataItem).DestroyQBarDataItem)
 	return tmpValue
 }
@@ -8992,10 +8917,10 @@ func PointerFromQBarDataProxy(ptr QBarDataProxy_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarDataProxyFromPointer(ptr unsafe.Pointer) *QBarDataProxy {
-	var n = new(QBarDataProxy)
+func NewQBarDataProxyFromPointer(ptr unsafe.Pointer) (n *QBarDataProxy) {
+	n = new(QBarDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBarDataProxy(parent core.QObject_ITF) *QBarDataProxy {
 	return NewQBarDataProxyFromPointer(C.QBarDataProxy_NewQBarDataProxy(core.PointerFromQObject(parent)))
@@ -9405,7 +9330,7 @@ func (ptr *QBarDataProxy) SeriesChanged(series QBar3DSeries_ITF) {
 
 func (ptr *QBarDataProxy) SetColumnLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		var labelsC = C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
 		C.QBarDataProxy_SetColumnLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
@@ -9425,7 +9350,7 @@ func (ptr *QBarDataProxy) SetItem(rowIndex int, columnIndex int, item QBarDataIt
 
 func (ptr *QBarDataProxy) SetRowLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		var labelsC = C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
 		C.QBarDataProxy_SetRowLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
@@ -9549,10 +9474,10 @@ func PointerFromQCategory3DAxis(ptr QCategory3DAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCategory3DAxisFromPointer(ptr unsafe.Pointer) *QCategory3DAxis {
-	var n = new(QCategory3DAxis)
+func NewQCategory3DAxisFromPointer(ptr unsafe.Pointer) (n *QCategory3DAxis) {
+	n = new(QCategory3DAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCategory3DAxis(parent core.QObject_ITF) *QCategory3DAxis {
 	return NewQCategory3DAxisFromPointer(C.QCategory3DAxis_NewQCategory3DAxis(core.PointerFromQObject(parent)))
@@ -9599,7 +9524,7 @@ func (ptr *QCategory3DAxis) LabelsChanged() {
 
 func (ptr *QCategory3DAxis) SetLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		var labelsC = C.CString(strings.Join(labels, "|"))
+		labelsC := C.CString(strings.Join(labels, "|"))
 		defer C.free(unsafe.Pointer(labelsC))
 		C.QCategory3DAxis_SetLabels(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: labelsC, len: C.longlong(len(strings.Join(labels, "|")))})
 	}
@@ -9688,10 +9613,10 @@ func PointerFromQCustom3DItem(ptr QCustom3DItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCustom3DItemFromPointer(ptr unsafe.Pointer) *QCustom3DItem {
-	var n = new(QCustom3DItem)
+func NewQCustom3DItemFromPointer(ptr unsafe.Pointer) (n *QCustom3DItem) {
+	n = new(QCustom3DItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCustom3DItem(parent core.QObject_ITF) *QCustom3DItem {
 	return NewQCustom3DItemFromPointer(C.QCustom3DItem_NewQCustom3DItem(core.PointerFromQObject(parent)))
@@ -9708,7 +9633,7 @@ func NewQCustom3DItem2(meshFile string, position gui.QVector3D_ITF, scaling gui.
 
 func (ptr *QCustom3DItem) Rotation() *gui.QQuaternion {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQQuaternionFromPointer(C.QCustom3DItem_Rotation(ptr.Pointer()))
+		tmpValue := gui.NewQQuaternionFromPointer(C.QCustom3DItem_Rotation(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QQuaternion).DestroyQQuaternion)
 		return tmpValue
 	}
@@ -10214,7 +10139,7 @@ func (ptr *QCustom3DItem) TextureFile() string {
 
 func (ptr *QCustom3DItem) Position() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QCustom3DItem_Position(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QCustom3DItem_Position(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -10223,7 +10148,7 @@ func (ptr *QCustom3DItem) Position() *gui.QVector3D {
 
 func (ptr *QCustom3DItem) Scaling() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QCustom3DItem_Scaling(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QCustom3DItem_Scaling(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -10290,10 +10215,10 @@ func PointerFromQCustom3DLabel(ptr QCustom3DLabel_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCustom3DLabelFromPointer(ptr unsafe.Pointer) *QCustom3DLabel {
-	var n = new(QCustom3DLabel)
+func NewQCustom3DLabelFromPointer(ptr unsafe.Pointer) (n *QCustom3DLabel) {
+	n = new(QCustom3DLabel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCustom3DLabel(parent core.QObject_ITF) *QCustom3DLabel {
 	return NewQCustom3DLabelFromPointer(C.QCustom3DLabel_NewQCustom3DLabel(core.PointerFromQObject(parent)))
@@ -10681,7 +10606,7 @@ func (ptr *QCustom3DLabel) DestroyQCustom3DLabelDefault() {
 
 func (ptr *QCustom3DLabel) BackgroundColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QCustom3DLabel_BackgroundColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QCustom3DLabel_BackgroundColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -10690,7 +10615,7 @@ func (ptr *QCustom3DLabel) BackgroundColor() *gui.QColor {
 
 func (ptr *QCustom3DLabel) TextColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QCustom3DLabel_TextColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QCustom3DLabel_TextColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -10699,7 +10624,7 @@ func (ptr *QCustom3DLabel) TextColor() *gui.QColor {
 
 func (ptr *QCustom3DLabel) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QCustom3DLabel_Font(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QCustom3DLabel_Font(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -10766,10 +10691,10 @@ func PointerFromQCustom3DVolume(ptr QCustom3DVolume_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCustom3DVolumeFromPointer(ptr unsafe.Pointer) *QCustom3DVolume {
-	var n = new(QCustom3DVolume)
+func NewQCustom3DVolumeFromPointer(ptr unsafe.Pointer) (n *QCustom3DVolume) {
+	n = new(QCustom3DVolume)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCustom3DVolume(parent core.QObject_ITF) *QCustom3DVolume {
 	return NewQCustom3DVolumeFromPointer(C.QCustom3DVolume_NewQCustom3DVolume(core.PointerFromQObject(parent)))
@@ -10777,7 +10702,7 @@ func NewQCustom3DVolume(parent core.QObject_ITF) *QCustom3DVolume {
 
 func (ptr *QCustom3DVolume) RenderSlice(axis core.Qt__Axis, index int) *gui.QImage {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQImageFromPointer(C.QCustom3DVolume_RenderSlice(ptr.Pointer(), C.longlong(axis), C.int(int32(index))))
+		tmpValue := gui.NewQImageFromPointer(C.QCustom3DVolume_RenderSlice(ptr.Pointer(), C.longlong(axis), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -11620,7 +11545,7 @@ func (ptr *QCustom3DVolume) DestroyQCustom3DVolumeDefault() {
 
 func (ptr *QCustom3DVolume) SliceFrameColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QCustom3DVolume_SliceFrameColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QCustom3DVolume_SliceFrameColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -11636,7 +11561,7 @@ func (ptr *QCustom3DVolume) TextureFormat() gui.QImage__Format {
 
 func (ptr *QCustom3DVolume) SliceFrameGaps() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameGaps(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameGaps(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -11645,7 +11570,7 @@ func (ptr *QCustom3DVolume) SliceFrameGaps() *gui.QVector3D {
 
 func (ptr *QCustom3DVolume) SliceFrameThicknesses() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameThicknesses(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameThicknesses(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -11654,7 +11579,7 @@ func (ptr *QCustom3DVolume) SliceFrameThicknesses() *gui.QVector3D {
 
 func (ptr *QCustom3DVolume) SliceFrameWidths() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameWidths(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QCustom3DVolume_SliceFrameWidths(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -11739,15 +11664,15 @@ func (ptr *QCustom3DVolume) TextureWidth() int {
 }
 
 func (ptr *QCustom3DVolume) __QCustom3DVolume_colorTable_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QCustom3DVolume___QCustom3DVolume_colorTable_newList2(ptr.Pointer()))
+	return C.QCustom3DVolume___QCustom3DVolume_colorTable_newList2(ptr.Pointer())
 }
 
 func (ptr *QCustom3DVolume) __setColorTable_colors_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCustom3DVolume___setColorTable_colors_newList(ptr.Pointer()))
+	return C.QCustom3DVolume___setColorTable_colors_newList(ptr.Pointer())
 }
 
 func (ptr *QCustom3DVolume) __colorTable_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCustom3DVolume___colorTable_newList(ptr.Pointer()))
+	return C.QCustom3DVolume___colorTable_newList(ptr.Pointer())
 }
 
 type QHeightMapSurfaceDataProxy struct {
@@ -11782,10 +11707,10 @@ func PointerFromQHeightMapSurfaceDataProxy(ptr QHeightMapSurfaceDataProxy_ITF) u
 	return nil
 }
 
-func NewQHeightMapSurfaceDataProxyFromPointer(ptr unsafe.Pointer) *QHeightMapSurfaceDataProxy {
-	var n = new(QHeightMapSurfaceDataProxy)
+func NewQHeightMapSurfaceDataProxyFromPointer(ptr unsafe.Pointer) (n *QHeightMapSurfaceDataProxy) {
+	n = new(QHeightMapSurfaceDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHeightMapSurfaceDataProxy(parent core.QObject_ITF) *QHeightMapSurfaceDataProxy {
 	return NewQHeightMapSurfaceDataProxyFromPointer(C.QHeightMapSurfaceDataProxy_NewQHeightMapSurfaceDataProxy(core.PointerFromQObject(parent)))
@@ -12138,7 +12063,7 @@ func (ptr *QHeightMapSurfaceDataProxy) DestroyQHeightMapSurfaceDataProxyDefault(
 
 func (ptr *QHeightMapSurfaceDataProxy) HeightMap() *gui.QImage {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQImageFromPointer(C.QHeightMapSurfaceDataProxy_HeightMap(ptr.Pointer()))
+		tmpValue := gui.NewQImageFromPointer(C.QHeightMapSurfaceDataProxy_HeightMap(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -12212,10 +12137,10 @@ func PointerFromQItemModelBarDataProxy(ptr QItemModelBarDataProxy_ITF) unsafe.Po
 	return nil
 }
 
-func NewQItemModelBarDataProxyFromPointer(ptr unsafe.Pointer) *QItemModelBarDataProxy {
-	var n = new(QItemModelBarDataProxy)
+func NewQItemModelBarDataProxyFromPointer(ptr unsafe.Pointer) (n *QItemModelBarDataProxy) {
+	n = new(QItemModelBarDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QItemModelBarDataProxy__MultiMatchBehavior
@@ -12297,9 +12222,9 @@ func NewQItemModelBarDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRole s
 		rotationRoleC = C.CString(rotationRole)
 		defer C.free(unsafe.Pointer(rotationRoleC))
 	}
-	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
 	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
@@ -12320,9 +12245,9 @@ func NewQItemModelBarDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRole s
 		valueRoleC = C.CString(valueRole)
 		defer C.free(unsafe.Pointer(valueRoleC))
 	}
-	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
 	return NewQItemModelBarDataProxyFromPointer(C.QItemModelBarDataProxy_NewQItemModelBarDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
@@ -12708,9 +12633,9 @@ func (ptr *QItemModelBarDataProxy) Remap(rowRole string, columnRole string, valu
 			rotationRoleC = C.CString(rotationRole)
 			defer C.free(unsafe.Pointer(rotationRoleC))
 		}
-		var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+		rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
-		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+		columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
 		C.QItemModelBarDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: valueRoleC, len: C.longlong(len(valueRole))}, C.struct_QtDataVisualization_PackedString{data: rotationRoleC, len: C.longlong(len(rotationRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
 	}
@@ -13023,7 +12948,7 @@ func (ptr *QItemModelBarDataProxy) SetAutoRowCategories(enable bool) {
 
 func (ptr *QItemModelBarDataProxy) SetColumnCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QItemModelBarDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -13099,7 +13024,7 @@ func (ptr *QItemModelBarDataProxy) SetRotationRoleReplace(replace string) {
 
 func (ptr *QItemModelBarDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QItemModelBarDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -13388,7 +13313,7 @@ func (ptr *QItemModelBarDataProxy) MultiMatchBehavior() QItemModelBarDataProxy__
 
 func (ptr *QItemModelBarDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelBarDataProxy_ItemModel(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QItemModelBarDataProxy_ItemModel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -13399,7 +13324,7 @@ func (ptr *QItemModelBarDataProxy) ItemModel() *core.QAbstractItemModel {
 
 func (ptr *QItemModelBarDataProxy) ColumnRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_ColumnRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_ColumnRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -13408,7 +13333,7 @@ func (ptr *QItemModelBarDataProxy) ColumnRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelBarDataProxy) RotationRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_RotationRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_RotationRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -13417,7 +13342,7 @@ func (ptr *QItemModelBarDataProxy) RotationRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelBarDataProxy) RowRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_RowRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_RowRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -13426,7 +13351,7 @@ func (ptr *QItemModelBarDataProxy) RowRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelBarDataProxy) ValueRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_ValueRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelBarDataProxy_ValueRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -13556,10 +13481,10 @@ func PointerFromQItemModelScatterDataProxy(ptr QItemModelScatterDataProxy_ITF) u
 	return nil
 }
 
-func NewQItemModelScatterDataProxyFromPointer(ptr unsafe.Pointer) *QItemModelScatterDataProxy {
-	var n = new(QItemModelScatterDataProxy)
+func NewQItemModelScatterDataProxyFromPointer(ptr unsafe.Pointer) (n *QItemModelScatterDataProxy) {
+	n = new(QItemModelScatterDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQItemModelScatterDataProxy2(itemModel core.QAbstractItemModel_ITF, parent core.QObject_ITF) *QItemModelScatterDataProxy {
 	return NewQItemModelScatterDataProxyFromPointer(C.QItemModelScatterDataProxy_NewQItemModelScatterDataProxy2(core.PointerFromQAbstractItemModel(itemModel), core.PointerFromQObject(parent)))
@@ -14351,7 +14276,7 @@ func (ptr *QItemModelScatterDataProxy) DestroyQItemModelScatterDataProxyDefault(
 
 func (ptr *QItemModelScatterDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelScatterDataProxy_ItemModel(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QItemModelScatterDataProxy_ItemModel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -14362,7 +14287,7 @@ func (ptr *QItemModelScatterDataProxy) ItemModel() *core.QAbstractItemModel {
 
 func (ptr *QItemModelScatterDataProxy) RotationRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_RotationRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_RotationRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -14371,7 +14296,7 @@ func (ptr *QItemModelScatterDataProxy) RotationRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelScatterDataProxy) XPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_XPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_XPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -14380,7 +14305,7 @@ func (ptr *QItemModelScatterDataProxy) XPosRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelScatterDataProxy) YPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_YPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_YPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -14389,7 +14314,7 @@ func (ptr *QItemModelScatterDataProxy) YPosRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelScatterDataProxy) ZPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_ZPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelScatterDataProxy_ZPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -14484,10 +14409,10 @@ func PointerFromQItemModelSurfaceDataProxy(ptr QItemModelSurfaceDataProxy_ITF) u
 	return nil
 }
 
-func NewQItemModelSurfaceDataProxyFromPointer(ptr unsafe.Pointer) *QItemModelSurfaceDataProxy {
-	var n = new(QItemModelSurfaceDataProxy)
+func NewQItemModelSurfaceDataProxyFromPointer(ptr unsafe.Pointer) (n *QItemModelSurfaceDataProxy) {
+	n = new(QItemModelSurfaceDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QItemModelSurfaceDataProxy__MultiMatchBehavior
@@ -14560,9 +14485,9 @@ func NewQItemModelSurfaceDataProxy7(itemModel core.QAbstractItemModel_ITF, rowRo
 		zPosRoleC = C.CString(zPosRole)
 		defer C.free(unsafe.Pointer(zPosRoleC))
 	}
-	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
 	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy7(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
@@ -14602,9 +14527,9 @@ func NewQItemModelSurfaceDataProxy6(itemModel core.QAbstractItemModel_ITF, rowRo
 		yPosRoleC = C.CString(yPosRole)
 		defer C.free(unsafe.Pointer(yPosRoleC))
 	}
-	var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+	rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 	defer C.free(unsafe.Pointer(rowCategoriesC))
-	var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+	columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 	defer C.free(unsafe.Pointer(columnCategoriesC))
 	return NewQItemModelSurfaceDataProxyFromPointer(C.QItemModelSurfaceDataProxy_NewQItemModelSurfaceDataProxy6(core.PointerFromQAbstractItemModel(itemModel), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))}, core.PointerFromQObject(parent)))
 }
@@ -14995,9 +14920,9 @@ func (ptr *QItemModelSurfaceDataProxy) Remap(rowRole string, columnRole string, 
 			zPosRoleC = C.CString(zPosRole)
 			defer C.free(unsafe.Pointer(zPosRoleC))
 		}
-		var rowCategoriesC = C.CString(strings.Join(rowCategories, "|"))
+		rowCategoriesC := C.CString(strings.Join(rowCategories, "|"))
 		defer C.free(unsafe.Pointer(rowCategoriesC))
-		var columnCategoriesC = C.CString(strings.Join(columnCategories, "|"))
+		columnCategoriesC := C.CString(strings.Join(columnCategories, "|"))
 		defer C.free(unsafe.Pointer(columnCategoriesC))
 		C.QItemModelSurfaceDataProxy_Remap(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: rowRoleC, len: C.longlong(len(rowRole))}, C.struct_QtDataVisualization_PackedString{data: columnRoleC, len: C.longlong(len(columnRole))}, C.struct_QtDataVisualization_PackedString{data: xPosRoleC, len: C.longlong(len(xPosRole))}, C.struct_QtDataVisualization_PackedString{data: yPosRoleC, len: C.longlong(len(yPosRole))}, C.struct_QtDataVisualization_PackedString{data: zPosRoleC, len: C.longlong(len(zPosRole))}, C.struct_QtDataVisualization_PackedString{data: rowCategoriesC, len: C.longlong(len(strings.Join(rowCategories, "|")))}, C.struct_QtDataVisualization_PackedString{data: columnCategoriesC, len: C.longlong(len(strings.Join(columnCategories, "|")))})
 	}
@@ -15183,7 +15108,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetAutoRowCategories(enable bool) {
 
 func (ptr *QItemModelSurfaceDataProxy) SetColumnCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QItemModelSurfaceDataProxy_SetColumnCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -15231,7 +15156,7 @@ func (ptr *QItemModelSurfaceDataProxy) SetMultiMatchBehavior(behavior QItemModel
 
 func (ptr *QItemModelSurfaceDataProxy) SetRowCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QItemModelSurfaceDataProxy_SetRowCategories(ptr.Pointer(), C.struct_QtDataVisualization_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -15830,7 +15755,7 @@ func (ptr *QItemModelSurfaceDataProxy) MultiMatchBehavior() QItemModelSurfaceDat
 
 func (ptr *QItemModelSurfaceDataProxy) ItemModel() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QItemModelSurfaceDataProxy_ItemModel(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QItemModelSurfaceDataProxy_ItemModel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15841,7 +15766,7 @@ func (ptr *QItemModelSurfaceDataProxy) ItemModel() *core.QAbstractItemModel {
 
 func (ptr *QItemModelSurfaceDataProxy) ColumnRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_ColumnRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_ColumnRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -15850,7 +15775,7 @@ func (ptr *QItemModelSurfaceDataProxy) ColumnRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelSurfaceDataProxy) RowRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_RowRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_RowRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -15859,7 +15784,7 @@ func (ptr *QItemModelSurfaceDataProxy) RowRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelSurfaceDataProxy) XPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_XPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_XPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -15868,7 +15793,7 @@ func (ptr *QItemModelSurfaceDataProxy) XPosRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelSurfaceDataProxy) YPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_YPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_YPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -15877,7 +15802,7 @@ func (ptr *QItemModelSurfaceDataProxy) YPosRolePattern() *core.QRegExp {
 
 func (ptr *QItemModelSurfaceDataProxy) ZPosRolePattern() *core.QRegExp {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_ZPosRolePattern(ptr.Pointer()))
+		tmpValue := core.NewQRegExpFromPointer(C.QItemModelSurfaceDataProxy_ZPosRolePattern(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
 		return tmpValue
 	}
@@ -16021,10 +15946,10 @@ func PointerFromQLogValue3DAxisFormatter(ptr QLogValue3DAxisFormatter_ITF) unsaf
 	return nil
 }
 
-func NewQLogValue3DAxisFormatterFromPointer(ptr unsafe.Pointer) *QLogValue3DAxisFormatter {
-	var n = new(QLogValue3DAxisFormatter)
+func NewQLogValue3DAxisFormatterFromPointer(ptr unsafe.Pointer) (n *QLogValue3DAxisFormatter) {
+	n = new(QLogValue3DAxisFormatter)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQLogValue3DAxisFormatter(parent core.QObject_ITF) *QLogValue3DAxisFormatter {
 	return NewQLogValue3DAxisFormatterFromPointer(C.QLogValue3DAxisFormatter_NewQLogValue3DAxisFormatter(core.PointerFromQObject(parent)))
@@ -16262,10 +16187,10 @@ func PointerFromQScatter3DSeries(ptr QScatter3DSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQScatter3DSeriesFromPointer(ptr unsafe.Pointer) *QScatter3DSeries {
-	var n = new(QScatter3DSeries)
+func NewQScatter3DSeriesFromPointer(ptr unsafe.Pointer) (n *QScatter3DSeries) {
+	n = new(QScatter3DSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQScatter3DSeries(parent core.QObject_ITF) *QScatter3DSeries {
 	return NewQScatter3DSeriesFromPointer(C.QScatter3DSeries_NewQScatter3DSeries(core.PointerFromQObject(parent)))
@@ -16515,31 +16440,31 @@ func PointerFromQScatterDataItem(ptr QScatterDataItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQScatterDataItemFromPointer(ptr unsafe.Pointer) *QScatterDataItem {
-	var n = new(QScatterDataItem)
+func NewQScatterDataItemFromPointer(ptr unsafe.Pointer) (n *QScatterDataItem) {
+	n = new(QScatterDataItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQScatterDataItem() *QScatterDataItem {
-	var tmpValue = NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem())
+	tmpValue := NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem())
 	runtime.SetFinalizer(tmpValue, (*QScatterDataItem).DestroyQScatterDataItem)
 	return tmpValue
 }
 
 func NewQScatterDataItem4(other QScatterDataItem_ITF) *QScatterDataItem {
-	var tmpValue = NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem4(PointerFromQScatterDataItem(other)))
+	tmpValue := NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem4(PointerFromQScatterDataItem(other)))
 	runtime.SetFinalizer(tmpValue, (*QScatterDataItem).DestroyQScatterDataItem)
 	return tmpValue
 }
 
 func NewQScatterDataItem2(position gui.QVector3D_ITF) *QScatterDataItem {
-	var tmpValue = NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem2(gui.PointerFromQVector3D(position)))
+	tmpValue := NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem2(gui.PointerFromQVector3D(position)))
 	runtime.SetFinalizer(tmpValue, (*QScatterDataItem).DestroyQScatterDataItem)
 	return tmpValue
 }
 
 func NewQScatterDataItem3(position gui.QVector3D_ITF, rotation gui.QQuaternion_ITF) *QScatterDataItem {
-	var tmpValue = NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem3(gui.PointerFromQVector3D(position), gui.PointerFromQQuaternion(rotation)))
+	tmpValue := NewQScatterDataItemFromPointer(C.QScatterDataItem_NewQScatterDataItem3(gui.PointerFromQVector3D(position), gui.PointerFromQQuaternion(rotation)))
 	runtime.SetFinalizer(tmpValue, (*QScatterDataItem).DestroyQScatterDataItem)
 	return tmpValue
 }
@@ -16584,7 +16509,7 @@ func (ptr *QScatterDataItem) DestroyQScatterDataItem() {
 
 func (ptr *QScatterDataItem) Rotation() *gui.QQuaternion {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQQuaternionFromPointer(C.QScatterDataItem_Rotation(ptr.Pointer()))
+		tmpValue := gui.NewQQuaternionFromPointer(C.QScatterDataItem_Rotation(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QQuaternion).DestroyQQuaternion)
 		return tmpValue
 	}
@@ -16593,7 +16518,7 @@ func (ptr *QScatterDataItem) Rotation() *gui.QQuaternion {
 
 func (ptr *QScatterDataItem) Position() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QScatterDataItem_Position(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QScatterDataItem_Position(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -16653,10 +16578,10 @@ func PointerFromQScatterDataProxy(ptr QScatterDataProxy_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQScatterDataProxyFromPointer(ptr unsafe.Pointer) *QScatterDataProxy {
-	var n = new(QScatterDataProxy)
+func NewQScatterDataProxyFromPointer(ptr unsafe.Pointer) (n *QScatterDataProxy) {
+	n = new(QScatterDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQScatterDataProxy(parent core.QObject_ITF) *QScatterDataProxy {
 	return NewQScatterDataProxyFromPointer(C.QScatterDataProxy_NewQScatterDataProxy(core.PointerFromQObject(parent)))
@@ -17057,10 +16982,10 @@ func PointerFromQSurface3DSeries(ptr QSurface3DSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSurface3DSeriesFromPointer(ptr unsafe.Pointer) *QSurface3DSeries {
-	var n = new(QSurface3DSeries)
+func NewQSurface3DSeriesFromPointer(ptr unsafe.Pointer) (n *QSurface3DSeries) {
+	n = new(QSurface3DSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QSurface3DSeries__DrawFlag
@@ -17119,13 +17044,13 @@ func (ptr *QSurface3DSeries) SetDataProxy(proxy QSurfaceDataProxy_ITF) {
 }
 
 func QSurface3DSeries_InvalidSelectionPosition() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.QSurface3DSeries_QSurface3DSeries_InvalidSelectionPosition())
+	tmpValue := core.NewQPointFromPointer(C.QSurface3DSeries_QSurface3DSeries_InvalidSelectionPosition())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
 
 func (ptr *QSurface3DSeries) InvalidSelectionPosition() *core.QPoint {
-	var tmpValue = core.NewQPointFromPointer(C.QSurface3DSeries_QSurface3DSeries_InvalidSelectionPosition())
+	tmpValue := core.NewQPointFromPointer(C.QSurface3DSeries_QSurface3DSeries_InvalidSelectionPosition())
 	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 	return tmpValue
 }
@@ -17460,7 +17385,7 @@ func (ptr *QSurface3DSeries) DestroyQSurface3DSeriesDefault() {
 
 func (ptr *QSurface3DSeries) Texture() *gui.QImage {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQImageFromPointer(C.QSurface3DSeries_Texture(ptr.Pointer()))
+		tmpValue := gui.NewQImageFromPointer(C.QSurface3DSeries_Texture(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
 		return tmpValue
 	}
@@ -17469,7 +17394,7 @@ func (ptr *QSurface3DSeries) Texture() *gui.QImage {
 
 func (ptr *QSurface3DSeries) SelectedPoint() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.QSurface3DSeries_SelectedPoint(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.QSurface3DSeries_SelectedPoint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -17543,25 +17468,25 @@ func PointerFromQSurfaceDataItem(ptr QSurfaceDataItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSurfaceDataItemFromPointer(ptr unsafe.Pointer) *QSurfaceDataItem {
-	var n = new(QSurfaceDataItem)
+func NewQSurfaceDataItemFromPointer(ptr unsafe.Pointer) (n *QSurfaceDataItem) {
+	n = new(QSurfaceDataItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQSurfaceDataItem() *QSurfaceDataItem {
-	var tmpValue = NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem())
+	tmpValue := NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem())
 	runtime.SetFinalizer(tmpValue, (*QSurfaceDataItem).DestroyQSurfaceDataItem)
 	return tmpValue
 }
 
 func NewQSurfaceDataItem3(other QSurfaceDataItem_ITF) *QSurfaceDataItem {
-	var tmpValue = NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem3(PointerFromQSurfaceDataItem(other)))
+	tmpValue := NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem3(PointerFromQSurfaceDataItem(other)))
 	runtime.SetFinalizer(tmpValue, (*QSurfaceDataItem).DestroyQSurfaceDataItem)
 	return tmpValue
 }
 
 func NewQSurfaceDataItem2(position gui.QVector3D_ITF) *QSurfaceDataItem {
-	var tmpValue = NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem2(gui.PointerFromQVector3D(position)))
+	tmpValue := NewQSurfaceDataItemFromPointer(C.QSurfaceDataItem_NewQSurfaceDataItem2(gui.PointerFromQVector3D(position)))
 	runtime.SetFinalizer(tmpValue, (*QSurfaceDataItem).DestroyQSurfaceDataItem)
 	return tmpValue
 }
@@ -17600,7 +17525,7 @@ func (ptr *QSurfaceDataItem) DestroyQSurfaceDataItem() {
 
 func (ptr *QSurfaceDataItem) Position() *gui.QVector3D {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQVector3DFromPointer(C.QSurfaceDataItem_Position(ptr.Pointer()))
+		tmpValue := gui.NewQVector3DFromPointer(C.QSurfaceDataItem_Position(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
@@ -17660,10 +17585,10 @@ func PointerFromQSurfaceDataProxy(ptr QSurfaceDataProxy_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSurfaceDataProxyFromPointer(ptr unsafe.Pointer) *QSurfaceDataProxy {
-	var n = new(QSurfaceDataProxy)
+func NewQSurfaceDataProxyFromPointer(ptr unsafe.Pointer) (n *QSurfaceDataProxy) {
+	n = new(QSurfaceDataProxy)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQSurfaceDataProxy(parent core.QObject_ITF) *QSurfaceDataProxy {
 	return NewQSurfaceDataProxyFromPointer(C.QSurfaceDataProxy_NewQSurfaceDataProxy(core.PointerFromQObject(parent)))
@@ -18149,10 +18074,10 @@ func PointerFromQTouch3DInputHandler(ptr QTouch3DInputHandler_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQTouch3DInputHandlerFromPointer(ptr unsafe.Pointer) *QTouch3DInputHandler {
-	var n = new(QTouch3DInputHandler)
+func NewQTouch3DInputHandlerFromPointer(ptr unsafe.Pointer) (n *QTouch3DInputHandler) {
+	n = new(QTouch3DInputHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQTouch3DInputHandler(parent core.QObject_ITF) *QTouch3DInputHandler {
 	return NewQTouch3DInputHandlerFromPointer(C.QTouch3DInputHandler_NewQTouch3DInputHandler(core.PointerFromQObject(parent)))
@@ -18276,10 +18201,10 @@ func PointerFromQValue3DAxis(ptr QValue3DAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQValue3DAxisFromPointer(ptr unsafe.Pointer) *QValue3DAxis {
-	var n = new(QValue3DAxis)
+func NewQValue3DAxisFromPointer(ptr unsafe.Pointer) (n *QValue3DAxis) {
+	n = new(QValue3DAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQValue3DAxis(parent core.QObject_ITF) *QValue3DAxis {
 	return NewQValue3DAxisFromPointer(C.QValue3DAxis_NewQValue3DAxis(core.PointerFromQObject(parent)))
@@ -18631,10 +18556,10 @@ func PointerFromQValue3DAxisFormatter(ptr QValue3DAxisFormatter_ITF) unsafe.Poin
 	return nil
 }
 
-func NewQValue3DAxisFormatterFromPointer(ptr unsafe.Pointer) *QValue3DAxisFormatter {
-	var n = new(QValue3DAxisFormatter)
+func NewQValue3DAxisFormatterFromPointer(ptr unsafe.Pointer) (n *QValue3DAxisFormatter) {
+	n = new(QValue3DAxisFormatter)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQValue3DAxisFormatter(parent core.QObject_ITF) *QValue3DAxisFormatter {
 	return NewQValue3DAxisFormatterFromPointer(C.QValue3DAxisFormatter_NewQValue3DAxisFormatter(core.PointerFromQObject(parent)))
@@ -18754,7 +18679,7 @@ func (ptr *QValue3DAxisFormatter) DestroyQValue3DAxisFormatterDefault() {
 
 func (ptr *QValue3DAxisFormatter) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQLocaleFromPointer(C.QValue3DAxisFormatter_Locale(ptr.Pointer()))
+		tmpValue := core.NewQLocaleFromPointer(C.QValue3DAxisFormatter_Locale(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
@@ -18877,9 +18802,9 @@ func (ptr *QValue3DAxisFormatter) CreateNewInstanceDefault() *QValue3DAxisFormat
 func (ptr *QValue3DAxisFormatter) GridPositions() []float32 {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
-			var out = make([]float32, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__gridPositions_atList(i)
+			out := make([]float32, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QValue3DAxisFormatter)(nil).__gridPositions_atList(i, l.data)
 			}
 			return out
 		}(C.QValue3DAxisFormatter_GridPositions(ptr.Pointer()))
@@ -18890,9 +18815,9 @@ func (ptr *QValue3DAxisFormatter) GridPositions() []float32 {
 func (ptr *QValue3DAxisFormatter) LabelPositions() []float32 {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
-			var out = make([]float32, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__labelPositions_atList(i)
+			out := make([]float32, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QValue3DAxisFormatter)(nil).__labelPositions_atList(i, l.data)
 			}
 			return out
 		}(C.QValue3DAxisFormatter_LabelPositions(ptr.Pointer()))
@@ -18903,9 +18828,9 @@ func (ptr *QValue3DAxisFormatter) LabelPositions() []float32 {
 func (ptr *QValue3DAxisFormatter) SubGridPositions() []float32 {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDataVisualization_PackedList) []float32 {
-			var out = make([]float32, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQValue3DAxisFormatterFromPointer(l.data).__subGridPositions_atList(i)
+			out := make([]float32, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QValue3DAxisFormatter)(nil).__subGridPositions_atList(i, l.data)
 			}
 			return out
 		}(C.QValue3DAxisFormatter_SubGridPositions(ptr.Pointer()))
@@ -19057,53 +18982,38 @@ func (ptr *QValue3DAxisFormatter) PopulateCopyDefault(copy QValue3DAxisFormatter
 	}
 }
 
-func (ptr *QValue3DAxisFormatter) __gridPositions_atList(i int) float32 {
-	if ptr.Pointer() != nil {
-		return float32(C.QValue3DAxisFormatter___gridPositions_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+func (ptr *QValue3DAxisFormatter) __gridPositions_atList(i int, p unsafe.Pointer) float32 {
+	return float32(C.QValue3DAxisFormatter___gridPositions_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QValue3DAxisFormatter) __gridPositions_setList(i float32) {
-	if ptr.Pointer() != nil {
-		C.QValue3DAxisFormatter___gridPositions_setList(ptr.Pointer(), C.float(i))
-	}
+func (ptr *QValue3DAxisFormatter) __gridPositions_setList(i float32, p unsafe.Pointer) {
+	C.QValue3DAxisFormatter___gridPositions_setList(ptr.Pointer(), C.float(i), p)
 }
 
 func (ptr *QValue3DAxisFormatter) __gridPositions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QValue3DAxisFormatter___gridPositions_newList(ptr.Pointer()))
+	return C.QValue3DAxisFormatter___gridPositions_newList(ptr.Pointer())
 }
 
-func (ptr *QValue3DAxisFormatter) __labelPositions_atList(i int) float32 {
-	if ptr.Pointer() != nil {
-		return float32(C.QValue3DAxisFormatter___labelPositions_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+func (ptr *QValue3DAxisFormatter) __labelPositions_atList(i int, p unsafe.Pointer) float32 {
+	return float32(C.QValue3DAxisFormatter___labelPositions_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QValue3DAxisFormatter) __labelPositions_setList(i float32) {
-	if ptr.Pointer() != nil {
-		C.QValue3DAxisFormatter___labelPositions_setList(ptr.Pointer(), C.float(i))
-	}
+func (ptr *QValue3DAxisFormatter) __labelPositions_setList(i float32, p unsafe.Pointer) {
+	C.QValue3DAxisFormatter___labelPositions_setList(ptr.Pointer(), C.float(i), p)
 }
 
 func (ptr *QValue3DAxisFormatter) __labelPositions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QValue3DAxisFormatter___labelPositions_newList(ptr.Pointer()))
+	return C.QValue3DAxisFormatter___labelPositions_newList(ptr.Pointer())
 }
 
-func (ptr *QValue3DAxisFormatter) __subGridPositions_atList(i int) float32 {
-	if ptr.Pointer() != nil {
-		return float32(C.QValue3DAxisFormatter___subGridPositions_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+func (ptr *QValue3DAxisFormatter) __subGridPositions_atList(i int, p unsafe.Pointer) float32 {
+	return float32(C.QValue3DAxisFormatter___subGridPositions_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QValue3DAxisFormatter) __subGridPositions_setList(i float32) {
-	if ptr.Pointer() != nil {
-		C.QValue3DAxisFormatter___subGridPositions_setList(ptr.Pointer(), C.float(i))
-	}
+func (ptr *QValue3DAxisFormatter) __subGridPositions_setList(i float32, p unsafe.Pointer) {
+	C.QValue3DAxisFormatter___subGridPositions_setList(ptr.Pointer(), C.float(i), p)
 }
 
 func (ptr *QValue3DAxisFormatter) __subGridPositions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QValue3DAxisFormatter___subGridPositions_newList(ptr.Pointer()))
+	return C.QValue3DAxisFormatter___subGridPositions_newList(ptr.Pointer())
 }

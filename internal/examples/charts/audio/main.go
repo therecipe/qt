@@ -1,5 +1,4 @@
 //source: http://doc.qt.io/qt-5/qtcharts-audio-example.html
-//TODO: leaks memory, probably *_newList
 
 package main
 

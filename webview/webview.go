@@ -13,7 +13,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtWebView_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -51,10 +51,10 @@ func PointerFromQtWebView(ptr QtWebView_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQtWebViewFromPointer(ptr unsafe.Pointer) *QtWebView {
-	var n = new(QtWebView)
+func NewQtWebViewFromPointer(ptr unsafe.Pointer) (n *QtWebView) {
+	n = new(QtWebView)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QtWebView) DestroyQtWebView() {

@@ -551,124 +551,134 @@ int QAbstractTextDocumentLayout_PageCount(void* ptr)
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->pageCount();
 }
 
-void* QAbstractTextDocumentLayout___dynamicPropertyNames_atList(void* ptr, int i)
+void* QAbstractTextDocumentLayout___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractTextDocumentLayout___dynamicPropertyNames_setList(void* ptr, void* i)
+void QAbstractTextDocumentLayout___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QAbstractTextDocumentLayout___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QAbstractTextDocumentLayout___findChildren_atList2(void* ptr, int i)
+void* QAbstractTextDocumentLayout___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractTextDocumentLayout___findChildren_setList2(void* ptr, void* i)
+void QAbstractTextDocumentLayout___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAbstractTextDocumentLayout___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractTextDocumentLayout___findChildren_atList3(void* ptr, int i)
+void* QAbstractTextDocumentLayout___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractTextDocumentLayout___findChildren_setList3(void* ptr, void* i)
+void QAbstractTextDocumentLayout___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAbstractTextDocumentLayout___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractTextDocumentLayout___findChildren_atList(void* ptr, int i)
+void* QAbstractTextDocumentLayout___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractTextDocumentLayout___findChildren_setList(void* ptr, void* i)
+void QAbstractTextDocumentLayout___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAbstractTextDocumentLayout___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractTextDocumentLayout___children_atList(void* ptr, int i)
+void* QAbstractTextDocumentLayout___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractTextDocumentLayout___children_setList(void* ptr, void* i)
+void QAbstractTextDocumentLayout___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAbstractTextDocumentLayout___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QAbstractTextDocumentLayout_EventDefault(void* ptr, void* e)
@@ -1480,124 +1490,134 @@ void QAccessiblePlugin_DestroyQAccessiblePlugin(void* ptr)
 	static_cast<QAccessiblePlugin*>(ptr)->~QAccessiblePlugin();
 }
 
-void* QAccessiblePlugin___dynamicPropertyNames_atList(void* ptr, int i)
+void* QAccessiblePlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessiblePlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+void QAccessiblePlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QAccessiblePlugin___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QAccessiblePlugin___findChildren_atList2(void* ptr, int i)
+void* QAccessiblePlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessiblePlugin___findChildren_setList2(void* ptr, void* i)
+void QAccessiblePlugin___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAccessiblePlugin___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAccessiblePlugin___findChildren_atList3(void* ptr, int i)
+void* QAccessiblePlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessiblePlugin___findChildren_setList3(void* ptr, void* i)
+void QAccessiblePlugin___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAccessiblePlugin___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAccessiblePlugin___findChildren_atList(void* ptr, int i)
+void* QAccessiblePlugin___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessiblePlugin___findChildren_setList(void* ptr, void* i)
+void QAccessiblePlugin___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAccessiblePlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAccessiblePlugin___children_atList(void* ptr, int i)
+void* QAccessiblePlugin___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessiblePlugin___children_setList(void* ptr, void* i)
+void QAccessiblePlugin___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QAccessiblePlugin___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QAccessiblePlugin_EventDefault(void* ptr, void* e)
@@ -1666,8 +1686,8 @@ class MyQAccessibleTableCellInterface: public QAccessibleTableCellInterface
 public:
 	 ~MyQAccessibleTableCellInterface() { callbackQAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(this); };
 	QAccessibleInterface * table() const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableCellInterface_Table(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<QAccessibleInterface *> columnHeaderCells() const { return *static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableCellInterface_ColumnHeaderCells(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<QAccessibleInterface *> rowHeaderCells() const { return *static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableCellInterface_RowHeaderCells(const_cast<void*>(static_cast<const void*>(this)))); };
+	QList<QAccessibleInterface *> columnHeaderCells() const { return ({ QList<QAccessibleInterface *>* tmpP = static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableCellInterface_ColumnHeaderCells(const_cast<void*>(static_cast<const void*>(this)))); QList<QAccessibleInterface *> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<QAccessibleInterface *> rowHeaderCells() const { return ({ QList<QAccessibleInterface *>* tmpP = static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableCellInterface_RowHeaderCells(const_cast<void*>(static_cast<const void*>(this)))); QList<QAccessibleInterface *> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	bool isSelected() const { return callbackQAccessibleTableCellInterface_IsSelected(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int columnExtent() const { return callbackQAccessibleTableCellInterface_ColumnExtent(const_cast<void*>(static_cast<const void*>(this))); };
 	int columnIndex() const { return callbackQAccessibleTableCellInterface_ColumnIndex(const_cast<void*>(static_cast<const void*>(this))); };
@@ -1726,36 +1746,40 @@ int QAccessibleTableCellInterface_RowIndex(void* ptr)
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->rowIndex();
 }
 
-void* QAccessibleTableCellInterface___columnHeaderCells_atList(void* ptr, int i)
+void* QAccessibleTableCellInterface___columnHeaderCells_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QAccessibleInterface*>(static_cast<QList<QAccessibleInterface *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QAccessibleInterface*>(({const QAccessibleInterface * tmp = static_cast<QList<QAccessibleInterface *>*>(p)->at(i); if (i == static_cast<QList<QAccessibleInterface *>*>(p)->size()-1) { static_cast<QList<QAccessibleInterface *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessibleTableCellInterface___columnHeaderCells_setList(void* ptr, void* i)
+void QAccessibleTableCellInterface___columnHeaderCells_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QAccessibleInterface *>*>(ptr)->append(static_cast<QAccessibleInterface*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QAccessibleInterface *>*>(p)->append(static_cast<QAccessibleInterface*>(i));
 }
 
 void* QAccessibleTableCellInterface___columnHeaderCells_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QAccessibleInterface *>;
+	return new QList<QAccessibleInterface *>();
 }
 
-void* QAccessibleTableCellInterface___rowHeaderCells_atList(void* ptr, int i)
+void* QAccessibleTableCellInterface___rowHeaderCells_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QAccessibleInterface*>(static_cast<QList<QAccessibleInterface *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QAccessibleInterface*>(({const QAccessibleInterface * tmp = static_cast<QList<QAccessibleInterface *>*>(p)->at(i); if (i == static_cast<QList<QAccessibleInterface *>*>(p)->size()-1) { static_cast<QList<QAccessibleInterface *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessibleTableCellInterface___rowHeaderCells_setList(void* ptr, void* i)
+void QAccessibleTableCellInterface___rowHeaderCells_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QAccessibleInterface *>*>(ptr)->append(static_cast<QAccessibleInterface*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QAccessibleInterface *>*>(p)->append(static_cast<QAccessibleInterface*>(i));
 }
 
 void* QAccessibleTableCellInterface___rowHeaderCells_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QAccessibleInterface *>;
+	return new QList<QAccessibleInterface *>();
 }
 
 class MyQAccessibleTableInterface: public QAccessibleTableInterface
@@ -1770,9 +1794,9 @@ public:
 	QAccessibleInterface * caption() const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableInterface_Caption(const_cast<void*>(static_cast<const void*>(this)))); };
 	QAccessibleInterface * cellAt(int row, int column) const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableInterface_CellAt(const_cast<void*>(static_cast<const void*>(this)), row, column)); };
 	QAccessibleInterface * summary() const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableInterface_Summary(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<QAccessibleInterface *> selectedCells() const { return *static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableInterface_SelectedCells(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<int> selectedColumns() const { return *static_cast<QList<int>*>(callbackQAccessibleTableInterface_SelectedColumns(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<int> selectedRows() const { return *static_cast<QList<int>*>(callbackQAccessibleTableInterface_SelectedRows(const_cast<void*>(static_cast<const void*>(this)))); };
+	QList<QAccessibleInterface *> selectedCells() const { return ({ QList<QAccessibleInterface *>* tmpP = static_cast<QList<QAccessibleInterface *>*>(callbackQAccessibleTableInterface_SelectedCells(const_cast<void*>(static_cast<const void*>(this)))); QList<QAccessibleInterface *> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<int> selectedColumns() const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAccessibleTableInterface_SelectedColumns(const_cast<void*>(static_cast<const void*>(this)))); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<int> selectedRows() const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAccessibleTableInterface_SelectedRows(const_cast<void*>(static_cast<const void*>(this)))); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString columnDescription(int column) const { return ({ QtGui_PackedString tempVal = callbackQAccessibleTableInterface_ColumnDescription(const_cast<void*>(static_cast<const void*>(this)), column); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString rowDescription(int row) const { return ({ QtGui_PackedString tempVal = callbackQAccessibleTableInterface_RowDescription(const_cast<void*>(static_cast<const void*>(this)), row); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isColumnSelected(int column) const { return callbackQAccessibleTableInterface_IsColumnSelected(const_cast<void*>(static_cast<const void*>(this)), column) != 0; };
@@ -1895,52 +1919,58 @@ int QAccessibleTableInterface_SelectedRowCount(void* ptr)
 	return static_cast<QAccessibleTableInterface*>(ptr)->selectedRowCount();
 }
 
-void* QAccessibleTableInterface___selectedCells_atList(void* ptr, int i)
+void* QAccessibleTableInterface___selectedCells_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QAccessibleInterface*>(static_cast<QList<QAccessibleInterface *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QAccessibleInterface*>(({const QAccessibleInterface * tmp = static_cast<QList<QAccessibleInterface *>*>(p)->at(i); if (i == static_cast<QList<QAccessibleInterface *>*>(p)->size()-1) { static_cast<QList<QAccessibleInterface *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAccessibleTableInterface___selectedCells_setList(void* ptr, void* i)
+void QAccessibleTableInterface___selectedCells_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QAccessibleInterface *>*>(ptr)->append(static_cast<QAccessibleInterface*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QAccessibleInterface *>*>(p)->append(static_cast<QAccessibleInterface*>(i));
 }
 
 void* QAccessibleTableInterface___selectedCells_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QAccessibleInterface *>;
+	return new QList<QAccessibleInterface *>();
 }
 
-int QAccessibleTableInterface___selectedColumns_atList(void* ptr, int i)
+int QAccessibleTableInterface___selectedColumns_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QAccessibleTableInterface___selectedColumns_setList(void* ptr, int i)
+void QAccessibleTableInterface___selectedColumns_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QAccessibleTableInterface___selectedColumns_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QAccessibleTableInterface___selectedRows_atList(void* ptr, int i)
+int QAccessibleTableInterface___selectedRows_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QAccessibleTableInterface___selectedRows_setList(void* ptr, int i)
+void QAccessibleTableInterface___selectedRows_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QAccessibleTableInterface___selectedRows_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
 class MyQAccessibleTableModelChangeEvent: public QAccessibleTableModelChangeEvent
@@ -3254,124 +3284,134 @@ void* QClipboard_MimeData(void* ptr, long long mode)
 	return const_cast<QMimeData*>(static_cast<QClipboard*>(ptr)->mimeData(static_cast<QClipboard::Mode>(mode)));
 }
 
-void* QClipboard___dynamicPropertyNames_atList(void* ptr, int i)
+void* QClipboard___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QClipboard___dynamicPropertyNames_setList(void* ptr, void* i)
+void QClipboard___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QClipboard___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QClipboard___findChildren_atList2(void* ptr, int i)
+void* QClipboard___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QClipboard___findChildren_setList2(void* ptr, void* i)
+void QClipboard___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QClipboard___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QClipboard___findChildren_atList3(void* ptr, int i)
+void* QClipboard___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QClipboard___findChildren_setList3(void* ptr, void* i)
+void QClipboard___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QClipboard___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QClipboard___findChildren_atList(void* ptr, int i)
+void* QClipboard___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QClipboard___findChildren_setList(void* ptr, void* i)
+void QClipboard___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QClipboard___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QClipboard___children_atList(void* ptr, int i)
+void* QClipboard___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QClipboard___children_setList(void* ptr, void* i)
+void QClipboard___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QClipboard___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QClipboard_EventDefault(void* ptr, void* e)
@@ -4526,124 +4566,134 @@ long long QDrag_SupportedActions(void* ptr)
 	return static_cast<QDrag*>(ptr)->supportedActions();
 }
 
-void* QDrag___dynamicPropertyNames_atList(void* ptr, int i)
+void* QDrag___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QDrag___dynamicPropertyNames_setList(void* ptr, void* i)
+void QDrag___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QDrag___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QDrag___findChildren_atList2(void* ptr, int i)
+void* QDrag___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QDrag___findChildren_setList2(void* ptr, void* i)
+void QDrag___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QDrag___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QDrag___findChildren_atList3(void* ptr, int i)
+void* QDrag___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QDrag___findChildren_setList3(void* ptr, void* i)
+void QDrag___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QDrag___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QDrag___findChildren_atList(void* ptr, int i)
+void* QDrag___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QDrag___findChildren_setList(void* ptr, void* i)
+void QDrag___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QDrag___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QDrag___children_atList(void* ptr, int i)
+void* QDrag___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QDrag___children_setList(void* ptr, void* i)
+void QDrag___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QDrag___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QDrag_EventDefault(void* ptr, void* e)
@@ -5531,52 +5581,58 @@ int QFontDatabase_Weight(void* ptr, struct QtGui_PackedString family, struct QtG
 	return static_cast<QFontDatabase*>(ptr)->weight(QString::fromUtf8(family.data, family.len), QString::fromUtf8(style.data, style.len));
 }
 
-int QFontDatabase___pointSizes_atList(void* ptr, int i)
+int QFontDatabase___pointSizes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QFontDatabase___pointSizes_setList(void* ptr, int i)
+void QFontDatabase___pointSizes_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QFontDatabase___pointSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QFontDatabase___smoothSizes_atList(void* ptr, int i)
+int QFontDatabase___smoothSizes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QFontDatabase___smoothSizes_setList(void* ptr, int i)
+void QFontDatabase___smoothSizes_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QFontDatabase___smoothSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QFontDatabase___standardSizes_atList(void* ptr, int i)
+int QFontDatabase___standardSizes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QFontDatabase___standardSizes_setList(void* ptr, int i)
+void QFontDatabase___standardSizes_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QFontDatabase___standardSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
 void* QFontInfo_NewQFontInfo(void* font)
@@ -6078,124 +6134,134 @@ void QGenericPlugin_DestroyQGenericPlugin(void* ptr)
 	static_cast<QGenericPlugin*>(ptr)->~QGenericPlugin();
 }
 
-void* QGenericPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+void* QGenericPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGenericPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+void QGenericPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QGenericPlugin___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QGenericPlugin___findChildren_atList2(void* ptr, int i)
+void* QGenericPlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGenericPlugin___findChildren_setList2(void* ptr, void* i)
+void QGenericPlugin___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGenericPlugin___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGenericPlugin___findChildren_atList3(void* ptr, int i)
+void* QGenericPlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGenericPlugin___findChildren_setList3(void* ptr, void* i)
+void QGenericPlugin___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGenericPlugin___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGenericPlugin___findChildren_atList(void* ptr, int i)
+void* QGenericPlugin___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGenericPlugin___findChildren_setList(void* ptr, void* i)
+void QGenericPlugin___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGenericPlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGenericPlugin___children_atList(void* ptr, int i)
+void* QGenericPlugin___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGenericPlugin___children_setList(void* ptr, void* i)
+void QGenericPlugin___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGenericPlugin___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QGenericPlugin_EventDefault(void* ptr, void* e)
@@ -6393,68 +6459,76 @@ char QGlyphRun_Underline(void* ptr)
 	return static_cast<QGlyphRun*>(ptr)->underline();
 }
 
-unsigned int QGlyphRun___setGlyphIndexes_glyphIndexes_atList(void* ptr, int i)
+unsigned int QGlyphRun___setGlyphIndexes_glyphIndexes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<quint32>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const quint32 tmp = static_cast<QVector<quint32>*>(p)->at(i); if (i == static_cast<QVector<quint32>*>(p)->size()-1) { static_cast<QVector<quint32>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QGlyphRun___setGlyphIndexes_glyphIndexes_setList(void* ptr, unsigned int i)
+void QGlyphRun___setGlyphIndexes_glyphIndexes_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<quint32>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<quint32>*>(p)->append(i);
 }
 
 void* QGlyphRun___setGlyphIndexes_glyphIndexes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<quint32>;
+	return new QVector<quint32>();
 }
 
-void* QGlyphRun___setPositions_positions_atList(void* ptr, int i)
+void* QGlyphRun___setPositions_positions_atList(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QGlyphRun___setPositions_positions_setList(void* ptr, void* i)
+void QGlyphRun___setPositions_positions_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QGlyphRun___setPositions_positions_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-void* QGlyphRun___positions_atList(void* ptr, int i)
+void* QGlyphRun___positions_atList(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QGlyphRun___positions_setList(void* ptr, void* i)
+void QGlyphRun___positions_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QGlyphRun___positions_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-unsigned int QGlyphRun___glyphIndexes_atList(void* ptr, int i)
+unsigned int QGlyphRun___glyphIndexes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<quint32>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const quint32 tmp = static_cast<QVector<quint32>*>(p)->at(i); if (i == static_cast<QVector<quint32>*>(p)->size()-1) { static_cast<QVector<quint32>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QGlyphRun___glyphIndexes_setList(void* ptr, unsigned int i)
+void QGlyphRun___glyphIndexes_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<quint32>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<quint32>*>(p)->append(i);
 }
 
 void* QGlyphRun___glyphIndexes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<quint32>;
+	return new QVector<quint32>();
 }
 
 void QGradient_SetColorAt(void* ptr, double position, void* color)
@@ -6993,140 +7067,152 @@ double QGuiApplication_DevicePixelRatio(void* ptr)
 	return static_cast<QGuiApplication*>(ptr)->devicePixelRatio();
 }
 
-void* QGuiApplication___screens_atList(void* ptr, int i)
+void* QGuiApplication___screens_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QScreen*>(static_cast<QList<QScreen *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QScreen*>(({const QScreen * tmp = static_cast<QList<QScreen *>*>(p)->at(i); if (i == static_cast<QList<QScreen *>*>(p)->size()-1) { static_cast<QList<QScreen *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___screens_setList(void* ptr, void* i)
+void QGuiApplication___screens_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QScreen *>*>(ptr)->append(static_cast<QScreen*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QScreen *>*>(p)->append(static_cast<QScreen*>(i));
 }
 
 void* QGuiApplication___screens_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QScreen *>;
+	return new QList<QScreen *>();
 }
 
-void* QGuiApplication___dynamicPropertyNames_atList(void* ptr, int i)
+void* QGuiApplication___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___dynamicPropertyNames_setList(void* ptr, void* i)
+void QGuiApplication___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QGuiApplication___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QGuiApplication___findChildren_atList2(void* ptr, int i)
+void* QGuiApplication___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___findChildren_setList2(void* ptr, void* i)
+void QGuiApplication___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGuiApplication___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGuiApplication___findChildren_atList3(void* ptr, int i)
+void* QGuiApplication___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___findChildren_setList3(void* ptr, void* i)
+void QGuiApplication___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGuiApplication___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGuiApplication___findChildren_atList(void* ptr, int i)
+void* QGuiApplication___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___findChildren_setList(void* ptr, void* i)
+void QGuiApplication___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGuiApplication___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QGuiApplication___children_atList(void* ptr, int i)
+void* QGuiApplication___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QGuiApplication___children_setList(void* ptr, void* i)
+void QGuiApplication___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QGuiApplication___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 void QGuiApplication_QuitDefault(void* ptr)
@@ -7435,20 +7521,22 @@ void* QIcon_ToVariant(void* ptr)
 	return new QVariant(*static_cast<QIcon*>(ptr));
 }
 
-void* QIcon___availableSizes_atList(void* ptr, int i)
+void* QIcon___availableSizes_atList(void* ptr, int i, void* p)
 {
-	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QIcon___availableSizes_setList(void* ptr, void* i)
+void QIcon___availableSizes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QSize>*>(ptr)->append(*static_cast<QSize*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QSize>*>(p)->append(*static_cast<QSize*>(i));
 }
 
 void* QIcon___availableSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QSize>;
+	return new QList<QSize>();
 }
 
 class MyQIconDragEvent: public QIconDragEvent
@@ -7475,7 +7563,7 @@ public:
 	void virtual_hook(int id, void * data) { callbackQIconEngine_Virtual_hook(this, id, data); };
 	 ~MyQIconEngine() { callbackQIconEngine_DestroyQIconEngine(this); };
 	QIconEngine * clone() const { return static_cast<QIconEngine*>(callbackQIconEngine_Clone(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const { return *static_cast<QList<QSize>*>(callbackQIconEngine_AvailableSizes(const_cast<void*>(static_cast<const void*>(this)), mode, state)); };
+	QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQIconEngine_AvailableSizes(const_cast<void*>(static_cast<const void*>(this)), mode, state)); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString iconName() const { return ({ QtGui_PackedString tempVal = callbackQIconEngine_IconName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString key() const { return ({ QtGui_PackedString tempVal = callbackQIconEngine_Key(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool write(QDataStream & out) const { return callbackQIconEngine_Write(const_cast<void*>(static_cast<const void*>(this)), static_cast<QDataStream*>(&out)) != 0; };
@@ -7617,20 +7705,22 @@ char QIconEngine_WriteDefault(void* ptr, void* out)
 		return static_cast<QIconEngine*>(ptr)->QIconEngine::write(*static_cast<QDataStream*>(out));
 }
 
-void* QIconEngine___availableSizes_atList(void* ptr, int i)
+void* QIconEngine___availableSizes_atList(void* ptr, int i, void* p)
 {
-	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QIconEngine___availableSizes_setList(void* ptr, void* i)
+void QIconEngine___availableSizes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QSize>*>(ptr)->append(*static_cast<QSize*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QSize>*>(p)->append(*static_cast<QSize*>(i));
 }
 
 void* QIconEngine___availableSizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QSize>;
+	return new QList<QSize>();
 }
 
 class MyQIconEnginePlugin: public QIconEnginePlugin
@@ -7706,124 +7796,134 @@ void QIconEnginePlugin_DestroyQIconEnginePlugin(void* ptr)
 	static_cast<QIconEnginePlugin*>(ptr)->~QIconEnginePlugin();
 }
 
-void* QIconEnginePlugin___dynamicPropertyNames_atList(void* ptr, int i)
+void* QIconEnginePlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QIconEnginePlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+void QIconEnginePlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QIconEnginePlugin___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QIconEnginePlugin___findChildren_atList2(void* ptr, int i)
+void* QIconEnginePlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QIconEnginePlugin___findChildren_setList2(void* ptr, void* i)
+void QIconEnginePlugin___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QIconEnginePlugin___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QIconEnginePlugin___findChildren_atList3(void* ptr, int i)
+void* QIconEnginePlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QIconEnginePlugin___findChildren_setList3(void* ptr, void* i)
+void QIconEnginePlugin___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QIconEnginePlugin___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QIconEnginePlugin___findChildren_atList(void* ptr, int i)
+void* QIconEnginePlugin___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QIconEnginePlugin___findChildren_setList(void* ptr, void* i)
+void QIconEnginePlugin___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QIconEnginePlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QIconEnginePlugin___children_atList(void* ptr, int i)
+void* QIconEnginePlugin___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QIconEnginePlugin___children_setList(void* ptr, void* i)
+void QIconEnginePlugin___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QIconEnginePlugin___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QIconEnginePlugin_EventDefault(void* ptr, void* e)
@@ -8282,19 +8382,19 @@ void* QImage_ToVariant(void* ptr)
 void* QImage___setColorTable_colors_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRgb>;
+	return new QVector<QRgb>();
 }
 
 void* QImage___convertToFormat_colorTable_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRgb>;
+	return new QVector<QRgb>();
 }
 
 void* QImage___colorTable_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRgb>;
+	return new QVector<QRgb>();
 }
 
 void* QImage_PaintEngine(void* ptr)
@@ -8574,124 +8674,134 @@ void* QImageIOPlugin_Create(void* ptr, void* device, void* format)
 	return static_cast<QImageIOPlugin*>(ptr)->create(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format));
 }
 
-void* QImageIOPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+void* QImageIOPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageIOPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+void QImageIOPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageIOPlugin___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QImageIOPlugin___findChildren_atList2(void* ptr, int i)
+void* QImageIOPlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageIOPlugin___findChildren_setList2(void* ptr, void* i)
+void QImageIOPlugin___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QImageIOPlugin___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QImageIOPlugin___findChildren_atList3(void* ptr, int i)
+void* QImageIOPlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageIOPlugin___findChildren_setList3(void* ptr, void* i)
+void QImageIOPlugin___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QImageIOPlugin___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QImageIOPlugin___findChildren_atList(void* ptr, int i)
+void* QImageIOPlugin___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageIOPlugin___findChildren_setList(void* ptr, void* i)
+void QImageIOPlugin___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QImageIOPlugin___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QImageIOPlugin___children_atList(void* ptr, int i)
+void* QImageIOPlugin___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageIOPlugin___children_setList(void* ptr, void* i)
+void QImageIOPlugin___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QImageIOPlugin___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QImageIOPlugin_EventDefault(void* ptr, void* e)
@@ -9014,52 +9124,58 @@ int QImageReader_Quality(void* ptr)
 	return static_cast<QImageReader*>(ptr)->quality();
 }
 
-void* QImageReader___supportedImageFormats_atList(void* ptr, int i)
+void* QImageReader___supportedImageFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageReader___supportedImageFormats_setList(void* ptr, void* i)
+void QImageReader___supportedImageFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageReader___supportedImageFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QImageReader___supportedMimeTypes_atList(void* ptr, int i)
+void* QImageReader___supportedMimeTypes_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageReader___supportedMimeTypes_setList(void* ptr, void* i)
+void QImageReader___supportedMimeTypes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageReader___supportedMimeTypes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QImageReader___supportedSubTypes_atList(void* ptr, int i)
+void* QImageReader___supportedSubTypes_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageReader___supportedSubTypes_setList(void* ptr, void* i)
+void QImageReader___supportedSubTypes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageReader___supportedSubTypes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
 void* QImageWriter_NewQImageWriter()
@@ -9227,52 +9343,58 @@ int QImageWriter_Quality(void* ptr)
 	return static_cast<QImageWriter*>(ptr)->quality();
 }
 
-void* QImageWriter___supportedImageFormats_atList(void* ptr, int i)
+void* QImageWriter___supportedImageFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageWriter___supportedImageFormats_setList(void* ptr, void* i)
+void QImageWriter___supportedImageFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageWriter___supportedImageFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QImageWriter___supportedMimeTypes_atList(void* ptr, int i)
+void* QImageWriter___supportedMimeTypes_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageWriter___supportedMimeTypes_setList(void* ptr, void* i)
+void QImageWriter___supportedMimeTypes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageWriter___supportedMimeTypes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QImageWriter___supportedSubTypes_atList(void* ptr, int i)
+void* QImageWriter___supportedSubTypes_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QImageWriter___supportedSubTypes_setList(void* ptr, void* i)
+void QImageWriter___supportedSubTypes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QImageWriter___supportedSubTypes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
 class MyQInputEvent: public QInputEvent
@@ -9597,124 +9719,134 @@ char QInputMethod_IsVisible(void* ptr)
 	return static_cast<QInputMethod*>(ptr)->isVisible();
 }
 
-void* QInputMethod___dynamicPropertyNames_atList(void* ptr, int i)
+void* QInputMethod___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QInputMethod___dynamicPropertyNames_setList(void* ptr, void* i)
+void QInputMethod___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QInputMethod___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QInputMethod___findChildren_atList2(void* ptr, int i)
+void* QInputMethod___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QInputMethod___findChildren_setList2(void* ptr, void* i)
+void QInputMethod___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QInputMethod___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QInputMethod___findChildren_atList3(void* ptr, int i)
+void* QInputMethod___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QInputMethod___findChildren_setList3(void* ptr, void* i)
+void QInputMethod___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QInputMethod___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QInputMethod___findChildren_atList(void* ptr, int i)
+void* QInputMethod___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QInputMethod___findChildren_setList(void* ptr, void* i)
+void QInputMethod___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QInputMethod___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QInputMethod___children_atList(void* ptr, int i)
+void* QInputMethod___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QInputMethod___children_setList(void* ptr, void* i)
+void QInputMethod___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QInputMethod___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QInputMethod_EventDefault(void* ptr, void* e)
@@ -10195,52 +10327,58 @@ int QKeySequence_Count(void* ptr)
 	return static_cast<QKeySequence*>(ptr)->count();
 }
 
-void* QKeySequence___keyBindings_atList(void* ptr, int i)
+void* QKeySequence___keyBindings_atList(void* ptr, int i, void* p)
 {
-	return new QKeySequence(static_cast<QList<QKeySequence>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QKeySequence(({const QKeySequence tmp = static_cast<QList<QKeySequence>*>(p)->at(i); if (i == static_cast<QList<QKeySequence>*>(p)->size()-1) { static_cast<QList<QKeySequence>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QKeySequence___keyBindings_setList(void* ptr, void* i)
+void QKeySequence___keyBindings_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QKeySequence>*>(ptr)->append(*static_cast<QKeySequence*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QKeySequence>*>(p)->append(*static_cast<QKeySequence*>(i));
 }
 
 void* QKeySequence___keyBindings_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QKeySequence>;
+	return new QList<QKeySequence>();
 }
 
-void* QKeySequence___listFromString_atList(void* ptr, int i)
+void* QKeySequence___listFromString_atList(void* ptr, int i, void* p)
 {
-	return new QKeySequence(static_cast<QList<QKeySequence>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QKeySequence(({const QKeySequence tmp = static_cast<QList<QKeySequence>*>(p)->at(i); if (i == static_cast<QList<QKeySequence>*>(p)->size()-1) { static_cast<QList<QKeySequence>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QKeySequence___listFromString_setList(void* ptr, void* i)
+void QKeySequence___listFromString_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QKeySequence>*>(ptr)->append(*static_cast<QKeySequence*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QKeySequence>*>(p)->append(*static_cast<QKeySequence*>(i));
 }
 
 void* QKeySequence___listFromString_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QKeySequence>;
+	return new QList<QKeySequence>();
 }
 
-void* QKeySequence___listToString_list_atList(void* ptr, int i)
+void* QKeySequence___listToString_list_atList(void* ptr, int i, void* p)
 {
-	return new QKeySequence(static_cast<QList<QKeySequence>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QKeySequence(({const QKeySequence tmp = static_cast<QList<QKeySequence>*>(p)->at(i); if (i == static_cast<QList<QKeySequence>*>(p)->size()-1) { static_cast<QList<QKeySequence>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QKeySequence___listToString_list_setList(void* ptr, void* i)
+void QKeySequence___listToString_list_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QKeySequence>*>(ptr)->append(*static_cast<QKeySequence*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QKeySequence>*>(p)->append(*static_cast<QKeySequence*>(i));
 }
 
 void* QKeySequence___listToString_list_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QKeySequence>;
+	return new QList<QKeySequence>();
 }
 
 void* QLinearGradient_NewQLinearGradient()
@@ -11130,140 +11268,152 @@ int QMovie_Speed(void* ptr)
 	return static_cast<QMovie*>(ptr)->speed();
 }
 
-void* QMovie___supportedFormats_atList(void* ptr, int i)
+void* QMovie___supportedFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___supportedFormats_setList(void* ptr, void* i)
+void QMovie___supportedFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QMovie___supportedFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QMovie___dynamicPropertyNames_atList(void* ptr, int i)
+void* QMovie___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___dynamicPropertyNames_setList(void* ptr, void* i)
+void QMovie___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QMovie___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QMovie___findChildren_atList2(void* ptr, int i)
+void* QMovie___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___findChildren_setList2(void* ptr, void* i)
+void QMovie___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QMovie___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QMovie___findChildren_atList3(void* ptr, int i)
+void* QMovie___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___findChildren_setList3(void* ptr, void* i)
+void QMovie___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QMovie___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QMovie___findChildren_atList(void* ptr, int i)
+void* QMovie___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___findChildren_setList(void* ptr, void* i)
+void QMovie___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QMovie___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QMovie___children_atList(void* ptr, int i)
+void* QMovie___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QMovie___children_setList(void* ptr, void* i)
+void QMovie___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QMovie___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QMovie_EventDefault(void* ptr, void* e)
@@ -11585,124 +11735,134 @@ void* QOffscreenSurface_NativeHandle(void* ptr)
 		return static_cast<QOffscreenSurface*>(ptr)->nativeHandle();
 }
 
-void* QOffscreenSurface___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOffscreenSurface___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-		return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOffscreenSurface___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOffscreenSurface___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+		static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOffscreenSurface___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QByteArray>;
+		return new QList<QByteArray>();
 }
 
-void* QOffscreenSurface___findChildren_atList2(void* ptr, int i)
+void* QOffscreenSurface___findChildren_atList2(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOffscreenSurface___findChildren_setList2(void* ptr, void* i)
+void QOffscreenSurface___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOffscreenSurface___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QOffscreenSurface___findChildren_atList3(void* ptr, int i)
+void* QOffscreenSurface___findChildren_atList3(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOffscreenSurface___findChildren_setList3(void* ptr, void* i)
+void QOffscreenSurface___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOffscreenSurface___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QOffscreenSurface___findChildren_atList(void* ptr, int i)
+void* QOffscreenSurface___findChildren_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOffscreenSurface___findChildren_setList(void* ptr, void* i)
+void QOffscreenSurface___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOffscreenSurface___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QOffscreenSurface___children_atList(void* ptr, int i)
+void* QOffscreenSurface___children_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOffscreenSurface___children_setList(void* ptr, void* i)
+void QOffscreenSurface___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOffscreenSurface___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject *>;
+		return new QList<QObject *>();
 }
 
 char QOffscreenSurface_Event(void* ptr, void* e)
@@ -12159,124 +12319,134 @@ char QOpenGLContext_IsValid(void* ptr)
 	return static_cast<QOpenGLContext*>(ptr)->isValid();
 }
 
-void* QOpenGLContext___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLContext___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContext___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLContext___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLContext___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLContext___findChildren_atList2(void* ptr, int i)
+void* QOpenGLContext___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContext___findChildren_setList2(void* ptr, void* i)
+void QOpenGLContext___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContext___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContext___findChildren_atList3(void* ptr, int i)
+void* QOpenGLContext___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContext___findChildren_setList3(void* ptr, void* i)
+void QOpenGLContext___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContext___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContext___findChildren_atList(void* ptr, int i)
+void* QOpenGLContext___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContext___findChildren_setList(void* ptr, void* i)
+void QOpenGLContext___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContext___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContext___children_atList(void* ptr, int i)
+void* QOpenGLContext___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContext___children_setList(void* ptr, void* i)
+void QOpenGLContext___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContext___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLContext_EventDefault(void* ptr, void* e)
@@ -12364,140 +12534,152 @@ struct QtGui_PackedList QOpenGLContextGroup_Shares(void* ptr)
 	return ({ QList<QOpenGLContext *>* tmpValue = new QList<QOpenGLContext *>(static_cast<QOpenGLContextGroup*>(ptr)->shares()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QOpenGLContextGroup___shares_atList(void* ptr, int i)
+void* QOpenGLContextGroup___shares_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QOpenGLContext*>(static_cast<QList<QOpenGLContext *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QOpenGLContext*>(({const QOpenGLContext * tmp = static_cast<QList<QOpenGLContext *>*>(p)->at(i); if (i == static_cast<QList<QOpenGLContext *>*>(p)->size()-1) { static_cast<QList<QOpenGLContext *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___shares_setList(void* ptr, void* i)
+void QOpenGLContextGroup___shares_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QOpenGLContext *>*>(ptr)->append(static_cast<QOpenGLContext*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QOpenGLContext *>*>(p)->append(static_cast<QOpenGLContext*>(i));
 }
 
 void* QOpenGLContextGroup___shares_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QOpenGLContext *>;
+	return new QList<QOpenGLContext *>();
 }
 
-void* QOpenGLContextGroup___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLContextGroup___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLContextGroup___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLContextGroup___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLContextGroup___findChildren_atList2(void* ptr, int i)
+void* QOpenGLContextGroup___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___findChildren_setList2(void* ptr, void* i)
+void QOpenGLContextGroup___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContextGroup___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContextGroup___findChildren_atList3(void* ptr, int i)
+void* QOpenGLContextGroup___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___findChildren_setList3(void* ptr, void* i)
+void QOpenGLContextGroup___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContextGroup___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContextGroup___findChildren_atList(void* ptr, int i)
+void* QOpenGLContextGroup___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___findChildren_setList(void* ptr, void* i)
+void QOpenGLContextGroup___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContextGroup___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLContextGroup___children_atList(void* ptr, int i)
+void* QOpenGLContextGroup___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLContextGroup___children_setList(void* ptr, void* i)
+void QOpenGLContextGroup___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLContextGroup___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLContextGroup_EventDefault(void* ptr, void* e)
@@ -12727,172 +12909,188 @@ long long QOpenGLDebugLogger_MaximumMessageLength(void* ptr)
 	return static_cast<QOpenGLDebugLogger*>(ptr)->maximumMessageLength();
 }
 
-unsigned int QOpenGLDebugLogger___disableMessages_ids_atList2(void* ptr, int i)
+unsigned int QOpenGLDebugLogger___disableMessages_ids_atList2(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<GLuint>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const GLuint tmp = static_cast<QVector<GLuint>*>(p)->at(i); if (i == static_cast<QVector<GLuint>*>(p)->size()-1) { static_cast<QVector<GLuint>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLDebugLogger___disableMessages_ids_setList2(void* ptr, unsigned int i)
+void QOpenGLDebugLogger___disableMessages_ids_setList2(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<GLuint>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<GLuint>*>(p)->append(i);
 }
 
 void* QOpenGLDebugLogger___disableMessages_ids_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint>;
+	return new QVector<GLuint>();
 }
 
-unsigned int QOpenGLDebugLogger___enableMessages_ids_atList2(void* ptr, int i)
+unsigned int QOpenGLDebugLogger___enableMessages_ids_atList2(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<GLuint>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const GLuint tmp = static_cast<QVector<GLuint>*>(p)->at(i); if (i == static_cast<QVector<GLuint>*>(p)->size()-1) { static_cast<QVector<GLuint>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLDebugLogger___enableMessages_ids_setList2(void* ptr, unsigned int i)
+void QOpenGLDebugLogger___enableMessages_ids_setList2(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<GLuint>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<GLuint>*>(p)->append(i);
 }
 
 void* QOpenGLDebugLogger___enableMessages_ids_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint>;
+	return new QVector<GLuint>();
 }
 
-void* QOpenGLDebugLogger___loggedMessages_atList(void* ptr, int i)
+void* QOpenGLDebugLogger___loggedMessages_atList(void* ptr, int i, void* p)
 {
-	return new QOpenGLDebugMessage(static_cast<QList<QOpenGLDebugMessage>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QOpenGLDebugMessage(({const QOpenGLDebugMessage tmp = static_cast<QList<QOpenGLDebugMessage>*>(p)->at(i); if (i == static_cast<QList<QOpenGLDebugMessage>*>(p)->size()-1) { static_cast<QList<QOpenGLDebugMessage>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___loggedMessages_setList(void* ptr, void* i)
+void QOpenGLDebugLogger___loggedMessages_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QOpenGLDebugMessage>*>(ptr)->append(*static_cast<QOpenGLDebugMessage*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QOpenGLDebugMessage>*>(p)->append(*static_cast<QOpenGLDebugMessage*>(i));
 }
 
 void* QOpenGLDebugLogger___loggedMessages_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QOpenGLDebugMessage>;
+	return new QList<QOpenGLDebugMessage>();
 }
 
-void* QOpenGLDebugLogger___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLDebugLogger___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLDebugLogger___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLDebugLogger___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLDebugLogger___findChildren_atList2(void* ptr, int i)
+void* QOpenGLDebugLogger___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___findChildren_setList2(void* ptr, void* i)
+void QOpenGLDebugLogger___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLDebugLogger___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLDebugLogger___findChildren_atList3(void* ptr, int i)
+void* QOpenGLDebugLogger___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___findChildren_setList3(void* ptr, void* i)
+void QOpenGLDebugLogger___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLDebugLogger___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLDebugLogger___findChildren_atList(void* ptr, int i)
+void* QOpenGLDebugLogger___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___findChildren_setList(void* ptr, void* i)
+void QOpenGLDebugLogger___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLDebugLogger___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLDebugLogger___children_atList(void* ptr, int i)
+void* QOpenGLDebugLogger___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLDebugLogger___children_setList(void* ptr, void* i)
+void QOpenGLDebugLogger___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLDebugLogger___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLDebugLogger_EventDefault(void* ptr, void* e)
@@ -14089,36 +14287,40 @@ int QOpenGLFramebufferObject_Width(void* ptr)
 	return static_cast<QOpenGLFramebufferObject*>(ptr)->width();
 }
 
-unsigned int QOpenGLFramebufferObject___textures_atList(void* ptr, int i)
+unsigned int QOpenGLFramebufferObject___textures_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<GLuint>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const GLuint tmp = static_cast<QVector<GLuint>*>(p)->at(i); if (i == static_cast<QVector<GLuint>*>(p)->size()-1) { static_cast<QVector<GLuint>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLFramebufferObject___textures_setList(void* ptr, unsigned int i)
+void QOpenGLFramebufferObject___textures_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<GLuint>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<GLuint>*>(p)->append(i);
 }
 
 void* QOpenGLFramebufferObject___textures_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint>;
+	return new QVector<GLuint>();
 }
 
-void* QOpenGLFramebufferObject___sizes_atList(void* ptr, int i)
+void* QOpenGLFramebufferObject___sizes_atList(void* ptr, int i, void* p)
 {
-	return ({ QSize tmpValue = static_cast<QVector<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QVector<QSize>*>(p)->at(i); if (i == static_cast<QVector<QSize>*>(p)->size()-1) { static_cast<QVector<QSize>*>(p)->~QVector(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QOpenGLFramebufferObject___sizes_setList(void* ptr, void* i)
+void QOpenGLFramebufferObject___sizes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QSize>*>(ptr)->append(*static_cast<QSize*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QSize>*>(p)->append(*static_cast<QSize*>(i));
 }
 
 void* QOpenGLFramebufferObject___sizes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QSize>;
+	return new QVector<QSize>();
 }
 
 void* QOpenGLFramebufferObjectFormat_NewQOpenGLFramebufferObjectFormat()
@@ -76778,124 +76980,134 @@ char QOpenGLShader_IsCompiled(void* ptr)
 	return static_cast<QOpenGLShader*>(ptr)->isCompiled();
 }
 
-void* QOpenGLShader___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLShader___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShader___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLShader___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLShader___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLShader___findChildren_atList2(void* ptr, int i)
+void* QOpenGLShader___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShader___findChildren_setList2(void* ptr, void* i)
+void QOpenGLShader___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShader___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShader___findChildren_atList3(void* ptr, int i)
+void* QOpenGLShader___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShader___findChildren_setList3(void* ptr, void* i)
+void QOpenGLShader___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShader___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShader___findChildren_atList(void* ptr, int i)
+void* QOpenGLShader___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShader___findChildren_setList(void* ptr, void* i)
+void QOpenGLShader___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShader___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShader___children_atList(void* ptr, int i)
+void* QOpenGLShader___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShader___children_setList(void* ptr, void* i)
+void QOpenGLShader___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShader___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLShader_EventDefault(void* ptr, void* e)
@@ -77613,204 +77825,224 @@ int QOpenGLShaderProgram_UniformLocation(void* ptr, char* name)
 	return static_cast<QOpenGLShaderProgram*>(ptr)->uniformLocation(const_cast<const char*>(name));
 }
 
-float QOpenGLShaderProgram___setDefaultInnerTessellationLevels_levels_atList(void* ptr, int i)
+float QOpenGLShaderProgram___setDefaultInnerTessellationLevels_levels_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<float>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const float tmp = static_cast<QVector<float>*>(p)->at(i); if (i == static_cast<QVector<float>*>(p)->size()-1) { static_cast<QVector<float>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLShaderProgram___setDefaultInnerTessellationLevels_levels_setList(void* ptr, float i)
+void QOpenGLShaderProgram___setDefaultInnerTessellationLevels_levels_setList(void* ptr, float i, void* p)
 {
-	static_cast<QVector<float>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<float>*>(p)->append(i);
 }
 
 void* QOpenGLShaderProgram___setDefaultInnerTessellationLevels_levels_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<float>;
+	return new QVector<float>();
 }
 
-float QOpenGLShaderProgram___setDefaultOuterTessellationLevels_levels_atList(void* ptr, int i)
+float QOpenGLShaderProgram___setDefaultOuterTessellationLevels_levels_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<float>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const float tmp = static_cast<QVector<float>*>(p)->at(i); if (i == static_cast<QVector<float>*>(p)->size()-1) { static_cast<QVector<float>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLShaderProgram___setDefaultOuterTessellationLevels_levels_setList(void* ptr, float i)
+void QOpenGLShaderProgram___setDefaultOuterTessellationLevels_levels_setList(void* ptr, float i, void* p)
 {
-	static_cast<QVector<float>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<float>*>(p)->append(i);
 }
 
 void* QOpenGLShaderProgram___setDefaultOuterTessellationLevels_levels_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<float>;
+	return new QVector<float>();
 }
 
-void* QOpenGLShaderProgram___shaders_atList(void* ptr, int i)
+void* QOpenGLShaderProgram___shaders_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QOpenGLShader*>(static_cast<QList<QOpenGLShader *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QOpenGLShader*>(({const QOpenGLShader * tmp = static_cast<QList<QOpenGLShader *>*>(p)->at(i); if (i == static_cast<QList<QOpenGLShader *>*>(p)->size()-1) { static_cast<QList<QOpenGLShader *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___shaders_setList(void* ptr, void* i)
+void QOpenGLShaderProgram___shaders_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QOpenGLShader *>*>(ptr)->append(static_cast<QOpenGLShader*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QOpenGLShader *>*>(p)->append(static_cast<QOpenGLShader*>(i));
 }
 
 void* QOpenGLShaderProgram___shaders_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QOpenGLShader *>;
+	return new QList<QOpenGLShader *>();
 }
 
-float QOpenGLShaderProgram___defaultInnerTessellationLevels_atList(void* ptr, int i)
+float QOpenGLShaderProgram___defaultInnerTessellationLevels_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<float>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const float tmp = static_cast<QVector<float>*>(p)->at(i); if (i == static_cast<QVector<float>*>(p)->size()-1) { static_cast<QVector<float>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLShaderProgram___defaultInnerTessellationLevels_setList(void* ptr, float i)
+void QOpenGLShaderProgram___defaultInnerTessellationLevels_setList(void* ptr, float i, void* p)
 {
-	static_cast<QVector<float>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<float>*>(p)->append(i);
 }
 
 void* QOpenGLShaderProgram___defaultInnerTessellationLevels_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<float>;
+	return new QVector<float>();
 }
 
-float QOpenGLShaderProgram___defaultOuterTessellationLevels_atList(void* ptr, int i)
+float QOpenGLShaderProgram___defaultOuterTessellationLevels_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<float>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const float tmp = static_cast<QVector<float>*>(p)->at(i); if (i == static_cast<QVector<float>*>(p)->size()-1) { static_cast<QVector<float>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLShaderProgram___defaultOuterTessellationLevels_setList(void* ptr, float i)
+void QOpenGLShaderProgram___defaultOuterTessellationLevels_setList(void* ptr, float i, void* p)
 {
-	static_cast<QVector<float>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<float>*>(p)->append(i);
 }
 
 void* QOpenGLShaderProgram___defaultOuterTessellationLevels_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<float>;
+	return new QVector<float>();
 }
 
-void* QOpenGLShaderProgram___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLShaderProgram___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLShaderProgram___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLShaderProgram___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLShaderProgram___findChildren_atList2(void* ptr, int i)
+void* QOpenGLShaderProgram___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___findChildren_setList2(void* ptr, void* i)
+void QOpenGLShaderProgram___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShaderProgram___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShaderProgram___findChildren_atList3(void* ptr, int i)
+void* QOpenGLShaderProgram___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___findChildren_setList3(void* ptr, void* i)
+void QOpenGLShaderProgram___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShaderProgram___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShaderProgram___findChildren_atList(void* ptr, int i)
+void* QOpenGLShaderProgram___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___findChildren_setList(void* ptr, void* i)
+void QOpenGLShaderProgram___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShaderProgram___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLShaderProgram___children_atList(void* ptr, int i)
+void* QOpenGLShaderProgram___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLShaderProgram___children_setList(void* ptr, void* i)
+void QOpenGLShaderProgram___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLShaderProgram___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLShaderProgram_EventDefault(void* ptr, void* e)
@@ -78503,149 +78735,161 @@ int QOpenGLTimeMonitor_SampleCount(void* ptr)
 void* QOpenGLTimeMonitor___waitForIntervals_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint64>;
+	return new QVector<GLuint64>();
 }
 
 void* QOpenGLTimeMonitor___waitForSamples_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint64>;
+	return new QVector<GLuint64>();
 }
 
-unsigned int QOpenGLTimeMonitor___objectIds_atList(void* ptr, int i)
+unsigned int QOpenGLTimeMonitor___objectIds_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<GLuint>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const GLuint tmp = static_cast<QVector<GLuint>*>(p)->at(i); if (i == static_cast<QVector<GLuint>*>(p)->size()-1) { static_cast<QVector<GLuint>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QOpenGLTimeMonitor___objectIds_setList(void* ptr, unsigned int i)
+void QOpenGLTimeMonitor___objectIds_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<GLuint>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<GLuint>*>(p)->append(i);
 }
 
 void* QOpenGLTimeMonitor___objectIds_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<GLuint>;
+	return new QVector<GLuint>();
 }
 
-void* QOpenGLTimeMonitor___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLTimeMonitor___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimeMonitor___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLTimeMonitor___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLTimeMonitor___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLTimeMonitor___findChildren_atList2(void* ptr, int i)
+void* QOpenGLTimeMonitor___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimeMonitor___findChildren_setList2(void* ptr, void* i)
+void QOpenGLTimeMonitor___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimeMonitor___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimeMonitor___findChildren_atList3(void* ptr, int i)
+void* QOpenGLTimeMonitor___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimeMonitor___findChildren_setList3(void* ptr, void* i)
+void QOpenGLTimeMonitor___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimeMonitor___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimeMonitor___findChildren_atList(void* ptr, int i)
+void* QOpenGLTimeMonitor___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimeMonitor___findChildren_setList(void* ptr, void* i)
+void QOpenGLTimeMonitor___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimeMonitor___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimeMonitor___children_atList(void* ptr, int i)
+void* QOpenGLTimeMonitor___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimeMonitor___children_setList(void* ptr, void* i)
+void QOpenGLTimeMonitor___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimeMonitor___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLTimeMonitor_EventDefault(void* ptr, void* e)
@@ -78810,124 +79054,134 @@ char QOpenGLTimerQuery_IsResultAvailable(void* ptr)
 	return static_cast<QOpenGLTimerQuery*>(ptr)->isResultAvailable();
 }
 
-void* QOpenGLTimerQuery___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLTimerQuery___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimerQuery___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLTimerQuery___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLTimerQuery___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLTimerQuery___findChildren_atList2(void* ptr, int i)
+void* QOpenGLTimerQuery___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimerQuery___findChildren_setList2(void* ptr, void* i)
+void QOpenGLTimerQuery___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimerQuery___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimerQuery___findChildren_atList3(void* ptr, int i)
+void* QOpenGLTimerQuery___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimerQuery___findChildren_setList3(void* ptr, void* i)
+void QOpenGLTimerQuery___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimerQuery___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimerQuery___findChildren_atList(void* ptr, int i)
+void* QOpenGLTimerQuery___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimerQuery___findChildren_setList(void* ptr, void* i)
+void QOpenGLTimerQuery___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimerQuery___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLTimerQuery___children_atList(void* ptr, int i)
+void* QOpenGLTimerQuery___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLTimerQuery___children_setList(void* ptr, void* i)
+void QOpenGLTimerQuery___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLTimerQuery___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLTimerQuery_EventDefault(void* ptr, void* e)
@@ -79132,124 +79386,134 @@ char QOpenGLVertexArrayObject_IsCreated(void* ptr)
 	return static_cast<QOpenGLVertexArrayObject*>(ptr)->isCreated();
 }
 
-void* QOpenGLVertexArrayObject___dynamicPropertyNames_atList(void* ptr, int i)
+void* QOpenGLVertexArrayObject___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLVertexArrayObject___dynamicPropertyNames_setList(void* ptr, void* i)
+void QOpenGLVertexArrayObject___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QOpenGLVertexArrayObject___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QOpenGLVertexArrayObject___findChildren_atList2(void* ptr, int i)
+void* QOpenGLVertexArrayObject___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLVertexArrayObject___findChildren_setList2(void* ptr, void* i)
+void QOpenGLVertexArrayObject___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLVertexArrayObject___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLVertexArrayObject___findChildren_atList3(void* ptr, int i)
+void* QOpenGLVertexArrayObject___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLVertexArrayObject___findChildren_setList3(void* ptr, void* i)
+void QOpenGLVertexArrayObject___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLVertexArrayObject___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLVertexArrayObject___findChildren_atList(void* ptr, int i)
+void* QOpenGLVertexArrayObject___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLVertexArrayObject___findChildren_setList(void* ptr, void* i)
+void QOpenGLVertexArrayObject___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLVertexArrayObject___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QOpenGLVertexArrayObject___children_atList(void* ptr, int i)
+void* QOpenGLVertexArrayObject___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QOpenGLVertexArrayObject___children_setList(void* ptr, void* i)
+void QOpenGLVertexArrayObject___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QOpenGLVertexArrayObject___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QOpenGLVertexArrayObject_EventDefault(void* ptr, void* e)
@@ -81777,100 +82041,112 @@ double QPainter_Opacity(void* ptr)
 	return static_cast<QPainter*>(ptr)->opacity();
 }
 
-void* QPainter___drawLines_lines_atList6(void* ptr, int i)
+void* QPainter___drawLines_lines_atList6(void* ptr, int i, void* p)
 {
-	return ({ QLine tmpValue = static_cast<QVector<QLine>*>(ptr)->at(i); new QLine(tmpValue.p1(), tmpValue.p2()); });
+	Q_UNUSED(ptr);
+	return ({ QLine tmpValue = ({const QLine tmp = static_cast<QVector<QLine>*>(p)->at(i); if (i == static_cast<QVector<QLine>*>(p)->size()-1) { static_cast<QVector<QLine>*>(p)->~QVector(); free(p); }; tmp; }); new QLine(tmpValue.p1(), tmpValue.p2()); });
 }
 
-void QPainter___drawLines_lines_setList6(void* ptr, void* i)
+void QPainter___drawLines_lines_setList6(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QLine>*>(ptr)->append(*static_cast<QLine*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QLine>*>(p)->append(*static_cast<QLine*>(i));
 }
 
 void* QPainter___drawLines_lines_newList6(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QLine>;
+	return new QVector<QLine>();
 }
 
-void* QPainter___drawLines_lines_atList2(void* ptr, int i)
+void* QPainter___drawLines_lines_atList2(void* ptr, int i, void* p)
 {
-	return ({ QLineF tmpValue = static_cast<QVector<QLineF>*>(ptr)->at(i); new QLineF(tmpValue.p1(), tmpValue.p2()); });
+	Q_UNUSED(ptr);
+	return ({ QLineF tmpValue = ({const QLineF tmp = static_cast<QVector<QLineF>*>(p)->at(i); if (i == static_cast<QVector<QLineF>*>(p)->size()-1) { static_cast<QVector<QLineF>*>(p)->~QVector(); free(p); }; tmp; }); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
-void QPainter___drawLines_lines_setList2(void* ptr, void* i)
+void QPainter___drawLines_lines_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QLineF>*>(ptr)->append(*static_cast<QLineF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QLineF>*>(p)->append(*static_cast<QLineF*>(i));
 }
 
 void* QPainter___drawLines_lines_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QLineF>;
+	return new QVector<QLineF>();
 }
 
-void* QPainter___drawLines_pointPairs_atList8(void* ptr, int i)
+void* QPainter___drawLines_pointPairs_atList8(void* ptr, int i, void* p)
 {
-	return ({ QPoint tmpValue = static_cast<QVector<QPoint>*>(ptr)->at(i); new QPoint(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPoint tmpValue = ({const QPoint tmp = static_cast<QVector<QPoint>*>(p)->at(i); if (i == static_cast<QVector<QPoint>*>(p)->size()-1) { static_cast<QVector<QPoint>*>(p)->~QVector(); free(p); }; tmp; }); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPainter___drawLines_pointPairs_setList8(void* ptr, void* i)
+void QPainter___drawLines_pointPairs_setList8(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPoint>*>(ptr)->append(*static_cast<QPoint*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPoint>*>(p)->append(*static_cast<QPoint*>(i));
 }
 
 void* QPainter___drawLines_pointPairs_newList8(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPoint>;
+	return new QVector<QPoint>();
 }
 
-void* QPainter___drawLines_pointPairs_atList4(void* ptr, int i)
+void* QPainter___drawLines_pointPairs_atList4(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPainter___drawLines_pointPairs_setList4(void* ptr, void* i)
+void QPainter___drawLines_pointPairs_setList4(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QPainter___drawLines_pointPairs_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-void* QPainter___drawRects_rectangles_atList4(void* ptr, int i)
+void* QPainter___drawRects_rectangles_atList4(void* ptr, int i, void* p)
 {
-	return ({ QRect tmpValue = static_cast<QVector<QRect>*>(ptr)->at(i); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QRect tmpValue = ({const QRect tmp = static_cast<QVector<QRect>*>(p)->at(i); if (i == static_cast<QVector<QRect>*>(p)->size()-1) { static_cast<QVector<QRect>*>(p)->~QVector(); free(p); }; tmp; }); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QPainter___drawRects_rectangles_setList4(void* ptr, void* i)
+void QPainter___drawRects_rectangles_setList4(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QRect>*>(ptr)->append(*static_cast<QRect*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QRect>*>(p)->append(*static_cast<QRect*>(i));
 }
 
 void* QPainter___drawRects_rectangles_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRect>;
+	return new QVector<QRect>();
 }
 
-void* QPainter___drawRects_rectangles_atList2(void* ptr, int i)
+void* QPainter___drawRects_rectangles_atList2(void* ptr, int i, void* p)
 {
-	return ({ QRectF tmpValue = static_cast<QVector<QRectF>*>(ptr)->at(i); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QRectF tmpValue = ({const QRectF tmp = static_cast<QVector<QRectF>*>(p)->at(i); if (i == static_cast<QVector<QRectF>*>(p)->size()-1) { static_cast<QVector<QRectF>*>(p)->~QVector(); free(p); }; tmp; }); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QPainter___drawRects_rectangles_setList2(void* ptr, void* i)
+void QPainter___drawRects_rectangles_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QRectF>*>(ptr)->append(*static_cast<QRectF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QRectF>*>(p)->append(*static_cast<QRectF*>(i));
 }
 
 void* QPainter___drawRects_rectangles_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRectF>;
+	return new QVector<QRectF>();
 }
 
 void* QPainterPath_NewQPainterPath3(void* path)
@@ -82178,68 +82454,76 @@ double QPainterPath_SlopeAtPercent(void* ptr, double t)
 	return static_cast<QPainterPath*>(ptr)->slopeAtPercent(t);
 }
 
-void* QPainterPath___toFillPolygons_atList2(void* ptr, int i)
+void* QPainterPath___toFillPolygons_atList2(void* ptr, int i, void* p)
 {
-	return new QPolygonF(static_cast<QList<QPolygonF>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPolygonF(({const QPolygonF tmp = static_cast<QList<QPolygonF>*>(p)->at(i); if (i == static_cast<QList<QPolygonF>*>(p)->size()-1) { static_cast<QList<QPolygonF>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPainterPath___toFillPolygons_setList2(void* ptr, void* i)
+void QPainterPath___toFillPolygons_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPolygonF>*>(ptr)->append(*static_cast<QPolygonF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPolygonF>*>(p)->append(*static_cast<QPolygonF*>(i));
 }
 
 void* QPainterPath___toFillPolygons_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPolygonF>;
+	return new QList<QPolygonF>();
 }
 
-void* QPainterPath___toFillPolygons_atList(void* ptr, int i)
+void* QPainterPath___toFillPolygons_atList(void* ptr, int i, void* p)
 {
-	return new QPolygonF(static_cast<QList<QPolygonF>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPolygonF(({const QPolygonF tmp = static_cast<QList<QPolygonF>*>(p)->at(i); if (i == static_cast<QList<QPolygonF>*>(p)->size()-1) { static_cast<QList<QPolygonF>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPainterPath___toFillPolygons_setList(void* ptr, void* i)
+void QPainterPath___toFillPolygons_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPolygonF>*>(ptr)->append(*static_cast<QPolygonF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPolygonF>*>(p)->append(*static_cast<QPolygonF*>(i));
 }
 
 void* QPainterPath___toFillPolygons_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPolygonF>;
+	return new QList<QPolygonF>();
 }
 
-void* QPainterPath___toSubpathPolygons_atList2(void* ptr, int i)
+void* QPainterPath___toSubpathPolygons_atList2(void* ptr, int i, void* p)
 {
-	return new QPolygonF(static_cast<QList<QPolygonF>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPolygonF(({const QPolygonF tmp = static_cast<QList<QPolygonF>*>(p)->at(i); if (i == static_cast<QList<QPolygonF>*>(p)->size()-1) { static_cast<QList<QPolygonF>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPainterPath___toSubpathPolygons_setList2(void* ptr, void* i)
+void QPainterPath___toSubpathPolygons_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPolygonF>*>(ptr)->append(*static_cast<QPolygonF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPolygonF>*>(p)->append(*static_cast<QPolygonF*>(i));
 }
 
 void* QPainterPath___toSubpathPolygons_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPolygonF>;
+	return new QList<QPolygonF>();
 }
 
-void* QPainterPath___toSubpathPolygons_atList(void* ptr, int i)
+void* QPainterPath___toSubpathPolygons_atList(void* ptr, int i, void* p)
 {
-	return new QPolygonF(static_cast<QList<QPolygonF>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPolygonF(({const QPolygonF tmp = static_cast<QList<QPolygonF>*>(p)->at(i); if (i == static_cast<QList<QPolygonF>*>(p)->size()-1) { static_cast<QList<QPolygonF>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPainterPath___toSubpathPolygons_setList(void* ptr, void* i)
+void QPainterPath___toSubpathPolygons_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPolygonF>*>(ptr)->append(*static_cast<QPolygonF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPolygonF>*>(p)->append(*static_cast<QPolygonF*>(i));
 }
 
 void* QPainterPath___toSubpathPolygons_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPolygonF>;
+	return new QList<QPolygonF>();
 }
 
 void* QPainterPathStroker_NewQPainterPathStroker()
@@ -82337,36 +82621,40 @@ double QPainterPathStroker_Width(void* ptr)
 	return static_cast<QPainterPathStroker*>(ptr)->width();
 }
 
-double QPainterPathStroker___setDashPattern_dashPattern_atList2(void* ptr, int i)
+double QPainterPathStroker___setDashPattern_dashPattern_atList2(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QVector<qreal>*>(p)->at(i); if (i == static_cast<QVector<qreal>*>(p)->size()-1) { static_cast<QVector<qreal>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QPainterPathStroker___setDashPattern_dashPattern_setList2(void* ptr, double i)
+void QPainterPathStroker___setDashPattern_dashPattern_setList2(void* ptr, double i, void* p)
 {
-	static_cast<QVector<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<qreal>*>(p)->append(i);
 }
 
 void* QPainterPathStroker___setDashPattern_dashPattern_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<qreal>;
+	return new QVector<qreal>();
 }
 
-double QPainterPathStroker___dashPattern_atList(void* ptr, int i)
+double QPainterPathStroker___dashPattern_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QVector<qreal>*>(p)->at(i); if (i == static_cast<QVector<qreal>*>(p)->size()-1) { static_cast<QVector<qreal>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QPainterPathStroker___dashPattern_setList(void* ptr, double i)
+void QPainterPathStroker___dashPattern_setList(void* ptr, double i, void* p)
 {
-	static_cast<QVector<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<qreal>*>(p)->append(i);
 }
 
 void* QPainterPathStroker___dashPattern_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<qreal>;
+	return new QVector<qreal>();
 }
 
 int QPalette_NColorRoles_Type()
@@ -82696,124 +82984,134 @@ int QPdfWriter_Resolution(void* ptr)
 		return static_cast<QPdfWriter*>(ptr)->resolution();
 }
 
-void* QPdfWriter___dynamicPropertyNames_atList(void* ptr, int i)
+void* QPdfWriter___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-		return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPdfWriter___dynamicPropertyNames_setList(void* ptr, void* i)
+void QPdfWriter___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+		static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QPdfWriter___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QByteArray>;
+		return new QList<QByteArray>();
 }
 
-void* QPdfWriter___findChildren_atList2(void* ptr, int i)
+void* QPdfWriter___findChildren_atList2(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPdfWriter___findChildren_setList2(void* ptr, void* i)
+void QPdfWriter___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPdfWriter___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QPdfWriter___findChildren_atList3(void* ptr, int i)
+void* QPdfWriter___findChildren_atList3(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPdfWriter___findChildren_setList3(void* ptr, void* i)
+void QPdfWriter___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPdfWriter___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QPdfWriter___findChildren_atList(void* ptr, int i)
+void* QPdfWriter___findChildren_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPdfWriter___findChildren_setList(void* ptr, void* i)
+void QPdfWriter___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPdfWriter___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QPdfWriter___children_atList(void* ptr, int i)
+void* QPdfWriter___children_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPdfWriter___children_setList(void* ptr, void* i)
+void QPdfWriter___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPdfWriter___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject *>;
+		return new QList<QObject *>();
 }
 
 char QPdfWriter_Event(void* ptr, void* e)
@@ -83081,36 +83379,40 @@ double QPen_WidthF(void* ptr)
 	return static_cast<QPen*>(ptr)->widthF();
 }
 
-double QPen___setDashPattern_pattern_atList(void* ptr, int i)
+double QPen___setDashPattern_pattern_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QVector<qreal>*>(p)->at(i); if (i == static_cast<QVector<qreal>*>(p)->size()-1) { static_cast<QVector<qreal>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QPen___setDashPattern_pattern_setList(void* ptr, double i)
+void QPen___setDashPattern_pattern_setList(void* ptr, double i, void* p)
 {
-	static_cast<QVector<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<qreal>*>(p)->append(i);
 }
 
 void* QPen___setDashPattern_pattern_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<qreal>;
+	return new QVector<qreal>();
 }
 
-double QPen___dashPattern_atList(void* ptr, int i)
+double QPen___dashPattern_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QVector<qreal>*>(p)->at(i); if (i == static_cast<QVector<qreal>*>(p)->size()-1) { static_cast<QVector<qreal>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QPen___dashPattern_setList(void* ptr, double i)
+void QPen___dashPattern_setList(void* ptr, double i, void* p)
 {
-	static_cast<QVector<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<qreal>*>(p)->append(i);
 }
 
 void* QPen___dashPattern_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<qreal>;
+	return new QVector<qreal>();
 }
 
 class MyQPicture: public QPicture
@@ -83203,36 +83505,40 @@ unsigned int QPicture_Size(void* ptr)
 	return static_cast<QPicture*>(ptr)->size();
 }
 
-void* QPicture___inputFormats_atList(void* ptr, int i)
+void* QPicture___inputFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPicture___inputFormats_setList(void* ptr, void* i)
+void QPicture___inputFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QPicture___inputFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QPicture___outputFormats_atList(void* ptr, int i)
+void* QPicture___outputFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPicture___outputFormats_setList(void* ptr, void* i)
+void QPicture___outputFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QPicture___outputFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
 void* QPicture_PaintEngine(void* ptr)
@@ -83689,7 +83995,7 @@ void* QPolygon_NewQPolygon8(void* other)
 
 void* QPolygon_NewQPolygon4(void* v)
 {
-	return new QPolygon(*static_cast<QVector<QPoint>*>(v));
+	return new QPolygon(({ QVector<QPoint>* tmpP = static_cast<QVector<QPoint>*>(v); QVector<QPoint> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }));
 }
 
 void* QPolygon_NewQPolygon7(void* polygon)
@@ -83802,296 +84108,320 @@ void QPolygon_Point(void* ptr, int index, int x, int y)
 	static_cast<QPolygon*>(ptr)->point(index, &x, &y);
 }
 
-void* QPolygon___QPolygon_v_atList4(void* ptr, int i)
+void* QPolygon___QPolygon_v_atList4(void* ptr, int i, void* p)
 {
-	return ({ QPoint tmpValue = static_cast<QVector<QPoint>*>(ptr)->at(i); new QPoint(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPoint tmpValue = ({const QPoint tmp = static_cast<QVector<QPoint>*>(p)->at(i); if (i == static_cast<QVector<QPoint>*>(p)->size()-1) { static_cast<QVector<QPoint>*>(p)->~QVector(); free(p); }; tmp; }); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPolygon___QPolygon_v_setList4(void* ptr, void* i)
+void QPolygon___QPolygon_v_setList4(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPoint>*>(ptr)->append(*static_cast<QPoint*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPoint>*>(p)->append(*static_cast<QPoint*>(i));
 }
 
 void* QPolygon___QPolygon_v_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPoint>;
+	return new QVector<QPoint>();
 }
 
-void* QPolygon___QPolygon_points_atList3(void* ptr, int i)
+void* QPolygon___QPolygon_points_atList3(void* ptr, int i, void* p)
 {
-	return ({ QPoint tmpValue = static_cast<QVector<QPoint>*>(ptr)->at(i); new QPoint(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPoint tmpValue = ({const QPoint tmp = static_cast<QVector<QPoint>*>(p)->at(i); if (i == static_cast<QVector<QPoint>*>(p)->size()-1) { static_cast<QVector<QPoint>*>(p)->~QVector(); free(p); }; tmp; }); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPolygon___QPolygon_points_setList3(void* ptr, void* i)
+void QPolygon___QPolygon_points_setList3(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPoint>*>(ptr)->append(*static_cast<QPoint*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPoint>*>(p)->append(*static_cast<QPoint*>(i));
 }
 
 void* QPolygon___QPolygon_points_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPoint>;
+	return new QVector<QPoint>();
 }
 
-void* QPolygon___QVector_other_atList5(void* ptr, int i)
+void* QPolygon___QVector_other_atList5(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___QVector_other_setList5(void* ptr, void* i)
+void QPolygon___QVector_other_setList5(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___QVector_other_newList5(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___QVector_other_atList4(void* ptr, int i)
+void* QPolygon___QVector_other_atList4(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___QVector_other_setList4(void* ptr, void* i)
+void QPolygon___QVector_other_setList4(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___QVector_other_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___fill_atList(void* ptr, int i)
+void* QPolygon___fill_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___fill_setList(void* ptr, void* i)
+void QPolygon___fill_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___fill_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___fromList_atList(void* ptr, int i)
+void* QPolygon___fromList_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___fromList_setList(void* ptr, void* i)
+void QPolygon___fromList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___fromList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___fromList_list_atList(void* ptr, int i)
+void* QPolygon___fromList_list_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___fromList_list_setList(void* ptr, void* i)
+void QPolygon___fromList_list_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___fromList_list_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___fromStdVector_atList(void* ptr, int i)
+void* QPolygon___fromStdVector_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___fromStdVector_setList(void* ptr, void* i)
+void QPolygon___fromStdVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___fromStdVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___append_value_atList3(void* ptr, int i)
+void* QPolygon___append_value_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___append_value_setList3(void* ptr, void* i)
+void QPolygon___append_value_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___append_value_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___swap_other_atList(void* ptr, int i)
+void* QPolygon___swap_other_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___swap_other_setList(void* ptr, void* i)
+void QPolygon___swap_other_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___swap_other_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___toList_atList(void* ptr, int i)
+void* QPolygon___toList_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___toList_setList(void* ptr, void* i)
+void QPolygon___toList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___toList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygon___mid_atList(void* ptr, int i)
+void* QPolygon___mid_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygon___mid_setList(void* ptr, void* i)
+void QPolygon___mid_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygon___mid_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
 void* QPolygonF_NewQPolygonF()
@@ -84106,7 +84436,7 @@ void* QPolygonF_NewQPolygonF8(void* other)
 
 void* QPolygonF_NewQPolygonF4(void* v)
 {
-	return new QPolygonF(*static_cast<QVector<QPointF>*>(v));
+	return new QPolygonF(({ QVector<QPointF>* tmpP = static_cast<QVector<QPointF>*>(v); QVector<QPointF> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }));
 }
 
 void* QPolygonF_NewQPolygonF6(void* polygon)
@@ -84204,296 +84534,320 @@ char QPolygonF_IsClosed(void* ptr)
 	return static_cast<QPolygonF*>(ptr)->isClosed();
 }
 
-void* QPolygonF___QPolygonF_v_atList4(void* ptr, int i)
+void* QPolygonF___QPolygonF_v_atList4(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPolygonF___QPolygonF_v_setList4(void* ptr, void* i)
+void QPolygonF___QPolygonF_v_setList4(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QPolygonF___QPolygonF_v_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-void* QPolygonF___QPolygonF_points_atList3(void* ptr, int i)
+void* QPolygonF___QPolygonF_points_atList3(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QPolygonF___QPolygonF_points_setList3(void* ptr, void* i)
+void QPolygonF___QPolygonF_points_setList3(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QPolygonF___QPolygonF_points_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-void* QPolygonF___QVector_other_atList5(void* ptr, int i)
+void* QPolygonF___QVector_other_atList5(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___QVector_other_setList5(void* ptr, void* i)
+void QPolygonF___QVector_other_setList5(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___QVector_other_newList5(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___QVector_other_atList4(void* ptr, int i)
+void* QPolygonF___QVector_other_atList4(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___QVector_other_setList4(void* ptr, void* i)
+void QPolygonF___QVector_other_setList4(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___QVector_other_newList4(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___fill_atList(void* ptr, int i)
+void* QPolygonF___fill_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___fill_setList(void* ptr, void* i)
+void QPolygonF___fill_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___fill_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___fromList_atList(void* ptr, int i)
+void* QPolygonF___fromList_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___fromList_setList(void* ptr, void* i)
+void QPolygonF___fromList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___fromList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___fromList_list_atList(void* ptr, int i)
+void* QPolygonF___fromList_list_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___fromList_list_setList(void* ptr, void* i)
+void QPolygonF___fromList_list_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___fromList_list_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___fromStdVector_atList(void* ptr, int i)
+void* QPolygonF___fromStdVector_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___fromStdVector_setList(void* ptr, void* i)
+void QPolygonF___fromStdVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___fromStdVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___append_value_atList3(void* ptr, int i)
+void* QPolygonF___append_value_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___append_value_setList3(void* ptr, void* i)
+void QPolygonF___append_value_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___append_value_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___swap_other_atList(void* ptr, int i)
+void* QPolygonF___swap_other_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___swap_other_setList(void* ptr, void* i)
+void QPolygonF___swap_other_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___swap_other_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___toList_atList(void* ptr, int i)
+void* QPolygonF___toList_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___toList_setList(void* ptr, void* i)
+void QPolygonF___toList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___toList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QPolygonF___mid_atList(void* ptr, int i)
+void* QPolygonF___mid_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QPolygonF___mid_setList(void* ptr, void* i)
+void QPolygonF___mid_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QPolygonF___mid_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
 void* QQuaternion_QQuaternion_FromAxes(void* xAxis, void* yAxis, void* zAxis)
@@ -85092,100 +85446,112 @@ double QRawFont_XHeight(void* ptr)
 	return static_cast<QRawFont*>(ptr)->xHeight();
 }
 
-long long QRawFont___supportedWritingSystems_atList(void* ptr, int i)
+long long QRawFont___supportedWritingSystems_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<QFontDatabase::WritingSystem>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const QFontDatabase::WritingSystem tmp = static_cast<QList<QFontDatabase::WritingSystem>*>(p)->at(i); if (i == static_cast<QList<QFontDatabase::WritingSystem>*>(p)->size()-1) { static_cast<QList<QFontDatabase::WritingSystem>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QRawFont___supportedWritingSystems_setList(void* ptr, long long i)
+void QRawFont___supportedWritingSystems_setList(void* ptr, long long i, void* p)
 {
-	static_cast<QList<QFontDatabase::WritingSystem>*>(ptr)->append(static_cast<QFontDatabase::WritingSystem>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QFontDatabase::WritingSystem>*>(p)->append(static_cast<QFontDatabase::WritingSystem>(i));
 }
 
 void* QRawFont___supportedWritingSystems_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QFontDatabase::WritingSystem>;
+	return new QList<QFontDatabase::WritingSystem>();
 }
 
-void* QRawFont___advancesForGlyphIndexes_atList2(void* ptr, int i)
+void* QRawFont___advancesForGlyphIndexes_atList2(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QRawFont___advancesForGlyphIndexes_setList2(void* ptr, void* i)
+void QRawFont___advancesForGlyphIndexes_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QRawFont___advancesForGlyphIndexes_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-unsigned int QRawFont___advancesForGlyphIndexes_glyphIndexes_atList2(void* ptr, int i)
+unsigned int QRawFont___advancesForGlyphIndexes_glyphIndexes_atList2(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<quint32>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const quint32 tmp = static_cast<QVector<quint32>*>(p)->at(i); if (i == static_cast<QVector<quint32>*>(p)->size()-1) { static_cast<QVector<quint32>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QRawFont___advancesForGlyphIndexes_glyphIndexes_setList2(void* ptr, unsigned int i)
+void QRawFont___advancesForGlyphIndexes_glyphIndexes_setList2(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<quint32>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<quint32>*>(p)->append(i);
 }
 
 void* QRawFont___advancesForGlyphIndexes_glyphIndexes_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<quint32>;
+	return new QVector<quint32>();
 }
 
-void* QRawFont___advancesForGlyphIndexes_atList(void* ptr, int i)
+void* QRawFont___advancesForGlyphIndexes_atList(void* ptr, int i, void* p)
 {
-	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+	Q_UNUSED(ptr);
+	return ({ QPointF tmpValue = ({const QPointF tmp = static_cast<QVector<QPointF>*>(p)->at(i); if (i == static_cast<QVector<QPointF>*>(p)->size()-1) { static_cast<QVector<QPointF>*>(p)->~QVector(); free(p); }; tmp; }); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-void QRawFont___advancesForGlyphIndexes_setList(void* ptr, void* i)
+void QRawFont___advancesForGlyphIndexes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QPointF>*>(ptr)->append(*static_cast<QPointF*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QPointF>*>(p)->append(*static_cast<QPointF*>(i));
 }
 
 void* QRawFont___advancesForGlyphIndexes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QPointF>;
+	return new QVector<QPointF>();
 }
 
-unsigned int QRawFont___advancesForGlyphIndexes_glyphIndexes_atList(void* ptr, int i)
+unsigned int QRawFont___advancesForGlyphIndexes_glyphIndexes_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<quint32>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const quint32 tmp = static_cast<QVector<quint32>*>(p)->at(i); if (i == static_cast<QVector<quint32>*>(p)->size()-1) { static_cast<QVector<quint32>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QRawFont___advancesForGlyphIndexes_glyphIndexes_setList(void* ptr, unsigned int i)
+void QRawFont___advancesForGlyphIndexes_glyphIndexes_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<quint32>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<quint32>*>(p)->append(i);
 }
 
 void* QRawFont___advancesForGlyphIndexes_glyphIndexes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<quint32>;
+	return new QVector<quint32>();
 }
 
-unsigned int QRawFont___glyphIndexesForString_atList(void* ptr, int i)
+unsigned int QRawFont___glyphIndexesForString_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<quint32>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const quint32 tmp = static_cast<QVector<quint32>*>(p)->at(i); if (i == static_cast<QVector<quint32>*>(p)->size()-1) { static_cast<QVector<quint32>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QRawFont___glyphIndexesForString_setList(void* ptr, unsigned int i)
+void QRawFont___glyphIndexesForString_setList(void* ptr, unsigned int i, void* p)
 {
-	static_cast<QVector<quint32>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<quint32>*>(p)->append(i);
 }
 
 void* QRawFont___glyphIndexesForString_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<quint32>;
+	return new QVector<quint32>();
 }
 
 class MyQRegExpValidator: public QRegExpValidator
@@ -85460,20 +85826,22 @@ int QRegion_RectCount(void* ptr)
 	return static_cast<QRegion*>(ptr)->rectCount();
 }
 
-void* QRegion___rects_atList(void* ptr, int i)
+void* QRegion___rects_atList(void* ptr, int i, void* p)
 {
-	return ({ QRect tmpValue = static_cast<QVector<QRect>*>(ptr)->at(i); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	Q_UNUSED(ptr);
+	return ({ QRect tmpValue = ({const QRect tmp = static_cast<QVector<QRect>*>(p)->at(i); if (i == static_cast<QVector<QRect>*>(p)->size()-1) { static_cast<QVector<QRect>*>(p)->~QVector(); free(p); }; tmp; }); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
-void QRegion___rects_setList(void* ptr, void* i)
+void QRegion___rects_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QRect>*>(ptr)->append(*static_cast<QRect*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QRect>*>(p)->append(*static_cast<QRect*>(i));
 }
 
 void* QRegion___rects_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QRect>;
+	return new QVector<QRect>();
 }
 
 class MyQRegularExpressionValidator: public QRegularExpressionValidator
@@ -86109,140 +86477,152 @@ double QScreen_RefreshRate(void* ptr)
 	return static_cast<QScreen*>(ptr)->refreshRate();
 }
 
-void* QScreen___virtualSiblings_atList(void* ptr, int i)
+void* QScreen___virtualSiblings_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QScreen*>(static_cast<QList<QScreen *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QScreen*>(({const QScreen * tmp = static_cast<QList<QScreen *>*>(p)->at(i); if (i == static_cast<QList<QScreen *>*>(p)->size()-1) { static_cast<QList<QScreen *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___virtualSiblings_setList(void* ptr, void* i)
+void QScreen___virtualSiblings_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QScreen *>*>(ptr)->append(static_cast<QScreen*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QScreen *>*>(p)->append(static_cast<QScreen*>(i));
 }
 
 void* QScreen___virtualSiblings_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QScreen *>;
+	return new QList<QScreen *>();
 }
 
-void* QScreen___dynamicPropertyNames_atList(void* ptr, int i)
+void* QScreen___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___dynamicPropertyNames_setList(void* ptr, void* i)
+void QScreen___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScreen___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QScreen___findChildren_atList2(void* ptr, int i)
+void* QScreen___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___findChildren_setList2(void* ptr, void* i)
+void QScreen___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QScreen___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QScreen___findChildren_atList3(void* ptr, int i)
+void* QScreen___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___findChildren_setList3(void* ptr, void* i)
+void QScreen___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QScreen___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QScreen___findChildren_atList(void* ptr, int i)
+void* QScreen___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___findChildren_setList(void* ptr, void* i)
+void QScreen___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QScreen___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QScreen___children_atList(void* ptr, int i)
+void* QScreen___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QScreen___children_setList(void* ptr, void* i)
+void QScreen___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QScreen___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QScreen_EventDefault(void* ptr, void* e)
@@ -86482,124 +86862,134 @@ char QSessionManager_IsPhase2(void* ptr)
 	return static_cast<QSessionManager*>(ptr)->isPhase2();
 }
 
-void* QSessionManager___dynamicPropertyNames_atList(void* ptr, int i)
+void* QSessionManager___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSessionManager___dynamicPropertyNames_setList(void* ptr, void* i)
+void QSessionManager___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QSessionManager___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QSessionManager___findChildren_atList2(void* ptr, int i)
+void* QSessionManager___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSessionManager___findChildren_setList2(void* ptr, void* i)
+void QSessionManager___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSessionManager___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSessionManager___findChildren_atList3(void* ptr, int i)
+void* QSessionManager___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSessionManager___findChildren_setList3(void* ptr, void* i)
+void QSessionManager___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSessionManager___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSessionManager___findChildren_atList(void* ptr, int i)
+void* QSessionManager___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSessionManager___findChildren_setList(void* ptr, void* i)
+void QSessionManager___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSessionManager___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSessionManager___children_atList(void* ptr, int i)
+void* QSessionManager___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSessionManager___children_setList(void* ptr, void* i)
+void QSessionManager___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSessionManager___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QSessionManager_EventDefault(void* ptr, void* e)
@@ -87222,132 +87612,148 @@ void QStandardItem_WriteDefault(void* ptr, void* out)
 		static_cast<QStandardItem*>(ptr)->QStandardItem::write(*static_cast<QDataStream*>(out));
 }
 
-void* QStandardItem___takeColumn_atList(void* ptr, int i)
+void* QStandardItem___takeColumn_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___takeColumn_setList(void* ptr, void* i)
+void QStandardItem___takeColumn_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___takeColumn_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___takeRow_atList(void* ptr, int i)
+void* QStandardItem___takeRow_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___takeRow_setList(void* ptr, void* i)
+void QStandardItem___takeRow_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___takeRow_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___appendColumn_items_atList(void* ptr, int i)
+void* QStandardItem___appendColumn_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___appendColumn_items_setList(void* ptr, void* i)
+void QStandardItem___appendColumn_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___appendColumn_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___appendRow_items_atList(void* ptr, int i)
+void* QStandardItem___appendRow_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___appendRow_items_setList(void* ptr, void* i)
+void QStandardItem___appendRow_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___appendRow_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___appendRows_items_atList(void* ptr, int i)
+void* QStandardItem___appendRows_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___appendRows_items_setList(void* ptr, void* i)
+void QStandardItem___appendRows_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___appendRows_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___insertColumn_items_atList(void* ptr, int i)
+void* QStandardItem___insertColumn_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___insertColumn_items_setList(void* ptr, void* i)
+void QStandardItem___insertColumn_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___insertColumn_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___insertRow_items_atList(void* ptr, int i)
+void* QStandardItem___insertRow_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___insertRow_items_setList(void* ptr, void* i)
+void QStandardItem___insertRow_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___insertRow_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItem___insertRows_items_atList(void* ptr, int i)
+void* QStandardItem___insertRows_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItem___insertRows_items_setList(void* ptr, void* i)
+void QStandardItem___insertRows_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItem___insertRows_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
 class MyQStandardItemModel: public QStandardItemModel
@@ -87365,7 +87771,7 @@ public:
 	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQStandardItemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
 	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModel_Sort(this, column, order); };
-	QMap<int, QVariant> itemData(const QModelIndex & index) const { return *static_cast<QMap<int, QVariant>*>(callbackQStandardItemModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQStandardItemModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
 	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQStandardItemModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtGui_PackedList { tmpValue, tmpValue->size() }; }))); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
@@ -87402,9 +87808,9 @@ public:
 	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_RowsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQStandardItemModel_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
 	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	QHash<int, QByteArray> roleNames() const { return *static_cast<QHash<int, QByteArray>*>(callbackQStandardItemModel_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); };
+	QHash<int, QByteArray> roleNames() const { return ({ QHash<int, QByteArray>* tmpP = static_cast<QHash<int, QByteArray>*>(callbackQStandardItemModel_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); QHash<int, QByteArray> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
-	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return *static_cast<QList<QModelIndex>*>(callbackQStandardItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQStandardItemModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQStandardItemModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQStandardItemModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQStandardItemModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -87700,7 +88106,7 @@ struct QtGui_PackedList QStandardItemModel_ItemDataDefault(void* ptr, void* inde
 
 void* QStandardItemModel_MimeDataDefault(void* ptr, void* indexes)
 {
-		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeData(*static_cast<QList<QModelIndex>*>(indexes));
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 }
 
 void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent)
@@ -87823,544 +88229,608 @@ int QStandardItemModel_SortRole(void* ptr)
 	return static_cast<QStandardItemModel*>(ptr)->sortRole();
 }
 
-void* QStandardItemModel___takeColumn_atList(void* ptr, int i)
+void* QStandardItemModel___takeColumn_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___takeColumn_setList(void* ptr, void* i)
+void QStandardItemModel___takeColumn_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___takeColumn_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___takeRow_atList(void* ptr, int i)
+void* QStandardItemModel___takeRow_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___takeRow_setList(void* ptr, void* i)
+void QStandardItemModel___takeRow_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___takeRow_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___setItemData_roles_atList(void* ptr, int i)
+void* QStandardItemModel___setItemData_roles_atList(void* ptr, int v, int i, void* p)
 {
-	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+	Q_UNUSED(ptr);
+	return new QVariant(({const  QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___setItemData_roles_setList(void* ptr, int key, void* i)
+void QStandardItemModel___setItemData_roles_setList(void* ptr, int key, void* i, void* p)
 {
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QStandardItemModel___setItemData_roles_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>;
+	return new QMap<int, QVariant>();
 }
 
-struct QtGui_PackedList QStandardItemModel___setItemData_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___setItemData_keyList(void* ptr, void* p)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	Q_UNUSED(ptr);
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QStandardItemModel___appendColumn_items_atList(void* ptr, int i)
+void* QStandardItemModel___appendColumn_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___appendColumn_items_setList(void* ptr, void* i)
+void QStandardItemModel___appendColumn_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___appendColumn_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___appendRow_items_atList(void* ptr, int i)
+void* QStandardItemModel___appendRow_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___appendRow_items_setList(void* ptr, void* i)
+void QStandardItemModel___appendRow_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___appendRow_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___insertColumn_items_atList(void* ptr, int i)
+void* QStandardItemModel___insertColumn_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___insertColumn_items_setList(void* ptr, void* i)
+void QStandardItemModel___insertColumn_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___insertColumn_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___insertRow_items_atList(void* ptr, int i)
+void* QStandardItemModel___insertRow_items_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___insertRow_items_setList(void* ptr, void* i)
+void QStandardItemModel___insertRow_items_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___insertRow_items_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___setItemRoleNames_roleNames_atList(void* ptr, int i)
+void* QStandardItemModel___setItemRoleNames_roleNames_atList(void* ptr, int v, int i, void* p)
 {
-	return new QByteArray(static_cast<QHash<int, QByteArray>*>(ptr)->value(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const  QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___setItemRoleNames_roleNames_setList(void* ptr, int key, void* i)
+void QStandardItemModel___setItemRoleNames_roleNames_setList(void* ptr, int key, void* i, void* p)
 {
-	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QHash<int, QByteArray>*>(p)->insert(key, *static_cast<QByteArray*>(i));
 }
 
 void* QStandardItemModel___setItemRoleNames_roleNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QHash<int, QByteArray>;
+	return new QHash<int, QByteArray>();
 }
 
-struct QtGui_PackedList QStandardItemModel___setItemRoleNames_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___setItemRoleNames_keyList(void* ptr, void* p)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	Q_UNUSED(ptr);
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(p)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QStandardItemModel___findItems_atList(void* ptr, int i)
+void* QStandardItemModel___findItems_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QStandardItem*>(static_cast<QList<QStandardItem *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QStandardItem*>(({const QStandardItem * tmp = static_cast<QList<QStandardItem *>*>(p)->at(i); if (i == static_cast<QList<QStandardItem *>*>(p)->size()-1) { static_cast<QList<QStandardItem *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___findItems_setList(void* ptr, void* i)
+void QStandardItemModel___findItems_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QStandardItem *>*>(ptr)->append(static_cast<QStandardItem*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QStandardItem *>*>(p)->append(static_cast<QStandardItem*>(i));
 }
 
 void* QStandardItemModel___findItems_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QStandardItem *>;
+	return new QList<QStandardItem *>();
 }
 
-void* QStandardItemModel___itemData_atList(void* ptr, int i)
+void* QStandardItemModel___itemData_atList(void* ptr, int v, int i, void* p)
 {
-	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+	Q_UNUSED(ptr);
+	return new QVariant(({const  QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___itemData_setList(void* ptr, int key, void* i)
+void QStandardItemModel___itemData_setList(void* ptr, int key, void* i, void* p)
 {
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QStandardItemModel___itemData_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>;
+	return new QMap<int, QVariant>();
 }
 
-struct QtGui_PackedList QStandardItemModel___itemData_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___itemData_keyList(void* ptr, void* p)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	Q_UNUSED(ptr);
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QStandardItemModel___mimeData_indexes_atList(void* ptr, int i)
+void* QStandardItemModel___mimeData_indexes_atList(void* ptr, int i, void* p)
 {
-	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___mimeData_indexes_setList(void* ptr, void* i)
+void QStandardItemModel___mimeData_indexes_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QStandardItemModel___mimeData_indexes_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QModelIndex>;
+	return new QList<QModelIndex>();
 }
 
-int QStandardItemModel_____setItemData_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setItemData_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____setItemData_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setItemData_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____setItemData_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QStandardItemModel_____setItemRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setItemRoleNames_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____setItemRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setItemRoleNames_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____setItemRoleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QStandardItemModel_____itemData_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____itemData_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____itemData_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____itemData_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____itemData_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-void* QStandardItemModel___changePersistentIndexList_from_atList(void* ptr, int i)
+void* QStandardItemModel___changePersistentIndexList_from_atList(void* ptr, int i, void* p)
 {
-	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___changePersistentIndexList_from_setList(void* ptr, void* i)
+void QStandardItemModel___changePersistentIndexList_from_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QStandardItemModel___changePersistentIndexList_from_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QModelIndex>;
+	return new QList<QModelIndex>();
 }
 
-void* QStandardItemModel___changePersistentIndexList_to_atList(void* ptr, int i)
+void* QStandardItemModel___changePersistentIndexList_to_atList(void* ptr, int i, void* p)
 {
-	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___changePersistentIndexList_to_setList(void* ptr, void* i)
+void QStandardItemModel___changePersistentIndexList_to_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QStandardItemModel___changePersistentIndexList_to_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QModelIndex>;
+	return new QList<QModelIndex>();
 }
 
-int QStandardItemModel___dataChanged_roles_atList(void* ptr, int i)
+int QStandardItemModel___dataChanged_roles_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QVector<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
-void QStandardItemModel___dataChanged_roles_setList(void* ptr, int i)
+void QStandardItemModel___dataChanged_roles_setList(void* ptr, int i, void* p)
 {
-	static_cast<QVector<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QVector<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel___dataChanged_roles_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<int>;
+	return new QVector<int>();
 }
 
-void* QStandardItemModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+void* QStandardItemModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i, void* p)
 {
-	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPersistentModelIndex(({const QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+void QStandardItemModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QStandardItemModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPersistentModelIndex>;
+	return new QList<QPersistentModelIndex>();
 }
 
-void* QStandardItemModel___layoutChanged_parents_atList(void* ptr, int i)
+void* QStandardItemModel___layoutChanged_parents_atList(void* ptr, int i, void* p)
 {
-	return new QPersistentModelIndex(static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QPersistentModelIndex(({const QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___layoutChanged_parents_setList(void* ptr, void* i)
+void QStandardItemModel___layoutChanged_parents_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QStandardItemModel___layoutChanged_parents_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QPersistentModelIndex>;
+	return new QList<QPersistentModelIndex>();
 }
 
-void* QStandardItemModel___roleNames_atList(void* ptr, int i)
+void* QStandardItemModel___roleNames_atList(void* ptr, int v, int i, void* p)
 {
-	return new QByteArray(static_cast<QHash<int, QByteArray>*>(ptr)->value(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const  QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___roleNames_setList(void* ptr, int key, void* i)
+void QStandardItemModel___roleNames_setList(void* ptr, int key, void* i, void* p)
 {
-	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QHash<int, QByteArray>*>(p)->insert(key, *static_cast<QByteArray*>(i));
 }
 
 void* QStandardItemModel___roleNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QHash<int, QByteArray>;
+	return new QHash<int, QByteArray>();
 }
 
-struct QtGui_PackedList QStandardItemModel___roleNames_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___roleNames_keyList(void* ptr, void* p)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	Q_UNUSED(ptr);
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(p)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QStandardItemModel___match_atList(void* ptr, int i)
+void* QStandardItemModel___match_atList(void* ptr, int i, void* p)
 {
-	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___match_setList(void* ptr, void* i)
+void QStandardItemModel___match_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QStandardItemModel___match_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QModelIndex>;
+	return new QList<QModelIndex>();
 }
 
-void* QStandardItemModel___persistentIndexList_atList(void* ptr, int i)
+void* QStandardItemModel___persistentIndexList_atList(void* ptr, int i, void* p)
 {
-	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___persistentIndexList_setList(void* ptr, void* i)
+void QStandardItemModel___persistentIndexList_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QStandardItemModel___persistentIndexList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QModelIndex>;
+	return new QList<QModelIndex>();
 }
 
-int QStandardItemModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____doSetRoleNames_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____doSetRoleNames_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____doSetRoleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QStandardItemModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setRoleNames_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setRoleNames_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____setRoleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-int QStandardItemModel_____roleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____roleNames_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QStandardItemModel_____roleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____roleNames_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QStandardItemModel_____roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
-void* QStandardItemModel___dynamicPropertyNames_atList(void* ptr, int i)
+void* QStandardItemModel___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___dynamicPropertyNames_setList(void* ptr, void* i)
+void QStandardItemModel___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QStandardItemModel___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QStandardItemModel___findChildren_atList2(void* ptr, int i)
+void* QStandardItemModel___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___findChildren_setList2(void* ptr, void* i)
+void QStandardItemModel___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStandardItemModel___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStandardItemModel___findChildren_atList3(void* ptr, int i)
+void* QStandardItemModel___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___findChildren_setList3(void* ptr, void* i)
+void QStandardItemModel___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStandardItemModel___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStandardItemModel___findChildren_atList(void* ptr, int i)
+void* QStandardItemModel___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___findChildren_setList(void* ptr, void* i)
+void QStandardItemModel___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStandardItemModel___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStandardItemModel___children_atList(void* ptr, int i)
+void* QStandardItemModel___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStandardItemModel___children_setList(void* ptr, void* i)
+void QStandardItemModel___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStandardItemModel___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QStandardItemModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -88854,124 +89324,134 @@ double QStyleHints_FontSmoothingGamma(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->fontSmoothingGamma();
 }
 
-void* QStyleHints___dynamicPropertyNames_atList(void* ptr, int i)
+void* QStyleHints___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStyleHints___dynamicPropertyNames_setList(void* ptr, void* i)
+void QStyleHints___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QStyleHints___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QStyleHints___findChildren_atList2(void* ptr, int i)
+void* QStyleHints___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStyleHints___findChildren_setList2(void* ptr, void* i)
+void QStyleHints___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStyleHints___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStyleHints___findChildren_atList3(void* ptr, int i)
+void* QStyleHints___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStyleHints___findChildren_setList3(void* ptr, void* i)
+void QStyleHints___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStyleHints___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStyleHints___findChildren_atList(void* ptr, int i)
+void* QStyleHints___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStyleHints___findChildren_setList(void* ptr, void* i)
+void QStyleHints___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStyleHints___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QStyleHints___children_atList(void* ptr, int i)
+void* QStyleHints___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QStyleHints___children_setList(void* ptr, void* i)
+void QStyleHints___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QStyleHints___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QStyleHints_EventDefault(void* ptr, void* e)
@@ -89518,124 +89998,134 @@ int QSyntaxHighlighter_PreviousBlockState(void* ptr)
 	return static_cast<QSyntaxHighlighter*>(ptr)->previousBlockState();
 }
 
-void* QSyntaxHighlighter___dynamicPropertyNames_atList(void* ptr, int i)
+void* QSyntaxHighlighter___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSyntaxHighlighter___dynamicPropertyNames_setList(void* ptr, void* i)
+void QSyntaxHighlighter___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QSyntaxHighlighter___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QSyntaxHighlighter___findChildren_atList2(void* ptr, int i)
+void* QSyntaxHighlighter___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSyntaxHighlighter___findChildren_setList2(void* ptr, void* i)
+void QSyntaxHighlighter___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSyntaxHighlighter___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSyntaxHighlighter___findChildren_atList3(void* ptr, int i)
+void* QSyntaxHighlighter___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSyntaxHighlighter___findChildren_setList3(void* ptr, void* i)
+void QSyntaxHighlighter___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSyntaxHighlighter___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSyntaxHighlighter___findChildren_atList(void* ptr, int i)
+void* QSyntaxHighlighter___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSyntaxHighlighter___findChildren_setList(void* ptr, void* i)
+void QSyntaxHighlighter___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSyntaxHighlighter___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QSyntaxHighlighter___children_atList(void* ptr, int i)
+void* QSyntaxHighlighter___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSyntaxHighlighter___children_setList(void* ptr, void* i)
+void QSyntaxHighlighter___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSyntaxHighlighter___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QSyntaxHighlighter_EventDefault(void* ptr, void* e)
@@ -89972,7 +90462,7 @@ int QTextBlock_UserState(void* ptr)
 void* QTextBlock___textFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextLayout::FormatRange>;
+	return new QVector<QTextLayout::FormatRange>();
 }
 
 void* QTextBlockFormat_NewQTextBlockFormat()
@@ -90093,13 +90583,13 @@ double QTextBlockFormat_TopMargin(void* ptr)
 void* QTextBlockFormat___setTabPositions_tabs_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTextOption::Tab>;
+	return new QList<QTextOption::Tab>();
 }
 
 void* QTextBlockFormat___tabPositions_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTextOption::Tab>;
+	return new QList<QTextOption::Tab>();
 }
 
 class MyQTextBlockGroup: public QTextBlockGroup
@@ -90183,20 +90673,22 @@ struct QtGui_PackedList QTextBlockGroup_BlockList(void* ptr)
 	return ({ QList<QTextBlock>* tmpValue = new QList<QTextBlock>(static_cast<QTextBlockGroup*>(ptr)->blockList()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QTextBlockGroup___blockList_atList(void* ptr, int i)
+void* QTextBlockGroup___blockList_atList(void* ptr, int i, void* p)
 {
-	return new QTextBlock(static_cast<QList<QTextBlock>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextBlock(({const QTextBlock tmp = static_cast<QList<QTextBlock>*>(p)->at(i); if (i == static_cast<QList<QTextBlock>*>(p)->size()-1) { static_cast<QList<QTextBlock>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextBlockGroup___blockList_setList(void* ptr, void* i)
+void QTextBlockGroup___blockList_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QTextBlock>*>(ptr)->append(*static_cast<QTextBlock*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QTextBlock>*>(p)->append(*static_cast<QTextBlock*>(i));
 }
 
 void* QTextBlockGroup___blockList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTextBlock>;
+	return new QList<QTextBlock>();
 }
 
 class MyQTextBlockUserData: public QTextBlockUserData
@@ -91572,140 +92064,152 @@ void QTextDocument_Print(void* ptr, void* printer)
 #endif
 }
 
-void* QTextDocument___allFormats_atList(void* ptr, int i)
+void* QTextDocument___allFormats_atList(void* ptr, int i, void* p)
 {
-	return new QTextFormat(static_cast<QVector<QTextFormat>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextFormat(({const QTextFormat tmp = static_cast<QVector<QTextFormat>*>(p)->at(i); if (i == static_cast<QVector<QTextFormat>*>(p)->size()-1) { static_cast<QVector<QTextFormat>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QTextDocument___allFormats_setList(void* ptr, void* i)
+void QTextDocument___allFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QTextFormat>*>(ptr)->append(*static_cast<QTextFormat*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QTextFormat>*>(p)->append(*static_cast<QTextFormat*>(i));
 }
 
 void* QTextDocument___allFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextFormat>;
+	return new QVector<QTextFormat>();
 }
 
-void* QTextDocument___dynamicPropertyNames_atList(void* ptr, int i)
+void* QTextDocument___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocument___dynamicPropertyNames_setList(void* ptr, void* i)
+void QTextDocument___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QTextDocument___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QTextDocument___findChildren_atList2(void* ptr, int i)
+void* QTextDocument___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocument___findChildren_setList2(void* ptr, void* i)
+void QTextDocument___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextDocument___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextDocument___findChildren_atList3(void* ptr, int i)
+void* QTextDocument___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocument___findChildren_setList3(void* ptr, void* i)
+void QTextDocument___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextDocument___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextDocument___findChildren_atList(void* ptr, int i)
+void* QTextDocument___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocument___findChildren_setList(void* ptr, void* i)
+void QTextDocument___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextDocument___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextDocument___children_atList(void* ptr, int i)
+void* QTextDocument___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocument___children_setList(void* ptr, void* i)
+void QTextDocument___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextDocument___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QTextDocument_EventDefault(void* ptr, void* e)
@@ -91893,20 +92397,22 @@ void* QTextDocumentWriter_Codec(void* ptr)
 	return static_cast<QTextDocumentWriter*>(ptr)->codec();
 }
 
-void* QTextDocumentWriter___supportedDocumentFormats_atList(void* ptr, int i)
+void* QTextDocumentWriter___supportedDocumentFormats_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextDocumentWriter___supportedDocumentFormats_setList(void* ptr, void* i)
+void QTextDocumentWriter___supportedDocumentFormats_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QTextDocumentWriter___supportedDocumentFormats_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
 void* QTextFormat_NewQTextFormat3(void* other)
@@ -92159,73 +92665,82 @@ double QTextFormat_DoubleProperty(void* ptr, int propertyId)
 	return static_cast<QTextFormat*>(ptr)->doubleProperty(propertyId);
 }
 
-void* QTextFormat___setProperty_value_atList2(void* ptr, int i)
+void* QTextFormat___setProperty_value_atList2(void* ptr, int i, void* p)
 {
-	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextLength(({const QTextLength tmp = static_cast<QVector<QTextLength>*>(p)->at(i); if (i == static_cast<QVector<QTextLength>*>(p)->size()-1) { static_cast<QVector<QTextLength>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QTextFormat___setProperty_value_setList2(void* ptr, void* i)
+void QTextFormat___setProperty_value_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QTextLength>*>(ptr)->append(*static_cast<QTextLength*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QTextLength>*>(p)->append(*static_cast<QTextLength*>(i));
 }
 
 void* QTextFormat___setProperty_value_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextLength>;
+	return new QVector<QTextLength>();
 }
 
-void* QTextFormat___properties_atList(void* ptr, int i)
+void* QTextFormat___properties_atList(void* ptr, int v, int i, void* p)
 {
-	return new QVariant(static_cast<QMap<int, QVariant>*>(ptr)->value(i));
+	Q_UNUSED(ptr);
+	return new QVariant(({const  QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
-void QTextFormat___properties_setList(void* ptr, int key, void* i)
+void QTextFormat___properties_setList(void* ptr, int key, void* i, void* p)
 {
-	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QTextFormat___properties_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QMap<int, QVariant>;
+	return new QMap<int, QVariant>();
 }
 
-struct QtGui_PackedList QTextFormat___properties_keyList(void* ptr)
+struct QtGui_PackedList QTextFormat___properties_keyList(void* ptr, void* p)
 {
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+	Q_UNUSED(ptr);
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QTextFormat___lengthVectorProperty_atList(void* ptr, int i)
+void* QTextFormat___lengthVectorProperty_atList(void* ptr, int i, void* p)
 {
-	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextLength(({const QTextLength tmp = static_cast<QVector<QTextLength>*>(p)->at(i); if (i == static_cast<QVector<QTextLength>*>(p)->size()-1) { static_cast<QVector<QTextLength>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QTextFormat___lengthVectorProperty_setList(void* ptr, void* i)
+void QTextFormat___lengthVectorProperty_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QTextLength>*>(ptr)->append(*static_cast<QTextLength*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QTextLength>*>(p)->append(*static_cast<QTextLength*>(i));
 }
 
 void* QTextFormat___lengthVectorProperty_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextLength>;
+	return new QVector<QTextLength>();
 }
 
-int QTextFormat_____properties_keyList_atList(void* ptr, int i)
+int QTextFormat_____properties_keyList_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<int>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QTextFormat_____properties_keyList_setList(void* ptr, int i)
+void QTextFormat_____properties_keyList_setList(void* ptr, int i, void* p)
 {
-	static_cast<QList<int>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<int>*>(p)->append(i);
 }
 
 void* QTextFormat_____properties_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<int>;
+	return new QList<int>();
 }
 
 void* QTextFragment_NewQTextFragment()
@@ -92278,20 +92793,22 @@ int QTextFragment_Position(void* ptr)
 	return static_cast<QTextFragment*>(ptr)->position();
 }
 
-void* QTextFragment___glyphRuns_atList(void* ptr, int i)
+void* QTextFragment___glyphRuns_atList(void* ptr, int i, void* p)
 {
-	return new QGlyphRun(static_cast<QList<QGlyphRun>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QGlyphRun(({const QGlyphRun tmp = static_cast<QList<QGlyphRun>*>(p)->at(i); if (i == static_cast<QList<QGlyphRun>*>(p)->size()-1) { static_cast<QList<QGlyphRun>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextFragment___glyphRuns_setList(void* ptr, void* i)
+void QTextFragment___glyphRuns_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QGlyphRun>*>(ptr)->append(*static_cast<QGlyphRun*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QGlyphRun>*>(p)->append(*static_cast<QGlyphRun*>(i));
 }
 
 void* QTextFragment___glyphRuns_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QGlyphRun>;
+	return new QList<QGlyphRun>();
 }
 
 class MyQTextFrame: public QTextFrame
@@ -92365,20 +92882,22 @@ int QTextFrame_LastPosition(void* ptr)
 	return static_cast<QTextFrame*>(ptr)->lastPosition();
 }
 
-void* QTextFrame___childFrames_atList(void* ptr, int i)
+void* QTextFrame___childFrames_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QTextFrame*>(static_cast<QList<QTextFrame *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QTextFrame*>(({const QTextFrame * tmp = static_cast<QList<QTextFrame *>*>(p)->at(i); if (i == static_cast<QList<QTextFrame *>*>(p)->size()-1) { static_cast<QList<QTextFrame *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextFrame___childFrames_setList(void* ptr, void* i)
+void QTextFrame___childFrames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QTextFrame *>*>(ptr)->append(static_cast<QTextFrame*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QTextFrame *>*>(p)->append(static_cast<QTextFrame*>(i));
 }
 
 void* QTextFrame___childFrames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTextFrame *>;
+	return new QList<QTextFrame *>();
 }
 
 void* QTextFrameFormat_NewQTextFrameFormat()
@@ -92854,20 +93373,22 @@ void QTextLayout_DrawCursor(void* ptr, void* painter, void* position, int cursor
 	static_cast<QTextLayout*>(ptr)->drawCursor(static_cast<QPainter*>(painter), *static_cast<QPointF*>(position), cursorPosition, width);
 }
 
-void* QTextLayout___glyphRuns_atList(void* ptr, int i)
+void* QTextLayout___glyphRuns_atList(void* ptr, int i, void* p)
 {
-	return new QGlyphRun(static_cast<QList<QGlyphRun>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QGlyphRun(({const QGlyphRun tmp = static_cast<QList<QGlyphRun>*>(p)->at(i); if (i == static_cast<QList<QGlyphRun>*>(p)->size()-1) { static_cast<QList<QGlyphRun>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextLayout___glyphRuns_setList(void* ptr, void* i)
+void QTextLayout___glyphRuns_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QGlyphRun>*>(ptr)->append(*static_cast<QGlyphRun*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QGlyphRun>*>(p)->append(*static_cast<QGlyphRun*>(i));
 }
 
 void* QTextLayout___glyphRuns_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QGlyphRun>;
+	return new QList<QGlyphRun>();
 }
 
 void* QTextLength_NewQTextLength()
@@ -93030,20 +93551,22 @@ double QTextLine_Y(void* ptr)
 	return static_cast<QTextLine*>(ptr)->y();
 }
 
-void* QTextLine___glyphRuns_atList(void* ptr, int i)
+void* QTextLine___glyphRuns_atList(void* ptr, int i, void* p)
 {
-	return new QGlyphRun(static_cast<QList<QGlyphRun>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QGlyphRun(({const QGlyphRun tmp = static_cast<QList<QGlyphRun>*>(p)->at(i); if (i == static_cast<QList<QGlyphRun>*>(p)->size()-1) { static_cast<QList<QGlyphRun>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextLine___glyphRuns_setList(void* ptr, void* i)
+void QTextLine___glyphRuns_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QGlyphRun>*>(ptr)->append(*static_cast<QGlyphRun*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QGlyphRun>*>(p)->append(*static_cast<QGlyphRun*>(i));
 }
 
 void* QTextLine___glyphRuns_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QGlyphRun>;
+	return new QList<QGlyphRun>();
 }
 
 class MyQTextList: public QTextList
@@ -93215,124 +93738,134 @@ int QTextObject_ObjectIndex(void* ptr)
 	return static_cast<QTextObject*>(ptr)->objectIndex();
 }
 
-void* QTextObject___dynamicPropertyNames_atList(void* ptr, int i)
+void* QTextObject___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextObject___dynamicPropertyNames_setList(void* ptr, void* i)
+void QTextObject___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QTextObject___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QTextObject___findChildren_atList2(void* ptr, int i)
+void* QTextObject___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextObject___findChildren_setList2(void* ptr, void* i)
+void QTextObject___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextObject___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextObject___findChildren_atList3(void* ptr, int i)
+void* QTextObject___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextObject___findChildren_setList3(void* ptr, void* i)
+void QTextObject___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextObject___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextObject___findChildren_atList(void* ptr, int i)
+void* QTextObject___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextObject___findChildren_setList(void* ptr, void* i)
+void QTextObject___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextObject___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTextObject___children_atList(void* ptr, int i)
+void* QTextObject___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTextObject___children_setList(void* ptr, void* i)
+void QTextObject___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTextObject___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QTextObject_EventDefault(void* ptr, void* e)
@@ -93639,36 +94172,40 @@ double QTextOption_TabStopDistance(void* ptr)
 	return static_cast<QTextOption*>(ptr)->tabStopDistance();
 }
 
-double QTextOption___setTabArray_tabStops_atList(void* ptr, int i)
+double QTextOption___setTabArray_tabStops_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QTextOption___setTabArray_tabStops_setList(void* ptr, double i)
+void QTextOption___setTabArray_tabStops_setList(void* ptr, double i, void* p)
 {
-	static_cast<QList<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<qreal>*>(p)->append(i);
 }
 
 void* QTextOption___setTabArray_tabStops_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<qreal>;
+	return new QList<qreal>();
 }
 
-double QTextOption___tabArray_atList(void* ptr, int i)
+double QTextOption___tabArray_atList(void* ptr, int i, void* p)
 {
-	return static_cast<QList<qreal>*>(ptr)->at(i);
+	Q_UNUSED(ptr);
+	return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
-void QTextOption___tabArray_setList(void* ptr, double i)
+void QTextOption___tabArray_setList(void* ptr, double i, void* p)
 {
-	static_cast<QList<qreal>*>(ptr)->append(i);
+	Q_UNUSED(ptr);
+	static_cast<QList<qreal>*>(p)->append(i);
 }
 
 void* QTextOption___tabArray_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<qreal>;
+	return new QList<qreal>();
 }
 
 class MyQTextTable: public QTextTable
@@ -93961,36 +94498,40 @@ double QTextTableFormat_CellSpacing(void* ptr)
 	return static_cast<QTextTableFormat*>(ptr)->cellSpacing();
 }
 
-void* QTextTableFormat___setColumnWidthConstraints_constraints_atList(void* ptr, int i)
+void* QTextTableFormat___setColumnWidthConstraints_constraints_atList(void* ptr, int i, void* p)
 {
-	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextLength(({const QTextLength tmp = static_cast<QVector<QTextLength>*>(p)->at(i); if (i == static_cast<QVector<QTextLength>*>(p)->size()-1) { static_cast<QVector<QTextLength>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QTextTableFormat___setColumnWidthConstraints_constraints_setList(void* ptr, void* i)
+void QTextTableFormat___setColumnWidthConstraints_constraints_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QTextLength>*>(ptr)->append(*static_cast<QTextLength*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QTextLength>*>(p)->append(*static_cast<QTextLength*>(i));
 }
 
 void* QTextTableFormat___setColumnWidthConstraints_constraints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextLength>;
+	return new QVector<QTextLength>();
 }
 
-void* QTextTableFormat___columnWidthConstraints_atList(void* ptr, int i)
+void* QTextTableFormat___columnWidthConstraints_atList(void* ptr, int i, void* p)
 {
-	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QTextLength(({const QTextLength tmp = static_cast<QVector<QTextLength>*>(p)->at(i); if (i == static_cast<QVector<QTextLength>*>(p)->size()-1) { static_cast<QVector<QTextLength>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QTextTableFormat___columnWidthConstraints_setList(void* ptr, void* i)
+void QTextTableFormat___columnWidthConstraints_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QTextLength>*>(ptr)->append(*static_cast<QTextLength*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QTextLength>*>(p)->append(*static_cast<QTextLength*>(i));
 }
 
 void* QTextTableFormat___columnWidthConstraints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QTextLength>;
+	return new QVector<QTextLength>();
 }
 
 struct QtGui_PackedList QTouchDevice_QTouchDevice_Devices()
@@ -94048,20 +94589,22 @@ int QTouchDevice_MaximumTouchPoints(void* ptr)
 	return static_cast<QTouchDevice*>(ptr)->maximumTouchPoints();
 }
 
-void* QTouchDevice___devices_atList(void* ptr, int i)
+void* QTouchDevice___devices_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QTouchDevice*>(static_cast<QList<const QTouchDevice *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QTouchDevice*>(({const const QTouchDevice * tmp = static_cast<QList<const QTouchDevice *>*>(p)->at(i); if (i == static_cast<QList<const QTouchDevice *>*>(p)->size()-1) { static_cast<QList<const QTouchDevice *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTouchDevice___devices_setList(void* ptr, void* i)
+void QTouchDevice___devices_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<const QTouchDevice *>*>(ptr)->append(static_cast<QTouchDevice*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<const QTouchDevice *>*>(p)->append(static_cast<QTouchDevice*>(i));
 }
 
 void* QTouchDevice___devices_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<const QTouchDevice *>;
+	return new QList<const QTouchDevice *>();
 }
 
 class MyQTouchEvent: public QTouchEvent
@@ -94137,31 +94680,31 @@ void QTouchEvent_Set_window(void* ptr, void* vqw)
 void* QTouchEvent___QTouchEvent_touchPoints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTouchEvent::TouchPoint>;
+	return new QList<QTouchEvent::TouchPoint>();
 }
 
 void* QTouchEvent___setTouchPoints_touchPoints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTouchEvent::TouchPoint>;
+	return new QList<QTouchEvent::TouchPoint>();
 }
 
 void* QTouchEvent___touchPoints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTouchEvent::TouchPoint>;
+	return new QList<QTouchEvent::TouchPoint>();
 }
 
 void* QTouchEvent____touchPoints_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTouchEvent::TouchPoint>;
+	return new QList<QTouchEvent::TouchPoint>();
 }
 
 void* QTouchEvent___set_touchPoints__newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QTouchEvent::TouchPoint>;
+	return new QList<QTouchEvent::TouchPoint>();
 }
 
 void* QTransform_Rotate(void* ptr, double angle, long long axis)
@@ -94545,124 +95088,134 @@ long long QValidator_Validate(void* ptr, struct QtGui_PackedString input, int po
 	return static_cast<QValidator*>(ptr)->validate(*(new QString(QString::fromUtf8(input.data, input.len))), pos);
 }
 
-void* QValidator___dynamicPropertyNames_atList(void* ptr, int i)
+void* QValidator___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QValidator___dynamicPropertyNames_setList(void* ptr, void* i)
+void QValidator___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QValidator___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QValidator___findChildren_atList2(void* ptr, int i)
+void* QValidator___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QValidator___findChildren_setList2(void* ptr, void* i)
+void QValidator___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QValidator___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QValidator___findChildren_atList3(void* ptr, int i)
+void* QValidator___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QValidator___findChildren_setList3(void* ptr, void* i)
+void QValidator___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QValidator___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QValidator___findChildren_atList(void* ptr, int i)
+void* QValidator___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QValidator___findChildren_setList(void* ptr, void* i)
+void QValidator___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QValidator___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QValidator___children_atList(void* ptr, int i)
+void* QValidator___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QValidator___children_setList(void* ptr, void* i)
+void QValidator___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QValidator___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QValidator_EventDefault(void* ptr, void* e)
@@ -97629,67 +98182,67 @@ double QWindow_Opacity(void* ptr)
 	}
 }
 
-void* QWindow___dynamicPropertyNames_atList(void* ptr, int i)
+void* QWindow___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 	} else {
-		return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 	}
 }
 
-void QWindow___dynamicPropertyNames_setList(void* ptr, void* i)
+void QWindow___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+		static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 	} else {
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+		static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 	}
 }
 
 void* QWindow___dynamicPropertyNames_newList(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QList<QByteArray>;
+		return new QList<QByteArray>();
 	} else {
-		return new QList<QByteArray>;
+		return new QList<QByteArray>();
 	}
 }
 
-void* QWindow___findChildren_atList2(void* ptr, int i)
+void* QWindow___findChildren_atList2(void* ptr, int i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	} else {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	}
 }
 
-void QWindow___findChildren_setList2(void* ptr, void* i)
+void QWindow___findChildren_setList2(void* ptr, void* i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	} else {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	}
 }
@@ -97697,46 +98250,46 @@ void QWindow___findChildren_setList2(void* ptr, void* i)
 void* QWindow___findChildren_newList2(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	} else {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	}
 }
 
-void* QWindow___findChildren_atList3(void* ptr, int i)
+void* QWindow___findChildren_atList3(void* ptr, int i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	} else {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	}
 }
 
-void QWindow___findChildren_setList3(void* ptr, void* i)
+void QWindow___findChildren_setList3(void* ptr, void* i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	} else {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	}
 }
@@ -97744,46 +98297,46 @@ void QWindow___findChildren_setList3(void* ptr, void* i)
 void* QWindow___findChildren_newList3(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	} else {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	}
 }
 
-void* QWindow___findChildren_atList(void* ptr, int i)
+void* QWindow___findChildren_atList(void* ptr, int i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	} else {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 	}
 }
 
-void QWindow___findChildren_setList(void* ptr, void* i)
+void QWindow___findChildren_setList(void* ptr, void* i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	} else {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 		}
 	}
 }
@@ -97791,46 +98344,46 @@ void QWindow___findChildren_setList(void* ptr, void* i)
 void* QWindow___findChildren_newList(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	} else {
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 	}
 }
 
-void* QWindow___children_atList(void* ptr, int i)
+void* QWindow___children_atList(void* ptr, int i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 	} else {
-		return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 	}
 }
 
-void QWindow___children_setList(void* ptr, void* i)
+void QWindow___children_setList(void* ptr, void* i, void* p)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 		}
 	} else {
 		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QOffscreenSurface*>(i));
 		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QPaintDeviceWindow*>(i));
 		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QPdfWriter*>(i));
 		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QWindow*>(i));
 		} else {
-			static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+			static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 		}
 	}
 }
@@ -97838,9 +98391,9 @@ void QWindow___children_setList(void* ptr, void* i)
 void* QWindow___children_newList(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return new QList<QObject *>;
+		return new QList<QObject *>();
 	} else {
-		return new QList<QObject *>;
+		return new QList<QObject *>();
 	}
 }
 

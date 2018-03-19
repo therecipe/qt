@@ -63,300 +63,330 @@ char QSignalSpy_IsValid(void* ptr)
 		return static_cast<QSignalSpy*>(ptr)->isValid();
 }
 
-void* QSignalSpy___dynamicPropertyNames_atList(void* ptr, int i)
+void* QSignalSpy___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-		return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___dynamicPropertyNames_setList(void* ptr, void* i)
+void QSignalSpy___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+		static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QSignalSpy___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QByteArray>;
+		return new QList<QByteArray>();
 }
 
-void* QSignalSpy___findChildren_atList2(void* ptr, int i)
+void* QSignalSpy___findChildren_atList2(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___findChildren_setList2(void* ptr, void* i)
+void QSignalSpy___findChildren_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___findChildren_atList3(void* ptr, int i)
+void* QSignalSpy___findChildren_atList3(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___findChildren_setList3(void* ptr, void* i)
+void QSignalSpy___findChildren_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___findChildren_atList(void* ptr, int i)
+void* QSignalSpy___findChildren_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___findChildren_setList(void* ptr, void* i)
+void QSignalSpy___findChildren_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___children_atList(void* ptr, int i)
+void* QSignalSpy___children_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___children_setList(void* ptr, void* i)
+void QSignalSpy___children_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject *>;
+		return new QList<QObject *>();
 }
 
-void* QSignalSpy___QList_other_atList3(void* ptr, int i)
+void* QSignalSpy___QList_other_atList3(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___QList_other_setList3(void* ptr, void* i)
+void QSignalSpy___QList_other_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___QList_other_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___QList_other_atList2(void* ptr, int i)
+void* QSignalSpy___QList_other_atList2(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___QList_other_setList2(void* ptr, void* i)
+void QSignalSpy___QList_other_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___QList_other_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___fromSet_atList(void* ptr, int i)
+void* QSignalSpy___fromSet_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___fromSet_setList(void* ptr, void* i)
+void QSignalSpy___fromSet_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___fromSet_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___fromStdList_atList(void* ptr, int i)
+void* QSignalSpy___fromStdList_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___fromStdList_setList(void* ptr, void* i)
+void QSignalSpy___fromStdList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___fromStdList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___fromVector_atList(void* ptr, int i)
+void* QSignalSpy___fromVector_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___fromVector_setList(void* ptr, void* i)
+void QSignalSpy___fromVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___fromVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___fromVector_vector_atList(void* ptr, int i)
+void* QSignalSpy___fromVector_vector_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___fromVector_vector_setList(void* ptr, void* i)
+void QSignalSpy___fromVector_vector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___fromVector_vector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___append_value_atList2(void* ptr, int i)
+void* QSignalSpy___append_value_atList2(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___append_value_setList2(void* ptr, void* i)
+void QSignalSpy___append_value_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___append_value_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___swap_other_atList(void* ptr, int i)
+void* QSignalSpy___swap_other_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___swap_other_setList(void* ptr, void* i)
+void QSignalSpy___swap_other_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___swap_other_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___mid_atList(void* ptr, int i)
+void* QSignalSpy___mid_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___mid_setList(void* ptr, void* i)
+void QSignalSpy___mid_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___mid_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
-void* QSignalSpy___toVector_atList(void* ptr, int i)
+void* QSignalSpy___toVector_atList(void* ptr, int i, void* p)
 {
-		return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QSignalSpy___toVector_setList(void* ptr, void* i)
+void QSignalSpy___toVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QSignalSpy___toVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QObject*>;
+		return new QList<QObject*>();
 }
 
 char QSignalSpy_Event(void* ptr, void* e)
@@ -542,203 +572,223 @@ void QTestEventList_DestroyQTestEventList(void* ptr)
 	static_cast<QTestEventList*>(ptr)->~QTestEventList();
 }
 
-void* QTestEventList___QList_other_atList3(void* ptr, int i)
+void* QTestEventList___QList_other_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___QList_other_setList3(void* ptr, void* i)
+void QTestEventList___QList_other_setList3(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___QList_other_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___QList_other_atList2(void* ptr, int i)
+void* QTestEventList___QList_other_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___QList_other_setList2(void* ptr, void* i)
+void QTestEventList___QList_other_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___QList_other_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___fromSet_atList(void* ptr, int i)
+void* QTestEventList___fromSet_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___fromSet_setList(void* ptr, void* i)
+void QTestEventList___fromSet_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___fromSet_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___fromStdList_atList(void* ptr, int i)
+void* QTestEventList___fromStdList_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___fromStdList_setList(void* ptr, void* i)
+void QTestEventList___fromStdList_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___fromStdList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___fromVector_atList(void* ptr, int i)
+void* QTestEventList___fromVector_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___fromVector_setList(void* ptr, void* i)
+void QTestEventList___fromVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___fromVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___fromVector_vector_atList(void* ptr, int i)
+void* QTestEventList___fromVector_vector_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___fromVector_vector_setList(void* ptr, void* i)
+void QTestEventList___fromVector_vector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___fromVector_vector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___append_value_atList2(void* ptr, int i)
+void* QTestEventList___append_value_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___append_value_setList2(void* ptr, void* i)
+void QTestEventList___append_value_setList2(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___append_value_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___swap_other_atList(void* ptr, int i)
+void* QTestEventList___swap_other_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___swap_other_setList(void* ptr, void* i)
+void QTestEventList___swap_other_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___swap_other_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___mid_atList(void* ptr, int i)
+void* QTestEventList___mid_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___mid_setList(void* ptr, void* i)
+void QTestEventList___mid_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___mid_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QTestEventList___toVector_atList(void* ptr, int i)
+void* QTestEventList___toVector_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QTestEventList___toVector_setList(void* ptr, void* i)
+void QTestEventList___toVector_setList(void* ptr, void* i, void* p)
 {
+	Q_UNUSED(ptr);
 	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QSignalSpy*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QSignalSpy*>(i));
 	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+		static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 	}
 }
 
 void* QTestEventList___toVector_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 

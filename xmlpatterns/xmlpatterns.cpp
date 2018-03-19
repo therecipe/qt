@@ -93,84 +93,94 @@ void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr)
 
 }
 
-void* QAbstractMessageHandler___dynamicPropertyNames_atList(void* ptr, int i)
+void* QAbstractMessageHandler___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractMessageHandler___dynamicPropertyNames_setList(void* ptr, void* i)
+void QAbstractMessageHandler___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QAbstractMessageHandler___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QAbstractMessageHandler___findChildren_atList2(void* ptr, int i)
+void* QAbstractMessageHandler___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractMessageHandler___findChildren_setList2(void* ptr, void* i)
+void QAbstractMessageHandler___findChildren_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractMessageHandler___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractMessageHandler___findChildren_atList3(void* ptr, int i)
+void* QAbstractMessageHandler___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractMessageHandler___findChildren_setList3(void* ptr, void* i)
+void QAbstractMessageHandler___findChildren_setList3(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractMessageHandler___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractMessageHandler___findChildren_atList(void* ptr, int i)
+void* QAbstractMessageHandler___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractMessageHandler___findChildren_setList(void* ptr, void* i)
+void QAbstractMessageHandler___findChildren_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractMessageHandler___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractMessageHandler___children_atList(void* ptr, int i)
+void* QAbstractMessageHandler___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractMessageHandler___children_setList(void* ptr, void* i)
+void QAbstractMessageHandler___children_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractMessageHandler___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QAbstractMessageHandler_EventDefault(void* ptr, void* e)
@@ -298,84 +308,94 @@ void* QAbstractUriResolver_Resolve(void* ptr, void* relative, void* baseURI)
 	return new QUrl(static_cast<QAbstractUriResolver*>(ptr)->resolve(*static_cast<QUrl*>(relative), *static_cast<QUrl*>(baseURI)));
 }
 
-void* QAbstractUriResolver___dynamicPropertyNames_atList(void* ptr, int i)
+void* QAbstractUriResolver___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
-	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractUriResolver___dynamicPropertyNames_setList(void* ptr, void* i)
+void QAbstractUriResolver___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QAbstractUriResolver___dynamicPropertyNames_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QByteArray>;
+	return new QList<QByteArray>();
 }
 
-void* QAbstractUriResolver___findChildren_atList2(void* ptr, int i)
+void* QAbstractUriResolver___findChildren_atList2(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractUriResolver___findChildren_setList2(void* ptr, void* i)
+void QAbstractUriResolver___findChildren_setList2(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractUriResolver___findChildren_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractUriResolver___findChildren_atList3(void* ptr, int i)
+void* QAbstractUriResolver___findChildren_atList3(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractUriResolver___findChildren_setList3(void* ptr, void* i)
+void QAbstractUriResolver___findChildren_setList3(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractUriResolver___findChildren_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractUriResolver___findChildren_atList(void* ptr, int i)
+void* QAbstractUriResolver___findChildren_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject*>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractUriResolver___findChildren_setList(void* ptr, void* i)
+void QAbstractUriResolver___findChildren_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractUriResolver___findChildren_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject*>;
+	return new QList<QObject*>();
 }
 
-void* QAbstractUriResolver___children_atList(void* ptr, int i)
+void* QAbstractUriResolver___children_atList(void* ptr, int i, void* p)
 {
-	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
-void QAbstractUriResolver___children_setList(void* ptr, void* i)
+void QAbstractUriResolver___children_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
 }
 
 void* QAbstractUriResolver___children_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QList<QObject *>;
+	return new QList<QObject *>();
 }
 
 char QAbstractUriResolver_EventDefault(void* ptr, void* e)
@@ -431,8 +451,8 @@ public:
 	QUrl baseUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_BaseUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_DocumentUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
-	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & n) const { return *static_cast<QVector<QXmlName>*>(callbackQAbstractXmlNodeModel_NamespaceBindings(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
-	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return *static_cast<QVector<QXmlNodeModelIndex>*>(callbackQAbstractXmlNodeModel_NodesByIdref(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&idref))); };
+	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & n) const { return ({ QVector<QXmlName>* tmpP = static_cast<QVector<QXmlName>*>(callbackQAbstractXmlNodeModel_NamespaceBindings(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); QVector<QXmlName> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }); };
+	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return ({ QVector<QXmlNodeModelIndex>* tmpP = static_cast<QVector<QXmlNodeModelIndex>*>(callbackQAbstractXmlNodeModel_NodesByIdref(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&idref))); QVector<QXmlNodeModelIndex> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }); };
 	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQAbstractXmlNodeModel_Name(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&ni))); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_ElementById(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&id))); };
 	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_NextFromSimpleAxis(const_cast<void*>(static_cast<const void*>(this)), axis, const_cast<QXmlNodeModelIndex*>(&origin))); };
@@ -532,36 +552,40 @@ long long QAbstractXmlNodeModel_Kind(void* ptr, void* ni)
 	return static_cast<QAbstractXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
 }
 
-void* QAbstractXmlNodeModel___namespaceBindings_atList(void* ptr, int i)
+void* QAbstractXmlNodeModel___namespaceBindings_atList(void* ptr, int i, void* p)
 {
-	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QXmlName(({const QXmlName tmp = static_cast<QVector<QXmlName>*>(p)->at(i); if (i == static_cast<QVector<QXmlName>*>(p)->size()-1) { static_cast<QVector<QXmlName>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QAbstractXmlNodeModel___namespaceBindings_setList(void* ptr, void* i)
+void QAbstractXmlNodeModel___namespaceBindings_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QXmlName>*>(ptr)->append(*static_cast<QXmlName*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QXmlName>*>(p)->append(*static_cast<QXmlName*>(i));
 }
 
 void* QAbstractXmlNodeModel___namespaceBindings_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QXmlName>;
+	return new QVector<QXmlName>();
 }
 
-void* QAbstractXmlNodeModel___nodesByIdref_atList(void* ptr, int i)
+void* QAbstractXmlNodeModel___nodesByIdref_atList(void* ptr, int i, void* p)
 {
-	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QXmlNodeModelIndex(({const QXmlNodeModelIndex tmp = static_cast<QVector<QXmlNodeModelIndex>*>(p)->at(i); if (i == static_cast<QVector<QXmlNodeModelIndex>*>(p)->size()-1) { static_cast<QVector<QXmlNodeModelIndex>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QAbstractXmlNodeModel___nodesByIdref_setList(void* ptr, void* i)
+void QAbstractXmlNodeModel___nodesByIdref_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->append(*static_cast<QXmlNodeModelIndex*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QXmlNodeModelIndex>*>(p)->append(*static_cast<QXmlNodeModelIndex*>(i));
 }
 
 void* QAbstractXmlNodeModel___nodesByIdref_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QXmlNodeModelIndex>;
+	return new QVector<QXmlNodeModelIndex>();
 }
 
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver
@@ -665,8 +689,8 @@ public:
 	 ~MyQSimpleXmlNodeModel() { callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(this); };
 	QString stringValue(const QXmlNodeModelIndex & node) const { return ({ QtXmlPatterns_PackedString tempVal = callbackQSimpleXmlNodeModel_StringValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
-	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & node) const { return *static_cast<QVector<QXmlName>*>(callbackQSimpleXmlNodeModel_NamespaceBindings(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
-	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return *static_cast<QVector<QXmlNodeModelIndex>*>(callbackQSimpleXmlNodeModel_NodesByIdref(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&idref))); };
+	QVector<QXmlName> namespaceBindings(const QXmlNodeModelIndex & node) const { return ({ QVector<QXmlName>* tmpP = static_cast<QVector<QXmlName>*>(callbackQSimpleXmlNodeModel_NamespaceBindings(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); QVector<QXmlName> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }); };
+	QVector<QXmlNodeModelIndex> nodesByIdref(const QXmlName & idref) const { return ({ QVector<QXmlNodeModelIndex>* tmpP = static_cast<QVector<QXmlNodeModelIndex>*>(callbackQSimpleXmlNodeModel_NodesByIdref(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&idref))); QVector<QXmlNodeModelIndex> tmpV = *tmpP; tmpP->~QVector(); free(tmpP); tmpV; }); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_ElementById(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlName*>(&id))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_DocumentUri(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQSimpleXmlNodeModel_TypedValue(const_cast<void*>(static_cast<const void*>(this)), const_cast<QXmlNodeModelIndex*>(&node))); };
@@ -1067,20 +1091,22 @@ void* QXmlNodeModelIndex_InternalPointer(void* ptr)
 	return static_cast<QXmlNodeModelIndex*>(ptr)->internalPointer();
 }
 
-void* QXmlNodeModelIndex___namespaceBindings_atList(void* ptr, int i)
+void* QXmlNodeModelIndex___namespaceBindings_atList(void* ptr, int i, void* p)
 {
-	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
+	Q_UNUSED(ptr);
+	return new QXmlName(({const QXmlName tmp = static_cast<QVector<QXmlName>*>(p)->at(i); if (i == static_cast<QVector<QXmlName>*>(p)->size()-1) { static_cast<QVector<QXmlName>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
-void QXmlNodeModelIndex___namespaceBindings_setList(void* ptr, void* i)
+void QXmlNodeModelIndex___namespaceBindings_setList(void* ptr, void* i, void* p)
 {
-	static_cast<QVector<QXmlName>*>(ptr)->append(*static_cast<QXmlName*>(i));
+	Q_UNUSED(ptr);
+	static_cast<QVector<QXmlName>*>(p)->append(*static_cast<QXmlName*>(i));
 }
 
 void* QXmlNodeModelIndex___namespaceBindings_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
-	return new QVector<QXmlName>;
+	return new QVector<QXmlName>();
 }
 
 void* QXmlQuery_NewQXmlQuery()

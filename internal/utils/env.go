@@ -169,3 +169,24 @@ func ToolPath(tool, target string) string {
 func QT_WEBKIT() bool {
 	return os.Getenv("QT_WEBKIT") == "true"
 }
+
+func CGO_CFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_CFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_CXXFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_CXXFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}
+
+func CGO_LDFLAGS_ALLOW() string {
+	if allowed, ok := os.LookupEnv("CGO_LDFLAGS_ALLOW"); ok {
+		return allowed
+	}
+	return ".*"
+}

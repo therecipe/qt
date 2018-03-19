@@ -18,7 +18,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtHelp_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromQHelpContentItem(ptr QHelpContentItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
-	var n = new(QHelpContentItem)
+func NewQHelpContentItemFromPointer(ptr unsafe.Pointer) (n *QHelpContentItem) {
+	n = new(QHelpContentItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
 	if ptr.Pointer() != nil {
@@ -92,7 +92,7 @@ func (ptr *QHelpContentItem) Title() string {
 
 func (ptr *QHelpContentItem) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
+		tmpValue := core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -153,10 +153,10 @@ func PointerFromQHelpContentModel(ptr QHelpContentModel_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
-	var n = new(QHelpContentModel)
+func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) (n *QHelpContentModel) {
+	n = new(QHelpContentModel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQHelpContentModel_ContentsCreated
@@ -295,7 +295,7 @@ func (ptr *QHelpContentModel) DisconnectIndex() {
 
 func (ptr *QHelpContentModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -304,7 +304,7 @@ func (ptr *QHelpContentModel) Index(row int, column int, parent core.QModelIndex
 
 func (ptr *QHelpContentModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -343,7 +343,7 @@ func (ptr *QHelpContentModel) DisconnectParent() {
 
 func (ptr *QHelpContentModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -352,7 +352,7 @@ func (ptr *QHelpContentModel) Parent(index core.QModelIndex_ITF) *core.QModelInd
 
 func (ptr *QHelpContentModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -391,7 +391,7 @@ func (ptr *QHelpContentModel) DisconnectData() {
 
 func (ptr *QHelpContentModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpContentModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -400,7 +400,7 @@ func (ptr *QHelpContentModel) Data(index core.QModelIndex_ITF, role int) *core.Q
 
 func (ptr *QHelpContentModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpContentModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -502,438 +502,324 @@ func (ptr *QHelpContentModel) RowCountDefault(parent core.QModelIndex_ITF) int {
 	return 0
 }
 
-func (ptr *QHelpContentModel) __setItemData_roles_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __setItemData_roles_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
+	tmpValue := core.NewQVariantFromPointer(C.QHelpContentModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
-	}
+func (ptr *QHelpContentModel) __setItemData_roles_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QHelpContentModel) __setItemData_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___setItemData_roles_newList(ptr.Pointer()))
+	return C.QHelpContentModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __setItemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).____setItemData_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpContentModel___setItemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpContentModel) __setItemData_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpContentModel)(nil).____setItemData_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpContentModel___setItemData_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpContentModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __changePersistentIndexList_from_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___changePersistentIndexList_from_newList(ptr.Pointer()))
+	return C.QHelpContentModel___changePersistentIndexList_from_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __changePersistentIndexList_to_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___changePersistentIndexList_to_newList(ptr.Pointer()))
+	return C.QHelpContentModel___changePersistentIndexList_to_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) __dataChanged_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___dataChanged_roles_newList(ptr.Pointer()))
+	return C.QHelpContentModel___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPersistentModelIndexFromPointer(C.QHelpContentModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __layoutAboutToBeChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
+	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QHelpContentModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer()))
+	return C.QHelpContentModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPersistentModelIndexFromPointer(C.QHelpContentModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __layoutChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
+	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QHelpContentModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __layoutChanged_parents_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___layoutChanged_parents_newList(ptr.Pointer()))
+	return C.QHelpContentModel___layoutChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __roleNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpContentModel___roleNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __roleNames_atList(v int, i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpContentModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpContentModel) __roleNames_setList(key int, i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpContentModel) __roleNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___roleNames_newList(ptr.Pointer()))
+	return C.QHelpContentModel___roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __roleNames_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).____roleNames_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpContentModel___roleNames_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpContentModel) __roleNames_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpContentModel)(nil).____roleNames_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpContentModel___roleNames_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpContentModel) __itemData_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel___itemData_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __itemData_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
+	tmpValue := core.NewQVariantFromPointer(C.QHelpContentModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __itemData_setList(key int, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
-	}
+func (ptr *QHelpContentModel) __itemData_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QHelpContentModel) __itemData_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___itemData_newList(ptr.Pointer()))
+	return C.QHelpContentModel___itemData_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpContentModel___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpContentModel) __itemData_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpContentModel)(nil).____itemData_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpContentModel___itemData_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpContentModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __mimeData_indexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __mimeData_indexes_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __mimeData_indexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __mimeData_indexes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___mimeData_indexes_newList(ptr.Pointer()))
+	return C.QHelpContentModel___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __match_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __match_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel___match_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __match_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __match_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __match_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___match_newList(ptr.Pointer()))
+	return C.QHelpContentModel___match_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __persistentIndexList_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __persistentIndexList_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __persistentIndexList_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentModel) __persistentIndexList_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentModel) __persistentIndexList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___persistentIndexList_newList(ptr.Pointer()))
+	return C.QHelpContentModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____setItemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) ____setItemData_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) ____setItemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) ____setItemData_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel_____setItemData_keyList_newList(ptr.Pointer()))
+	return C.QHelpContentModel_____setItemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel_____doSetRoleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpContentModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) ____setRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) ____setRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) ____setRoleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel_____setRoleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpContentModel_____setRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) ____roleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) ____roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) ____roleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) ____roleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel_____roleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpContentModel_____roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____itemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentModel) ____itemData_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentModel) ____itemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentModel) ____itemData_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentModel) ____itemData_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel_____itemData_keyList_newList(ptr.Pointer()))
+	return C.QHelpContentModel_____itemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpContentModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentModel) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpContentModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpContentModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpContentModel) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpContentModel___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentModel) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentModel) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentModel) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpContentModel___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentModel) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentModel) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentModel) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpContentModel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentModel) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentModel___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentModel) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentModel) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___findChildren_newList(ptr.Pointer()))
+	return C.QHelpContentModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentModel___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentModel) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentModel___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentModel) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentModel) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentModel) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentModel___children_newList(ptr.Pointer()))
+	return C.QHelpContentModel___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpContentModel_DropMimeData
@@ -1084,18 +970,18 @@ func (ptr *QHelpContentModel) SetHeaderDataDefault(section int, orientation core
 func callbackQHelpContentModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtHelp_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-			var out = make(map[int]*core.QVariant, int(l.len))
-			for _, i := range NewQHelpContentModelFromPointer(l.data).__setItemData_keyList() {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__setItemData_roles_atList(i)
+			out := make(map[int]*core.QVariant, int(l.len))
+			for i, v := range (*QHelpContentModel)(nil).__setItemData_keyList(l.data) {
+				out[v] = (*QHelpContentModel)(nil).__setItemData_roles_atList(v, i, l.data)
 			}
 			return out
 		}(roles)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQHelpContentModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-		var out = make(map[int]*core.QVariant, int(l.len))
-		for _, i := range NewQHelpContentModelFromPointer(l.data).__setItemData_keyList() {
-			out[i] = NewQHelpContentModelFromPointer(l.data).__setItemData_roles_atList(i)
+		out := make(map[int]*core.QVariant, int(l.len))
+		for i, v := range (*QHelpContentModel)(nil).__setItemData_keyList(l.data) {
+			out[v] = (*QHelpContentModel)(nil).__setItemData_roles_atList(v, i, l.data)
 		}
 		return out
 	}(roles)))))
@@ -1104,11 +990,11 @@ func callbackQHelpContentModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poin
 func (ptr *QHelpContentModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__setItemData_roles_newList())
+			tmpList := (*QHelpContentModel)(nil).__setItemData_roles_newList()
 			for k, v := range roles {
-				tmpList.__setItemData_roles_setList(k, v)
+				(*QHelpContentModel)(nil).__setItemData_roles_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -1182,9 +1068,9 @@ func callbackQHelpContentModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.
 func callbackQHelpContentModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtHelp_PackedList) {
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentModel)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
@@ -1219,9 +1105,9 @@ func callbackQHelpContentModel_HeaderDataChanged(ptr unsafe.Pointer, orientation
 func callbackQHelpContentModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtHelp_PackedList, hint C.longlong) {
 	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtHelp_PackedList) []*core.QPersistentModelIndex {
-			var out = make([]*core.QPersistentModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__layoutAboutToBeChanged_parents_atList(i)
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentModel)(nil).__layoutAboutToBeChanged_parents_atList(i, l.data)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -1233,9 +1119,9 @@ func callbackQHelpContentModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parent
 func callbackQHelpContentModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtHelp_PackedList, hint C.longlong) {
 	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtHelp_PackedList) []*core.QPersistentModelIndex {
-			var out = make([]*core.QPersistentModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__layoutChanged_parents_atList(i)
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentModel)(nil).__layoutChanged_parents_atList(i, l.data)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -1356,29 +1242,29 @@ func (ptr *QHelpContentModel) SortDefault(column int, order core.Qt__SortOrder) 
 func callbackQHelpContentModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__roleNames_newList())
+			tmpList := (*QHelpContentModel)(nil).__roleNames_newList()
 			for k, v := range signal.(func() map[int]*core.QByteArray)() {
-				tmpList.__roleNames_setList(k, v)
+				(*QHelpContentModel)(nil).__roleNames_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__roleNames_newList())
+		tmpList := (*QHelpContentModel)(nil).__roleNames_newList()
 		for k, v := range NewQHelpContentModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
+			(*QHelpContentModel)(nil).__roleNames_setList(k, v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpContentModel) RoleNamesDefault() map[int]*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) map[int]*core.QByteArray {
-			var out = make(map[int]*core.QByteArray, int(l.len))
-			for _, i := range NewQHelpContentModelFromPointer(l.data).__roleNames_keyList() {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__roleNames_atList(i)
+			out := make(map[int]*core.QByteArray, int(l.len))
+			for i, v := range (*QHelpContentModel)(nil).__roleNames_keyList(l.data) {
+				out[v] = (*QHelpContentModel)(nil).__roleNames_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpContentModel_RoleNamesDefault(ptr.Pointer()))
@@ -1390,29 +1276,29 @@ func (ptr *QHelpContentModel) RoleNamesDefault() map[int]*core.QByteArray {
 func callbackQHelpContentModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__itemData_newList())
+			tmpList := (*QHelpContentModel)(nil).__itemData_newList()
 			for k, v := range signal.(func(*core.QModelIndex) map[int]*core.QVariant)(core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
+				(*QHelpContentModel)(nil).__itemData_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__itemData_newList())
+		tmpList := (*QHelpContentModel)(nil).__itemData_newList()
 		for k, v := range NewQHelpContentModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
+			(*QHelpContentModel)(nil).__itemData_setList(k, v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpContentModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-			var out = make(map[int]*core.QVariant, int(l.len))
-			for _, i := range NewQHelpContentModelFromPointer(l.data).__itemData_keyList() {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__itemData_atList(i)
+			out := make(map[int]*core.QVariant, int(l.len))
+			for i, v := range (*QHelpContentModel)(nil).__itemData_keyList(l.data) {
+				out[v] = (*QHelpContentModel)(nil).__itemData_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpContentModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
@@ -1424,18 +1310,18 @@ func (ptr *QHelpContentModel) ItemDataDefault(index core.QModelIndex_ITF) map[in
 func callbackQHelpContentModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtHelp_PackedList) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*core.QModelIndex) *core.QMimeData)(func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-			var out = make([]*core.QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__mimeData_indexes_atList(i)
+			out := make([]*core.QModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentModel)(nil).__mimeData_indexes_atList(i, l.data)
 			}
 			return out
 		}(indexes)))
 	}
 
 	return core.PointerFromQMimeData(NewQHelpContentModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-		var out = make([]*core.QModelIndex, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQHelpContentModelFromPointer(l.data).__mimeData_indexes_atList(i)
+		out := make([]*core.QModelIndex, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpContentModel)(nil).__mimeData_indexes_atList(i, l.data)
 		}
 		return out
 	}(indexes)))
@@ -1443,12 +1329,12 @@ func callbackQHelpContentModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtH
 
 func (ptr *QHelpContentModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQMimeDataFromPointer(C.QHelpContentModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__mimeData_indexes_newList())
+		tmpValue := core.NewQMimeDataFromPointer(C.QHelpContentModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := (*QHelpContentModel)(nil).__mimeData_indexes_newList()
 			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
+				(*QHelpContentModel)(nil).__mimeData_indexes_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1469,7 +1355,7 @@ func callbackQHelpContentModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) u
 
 func (ptr *QHelpContentModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -1487,7 +1373,7 @@ func callbackQHelpContentModel_Sibling(ptr unsafe.Pointer, row C.int, column C.i
 
 func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -1498,29 +1384,29 @@ func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QMo
 func callbackQHelpContentModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "match"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__match_newList())
+			tmpList := (*QHelpContentModel)(nil).__match_newList()
 			for _, v := range signal.(func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
+				(*QHelpContentModel)(nil).__match_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__match_newList())
+		tmpList := (*QHelpContentModel)(nil).__match_newList()
 		for _, v := range NewQHelpContentModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
+			(*QHelpContentModel)(nil).__match_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpContentModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-			var out = make([]*core.QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentModelFromPointer(l.data).__match_atList(i)
+			out := make([]*core.QModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentModel)(nil).__match_atList(i, l.data)
 			}
 			return out
 		}(C.QHelpContentModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
@@ -1539,7 +1425,7 @@ func callbackQHelpContentModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) un
 
 func (ptr *QHelpContentModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpContentModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -1574,7 +1460,7 @@ func callbackQHelpContentModel_HeaderData(ptr unsafe.Pointer, section C.int, ori
 
 func (ptr *QHelpContentModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpContentModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -1866,14 +1752,14 @@ func PointerFromQHelpContentWidget(ptr QHelpContentWidget_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
-	var n = new(QHelpContentWidget)
+func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpContentWidget) {
+	n = new(QHelpContentWidget)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -1919,227 +1805,172 @@ func (ptr *QHelpContentWidget) LinkActivated(link core.QUrl_ITF) {
 	}
 }
 
-func (ptr *QHelpContentWidget) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentWidget___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpContentWidget) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpContentWidget___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpContentWidget) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpContentWidget) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
+	C.QHelpContentWidget___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpContentWidget) __dataChanged_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___dataChanged_roles_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __selectedIndexes_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentWidget) __selectedIndexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentWidget___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __selectedIndexes_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpContentWidget) __selectedIndexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpContentWidget) __selectedIndexes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___selectedIndexes_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___selectedIndexes_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __scrollBarWidgets_atList(i int) *widgets.QWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QHelpContentWidget___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __scrollBarWidgets_atList(i int, p unsafe.Pointer) *widgets.QWidget {
+	tmpValue := widgets.NewQWidgetFromPointer(C.QHelpContentWidget___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __scrollBarWidgets_setList(i widgets.QWidget_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i))
-	}
+func (ptr *QHelpContentWidget) __scrollBarWidgets_setList(i widgets.QWidget_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i), p)
 }
 
 func (ptr *QHelpContentWidget) __scrollBarWidgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___scrollBarWidgets_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___scrollBarWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpContentWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpContentWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpContentWidget) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpContentWidget) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___addActions_actions_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpContentWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpContentWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpContentWidget) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpContentWidget) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___insertActions_actions_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpContentWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpContentWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpContentWidget) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpContentWidget) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___actions_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpContentWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpContentWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpContentWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpContentWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpContentWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentWidget) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpContentWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentWidget) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpContentWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentWidget) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___findChildren_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentWidget) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpContentWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpContentWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpContentWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpContentWidget) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpContentWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpContentWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpContentWidget) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpContentWidget___children_newList(ptr.Pointer()))
+	return C.QHelpContentWidget___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpContentWidget_MoveCursor
@@ -2153,7 +1984,7 @@ func callbackQHelpContentWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.lo
 
 func (ptr *QHelpContentWidget) MoveCursorDefault(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -2278,17 +2109,17 @@ func (ptr *QHelpContentWidget) CurrentChangedDefault(current core.QModelIndex_IT
 func callbackQHelpContentWidget_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtHelp_PackedList) {
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentWidgetFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentWidget)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
 	} else {
 		NewQHelpContentWidgetFromPointer(ptr).DataChangedDefault(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpContentWidgetFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpContentWidget)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
@@ -2298,11 +2129,11 @@ func callbackQHelpContentWidget_DataChanged(ptr unsafe.Pointer, topLeft unsafe.P
 func (ptr *QHelpContentWidget) DataChangedDefault(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DataChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			var tmpList = NewQHelpContentWidgetFromPointer(NewQHelpContentWidgetFromPointer(nil).__dataChanged_roles_newList())
+			tmpList := (*QHelpContentWidget)(nil).__dataChanged_roles_newList()
 			for _, v := range roles {
-				tmpList.__dataChanged_roles_setList(v)
+				(*QHelpContentWidget)(nil).__dataChanged_roles_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -2751,7 +2582,7 @@ func callbackQHelpContentWidget_IndexAt(ptr unsafe.Pointer, point unsafe.Pointer
 
 func (ptr *QHelpContentWidget) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -2769,7 +2600,7 @@ func callbackQHelpContentWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Poin
 
 func (ptr *QHelpContentWidget) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFromPointer(C.QHelpContentWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQRectFromPointer(C.QHelpContentWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -2787,7 +2618,7 @@ func callbackQHelpContentWidget_VisualRegionForSelection(ptr unsafe.Pointer, sel
 
 func (ptr *QHelpContentWidget) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		tmpValue := gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
@@ -2805,7 +2636,7 @@ func callbackQHelpContentWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Poin
 
 func (ptr *QHelpContentWidget) ViewportSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -3292,7 +3123,7 @@ func callbackQHelpContentWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QHelpContentWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptionsDefault(ptr.Pointer()))
+		tmpValue := widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptionsDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 		return tmpValue
 	}
@@ -3310,7 +3141,7 @@ func callbackQHelpContentWidget_InputMethodQuery(ptr unsafe.Pointer, query C.lon
 
 func (ptr *QHelpContentWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -3389,7 +3220,7 @@ func callbackQHelpContentWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Point
 
 func (ptr *QHelpContentWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -3407,7 +3238,7 @@ func callbackQHelpContentWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QHelpContentWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -4106,14 +3937,14 @@ func PointerFromQHelpEngine(ptr QHelpEngine_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
-	var n = new(QHelpEngine)
+func NewQHelpEngineFromPointer(ptr unsafe.Pointer) (n *QHelpEngine) {
+	n = new(QHelpEngine)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
+		tmpValue := NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4128,7 +3959,7 @@ func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine
 		collectionFileC = C.CString(collectionFile)
 		defer C.free(unsafe.Pointer(collectionFileC))
 	}
-	var tmpValue = NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.struct_QtHelp_PackedString{data: collectionFileC, len: C.longlong(len(collectionFile))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.struct_QtHelp_PackedString{data: collectionFileC, len: C.longlong(len(collectionFile))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4137,7 +3968,7 @@ func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine
 
 func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
+		tmpValue := NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4148,7 +3979,7 @@ func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 
 func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
+		tmpValue := NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4167,7 +3998,7 @@ func (ptr *QHelpEngine) DestroyQHelpEngine() {
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
+		tmpValue := NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4178,7 +4009,7 @@ func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 
 func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
+		tmpValue := NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4220,10 +4051,10 @@ func PointerFromQHelpEngineCore(ptr QHelpEngineCore_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
-	var n = new(QHelpEngineCore)
+func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) (n *QHelpEngineCore) {
+	n = new(QHelpEngineCore)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
 	var collectionFileC *C.char
@@ -4231,7 +4062,7 @@ func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEn
 		collectionFileC = C.CString(collectionFile)
 		defer C.free(unsafe.Pointer(collectionFileC))
 	}
-	var tmpValue = NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.struct_QtHelp_PackedString{data: collectionFileC, len: C.longlong(len(collectionFile))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.struct_QtHelp_PackedString{data: collectionFileC, len: C.longlong(len(collectionFile))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4245,7 +4076,7 @@ func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []strin
 			namespaceNameC = C.CString(namespaceName)
 			defer C.free(unsafe.Pointer(namespaceNameC))
 		}
-		var filterAttributesC = C.CString(strings.Join(filterAttributes, "|"))
+		filterAttributesC := C.CString(strings.Join(filterAttributes, "|"))
 		defer C.free(unsafe.Pointer(filterAttributesC))
 		var extensionFilterC *C.char
 		if extensionFilter != "" {
@@ -4253,9 +4084,9 @@ func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []strin
 			defer C.free(unsafe.Pointer(extensionFilterC))
 		}
 		return func(l C.struct_QtHelp_PackedList) []*core.QUrl {
-			var out = make([]*core.QUrl, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpEngineCoreFromPointer(l.data).__files_atList(i)
+			out := make([]*core.QUrl, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpEngineCore)(nil).__files_atList(i, l.data)
 			}
 			return out
 		}(C.QHelpEngineCore_Files(ptr.Pointer(), C.struct_QtHelp_PackedString{data: namespaceNameC, len: C.longlong(len(namespaceName))}, C.struct_QtHelp_PackedString{data: filterAttributesC, len: C.longlong(len(strings.Join(filterAttributes, "|")))}, C.struct_QtHelp_PackedString{data: extensionFilterC, len: C.longlong(len(extensionFilter))}))
@@ -4304,7 +4135,7 @@ func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.Q
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}, C.struct_QtHelp_PackedString{data: nameC, len: C.longlong(len(name))}))
+	tmpValue := core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}, C.struct_QtHelp_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
@@ -4320,7 +4151,7 @@ func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) 
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}, C.struct_QtHelp_PackedString{data: nameC, len: C.longlong(len(name))}))
+	tmpValue := core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}, C.struct_QtHelp_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
@@ -4332,7 +4163,7 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 			filterNameC = C.CString(filterName)
 			defer C.free(unsafe.Pointer(filterNameC))
 		}
-		var attributesC = C.CString(strings.Join(attributes, "|"))
+		attributesC := C.CString(strings.Join(attributes, "|"))
 		defer C.free(unsafe.Pointer(attributesC))
 		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}, C.struct_QtHelp_PackedString{data: attributesC, len: C.longlong(len(strings.Join(attributes, "|")))}) != 0
 	}
@@ -4699,7 +4530,7 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 
 func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url)))
+		tmpValue := core.NewQByteArrayFromPointer(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url)))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
@@ -4714,9 +4545,9 @@ func (ptr *QHelpEngineCore) LinksForIdentifier(id string) map[string]*core.QUrl 
 			defer C.free(unsafe.Pointer(idC))
 		}
 		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
-			var out = make(map[string]*core.QUrl, int(l.len))
-			for _, i := range NewQHelpEngineCoreFromPointer(l.data).__linksForIdentifier_keyList() {
-				out[i] = NewQHelpEngineCoreFromPointer(l.data).__linksForIdentifier_atList(i)
+			out := make(map[string]*core.QUrl, int(l.len))
+			for i, v := range (*QHelpEngineCore)(nil).__linksForIdentifier_keyList(l.data) {
+				out[v] = (*QHelpEngineCore)(nil).__linksForIdentifier_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpEngineCore_LinksForIdentifier(ptr.Pointer(), C.struct_QtHelp_PackedString{data: idC, len: C.longlong(len(id))}))
@@ -4732,9 +4563,9 @@ func (ptr *QHelpEngineCore) LinksForKeyword(keyword string) map[string]*core.QUr
 			defer C.free(unsafe.Pointer(keywordC))
 		}
 		return func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
-			var out = make(map[string]*core.QUrl, int(l.len))
-			for _, i := range NewQHelpEngineCoreFromPointer(l.data).__linksForKeyword_keyList() {
-				out[i] = NewQHelpEngineCoreFromPointer(l.data).__linksForKeyword_atList(i)
+			out := make(map[string]*core.QUrl, int(l.len))
+			for i, v := range (*QHelpEngineCore)(nil).__linksForKeyword_keyList(l.data) {
+				out[v] = (*QHelpEngineCore)(nil).__linksForKeyword_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpEngineCore_LinksForKeyword(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keywordC, len: C.longlong(len(keyword))}))
@@ -4798,7 +4629,7 @@ func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
 
 func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
+		tmpValue := core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -4812,7 +4643,7 @@ func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_I
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(defaultValue)))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(defaultValue)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -4826,273 +4657,212 @@ func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 	return false
 }
 
-func (ptr *QHelpEngineCore) __files_atList(i int) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore___files_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpEngineCore) __files_atList(i int, p unsafe.Pointer) *core.QUrl {
+	tmpValue := core.NewQUrlFromPointer(C.QHelpEngineCore___files_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __files_setList(i core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___files_setList(ptr.Pointer(), core.PointerFromQUrl(i))
-	}
+func (ptr *QHelpEngineCore) __files_setList(i core.QUrl_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___files_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
 }
 
 func (ptr *QHelpEngineCore) __files_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___files_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___files_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __filterAttributeSets_atList(i int) []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QHelpEngineCore___filterAttributeSets_atList(ptr.Pointer(), C.int(int32(i)))), "|")
-	}
-	return make([]string, 0)
+func (ptr *QHelpEngineCore) __filterAttributeSets_atList(i int, p unsafe.Pointer) []string {
+	return strings.Split(cGoUnpackString(C.QHelpEngineCore___filterAttributeSets_atList(ptr.Pointer(), C.int(int32(i)), p)), "|")
 }
 
-func (ptr *QHelpEngineCore) __filterAttributeSets_setList(i []string) {
-	if ptr.Pointer() != nil {
-		var iC = C.CString(strings.Join(i, "|"))
-		defer C.free(unsafe.Pointer(iC))
-		C.QHelpEngineCore___filterAttributeSets_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(strings.Join(i, "|")))})
-	}
+func (ptr *QHelpEngineCore) __filterAttributeSets_setList(i []string, p unsafe.Pointer) {
+	iC := C.CString(strings.Join(i, "|"))
+	defer C.free(unsafe.Pointer(iC))
+	C.QHelpEngineCore___filterAttributeSets_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(strings.Join(i, "|")))}, p)
 }
 
 func (ptr *QHelpEngineCore) __filterAttributeSets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___filterAttributeSets_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___filterAttributeSets_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __linksForIdentifier_atList(i string) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore___linksForIdentifier_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
+func (ptr *QHelpEngineCore) __linksForIdentifier_atList(v string, i int, p unsafe.Pointer) *core.QUrl {
+	var vC *C.char
+	if v != "" {
+		vC = C.CString(v)
+		defer C.free(unsafe.Pointer(vC))
 	}
-	return nil
+	tmpValue := core.NewQUrlFromPointer(C.QHelpEngineCore___linksForIdentifier_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __linksForIdentifier_setList(key string, i core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QHelpEngineCore___linksForIdentifier_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i))
+func (ptr *QHelpEngineCore) __linksForIdentifier_setList(key string, i core.QUrl_ITF, p unsafe.Pointer) {
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
 	}
+	C.QHelpEngineCore___linksForIdentifier_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i), p)
 }
 
 func (ptr *QHelpEngineCore) __linksForIdentifier_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___linksForIdentifier_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___linksForIdentifier_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __linksForIdentifier_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []string {
-			var out = make([]string, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpEngineCoreFromPointer(l.data).____linksForIdentifier_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpEngineCore___linksForIdentifier_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QHelpEngineCore) __linksForKeyword_atList(i string) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
+func (ptr *QHelpEngineCore) __linksForIdentifier_keyList(p unsafe.Pointer) []string {
+	return func(l C.struct_QtHelp_PackedList) []string {
+		out := make([]string, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpEngineCore)(nil).____linksForIdentifier_keyList_atList(i, l.data)
 		}
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore___linksForKeyword_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
+		return out
+	}(C.QHelpEngineCore___linksForIdentifier_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpEngineCore) __linksForKeyword_setList(key string, i core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QHelpEngineCore___linksForKeyword_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i))
+func (ptr *QHelpEngineCore) __linksForKeyword_atList(v string, i int, p unsafe.Pointer) *core.QUrl {
+	var vC *C.char
+	if v != "" {
+		vC = C.CString(v)
+		defer C.free(unsafe.Pointer(vC))
 	}
+	tmpValue := core.NewQUrlFromPointer(C.QHelpEngineCore___linksForKeyword_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
+}
+
+func (ptr *QHelpEngineCore) __linksForKeyword_setList(key string, i core.QUrl_ITF, p unsafe.Pointer) {
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+	}
+	C.QHelpEngineCore___linksForKeyword_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i), p)
 }
 
 func (ptr *QHelpEngineCore) __linksForKeyword_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___linksForKeyword_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___linksForKeyword_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __linksForKeyword_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []string {
-			var out = make([]string, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpEngineCoreFromPointer(l.data).____linksForKeyword_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpEngineCore___linksForKeyword_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHelpEngineCore_____linksForIdentifier_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
-}
-
-func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
+func (ptr *QHelpEngineCore) __linksForKeyword_keyList(p unsafe.Pointer) []string {
+	return func(l C.struct_QtHelp_PackedList) []string {
+		out := make([]string, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpEngineCore)(nil).____linksForKeyword_keyList_atList(i, l.data)
 		}
-		C.QHelpEngineCore_____linksForIdentifier_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+		return out
+	}(C.QHelpEngineCore___linksForKeyword_keyList(ptr.Pointer(), p))
+}
+
+func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_atList(i int, p unsafe.Pointer) string {
+	return cGoUnpackString(C.QHelpEngineCore_____linksForIdentifier_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+}
+
+func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_setList(i string, p unsafe.Pointer) {
+	var iC *C.char
+	if i != "" {
+		iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
 	}
+	C.QHelpEngineCore_____linksForIdentifier_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QHelpEngineCore) ____linksForIdentifier_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore_____linksForIdentifier_keyList_newList(ptr.Pointer()))
+	return C.QHelpEngineCore_____linksForIdentifier_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHelpEngineCore_____linksForKeyword_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
+func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_atList(i int, p unsafe.Pointer) string {
+	return cGoUnpackString(C.QHelpEngineCore_____linksForKeyword_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		C.QHelpEngineCore_____linksForKeyword_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_setList(i string, p unsafe.Pointer) {
+	var iC *C.char
+	if i != "" {
+		iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
 	}
+	C.QHelpEngineCore_____linksForKeyword_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QHelpEngineCore) ____linksForKeyword_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore_____linksForKeyword_keyList_newList(ptr.Pointer()))
+	return C.QHelpEngineCore_____linksForKeyword_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpEngineCore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpEngineCore) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpEngineCore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpEngineCore) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpEngineCore) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpEngineCore) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpEngineCore) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpEngineCore) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpEngineCore___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpEngineCore) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpEngineCore) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpEngineCore) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpEngineCore___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpEngineCore) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpEngineCore___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpEngineCore) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpEngineCore) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___findChildren_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpEngineCore) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpEngineCore___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpEngineCore) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpEngineCore___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpEngineCore) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpEngineCore___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpEngineCore) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpEngineCore___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpEngineCore) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpEngineCore___children_newList(ptr.Pointer()))
+	return C.QHelpEngineCore___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpEngineCore_Event
@@ -5284,10 +5054,10 @@ func PointerFromQHelpIndexModel(ptr QHelpIndexModel_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
-	var n = new(QHelpIndexModel)
+func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) (n *QHelpIndexModel) {
+	n = new(QHelpIndexModel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
@@ -5301,7 +5071,7 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 			wildcardC = C.CString(wildcard)
 			defer C.free(unsafe.Pointer(wildcardC))
 		}
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtHelp_PackedString{data: wildcardC, len: C.longlong(len(wildcard))}))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtHelp_PackedString{data: wildcardC, len: C.longlong(len(wildcard))}))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -5404,502 +5174,375 @@ func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 	return false
 }
 
-func (ptr *QHelpIndexModel) __linksForKeyword_atList(i string) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpIndexModel___linksForKeyword_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
+func (ptr *QHelpIndexModel) __linksForKeyword_atList(v string, i int, p unsafe.Pointer) *core.QUrl {
+	var vC *C.char
+	if v != "" {
+		vC = C.CString(v)
+		defer C.free(unsafe.Pointer(vC))
 	}
-	return nil
+	tmpValue := core.NewQUrlFromPointer(C.QHelpIndexModel___linksForKeyword_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __linksForKeyword_setList(key string, i core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QHelpIndexModel___linksForKeyword_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i))
+func (ptr *QHelpIndexModel) __linksForKeyword_setList(key string, i core.QUrl_ITF, p unsafe.Pointer) {
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
 	}
+	C.QHelpIndexModel___linksForKeyword_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i), p)
 }
 
 func (ptr *QHelpIndexModel) __linksForKeyword_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___linksForKeyword_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___linksForKeyword_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __linksForKeyword_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []string {
-			var out = make([]string, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).____linksForKeyword_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpIndexModel___linksForKeyword_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHelpIndexModel_____linksForKeyword_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
-}
-
-func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
+func (ptr *QHelpIndexModel) __linksForKeyword_keyList(p unsafe.Pointer) []string {
+	return func(l C.struct_QtHelp_PackedList) []string {
+		out := make([]string, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexModel)(nil).____linksForKeyword_keyList_atList(i, l.data)
 		}
-		C.QHelpIndexModel_____linksForKeyword_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+		return out
+	}(C.QHelpIndexModel___linksForKeyword_keyList(ptr.Pointer(), p))
+}
+
+func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_atList(i int, p unsafe.Pointer) string {
+	return cGoUnpackString(C.QHelpIndexModel_____linksForKeyword_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+}
+
+func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_setList(i string, p unsafe.Pointer) {
+	var iC *C.char
+	if i != "" {
+		iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
 	}
+	C.QHelpIndexModel_____linksForKeyword_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____linksForKeyword_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____linksForKeyword_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____setItemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) ____setItemData_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) ____setItemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) ____setItemData_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____setItemData_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____setItemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____roleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) ____roleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) ____roleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) ____roleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) ____roleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____roleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____itemData_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) ____itemData_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) ____itemData_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) ____itemData_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) ____itemData_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____itemData_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____itemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __setItemData_roles_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __setItemData_roles_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
+	tmpValue := core.NewQVariantFromPointer(C.QHelpIndexModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
-	}
+func (ptr *QHelpIndexModel) __setItemData_roles_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QHelpIndexModel) __setItemData_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___setItemData_roles_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __setItemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).____setItemData_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpIndexModel___setItemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpIndexModel) __setItemData_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexModel)(nil).____setItemData_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpIndexModel___setItemData_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpIndexModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __changePersistentIndexList_from_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___changePersistentIndexList_from_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___changePersistentIndexList_from_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __changePersistentIndexList_to_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___changePersistentIndexList_to_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___changePersistentIndexList_to_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) __dataChanged_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___dataChanged_roles_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPersistentModelIndexFromPointer(C.QHelpIndexModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __layoutAboutToBeChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
+	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QHelpIndexModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPersistentModelIndexFromPointer(C.QHelpIndexModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __layoutChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
+	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QHelpIndexModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __layoutChanged_parents_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___layoutChanged_parents_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___layoutChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __roleNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpIndexModel___roleNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __roleNames_atList(v int, i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpIndexModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpIndexModel) __roleNames_setList(key int, i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpIndexModel) __roleNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___roleNames_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __roleNames_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).____roleNames_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpIndexModel___roleNames_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpIndexModel) __roleNames_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexModel)(nil).____roleNames_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpIndexModel___roleNames_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpIndexModel) __itemData_atList(i int) *core.QVariant {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel___itemData_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __itemData_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
+	tmpValue := core.NewQVariantFromPointer(C.QHelpIndexModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __itemData_setList(key int, i core.QVariant_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
-	}
+func (ptr *QHelpIndexModel) __itemData_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QHelpIndexModel) __itemData_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___itemData_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___itemData_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __itemData_keyList() []int {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).____itemData_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpIndexModel___itemData_keyList(ptr.Pointer()))
-	}
-	return make([]int, 0)
+func (ptr *QHelpIndexModel) __itemData_keyList(p unsafe.Pointer) []int {
+	return func(l C.struct_QtHelp_PackedList) []int {
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexModel)(nil).____itemData_keyList_atList(i, l.data)
+		}
+		return out
+	}(C.QHelpIndexModel___itemData_keyList(ptr.Pointer(), p))
 }
 
-func (ptr *QHelpIndexModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __mimeData_indexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __mimeData_indexes_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __mimeData_indexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __mimeData_indexes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___mimeData_indexes_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __match_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel___match_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __match_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel___match_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __match_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __match_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __match_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___match_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___match_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __persistentIndexList_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __persistentIndexList_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __persistentIndexList_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexModel) __persistentIndexList_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexModel) __persistentIndexList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___persistentIndexList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____doSetRoleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexModel) ____setRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexModel) ____setRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexModel) ____setRoleNames_keyList_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel_____setRoleNames_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexModel_____setRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpIndexModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexModel) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpIndexModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpIndexModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpIndexModel) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexModel) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexModel) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexModel) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpIndexModel___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexModel) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexModel) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexModel) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpIndexModel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexModel) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexModel___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexModel) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexModel) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___findChildren_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexModel___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexModel) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexModel___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexModel) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexModel) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexModel) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexModel___children_newList(ptr.Pointer()))
+	return C.QHelpIndexModel___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpIndexModel_InsertRows
@@ -5976,7 +5619,7 @@ func callbackQHelpIndexModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int
 
 func (ptr *QHelpIndexModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -5994,7 +5637,7 @@ func callbackQHelpIndexModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role
 
 func (ptr *QHelpIndexModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpIndexModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -6076,7 +5719,7 @@ func callbackQHelpIndexModel_Index(ptr unsafe.Pointer, row C.int, column C.int, 
 
 func (ptr *QHelpIndexModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -6167,18 +5810,18 @@ func (ptr *QHelpIndexModel) SetHeaderDataDefault(section int, orientation core.Q
 func callbackQHelpIndexModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtHelp_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-			var out = make(map[int]*core.QVariant, int(l.len))
-			for _, i := range NewQHelpIndexModelFromPointer(l.data).__setItemData_keyList() {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__setItemData_roles_atList(i)
+			out := make(map[int]*core.QVariant, int(l.len))
+			for i, v := range (*QHelpIndexModel)(nil).__setItemData_keyList(l.data) {
+				out[v] = (*QHelpIndexModel)(nil).__setItemData_roles_atList(v, i, l.data)
 			}
 			return out
 		}(roles)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-		var out = make(map[int]*core.QVariant, int(l.len))
-		for _, i := range NewQHelpIndexModelFromPointer(l.data).__setItemData_keyList() {
-			out[i] = NewQHelpIndexModelFromPointer(l.data).__setItemData_roles_atList(i)
+		out := make(map[int]*core.QVariant, int(l.len))
+		for i, v := range (*QHelpIndexModel)(nil).__setItemData_keyList(l.data) {
+			out[v] = (*QHelpIndexModel)(nil).__setItemData_roles_atList(v, i, l.data)
 		}
 		return out
 	}(roles)))))
@@ -6187,11 +5830,11 @@ func callbackQHelpIndexModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointe
 func (ptr *QHelpIndexModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__setItemData_roles_newList())
+			tmpList := (*QHelpIndexModel)(nil).__setItemData_roles_newList()
 			for k, v := range roles {
-				tmpList.__setItemData_roles_setList(k, v)
+				(*QHelpIndexModel)(nil).__setItemData_roles_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -6265,9 +5908,9 @@ func callbackQHelpIndexModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Po
 func callbackQHelpIndexModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtHelp_PackedList) {
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexModel)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
@@ -6302,9 +5945,9 @@ func callbackQHelpIndexModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C
 func callbackQHelpIndexModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtHelp_PackedList, hint C.longlong) {
 	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtHelp_PackedList) []*core.QPersistentModelIndex {
-			var out = make([]*core.QPersistentModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__layoutAboutToBeChanged_parents_atList(i)
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexModel)(nil).__layoutAboutToBeChanged_parents_atList(i, l.data)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -6316,9 +5959,9 @@ func callbackQHelpIndexModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents 
 func callbackQHelpIndexModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtHelp_PackedList, hint C.longlong) {
 	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtHelp_PackedList) []*core.QPersistentModelIndex {
-			var out = make([]*core.QPersistentModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__layoutChanged_parents_atList(i)
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexModel)(nil).__layoutChanged_parents_atList(i, l.data)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -6424,29 +6067,29 @@ func callbackQHelpIndexModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Point
 func callbackQHelpIndexModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__roleNames_newList())
+			tmpList := (*QHelpIndexModel)(nil).__roleNames_newList()
 			for k, v := range signal.(func() map[int]*core.QByteArray)() {
-				tmpList.__roleNames_setList(k, v)
+				(*QHelpIndexModel)(nil).__roleNames_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__roleNames_newList())
+		tmpList := (*QHelpIndexModel)(nil).__roleNames_newList()
 		for k, v := range NewQHelpIndexModelFromPointer(ptr).RoleNamesDefault() {
-			tmpList.__roleNames_setList(k, v)
+			(*QHelpIndexModel)(nil).__roleNames_setList(k, v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpIndexModel) RoleNamesDefault() map[int]*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) map[int]*core.QByteArray {
-			var out = make(map[int]*core.QByteArray, int(l.len))
-			for _, i := range NewQHelpIndexModelFromPointer(l.data).__roleNames_keyList() {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__roleNames_atList(i)
+			out := make(map[int]*core.QByteArray, int(l.len))
+			for i, v := range (*QHelpIndexModel)(nil).__roleNames_keyList(l.data) {
+				out[v] = (*QHelpIndexModel)(nil).__roleNames_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpIndexModel_RoleNamesDefault(ptr.Pointer()))
@@ -6458,29 +6101,29 @@ func (ptr *QHelpIndexModel) RoleNamesDefault() map[int]*core.QByteArray {
 func callbackQHelpIndexModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__itemData_newList())
+			tmpList := (*QHelpIndexModel)(nil).__itemData_newList()
 			for k, v := range signal.(func(*core.QModelIndex) map[int]*core.QVariant)(core.NewQModelIndexFromPointer(index)) {
-				tmpList.__itemData_setList(k, v)
+				(*QHelpIndexModel)(nil).__itemData_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__itemData_newList())
+		tmpList := (*QHelpIndexModel)(nil).__itemData_newList()
 		for k, v := range NewQHelpIndexModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
-			tmpList.__itemData_setList(k, v)
+			(*QHelpIndexModel)(nil).__itemData_setList(k, v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpIndexModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
-			var out = make(map[int]*core.QVariant, int(l.len))
-			for _, i := range NewQHelpIndexModelFromPointer(l.data).__itemData_keyList() {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__itemData_atList(i)
+			out := make(map[int]*core.QVariant, int(l.len))
+			for i, v := range (*QHelpIndexModel)(nil).__itemData_keyList(l.data) {
+				out[v] = (*QHelpIndexModel)(nil).__itemData_atList(v, i, l.data)
 			}
 			return out
 		}(C.QHelpIndexModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
@@ -6492,18 +6135,18 @@ func (ptr *QHelpIndexModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]
 func callbackQHelpIndexModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtHelp_PackedList) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*core.QModelIndex) *core.QMimeData)(func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-			var out = make([]*core.QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__mimeData_indexes_atList(i)
+			out := make([]*core.QModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexModel)(nil).__mimeData_indexes_atList(i, l.data)
 			}
 			return out
 		}(indexes)))
 	}
 
 	return core.PointerFromQMimeData(NewQHelpIndexModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-		var out = make([]*core.QModelIndex, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQHelpIndexModelFromPointer(l.data).__mimeData_indexes_atList(i)
+		out := make([]*core.QModelIndex, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexModel)(nil).__mimeData_indexes_atList(i, l.data)
 		}
 		return out
 	}(indexes)))
@@ -6511,12 +6154,12 @@ func callbackQHelpIndexModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtHel
 
 func (ptr *QHelpIndexModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQMimeDataFromPointer(C.QHelpIndexModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__mimeData_indexes_newList())
+		tmpValue := core.NewQMimeDataFromPointer(C.QHelpIndexModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := (*QHelpIndexModel)(nil).__mimeData_indexes_newList()
 			for _, v := range indexes {
-				tmpList.__mimeData_indexes_setList(v)
+				(*QHelpIndexModel)(nil).__mimeData_indexes_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6537,7 +6180,7 @@ func callbackQHelpIndexModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) uns
 
 func (ptr *QHelpIndexModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -6555,7 +6198,7 @@ func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) un
 
 func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -6566,29 +6209,29 @@ func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QMod
 func callbackQHelpIndexModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "match"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__match_newList())
+			tmpList := (*QHelpIndexModel)(nil).__match_newList()
 			for _, v := range signal.(func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-				tmpList.__match_setList(v)
+				(*QHelpIndexModel)(nil).__match_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__match_newList())
+		tmpList := (*QHelpIndexModel)(nil).__match_newList()
 		for _, v := range NewQHelpIndexModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-			tmpList.__match_setList(v)
+			(*QHelpIndexModel)(nil).__match_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpIndexModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-			var out = make([]*core.QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexModelFromPointer(l.data).__match_atList(i)
+			out := make([]*core.QModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexModel)(nil).__match_atList(i, l.data)
 			}
 			return out
 		}(C.QHelpIndexModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
@@ -6607,7 +6250,7 @@ func callbackQHelpIndexModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsa
 
 func (ptr *QHelpIndexModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpIndexModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -6642,7 +6285,7 @@ func callbackQHelpIndexModel_HeaderData(ptr unsafe.Pointer, section C.int, orien
 
 func (ptr *QHelpIndexModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -6918,10 +6561,10 @@ func PointerFromQHelpIndexWidget(ptr QHelpIndexWidget_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
-	var n = new(QHelpIndexWidget)
+func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpIndexWidget) {
+	n = new(QHelpIndexWidget)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQHelpIndexWidget_ActivateCurrentItem
@@ -7076,9 +6719,9 @@ func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
 func callbackQHelpIndexWidget_LinksActivated(ptr unsafe.Pointer, links C.struct_QtHelp_PackedList, keyword C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(ptr, "linksActivated"); signal != nil {
 		signal.(func(map[string]*core.QUrl, string))(func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
-			var out = make(map[string]*core.QUrl, int(l.len))
-			for _, i := range NewQHelpIndexWidgetFromPointer(l.data).__linksActivated_keyList() {
-				out[i] = NewQHelpIndexWidgetFromPointer(l.data).__linksActivated_links_atList(i)
+			out := make(map[string]*core.QUrl, int(l.len))
+			for i, v := range (*QHelpIndexWidget)(nil).__linksActivated_keyList(l.data) {
+				out[v] = (*QHelpIndexWidget)(nil).__linksActivated_links_atList(v, i, l.data)
 			}
 			return out
 		}(links), cGoUnpackString(keyword))
@@ -7119,319 +6762,246 @@ func (ptr *QHelpIndexWidget) LinksActivated(links map[string]*core.QUrl, keyword
 			defer C.free(unsafe.Pointer(keywordC))
 		}
 		C.QHelpIndexWidget_LinksActivated(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexWidgetFromPointer(NewQHelpIndexWidgetFromPointer(nil).__linksActivated_links_newList())
+			tmpList := (*QHelpIndexWidget)(nil).__linksActivated_links_newList()
 			for k, v := range links {
-				tmpList.__linksActivated_links_setList(k, v)
+				(*QHelpIndexWidget)(nil).__linksActivated_links_setList(k, v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}(), C.struct_QtHelp_PackedString{data: keywordC, len: C.longlong(len(keyword))})
 	}
 }
 
-func (ptr *QHelpIndexWidget) __linksActivated_links_atList(i string) *core.QUrl {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
-		}
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpIndexWidget___linksActivated_links_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
+func (ptr *QHelpIndexWidget) __linksActivated_links_atList(v string, i int, p unsafe.Pointer) *core.QUrl {
+	var vC *C.char
+	if v != "" {
+		vC = C.CString(v)
+		defer C.free(unsafe.Pointer(vC))
 	}
-	return nil
+	tmpValue := core.NewQUrlFromPointer(C.QHelpIndexWidget___linksActivated_links_atList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __linksActivated_links_setList(key string, i core.QUrl_ITF) {
-	if ptr.Pointer() != nil {
-		var keyC *C.char
-		if key != "" {
-			keyC = C.CString(key)
-			defer C.free(unsafe.Pointer(keyC))
-		}
-		C.QHelpIndexWidget___linksActivated_links_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i))
+func (ptr *QHelpIndexWidget) __linksActivated_links_setList(key string, i core.QUrl_ITF, p unsafe.Pointer) {
+	var keyC *C.char
+	if key != "" {
+		keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
 	}
+	C.QHelpIndexWidget___linksActivated_links_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQUrl(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __linksActivated_links_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___linksActivated_links_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___linksActivated_links_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __linksActivated_keyList() []string {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtHelp_PackedList) []string {
-			var out = make([]string, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexWidgetFromPointer(l.data).____linksActivated_keyList_atList(i)
-			}
-			return out
-		}(C.QHelpIndexWidget___linksActivated_keyList(ptr.Pointer()))
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QHelpIndexWidget) ____linksActivated_keyList_atList(i int) string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHelpIndexWidget_____linksActivated_keyList_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return ""
-}
-
-func (ptr *QHelpIndexWidget) ____linksActivated_keyList_setList(i string) {
-	if ptr.Pointer() != nil {
-		var iC *C.char
-		if i != "" {
-			iC = C.CString(i)
-			defer C.free(unsafe.Pointer(iC))
+func (ptr *QHelpIndexWidget) __linksActivated_keyList(p unsafe.Pointer) []string {
+	return func(l C.struct_QtHelp_PackedList) []string {
+		out := make([]string, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QHelpIndexWidget)(nil).____linksActivated_keyList_atList(i, l.data)
 		}
-		C.QHelpIndexWidget_____linksActivated_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+		return out
+	}(C.QHelpIndexWidget___linksActivated_keyList(ptr.Pointer(), p))
+}
+
+func (ptr *QHelpIndexWidget) ____linksActivated_keyList_atList(i int, p unsafe.Pointer) string {
+	return cGoUnpackString(C.QHelpIndexWidget_____linksActivated_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+}
+
+func (ptr *QHelpIndexWidget) ____linksActivated_keyList_setList(i string, p unsafe.Pointer) {
+	var iC *C.char
+	if i != "" {
+		iC = C.CString(i)
+		defer C.free(unsafe.Pointer(iC))
 	}
+	C.QHelpIndexWidget_____linksActivated_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QHelpIndexWidget) ____linksActivated_keyList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget_____linksActivated_keyList_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget_____linksActivated_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __dataChanged_roles_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexWidget___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QHelpIndexWidget) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QHelpIndexWidget___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QHelpIndexWidget) __dataChanged_roles_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QHelpIndexWidget) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
+	C.QHelpIndexWidget___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QHelpIndexWidget) __dataChanged_roles_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___dataChanged_roles_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __indexesMoved_indexes_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget___indexesMoved_indexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexWidget) __indexesMoved_indexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexWidget___indexesMoved_indexes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __indexesMoved_indexes_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___indexesMoved_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexWidget) __indexesMoved_indexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___indexesMoved_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __indexesMoved_indexes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___indexesMoved_indexes_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___indexesMoved_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __selectedIndexes_atList(i int) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexWidget) __selectedIndexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
+	tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexWidget___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __selectedIndexes_setList(i core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
-	}
+func (ptr *QHelpIndexWidget) __selectedIndexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __selectedIndexes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___selectedIndexes_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___selectedIndexes_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __scrollBarWidgets_atList(i int) *widgets.QWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QHelpIndexWidget___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __scrollBarWidgets_atList(i int, p unsafe.Pointer) *widgets.QWidget {
+	tmpValue := widgets.NewQWidgetFromPointer(C.QHelpIndexWidget___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __scrollBarWidgets_setList(i widgets.QWidget_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i))
-	}
+func (ptr *QHelpIndexWidget) __scrollBarWidgets_setList(i widgets.QWidget_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __scrollBarWidgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___scrollBarWidgets_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___scrollBarWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpIndexWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpIndexWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpIndexWidget) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___addActions_actions_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpIndexWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpIndexWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpIndexWidget) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___insertActions_actions_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpIndexWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpIndexWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpIndexWidget) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___actions_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpIndexWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpIndexWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpIndexWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpIndexWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpIndexWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpIndexWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___findChildren_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpIndexWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpIndexWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpIndexWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpIndexWidget) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpIndexWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpIndexWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpIndexWidget) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpIndexWidget___children_newList(ptr.Pointer()))
+	return C.QHelpIndexWidget___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpIndexWidget_MoveCursor
@@ -7445,7 +7015,7 @@ func callbackQHelpIndexWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.long
 
 func (ptr *QHelpIndexWidget) MoveCursorDefault(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -7487,17 +7057,17 @@ func (ptr *QHelpIndexWidget) CurrentChangedDefault(current core.QModelIndex_ITF,
 func callbackQHelpIndexWidget_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtHelp_PackedList) {
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexWidgetFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexWidget)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
 	} else {
 		NewQHelpIndexWidgetFromPointer(ptr).DataChangedDefault(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtHelp_PackedList) []int {
-			var out = make([]int, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexWidgetFromPointer(l.data).__dataChanged_roles_atList(i)
+			out := make([]int, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexWidget)(nil).__dataChanged_roles_atList(i, l.data)
 			}
 			return out
 		}(roles))
@@ -7507,11 +7077,11 @@ func callbackQHelpIndexWidget_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Poi
 func (ptr *QHelpIndexWidget) DataChangedDefault(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DataChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexWidgetFromPointer(NewQHelpIndexWidgetFromPointer(nil).__dataChanged_roles_newList())
+			tmpList := (*QHelpIndexWidget)(nil).__dataChanged_roles_newList()
 			for _, v := range roles {
-				tmpList.__dataChanged_roles_setList(v)
+				(*QHelpIndexWidget)(nil).__dataChanged_roles_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -7767,7 +7337,7 @@ func callbackQHelpIndexWidget_IndexAt(ptr unsafe.Pointer, p unsafe.Pointer) unsa
 
 func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
+		tmpValue := core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -7778,29 +7348,29 @@ func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex
 func callbackQHelpIndexWidget_SelectedIndexes(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "selectedIndexes"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQHelpIndexWidgetFromPointer(NewQHelpIndexWidgetFromPointer(nil).__selectedIndexes_newList())
+			tmpList := (*QHelpIndexWidget)(nil).__selectedIndexes_newList()
 			for _, v := range signal.(func() []*core.QModelIndex)() {
-				tmpList.__selectedIndexes_setList(v)
+				(*QHelpIndexWidget)(nil).__selectedIndexes_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQHelpIndexWidgetFromPointer(NewQHelpIndexWidgetFromPointer(nil).__selectedIndexes_newList())
+		tmpList := (*QHelpIndexWidget)(nil).__selectedIndexes_newList()
 		for _, v := range NewQHelpIndexWidgetFromPointer(ptr).SelectedIndexesDefault() {
-			tmpList.__selectedIndexes_setList(v)
+			(*QHelpIndexWidget)(nil).__selectedIndexes_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
 func (ptr *QHelpIndexWidget) SelectedIndexesDefault() []*core.QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []*core.QModelIndex {
-			var out = make([]*core.QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpIndexWidgetFromPointer(l.data).__selectedIndexes_atList(i)
+			out := make([]*core.QModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpIndexWidget)(nil).__selectedIndexes_atList(i, l.data)
 			}
 			return out
 		}(C.QHelpIndexWidget_SelectedIndexesDefault(ptr.Pointer()))
@@ -7819,7 +7389,7 @@ func callbackQHelpIndexWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointe
 
 func (ptr *QHelpIndexWidget) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		tmpValue := core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
@@ -7837,7 +7407,7 @@ func callbackQHelpIndexWidget_VisualRegionForSelection(ptr unsafe.Pointer, selec
 
 func (ptr *QHelpIndexWidget) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		tmpValue := gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
 		return tmpValue
 	}
@@ -7855,7 +7425,7 @@ func callbackQHelpIndexWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointe
 
 func (ptr *QHelpIndexWidget) ViewportSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -7873,7 +7443,7 @@ func callbackQHelpIndexWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QHelpIndexWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptionsDefault(ptr.Pointer()))
+		tmpValue := widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptionsDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
 		return tmpValue
 	}
@@ -8394,7 +7964,7 @@ func callbackQHelpIndexWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longl
 
 func (ptr *QHelpIndexWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -8489,7 +8059,7 @@ func callbackQHelpIndexWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer
 
 func (ptr *QHelpIndexWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -8507,7 +8077,7 @@ func callbackQHelpIndexWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QHelpIndexWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -9206,10 +8776,10 @@ func PointerFromQHelpSearchEngine(ptr QHelpSearchEngine_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
-	var n = new(QHelpSearchEngine)
+func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) (n *QHelpSearchEngine) {
+	n = new(QHelpSearchEngine)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQHelpSearchEngine_CancelIndexing
@@ -9297,7 +8867,7 @@ func (ptr *QHelpSearchEngine) CancelSearchingDefault() {
 }
 
 func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
-	var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
+	tmpValue := NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -9306,7 +8876,7 @@ func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_IT
 
 func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
+		tmpValue := NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9317,7 +8887,7 @@ func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 
 func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
+		tmpValue := NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9594,9 +9164,9 @@ func (ptr *QHelpSearchEngine) SearchInput() string {
 func (ptr *QHelpSearchEngine) SearchResults(start int, end int) []*QHelpSearchResult {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []*QHelpSearchResult {
-			var out = make([]*QHelpSearchResult, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQHelpSearchEngineFromPointer(l.data).__searchResults_atList(i)
+			out := make([]*QHelpSearchResult, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QHelpSearchEngine)(nil).__searchResults_atList(i, l.data)
 			}
 			return out
 		}(C.QHelpSearchEngine_SearchResults(ptr.Pointer(), C.int(int32(start)), C.int(int32(end))))
@@ -9612,133 +9182,103 @@ func (ptr *QHelpSearchEngine) SearchResultCount() int {
 }
 
 func (ptr *QHelpSearchEngine) __search_queryList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___search_queryList_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___search_queryList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpSearchEngine) __query_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___query_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___query_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __searchResults_atList(i int) *QHelpSearchResult {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchEngine___searchResults_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpSearchEngine) __searchResults_atList(i int, p unsafe.Pointer) *QHelpSearchResult {
+	tmpValue := NewQHelpSearchResultFromPointer(C.QHelpSearchEngine___searchResults_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __searchResults_setList(i QHelpSearchResult_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___searchResults_setList(ptr.Pointer(), PointerFromQHelpSearchResult(i))
-	}
+func (ptr *QHelpSearchEngine) __searchResults_setList(i QHelpSearchResult_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___searchResults_setList(ptr.Pointer(), PointerFromQHelpSearchResult(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __searchResults_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___searchResults_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___searchResults_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpSearchEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpSearchEngine) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpSearchEngine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpSearchEngine) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchEngine) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchEngine) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpSearchEngine___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchEngine) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchEngine) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpSearchEngine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchEngine) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchEngine___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchEngine) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___findChildren_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchEngine) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchEngine___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchEngine) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchEngine___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchEngine) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchEngine) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchEngine___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchEngine) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchEngine___children_newList(ptr.Pointer()))
+	return C.QHelpSearchEngine___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpSearchEngine_Event
@@ -9930,13 +9470,13 @@ func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidget_ITF) unsafe.Po
 	return nil
 }
 
-func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
-	var n = new(QHelpSearchQueryWidget)
+func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpSearchQueryWidget) {
+	n = new(QHelpSearchQueryWidget)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidget {
-	var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
+	tmpValue := NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -10028,177 +9568,137 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 }
 
 func (ptr *QHelpSearchQueryWidget) __setQuery_queryList_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___setQuery_queryList_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___setQuery_queryList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpSearchQueryWidget) __query_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___query_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___query_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___addActions_actions_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___insertActions_actions_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchQueryWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___actions_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpSearchQueryWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpSearchQueryWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpSearchQueryWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___findChildren_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchQueryWidget) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchQueryWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchQueryWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchQueryWidget) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchQueryWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchQueryWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchQueryWidget) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchQueryWidget___children_newList(ptr.Pointer()))
+	return C.QHelpSearchQueryWidget___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpSearchQueryWidget_Close
@@ -10985,7 +10485,7 @@ func callbackQHelpSearchQueryWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.P
 
 func (ptr *QHelpSearchQueryWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -11003,7 +10503,7 @@ func callbackQHelpSearchQueryWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer 
 
 func (ptr *QHelpSearchQueryWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -11021,7 +10521,7 @@ func callbackQHelpSearchQueryWidget_InputMethodQuery(ptr unsafe.Pointer, query C
 
 func (ptr *QHelpSearchQueryWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -11248,19 +10748,19 @@ func PointerFromQHelpSearchResult(ptr QHelpSearchResult_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHelpSearchResultFromPointer(ptr unsafe.Pointer) *QHelpSearchResult {
-	var n = new(QHelpSearchResult)
+func NewQHelpSearchResultFromPointer(ptr unsafe.Pointer) (n *QHelpSearchResult) {
+	n = new(QHelpSearchResult)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHelpSearchResult() *QHelpSearchResult {
-	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult())
+	tmpValue := NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult())
 	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
 	return tmpValue
 }
 
 func NewQHelpSearchResult2(other QHelpSearchResult_ITF) *QHelpSearchResult {
-	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult2(PointerFromQHelpSearchResult(other)))
+	tmpValue := NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult2(PointerFromQHelpSearchResult(other)))
 	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
 	return tmpValue
 }
@@ -11276,7 +10776,7 @@ func NewQHelpSearchResult3(url core.QUrl_ITF, title string, snippet string) *QHe
 		snippetC = C.CString(snippet)
 		defer C.free(unsafe.Pointer(snippetC))
 	}
-	var tmpValue = NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult3(core.PointerFromQUrl(url), C.struct_QtHelp_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtHelp_PackedString{data: snippetC, len: C.longlong(len(snippet))}))
+	tmpValue := NewQHelpSearchResultFromPointer(C.QHelpSearchResult_NewQHelpSearchResult3(core.PointerFromQUrl(url), C.struct_QtHelp_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtHelp_PackedString{data: snippetC, len: C.longlong(len(snippet))}))
 	runtime.SetFinalizer(tmpValue, (*QHelpSearchResult).DestroyQHelpSearchResult)
 	return tmpValue
 }
@@ -11305,7 +10805,7 @@ func (ptr *QHelpSearchResult) Title() string {
 
 func (ptr *QHelpSearchResult) Url() *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpSearchResult_Url(ptr.Pointer()))
+		tmpValue := core.NewQUrlFromPointer(C.QHelpSearchResult_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -11345,14 +10845,14 @@ func PointerFromQHelpSearchResultWidget(ptr QHelpSearchResultWidget_ITF) unsafe.
 	return nil
 }
 
-func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResultWidget {
-	var n = new(QHelpSearchResultWidget)
+func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpSearchResultWidget) {
+	n = new(QHelpSearchResultWidget)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+		tmpValue := core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -11406,170 +10906,130 @@ func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchResultWidget) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___addActions_actions_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchResultWidget) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___insertActions_actions_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QHelpSearchResultWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QHelpSearchResultWidget) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___actions_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpSearchResultWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHelpSearchResultWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHelpSearchResultWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHelpSearchResultWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchResultWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___findChildren_newList2(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchResultWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___findChildren_newList3(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchResultWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchResultWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___findChildren_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpSearchResultWidget) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHelpSearchResultWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHelpSearchResultWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHelpSearchResultWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHelpSearchResultWidget) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHelpSearchResultWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHelpSearchResultWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHelpSearchResultWidget) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHelpSearchResultWidget___children_newList(ptr.Pointer()))
+	return C.QHelpSearchResultWidget___children_newList(ptr.Pointer())
 }
 
 //export callbackQHelpSearchResultWidget_Close
@@ -12356,7 +11816,7 @@ func callbackQHelpSearchResultWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.
 
 func (ptr *QHelpSearchResultWidget) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12374,7 +11834,7 @@ func callbackQHelpSearchResultWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer
 
 func (ptr *QHelpSearchResultWidget) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12392,7 +11852,7 @@ func callbackQHelpSearchResultWidget_InputMethodQuery(ptr unsafe.Pointer, query 
 
 func (ptr *QHelpSearchResultWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}

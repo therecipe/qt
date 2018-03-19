@@ -16,7 +16,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtMacExtras_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -54,30 +54,30 @@ func PointerFromQMacPasteboardMime(ptr QMacPasteboardMime_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) *QMacPasteboardMime {
-	var n = new(QMacPasteboardMime)
+func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) (n *QMacPasteboardMime) {
+	n = new(QMacPasteboardMime)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQMacPasteboardMime_ConvertFromMime
 func callbackQMacPasteboardMime_ConvertFromMime(ptr unsafe.Pointer, mime C.struct_QtMacExtras_PackedString, data unsafe.Pointer, flav C.struct_QtMacExtras_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "convertFromMime"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQMacPasteboardMimeFromPointer(NewQMacPasteboardMimeFromPointer(nil).__convertFromMime_newList())
+			tmpList := (*QMacPasteboardMime)(nil).__convertFromMime_newList()
 			for _, v := range signal.(func(string, *core.QVariant, string) []*core.QByteArray)(cGoUnpackString(mime), core.NewQVariantFromPointer(data), cGoUnpackString(flav)) {
-				tmpList.__convertFromMime_setList(v)
+				(*QMacPasteboardMime)(nil).__convertFromMime_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQMacPasteboardMimeFromPointer(NewQMacPasteboardMimeFromPointer(nil).__convertFromMime_newList())
+		tmpList := (*QMacPasteboardMime)(nil).__convertFromMime_newList()
 		for _, v := range make([]*core.QByteArray, 0) {
-			tmpList.__convertFromMime_setList(v)
+			(*QMacPasteboardMime)(nil).__convertFromMime_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -115,9 +115,9 @@ func (ptr *QMacPasteboardMime) ConvertFromMime(mime string, data core.QVariant_I
 			defer C.free(unsafe.Pointer(flavC))
 		}
 		return func(l C.struct_QtMacExtras_PackedList) []*core.QByteArray {
-			var out = make([]*core.QByteArray, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQMacPasteboardMimeFromPointer(l.data).__convertFromMime_atList(i)
+			out := make([]*core.QByteArray, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QMacPasteboardMime)(nil).__convertFromMime_atList(i, l.data)
 			}
 			return out
 		}(C.QMacPasteboardMime_ConvertFromMime(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: mimeC, len: C.longlong(len(mime))}, core.PointerFromQVariant(data), C.struct_QtMacExtras_PackedString{data: flavC, len: C.longlong(len(flav))}))
@@ -262,9 +262,9 @@ func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 func callbackQMacPasteboardMime_ConvertToMime(ptr unsafe.Pointer, mime C.struct_QtMacExtras_PackedString, data C.struct_QtMacExtras_PackedList, flav C.struct_QtMacExtras_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "convertToMime"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string, []*core.QByteArray, string) *core.QVariant)(cGoUnpackString(mime), func(l C.struct_QtMacExtras_PackedList) []*core.QByteArray {
-			var out = make([]*core.QByteArray, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQMacPasteboardMimeFromPointer(l.data).__convertToMime_data_atList(i)
+			out := make([]*core.QByteArray, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QMacPasteboardMime)(nil).__convertToMime_data_atList(i, l.data)
 			}
 			return out
 		}(data), cGoUnpackString(flav)))
@@ -306,12 +306,12 @@ func (ptr *QMacPasteboardMime) ConvertToMime(mime string, data []*core.QByteArra
 			flavC = C.CString(flav)
 			defer C.free(unsafe.Pointer(flavC))
 		}
-		var tmpValue = core.NewQVariantFromPointer(C.QMacPasteboardMime_ConvertToMime(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: mimeC, len: C.longlong(len(mime))}, func() unsafe.Pointer {
-			var tmpList = NewQMacPasteboardMimeFromPointer(NewQMacPasteboardMimeFromPointer(nil).__convertToMime_data_newList())
+		tmpValue := core.NewQVariantFromPointer(C.QMacPasteboardMime_ConvertToMime(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: mimeC, len: C.longlong(len(mime))}, func() unsafe.Pointer {
+			tmpList := (*QMacPasteboardMime)(nil).__convertToMime_data_newList()
 			for _, v := range data {
-				tmpList.__convertToMime_data_setList(v)
+				(*QMacPasteboardMime)(nil).__convertToMime_data_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}(), C.struct_QtMacExtras_PackedString{data: flavC, len: C.longlong(len(flav))}))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
@@ -456,42 +456,32 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMimeDefault() {
 	}
 }
 
-func (ptr *QMacPasteboardMime) __convertFromMime_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QMacPasteboardMime___convertFromMime_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QMacPasteboardMime) __convertFromMime_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QMacPasteboardMime___convertFromMime_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QMacPasteboardMime) __convertFromMime_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacPasteboardMime___convertFromMime_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QMacPasteboardMime) __convertFromMime_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QMacPasteboardMime___convertFromMime_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QMacPasteboardMime) __convertFromMime_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacPasteboardMime___convertFromMime_newList(ptr.Pointer()))
+	return C.QMacPasteboardMime___convertFromMime_newList(ptr.Pointer())
 }
 
-func (ptr *QMacPasteboardMime) __convertToMime_data_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QMacPasteboardMime___convertToMime_data_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QMacPasteboardMime) __convertToMime_data_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QMacPasteboardMime___convertToMime_data_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QMacPasteboardMime) __convertToMime_data_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacPasteboardMime___convertToMime_data_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QMacPasteboardMime) __convertToMime_data_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QMacPasteboardMime___convertToMime_data_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QMacPasteboardMime) __convertToMime_data_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacPasteboardMime___convertToMime_data_newList(ptr.Pointer()))
+	return C.QMacPasteboardMime___convertToMime_data_newList(ptr.Pointer())
 }
 
 type QMacToolBar struct {
@@ -527,17 +517,17 @@ func PointerFromQMacToolBar(ptr QMacToolBar_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
-	var n = new(QMacToolBar)
+func NewQMacToolBarFromPointer(ptr unsafe.Pointer) (n *QMacToolBar) {
+	n = new(QMacToolBar)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QMacToolBar) AllowedItems() []*QMacToolBarItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMacExtras_PackedList) []*QMacToolBarItem {
-			var out = make([]*QMacToolBarItem, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQMacToolBarFromPointer(l.data).__allowedItems_atList(i)
+			out := make([]*QMacToolBarItem, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QMacToolBar)(nil).__allowedItems_atList(i, l.data)
 			}
 			return out
 		}(C.QMacToolBar_AllowedItems(ptr.Pointer()))
@@ -548,9 +538,9 @@ func (ptr *QMacToolBar) AllowedItems() []*QMacToolBarItem {
 func (ptr *QMacToolBar) Items() []*QMacToolBarItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMacExtras_PackedList) []*QMacToolBarItem {
-			var out = make([]*QMacToolBarItem, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQMacToolBarFromPointer(l.data).__items_atList(i)
+			out := make([]*QMacToolBarItem, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QMacToolBar)(nil).__items_atList(i, l.data)
 			}
 			return out
 		}(C.QMacToolBar_Items(ptr.Pointer()))
@@ -559,7 +549,7 @@ func (ptr *QMacToolBar) Items() []*QMacToolBarItem {
 }
 
 func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
-	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
+	tmpValue := NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -572,7 +562,7 @@ func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 		identifierC = C.CString(identifier)
 		defer C.free(unsafe.Pointer(identifierC))
 	}
-	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.struct_QtMacExtras_PackedString{data: identifierC, len: C.longlong(len(identifier))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.struct_QtMacExtras_PackedString{data: identifierC, len: C.longlong(len(identifier))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -586,7 +576,7 @@ func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToo
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))}))
+		tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -602,7 +592,7 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 			textC = C.CString(text)
 			defer C.free(unsafe.Pointer(textC))
 		}
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))}))
+		tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -632,11 +622,11 @@ func (ptr *QMacToolBar) DetachFromWindow() {
 func (ptr *QMacToolBar) SetAllowedItems(allowedItems []*QMacToolBarItem) {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_SetAllowedItems(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQMacToolBarFromPointer(NewQMacToolBarFromPointer(nil).__setAllowedItems_allowedItems_newList())
+			tmpList := (*QMacToolBar)(nil).__setAllowedItems_allowedItems_newList()
 			for _, v := range allowedItems {
-				tmpList.__setAllowedItems_allowedItems_setList(v)
+				(*QMacToolBar)(nil).__setAllowedItems_allowedItems_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -644,11 +634,11 @@ func (ptr *QMacToolBar) SetAllowedItems(allowedItems []*QMacToolBarItem) {
 func (ptr *QMacToolBar) SetItems(items []*QMacToolBarItem) {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_SetItems(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQMacToolBarFromPointer(NewQMacToolBarFromPointer(nil).__setItems_items_newList())
+			tmpList := (*QMacToolBar)(nil).__setItems_items_newList()
 			for _, v := range items {
-				tmpList.__setItems_items_setList(v)
+				(*QMacToolBar)(nil).__setItems_items_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -661,191 +651,146 @@ func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	}
 }
 
-func (ptr *QMacToolBar) __allowedItems_atList(i int) *QMacToolBarItem {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar___allowedItems_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __allowedItems_atList(i int, p unsafe.Pointer) *QMacToolBarItem {
+	tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar___allowedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __allowedItems_setList(i QMacToolBarItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___allowedItems_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i))
-	}
+func (ptr *QMacToolBar) __allowedItems_setList(i QMacToolBarItem_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___allowedItems_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i), p)
 }
 
 func (ptr *QMacToolBar) __allowedItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___allowedItems_newList(ptr.Pointer()))
+	return C.QMacToolBar___allowedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __items_atList(i int) *QMacToolBarItem {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar___items_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __items_atList(i int, p unsafe.Pointer) *QMacToolBarItem {
+	tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __items_setList(i QMacToolBarItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___items_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i))
-	}
+func (ptr *QMacToolBar) __items_setList(i QMacToolBarItem_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___items_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i), p)
 }
 
 func (ptr *QMacToolBar) __items_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___items_newList(ptr.Pointer()))
+	return C.QMacToolBar___items_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __setAllowedItems_allowedItems_atList(i int) *QMacToolBarItem {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar___setAllowedItems_allowedItems_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __setAllowedItems_allowedItems_atList(i int, p unsafe.Pointer) *QMacToolBarItem {
+	tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar___setAllowedItems_allowedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __setAllowedItems_allowedItems_setList(i QMacToolBarItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___setAllowedItems_allowedItems_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i))
-	}
+func (ptr *QMacToolBar) __setAllowedItems_allowedItems_setList(i QMacToolBarItem_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___setAllowedItems_allowedItems_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i), p)
 }
 
 func (ptr *QMacToolBar) __setAllowedItems_allowedItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___setAllowedItems_allowedItems_newList(ptr.Pointer()))
+	return C.QMacToolBar___setAllowedItems_allowedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __setItems_items_atList(i int) *QMacToolBarItem {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar___setItems_items_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __setItems_items_atList(i int, p unsafe.Pointer) *QMacToolBarItem {
+	tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar___setItems_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __setItems_items_setList(i QMacToolBarItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___setItems_items_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i))
-	}
+func (ptr *QMacToolBar) __setItems_items_setList(i QMacToolBarItem_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___setItems_items_setList(ptr.Pointer(), PointerFromQMacToolBarItem(i), p)
 }
 
 func (ptr *QMacToolBar) __setItems_items_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___setItems_items_newList(ptr.Pointer()))
+	return C.QMacToolBar___setItems_items_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QMacToolBar___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QMacToolBar) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QMacToolBar___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QMacToolBar) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QMacToolBar) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QMacToolBar___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBar) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBar) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___findChildren_newList2(ptr.Pointer()))
+	return C.QMacToolBar___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBar) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBar) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___findChildren_newList3(ptr.Pointer()))
+	return C.QMacToolBar___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBar___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBar) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBar) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___findChildren_newList(ptr.Pointer()))
+	return C.QMacToolBar___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBar) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBar___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBar) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBar___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBar) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBar___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBar) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBar___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBar) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBar___children_newList(ptr.Pointer()))
+	return C.QMacToolBar___children_newList(ptr.Pointer())
 }
 
 //export callbackQMacToolBar_Event
@@ -1037,10 +982,10 @@ func PointerFromQMacToolBarItem(ptr QMacToolBarItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
-	var n = new(QMacToolBarItem)
+func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) (n *QMacToolBarItem) {
+	n = new(QMacToolBarItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QMacToolBarItem__StandardItem
@@ -1054,7 +999,7 @@ const (
 )
 
 func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
-	var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
+	tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -1177,7 +1122,7 @@ func (ptr *QMacToolBarItem) SetText(text string) {
 
 func (ptr *QMacToolBarItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
+		tmpValue := gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
@@ -1205,107 +1150,82 @@ func (ptr *QMacToolBarItem) Selectable() bool {
 	return false
 }
 
-func (ptr *QMacToolBarItem) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QMacToolBarItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QMacToolBarItem) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QMacToolBarItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QMacToolBarItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QMacToolBarItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QMacToolBarItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QMacToolBarItem) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBarItem___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QMacToolBarItem___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBarItem) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBarItem) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBarItem) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBarItem) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBarItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBarItem) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBarItem___findChildren_newList2(ptr.Pointer()))
+	return C.QMacToolBarItem___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMacToolBarItem) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBarItem) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBarItem) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBarItem) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBarItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBarItem) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBarItem___findChildren_newList3(ptr.Pointer()))
+	return C.QMacToolBarItem___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMacToolBarItem) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBarItem) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBarItem___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBarItem) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBarItem) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBarItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBarItem) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBarItem___findChildren_newList(ptr.Pointer()))
+	return C.QMacToolBarItem___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMacToolBarItem) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QMacToolBarItem___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QMacToolBarItem) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QMacToolBarItem___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QMacToolBarItem) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QMacToolBarItem) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QMacToolBarItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QMacToolBarItem) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QMacToolBarItem___children_newList(ptr.Pointer()))
+	return C.QMacToolBarItem___children_newList(ptr.Pointer())
 }
 
 //export callbackQMacToolBarItem_Event

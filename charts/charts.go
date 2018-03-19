@@ -18,7 +18,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtCharts_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromQAbstractAxis(ptr QAbstractAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstractAxisFromPointer(ptr unsafe.Pointer) *QAbstractAxis {
-	var n = new(QAbstractAxis)
+func NewQAbstractAxisFromPointer(ptr unsafe.Pointer) (n *QAbstractAxis) {
+	n = new(QAbstractAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstractAxis__AxisType
@@ -77,7 +77,7 @@ const (
 
 func (ptr *QAbstractAxis) GridLineColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_GridLineColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_GridLineColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -86,7 +86,7 @@ func (ptr *QAbstractAxis) GridLineColor() *gui.QColor {
 
 func (ptr *QAbstractAxis) MinorGridLineColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_MinorGridLineColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_MinorGridLineColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -1305,7 +1305,7 @@ func (ptr *QAbstractAxis) Type() QAbstractAxis__AxisType {
 
 func (ptr *QAbstractAxis) LabelsBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QAbstractAxis_LabelsBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QAbstractAxis_LabelsBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -1314,7 +1314,7 @@ func (ptr *QAbstractAxis) LabelsBrush() *gui.QBrush {
 
 func (ptr *QAbstractAxis) ShadesBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QAbstractAxis_ShadesBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QAbstractAxis_ShadesBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -1323,7 +1323,7 @@ func (ptr *QAbstractAxis) ShadesBrush() *gui.QBrush {
 
 func (ptr *QAbstractAxis) TitleBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QAbstractAxis_TitleBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QAbstractAxis_TitleBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -1332,7 +1332,7 @@ func (ptr *QAbstractAxis) TitleBrush() *gui.QBrush {
 
 func (ptr *QAbstractAxis) LabelsColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_LabelsColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_LabelsColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -1341,7 +1341,7 @@ func (ptr *QAbstractAxis) LabelsColor() *gui.QColor {
 
 func (ptr *QAbstractAxis) LinePenColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_LinePenColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_LinePenColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -1350,7 +1350,7 @@ func (ptr *QAbstractAxis) LinePenColor() *gui.QColor {
 
 func (ptr *QAbstractAxis) ShadesBorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_ShadesBorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_ShadesBorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -1359,7 +1359,7 @@ func (ptr *QAbstractAxis) ShadesBorderColor() *gui.QColor {
 
 func (ptr *QAbstractAxis) ShadesColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAbstractAxis_ShadesColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAbstractAxis_ShadesColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -1368,7 +1368,7 @@ func (ptr *QAbstractAxis) ShadesColor() *gui.QColor {
 
 func (ptr *QAbstractAxis) LabelsFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QAbstractAxis_LabelsFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QAbstractAxis_LabelsFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -1377,7 +1377,7 @@ func (ptr *QAbstractAxis) LabelsFont() *gui.QFont {
 
 func (ptr *QAbstractAxis) TitleFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QAbstractAxis_TitleFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QAbstractAxis_TitleFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -1386,7 +1386,7 @@ func (ptr *QAbstractAxis) TitleFont() *gui.QFont {
 
 func (ptr *QAbstractAxis) GridLinePen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QAbstractAxis_GridLinePen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QAbstractAxis_GridLinePen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -1395,7 +1395,7 @@ func (ptr *QAbstractAxis) GridLinePen() *gui.QPen {
 
 func (ptr *QAbstractAxis) LinePen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QAbstractAxis_LinePen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QAbstractAxis_LinePen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -1404,7 +1404,7 @@ func (ptr *QAbstractAxis) LinePen() *gui.QPen {
 
 func (ptr *QAbstractAxis) MinorGridLinePen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QAbstractAxis_MinorGridLinePen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QAbstractAxis_MinorGridLinePen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -1413,7 +1413,7 @@ func (ptr *QAbstractAxis) MinorGridLinePen() *gui.QPen {
 
 func (ptr *QAbstractAxis) ShadesPen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QAbstractAxis_ShadesPen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QAbstractAxis_ShadesPen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -1537,10 +1537,10 @@ func PointerFromQAbstractBarSeries(ptr QAbstractBarSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstractBarSeriesFromPointer(ptr unsafe.Pointer) *QAbstractBarSeries {
-	var n = new(QAbstractBarSeries)
+func NewQAbstractBarSeriesFromPointer(ptr unsafe.Pointer) (n *QAbstractBarSeries) {
+	n = new(QAbstractBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstractBarSeries__LabelsPosition
@@ -1564,11 +1564,11 @@ func (ptr *QAbstractBarSeries) Append(set QBarSet_ITF) bool {
 func (ptr *QAbstractBarSeries) Append2(sets []*QBarSet) bool {
 	if ptr.Pointer() != nil {
 		return C.QAbstractBarSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(nil).__append_sets_newList2())
+			tmpList := (*QAbstractBarSeries)(nil).__append_sets_newList2()
 			for _, v := range sets {
-				tmpList.__append_sets_setList2(v)
+				(*QAbstractBarSeries)(nil).__append_sets_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -1599,9 +1599,9 @@ func (ptr *QAbstractBarSeries) Take(set QBarSet_ITF) bool {
 func callbackQAbstractBarSeries_BarsetsAdded(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "barsetsAdded"); signal != nil {
 		signal.(func([]*QBarSet))(func(l C.struct_QtCharts_PackedList) []*QBarSet {
-			var out = make([]*QBarSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barsetsAdded_sets_atList(i)
+			out := make([]*QBarSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractBarSeries)(nil).__barsetsAdded_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -1637,11 +1637,11 @@ func (ptr *QAbstractBarSeries) DisconnectBarsetsAdded() {
 func (ptr *QAbstractBarSeries) BarsetsAdded(sets []*QBarSet) {
 	if ptr.Pointer() != nil {
 		C.QAbstractBarSeries_BarsetsAdded(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(nil).__barsetsAdded_sets_newList())
+			tmpList := (*QAbstractBarSeries)(nil).__barsetsAdded_sets_newList()
 			for _, v := range sets {
-				tmpList.__barsetsAdded_sets_setList(v)
+				(*QAbstractBarSeries)(nil).__barsetsAdded_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -1650,9 +1650,9 @@ func (ptr *QAbstractBarSeries) BarsetsAdded(sets []*QBarSet) {
 func callbackQAbstractBarSeries_BarsetsRemoved(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "barsetsRemoved"); signal != nil {
 		signal.(func([]*QBarSet))(func(l C.struct_QtCharts_PackedList) []*QBarSet {
-			var out = make([]*QBarSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barsetsRemoved_sets_atList(i)
+			out := make([]*QBarSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractBarSeries)(nil).__barsetsRemoved_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -1688,11 +1688,11 @@ func (ptr *QAbstractBarSeries) DisconnectBarsetsRemoved() {
 func (ptr *QAbstractBarSeries) BarsetsRemoved(sets []*QBarSet) {
 	if ptr.Pointer() != nil {
 		C.QAbstractBarSeries_BarsetsRemoved(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(nil).__barsetsRemoved_sets_newList())
+			tmpList := (*QAbstractBarSeries)(nil).__barsetsRemoved_sets_newList()
 			for _, v := range sets {
-				tmpList.__barsetsRemoved_sets_setList(v)
+				(*QAbstractBarSeries)(nil).__barsetsRemoved_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -2187,9 +2187,9 @@ func (ptr *QAbstractBarSeries) LabelsPosition() QAbstractBarSeries__LabelsPositi
 func (ptr *QAbstractBarSeries) BarSets() []*QBarSet {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QBarSet {
-			var out = make([]*QBarSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractBarSeriesFromPointer(l.data).__barSets_atList(i)
+			out := make([]*QBarSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractBarSeries)(nil).__barSets_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstractBarSeries_BarSets(ptr.Pointer()))
@@ -2232,72 +2232,52 @@ func (ptr *QAbstractBarSeries) LabelsAngle() float64 {
 	return 0
 }
 
-func (ptr *QAbstractBarSeries) __append_sets_atList2(i int) *QBarSet {
-	if ptr.Pointer() != nil {
-		return NewQBarSetFromPointer(C.QAbstractBarSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstractBarSeries) __append_sets_atList2(i int, p unsafe.Pointer) *QBarSet {
+	return NewQBarSetFromPointer(C.QAbstractBarSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstractBarSeries) __append_sets_setList2(i QBarSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractBarSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBarSet(i))
-	}
+func (ptr *QAbstractBarSeries) __append_sets_setList2(i QBarSet_ITF, p unsafe.Pointer) {
+	C.QAbstractBarSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBarSet(i), p)
 }
 
 func (ptr *QAbstractBarSeries) __append_sets_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractBarSeries___append_sets_newList2(ptr.Pointer()))
+	return C.QAbstractBarSeries___append_sets_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractBarSeries) __barsetsAdded_sets_atList(i int) *QBarSet {
-	if ptr.Pointer() != nil {
-		return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstractBarSeries) __barsetsAdded_sets_atList(i int, p unsafe.Pointer) *QBarSet {
+	return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstractBarSeries) __barsetsAdded_sets_setList(i QBarSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractBarSeries___barsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBarSet(i))
-	}
+func (ptr *QAbstractBarSeries) __barsetsAdded_sets_setList(i QBarSet_ITF, p unsafe.Pointer) {
+	C.QAbstractBarSeries___barsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBarSet(i), p)
 }
 
 func (ptr *QAbstractBarSeries) __barsetsAdded_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractBarSeries___barsetsAdded_sets_newList(ptr.Pointer()))
+	return C.QAbstractBarSeries___barsetsAdded_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_atList(i int) *QBarSet {
-	if ptr.Pointer() != nil {
-		return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_atList(i int, p unsafe.Pointer) *QBarSet {
+	return NewQBarSetFromPointer(C.QAbstractBarSeries___barsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_setList(i QBarSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractBarSeries___barsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBarSet(i))
-	}
+func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_setList(i QBarSet_ITF, p unsafe.Pointer) {
+	C.QAbstractBarSeries___barsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBarSet(i), p)
 }
 
 func (ptr *QAbstractBarSeries) __barsetsRemoved_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractBarSeries___barsetsRemoved_sets_newList(ptr.Pointer()))
+	return C.QAbstractBarSeries___barsetsRemoved_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractBarSeries) __barSets_atList(i int) *QBarSet {
-	if ptr.Pointer() != nil {
-		return NewQBarSetFromPointer(C.QAbstractBarSeries___barSets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstractBarSeries) __barSets_atList(i int, p unsafe.Pointer) *QBarSet {
+	return NewQBarSetFromPointer(C.QAbstractBarSeries___barSets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstractBarSeries) __barSets_setList(i QBarSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractBarSeries___barSets_setList(ptr.Pointer(), PointerFromQBarSet(i))
-	}
+func (ptr *QAbstractBarSeries) __barSets_setList(i QBarSet_ITF, p unsafe.Pointer) {
+	C.QAbstractBarSeries___barSets_setList(ptr.Pointer(), PointerFromQBarSet(i), p)
 }
 
 func (ptr *QAbstractBarSeries) __barSets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractBarSeries___barSets_newList(ptr.Pointer()))
+	return C.QAbstractBarSeries___barSets_newList(ptr.Pointer())
 }
 
 //export callbackQAbstractBarSeries_Type
@@ -2355,10 +2335,10 @@ func PointerFromQAbstractSeries(ptr QAbstractSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAbstractSeriesFromPointer(ptr unsafe.Pointer) *QAbstractSeries {
-	var n = new(QAbstractSeries)
+func NewQAbstractSeriesFromPointer(ptr unsafe.Pointer) (n *QAbstractSeries) {
+	n = new(QAbstractSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstractSeries__SeriesType
@@ -2384,9 +2364,9 @@ const (
 func (ptr *QAbstractSeries) AttachedAxes() []*QAbstractAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
-			var out = make([]*QAbstractAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractSeriesFromPointer(l.data).__attachedAxes_atList(i)
+			out := make([]*QAbstractAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractSeries)(nil).__attachedAxes_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstractSeries_AttachedAxes(ptr.Pointer()))
@@ -2614,7 +2594,7 @@ func (ptr *QAbstractSeries) DestroyQAbstractSeries() {
 
 func (ptr *QAbstractSeries) Chart() *QChart {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQChartFromPointer(C.QAbstractSeries_Chart(ptr.Pointer()))
+		tmpValue := NewQChartFromPointer(C.QAbstractSeries_Chart(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2688,21 +2668,16 @@ func (ptr *QAbstractSeries) Opacity() float64 {
 	return 0
 }
 
-func (ptr *QAbstractSeries) __attachedAxes_atList(i int) *QAbstractAxis {
-	if ptr.Pointer() != nil {
-		return NewQAbstractAxisFromPointer(C.QAbstractSeries___attachedAxes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QAbstractSeries) __attachedAxes_atList(i int, p unsafe.Pointer) *QAbstractAxis {
+	return NewQAbstractAxisFromPointer(C.QAbstractSeries___attachedAxes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QAbstractSeries) __attachedAxes_setList(i QAbstractAxis_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractSeries___attachedAxes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i))
-	}
+func (ptr *QAbstractSeries) __attachedAxes_setList(i QAbstractAxis_ITF, p unsafe.Pointer) {
+	C.QAbstractSeries___attachedAxes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i), p)
 }
 
 func (ptr *QAbstractSeries) __attachedAxes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractSeries___attachedAxes_newList(ptr.Pointer()))
+	return C.QAbstractSeries___attachedAxes_newList(ptr.Pointer())
 }
 
 type QAreaLegendMarker struct {
@@ -2738,10 +2713,10 @@ func PointerFromQAreaLegendMarker(ptr QAreaLegendMarker_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAreaLegendMarkerFromPointer(ptr unsafe.Pointer) *QAreaLegendMarker {
-	var n = new(QAreaLegendMarker)
+func NewQAreaLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QAreaLegendMarker) {
+	n = new(QAreaLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQAreaLegendMarker_Type
@@ -2909,10 +2884,10 @@ func PointerFromQAreaSeries(ptr QAreaSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAreaSeriesFromPointer(ptr unsafe.Pointer) *QAreaSeries {
-	var n = new(QAreaSeries)
+func NewQAreaSeriesFromPointer(ptr unsafe.Pointer) (n *QAreaSeries) {
+	n = new(QAreaSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAreaSeries2(upperSeries QLineSeries_ITF, lowerSeries QLineSeries_ITF) *QAreaSeries {
 	return NewQAreaSeriesFromPointer(C.QAreaSeries_NewQAreaSeries2(PointerFromQLineSeries(upperSeries), PointerFromQLineSeries(lowerSeries)))
@@ -3526,7 +3501,7 @@ func (ptr *QAreaSeries) TypeDefault() QAbstractSeries__SeriesType {
 
 func (ptr *QAreaSeries) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QAreaSeries_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QAreaSeries_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -3535,7 +3510,7 @@ func (ptr *QAreaSeries) Brush() *gui.QBrush {
 
 func (ptr *QAreaSeries) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAreaSeries_BorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAreaSeries_BorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -3544,7 +3519,7 @@ func (ptr *QAreaSeries) BorderColor() *gui.QColor {
 
 func (ptr *QAreaSeries) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAreaSeries_Color(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAreaSeries_Color(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -3553,7 +3528,7 @@ func (ptr *QAreaSeries) Color() *gui.QColor {
 
 func (ptr *QAreaSeries) PointLabelsColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QAreaSeries_PointLabelsColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QAreaSeries_PointLabelsColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -3562,7 +3537,7 @@ func (ptr *QAreaSeries) PointLabelsColor() *gui.QColor {
 
 func (ptr *QAreaSeries) PointLabelsFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QAreaSeries_PointLabelsFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QAreaSeries_PointLabelsFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -3585,7 +3560,7 @@ func (ptr *QAreaSeries) UpperSeries() *QLineSeries {
 
 func (ptr *QAreaSeries) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QAreaSeries_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QAreaSeries_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -3653,10 +3628,10 @@ func PointerFromQBarCategoryAxis(ptr QBarCategoryAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarCategoryAxisFromPointer(ptr unsafe.Pointer) *QBarCategoryAxis {
-	var n = new(QBarCategoryAxis)
+func NewQBarCategoryAxisFromPointer(ptr unsafe.Pointer) (n *QBarCategoryAxis) {
+	n = new(QBarCategoryAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBarCategoryAxis(parent core.QObject_ITF) *QBarCategoryAxis {
 	return NewQBarCategoryAxisFromPointer(C.QBarCategoryAxis_NewQBarCategoryAxis(core.PointerFromQObject(parent)))
@@ -3682,7 +3657,7 @@ func (ptr *QBarCategoryAxis) Append2(category string) {
 
 func (ptr *QBarCategoryAxis) Append(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QBarCategoryAxis_Append(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -3949,7 +3924,7 @@ func (ptr *QBarCategoryAxis) Replace(oldCategory string, newCategory string) {
 
 func (ptr *QBarCategoryAxis) SetCategories(categories []string) {
 	if ptr.Pointer() != nil {
-		var categoriesC = C.CString(strings.Join(categories, "|"))
+		categoriesC := C.CString(strings.Join(categories, "|"))
 		defer C.free(unsafe.Pointer(categoriesC))
 		C.QBarCategoryAxis_SetCategories(ptr.Pointer(), C.struct_QtCharts_PackedString{data: categoriesC, len: C.longlong(len(strings.Join(categories, "|")))})
 	}
@@ -4105,10 +4080,10 @@ func PointerFromQBarLegendMarker(ptr QBarLegendMarker_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarLegendMarkerFromPointer(ptr unsafe.Pointer) *QBarLegendMarker {
-	var n = new(QBarLegendMarker)
+func NewQBarLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QBarLegendMarker) {
+	n = new(QBarLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQBarLegendMarker_Type
@@ -4283,10 +4258,10 @@ func PointerFromQBarSeries(ptr QBarSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarSeriesFromPointer(ptr unsafe.Pointer) *QBarSeries {
-	var n = new(QBarSeries)
+func NewQBarSeriesFromPointer(ptr unsafe.Pointer) (n *QBarSeries) {
+	n = new(QBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBarSeries(parent core.QObject_ITF) *QBarSeries {
 	return NewQBarSeriesFromPointer(C.QBarSeries_NewQBarSeries(core.PointerFromQObject(parent)))
@@ -4375,10 +4350,10 @@ func PointerFromQBarSet(ptr QBarSet_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBarSetFromPointer(ptr unsafe.Pointer) *QBarSet {
-	var n = new(QBarSet)
+func NewQBarSetFromPointer(ptr unsafe.Pointer) (n *QBarSet) {
+	n = new(QBarSet)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBarSet(label string, parent core.QObject_ITF) *QBarSet {
 	var labelC *C.char
@@ -4391,7 +4366,7 @@ func NewQBarSet(label string, parent core.QObject_ITF) *QBarSet {
 
 func (ptr *QBarSet) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QBarSet_BorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QBarSet_BorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4400,7 +4375,7 @@ func (ptr *QBarSet) BorderColor() *gui.QColor {
 
 func (ptr *QBarSet) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QBarSet_Color(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QBarSet_Color(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4409,7 +4384,7 @@ func (ptr *QBarSet) Color() *gui.QColor {
 
 func (ptr *QBarSet) LabelColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QBarSet_LabelColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QBarSet_LabelColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -4419,11 +4394,11 @@ func (ptr *QBarSet) LabelColor() *gui.QColor {
 func (ptr *QBarSet) Append2(values []float64) {
 	if ptr.Pointer() != nil {
 		C.QBarSet_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQBarSetFromPointer(NewQBarSetFromPointer(nil).__append_values_newList2())
+			tmpList := (*QBarSet)(nil).__append_values_newList2()
 			for _, v := range values {
-				tmpList.__append_values_setList2(v)
+				(*QBarSet)(nil).__append_values_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -5177,7 +5152,7 @@ func (ptr *QBarSet) DestroyQBarSetDefault() {
 
 func (ptr *QBarSet) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QBarSet_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QBarSet_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -5186,7 +5161,7 @@ func (ptr *QBarSet) Brush() *gui.QBrush {
 
 func (ptr *QBarSet) LabelBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QBarSet_LabelBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QBarSet_LabelBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -5195,7 +5170,7 @@ func (ptr *QBarSet) LabelBrush() *gui.QBrush {
 
 func (ptr *QBarSet) LabelFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QBarSet_LabelFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QBarSet_LabelFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -5204,7 +5179,7 @@ func (ptr *QBarSet) LabelFont() *gui.QFont {
 
 func (ptr *QBarSet) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QBarSet_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QBarSet_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -5239,21 +5214,16 @@ func (ptr *QBarSet) Sum() float64 {
 	return 0
 }
 
-func (ptr *QBarSet) __append_values_atList2(i int) float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QBarSet___append_values_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+func (ptr *QBarSet) __append_values_atList2(i int, p unsafe.Pointer) float64 {
+	return float64(C.QBarSet___append_values_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBarSet) __append_values_setList2(i float64) {
-	if ptr.Pointer() != nil {
-		C.QBarSet___append_values_setList2(ptr.Pointer(), C.double(i))
-	}
+func (ptr *QBarSet) __append_values_setList2(i float64, p unsafe.Pointer) {
+	C.QBarSet___append_values_setList2(ptr.Pointer(), C.double(i), p)
 }
 
 func (ptr *QBarSet) __append_values_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QBarSet___append_values_newList2(ptr.Pointer()))
+	return C.QBarSet___append_values_newList2(ptr.Pointer())
 }
 
 type QBoxPlotLegendMarker struct {
@@ -5289,10 +5259,10 @@ func PointerFromQBoxPlotLegendMarker(ptr QBoxPlotLegendMarker_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQBoxPlotLegendMarkerFromPointer(ptr unsafe.Pointer) *QBoxPlotLegendMarker {
-	var n = new(QBoxPlotLegendMarker)
+func NewQBoxPlotLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QBoxPlotLegendMarker) {
+	n = new(QBoxPlotLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQBoxPlotLegendMarker_Type
@@ -5460,10 +5430,10 @@ func PointerFromQBoxPlotSeries(ptr QBoxPlotSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBoxPlotSeriesFromPointer(ptr unsafe.Pointer) *QBoxPlotSeries {
-	var n = new(QBoxPlotSeries)
+func NewQBoxPlotSeriesFromPointer(ptr unsafe.Pointer) (n *QBoxPlotSeries) {
+	n = new(QBoxPlotSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQBoxPlotSeries(parent core.QObject_ITF) *QBoxPlotSeries {
 	return NewQBoxPlotSeriesFromPointer(C.QBoxPlotSeries_NewQBoxPlotSeries(core.PointerFromQObject(parent)))
@@ -5479,11 +5449,11 @@ func (ptr *QBoxPlotSeries) Append(set QBoxSet_ITF) bool {
 func (ptr *QBoxPlotSeries) Append2(sets []*QBoxSet) bool {
 	if ptr.Pointer() != nil {
 		return C.QBoxPlotSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(nil).__append_sets_newList2())
+			tmpList := (*QBoxPlotSeries)(nil).__append_sets_newList2()
 			for _, v := range sets {
-				tmpList.__append_sets_setList2(v)
+				(*QBoxPlotSeries)(nil).__append_sets_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -5606,9 +5576,9 @@ func (ptr *QBoxPlotSeries) BoxWidthChanged() {
 func callbackQBoxPlotSeries_BoxsetsAdded(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "boxsetsAdded"); signal != nil {
 		signal.(func([]*QBoxSet))(func(l C.struct_QtCharts_PackedList) []*QBoxSet {
-			var out = make([]*QBoxSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxsetsAdded_sets_atList(i)
+			out := make([]*QBoxSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QBoxPlotSeries)(nil).__boxsetsAdded_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -5644,11 +5614,11 @@ func (ptr *QBoxPlotSeries) DisconnectBoxsetsAdded() {
 func (ptr *QBoxPlotSeries) BoxsetsAdded(sets []*QBoxSet) {
 	if ptr.Pointer() != nil {
 		C.QBoxPlotSeries_BoxsetsAdded(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(nil).__boxsetsAdded_sets_newList())
+			tmpList := (*QBoxPlotSeries)(nil).__boxsetsAdded_sets_newList()
 			for _, v := range sets {
-				tmpList.__boxsetsAdded_sets_setList(v)
+				(*QBoxPlotSeries)(nil).__boxsetsAdded_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -5657,9 +5627,9 @@ func (ptr *QBoxPlotSeries) BoxsetsAdded(sets []*QBoxSet) {
 func callbackQBoxPlotSeries_BoxsetsRemoved(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "boxsetsRemoved"); signal != nil {
 		signal.(func([]*QBoxSet))(func(l C.struct_QtCharts_PackedList) []*QBoxSet {
-			var out = make([]*QBoxSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxsetsRemoved_sets_atList(i)
+			out := make([]*QBoxSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QBoxPlotSeries)(nil).__boxsetsRemoved_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -5695,11 +5665,11 @@ func (ptr *QBoxPlotSeries) DisconnectBoxsetsRemoved() {
 func (ptr *QBoxPlotSeries) BoxsetsRemoved(sets []*QBoxSet) {
 	if ptr.Pointer() != nil {
 		C.QBoxPlotSeries_BoxsetsRemoved(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(nil).__boxsetsRemoved_sets_newList())
+			tmpList := (*QBoxPlotSeries)(nil).__boxsetsRemoved_sets_newList()
 			for _, v := range sets {
-				tmpList.__boxsetsRemoved_sets_setList(v)
+				(*QBoxPlotSeries)(nil).__boxsetsRemoved_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -6100,7 +6070,7 @@ func (ptr *QBoxPlotSeries) TypeDefault() QAbstractSeries__SeriesType {
 
 func (ptr *QBoxPlotSeries) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QBoxPlotSeries_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QBoxPlotSeries_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -6110,9 +6080,9 @@ func (ptr *QBoxPlotSeries) Brush() *gui.QBrush {
 func (ptr *QBoxPlotSeries) BoxSets() []*QBoxSet {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QBoxSet {
-			var out = make([]*QBoxSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQBoxPlotSeriesFromPointer(l.data).__boxSets_atList(i)
+			out := make([]*QBoxSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QBoxPlotSeries)(nil).__boxSets_atList(i, l.data)
 			}
 			return out
 		}(C.QBoxPlotSeries_BoxSets(ptr.Pointer()))
@@ -6122,7 +6092,7 @@ func (ptr *QBoxPlotSeries) BoxSets() []*QBoxSet {
 
 func (ptr *QBoxPlotSeries) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QBoxPlotSeries_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QBoxPlotSeries_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -6136,72 +6106,52 @@ func (ptr *QBoxPlotSeries) Count() int {
 	return 0
 }
 
-func (ptr *QBoxPlotSeries) __append_sets_atList2(i int) *QBoxSet {
-	if ptr.Pointer() != nil {
-		return NewQBoxSetFromPointer(C.QBoxPlotSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QBoxPlotSeries) __append_sets_atList2(i int, p unsafe.Pointer) *QBoxSet {
+	return NewQBoxSetFromPointer(C.QBoxPlotSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBoxPlotSeries) __append_sets_setList2(i QBoxSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBoxPlotSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBoxSet(i))
-	}
+func (ptr *QBoxPlotSeries) __append_sets_setList2(i QBoxSet_ITF, p unsafe.Pointer) {
+	C.QBoxPlotSeries___append_sets_setList2(ptr.Pointer(), PointerFromQBoxSet(i), p)
 }
 
 func (ptr *QBoxPlotSeries) __append_sets_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QBoxPlotSeries___append_sets_newList2(ptr.Pointer()))
+	return C.QBoxPlotSeries___append_sets_newList2(ptr.Pointer())
 }
 
-func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_atList(i int) *QBoxSet {
-	if ptr.Pointer() != nil {
-		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_atList(i int, p unsafe.Pointer) *QBoxSet {
+	return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_setList(i QBoxSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBoxPlotSeries___boxsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
-	}
+func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_setList(i QBoxSet_ITF, p unsafe.Pointer) {
+	C.QBoxPlotSeries___boxsetsAdded_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i), p)
 }
 
 func (ptr *QBoxPlotSeries) __boxsetsAdded_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QBoxPlotSeries___boxsetsAdded_sets_newList(ptr.Pointer()))
+	return C.QBoxPlotSeries___boxsetsAdded_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_atList(i int) *QBoxSet {
-	if ptr.Pointer() != nil {
-		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_atList(i int, p unsafe.Pointer) *QBoxSet {
+	return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxsetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_setList(i QBoxSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBoxPlotSeries___boxsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
-	}
+func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_setList(i QBoxSet_ITF, p unsafe.Pointer) {
+	C.QBoxPlotSeries___boxsetsRemoved_sets_setList(ptr.Pointer(), PointerFromQBoxSet(i), p)
 }
 
 func (ptr *QBoxPlotSeries) __boxsetsRemoved_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QBoxPlotSeries___boxsetsRemoved_sets_newList(ptr.Pointer()))
+	return C.QBoxPlotSeries___boxsetsRemoved_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QBoxPlotSeries) __boxSets_atList(i int) *QBoxSet {
-	if ptr.Pointer() != nil {
-		return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxSets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QBoxPlotSeries) __boxSets_atList(i int, p unsafe.Pointer) *QBoxSet {
+	return NewQBoxSetFromPointer(C.QBoxPlotSeries___boxSets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBoxPlotSeries) __boxSets_setList(i QBoxSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QBoxPlotSeries___boxSets_setList(ptr.Pointer(), PointerFromQBoxSet(i))
-	}
+func (ptr *QBoxPlotSeries) __boxSets_setList(i QBoxSet_ITF, p unsafe.Pointer) {
+	C.QBoxPlotSeries___boxSets_setList(ptr.Pointer(), PointerFromQBoxSet(i), p)
 }
 
 func (ptr *QBoxPlotSeries) __boxSets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QBoxPlotSeries___boxSets_newList(ptr.Pointer()))
+	return C.QBoxPlotSeries___boxSets_newList(ptr.Pointer())
 }
 
 type QBoxSet struct {
@@ -6236,10 +6186,10 @@ func PointerFromQBoxSet(ptr QBoxSet_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQBoxSetFromPointer(ptr unsafe.Pointer) *QBoxSet {
-	var n = new(QBoxSet)
+func NewQBoxSetFromPointer(ptr unsafe.Pointer) (n *QBoxSet) {
+	n = new(QBoxSet)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QBoxSet__ValuePositions
@@ -6275,11 +6225,11 @@ func NewQBoxSet2(le float64, lq float64, m float64, uq float64, ue float64, labe
 func (ptr *QBoxSet) Append2(values []float64) {
 	if ptr.Pointer() != nil {
 		C.QBoxSet_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQBoxSetFromPointer(NewQBoxSetFromPointer(nil).__append_values_newList2())
+			tmpList := (*QBoxSet)(nil).__append_values_newList2()
 			for _, v := range values {
-				tmpList.__append_values_setList2(v)
+				(*QBoxSet)(nil).__append_values_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -6763,7 +6713,7 @@ func (ptr *QBoxSet) DestroyQBoxSetDefault() {
 
 func (ptr *QBoxSet) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QBoxSet_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QBoxSet_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -6772,7 +6722,7 @@ func (ptr *QBoxSet) Brush() *gui.QBrush {
 
 func (ptr *QBoxSet) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QBoxSet_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QBoxSet_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -6800,21 +6750,16 @@ func (ptr *QBoxSet) At(index int) float64 {
 	return 0
 }
 
-func (ptr *QBoxSet) __append_values_atList2(i int) float64 {
-	if ptr.Pointer() != nil {
-		return float64(C.QBoxSet___append_values_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return 0
+func (ptr *QBoxSet) __append_values_atList2(i int, p unsafe.Pointer) float64 {
+	return float64(C.QBoxSet___append_values_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QBoxSet) __append_values_setList2(i float64) {
-	if ptr.Pointer() != nil {
-		C.QBoxSet___append_values_setList2(ptr.Pointer(), C.double(i))
-	}
+func (ptr *QBoxSet) __append_values_setList2(i float64, p unsafe.Pointer) {
+	C.QBoxSet___append_values_setList2(ptr.Pointer(), C.double(i), p)
 }
 
 func (ptr *QBoxSet) __append_values_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QBoxSet___append_values_newList2(ptr.Pointer()))
+	return C.QBoxSet___append_values_newList2(ptr.Pointer())
 }
 
 type QCandlestickLegendMarker struct {
@@ -6850,10 +6795,10 @@ func PointerFromQCandlestickLegendMarker(ptr QCandlestickLegendMarker_ITF) unsaf
 	return nil
 }
 
-func NewQCandlestickLegendMarkerFromPointer(ptr unsafe.Pointer) *QCandlestickLegendMarker {
-	var n = new(QCandlestickLegendMarker)
+func NewQCandlestickLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QCandlestickLegendMarker) {
+	n = new(QCandlestickLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQCandlestickLegendMarker_Type
@@ -7021,13 +6966,13 @@ func PointerFromQCandlestickModelMapper(ptr QCandlestickModelMapper_ITF) unsafe.
 	return nil
 }
 
-func NewQCandlestickModelMapperFromPointer(ptr unsafe.Pointer) *QCandlestickModelMapper {
-	var n = new(QCandlestickModelMapper)
+func NewQCandlestickModelMapperFromPointer(ptr unsafe.Pointer) (n *QCandlestickModelMapper) {
+	n = new(QCandlestickModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCandlestickModelMapper(parent core.QObject_ITF) *QCandlestickModelMapper {
-	var tmpValue = NewQCandlestickModelMapperFromPointer(C.QCandlestickModelMapper_NewQCandlestickModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQCandlestickModelMapperFromPointer(C.QCandlestickModelMapper_NewQCandlestickModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -7168,7 +7113,7 @@ func (ptr *QCandlestickModelMapper) SetTimestamp(timestamp int) {
 
 func (ptr *QCandlestickModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QCandlestickModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QCandlestickModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -7270,107 +7215,82 @@ func (ptr *QCandlestickModelMapper) Timestamp() int {
 	return 0
 }
 
-func (ptr *QCandlestickModelMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QCandlestickModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QCandlestickModelMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QCandlestickModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QCandlestickModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QCandlestickModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QCandlestickModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QCandlestickModelMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickModelMapper___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QCandlestickModelMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QCandlestickModelMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QCandlestickModelMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QCandlestickModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QCandlestickModelMapper) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickModelMapper___findChildren_newList2(ptr.Pointer()))
+	return C.QCandlestickModelMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QCandlestickModelMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QCandlestickModelMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QCandlestickModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QCandlestickModelMapper) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickModelMapper___findChildren_newList3(ptr.Pointer()))
+	return C.QCandlestickModelMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QCandlestickModelMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QCandlestickModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QCandlestickModelMapper) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QCandlestickModelMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QCandlestickModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QCandlestickModelMapper) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickModelMapper___findChildren_newList(ptr.Pointer()))
+	return C.QCandlestickModelMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCandlestickModelMapper) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QCandlestickModelMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QCandlestickModelMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QCandlestickModelMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QCandlestickModelMapper) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QCandlestickModelMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QCandlestickModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QCandlestickModelMapper) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickModelMapper___children_newList(ptr.Pointer()))
+	return C.QCandlestickModelMapper___children_newList(ptr.Pointer())
 }
 
 //export callbackQCandlestickModelMapper_Event
@@ -7562,10 +7482,10 @@ func PointerFromQCandlestickSeries(ptr QCandlestickSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCandlestickSeriesFromPointer(ptr unsafe.Pointer) *QCandlestickSeries {
-	var n = new(QCandlestickSeries)
+func NewQCandlestickSeriesFromPointer(ptr unsafe.Pointer) (n *QCandlestickSeries) {
+	n = new(QCandlestickSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCandlestickSeries(parent core.QObject_ITF) *QCandlestickSeries {
 	return NewQCandlestickSeriesFromPointer(C.QCandlestickSeries_NewQCandlestickSeries(core.PointerFromQObject(parent)))
@@ -7581,11 +7501,11 @@ func (ptr *QCandlestickSeries) Append(set QCandlestickSet_ITF) bool {
 func (ptr *QCandlestickSeries) Append2(sets []*QCandlestickSet) bool {
 	if ptr.Pointer() != nil {
 		return C.QCandlestickSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__append_sets_newList2())
+			tmpList := (*QCandlestickSeries)(nil).__append_sets_newList2()
 			for _, v := range sets {
-				tmpList.__append_sets_setList2(v)
+				(*QCandlestickSeries)(nil).__append_sets_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -7608,11 +7528,11 @@ func (ptr *QCandlestickSeries) Remove(set QCandlestickSet_ITF) bool {
 func (ptr *QCandlestickSeries) Remove2(sets []*QCandlestickSet) bool {
 	if ptr.Pointer() != nil {
 		return C.QCandlestickSeries_Remove2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__remove_sets_newList2())
+			tmpList := (*QCandlestickSeries)(nil).__remove_sets_newList2()
 			for _, v := range sets {
-				tmpList.__remove_sets_setList2(v)
+				(*QCandlestickSeries)(nil).__remove_sets_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -7746,9 +7666,9 @@ func (ptr *QCandlestickSeries) BrushChanged() {
 func callbackQCandlestickSeries_CandlestickSetsAdded(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "candlestickSetsAdded"); signal != nil {
 		signal.(func([]*QCandlestickSet))(func(l C.struct_QtCharts_PackedList) []*QCandlestickSet {
-			var out = make([]*QCandlestickSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQCandlestickSeriesFromPointer(l.data).__candlestickSetsAdded_sets_atList(i)
+			out := make([]*QCandlestickSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QCandlestickSeries)(nil).__candlestickSetsAdded_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -7784,11 +7704,11 @@ func (ptr *QCandlestickSeries) DisconnectCandlestickSetsAdded() {
 func (ptr *QCandlestickSeries) CandlestickSetsAdded(sets []*QCandlestickSet) {
 	if ptr.Pointer() != nil {
 		C.QCandlestickSeries_CandlestickSetsAdded(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__candlestickSetsAdded_sets_newList())
+			tmpList := (*QCandlestickSeries)(nil).__candlestickSetsAdded_sets_newList()
 			for _, v := range sets {
-				tmpList.__candlestickSetsAdded_sets_setList(v)
+				(*QCandlestickSeries)(nil).__candlestickSetsAdded_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -7797,9 +7717,9 @@ func (ptr *QCandlestickSeries) CandlestickSetsAdded(sets []*QCandlestickSet) {
 func callbackQCandlestickSeries_CandlestickSetsRemoved(ptr unsafe.Pointer, sets C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "candlestickSetsRemoved"); signal != nil {
 		signal.(func([]*QCandlestickSet))(func(l C.struct_QtCharts_PackedList) []*QCandlestickSet {
-			var out = make([]*QCandlestickSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQCandlestickSeriesFromPointer(l.data).__candlestickSetsRemoved_sets_atList(i)
+			out := make([]*QCandlestickSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QCandlestickSeries)(nil).__candlestickSetsRemoved_sets_atList(i, l.data)
 			}
 			return out
 		}(sets))
@@ -7835,11 +7755,11 @@ func (ptr *QCandlestickSeries) DisconnectCandlestickSetsRemoved() {
 func (ptr *QCandlestickSeries) CandlestickSetsRemoved(sets []*QCandlestickSet) {
 	if ptr.Pointer() != nil {
 		C.QCandlestickSeries_CandlestickSetsRemoved(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__candlestickSetsRemoved_sets_newList())
+			tmpList := (*QCandlestickSeries)(nil).__candlestickSetsRemoved_sets_newList()
 			for _, v := range sets {
-				tmpList.__candlestickSetsRemoved_sets_setList(v)
+				(*QCandlestickSeries)(nil).__candlestickSetsRemoved_sets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -8471,7 +8391,7 @@ func (ptr *QCandlestickSeries) TypeDefault() QAbstractSeries__SeriesType {
 
 func (ptr *QCandlestickSeries) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QCandlestickSeries_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QCandlestickSeries_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -8480,7 +8400,7 @@ func (ptr *QCandlestickSeries) Brush() *gui.QBrush {
 
 func (ptr *QCandlestickSeries) DecreasingColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QCandlestickSeries_DecreasingColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QCandlestickSeries_DecreasingColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -8489,7 +8409,7 @@ func (ptr *QCandlestickSeries) DecreasingColor() *gui.QColor {
 
 func (ptr *QCandlestickSeries) IncreasingColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QCandlestickSeries_IncreasingColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QCandlestickSeries_IncreasingColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -8499,9 +8419,9 @@ func (ptr *QCandlestickSeries) IncreasingColor() *gui.QColor {
 func (ptr *QCandlestickSeries) Sets() []*QCandlestickSet {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QCandlestickSet {
-			var out = make([]*QCandlestickSet, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQCandlestickSeriesFromPointer(l.data).__sets_atList(i)
+			out := make([]*QCandlestickSet, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QCandlestickSeries)(nil).__sets_atList(i, l.data)
 			}
 			return out
 		}(C.QCandlestickSeries_Sets(ptr.Pointer()))
@@ -8511,7 +8431,7 @@ func (ptr *QCandlestickSeries) Sets() []*QCandlestickSet {
 
 func (ptr *QCandlestickSeries) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QCandlestickSeries_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QCandlestickSeries_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -8567,89 +8487,64 @@ func (ptr *QCandlestickSeries) MinimumColumnWidth() float64 {
 	return 0
 }
 
-func (ptr *QCandlestickSeries) __append_sets_atList2(i int) *QCandlestickSet {
-	if ptr.Pointer() != nil {
-		return NewQCandlestickSetFromPointer(C.QCandlestickSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QCandlestickSeries) __append_sets_atList2(i int, p unsafe.Pointer) *QCandlestickSet {
+	return NewQCandlestickSetFromPointer(C.QCandlestickSeries___append_sets_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QCandlestickSeries) __append_sets_setList2(i QCandlestickSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickSeries___append_sets_setList2(ptr.Pointer(), PointerFromQCandlestickSet(i))
-	}
+func (ptr *QCandlestickSeries) __append_sets_setList2(i QCandlestickSet_ITF, p unsafe.Pointer) {
+	C.QCandlestickSeries___append_sets_setList2(ptr.Pointer(), PointerFromQCandlestickSet(i), p)
 }
 
 func (ptr *QCandlestickSeries) __append_sets_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickSeries___append_sets_newList2(ptr.Pointer()))
+	return C.QCandlestickSeries___append_sets_newList2(ptr.Pointer())
 }
 
-func (ptr *QCandlestickSeries) __remove_sets_atList2(i int) *QCandlestickSet {
-	if ptr.Pointer() != nil {
-		return NewQCandlestickSetFromPointer(C.QCandlestickSeries___remove_sets_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QCandlestickSeries) __remove_sets_atList2(i int, p unsafe.Pointer) *QCandlestickSet {
+	return NewQCandlestickSetFromPointer(C.QCandlestickSeries___remove_sets_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QCandlestickSeries) __remove_sets_setList2(i QCandlestickSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickSeries___remove_sets_setList2(ptr.Pointer(), PointerFromQCandlestickSet(i))
-	}
+func (ptr *QCandlestickSeries) __remove_sets_setList2(i QCandlestickSet_ITF, p unsafe.Pointer) {
+	C.QCandlestickSeries___remove_sets_setList2(ptr.Pointer(), PointerFromQCandlestickSet(i), p)
 }
 
 func (ptr *QCandlestickSeries) __remove_sets_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickSeries___remove_sets_newList2(ptr.Pointer()))
+	return C.QCandlestickSeries___remove_sets_newList2(ptr.Pointer())
 }
 
-func (ptr *QCandlestickSeries) __candlestickSetsAdded_sets_atList(i int) *QCandlestickSet {
-	if ptr.Pointer() != nil {
-		return NewQCandlestickSetFromPointer(C.QCandlestickSeries___candlestickSetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QCandlestickSeries) __candlestickSetsAdded_sets_atList(i int, p unsafe.Pointer) *QCandlestickSet {
+	return NewQCandlestickSetFromPointer(C.QCandlestickSeries___candlestickSetsAdded_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QCandlestickSeries) __candlestickSetsAdded_sets_setList(i QCandlestickSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickSeries___candlestickSetsAdded_sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i))
-	}
+func (ptr *QCandlestickSeries) __candlestickSetsAdded_sets_setList(i QCandlestickSet_ITF, p unsafe.Pointer) {
+	C.QCandlestickSeries___candlestickSetsAdded_sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i), p)
 }
 
 func (ptr *QCandlestickSeries) __candlestickSetsAdded_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickSeries___candlestickSetsAdded_sets_newList(ptr.Pointer()))
+	return C.QCandlestickSeries___candlestickSetsAdded_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QCandlestickSeries) __candlestickSetsRemoved_sets_atList(i int) *QCandlestickSet {
-	if ptr.Pointer() != nil {
-		return NewQCandlestickSetFromPointer(C.QCandlestickSeries___candlestickSetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QCandlestickSeries) __candlestickSetsRemoved_sets_atList(i int, p unsafe.Pointer) *QCandlestickSet {
+	return NewQCandlestickSetFromPointer(C.QCandlestickSeries___candlestickSetsRemoved_sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QCandlestickSeries) __candlestickSetsRemoved_sets_setList(i QCandlestickSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickSeries___candlestickSetsRemoved_sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i))
-	}
+func (ptr *QCandlestickSeries) __candlestickSetsRemoved_sets_setList(i QCandlestickSet_ITF, p unsafe.Pointer) {
+	C.QCandlestickSeries___candlestickSetsRemoved_sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i), p)
 }
 
 func (ptr *QCandlestickSeries) __candlestickSetsRemoved_sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickSeries___candlestickSetsRemoved_sets_newList(ptr.Pointer()))
+	return C.QCandlestickSeries___candlestickSetsRemoved_sets_newList(ptr.Pointer())
 }
 
-func (ptr *QCandlestickSeries) __sets_atList(i int) *QCandlestickSet {
-	if ptr.Pointer() != nil {
-		return NewQCandlestickSetFromPointer(C.QCandlestickSeries___sets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QCandlestickSeries) __sets_atList(i int, p unsafe.Pointer) *QCandlestickSet {
+	return NewQCandlestickSetFromPointer(C.QCandlestickSeries___sets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QCandlestickSeries) __sets_setList(i QCandlestickSet_ITF) {
-	if ptr.Pointer() != nil {
-		C.QCandlestickSeries___sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i))
-	}
+func (ptr *QCandlestickSeries) __sets_setList(i QCandlestickSet_ITF, p unsafe.Pointer) {
+	C.QCandlestickSeries___sets_setList(ptr.Pointer(), PointerFromQCandlestickSet(i), p)
 }
 
 func (ptr *QCandlestickSeries) __sets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QCandlestickSeries___sets_newList(ptr.Pointer()))
+	return C.QCandlestickSeries___sets_newList(ptr.Pointer())
 }
 
 type QCandlestickSet struct {
@@ -8684,10 +8579,10 @@ func PointerFromQCandlestickSet(ptr QCandlestickSet_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCandlestickSetFromPointer(ptr unsafe.Pointer) *QCandlestickSet {
-	var n = new(QCandlestickSet)
+func NewQCandlestickSetFromPointer(ptr unsafe.Pointer) (n *QCandlestickSet) {
+	n = new(QCandlestickSet)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQCandlestickSet2(open float64, high float64, low float64, close float64, timestamp float64, parent core.QObject_ITF) *QCandlestickSet {
 	return NewQCandlestickSetFromPointer(C.QCandlestickSet_NewQCandlestickSet2(C.double(open), C.double(high), C.double(low), C.double(close), C.double(timestamp), core.PointerFromQObject(parent)))
@@ -9255,7 +9150,7 @@ func (ptr *QCandlestickSet) DestroyQCandlestickSetDefault() {
 
 func (ptr *QCandlestickSet) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QCandlestickSet_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QCandlestickSet_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -9264,7 +9159,7 @@ func (ptr *QCandlestickSet) Brush() *gui.QBrush {
 
 func (ptr *QCandlestickSet) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QCandlestickSet_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QCandlestickSet_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -9339,10 +9234,10 @@ func PointerFromQCategoryAxis(ptr QCategoryAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQCategoryAxisFromPointer(ptr unsafe.Pointer) *QCategoryAxis {
-	var n = new(QCategoryAxis)
+func NewQCategoryAxisFromPointer(ptr unsafe.Pointer) (n *QCategoryAxis) {
+	n = new(QCategoryAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QCategoryAxis__AxisLabelsPosition
@@ -9571,10 +9466,10 @@ func PointerFromQChart(ptr QChart_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQChartFromPointer(ptr unsafe.Pointer) *QChart {
-	var n = new(QChart)
+func NewQChartFromPointer(ptr unsafe.Pointer) (n *QChart) {
+	n = new(QChart)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QChart__AnimationOption
@@ -9620,7 +9515,7 @@ func (ptr *QChart) SetAnimationEasingCurve(curve core.QEasingCurve_ITF) {
 }
 
 func NewQChart(parent widgets.QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QChart {
-	var tmpValue = NewQChartFromPointer(C.QChart_NewQChart(widgets.PointerFromQGraphicsItem(parent), C.longlong(wFlags)))
+	tmpValue := NewQChartFromPointer(C.QChart_NewQChart(widgets.PointerFromQGraphicsItem(parent), C.longlong(wFlags)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -9629,7 +9524,7 @@ func NewQChart(parent widgets.QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QC
 
 func (ptr *QChart) MapToPosition(value core.QPointF_ITF, series QAbstractSeries_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QChart_MapToPosition(ptr.Pointer(), core.PointerFromQPointF(value), PointerFromQAbstractSeries(series)))
+		tmpValue := core.NewQPointFFromPointer(C.QChart_MapToPosition(ptr.Pointer(), core.PointerFromQPointF(value), PointerFromQAbstractSeries(series)))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
@@ -9638,7 +9533,7 @@ func (ptr *QChart) MapToPosition(value core.QPointF_ITF, series QAbstractSeries_
 
 func (ptr *QChart) MapToValue(position core.QPointF_ITF, series QAbstractSeries_ITF) *core.QPointF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QChart_MapToValue(ptr.Pointer(), core.PointerFromQPointF(position), PointerFromQAbstractSeries(series)))
+		tmpValue := core.NewQPointFFromPointer(C.QChart_MapToValue(ptr.Pointer(), core.PointerFromQPointF(position), PointerFromQAbstractSeries(series)))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
 		return tmpValue
 	}
@@ -9920,7 +9815,7 @@ func (ptr *QChart) AxisY(series QAbstractSeries_ITF) *QAbstractAxis {
 
 func (ptr *QChart) BackgroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QChart_BackgroundBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QChart_BackgroundBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -9929,7 +9824,7 @@ func (ptr *QChart) BackgroundBrush() *gui.QBrush {
 
 func (ptr *QChart) PlotAreaBackgroundBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QChart_PlotAreaBackgroundBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QChart_PlotAreaBackgroundBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -9938,7 +9833,7 @@ func (ptr *QChart) PlotAreaBackgroundBrush() *gui.QBrush {
 
 func (ptr *QChart) TitleBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QChart_TitleBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QChart_TitleBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -9954,7 +9849,7 @@ func (ptr *QChart) Theme() QChart__ChartTheme {
 
 func (ptr *QChart) AnimationEasingCurve() *core.QEasingCurve {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQEasingCurveFromPointer(C.QChart_AnimationEasingCurve(ptr.Pointer()))
+		tmpValue := core.NewQEasingCurveFromPointer(C.QChart_AnimationEasingCurve(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QEasingCurve).DestroyQEasingCurve)
 		return tmpValue
 	}
@@ -9963,7 +9858,7 @@ func (ptr *QChart) AnimationEasingCurve() *core.QEasingCurve {
 
 func (ptr *QChart) TitleFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QChart_TitleFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QChart_TitleFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -9972,7 +9867,7 @@ func (ptr *QChart) TitleFont() *gui.QFont {
 
 func (ptr *QChart) Legend() *QLegend {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQLegendFromPointer(C.QChart_Legend(ptr.Pointer()))
+		tmpValue := NewQLegendFromPointer(C.QChart_Legend(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9984,9 +9879,9 @@ func (ptr *QChart) Legend() *QLegend {
 func (ptr *QChart) Axes(orientation core.Qt__Orientation, series QAbstractSeries_ITF) []*QAbstractAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
-			var out = make([]*QAbstractAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartFromPointer(l.data).__axes_atList(i)
+			out := make([]*QAbstractAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QChart)(nil).__axes_atList(i, l.data)
 			}
 			return out
 		}(C.QChart_Axes(ptr.Pointer(), C.longlong(orientation), PointerFromQAbstractSeries(series)))
@@ -9997,9 +9892,9 @@ func (ptr *QChart) Axes(orientation core.Qt__Orientation, series QAbstractSeries
 func (ptr *QChart) Series() []*QAbstractSeries {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractSeries {
-			var out = make([]*QAbstractSeries, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartFromPointer(l.data).__series_atList(i)
+			out := make([]*QAbstractSeries, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QChart)(nil).__series_atList(i, l.data)
 			}
 			return out
 		}(C.QChart_Series(ptr.Pointer()))
@@ -10009,7 +9904,7 @@ func (ptr *QChart) Series() []*QAbstractSeries {
 
 func (ptr *QChart) Locale() *core.QLocale {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQLocaleFromPointer(C.QChart_Locale(ptr.Pointer()))
+		tmpValue := core.NewQLocaleFromPointer(C.QChart_Locale(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
 		return tmpValue
 	}
@@ -10018,7 +9913,7 @@ func (ptr *QChart) Locale() *core.QLocale {
 
 func (ptr *QChart) Margins() *core.QMargins {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQMarginsFromPointer(C.QChart_Margins(ptr.Pointer()))
+		tmpValue := core.NewQMarginsFromPointer(C.QChart_Margins(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QMargins).DestroyQMargins)
 		return tmpValue
 	}
@@ -10027,7 +9922,7 @@ func (ptr *QChart) Margins() *core.QMargins {
 
 func (ptr *QChart) BackgroundPen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QChart_BackgroundPen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QChart_BackgroundPen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -10036,7 +9931,7 @@ func (ptr *QChart) BackgroundPen() *gui.QPen {
 
 func (ptr *QChart) PlotAreaBackgroundPen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QChart_PlotAreaBackgroundPen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QChart_PlotAreaBackgroundPen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -10045,7 +9940,7 @@ func (ptr *QChart) PlotAreaBackgroundPen() *gui.QPen {
 
 func (ptr *QChart) PlotArea() *core.QRectF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QChart_PlotArea(ptr.Pointer()))
+		tmpValue := core.NewQRectFFromPointer(C.QChart_PlotArea(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -10101,280 +9996,210 @@ func (ptr *QChart) BackgroundRoundness() float64 {
 	return 0
 }
 
-func (ptr *QChart) __axes_atList(i int) *QAbstractAxis {
-	if ptr.Pointer() != nil {
-		return NewQAbstractAxisFromPointer(C.QChart___axes_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChart) __axes_atList(i int, p unsafe.Pointer) *QAbstractAxis {
+	return NewQAbstractAxisFromPointer(C.QChart___axes_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChart) __axes_setList(i QAbstractAxis_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___axes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i))
-	}
+func (ptr *QChart) __axes_setList(i QAbstractAxis_ITF, p unsafe.Pointer) {
+	C.QChart___axes_setList(ptr.Pointer(), PointerFromQAbstractAxis(i), p)
 }
 
 func (ptr *QChart) __axes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___axes_newList(ptr.Pointer()))
+	return C.QChart___axes_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __series_atList(i int) *QAbstractSeries {
-	if ptr.Pointer() != nil {
-		return NewQAbstractSeriesFromPointer(C.QChart___series_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChart) __series_atList(i int, p unsafe.Pointer) *QAbstractSeries {
+	return NewQAbstractSeriesFromPointer(C.QChart___series_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChart) __series_setList(i QAbstractSeries_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___series_setList(ptr.Pointer(), PointerFromQAbstractSeries(i))
-	}
+func (ptr *QChart) __series_setList(i QAbstractSeries_ITF, p unsafe.Pointer) {
+	C.QChart___series_setList(ptr.Pointer(), PointerFromQAbstractSeries(i), p)
 }
 
 func (ptr *QChart) __series_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___series_newList(ptr.Pointer()))
+	return C.QChart___series_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChart___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChart___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChart) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChart___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChart) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___addActions_actions_newList(ptr.Pointer()))
+	return C.QChart___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChart___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChart___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChart) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChart___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChart) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___insertActions_actions_newList(ptr.Pointer()))
+	return C.QChart___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChart___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChart___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChart) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChart___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChart) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___actions_newList(ptr.Pointer()))
+	return C.QChart___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QChart___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QChart) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QChart___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QChart) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QChart) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QChart___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QChart) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QChart___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChart___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChart___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChart) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChart___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChart) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___findChildren_newList2(ptr.Pointer()))
+	return C.QChart___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QChart) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChart___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChart___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChart) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChart___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChart) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___findChildren_newList3(ptr.Pointer()))
+	return C.QChart___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QChart) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChart___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChart___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChart) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChart___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChart) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___findChildren_newList(ptr.Pointer()))
+	return C.QChart___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChart___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChart___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChart) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChart___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChart) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___children_newList(ptr.Pointer()))
+	return C.QChart___children_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __setTransformations_transformations_atList(i int) *widgets.QGraphicsTransform {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QChart___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __setTransformations_transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
+	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QChart___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
-	}
+func (ptr *QChart) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
+	C.QChart___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
 }
 
 func (ptr *QChart) __setTransformations_transformations_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___setTransformations_transformations_newList(ptr.Pointer()))
+	return C.QChart___setTransformations_transformations_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __childItems_atList(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChart___childItems_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChart) __childItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChart___childItems_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChart) __childItems_setList(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChart) __childItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChart___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChart) __childItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___childItems_newList(ptr.Pointer()))
+	return C.QChart___childItems_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __collidingItems_atList(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChart___collidingItems_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChart) __collidingItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChart___collidingItems_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChart) __collidingItems_setList(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChart) __collidingItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChart___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChart) __collidingItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___collidingItems_newList(ptr.Pointer()))
+	return C.QChart___collidingItems_newList(ptr.Pointer())
 }
 
-func (ptr *QChart) __transformations_atList(i int) *widgets.QGraphicsTransform {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QChart___transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChart) __transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
+	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QChart___transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChart) __transformations_setList(i widgets.QGraphicsTransform_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChart___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
-	}
+func (ptr *QChart) __transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
+	C.QChart___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
 }
 
 func (ptr *QChart) __transformations_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChart___transformations_newList(ptr.Pointer()))
+	return C.QChart___transformations_newList(ptr.Pointer())
 }
 
 //export callbackQChart_ItemChange
@@ -10388,7 +10213,7 @@ func callbackQChart_ItemChange(ptr unsafe.Pointer, change C.longlong, value unsa
 
 func (ptr *QChart) ItemChangeDefault(change widgets.QGraphicsItem__GraphicsItemChange, value core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QChart_ItemChangeDefault(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
+		tmpValue := core.NewQVariantFromPointer(C.QChart_ItemChangeDefault(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -10779,7 +10604,7 @@ func callbackQChart_Shape(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChart) ShapeDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPainterPathFromPointer(C.QChart_ShapeDefault(ptr.Pointer()))
+		tmpValue := gui.NewQPainterPathFromPointer(C.QChart_ShapeDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
@@ -10797,7 +10622,7 @@ func callbackQChart_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChart) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QChart_BoundingRectDefault(ptr.Pointer()))
+		tmpValue := core.NewQRectFFromPointer(C.QChart_BoundingRectDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -10815,7 +10640,7 @@ func callbackQChart_SizeHint(ptr unsafe.Pointer, which C.longlong, constraint un
 
 func (ptr *QChart) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFFromPointer(C.QChart_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
+		tmpValue := core.NewQSizeFFromPointer(C.QChart_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
 		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
@@ -11363,7 +11188,7 @@ func callbackQChart_OpaqueArea(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChart) OpaqueAreaDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPainterPathFromPointer(C.QChart_OpaqueAreaDefault(ptr.Pointer()))
+		tmpValue := gui.NewQPainterPathFromPointer(C.QChart_OpaqueAreaDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
@@ -11381,7 +11206,7 @@ func callbackQChart_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsaf
 
 func (ptr *QChart) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QChart_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QChart_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -11485,10 +11310,10 @@ func PointerFromQChartView(ptr QChartView_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQChartViewFromPointer(ptr unsafe.Pointer) *QChartView {
-	var n = new(QChartView)
+func NewQChartViewFromPointer(ptr unsafe.Pointer) (n *QChartView) {
+	n = new(QChartView)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QChartView__RubberBand
@@ -11503,7 +11328,7 @@ const (
 )
 
 func NewQChartView2(chart QChart_ITF, parent widgets.QWidget_ITF) *QChartView {
-	var tmpValue = NewQChartViewFromPointer(C.QChartView_NewQChartView2(PointerFromQChart(chart), widgets.PointerFromQWidget(parent)))
+	tmpValue := NewQChartViewFromPointer(C.QChartView_NewQChartView2(PointerFromQChart(chart), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -11511,7 +11336,7 @@ func NewQChartView2(chart QChart_ITF, parent widgets.QWidget_ITF) *QChartView {
 }
 
 func NewQChartView(parent widgets.QWidget_ITF) *QChartView {
-	var tmpValue = NewQChartViewFromPointer(C.QChartView_NewQChartView(widgets.PointerFromQWidget(parent)))
+	tmpValue := NewQChartViewFromPointer(C.QChartView_NewQChartView(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -11600,7 +11425,7 @@ func (ptr *QChartView) DestroyQChartView() {
 
 func (ptr *QChartView) Chart() *QChart {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQChartFromPointer(C.QChartView_Chart(ptr.Pointer()))
+		tmpValue := NewQChartFromPointer(C.QChartView_Chart(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11616,329 +11441,244 @@ func (ptr *QChartView) RubberBand() QChartView__RubberBand {
 	return 0
 }
 
-func (ptr *QChartView) __updateScene_rects_atList(i int) *core.QRectF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QChartView___updateScene_rects_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QChartView) __updateScene_rects_atList(i int, p unsafe.Pointer) *core.QRectF {
+	tmpValue := core.NewQRectFFromPointer(C.QChartView___updateScene_rects_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+	return tmpValue
 }
 
-func (ptr *QChartView) __updateScene_rects_setList(i core.QRectF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___updateScene_rects_setList(ptr.Pointer(), core.PointerFromQRectF(i))
-	}
+func (ptr *QChartView) __updateScene_rects_setList(i core.QRectF_ITF, p unsafe.Pointer) {
+	C.QChartView___updateScene_rects_setList(ptr.Pointer(), core.PointerFromQRectF(i), p)
 }
 
 func (ptr *QChartView) __updateScene_rects_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___updateScene_rects_newList(ptr.Pointer()))
+	return C.QChartView___updateScene_rects_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList(ptr.Pointer()))
+	return C.QChartView___items_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList7(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList7(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList7(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList7(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList7(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList7(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList7(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList7(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList7() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList7(ptr.Pointer()))
+	return C.QChartView___items_newList7(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList2(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList2(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList2(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList2(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList2(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList2(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList2(ptr.Pointer()))
+	return C.QChartView___items_newList2(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList6(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList6(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList6(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList6(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList6(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList6(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList6(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList6(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList6() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList6(ptr.Pointer()))
+	return C.QChartView___items_newList6(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList4(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList4(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList4(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList4(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList4(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList4(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList4(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList4(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList4() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList4(ptr.Pointer()))
+	return C.QChartView___items_newList4(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList3(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList3(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList3(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList3(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList3(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList3(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList3(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList3(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList3(ptr.Pointer()))
+	return C.QChartView___items_newList3(ptr.Pointer())
 }
 
-func (ptr *QChartView) __items_atList5(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList5(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QChartView) __items_atList5(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QChartView___items_atList5(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QChartView) __items_setList5(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___items_setList5(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QChartView) __items_setList5(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QChartView___items_setList5(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QChartView) __items_newList5() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___items_newList5(ptr.Pointer()))
+	return C.QChartView___items_newList5(ptr.Pointer())
 }
 
-func (ptr *QChartView) __scrollBarWidgets_atList(i int) *widgets.QWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QChartView___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __scrollBarWidgets_atList(i int, p unsafe.Pointer) *widgets.QWidget {
+	tmpValue := widgets.NewQWidgetFromPointer(C.QChartView___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __scrollBarWidgets_setList(i widgets.QWidget_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i))
-	}
+func (ptr *QChartView) __scrollBarWidgets_setList(i widgets.QWidget_ITF, p unsafe.Pointer) {
+	C.QChartView___scrollBarWidgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i), p)
 }
 
 func (ptr *QChartView) __scrollBarWidgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___scrollBarWidgets_newList(ptr.Pointer()))
+	return C.QChartView___scrollBarWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChartView___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChartView___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChartView) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChartView___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChartView) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___addActions_actions_newList(ptr.Pointer()))
+	return C.QChartView___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChartView___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChartView___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChartView) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChartView___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChartView) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___insertActions_actions_newList(ptr.Pointer()))
+	return C.QChartView___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QChartView___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QChartView___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QChartView) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QChartView___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QChartView) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___actions_newList(ptr.Pointer()))
+	return C.QChartView___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QChartView___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QChartView) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QChartView___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QChartView) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QChartView) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QChartView___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QChartView) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QChartView___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChartView___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChartView___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChartView) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChartView___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChartView) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___findChildren_newList2(ptr.Pointer()))
+	return C.QChartView___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QChartView) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChartView___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChartView___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChartView) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChartView___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChartView) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___findChildren_newList3(ptr.Pointer()))
+	return C.QChartView___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QChartView) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChartView___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChartView___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChartView) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChartView___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChartView) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___findChildren_newList(ptr.Pointer()))
+	return C.QChartView___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QChartView) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QChartView___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QChartView) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QChartView___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QChartView) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QChartView___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QChartView) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QChartView___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QChartView) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QChartView___children_newList(ptr.Pointer()))
+	return C.QChartView___children_newList(ptr.Pointer())
 }
 
 //export callbackQChartView_Event
@@ -12271,17 +12011,17 @@ func (ptr *QChartView) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQChartView_UpdateScene(ptr unsafe.Pointer, rects C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "updateScene"); signal != nil {
 		signal.(func([]*core.QRectF))(func(l C.struct_QtCharts_PackedList) []*core.QRectF {
-			var out = make([]*core.QRectF, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartViewFromPointer(l.data).__updateScene_rects_atList(i)
+			out := make([]*core.QRectF, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QChartView)(nil).__updateScene_rects_atList(i, l.data)
 			}
 			return out
 		}(rects))
 	} else {
 		NewQChartViewFromPointer(ptr).UpdateSceneDefault(func(l C.struct_QtCharts_PackedList) []*core.QRectF {
-			var out = make([]*core.QRectF, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQChartViewFromPointer(l.data).__updateScene_rects_atList(i)
+			out := make([]*core.QRectF, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QChartView)(nil).__updateScene_rects_atList(i, l.data)
 			}
 			return out
 		}(rects))
@@ -12291,11 +12031,11 @@ func callbackQChartView_UpdateScene(ptr unsafe.Pointer, rects C.struct_QtCharts_
 func (ptr *QChartView) UpdateSceneDefault(rects []*core.QRectF) {
 	if ptr.Pointer() != nil {
 		C.QChartView_UpdateSceneDefault(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQChartViewFromPointer(NewQChartViewFromPointer(nil).__updateScene_rects_newList())
+			tmpList := (*QChartView)(nil).__updateScene_rects_newList()
 			for _, v := range rects {
-				tmpList.__updateScene_rects_setList(v)
+				(*QChartView)(nil).__updateScene_rects_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -12341,7 +12081,7 @@ func callbackQChartView_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChartView) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QChartView_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QChartView_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12359,7 +12099,7 @@ func callbackQChartView_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) u
 
 func (ptr *QChartView) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QChartView_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QChartView_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -12377,7 +12117,7 @@ func callbackQChartView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChartView) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QChartView_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QChartView_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12395,7 +12135,7 @@ func callbackQChartView_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QChartView) ViewportSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QChartView_ViewportSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QChartView_ViewportSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -13094,10 +12834,10 @@ func PointerFromQDateTimeAxis(ptr QDateTimeAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDateTimeAxisFromPointer(ptr unsafe.Pointer) *QDateTimeAxis {
-	var n = new(QDateTimeAxis)
+func NewQDateTimeAxisFromPointer(ptr unsafe.Pointer) (n *QDateTimeAxis) {
+	n = new(QDateTimeAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDateTimeAxis(parent core.QObject_ITF) *QDateTimeAxis {
 	return NewQDateTimeAxisFromPointer(C.QDateTimeAxis_NewQDateTimeAxis(core.PointerFromQObject(parent)))
@@ -13392,7 +13132,7 @@ func (ptr *QDateTimeAxis) TypeDefault() QAbstractAxis__AxisType {
 
 func (ptr *QDateTimeAxis) Max() *core.QDateTime {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeAxis_Max(ptr.Pointer()))
+		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeAxis_Max(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
@@ -13401,7 +13141,7 @@ func (ptr *QDateTimeAxis) Max() *core.QDateTime {
 
 func (ptr *QDateTimeAxis) Min() *core.QDateTime {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDateTimeFromPointer(C.QDateTimeAxis_Min(ptr.Pointer()))
+		tmpValue := core.NewQDateTimeFromPointer(C.QDateTimeAxis_Min(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
@@ -13455,13 +13195,13 @@ func PointerFromQHBarModelMapper(ptr QHBarModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHBarModelMapperFromPointer(ptr unsafe.Pointer) *QHBarModelMapper {
-	var n = new(QHBarModelMapper)
+func NewQHBarModelMapperFromPointer(ptr unsafe.Pointer) (n *QHBarModelMapper) {
+	n = new(QHBarModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHBarModelMapper(parent core.QObject_ITF) *QHBarModelMapper {
-	var tmpValue = NewQHBarModelMapperFromPointer(C.QHBarModelMapper_NewQHBarModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQHBarModelMapperFromPointer(C.QHBarModelMapper_NewQHBarModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -13747,7 +13487,7 @@ func (ptr *QHBarModelMapper) Series() *QAbstractBarSeries {
 
 func (ptr *QHBarModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QHBarModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QHBarModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -13784,107 +13524,82 @@ func (ptr *QHBarModelMapper) LastBarSetRow() int {
 	return 0
 }
 
-func (ptr *QHBarModelMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHBarModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHBarModelMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHBarModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHBarModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBarModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHBarModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHBarModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHBarModelMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBarModelMapper___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHBarModelMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHBarModelMapper) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBarModelMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBarModelMapper) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBarModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBarModelMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBarModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBarModelMapper) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBarModelMapper___findChildren_newList2(ptr.Pointer()))
+	return C.QHBarModelMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHBarModelMapper) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBarModelMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBarModelMapper) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBarModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBarModelMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBarModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBarModelMapper) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBarModelMapper___findChildren_newList3(ptr.Pointer()))
+	return C.QHBarModelMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHBarModelMapper) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBarModelMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBarModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBarModelMapper) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBarModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBarModelMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBarModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBarModelMapper) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBarModelMapper___findChildren_newList(ptr.Pointer()))
+	return C.QHBarModelMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHBarModelMapper) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBarModelMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBarModelMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBarModelMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBarModelMapper) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBarModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBarModelMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBarModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBarModelMapper) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBarModelMapper___children_newList(ptr.Pointer()))
+	return C.QHBarModelMapper___children_newList(ptr.Pointer())
 }
 
 //export callbackQHBarModelMapper_Event
@@ -14076,13 +13791,13 @@ func PointerFromQHBoxPlotModelMapper(ptr QHBoxPlotModelMapper_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQHBoxPlotModelMapperFromPointer(ptr unsafe.Pointer) *QHBoxPlotModelMapper {
-	var n = new(QHBoxPlotModelMapper)
+func NewQHBoxPlotModelMapperFromPointer(ptr unsafe.Pointer) (n *QHBoxPlotModelMapper) {
+	n = new(QHBoxPlotModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHBoxPlotModelMapper(parent core.QObject_ITF) *QHBoxPlotModelMapper {
-	var tmpValue = NewQHBoxPlotModelMapperFromPointer(C.QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQHBoxPlotModelMapperFromPointer(C.QHBoxPlotModelMapper_NewQHBoxPlotModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -14361,7 +14076,7 @@ func (ptr *QHBoxPlotModelMapper) SetSeries(series QBoxPlotSeries_ITF) {
 
 func (ptr *QHBoxPlotModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QHBoxPlotModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QHBoxPlotModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -14405,107 +14120,82 @@ func (ptr *QHBoxPlotModelMapper) LastBoxSetRow() int {
 	return 0
 }
 
-func (ptr *QHBoxPlotModelMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QHBoxPlotModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QHBoxPlotModelMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QHBoxPlotModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QHBoxPlotModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBoxPlotModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QHBoxPlotModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QHBoxPlotModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QHBoxPlotModelMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBoxPlotModelMapper___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QHBoxPlotModelMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBoxPlotModelMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBoxPlotModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBoxPlotModelMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBoxPlotModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBoxPlotModelMapper) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBoxPlotModelMapper___findChildren_newList2(ptr.Pointer()))
+	return C.QHBoxPlotModelMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBoxPlotModelMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBoxPlotModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBoxPlotModelMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBoxPlotModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBoxPlotModelMapper) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBoxPlotModelMapper___findChildren_newList3(ptr.Pointer()))
+	return C.QHBoxPlotModelMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBoxPlotModelMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBoxPlotModelMapper) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBoxPlotModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBoxPlotModelMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBoxPlotModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBoxPlotModelMapper) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBoxPlotModelMapper___findChildren_newList(ptr.Pointer()))
+	return C.QHBoxPlotModelMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QHBoxPlotModelMapper) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QHBoxPlotModelMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QHBoxPlotModelMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QHBoxPlotModelMapper) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHBoxPlotModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QHBoxPlotModelMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QHBoxPlotModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QHBoxPlotModelMapper) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QHBoxPlotModelMapper___children_newList(ptr.Pointer()))
+	return C.QHBoxPlotModelMapper___children_newList(ptr.Pointer())
 }
 
 //export callbackQHBoxPlotModelMapper_Event
@@ -14697,13 +14387,13 @@ func PointerFromQHCandlestickModelMapper(ptr QHCandlestickModelMapper_ITF) unsaf
 	return nil
 }
 
-func NewQHCandlestickModelMapperFromPointer(ptr unsafe.Pointer) *QHCandlestickModelMapper {
-	var n = new(QHCandlestickModelMapper)
+func NewQHCandlestickModelMapperFromPointer(ptr unsafe.Pointer) (n *QHCandlestickModelMapper) {
+	n = new(QHCandlestickModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHCandlestickModelMapper(parent core.QObject_ITF) *QHCandlestickModelMapper {
-	var tmpValue = NewQHCandlestickModelMapperFromPointer(C.QHCandlestickModelMapper_NewQHCandlestickModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQHCandlestickModelMapperFromPointer(C.QHCandlestickModelMapper_NewQHCandlestickModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15150,10 +14840,10 @@ func PointerFromQHPieModelMapper(ptr QHPieModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHPieModelMapperFromPointer(ptr unsafe.Pointer) *QHPieModelMapper {
-	var n = new(QHPieModelMapper)
+func NewQHPieModelMapperFromPointer(ptr unsafe.Pointer) (n *QHPieModelMapper) {
+	n = new(QHPieModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QHPieModelMapper) DestroyQHPieModelMapper() {
@@ -15441,7 +15131,7 @@ func (ptr *QHPieModelMapper) ValuesRowChanged() {
 
 func (ptr *QHPieModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QHPieModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QHPieModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15517,10 +15207,10 @@ func PointerFromQHXYModelMapper(ptr QHXYModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQHXYModelMapperFromPointer(ptr unsafe.Pointer) *QHXYModelMapper {
-	var n = new(QHXYModelMapper)
+func NewQHXYModelMapperFromPointer(ptr unsafe.Pointer) (n *QHXYModelMapper) {
+	n = new(QHXYModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QHXYModelMapper) DestroyQHXYModelMapper() {
@@ -15808,7 +15498,7 @@ func (ptr *QHXYModelMapper) YRowChanged() {
 
 func (ptr *QHXYModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QHXYModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QHXYModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15885,10 +15575,10 @@ func PointerFromQHorizontalBarSeries(ptr QHorizontalBarSeries_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQHorizontalBarSeriesFromPointer(ptr unsafe.Pointer) *QHorizontalBarSeries {
-	var n = new(QHorizontalBarSeries)
+func NewQHorizontalBarSeriesFromPointer(ptr unsafe.Pointer) (n *QHorizontalBarSeries) {
+	n = new(QHorizontalBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHorizontalBarSeries(parent core.QObject_ITF) *QHorizontalBarSeries {
 	return NewQHorizontalBarSeriesFromPointer(C.QHorizontalBarSeries_NewQHorizontalBarSeries(core.PointerFromQObject(parent)))
@@ -15978,10 +15668,10 @@ func PointerFromQHorizontalPercentBarSeries(ptr QHorizontalPercentBarSeries_ITF)
 	return nil
 }
 
-func NewQHorizontalPercentBarSeriesFromPointer(ptr unsafe.Pointer) *QHorizontalPercentBarSeries {
-	var n = new(QHorizontalPercentBarSeries)
+func NewQHorizontalPercentBarSeriesFromPointer(ptr unsafe.Pointer) (n *QHorizontalPercentBarSeries) {
+	n = new(QHorizontalPercentBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHorizontalPercentBarSeries(parent core.QObject_ITF) *QHorizontalPercentBarSeries {
 	return NewQHorizontalPercentBarSeriesFromPointer(C.QHorizontalPercentBarSeries_NewQHorizontalPercentBarSeries(core.PointerFromQObject(parent)))
@@ -16071,10 +15761,10 @@ func PointerFromQHorizontalStackedBarSeries(ptr QHorizontalStackedBarSeries_ITF)
 	return nil
 }
 
-func NewQHorizontalStackedBarSeriesFromPointer(ptr unsafe.Pointer) *QHorizontalStackedBarSeries {
-	var n = new(QHorizontalStackedBarSeries)
+func NewQHorizontalStackedBarSeriesFromPointer(ptr unsafe.Pointer) (n *QHorizontalStackedBarSeries) {
+	n = new(QHorizontalStackedBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQHorizontalStackedBarSeries(parent core.QObject_ITF) *QHorizontalStackedBarSeries {
 	return NewQHorizontalStackedBarSeriesFromPointer(C.QHorizontalStackedBarSeries_NewQHorizontalStackedBarSeries(core.PointerFromQObject(parent)))
@@ -16164,10 +15854,10 @@ func PointerFromQLegend(ptr QLegend_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQLegendFromPointer(ptr unsafe.Pointer) *QLegend {
-	var n = new(QLegend)
+func NewQLegendFromPointer(ptr unsafe.Pointer) (n *QLegend) {
+	n = new(QLegend)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QLegend__MarkerShape
@@ -16183,7 +15873,7 @@ const (
 
 func (ptr *QLegend) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QLegend_BorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QLegend_BorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -16192,7 +15882,7 @@ func (ptr *QLegend) BorderColor() *gui.QColor {
 
 func (ptr *QLegend) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QLegend_Color(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QLegend_Color(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -16620,7 +16310,7 @@ func (ptr *QLegend) MarkerShape() QLegend__MarkerShape {
 
 func (ptr *QLegend) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QLegend_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QLegend_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -16629,7 +16319,7 @@ func (ptr *QLegend) Brush() *gui.QBrush {
 
 func (ptr *QLegend) LabelBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QLegend_LabelBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QLegend_LabelBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -16638,7 +16328,7 @@ func (ptr *QLegend) LabelBrush() *gui.QBrush {
 
 func (ptr *QLegend) LabelColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QLegend_LabelColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QLegend_LabelColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -16648,9 +16338,9 @@ func (ptr *QLegend) LabelColor() *gui.QColor {
 func (ptr *QLegend) Markers(series QAbstractSeries_ITF) []*QLegendMarker {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QLegendMarker {
-			var out = make([]*QLegendMarker, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQLegendFromPointer(l.data).__markers_atList(i)
+			out := make([]*QLegendMarker, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QLegend)(nil).__markers_atList(i, l.data)
 			}
 			return out
 		}(C.QLegend_Markers(ptr.Pointer(), PointerFromQAbstractSeries(series)))
@@ -16660,7 +16350,7 @@ func (ptr *QLegend) Markers(series QAbstractSeries_ITF) []*QLegendMarker {
 
 func (ptr *QLegend) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QLegend_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QLegend_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -16688,263 +16378,198 @@ func (ptr *QLegend) ShowToolTips() bool {
 	return false
 }
 
-func (ptr *QLegend) __markers_atList(i int) *QLegendMarker {
-	if ptr.Pointer() != nil {
-		return NewQLegendMarkerFromPointer(C.QLegend___markers_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QLegend) __markers_atList(i int, p unsafe.Pointer) *QLegendMarker {
+	return NewQLegendMarkerFromPointer(C.QLegend___markers_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QLegend) __markers_setList(i QLegendMarker_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___markers_setList(ptr.Pointer(), PointerFromQLegendMarker(i))
-	}
+func (ptr *QLegend) __markers_setList(i QLegendMarker_ITF, p unsafe.Pointer) {
+	C.QLegend___markers_setList(ptr.Pointer(), PointerFromQLegendMarker(i), p)
 }
 
 func (ptr *QLegend) __markers_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___markers_newList(ptr.Pointer()))
+	return C.QLegend___markers_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QLegend___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QLegend___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QLegend) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QLegend___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QLegend) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___addActions_actions_newList(ptr.Pointer()))
+	return C.QLegend___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QLegend___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QLegend___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QLegend) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QLegend___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QLegend) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___insertActions_actions_newList(ptr.Pointer()))
+	return C.QLegend___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QLegend___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QLegend___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QLegend) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QLegend___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QLegend) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___actions_newList(ptr.Pointer()))
+	return C.QLegend___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QLegend___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QLegend) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QLegend___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QLegend) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QLegend) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QLegend___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QLegend) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QLegend___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QLegend___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QLegend___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QLegend) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QLegend___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QLegend) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___findChildren_newList2(ptr.Pointer()))
+	return C.QLegend___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QLegend) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QLegend___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QLegend___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QLegend) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QLegend___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QLegend) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___findChildren_newList3(ptr.Pointer()))
+	return C.QLegend___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QLegend) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QLegend___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QLegend___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QLegend) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QLegend___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QLegend) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___findChildren_newList(ptr.Pointer()))
+	return C.QLegend___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QLegend___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QLegend___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QLegend) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QLegend___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QLegend) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___children_newList(ptr.Pointer()))
+	return C.QLegend___children_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __setTransformations_transformations_atList(i int) *widgets.QGraphicsTransform {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QLegend___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __setTransformations_transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
+	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QLegend___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
-	}
+func (ptr *QLegend) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
+	C.QLegend___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
 }
 
 func (ptr *QLegend) __setTransformations_transformations_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___setTransformations_transformations_newList(ptr.Pointer()))
+	return C.QLegend___setTransformations_transformations_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __childItems_atList(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QLegend___childItems_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QLegend) __childItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QLegend___childItems_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QLegend) __childItems_setList(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QLegend) __childItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QLegend___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QLegend) __childItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___childItems_newList(ptr.Pointer()))
+	return C.QLegend___childItems_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __collidingItems_atList(i int) *widgets.QGraphicsItem {
-	if ptr.Pointer() != nil {
-		return widgets.NewQGraphicsItemFromPointer(C.QLegend___collidingItems_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QLegend) __collidingItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
+	return widgets.NewQGraphicsItemFromPointer(C.QLegend___collidingItems_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QLegend) __collidingItems_setList(i widgets.QGraphicsItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
-	}
+func (ptr *QLegend) __collidingItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
+	C.QLegend___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
 }
 
 func (ptr *QLegend) __collidingItems_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___collidingItems_newList(ptr.Pointer()))
+	return C.QLegend___collidingItems_newList(ptr.Pointer())
 }
 
-func (ptr *QLegend) __transformations_atList(i int) *widgets.QGraphicsTransform {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQGraphicsTransformFromPointer(C.QLegend___transformations_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QLegend) __transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
+	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QLegend___transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QLegend) __transformations_setList(i widgets.QGraphicsTransform_ITF) {
-	if ptr.Pointer() != nil {
-		C.QLegend___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
-	}
+func (ptr *QLegend) __transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
+	C.QLegend___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
 }
 
 func (ptr *QLegend) __transformations_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QLegend___transformations_newList(ptr.Pointer()))
+	return C.QLegend___transformations_newList(ptr.Pointer())
 }
 
 //export callbackQLegend_ItemChange
@@ -16958,7 +16583,7 @@ func callbackQLegend_ItemChange(ptr unsafe.Pointer, change C.longlong, value uns
 
 func (ptr *QLegend) ItemChangeDefault(change widgets.QGraphicsItem__GraphicsItemChange, value core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QLegend_ItemChangeDefault(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
+		tmpValue := core.NewQVariantFromPointer(C.QLegend_ItemChangeDefault(ptr.Pointer(), C.longlong(change), core.PointerFromQVariant(value)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -17349,7 +16974,7 @@ func callbackQLegend_Shape(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QLegend) ShapeDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPainterPathFromPointer(C.QLegend_ShapeDefault(ptr.Pointer()))
+		tmpValue := gui.NewQPainterPathFromPointer(C.QLegend_ShapeDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
@@ -17367,7 +16992,7 @@ func callbackQLegend_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QLegend) BoundingRectDefault() *core.QRectF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQRectFFromPointer(C.QLegend_BoundingRectDefault(ptr.Pointer()))
+		tmpValue := core.NewQRectFFromPointer(C.QLegend_BoundingRectDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
 		return tmpValue
 	}
@@ -17385,7 +17010,7 @@ func callbackQLegend_SizeHint(ptr unsafe.Pointer, which C.longlong, constraint u
 
 func (ptr *QLegend) SizeHintDefault(which core.Qt__SizeHint, constraint core.QSizeF_ITF) *core.QSizeF {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFFromPointer(C.QLegend_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
+		tmpValue := core.NewQSizeFFromPointer(C.QLegend_SizeHintDefault(ptr.Pointer(), C.longlong(which), core.PointerFromQSizeF(constraint)))
 		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
 		return tmpValue
 	}
@@ -17933,7 +17558,7 @@ func callbackQLegend_OpaqueArea(ptr unsafe.Pointer) unsafe.Pointer {
 
 func (ptr *QLegend) OpaqueAreaDefault() *gui.QPainterPath {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPainterPathFromPointer(C.QLegend_OpaqueAreaDefault(ptr.Pointer()))
+		tmpValue := gui.NewQPainterPathFromPointer(C.QLegend_OpaqueAreaDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
 		return tmpValue
 	}
@@ -17951,7 +17576,7 @@ func callbackQLegend_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsa
 
 func (ptr *QLegend) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QLegend_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QLegend_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -18054,10 +17679,10 @@ func PointerFromQLegendMarker(ptr QLegendMarker_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQLegendMarkerFromPointer(ptr unsafe.Pointer) *QLegendMarker {
-	var n = new(QLegendMarker)
+func NewQLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QLegendMarker) {
+	n = new(QLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QLegendMarker__LegendMarkerType
@@ -18593,7 +18218,7 @@ func (ptr *QLegendMarker) DestroyQLegendMarkerDefault() {
 
 func (ptr *QLegendMarker) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QLegendMarker_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QLegendMarker_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -18602,7 +18227,7 @@ func (ptr *QLegendMarker) Brush() *gui.QBrush {
 
 func (ptr *QLegendMarker) LabelBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QLegendMarker_LabelBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QLegendMarker_LabelBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -18611,7 +18236,7 @@ func (ptr *QLegendMarker) LabelBrush() *gui.QBrush {
 
 func (ptr *QLegendMarker) Font() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QLegendMarker_Font(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QLegendMarker_Font(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -18627,7 +18252,7 @@ func (ptr *QLegendMarker) Shape() QLegend__MarkerShape {
 
 func (ptr *QLegendMarker) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QLegendMarker_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QLegendMarker_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -18681,10 +18306,10 @@ func PointerFromQLineSeries(ptr QLineSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQLineSeriesFromPointer(ptr unsafe.Pointer) *QLineSeries {
-	var n = new(QLineSeries)
+func NewQLineSeriesFromPointer(ptr unsafe.Pointer) (n *QLineSeries) {
+	n = new(QLineSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQLineSeries(parent core.QObject_ITF) *QLineSeries {
 	return NewQLineSeriesFromPointer(C.QLineSeries_NewQLineSeries(core.PointerFromQObject(parent)))
@@ -18775,10 +18400,10 @@ func PointerFromQLogValueAxis(ptr QLogValueAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQLogValueAxisFromPointer(ptr unsafe.Pointer) *QLogValueAxis {
-	var n = new(QLogValueAxis)
+func NewQLogValueAxisFromPointer(ptr unsafe.Pointer) (n *QLogValueAxis) {
+	n = new(QLogValueAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQLogValueAxis(parent core.QObject_ITF) *QLogValueAxis {
 	return NewQLogValueAxisFromPointer(C.QLogValueAxis_NewQLogValueAxis(core.PointerFromQObject(parent)))
@@ -19229,10 +18854,10 @@ func PointerFromQPercentBarSeries(ptr QPercentBarSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPercentBarSeriesFromPointer(ptr unsafe.Pointer) *QPercentBarSeries {
-	var n = new(QPercentBarSeries)
+func NewQPercentBarSeriesFromPointer(ptr unsafe.Pointer) (n *QPercentBarSeries) {
+	n = new(QPercentBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQPercentBarSeries(parent core.QObject_ITF) *QPercentBarSeries {
 	return NewQPercentBarSeriesFromPointer(C.QPercentBarSeries_NewQPercentBarSeries(core.PointerFromQObject(parent)))
@@ -19322,10 +18947,10 @@ func PointerFromQPieLegendMarker(ptr QPieLegendMarker_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPieLegendMarkerFromPointer(ptr unsafe.Pointer) *QPieLegendMarker {
-	var n = new(QPieLegendMarker)
+func NewQPieLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QPieLegendMarker) {
+	n = new(QPieLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQPieLegendMarker_Type
@@ -19500,10 +19125,10 @@ func PointerFromQPieSeries(ptr QPieSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPieSeriesFromPointer(ptr unsafe.Pointer) *QPieSeries {
-	var n = new(QPieSeries)
+func NewQPieSeriesFromPointer(ptr unsafe.Pointer) (n *QPieSeries) {
+	n = new(QPieSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQPieSeries(parent core.QObject_ITF) *QPieSeries {
 	return NewQPieSeriesFromPointer(C.QPieSeries_NewQPieSeries(core.PointerFromQObject(parent)))
@@ -19524,11 +19149,11 @@ func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 func (ptr *QPieSeries) Append2(slices []*QPieSlice) bool {
 	if ptr.Pointer() != nil {
 		return C.QPieSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(nil).__append_slices_newList2())
+			tmpList := (*QPieSeries)(nil).__append_slices_newList2()
 			for _, v := range slices {
-				tmpList.__append_slices_setList2(v)
+				(*QPieSeries)(nil).__append_slices_setList2(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()) != 0
 	}
 	return false
@@ -19566,9 +19191,9 @@ func (ptr *QPieSeries) Take(slice QPieSlice_ITF) bool {
 func callbackQPieSeries_Added(ptr unsafe.Pointer, slices C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "added"); signal != nil {
 		signal.(func([]*QPieSlice))(func(l C.struct_QtCharts_PackedList) []*QPieSlice {
-			var out = make([]*QPieSlice, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPieSeriesFromPointer(l.data).__added_slices_atList(i)
+			out := make([]*QPieSlice, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QPieSeries)(nil).__added_slices_atList(i, l.data)
 			}
 			return out
 		}(slices))
@@ -19604,11 +19229,11 @@ func (ptr *QPieSeries) DisconnectAdded() {
 func (ptr *QPieSeries) Added(slices []*QPieSlice) {
 	if ptr.Pointer() != nil {
 		C.QPieSeries_Added(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(nil).__added_slices_newList())
+			tmpList := (*QPieSeries)(nil).__added_slices_newList()
 			for _, v := range slices {
-				tmpList.__added_slices_setList(v)
+				(*QPieSeries)(nil).__added_slices_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -19857,9 +19482,9 @@ func (ptr *QPieSeries) Released(slice QPieSlice_ITF) {
 func callbackQPieSeries_Removed(ptr unsafe.Pointer, slices C.struct_QtCharts_PackedList) {
 	if signal := qt.GetSignal(ptr, "removed"); signal != nil {
 		signal.(func([]*QPieSlice))(func(l C.struct_QtCharts_PackedList) []*QPieSlice {
-			var out = make([]*QPieSlice, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPieSeriesFromPointer(l.data).__removed_slices_atList(i)
+			out := make([]*QPieSlice, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QPieSeries)(nil).__removed_slices_atList(i, l.data)
 			}
 			return out
 		}(slices))
@@ -19895,11 +19520,11 @@ func (ptr *QPieSeries) DisconnectRemoved() {
 func (ptr *QPieSeries) Removed(slices []*QPieSlice) {
 	if ptr.Pointer() != nil {
 		C.QPieSeries_Removed(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(nil).__removed_slices_newList())
+			tmpList := (*QPieSeries)(nil).__removed_slices_newList()
 			for _, v := range slices {
-				tmpList.__removed_slices_setList(v)
+				(*QPieSeries)(nil).__removed_slices_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -20082,9 +19707,9 @@ func (ptr *QPieSeries) TypeDefault() QAbstractSeries__SeriesType {
 func (ptr *QPieSeries) Slices() []*QPieSlice {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QPieSlice {
-			var out = make([]*QPieSlice, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPieSeriesFromPointer(l.data).__slices_atList(i)
+			out := make([]*QPieSlice, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QPieSeries)(nil).__slices_atList(i, l.data)
 			}
 			return out
 		}(C.QPieSeries_Slices(ptr.Pointer()))
@@ -20155,72 +19780,52 @@ func (ptr *QPieSeries) VerticalPosition() float64 {
 	return 0
 }
 
-func (ptr *QPieSeries) __append_slices_atList2(i int) *QPieSlice {
-	if ptr.Pointer() != nil {
-		return NewQPieSliceFromPointer(C.QPieSeries___append_slices_atList2(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QPieSeries) __append_slices_atList2(i int, p unsafe.Pointer) *QPieSlice {
+	return NewQPieSliceFromPointer(C.QPieSeries___append_slices_atList2(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QPieSeries) __append_slices_setList2(i QPieSlice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPieSeries___append_slices_setList2(ptr.Pointer(), PointerFromQPieSlice(i))
-	}
+func (ptr *QPieSeries) __append_slices_setList2(i QPieSlice_ITF, p unsafe.Pointer) {
+	C.QPieSeries___append_slices_setList2(ptr.Pointer(), PointerFromQPieSlice(i), p)
 }
 
 func (ptr *QPieSeries) __append_slices_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QPieSeries___append_slices_newList2(ptr.Pointer()))
+	return C.QPieSeries___append_slices_newList2(ptr.Pointer())
 }
 
-func (ptr *QPieSeries) __added_slices_atList(i int) *QPieSlice {
-	if ptr.Pointer() != nil {
-		return NewQPieSliceFromPointer(C.QPieSeries___added_slices_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QPieSeries) __added_slices_atList(i int, p unsafe.Pointer) *QPieSlice {
+	return NewQPieSliceFromPointer(C.QPieSeries___added_slices_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QPieSeries) __added_slices_setList(i QPieSlice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPieSeries___added_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
-	}
+func (ptr *QPieSeries) __added_slices_setList(i QPieSlice_ITF, p unsafe.Pointer) {
+	C.QPieSeries___added_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i), p)
 }
 
 func (ptr *QPieSeries) __added_slices_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QPieSeries___added_slices_newList(ptr.Pointer()))
+	return C.QPieSeries___added_slices_newList(ptr.Pointer())
 }
 
-func (ptr *QPieSeries) __removed_slices_atList(i int) *QPieSlice {
-	if ptr.Pointer() != nil {
-		return NewQPieSliceFromPointer(C.QPieSeries___removed_slices_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QPieSeries) __removed_slices_atList(i int, p unsafe.Pointer) *QPieSlice {
+	return NewQPieSliceFromPointer(C.QPieSeries___removed_slices_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QPieSeries) __removed_slices_setList(i QPieSlice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPieSeries___removed_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
-	}
+func (ptr *QPieSeries) __removed_slices_setList(i QPieSlice_ITF, p unsafe.Pointer) {
+	C.QPieSeries___removed_slices_setList(ptr.Pointer(), PointerFromQPieSlice(i), p)
 }
 
 func (ptr *QPieSeries) __removed_slices_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QPieSeries___removed_slices_newList(ptr.Pointer()))
+	return C.QPieSeries___removed_slices_newList(ptr.Pointer())
 }
 
-func (ptr *QPieSeries) __slices_atList(i int) *QPieSlice {
-	if ptr.Pointer() != nil {
-		return NewQPieSliceFromPointer(C.QPieSeries___slices_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QPieSeries) __slices_atList(i int, p unsafe.Pointer) *QPieSlice {
+	return NewQPieSliceFromPointer(C.QPieSeries___slices_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QPieSeries) __slices_setList(i QPieSlice_ITF) {
-	if ptr.Pointer() != nil {
-		C.QPieSeries___slices_setList(ptr.Pointer(), PointerFromQPieSlice(i))
-	}
+func (ptr *QPieSeries) __slices_setList(i QPieSlice_ITF, p unsafe.Pointer) {
+	C.QPieSeries___slices_setList(ptr.Pointer(), PointerFromQPieSlice(i), p)
 }
 
 func (ptr *QPieSeries) __slices_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QPieSeries___slices_newList(ptr.Pointer()))
+	return C.QPieSeries___slices_newList(ptr.Pointer())
 }
 
 type QPieSlice struct {
@@ -20255,10 +19860,10 @@ func PointerFromQPieSlice(ptr QPieSlice_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPieSliceFromPointer(ptr unsafe.Pointer) *QPieSlice {
-	var n = new(QPieSlice)
+func NewQPieSliceFromPointer(ptr unsafe.Pointer) (n *QPieSlice) {
+	n = new(QPieSlice)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QPieSlice__LabelPosition
@@ -20281,7 +19886,7 @@ func (ptr *QPieSlice) LabelPosition() QPieSlice__LabelPosition {
 
 func (ptr *QPieSlice) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QPieSlice_BorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QPieSlice_BorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -20290,7 +19895,7 @@ func (ptr *QPieSlice) BorderColor() *gui.QColor {
 
 func (ptr *QPieSlice) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QPieSlice_Color(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QPieSlice_Color(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -20299,7 +19904,7 @@ func (ptr *QPieSlice) Color() *gui.QColor {
 
 func (ptr *QPieSlice) LabelColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QPieSlice_LabelColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QPieSlice_LabelColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -21210,7 +20815,7 @@ func (ptr *QPieSlice) DestroyQPieSliceDefault() {
 
 func (ptr *QPieSlice) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QPieSlice_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QPieSlice_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -21219,7 +20824,7 @@ func (ptr *QPieSlice) Brush() *gui.QBrush {
 
 func (ptr *QPieSlice) LabelBrush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QPieSlice_LabelBrush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QPieSlice_LabelBrush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -21228,7 +20833,7 @@ func (ptr *QPieSlice) LabelBrush() *gui.QBrush {
 
 func (ptr *QPieSlice) LabelFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QPieSlice_LabelFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QPieSlice_LabelFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -21237,7 +20842,7 @@ func (ptr *QPieSlice) LabelFont() *gui.QFont {
 
 func (ptr *QPieSlice) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QPieSlice_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QPieSlice_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -21347,10 +20952,10 @@ func PointerFromQPolarChart(ptr QPolarChart_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPolarChartFromPointer(ptr unsafe.Pointer) *QPolarChart {
-	var n = new(QPolarChart)
+func NewQPolarChartFromPointer(ptr unsafe.Pointer) (n *QPolarChart) {
+	n = new(QPolarChart)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QPolarChart__PolarOrientation
@@ -21371,7 +20976,7 @@ func (ptr *QPolarChart) AxisPolarOrientation(axis QAbstractAxis_ITF) QPolarChart
 }
 
 func NewQPolarChart(parent widgets.QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QPolarChart {
-	var tmpValue = NewQPolarChartFromPointer(C.QPolarChart_NewQPolarChart(widgets.PointerFromQGraphicsItem(parent), C.longlong(wFlags)))
+	tmpValue := NewQPolarChartFromPointer(C.QPolarChart_NewQPolarChart(widgets.PointerFromQGraphicsItem(parent), C.longlong(wFlags)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -21395,9 +21000,9 @@ func (ptr *QPolarChart) DestroyQPolarChart() {
 func (ptr *QPolarChart) Axes(polarOrientation QPolarChart__PolarOrientation, series QAbstractSeries_ITF) []*QAbstractAxis {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*QAbstractAxis {
-			var out = make([]*QAbstractAxis, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQPolarChartFromPointer(l.data).__axes_atList(i)
+			out := make([]*QAbstractAxis, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QPolarChart)(nil).__axes_atList(i, l.data)
 			}
 			return out
 		}(C.QPolarChart_Axes(ptr.Pointer(), C.longlong(polarOrientation), PointerFromQAbstractSeries(series)))
@@ -21438,10 +21043,10 @@ func PointerFromQScatterSeries(ptr QScatterSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQScatterSeriesFromPointer(ptr unsafe.Pointer) *QScatterSeries {
-	var n = new(QScatterSeries)
+func NewQScatterSeriesFromPointer(ptr unsafe.Pointer) (n *QScatterSeries) {
+	n = new(QScatterSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QScatterSeries__MarkerShape
@@ -21455,7 +21060,7 @@ const (
 
 func (ptr *QScatterSeries) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QScatterSeries_BorderColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QScatterSeries_BorderColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -21700,10 +21305,10 @@ func PointerFromQSplineSeries(ptr QSplineSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSplineSeriesFromPointer(ptr unsafe.Pointer) *QSplineSeries {
-	var n = new(QSplineSeries)
+func NewQSplineSeriesFromPointer(ptr unsafe.Pointer) (n *QSplineSeries) {
+	n = new(QSplineSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQSplineSeries(parent core.QObject_ITF) *QSplineSeries {
 	return NewQSplineSeriesFromPointer(C.QSplineSeries_NewQSplineSeries(core.PointerFromQObject(parent)))
@@ -21750,10 +21355,10 @@ func PointerFromQStackedBarSeries(ptr QStackedBarSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQStackedBarSeriesFromPointer(ptr unsafe.Pointer) *QStackedBarSeries {
-	var n = new(QStackedBarSeries)
+func NewQStackedBarSeriesFromPointer(ptr unsafe.Pointer) (n *QStackedBarSeries) {
+	n = new(QStackedBarSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQStackedBarSeries(parent core.QObject_ITF) *QStackedBarSeries {
 	return NewQStackedBarSeriesFromPointer(C.QStackedBarSeries_NewQStackedBarSeries(core.PointerFromQObject(parent)))
@@ -21843,13 +21448,13 @@ func PointerFromQVBarModelMapper(ptr QVBarModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQVBarModelMapperFromPointer(ptr unsafe.Pointer) *QVBarModelMapper {
-	var n = new(QVBarModelMapper)
+func NewQVBarModelMapperFromPointer(ptr unsafe.Pointer) (n *QVBarModelMapper) {
+	n = new(QVBarModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQVBarModelMapper(parent core.QObject_ITF) *QVBarModelMapper {
-	var tmpValue = NewQVBarModelMapperFromPointer(C.QVBarModelMapper_NewQVBarModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQVBarModelMapperFromPointer(C.QVBarModelMapper_NewQVBarModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -22135,7 +21740,7 @@ func (ptr *QVBarModelMapper) Series() *QAbstractBarSeries {
 
 func (ptr *QVBarModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QVBarModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QVBarModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -22172,107 +21777,82 @@ func (ptr *QVBarModelMapper) RowCount() int {
 	return 0
 }
 
-func (ptr *QVBarModelMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QVBarModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QVBarModelMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QVBarModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QVBarModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBarModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QVBarModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QVBarModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QVBarModelMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBarModelMapper___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QVBarModelMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QVBarModelMapper) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBarModelMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBarModelMapper) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBarModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBarModelMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBarModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBarModelMapper) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBarModelMapper___findChildren_newList2(ptr.Pointer()))
+	return C.QVBarModelMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QVBarModelMapper) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBarModelMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBarModelMapper) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBarModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBarModelMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBarModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBarModelMapper) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBarModelMapper___findChildren_newList3(ptr.Pointer()))
+	return C.QVBarModelMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QVBarModelMapper) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBarModelMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBarModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBarModelMapper) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBarModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBarModelMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBarModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBarModelMapper) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBarModelMapper___findChildren_newList(ptr.Pointer()))
+	return C.QVBarModelMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVBarModelMapper) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBarModelMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBarModelMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBarModelMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBarModelMapper) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBarModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBarModelMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBarModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBarModelMapper) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBarModelMapper___children_newList(ptr.Pointer()))
+	return C.QVBarModelMapper___children_newList(ptr.Pointer())
 }
 
 //export callbackQVBarModelMapper_Event
@@ -22464,13 +22044,13 @@ func PointerFromQVBoxPlotModelMapper(ptr QVBoxPlotModelMapper_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQVBoxPlotModelMapperFromPointer(ptr unsafe.Pointer) *QVBoxPlotModelMapper {
-	var n = new(QVBoxPlotModelMapper)
+func NewQVBoxPlotModelMapperFromPointer(ptr unsafe.Pointer) (n *QVBoxPlotModelMapper) {
+	n = new(QVBoxPlotModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQVBoxPlotModelMapper(parent core.QObject_ITF) *QVBoxPlotModelMapper {
-	var tmpValue = NewQVBoxPlotModelMapperFromPointer(C.QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQVBoxPlotModelMapperFromPointer(C.QVBoxPlotModelMapper_NewQVBoxPlotModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -22749,7 +22329,7 @@ func (ptr *QVBoxPlotModelMapper) SetSeries(series QBoxPlotSeries_ITF) {
 
 func (ptr *QVBoxPlotModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QVBoxPlotModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QVBoxPlotModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -22793,107 +22373,82 @@ func (ptr *QVBoxPlotModelMapper) RowCount() int {
 	return 0
 }
 
-func (ptr *QVBoxPlotModelMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QVBoxPlotModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QVBoxPlotModelMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QVBoxPlotModelMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QVBoxPlotModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBoxPlotModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QVBoxPlotModelMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QVBoxPlotModelMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QVBoxPlotModelMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBoxPlotModelMapper___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QVBoxPlotModelMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBoxPlotModelMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBoxPlotModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBoxPlotModelMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBoxPlotModelMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBoxPlotModelMapper) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBoxPlotModelMapper___findChildren_newList2(ptr.Pointer()))
+	return C.QVBoxPlotModelMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBoxPlotModelMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBoxPlotModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBoxPlotModelMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBoxPlotModelMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBoxPlotModelMapper) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBoxPlotModelMapper___findChildren_newList3(ptr.Pointer()))
+	return C.QVBoxPlotModelMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBoxPlotModelMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBoxPlotModelMapper) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBoxPlotModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBoxPlotModelMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBoxPlotModelMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBoxPlotModelMapper) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBoxPlotModelMapper___findChildren_newList(ptr.Pointer()))
+	return C.QVBoxPlotModelMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVBoxPlotModelMapper) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QVBoxPlotModelMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QVBoxPlotModelMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QVBoxPlotModelMapper) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QVBoxPlotModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QVBoxPlotModelMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QVBoxPlotModelMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QVBoxPlotModelMapper) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QVBoxPlotModelMapper___children_newList(ptr.Pointer()))
+	return C.QVBoxPlotModelMapper___children_newList(ptr.Pointer())
 }
 
 //export callbackQVBoxPlotModelMapper_Event
@@ -23085,13 +22640,13 @@ func PointerFromQVCandlestickModelMapper(ptr QVCandlestickModelMapper_ITF) unsaf
 	return nil
 }
 
-func NewQVCandlestickModelMapperFromPointer(ptr unsafe.Pointer) *QVCandlestickModelMapper {
-	var n = new(QVCandlestickModelMapper)
+func NewQVCandlestickModelMapperFromPointer(ptr unsafe.Pointer) (n *QVCandlestickModelMapper) {
+	n = new(QVCandlestickModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQVCandlestickModelMapper(parent core.QObject_ITF) *QVCandlestickModelMapper {
-	var tmpValue = NewQVCandlestickModelMapperFromPointer(C.QVCandlestickModelMapper_NewQVCandlestickModelMapper(core.PointerFromQObject(parent)))
+	tmpValue := NewQVCandlestickModelMapperFromPointer(C.QVCandlestickModelMapper_NewQVCandlestickModelMapper(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -23538,10 +23093,10 @@ func PointerFromQVPieModelMapper(ptr QVPieModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQVPieModelMapperFromPointer(ptr unsafe.Pointer) *QVPieModelMapper {
-	var n = new(QVPieModelMapper)
+func NewQVPieModelMapperFromPointer(ptr unsafe.Pointer) (n *QVPieModelMapper) {
+	n = new(QVPieModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QVPieModelMapper) DestroyQVPieModelMapper() {
@@ -23829,7 +23384,7 @@ func (ptr *QVPieModelMapper) ValuesColumnChanged() {
 
 func (ptr *QVPieModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QVPieModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QVPieModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -23905,10 +23460,10 @@ func PointerFromQVXYModelMapper(ptr QVXYModelMapper_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQVXYModelMapperFromPointer(ptr unsafe.Pointer) *QVXYModelMapper {
-	var n = new(QVXYModelMapper)
+func NewQVXYModelMapperFromPointer(ptr unsafe.Pointer) (n *QVXYModelMapper) {
+	n = new(QVXYModelMapper)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QVXYModelMapper) DestroyQVXYModelMapper() {
@@ -24196,7 +23751,7 @@ func (ptr *QVXYModelMapper) YColumnChanged() {
 
 func (ptr *QVXYModelMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQAbstractItemModelFromPointer(C.QVXYModelMapper_Model(ptr.Pointer()))
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QVXYModelMapper_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -24273,10 +23828,10 @@ func PointerFromQValueAxis(ptr QValueAxis_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQValueAxisFromPointer(ptr unsafe.Pointer) *QValueAxis {
-	var n = new(QValueAxis)
+func NewQValueAxisFromPointer(ptr unsafe.Pointer) (n *QValueAxis) {
+	n = new(QValueAxis)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQValueAxis(parent core.QObject_ITF) *QValueAxis {
 	return NewQValueAxisFromPointer(C.QValueAxis_NewQValueAxis(core.PointerFromQObject(parent)))
@@ -24723,10 +24278,10 @@ func PointerFromQXYLegendMarker(ptr QXYLegendMarker_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXYLegendMarkerFromPointer(ptr unsafe.Pointer) *QXYLegendMarker {
-	var n = new(QXYLegendMarker)
+func NewQXYLegendMarkerFromPointer(ptr unsafe.Pointer) (n *QXYLegendMarker) {
+	n = new(QXYLegendMarker)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXYLegendMarker_Type
@@ -24894,19 +24449,19 @@ func PointerFromQXYSeries(ptr QXYSeries_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXYSeriesFromPointer(ptr unsafe.Pointer) *QXYSeries {
-	var n = new(QXYSeries)
+func NewQXYSeriesFromPointer(ptr unsafe.Pointer) (n *QXYSeries) {
+	n = new(QXYSeries)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QXYSeries) Append3(points []*core.QPointF) {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_Append3(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(nil).__append_points_newList3())
+			tmpList := (*QXYSeries)(nil).__append_points_newList3()
 			for _, v := range points {
-				tmpList.__append_points_setList3(v)
+				(*QXYSeries)(nil).__append_points_setList3(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -25630,11 +25185,11 @@ func (ptr *QXYSeries) RemovePoints(index int, count int) {
 func (ptr *QXYSeries) Replace5(points []*core.QPointF) {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_Replace5(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(nil).__replace_points_newList5())
+			tmpList := (*QXYSeries)(nil).__replace_points_newList5()
 			for _, v := range points {
-				tmpList.__replace_points_setList5(v)
+				(*QXYSeries)(nil).__replace_points_setList5(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -25642,11 +25197,11 @@ func (ptr *QXYSeries) Replace5(points []*core.QPointF) {
 func (ptr *QXYSeries) Replace6(points []*core.QPointF) {
 	if ptr.Pointer() != nil {
 		C.QXYSeries_Replace6(ptr.Pointer(), func() unsafe.Pointer {
-			var tmpList = NewQXYSeriesFromPointer(NewQXYSeriesFromPointer(nil).__replace_points_newList6())
+			tmpList := (*QXYSeries)(nil).__replace_points_newList6()
 			for _, v := range points {
-				tmpList.__replace_points_setList6(v)
+				(*QXYSeries)(nil).__replace_points_setList6(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}())
 	}
 }
@@ -25852,7 +25407,7 @@ func (ptr *QXYSeries) DestroyQXYSeries() {
 
 func (ptr *QXYSeries) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQBrushFromPointer(C.QXYSeries_Brush(ptr.Pointer()))
+		tmpValue := gui.NewQBrushFromPointer(C.QXYSeries_Brush(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QBrush).DestroyQBrush)
 		return tmpValue
 	}
@@ -25891,7 +25446,7 @@ func (ptr *QXYSeries) DisconnectColor() {
 
 func (ptr *QXYSeries) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QXYSeries_Color(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QXYSeries_Color(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -25900,7 +25455,7 @@ func (ptr *QXYSeries) Color() *gui.QColor {
 
 func (ptr *QXYSeries) ColorDefault() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QXYSeries_ColorDefault(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QXYSeries_ColorDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -25909,7 +25464,7 @@ func (ptr *QXYSeries) ColorDefault() *gui.QColor {
 
 func (ptr *QXYSeries) PointLabelsColor() *gui.QColor {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQColorFromPointer(C.QXYSeries_PointLabelsColor(ptr.Pointer()))
+		tmpValue := gui.NewQColorFromPointer(C.QXYSeries_PointLabelsColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
 		return tmpValue
 	}
@@ -25918,7 +25473,7 @@ func (ptr *QXYSeries) PointLabelsColor() *gui.QColor {
 
 func (ptr *QXYSeries) PointLabelsFont() *gui.QFont {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQFontFromPointer(C.QXYSeries_PointLabelsFont(ptr.Pointer()))
+		tmpValue := gui.NewQFontFromPointer(C.QXYSeries_PointLabelsFont(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 		return tmpValue
 	}
@@ -25928,9 +25483,9 @@ func (ptr *QXYSeries) PointLabelsFont() *gui.QFont {
 func (ptr *QXYSeries) Points() []*core.QPointF {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*core.QPointF {
-			var out = make([]*core.QPointF, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQXYSeriesFromPointer(l.data).__points_atList(i)
+			out := make([]*core.QPointF, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QXYSeries)(nil).__points_atList(i, l.data)
 			}
 			return out
 		}(C.QXYSeries_Points(ptr.Pointer()))
@@ -25940,7 +25495,7 @@ func (ptr *QXYSeries) Points() []*core.QPointF {
 
 func (ptr *QXYSeries) Pen() *gui.QPen {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPenFromPointer(C.QXYSeries_Pen(ptr.Pointer()))
+		tmpValue := gui.NewQPenFromPointer(C.QXYSeries_Pen(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPen).DestroyQPen)
 		return tmpValue
 	}
@@ -25957,9 +25512,9 @@ func (ptr *QXYSeries) PointLabelsFormat() string {
 func (ptr *QXYSeries) PointsVector() []*core.QPointF {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCharts_PackedList) []*core.QPointF {
-			var out = make([]*core.QPointF, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQXYSeriesFromPointer(l.data).__pointsVector_atList(i)
+			out := make([]*core.QPointF, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QXYSeries)(nil).__pointsVector_atList(i, l.data)
 			}
 			return out
 		}(C.QXYSeries_PointsVector(ptr.Pointer()))
@@ -26002,99 +25557,74 @@ func (ptr *QXYSeries) Count() int {
 	return 0
 }
 
-func (ptr *QXYSeries) __append_points_atList3(i int) *core.QPointF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___append_points_atList3(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXYSeries) __append_points_atList3(i int, p unsafe.Pointer) *core.QPointF {
+	tmpValue := core.NewQPointFFromPointer(C.QXYSeries___append_points_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+	return tmpValue
 }
 
-func (ptr *QXYSeries) __append_points_setList3(i core.QPointF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXYSeries___append_points_setList3(ptr.Pointer(), core.PointerFromQPointF(i))
-	}
+func (ptr *QXYSeries) __append_points_setList3(i core.QPointF_ITF, p unsafe.Pointer) {
+	C.QXYSeries___append_points_setList3(ptr.Pointer(), core.PointerFromQPointF(i), p)
 }
 
 func (ptr *QXYSeries) __append_points_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QXYSeries___append_points_newList3(ptr.Pointer()))
+	return C.QXYSeries___append_points_newList3(ptr.Pointer())
 }
 
-func (ptr *QXYSeries) __replace_points_atList5(i int) *core.QPointF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList5(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXYSeries) __replace_points_atList5(i int, p unsafe.Pointer) *core.QPointF {
+	tmpValue := core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList5(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+	return tmpValue
 }
 
-func (ptr *QXYSeries) __replace_points_setList5(i core.QPointF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXYSeries___replace_points_setList5(ptr.Pointer(), core.PointerFromQPointF(i))
-	}
+func (ptr *QXYSeries) __replace_points_setList5(i core.QPointF_ITF, p unsafe.Pointer) {
+	C.QXYSeries___replace_points_setList5(ptr.Pointer(), core.PointerFromQPointF(i), p)
 }
 
 func (ptr *QXYSeries) __replace_points_newList5() unsafe.Pointer {
-	return unsafe.Pointer(C.QXYSeries___replace_points_newList5(ptr.Pointer()))
+	return C.QXYSeries___replace_points_newList5(ptr.Pointer())
 }
 
-func (ptr *QXYSeries) __replace_points_atList6(i int) *core.QPointF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList6(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXYSeries) __replace_points_atList6(i int, p unsafe.Pointer) *core.QPointF {
+	tmpValue := core.NewQPointFFromPointer(C.QXYSeries___replace_points_atList6(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+	return tmpValue
 }
 
-func (ptr *QXYSeries) __replace_points_setList6(i core.QPointF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXYSeries___replace_points_setList6(ptr.Pointer(), core.PointerFromQPointF(i))
-	}
+func (ptr *QXYSeries) __replace_points_setList6(i core.QPointF_ITF, p unsafe.Pointer) {
+	C.QXYSeries___replace_points_setList6(ptr.Pointer(), core.PointerFromQPointF(i), p)
 }
 
 func (ptr *QXYSeries) __replace_points_newList6() unsafe.Pointer {
-	return unsafe.Pointer(C.QXYSeries___replace_points_newList6(ptr.Pointer()))
+	return C.QXYSeries___replace_points_newList6(ptr.Pointer())
 }
 
-func (ptr *QXYSeries) __points_atList(i int) *core.QPointF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___points_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXYSeries) __points_atList(i int, p unsafe.Pointer) *core.QPointF {
+	tmpValue := core.NewQPointFFromPointer(C.QXYSeries___points_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+	return tmpValue
 }
 
-func (ptr *QXYSeries) __points_setList(i core.QPointF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXYSeries___points_setList(ptr.Pointer(), core.PointerFromQPointF(i))
-	}
+func (ptr *QXYSeries) __points_setList(i core.QPointF_ITF, p unsafe.Pointer) {
+	C.QXYSeries___points_setList(ptr.Pointer(), core.PointerFromQPointF(i), p)
 }
 
 func (ptr *QXYSeries) __points_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QXYSeries___points_newList(ptr.Pointer()))
+	return C.QXYSeries___points_newList(ptr.Pointer())
 }
 
-func (ptr *QXYSeries) __pointsVector_atList(i int) *core.QPointF {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFFromPointer(C.QXYSeries___pointsVector_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXYSeries) __pointsVector_atList(i int, p unsafe.Pointer) *core.QPointF {
+	tmpValue := core.NewQPointFFromPointer(C.QXYSeries___pointsVector_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+	return tmpValue
 }
 
-func (ptr *QXYSeries) __pointsVector_setList(i core.QPointF_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXYSeries___pointsVector_setList(ptr.Pointer(), core.PointerFromQPointF(i))
-	}
+func (ptr *QXYSeries) __pointsVector_setList(i core.QPointF_ITF, p unsafe.Pointer) {
+	C.QXYSeries___pointsVector_setList(ptr.Pointer(), core.PointerFromQPointF(i), p)
 }
 
 func (ptr *QXYSeries) __pointsVector_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QXYSeries___pointsVector_newList(ptr.Pointer()))
+	return C.QXYSeries___pointsVector_newList(ptr.Pointer())
 }
 
 //export callbackQXYSeries_Type

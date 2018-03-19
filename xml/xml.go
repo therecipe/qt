@@ -16,7 +16,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtXml_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -55,10 +55,10 @@ func PointerFromQDomAttr(ptr QDomAttr_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomAttrFromPointer(ptr unsafe.Pointer) *QDomAttr {
-	var n = new(QDomAttr)
+func NewQDomAttrFromPointer(ptr unsafe.Pointer) (n *QDomAttr) {
+	n = new(QDomAttr)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomAttr) DestroyQDomAttr() {
@@ -70,13 +70,13 @@ func (ptr *QDomAttr) DestroyQDomAttr() {
 }
 
 func NewQDomAttr() *QDomAttr {
-	var tmpValue = NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr())
+	tmpValue := NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr())
 	runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 	return tmpValue
 }
 
 func NewQDomAttr2(x QDomAttr_ITF) *QDomAttr {
-	var tmpValue = NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr2(PointerFromQDomAttr(x)))
+	tmpValue := NewQDomAttrFromPointer(C.QDomAttr_NewQDomAttr2(PointerFromQDomAttr(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 	return tmpValue
 }
@@ -94,7 +94,7 @@ func (ptr *QDomAttr) SetValue(v string) {
 
 func (ptr *QDomAttr) OwnerElement() *QDomElement {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomElementFromPointer(C.QDomAttr_OwnerElement(ptr.Pointer()))
+		tmpValue := NewQDomElementFromPointer(C.QDomAttr_OwnerElement(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -162,10 +162,10 @@ func PointerFromQDomCDATASection(ptr QDomCDATASection_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
-	var n = new(QDomCDATASection)
+func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) (n *QDomCDATASection) {
+	n = new(QDomCDATASection)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
@@ -177,13 +177,13 @@ func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
 }
 
 func NewQDomCDATASection() *QDomCDATASection {
-	var tmpValue = NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
+	tmpValue := NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
 	runtime.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
 	return tmpValue
 }
 
 func NewQDomCDATASection2(x QDomCDATASection_ITF) *QDomCDATASection {
-	var tmpValue = NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection2(PointerFromQDomCDATASection(x)))
+	tmpValue := NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection2(PointerFromQDomCDATASection(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
 	return tmpValue
 }
@@ -221,10 +221,10 @@ func PointerFromQDomCharacterData(ptr QDomCharacterData_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) *QDomCharacterData {
-	var n = new(QDomCharacterData)
+func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) (n *QDomCharacterData) {
+	n = new(QDomCharacterData)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
@@ -236,13 +236,13 @@ func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
 }
 
 func NewQDomCharacterData() *QDomCharacterData {
-	var tmpValue = NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
+	tmpValue := NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
 	runtime.SetFinalizer(tmpValue, (*QDomCharacterData).DestroyQDomCharacterData)
 	return tmpValue
 }
 
 func NewQDomCharacterData2(x QDomCharacterData_ITF) *QDomCharacterData {
-	var tmpValue = NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData2(PointerFromQDomCharacterData(x)))
+	tmpValue := NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData2(PointerFromQDomCharacterData(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomCharacterData).DestroyQDomCharacterData)
 	return tmpValue
 }
@@ -358,10 +358,10 @@ func PointerFromQDomComment(ptr QDomComment_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomCommentFromPointer(ptr unsafe.Pointer) *QDomComment {
-	var n = new(QDomComment)
+func NewQDomCommentFromPointer(ptr unsafe.Pointer) (n *QDomComment) {
+	n = new(QDomComment)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomComment) DestroyQDomComment() {
@@ -373,13 +373,13 @@ func (ptr *QDomComment) DestroyQDomComment() {
 }
 
 func NewQDomComment() *QDomComment {
-	var tmpValue = NewQDomCommentFromPointer(C.QDomComment_NewQDomComment())
+	tmpValue := NewQDomCommentFromPointer(C.QDomComment_NewQDomComment())
 	runtime.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
 	return tmpValue
 }
 
 func NewQDomComment2(x QDomComment_ITF) *QDomComment {
-	var tmpValue = NewQDomCommentFromPointer(C.QDomComment_NewQDomComment2(PointerFromQDomComment(x)))
+	tmpValue := NewQDomCommentFromPointer(C.QDomComment_NewQDomComment2(PointerFromQDomComment(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
 	return tmpValue
 }
@@ -417,10 +417,10 @@ func PointerFromQDomDocument(ptr QDomDocument_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomDocumentFromPointer(ptr unsafe.Pointer) *QDomDocument {
-	var n = new(QDomDocument)
+func NewQDomDocumentFromPointer(ptr unsafe.Pointer) (n *QDomDocument) {
+	n = new(QDomDocument)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QDomDocument) CreateAttribute(name string) *QDomAttr {
 	if ptr.Pointer() != nil {
@@ -429,7 +429,7 @@ func (ptr *QDomDocument) CreateAttribute(name string) *QDomAttr {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomAttrFromPointer(C.QDomDocument_CreateAttribute(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomAttrFromPointer(C.QDomDocument_CreateAttribute(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -448,7 +448,7 @@ func (ptr *QDomDocument) CreateAttributeNS(nsURI string, qName string) *QDomAttr
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		var tmpValue = NewQDomAttrFromPointer(C.QDomDocument_CreateAttributeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}))
+		tmpValue := NewQDomAttrFromPointer(C.QDomDocument_CreateAttributeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -462,7 +462,7 @@ func (ptr *QDomDocument) CreateCDATASection(value string) *QDomCDATASection {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		var tmpValue = NewQDomCDATASectionFromPointer(C.QDomDocument_CreateCDATASection(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
+		tmpValue := NewQDomCDATASectionFromPointer(C.QDomDocument_CreateCDATASection(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
 		runtime.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
 		return tmpValue
 	}
@@ -476,7 +476,7 @@ func (ptr *QDomDocument) CreateComment(value string) *QDomComment {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		var tmpValue = NewQDomCommentFromPointer(C.QDomDocument_CreateComment(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
+		tmpValue := NewQDomCommentFromPointer(C.QDomDocument_CreateComment(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
 		runtime.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
 		return tmpValue
 	}
@@ -484,19 +484,19 @@ func (ptr *QDomDocument) CreateComment(value string) *QDomComment {
 }
 
 func NewQDomDocument() *QDomDocument {
-	var tmpValue = NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument())
+	tmpValue := NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument())
 	runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 	return tmpValue
 }
 
 func NewQDomDocument4(x QDomDocument_ITF) *QDomDocument {
-	var tmpValue = NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument4(PointerFromQDomDocument(x)))
+	tmpValue := NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument4(PointerFromQDomDocument(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 	return tmpValue
 }
 
 func NewQDomDocument3(doctype QDomDocumentType_ITF) *QDomDocument {
-	var tmpValue = NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument3(PointerFromQDomDocumentType(doctype)))
+	tmpValue := NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument3(PointerFromQDomDocumentType(doctype)))
 	runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 	return tmpValue
 }
@@ -507,14 +507,14 @@ func NewQDomDocument2(name string) *QDomDocument {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+	tmpValue := NewQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 	return tmpValue
 }
 
 func (ptr *QDomDocument) CreateDocumentFragment() *QDomDocumentFragment {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentFragmentFromPointer(C.QDomDocument_CreateDocumentFragment(ptr.Pointer()))
+		tmpValue := NewQDomDocumentFragmentFromPointer(C.QDomDocument_CreateDocumentFragment(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentFragment).DestroyQDomDocumentFragment)
 		return tmpValue
 	}
@@ -528,7 +528,7 @@ func (ptr *QDomDocument) CreateElement(tagName string) *QDomElement {
 			tagNameC = C.CString(tagName)
 			defer C.free(unsafe.Pointer(tagNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_CreateElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomDocument_CreateElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -547,7 +547,7 @@ func (ptr *QDomDocument) CreateElementNS(nsURI string, qName string) *QDomElemen
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_CreateElementNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomDocument_CreateElementNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -561,7 +561,7 @@ func (ptr *QDomDocument) ElementById(elementId string) *QDomElement {
 			elementIdC = C.CString(elementId)
 			defer C.free(unsafe.Pointer(elementIdC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_ElementById(ptr.Pointer(), C.struct_QtXml_PackedString{data: elementIdC, len: C.longlong(len(elementId))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomDocument_ElementById(ptr.Pointer(), C.struct_QtXml_PackedString{data: elementIdC, len: C.longlong(len(elementId))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -575,7 +575,7 @@ func (ptr *QDomDocument) CreateEntityReference(name string) *QDomEntityReference
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomEntityReferenceFromPointer(C.QDomDocument_CreateEntityReference(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomEntityReferenceFromPointer(C.QDomDocument_CreateEntityReference(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
 		return tmpValue
 	}
@@ -584,7 +584,7 @@ func (ptr *QDomDocument) CreateEntityReference(name string) *QDomEntityReference
 
 func (ptr *QDomDocument) ImportNode(importedNode QDomNode_ITF, deep bool) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomDocument_ImportNode(ptr.Pointer(), PointerFromQDomNode(importedNode), C.char(int8(qt.GoBoolToInt(deep)))))
+		tmpValue := NewQDomNodeFromPointer(C.QDomDocument_ImportNode(ptr.Pointer(), PointerFromQDomNode(importedNode), C.char(int8(qt.GoBoolToInt(deep)))))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -603,7 +603,7 @@ func (ptr *QDomDocument) ElementsByTagNameNS(nsURI string, localName string) *QD
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		var tmpValue = NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagNameNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
+		tmpValue := NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagNameNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
 	}
@@ -622,7 +622,7 @@ func (ptr *QDomDocument) CreateProcessingInstruction(target string, data string)
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		var tmpValue = NewQDomProcessingInstructionFromPointer(C.QDomDocument_CreateProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))}))
+		tmpValue := NewQDomProcessingInstructionFromPointer(C.QDomDocument_CreateProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))}))
 		runtime.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
 		return tmpValue
 	}
@@ -636,7 +636,7 @@ func (ptr *QDomDocument) CreateTextNode(value string) *QDomText {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		var tmpValue = NewQDomTextFromPointer(C.QDomDocument_CreateTextNode(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
+		tmpValue := NewQDomTextFromPointer(C.QDomDocument_CreateTextNode(ptr.Pointer(), C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}))
 		runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 		return tmpValue
 	}
@@ -759,7 +759,7 @@ func (ptr *QDomDocument) DestroyQDomDocument() {
 
 func (ptr *QDomDocument) ToByteArray(indent int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(int32(indent))))
+		tmpValue := core.NewQByteArrayFromPointer(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(int32(indent))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
@@ -768,7 +768,7 @@ func (ptr *QDomDocument) ToByteArray(indent int) *core.QByteArray {
 
 func (ptr *QDomDocument) Doctype() *QDomDocumentType {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomDocument_Doctype(ptr.Pointer()))
+		tmpValue := NewQDomDocumentTypeFromPointer(C.QDomDocument_Doctype(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 		return tmpValue
 	}
@@ -777,7 +777,7 @@ func (ptr *QDomDocument) Doctype() *QDomDocumentType {
 
 func (ptr *QDomDocument) DocumentElement() *QDomElement {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomElementFromPointer(C.QDomDocument_DocumentElement(ptr.Pointer()))
+		tmpValue := NewQDomElementFromPointer(C.QDomDocument_DocumentElement(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -786,7 +786,7 @@ func (ptr *QDomDocument) DocumentElement() *QDomElement {
 
 func (ptr *QDomDocument) Implementation() *QDomImplementation {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomImplementationFromPointer(C.QDomDocument_Implementation(ptr.Pointer()))
+		tmpValue := NewQDomImplementationFromPointer(C.QDomDocument_Implementation(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomImplementation).DestroyQDomImplementation)
 		return tmpValue
 	}
@@ -807,7 +807,7 @@ func (ptr *QDomDocument) ElementsByTagName(tagname string) *QDomNodeList {
 			tagnameC = C.CString(tagname)
 			defer C.free(unsafe.Pointer(tagnameC))
 		}
-		var tmpValue = NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagName(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagnameC, len: C.longlong(len(tagname))}))
+		tmpValue := NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagName(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagnameC, len: C.longlong(len(tagname))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
 	}
@@ -854,10 +854,10 @@ func PointerFromQDomDocumentFragment(ptr QDomDocumentFragment_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragment {
-	var n = new(QDomDocumentFragment)
+func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) (n *QDomDocumentFragment) {
+	n = new(QDomDocumentFragment)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
@@ -869,13 +869,13 @@ func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
 }
 
 func NewQDomDocumentFragment() *QDomDocumentFragment {
-	var tmpValue = NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
+	tmpValue := NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
 	runtime.SetFinalizer(tmpValue, (*QDomDocumentFragment).DestroyQDomDocumentFragment)
 	return tmpValue
 }
 
 func NewQDomDocumentFragment2(x QDomDocumentFragment_ITF) *QDomDocumentFragment {
-	var tmpValue = NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
+	tmpValue := NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomDocumentFragment).DestroyQDomDocumentFragment)
 	return tmpValue
 }
@@ -920,10 +920,10 @@ func PointerFromQDomDocumentType(ptr QDomDocumentType_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
-	var n = new(QDomDocumentType)
+func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) (n *QDomDocumentType) {
+	n = new(QDomDocumentType)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
@@ -935,20 +935,20 @@ func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
 }
 
 func NewQDomDocumentType() *QDomDocumentType {
-	var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
+	tmpValue := NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
 	runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 	return tmpValue
 }
 
 func NewQDomDocumentType2(n QDomDocumentType_ITF) *QDomDocumentType {
-	var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
+	tmpValue := NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
 	runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 	return tmpValue
 }
 
 func (ptr *QDomDocumentType) Entities() *QDomNamedNodeMap {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Entities(ptr.Pointer()))
+		tmpValue := NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Entities(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
 		return tmpValue
 	}
@@ -957,7 +957,7 @@ func (ptr *QDomDocumentType) Entities() *QDomNamedNodeMap {
 
 func (ptr *QDomDocumentType) Notations() *QDomNamedNodeMap {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Notations(ptr.Pointer()))
+		tmpValue := NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Notations(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
 		return tmpValue
 	}
@@ -1032,10 +1032,10 @@ func PointerFromQDomElement(ptr QDomElement_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomElementFromPointer(ptr unsafe.Pointer) *QDomElement {
-	var n = new(QDomElement)
+func NewQDomElementFromPointer(ptr unsafe.Pointer) (n *QDomElement) {
+	n = new(QDomElement)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomElement) DestroyQDomElement() {
@@ -1053,7 +1053,7 @@ func (ptr *QDomElement) AttributeNode(name string) *QDomAttr {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_AttributeNode(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomAttrFromPointer(C.QDomElement_AttributeNode(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -1072,7 +1072,7 @@ func (ptr *QDomElement) AttributeNodeNS(nsURI string, localName string) *QDomAtt
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_AttributeNodeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
+		tmpValue := NewQDomAttrFromPointer(C.QDomElement_AttributeNodeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -1081,7 +1081,7 @@ func (ptr *QDomElement) AttributeNodeNS(nsURI string, localName string) *QDomAtt
 
 func (ptr *QDomElement) RemoveAttributeNode(oldAttr QDomAttr_ITF) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_RemoveAttributeNode(ptr.Pointer(), PointerFromQDomAttr(oldAttr)))
+		tmpValue := NewQDomAttrFromPointer(C.QDomElement_RemoveAttributeNode(ptr.Pointer(), PointerFromQDomAttr(oldAttr)))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -1090,7 +1090,7 @@ func (ptr *QDomElement) RemoveAttributeNode(oldAttr QDomAttr_ITF) *QDomAttr {
 
 func (ptr *QDomElement) SetAttributeNode(newAttr QDomAttr_ITF) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_SetAttributeNode(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
+		tmpValue := NewQDomAttrFromPointer(C.QDomElement_SetAttributeNode(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -1099,7 +1099,7 @@ func (ptr *QDomElement) SetAttributeNode(newAttr QDomAttr_ITF) *QDomAttr {
 
 func (ptr *QDomElement) SetAttributeNodeNS(newAttr QDomAttr_ITF) *QDomAttr {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomAttrFromPointer(C.QDomElement_SetAttributeNodeNS(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
+		tmpValue := NewQDomAttrFromPointer(C.QDomElement_SetAttributeNodeNS(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -1107,13 +1107,13 @@ func (ptr *QDomElement) SetAttributeNodeNS(newAttr QDomAttr_ITF) *QDomAttr {
 }
 
 func NewQDomElement() *QDomElement {
-	var tmpValue = NewQDomElementFromPointer(C.QDomElement_NewQDomElement())
+	tmpValue := NewQDomElementFromPointer(C.QDomElement_NewQDomElement())
 	runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 	return tmpValue
 }
 
 func NewQDomElement2(x QDomElement_ITF) *QDomElement {
-	var tmpValue = NewQDomElementFromPointer(C.QDomElement_NewQDomElement2(PointerFromQDomElement(x)))
+	tmpValue := NewQDomElementFromPointer(C.QDomElement_NewQDomElement2(PointerFromQDomElement(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 	return tmpValue
 }
@@ -1353,7 +1353,7 @@ func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
 			tagnameC = C.CString(tagname)
 			defer C.free(unsafe.Pointer(tagnameC))
 		}
-		var tmpValue = NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagName(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagnameC, len: C.longlong(len(tagname))}))
+		tmpValue := NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagName(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagnameC, len: C.longlong(len(tagname))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
 	}
@@ -1372,7 +1372,7 @@ func (ptr *QDomElement) ElementsByTagNameNS(nsURI string, localName string) *QDo
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		var tmpValue = NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagNameNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
+		tmpValue := NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagNameNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
 	}
@@ -1494,10 +1494,10 @@ func PointerFromQDomEntity(ptr QDomEntity_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomEntityFromPointer(ptr unsafe.Pointer) *QDomEntity {
-	var n = new(QDomEntity)
+func NewQDomEntityFromPointer(ptr unsafe.Pointer) (n *QDomEntity) {
+	n = new(QDomEntity)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomEntity) DestroyQDomEntity() {
@@ -1509,13 +1509,13 @@ func (ptr *QDomEntity) DestroyQDomEntity() {
 }
 
 func NewQDomEntity() *QDomEntity {
-	var tmpValue = NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
+	tmpValue := NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity())
 	runtime.SetFinalizer(tmpValue, (*QDomEntity).DestroyQDomEntity)
 	return tmpValue
 }
 
 func NewQDomEntity2(x QDomEntity_ITF) *QDomEntity {
-	var tmpValue = NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity2(PointerFromQDomEntity(x)))
+	tmpValue := NewQDomEntityFromPointer(C.QDomEntity_NewQDomEntity2(PointerFromQDomEntity(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomEntity).DestroyQDomEntity)
 	return tmpValue
 }
@@ -1581,10 +1581,10 @@ func PointerFromQDomEntityReference(ptr QDomEntityReference_ITF) unsafe.Pointer 
 	return nil
 }
 
-func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference {
-	var n = new(QDomEntityReference)
+func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) (n *QDomEntityReference) {
+	n = new(QDomEntityReference)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
@@ -1596,13 +1596,13 @@ func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
 }
 
 func NewQDomEntityReference() *QDomEntityReference {
-	var tmpValue = NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
+	tmpValue := NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 	runtime.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
 	return tmpValue
 }
 
 func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
-	var tmpValue = NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
+	tmpValue := NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
 	return tmpValue
 }
@@ -1646,10 +1646,10 @@ func PointerFromQDomImplementation(ptr QDomImplementation_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomImplementationFromPointer(ptr unsafe.Pointer) *QDomImplementation {
-	var n = new(QDomImplementation)
+func NewQDomImplementationFromPointer(ptr unsafe.Pointer) (n *QDomImplementation) {
+	n = new(QDomImplementation)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QDomImplementation__InvalidDataPolicy
@@ -1682,7 +1682,7 @@ func (ptr *QDomImplementation) CreateDocument(nsURI string, qName string, doctyp
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		var tmpValue = NewQDomDocumentFromPointer(C.QDomImplementation_CreateDocument(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQDomDocumentType(doctype)))
+		tmpValue := NewQDomDocumentFromPointer(C.QDomImplementation_CreateDocument(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQDomDocumentType(doctype)))
 		runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 		return tmpValue
 	}
@@ -1706,7 +1706,7 @@ func (ptr *QDomImplementation) CreateDocumentType(qName string, publicId string,
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomImplementation_CreateDocumentType(ptr.Pointer(), C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}))
+		tmpValue := NewQDomDocumentTypeFromPointer(C.QDomImplementation_CreateDocumentType(ptr.Pointer(), C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 		return tmpValue
 	}
@@ -1714,13 +1714,13 @@ func (ptr *QDomImplementation) CreateDocumentType(qName string, publicId string,
 }
 
 func NewQDomImplementation() *QDomImplementation {
-	var tmpValue = NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation())
+	tmpValue := NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation())
 	runtime.SetFinalizer(tmpValue, (*QDomImplementation).DestroyQDomImplementation)
 	return tmpValue
 }
 
 func NewQDomImplementation2(x QDomImplementation_ITF) *QDomImplementation {
-	var tmpValue = NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
+	tmpValue := NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomImplementation).DestroyQDomImplementation)
 	return tmpValue
 }
@@ -1797,19 +1797,19 @@ func PointerFromQDomNamedNodeMap(ptr QDomNamedNodeMap_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomNamedNodeMapFromPointer(ptr unsafe.Pointer) *QDomNamedNodeMap {
-	var n = new(QDomNamedNodeMap)
+func NewQDomNamedNodeMapFromPointer(ptr unsafe.Pointer) (n *QDomNamedNodeMap) {
+	n = new(QDomNamedNodeMap)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDomNamedNodeMap() *QDomNamedNodeMap {
-	var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap())
+	tmpValue := NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap())
 	runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
 	return tmpValue
 }
 
 func NewQDomNamedNodeMap2(n QDomNamedNodeMap_ITF) *QDomNamedNodeMap {
-	var tmpValue = NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap2(PointerFromQDomNamedNodeMap(n)))
+	tmpValue := NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap2(PointerFromQDomNamedNodeMap(n)))
 	runtime.SetFinalizer(tmpValue, (*QDomNamedNodeMap).DestroyQDomNamedNodeMap)
 	return tmpValue
 }
@@ -1821,7 +1821,7 @@ func (ptr *QDomNamedNodeMap) RemoveNamedItem(name string) *QDomNode {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1840,7 +1840,7 @@ func (ptr *QDomNamedNodeMap) RemoveNamedItemNS(nsURI string, localName string) *
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItemNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItemNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1849,7 +1849,7 @@ func (ptr *QDomNamedNodeMap) RemoveNamedItemNS(nsURI string, localName string) *
 
 func (ptr *QDomNamedNodeMap) SetNamedItem(newNode QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItem(ptr.Pointer(), PointerFromQDomNode(newNode)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItem(ptr.Pointer(), PointerFromQDomNode(newNode)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1858,7 +1858,7 @@ func (ptr *QDomNamedNodeMap) SetNamedItem(newNode QDomNode_ITF) *QDomNode {
 
 func (ptr *QDomNamedNodeMap) SetNamedItemNS(newNode QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItemNS(ptr.Pointer(), PointerFromQDomNode(newNode)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItemNS(ptr.Pointer(), PointerFromQDomNode(newNode)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1875,7 +1875,7 @@ func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 
 func (ptr *QDomNamedNodeMap) Item(index int) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_Item(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_Item(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1889,7 +1889,7 @@ func (ptr *QDomNamedNodeMap) NamedItem(name string) *QDomNode {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1908,7 +1908,7 @@ func (ptr *QDomNamedNodeMap) NamedItemNS(nsURI string, localName string) *QDomNo
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItemNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItemNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -1987,10 +1987,10 @@ func PointerFromQDomNode(ptr QDomNode_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomNodeFromPointer(ptr unsafe.Pointer) *QDomNode {
-	var n = new(QDomNode)
+func NewQDomNodeFromPointer(ptr unsafe.Pointer) (n *QDomNode) {
+	n = new(QDomNode)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QDomNode__EncodingPolicy
@@ -2025,7 +2025,7 @@ const (
 
 func (ptr *QDomNode) AppendChild(newChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_AppendChild(ptr.Pointer(), PointerFromQDomNode(newChild)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_AppendChild(ptr.Pointer(), PointerFromQDomNode(newChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2034,7 +2034,7 @@ func (ptr *QDomNode) AppendChild(newChild QDomNode_ITF) *QDomNode {
 
 func (ptr *QDomNode) InsertAfter(newChild QDomNode_ITF, refChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_InsertAfter(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_InsertAfter(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2043,7 +2043,7 @@ func (ptr *QDomNode) InsertAfter(newChild QDomNode_ITF, refChild QDomNode_ITF) *
 
 func (ptr *QDomNode) InsertBefore(newChild QDomNode_ITF, refChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_InsertBefore(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_InsertBefore(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2052,7 +2052,7 @@ func (ptr *QDomNode) InsertBefore(newChild QDomNode_ITF, refChild QDomNode_ITF) 
 
 func (ptr *QDomNode) RemoveChild(oldChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_RemoveChild(ptr.Pointer(), PointerFromQDomNode(oldChild)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_RemoveChild(ptr.Pointer(), PointerFromQDomNode(oldChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2061,7 +2061,7 @@ func (ptr *QDomNode) RemoveChild(oldChild QDomNode_ITF) *QDomNode {
 
 func (ptr *QDomNode) ReplaceChild(newChild QDomNode_ITF, oldChild QDomNode_ITF) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_ReplaceChild(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(oldChild)))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_ReplaceChild(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(oldChild)))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2069,13 +2069,13 @@ func (ptr *QDomNode) ReplaceChild(newChild QDomNode_ITF, oldChild QDomNode_ITF) 
 }
 
 func NewQDomNode() *QDomNode {
-	var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NewQDomNode())
+	tmpValue := NewQDomNodeFromPointer(C.QDomNode_NewQDomNode())
 	runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 	return tmpValue
 }
 
 func NewQDomNode2(n QDomNode_ITF) *QDomNode {
-	var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
+	tmpValue := NewQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
 	runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 	return tmpValue
 }
@@ -2131,7 +2131,7 @@ func (ptr *QDomNode) NodeType() QDomNode__NodeType {
 
 func (ptr *QDomNode) ToAttr() *QDomAttr {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomAttrFromPointer(C.QDomNode_ToAttr(ptr.Pointer()))
+		tmpValue := NewQDomAttrFromPointer(C.QDomNode_ToAttr(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomAttr).DestroyQDomAttr)
 		return tmpValue
 	}
@@ -2140,7 +2140,7 @@ func (ptr *QDomNode) ToAttr() *QDomAttr {
 
 func (ptr *QDomNode) ToCDATASection() *QDomCDATASection {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomCDATASectionFromPointer(C.QDomNode_ToCDATASection(ptr.Pointer()))
+		tmpValue := NewQDomCDATASectionFromPointer(C.QDomNode_ToCDATASection(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomCDATASection).DestroyQDomCDATASection)
 		return tmpValue
 	}
@@ -2149,7 +2149,7 @@ func (ptr *QDomNode) ToCDATASection() *QDomCDATASection {
 
 func (ptr *QDomNode) ToCharacterData() *QDomCharacterData {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomCharacterDataFromPointer(C.QDomNode_ToCharacterData(ptr.Pointer()))
+		tmpValue := NewQDomCharacterDataFromPointer(C.QDomNode_ToCharacterData(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomCharacterData).DestroyQDomCharacterData)
 		return tmpValue
 	}
@@ -2158,7 +2158,7 @@ func (ptr *QDomNode) ToCharacterData() *QDomCharacterData {
 
 func (ptr *QDomNode) ToComment() *QDomComment {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomCommentFromPointer(C.QDomNode_ToComment(ptr.Pointer()))
+		tmpValue := NewQDomCommentFromPointer(C.QDomNode_ToComment(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomComment).DestroyQDomComment)
 		return tmpValue
 	}
@@ -2167,7 +2167,7 @@ func (ptr *QDomNode) ToComment() *QDomComment {
 
 func (ptr *QDomNode) OwnerDocument() *QDomDocument {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentFromPointer(C.QDomNode_OwnerDocument(ptr.Pointer()))
+		tmpValue := NewQDomDocumentFromPointer(C.QDomNode_OwnerDocument(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 		return tmpValue
 	}
@@ -2176,7 +2176,7 @@ func (ptr *QDomNode) OwnerDocument() *QDomDocument {
 
 func (ptr *QDomNode) ToDocument() *QDomDocument {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentFromPointer(C.QDomNode_ToDocument(ptr.Pointer()))
+		tmpValue := NewQDomDocumentFromPointer(C.QDomNode_ToDocument(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocument).DestroyQDomDocument)
 		return tmpValue
 	}
@@ -2185,7 +2185,7 @@ func (ptr *QDomNode) ToDocument() *QDomDocument {
 
 func (ptr *QDomNode) ToDocumentFragment() *QDomDocumentFragment {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentFragmentFromPointer(C.QDomNode_ToDocumentFragment(ptr.Pointer()))
+		tmpValue := NewQDomDocumentFragmentFromPointer(C.QDomNode_ToDocumentFragment(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentFragment).DestroyQDomDocumentFragment)
 		return tmpValue
 	}
@@ -2194,7 +2194,7 @@ func (ptr *QDomNode) ToDocumentFragment() *QDomDocumentFragment {
 
 func (ptr *QDomNode) ToDocumentType() *QDomDocumentType {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomDocumentTypeFromPointer(C.QDomNode_ToDocumentType(ptr.Pointer()))
+		tmpValue := NewQDomDocumentTypeFromPointer(C.QDomNode_ToDocumentType(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomDocumentType).DestroyQDomDocumentType)
 		return tmpValue
 	}
@@ -2208,7 +2208,7 @@ func (ptr *QDomNode) FirstChildElement(tagName string) *QDomElement {
 			tagNameC = C.CString(tagName)
 			defer C.free(unsafe.Pointer(tagNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomNode_FirstChildElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomNode_FirstChildElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -2222,7 +2222,7 @@ func (ptr *QDomNode) LastChildElement(tagName string) *QDomElement {
 			tagNameC = C.CString(tagName)
 			defer C.free(unsafe.Pointer(tagNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomNode_LastChildElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomNode_LastChildElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -2236,7 +2236,7 @@ func (ptr *QDomNode) NextSiblingElement(tagName string) *QDomElement {
 			tagNameC = C.CString(tagName)
 			defer C.free(unsafe.Pointer(tagNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomNode_NextSiblingElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomNode_NextSiblingElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -2250,7 +2250,7 @@ func (ptr *QDomNode) PreviousSiblingElement(tagName string) *QDomElement {
 			tagNameC = C.CString(tagName)
 			defer C.free(unsafe.Pointer(tagNameC))
 		}
-		var tmpValue = NewQDomElementFromPointer(C.QDomNode_PreviousSiblingElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
+		tmpValue := NewQDomElementFromPointer(C.QDomNode_PreviousSiblingElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: tagNameC, len: C.longlong(len(tagName))}))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -2259,7 +2259,7 @@ func (ptr *QDomNode) PreviousSiblingElement(tagName string) *QDomElement {
 
 func (ptr *QDomNode) ToElement() *QDomElement {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomElementFromPointer(C.QDomNode_ToElement(ptr.Pointer()))
+		tmpValue := NewQDomElementFromPointer(C.QDomNode_ToElement(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomElement).DestroyQDomElement)
 		return tmpValue
 	}
@@ -2268,7 +2268,7 @@ func (ptr *QDomNode) ToElement() *QDomElement {
 
 func (ptr *QDomNode) ToEntity() *QDomEntity {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomEntityFromPointer(C.QDomNode_ToEntity(ptr.Pointer()))
+		tmpValue := NewQDomEntityFromPointer(C.QDomNode_ToEntity(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomEntity).DestroyQDomEntity)
 		return tmpValue
 	}
@@ -2277,7 +2277,7 @@ func (ptr *QDomNode) ToEntity() *QDomEntity {
 
 func (ptr *QDomNode) ToEntityReference() *QDomEntityReference {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomEntityReferenceFromPointer(C.QDomNode_ToEntityReference(ptr.Pointer()))
+		tmpValue := NewQDomEntityReferenceFromPointer(C.QDomNode_ToEntityReference(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomEntityReference).DestroyQDomEntityReference)
 		return tmpValue
 	}
@@ -2286,7 +2286,7 @@ func (ptr *QDomNode) ToEntityReference() *QDomEntityReference {
 
 func (ptr *QDomNode) CloneNode(deep bool) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_CloneNode(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(deep)))))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_CloneNode(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(deep)))))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2295,7 +2295,7 @@ func (ptr *QDomNode) CloneNode(deep bool) *QDomNode {
 
 func (ptr *QDomNode) FirstChild() *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_FirstChild(ptr.Pointer()))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_FirstChild(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2304,7 +2304,7 @@ func (ptr *QDomNode) FirstChild() *QDomNode {
 
 func (ptr *QDomNode) LastChild() *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_LastChild(ptr.Pointer()))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_LastChild(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2318,7 +2318,7 @@ func (ptr *QDomNode) NamedItem(name string) *QDomNode {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_NamedItem(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2327,7 +2327,7 @@ func (ptr *QDomNode) NamedItem(name string) *QDomNode {
 
 func (ptr *QDomNode) NextSibling() *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NextSibling(ptr.Pointer()))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_NextSibling(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2336,7 +2336,7 @@ func (ptr *QDomNode) NextSibling() *QDomNode {
 
 func (ptr *QDomNode) ParentNode() *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_ParentNode(ptr.Pointer()))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_ParentNode(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2345,7 +2345,7 @@ func (ptr *QDomNode) ParentNode() *QDomNode {
 
 func (ptr *QDomNode) PreviousSibling() *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNode_PreviousSibling(ptr.Pointer()))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNode_PreviousSibling(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2354,7 +2354,7 @@ func (ptr *QDomNode) PreviousSibling() *QDomNode {
 
 func (ptr *QDomNode) ChildNodes() *QDomNodeList {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeListFromPointer(C.QDomNode_ChildNodes(ptr.Pointer()))
+		tmpValue := NewQDomNodeListFromPointer(C.QDomNode_ChildNodes(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 		return tmpValue
 	}
@@ -2363,7 +2363,7 @@ func (ptr *QDomNode) ChildNodes() *QDomNodeList {
 
 func (ptr *QDomNode) ToNotation() *QDomNotation {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNotationFromPointer(C.QDomNode_ToNotation(ptr.Pointer()))
+		tmpValue := NewQDomNotationFromPointer(C.QDomNode_ToNotation(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomNotation).DestroyQDomNotation)
 		return tmpValue
 	}
@@ -2372,7 +2372,7 @@ func (ptr *QDomNode) ToNotation() *QDomNotation {
 
 func (ptr *QDomNode) ToProcessingInstruction() *QDomProcessingInstruction {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomProcessingInstructionFromPointer(C.QDomNode_ToProcessingInstruction(ptr.Pointer()))
+		tmpValue := NewQDomProcessingInstructionFromPointer(C.QDomNode_ToProcessingInstruction(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
 		return tmpValue
 	}
@@ -2381,7 +2381,7 @@ func (ptr *QDomNode) ToProcessingInstruction() *QDomProcessingInstruction {
 
 func (ptr *QDomNode) ToText() *QDomText {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomTextFromPointer(C.QDomNode_ToText(ptr.Pointer()))
+		tmpValue := NewQDomTextFromPointer(C.QDomNode_ToText(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 		return tmpValue
 	}
@@ -2604,19 +2604,19 @@ func PointerFromQDomNodeList(ptr QDomNodeList_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomNodeListFromPointer(ptr unsafe.Pointer) *QDomNodeList {
-	var n = new(QDomNodeList)
+func NewQDomNodeListFromPointer(ptr unsafe.Pointer) (n *QDomNodeList) {
+	n = new(QDomNodeList)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDomNodeList() *QDomNodeList {
-	var tmpValue = NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList())
+	tmpValue := NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList())
 	runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 	return tmpValue
 }
 
 func NewQDomNodeList2(n QDomNodeList_ITF) *QDomNodeList {
-	var tmpValue = NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
+	tmpValue := NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
 	runtime.SetFinalizer(tmpValue, (*QDomNodeList).DestroyQDomNodeList)
 	return tmpValue
 }
@@ -2631,7 +2631,7 @@ func (ptr *QDomNodeList) DestroyQDomNodeList() {
 
 func (ptr *QDomNodeList) At(index int) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNodeList_At(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNodeList_At(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2640,7 +2640,7 @@ func (ptr *QDomNodeList) At(index int) *QDomNode {
 
 func (ptr *QDomNodeList) Item(index int) *QDomNode {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomNodeFromPointer(C.QDomNodeList_Item(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := NewQDomNodeFromPointer(C.QDomNodeList_Item(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
 		return tmpValue
 	}
@@ -2708,10 +2708,10 @@ func PointerFromQDomNotation(ptr QDomNotation_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomNotationFromPointer(ptr unsafe.Pointer) *QDomNotation {
-	var n = new(QDomNotation)
+func NewQDomNotationFromPointer(ptr unsafe.Pointer) (n *QDomNotation) {
+	n = new(QDomNotation)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomNotation) DestroyQDomNotation() {
@@ -2723,13 +2723,13 @@ func (ptr *QDomNotation) DestroyQDomNotation() {
 }
 
 func NewQDomNotation() *QDomNotation {
-	var tmpValue = NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
+	tmpValue := NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation())
 	runtime.SetFinalizer(tmpValue, (*QDomNotation).DestroyQDomNotation)
 	return tmpValue
 }
 
 func NewQDomNotation2(x QDomNotation_ITF) *QDomNotation {
-	var tmpValue = NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation2(PointerFromQDomNotation(x)))
+	tmpValue := NewQDomNotationFromPointer(C.QDomNotation_NewQDomNotation2(PointerFromQDomNotation(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomNotation).DestroyQDomNotation)
 	return tmpValue
 }
@@ -2788,10 +2788,10 @@ func PointerFromQDomProcessingInstruction(ptr QDomProcessingInstruction_ITF) uns
 	return nil
 }
 
-func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) *QDomProcessingInstruction {
-	var n = new(QDomProcessingInstruction)
+func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) (n *QDomProcessingInstruction) {
+	n = new(QDomProcessingInstruction)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
@@ -2803,13 +2803,13 @@ func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
 }
 
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
-	var tmpValue = NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
+	tmpValue := NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
 	runtime.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
 	return tmpValue
 }
 
 func NewQDomProcessingInstruction2(x QDomProcessingInstruction_ITF) *QDomProcessingInstruction {
-	var tmpValue = NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
+	tmpValue := NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomProcessingInstruction).DestroyQDomProcessingInstruction)
 	return tmpValue
 }
@@ -2879,10 +2879,10 @@ func PointerFromQDomText(ptr QDomText_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQDomTextFromPointer(ptr unsafe.Pointer) *QDomText {
-	var n = new(QDomText)
+func NewQDomTextFromPointer(ptr unsafe.Pointer) (n *QDomText) {
+	n = new(QDomText)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QDomText) DestroyQDomText() {
@@ -2895,7 +2895,7 @@ func (ptr *QDomText) DestroyQDomText() {
 
 func (ptr *QDomText) SplitText(offset int) *QDomText {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDomTextFromPointer(C.QDomText_SplitText(ptr.Pointer(), C.int(int32(offset))))
+		tmpValue := NewQDomTextFromPointer(C.QDomText_SplitText(ptr.Pointer(), C.int(int32(offset))))
 		runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 		return tmpValue
 	}
@@ -2903,13 +2903,13 @@ func (ptr *QDomText) SplitText(offset int) *QDomText {
 }
 
 func NewQDomText() *QDomText {
-	var tmpValue = NewQDomTextFromPointer(C.QDomText_NewQDomText())
+	tmpValue := NewQDomTextFromPointer(C.QDomText_NewQDomText())
 	runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 	return tmpValue
 }
 
 func NewQDomText2(x QDomText_ITF) *QDomText {
-	var tmpValue = NewQDomTextFromPointer(C.QDomText_NewQDomText2(PointerFromQDomText(x)))
+	tmpValue := NewQDomTextFromPointer(C.QDomText_NewQDomText2(PointerFromQDomText(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomText).DestroyQDomText)
 	return tmpValue
 }
@@ -2946,10 +2946,10 @@ func PointerFromQXmlAttributes(ptr QXmlAttributes_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlAttributesFromPointer(ptr unsafe.Pointer) *QXmlAttributes {
-	var n = new(QXmlAttributes)
+func NewQXmlAttributesFromPointer(ptr unsafe.Pointer) (n *QXmlAttributes) {
+	n = new(QXmlAttributes)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlAttributes() *QXmlAttributes {
 	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes())
@@ -3219,10 +3219,10 @@ func PointerFromQXmlContentHandler(ptr QXmlContentHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlContentHandlerFromPointer(ptr unsafe.Pointer) *QXmlContentHandler {
-	var n = new(QXmlContentHandler)
+func NewQXmlContentHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlContentHandler) {
+	n = new(QXmlContentHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlContentHandler_Characters
@@ -3814,10 +3814,10 @@ func PointerFromQXmlDTDHandler(ptr QXmlDTDHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) *QXmlDTDHandler {
-	var n = new(QXmlDTDHandler)
+func NewQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlDTDHandler) {
+	n = new(QXmlDTDHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlDTDHandler_NotationDecl
@@ -4043,10 +4043,10 @@ func PointerFromQXmlDeclHandler(ptr QXmlDeclHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlDeclHandlerFromPointer(ptr unsafe.Pointer) *QXmlDeclHandler {
-	var n = new(QXmlDeclHandler)
+func NewQXmlDeclHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlDeclHandler) {
+	n = new(QXmlDeclHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlDeclHandler_AttributeDecl
@@ -4340,10 +4340,10 @@ func PointerFromQXmlDefaultHandler(ptr QXmlDefaultHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) *QXmlDefaultHandler {
-	var n = new(QXmlDefaultHandler)
+func NewQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlDefaultHandler) {
+	n = new(QXmlDefaultHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlDefaultHandler() *QXmlDefaultHandler {
 	return NewQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
@@ -5982,10 +5982,10 @@ func PointerFromQXmlEntityResolver(ptr QXmlEntityResolver_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlEntityResolver {
-	var n = new(QXmlEntityResolver)
+func NewQXmlEntityResolverFromPointer(ptr unsafe.Pointer) (n *QXmlEntityResolver) {
+	n = new(QXmlEntityResolver)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlEntityResolver_DestroyQXmlEntityResolver
@@ -6102,10 +6102,10 @@ func PointerFromQXmlErrorHandler(ptr QXmlErrorHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
-	var n = new(QXmlErrorHandler)
+func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlErrorHandler) {
+	n = new(QXmlErrorHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlErrorHandler_Error
@@ -6333,10 +6333,10 @@ func PointerFromQXmlInputSource(ptr QXmlInputSource_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
-	var n = new(QXmlInputSource)
+func NewQXmlInputSourceFromPointer(ptr unsafe.Pointer) (n *QXmlInputSource) {
+	n = new(QXmlInputSource)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlInputSource_Next
@@ -6371,7 +6371,7 @@ func (ptr *QXmlInputSource) DisconnectNext() {
 
 func (ptr *QXmlInputSource) Next() *core.QChar {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQCharFromPointer(C.QXmlInputSource_Next(ptr.Pointer()))
+		tmpValue := core.NewQCharFromPointer(C.QXmlInputSource_Next(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
 		return tmpValue
 	}
@@ -6380,7 +6380,7 @@ func (ptr *QXmlInputSource) Next() *core.QChar {
 
 func (ptr *QXmlInputSource) NextDefault() *core.QChar {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQCharFromPointer(C.QXmlInputSource_NextDefault(ptr.Pointer()))
+		tmpValue := core.NewQCharFromPointer(C.QXmlInputSource_NextDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
 		return tmpValue
 	}
@@ -6757,10 +6757,10 @@ func PointerFromQXmlLexicalHandler(ptr QXmlLexicalHandler_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlLexicalHandlerFromPointer(ptr unsafe.Pointer) *QXmlLexicalHandler {
-	var n = new(QXmlLexicalHandler)
+func NewQXmlLexicalHandlerFromPointer(ptr unsafe.Pointer) (n *QXmlLexicalHandler) {
+	n = new(QXmlLexicalHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlLexicalHandler_Comment
@@ -7166,10 +7166,10 @@ func PointerFromQXmlLocator(ptr QXmlLocator_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
-	var n = new(QXmlLocator)
+func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) (n *QXmlLocator) {
+	n = new(QXmlLocator)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlLocator() *QXmlLocator {
 	return NewQXmlLocatorFromPointer(C.QXmlLocator_NewQXmlLocator())
@@ -7325,13 +7325,13 @@ func PointerFromQXmlNamespaceSupport(ptr QXmlNamespaceSupport_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQXmlNamespaceSupportFromPointer(ptr unsafe.Pointer) *QXmlNamespaceSupport {
-	var n = new(QXmlNamespaceSupport)
+func NewQXmlNamespaceSupportFromPointer(ptr unsafe.Pointer) (n *QXmlNamespaceSupport) {
+	n = new(QXmlNamespaceSupport)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlNamespaceSupport() *QXmlNamespaceSupport {
-	var tmpValue = NewQXmlNamespaceSupportFromPointer(C.QXmlNamespaceSupport_NewQXmlNamespaceSupport())
+	tmpValue := NewQXmlNamespaceSupportFromPointer(C.QXmlNamespaceSupport_NewQXmlNamespaceSupport())
 	runtime.SetFinalizer(tmpValue, (*QXmlNamespaceSupport).DestroyQXmlNamespaceSupport)
 	return tmpValue
 }
@@ -7495,10 +7495,10 @@ func PointerFromQXmlParseException(ptr QXmlParseException_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlParseExceptionFromPointer(ptr unsafe.Pointer) *QXmlParseException {
-	var n = new(QXmlParseException)
+func NewQXmlParseExceptionFromPointer(ptr unsafe.Pointer) (n *QXmlParseException) {
+	n = new(QXmlParseException)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlParseException(name string, c int, l int, p string, s string) *QXmlParseException {
 	var nameC *C.char
@@ -7516,13 +7516,13 @@ func NewQXmlParseException(name string, c int, l int, p string, s string) *QXmlP
 		sC = C.CString(s)
 		defer C.free(unsafe.Pointer(sC))
 	}
-	var tmpValue = NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException(C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.int(int32(c)), C.int(int32(l)), C.struct_QtXml_PackedString{data: pC, len: C.longlong(len(p))}, C.struct_QtXml_PackedString{data: sC, len: C.longlong(len(s))}))
+	tmpValue := NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException(C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.int(int32(c)), C.int(int32(l)), C.struct_QtXml_PackedString{data: pC, len: C.longlong(len(p))}, C.struct_QtXml_PackedString{data: sC, len: C.longlong(len(s))}))
 	runtime.SetFinalizer(tmpValue, (*QXmlParseException).DestroyQXmlParseException)
 	return tmpValue
 }
 
 func NewQXmlParseException2(other QXmlParseException_ITF) *QXmlParseException {
-	var tmpValue = NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException2(PointerFromQXmlParseException(other)))
+	tmpValue := NewQXmlParseExceptionFromPointer(C.QXmlParseException_NewQXmlParseException2(PointerFromQXmlParseException(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlParseException).DestroyQXmlParseException)
 	return tmpValue
 }
@@ -7602,10 +7602,10 @@ func PointerFromQXmlReader(ptr QXmlReader_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
-	var n = new(QXmlReader)
+func NewQXmlReaderFromPointer(ptr unsafe.Pointer) (n *QXmlReader) {
+	n = new(QXmlReader)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQXmlReader_Parse
@@ -8364,7 +8364,7 @@ func (ptr *QXmlReader) Property(name string, ok bool) unsafe.Pointer {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return unsafe.Pointer(C.QXmlReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		return C.QXmlReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
 	}
 	return nil
 }
@@ -8402,10 +8402,10 @@ func PointerFromQXmlSimpleReader(ptr QXmlSimpleReader_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) *QXmlSimpleReader {
-	var n = new(QXmlSimpleReader)
+func NewQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) (n *QXmlSimpleReader) {
+	n = new(QXmlSimpleReader)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlSimpleReader() *QXmlSimpleReader {
 	return NewQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
@@ -9450,7 +9450,7 @@ func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return unsafe.Pointer(C.QXmlSimpleReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		return C.QXmlSimpleReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
 	}
 	return nil
 }
@@ -9462,7 +9462,7 @@ func (ptr *QXmlSimpleReader) PropertyDefault(name string, ok bool) unsafe.Pointe
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return unsafe.Pointer(C.QXmlSimpleReader_PropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		return C.QXmlSimpleReader_PropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
 	}
 	return nil
 }

@@ -37,7 +37,7 @@ func goOutput(name, value string, f *parser.Function) string {
 	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("unsafe.Pointer(%v)", name)
+				return fmt.Sprintf("%v", name)
 			}
 
 			return name
@@ -156,12 +156,12 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case parser.IsPackedList(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).__%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\nfor i:=0;i<len(out);i++{ out[i] = (*%v)(nil).__%v_atList%v(i, l.data) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, f.OverloadNumber, name)
 		}
 
 	case parser.IsPackedMap(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor _,i:=range New%vFromPointer(l.data).__%v_keyList(){ out[i] = New%vFromPointer(l.data).__%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\nfor i,v:=range (*%v)(nil).__%v_keyList(l.data){ out[v] = (*%v)(nil).__%v_atList%v(v, i, l.data) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, f.ClassName(), f.Name, f.OverloadNumber, name)
 		}
 	}
 
@@ -399,12 +399,12 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 	case parser.IsPackedList(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).__%v_%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\nfor i:=0;i<len(out);i++{ out[i] = (*%v)(nil).__%v_%v_atList%v(i, l.data) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, name, f.OverloadNumber, name)
 		}
 
 	case parser.IsPackedMap(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor _,i:=range New%vFromPointer(l.data).__%v_keyList(){ out[i] = New%vFromPointer(l.data).__%v_%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\nfor i,v:=range (*%v)(nil).__%v_keyList(l.data){ out[v] = (*%v)(nil).__%v_%v_atList%v(v, i, l.data) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, f.ClassName(), f.Name, name, f.OverloadNumber, name)
 		}
 	}
 
@@ -414,22 +414,28 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 func CppOutput(name, value string, f *parser.Function) string {
 	if strings.HasSuffix(f.Name, "_atList") {
+
+		name = strings.Replace(name, "(ptr)", "(p)", -1)
+
 		if f.IsMap {
-			return cppOutput(fmt.Sprintf("%v->value%v", strings.Split(name, "->")[0], strings.Split(name, "_atList")[1]), value, f)
+			return cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); free(p); }; tmp; })", value, strings.Split(name, "->")[0], strings.TrimSuffix(strings.Split(name, "_atList")[1], ", i, p)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 		}
-		return cppOutput(fmt.Sprintf("%v->at%v", strings.Split(name, "->")[0], strings.Split(name, "_atList")[1]), value, f)
+		return cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); free(p); }; tmp; })", value, strings.Split(name, "->")[0], strings.Replace(strings.Split(name, "_atList")[1], ", p)", ")", -1), strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 	}
 	if strings.HasSuffix(f.Name, "_setList") {
-		if len(f.Parameters) == 2 {
+
+		name = strings.Replace(strings.Replace(name, "(ptr)", "(p)", -1), ", p)", ")", -1)
+
+		if len(f.Parameters) == 3 {
 			return cppOutput(fmt.Sprintf("%v->insert%v", strings.Split(name, "->")[0], strings.Split(name, "_setList")[1]), value, f)
 		}
 		return cppOutput(fmt.Sprintf("%v->append%v", strings.Split(name, "->")[0], strings.Split(name, "_setList")[1]), value, f)
 	}
 	if strings.HasSuffix(f.Name, "_newList") {
-		return fmt.Sprintf("new %v", parser.CleanValue(f.Container))
+		return fmt.Sprintf("new %v()", parser.CleanValue(f.Container))
 	}
 	if strings.HasSuffix(f.Name, "_keyList") {
-		return cppOutput(fmt.Sprintf("static_cast<%v*>(ptr)->keys()", f.Container), value, f)
+		return cppOutput(fmt.Sprintf("static_cast<%v*>(p)->keys()", f.Container), value, f)
 	}
 	return cppOutput(name, value, f)
 }

@@ -22,7 +22,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	}
 
 	if !UseStub(stub, module, mode) {
-		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
+		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if module == "QtAndroidExtras" {
@@ -144,8 +144,7 @@ func PointerFrom%v(ptr %[2]v_ITF) unsafe.Pointer {
 
 			if class.Module == parser.MOC {
 				fmt.Fprintf(bb, `
-func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
-	var n *%[2]v
+func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 	if gPtr, ok := qt.Receive(ptr); !ok {
 		n = new(%[2]v)
 		n.SetPointer(ptr)
@@ -162,7 +161,7 @@ func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
 				n.SetPointer(ptr)
 		}
 	}
-	return n
+	return
 }
 `, strings.Title(class.Name), class.Name,
 					func() string {
@@ -174,10 +173,10 @@ func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
 					}(), class.GetBases()[0])
 			} else {
 				fmt.Fprintf(bb, `
-func New%vFromPointer(ptr unsafe.Pointer) *%[2]v {
-	var n = new(%[2]v)
+func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
+	n = new(%[2]v)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 `, strings.Title(class.Name), class.Name)
 			}

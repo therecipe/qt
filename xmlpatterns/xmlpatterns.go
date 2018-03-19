@@ -17,7 +17,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtXmlPatterns_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromQAbstractMessageHandler(ptr QAbstractMessageHandler_ITF) unsafe.
 	return nil
 }
 
-func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
-	var n = new(QAbstractMessageHandler)
+func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) (n *QAbstractMessageHandler) {
+	n = new(QAbstractMessageHandler)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQAbstractMessageHandler_DestroyQAbstractMessageHandler
@@ -108,107 +108,82 @@ func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandlerDefault() {
 	}
 }
 
-func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractMessageHandler___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractMessageHandler___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QAbstractMessageHandler___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QAbstractMessageHandler) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractMessageHandler___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QAbstractMessageHandler___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractMessageHandler) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractMessageHandler) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractMessageHandler___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractMessageHandler) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractMessageHandler___findChildren_newList2(ptr.Pointer()))
+	return C.QAbstractMessageHandler___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractMessageHandler) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractMessageHandler) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractMessageHandler___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractMessageHandler) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractMessageHandler___findChildren_newList3(ptr.Pointer()))
+	return C.QAbstractMessageHandler___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractMessageHandler) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractMessageHandler___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractMessageHandler) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractMessageHandler) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractMessageHandler___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractMessageHandler) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractMessageHandler___findChildren_newList(ptr.Pointer()))
+	return C.QAbstractMessageHandler___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractMessageHandler) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractMessageHandler___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractMessageHandler) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractMessageHandler___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractMessageHandler) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractMessageHandler) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractMessageHandler___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractMessageHandler) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractMessageHandler___children_newList(ptr.Pointer()))
+	return C.QAbstractMessageHandler___children_newList(ptr.Pointer())
 }
 
 //export callbackQAbstractMessageHandler_Event
@@ -400,13 +375,13 @@ func PointerFromQAbstractUriResolver(ptr QAbstractUriResolver_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
-	var n = new(QAbstractUriResolver)
+func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) (n *QAbstractUriResolver) {
+	n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAbstractUriResolver(parent core.QObject_ITF) *QAbstractUriResolver {
-	var tmpValue = NewQAbstractUriResolverFromPointer(C.QAbstractUriResolver_NewQAbstractUriResolver(core.PointerFromQObject(parent)))
+	tmpValue := NewQAbstractUriResolverFromPointer(C.QAbstractUriResolver_NewQAbstractUriResolver(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -491,114 +466,89 @@ func (ptr *QAbstractUriResolver) DisconnectResolve() {
 
 func (ptr *QAbstractUriResolver) Resolve(relative core.QUrl_ITF, baseURI core.QUrl_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QAbstractUriResolver_Resolve(ptr.Pointer(), core.PointerFromQUrl(relative), core.PointerFromQUrl(baseURI)))
+		tmpValue := core.NewQUrlFromPointer(C.QAbstractUriResolver_Resolve(ptr.Pointer(), core.PointerFromQUrl(relative), core.PointerFromQUrl(baseURI)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QAbstractUriResolver) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QAbstractUriResolver___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QAbstractUriResolver) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractUriResolver___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QAbstractUriResolver) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QAbstractUriResolver) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QAbstractUriResolver___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QAbstractUriResolver) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractUriResolver___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QAbstractUriResolver___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractUriResolver) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractUriResolver) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractUriResolver___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractUriResolver) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractUriResolver___findChildren_newList2(ptr.Pointer()))
+	return C.QAbstractUriResolver___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractUriResolver) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractUriResolver) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractUriResolver___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractUriResolver) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractUriResolver___findChildren_newList3(ptr.Pointer()))
+	return C.QAbstractUriResolver___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractUriResolver) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractUriResolver___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractUriResolver) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractUriResolver) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractUriResolver___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractUriResolver) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractUriResolver___findChildren_newList(ptr.Pointer()))
+	return C.QAbstractUriResolver___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractUriResolver) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractUriResolver___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QAbstractUriResolver) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QAbstractUriResolver___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QAbstractUriResolver) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QAbstractUriResolver) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QAbstractUriResolver___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QAbstractUriResolver) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractUriResolver___children_newList(ptr.Pointer()))
+	return C.QAbstractUriResolver___children_newList(ptr.Pointer())
 }
 
 //export callbackQAbstractUriResolver_Event
@@ -790,10 +740,10 @@ func PointerFromQAbstractXmlNodeModel(ptr QAbstractXmlNodeModel_ITF) unsafe.Poin
 	return nil
 }
 
-func NewQAbstractXmlNodeModelFromPointer(ptr unsafe.Pointer) *QAbstractXmlNodeModel {
-	var n = new(QAbstractXmlNodeModel)
+func NewQAbstractXmlNodeModelFromPointer(ptr unsafe.Pointer) (n *QAbstractXmlNodeModel) {
+	n = new(QAbstractXmlNodeModel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAbstractXmlNodeModel__SimpleAxis
@@ -855,7 +805,7 @@ func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModelDefault() {
 
 func (ptr *QAbstractXmlNodeModel) SourceLocation(index QXmlNodeModelIndex_ITF) *QSourceLocation {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQSourceLocationFromPointer(C.QAbstractXmlNodeModel_SourceLocation(ptr.Pointer(), PointerFromQXmlNodeModelIndex(index)))
+		tmpValue := NewQSourceLocationFromPointer(C.QAbstractXmlNodeModel_SourceLocation(ptr.Pointer(), PointerFromQXmlNodeModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
 		return tmpValue
 	}
@@ -932,7 +882,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectBaseUri() {
 
 func (ptr *QAbstractXmlNodeModel) BaseUri(n QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QAbstractXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := core.NewQUrlFromPointer(C.QAbstractXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -971,7 +921,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectDocumentUri() {
 
 func (ptr *QAbstractXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QAbstractXmlNodeModel_DocumentUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := core.NewQUrlFromPointer(C.QAbstractXmlNodeModel_DocumentUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -1010,7 +960,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectTypedValue() {
 
 func (ptr *QAbstractXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QAbstractXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		tmpValue := core.NewQVariantFromPointer(C.QAbstractXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -1021,20 +971,20 @@ func (ptr *QAbstractXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.
 func callbackQAbstractXmlNodeModel_NamespaceBindings(ptr unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "namespaceBindings"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQAbstractXmlNodeModelFromPointer(NewQAbstractXmlNodeModelFromPointer(nil).__namespaceBindings_newList())
+			tmpList := (*QAbstractXmlNodeModel)(nil).__namespaceBindings_newList()
 			for _, v := range signal.(func(*QXmlNodeModelIndex) []*QXmlName)(NewQXmlNodeModelIndexFromPointer(n)) {
-				tmpList.__namespaceBindings_setList(v)
+				(*QAbstractXmlNodeModel)(nil).__namespaceBindings_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQAbstractXmlNodeModelFromPointer(NewQAbstractXmlNodeModelFromPointer(nil).__namespaceBindings_newList())
+		tmpList := (*QAbstractXmlNodeModel)(nil).__namespaceBindings_newList()
 		for _, v := range make([]*QXmlName, 0) {
-			tmpList.__namespaceBindings_setList(v)
+			(*QAbstractXmlNodeModel)(nil).__namespaceBindings_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -1062,9 +1012,9 @@ func (ptr *QAbstractXmlNodeModel) DisconnectNamespaceBindings() {
 func (ptr *QAbstractXmlNodeModel) NamespaceBindings(n QXmlNodeModelIndex_ITF) []*QXmlName {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
-			var out = make([]*QXmlName, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractXmlNodeModelFromPointer(l.data).__namespaceBindings_atList(i)
+			out := make([]*QXmlName, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractXmlNodeModel)(nil).__namespaceBindings_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstractXmlNodeModel_NamespaceBindings(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
@@ -1076,20 +1026,20 @@ func (ptr *QAbstractXmlNodeModel) NamespaceBindings(n QXmlNodeModelIndex_ITF) []
 func callbackQAbstractXmlNodeModel_NodesByIdref(ptr unsafe.Pointer, idref unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "nodesByIdref"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQAbstractXmlNodeModelFromPointer(NewQAbstractXmlNodeModelFromPointer(nil).__nodesByIdref_newList())
+			tmpList := (*QAbstractXmlNodeModel)(nil).__nodesByIdref_newList()
 			for _, v := range signal.(func(*QXmlName) []*QXmlNodeModelIndex)(NewQXmlNameFromPointer(idref)) {
-				tmpList.__nodesByIdref_setList(v)
+				(*QAbstractXmlNodeModel)(nil).__nodesByIdref_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQAbstractXmlNodeModelFromPointer(NewQAbstractXmlNodeModelFromPointer(nil).__nodesByIdref_newList())
+		tmpList := (*QAbstractXmlNodeModel)(nil).__nodesByIdref_newList()
 		for _, v := range make([]*QXmlNodeModelIndex, 0) {
-			tmpList.__nodesByIdref_setList(v)
+			(*QAbstractXmlNodeModel)(nil).__nodesByIdref_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -1117,9 +1067,9 @@ func (ptr *QAbstractXmlNodeModel) DisconnectNodesByIdref() {
 func (ptr *QAbstractXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
-			var out = make([]*QXmlNodeModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQAbstractXmlNodeModelFromPointer(l.data).__nodesByIdref_atList(i)
+			out := make([]*QXmlNodeModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QAbstractXmlNodeModel)(nil).__nodesByIdref_atList(i, l.data)
 			}
 			return out
 		}(C.QAbstractXmlNodeModel_NodesByIdref(ptr.Pointer(), PointerFromQXmlName(idref)))
@@ -1159,7 +1109,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectName() {
 
 func (ptr *QAbstractXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		tmpValue := NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
 		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 		return tmpValue
 	}
@@ -1168,7 +1118,7 @@ func (ptr *QAbstractXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 
 func (ptr *QAbstractXmlNodeModel) CreateIndex(data int64) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex(ptr.Pointer(), C.longlong(data)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex(ptr.Pointer(), C.longlong(data)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1177,7 +1127,7 @@ func (ptr *QAbstractXmlNodeModel) CreateIndex(data int64) *QXmlNodeModelIndex {
 
 func (ptr *QAbstractXmlNodeModel) CreateIndex3(data int64, additionalData int64) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex3(ptr.Pointer(), C.longlong(data), C.longlong(additionalData)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex3(ptr.Pointer(), C.longlong(data), C.longlong(additionalData)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1186,7 +1136,7 @@ func (ptr *QAbstractXmlNodeModel) CreateIndex3(data int64, additionalData int64)
 
 func (ptr *QAbstractXmlNodeModel) CreateIndex2(pointer unsafe.Pointer, additionalData int64) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex2(ptr.Pointer(), pointer, C.longlong(additionalData)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_CreateIndex2(ptr.Pointer(), pointer, C.longlong(additionalData)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1225,7 +1175,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectElementById() {
 
 func (ptr *QAbstractXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1264,7 +1214,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectNextFromSimpleAxis() {
 
 func (ptr *QAbstractXmlNodeModel) NextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1303,7 +1253,7 @@ func (ptr *QAbstractXmlNodeModel) DisconnectRoot() {
 
 func (ptr *QAbstractXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_Root(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_Root(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -1384,42 +1334,32 @@ func (ptr *QAbstractXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelI
 	return 0
 }
 
-func (ptr *QAbstractXmlNodeModel) __namespaceBindings_atList(i int) *QXmlName {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel___namespaceBindings_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-		return tmpValue
-	}
-	return nil
+func (ptr *QAbstractXmlNodeModel) __namespaceBindings_atList(i int, p unsafe.Pointer) *QXmlName {
+	tmpValue := NewQXmlNameFromPointer(C.QAbstractXmlNodeModel___namespaceBindings_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
 }
 
-func (ptr *QAbstractXmlNodeModel) __namespaceBindings_setList(i QXmlName_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractXmlNodeModel___namespaceBindings_setList(ptr.Pointer(), PointerFromQXmlName(i))
-	}
+func (ptr *QAbstractXmlNodeModel) __namespaceBindings_setList(i QXmlName_ITF, p unsafe.Pointer) {
+	C.QAbstractXmlNodeModel___namespaceBindings_setList(ptr.Pointer(), PointerFromQXmlName(i), p)
 }
 
 func (ptr *QAbstractXmlNodeModel) __namespaceBindings_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractXmlNodeModel___namespaceBindings_newList(ptr.Pointer()))
+	return C.QAbstractXmlNodeModel___namespaceBindings_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractXmlNodeModel) __nodesByIdref_atList(i int) *QXmlNodeModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel___nodesByIdref_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
-		return tmpValue
-	}
-	return nil
+func (ptr *QAbstractXmlNodeModel) __nodesByIdref_atList(i int, p unsafe.Pointer) *QXmlNodeModelIndex {
+	tmpValue := NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel___nodesByIdref_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+	return tmpValue
 }
 
-func (ptr *QAbstractXmlNodeModel) __nodesByIdref_setList(i QXmlNodeModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QAbstractXmlNodeModel___nodesByIdref_setList(ptr.Pointer(), PointerFromQXmlNodeModelIndex(i))
-	}
+func (ptr *QAbstractXmlNodeModel) __nodesByIdref_setList(i QXmlNodeModelIndex_ITF, p unsafe.Pointer) {
+	C.QAbstractXmlNodeModel___nodesByIdref_setList(ptr.Pointer(), PointerFromQXmlNodeModelIndex(i), p)
 }
 
 func (ptr *QAbstractXmlNodeModel) __nodesByIdref_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractXmlNodeModel___nodesByIdref_newList(ptr.Pointer()))
+	return C.QAbstractXmlNodeModel___nodesByIdref_newList(ptr.Pointer())
 }
 
 type QAbstractXmlReceiver struct {
@@ -1454,10 +1394,10 @@ func PointerFromQAbstractXmlReceiver(ptr QAbstractXmlReceiver_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) *QAbstractXmlReceiver {
-	var n = new(QAbstractXmlReceiver)
+func NewQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) (n *QAbstractXmlReceiver) {
+	n = new(QAbstractXmlReceiver)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAbstractXmlReceiver() *QAbstractXmlReceiver {
 	return NewQAbstractXmlReceiverFromPointer(C.QAbstractXmlReceiver_NewQAbstractXmlReceiver())
@@ -1969,10 +1909,10 @@ func PointerFromQPatternist(ptr QPatternist_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQPatternistFromPointer(ptr unsafe.Pointer) *QPatternist {
-	var n = new(QPatternist)
+func NewQPatternistFromPointer(ptr unsafe.Pointer) (n *QPatternist) {
+	n = new(QPatternist)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QPatternist) DestroyQPatternist() {
@@ -2063,10 +2003,10 @@ func PointerFromQSimpleXmlNodeModel(ptr QSimpleXmlNodeModel_ITF) unsafe.Pointer 
 	return nil
 }
 
-func NewQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel {
-	var n = new(QSimpleXmlNodeModel)
+func NewQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) (n *QSimpleXmlNodeModel) {
+	n = new(QSimpleXmlNodeModel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel
@@ -2192,7 +2132,7 @@ func (ptr *QSimpleXmlNodeModel) DisconnectBaseUri() {
 
 func (ptr *QSimpleXmlNodeModel) BaseUri(node QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		tmpValue := core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -2201,7 +2141,7 @@ func (ptr *QSimpleXmlNodeModel) BaseUri(node QXmlNodeModelIndex_ITF) *core.QUrl 
 
 func (ptr *QSimpleXmlNodeModel) BaseUriDefault(node QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUriDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		tmpValue := core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUriDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -2212,20 +2152,20 @@ func (ptr *QSimpleXmlNodeModel) BaseUriDefault(node QXmlNodeModelIndex_ITF) *cor
 func callbackQSimpleXmlNodeModel_NamespaceBindings(ptr unsafe.Pointer, node unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "namespaceBindings"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQSimpleXmlNodeModelFromPointer(NewQSimpleXmlNodeModelFromPointer(nil).__namespaceBindings_newList())
+			tmpList := (*QSimpleXmlNodeModel)(nil).__namespaceBindings_newList()
 			for _, v := range signal.(func(*QXmlNodeModelIndex) []*QXmlName)(NewQXmlNodeModelIndexFromPointer(node)) {
-				tmpList.__namespaceBindings_setList(v)
+				(*QSimpleXmlNodeModel)(nil).__namespaceBindings_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQSimpleXmlNodeModelFromPointer(NewQSimpleXmlNodeModelFromPointer(nil).__namespaceBindings_newList())
+		tmpList := (*QSimpleXmlNodeModel)(nil).__namespaceBindings_newList()
 		for _, v := range NewQSimpleXmlNodeModelFromPointer(ptr).NamespaceBindingsDefault(NewQXmlNodeModelIndexFromPointer(node)) {
-			tmpList.__namespaceBindings_setList(v)
+			(*QSimpleXmlNodeModel)(nil).__namespaceBindings_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -2253,9 +2193,9 @@ func (ptr *QSimpleXmlNodeModel) DisconnectNamespaceBindings() {
 func (ptr *QSimpleXmlNodeModel) NamespaceBindings(node QXmlNodeModelIndex_ITF) []*QXmlName {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
-			var out = make([]*QXmlName, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).__namespaceBindings_atList(i)
+			out := make([]*QXmlName, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QSimpleXmlNodeModel)(nil).__namespaceBindings_atList(i, l.data)
 			}
 			return out
 		}(C.QSimpleXmlNodeModel_NamespaceBindings(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
@@ -2266,9 +2206,9 @@ func (ptr *QSimpleXmlNodeModel) NamespaceBindings(node QXmlNodeModelIndex_ITF) [
 func (ptr *QSimpleXmlNodeModel) NamespaceBindingsDefault(node QXmlNodeModelIndex_ITF) []*QXmlName {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
-			var out = make([]*QXmlName, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).__namespaceBindings_atList(i)
+			out := make([]*QXmlName, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QSimpleXmlNodeModel)(nil).__namespaceBindings_atList(i, l.data)
 			}
 			return out
 		}(C.QSimpleXmlNodeModel_NamespaceBindingsDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
@@ -2280,20 +2220,20 @@ func (ptr *QSimpleXmlNodeModel) NamespaceBindingsDefault(node QXmlNodeModelIndex
 func callbackQSimpleXmlNodeModel_NodesByIdref(ptr unsafe.Pointer, idref unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "nodesByIdref"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQSimpleXmlNodeModelFromPointer(NewQSimpleXmlNodeModelFromPointer(nil).__nodesByIdref_newList())
+			tmpList := (*QSimpleXmlNodeModel)(nil).__nodesByIdref_newList()
 			for _, v := range signal.(func(*QXmlName) []*QXmlNodeModelIndex)(NewQXmlNameFromPointer(idref)) {
-				tmpList.__nodesByIdref_setList(v)
+				(*QSimpleXmlNodeModel)(nil).__nodesByIdref_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQSimpleXmlNodeModelFromPointer(NewQSimpleXmlNodeModelFromPointer(nil).__nodesByIdref_newList())
+		tmpList := (*QSimpleXmlNodeModel)(nil).__nodesByIdref_newList()
 		for _, v := range NewQSimpleXmlNodeModelFromPointer(ptr).NodesByIdrefDefault(NewQXmlNameFromPointer(idref)) {
-			tmpList.__nodesByIdref_setList(v)
+			(*QSimpleXmlNodeModel)(nil).__nodesByIdref_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -2321,9 +2261,9 @@ func (ptr *QSimpleXmlNodeModel) DisconnectNodesByIdref() {
 func (ptr *QSimpleXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
-			var out = make([]*QXmlNodeModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).__nodesByIdref_atList(i)
+			out := make([]*QXmlNodeModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QSimpleXmlNodeModel)(nil).__nodesByIdref_atList(i, l.data)
 			}
 			return out
 		}(C.QSimpleXmlNodeModel_NodesByIdref(ptr.Pointer(), PointerFromQXmlName(idref)))
@@ -2334,9 +2274,9 @@ func (ptr *QSimpleXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeMode
 func (ptr *QSimpleXmlNodeModel) NodesByIdrefDefault(idref QXmlName_ITF) []*QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
-			var out = make([]*QXmlNodeModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).__nodesByIdref_atList(i)
+			out := make([]*QXmlNodeModelIndex, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QSimpleXmlNodeModel)(nil).__nodesByIdref_atList(i, l.data)
 			}
 			return out
 		}(C.QSimpleXmlNodeModel_NodesByIdrefDefault(ptr.Pointer(), PointerFromQXmlName(idref)))
@@ -2346,7 +2286,7 @@ func (ptr *QSimpleXmlNodeModel) NodesByIdrefDefault(idref QXmlName_ITF) []*QXmlN
 
 func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
+		tmpValue := NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
 	}
@@ -2385,7 +2325,7 @@ func (ptr *QSimpleXmlNodeModel) DisconnectElementById() {
 
 func (ptr *QSimpleXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2394,7 +2334,7 @@ func (ptr *QSimpleXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex
 
 func (ptr *QSimpleXmlNodeModel) ElementByIdDefault(id QXmlName_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementByIdDefault(ptr.Pointer(), PointerFromQXmlName(id)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementByIdDefault(ptr.Pointer(), PointerFromQXmlName(id)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2412,7 +2352,7 @@ func callbackQSimpleXmlNodeModel_DocumentUri(ptr unsafe.Pointer, n unsafe.Pointe
 
 func (ptr *QSimpleXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_DocumentUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_DocumentUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -2421,7 +2361,7 @@ func (ptr *QSimpleXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QUrl
 
 func (ptr *QSimpleXmlNodeModel) DocumentUriDefault(n QXmlNodeModelIndex_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_DocumentUriDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_DocumentUriDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -2439,7 +2379,7 @@ func callbackQSimpleXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Poin
 
 func (ptr *QSimpleXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		tmpValue := core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2448,7 +2388,7 @@ func (ptr *QSimpleXmlNodeModel) TypedValue(node QXmlNodeModelIndex_ITF) *core.QV
 
 func (ptr *QSimpleXmlNodeModel) TypedValueDefault(node QXmlNodeModelIndex_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValueDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+		tmpValue := core.NewQVariantFromPointer(C.QSimpleXmlNodeModel_TypedValueDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2466,7 +2406,7 @@ func callbackQSimpleXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) uns
 
 func (ptr *QSimpleXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		tmpValue := NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
 		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 		return tmpValue
 	}
@@ -2475,7 +2415,7 @@ func (ptr *QSimpleXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 
 func (ptr *QSimpleXmlNodeModel) NameDefault(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_NameDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		tmpValue := NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_NameDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
 		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 		return tmpValue
 	}
@@ -2493,7 +2433,7 @@ func callbackQSimpleXmlNodeModel_NextFromSimpleAxis(ptr unsafe.Pointer, axis C.l
 
 func (ptr *QSimpleXmlNodeModel) NextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_NextFromSimpleAxis(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2502,7 +2442,7 @@ func (ptr *QSimpleXmlNodeModel) NextFromSimpleAxis(axis QAbstractXmlNodeModel__S
 
 func (ptr *QSimpleXmlNodeModel) NextFromSimpleAxisDefault(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_NextFromSimpleAxisDefault(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_NextFromSimpleAxisDefault(ptr.Pointer(), C.longlong(axis), PointerFromQXmlNodeModelIndex(origin)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2520,7 +2460,7 @@ func callbackQSimpleXmlNodeModel_Root(ptr unsafe.Pointer, n unsafe.Pointer) unsa
 
 func (ptr *QSimpleXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_Root(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_Root(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2529,7 +2469,7 @@ func (ptr *QSimpleXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelInd
 
 func (ptr *QSimpleXmlNodeModel) RootDefault(n QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_RootDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_RootDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2614,25 +2554,25 @@ func PointerFromQSourceLocation(ptr QSourceLocation_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSourceLocationFromPointer(ptr unsafe.Pointer) *QSourceLocation {
-	var n = new(QSourceLocation)
+func NewQSourceLocationFromPointer(ptr unsafe.Pointer) (n *QSourceLocation) {
+	n = new(QSourceLocation)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQSourceLocation() *QSourceLocation {
-	var tmpValue = NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation())
+	tmpValue := NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation())
 	runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
 	return tmpValue
 }
 
 func NewQSourceLocation2(other QSourceLocation_ITF) *QSourceLocation {
-	var tmpValue = NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation2(PointerFromQSourceLocation(other)))
+	tmpValue := NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation2(PointerFromQSourceLocation(other)))
 	runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
 	return tmpValue
 }
 
 func NewQSourceLocation3(u core.QUrl_ITF, l int, c int) *QSourceLocation {
-	var tmpValue = NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(int32(l)), C.int(int32(c))))
+	tmpValue := NewQSourceLocationFromPointer(C.QSourceLocation_NewQSourceLocation3(core.PointerFromQUrl(u), C.int(int32(l)), C.int(int32(c))))
 	runtime.SetFinalizer(tmpValue, (*QSourceLocation).DestroyQSourceLocation)
 	return tmpValue
 }
@@ -2665,7 +2605,7 @@ func (ptr *QSourceLocation) DestroyQSourceLocation() {
 
 func (ptr *QSourceLocation) Uri() *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QSourceLocation_Uri(ptr.Pointer()))
+		tmpValue := core.NewQUrlFromPointer(C.QSourceLocation_Uri(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -2726,10 +2666,10 @@ func PointerFromQXmlFormatter(ptr QXmlFormatter_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
-	var n = new(QXmlFormatter)
+func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) (n *QXmlFormatter) {
+	n = new(QXmlFormatter)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
@@ -2790,31 +2730,31 @@ func PointerFromQXmlItem(ptr QXmlItem_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlItemFromPointer(ptr unsafe.Pointer) *QXmlItem {
-	var n = new(QXmlItem)
+func NewQXmlItemFromPointer(ptr unsafe.Pointer) (n *QXmlItem) {
+	n = new(QXmlItem)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlItem() *QXmlItem {
-	var tmpValue = NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem())
+	tmpValue := NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem())
 	runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 	return tmpValue
 }
 
 func NewQXmlItem4(atomicValue core.QVariant_ITF) *QXmlItem {
-	var tmpValue = NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem4(core.PointerFromQVariant(atomicValue)))
+	tmpValue := NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem4(core.PointerFromQVariant(atomicValue)))
 	runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 	return tmpValue
 }
 
 func NewQXmlItem2(other QXmlItem_ITF) *QXmlItem {
-	var tmpValue = NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem2(PointerFromQXmlItem(other)))
+	tmpValue := NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem2(PointerFromQXmlItem(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 	return tmpValue
 }
 
 func NewQXmlItem3(node QXmlNodeModelIndex_ITF) *QXmlItem {
-	var tmpValue = NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem3(PointerFromQXmlNodeModelIndex(node)))
+	tmpValue := NewQXmlItemFromPointer(C.QXmlItem_NewQXmlItem3(PointerFromQXmlNodeModelIndex(node)))
 	runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 	return tmpValue
 }
@@ -2829,7 +2769,7 @@ func (ptr *QXmlItem) DestroyQXmlItem() {
 
 func (ptr *QXmlItem) ToAtomicValue() *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QXmlItem_ToAtomicValue(ptr.Pointer()))
+		tmpValue := core.NewQVariantFromPointer(C.QXmlItem_ToAtomicValue(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2838,7 +2778,7 @@ func (ptr *QXmlItem) ToAtomicValue() *core.QVariant {
 
 func (ptr *QXmlItem) ToNodeModelIndex() *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QXmlItem_ToNodeModelIndex(ptr.Pointer()))
+		tmpValue := NewQXmlNodeModelIndexFromPointer(C.QXmlItem_ToNodeModelIndex(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 		return tmpValue
 	}
@@ -2898,10 +2838,10 @@ func PointerFromQXmlName(ptr QXmlName_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlNameFromPointer(ptr unsafe.Pointer) *QXmlName {
-	var n = new(QXmlName)
+func NewQXmlNameFromPointer(ptr unsafe.Pointer) (n *QXmlName) {
+	n = new(QXmlName)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QXmlName) DestroyQXmlName() {
@@ -2918,7 +2858,7 @@ func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlNa
 		clarkNameC = C.CString(clarkName)
 		defer C.free(unsafe.Pointer(clarkNameC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{data: clarkNameC, len: C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
+	tmpValue := NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{data: clarkNameC, len: C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -2929,13 +2869,13 @@ func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) 
 		clarkNameC = C.CString(clarkName)
 		defer C.free(unsafe.Pointer(clarkNameC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{data: clarkNameC, len: C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
+	tmpValue := NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(C.struct_QtXmlPatterns_PackedString{data: clarkNameC, len: C.longlong(len(clarkName))}, PointerFromQXmlNamePool(namePool)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
 
 func NewQXmlName() *QXmlName {
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName())
+	tmpValue := NewQXmlNameFromPointer(C.QXmlName_NewQXmlName())
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -2956,13 +2896,13 @@ func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI stri
 		prefixC = C.CString(prefix)
 		defer C.free(unsafe.Pointer(prefixC))
 	}
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.struct_QtXmlPatterns_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXmlPatterns_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXmlPatterns_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
+	tmpValue := NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.struct_QtXmlPatterns_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXmlPatterns_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXmlPatterns_PackedString{data: prefixC, len: C.longlong(len(prefix))}))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
 
 func NewQXmlName3(other QXmlName_ITF) *QXmlName {
-	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_NewQXmlName3(PointerFromQXmlName(other)))
+	tmpValue := NewQXmlNameFromPointer(C.QXmlName_NewQXmlName3(PointerFromQXmlName(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 	return tmpValue
 }
@@ -3052,19 +2992,19 @@ func PointerFromQXmlNamePool(ptr QXmlNamePool_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlNamePoolFromPointer(ptr unsafe.Pointer) *QXmlNamePool {
-	var n = new(QXmlNamePool)
+func NewQXmlNamePoolFromPointer(ptr unsafe.Pointer) (n *QXmlNamePool) {
+	n = new(QXmlNamePool)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlNamePool() *QXmlNamePool {
-	var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
+	tmpValue := NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
 	runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 	return tmpValue
 }
 
 func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
-	var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
+	tmpValue := NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 	return tmpValue
 }
@@ -3109,10 +3049,10 @@ func PointerFromQXmlNodeModelIndex(ptr QXmlNodeModelIndex_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
-	var n = new(QXmlNodeModelIndex)
+func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) (n *QXmlNodeModelIndex) {
+	n = new(QXmlNodeModelIndex)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QXmlNodeModelIndex) DestroyQXmlNodeModelIndex() {
@@ -3148,13 +3088,13 @@ const (
 )
 
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
-	var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
+	tmpValue := NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
 	runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 	return tmpValue
 }
 
 func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
-	var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
+	tmpValue := NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
 	return tmpValue
 }
@@ -3189,28 +3129,23 @@ func (ptr *QXmlNodeModelIndex) Data() int64 {
 
 func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QXmlNodeModelIndex_InternalPointer(ptr.Pointer()))
+		return C.QXmlNodeModelIndex_InternalPointer(ptr.Pointer())
 	}
 	return nil
 }
 
-func (ptr *QXmlNodeModelIndex) __namespaceBindings_atList(i int) *QXmlName {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QXmlNodeModelIndex___namespaceBindings_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
-		return tmpValue
-	}
-	return nil
+func (ptr *QXmlNodeModelIndex) __namespaceBindings_atList(i int, p unsafe.Pointer) *QXmlName {
+	tmpValue := NewQXmlNameFromPointer(C.QXmlNodeModelIndex___namespaceBindings_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
 }
 
-func (ptr *QXmlNodeModelIndex) __namespaceBindings_setList(i QXmlName_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXmlNodeModelIndex___namespaceBindings_setList(ptr.Pointer(), PointerFromQXmlName(i))
-	}
+func (ptr *QXmlNodeModelIndex) __namespaceBindings_setList(i QXmlName_ITF, p unsafe.Pointer) {
+	C.QXmlNodeModelIndex___namespaceBindings_setList(ptr.Pointer(), PointerFromQXmlName(i), p)
 }
 
 func (ptr *QXmlNodeModelIndex) __namespaceBindings_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QXmlNodeModelIndex___namespaceBindings_newList(ptr.Pointer()))
+	return C.QXmlNodeModelIndex___namespaceBindings_newList(ptr.Pointer())
 }
 
 type QXmlQuery struct {
@@ -3245,10 +3180,10 @@ func PointerFromQXmlQuery(ptr QXmlQuery_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
-	var n = new(QXmlQuery)
+func NewQXmlQueryFromPointer(ptr unsafe.Pointer) (n *QXmlQuery) {
+	n = new(QXmlQuery)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QXmlQuery__QueryLanguage
@@ -3264,25 +3199,25 @@ const (
 )
 
 func NewQXmlQuery() *QXmlQuery {
-	var tmpValue = NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
+	tmpValue := NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
 	runtime.SetFinalizer(tmpValue, (*QXmlQuery).DestroyQXmlQuery)
 	return tmpValue
 }
 
 func NewQXmlQuery4(queryLanguage QXmlQuery__QueryLanguage, np QXmlNamePool_ITF) *QXmlQuery {
-	var tmpValue = NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery4(C.longlong(queryLanguage), PointerFromQXmlNamePool(np)))
+	tmpValue := NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery4(C.longlong(queryLanguage), PointerFromQXmlNamePool(np)))
 	runtime.SetFinalizer(tmpValue, (*QXmlQuery).DestroyQXmlQuery)
 	return tmpValue
 }
 
 func NewQXmlQuery3(np QXmlNamePool_ITF) *QXmlQuery {
-	var tmpValue = NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery3(PointerFromQXmlNamePool(np)))
+	tmpValue := NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery3(PointerFromQXmlNamePool(np)))
 	runtime.SetFinalizer(tmpValue, (*QXmlQuery).DestroyQXmlQuery)
 	return tmpValue
 }
 
 func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
-	var tmpValue = NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
+	tmpValue := NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlQuery).DestroyQXmlQuery)
 	return tmpValue
 }
@@ -3438,7 +3373,7 @@ func (ptr *QXmlQuery) DestroyQXmlQuery() {
 
 func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
+		tmpValue := NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3449,7 +3384,7 @@ func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
 
 func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
+		tmpValue := network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3460,7 +3395,7 @@ func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
 
 func (ptr *QXmlQuery) InitialTemplateName() *QXmlName {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNameFromPointer(C.QXmlQuery_InitialTemplateName(ptr.Pointer()))
+		tmpValue := NewQXmlNameFromPointer(C.QXmlQuery_InitialTemplateName(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 		return tmpValue
 	}
@@ -3469,7 +3404,7 @@ func (ptr *QXmlQuery) InitialTemplateName() *QXmlName {
 
 func (ptr *QXmlQuery) NamePool() *QXmlNamePool {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlQuery_NamePool(ptr.Pointer()))
+		tmpValue := NewQXmlNamePoolFromPointer(C.QXmlQuery_NamePool(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
 	}
@@ -3511,7 +3446,7 @@ func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 
 func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
 	if ptr.Pointer() != nil {
-		var targetC = C.CString(strings.Join(target, "|"))
+		targetC := C.CString(strings.Join(target, "|"))
 		defer C.free(unsafe.Pointer(targetC))
 		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: targetC, len: C.longlong(len(strings.Join(target, "|")))}) != 0
 	}
@@ -3527,7 +3462,7 @@ func (ptr *QXmlQuery) IsValid() bool {
 
 func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlQuery_UriResolver(ptr.Pointer()))
+		tmpValue := NewQAbstractUriResolverFromPointer(C.QXmlQuery_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3574,14 +3509,14 @@ func PointerFromQXmlResultItems(ptr QXmlResultItems_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
-	var n = new(QXmlResultItems)
+func NewQXmlResultItemsFromPointer(ptr unsafe.Pointer) (n *QXmlResultItems) {
+	n = new(QXmlResultItems)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QXmlResultItems) Next() *QXmlItem {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlItemFromPointer(C.QXmlResultItems_Next(ptr.Pointer()))
+		tmpValue := NewQXmlItemFromPointer(C.QXmlResultItems_Next(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 		return tmpValue
 	}
@@ -3640,7 +3575,7 @@ func (ptr *QXmlResultItems) DestroyQXmlResultItemsDefault() {
 
 func (ptr *QXmlResultItems) Current() *QXmlItem {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlItemFromPointer(C.QXmlResultItems_Current(ptr.Pointer()))
+		tmpValue := NewQXmlItemFromPointer(C.QXmlResultItems_Current(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlItem).DestroyQXmlItem)
 		return tmpValue
 	}
@@ -3686,19 +3621,19 @@ func PointerFromQXmlSchema(ptr QXmlSchema_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlSchemaFromPointer(ptr unsafe.Pointer) *QXmlSchema {
-	var n = new(QXmlSchema)
+func NewQXmlSchemaFromPointer(ptr unsafe.Pointer) (n *QXmlSchema) {
+	n = new(QXmlSchema)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlSchema() *QXmlSchema {
-	var tmpValue = NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
+	tmpValue := NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
 	runtime.SetFinalizer(tmpValue, (*QXmlSchema).DestroyQXmlSchema)
 	return tmpValue
 }
 
 func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
-	var tmpValue = NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
+	tmpValue := NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
 	runtime.SetFinalizer(tmpValue, (*QXmlSchema).DestroyQXmlSchema)
 	return tmpValue
 }
@@ -3752,7 +3687,7 @@ func (ptr *QXmlSchema) DestroyQXmlSchema() {
 
 func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
+		tmpValue := NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3763,7 +3698,7 @@ func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 
 func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
+		tmpValue := network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3774,7 +3709,7 @@ func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
 
 func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQUrlFromPointer(C.QXmlSchema_DocumentUri(ptr.Pointer()))
+		tmpValue := core.NewQUrlFromPointer(C.QXmlSchema_DocumentUri(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
 	}
@@ -3783,7 +3718,7 @@ func (ptr *QXmlSchema) DocumentUri() *core.QUrl {
 
 func (ptr *QXmlSchema) NamePool() *QXmlNamePool {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchema_NamePool(ptr.Pointer()))
+		tmpValue := NewQXmlNamePoolFromPointer(C.QXmlSchema_NamePool(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
 	}
@@ -3799,7 +3734,7 @@ func (ptr *QXmlSchema) IsValid() bool {
 
 func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
+		tmpValue := NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3840,19 +3775,19 @@ func PointerFromQXmlSchemaValidator(ptr QXmlSchemaValidator_ITF) unsafe.Pointer 
 	return nil
 }
 
-func NewQXmlSchemaValidatorFromPointer(ptr unsafe.Pointer) *QXmlSchemaValidator {
-	var n = new(QXmlSchemaValidator)
+func NewQXmlSchemaValidatorFromPointer(ptr unsafe.Pointer) (n *QXmlSchemaValidator) {
+	n = new(QXmlSchemaValidator)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQXmlSchemaValidator() *QXmlSchemaValidator {
-	var tmpValue = NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator())
+	tmpValue := NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator())
 	runtime.SetFinalizer(tmpValue, (*QXmlSchemaValidator).DestroyQXmlSchemaValidator)
 	return tmpValue
 }
 
 func NewQXmlSchemaValidator2(schema QXmlSchema_ITF) *QXmlSchemaValidator {
-	var tmpValue = NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator2(PointerFromQXmlSchema(schema)))
+	tmpValue := NewQXmlSchemaValidatorFromPointer(C.QXmlSchemaValidator_NewQXmlSchemaValidator2(PointerFromQXmlSchema(schema)))
 	runtime.SetFinalizer(tmpValue, (*QXmlSchemaValidator).DestroyQXmlSchemaValidator)
 	return tmpValue
 }
@@ -3891,7 +3826,7 @@ func (ptr *QXmlSchemaValidator) DestroyQXmlSchemaValidator() {
 
 func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
+		tmpValue := NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3902,7 +3837,7 @@ func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
 
 func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
+		tmpValue := network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3913,7 +3848,7 @@ func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessMa
 
 func (ptr *QXmlSchemaValidator) NamePool() *QXmlNamePool {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlNamePoolFromPointer(C.QXmlSchemaValidator_NamePool(ptr.Pointer()))
+		tmpValue := NewQXmlNamePoolFromPointer(C.QXmlSchemaValidator_NamePool(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
 	}
@@ -3922,7 +3857,7 @@ func (ptr *QXmlSchemaValidator) NamePool() *QXmlNamePool {
 
 func (ptr *QXmlSchemaValidator) Schema() *QXmlSchema {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQXmlSchemaFromPointer(C.QXmlSchemaValidator_Schema(ptr.Pointer()))
+		tmpValue := NewQXmlSchemaFromPointer(C.QXmlSchemaValidator_Schema(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlSchema).DestroyQXmlSchema)
 		return tmpValue
 	}
@@ -3952,7 +3887,7 @@ func (ptr *QXmlSchemaValidator) Validate(source core.QUrl_ITF) bool {
 
 func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
+		tmpValue := NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3994,10 +3929,10 @@ func PointerFromQXmlSerializer(ptr QXmlSerializer_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
-	var n = new(QXmlSerializer)
+func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) (n *QXmlSerializer) {
+	n = new(QXmlSerializer)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
@@ -4545,7 +4480,7 @@ func (ptr *QXmlSerializer) StartOfSequenceDefault() {
 
 func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
+		tmpValue := core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}

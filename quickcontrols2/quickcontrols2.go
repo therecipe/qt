@@ -14,7 +14,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtQuickControls2_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -52,10 +52,10 @@ func PointerFromQQuickStyle(ptr QQuickStyle_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQQuickStyleFromPointer(ptr unsafe.Pointer) *QQuickStyle {
-	var n = new(QQuickStyle)
+func NewQQuickStyleFromPointer(ptr unsafe.Pointer) (n *QQuickStyle) {
+	n = new(QQuickStyle)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QQuickStyle) DestroyQQuickStyle() {

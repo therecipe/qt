@@ -170,17 +170,17 @@ func GoInput(name, value string, f *parser.Function) string {
 	case parser.IsPackedList(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() unsafe.Pointer {\ntmpList :=(*%v)(nil).__%v_newList%v()\nfor _,v := range %v{\n(*%v)(nil).__%v_setList%v(v, tmpList)\n}\nreturn tmpList\n}()", f.ClassName(), f.Name, f.OverloadNumber, name, f.ClassName(), f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() unsafe.Pointer {\ntmpList := (*%v)(nil).__%v_%v_newList%v()\nfor _,v := range %v{\n(*%v)(nil).__%v_%v_setList%v(v, tmpList)\n}\nreturn tmpList\n}()", f.ClassName(), f.Name, name, f.OverloadNumber, name, f.ClassName(), f.Name, name, f.OverloadNumber)
 		}
 
 	case parser.IsPackedMap(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() unsafe.Pointer {\ntmpList := (*%v)(nil).__%v_newList%v()\nfor k,v := range %v{\n(*%v)(nil).__%v_setList%v(k, v, tmpList)\n}\nreturn tmpList\n}()", f.ClassName(), f.Name, f.OverloadNumber, name, f.ClassName(), f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() unsafe.Pointer {\nvar tmpList = New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k,v)\n}\nreturn tmpList.Pointer()\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() unsafe.Pointer {\ntmpList := (*%v)(nil).__%v_%v_newList%v()\nfor k,v := range %v{\n(*%v)(nil).__%v_%v_setList%v(k, v, tmpList)\n}\nreturn tmpList\n}()", f.ClassName(), f.Name, name, f.OverloadNumber, name, f.ClassName(), f.Name, name, f.OverloadNumber)
 		}
 	}
 
@@ -384,7 +384,11 @@ func cppInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
 			}
 
-			return fmt.Sprintf("*static_cast<%v*>(%v)", value, name)
+			if strings.HasPrefix(vOld, "const") || f.Fullname == "QMacToolBar::setItems" || f.Fullname == "QMacToolBar::setAllowedItems" {
+				return fmt.Sprintf("*static_cast<%v*>(%v)", value, name)
+			}
+
+			return fmt.Sprintf("({ %v* tmpP = static_cast<%v*>(%v); %v tmpV = *tmpP; tmpP->~%v(); free(tmpP); tmpV; })", parser.CleanValue(value), value, name, parser.CleanValue(value), strings.Split(parser.CleanValue(value), "<")[0])
 		}
 	}
 

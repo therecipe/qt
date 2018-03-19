@@ -16,7 +16,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -55,10 +55,10 @@ func PointerFromQSerialPort(ptr QSerialPort_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSerialPortFromPointer(ptr unsafe.Pointer) *QSerialPort {
-	var n = new(QSerialPort)
+func NewQSerialPortFromPointer(ptr unsafe.Pointer) (n *QSerialPort) {
+	n = new(QSerialPort)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QSerialPort__BaudRate
@@ -181,7 +181,7 @@ func (ptr *QSerialPort) PinoutSignals() QSerialPort__PinoutSignal {
 }
 
 func NewQSerialPort(parent core.QObject_ITF) *QSerialPort {
-	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort(core.PointerFromQObject(parent)))
+	tmpValue := NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -189,7 +189,7 @@ func NewQSerialPort(parent core.QObject_ITF) *QSerialPort {
 }
 
 func NewQSerialPort3(serialPortInfo QSerialPortInfo_ITF, parent core.QObject_ITF) *QSerialPort {
-	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort3(PointerFromQSerialPortInfo(serialPortInfo), core.PointerFromQObject(parent)))
+	tmpValue := NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort3(PointerFromQSerialPortInfo(serialPortInfo), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -202,7 +202,7 @@ func NewQSerialPort2(name string, parent core.QObject_ITF) *QSerialPort {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -344,15 +344,15 @@ func (ptr *QSerialPort) WaitForReadyReadDefault(msecs int) bool {
 //export callbackQSerialPort_ReadData
 func callbackQSerialPort_ReadData(ptr unsafe.Pointer, data C.struct_QtSerialPort_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
-		var retS = cGoUnpackString(data)
-		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
+		retS := cGoUnpackString(data)
+		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
 		if ret > 0 {
 			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
 		}
 		return ret
 	}
-	var retS = cGoUnpackString(data)
-	var ret = C.longlong(NewQSerialPortFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
+	retS := cGoUnpackString(data)
+	ret := C.longlong(NewQSerialPortFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
 	if ret > 0 {
 		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
 	}
@@ -382,9 +382,9 @@ func (ptr *QSerialPort) DisconnectReadData() {
 
 func (ptr *QSerialPort) ReadData(data *string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		dataC := C.CString(strings.Repeat("0", int(maxSize)))
 		defer C.free(unsafe.Pointer(dataC))
-		var ret = int64(C.QSerialPort_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		ret := int64(C.QSerialPort_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 		if ret > 0 {
 			*data = C.GoStringN(dataC, C.int(ret))
 		}
@@ -395,9 +395,9 @@ func (ptr *QSerialPort) ReadData(data *string, maxSize int64) int64 {
 
 func (ptr *QSerialPort) ReadDataDefault(data *string, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		dataC := C.CString(strings.Repeat("0", int(maxSize)))
 		defer C.free(unsafe.Pointer(dataC))
-		var ret = int64(C.QSerialPort_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		ret := int64(C.QSerialPort_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 		if ret > 0 {
 			*data = C.GoStringN(dataC, C.int(ret))
 		}
@@ -1065,107 +1065,82 @@ func (ptr *QSerialPort) ReadBufferSize() int64 {
 	return 0
 }
 
-func (ptr *QSerialPort) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QSerialPort___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QSerialPort) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QSerialPort___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QSerialPort) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QSerialPort) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QSerialPort___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QSerialPort) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPort___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QSerialPort___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QSerialPort) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QSerialPort) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QSerialPort) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QSerialPort) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QSerialPort___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QSerialPort) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPort___findChildren_newList2(ptr.Pointer()))
+	return C.QSerialPort___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QSerialPort) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QSerialPort) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QSerialPort) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QSerialPort) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QSerialPort___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QSerialPort) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPort___findChildren_newList3(ptr.Pointer()))
+	return C.QSerialPort___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSerialPort) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QSerialPort) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QSerialPort___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QSerialPort) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QSerialPort) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QSerialPort___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QSerialPort) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPort___findChildren_newList(ptr.Pointer()))
+	return C.QSerialPort___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSerialPort) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QSerialPort___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QSerialPort) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QSerialPort___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QSerialPort) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPort___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QSerialPort) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QSerialPort___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QSerialPort) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPort___children_newList(ptr.Pointer()))
+	return C.QSerialPort___children_newList(ptr.Pointer())
 }
 
 //export callbackQSerialPort_Reset
@@ -1468,16 +1443,16 @@ func PointerFromQSerialPortInfo(ptr QSerialPortInfo_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQSerialPortInfoFromPointer(ptr unsafe.Pointer) *QSerialPortInfo {
-	var n = new(QSerialPortInfo)
+func NewQSerialPortInfoFromPointer(ptr unsafe.Pointer) (n *QSerialPortInfo) {
+	n = new(QSerialPortInfo)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func QSerialPortInfo_AvailablePorts() []*QSerialPortInfo {
 	return func(l C.struct_QtSerialPort_PackedList) []*QSerialPortInfo {
-		var out = make([]*QSerialPortInfo, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).__availablePorts_atList(i)
+		out := make([]*QSerialPortInfo, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QSerialPortInfo)(nil).__availablePorts_atList(i, l.data)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_AvailablePorts())
@@ -1485,9 +1460,9 @@ func QSerialPortInfo_AvailablePorts() []*QSerialPortInfo {
 
 func (ptr *QSerialPortInfo) AvailablePorts() []*QSerialPortInfo {
 	return func(l C.struct_QtSerialPort_PackedList) []*QSerialPortInfo {
-		var out = make([]*QSerialPortInfo, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).__availablePorts_atList(i)
+		out := make([]*QSerialPortInfo, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QSerialPortInfo)(nil).__availablePorts_atList(i, l.data)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_AvailablePorts())
@@ -1495,9 +1470,9 @@ func (ptr *QSerialPortInfo) AvailablePorts() []*QSerialPortInfo {
 
 func QSerialPortInfo_StandardBaudRates() []int {
 	return func(l C.struct_QtSerialPort_PackedList) []int {
-		var out = make([]int, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).__standardBaudRates_atList(i)
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QSerialPortInfo)(nil).__standardBaudRates_atList(i, l.data)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_StandardBaudRates())
@@ -1505,28 +1480,28 @@ func QSerialPortInfo_StandardBaudRates() []int {
 
 func (ptr *QSerialPortInfo) StandardBaudRates() []int {
 	return func(l C.struct_QtSerialPort_PackedList) []int {
-		var out = make([]int, int(l.len))
-		for i := 0; i < int(l.len); i++ {
-			out[i] = NewQSerialPortInfoFromPointer(l.data).__standardBaudRates_atList(i)
+		out := make([]int, int(l.len))
+		for i := 0; i < len(out); i++ {
+			out[i] = (*QSerialPortInfo)(nil).__standardBaudRates_atList(i, l.data)
 		}
 		return out
 	}(C.QSerialPortInfo_QSerialPortInfo_StandardBaudRates())
 }
 
 func NewQSerialPortInfo() *QSerialPortInfo {
-	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo())
+	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo())
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo2(port QSerialPort_ITF) *QSerialPortInfo {
-	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo2(PointerFromQSerialPort(port)))
+	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo2(PointerFromQSerialPort(port)))
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
 
 func NewQSerialPortInfo4(other QSerialPortInfo_ITF) *QSerialPortInfo {
-	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo4(PointerFromQSerialPortInfo(other)))
+	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo4(PointerFromQSerialPortInfo(other)))
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
@@ -1537,7 +1512,7 @@ func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}))
+	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.struct_QtSerialPort_PackedString{data: nameC, len: C.longlong(len(name))}))
 	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
 	return tmpValue
 }
@@ -1633,38 +1608,28 @@ func (ptr *QSerialPortInfo) VendorIdentifier() uint16 {
 	return 0
 }
 
-func (ptr *QSerialPortInfo) __availablePorts_atList(i int) *QSerialPortInfo {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQSerialPortInfoFromPointer(C.QSerialPortInfo___availablePorts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
-		return tmpValue
-	}
-	return nil
+func (ptr *QSerialPortInfo) __availablePorts_atList(i int, p unsafe.Pointer) *QSerialPortInfo {
+	tmpValue := NewQSerialPortInfoFromPointer(C.QSerialPortInfo___availablePorts_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*QSerialPortInfo).DestroyQSerialPortInfo)
+	return tmpValue
 }
 
-func (ptr *QSerialPortInfo) __availablePorts_setList(i QSerialPortInfo_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSerialPortInfo___availablePorts_setList(ptr.Pointer(), PointerFromQSerialPortInfo(i))
-	}
+func (ptr *QSerialPortInfo) __availablePorts_setList(i QSerialPortInfo_ITF, p unsafe.Pointer) {
+	C.QSerialPortInfo___availablePorts_setList(ptr.Pointer(), PointerFromQSerialPortInfo(i), p)
 }
 
 func (ptr *QSerialPortInfo) __availablePorts_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPortInfo___availablePorts_newList(ptr.Pointer()))
+	return C.QSerialPortInfo___availablePorts_newList(ptr.Pointer())
 }
 
-func (ptr *QSerialPortInfo) __standardBaudRates_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QSerialPortInfo___standardBaudRates_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
+func (ptr *QSerialPortInfo) __standardBaudRates_atList(i int, p unsafe.Pointer) int {
+	return int(int32(C.QSerialPortInfo___standardBaudRates_atList(ptr.Pointer(), C.int(int32(i)), p)))
 }
 
-func (ptr *QSerialPortInfo) __standardBaudRates_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QSerialPortInfo___standardBaudRates_setList(ptr.Pointer(), C.int(int32(i)))
-	}
+func (ptr *QSerialPortInfo) __standardBaudRates_setList(i int, p unsafe.Pointer) {
+	C.QSerialPortInfo___standardBaudRates_setList(ptr.Pointer(), C.int(int32(i)), p)
 }
 
 func (ptr *QSerialPortInfo) __standardBaudRates_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QSerialPortInfo___standardBaudRates_newList(ptr.Pointer()))
+	return C.QSerialPortInfo___standardBaudRates_newList(ptr.Pointer())
 }

@@ -18,7 +18,7 @@ import (
 )
 
 func cGoUnpackString(s C.struct_QtDesigner_PackedString) string {
-	if len := int(s.len); len == -1 {
+	if int(s.len) == -1 {
 		return C.GoString(s.data)
 	}
 	return C.GoStringN(s.data, C.int(s.len))
@@ -56,10 +56,10 @@ func PointerFromQAbstractExtensionFactory(ptr QAbstractExtensionFactory_ITF) uns
 	return nil
 }
 
-func NewQAbstractExtensionFactoryFromPointer(ptr unsafe.Pointer) *QAbstractExtensionFactory {
-	var n = new(QAbstractExtensionFactory)
+func NewQAbstractExtensionFactoryFromPointer(ptr unsafe.Pointer) (n *QAbstractExtensionFactory) {
+	n = new(QAbstractExtensionFactory)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 type QAbstractExtensionManager struct {
@@ -94,10 +94,10 @@ func PointerFromQAbstractExtensionManager(ptr QAbstractExtensionManager_ITF) uns
 	return nil
 }
 
-func NewQAbstractExtensionManagerFromPointer(ptr unsafe.Pointer) *QAbstractExtensionManager {
-	var n = new(QAbstractExtensionManager)
+func NewQAbstractExtensionManagerFromPointer(ptr unsafe.Pointer) (n *QAbstractExtensionManager) {
+	n = new(QAbstractExtensionManager)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQAbstractExtensionManager_RegisterExtensions
@@ -261,7 +261,7 @@ func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid str
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -302,10 +302,10 @@ func PointerFromQAbstractFormBuilder(ptr QAbstractFormBuilder_ITF) unsafe.Pointe
 	return nil
 }
 
-func NewQAbstractFormBuilderFromPointer(ptr unsafe.Pointer) *QAbstractFormBuilder {
-	var n = new(QAbstractFormBuilder)
+func NewQAbstractFormBuilderFromPointer(ptr unsafe.Pointer) (n *QAbstractFormBuilder) {
+	n = new(QAbstractFormBuilder)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAbstractFormBuilder() *QAbstractFormBuilder {
 	return NewQAbstractFormBuilderFromPointer(C.QAbstractFormBuilder_NewQAbstractFormBuilder())
@@ -343,7 +343,7 @@ func (ptr *QAbstractFormBuilder) DisconnectLoad() {
 
 func (ptr *QAbstractFormBuilder) Load(device core.QIODevice_ITF, parent widgets.QWidget_ITF) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -354,7 +354,7 @@ func (ptr *QAbstractFormBuilder) Load(device core.QIODevice_ITF, parent widgets.
 
 func (ptr *QAbstractFormBuilder) LoadDefault(device core.QIODevice_ITF, parent widgets.QWidget_ITF) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_LoadDefault(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_LoadDefault(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -459,7 +459,7 @@ func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilderDefault() {
 
 func (ptr *QAbstractFormBuilder) WorkingDirectory() *core.QDir {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDirFromPointer(C.QAbstractFormBuilder_WorkingDirectory(ptr.Pointer()))
+		tmpValue := core.NewQDirFromPointer(C.QAbstractFormBuilder_WorkingDirectory(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
@@ -474,15 +474,15 @@ func (ptr *QAbstractFormBuilder) ErrorString() string {
 }
 
 func (ptr *QAbstractFormBuilder) __propertyMap_properties_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractFormBuilder___propertyMap_properties_newList(ptr.Pointer()))
+	return C.QAbstractFormBuilder___propertyMap_properties_newList(ptr.Pointer())
 }
 
 func (ptr *QAbstractFormBuilder) __computeProperties_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractFormBuilder___computeProperties_newList(ptr.Pointer()))
+	return C.QAbstractFormBuilder___computeProperties_newList(ptr.Pointer())
 }
 
 func (ptr *QAbstractFormBuilder) __applyProperties_properties_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QAbstractFormBuilder___applyProperties_properties_newList(ptr.Pointer()))
+	return C.QAbstractFormBuilder___applyProperties_properties_newList(ptr.Pointer())
 }
 
 type QDesignerActionEditorInterface struct {
@@ -518,13 +518,13 @@ func PointerFromQDesignerActionEditorInterface(ptr QDesignerActionEditorInterfac
 	return nil
 }
 
-func NewQDesignerActionEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerActionEditorInterface {
-	var n = new(QDesignerActionEditorInterface)
+func NewQDesignerActionEditorInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerActionEditorInterface) {
+	n = new(QDesignerActionEditorInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDesignerActionEditorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerActionEditorInterface {
-	var tmpValue = NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	tmpValue := NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -714,7 +714,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectCore() {
 
 func (ptr *QDesignerActionEditorInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_Core(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -725,7 +725,7 @@ func (ptr *QDesignerActionEditorInterface) Core() *QDesignerFormEditorInterface 
 
 func (ptr *QDesignerActionEditorInterface) CoreDefault() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_CoreDefault(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -734,170 +734,130 @@ func (ptr *QDesignerActionEditorInterface) CoreDefault() *QDesignerFormEditorInt
 	return nil
 }
 
-func (ptr *QDesignerActionEditorInterface) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___addActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___insertActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerActionEditorInterface___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___actions_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerActionEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerActionEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerActionEditorInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerActionEditorInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerActionEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerActionEditorInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerActionEditorInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerActionEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerActionEditorInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerActionEditorInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerActionEditorInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerActionEditorInterface_Close
@@ -1684,7 +1644,7 @@ func callbackQDesignerActionEditorInterface_MinimumSizeHint(ptr unsafe.Pointer) 
 
 func (ptr *QDesignerActionEditorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -1702,7 +1662,7 @@ func callbackQDesignerActionEditorInterface_SizeHint(ptr unsafe.Pointer) unsafe.
 
 func (ptr *QDesignerActionEditorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -1720,7 +1680,7 @@ func callbackQDesignerActionEditorInterface_InputMethodQuery(ptr unsafe.Pointer,
 
 func (ptr *QDesignerActionEditorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -1947,10 +1907,10 @@ func PointerFromQDesignerContainerExtension(ptr QDesignerContainerExtension_ITF)
 	return nil
 }
 
-func NewQDesignerContainerExtensionFromPointer(ptr unsafe.Pointer) *QDesignerContainerExtension {
-	var n = new(QDesignerContainerExtension)
+func NewQDesignerContainerExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerContainerExtension) {
+	n = new(QDesignerContainerExtension)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerContainerExtension_AddWidget
@@ -2169,7 +2129,7 @@ func (ptr *QDesignerContainerExtension) DisconnectWidget() {
 
 func (ptr *QDesignerContainerExtension) Widget(index int) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerContainerExtension_Widget(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerContainerExtension_Widget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2372,10 +2332,10 @@ func PointerFromQDesignerCustomWidgetCollectionInterface(ptr QDesignerCustomWidg
 	return nil
 }
 
-func NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerCustomWidgetCollectionInterface {
-	var n = new(QDesignerCustomWidgetCollectionInterface)
+func NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerCustomWidgetCollectionInterface) {
+	n = new(QDesignerCustomWidgetCollectionInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface
@@ -2426,20 +2386,20 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidge
 func callbackQDesignerCustomWidgetCollectionInterface_CustomWidgets(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "customWidgets"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQDesignerCustomWidgetCollectionInterfaceFromPointer(NewQDesignerCustomWidgetCollectionInterfaceFromPointer(nil).__customWidgets_newList())
+			tmpList := (*QDesignerCustomWidgetCollectionInterface)(nil).__customWidgets_newList()
 			for _, v := range signal.(func() []*QDesignerCustomWidgetInterface)() {
-				tmpList.__customWidgets_setList(v)
+				(*QDesignerCustomWidgetCollectionInterface)(nil).__customWidgets_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQDesignerCustomWidgetCollectionInterfaceFromPointer(NewQDesignerCustomWidgetCollectionInterfaceFromPointer(nil).__customWidgets_newList())
+		tmpList := (*QDesignerCustomWidgetCollectionInterface)(nil).__customWidgets_newList()
 		for _, v := range make([]*QDesignerCustomWidgetInterface, 0) {
-			tmpList.__customWidgets_setList(v)
+			(*QDesignerCustomWidgetCollectionInterface)(nil).__customWidgets_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -2467,9 +2427,9 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) DisconnectCustomWidgets() {
 func (ptr *QDesignerCustomWidgetCollectionInterface) CustomWidgets() []*QDesignerCustomWidgetInterface {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDesigner_PackedList) []*QDesignerCustomWidgetInterface {
-			var out = make([]*QDesignerCustomWidgetInterface, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQDesignerCustomWidgetCollectionInterfaceFromPointer(l.data).__customWidgets_atList(i)
+			out := make([]*QDesignerCustomWidgetInterface, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QDesignerCustomWidgetCollectionInterface)(nil).__customWidgets_atList(i, l.data)
 			}
 			return out
 		}(C.QDesignerCustomWidgetCollectionInterface_CustomWidgets(ptr.Pointer()))
@@ -2477,21 +2437,16 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) CustomWidgets() []*QDesigne
 	return make([]*QDesignerCustomWidgetInterface, 0)
 }
 
-func (ptr *QDesignerCustomWidgetCollectionInterface) __customWidgets_atList(i int) *QDesignerCustomWidgetInterface {
-	if ptr.Pointer() != nil {
-		return NewQDesignerCustomWidgetInterfaceFromPointer(C.QDesignerCustomWidgetCollectionInterface___customWidgets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QDesignerCustomWidgetCollectionInterface) __customWidgets_atList(i int, p unsafe.Pointer) *QDesignerCustomWidgetInterface {
+	return NewQDesignerCustomWidgetInterfaceFromPointer(C.QDesignerCustomWidgetCollectionInterface___customWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QDesignerCustomWidgetCollectionInterface) __customWidgets_setList(i QDesignerCustomWidgetInterface_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerCustomWidgetCollectionInterface___customWidgets_setList(ptr.Pointer(), PointerFromQDesignerCustomWidgetInterface(i))
-	}
+func (ptr *QDesignerCustomWidgetCollectionInterface) __customWidgets_setList(i QDesignerCustomWidgetInterface_ITF, p unsafe.Pointer) {
+	C.QDesignerCustomWidgetCollectionInterface___customWidgets_setList(ptr.Pointer(), PointerFromQDesignerCustomWidgetInterface(i), p)
 }
 
 func (ptr *QDesignerCustomWidgetCollectionInterface) __customWidgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerCustomWidgetCollectionInterface___customWidgets_newList(ptr.Pointer()))
+	return C.QDesignerCustomWidgetCollectionInterface___customWidgets_newList(ptr.Pointer())
 }
 
 type QDesignerCustomWidgetInterface struct {
@@ -2526,10 +2481,10 @@ func PointerFromQDesignerCustomWidgetInterface(ptr QDesignerCustomWidgetInterfac
 	return nil
 }
 
-func NewQDesignerCustomWidgetInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerCustomWidgetInterface {
-	var n = new(QDesignerCustomWidgetInterface)
+func NewQDesignerCustomWidgetInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerCustomWidgetInterface) {
+	n = new(QDesignerCustomWidgetInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerCustomWidgetInterface_CreateWidget
@@ -2564,7 +2519,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectCreateWidget() {
 
 func (ptr *QDesignerCustomWidgetInterface) CreateWidget(parent widgets.QWidget_ITF) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerCustomWidgetInterface_CreateWidget(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerCustomWidgetInterface_CreateWidget(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -2693,7 +2648,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIcon() {
 
 func (ptr *QDesignerCustomWidgetInterface) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQIconFromPointer(C.QDesignerCustomWidgetInterface_Icon(ptr.Pointer()))
+		tmpValue := gui.NewQIconFromPointer(C.QDesignerCustomWidgetInterface_Icon(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
 		return tmpValue
 	}
@@ -3093,10 +3048,10 @@ func PointerFromQDesignerDynamicPropertySheetExtension(ptr QDesignerDynamicPrope
 	return nil
 }
 
-func NewQDesignerDynamicPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerDynamicPropertySheetExtension {
-	var n = new(QDesignerDynamicPropertySheetExtension)
+func NewQDesignerDynamicPropertySheetExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerDynamicPropertySheetExtension) {
+	n = new(QDesignerDynamicPropertySheetExtension)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerDynamicPropertySheetExtension_RemoveDynamicProperty
@@ -3371,13 +3326,13 @@ func PointerFromQDesignerFormEditorInterface(ptr QDesignerFormEditorInterface_IT
 	return nil
 }
 
-func NewQDesignerFormEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormEditorInterface {
-	var n = new(QDesignerFormEditorInterface)
+func NewQDesignerFormEditorInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerFormEditorInterface) {
+	n = new(QDesignerFormEditorInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDesignerFormEditorInterface(parent core.QObject_ITF) *QDesignerFormEditorInterface {
-	var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(core.PointerFromQObject(parent)))
+	tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -3456,7 +3411,7 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterfaceDefa
 
 func (ptr *QDesignerFormEditorInterface) ActionEditor() *QDesignerActionEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_ActionEditor(ptr.Pointer()))
+		tmpValue := NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_ActionEditor(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3467,7 +3422,7 @@ func (ptr *QDesignerFormEditorInterface) ActionEditor() *QDesignerActionEditorIn
 
 func (ptr *QDesignerFormEditorInterface) FormWindowManager() *QDesignerFormWindowManagerInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormWindowManagerInterfaceFromPointer(C.QDesignerFormEditorInterface_FormWindowManager(ptr.Pointer()))
+		tmpValue := NewQDesignerFormWindowManagerInterfaceFromPointer(C.QDesignerFormEditorInterface_FormWindowManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3478,7 +3433,7 @@ func (ptr *QDesignerFormEditorInterface) FormWindowManager() *QDesignerFormWindo
 
 func (ptr *QDesignerFormEditorInterface) ObjectInspector() *QDesignerObjectInspectorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerFormEditorInterface_ObjectInspector(ptr.Pointer()))
+		tmpValue := NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerFormEditorInterface_ObjectInspector(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3489,7 +3444,7 @@ func (ptr *QDesignerFormEditorInterface) ObjectInspector() *QDesignerObjectInspe
 
 func (ptr *QDesignerFormEditorInterface) PropertyEditor() *QDesignerPropertyEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_PropertyEditor(ptr.Pointer()))
+		tmpValue := NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_PropertyEditor(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3500,7 +3455,7 @@ func (ptr *QDesignerFormEditorInterface) PropertyEditor() *QDesignerPropertyEdit
 
 func (ptr *QDesignerFormEditorInterface) WidgetBox() *QDesignerWidgetBoxInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerWidgetBoxInterfaceFromPointer(C.QDesignerFormEditorInterface_WidgetBox(ptr.Pointer()))
+		tmpValue := NewQDesignerWidgetBoxInterfaceFromPointer(C.QDesignerFormEditorInterface_WidgetBox(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3511,7 +3466,7 @@ func (ptr *QDesignerFormEditorInterface) WidgetBox() *QDesignerWidgetBoxInterfac
 
 func (ptr *QDesignerFormEditorInterface) ExtensionManager() *QExtensionManager {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQExtensionManagerFromPointer(C.QDesignerFormEditorInterface_ExtensionManager(ptr.Pointer()))
+		tmpValue := NewQExtensionManagerFromPointer(C.QDesignerFormEditorInterface_ExtensionManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3522,7 +3477,7 @@ func (ptr *QDesignerFormEditorInterface) ExtensionManager() *QExtensionManager {
 
 func (ptr *QDesignerFormEditorInterface) TopLevel() *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormEditorInterface_TopLevel(ptr.Pointer()))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormEditorInterface_TopLevel(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -3532,135 +3487,105 @@ func (ptr *QDesignerFormEditorInterface) TopLevel() *widgets.QWidget {
 }
 
 func (ptr *QDesignerFormEditorInterface) __setOptionsPages_optionsPages_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___setOptionsPages_optionsPages_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___setOptionsPages_optionsPages_newList(ptr.Pointer())
 }
 
 func (ptr *QDesignerFormEditorInterface) __optionsPages_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___optionsPages_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___optionsPages_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __pluginInstances_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___pluginInstances_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormEditorInterface) __pluginInstances_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___pluginInstances_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __pluginInstances_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___pluginInstances_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __pluginInstances_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___pluginInstances_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __pluginInstances_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___pluginInstances_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___pluginInstances_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerFormEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormEditorInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormEditorInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormEditorInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormEditorInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormEditorInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormEditorInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormEditorInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormEditorInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormEditorInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerFormEditorInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerFormEditorInterface_Event
@@ -3851,10 +3776,10 @@ func PointerFromQDesignerFormWindowCursorInterface(ptr QDesignerFormWindowCursor
 	return nil
 }
 
-func NewQDesignerFormWindowCursorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowCursorInterface {
-	var n = new(QDesignerFormWindowCursorInterface)
+func NewQDesignerFormWindowCursorInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerFormWindowCursorInterface) {
+	n = new(QDesignerFormWindowCursorInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveMode
@@ -4150,7 +4075,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectFormWindow() {
 
 func (ptr *QDesignerFormWindowCursorInterface) FormWindow() *QDesignerFormWindowInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowCursorInterface_FormWindow(ptr.Pointer()))
+		tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowCursorInterface_FormWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4191,7 +4116,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectCurrent() {
 
 func (ptr *QDesignerFormWindowCursorInterface) Current() *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Current(ptr.Pointer()))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Current(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4232,7 +4157,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSelectedWidget() {
 
 func (ptr *QDesignerFormWindowCursorInterface) SelectedWidget(index int) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_SelectedWidget(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_SelectedWidget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4273,7 +4198,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectWidget() {
 
 func (ptr *QDesignerFormWindowCursorInterface) Widget(index int) *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Widget(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Widget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -4470,10 +4395,10 @@ func PointerFromQDesignerFormWindowInterface(ptr QDesignerFormWindowInterface_IT
 	return nil
 }
 
-func NewQDesignerFormWindowInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowInterface {
-	var n = new(QDesignerFormWindowInterface)
+func NewQDesignerFormWindowInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerFormWindowInterface) {
+	n = new(QDesignerFormWindowInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QDesignerFormWindowInterface__FeatureFlag
@@ -4498,7 +4423,7 @@ const (
 )
 
 func QDesignerFormWindowInterface_FindFormWindow2(object core.QObject_ITF) *QDesignerFormWindowInterface {
-	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
+	tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4506,7 +4431,7 @@ func QDesignerFormWindowInterface_FindFormWindow2(object core.QObject_ITF) *QDes
 }
 
 func (ptr *QDesignerFormWindowInterface) FindFormWindow2(object core.QObject_ITF) *QDesignerFormWindowInterface {
-	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
+	tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4514,7 +4439,7 @@ func (ptr *QDesignerFormWindowInterface) FindFormWindow2(object core.QObject_ITF
 }
 
 func QDesignerFormWindowInterface_FindFormWindow(widget widgets.QWidget_ITF) *QDesignerFormWindowInterface {
-	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
+	tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4522,7 +4447,7 @@ func QDesignerFormWindowInterface_FindFormWindow(widget widgets.QWidget_ITF) *QD
 }
 
 func (ptr *QDesignerFormWindowInterface) FindFormWindow(widget widgets.QWidget_ITF) *QDesignerFormWindowInterface {
-	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
+	tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -4684,7 +4609,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectActivateResourceFilePaths() {
 
 func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []string, errorCount int, errorMessages string) {
 	if ptr.Pointer() != nil {
-		var pathsC = C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
 		var errorMessagesC *C.char
 		if errorMessages != "" {
@@ -4697,7 +4622,7 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 
 func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePathsDefault(paths []string, errorCount int, errorMessages string) {
 	if ptr.Pointer() != nil {
-		var pathsC = C.CString(strings.Join(paths, "|"))
+		pathsC := C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
 		var errorMessagesC *C.char
 		if errorMessages != "" {
@@ -5660,7 +5585,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetIncludeHints() {
 
 func (ptr *QDesignerFormWindowInterface) SetIncludeHints(includeHints []string) {
 	if ptr.Pointer() != nil {
-		var includeHintsC = C.CString(strings.Join(includeHints, "|"))
+		includeHintsC := C.CString(strings.Join(includeHints, "|"))
 		defer C.free(unsafe.Pointer(includeHintsC))
 		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: includeHintsC, len: C.longlong(len(strings.Join(includeHints, "|")))})
 	}
@@ -6123,7 +6048,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCore() {
 
 func (ptr *QDesignerFormWindowInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_Core(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6134,7 +6059,7 @@ func (ptr *QDesignerFormWindowInterface) Core() *QDesignerFormEditorInterface {
 
 func (ptr *QDesignerFormWindowInterface) CoreDefault() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_CoreDefault(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6212,7 +6137,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAbsoluteDir() {
 
 func (ptr *QDesignerFormWindowInterface) AbsoluteDir() *core.QDir {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQDirFromPointer(C.QDesignerFormWindowInterface_AbsoluteDir(ptr.Pointer()))
+		tmpValue := core.NewQDirFromPointer(C.QDesignerFormWindowInterface_AbsoluteDir(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
 		return tmpValue
 	}
@@ -6251,7 +6176,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectGrid() {
 
 func (ptr *QDesignerFormWindowInterface) Grid() *core.QPoint {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQPointFromPointer(C.QDesignerFormWindowInterface_Grid(ptr.Pointer()))
+		tmpValue := core.NewQPointFromPointer(C.QDesignerFormWindowInterface_Grid(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
 		return tmpValue
 	}
@@ -6639,7 +6564,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFormContainer() {
 
 func (ptr *QDesignerFormWindowInterface) FormContainer() *widgets.QWidget {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowInterface_FormContainer(ptr.Pointer()))
+		tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormWindowInterface_FormContainer(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6796,191 +6721,146 @@ func (ptr *QDesignerFormWindowInterface) IsManaged(widget widgets.QWidget_ITF) b
 	return false
 }
 
-func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_atList(i int) *widgets.QWidget {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowInterface___simplifySelection_widgets_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_atList(i int, p unsafe.Pointer) *widgets.QWidget {
+	tmpValue := widgets.NewQWidgetFromPointer(C.QDesignerFormWindowInterface___simplifySelection_widgets_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_setList(i widgets.QWidget_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___simplifySelection_widgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_setList(i widgets.QWidget_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___simplifySelection_widgets_setList(ptr.Pointer(), widgets.PointerFromQWidget(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___simplifySelection_widgets_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___simplifySelection_widgets_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___addActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___insertActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerFormWindowInterface___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___actions_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerFormWindowInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormWindowInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerFormWindowInterface_Close
@@ -7767,7 +7647,7 @@ func callbackQDesignerFormWindowInterface_MinimumSizeHint(ptr unsafe.Pointer) un
 
 func (ptr *QDesignerFormWindowInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -7785,7 +7665,7 @@ func callbackQDesignerFormWindowInterface_SizeHint(ptr unsafe.Pointer) unsafe.Po
 
 func (ptr *QDesignerFormWindowInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -7803,7 +7683,7 @@ func callbackQDesignerFormWindowInterface_InputMethodQuery(ptr unsafe.Pointer, q
 
 func (ptr *QDesignerFormWindowInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -8031,10 +7911,10 @@ func PointerFromQDesignerFormWindowManagerInterface(ptr QDesignerFormWindowManag
 	return nil
 }
 
-func NewQDesignerFormWindowManagerInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowManagerInterface {
-	var n = new(QDesignerFormWindowManagerInterface)
+func NewQDesignerFormWindowManagerInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerFormWindowManagerInterface) {
+	n = new(QDesignerFormWindowManagerInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QDesignerFormWindowManagerInterface__Action
@@ -8104,7 +7984,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreateFormWindow() {
 
 func (ptr *QDesignerFormWindowManagerInterface) CreateFormWindow(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerFormWindowInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_CreateFormWindow(ptr.Pointer(), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+		tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_CreateFormWindow(ptr.Pointer(), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8557,7 +8437,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectAction() {
 
 func (ptr *QDesignerFormWindowManagerInterface) Action(action QDesignerFormWindowManagerInterface__Action) *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerFormWindowManagerInterface_Action(ptr.Pointer(), C.longlong(action)))
+		tmpValue := widgets.NewQActionFromPointer(C.QDesignerFormWindowManagerInterface_Action(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8598,7 +8478,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectActionGroup() {
 
 func (ptr *QDesignerFormWindowManagerInterface) ActionGroup(actionGroup QDesignerFormWindowManagerInterface__ActionGroup) *widgets.QActionGroup {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionGroupFromPointer(C.QDesignerFormWindowManagerInterface_ActionGroup(ptr.Pointer(), C.longlong(actionGroup)))
+		tmpValue := widgets.NewQActionGroupFromPointer(C.QDesignerFormWindowManagerInterface_ActionGroup(ptr.Pointer(), C.longlong(actionGroup)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8639,7 +8519,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCore() {
 
 func (ptr *QDesignerFormWindowManagerInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_Core(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8680,7 +8560,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectActiveFormWindow() {
 
 func (ptr *QDesignerFormWindowManagerInterface) ActiveFormWindow() *QDesignerFormWindowInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_ActiveFormWindow(ptr.Pointer()))
+		tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_ActiveFormWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8721,7 +8601,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindow() {
 
 func (ptr *QDesignerFormWindowManagerInterface) FormWindow(index int) *QDesignerFormWindowInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_FormWindow(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_FormWindow(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -8762,7 +8642,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreatePreviewPixmap() 
 
 func (ptr *QDesignerFormWindowManagerInterface) CreatePreviewPixmap() *gui.QPixmap {
 	if ptr.Pointer() != nil {
-		var tmpValue = gui.NewQPixmapFromPointer(C.QDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr.Pointer()))
+		tmpValue := gui.NewQPixmapFromPointer(C.QDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
 		return tmpValue
 	}
@@ -8807,110 +8687,85 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindowCount() int {
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __dragItems_item_list_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___dragItems_item_list_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___dragItems_item_list_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowManagerInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowManagerInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowManagerInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowManagerInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowManagerInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowManagerInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowManagerInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerFormWindowManagerInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerFormWindowManagerInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowManagerInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerFormWindowManagerInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerFormWindowManagerInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerFormWindowManagerInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerFormWindowManagerInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerFormWindowManagerInterface_Event
@@ -9101,10 +8956,10 @@ func PointerFromQDesignerMemberSheetExtension(ptr QDesignerMemberSheetExtension_
 	return nil
 }
 
-func NewQDesignerMemberSheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerMemberSheetExtension {
-	var n = new(QDesignerMemberSheetExtension)
+func NewQDesignerMemberSheetExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerMemberSheetExtension) {
+	n = new(QDesignerMemberSheetExtension)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerMemberSheetExtension_SetMemberGroup
@@ -9232,20 +9087,20 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtensionDe
 func callbackQDesignerMemberSheetExtension_ParameterNames(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "parameterNames"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQDesignerMemberSheetExtensionFromPointer(NewQDesignerMemberSheetExtensionFromPointer(nil).__parameterNames_newList())
+			tmpList := (*QDesignerMemberSheetExtension)(nil).__parameterNames_newList()
 			for _, v := range signal.(func(int) []*core.QByteArray)(int(int32(index))) {
-				tmpList.__parameterNames_setList(v)
+				(*QDesignerMemberSheetExtension)(nil).__parameterNames_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQDesignerMemberSheetExtensionFromPointer(NewQDesignerMemberSheetExtensionFromPointer(nil).__parameterNames_newList())
+		tmpList := (*QDesignerMemberSheetExtension)(nil).__parameterNames_newList()
 		for _, v := range make([]*core.QByteArray, 0) {
-			tmpList.__parameterNames_setList(v)
+			(*QDesignerMemberSheetExtension)(nil).__parameterNames_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -9273,9 +9128,9 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectParameterNames() {
 func (ptr *QDesignerMemberSheetExtension) ParameterNames(index int) []*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDesigner_PackedList) []*core.QByteArray {
-			var out = make([]*core.QByteArray, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQDesignerMemberSheetExtensionFromPointer(l.data).__parameterNames_atList(i)
+			out := make([]*core.QByteArray, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QDesignerMemberSheetExtension)(nil).__parameterNames_atList(i, l.data)
 			}
 			return out
 		}(C.QDesignerMemberSheetExtension_ParameterNames(ptr.Pointer(), C.int(int32(index))))
@@ -9287,20 +9142,20 @@ func (ptr *QDesignerMemberSheetExtension) ParameterNames(index int) []*core.QByt
 func callbackQDesignerMemberSheetExtension_ParameterTypes(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "parameterTypes"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQDesignerMemberSheetExtensionFromPointer(NewQDesignerMemberSheetExtensionFromPointer(nil).__parameterTypes_newList())
+			tmpList := (*QDesignerMemberSheetExtension)(nil).__parameterTypes_newList()
 			for _, v := range signal.(func(int) []*core.QByteArray)(int(int32(index))) {
-				tmpList.__parameterTypes_setList(v)
+				(*QDesignerMemberSheetExtension)(nil).__parameterTypes_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQDesignerMemberSheetExtensionFromPointer(NewQDesignerMemberSheetExtensionFromPointer(nil).__parameterTypes_newList())
+		tmpList := (*QDesignerMemberSheetExtension)(nil).__parameterTypes_newList()
 		for _, v := range make([]*core.QByteArray, 0) {
-			tmpList.__parameterTypes_setList(v)
+			(*QDesignerMemberSheetExtension)(nil).__parameterTypes_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -9328,9 +9183,9 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectParameterTypes() {
 func (ptr *QDesignerMemberSheetExtension) ParameterTypes(index int) []*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDesigner_PackedList) []*core.QByteArray {
-			var out = make([]*core.QByteArray, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQDesignerMemberSheetExtensionFromPointer(l.data).__parameterTypes_atList(i)
+			out := make([]*core.QByteArray, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QDesignerMemberSheetExtension)(nil).__parameterTypes_atList(i, l.data)
 			}
 			return out
 		}(C.QDesignerMemberSheetExtension_ParameterTypes(ptr.Pointer(), C.int(int32(index))))
@@ -9717,42 +9572,32 @@ func (ptr *QDesignerMemberSheetExtension) IndexOf(name string) int {
 	return 0
 }
 
-func (ptr *QDesignerMemberSheetExtension) __parameterNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerMemberSheetExtension) __parameterNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerMemberSheetExtension) __parameterNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerMemberSheetExtension___parameterNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerMemberSheetExtension) __parameterNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerMemberSheetExtension___parameterNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerMemberSheetExtension) __parameterNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerMemberSheetExtension___parameterNames_newList(ptr.Pointer()))
+	return C.QDesignerMemberSheetExtension___parameterNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerMemberSheetExtension) __parameterTypes_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterTypes_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerMemberSheetExtension) __parameterTypes_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension___parameterTypes_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerMemberSheetExtension) __parameterTypes_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerMemberSheetExtension___parameterTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerMemberSheetExtension) __parameterTypes_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerMemberSheetExtension___parameterTypes_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerMemberSheetExtension) __parameterTypes_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerMemberSheetExtension___parameterTypes_newList(ptr.Pointer()))
+	return C.QDesignerMemberSheetExtension___parameterTypes_newList(ptr.Pointer())
 }
 
 type QDesignerObjectInspectorInterface struct {
@@ -9788,13 +9633,13 @@ func PointerFromQDesignerObjectInspectorInterface(ptr QDesignerObjectInspectorIn
 	return nil
 }
 
-func NewQDesignerObjectInspectorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerObjectInspectorInterface {
-	var n = new(QDesignerObjectInspectorInterface)
+func NewQDesignerObjectInspectorInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerObjectInspectorInterface) {
+	n = new(QDesignerObjectInspectorInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDesignerObjectInspectorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerObjectInspectorInterface {
-	var tmpValue = NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	tmpValue := NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -9914,7 +9759,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectCore() {
 
 func (ptr *QDesignerObjectInspectorInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_Core(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9925,7 +9770,7 @@ func (ptr *QDesignerObjectInspectorInterface) Core() *QDesignerFormEditorInterfa
 
 func (ptr *QDesignerObjectInspectorInterface) CoreDefault() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_CoreDefault(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -9934,170 +9779,130 @@ func (ptr *QDesignerObjectInspectorInterface) CoreDefault() *QDesignerFormEditor
 	return nil
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___addActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___insertActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerObjectInspectorInterface___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___actions_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerObjectInspectorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerObjectInspectorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerObjectInspectorInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerObjectInspectorInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerObjectInspectorInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerObjectInspectorInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerObjectInspectorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerObjectInspectorInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerObjectInspectorInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerObjectInspectorInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerObjectInspectorInterface_Close
@@ -10884,7 +10689,7 @@ func callbackQDesignerObjectInspectorInterface_MinimumSizeHint(ptr unsafe.Pointe
 
 func (ptr *QDesignerObjectInspectorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -10902,7 +10707,7 @@ func callbackQDesignerObjectInspectorInterface_SizeHint(ptr unsafe.Pointer) unsa
 
 func (ptr *QDesignerObjectInspectorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -10920,7 +10725,7 @@ func callbackQDesignerObjectInspectorInterface_InputMethodQuery(ptr unsafe.Point
 
 func (ptr *QDesignerObjectInspectorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -11148,13 +10953,13 @@ func PointerFromQDesignerPropertyEditorInterface(ptr QDesignerPropertyEditorInte
 	return nil
 }
 
-func NewQDesignerPropertyEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerPropertyEditorInterface {
-	var n = new(QDesignerPropertyEditorInterface)
+func NewQDesignerPropertyEditorInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerPropertyEditorInterface) {
+	n = new(QDesignerPropertyEditorInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQDesignerPropertyEditorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerPropertyEditorInterface {
-	var tmpValue = NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	tmpValue := NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -11393,7 +11198,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectCore() {
 
 func (ptr *QDesignerPropertyEditorInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_Core(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11404,7 +11209,7 @@ func (ptr *QDesignerPropertyEditorInterface) Core() *QDesignerFormEditorInterfac
 
 func (ptr *QDesignerPropertyEditorInterface) CoreDefault() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_CoreDefault(ptr.Pointer()))
+		tmpValue := NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11445,7 +11250,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectObject() {
 
 func (ptr *QDesignerPropertyEditorInterface) Object() *core.QObject {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface_Object(ptr.Pointer()))
+		tmpValue := core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -11529,170 +11334,130 @@ func (ptr *QDesignerPropertyEditorInterface) IsReadOnly() bool {
 	return false
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___addActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___insertActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerPropertyEditorInterface___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___actions_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerPropertyEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerPropertyEditorInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerPropertyEditorInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerPropertyEditorInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerPropertyEditorInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerPropertyEditorInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerPropertyEditorInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerPropertyEditorInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerPropertyEditorInterface_Close
@@ -12479,7 +12244,7 @@ func callbackQDesignerPropertyEditorInterface_MinimumSizeHint(ptr unsafe.Pointer
 
 func (ptr *QDesignerPropertyEditorInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12497,7 +12262,7 @@ func callbackQDesignerPropertyEditorInterface_SizeHint(ptr unsafe.Pointer) unsaf
 
 func (ptr *QDesignerPropertyEditorInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -12515,7 +12280,7 @@ func callbackQDesignerPropertyEditorInterface_InputMethodQuery(ptr unsafe.Pointe
 
 func (ptr *QDesignerPropertyEditorInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -12742,10 +12507,10 @@ func PointerFromQDesignerPropertySheetExtension(ptr QDesignerPropertySheetExtens
 	return nil
 }
 
-func NewQDesignerPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerPropertySheetExtension {
-	var n = new(QDesignerPropertySheetExtension)
+func NewQDesignerPropertySheetExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerPropertySheetExtension) {
+	n = new(QDesignerPropertySheetExtension)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerPropertySheetExtension_Reset
@@ -13119,7 +12884,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectProperty() {
 
 func (ptr *QDesignerPropertySheetExtension) Property(index int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(int32(index))))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -13429,10 +13194,10 @@ func PointerFromQDesignerTaskMenuExtension(ptr QDesignerTaskMenuExtension_ITF) u
 	return nil
 }
 
-func NewQDesignerTaskMenuExtensionFromPointer(ptr unsafe.Pointer) *QDesignerTaskMenuExtension {
-	var n = new(QDesignerTaskMenuExtension)
+func NewQDesignerTaskMenuExtensionFromPointer(ptr unsafe.Pointer) (n *QDesignerTaskMenuExtension) {
+	n = new(QDesignerTaskMenuExtension)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension
@@ -13511,7 +13276,7 @@ func (ptr *QDesignerTaskMenuExtension) DisconnectPreferredEditAction() {
 
 func (ptr *QDesignerTaskMenuExtension) PreferredEditAction() *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditAction(ptr.Pointer()))
+		tmpValue := widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditAction(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -13522,7 +13287,7 @@ func (ptr *QDesignerTaskMenuExtension) PreferredEditAction() *widgets.QAction {
 
 func (ptr *QDesignerTaskMenuExtension) PreferredEditActionDefault() *widgets.QAction {
 	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditActionDefault(ptr.Pointer()))
+		tmpValue := widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditActionDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -13535,20 +13300,20 @@ func (ptr *QDesignerTaskMenuExtension) PreferredEditActionDefault() *widgets.QAc
 func callbackQDesignerTaskMenuExtension_TaskActions(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "taskActions"); signal != nil {
 		return func() unsafe.Pointer {
-			var tmpList = NewQDesignerTaskMenuExtensionFromPointer(NewQDesignerTaskMenuExtensionFromPointer(nil).__taskActions_newList())
+			tmpList := (*QDesignerTaskMenuExtension)(nil).__taskActions_newList()
 			for _, v := range signal.(func() []*widgets.QAction)() {
-				tmpList.__taskActions_setList(v)
+				(*QDesignerTaskMenuExtension)(nil).__taskActions_setList(v, tmpList)
 			}
-			return tmpList.Pointer()
+			return tmpList
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		var tmpList = NewQDesignerTaskMenuExtensionFromPointer(NewQDesignerTaskMenuExtensionFromPointer(nil).__taskActions_newList())
+		tmpList := (*QDesignerTaskMenuExtension)(nil).__taskActions_newList()
 		for _, v := range make([]*widgets.QAction, 0) {
-			tmpList.__taskActions_setList(v)
+			(*QDesignerTaskMenuExtension)(nil).__taskActions_setList(v, tmpList)
 		}
-		return tmpList.Pointer()
+		return tmpList
 	}()
 }
 
@@ -13576,9 +13341,9 @@ func (ptr *QDesignerTaskMenuExtension) DisconnectTaskActions() {
 func (ptr *QDesignerTaskMenuExtension) TaskActions() []*widgets.QAction {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDesigner_PackedList) []*widgets.QAction {
-			var out = make([]*widgets.QAction, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQDesignerTaskMenuExtensionFromPointer(l.data).__taskActions_atList(i)
+			out := make([]*widgets.QAction, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QDesignerTaskMenuExtension)(nil).__taskActions_atList(i, l.data)
 			}
 			return out
 		}(C.QDesignerTaskMenuExtension_TaskActions(ptr.Pointer()))
@@ -13586,25 +13351,20 @@ func (ptr *QDesignerTaskMenuExtension) TaskActions() []*widgets.QAction {
 	return make([]*widgets.QAction, 0)
 }
 
-func (ptr *QDesignerTaskMenuExtension) __taskActions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension___taskActions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerTaskMenuExtension) __taskActions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension___taskActions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerTaskMenuExtension) __taskActions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerTaskMenuExtension___taskActions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerTaskMenuExtension) __taskActions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerTaskMenuExtension___taskActions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerTaskMenuExtension) __taskActions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerTaskMenuExtension___taskActions_newList(ptr.Pointer()))
+	return C.QDesignerTaskMenuExtension___taskActions_newList(ptr.Pointer())
 }
 
 type QDesignerWidgetBoxInterface struct {
@@ -13640,10 +13400,10 @@ func PointerFromQDesignerWidgetBoxInterface(ptr QDesignerWidgetBoxInterface_ITF)
 	return nil
 }
 
-func NewQDesignerWidgetBoxInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerWidgetBoxInterface {
-	var n = new(QDesignerWidgetBoxInterface)
+func NewQDesignerWidgetBoxInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesignerWidgetBoxInterface) {
+	n = new(QDesignerWidgetBoxInterface)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //export callbackQDesignerWidgetBoxInterface_Load
@@ -13845,173 +13605,133 @@ func (ptr *QDesignerWidgetBoxInterface) FileName() string {
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __dropWidgets_item_list_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___dropWidgets_item_list_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___dropWidgets_item_list_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __addActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __addActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __addActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___addActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __insertActions_actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __insertActions_actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __insertActions_actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___insertActions_actions_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __actions_atList(i int) *widgets.QAction {
-	if ptr.Pointer() != nil {
-		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___actions_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
+	tmpValue := widgets.NewQActionFromPointer(C.QDesignerWidgetBoxInterface___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __actions_setList(i widgets.QAction_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __actions_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___actions_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerWidgetBoxInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QDesignerWidgetBoxInterface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___findChildren_newList2(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___findChildren_newList3(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___findChildren_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QDesignerWidgetBoxInterface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QDesignerWidgetBoxInterface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QDesignerWidgetBoxInterface) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QDesignerWidgetBoxInterface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QDesignerWidgetBoxInterface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QDesignerWidgetBoxInterface___children_newList(ptr.Pointer()))
+	return C.QDesignerWidgetBoxInterface___children_newList(ptr.Pointer())
 }
 
 //export callbackQDesignerWidgetBoxInterface_Close
@@ -14798,7 +14518,7 @@ func callbackQDesignerWidgetBoxInterface_MinimumSizeHint(ptr unsafe.Pointer) uns
 
 func (ptr *QDesignerWidgetBoxInterface) MinimumSizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -14816,7 +14536,7 @@ func callbackQDesignerWidgetBoxInterface_SizeHint(ptr unsafe.Pointer) unsafe.Poi
 
 func (ptr *QDesignerWidgetBoxInterface) SizeHintDefault() *core.QSize {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHintDefault(ptr.Pointer()))
+		tmpValue := core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
 		return tmpValue
 	}
@@ -14834,7 +14554,7 @@ func callbackQDesignerWidgetBoxInterface_InputMethodQuery(ptr unsafe.Pointer, qu
 
 func (ptr *QDesignerWidgetBoxInterface) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
+		tmpValue := core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -15065,13 +14785,13 @@ func PointerFromQExtensionFactory(ptr QExtensionFactory_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
-	var n = new(QExtensionFactory)
+func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) (n *QExtensionFactory) {
+	n = new(QExtensionFactory)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
-	var tmpValue = NewQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
+	tmpValue := NewQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15080,7 +14800,7 @@ func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 
 func (ptr *QExtensionFactory) ExtensionManager() *QExtensionManager {
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQExtensionManagerFromPointer(C.QExtensionFactory_ExtensionManager(ptr.Pointer()))
+		tmpValue := NewQExtensionManagerFromPointer(C.QExtensionFactory_ExtensionManager(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15126,7 +14846,7 @@ func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid strin
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}, core.PointerFromQObject(parent)))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15142,7 +14862,7 @@ func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, ii
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}, core.PointerFromQObject(parent)))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15188,7 +14908,7 @@ func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *co
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15204,7 +14924,7 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15213,107 +14933,82 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 	return nil
 }
 
-func (ptr *QExtensionFactory) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QExtensionFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QExtensionFactory) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QExtensionFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QExtensionFactory) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionFactory___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QExtensionFactory) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QExtensionFactory___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QExtensionFactory) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionFactory___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QExtensionFactory___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QExtensionFactory) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionFactory) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionFactory) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionFactory___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionFactory) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionFactory___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionFactory) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionFactory___findChildren_newList2(ptr.Pointer()))
+	return C.QExtensionFactory___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QExtensionFactory) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionFactory) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionFactory) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionFactory___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionFactory) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionFactory___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionFactory) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionFactory___findChildren_newList3(ptr.Pointer()))
+	return C.QExtensionFactory___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QExtensionFactory) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionFactory) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionFactory) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionFactory___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionFactory) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionFactory___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionFactory) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionFactory___findChildren_newList(ptr.Pointer()))
+	return C.QExtensionFactory___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QExtensionFactory) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionFactory) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionFactory___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionFactory) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionFactory___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionFactory) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionFactory___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionFactory) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionFactory___children_newList(ptr.Pointer()))
+	return C.QExtensionFactory___children_newList(ptr.Pointer())
 }
 
 //export callbackQExtensionFactory_Event
@@ -15567,13 +15262,13 @@ func PointerFromQExtensionManager(ptr QExtensionManager_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQExtensionManagerFromPointer(ptr unsafe.Pointer) *QExtensionManager {
-	var n = new(QExtensionManager)
+func NewQExtensionManagerFromPointer(ptr unsafe.Pointer) (n *QExtensionManager) {
+	n = new(QExtensionManager)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQExtensionManager(parent core.QObject_ITF) *QExtensionManager {
-	var tmpValue = NewQExtensionManagerFromPointer(C.QExtensionManager_NewQExtensionManager(core.PointerFromQObject(parent)))
+	tmpValue := NewQExtensionManagerFromPointer(C.QExtensionManager_NewQExtensionManager(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15729,7 +15424,7 @@ func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *co
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15745,7 +15440,7 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 			iidC = C.CString(iid)
 			defer C.free(unsafe.Pointer(iidC))
 		}
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
+		tmpValue := core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtDesigner_PackedString{data: iidC, len: C.longlong(len(iid))}))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -15754,107 +15449,82 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 	return nil
 }
 
-func (ptr *QExtensionManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQByteArrayFromPointer(C.QExtensionManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
+func (ptr *QExtensionManager) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
+	tmpValue := core.NewQByteArrayFromPointer(C.QExtensionManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QExtensionManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
+func (ptr *QExtensionManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
+	C.QExtensionManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
 }
 
 func (ptr *QExtensionManager) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionManager___dynamicPropertyNames_newList(ptr.Pointer()))
+	return C.QExtensionManager___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QExtensionManager) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionManager) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionManager) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionManager) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionManager) __findChildren_newList2() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionManager___findChildren_newList2(ptr.Pointer()))
+	return C.QExtensionManager___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QExtensionManager) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionManager) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionManager) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionManager) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionManager) __findChildren_newList3() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionManager___findChildren_newList3(ptr.Pointer()))
+	return C.QExtensionManager___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QExtensionManager) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionManager) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionManager___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionManager) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionManager) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionManager) __findChildren_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionManager___findChildren_newList(ptr.Pointer()))
+	return C.QExtensionManager___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QExtensionManager) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
+func (ptr *QExtensionManager) __children_atList(i int, p unsafe.Pointer) *core.QObject {
+	tmpValue := core.NewQObjectFromPointer(C.QExtensionManager___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
-	return nil
+	return tmpValue
 }
 
-func (ptr *QExtensionManager) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QExtensionManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
+func (ptr *QExtensionManager) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
+	C.QExtensionManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
 }
 
 func (ptr *QExtensionManager) __children_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QExtensionManager___children_newList(ptr.Pointer()))
+	return C.QExtensionManager___children_newList(ptr.Pointer())
 }
 
 //export callbackQExtensionManager_Event
@@ -16105,10 +15775,10 @@ func PointerFromQFormBuilder(ptr QFormBuilder_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQFormBuilderFromPointer(ptr unsafe.Pointer) *QFormBuilder {
-	var n = new(QFormBuilder)
+func NewQFormBuilderFromPointer(ptr unsafe.Pointer) (n *QFormBuilder) {
+	n = new(QFormBuilder)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQFormBuilder() *QFormBuilder {
 	return NewQFormBuilderFromPointer(C.QFormBuilder_NewQFormBuilder())
@@ -16133,7 +15803,7 @@ func (ptr *QFormBuilder) ClearPluginPaths() {
 
 func (ptr *QFormBuilder) SetPluginPath(pluginPaths []string) {
 	if ptr.Pointer() != nil {
-		var pluginPathsC = C.CString(strings.Join(pluginPaths, "|"))
+		pluginPathsC := C.CString(strings.Join(pluginPaths, "|"))
 		defer C.free(unsafe.Pointer(pluginPathsC))
 		C.QFormBuilder_SetPluginPath(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: pluginPathsC, len: C.longlong(len(strings.Join(pluginPaths, "|")))})
 	}
@@ -16186,9 +15856,9 @@ func (ptr *QFormBuilder) DestroyQFormBuilderDefault() {
 func (ptr *QFormBuilder) CustomWidgets() []*QDesignerCustomWidgetInterface {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtDesigner_PackedList) []*QDesignerCustomWidgetInterface {
-			var out = make([]*QDesignerCustomWidgetInterface, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQFormBuilderFromPointer(l.data).__customWidgets_atList(i)
+			out := make([]*QDesignerCustomWidgetInterface, int(l.len))
+			for i := 0; i < len(out); i++ {
+				out[i] = (*QFormBuilder)(nil).__customWidgets_atList(i, l.data)
 			}
 			return out
 		}(C.QFormBuilder_CustomWidgets(ptr.Pointer()))
@@ -16203,19 +15873,14 @@ func (ptr *QFormBuilder) PluginPaths() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QFormBuilder) __customWidgets_atList(i int) *QDesignerCustomWidgetInterface {
-	if ptr.Pointer() != nil {
-		return NewQDesignerCustomWidgetInterfaceFromPointer(C.QFormBuilder___customWidgets_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
+func (ptr *QFormBuilder) __customWidgets_atList(i int, p unsafe.Pointer) *QDesignerCustomWidgetInterface {
+	return NewQDesignerCustomWidgetInterfaceFromPointer(C.QFormBuilder___customWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
 }
 
-func (ptr *QFormBuilder) __customWidgets_setList(i QDesignerCustomWidgetInterface_ITF) {
-	if ptr.Pointer() != nil {
-		C.QFormBuilder___customWidgets_setList(ptr.Pointer(), PointerFromQDesignerCustomWidgetInterface(i))
-	}
+func (ptr *QFormBuilder) __customWidgets_setList(i QDesignerCustomWidgetInterface_ITF, p unsafe.Pointer) {
+	C.QFormBuilder___customWidgets_setList(ptr.Pointer(), PointerFromQDesignerCustomWidgetInterface(i), p)
 }
 
 func (ptr *QFormBuilder) __customWidgets_newList() unsafe.Pointer {
-	return unsafe.Pointer(C.QFormBuilder___customWidgets_newList(ptr.Pointer()))
+	return C.QFormBuilder___customWidgets_newList(ptr.Pointer())
 }

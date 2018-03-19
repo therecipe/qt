@@ -45,10 +45,10 @@ func PointerFromQAndroidActivityResultReceiver(ptr QAndroidActivityResultReceive
 	return nil
 }
 
-func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidActivityResultReceiver {
-	var n = new(QAndroidActivityResultReceiver)
+func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) (n *QAndroidActivityResultReceiver) {
+	n = new(QAndroidActivityResultReceiver)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {}
@@ -97,10 +97,10 @@ func PointerFromQAndroidBinder(ptr QAndroidBinder_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAndroidBinderFromPointer(ptr unsafe.Pointer) *QAndroidBinder {
-	var n = new(QAndroidBinder)
+func NewQAndroidBinderFromPointer(ptr unsafe.Pointer) (n *QAndroidBinder) {
+	n = new(QAndroidBinder)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAndroidBinder__CallType
@@ -180,10 +180,10 @@ func PointerFromQAndroidIntent(ptr QAndroidIntent_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAndroidIntentFromPointer(ptr unsafe.Pointer) *QAndroidIntent {
-	var n = new(QAndroidIntent)
+func NewQAndroidIntentFromPointer(ptr unsafe.Pointer) (n *QAndroidIntent) {
+	n = new(QAndroidIntent)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAndroidIntent() *QAndroidIntent {
 
@@ -276,10 +276,10 @@ func PointerFromQAndroidJniEnvironment(ptr QAndroidJniEnvironment_ITF) unsafe.Po
 	return nil
 }
 
-func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnvironment {
-	var n = new(QAndroidJniEnvironment)
+func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) (n *QAndroidJniEnvironment) {
+	n = new(QAndroidJniEnvironment)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
 
@@ -368,10 +368,10 @@ func PointerFromQAndroidJniExceptionCleaner(ptr QAndroidJniExceptionCleaner_ITF)
 	return nil
 }
 
-func NewQAndroidJniExceptionCleanerFromPointer(ptr unsafe.Pointer) *QAndroidJniExceptionCleaner {
-	var n = new(QAndroidJniExceptionCleaner)
+func NewQAndroidJniExceptionCleanerFromPointer(ptr unsafe.Pointer) (n *QAndroidJniExceptionCleaner) {
+	n = new(QAndroidJniExceptionCleaner)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 //go:generate stringer -type=QAndroidJniExceptionCleaner__OutputMode
@@ -428,10 +428,10 @@ func PointerFromQAndroidJniObject(ptr QAndroidJniObject_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
-	var n = new(QAndroidJniObject)
+func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) (n *QAndroidJniObject) {
+	n = new(QAndroidJniObject)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
 
@@ -1078,10 +1078,10 @@ func PointerFromQAndroidParcel(ptr QAndroidParcel_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAndroidParcelFromPointer(ptr unsafe.Pointer) *QAndroidParcel {
-	var n = new(QAndroidParcel)
+func NewQAndroidParcelFromPointer(ptr unsafe.Pointer) (n *QAndroidParcel) {
+	n = new(QAndroidParcel)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAndroidParcel() *QAndroidParcel {
 
@@ -1182,10 +1182,10 @@ func PointerFromQAndroidService(ptr QAndroidService_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQAndroidServiceFromPointer(ptr unsafe.Pointer) *QAndroidService {
-	var n = new(QAndroidService)
+func NewQAndroidServiceFromPointer(ptr unsafe.Pointer) (n *QAndroidService) {
+	n = new(QAndroidService)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func (ptr *QAndroidService) ConnectOnBind(f func(intent *QAndroidIntent) *QAndroidBinder) {
 
@@ -1258,10 +1258,10 @@ func PointerFromQAndroidServiceConnection(ptr QAndroidServiceConnection_ITF) uns
 	return nil
 }
 
-func NewQAndroidServiceConnectionFromPointer(ptr unsafe.Pointer) *QAndroidServiceConnection {
-	var n = new(QAndroidServiceConnection)
+func NewQAndroidServiceConnectionFromPointer(ptr unsafe.Pointer) (n *QAndroidServiceConnection) {
+	n = new(QAndroidServiceConnection)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 func NewQAndroidServiceConnection() *QAndroidServiceConnection {
 
@@ -1350,10 +1350,10 @@ func PointerFromQtAndroid(ptr QtAndroid_ITF) unsafe.Pointer {
 	return nil
 }
 
-func NewQtAndroidFromPointer(ptr unsafe.Pointer) *QtAndroid {
-	var n = new(QtAndroid)
+func NewQtAndroidFromPointer(ptr unsafe.Pointer) (n *QtAndroid) {
+	n = new(QtAndroid)
 	n.SetPointer(ptr)
-	return n
+	return
 }
 
 func (ptr *QtAndroid) DestroyQtAndroid() {}
