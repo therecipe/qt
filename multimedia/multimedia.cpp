@@ -252,7 +252,7 @@ char QAbstractAudioDeviceInfo_IsFormatSupported(void* ptr, void* format)
 long long QAbstractAudioDeviceInfo___supportedByteOrders_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudioFormat::Endian tmp = static_cast<QList<QAudioFormat::Endian>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::Endian>*>(p)->size()-1) { static_cast<QList<QAudioFormat::Endian>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudioFormat::Endian tmp = static_cast<QList<QAudioFormat::Endian>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::Endian>*>(p)->size()-1) { static_cast<QList<QAudioFormat::Endian>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___supportedByteOrders_setList(void* ptr, long long i, void* p)
@@ -270,7 +270,7 @@ void* QAbstractAudioDeviceInfo___supportedByteOrders_newList(void* ptr)
 long long QAbstractAudioDeviceInfo___supportedSampleTypes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudioFormat::SampleType tmp = static_cast<QList<QAudioFormat::SampleType>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::SampleType>*>(p)->size()-1) { static_cast<QList<QAudioFormat::SampleType>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudioFormat::SampleType tmp = static_cast<QList<QAudioFormat::SampleType>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::SampleType>*>(p)->size()-1) { static_cast<QList<QAudioFormat::SampleType>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___supportedSampleTypes_setList(void* ptr, long long i, void* p)
@@ -288,7 +288,7 @@ void* QAbstractAudioDeviceInfo___supportedSampleTypes_newList(void* ptr)
 int QAbstractAudioDeviceInfo___supportedChannelCounts_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___supportedChannelCounts_setList(void* ptr, int i, void* p)
@@ -306,7 +306,7 @@ void* QAbstractAudioDeviceInfo___supportedChannelCounts_newList(void* ptr)
 int QAbstractAudioDeviceInfo___supportedSampleRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___supportedSampleRates_setList(void* ptr, int i, void* p)
@@ -324,7 +324,7 @@ void* QAbstractAudioDeviceInfo___supportedSampleRates_newList(void* ptr)
 int QAbstractAudioDeviceInfo___supportedSampleSizes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___supportedSampleSizes_setList(void* ptr, int i, void* p)
@@ -342,7 +342,7 @@ void* QAbstractAudioDeviceInfo___supportedSampleSizes_newList(void* ptr)
 void* QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAbstractAudioDeviceInfo___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -360,7 +360,7 @@ void* QAbstractAudioDeviceInfo___dynamicPropertyNames_newList(void* ptr)
 void* QAbstractAudioDeviceInfo___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___findChildren_setList2(void* ptr, void* i, void* p)
@@ -392,7 +392,7 @@ void* QAbstractAudioDeviceInfo___findChildren_newList2(void* ptr)
 void* QAbstractAudioDeviceInfo___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___findChildren_setList3(void* ptr, void* i, void* p)
@@ -424,7 +424,7 @@ void* QAbstractAudioDeviceInfo___findChildren_newList3(void* ptr)
 void* QAbstractAudioDeviceInfo___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___findChildren_setList(void* ptr, void* i, void* p)
@@ -456,7 +456,7 @@ void* QAbstractAudioDeviceInfo___findChildren_newList(void* ptr)
 void* QAbstractAudioDeviceInfo___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioDeviceInfo___children_setList(void* ptr, void* i, void* p)
@@ -737,7 +737,7 @@ double QAbstractAudioInput_Volume(void* ptr)
 void* QAbstractAudioInput___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAbstractAudioInput___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -755,7 +755,7 @@ void* QAbstractAudioInput___dynamicPropertyNames_newList(void* ptr)
 void* QAbstractAudioInput___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioInput___findChildren_setList2(void* ptr, void* i, void* p)
@@ -787,7 +787,7 @@ void* QAbstractAudioInput___findChildren_newList2(void* ptr)
 void* QAbstractAudioInput___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioInput___findChildren_setList3(void* ptr, void* i, void* p)
@@ -819,7 +819,7 @@ void* QAbstractAudioInput___findChildren_newList3(void* ptr)
 void* QAbstractAudioInput___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioInput___findChildren_setList(void* ptr, void* i, void* p)
@@ -851,7 +851,7 @@ void* QAbstractAudioInput___findChildren_newList(void* ptr)
 void* QAbstractAudioInput___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioInput___children_setList(void* ptr, void* i, void* p)
@@ -1164,7 +1164,7 @@ double QAbstractAudioOutput_VolumeDefault(void* ptr)
 void* QAbstractAudioOutput___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAbstractAudioOutput___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1182,7 +1182,7 @@ void* QAbstractAudioOutput___dynamicPropertyNames_newList(void* ptr)
 void* QAbstractAudioOutput___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioOutput___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1214,7 +1214,7 @@ void* QAbstractAudioOutput___findChildren_newList2(void* ptr)
 void* QAbstractAudioOutput___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioOutput___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1246,7 +1246,7 @@ void* QAbstractAudioOutput___findChildren_newList3(void* ptr)
 void* QAbstractAudioOutput___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioOutput___findChildren_setList(void* ptr, void* i, void* p)
@@ -1278,7 +1278,7 @@ void* QAbstractAudioOutput___findChildren_newList(void* ptr)
 void* QAbstractAudioOutput___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractAudioOutput___children_setList(void* ptr, void* i, void* p)
@@ -1603,7 +1603,7 @@ char QAbstractVideoFilter_IsActive(void* ptr)
 void* QAbstractVideoFilter___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAbstractVideoFilter___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1621,7 +1621,7 @@ void* QAbstractVideoFilter___dynamicPropertyNames_newList(void* ptr)
 void* QAbstractVideoFilter___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoFilter___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1653,7 +1653,7 @@ void* QAbstractVideoFilter___findChildren_newList2(void* ptr)
 void* QAbstractVideoFilter___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoFilter___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1685,7 +1685,7 @@ void* QAbstractVideoFilter___findChildren_newList3(void* ptr)
 void* QAbstractVideoFilter___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoFilter___findChildren_setList(void* ptr, void* i, void* p)
@@ -1717,7 +1717,7 @@ void* QAbstractVideoFilter___findChildren_newList(void* ptr)
 void* QAbstractVideoFilter___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoFilter___children_setList(void* ptr, void* i, void* p)
@@ -2025,7 +2025,7 @@ char QAbstractVideoSurface_IsFormatSupportedDefault(void* ptr, void* format)
 long long QAbstractVideoSurface___supportedPixelFormats_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoSurface___supportedPixelFormats_setList(void* ptr, long long i, void* p)
@@ -2043,7 +2043,7 @@ void* QAbstractVideoSurface___supportedPixelFormats_newList(void* ptr)
 void* QAbstractVideoSurface___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAbstractVideoSurface___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -2061,7 +2061,7 @@ void* QAbstractVideoSurface___dynamicPropertyNames_newList(void* ptr)
 void* QAbstractVideoSurface___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoSurface___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2093,7 +2093,7 @@ void* QAbstractVideoSurface___findChildren_newList2(void* ptr)
 void* QAbstractVideoSurface___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoSurface___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2125,7 +2125,7 @@ void* QAbstractVideoSurface___findChildren_newList3(void* ptr)
 void* QAbstractVideoSurface___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoSurface___findChildren_setList(void* ptr, void* i, void* p)
@@ -2157,7 +2157,7 @@ void* QAbstractVideoSurface___findChildren_newList(void* ptr)
 void* QAbstractVideoSurface___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAbstractVideoSurface___children_setList(void* ptr, void* i, void* p)
@@ -3034,7 +3034,7 @@ char QAudioDeviceInfo_IsNull(void* ptr)
 void* QAudioDeviceInfo___availableDevices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QAudioDeviceInfo(({const QAudioDeviceInfo tmp = static_cast<QList<QAudioDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QAudioDeviceInfo>*>(p)->size()-1) { static_cast<QList<QAudioDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QAudioDeviceInfo(({QAudioDeviceInfo tmp = static_cast<QList<QAudioDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QAudioDeviceInfo>*>(p)->size()-1) { static_cast<QList<QAudioDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioDeviceInfo___availableDevices_setList(void* ptr, void* i, void* p)
@@ -3052,7 +3052,7 @@ void* QAudioDeviceInfo___availableDevices_newList(void* ptr)
 long long QAudioDeviceInfo___supportedByteOrders_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudioFormat::Endian tmp = static_cast<QList<QAudioFormat::Endian>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::Endian>*>(p)->size()-1) { static_cast<QList<QAudioFormat::Endian>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudioFormat::Endian tmp = static_cast<QList<QAudioFormat::Endian>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::Endian>*>(p)->size()-1) { static_cast<QList<QAudioFormat::Endian>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioDeviceInfo___supportedByteOrders_setList(void* ptr, long long i, void* p)
@@ -3070,7 +3070,7 @@ void* QAudioDeviceInfo___supportedByteOrders_newList(void* ptr)
 long long QAudioDeviceInfo___supportedSampleTypes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudioFormat::SampleType tmp = static_cast<QList<QAudioFormat::SampleType>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::SampleType>*>(p)->size()-1) { static_cast<QList<QAudioFormat::SampleType>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudioFormat::SampleType tmp = static_cast<QList<QAudioFormat::SampleType>*>(p)->at(i); if (i == static_cast<QList<QAudioFormat::SampleType>*>(p)->size()-1) { static_cast<QList<QAudioFormat::SampleType>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioDeviceInfo___supportedSampleTypes_setList(void* ptr, long long i, void* p)
@@ -3088,7 +3088,7 @@ void* QAudioDeviceInfo___supportedSampleTypes_newList(void* ptr)
 int QAudioDeviceInfo___supportedChannelCounts_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioDeviceInfo___supportedChannelCounts_setList(void* ptr, int i, void* p)
@@ -3106,7 +3106,7 @@ void* QAudioDeviceInfo___supportedChannelCounts_newList(void* ptr)
 int QAudioDeviceInfo___supportedSampleRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioDeviceInfo___supportedSampleRates_setList(void* ptr, int i, void* p)
@@ -3124,7 +3124,7 @@ void* QAudioDeviceInfo___supportedSampleRates_newList(void* ptr)
 int QAudioDeviceInfo___supportedSampleSizes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioDeviceInfo___supportedSampleSizes_setList(void* ptr, int i, void* p)
@@ -3242,7 +3242,7 @@ int QAudioEncoderSettings_SampleRate(void* ptr)
 void* QAudioEncoderSettings___setEncodingOptions_options_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QAudioEncoderSettings___setEncodingOptions_options_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -3266,7 +3266,7 @@ struct QtMultimedia_PackedList QAudioEncoderSettings___setEncodingOptions_keyLis
 void* QAudioEncoderSettings___encodingOptions_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QAudioEncoderSettings___encodingOptions_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -3290,7 +3290,7 @@ struct QtMultimedia_PackedList QAudioEncoderSettings___encodingOptions_keyList(v
 struct QtMultimedia_PackedString QAudioEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QAudioEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -3308,7 +3308,7 @@ void* QAudioEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 struct QtMultimedia_PackedString QAudioEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QAudioEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -3431,7 +3431,7 @@ struct QtMultimedia_PackedString QAudioEncoderSettingsControl_SupportedAudioCode
 int QAudioEncoderSettingsControl___supportedSampleRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioEncoderSettingsControl___supportedSampleRates_setList(void* ptr, int i, void* p)
@@ -3785,7 +3785,7 @@ double QAudioInput_Volume(void* ptr)
 void* QAudioInput___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioInput___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -3803,7 +3803,7 @@ void* QAudioInput___dynamicPropertyNames_newList(void* ptr)
 void* QAudioInput___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioInput___findChildren_setList2(void* ptr, void* i, void* p)
@@ -3835,7 +3835,7 @@ void* QAudioInput___findChildren_newList2(void* ptr)
 void* QAudioInput___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioInput___findChildren_setList3(void* ptr, void* i, void* p)
@@ -3867,7 +3867,7 @@ void* QAudioInput___findChildren_newList3(void* ptr)
 void* QAudioInput___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioInput___findChildren_setList(void* ptr, void* i, void* p)
@@ -3899,7 +3899,7 @@ void* QAudioInput___findChildren_newList(void* ptr)
 void* QAudioInput___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioInput___children_setList(void* ptr, void* i, void* p)
@@ -4078,7 +4078,7 @@ struct QtMultimedia_PackedString QAudioInputSelectorControl_InputDescription(voi
 struct QtMultimedia_PackedString QAudioInputSelectorControl___availableInputs_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QAudioInputSelectorControl___availableInputs_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -4327,7 +4327,7 @@ double QAudioOutput_Volume(void* ptr)
 void* QAudioOutput___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioOutput___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -4345,7 +4345,7 @@ void* QAudioOutput___dynamicPropertyNames_newList(void* ptr)
 void* QAudioOutput___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioOutput___findChildren_setList2(void* ptr, void* i, void* p)
@@ -4377,7 +4377,7 @@ void* QAudioOutput___findChildren_newList2(void* ptr)
 void* QAudioOutput___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioOutput___findChildren_setList3(void* ptr, void* i, void* p)
@@ -4409,7 +4409,7 @@ void* QAudioOutput___findChildren_newList3(void* ptr)
 void* QAudioOutput___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioOutput___findChildren_setList(void* ptr, void* i, void* p)
@@ -4441,7 +4441,7 @@ void* QAudioOutput___findChildren_newList(void* ptr)
 void* QAudioOutput___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioOutput___children_setList(void* ptr, void* i, void* p)
@@ -4620,7 +4620,7 @@ struct QtMultimedia_PackedString QAudioOutputSelectorControl_OutputDescription(v
 struct QtMultimedia_PackedString QAudioOutputSelectorControl___availableOutputs_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QAudioOutputSelectorControl___availableOutputs_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -4752,7 +4752,7 @@ char QAudioProbe_IsActive(void* ptr)
 void* QAudioProbe___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioProbe___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -4770,7 +4770,7 @@ void* QAudioProbe___dynamicPropertyNames_newList(void* ptr)
 void* QAudioProbe___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioProbe___findChildren_setList2(void* ptr, void* i, void* p)
@@ -4802,7 +4802,7 @@ void* QAudioProbe___findChildren_newList2(void* ptr)
 void* QAudioProbe___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioProbe___findChildren_setList3(void* ptr, void* i, void* p)
@@ -4834,7 +4834,7 @@ void* QAudioProbe___findChildren_newList3(void* ptr)
 void* QAudioProbe___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioProbe___findChildren_setList(void* ptr, void* i, void* p)
@@ -4866,7 +4866,7 @@ void* QAudioProbe___findChildren_newList(void* ptr)
 void* QAudioProbe___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioProbe___children_setList(void* ptr, void* i, void* p)
@@ -5216,7 +5216,7 @@ struct QtMultimedia_PackedList QAudioRoleControl_SupportedAudioRoles(void* ptr)
 long long QAudioRoleControl___supportedAudioRoles_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudio::Role tmp = static_cast<QList<QAudio::Role>*>(p)->at(i); if (i == static_cast<QList<QAudio::Role>*>(p)->size()-1) { static_cast<QList<QAudio::Role>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudio::Role tmp = static_cast<QList<QAudio::Role>*>(p)->at(i); if (i == static_cast<QList<QAudio::Role>*>(p)->size()-1) { static_cast<QList<QAudio::Role>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioRoleControl___supportedAudioRoles_setList(void* ptr, long long i, void* p)
@@ -5325,7 +5325,7 @@ struct QtMultimedia_PackedList QAudioSystemPlugin_AvailableDevices(void* ptr, lo
 void* QAudioSystemPlugin___availableDevices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioSystemPlugin___availableDevices_setList(void* ptr, void* i, void* p)
@@ -5343,7 +5343,7 @@ void* QAudioSystemPlugin___availableDevices_newList(void* ptr)
 void* QAudioSystemPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QAudioSystemPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -5361,7 +5361,7 @@ void* QAudioSystemPlugin___dynamicPropertyNames_newList(void* ptr)
 void* QAudioSystemPlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioSystemPlugin___findChildren_setList2(void* ptr, void* i, void* p)
@@ -5393,7 +5393,7 @@ void* QAudioSystemPlugin___findChildren_newList2(void* ptr)
 void* QAudioSystemPlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioSystemPlugin___findChildren_setList3(void* ptr, void* i, void* p)
@@ -5425,7 +5425,7 @@ void* QAudioSystemPlugin___findChildren_newList3(void* ptr)
 void* QAudioSystemPlugin___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioSystemPlugin___findChildren_setList(void* ptr, void* i, void* p)
@@ -5457,7 +5457,7 @@ void* QAudioSystemPlugin___findChildren_newList(void* ptr)
 void* QAudioSystemPlugin___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QAudioSystemPlugin___children_setList(void* ptr, void* i, void* p)
@@ -6094,7 +6094,7 @@ char QCamera_IsCaptureModeSupported(void* ptr, long long mode)
 void* QCamera___availableDevices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCamera___availableDevices_setList(void* ptr, void* i, void* p)
@@ -6112,7 +6112,7 @@ void* QCamera___availableDevices_newList(void* ptr)
 void* QCamera___supportedViewfinderSettings_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QCameraViewfinderSettings(({const QCameraViewfinderSettings tmp = static_cast<QList<QCameraViewfinderSettings>*>(p)->at(i); if (i == static_cast<QList<QCameraViewfinderSettings>*>(p)->size()-1) { static_cast<QList<QCameraViewfinderSettings>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QCameraViewfinderSettings(({QCameraViewfinderSettings tmp = static_cast<QList<QCameraViewfinderSettings>*>(p)->at(i); if (i == static_cast<QList<QCameraViewfinderSettings>*>(p)->size()-1) { static_cast<QList<QCameraViewfinderSettings>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCamera___supportedViewfinderSettings_setList(void* ptr, void* i, void* p)
@@ -6130,7 +6130,7 @@ void* QCamera___supportedViewfinderSettings_newList(void* ptr)
 void* QCamera___supportedViewfinderResolutions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
+	return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QCamera___supportedViewfinderResolutions_setList(void* ptr, void* i, void* p)
@@ -6148,7 +6148,7 @@ void* QCamera___supportedViewfinderResolutions_newList(void* ptr)
 long long QCamera___supportedViewfinderPixelFormats_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCamera___supportedViewfinderPixelFormats_setList(void* ptr, long long i, void* p)
@@ -6268,7 +6268,7 @@ long long QCameraCaptureBufferFormatControl_BufferFormat(void* ptr)
 long long QCameraCaptureBufferFormatControl___supportedBufferFormats_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraCaptureBufferFormatControl___supportedBufferFormats_setList(void* ptr, long long i, void* p)
@@ -6912,7 +6912,7 @@ double QCameraExposure_ShutterSpeed(void* ptr)
 int QCameraExposure___supportedIsoSensitivities_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___supportedIsoSensitivities_setList(void* ptr, int i, void* p)
@@ -6930,7 +6930,7 @@ void* QCameraExposure___supportedIsoSensitivities_newList(void* ptr)
 double QCameraExposure___supportedApertures_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
+	return ({qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___supportedApertures_setList(void* ptr, double i, void* p)
@@ -6948,7 +6948,7 @@ void* QCameraExposure___supportedApertures_newList(void* ptr)
 double QCameraExposure___supportedShutterSpeeds_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
+	return ({qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___supportedShutterSpeeds_setList(void* ptr, double i, void* p)
@@ -6966,7 +6966,7 @@ void* QCameraExposure___supportedShutterSpeeds_newList(void* ptr)
 void* QCameraExposure___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraExposure___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -6984,7 +6984,7 @@ void* QCameraExposure___dynamicPropertyNames_newList(void* ptr)
 void* QCameraExposure___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___findChildren_setList2(void* ptr, void* i, void* p)
@@ -7016,7 +7016,7 @@ void* QCameraExposure___findChildren_newList2(void* ptr)
 void* QCameraExposure___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___findChildren_setList3(void* ptr, void* i, void* p)
@@ -7048,7 +7048,7 @@ void* QCameraExposure___findChildren_newList3(void* ptr)
 void* QCameraExposure___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___findChildren_setList(void* ptr, void* i, void* p)
@@ -7080,7 +7080,7 @@ void* QCameraExposure___findChildren_newList(void* ptr)
 void* QCameraExposure___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraExposure___children_setList(void* ptr, void* i, void* p)
@@ -7317,7 +7317,7 @@ char QCameraExposureControl_IsParameterSupported(void* ptr, long long parameter)
 void* QCameraExposureControl___supportedParameterRange_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraExposureControl___supportedParameterRange_setList(void* ptr, void* i, void* p)
@@ -7709,7 +7709,7 @@ double QCameraFocus_OpticalZoom(void* ptr)
 void* QCameraFocus___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraFocus___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -7727,7 +7727,7 @@ void* QCameraFocus___dynamicPropertyNames_newList(void* ptr)
 void* QCameraFocus___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraFocus___findChildren_setList2(void* ptr, void* i, void* p)
@@ -7759,7 +7759,7 @@ void* QCameraFocus___findChildren_newList2(void* ptr)
 void* QCameraFocus___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraFocus___findChildren_setList3(void* ptr, void* i, void* p)
@@ -7791,7 +7791,7 @@ void* QCameraFocus___findChildren_newList3(void* ptr)
 void* QCameraFocus___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraFocus___findChildren_setList(void* ptr, void* i, void* p)
@@ -7823,7 +7823,7 @@ void* QCameraFocus___findChildren_newList(void* ptr)
 void* QCameraFocus___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraFocus___children_setList(void* ptr, void* i, void* p)
@@ -8383,7 +8383,7 @@ char QCameraImageCapture_IsReadyForCapture(void* ptr)
 void* QCameraImageCapture___supportedResolutions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QCameraImageCapture___supportedResolutions_setList(void* ptr, void* i, void* p)
@@ -8401,7 +8401,7 @@ void* QCameraImageCapture___supportedResolutions_newList(void* ptr)
 long long QCameraImageCapture___supportedBufferFormats_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return ({const QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
+		return ({QVideoFrame::PixelFormat tmp = static_cast<QList<QVideoFrame::PixelFormat>*>(p)->at(i); if (i == static_cast<QList<QVideoFrame::PixelFormat>*>(p)->size()-1) { static_cast<QList<QVideoFrame::PixelFormat>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageCapture___supportedBufferFormats_setList(void* ptr, long long i, void* p)
@@ -8419,7 +8419,7 @@ void* QCameraImageCapture___supportedBufferFormats_newList(void* ptr)
 void* QCameraImageCapture___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraImageCapture___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -8437,7 +8437,7 @@ void* QCameraImageCapture___dynamicPropertyNames_newList(void* ptr)
 void* QCameraImageCapture___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageCapture___findChildren_setList2(void* ptr, void* i, void* p)
@@ -8469,7 +8469,7 @@ void* QCameraImageCapture___findChildren_newList2(void* ptr)
 void* QCameraImageCapture___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageCapture___findChildren_setList3(void* ptr, void* i, void* p)
@@ -8501,7 +8501,7 @@ void* QCameraImageCapture___findChildren_newList3(void* ptr)
 void* QCameraImageCapture___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageCapture___findChildren_setList(void* ptr, void* i, void* p)
@@ -8533,7 +8533,7 @@ void* QCameraImageCapture___findChildren_newList(void* ptr)
 void* QCameraImageCapture___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageCapture___children_setList(void* ptr, void* i, void* p)
@@ -9007,7 +9007,7 @@ double QCameraImageProcessing_SharpeningLevel(void* ptr)
 void* QCameraImageProcessing___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraImageProcessing___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -9025,7 +9025,7 @@ void* QCameraImageProcessing___dynamicPropertyNames_newList(void* ptr)
 void* QCameraImageProcessing___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageProcessing___findChildren_setList2(void* ptr, void* i, void* p)
@@ -9057,7 +9057,7 @@ void* QCameraImageProcessing___findChildren_newList2(void* ptr)
 void* QCameraImageProcessing___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageProcessing___findChildren_setList3(void* ptr, void* i, void* p)
@@ -9089,7 +9089,7 @@ void* QCameraImageProcessing___findChildren_newList3(void* ptr)
 void* QCameraImageProcessing___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageProcessing___findChildren_setList(void* ptr, void* i, void* p)
@@ -9121,7 +9121,7 @@ void* QCameraImageProcessing___findChildren_newList(void* ptr)
 void* QCameraImageProcessing___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCameraImageProcessing___children_setList(void* ptr, void* i, void* p)
@@ -9358,7 +9358,7 @@ int QCameraInfo_Orientation(void* ptr)
 void* QCameraInfo___availableCameras_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QCameraInfo(({const QCameraInfo tmp = static_cast<QList<QCameraInfo>*>(p)->at(i); if (i == static_cast<QList<QCameraInfo>*>(p)->size()-1) { static_cast<QList<QCameraInfo>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QCameraInfo(({QCameraInfo tmp = static_cast<QList<QCameraInfo>*>(p)->at(i); if (i == static_cast<QList<QCameraInfo>*>(p)->size()-1) { static_cast<QList<QCameraInfo>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraInfo___availableCameras_setList(void* ptr, void* i, void* p)
@@ -9945,7 +9945,7 @@ struct QtMultimedia_PackedList QCameraViewfinderSettingsControl2_SupportedViewfi
 void* QCameraViewfinderSettingsControl2___supportedViewfinderSettings_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QCameraViewfinderSettings(({const QCameraViewfinderSettings tmp = static_cast<QList<QCameraViewfinderSettings>*>(p)->at(i); if (i == static_cast<QList<QCameraViewfinderSettings>*>(p)->size()-1) { static_cast<QList<QCameraViewfinderSettings>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QCameraViewfinderSettings(({QCameraViewfinderSettings tmp = static_cast<QList<QCameraViewfinderSettings>*>(p)->at(i); if (i == static_cast<QList<QCameraViewfinderSettings>*>(p)->size()-1) { static_cast<QList<QCameraViewfinderSettings>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCameraViewfinderSettingsControl2___supportedViewfinderSettings_setList(void* ptr, void* i, void* p)
@@ -10338,7 +10338,7 @@ long long QGraphicsVideoItem_AspectRatioMode(void* ptr)
 void* QGraphicsVideoItem___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGraphicsVideoItem___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -10356,7 +10356,7 @@ void* QGraphicsVideoItem___dynamicPropertyNames_newList(void* ptr)
 void* QGraphicsVideoItem___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___findChildren_setList2(void* ptr, void* i, void* p)
@@ -10388,7 +10388,7 @@ void* QGraphicsVideoItem___findChildren_newList2(void* ptr)
 void* QGraphicsVideoItem___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___findChildren_setList3(void* ptr, void* i, void* p)
@@ -10420,7 +10420,7 @@ void* QGraphicsVideoItem___findChildren_newList3(void* ptr)
 void* QGraphicsVideoItem___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___findChildren_setList(void* ptr, void* i, void* p)
@@ -10452,7 +10452,7 @@ void* QGraphicsVideoItem___findChildren_newList(void* ptr)
 void* QGraphicsVideoItem___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___children_setList(void* ptr, void* i, void* p)
@@ -10484,7 +10484,7 @@ void* QGraphicsVideoItem___children_newList(void* ptr)
 void* QGraphicsVideoItem___setTransformations_transformations_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QGraphicsTransform*>(({const QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(p)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(p)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___setTransformations_transformations_setList(void* ptr, void* i, void* p)
@@ -10502,7 +10502,7 @@ void* QGraphicsVideoItem___setTransformations_transformations_newList(void* ptr)
 void* QGraphicsVideoItem___childItems_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QGraphicsItem*>(({const QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(p)->size()-1) { static_cast<QList<QGraphicsItem *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(p)->size()-1) { static_cast<QList<QGraphicsItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___childItems_setList(void* ptr, void* i, void* p)
@@ -10524,7 +10524,7 @@ void* QGraphicsVideoItem___childItems_newList(void* ptr)
 void* QGraphicsVideoItem___collidingItems_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QGraphicsItem*>(({const QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(p)->size()-1) { static_cast<QList<QGraphicsItem *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(p)->size()-1) { static_cast<QList<QGraphicsItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___collidingItems_setList(void* ptr, void* i, void* p)
@@ -10546,7 +10546,7 @@ void* QGraphicsVideoItem___collidingItems_newList(void* ptr)
 void* QGraphicsVideoItem___transformations_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QGraphicsTransform*>(({const QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(p)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(p)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(p)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGraphicsVideoItem___transformations_setList(void* ptr, void* i, void* p)
@@ -11131,7 +11131,7 @@ struct QtMultimedia_PackedString QImageEncoderControl_SupportedImageCodecs(void*
 void* QImageEncoderControl___supportedResolutions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
+	return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QImageEncoderControl___supportedResolutions_setList(void* ptr, void* i, void* p)
@@ -11224,7 +11224,7 @@ char QImageEncoderSettings_IsNull(void* ptr)
 void* QImageEncoderSettings___setEncodingOptions_options_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QImageEncoderSettings___setEncodingOptions_options_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -11248,7 +11248,7 @@ struct QtMultimedia_PackedList QImageEncoderSettings___setEncodingOptions_keyLis
 void* QImageEncoderSettings___encodingOptions_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QImageEncoderSettings___encodingOptions_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -11272,7 +11272,7 @@ struct QtMultimedia_PackedList QImageEncoderSettings___encodingOptions_keyList(v
 struct QtMultimedia_PackedString QImageEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QImageEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -11290,7 +11290,7 @@ void* QImageEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 struct QtMultimedia_PackedString QImageEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QImageEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -11729,7 +11729,7 @@ char QMediaContent_IsNull(void* ptr)
 void* QMediaContent___QMediaContent_resources_atList5(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QMediaResource(({const QMediaResource tmp = static_cast<QList<QMediaResource>*>(p)->at(i); if (i == static_cast<QList<QMediaResource>*>(p)->size()-1) { static_cast<QList<QMediaResource>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QMediaResource(({QMediaResource tmp = static_cast<QList<QMediaResource>*>(p)->at(i); if (i == static_cast<QList<QMediaResource>*>(p)->size()-1) { static_cast<QList<QMediaResource>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaContent___QMediaContent_resources_setList5(void* ptr, void* i, void* p)
@@ -11747,7 +11747,7 @@ void* QMediaContent___QMediaContent_resources_newList5(void* ptr)
 void* QMediaContent___resources_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QMediaResource(({const QMediaResource tmp = static_cast<QList<QMediaResource>*>(p)->at(i); if (i == static_cast<QList<QMediaResource>*>(p)->size()-1) { static_cast<QList<QMediaResource>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QMediaResource(({QMediaResource tmp = static_cast<QList<QMediaResource>*>(p)->at(i); if (i == static_cast<QList<QMediaResource>*>(p)->size()-1) { static_cast<QList<QMediaResource>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaContent___resources_setList(void* ptr, void* i, void* p)
@@ -11832,7 +11832,7 @@ void QMediaControl_DestroyQMediaControl(void* ptr)
 void* QMediaControl___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaControl___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -11850,7 +11850,7 @@ void* QMediaControl___dynamicPropertyNames_newList(void* ptr)
 void* QMediaControl___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaControl___findChildren_setList2(void* ptr, void* i, void* p)
@@ -11882,7 +11882,7 @@ void* QMediaControl___findChildren_newList2(void* ptr)
 void* QMediaControl___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaControl___findChildren_setList3(void* ptr, void* i, void* p)
@@ -11914,7 +11914,7 @@ void* QMediaControl___findChildren_newList3(void* ptr)
 void* QMediaControl___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaControl___findChildren_setList(void* ptr, void* i, void* p)
@@ -11946,7 +11946,7 @@ void* QMediaControl___findChildren_newList(void* ptr)
 void* QMediaControl___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaControl___children_setList(void* ptr, void* i, void* p)
@@ -13483,7 +13483,7 @@ void* QMediaNetworkAccessControl_CurrentConfiguration(void* ptr)
 void* QMediaNetworkAccessControl___setConfigurations_configurations_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QNetworkConfiguration(({const QNetworkConfiguration tmp = static_cast<QList<QNetworkConfiguration>*>(p)->at(i); if (i == static_cast<QList<QNetworkConfiguration>*>(p)->size()-1) { static_cast<QList<QNetworkConfiguration>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QNetworkConfiguration(({QNetworkConfiguration tmp = static_cast<QList<QNetworkConfiguration>*>(p)->at(i); if (i == static_cast<QList<QNetworkConfiguration>*>(p)->size()-1) { static_cast<QList<QNetworkConfiguration>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaNetworkAccessControl___setConfigurations_configurations_setList(void* ptr, void* i, void* p)
@@ -13973,7 +13973,7 @@ int QMediaObject_NotifyInterval(void* ptr)
 void* QMediaObject___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaObject___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -13991,7 +13991,7 @@ void* QMediaObject___dynamicPropertyNames_newList(void* ptr)
 void* QMediaObject___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaObject___findChildren_setList2(void* ptr, void* i, void* p)
@@ -14023,7 +14023,7 @@ void* QMediaObject___findChildren_newList2(void* ptr)
 void* QMediaObject___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaObject___findChildren_setList3(void* ptr, void* i, void* p)
@@ -14055,7 +14055,7 @@ void* QMediaObject___findChildren_newList3(void* ptr)
 void* QMediaObject___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaObject___findChildren_setList(void* ptr, void* i, void* p)
@@ -14087,7 +14087,7 @@ void* QMediaObject___findChildren_newList(void* ptr)
 void* QMediaObject___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaObject___children_setList(void* ptr, void* i, void* p)
@@ -14897,7 +14897,7 @@ double QMediaPlayer_PlaybackRate(void* ptr)
 void* QMediaPlayer___setNetworkConfigurations_configurations_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QNetworkConfiguration(({const QNetworkConfiguration tmp = static_cast<QList<QNetworkConfiguration>*>(p)->at(i); if (i == static_cast<QList<QNetworkConfiguration>*>(p)->size()-1) { static_cast<QList<QNetworkConfiguration>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QNetworkConfiguration(({QNetworkConfiguration tmp = static_cast<QList<QNetworkConfiguration>*>(p)->at(i); if (i == static_cast<QList<QNetworkConfiguration>*>(p)->size()-1) { static_cast<QList<QNetworkConfiguration>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaPlayer___setNetworkConfigurations_configurations_setList(void* ptr, void* i, void* p)
@@ -14915,7 +14915,7 @@ void* QMediaPlayer___setNetworkConfigurations_configurations_newList(void* ptr)
 long long QMediaPlayer___supportedAudioRoles_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const QAudio::Role tmp = static_cast<QList<QAudio::Role>*>(p)->at(i); if (i == static_cast<QList<QAudio::Role>*>(p)->size()-1) { static_cast<QList<QAudio::Role>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAudio::Role tmp = static_cast<QList<QAudio::Role>*>(p)->at(i); if (i == static_cast<QList<QAudio::Role>*>(p)->size()-1) { static_cast<QList<QAudio::Role>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaPlayer___supportedAudioRoles_setList(void* ptr, long long i, void* p)
@@ -15738,7 +15738,7 @@ int QMediaPlaylist_PreviousIndex(void* ptr, int steps)
 void* QMediaPlaylist___addMedia_items_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QMediaContent(({const QMediaContent tmp = static_cast<QList<QMediaContent>*>(p)->at(i); if (i == static_cast<QList<QMediaContent>*>(p)->size()-1) { static_cast<QList<QMediaContent>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QMediaContent(({QMediaContent tmp = static_cast<QList<QMediaContent>*>(p)->at(i); if (i == static_cast<QList<QMediaContent>*>(p)->size()-1) { static_cast<QList<QMediaContent>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaPlaylist___addMedia_items_setList2(void* ptr, void* i, void* p)
@@ -15756,7 +15756,7 @@ void* QMediaPlaylist___addMedia_items_newList2(void* ptr)
 void* QMediaPlaylist___insertMedia_items_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QMediaContent(({const QMediaContent tmp = static_cast<QList<QMediaContent>*>(p)->at(i); if (i == static_cast<QList<QMediaContent>*>(p)->size()-1) { static_cast<QList<QMediaContent>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QMediaContent(({QMediaContent tmp = static_cast<QList<QMediaContent>*>(p)->at(i); if (i == static_cast<QList<QMediaContent>*>(p)->size()-1) { static_cast<QList<QMediaContent>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaPlaylist___insertMedia_items_setList2(void* ptr, void* i, void* p)
@@ -15774,7 +15774,7 @@ void* QMediaPlaylist___insertMedia_items_newList2(void* ptr)
 void* QMediaPlaylist___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaPlaylist___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -15792,7 +15792,7 @@ void* QMediaPlaylist___dynamicPropertyNames_newList(void* ptr)
 void* QMediaPlaylist___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaPlaylist___findChildren_setList2(void* ptr, void* i, void* p)
@@ -15824,7 +15824,7 @@ void* QMediaPlaylist___findChildren_newList2(void* ptr)
 void* QMediaPlaylist___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaPlaylist___findChildren_setList3(void* ptr, void* i, void* p)
@@ -15856,7 +15856,7 @@ void* QMediaPlaylist___findChildren_newList3(void* ptr)
 void* QMediaPlaylist___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaPlaylist___findChildren_setList(void* ptr, void* i, void* p)
@@ -15888,7 +15888,7 @@ void* QMediaPlaylist___findChildren_newList(void* ptr)
 void* QMediaPlaylist___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaPlaylist___children_setList(void* ptr, void* i, void* p)
@@ -16550,7 +16550,7 @@ double QMediaRecorder_Volume(void* ptr)
 void* QMediaRecorder___supportedResolutions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QMediaRecorder___supportedResolutions_setList(void* ptr, void* i, void* p)
@@ -16568,7 +16568,7 @@ void* QMediaRecorder___supportedResolutions_newList(void* ptr)
 int QMediaRecorder___supportedAudioSampleRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+		return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___supportedAudioSampleRates_setList(void* ptr, int i, void* p)
@@ -16586,7 +16586,7 @@ void* QMediaRecorder___supportedAudioSampleRates_newList(void* ptr)
 double QMediaRecorder___supportedFrameRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
+		return ({qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___supportedFrameRates_setList(void* ptr, double i, void* p)
@@ -16604,7 +16604,7 @@ void* QMediaRecorder___supportedFrameRates_newList(void* ptr)
 void* QMediaRecorder___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaRecorder___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -16622,7 +16622,7 @@ void* QMediaRecorder___dynamicPropertyNames_newList(void* ptr)
 void* QMediaRecorder___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___findChildren_setList2(void* ptr, void* i, void* p)
@@ -16654,7 +16654,7 @@ void* QMediaRecorder___findChildren_newList2(void* ptr)
 void* QMediaRecorder___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___findChildren_setList3(void* ptr, void* i, void* p)
@@ -16686,7 +16686,7 @@ void* QMediaRecorder___findChildren_newList3(void* ptr)
 void* QMediaRecorder___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___findChildren_setList(void* ptr, void* i, void* p)
@@ -16718,7 +16718,7 @@ void* QMediaRecorder___findChildren_newList(void* ptr)
 void* QMediaRecorder___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaRecorder___children_setList(void* ptr, void* i, void* p)
@@ -17411,7 +17411,7 @@ void QMediaService_DestroyQMediaService(void* ptr)
 void* QMediaService___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaService___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -17429,7 +17429,7 @@ void* QMediaService___dynamicPropertyNames_newList(void* ptr)
 void* QMediaService___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaService___findChildren_setList2(void* ptr, void* i, void* p)
@@ -17461,7 +17461,7 @@ void* QMediaService___findChildren_newList2(void* ptr)
 void* QMediaService___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaService___findChildren_setList3(void* ptr, void* i, void* p)
@@ -17493,7 +17493,7 @@ void* QMediaService___findChildren_newList3(void* ptr)
 void* QMediaService___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaService___findChildren_setList(void* ptr, void* i, void* p)
@@ -17525,7 +17525,7 @@ void* QMediaService___findChildren_newList(void* ptr)
 void* QMediaService___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaService___children_setList(void* ptr, void* i, void* p)
@@ -17717,7 +17717,7 @@ void QMediaServiceProviderPlugin_Release(void* ptr, void* service)
 void* QMediaServiceProviderPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaServiceProviderPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -17735,7 +17735,7 @@ void* QMediaServiceProviderPlugin___dynamicPropertyNames_newList(void* ptr)
 void* QMediaServiceProviderPlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaServiceProviderPlugin___findChildren_setList2(void* ptr, void* i, void* p)
@@ -17767,7 +17767,7 @@ void* QMediaServiceProviderPlugin___findChildren_newList2(void* ptr)
 void* QMediaServiceProviderPlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaServiceProviderPlugin___findChildren_setList3(void* ptr, void* i, void* p)
@@ -17799,7 +17799,7 @@ void* QMediaServiceProviderPlugin___findChildren_newList3(void* ptr)
 void* QMediaServiceProviderPlugin___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaServiceProviderPlugin___findChildren_setList(void* ptr, void* i, void* p)
@@ -17831,7 +17831,7 @@ void* QMediaServiceProviderPlugin___findChildren_newList(void* ptr)
 void* QMediaServiceProviderPlugin___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMediaServiceProviderPlugin___children_setList(void* ptr, void* i, void* p)
@@ -17951,7 +17951,7 @@ struct QtMultimedia_PackedList QMediaServiceSupportedDevicesInterface_Devices(vo
 void* QMediaServiceSupportedDevicesInterface___devices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaServiceSupportedDevicesInterface___devices_setList(void* ptr, void* i, void* p)
@@ -18269,7 +18269,7 @@ long long QMediaTimeRange_LatestTime(void* ptr)
 void* QMediaTimeRange___intervals_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QMediaTimeInterval(({const QMediaTimeInterval tmp = static_cast<QList<QMediaTimeInterval>*>(p)->at(i); if (i == static_cast<QList<QMediaTimeInterval>*>(p)->size()-1) { static_cast<QList<QMediaTimeInterval>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QMediaTimeInterval(({QMediaTimeInterval tmp = static_cast<QList<QMediaTimeInterval>*>(p)->at(i); if (i == static_cast<QList<QMediaTimeInterval>*>(p)->size()-1) { static_cast<QList<QMediaTimeInterval>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMediaTimeRange___intervals_setList(void* ptr, void* i, void* p)
@@ -18910,7 +18910,7 @@ char QRadioData_IsAlternativeFrequenciesEnabled(void* ptr)
 void* QRadioData___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRadioData___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -18928,7 +18928,7 @@ void* QRadioData___dynamicPropertyNames_newList(void* ptr)
 void* QRadioData___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRadioData___findChildren_setList2(void* ptr, void* i, void* p)
@@ -18960,7 +18960,7 @@ void* QRadioData___findChildren_newList2(void* ptr)
 void* QRadioData___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRadioData___findChildren_setList3(void* ptr, void* i, void* p)
@@ -18992,7 +18992,7 @@ void* QRadioData___findChildren_newList3(void* ptr)
 void* QRadioData___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRadioData___findChildren_setList(void* ptr, void* i, void* p)
@@ -19024,7 +19024,7 @@ void* QRadioData___findChildren_newList(void* ptr)
 void* QRadioData___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRadioData___children_setList(void* ptr, void* i, void* p)
@@ -20336,7 +20336,7 @@ int QSound_LoopsRemaining(void* ptr)
 void* QSound___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSound___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -20354,7 +20354,7 @@ void* QSound___dynamicPropertyNames_newList(void* ptr)
 void* QSound___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSound___findChildren_setList2(void* ptr, void* i, void* p)
@@ -20386,7 +20386,7 @@ void* QSound___findChildren_newList2(void* ptr)
 void* QSound___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSound___findChildren_setList3(void* ptr, void* i, void* p)
@@ -20418,7 +20418,7 @@ void* QSound___findChildren_newList3(void* ptr)
 void* QSound___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSound___findChildren_setList(void* ptr, void* i, void* p)
@@ -20450,7 +20450,7 @@ void* QSound___findChildren_newList(void* ptr)
 void* QSound___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSound___children_setList(void* ptr, void* i, void* p)
@@ -20849,7 +20849,7 @@ double QSoundEffect_Volume(void* ptr)
 void* QSoundEffect___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSoundEffect___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -20867,7 +20867,7 @@ void* QSoundEffect___dynamicPropertyNames_newList(void* ptr)
 void* QSoundEffect___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSoundEffect___findChildren_setList2(void* ptr, void* i, void* p)
@@ -20899,7 +20899,7 @@ void* QSoundEffect___findChildren_newList2(void* ptr)
 void* QSoundEffect___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSoundEffect___findChildren_setList3(void* ptr, void* i, void* p)
@@ -20931,7 +20931,7 @@ void* QSoundEffect___findChildren_newList3(void* ptr)
 void* QSoundEffect___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSoundEffect___findChildren_setList(void* ptr, void* i, void* p)
@@ -20963,7 +20963,7 @@ void* QSoundEffect___findChildren_newList(void* ptr)
 void* QSoundEffect___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSoundEffect___children_setList(void* ptr, void* i, void* p)
@@ -21317,7 +21317,7 @@ double QVideoEncoderSettings_FrameRate(void* ptr)
 void* QVideoEncoderSettings___setEncodingOptions_options_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QVideoEncoderSettings___setEncodingOptions_options_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -21341,7 +21341,7 @@ struct QtMultimedia_PackedList QVideoEncoderSettings___setEncodingOptions_keyLis
 void* QVideoEncoderSettings___encodingOptions_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QVideoEncoderSettings___encodingOptions_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -21365,7 +21365,7 @@ struct QtMultimedia_PackedList QVideoEncoderSettings___encodingOptions_keyList(v
 struct QtMultimedia_PackedString QVideoEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QVideoEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -21383,7 +21383,7 @@ void* QVideoEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
 struct QtMultimedia_PackedString QVideoEncoderSettings_____encodingOptions_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QVideoEncoderSettings_____encodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -21513,7 +21513,7 @@ void* QVideoEncoderSettingsControl_VideoSettings(void* ptr)
 void* QVideoEncoderSettingsControl___supportedResolutions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QSize tmpValue = ({const QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
+	return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(p)->at(i); if (i == static_cast<QList<QSize>*>(p)->size()-1) { static_cast<QList<QSize>*>(p)->~QList(); free(p); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QVideoEncoderSettingsControl___supportedResolutions_setList(void* ptr, void* i, void* p)
@@ -21531,7 +21531,7 @@ void* QVideoEncoderSettingsControl___supportedResolutions_newList(void* ptr)
 double QVideoEncoderSettingsControl___supportedFrameRates_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
+	return ({qreal tmp = static_cast<QList<qreal>*>(p)->at(i); if (i == static_cast<QList<qreal>*>(p)->size()-1) { static_cast<QList<qreal>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoEncoderSettingsControl___supportedFrameRates_setList(void* ptr, double i, void* p)
@@ -21750,7 +21750,7 @@ long long QVideoFrame_StartTime(void* ptr)
 void* QVideoFrame___availableMetaData_atList(void* ptr, struct QtMultimedia_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QVideoFrame___availableMetaData_setList(void* ptr, struct QtMultimedia_PackedString key, void* i, void* p)
@@ -21774,7 +21774,7 @@ struct QtMultimedia_PackedList QVideoFrame___availableMetaData_keyList(void* ptr
 struct QtMultimedia_PackedString QVideoFrame_____availableMetaData_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QVideoFrame_____availableMetaData_keyList_setList(void* ptr, struct QtMultimedia_PackedString i, void* p)
@@ -21906,7 +21906,7 @@ char QVideoProbe_IsActive(void* ptr)
 void* QVideoProbe___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QVideoProbe___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -21924,7 +21924,7 @@ void* QVideoProbe___dynamicPropertyNames_newList(void* ptr)
 void* QVideoProbe___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoProbe___findChildren_setList2(void* ptr, void* i, void* p)
@@ -21956,7 +21956,7 @@ void* QVideoProbe___findChildren_newList2(void* ptr)
 void* QVideoProbe___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoProbe___findChildren_setList3(void* ptr, void* i, void* p)
@@ -21988,7 +21988,7 @@ void* QVideoProbe___findChildren_newList3(void* ptr)
 void* QVideoProbe___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoProbe___findChildren_setList(void* ptr, void* i, void* p)
@@ -22020,7 +22020,7 @@ void* QVideoProbe___findChildren_newList(void* ptr)
 void* QVideoProbe___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoProbe___children_setList(void* ptr, void* i, void* p)
@@ -22325,7 +22325,7 @@ double QVideoSurfaceFormat_FrameRate(void* ptr)
 void* QVideoSurfaceFormat___propertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QVideoSurfaceFormat___propertyNames_setList(void* ptr, void* i, void* p)
@@ -22746,7 +22746,7 @@ int QVideoWidget_Saturation(void* ptr)
 void* QVideoWidget___addActions_actions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QAction*>(({const QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___addActions_actions_setList(void* ptr, void* i, void* p)
@@ -22764,7 +22764,7 @@ void* QVideoWidget___addActions_actions_newList(void* ptr)
 void* QVideoWidget___insertActions_actions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QAction*>(({const QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___insertActions_actions_setList(void* ptr, void* i, void* p)
@@ -22782,7 +22782,7 @@ void* QVideoWidget___insertActions_actions_newList(void* ptr)
 void* QVideoWidget___actions_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QAction*>(({const QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___actions_setList(void* ptr, void* i, void* p)
@@ -22800,7 +22800,7 @@ void* QVideoWidget___actions_newList(void* ptr)
 void* QVideoWidget___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QVideoWidget___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -22818,7 +22818,7 @@ void* QVideoWidget___dynamicPropertyNames_newList(void* ptr)
 void* QVideoWidget___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___findChildren_setList2(void* ptr, void* i, void* p)
@@ -22850,7 +22850,7 @@ void* QVideoWidget___findChildren_newList2(void* ptr)
 void* QVideoWidget___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___findChildren_setList3(void* ptr, void* i, void* p)
@@ -22882,7 +22882,7 @@ void* QVideoWidget___findChildren_newList3(void* ptr)
 void* QVideoWidget___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___findChildren_setList(void* ptr, void* i, void* p)
@@ -22914,7 +22914,7 @@ void* QVideoWidget___findChildren_newList(void* ptr)
 void* QVideoWidget___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QVideoWidget___children_setList(void* ptr, void* i, void* p)

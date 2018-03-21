@@ -662,7 +662,7 @@ char QSqlDriver_IsOpenError(void* ptr)
 void* QSqlDriver___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlDriver___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -680,7 +680,7 @@ void* QSqlDriver___dynamicPropertyNames_newList(void* ptr)
 void* QSqlDriver___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriver___findChildren_setList2(void* ptr, void* i, void* p)
@@ -698,7 +698,7 @@ void* QSqlDriver___findChildren_newList2(void* ptr)
 void* QSqlDriver___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriver___findChildren_setList3(void* ptr, void* i, void* p)
@@ -716,7 +716,7 @@ void* QSqlDriver___findChildren_newList3(void* ptr)
 void* QSqlDriver___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriver___findChildren_setList(void* ptr, void* i, void* p)
@@ -734,7 +734,7 @@ void* QSqlDriver___findChildren_newList(void* ptr)
 void* QSqlDriver___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriver___children_setList(void* ptr, void* i, void* p)
@@ -893,7 +893,7 @@ void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr)
 void* QSqlDriverPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlDriverPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -911,7 +911,7 @@ void* QSqlDriverPlugin___dynamicPropertyNames_newList(void* ptr)
 void* QSqlDriverPlugin___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriverPlugin___findChildren_setList2(void* ptr, void* i, void* p)
@@ -929,7 +929,7 @@ void* QSqlDriverPlugin___findChildren_newList2(void* ptr)
 void* QSqlDriverPlugin___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriverPlugin___findChildren_setList3(void* ptr, void* i, void* p)
@@ -947,7 +947,7 @@ void* QSqlDriverPlugin___findChildren_newList3(void* ptr)
 void* QSqlDriverPlugin___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriverPlugin___findChildren_setList(void* ptr, void* i, void* p)
@@ -965,7 +965,7 @@ void* QSqlDriverPlugin___findChildren_newList(void* ptr)
 void* QSqlDriverPlugin___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlDriverPlugin___children_setList(void* ptr, void* i, void* p)
@@ -1503,7 +1503,7 @@ int QSqlQuery_Size(void* ptr)
 void* QSqlQuery___boundValues_atList(void* ptr, struct QtSql_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QSqlQuery___boundValues_setList(void* ptr, struct QtSql_PackedString key, void* i, void* p)
@@ -1527,7 +1527,7 @@ struct QtSql_PackedList QSqlQuery___boundValues_keyList(void* ptr, void* p)
 struct QtSql_PackedString QSqlQuery_____boundValues_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtSql_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtSql_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QSqlQuery_____boundValues_keyList_setList(void* ptr, struct QtSql_PackedString i, void* p)
@@ -1883,7 +1883,7 @@ int QSqlQueryModel_RowCountDefault(void* ptr, void* parent)
 void* QSqlQueryModel___roleNames_atList(void* ptr, int v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const  QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___roleNames_setList(void* ptr, int key, void* i, void* p)
@@ -1907,7 +1907,7 @@ struct QtSql_PackedList QSqlQueryModel___roleNames_keyList(void* ptr, void* p)
 int QSqlQueryModel_____roleNames_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel_____roleNames_keyList_setList(void* ptr, int i, void* p)
@@ -1925,7 +1925,7 @@ void* QSqlQueryModel_____roleNames_keyList_newList(void* ptr)
 int QSqlQueryModel_____setItemData_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel_____setItemData_keyList_setList(void* ptr, int i, void* p)
@@ -1943,7 +1943,7 @@ void* QSqlQueryModel_____setItemData_keyList_newList(void* ptr)
 int QSqlQueryModel_____itemData_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel_____itemData_keyList_setList(void* ptr, int i, void* p)
@@ -1961,7 +1961,7 @@ void* QSqlQueryModel_____itemData_keyList_newList(void* ptr)
 void* QSqlQueryModel___setItemData_roles_atList(void* ptr, int v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___setItemData_roles_setList(void* ptr, int key, void* i, void* p)
@@ -1985,7 +1985,7 @@ struct QtSql_PackedList QSqlQueryModel___setItemData_keyList(void* ptr, void* p)
 void* QSqlQueryModel___changePersistentIndexList_from_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___changePersistentIndexList_from_setList(void* ptr, void* i, void* p)
@@ -2003,7 +2003,7 @@ void* QSqlQueryModel___changePersistentIndexList_from_newList(void* ptr)
 void* QSqlQueryModel___changePersistentIndexList_to_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___changePersistentIndexList_to_setList(void* ptr, void* i, void* p)
@@ -2021,7 +2021,7 @@ void* QSqlQueryModel___changePersistentIndexList_to_newList(void* ptr)
 int QSqlQueryModel___dataChanged_roles_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel___dataChanged_roles_setList(void* ptr, int i, void* p)
@@ -2039,7 +2039,7 @@ void* QSqlQueryModel___dataChanged_roles_newList(void* ptr)
 void* QSqlQueryModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({const QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i, void* p)
@@ -2057,7 +2057,7 @@ void* QSqlQueryModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 void* QSqlQueryModel___layoutChanged_parents_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({const QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___layoutChanged_parents_setList(void* ptr, void* i, void* p)
@@ -2075,7 +2075,7 @@ void* QSqlQueryModel___layoutChanged_parents_newList(void* ptr)
 void* QSqlQueryModel___itemData_atList(void* ptr, int v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___itemData_setList(void* ptr, int key, void* i, void* p)
@@ -2099,7 +2099,7 @@ struct QtSql_PackedList QSqlQueryModel___itemData_keyList(void* ptr, void* p)
 void* QSqlQueryModel___mimeData_indexes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___mimeData_indexes_setList(void* ptr, void* i, void* p)
@@ -2117,7 +2117,7 @@ void* QSqlQueryModel___mimeData_indexes_newList(void* ptr)
 void* QSqlQueryModel___match_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___match_setList(void* ptr, void* i, void* p)
@@ -2135,7 +2135,7 @@ void* QSqlQueryModel___match_newList(void* ptr)
 void* QSqlQueryModel___persistentIndexList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QModelIndex(({const QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___persistentIndexList_setList(void* ptr, void* i, void* p)
@@ -2153,7 +2153,7 @@ void* QSqlQueryModel___persistentIndexList_newList(void* ptr)
 int QSqlQueryModel_____doSetRoleNames_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel_____doSetRoleNames_keyList_setList(void* ptr, int i, void* p)
@@ -2171,7 +2171,7 @@ void* QSqlQueryModel_____doSetRoleNames_keyList_newList(void* ptr)
 int QSqlQueryModel_____setRoleNames_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel_____setRoleNames_keyList_setList(void* ptr, int i, void* p)
@@ -2189,7 +2189,7 @@ void* QSqlQueryModel_____setRoleNames_keyList_newList(void* ptr)
 void* QSqlQueryModel___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlQueryModel___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -2207,7 +2207,7 @@ void* QSqlQueryModel___dynamicPropertyNames_newList(void* ptr)
 void* QSqlQueryModel___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2225,7 +2225,7 @@ void* QSqlQueryModel___findChildren_newList2(void* ptr)
 void* QSqlQueryModel___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2243,7 +2243,7 @@ void* QSqlQueryModel___findChildren_newList3(void* ptr)
 void* QSqlQueryModel___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel___findChildren_setList(void* ptr, void* i, void* p)
@@ -2261,7 +2261,7 @@ void* QSqlQueryModel___findChildren_newList(void* ptr)
 void* QSqlQueryModel___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlQueryModel___children_setList(void* ptr, void* i, void* p)
@@ -2926,7 +2926,7 @@ void QSqlRelationalDelegate_SetModelDataDefault(void* ptr, void* editor, void* m
 void* QSqlRelationalDelegate___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QSqlRelationalDelegate___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -2944,7 +2944,7 @@ void* QSqlRelationalDelegate___dynamicPropertyNames_newList(void* ptr)
 void* QSqlRelationalDelegate___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlRelationalDelegate___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2962,7 +2962,7 @@ void* QSqlRelationalDelegate___findChildren_newList2(void* ptr)
 void* QSqlRelationalDelegate___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlRelationalDelegate___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2980,7 +2980,7 @@ void* QSqlRelationalDelegate___findChildren_newList3(void* ptr)
 void* QSqlRelationalDelegate___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlRelationalDelegate___findChildren_setList(void* ptr, void* i, void* p)
@@ -2998,7 +2998,7 @@ void* QSqlRelationalDelegate___findChildren_newList(void* ptr)
 void* QSqlRelationalDelegate___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QSqlRelationalDelegate___children_setList(void* ptr, void* i, void* p)
@@ -3668,7 +3668,7 @@ int QSqlResult_BoundValueCount(void* ptr)
 void* QSqlResult___boundValues_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QVector<QVariant>*>(p)->at(i); if (i == static_cast<QVector<QVariant>*>(p)->size()-1) { static_cast<QVector<QVariant>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QVector<QVariant>*>(p)->at(i); if (i == static_cast<QVector<QVariant>*>(p)->size()-1) { static_cast<QVector<QVariant>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
 void QSqlResult___boundValues_setList(void* ptr, void* i, void* p)

@@ -341,10 +341,10 @@ func (c *Class) FixGenericHelper() {
 				if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_atList", f.Name), f.OverloadNumber) {
 					var key, output, isMap = func() (string, string, bool) {
 						if IsPackedList(CleanValue(f.Output)) {
-							return "int", fmt.Sprintf("const %v", strings.Split(strings.Split(f.Output, "<")[1], ">")[0]), false
+							return "int", strings.Split(strings.Split(f.Output, "<")[1], ">")[0], false
 						}
 						var key, value = UnpackedMapDirty(CleanValue(f.Output))
-						return key, fmt.Sprintf("const %v", value), true
+						return key, value, true
 					}()
 
 					params := []*Parameter{{Name: "i", Value: key}}
@@ -375,10 +375,10 @@ func (c *Class) FixGenericHelper() {
 				if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_setList", f.Name), f.OverloadNumber) {
 					var params = func() []*Parameter {
 						if IsPackedList(CleanValue(f.Output)) {
-							return []*Parameter{{Name: "i", Value: fmt.Sprintf("const %v", strings.Split(strings.Split(f.Output, "<")[1], ">")[0])}, {Name: "p", Value: "void*"}}
+							return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(f.Output, "<")[1], ">")[0]}, {Name: "p", Value: "void*"}}
 						}
 						var key, value = UnpackedMapDirty(CleanValue(f.Output))
-						return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: fmt.Sprintf("const %v", value)}, {Name: "p", Value: "void*"}}
+						return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}, {Name: "p", Value: "void*"}}
 					}()
 					c.Functions = append(c.Functions, &Function{
 						Name:           fmt.Sprintf("__%v_setList", f.Name),
@@ -443,10 +443,10 @@ func (c *Class) FixGenericHelper() {
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_atList", f.Name, p.Name), f.OverloadNumber) {
 						var key, output, isMap = func() (string, string, bool) {
 							if IsPackedList(CleanValue(p.Value)) {
-								return "int", fmt.Sprintf("const %v", strings.Split(strings.Split(p.Value, "<")[1], ">")[0]), false
+								return "int", strings.Split(strings.Split(p.Value, "<")[1], ">")[0], false
 							}
 							var key, value = UnpackedMapDirty(CleanValue(p.Value))
-							return key, fmt.Sprintf("const %v", value), true
+							return key, value, true
 						}()
 
 						params := []*Parameter{{Name: "i", Value: key}}
@@ -477,10 +477,10 @@ func (c *Class) FixGenericHelper() {
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_setList", f.Name, p.Name), f.OverloadNumber) {
 						var params = func() []*Parameter {
 							if IsPackedList(CleanValue(p.Value)) {
-								return []*Parameter{{Name: "i", Value: fmt.Sprintf("const %v", strings.Split(strings.Split(p.Value, "<")[1], ">")[0])}, {Name: "p", Value: "void*"}}
+								return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(p.Value, "<")[1], ">")[0]}, {Name: "p", Value: "void*"}}
 							}
 							var key, value = UnpackedMapDirty(CleanValue(p.Value))
-							return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: fmt.Sprintf("const %v", value)}, {Name: "p", Value: "void*"}}
+							return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}, {Name: "p", Value: "void*"}}
 						}()
 						c.Functions = append(c.Functions, &Function{
 							Name:           fmt.Sprintf("__%v_%v_setList", f.Name, p.Name),

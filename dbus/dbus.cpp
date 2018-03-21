@@ -137,7 +137,7 @@ char QDBusAbstractAdaptor_AutoRelaySignals(void* ptr)
 void* QDBusAbstractAdaptor___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractAdaptor___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -155,7 +155,7 @@ void* QDBusAbstractAdaptor___dynamicPropertyNames_newList(void* ptr)
 void* QDBusAbstractAdaptor___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractAdaptor___findChildren_setList2(void* ptr, void* i, void* p)
@@ -177,7 +177,7 @@ void* QDBusAbstractAdaptor___findChildren_newList2(void* ptr)
 void* QDBusAbstractAdaptor___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractAdaptor___findChildren_setList3(void* ptr, void* i, void* p)
@@ -199,7 +199,7 @@ void* QDBusAbstractAdaptor___findChildren_newList3(void* ptr)
 void* QDBusAbstractAdaptor___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractAdaptor___findChildren_setList(void* ptr, void* i, void* p)
@@ -221,7 +221,7 @@ void* QDBusAbstractAdaptor___findChildren_newList(void* ptr)
 void* QDBusAbstractAdaptor___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractAdaptor___children_setList(void* ptr, void* i, void* p)
@@ -407,7 +407,7 @@ int QDBusAbstractInterface_Timeout(void* ptr)
 void* QDBusAbstractInterface___callWithArgumentList_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___callWithArgumentList_args_setList(void* ptr, void* i, void* p)
@@ -425,7 +425,7 @@ void* QDBusAbstractInterface___callWithArgumentList_args_newList(void* ptr)
 void* QDBusAbstractInterface___asyncCallWithArgumentList_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___asyncCallWithArgumentList_args_setList(void* ptr, void* i, void* p)
@@ -443,7 +443,7 @@ void* QDBusAbstractInterface___asyncCallWithArgumentList_args_newList(void* ptr)
 void* QDBusAbstractInterface___callWithCallback_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___callWithCallback_args_setList(void* ptr, void* i, void* p)
@@ -461,7 +461,7 @@ void* QDBusAbstractInterface___callWithCallback_args_newList(void* ptr)
 void* QDBusAbstractInterface___callWithCallback_args_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___callWithCallback_args_setList2(void* ptr, void* i, void* p)
@@ -479,7 +479,7 @@ void* QDBusAbstractInterface___callWithCallback_args_newList2(void* ptr)
 void* QDBusAbstractInterface___internalConstCall_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___internalConstCall_args_setList(void* ptr, void* i, void* p)
@@ -497,7 +497,7 @@ void* QDBusAbstractInterface___internalConstCall_args_newList(void* ptr)
 void* QDBusAbstractInterface___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusAbstractInterface___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -515,7 +515,7 @@ void* QDBusAbstractInterface___dynamicPropertyNames_newList(void* ptr)
 void* QDBusAbstractInterface___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractInterface___findChildren_setList2(void* ptr, void* i, void* p)
@@ -537,7 +537,7 @@ void* QDBusAbstractInterface___findChildren_newList2(void* ptr)
 void* QDBusAbstractInterface___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractInterface___findChildren_setList3(void* ptr, void* i, void* p)
@@ -559,7 +559,7 @@ void* QDBusAbstractInterface___findChildren_newList3(void* ptr)
 void* QDBusAbstractInterface___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractInterface___findChildren_setList(void* ptr, void* i, void* p)
@@ -581,7 +581,7 @@ void* QDBusAbstractInterface___findChildren_newList(void* ptr)
 void* QDBusAbstractInterface___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusAbstractInterface___children_setList(void* ptr, void* i, void* p)
@@ -1410,7 +1410,7 @@ void QDBusMessage_SetDelayedReply(void* ptr, char enable)
 void* QDBusMessage___setArguments_arguments_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusMessage___setArguments_arguments_setList(void* ptr, void* i, void* p)
@@ -1428,7 +1428,7 @@ void* QDBusMessage___setArguments_arguments_newList(void* ptr)
 void* QDBusMessage___createReply_arguments_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusMessage___createReply_arguments_setList(void* ptr, void* i, void* p)
@@ -1446,7 +1446,7 @@ void* QDBusMessage___createReply_arguments_newList(void* ptr)
 void* QDBusMessage___arguments_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusMessage___arguments_setList(void* ptr, void* i, void* p)
@@ -1598,7 +1598,7 @@ char QDBusPendingCallWatcher_IsFinished(void* ptr)
 void* QDBusPendingCallWatcher___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusPendingCallWatcher___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1616,7 +1616,7 @@ void* QDBusPendingCallWatcher___dynamicPropertyNames_newList(void* ptr)
 void* QDBusPendingCallWatcher___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusPendingCallWatcher___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1638,7 +1638,7 @@ void* QDBusPendingCallWatcher___findChildren_newList2(void* ptr)
 void* QDBusPendingCallWatcher___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusPendingCallWatcher___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1660,7 +1660,7 @@ void* QDBusPendingCallWatcher___findChildren_newList3(void* ptr)
 void* QDBusPendingCallWatcher___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusPendingCallWatcher___findChildren_setList(void* ptr, void* i, void* p)
@@ -1682,7 +1682,7 @@ void* QDBusPendingCallWatcher___findChildren_newList(void* ptr)
 void* QDBusPendingCallWatcher___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-		return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+		return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusPendingCallWatcher___children_setList(void* ptr, void* i, void* p)
@@ -1964,7 +1964,7 @@ char QDBusServer_IsConnected(void* ptr)
 void* QDBusServer___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusServer___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1982,7 +1982,7 @@ void* QDBusServer___dynamicPropertyNames_newList(void* ptr)
 void* QDBusServer___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServer___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2004,7 +2004,7 @@ void* QDBusServer___findChildren_newList2(void* ptr)
 void* QDBusServer___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServer___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2026,7 +2026,7 @@ void* QDBusServer___findChildren_newList3(void* ptr)
 void* QDBusServer___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServer___findChildren_setList(void* ptr, void* i, void* p)
@@ -2048,7 +2048,7 @@ void* QDBusServer___findChildren_newList(void* ptr)
 void* QDBusServer___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServer___children_setList(void* ptr, void* i, void* p)
@@ -2316,7 +2316,7 @@ struct QtDBus_PackedString QDBusServiceWatcher_WatchedServices(void* ptr)
 void* QDBusServiceWatcher___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusServiceWatcher___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -2334,7 +2334,7 @@ void* QDBusServiceWatcher___dynamicPropertyNames_newList(void* ptr)
 void* QDBusServiceWatcher___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServiceWatcher___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2356,7 +2356,7 @@ void* QDBusServiceWatcher___findChildren_newList2(void* ptr)
 void* QDBusServiceWatcher___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServiceWatcher___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2378,7 +2378,7 @@ void* QDBusServiceWatcher___findChildren_newList3(void* ptr)
 void* QDBusServiceWatcher___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServiceWatcher___findChildren_setList(void* ptr, void* i, void* p)
@@ -2400,7 +2400,7 @@ void* QDBusServiceWatcher___findChildren_newList(void* ptr)
 void* QDBusServiceWatcher___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusServiceWatcher___children_setList(void* ptr, void* i, void* p)
@@ -2672,7 +2672,7 @@ struct QtDBus_PackedString QDBusVirtualObject_Introspect(void* ptr, struct QtDBu
 void* QDBusVirtualObject___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QDBusVirtualObject___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -2690,7 +2690,7 @@ void* QDBusVirtualObject___dynamicPropertyNames_newList(void* ptr)
 void* QDBusVirtualObject___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusVirtualObject___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2712,7 +2712,7 @@ void* QDBusVirtualObject___findChildren_newList2(void* ptr)
 void* QDBusVirtualObject___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusVirtualObject___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2734,7 +2734,7 @@ void* QDBusVirtualObject___findChildren_newList3(void* ptr)
 void* QDBusVirtualObject___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusVirtualObject___findChildren_setList(void* ptr, void* i, void* p)
@@ -2756,7 +2756,7 @@ void* QDBusVirtualObject___findChildren_newList(void* ptr)
 void* QDBusVirtualObject___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QDBusVirtualObject___children_setList(void* ptr, void* i, void* p)

@@ -377,7 +377,7 @@ double QTextToSpeech_Volume(void* ptr)
 void* QTextToSpeech___availableLocales_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QLocale(({const QLocale tmp = static_cast<QVector<QLocale>*>(p)->at(i); if (i == static_cast<QVector<QLocale>*>(p)->size()-1) { static_cast<QVector<QLocale>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QLocale(({QLocale tmp = static_cast<QVector<QLocale>*>(p)->at(i); if (i == static_cast<QVector<QLocale>*>(p)->size()-1) { static_cast<QVector<QLocale>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
 void QTextToSpeech___availableLocales_setList(void* ptr, void* i, void* p)
@@ -395,7 +395,7 @@ void* QTextToSpeech___availableLocales_newList(void* ptr)
 void* QTextToSpeech___availableVoices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVoice(({const QVoice tmp = static_cast<QVector<QVoice>*>(p)->at(i); if (i == static_cast<QVector<QVoice>*>(p)->size()-1) { static_cast<QVector<QVoice>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QVoice(({QVoice tmp = static_cast<QVector<QVoice>*>(p)->at(i); if (i == static_cast<QVector<QVoice>*>(p)->size()-1) { static_cast<QVector<QVoice>*>(p)->~QVector(); free(p); }; tmp; }));
 }
 
 void QTextToSpeech___availableVoices_setList(void* ptr, void* i, void* p)
@@ -413,7 +413,7 @@ void* QTextToSpeech___availableVoices_newList(void* ptr)
 void* QTextToSpeech___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QTextToSpeech___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -431,7 +431,7 @@ void* QTextToSpeech___dynamicPropertyNames_newList(void* ptr)
 void* QTextToSpeech___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QTextToSpeech___findChildren_setList2(void* ptr, void* i, void* p)
@@ -449,7 +449,7 @@ void* QTextToSpeech___findChildren_newList2(void* ptr)
 void* QTextToSpeech___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QTextToSpeech___findChildren_setList3(void* ptr, void* i, void* p)
@@ -467,7 +467,7 @@ void* QTextToSpeech___findChildren_newList3(void* ptr)
 void* QTextToSpeech___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QTextToSpeech___findChildren_setList(void* ptr, void* i, void* p)
@@ -485,7 +485,7 @@ void* QTextToSpeech___findChildren_newList(void* ptr)
 void* QTextToSpeech___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QTextToSpeech___children_setList(void* ptr, void* i, void* p)
@@ -565,7 +565,7 @@ void QTextToSpeechPlugin_DestroyQTextToSpeechPluginDefault(void* ptr)
 void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(void* ptr, struct QtSpeech_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(void* ptr, struct QtSpeech_PackedString key, void* i, void* p)
@@ -589,7 +589,7 @@ struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_keyLis
 struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, struct QtSpeech_PackedString i, void* p)

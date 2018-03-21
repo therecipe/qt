@@ -32,7 +32,7 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.9.2.windows-amd64.msi
+set GO=go1.10.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% http://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q

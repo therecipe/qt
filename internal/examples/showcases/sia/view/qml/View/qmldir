@@ -1,0 +1,3 @@
+module View
+StackItemHeader 1.0 StackItemHeader.qml
+Button 1.0 Button.qml

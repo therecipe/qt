@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>accelbubble.qml</file>
+        <file>content/Bluebubble.svg</file>
+    </qresource>
+</RCC>

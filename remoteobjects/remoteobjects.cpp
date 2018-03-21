@@ -305,7 +305,7 @@ char QRemoteObjectHostBase_EnableRemoting2(void* ptr, void* object, struct QtRem
 int QRemoteObjectHostBase___enableRemoting_roles_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QRemoteObjectHostBase___enableRemoting_roles_setList3(void* ptr, int i, void* p)
@@ -547,7 +547,7 @@ void* QRemoteObjectNode_Registry(void* ptr)
 void* QRemoteObjectNode___retrieveProperties_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectNode___retrieveProperties_setList(void* ptr, void* i, void* p)
@@ -565,7 +565,7 @@ void* QRemoteObjectNode___retrieveProperties_newList(void* ptr)
 void* QRemoteObjectNode___persistProperties_props_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectNode___persistProperties_props_setList(void* ptr, void* i, void* p)
@@ -583,7 +583,7 @@ void* QRemoteObjectNode___persistProperties_props_newList(void* ptr)
 void* QRemoteObjectNode___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectNode___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -601,7 +601,7 @@ void* QRemoteObjectNode___dynamicPropertyNames_newList(void* ptr)
 void* QRemoteObjectNode___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectNode___findChildren_setList2(void* ptr, void* i, void* p)
@@ -619,7 +619,7 @@ void* QRemoteObjectNode___findChildren_newList2(void* ptr)
 void* QRemoteObjectNode___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectNode___findChildren_setList3(void* ptr, void* i, void* p)
@@ -637,7 +637,7 @@ void* QRemoteObjectNode___findChildren_newList3(void* ptr)
 void* QRemoteObjectNode___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectNode___findChildren_setList(void* ptr, void* i, void* p)
@@ -655,7 +655,7 @@ void* QRemoteObjectNode___findChildren_newList(void* ptr)
 void* QRemoteObjectNode___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectNode___children_setList(void* ptr, void* i, void* p)
@@ -806,7 +806,7 @@ void QRemoteObjectPersistedStore_DestroyQRemoteObjectPersistedStoreDefault(void*
 void* QRemoteObjectPersistedStore___restoreProperties_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectPersistedStore___restoreProperties_setList(void* ptr, void* i, void* p)
@@ -824,7 +824,7 @@ void* QRemoteObjectPersistedStore___restoreProperties_newList(void* ptr)
 void* QRemoteObjectPersistedStore___saveProperties_values_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectPersistedStore___saveProperties_values_setList(void* ptr, void* i, void* p)
@@ -1035,7 +1035,7 @@ char QRemoteObjectReplica_IsReplicaValid(void* ptr)
 void* QRemoteObjectReplica___sendWithReply_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___sendWithReply_args_setList(void* ptr, void* i, void* p)
@@ -1053,7 +1053,7 @@ void* QRemoteObjectReplica___sendWithReply_args_newList(void* ptr)
 void* QRemoteObjectReplica___send_args_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___send_args_setList(void* ptr, void* i, void* p)
@@ -1071,7 +1071,7 @@ void* QRemoteObjectReplica___send_args_newList(void* ptr)
 void* QRemoteObjectReplica___setProperties_properties_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___setProperties_properties_setList(void* ptr, void* i, void* p)
@@ -1089,7 +1089,7 @@ void* QRemoteObjectReplica___setProperties_properties_newList(void* ptr)
 void* QRemoteObjectReplica___retrieveProperties_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___retrieveProperties_setList(void* ptr, void* i, void* p)
@@ -1107,7 +1107,7 @@ void* QRemoteObjectReplica___retrieveProperties_newList(void* ptr)
 void* QRemoteObjectReplica___persistProperties_props_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(p)->at(i); if (i == static_cast<QList<QVariant>*>(p)->size()-1) { static_cast<QList<QVariant>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___persistProperties_props_setList(void* ptr, void* i, void* p)
@@ -1125,7 +1125,7 @@ void* QRemoteObjectReplica___persistProperties_props_newList(void* ptr)
 void* QRemoteObjectReplica___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QRemoteObjectReplica___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1143,7 +1143,7 @@ void* QRemoteObjectReplica___dynamicPropertyNames_newList(void* ptr)
 void* QRemoteObjectReplica___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectReplica___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1161,7 +1161,7 @@ void* QRemoteObjectReplica___findChildren_newList2(void* ptr)
 void* QRemoteObjectReplica___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectReplica___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1179,7 +1179,7 @@ void* QRemoteObjectReplica___findChildren_newList3(void* ptr)
 void* QRemoteObjectReplica___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectReplica___findChildren_setList(void* ptr, void* i, void* p)
@@ -1197,7 +1197,7 @@ void* QRemoteObjectReplica___findChildren_newList(void* ptr)
 void* QRemoteObjectReplica___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QRemoteObjectReplica___children_setList(void* ptr, void* i, void* p)

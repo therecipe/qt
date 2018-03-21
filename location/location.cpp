@@ -230,7 +230,7 @@ double QGeoRoute_Distance(void* ptr)
 void* QGeoRoute___setPath_path_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRoute___setPath_path_setList(void* ptr, void* i, void* p)
@@ -248,7 +248,7 @@ void* QGeoRoute___setPath_path_newList(void* ptr)
 void* QGeoRoute___path_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRoute___path_setList(void* ptr, void* i, void* p)
@@ -486,7 +486,7 @@ char QGeoRouteReply_IsFinished(void* ptr)
 void* QGeoRouteReply___addRoutes_routes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoRoute(({const QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoRoute(({QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteReply___addRoutes_routes_setList(void* ptr, void* i, void* p)
@@ -504,7 +504,7 @@ void* QGeoRouteReply___addRoutes_routes_newList(void* ptr)
 void* QGeoRouteReply___setRoutes_routes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoRoute(({const QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoRoute(({QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteReply___setRoutes_routes_setList(void* ptr, void* i, void* p)
@@ -522,7 +522,7 @@ void* QGeoRouteReply___setRoutes_routes_newList(void* ptr)
 void* QGeoRouteReply___routes_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoRoute(({const QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoRoute(({QGeoRoute tmp = static_cast<QList<QGeoRoute>*>(p)->at(i); if (i == static_cast<QList<QGeoRoute>*>(p)->size()-1) { static_cast<QList<QGeoRoute>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteReply___routes_setList(void* ptr, void* i, void* p)
@@ -540,7 +540,7 @@ void* QGeoRouteReply___routes_newList(void* ptr)
 void* QGeoRouteReply___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteReply___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -558,7 +558,7 @@ void* QGeoRouteReply___dynamicPropertyNames_newList(void* ptr)
 void* QGeoRouteReply___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRouteReply___findChildren_setList2(void* ptr, void* i, void* p)
@@ -576,7 +576,7 @@ void* QGeoRouteReply___findChildren_newList2(void* ptr)
 void* QGeoRouteReply___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRouteReply___findChildren_setList3(void* ptr, void* i, void* p)
@@ -594,7 +594,7 @@ void* QGeoRouteReply___findChildren_newList3(void* ptr)
 void* QGeoRouteReply___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRouteReply___findChildren_setList(void* ptr, void* i, void* p)
@@ -612,7 +612,7 @@ void* QGeoRouteReply___findChildren_newList(void* ptr)
 void* QGeoRouteReply___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRouteReply___children_setList(void* ptr, void* i, void* p)
@@ -775,7 +775,7 @@ int QGeoRouteRequest_NumberAlternativeRoutes(void* ptr)
 void* QGeoRouteRequest___QGeoRouteRequest_waypoints_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteRequest___QGeoRouteRequest_waypoints_setList(void* ptr, void* i, void* p)
@@ -793,7 +793,7 @@ void* QGeoRouteRequest___QGeoRouteRequest_waypoints_newList(void* ptr)
 void* QGeoRouteRequest___setExcludeAreas_areas_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoRectangle(({const QGeoRectangle tmp = static_cast<QList<QGeoRectangle>*>(p)->at(i); if (i == static_cast<QList<QGeoRectangle>*>(p)->size()-1) { static_cast<QList<QGeoRectangle>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoRectangle(({QGeoRectangle tmp = static_cast<QList<QGeoRectangle>*>(p)->at(i); if (i == static_cast<QList<QGeoRectangle>*>(p)->size()-1) { static_cast<QList<QGeoRectangle>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteRequest___setExcludeAreas_areas_setList(void* ptr, void* i, void* p)
@@ -811,7 +811,7 @@ void* QGeoRouteRequest___setExcludeAreas_areas_newList(void* ptr)
 void* QGeoRouteRequest___setWaypoints_waypoints_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteRequest___setWaypoints_waypoints_setList(void* ptr, void* i, void* p)
@@ -829,7 +829,7 @@ void* QGeoRouteRequest___setWaypoints_waypoints_newList(void* ptr)
 void* QGeoRouteRequest___waypoints_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteRequest___waypoints_setList(void* ptr, void* i, void* p)
@@ -847,7 +847,7 @@ void* QGeoRouteRequest___waypoints_newList(void* ptr)
 void* QGeoRouteRequest___excludeAreas_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoRectangle(({const QGeoRectangle tmp = static_cast<QList<QGeoRectangle>*>(p)->at(i); if (i == static_cast<QList<QGeoRectangle>*>(p)->size()-1) { static_cast<QList<QGeoRectangle>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoRectangle(({QGeoRectangle tmp = static_cast<QList<QGeoRectangle>*>(p)->at(i); if (i == static_cast<QList<QGeoRectangle>*>(p)->size()-1) { static_cast<QList<QGeoRectangle>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteRequest___excludeAreas_setList(void* ptr, void* i, void* p)
@@ -935,7 +935,7 @@ double QGeoRouteSegment_Distance(void* ptr)
 void* QGeoRouteSegment___setPath_path_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteSegment___setPath_path_setList(void* ptr, void* i, void* p)
@@ -953,7 +953,7 @@ void* QGeoRouteSegment___setPath_path_newList(void* ptr)
 void* QGeoRouteSegment___path_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QGeoCoordinate(({const QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(p)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(p)->size()-1) { static_cast<QList<QGeoCoordinate>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRouteSegment___path_setList(void* ptr, void* i, void* p)
@@ -1098,7 +1098,7 @@ int QGeoRoutingManager_ManagerVersion(void* ptr)
 void* QGeoRoutingManager___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRoutingManager___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1116,7 +1116,7 @@ void* QGeoRoutingManager___dynamicPropertyNames_newList(void* ptr)
 void* QGeoRoutingManager___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManager___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1134,7 +1134,7 @@ void* QGeoRoutingManager___findChildren_newList2(void* ptr)
 void* QGeoRoutingManager___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManager___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1152,7 +1152,7 @@ void* QGeoRoutingManager___findChildren_newList3(void* ptr)
 void* QGeoRoutingManager___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManager___findChildren_setList(void* ptr, void* i, void* p)
@@ -1170,7 +1170,7 @@ void* QGeoRoutingManager___findChildren_newList(void* ptr)
 void* QGeoRoutingManager___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManager___children_setList(void* ptr, void* i, void* p)
@@ -1446,7 +1446,7 @@ int QGeoRoutingManagerEngine_ManagerVersion(void* ptr)
 void* QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoRoutingManagerEngine___QGeoRoutingManagerEngine_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -1470,7 +1470,7 @@ struct QtLocation_PackedList QGeoRoutingManagerEngine___QGeoRoutingManagerEngine
 struct QtLocation_PackedString QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -1488,7 +1488,7 @@ void* QGeoRoutingManagerEngine_____QGeoRoutingManagerEngine_keyList_newList(void
 void* QGeoRoutingManagerEngine___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoRoutingManagerEngine___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1506,7 +1506,7 @@ void* QGeoRoutingManagerEngine___dynamicPropertyNames_newList(void* ptr)
 void* QGeoRoutingManagerEngine___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManagerEngine___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1524,7 +1524,7 @@ void* QGeoRoutingManagerEngine___findChildren_newList2(void* ptr)
 void* QGeoRoutingManagerEngine___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManagerEngine___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1542,7 +1542,7 @@ void* QGeoRoutingManagerEngine___findChildren_newList3(void* ptr)
 void* QGeoRoutingManagerEngine___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManagerEngine___findChildren_setList(void* ptr, void* i, void* p)
@@ -1560,7 +1560,7 @@ void* QGeoRoutingManagerEngine___findChildren_newList(void* ptr)
 void* QGeoRoutingManagerEngine___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoRoutingManagerEngine___children_setList(void* ptr, void* i, void* p)
@@ -1859,7 +1859,7 @@ long long QGeoServiceProvider_RoutingFeatures(void* ptr)
 void* QGeoServiceProvider___QGeoServiceProvider_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProvider___QGeoServiceProvider_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -1883,7 +1883,7 @@ struct QtLocation_PackedList QGeoServiceProvider___QGeoServiceProvider_keyList(v
 void* QGeoServiceProvider___setParameters_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProvider___setParameters_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -1907,7 +1907,7 @@ struct QtLocation_PackedList QGeoServiceProvider___setParameters_keyList(void* p
 struct QtLocation_PackedString QGeoServiceProvider_____QGeoServiceProvider_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProvider_____QGeoServiceProvider_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -1925,7 +1925,7 @@ void* QGeoServiceProvider_____QGeoServiceProvider_keyList_newList(void* ptr)
 struct QtLocation_PackedString QGeoServiceProvider_____setParameters_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProvider_____setParameters_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -1943,7 +1943,7 @@ void* QGeoServiceProvider_____setParameters_keyList_newList(void* ptr)
 void* QGeoServiceProvider___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProvider___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1961,7 +1961,7 @@ void* QGeoServiceProvider___dynamicPropertyNames_newList(void* ptr)
 void* QGeoServiceProvider___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoServiceProvider___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1979,7 +1979,7 @@ void* QGeoServiceProvider___findChildren_newList2(void* ptr)
 void* QGeoServiceProvider___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoServiceProvider___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1997,7 +1997,7 @@ void* QGeoServiceProvider___findChildren_newList3(void* ptr)
 void* QGeoServiceProvider___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoServiceProvider___findChildren_setList(void* ptr, void* i, void* p)
@@ -2015,7 +2015,7 @@ void* QGeoServiceProvider___findChildren_newList(void* ptr)
 void* QGeoServiceProvider___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QGeoServiceProvider___children_setList(void* ptr, void* i, void* p)
@@ -2095,7 +2095,7 @@ void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(void* p
 void* QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProviderFactory___createGeocodingManagerEngine_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -2119,7 +2119,7 @@ struct QtLocation_PackedList QGeoServiceProviderFactory___createGeocodingManager
 void* QGeoServiceProviderFactory___createMappingManagerEngine_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProviderFactory___createMappingManagerEngine_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -2143,7 +2143,7 @@ struct QtLocation_PackedList QGeoServiceProviderFactory___createMappingManagerEn
 void* QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProviderFactory___createRoutingManagerEngine_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -2167,7 +2167,7 @@ struct QtLocation_PackedList QGeoServiceProviderFactory___createRoutingManagerEn
 void* QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_atList(void* ptr, struct QtLocation_PackedString v, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QVariant(({const  QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
 }
 
 void QGeoServiceProviderFactory___createPlaceManagerEngine_parameters_setList(void* ptr, struct QtLocation_PackedString key, void* i, void* p)
@@ -2191,7 +2191,7 @@ struct QtLocation_PackedList QGeoServiceProviderFactory___createPlaceManagerEngi
 struct QtLocation_PackedString QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -2209,7 +2209,7 @@ void* QGeoServiceProviderFactory_____createGeocodingManagerEngine_keyList_newLis
 struct QtLocation_PackedString QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -2227,7 +2227,7 @@ void* QGeoServiceProviderFactory_____createMappingManagerEngine_keyList_newList(
 struct QtLocation_PackedString QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)
@@ -2245,7 +2245,7 @@ void* QGeoServiceProviderFactory_____createRoutingManagerEngine_keyList_newList(
 struct QtLocation_PackedString QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({ QByteArray tb0dbcc = ({const QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(tb0dbcc.prepend("WHITESPACE").constData()+10), tb0dbcc.size()-10 }; });
+	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtLocation_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
 }
 
 void QGeoServiceProviderFactory_____createPlaceManagerEngine_keyList_setList(void* ptr, struct QtLocation_PackedString i, void* p)

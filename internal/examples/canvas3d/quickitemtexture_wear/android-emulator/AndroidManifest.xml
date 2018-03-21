@@ -30,6 +30,8 @@
             <meta-data android:name="android.app.load_local_libs" android:value="plugins/platforms/android/libqtforandroid.so:plugins/bearer/libqandroidbearer.so:lib/libQt5QuickParticles.so"/>
             <meta-data android:name="android.app.load_local_jars" android:value="jar/QtAndroid.jar:jar/QtAndroid-bundled.jar:jar/QtAndroidBearer.jar:jar/QtAndroidBearer-bundled.jar"/>
             <meta-data android:name="android.app.static_init_classes" android:value=""/>
+            <!-- Used to specify custom system library path to run with local system libs -->
+            <!-- <meta-data android:name="android.app.system_libs_prefix" android:value="/system/lib/"/> -->
             <!--  Messages maps -->
             <meta-data android:value="@string/ministro_not_found_msg" android:name="android.app.ministro_not_found_msg"/>
             <meta-data android:value="@string/ministro_needed_msg" android:name="android.app.ministro_needed_msg"/>

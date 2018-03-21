@@ -1,0 +1,5 @@
+module Dialog
+Unlock 1.0 Unlock.qml
+Receive 1.0 Receive.qml
+Send 1.0 Send.qml
+Recover 1.0 Recover.qml

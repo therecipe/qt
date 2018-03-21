@@ -87,6 +87,9 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	case "linux", "android", "rpi1", "rpi2", "rpi3":
 		image = target
 
+	case "android-emulator":
+		image = "android"
+
 	default:
 		switch system {
 		case "darwin":

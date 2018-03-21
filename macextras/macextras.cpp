@@ -117,7 +117,7 @@ void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr)
 void* QMacPasteboardMime___convertFromMime_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMacPasteboardMime___convertFromMime_setList(void* ptr, void* i, void* p)
@@ -135,7 +135,7 @@ void* QMacPasteboardMime___convertFromMime_newList(void* ptr)
 void* QMacPasteboardMime___convertToMime_data_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMacPasteboardMime___convertToMime_data_setList(void* ptr, void* i, void* p)
@@ -307,7 +307,7 @@ void QMacToolBar_DestroyQMacToolBar(void* ptr)
 void* QMacToolBar___allowedItems_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QMacToolBarItem*>(({const QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___allowedItems_setList(void* ptr, void* i, void* p)
@@ -325,7 +325,7 @@ void* QMacToolBar___allowedItems_newList(void* ptr)
 void* QMacToolBar___items_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QMacToolBarItem*>(({const QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___items_setList(void* ptr, void* i, void* p)
@@ -343,7 +343,7 @@ void* QMacToolBar___items_newList(void* ptr)
 void* QMacToolBar___setAllowedItems_allowedItems_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QMacToolBarItem*>(({const QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___setAllowedItems_allowedItems_setList(void* ptr, void* i, void* p)
@@ -361,7 +361,7 @@ void* QMacToolBar___setAllowedItems_allowedItems_newList(void* ptr)
 void* QMacToolBar___setItems_items_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QMacToolBarItem*>(({const QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QMacToolBarItem * tmp = static_cast<QList<QMacToolBarItem *>*>(p)->at(i); if (i == static_cast<QList<QMacToolBarItem *>*>(p)->size()-1) { static_cast<QList<QMacToolBarItem *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___setItems_items_setList(void* ptr, void* i, void* p)
@@ -379,7 +379,7 @@ void* QMacToolBar___setItems_items_newList(void* ptr)
 void* QMacToolBar___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMacToolBar___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -397,7 +397,7 @@ void* QMacToolBar___dynamicPropertyNames_newList(void* ptr)
 void* QMacToolBar___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___findChildren_setList2(void* ptr, void* i, void* p)
@@ -415,7 +415,7 @@ void* QMacToolBar___findChildren_newList2(void* ptr)
 void* QMacToolBar___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___findChildren_setList3(void* ptr, void* i, void* p)
@@ -433,7 +433,7 @@ void* QMacToolBar___findChildren_newList3(void* ptr)
 void* QMacToolBar___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___findChildren_setList(void* ptr, void* i, void* p)
@@ -451,7 +451,7 @@ void* QMacToolBar___findChildren_newList(void* ptr)
 void* QMacToolBar___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBar___children_setList(void* ptr, void* i, void* p)
@@ -644,7 +644,7 @@ char QMacToolBarItem_Selectable(void* ptr)
 void* QMacToolBarItem___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QMacToolBarItem___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -662,7 +662,7 @@ void* QMacToolBarItem___dynamicPropertyNames_newList(void* ptr)
 void* QMacToolBarItem___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBarItem___findChildren_setList2(void* ptr, void* i, void* p)
@@ -680,7 +680,7 @@ void* QMacToolBarItem___findChildren_newList2(void* ptr)
 void* QMacToolBarItem___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBarItem___findChildren_setList3(void* ptr, void* i, void* p)
@@ -698,7 +698,7 @@ void* QMacToolBarItem___findChildren_newList3(void* ptr)
 void* QMacToolBarItem___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBarItem___findChildren_setList(void* ptr, void* i, void* p)
@@ -716,7 +716,7 @@ void* QMacToolBarItem___findChildren_newList(void* ptr)
 void* QMacToolBarItem___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QMacToolBarItem___children_setList(void* ptr, void* i, void* p)

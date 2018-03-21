@@ -20,7 +20,7 @@ RUN rm -f /usr/bin/gcc; sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
 RUN rm -f /usr/bin/g++; sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 
 
-ENV GO go1.9.2.linux-amd64.tar.gz
+ENV GO go1.10.linux-amd64.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C /usr/local && rm -f /tmp/$GO
 ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work

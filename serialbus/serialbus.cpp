@@ -102,7 +102,7 @@ struct QtSerialBus_PackedString QCanBus_Plugins(void* ptr)
 void* QCanBus___availableDevices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QCanBusDeviceInfo(({const QCanBusDeviceInfo tmp = static_cast<QList<QCanBusDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QCanBusDeviceInfo>*>(p)->size()-1) { static_cast<QList<QCanBusDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QCanBusDeviceInfo(({QCanBusDeviceInfo tmp = static_cast<QList<QCanBusDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QCanBusDeviceInfo>*>(p)->size()-1) { static_cast<QList<QCanBusDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCanBus___availableDevices_setList(void* ptr, void* i, void* p)
@@ -120,7 +120,7 @@ void* QCanBus___availableDevices_newList(void* ptr)
 void* QCanBus___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCanBus___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -138,7 +138,7 @@ void* QCanBus___dynamicPropertyNames_newList(void* ptr)
 void* QCanBus___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBus___findChildren_setList2(void* ptr, void* i, void* p)
@@ -156,7 +156,7 @@ void* QCanBus___findChildren_newList2(void* ptr)
 void* QCanBus___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBus___findChildren_setList3(void* ptr, void* i, void* p)
@@ -174,7 +174,7 @@ void* QCanBus___findChildren_newList3(void* ptr)
 void* QCanBus___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBus___findChildren_setList(void* ptr, void* i, void* p)
@@ -192,7 +192,7 @@ void* QCanBus___findChildren_newList(void* ptr)
 void* QCanBus___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBus___children_setList(void* ptr, void* i, void* p)
@@ -522,7 +522,7 @@ void* QCanBusDevice___enqueueReceivedFrames_newFrames_newList(void* ptr)
 int QCanBusDevice___configurationKeys_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QCanBusDevice___configurationKeys_setList(void* ptr, int i, void* p)
@@ -540,7 +540,7 @@ void* QCanBusDevice___configurationKeys_newList(void* ptr)
 void* QCanBusDevice___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCanBusDevice___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -558,7 +558,7 @@ void* QCanBusDevice___dynamicPropertyNames_newList(void* ptr)
 void* QCanBusDevice___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBusDevice___findChildren_setList2(void* ptr, void* i, void* p)
@@ -576,7 +576,7 @@ void* QCanBusDevice___findChildren_newList2(void* ptr)
 void* QCanBusDevice___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBusDevice___findChildren_setList3(void* ptr, void* i, void* p)
@@ -594,7 +594,7 @@ void* QCanBusDevice___findChildren_newList3(void* ptr)
 void* QCanBusDevice___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBusDevice___findChildren_setList(void* ptr, void* i, void* p)
@@ -612,7 +612,7 @@ void* QCanBusDevice___findChildren_newList(void* ptr)
 void* QCanBusDevice___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QCanBusDevice___children_setList(void* ptr, void* i, void* p)
@@ -717,7 +717,7 @@ struct QtSerialBus_PackedList QCanBusFactoryV2_AvailableDevices(void* ptr, struc
 void* QCanBusFactoryV2___availableDevices_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QCanBusDeviceInfo(({const QCanBusDeviceInfo tmp = static_cast<QList<QCanBusDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QCanBusDeviceInfo>*>(p)->size()-1) { static_cast<QList<QCanBusDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QCanBusDeviceInfo(({QCanBusDeviceInfo tmp = static_cast<QList<QCanBusDeviceInfo>*>(p)->at(i); if (i == static_cast<QList<QCanBusDeviceInfo>*>(p)->size()-1) { static_cast<QList<QCanBusDeviceInfo>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QCanBusFactoryV2___availableDevices_setList(void* ptr, void* i, void* p)
@@ -1163,7 +1163,7 @@ unsigned int QModbusDataUnit_ValueCount(void* ptr)
 unsigned short QModbusDataUnit___QModbusDataUnit_data_atList4(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QModbusDataUnit___QModbusDataUnit_data_setList4(void* ptr, unsigned short i, void* p)
@@ -1181,7 +1181,7 @@ void* QModbusDataUnit___QModbusDataUnit_data_newList4(void* ptr)
 unsigned short QModbusDataUnit___setValues_values_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QModbusDataUnit___setValues_values_setList(void* ptr, unsigned short i, void* p)
@@ -1199,7 +1199,7 @@ void* QModbusDataUnit___setValues_values_newList(void* ptr)
 unsigned short QModbusDataUnit___values_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(p)->at(i); if (i == static_cast<QVector<quint16>*>(p)->size()-1) { static_cast<QVector<quint16>*>(p)->~QVector(); free(p); }; tmp; });
 }
 
 void QModbusDataUnit___values_setList(void* ptr, unsigned short i, void* p)
@@ -1375,7 +1375,7 @@ long long QModbusDevice_State(void* ptr)
 void* QModbusDevice___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QModbusDevice___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1393,7 +1393,7 @@ void* QModbusDevice___dynamicPropertyNames_newList(void* ptr)
 void* QModbusDevice___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusDevice___findChildren_setList2(void* ptr, void* i, void* p)
@@ -1411,7 +1411,7 @@ void* QModbusDevice___findChildren_newList2(void* ptr)
 void* QModbusDevice___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusDevice___findChildren_setList3(void* ptr, void* i, void* p)
@@ -1429,7 +1429,7 @@ void* QModbusDevice___findChildren_newList3(void* ptr)
 void* QModbusDevice___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusDevice___findChildren_setList(void* ptr, void* i, void* p)
@@ -1447,7 +1447,7 @@ void* QModbusDevice___findChildren_newList(void* ptr)
 void* QModbusDevice___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusDevice___children_setList(void* ptr, void* i, void* p)
@@ -1686,7 +1686,7 @@ char QModbusDeviceIdentification_IsValid(void* ptr)
 int QModbusDeviceIdentification___objectIds_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return ({const int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusDeviceIdentification___objectIds_setList(void* ptr, int i, void* p)
@@ -1827,7 +1827,7 @@ short QModbusPdu_Size(void* ptr)
 void* QModbusPdu___encode_vector_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusPdu___encode_vector_setList2(void* ptr, void* i, void* p)
@@ -1975,7 +1975,7 @@ int QModbusReply_ServerAddress(void* ptr)
 void* QModbusReply___dynamicPropertyNames_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return new QByteArray(({const QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
 }
 
 void QModbusReply___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
@@ -1993,7 +1993,7 @@ void* QModbusReply___dynamicPropertyNames_newList(void* ptr)
 void* QModbusReply___findChildren_atList2(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusReply___findChildren_setList2(void* ptr, void* i, void* p)
@@ -2011,7 +2011,7 @@ void* QModbusReply___findChildren_newList2(void* ptr)
 void* QModbusReply___findChildren_atList3(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusReply___findChildren_setList3(void* ptr, void* i, void* p)
@@ -2029,7 +2029,7 @@ void* QModbusReply___findChildren_newList3(void* ptr)
 void* QModbusReply___findChildren_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusReply___findChildren_setList(void* ptr, void* i, void* p)
@@ -2047,7 +2047,7 @@ void* QModbusReply___findChildren_newList(void* ptr)
 void* QModbusReply___children_atList(void* ptr, int i, void* p)
 {
 	Q_UNUSED(ptr);
-	return const_cast<QObject*>(({const QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; }));
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
 }
 
 void QModbusReply___children_setList(void* ptr, void* i, void* p)
