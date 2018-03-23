@@ -457,7 +457,7 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	case "darwin":
 		sFixes = []string{"darwin_amd64"}
 	case "linux":
-		sFixes = []string{"linux_" + runtime.GOARCH}
+		sFixes = []string{"linux_" + utils.GOARCH()}
 	case "windows":
 		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") {
 			sFixes = []string{"windows_amd64"}

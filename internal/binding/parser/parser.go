@@ -78,6 +78,9 @@ func LoadModule(m string) *Module {
 	case utils.QT_MSYS2():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.9.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
+	case utils.QT_PKG_CONFIG() && utils.QT_DOCKER():
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.9.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+
 	case utils.QT_PKG_CONFIG():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 

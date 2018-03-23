@@ -23,13 +23,18 @@ var (
 func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
+	env, tags, _, _ := BuildEnv(target, "", "")
+
 	stdMutex.Lock()
 	if std == nil {
-		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
+		cmd := exec.Command("go", "list", "std")
+		for k, v := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+		}
+		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list std")), "\n"), "C")
 	}
 	stdMutex.Unlock()
 
-	env, tags, _, _ := BuildEnv(target, "", "")
 	if tagsCustom != "" {
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}

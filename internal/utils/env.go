@@ -190,3 +190,10 @@ func CGO_LDFLAGS_ALLOW() string {
 	}
 	return ".*"
 }
+
+func GOARCH() string {
+	if arch, ok := os.LookupEnv("GOARCH"); ok {
+		return arch
+	}
+	return runtime.GOARCH
+}

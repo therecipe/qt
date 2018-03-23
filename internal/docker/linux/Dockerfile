@@ -27,8 +27,8 @@ ENV GOPATH $HOME/work
 
 
 RUN go get -v github.com/therecipe/qt/cmd/...
-RUN rm -r /home/user/work/src/github.com/sirupsen/ && rm -r /home/user/work/src/golang.org/
-RUN rm -r /home/user/work/pkg/linux_amd64/github.com/sirupsen/ && rm -r /home/user/work/pkg/linux_amd64/golang.org/
+RUN go clean -i github.com/sirupsen/... && go clean -i golang.org/...
+RUN rm -r $GOPATH/src/github.com/sirupsen/ && rm -r $GOPATH/src/golang.org/
 
 
 ENV QT qt-unified-linux-x64-online.run

@@ -427,9 +427,15 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOROOT": runtime.GOROOT(),
 
 			"GOOS":   "linux",
-			"GOARCH": "amd64",
+			"GOARCH": utils.GOARCH(),
 
 			"CGO_ENABLED": "1",
+		}
+
+		if arm, ok := os.LookupEnv("GOARM"); ok {
+			env["GOARM"] = arm
+			env["CC"] = os.Getenv("CC")
+			env["CXX"] = os.Getenv("CXX")
 		}
 
 	case "rpi1", "rpi2", "rpi3":
