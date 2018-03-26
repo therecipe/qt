@@ -7,6 +7,7 @@ RUN df -h
 ENV USER user
 ENV HOME /home/$USER
 ENV QT_DOCKER true
+ENV QT_UBPORTS_XENIAL true
 
 
 RUN apt-get -qq update && apt-get -y -qq install curl git && apt-get -qq clean

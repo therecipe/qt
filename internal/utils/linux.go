@@ -104,3 +104,7 @@ func QT_MXE_BIN(tool string) string {
 func QT_MXE() bool {
 	return os.Getenv("QT_MXE") == "true"
 }
+
+func QT_UBPORTS_XENIAL() bool {
+	return os.Getenv("QT_UBPORTS_XENIAL") == "true"
+}

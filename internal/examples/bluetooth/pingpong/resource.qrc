@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/main.qml</file>
+        <file>assets/Board.qml</file>
+        <file>assets/Dialog.qml</file>
+        <file>assets/Menu.qml</file>
+    </qresource>
+</RCC>

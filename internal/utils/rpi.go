@@ -5,6 +5,10 @@ import (
 	"path/filepath"
 )
 
+func QT_RPI() bool {
+	return os.Getenv("QT_RPI") == "true"
+}
+
 func RPI_COMPILER() string {
 	if name, ok := os.LookupEnv("RPI_COMPILER"); ok {
 		return name

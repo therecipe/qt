@@ -78,11 +78,14 @@ func LoadModule(m string) *Module {
 	case utils.QT_MSYS2():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.10.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
-	case utils.QT_PKG_CONFIG() && utils.QT_DOCKER():
+	case utils.QT_UBPORTS_XENIAL():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.9.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_PKG_CONFIG():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+
+	case utils.QT_RPI():
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	default:
 		err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", fmt.Sprintf("Qt-%v", utils.QT_VERSION_MAJOR()), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
