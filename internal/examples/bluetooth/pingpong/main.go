@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	core.QLoggingCategory_SetFilterRules("qt.bluetooth* = true")
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 

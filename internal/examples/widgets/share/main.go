@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	widgets.NewQApplication(len(os.Args), os.Args)
 
 	engine := qml.NewQQmlApplicationEngine(nil)

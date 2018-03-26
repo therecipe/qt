@@ -14,6 +14,7 @@ import (
 //therefore the qml file does contain errors and will NOT work properly
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
 
 	widgets.NewQApplication(len(os.Args), os.Args)
 

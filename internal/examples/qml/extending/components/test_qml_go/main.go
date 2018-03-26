@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	view := quick.NewQQuickView(nil)

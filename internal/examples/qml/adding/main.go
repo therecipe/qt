@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	core.NewQCoreApplication(len(os.Args), os.Args)
 
 	Person_QmlRegisterType2("People", 1, 0, "Person")

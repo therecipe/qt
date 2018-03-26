@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
 
 	//Turn on all the logging categories of Canvas3D
 	var loggingFilter = `qt.canvas3d.info.debug=true

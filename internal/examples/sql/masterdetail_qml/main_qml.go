@@ -31,6 +31,8 @@ func main() {
 		path = filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "examples", "sql", "masterdetail_qml", "view", "qml", "view.qml")
 	}
 
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	qApp := widgets.NewQApplication(len(os.Args), os.Args)
 
 	controller.NewController(nil).InitWith(core.NewQFile2(":/albumdetails.xml"), qApp)

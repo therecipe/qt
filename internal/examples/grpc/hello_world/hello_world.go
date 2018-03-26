@@ -24,6 +24,8 @@ type HelloClientFactory struct {
 func main() {
 	go serve()
 
+	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
+
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	var view = quick.NewQQuickView(nil)
