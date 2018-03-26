@@ -34,12 +34,20 @@ func (c *Class) fixFunctions(fix func(*Function)) {
 	}
 }
 
+//TODO: (*Enum) IsSupported
 func (c *Class) fixEnums() {
 	for _, e := range c.Enums {
 		if e.Fullname == "QVariant::Type" {
 			e.Status = "active"
 			for i := len(e.Values) - 1; i >= 0; i-- {
 				if v := e.Values[i]; v.Name == "LastCoreType" || v.Name == "LastGuiType" {
+					e.Values = append(e.Values[:i], e.Values[i+1:]...)
+				}
+			}
+		}
+		if utils.QT_VERSION_NUM() <= 5042 && e.Fullname == "QFileSystemModel::Roles" {
+			for i := len(e.Values) - 1; i >= 0; i-- {
+				if v := e.Values[i]; v.Name == "FileIconRole" {
 					e.Values = append(e.Values[:i], e.Values[i+1:]...)
 				}
 			}

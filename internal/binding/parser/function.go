@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 type Function struct {
@@ -253,6 +255,7 @@ func (f *Function) IsJNIGeneric() bool {
 	return false
 }
 
+//TODO:
 func (f *Function) IsSupported() bool {
 
 	//if utils.QT_VERSION() == "5.8.0" {
@@ -400,6 +403,16 @@ func (f *Function) IsSupported() bool {
 
 		((f.ClassName() == "QGraphicsGridLayout" || f.ClassName() == "QFormLayout") && f.Name == "itemAt" && f.OverloadNumber == "2") {
 		return false
+	}
+
+	if utils.QT_VERSION_NUM() <= 5042 {
+		if f.Fullname == "QIODevice::open" && f.OverloadNumber == "3" ||
+			f.Fullname == "QImage::QImage" && (f.OverloadNumber == "11" || f.OverloadNumber == "12") ||
+			f.Fullname == "QGraphicsLayout::invalidate" ||
+			f.Fullname == "QAudioRoleControl::supportedAudioRoles" {
+			f.Access = "unsupported_isBlockedFunction"
+			return false
+		}
 	}
 
 	if State.Minimal {

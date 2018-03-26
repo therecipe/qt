@@ -33,19 +33,19 @@ Resources
 Deployment Targets
 ------------------
 
-| Target                   | Arch          | Linkage                          | Docker Deployment | Host OS             |
-|:------------------------:|:-------------:|:--------------------------------:|:-----------------:|:-------------------:|
-|         Windows          |   (32 / 64)   | (dynamic / static / system libs) |        Yes        |         Any         |
-|     Android (+Wear)      |      arm      |             dynamic              |        Yes        |         Any         |
-| Android-Emulator (+Wear) |      32       |             dynamic              |        No         | Windows/macOS/Linux |
-|          Linux           |      64       |     (dynamic / system libs)      |        Yes        |         Any         |
-|   Raspberry Pi (1/2/3)   |      arm      |     (dynamic / system libs)      |        Yes        |         Any         |
-|          macOS           |      64       |     (dynamic / system libs)      |        No         |        macOS        |
-|           iOS            | (arm + arm64) |              static              |        No         |        macOS        |
-|      iOS-Simulator       |   (32 + 64)   |              static              |        No         |        macOS        |
-|        SailfishOS        |      arm      |           system libs            |        No         | Windows/macOS/Linux |
-|   SailfishOS-Emulator    |      32       |           system libs            |        No         | Windows/macOS/Linux |
-|        AsteroidOS        |      arm      |           system libs            |        No         |        Linux        |
+| Target                   | Arch      | Linkage                 | Docker Deployment | Host OS             |
+|:------------------------:|:---------:|:-----------------------:|:-----------------:|:-------------------:|
+|         Windows          | (32 / 64) |   (dynamic / static)    |        Yes        |         Any         |
+|     Android (+Wear)      |    arm    |         dynamic         |        Yes        |         Any         |
+| Android-Emulator (+Wear) |    32     |         dynamic         |        Yes        |         Any         |
+|          Linux           |    64     | (dynamic / system libs) |        Yes        |         Any         |
+|   Raspberry Pi (1/2/3)   |    arm    | (dynamic / system libs) |        Yes        |         Any         |
+|          macOS           |    64     |         dynamic         |        No         |        macOS        |
+|           iOS            |   arm64   |         static          |        No         |        macOS        |
+|      iOS-Simulator       |    64     |         static          |        No         |        macOS        |
+|        SailfishOS        |    arm    |       system libs       |        No         | Windows/macOS/Linux |
+|   SailfishOS-Emulator    |    32     |       system libs       |        No         | Windows/macOS/Linux |
+|        AsteroidOS        |    arm    |       system libs       |        No         |        Linux        |
 
 License
 -------

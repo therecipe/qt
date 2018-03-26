@@ -268,11 +268,11 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		if fData != "" {
 			if strings.Contains(fData, fmt.Sprintf("%v(", f.Name)) {
-				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v(", f.Name))[1], ")")[0], "QPrivateSignal")
+				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v(", f.Name))[1], ");")[0], "QPrivateSignal")
 			}
 
 			if strings.Contains(fData, fmt.Sprintf("%v (", f.Name)) {
-				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v (", f.Name))[1], ")")[0], "QPrivateSignal")
+				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v (", f.Name))[1], ");")[0], "QPrivateSignal")
 			}
 		}
 

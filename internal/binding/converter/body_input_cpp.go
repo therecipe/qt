@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func CppInputParameters(function *parser.Function) string {
@@ -164,6 +165,16 @@ func CppRegisterMetaType(function *parser.Function) string {
 			"QWebPage::Feature", "QItemModelSurfaceDataProxy::MultiMatchBehavior", "QCategoryAxis::AxisLabelsPosition",
 			"QLegend::MarkerShape", "QDesignerFormWindowInterface::Feature":
 			out = append(out[:i], out[i+1:]...)
+
+		default:
+			if utils.QT_VERSION_NUM() <= 5042 {
+				switch out[i] {
+				case "QAbstractAnimation::Direction", "QAbstractAnimation::State", "QAbstractItemModel::LayoutChangeHint", "QItemSelectionModel::SelectionFlags",
+					"QInputMethod::Action", "QMovie::MovieState", "QOpenGLDebugLogger::LoggingMode", "QWindow::Visibility", "QDnsLookup::Type", "QNetworkAccessManager::NetworkAccessibility",
+					"QAbstractItemView::ScrollHint", "QScroller::State", "QQmlComponent::CompilationMode", "QQuickWidget::Status", "QQuickWindow::SceneGraphError", "QQuickView::Status":
+					out = append(out[:i], out[i+1:]...)
+				}
+			}
 		}
 	}
 

@@ -25,7 +25,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
-	if module == "QtAndroidExtras" {
+	if module == "QtAndroidExtras" && utils.QT_VERSION_NUM() >= 5060 {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
 		if UseStub(stub, module, mode) {
 			fmt.Fprint(bb, "return nil\n")

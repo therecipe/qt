@@ -1,4 +1,4 @@
-FROM clickable/ubuntu-sdk:16.04-armhf
+FROM clickable/ubuntu-sdk:16.04-amd64
 
 
 RUN df -h
@@ -19,18 +19,9 @@ ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/work
 
 
-ENV GOARCH amd64
-ENV CC ""
-ENV CXX ""
 RUN go get -v github.com/therecipe/qt/cmd/...
 RUN go clean -i github.com/sirupsen/... && go clean -i golang.org/...
 RUN rm -r $GOPATH/src/github.com/sirupsen/ && rm -r $GOPATH/src/golang.org/
-ENV GOARCH arm
-ENV CC arm-linux-gnueabihf-gcc
-ENV CXX arm-linux-gnueabihf-g++
-
-
-RUN cp /usr/lib/arm-linux-gnueabihf/qt5/qt.conf /usr/lib/qt5/bin/
 
 
 ENV QT_PKG_CONFIG true

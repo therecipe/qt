@@ -31500,12 +31500,6 @@ func (ptr *QRandomGenerator) DestroyQRandomGenerator() {
 	}
 }
 
-//go:generate stringer -type=QRandomGenerator__System
-//QRandomGenerator::System
-type QRandomGenerator__System int64
-
-const ()
-
 func NewQRandomGenerator3(other QRandomGenerator_ITF) *QRandomGenerator {
 	tmpValue := NewQRandomGeneratorFromPointer(C.QRandomGenerator_NewQRandomGenerator3(PointerFromQRandomGenerator(other)))
 	runtime.SetFinalizer(tmpValue, (*QRandomGenerator).DestroyQRandomGenerator)
@@ -51846,7 +51840,8 @@ const (
 	Qt__WA_MacNoShadow                     Qt__WidgetAttribute = Qt__WidgetAttribute(127)
 	Qt__WA_AlwaysStackOnTop                Qt__WidgetAttribute = Qt__WidgetAttribute(128)
 	Qt__WA_TabletTracking                  Qt__WidgetAttribute = Qt__WidgetAttribute(129)
-	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(130)
+	Qt__WA_ContentsMarginsRespectsSafeArea Qt__WidgetAttribute = Qt__WidgetAttribute(130)
+	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(131)
 )
 
 //go:generate stringer -type=Qt__WindowFrameSection

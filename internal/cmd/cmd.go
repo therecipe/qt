@@ -247,7 +247,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		case "ios-simulator":
 			target = "ios"
 		case "android-emulator":
-			target = "android" //TODO:
+			target = "android"
 		}
 
 		upCmd := exec.Command("vagrant", "up", "--no-provision", target)

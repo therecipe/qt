@@ -2,8 +2,11 @@ package parser
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"sync"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 type Class struct {
@@ -274,6 +277,16 @@ func (c *Class) IsSupported() bool {
 		strings.HasPrefix(c.Name, "QVulkan"):
 
 		{
+			c.Access = "unsupported_isBlockedClass"
+			return false
+		}
+	}
+
+	if utils.QT_VERSION_NUM() <= 5042 {
+		if c.Name == "QQmlAbstractProfilerAdapter" ||
+			c.Name == "QGraphicsLayout" ||
+			c.Name == "QQmlAbstractProfilerAdapter" ||
+			strings.HasPrefix(c.Name, "QOpenGL") && os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}

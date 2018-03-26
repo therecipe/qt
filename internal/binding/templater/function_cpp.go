@@ -157,14 +157,15 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 	} else {
 		switch {
 		case
-			function.Fullname == "QMenu::setAsDockMenu":
+			function.Fullname == "QMenu::setAsDockMenu", function.Fullname == "QSysInfo::macVersion", function.Fullname == "QSysInfo::MacintoshVersion":
 			{
 				return fmt.Sprintf("#ifdef Q_OS_OSX\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
 
 		case
 			function.Fullname == "QProcess::nativeArguments", function.Fullname == "QProcess::setNativeArguments",
-			function.Fullname == "QAbstractEventDispatcher::registerEventNotifier", function.Fullname == "QAbstractEventDispatcher::unregisterEventNotifier":
+			function.Fullname == "QAbstractEventDispatcher::registerEventNotifier", function.Fullname == "QAbstractEventDispatcher::unregisterEventNotifier",
+			function.Fullname == "QSysInfo::windowsVersion":
 			{
 				return fmt.Sprintf("#ifdef Q_OS_WIN\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}

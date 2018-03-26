@@ -532,6 +532,19 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 					continue
 				}
 			}
+
+			if utils.QT_VERSION_NUM() <= 5042 {
+				switch c.Name {
+				case
+					"QQmlAbstractProfilerAdapter",
+					"QQuickAsyncImageProvider",
+					"QQuickImageResponse":
+					{
+						continue
+					}
+				}
+			}
+
 			fmt.Fprintf(bb, "#include <%v>\n", class)
 		}
 

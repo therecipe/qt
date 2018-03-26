@@ -1,4 +1,4 @@
-FROM clickable/ubuntu-sdk:16.04-amd64
+FROM clickable/ubuntu-sdk:15.04-armhf
 
 
 RUN df -h
@@ -6,10 +6,10 @@ RUN df -h
 
 ENV USER user
 ENV HOME /home/$USER
-ENV QT_DOCKER true
 
 
 RUN apt-get -qq update && apt-get -y -qq install curl git && apt-get -qq clean
+RUN apt-get -qq update && apt-get -y -qq install qt*5-doc-html && apt-get -qq clean
 
 
 RUN rm -R /usr/local/go | true
@@ -19,9 +19,18 @@ ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/work
 
 
+ENV GOARCH amd64
+ENV CC gcc
+ENV CXX g++
 RUN go get -v github.com/therecipe/qt/cmd/...
 RUN go clean -i github.com/sirupsen/... && go clean -i golang.org/...
 RUN rm -r $GOPATH/src/github.com/sirupsen/ && rm -r $GOPATH/src/golang.org/
+ENV GOARCH arm
+ENV CC arm-linux-gnueabihf-gcc
+ENV CXX arm-linux-gnueabihf-g++
+
+
+ENV QT_QMAKE_DIR /usr/lib/arm-linux-gnueabihf/qt5/bin/
 
 
 ENV QT_PKG_CONFIG true

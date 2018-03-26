@@ -60,6 +60,6 @@ else if [[ "$OS" == "linux" ]]; then
   sudo rm -f -R $HOME/.cache
 fi; fi
 
-if [[ "$DOCKER" != "true" ]]; then $GOPATH/bin/qtsetup prep; fi
+$GOPATH/bin/qtsetup prep
 
 exit 0

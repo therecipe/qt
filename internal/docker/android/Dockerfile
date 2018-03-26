@@ -34,4 +34,4 @@ RUN $GOPATH/bin/qtsetup check android
 RUN $GOPATH/bin/qtsetup generate android
 RUN $GOPATH/bin/qtsetup install android
 
-RUN $GOPATH/bin/qtdeploy build android $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni
+RUN $GOPATH/bin/qtdeploy build android $GOPATH/src/github.com/therecipe/qt/internal/examples/androidextras/jni | true
