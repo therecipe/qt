@@ -282,11 +282,15 @@ func (c *Class) IsSupported() bool {
 		}
 	}
 
+	if strings.HasPrefix(c.Name, "QOpenGL") && os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" {
+		c.Access = "unsupported_isBlockedClass"
+		return false
+	}
+
 	if utils.QT_VERSION_NUM() <= 5042 {
 		if c.Name == "QQmlAbstractProfilerAdapter" ||
 			c.Name == "QGraphicsLayout" ||
-			c.Name == "QQmlAbstractProfilerAdapter" ||
-			strings.HasPrefix(c.Name, "QOpenGL") && os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" {
+			c.Name == "QQmlAbstractProfilerAdapter" {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
