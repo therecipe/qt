@@ -242,6 +242,9 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			if strings.HasPrefix(args[i], "windows_") {
 				args[i] = "windows"
 			}
+			if strings.HasPrefix(args[i], "ubports_") {
+				args[i] = "ubports"
+			}
 		}
 
 		utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", target, runtime.GOOS))
