@@ -441,16 +441,20 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["CXX"] = os.Getenv("CXX")
 		}
 
-		if utils.QT_UBPORTS_ARCH() == "arm" {
-			env["GOARCH"] = "arm"
+		if utils.QT_UBPORTS() || target == "ubports" {
+			tags = []string{"ubports", utils.QT_UBPORTS_VERSION()}
 
-			if env["GOARM"] == "" {
-				env["GOARM"] = "7"
-			}
+			if utils.QT_UBPORTS_ARCH() == "arm" {
+				env["GOARCH"] = "arm"
 
-			if env["CC"] == "" || env["CXX"] == "" {
-				env["CC"] = "arm-linux-gnueabihf-gcc"
-				env["CXX"] = "arm-linux-gnueabihf-g++"
+				if env["GOARM"] == "" {
+					env["GOARM"] = "7"
+				}
+
+				if env["CC"] == "" || env["CXX"] == "" {
+					env["CC"] = "arm-linux-gnueabihf-gcc"
+					env["CXX"] = "arm-linux-gnueabihf-g++"
+				}
 			}
 		}
 

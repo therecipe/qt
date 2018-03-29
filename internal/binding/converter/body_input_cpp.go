@@ -171,7 +171,9 @@ func CppRegisterMetaType(function *parser.Function) string {
 				switch out[i] {
 				case "QAbstractAnimation::Direction", "QAbstractAnimation::State", "QAbstractItemModel::LayoutChangeHint", "QItemSelectionModel::SelectionFlags",
 					"QInputMethod::Action", "QMovie::MovieState", "QOpenGLDebugLogger::LoggingMode", "QWindow::Visibility", "QDnsLookup::Type", "QNetworkAccessManager::NetworkAccessibility",
-					"QAbstractItemView::ScrollHint", "QScroller::State", "QQmlComponent::CompilationMode", "QQuickWidget::Status", "QQuickWindow::SceneGraphError", "QQuickView::Status":
+					"QAbstractItemView::ScrollHint", "QScroller::State", "QQmlComponent::CompilationMode", "QQuickWidget::Status", "QQuickWindow::SceneGraphError", "QQuickView::Status",
+					"Qt::Orientation", "Qt::DropAction", "Qt::ApplicationState", "Qt::LayoutDirection", "Qt::InputMethodQueries", "Qt::ScreenOrientation", "Qt::WindowModality", "Qt::WindowState",
+					"Qt::DockWidgetAreas", "Qt::DockWidgetArea", "Qt::FocusReason", "Qt::SortOrder", "Qt::ToolButtonStyle", "Qt::WindowStates", "Qt::Alignment", "Qt::ToolBarAreas":
 					out = append(out[:i], out[i+1:]...)
 				}
 			}

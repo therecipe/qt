@@ -290,7 +290,8 @@ func (c *Class) IsSupported() bool {
 	if utils.QT_VERSION_NUM() <= 5042 {
 		if c.Name == "QQmlAbstractProfilerAdapter" ||
 			c.Name == "QGraphicsLayout" ||
-			c.Name == "QQmlAbstractProfilerAdapter" {
+			c.Name == "QQmlAbstractProfilerAdapter" ||
+			c.Name == "QDeclarativeMultimedia" {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}

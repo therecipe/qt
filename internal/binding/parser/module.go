@@ -38,7 +38,7 @@ func (m *Module) Prepare() error {
 	//register enums and functions from subnamespaces
 	for _, sns := range m.Namespace.SubNamespaces {
 		for _, e := range sns.Enums {
-			if !(e.Status == "active") || !(e.Access == "public" || e.Access == "protected") ||
+			if !(e.Status == "active" || e.Status == "commendable") || !(e.Access == "public" || e.Access == "protected") ||
 				strings.Contains(e.Fullname, "Private") || strings.Contains(e.Fullname, "Util") ||
 				strings.Contains(e.Fullname, "nternal") || strings.ToLower(e.Name) == e.Name {
 				continue
@@ -50,7 +50,7 @@ func (m *Module) Prepare() error {
 			m.Project != "QtTestLib" && m.Project != "QtScript" && m.Project != "QtQuick" {
 			for _, f := range sns.Functions {
 
-				if !(f.Status == "active") || !(f.Access == "public" || f.Access == "protected") ||
+				if !(f.Status == "active" || f.Status == "commendable") || !(f.Access == "public" || f.Access == "protected") ||
 					strings.Contains(f.Fullname, "Private") || strings.Contains(f.Fullname, "Util") ||
 					strings.Contains(f.Fullname, "nternal") || f.Name == "qDefaultSurfaceFormat" ||
 					f.ClassName() == "QUnicodeTables" ||

@@ -87,3 +87,7 @@ RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libpcre.so.1 /usr/lib/
 RUN $GOPATH/bin/qtsetup prep sailfish
 RUN $GOPATH/bin/qtsetup generate sailfish
 RUN $GOPATH/bin/qtsetup install sailfish
+
+RUN $GOPATH/bin/qtsetup prep sailfish-emulator
+RUN $GOPATH/bin/qtsetup generate sailfish-emulator
+RUN $GOPATH/bin/qtsetup install sailfish-emulator
