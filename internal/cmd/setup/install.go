@@ -18,7 +18,7 @@ import (
 func Install(target string, docker, vagrant bool) {
 	utils.Log.Infof("running: 'qtsetup install %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
-	if target == "sailfish" || target == "sailfish-emulator" {
+	if strings.HasPrefix(target, "sailfish") && !utils.QT_SAILFISH() {
 		if _, err := ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386")); err != nil {
 			build := exec.Command("go", "tool", "dist", "test", "-rebuild", "-run=no_tests")
 

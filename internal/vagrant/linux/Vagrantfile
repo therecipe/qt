@@ -56,9 +56,9 @@ Vagrant.configure("2") do |config|
 
   #TODO: desktop + webkit
   #TODO: android + openssl
-  #TODO: android x86
   #TODO: sailfish
   #TODO: rpi
   #TODO: asteroid
+  #TODO: ubports
 
 end

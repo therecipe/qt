@@ -32,7 +32,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		minimal.Minimal(path, target, "")
 
 		var pattern string
-		if strings.Contains(runtime.Version(), "1.10") {
+		if strings.Contains(runtime.Version(), "1.1") {
 			pattern = "all="
 		}
 

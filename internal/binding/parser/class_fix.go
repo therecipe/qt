@@ -230,12 +230,16 @@ func (c *Class) fixBases() {
 
 	case "linux":
 		{
-			if utils.QT_PKG_CONFIG() {
+			switch {
+			case utils.QT_PKG_CONFIG():
 				if pkgConfigIncludeDir == "" {
 					pkgConfigIncludeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
 				}
 				prefixPath = pkgConfigIncludeDir
-			} else {
+			case utils.QT_SAILFISH():
+				prefixPath = "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include/qt5"
+				infixPath = ""
+			default:
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
 			}
 		}

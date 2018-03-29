@@ -608,16 +608,6 @@ Release:    1
 Group:      Qt/Qt
 License:    MIT
 Source0:    %%{name}-%%{version}.tar.bz2
-#Requires:  mapplauncherd-booster-silica-qt5
-#Requires:  nemo-qml-plugin-thumbnailer-qt5
-Requires:   sailfishsilica-qt5
-#Requires:  qt5-qtdocgallery
-BuildRequires:  pkgconfig(sailfishapp)
-BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Core)
-#BuildRequires: pkgconfig(qdeclarative5-boostable)
-BuildRequires:  desktop-file-utils
 
 %%description
 Put your description here
@@ -653,7 +643,7 @@ install -p %%(pwd)/%[1]v.desktop %%{buildroot}%%{_datadir}/applications/%%{name}
 
 desktop-file-install --delete-original       \
   --dir %%{buildroot}%%{_datadir}/applications             \
-   %%{buildroot}%%{_datadir}/applications/*.desktop
+   %%{buildroot}%%{_datadir}/applications/%%{name}.desktop
 
 %%files
 %%defattr(-,root,root,-)
@@ -708,4 +698,44 @@ func sailfish_ssh(port, login string, cmd ...string) error {
 	}
 
 	return nil
+}
+
+func ubports_desktop(name string) string {
+	return fmt.Sprintf(`[Desktop Entry]
+Name=%[1]v
+Exec=%[1]v
+Icon=logo.svg
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true`, name)
+}
+
+func ubports_apparmor() string {
+	return `{
+    "policy_groups": [],
+    "policy_version": 1.3
+}`
+}
+
+func ubports_manifest(name string) string {
+	return fmt.Sprintf(`{
+    "name": "%[1]v",
+    "description": "description",
+    "architecture": "%[2]v",
+    "title": "%[1]v",
+    "hooks": {
+        "%[1]v": {
+            "apparmor": "%[1]v.apparmor",
+            "desktop":  "%[1]v.desktop"
+        }
+    },
+    "version": "1.0",
+    "maintainer": "maintainer_name <maintainer_email>",
+    "framework" : "ubuntu-sdk-15.04.6"
+}`, name, func() string {
+		if utils.QT_UBPORTS_ARCH() == "arm" {
+			return "armhf"
+		}
+		return "amd64"
+	}())
 }

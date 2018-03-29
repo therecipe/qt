@@ -1,4 +1,5 @@
 FROM therecipe/qt:rpi
+LABEL maintainer therecipe
 
 
 RUN df -h

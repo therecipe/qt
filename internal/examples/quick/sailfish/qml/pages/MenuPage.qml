@@ -38,10 +38,6 @@ import Sailfish.Silica 1.0
 Page {
     id: root
 
-    RemorsePopup {
-        id: clearRemorse
-    }
-
     SilicaListView {
 
         id: listView
@@ -71,7 +67,7 @@ Page {
             MenuItem {
                 text: "Clear"
                 visible: listView.count
-                onClicked: clearRemorse.execute("Clearing", function() { listModel.clear() } )
+                onClicked: Remorse.popupAction(root, "Clearing", function() { listModel.clear() } )
             }
             MenuItem {
                 text: "Add Items"

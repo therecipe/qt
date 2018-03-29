@@ -52,6 +52,162 @@ Page {
 
             PageHeader { title: "Text input" }
 
+            SectionHeader {
+                text: "Text fields"
+            }
+
+            TextField {
+                focus: true
+                label: "Normal"
+                placeholderText: label
+                width: parent.width
+                horizontalAlignment: textAlignment
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: passwordField.focus = true
+            }
+
+            PasswordField {
+                id: passwordField
+                width: parent.width
+                horizontalAlignment: textAlignment
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: numberField.focus = true
+            }
+
+            TextField {
+                id: numberField
+                width: parent.width
+                inputMethodHints: Qt.ImhFormattedNumbersOnly
+                label: "Number"
+                placeholderText: label
+                horizontalAlignment: textAlignment
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: phoneField.focus = true
+            }
+
+            TextField {
+                id: phoneField
+                width: parent.width
+                inputMethodHints: Qt.ImhDialableCharactersOnly
+                label: "Phone number"
+                placeholderText: label
+                placeholderColor: Theme.highlightColor
+                color: Theme.highlightColor
+                horizontalAlignment: textAlignment
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+            }
+
+            SectionHeader {
+                text: "Search field"
+            }
+
+            SearchField {
+                width: parent.width
+            }
+
+            SectionHeader {
+                text: "Text area"
+            }
+
+            TextArea {
+                id: textArea
+                width: parent.width
+                label: "Multi-line text"
+                placeholderText: label
+            }
+
+            SectionHeader {
+                text: "Enter key"
+            }
+
+            ComboBox {
+                id: enterKeyCombobox
+                readonly property bool iconMode: currentIndex === 1
+                readonly property bool textMode: currentIndex === 2
+
+                width: parent.width
+                label: "Mode"
+                currentIndex: 1
+
+                menu: ContextMenu {
+                    MenuItem { text: "None" }
+                    MenuItem { text: "Icon" }
+                    MenuItem { text: "Text" }
+                }
+            }
+
+            Row {
+                width: parent.width
+                TextSwitch {
+                    id: enabled; checked: true; text: "Enabled"; width: parent.width/2
+                }
+                TextSwitch {
+                    id: highlighted; text: "Highlighted"; width: parent.width/2
+                }
+            }
+
+            TextField {
+                width: parent.width
+                label: "Change options above"
+                placeholderText: label
+                horizontalAlignment: textAlignment
+                focusOutBehavior: FocusBehavior.KeepFocus
+                EnterKey.iconSource: enterKeyCombobox.iconMode ? "image://theme/icon-m-enter-next" : ""
+                EnterKey.text: enterKeyCombobox.textMode ? "Text" : ""
+                EnterKey.enabled: enabled.checked
+                EnterKey.highlighted: highlighted.checked
+                EnterKey.onClicked: parent.focus = true
+            }
+
+            SectionHeader {
+                text: "Custom"
+            }
+
+            TextField {
+                width: parent.width
+                readOnly: true
+                label: "Read only"
+                text: label
+                horizontalAlignment: textAlignment
+            }
+
+            TextField {
+                width: parent.width
+                readOnly: true
+                focusOnClick: true
+                label: "Read only, but focusable"
+                text: label
+                horizontalAlignment: textAlignment
+                EnterKey.onClicked: parent.focus = true
+            }
+
+            TextField {
+                width: parent.width
+                inputMethodHints: Qt.ImhNoPredictiveText
+                validator: RegExpValidator { regExp: /^[a-zA-Z]{3,}$/ }
+                label: "Validated input"
+                placeholderText: "Enter three or more characters"
+                horizontalAlignment: textAlignment
+                EnterKey.enabled: acceptableInput
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: hiddenField.focus = true
+            }
+
+            TextField {
+                id: hiddenField
+                width: parent.width
+                placeholderText: "Label hidden"
+                horizontalAlignment: textAlignment
+                labelVisible: false
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+            }
+
+            SectionHeader {
+                text: "Debug"
+            }
+
             ComboBox {
                 width: parent.width
                 label: "Horizontal alignment"
@@ -78,154 +234,6 @@ Page {
                     MenuItem { text: "Right" }
                     MenuItem { text: "HorizontalCenter" }
                 }
-            }
-
-            TextField {
-                width: parent.width
-                label: "Text field"
-                placeholderText: "Type here"
-                focus: true
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: {
-                    text = "Return key pressed";
-                    parent.focus = true;
-                }
-            }
-
-            TextField {
-                width: parent.width
-                readOnly: true
-                label: "Read only text field"
-                text: "Can't edit this"
-                horizontalAlignment: textAlignment
-            }
-
-            TextField {
-                width: parent.width
-                readOnly: true
-                focusOnClick: true
-                label: "Read only text field, focusable"
-                text: "Can't edit this, but you can focus"
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            PasswordField {
-                width: parent.width
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            TextField {
-                width: parent.width
-                inputMethodHints: Qt.ImhNoPredictiveText
-                validator: RegExpValidator { regExp: /^[a-zA-Z]{3,}$/ }
-                label: "Validated input"
-                placeholderText: "Enter three or more characters"
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            TextField {
-                width: parent.width
-                inputMethodHints: Qt.ImhFormattedNumbersOnly
-                label: "Number input"
-                placeholderText: "Type number here"
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            TextField {
-                width: parent.width
-                inputMethodHints: Qt.ImhDialableCharactersOnly
-                label: "Phone number input"
-                placeholderText: "Type phone number"
-                placeholderColor: Theme.highlightColor
-                color: Theme.highlightColor
-                horizontalAlignment: textAlignment
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            TextField {
-                width: parent.width
-                inputMethodHints: Qt.ImhNoPredictiveText
-                validator: RegExpValidator { regExp: /^[a-zA-Z]{3,}$/ }
-                label: "Custom background"
-                placeholderText: "Enter three or more characters"
-                horizontalAlignment: textAlignment
-                textMargin: 15
-                EnterKey.onClicked: parent.focus = true
-                background: Component {
-                    Rectangle {
-                        id: customBackground
-
-                        anchors.fill: parent
-                        border {
-                            color: parent.errorHighlight ?  "red" :"steelblue"
-                            width: parent.errorHighlight ? 3 : 1
-                        }
-                        color: "lightblue"
-                        radius: Theme.paddingSmall
-                        smooth: true
-                        gradient: Gradient {
-                            GradientStop { position: 0.0; color: customBackground.color }
-                            GradientStop {
-                                position: 1.0;
-                                color: parent.errorHighlight ? "red" : Qt.darker(customBackground.color, 3.0)
-                            }
-                        }
-                    }
-                }
-            }
-
-            Column {
-                width: parent.width
-                TextSwitch { id: iconSource; text: "IconSource" }
-                TextSwitch { id: enterkeyText; text: "Text" }
-                TextSwitch { id: enabled; text: "Enabled" }
-                TextSwitch { id: highlighted; text: "Highlighted" }
-            }
-
-            TextField {
-                width: parent.width
-                label: "Customize EnterKey"
-                placeholderText: label
-                horizontalAlignment: textAlignment
-                focusOutBehavior: FocusBehavior.KeepFocus
-                EnterKey.iconSource: iconSource.checked ? "image://theme/icon-m-enter-next" : ""
-                EnterKey.text: enterkeyText.checked ? enterkeyText.text : ""
-                EnterKey.enabled: enabled.checked
-                EnterKey.highlighted: highlighted.checked
-                EnterKey.onClicked: parent.focus = true
-            }
-
-            TextField {
-                width: parent.width
-                placeholderText: "labelVisible: false"
-                horizontalAlignment: textAlignment
-                labelVisible: false
-            }
-
-            TextArea {
-                width: parent.width
-                height: 350
-                placeholderText: "Type multi-line text here"
-                label: "Text area"
-            }
-
-            TextArea {
-                width: parent.width
-                height: Math.max(textInputPage.width/3, implicitHeight)
-                placeholderText: "Type multi-line text here"
-                label: "Expanding text area"
-            }
-
-            SearchField {
-                width: parent.width
-            }
-
-            PasswordField {
-                width: parent.width
             }
         }
     }

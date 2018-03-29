@@ -1,4 +1,5 @@
 FROM clickable/ubuntu-sdk:16.04-amd64
+LABEL maintainer therecipe
 
 
 RUN df -h
@@ -7,7 +8,6 @@ RUN df -h
 ENV USER user
 ENV HOME /home/$USER
 ENV QT_DOCKER true
-ENV QT_UBPORTS_XENIAL true
 
 
 RUN apt-get -qq update && apt-get -y -qq install curl git && apt-get -qq clean
@@ -26,7 +26,10 @@ RUN rm -r $GOPATH/src/github.com/sirupsen/ && rm -r $GOPATH/src/golang.org/
 
 
 ENV QT_PKG_CONFIG true
-RUN $GOPATH/bin/qtsetup prep linux
-RUN $GOPATH/bin/qtsetup check linux
-RUN $GOPATH/bin/qtsetup generate linux
-RUN $GOPATH/bin/qtsetup install linux
+ENV QT_UBPORTS true
+ENV QT_UBPORTS_ARCH amd64
+ENV QT_UBPORTS_VERSION xenial
+RUN $GOPATH/bin/qtsetup prep ubports
+RUN $GOPATH/bin/qtsetup check ubports
+RUN $GOPATH/bin/qtsetup generate ubports
+RUN $GOPATH/bin/qtsetup install ubports

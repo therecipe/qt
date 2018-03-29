@@ -58,7 +58,7 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 
 	switch target {
 	case "sailfish", "sailfish-emulator":
-		cgoSailfish(module, path, mode, ipkg) //TODO:
+		cgoSailfish(module, path, mode, ipkg, libs) //TODO:
 	case "asteroid":
 		cgoAsteroid(module, path, mode, ipkg) //TODO:
 	default:
@@ -105,7 +105,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			}
 
 			switch target {
-			case "darwin", "linux", "windows":
+			case "darwin", "linux", "windows", "ubports":
 				//TODO: msys pkg-config mxe brew
 				switch {
 				case utils.QT_HOMEBREW():
@@ -171,7 +171,7 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
 	case "windows":
 		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++"}...)
-	case "linux":
+	case "linux", "ubports":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "ios":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphoneos", "CONFIG+=device"}...)
@@ -263,6 +263,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "sailfish", "sailfish-emulator":
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":
+	case "ubports":
 	}
 }
 
@@ -480,6 +481,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		sFixes = []string{"linux_arm"}
 	case "rpi1", "rpi2", "rpi3":
 		sFixes = []string{"linux_arm"}
+	case "ubports":
+		sFixes = []string{"linux_" + utils.QT_UBPORTS_ARCH()}
 	}
 
 	var o []string

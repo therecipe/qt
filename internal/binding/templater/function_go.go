@@ -201,13 +201,15 @@ func goFunctionBody(function *parser.Function) string {
 
 					fmt.Fprintf(bb, "tmpValue := %v\n", body)
 
-					fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
-						func() string {
-							if class.Module == "QtCore" {
-								return "*QObject"
-							}
-							return "*core.QObject"
-						}())
+					if class.Name != "SailfishApp" {
+						fmt.Fprintf(bb, "if !qt.ExistsSignal(tmpValue.Pointer(), \"destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\n",
+							func() string {
+								if class.Module == "QtCore" {
+									return "*QObject"
+								}
+								return "*core.QObject"
+							}())
+					}
 
 					/* TODO: re-implement for custom constructors
 					var class, _ = function.Class()

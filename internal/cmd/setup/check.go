@@ -19,6 +19,12 @@ func Check(target string, docker, vagrant bool) {
 		}
 		return
 	}
+	if vagrant {
+		if _, err := exec.LookPath("vagrant"); err != nil {
+			utils.Log.WithError(err).Fatal("failed to find vagrant, did you install vagrant?")
+		}
+		return
+	}
 
 	hash := "please install git"
 	if _, err := exec.LookPath("git"); err == nil {
@@ -63,7 +69,7 @@ func Check(target string, docker, vagrant bool) {
 			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?")
 		}
 
-	case "linux":
+	case "linux", "ubports":
 		vars = append(vars, [][]string{
 			{"QT_DISTRO", utils.QT_DISTRO()},
 			{"QT_PKG_CONFIG", fmt.Sprint(utils.QT_PKG_CONFIG())},

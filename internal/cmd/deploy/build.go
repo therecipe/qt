@@ -36,12 +36,14 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	case "windows":
 		ending = ".exe"
 	case "sailfish", "sailfish-emulator":
-		build_sailfish(mode, target, path, ldFlagsCustom, name, depPath)
-		return
+		if !utils.QT_SAILFISH() {
+			build_sailfish(mode, target, path, ldFlagsCustom, name, depPath)
+			return
+		}
 	}
 
 	var pattern string
-	if strings.Contains(runtime.Version(), "1.10") {
+	if strings.Contains(runtime.Version(), "1.1") {
 		pattern = "all="
 	}
 
@@ -85,32 +87,41 @@ func build_sailfish(mode, target, path, ldFlagsCustom, name, depPath string) {
 		utils.Log.Panicln("Project needs to be inside GOPATH; have:", path, "want:", utils.MustGoPath())
 	}
 
-	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), fmt.Sprintf("register mersdk for %v on %v", target, runtime.GOOS))
-	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), fmt.Sprintf("share GOROOT dir for %v on %v", target, runtime.GOOS))
-	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), fmt.Sprintf("share GOPATH dir for %v on %v", target, runtime.GOOS))
+	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "Sailfish OS Build Engine", "Sailfish OS Build Engine.vbox")), fmt.Sprintf("register mersdk for %v on %v", target, runtime.GOOS))
+	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "Sailfish OS Build Engine", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), fmt.Sprintf("share GOROOT dir for %v on %v", target, runtime.GOOS))
+	utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "Sailfish OS Build Engine", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), fmt.Sprintf("share GOPATH dir for %v on %v", target, runtime.GOOS))
 
 	if runtime.GOOS == "windows" {
-		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), fmt.Sprintf("start vbox mersdk for %v on %v", target, runtime.GOOS))
+		utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "Sailfish OS Build Engine"), fmt.Sprintf("start vbox mersdk for %v on %v", target, runtime.GOOS))
 	} else {
-		utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), fmt.Sprintf("start vbox mersdk for %v on %v", target, runtime.GOOS))
+		utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "Sailfish OS Build Engine"), fmt.Sprintf("start vbox mersdk for %v on %v", target, runtime.GOOS))
 	}
 
 	time.Sleep(10 * time.Second)
 
-	arch := "i486"
-	if target == "sailfish" {
-		arch = "armv7hl"
+	for _, l := range []string{"libmpc.so.3", "libmpfr.so.4", "libgmp.so.10", "libpthread_nonshared.a", "libc_nonshared.a"} {
+		sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/usr/lib/%v", l), fmt.Sprintf("/usr/lib/%v", l))
 	}
 
-	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/opt/cross/bin/%v-meego-linux-gnu-as", arch), fmt.Sprintf("/opt/cross/libexec/gcc/%v-meego-linux-gnu/4.8.3/as", arch))
-	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/opt/cross/bin/%v-meego-linux-gnu-ld", arch), fmt.Sprintf("/opt/cross/libexec/gcc/%v-meego-linux-gnu/4.8.3/ld", arch))
+	arch, gcc := "i486", "gnu"
+	if target == "sailfish" {
+		arch, gcc = "armv7hl", "gnueabi"
+	}
+
+	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-as", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/as", arch, gcc))
+	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-ld", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/ld", arch, gcc))
+
+	var pattern string
+	if strings.Contains(runtime.Version(), "1.1") {
+		pattern = "all="
+	}
 
 	//TODO:
 	var err error
 	if target == "sailfish-emulator" {
-		err = sailfish_ssh("2222", "root", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", "-o", "deploy/"+target+"/harbour-"+name)
+		err = sailfish_ssh("2222", "root", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CGO_CFLAGS_ALLOW=.*", "CGO_CXXFLAGS_ALLOW=.*", "CGO_LDFLAGS_ALLOW=.*", "CC=/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/lib:/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/lib:/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/lib/pulseaudio", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/", "go", "build", fmt.Sprintf("-ldflags=%v\"-s -w\"", pattern), "-tags=\"minimal sailfish_emulator\"", "-o", "deploy/"+target+"/harbour-"+name)
 	} else {
-		err = sailfish_ssh("2222", "root", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", "-o", "deploy/"+target+"/harbour-"+name)
+		err = sailfish_ssh("2222", "root", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CGO_CFLAGS_ALLOW=.*", "CGO_CXXFLAGS_ALLOW=.*", "CGO_LDFLAGS_ALLOW=.*", "CC=/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-armv7hl/lib:/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-armv7hl/usr/lib/pulseaudio", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-armv7hl/", "go", "build", "-x", "-v", fmt.Sprintf("-ldflags=%v\"-s -w\"", pattern), "-tags=\"minimal sailfish\"", "-o", "deploy/"+target+"/harbour-"+name)
 	}
 	if err != nil {
 		println(err.Error())

@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 )
 
 func XCODE_DIR() string {
@@ -71,6 +72,14 @@ func isHomeBrewQtDir() bool {
 }
 
 func QT_DARWIN_DIR() string {
+	path := qT_DARWIN_DIR()
+	if ExistsFile(path) {
+		return path
+	}
+	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+}
+
+func qT_DARWIN_DIR() string {
 	if QT_HOMEBREW() {
 		if isHomeBrewQtDir() {
 			return QT_DIR()

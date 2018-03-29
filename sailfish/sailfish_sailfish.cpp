@@ -46,3 +46,8 @@ void* SailfishApp_SailfishApp_PathTo(struct QtSailfish_PackedString filename)
 	return new QUrl(SailfishApp::pathTo(*(new QString(QString::fromUtf8(filename.data, filename.len)))));
 }
 
+void* SailfishApp_SailfishApp_PathToMainQml()
+{
+	return new QUrl(SailfishApp::pathToMainQml());
+}
+

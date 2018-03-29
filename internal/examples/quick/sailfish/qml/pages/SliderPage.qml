@@ -63,7 +63,8 @@ Page {
                 value: 30
                 minimumValue: 0
                 maximumValue: 300
-                enabled: false
+                stepSize: 10
+                enabled: handleVisible
                 width: parent.width
                 handleVisible: highlightToggle.checked
                 valueText : valueIndicatorToggle.checked ? value : ""

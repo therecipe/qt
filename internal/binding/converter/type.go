@@ -297,6 +297,9 @@ func cgoType(f *parser.Function, value string) string {
 
 	case "double", "qreal":
 		{
+			if value == "qreal" && strings.HasPrefix(parser.State.Target, "sailfish") {
+				return "C.float"
+			}
 			return "C.double"
 		}
 
@@ -416,6 +419,9 @@ func cppType(f *parser.Function, value string) string {
 
 	case "double", "qreal":
 		{
+			if value == "qreal" && strings.HasPrefix(parser.State.Target, "sailfish") {
+				return "float"
+			}
 			return "double"
 		}
 

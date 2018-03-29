@@ -545,7 +545,26 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				}
 			}
 
+			if strings.HasPrefix(parser.State.Target, "sailfish") {
+				if !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
+					continue
+				}
+			}
+
 			fmt.Fprintf(bb, "#include <%v>\n", class)
+
+			if mode == MOC {
+				var found bool
+				for _, m := range parser.LibDeps[parser.MOC] {
+					if m == strings.TrimPrefix(c.Module, "Qt") {
+						found = true
+						break
+					}
+				}
+				if !found {
+					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.TrimPrefix(c.Module, "Qt"))
+				}
+			}
 		}
 
 		c, ok := parser.State.ClassMap[class]

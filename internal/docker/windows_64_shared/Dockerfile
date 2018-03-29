@@ -1,4 +1,5 @@
 FROM therecipe/qt:linux
+LABEL maintainer therecipe
 
 
 RUN df -h
@@ -9,6 +10,7 @@ RUN echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | tee --append /et
 
 ENV QT_MXE true
 ENV QT_MXE_ARCH amd64
+ENV QT_MXE_STATIC false
 RUN $GOPATH/bin/qtsetup check windows
 RUN $GOPATH/bin/qtsetup generate windows
 RUN $GOPATH/bin/qtsetup install windows

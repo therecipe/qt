@@ -37,3 +37,14 @@ func SAILFISH_DIR() string {
 	}
 	return filepath.Join(os.Getenv("HOME"), "SailfishOS")
 }
+
+func QT_SAILFISH() bool {
+	return os.Getenv("QT_SAILFISH") == "true"
+}
+
+func QT_SAILFISH_VERSION() string {
+	if ver, ok := os.LookupEnv("QT_SAILFISH_VERSION"); ok {
+		return ver
+	}
+	return "2.1.4.13"
+}

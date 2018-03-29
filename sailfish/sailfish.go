@@ -88,3 +88,13 @@ func (ptr *SailfishApp) PathTo(filename string) *core.QUrl {
 
 	return nil
 }
+
+func SailfishApp_PathToMainQml() *core.QUrl {
+
+	return nil
+}
+
+func (ptr *SailfishApp) PathToMainQml() *core.QUrl {
+
+	return nil
+}

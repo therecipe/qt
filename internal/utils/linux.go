@@ -105,6 +105,20 @@ func QT_MXE() bool {
 	return os.Getenv("QT_MXE") == "true"
 }
 
-func QT_UBPORTS_XENIAL() bool {
-	return os.Getenv("QT_UBPORTS_XENIAL") == "true"
+func QT_UBPORTS() bool {
+	return os.Getenv("QT_UBPORTS") == "true"
+}
+
+func QT_UBPORTS_ARCH() string {
+	if arch := os.Getenv("QT_UBPORTS_ARCH"); arch == "amd64" {
+		return arch
+	}
+	return "arm"
+}
+
+func QT_UBPORTS_VERSION() string {
+	if rel := os.Getenv("QT_UBPORTS_VERSION"); rel == "xenial" {
+		return rel
+	}
+	return "vivid"
 }

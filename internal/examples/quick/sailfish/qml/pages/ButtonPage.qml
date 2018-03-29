@@ -78,9 +78,7 @@ Page {
             SectionHeader {
                 text: "Text buttons"
             }
-            Row {
-                spacing: Theme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
+            ButtonLayout {
                 Button {
                     text: "Call"
                 }
@@ -88,18 +86,6 @@ Page {
                     text: "SMS"
                 }
             }
-            Button {
-                text: "Medium"
-                anchors.horizontalCenter: parent.horizontalCenter
-                preferredWidth: Theme.buttonWidthMedium
-            }
-            Button {
-                text: "Large (Disabled)"
-                enabled: false
-                anchors.horizontalCenter: parent.horizontalCenter
-                preferredWidth: Theme.buttonWidthLarge
-            }
-
             SectionHeader {
                 text: "Icon switches"
             }
@@ -156,6 +142,37 @@ Page {
                     text: "Switch with an icon"
                     description: "This switch has both a textual label and an icon."
                     icon.source: "image://theme/icon-m-gps"
+                }
+            }
+            SectionHeader {
+                text: "Button grid"
+            }
+            ButtonLayout {
+                Button {
+                    text: "Small"
+                }
+                Button {
+                    text: "Small"
+                }
+                Button {
+                    text: "Small"
+                }
+                Button {
+                    text: "Small"
+                }
+            }
+            SectionHeader {
+                text: "Button column"
+            }
+            ButtonLayout {
+                preferredWidth: Theme.buttonWidthMedium
+                Button {
+                    text: "Medium"
+                }
+                Button {
+                    ButtonLayout.newLine: true
+                    text: "Disabled"
+                    enabled: false
                 }
             }
         }

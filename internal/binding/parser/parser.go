@@ -78,17 +78,24 @@ func LoadModule(m string) *Module {
 	case utils.QT_MSYS2():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.10.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
-	case utils.QT_UBPORTS_XENIAL():
+	case utils.QT_UBPORTS_VERSION() == "xenial":
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.9.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
-	case utils.QT_PKG_CONFIG():
-		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+	case utils.QT_SAILFISH():
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.6.3", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_RPI():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
+	case utils.QT_PKG_CONFIG():
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+
 	default:
-		err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", fmt.Sprintf("Qt-%v", utils.QT_VERSION_MAJOR()), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		path := filepath.Join(utils.QT_DIR(), "Docs", fmt.Sprintf("Qt-%v", utils.QT_VERSION_MAJOR()), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m)))
+		if !utils.ExistsFile(path) {
+			path = strings.Replace(path, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+		}
+		err = xml.Unmarshal([]byte(utils.Load(path)), &module)
 	}
 	if err != nil {
 		if m != "DataVisualization" && m != "Charts" {

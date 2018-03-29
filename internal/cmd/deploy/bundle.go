@@ -61,7 +61,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", filepath.Join(depPath, name+".app"))
+		copy(assets+"/.", filepath.Join(depPath, name+".app"))
 
 		dep := exec.Command(filepath.Join(utils.QT_DARWIN_DIR(), "bin", "macdeployqt"))
 		dep.Args = append(dep.Args, filepath.Join(depPath, name+".app"), "-qmldir="+path)
@@ -76,7 +76,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", depPath)
+		copy(assets+"/.", depPath)
 
 		//TODO: -->
 		{
@@ -300,7 +300,7 @@ func bundle(mode, target, path, name, depPath string) {
 			//copy custom assets
 			assets := filepath.Join(path, target)
 			utils.MkdirAll(assets)
-			copy(assets+"/", depPath)
+			copy(assets, depPath)
 
 			if utils.QT_WEBKIT() {
 				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
@@ -334,7 +334,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", filepath.Join(depPath, "build"))
+		copy(assets+"/.", filepath.Join(depPath, "build"))
 
 		//create default gradle-wrapper.properties
 		if target == "android-emulator" {
@@ -452,7 +452,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", depPath)
+		copy(assets+"/.", depPath)
 
 		//add c_main_wrappers
 		if !utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
@@ -487,36 +487,73 @@ func bundle(mode, target, path, name, depPath string) {
 		utils.MkdirAll(filepath.Join(depPath, "rpm"))
 		utils.Save(filepath.Join(depPath, "rpm", name+".spec"), sailfish_spec(name))
 		utils.Save(filepath.Join(depPath, name+".desktop"), sailfish_desktop(name))
-		copy(filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", name)))
+		if utils.QT_SAILFISH() {
+			copy("/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/share/themes/sailfish-default/meegotouch/z1.0/icons/icon-launcher-default.png", filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", name)))
+		} else {
+			copy(filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", name)))
+		}
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/", depPath)
+		copy(assets+"/.", depPath)
 
-		err := sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", target)
-		if err != nil {
-			utils.Log.WithError(err).Warnf("failed to cleanup for %v on %v", target, runtime.GOOS)
+		if utils.QT_SAILFISH() {
+			utils.RemoveAll(filepath.Join("/home", "user", target))
+			copy(strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1), filepath.Join("/home", "user", target))
+
+			arch, template := "i486", "i486-meego-linux-gnu"
+			if target == "sailfish" {
+				arch, template = "armv7hl", "armv7hl-meego-linux"
+			}
+
+			pack := exec.Command("mb2", "-t", template, "build")
+			pack.Dir = filepath.Join("/home", "user", target)
+			utils.RunCmd(pack, fmt.Sprintf("failed to deploy for %v (%v) on %v", target, arch, runtime.GOOS))
+
+			copy(filepath.Join("/home", "user", target, "RPMS")+"/.", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1))
+		} else {
+			err := sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", target)
+			if err != nil {
+				utils.Log.WithError(err).Warnf("failed to cleanup for %v on %v", target, runtime.GOOS)
+			}
+
+			err = sailfish_ssh("2222", "mersdk", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH/", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", target, "/home/mersdk")
+			if err != nil {
+				utils.Log.WithError(err).Panicf("failed to copy project for %v on %v", target, runtime.GOOS)
+			}
+
+			arch := "i486"
+			if target == "sailfish" {
+				arch = "armv7hl"
+			}
+			err = sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk/"+target, "&&", "mb2", "-t", "SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-"+arch, "build")
+			if err != nil {
+				utils.Log.WithError(err).Errorf("failed to deploy for %v (%v) on %v", target, arch, runtime.GOOS)
+			}
+
+			err = sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk/"+target+"/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1))
+			if err != nil {
+				utils.Log.WithError(err).Panicf("failed to receive project for %v on %v", target, runtime.GOOS)
+			}
 		}
 
-		err = sailfish_ssh("2222", "mersdk", "cd", strings.Replace(strings.Replace(path, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", target, "/home/mersdk")
-		if err != nil {
-			utils.Log.WithError(err).Panicf("failed to copy project for %v on %v", target, runtime.GOOS)
-		}
+	case "ubports":
 
-		arch := "i486"
-		if target == "sailfish" {
-			arch = "armv7hl"
-		}
-		err = sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk/"+target, "&&", "mb2", "-t", "SailfishOS-"+arch, "build")
-		if err != nil {
-			utils.Log.WithError(err).Errorf("failed to deploy for %v (%v) on %v", target, arch, runtime.GOOS)
-		}
+		//copy default assets
+		copy("/usr/share/icons/suru/apps/sources/placeholder-app-icon.svg", filepath.Join(depPath, "logo.svg"))
+		utils.Save(filepath.Join(depPath, "manifest.json"), ubports_manifest(name))
+		utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.desktop", name)), ubports_desktop(name))
+		utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.apparmor", name)), ubports_apparmor())
 
-		err = sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk/"+target+"/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1))
-		if err != nil {
-			utils.Log.WithError(err).Panicf("failed to receive project for %v on %v", target, runtime.GOOS)
-		}
+		//copy custom assets
+		assets := filepath.Join(path, target)
+		utils.MkdirAll(assets)
+		copy(assets+"/.", depPath)
+
+		click := exec.Command("click", "build", "--no-validate", depPath)
+		click.Dir = depPath
+		utils.RunCmd(click, fmt.Sprintf("failed to deploy for %v (%v) on %v", target, utils.QT_UBPORTS_ARCH(), runtime.GOOS))
 	}
 
 	if utils.QT_DOCKER() {

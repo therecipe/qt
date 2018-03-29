@@ -103,6 +103,9 @@ func GoInput(name, value string, f *parser.Function) string {
 
 	case "double", "qreal":
 		{
+			if value == "qreal" && strings.HasPrefix(parser.State.Target, "sailfish") {
+				return fmt.Sprintf("C.float(%v)", name)
+			}
 			return fmt.Sprintf("C.double(%v)", name)
 		}
 

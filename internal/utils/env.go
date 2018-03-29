@@ -42,6 +42,14 @@ func QT_VERSION_MAJOR() string {
 }
 
 func QT_DIR() string {
+	path := qT_DIR()
+	if ExistsFile(path) {
+		return path
+	}
+	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+}
+
+func qT_DIR() string {
 	if dir, ok := os.LookupEnv("QT_DIR"); ok {
 		return filepath.Clean(dir)
 	}
@@ -82,7 +90,7 @@ func CheckBuildTarget(buildTarget string) {
 		"sailfish", "sailfish-emulator", "asteroid",
 		"rpi1", "rpi2", "rpi3",
 		"windows", "darwin", "linux",
-		"homebrew":
+		"homebrew", "ubports": //TODO: pkg_config ?
 	default:
 		if !strings.Contains(buildTarget, "_") {
 			Log.Panicf("failed to recognize build target %v", buildTarget)
@@ -94,7 +102,7 @@ func CheckBuildTarget(buildTarget string) {
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		case QT_HOMEBREW():
 			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-		case QT_PKG_CONFIG():
+		case QT_PKG_CONFIG() && !QT_UBPORTS():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		}
 	}
@@ -125,7 +133,7 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(dir, tool)
 	}
 
-	if target == "sailfish" || target == "sailfish-emulator" {
+	if strings.HasPrefix(target, "sailfish") && !QT_SAILFISH() {
 		target = runtime.GOOS
 	}
 
@@ -143,7 +151,7 @@ func ToolPath(tool, target string) string {
 			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
 		}
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
-	case "linux":
+	case "linux", "ubports":
 		if QT_PKG_CONFIG() {
 			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
 		}
@@ -154,10 +162,9 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
 	case "android-emulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_x86", "bin", tool)
-	case "sailfish":
-		//TODO: return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-armv7hl", tool)
-	case "sailfish-emulator":
-		//TODO: return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
+	case "sailfish", "sailfish-emulator":
+		return filepath.Join("/srv/mer/targets/SailfishOS-"+QT_SAILFISH_VERSION()+"-i486/usr/lib/qt5/bin/", tool)
+		//TODO support indirect access on desktop: return filepath.Join(os.Getenv("HOME"), ".config", "SailfishOS-SDK", "mer-sdk-tools", "MerSDK", "SailfishOS-i486", tool)
 	case "asteroid":
 		//TODO:
 	case "rp1", "rpi2", "rpi3":

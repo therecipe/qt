@@ -258,9 +258,12 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		case "linux":
 			{
-				if utils.QT_PKG_CONFIG() {
+				switch {
+				case utils.QT_PKG_CONFIG():
 					fData = utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
-				} else {
+				case utils.QT_SAILFISH():
+					fData = utils.LoadOptional(filepath.Join("/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/include/qt5", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+				default:
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}
 			}

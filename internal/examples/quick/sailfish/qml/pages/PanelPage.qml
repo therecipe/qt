@@ -106,6 +106,8 @@ Page {
                 bottomMargin: page.isPortrait ? progressPanel.visibleSize : 0
             }
 
+            clip: isPortrait && (controlPanel.expanded || progressPanel.expanded)
+
             contentHeight: column.height + Theme.paddingLarge
 
             VerticalScrollDecorator {}

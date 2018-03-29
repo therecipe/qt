@@ -84,17 +84,20 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			image = target
 		}
 
-	case "linux", "android", "rpi1", "rpi2", "rpi3":
+	case "linux", "android", "rpi1", "rpi2", "rpi3", "sailfish":
 		image = target
 
 	case "android-emulator":
 		image = "android"
 
+	case "sailfish-emulator":
+		image = "sailfish"
+
 	default:
 		switch system {
 		case "darwin":
 		case "linux":
-			if strings.HasPrefix(target, "windows") && strings.Contains(target, "_") {
+			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports")) && strings.Contains(target, "_") {
 				image = target
 			} else if docker && strings.Contains(target, "_") {
 				utils.Log.Fatalf("%v is currently not supported", target)
@@ -418,7 +421,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["CXX"] = utils.QT_MXE_BIN("g++")
 		}
 
-	case "linux":
+	case "linux", "ubports":
 		ldFlags = []string{"-s", "-w"}
 		out = filepath.Join(depPath, name)
 		env = map[string]string{
@@ -436,6 +439,19 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			env["GOARM"] = arm
 			env["CC"] = os.Getenv("CC")
 			env["CXX"] = os.Getenv("CXX")
+		}
+
+		if utils.QT_UBPORTS_ARCH() == "arm" {
+			env["GOARCH"] = "arm"
+
+			if env["GOARM"] == "" {
+				env["GOARM"] = "7"
+			}
+
+			if env["CC"] == "" || env["CXX"] == "" {
+				env["CC"] = "arm-linux-gnueabihf-gcc"
+				env["CXX"] = "arm-linux-gnueabihf-g++"
+			}
 		}
 
 	case "rpi1", "rpi2", "rpi3":
@@ -459,6 +475,47 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		if target == "rpi1" {
 			env["GOARM"] = "6"
+		}
+
+	case "sailfish":
+		tags = []string{target}
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, "harbour-"+name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "linux",
+			"GOARCH": "arm",
+			"GOARM":  "7",
+
+			"CGO_ENABLED":  "1",
+			"CC":           "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc",
+			"CXX":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++",
+			"CPATH":        "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/include",
+			"LIBRARY_PATH": "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/lib/pulseaudio",
+			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/",
+		}
+
+	case "sailfish-emulator":
+		tags = []string{strings.Replace(target, "-", "_", -1)}
+		ldFlags = []string{"-s", "-w"}
+		out = filepath.Join(depPath, "harbour-"+name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   "linux",
+			"GOARCH": "386",
+
+			"CGO_ENABLED":  "1",
+			"CC":           "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-gcc",
+			"CXX":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-g++",
+			"CPATH":        "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include",
+			"LIBRARY_PATH": "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib/pulseaudio",
+			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/",
 		}
 	}
 
