@@ -500,7 +500,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 		if utils.QT_SAILFISH() {
 			utils.RemoveAll(filepath.Join("/home", "user", target))
-			copy(strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1), filepath.Join("/home", "user", target))
+			copy(strings.Replace(depPath, "\\", "/", -1), filepath.Join("/home", "user", target))
 
 			arch, template := "i486", "i486-meego-linux-gnu"
 			if target == "sailfish" {
@@ -509,9 +509,9 @@ func bundle(mode, target, path, name, depPath string) {
 
 			pack := exec.Command("mb2", "-t", template, "build")
 			pack.Dir = filepath.Join("/home", "user", target)
-			utils.RunCmd(pack, fmt.Sprintf("failed to deploy for %v (%v) on %v", target, arch, runtime.GOOS))
+			utils.RunCmd(pack, fmt.Sprintf("deploy for %v (%v) on %v", target, arch, runtime.GOOS))
 
-			copy(filepath.Join("/home", "user", target, "RPMS")+"/.", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH/", -1), "\\", "/", -1))
+			copy(filepath.Join("/home", "user", target, "RPMS")+"/.", strings.Replace(depPath, "\\", "/", -1))
 		} else {
 			err := sailfish_ssh("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", target)
 			if err != nil {
@@ -553,7 +553,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 		click := exec.Command("click", "build", "--no-validate", depPath)
 		click.Dir = depPath
-		utils.RunCmd(click, fmt.Sprintf("failed to deploy for %v (%v) on %v", target, utils.QT_UBPORTS_ARCH(), runtime.GOOS))
+		utils.RunCmd(click, fmt.Sprintf("deploy for %v (%v) on %v", target, utils.QT_UBPORTS_ARCH(), runtime.GOOS))
 	}
 
 	if utils.QT_DOCKER() {

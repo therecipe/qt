@@ -155,6 +155,13 @@ func createProject(module, path, target string, mode int, libs []string) {
 	if module == "build_ios" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
+
+	if utils.QT_UBPORTS() {
+		proPath = strings.Replace(proPath, "/../", "/", -1)
+		proPath = strings.Replace(proPath, "/", "_", -1)
+		proPath = filepath.Join("/home", "user", proPath)
+	}
+
 	utils.Save(proPath, fmt.Sprintf("QT += %v", strings.Join(out, " ")))
 }
 
@@ -162,6 +169,12 @@ func createMakefile(module, path, target string, mode int) {
 	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	if module == "build_ios" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+	}
+
+	if utils.QT_UBPORTS() {
+		proPath = strings.Replace(proPath, "/../", "/", -1)
+		proPath = strings.Replace(proPath, "/", "_", -1)
+		proPath = filepath.Join("/home", "user", proPath)
 	}
 
 	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", "Mfile", proPath)
@@ -209,7 +222,7 @@ func createMakefile(module, path, target string, mode int) {
 	}
 
 	if (target == "android" || target == "android-emulator") && runtime.GOOS == "windows" {
-		//TODO: -->
+		//TODO: use os.Setenv instead? -->
 		utils.SaveExec(filepath.Join(cmd.Dir, "qmake.bat"), fmt.Sprintf("set ANDROID_NDK_ROOT=%v\r\nset ANDROID_NDK_HOST=windows-x86_64\r\n%v", utils.ANDROID_NDK_DIR(), strings.Join(cmd.Args, " ")))
 		cmd = exec.Command(".\\qmake.bat")
 		cmd.Dir = path

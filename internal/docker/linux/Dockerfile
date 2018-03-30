@@ -40,4 +40,3 @@ ENV QT_DIR /opt/Qt
 RUN $GOPATH/bin/qtsetup prep linux
 RUN $GOPATH/bin/qtsetup check linux
 RUN $GOPATH/bin/qtsetup generate linux
-RUN $GOPATH/bin/qtsetup install linux
