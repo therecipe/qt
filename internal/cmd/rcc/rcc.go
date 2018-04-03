@@ -27,7 +27,7 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	if root {
 		wg := new(sync.WaitGroup)
 		defer wg.Wait()
-		allImports := cmd.GetImports(path, target, tagsCustom, 0, false)
+		allImports := cmd.GetImports(path, target, tagsCustom, 0, false, false)
 		wg.Add(len(allImports))
 		for _, path := range allImports {
 			go func(path string) {

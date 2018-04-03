@@ -1,4 +1,4 @@
-package mwallet
+package model
 
 import "github.com/therecipe/qt/core"
 

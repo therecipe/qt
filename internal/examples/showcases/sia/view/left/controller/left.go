@@ -1,4 +1,4 @@
-package cleft
+package controller
 
 import "github.com/therecipe/qt/core"
 

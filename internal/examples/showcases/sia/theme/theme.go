@@ -30,7 +30,7 @@ type themeTemplate struct {
 }
 
 func (t *themeTemplate) init() {
-	c := ctheme.NewThemeController(nil)
+	c := controller.NewThemeController(nil)
 
 	t.ConnectAccent(c.Accent)
 	c.ConnectAccentChanged(t.AccentChanged)

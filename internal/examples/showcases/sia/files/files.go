@@ -19,7 +19,7 @@ type filesTemplate struct {
 }
 
 func (t *filesTemplate) init() {
-	c := cfiles.NewFilesController(nil)
+	c := controller.NewFilesController(nil)
 
 	t.SetFilesModel(c.Model().Filter)
 

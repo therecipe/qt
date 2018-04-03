@@ -12,16 +12,16 @@ import (
 
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/dashboard"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/files"
-	cfiles "github.com/therecipe/qt/internal/examples/showcases/sia/files/controller"
+	fcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/files/controller"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/hosting"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/terminal"
-	cterminal "github.com/therecipe/qt/internal/examples/showcases/sia/terminal/controller"
+	tcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/terminal/controller"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/theme"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view/left"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view/top"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/wallet"
-	cwallet "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/controller"
+	wcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/controller"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog"
 
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
@@ -36,14 +36,14 @@ var (
 )
 
 func init() {
-	cterminal.PathToSiac = pathToSiac
+	tcontroller.PathToSiac = pathToSiac
 
 	if !PRODUCTION {
 		os.Setenv("QML_DISABLE_DISK_CACHE", "true")
 	}
 
-	cwallet.DEMO = DEMO
-	cfiles.DEMO = DEMO
+	wcontroller.DEMO = DEMO
+	fcontroller.DEMO = DEMO
 }
 
 func main() {

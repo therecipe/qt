@@ -17,7 +17,7 @@ type colorTemplate struct {
 }
 
 func (t *colorTemplate) init() {
-	c := ctop.NewColorController(nil)
+	c := controller.NewColorController(nil)
 
 	t.ConnectChange(c.Change)
 }

@@ -17,5 +17,5 @@ type recoverTemplate struct {
 }
 
 func (t *recoverTemplate) init() {
-	t.ConnectRecover(cdialog.Controller.Recover)
+	t.ConnectRecover(controller.Controller.Recover)
 }

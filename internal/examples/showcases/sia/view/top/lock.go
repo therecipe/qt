@@ -19,7 +19,7 @@ type lockTemplate struct {
 }
 
 func (t *lockTemplate) init() {
-	c := ctop.NewLockController(nil)
+	c := controller.NewLockController(nil)
 
 	t.ConnectIsLocked(c.IsLocked)
 	c.ConnectLockedChanged(t.LockedChanged)

@@ -17,5 +17,5 @@ type unlockTemplate struct {
 }
 
 func (t *unlockTemplate) init() {
-	t.ConnectUnlock(cdialog.Controller.Unlock)
+	t.ConnectUnlock(controller.Controller.Unlock)
 }

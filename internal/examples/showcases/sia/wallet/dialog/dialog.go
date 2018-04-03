@@ -16,9 +16,9 @@ type dialogTemplate struct {
 }
 
 func (t *dialogTemplate) init() {
-	c := cdialog.Controller
+	c := controller.Controller
 	if c == nil {
-		c = cdialog.NewDialogController(nil)
+		c = controller.NewDialogController(nil)
 	}
 
 	c.ConnectShow(t.show)
@@ -26,7 +26,7 @@ func (t *dialogTemplate) init() {
 }
 
 func (t *dialogTemplate) show(cident string) {
-	if cdialog.Controller.IsLocked() {
+	if controller.Controller.IsLocked() {
 		t.Show("unlock")
 	} else {
 		t.Show(cident)

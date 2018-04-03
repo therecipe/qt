@@ -1,4 +1,4 @@
-package ctop
+package controller
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/therecipe/qt/core"
 
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
-	"github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
+	dcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
 )
 
 type lockController struct {
@@ -30,7 +30,7 @@ func (c *lockController) init() {
 
 func (c *lockController) change() {
 	if c.IsLocked() {
-		cdialog.Controller.Show("unlock")
+		dcontroller.Controller.Show("unlock")
 	} else {
 		req, _ := controller.Client.NewRequest("POST", "/wallet/lock", nil) //TODO:
 		res, err := http.DefaultClient.Do(req)

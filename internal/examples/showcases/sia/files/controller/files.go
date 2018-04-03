@@ -1,4 +1,4 @@
-package cfiles
+package controller
 
 import (
 	"encoding/json"
@@ -22,13 +22,13 @@ type filesController struct {
 
 	_ func() `constructor:"init"`
 
-	_ *mfiles.FilesModel `property:"model"`
+	_ *model.FilesModel `property:"model"`
 }
 
 func (c *filesController) init() {
 	FilesController = c
 
-	c.SetModel(mfiles.NewFilesModel(nil))
+	c.SetModel(model.NewFilesModel(nil))
 
 	go c.loop()
 }
@@ -43,11 +43,11 @@ func (c *filesController) loop() {
 		if (errFiles != nil || errDowload != nil) && !DEMO {
 			println(errFiles.Error(), errDowload.Error())
 		} else {
-			files := make([]mfiles.File, len(rf.Files))
+			files := make([]model.File, len(rf.Files))
 
 			sort.Sort(bySiaPath(rf.Files))
 			for i, f := range rf.Files {
-				files[i] = mfiles.File{
+				files[i] = model.File{
 					Name:          f.SiaPath,
 					Size:          filesizeUnits(int64(f.Filesize)),
 					Redundancy:    fmt.Sprintf("%1.1fx", f.Redundancy),
@@ -77,7 +77,7 @@ func (c *filesController) loop() {
 			}
 
 			if DEMO {
-				var df []mfiles.File
+				var df []model.File
 				json.Unmarshal([]byte(DEMO_FILES), &df)
 				c.Model().UpdateWith(df)
 			} else {

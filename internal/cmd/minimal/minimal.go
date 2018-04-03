@@ -34,7 +34,7 @@ func Minimal(path, target, tags string) {
 	var files []string
 	fileMutex := new(sync.Mutex)
 
-	allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
+	allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false, false)...)
 	wg.Add(len(allImports))
 	for _, path := range allImports {
 		wc <- true

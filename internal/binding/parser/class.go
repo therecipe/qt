@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"os"
 	"strings"
@@ -30,6 +32,7 @@ type Class struct {
 	Export       bool
 	Fullname     string
 	Pkg          string
+	Path         string
 	HasFinalizer bool
 
 	Constructors []string
@@ -311,4 +314,12 @@ func (c *Class) GetFunction(fname string) *Function {
 		}
 	}
 	return nil
+}
+
+//
+
+func (c *Class) Hash() string {
+	h := sha1.New()
+	h.Write([]byte(c.Path))
+	return hex.EncodeToString(h.Sum(nil)[:3])
 }

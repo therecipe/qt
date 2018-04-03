@@ -17,7 +17,7 @@ type terminalTemplate struct {
 }
 
 func (t *terminalTemplate) init() {
-	c := cterminal.NewTerminalController(nil)
+	c := controller.NewTerminalController(nil)
 
 	t.ConnectCommand(c.Command)
 }

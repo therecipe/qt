@@ -1,4 +1,4 @@
-package cdialog
+package controller
 
 import (
 	"errors"
@@ -13,7 +13,7 @@ import (
 	"github.com/NebulousLabs/Sia/types"
 
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
-	"github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
+	vcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
 )
 
 var Controller *dialogController
@@ -37,7 +37,7 @@ type dialogController struct {
 func (c *dialogController) init() {
 	Controller = c
 
-	c.ConnectBlur(cview.Controller.Blur)
+	c.ConnectBlur(vcontroller.Controller.Blur)
 
 	c.ConnectReceive(c.receive)
 	c.ConnectSend(c.send)

@@ -551,6 +551,12 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				}
 			}
 
+			if c, ok := parser.State.ClassMap[class]; ok {
+				if strings.Contains(c.Pkg, "/vendor/") {
+					continue
+				}
+			}
+
 			fmt.Fprintf(bb, "#include <%v>\n", class)
 
 			if mode == MOC {
@@ -607,6 +613,25 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 	fmt.Fprint(bb, "\n")
 
 	bb.Write(input)
+
+	//TODO: regexp
+	if mode == MOC {
+		pre := bb.String()
+		bb.Reset()
+		for _, c := range parser.SortedClassesForModule(module, true) {
+			hName := c.Hash()
+			sep := []string{" ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
+			for _, p := range sep {
+				for _, s := range sep {
+					if s == "callback" {
+						continue
+					}
+					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+				}
+			}
+		}
+		bb.WriteString(pre)
+	}
 
 	return bb.Bytes()
 }

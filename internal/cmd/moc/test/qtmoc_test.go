@@ -15,7 +15,7 @@ import (
 	"github.com/therecipe/qt/widgets"
 
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
-	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub"
+	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
 )
 
 type Application struct {
@@ -27,8 +27,8 @@ type testStruct struct {
 	testOther otherTestStruct
 
 	_ bool             `property:"propBool"`
-	_ int8             `property:"propInt8"`  //-> string
-	_ uint8            `property:"propInt82"` //-> string
+	_ int8             `property:"propInt8"`  // -> string
+	_ uint8            `property:"propInt82"` // -> string
 	_ int16            `property:"propInt16"`
 	_ uint16           `property:"propInt162"`
 	_ int32            `property:"propInt32"`  // -> int
@@ -52,8 +52,8 @@ type testStruct struct {
 	_ *otherTestStruct `property:"propReturnTest2"` // -> *T
 
 	_ []bool             `property:"propListBool"`
-	_ []int8             `property:"propListInt8"`  //-> string
-	_ []uint8            `property:"propListInt82"` //-> string
+	_ []int8             `property:"propListInt8"`  // -> string
+	_ []uint8            `property:"propListInt82"` // -> string
 	_ []int16            `property:"propListInt16"`
 	_ []uint16           `property:"propListInt162"`
 	_ []int32            `property:"propListInt32"`  // -> int
@@ -77,8 +77,8 @@ type testStruct struct {
 	_ []*otherTestStruct `property:"propListReturnTest2"` // -> *T
 
 	_ map[int]bool             `property:"propMapBool"`
-	_ map[int]int8             `property:"propMapInt8"`  //-> string
-	_ map[int]uint8            `property:"propMapInt82"` //-> string
+	_ map[int]int8             `property:"propMapInt8"`  // -> string
+	_ map[int]uint8            `property:"propMapInt82"` // -> string
 	_ map[int]int16            `property:"propMapInt16"`
 	_ map[int]uint16           `property:"propMapInt162"`
 	_ map[int]int32            `property:"propMapInt32"`  // -> int
@@ -102,8 +102,8 @@ type testStruct struct {
 	_ map[int]*otherTestStruct `property:"propMapReturnTest2"` // -> *T
 
 	_ map[bool]bool       `property:"propMapKeyBool"`
-	_ map[int8]int8       `property:"propMapKeyInt8"`  //-> string
-	_ map[uint8]uint8     `property:"propMapKeyInt82"` //-> string
+	_ map[int8]int8       `property:"propMapKeyInt8"`  // -> string
+	_ map[uint8]uint8     `property:"propMapKeyInt82"` // -> string
 	_ map[int16]int16     `property:"propMapKeyInt16"`
 	_ map[uint16]uint16   `property:"propMapKeyInt162"`
 	_ map[int32]int32     `property:"propMapKeyInt32"`  // -> int
@@ -220,8 +220,8 @@ type testStruct struct {
 
 	_ func(bool) bool                     `slot:"BoolSlotOutput"`
 	_ func(bool) bool                     `slot:"BoolSlotOutput2"`
-	_ func(int8) int8                     `slot:"Int8SlotOutput"`  //-> string
-	_ func(uint8) uint8                   `slot:"Int8SlotOutput2"` //-> string
+	_ func(int8) int8                     `slot:"Int8SlotOutput"`  // -> string
+	_ func(uint8) uint8                   `slot:"Int8SlotOutput2"` // -> string
 	_ func(int16) int16                   `slot:"Int16SlotOutput"`
 	_ func(uint16) uint16                 `slot:"Int16SlotOutput2"`
 	_ func(int32) int32                   `slot:"Int32SlotOutput"`  // -> int
@@ -249,8 +249,8 @@ type testStruct struct {
 
 	_ func([]bool) []bool                     `slot:"BoolSlotListOutput"`
 	_ func([]bool) []bool                     `slot:"BoolSlotListOutput2"`
-	_ func([]int8) []int8                     `slot:"Int8SlotListOutput"`  //-> string
-	_ func([]uint8) []uint8                   `slot:"Int8SlotListOutput2"` //-> string
+	_ func([]int8) []int8                     `slot:"Int8SlotListOutput"`  // -> string
+	_ func([]uint8) []uint8                   `slot:"Int8SlotListOutput2"` // -> string
 	_ func([]int16) []int16                   `slot:"Int16SlotListOutput"`
 	_ func([]uint16) []uint16                 `slot:"Int16SlotListOutput2"`
 	_ func([]int32) []int32                   `slot:"Int32SlotListOutput"`  // -> int
@@ -277,8 +277,8 @@ type testStruct struct {
 
 	_ func(map[int]bool) map[int]bool                     `slot:"BoolSlotMapOutput"`
 	_ func(map[int]bool) map[int]bool                     `slot:"BoolSlotMapOutput2"`
-	_ func(map[int]int8) map[int]int8                     `slot:"Int8SlotMapOutput"`  //-> string
-	_ func(map[int]uint8) map[int]uint8                   `slot:"Int8SlotMapOutput2"` //-> string
+	_ func(map[int]int8) map[int]int8                     `slot:"Int8SlotMapOutput"`  // -> string
+	_ func(map[int]uint8) map[int]uint8                   `slot:"Int8SlotMapOutput2"` // -> string
 	_ func(map[int]int16) map[int]int16                   `slot:"Int16SlotMapOutput"`
 	_ func(map[int]uint16) map[int]uint16                 `slot:"Int16SlotMapOutput2"`
 	_ func(map[int]int32) map[int]int32                   `slot:"Int32SlotMapOutput"`  // -> int
@@ -314,34 +314,36 @@ type subTestStruct struct {
 	_ func(*subTestStruct) *subTestStruct `slot:"returnTest3"`
 }
 
-type subSubTestStruct struct {
-	sub.SubTestStruct
-
-	_ func() `constructor:"init"`
-
-	_ *sub.SubTestStruct                          `property:"StructPropertyTest"`
-	_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"StructSlotTest"`
-	_ func(*sub.SubTestStruct)                    `signal:"StructSignalTest"`
-}
-
 func (s *subSubTestStruct) init() {
 	s.SubSubConstructorProperty++
 }
 
-type otherTestStruct struct {
-	core.QObject
+type (
+	subSubTestStruct struct {
+		sub.SubTestStruct
 
-	a, b bool
-	ab   func(bool) bool
-	abc  func(bool) bool `test:"test"`
-	abcd struct {
+		_ func() `constructor:"init"`
+
+		_ *sub.SubTestStruct                          `property:"StructPropertyTest"`
+		_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"StructSlotTest"`
+		_ func(*sub.SubTestStruct)                    `signal:"StructSignalTest"`
+	}
+
+	otherTestStruct struct {
+		core.QObject
+
 		a, b bool
 		ab   func(bool) bool
 		abc  func(bool) bool `test:"test"`
-	}
+		abcd struct {
+			a, b bool
+			ab   func(bool) bool
+			abc  func(bool) bool `test:"test"`
+		}
 
-	_ bool `property:"propBoolSub"`
-}
+		_ bool `property:"propBoolSub"`
+	}
+)
 
 type abstractTestStruct1 struct {
 	core.QAbstractItemModel
@@ -499,7 +501,7 @@ var (
 	e1M map[int]error        = map[int]error{0: e1}
 )
 
-func init() { core.NewQCoreApplication(len(os.Args), os.Args) }
+func init() { gui.NewQGuiApplication(len(os.Args), os.Args) }
 
 func TestGeneral(t *testing.T) {
 	if false {
@@ -507,7 +509,7 @@ func TestGeneral(t *testing.T) {
 		NewOtherTestStruct(nil)
 		NewSubTestStruct(nil)
 		sub.NewSubTestStruct(nil)
-		subsub.NewSubSubTestStruct(nil)
+		subsubcustom.NewSubSubTestStruct(nil)
 	}
 	if res := NewSubSubTestStruct(nil).SubSubConstructorProperty; res != 3 {
 		t.Fatal(res, "!=", 3)

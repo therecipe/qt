@@ -1,4 +1,4 @@
-package cwallet
+package controller
 
 import (
 	"github.com/therecipe/qt/core"
@@ -6,9 +6,9 @@ import (
 	"github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
 )
 
-var ButtonController *walletButtonController
+var ButtonController *buttonController
 
-type walletButtonController struct { //TODO: fix name clash
+type buttonController struct {
 	core.QObject
 
 	_ func() `constructor:"init"`
@@ -16,8 +16,8 @@ type walletButtonController struct { //TODO: fix name clash
 	_ func(string) `signal:"clicked"`
 }
 
-func (c *walletButtonController) init() {
+func (c *buttonController) init() {
 	ButtonController = c
 
-	c.ConnectClicked(cdialog.Controller.Show)
+	c.ConnectClicked(controller.Controller.Show)
 }

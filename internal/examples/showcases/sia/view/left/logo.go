@@ -17,7 +17,7 @@ type logoTemplate struct {
 }
 
 func (t *logoTemplate) init() {
-	c := cleft.NewLogoController(nil)
+	c := controller.NewLogoController(nil)
 
 	t.ConnectClicked(c.Clicked)
 }

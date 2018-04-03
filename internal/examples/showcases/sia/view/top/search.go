@@ -17,7 +17,7 @@ type searchTemplate struct {
 }
 
 func (t *searchTemplate) init() {
-	c := ctop.NewSearchController(nil)
+	c := controller.NewSearchController(nil)
 
 	t.ConnectSearch(c.Search)
 }

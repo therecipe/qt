@@ -15,7 +15,7 @@ type filesUploadTemplate struct {
 }
 
 func (t *filesUploadTemplate) init() {
-	t.ConnectUploadFiles(cdialog.Controller.UploadFiles)
+	t.ConnectUploadFiles(controller.Controller.UploadFiles)
 	t.ConnectShow(t.show)
 }
 

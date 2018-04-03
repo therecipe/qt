@@ -1,4 +1,4 @@
-package mfiles
+package model
 
 import "github.com/therecipe/qt/core"
 

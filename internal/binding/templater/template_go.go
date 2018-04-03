@@ -300,7 +300,7 @@ import "C"
 	if mode == MOC {
 		for _, lib := range parser.GetLibs() {
 			mlow := strings.ToLower(lib)
-			for _, pre := range []string{" ", "\t", "\r", "\n", "!", "*", "(", ")"} {
+			for _, pre := range []string{" ", "\t", "\r", "\n", "!", "*", "(", ")", "[", "]"} {
 				for _, past := range []string{"NewQ", "PointerFromQ", "Q"} {
 					inputString = strings.Replace(inputString, fmt.Sprintf("%v%v.%v", pre, mlow, past), fmt.Sprintf("%vstd_%v.%v", pre, mlow, past), -1)
 				}
@@ -385,30 +385,54 @@ import "C"
 		}
 	}
 
-	for custom, m := range parser.GetCustomLibs(target, tags) {
-		mlows := strings.Split(m, "/")
-		mlow := mlows[len(mlows)-1]
-		switch {
-		case strings.Contains(inputString, fmt.Sprintf("custom_%v.", mlow)):
-			fmt.Fprintf(bb, "custom_%v \"%v\"\n", mlow, m)
-		case strings.Contains(inputString, fmt.Sprintf("%v.", custom)):
-			fmt.Fprintf(bb, "%v \"%v\"\n", custom, m)
+	if mode == MOC {
+		for custom, m := range parser.GetCustomLibs(target, tags) {
+			switch {
+			case strings.Contains(m, "/vendor/"):
+				fmt.Fprintf(bb, "\"%v\"\n", custom)
+
+			case strings.Contains(inputString, fmt.Sprintf("%v.", custom)):
+				fmt.Fprintf(bb, "%v \"%v\"\n", custom, m)
+			}
+		}
+
+		for i := range parser.State.MocImports {
+			fmt.Fprintf(bb, "%v\n", i)
+
+			if strings.HasPrefix(i, ".") {
+				delete(parser.State.MocImports, i)
+			}
 		}
 	}
-
-	for i := range parser.State.MocImports {
-		fmt.Fprintf(bb, "%v\n", i)
-	}
-	parser.State.MocImports = make(map[string]struct{})
 
 	fmt.Fprintln(bb, ")")
 
 	bb.WriteString(inputString)
 
-	var out, err = format.Source(renameSubClasses(bb.Bytes(), "_"))
+	out, err := format.Source(renameSubClasses(bb.Bytes(), "_"))
 	if err != nil {
-		utils.Log.WithError(err).Panicln("failed to format:", module)
+		utils.Log.WithError(err).Errorln("failed to format:", pkg, module)
+		out = bb.Bytes()
 	}
+
+	//TODO: regexp
+	if mode == MOC {
+		pre := string(out)
+		for _, c := range parser.SortedClassesForModule(module, true) {
+			hName := c.Hash()
+			sep := []string{"\n", "(", "_", "callback", "C."}
+			for _, p := range sep {
+				for _, s := range sep {
+					if s == "callback" || s == "C." {
+						continue
+					}
+					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+				}
+			}
+		}
+		out = []byte(pre)
+	}
+
 	return out
 }
 

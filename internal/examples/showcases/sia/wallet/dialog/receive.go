@@ -17,7 +17,7 @@ type receiveTemplate struct {
 func (t *receiveTemplate) init() {
 	t.ConnectShow(func(cident string) {
 		if cident == "receive" {
-			t.SetAddress(cdialog.Controller.Receive())
+			t.SetAddress(controller.Controller.Receive())
 		}
 	})
 }

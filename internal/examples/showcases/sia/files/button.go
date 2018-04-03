@@ -6,9 +6,9 @@ import (
 	"github.com/therecipe/qt/internal/examples/showcases/sia/files/controller"
 )
 
-func init() { filesButtonTemplate_QmlRegisterType2("FilesTemplate", 1, 0, "ButtonTemplate") }
+func init() { buttonTemplate_QmlRegisterType2("FilesTemplate", 1, 0, "ButtonTemplate") }
 
-type filesButtonTemplate struct { //TODO: fix name clash
+type buttonTemplate struct {
 	quick.QQuickItem
 
 	_ func() `constructor:"init"`
@@ -16,10 +16,10 @@ type filesButtonTemplate struct { //TODO: fix name clash
 	_ func(string) `signal:"clicked"`
 }
 
-func (t *filesButtonTemplate) init() {
-	c := cfiles.ButtonController
+func (t *buttonTemplate) init() {
+	c := controller.ButtonController
 	if c == nil {
-		c = cfiles.NewFilesButtonController(nil)
+		c = controller.NewButtonController(nil)
 	}
 
 	t.ConnectClicked(c.Clicked)

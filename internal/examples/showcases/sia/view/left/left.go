@@ -17,6 +17,6 @@ type leftTemplate struct {
 }
 
 func (t *leftTemplate) init() {
-	c := cleft.NewLeftController(nil)
+	c := controller.NewLeftController(nil)
 	c.ConnectClicked(t.Clicked)
 }

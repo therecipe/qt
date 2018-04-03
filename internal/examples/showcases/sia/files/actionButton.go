@@ -8,7 +8,7 @@ import (
 
 func init() { actionButtonTemplate_QmlRegisterType2("FilesTemplate", 1, 0, "ActionButtonTemplate") }
 
-type actionButtonTemplate struct { //TODO: fix name clash
+type actionButtonTemplate struct {
 	quick.QQuickItem
 
 	_ func() `constructor:"init"`
@@ -18,9 +18,9 @@ type actionButtonTemplate struct { //TODO: fix name clash
 }
 
 func (t *actionButtonTemplate) init() {
-	c := cfiles.ActionButtonController
+	c := controller.ActionButtonController
 	if c == nil {
-		c = cfiles.NewActionButtonController(nil)
+		c = controller.NewActionButtonController(nil)
 	}
 
 	t.ConnectShowDownload(c.ShowDownload)

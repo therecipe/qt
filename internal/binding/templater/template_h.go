@@ -53,5 +53,24 @@ func HTemplate(m string, mode int, tags string) []byte {
 	//footer
 	fmt.Fprint(bb, "\n#ifdef __cplusplus\n}\n#endif\n\n#endif")
 
+	//TODO: regexp
+	if mode == MOC {
+		pre := bb.String()
+		bb.Reset()
+		for _, c := range parser.SortedClassesForModule(m, true) {
+			hName := c.Hash()
+			sep := []string{" ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
+			for _, p := range sep {
+				for _, s := range sep {
+					if s == "callback" {
+						continue
+					}
+					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)
+				}
+			}
+		}
+		bb.WriteString(pre)
+	}
+
 	return bb.Bytes()
 }

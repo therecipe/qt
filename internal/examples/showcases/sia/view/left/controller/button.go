@@ -1,4 +1,4 @@
-package cleft
+package controller
 
 import (
 	"github.com/therecipe/qt/core"
@@ -16,5 +16,5 @@ type buttonController struct {
 
 func (c *buttonController) init() {
 	//lazy binding to the view/stack controller
-	c.ConnectClicked(func(code string) { cview.StackController.Clicked(code) })
+	c.ConnectClicked(func(code string) { controller.StackController.Clicked(code) })
 }

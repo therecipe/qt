@@ -1,4 +1,4 @@
-package ctop
+package controller
 
 import "github.com/therecipe/qt/core"
 

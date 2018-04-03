@@ -171,20 +171,22 @@ func createMakefile(module, path, target string, mode int) {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
+	mPath := "Mfile"
 	if utils.QT_UBPORTS() {
 		proPath = strings.Replace(proPath, "/../", "/", -1)
 		proPath = strings.Replace(proPath, "/", "_", -1)
 		proPath = filepath.Join("/home", "user", proPath)
+		mPath = proPath + mPath
 	}
 
-	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", "Mfile", proPath)
+	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", mPath, proPath)
 	cmd.Dir = path
 	switch target {
 	case "darwin":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
 	case "windows":
 		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++"}...)
-	case "linux", "ubports":
+	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "ios":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphoneos", "CONFIG+=device"}...)
@@ -213,6 +215,20 @@ func createMakefile(module, path, target string, mode int) {
 		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rasp-pi2-g++"}...)
 	case "rpi3":
 		cmd.Args = append(cmd.Args, []string{"-spec", "devices/linux-rpi3-g++"}...)
+	case "ubports":
+		if utils.QT_UBPORTS_ARCH() == "arm" {
+			if utils.QT_UBPORTS_VERSION() == "vivid" {
+				cmd.Args = append(cmd.Args, []string{"-spec", "ubuntu-arm-gnueabihf-g++"}...)
+			} else {
+				cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
+			}
+		} else {
+			if utils.QT_UBPORTS_VERSION() == "vivid" {
+				cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++-64"}...)
+			} else {
+				cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
+			}
+		}
 	}
 
 	if utils.QT_DEBUG_QML() {
@@ -231,6 +247,10 @@ func createMakefile(module, path, target string, mode int) {
 		//<--
 	} else {
 		utils.RunCmdOptional(cmd, fmt.Sprintf("run qmake for %v on %v", target, runtime.GOOS))
+	}
+
+	if utils.QT_UBPORTS() {
+		utils.Save(filepath.Join(path, "Mfile"), utils.Load(mPath))
 	}
 
 	utils.RemoveAll(proPath)
@@ -380,6 +400,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 	}
+
+	fmt.Fprintf(bb, "#cgo CFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
 
 	fmt.Fprint(bb, "*/\nimport \"C\"\n")
 

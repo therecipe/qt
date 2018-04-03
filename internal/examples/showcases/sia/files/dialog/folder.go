@@ -16,11 +16,11 @@ type folderUploadTemplate struct {
 }
 
 func (t *folderUploadTemplate) init() {
-	t.ConnectUploadFolder(cdialog.Controller.UploadFolder)
+	t.ConnectUploadFolder(controller.Controller.UploadFolder)
 	t.ConnectShow(t.show)
 
-	t.ConnectDownload(cdialog.Controller.Download)
-	cdialog.Controller.ConnectShowDownload(t.showDownload)
+	t.ConnectDownload(controller.Controller.Download)
+	controller.Controller.ConnectShowDownload(t.showDownload)
 }
 
 func (t *folderUploadTemplate) show(cident string) {

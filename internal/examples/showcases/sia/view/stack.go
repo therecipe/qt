@@ -17,7 +17,7 @@ type stackTemplate struct {
 }
 
 func (t *stackTemplate) init() {
-	c := cview.NewStackController(nil)
+	c := controller.NewStackController(nil)
 
 	c.ConnectClicked(t.Clicked)
 }

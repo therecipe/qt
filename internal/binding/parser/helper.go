@@ -350,43 +350,51 @@ func GetCustomLibs(target, tags string) map[string]string {
 	*/
 
 	wg := new(sync.WaitGroup)
+	wc := make(chan bool, 50)
 	out := make(map[string]string)
 	outMutex := new(sync.Mutex)
 
-	for _, c := range State.ClassMap {
-		if c.Pkg == "" || !c.IsSubClassOfQObject() {
-			continue
-		}
-
-		wg.Add(1)
-		go func(c *Class) {
-			getCustomLibsCacheMutex.Lock()
-			path, ok := getCustomLibsCache[c.Pkg]
-			getCustomLibsCacheMutex.Unlock()
-
-			if !ok {
-				cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
-				cmd.Dir = c.Pkg
-
-				/*TODO: cycle dep of cmd.BuildEnv
-				for k, v := range env {
-					cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-				}
-				*/
-
-				path = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
-				getCustomLibsCacheMutex.Lock()
-				getCustomLibsCache[c.Pkg] = path
-				getCustomLibsCacheMutex.Unlock()
+	lookup := func(lm map[string]*Class) {
+		for _, c := range lm {
+			if c.Pkg == "" {
+				continue
 			}
 
-			outMutex.Lock()
-			out[c.Module] = path
-			outMutex.Unlock()
+			wg.Add(1)
+			wc <- true
+			go func(c *Class) {
+				getCustomLibsCacheMutex.Lock()
+				path, ok := getCustomLibsCache[c.Pkg]
+				getCustomLibsCacheMutex.Unlock()
 
-			wg.Done()
-		}(c)
+				if !ok {
+					cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
+					cmd.Dir = c.Pkg
+
+					/*TODO: cycle dep of cmd.BuildEnv
+					for k, v := range env {
+						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+					}
+					*/
+
+					path = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
+					getCustomLibsCacheMutex.Lock()
+					getCustomLibsCache[c.Pkg] = path
+					getCustomLibsCacheMutex.Unlock()
+				}
+
+				outMutex.Lock()
+				out[c.Module] = path
+				outMutex.Unlock()
+
+				<-wc
+				wg.Done()
+			}(c)
+		}
 	}
+
+	lookup(State.ClassMap)
+	lookup(State.GoClassMap)
 
 	wg.Wait()
 

@@ -1,9 +1,9 @@
-package subsub
+package subsubcustom
 
-import "github.com/therecipe/qt/core"
+import "github.com/therecipe/qt/gui"
 
 type SubSubTestStruct struct {
-	core.QObject //TODO: gui.QWindow
+	gui.QWindow
 
 	_ func() `constructor:"Init"`
 

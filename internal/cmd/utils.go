@@ -20,18 +20,46 @@ var (
 	importedMutex = new(sync.Mutex)
 )
 
-func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
+func IsStdPkg(pkg string) bool {
+
+	stdMutex.Lock()
+	if std == nil {
+		stdU := append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
+
+		for i := len(stdU) - 1; i >= 0; i-- {
+			if strings.Contains(stdU[i], "internal/") {
+				stdU = append(stdU[:i], stdU[i+1:]...)
+			}
+		}
+
+		std = stdU
+	}
+	stdMutex.Unlock()
+
+	for _, spkg := range std {
+		if pkg == spkg {
+			return true
+		}
+	}
+	return false
+}
+
+func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
 	env, tags, _, _ := BuildEnv(target, "", "")
 
 	stdMutex.Lock()
 	if std == nil {
-		cmd := exec.Command("go", "list", "std")
-		for k, v := range env {
-			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+		stdU := append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
+
+		for i := len(stdU) - 1; i >= 0; i-- {
+			if strings.Contains(stdU[i], "internal/") {
+				stdU = append(stdU[:i], stdU[i+1:]...)
+			}
 		}
-		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list std")), "\n"), "C")
+
+		std = stdU
 	}
 	stdMutex.Unlock()
 

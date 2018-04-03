@@ -1,4 +1,4 @@
-package ctheme
+package controller
 
 import (
 	"github.com/therecipe/qt/gui"

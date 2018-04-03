@@ -17,5 +17,5 @@ type sendTemplate struct {
 }
 
 func (t *sendTemplate) init() {
-	t.ConnectSend(cdialog.Controller.Send)
+	t.ConnectSend(controller.Controller.Send)
 }

@@ -12,13 +12,15 @@ import (
 )
 
 var State = &struct {
-	ClassMap map[string]*Class
+	ClassMap   map[string]*Class
+	GoClassMap map[string]*Class
 
 	MocImports map[string]struct{}
 	Minimal    bool //TODO:
 	Target     string
 }{
 	ClassMap:   make(map[string]*Class),
+	GoClassMap: make(map[string]*Class),
 	MocImports: make(map[string]struct{}),
 }
 

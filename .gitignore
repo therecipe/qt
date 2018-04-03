@@ -13,3 +13,4 @@
 /internal/examples/**/rcc*
 /internal/examples/**/moc*
 /internal/binding/dump/*
+/internal/cmd/moc/test/**/moc*

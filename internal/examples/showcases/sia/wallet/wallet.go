@@ -20,7 +20,7 @@ type walletTemplate struct {
 }
 
 func (t *walletTemplate) init() {
-	c := cwallet.NewWalletController(nil)
+	c := controller.NewWalletController(nil)
 
 	t.SetWalletModel(c.Model())
 

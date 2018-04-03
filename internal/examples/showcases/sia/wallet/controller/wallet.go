@@ -1,4 +1,4 @@
-package cwallet
+package controller
 
 import (
 	"encoding/json"
@@ -22,7 +22,7 @@ type walletController struct {
 
 	_ func() `constructor:"init"`
 
-	_ *mwallet.WalletModel `property:"model"`
+	_ *model.WalletModel `property:"model"`
 
 	_ func(ID string) `signal:"doubleClicked"`
 }
@@ -30,7 +30,7 @@ type walletController struct {
 func (c *walletController) init() {
 	Controller = c
 
-	c.SetModel(mwallet.NewWalletModel(nil))
+	c.SetModel(model.NewWalletModel(nil))
 
 	c.ConnectDoubleClicked(c.doubleClicked)
 
@@ -49,11 +49,11 @@ func (c *walletController) loop() {
 			println(err.Error())
 		} else {
 
-			transactions := make([]mwallet.Transaction, 0)
+			transactions := make([]model.Transaction, 0)
 			var balance float64
 
 			for _, txn := range append(wtg.ConfirmedTransactions, wtg.UnconfirmedTransactions...) {
-				transaction := mwallet.Transaction{ID: txn.TransactionID.String(), Type: "Transaction"}
+				transaction := model.Transaction{ID: txn.TransactionID.String(), Type: "Transaction"}
 
 				// Determine the number of outgoing siacoins and siafunds.
 				var outgoingSiacoins types.Currency
@@ -115,7 +115,7 @@ func (c *walletController) loop() {
 			}
 
 			if DEMO {
-				var dt []mwallet.Transaction
+				var dt []model.Transaction
 				json.Unmarshal([]byte(DEMO_TRANSACTIONS), &dt)
 				c.Model().UpdateWith(dt)
 			} else {

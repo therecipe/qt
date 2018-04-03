@@ -1,4 +1,4 @@
-package cfiles
+package controller
 
 var DEMO bool
 

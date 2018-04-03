@@ -1,15 +1,15 @@
-package cfiles
+package controller
 
 import (
 	"github.com/therecipe/qt/core"
 
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
-	"github.com/therecipe/qt/internal/examples/showcases/sia/files/dialog/controller"
+	dcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/files/dialog/controller"
 )
 
 var ActionButtonController *actionButtonController
 
-type actionButtonController struct { //TODO: fix name clash
+type actionButtonController struct {
 	core.QObject
 
 	_ func() `constructor:"init"`
@@ -21,7 +21,7 @@ type actionButtonController struct { //TODO: fix name clash
 func (c *actionButtonController) init() {
 	ActionButtonController = c
 
-	c.ConnectShowDownload(cdialog.Controller.ShowDownload)
+	c.ConnectShowDownload(dcontroller.Controller.ShowDownload)
 	c.ConnectDeleteRequest(c.deleteRequest)
 }
 

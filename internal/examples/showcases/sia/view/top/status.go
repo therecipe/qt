@@ -18,7 +18,7 @@ type statusTemplate struct {
 }
 
 func (t *statusTemplate) init() {
-	c := ctop.NewStatusController(nil)
+	c := controller.NewStatusController(nil)
 
 	t.ConnectBalance(c.Balance)
 	c.ConnectBalanceChanged(t.BalanceChanged)

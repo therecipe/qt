@@ -1,4 +1,4 @@
-package cwallet
+package controller
 
 var DEMO bool
 

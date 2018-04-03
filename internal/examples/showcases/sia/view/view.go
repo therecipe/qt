@@ -17,7 +17,7 @@ type viewTemplate struct {
 }
 
 func (t *viewTemplate) init() {
-	c := cview.NewViewController(nil)
+	c := controller.NewViewController(nil)
 
 	c.ConnectBlur(t.Blur)
 }

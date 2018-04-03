@@ -20,12 +20,11 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
-
 	"github.com/therecipe/qt/internal/utils"
 )
 
 var (
-	done   = make(map[string]struct{})
+	done   = make(map[string]int)
 	rootWg = new(sync.WaitGroup)
 
 	goFilesCache      = make(map[string][]string)
@@ -33,14 +32,27 @@ var (
 
 	goImportsCache      = make(map[string][]string)
 	goImportsCacheMutex = new(sync.Mutex)
+
+	goMocImportsCache      = make(map[string][]string)
+	goMocImportsCacheMutex = new(sync.Mutex)
+
+	gL int
 )
 
 func Moc(path, target, tags string, fast, slow bool) {
-	moc(path, target, tags, fast, slow, true)
+	moc(path, target, tags, fast, slow, true, -1)
 }
 
-func moc(path, target, tags string, fast, slow, root bool) {
+func moc(path, target, tags string, fast, slow, root bool, l int) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
+
+	l++
+	if l <= gL {
+		//TODO: clear parser.State.GoClassMap ?
+		parser.State.MocImports = make(map[string]struct{})
+	}
+	gL = l
+	//fmt.Println(l, strings.Repeat(" ", l)+strings.Replace(path, utils.MustGoPath()+"/src/", "", -1))
 
 	if root {
 		ngr := 50
@@ -50,7 +62,7 @@ func moc(path, target, tags string, fast, slow, root bool) {
 		defer rootWg.Wait()
 		wg := new(sync.WaitGroup)
 		wc := make(chan bool, ngr)
-		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
+		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false, true)...)
 
 		wg.Add(len(allImports) * 2)
 		for _, path := range allImports {
@@ -66,7 +78,7 @@ func moc(path, target, tags string, fast, slow, root bool) {
 
 			wc <- true
 			go func(path string) {
-				imports := cmd.GetImports(path, target, tags, 0, true)
+				imports := cmd.GetImports(path, target, tags, 0, true, true)
 				goImportsCacheMutex.Lock()
 				goImportsCache[path] = imports
 				goImportsCacheMutex.Unlock()
@@ -77,48 +89,53 @@ func moc(path, target, tags string, fast, slow, root bool) {
 		wg.Wait()
 	}
 
-	var classes []*parser.Class
-	var otherclasses []*parser.Class
-	var pkg string
+	var (
+		classes      []*parser.Class
+		otherclasses []*parser.Class
+		pkg          string
+	)
 
-	for i, path := range append([]string{path}, goImportsCache[path]...) {
-		if _, ok := done[path]; !ok && i > 0 && !fast {
-			done[path] = struct{}{}
-			moc(path, target, tags, false, slow, false)
+	for i, spath := range append([]string{path}, goImportsCache[path]...) {
+		if _, ok := done[spath]; !ok && i > 0 && !fast {
+			done[spath] = i
+			moc(spath, target, tags, false, slow, false, l)
 		}
 
-		for _, fpath := range goFilesCache[path] {
+		for _, fpath := range goFilesCache[spath] {
 			cls, ipkg, err := parse(fpath)
 			if pkg == "" {
 				pkg = ipkg
 			}
 			if err != nil {
 				utils.Log.WithError(err)
-			} else {
-				if cls == nil {
-					continue
-				}
-
-				if pkg == ipkg {
-					classes = append(classes, cls...)
-				} else {
-
-					m := &parser.Module{
-						Project:   "custom_" + ipkg,
-						Pkg:       path,
-						Namespace: &parser.Namespace{Classes: cls},
-					}
-					m.Prepare()
-
-					otherclasses = append(otherclasses, cls...)
-				}
+				continue
 			}
+			if cls == nil {
+				continue
+			}
+
+			if spath == path {
+				classes = append(classes, cls...)
+				continue
+			}
+
+			importAs := "custom_" + ipkg + "_" + cls[0].Hash() + "m"
+			if strings.Contains(spath, "/vendor/") {
+				importAs = ipkg
+			}
+
+			(&parser.Module{
+				Project:   importAs,
+				Pkg:       spath,
+				Namespace: &parser.Namespace{Classes: cls},
+			}).Prepare()
+
+			otherclasses = append(otherclasses, cls...)
 		}
 	}
 
-	c := len(classes)
-	utils.Log.WithField("path", path).Debugln("found", c, "moc structs")
-	if c == 0 {
+	utils.Log.WithField("path", path).Debugln("found", len(classes), "moc structs")
+	if len(classes) == 0 {
 		return
 	}
 
@@ -153,7 +170,7 @@ func moc(path, target, tags string, fast, slow, root bool) {
 		}
 	}
 
-	//TODO: internal functions rely on the prepared state
+	//TODO: internal binding functions rely on the prepared state
 	m := &parser.Module{
 		Project:   parser.MOC,
 		Namespace: &parser.Namespace{Classes: classes},
@@ -220,13 +237,13 @@ func moc(path, target, tags string, fast, slow, root bool) {
 				continue
 			}
 			for _, p := range f.Parameters {
-				p.Value, p.PureGoType = cppTypeFromGoType(f, p.Value)
+				p.Value, p.PureGoType = cppTypeFromGoType(f, p.Value, c)
 			}
-			f.Output, f.PureGoOutput = cppTypeFromGoType(f, f.Output)
+			f.Output, f.PureGoOutput = cppTypeFromGoType(f, f.Output, c)
 		}
 		utils.Log.Debug("done converting func types")
 		for _, p := range c.Properties {
-			p.Output, p.PureGoType = cppTypeFromGoType(nil, p.Output)
+			p.Output, p.PureGoType = cppTypeFromGoType(nil, p.Output, c)
 		}
 		utils.Log.Debug("done converting property types")
 
@@ -261,31 +278,31 @@ func moc(path, target, tags string, fast, slow, root bool) {
 	goFilesCacheMutex.Lock()
 	files := goFilesCache[path]
 	goFilesCacheMutex.Unlock()
-	for _, fpath := range files {
-		if filepath.Base(fpath) != "moc.go" {
-			parseNonMocDeps(fpath)
-		}
-	}
+	parseNonMocDeps(files)
 
 	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
 		return
 	}
+
 	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
 		return
 	}
-	fix := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
+	fixR := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
 
 	rootWg.Add(1)
 	go func() {
 		defer rootWg.Done()
+
+		var fix []byte
 		var err error
 		for i := 0; i < 5; i++ {
-			fix, err = imports.Process(filepath.Join(path, "moc.go"), fix, nil)
+			fix, err = imports.Process("moc.go", fixR, nil)
 			if err != nil {
-				utils.Log.WithError(err).Fatal("failed to fix go imports")
-				return
+				utils.Log.WithError(err).Error("failed to fix go imports")
+				fix = fixR
 			}
 		}
+
 		if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
 			return
 		}
@@ -361,6 +378,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 				Module: parser.MOC,
 				Name:   typeSpec.Name.String(),
 				Status: "public",
+				Path:   filepath.Dir(path),
 			}
 
 			//collect possible base classes
@@ -442,7 +460,19 @@ func parse(path string) ([]*parser.Class, string, error) {
 				}
 			}
 			class.Bases = strings.Join(bases, ",")
-			classes = append(classes, class)
+			if len(class.Properties) != 0 || len(class.Functions) != 0 ||
+				len(class.Constructors) != 0 || len(class.GetBases()) != 0 {
+				classes = append(classes, class)
+			} else {
+				ipkg := file.Name.String()
+				importAs := "custom_" + ipkg + "_" + class.Hash() + "m"
+				if strings.Contains(path, "/vendor/") {
+					importAs = ipkg
+				}
+				class.Module = importAs
+				class.Pkg = filepath.Dir(path)
+				parser.State.GoClassMap[class.Name] = class
+			}
 		}
 	}
 
@@ -507,22 +537,22 @@ func parameters(tag string) []*parser.Parameter {
 	return ro
 }
 
-func cppTypeFromGoType(f *parser.Function, t string) (string, string) {
+func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (string, string) {
 	tOld := t //TODO: also for differentiation of QVariant and *QVariant
 	//t = strings.TrimPrefix(t, "*")
 
 	if strings.Count(t, "[") == 1 || strings.HasSuffix(t, "][]string") {
 		//TODO: multidimensional array and nested maps
 		if strings.HasPrefix(t, "[]") && t != "[]string" {
-			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"))
+			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)
 			if pureGoType == "" {
 				return fmt.Sprintf("QVector<%v>", o), ""
 			}
 		}
 		if strings.HasPrefix(t, "map[") {
 			var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
-			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
-			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head))
+			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0], class)
+			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head), class)
 			if pureGoType1 == "" && pureGoType2 == "" {
 				return fmt.Sprintf("QHash<%v, %v>", o1, o2), ""
 			}
@@ -593,6 +623,21 @@ func cppTypeFromGoType(f *parser.Function, t string) (string, string) {
 	tOld = strings.Replace(tOld, "$WC_", "chan<- ", -1)
 	tOld = strings.Replace(tOld, "$C_", "chan ", -1)
 
+	ttOld := strings.TrimPrefix(tOld, "*")
+	if strings.Contains(tOld, ".") {
+		ttOld = strings.Split(ttOld, ".")[1]
+	}
+
+	if c, ok := parser.State.GoClassMap[ttOld]; ok {
+		if c.Path != class.Path {
+			pos := c.Module + "." + ttOld
+			if strings.HasPrefix(tOld, "*") {
+				pos = "*" + pos
+			}
+			return "quintptr", pos
+		}
+	}
+
 	return "quintptr", tOld
 }
 
@@ -608,23 +653,68 @@ func hasStructors(m *parser.Module) bool {
 	return true
 }
 
-func parseNonMocDeps(path string) {
-	utils.Log.WithField("path", path).Debug("parseNonMocDeps")
+//TODO: replace MocImports hack with GoClassMap, needs parse() to properly detect all pure Go types, structs, interfaces, ...
+func parseNonMocDeps(files []string) {
+	utils.Log.Debug("parseNonMocDeps")
 
-	file, err := goparser.ParseFile(token.NewFileSet(), path, nil, 0)
-	if err != nil {
-		return
-	}
+	wg := new(sync.WaitGroup)
+	wc := make(chan bool, 50)
 
-	for _, i := range file.Imports {
-		if i.Path.Value == "\"C\"" {
+	for _, fpath := range files {
+		if filepath.Base(fpath) == "moc.go" {
 			continue
 		}
 
-		if i.Name != nil {
-			parser.State.MocImports[fmt.Sprintf("%v %v", i.Name.String(), i.Path.Value)] = struct{}{}
-		} else {
-			parser.State.MocImports[i.Path.Value] = struct{}{}
-		}
+		wg.Add(1)
+		wc <- true
+		go func(fpath string) {
+
+			goMocImportsCacheMutex.Lock()
+			imps, ok := goMocImportsCache[fpath]
+			goMocImportsCacheMutex.Unlock()
+
+			if !ok {
+				utils.Log.Debugf("parse non moc deps: %v", fpath)
+				file, err := goparser.ParseFile(token.NewFileSet(), fpath, nil, 0)
+				if err != nil {
+					<-wc
+					wg.Done()
+					return
+				}
+
+				for _, i := range file.Imports {
+					if i.Path.Value == "\"C\"" {
+						continue
+					}
+
+					if cmd.IsStdPkg(strings.Replace(i.Path.Value, "\"", "", -1)) {
+						if i.Name != nil {
+							goMocImportsCacheMutex.Lock()
+							goMocImportsCache[fpath] = append(goMocImportsCache[fpath], fmt.Sprintf("%v %v", i.Name.String(), i.Path.Value))
+							goMocImportsCacheMutex.Unlock()
+						} else {
+							goMocImportsCacheMutex.Lock()
+							goMocImportsCache[fpath] = append(goMocImportsCache[fpath], i.Path.Value)
+							goMocImportsCacheMutex.Unlock()
+						}
+					}
+				}
+
+				goMocImportsCacheMutex.Lock()
+				imps = goMocImportsCache[fpath]
+				goMocImportsCacheMutex.Unlock()
+			}
+
+			for _, path := range imps {
+				goMocImportsCacheMutex.Lock()
+				parser.State.MocImports[path] = struct{}{}
+				goMocImportsCacheMutex.Unlock()
+			}
+
+			<-wc
+			wg.Done()
+		}(fpath)
 	}
+
+	wg.Wait()
 }

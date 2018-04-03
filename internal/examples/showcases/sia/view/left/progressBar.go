@@ -20,7 +20,7 @@ type progressBarTemplate struct {
 }
 
 func (t *progressBarTemplate) init() {
-	c := cleft.NewProgressBarController(nil)
+	c := controller.NewProgressBarController(nil)
 
 	t.ConnectText(c.Text)
 	c.ConnectTextChanged(t.TextChanged)
