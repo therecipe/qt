@@ -527,3 +527,37 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	}
 	return o
 }
+
+func ParseCgo(module, target string) (string, string) {
+	utils.Log.WithField("module", module).WithField("target", target).Debug("parse cgo for shared lib")
+
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
+	if tmp != "" {
+
+		tmp = strings.Split(tmp, "/*")[1]
+		tmp = strings.Split(tmp, "*/")[0]
+
+		tmp = strings.Replace(tmp, "#cgo CFLAGS: ", "", -1)
+		tmp = strings.Replace(tmp, "#cgo CXXFLAGS: ", "", -1)
+		tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
+		tmp = strings.Replace(tmp, "\n", " ", -1)
+
+		switch target {
+		case "darwin":
+			return "clang++", fmt.Sprintf("%v -Wl,-S -Wl,-x -install_name @rpath/%[2]v/lib%[2]v.so -undefined dynamic_lookup -shared -o lib%[2]v.so %[2]v.cpp", tmp, module)
+		}
+	}
+
+	return "", tmp
+}
+
+func ReplaceCgo(module, target string) {
+	utils.Log.WithField("module", module).WithField("target", target).Debug("replace cgo for shared lib")
+
+	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
+	if tmp != "" {
+		pre := strings.Split(tmp, "/*")[0]
+		past := strings.Split(tmp, "*/")[1]
+		utils.Save(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]), fmt.Sprintf("%v/*\n#cgo CFLAGS: -I.\n#cgo LDFLAGS: -L. -l%v -Wl,-rpath,%v\n*/%v", pre, module, utils.GoQtPkgPath(), past))
+	}
+}

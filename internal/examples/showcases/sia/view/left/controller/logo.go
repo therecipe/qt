@@ -8,13 +8,7 @@ import (
 type logoController struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
-
-	_ func() `signal:"clicked"`
-}
-
-func (c *logoController) init() {
-	c.ConnectClicked(c.clicked)
+	_ func() `signal:"clicked,auto"`
 }
 
 func (c *logoController) clicked() {

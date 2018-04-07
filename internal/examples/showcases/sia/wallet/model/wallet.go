@@ -18,14 +18,13 @@ type WalletModel struct {
 
 	_ func() `constructor:"init"`
 
-	_ func([]Transaction) `signal:"updateWith"`
+	_ func([]Transaction) `signal:"updateWith,auto"`
 }
 
 func (m *WalletModel) init() {
 	m.ConnectRowCount(m.rowCount)
 	m.ConnectData(m.data)
 	m.ConnectRoleNames(m.roleNames)
-	m.ConnectUpdateWith(m.updateWith)
 }
 
 func (m *WalletModel) rowCount(parent *core.QModelIndex) int {

@@ -59,6 +59,9 @@ func main() {
 	var device string
 	flag.StringVar(&device, "device", "", "a device UUID to be used by the iOS simulator")
 
+	var comply bool
+	flag.BoolVar(&comply, "comply", false, "dump object code to make it easier to comply with LGPL obligations for proprietary developments")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -114,5 +117,5 @@ func main() {
 	case "android", "android-emulator", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		fast = false
 	}
-	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker, device, vagrant, vagrantsystem)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker, device, vagrant, vagrantsystem, comply)
 }

@@ -3,7 +3,7 @@ package controller
 import (
 	"github.com/therecipe/qt/core"
 
-	"github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
+	_ "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
 )
 
 var ButtonController *buttonController
@@ -13,11 +13,9 @@ type buttonController struct {
 
 	_ func() `constructor:"init"`
 
-	_ func(string) `signal:"clicked"`
+	_ func(string) `signal:"clicked,->(controller.Controller.Show)"`
 }
 
 func (c *buttonController) init() {
 	ButtonController = c
-
-	c.ConnectClicked(controller.Controller.Show)
 }

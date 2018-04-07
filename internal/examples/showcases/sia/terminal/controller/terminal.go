@@ -15,13 +15,7 @@ var PathToSiac string
 type terminalController struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
-
-	_ func(cmd string) string `slot:"command"`
-}
-
-func (c *terminalController) init() {
-	c.ConnectCommand(c.command)
+	_ func(cmd string) string `slot:"command,auto"`
 }
 
 func (c *terminalController) command(cmd string) string {

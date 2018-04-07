@@ -739,3 +739,58 @@ func ubports_manifest(name string) string {
 		return "amd64"
 	}())
 }
+
+func relink(env map[string]string, target string) string {
+	return fmt.Sprintf(`#!/bin/bash
+set -ev
+
+#GO_VERSION: %v
+#GO_HOST_OS: %v
+#GO_HOST_ARCH: %v
+#QT_VERSION: %v
+
+export GOOS=%v
+export GOARCH=%v
+export GOARM=%v
+export CC=%v
+export CXX=%v
+
+go tool link -f -o $PWD/relinked -importcfg $PWD/b001/importcfg.link -buildmode=%v -w -extld=%v $PWD/b001/_pkg_.a`,
+
+		runtime.Version(),
+		runtime.GOOS,
+		runtime.GOARCH,
+		utils.QT_VERSION(),
+
+		env["GOOS"],
+		env["GOARCH"],
+		func() string {
+			if env["GOARCH"] == "arm" {
+				return env["GOARM"]
+			}
+			return ""
+
+		}(),
+		env["CC"],
+		env["CXX"],
+
+		func() string {
+			switch target {
+			case "ios", "ios-simulator":
+				return "c-archive"
+			case "android", "android-emulator":
+				return "c-shared"
+			default:
+				return "exe"
+			}
+		}(),
+
+		func() string {
+			switch target {
+			case "ios", "ios-simulator", "darwin":
+				return "clang++"
+			default:
+				return "g++"
+			}
+		}())
+}

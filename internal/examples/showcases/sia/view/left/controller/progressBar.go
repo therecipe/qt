@@ -12,29 +12,22 @@ import (
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 )
 
-type progressBarController struct {
+type ProgressBarController struct {
 	core.QObject
-
-	_ func() `constructor:"init"`
 
 	_ string  `property:"text"`
 	_ float64 `property:"value"`
 
-	_ func() `signal:"clicked"`
+	_ func() `signal:"clicked,auto"`
+
+	_ func(types.BlockHeight) `signal:"heightChanged,<-(controller.Controller)"`
 }
 
-func (c *progressBarController) init() {
-
-	controller.Controller.ConnectHeightChanged(c.heightChanged)
-
-	c.ConnectClicked(c.clicked)
-}
-
-func (c *progressBarController) clicked() {
+func (c *ProgressBarController) clicked() {
 	gui.QDesktopServices_OpenUrl(core.NewQUrl3("https://explore.sia.tech", 0))
 }
 
-func (c *progressBarController) heightChanged(height types.BlockHeight) {
+func (c *ProgressBarController) heightChanged(height types.BlockHeight) {
 	if controller.Controller.IsSynced() {
 		c.SetText(fmt.Sprintf("BH: %v", controller.Controller.Height()))
 		c.SetValue(100)

@@ -204,3 +204,7 @@ func GOARCH() string {
 	}
 	return runtime.GOARCH
 }
+
+func QT_DYNAMIC_SETUP() bool {
+	return os.Getenv("QT_DYNAMIC_SETUP") == "true"
+}

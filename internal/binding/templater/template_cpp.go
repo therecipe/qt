@@ -457,7 +457,7 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 #define private public
 
 #include "%v.h"
-#include "_cgo_export.h"
+%v
 
 `,
 		buildTags(module, false, mode, tags),
@@ -486,6 +486,18 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 
 					return goModule(module)
 				}
+			}
+		}(),
+
+		func() string {
+			switch module {
+			case "QtAndroidExtras", "QtSailfish":
+				return "#include \"_cgo_export.h\""
+			default:
+				if utils.QT_DYNAMIC_SETUP() {
+					return "#include \"_obj/_cgo_export.h\""
+				}
+				return "#include \"_cgo_export.h\""
 			}
 		}(),
 	)

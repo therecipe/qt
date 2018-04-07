@@ -13,16 +13,13 @@ type lockTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ bool `property:"locked"`
+	_ bool `property:"locked,<-(this.c)"`
 
-	_ func() `signal:"change"`
+	_ func() `signal:"change,->(this.c)"`
+
+	c *controller.LockController
 }
 
 func (t *lockTemplate) init() {
-	c := controller.NewLockController(nil)
-
-	t.ConnectIsLocked(c.IsLocked)
-	c.ConnectLockedChanged(t.LockedChanged)
-
-	t.ConnectChange(c.Change)
+	t.c = controller.NewLockController(nil)
 }

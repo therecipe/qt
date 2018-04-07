@@ -44,6 +44,9 @@ type Function struct {
 	IsMocFunction   bool
 	IsMocProperty   bool
 	PureGoOutput    string
+	Connect         int
+	Target          string
+	Inbound         bool
 }
 
 type Parameter struct {

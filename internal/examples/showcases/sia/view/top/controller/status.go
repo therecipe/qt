@@ -9,23 +9,19 @@ import (
 	"github.com/NebulousLabs/Sia/node/api"
 	"github.com/NebulousLabs/Sia/types"
 
-	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
+	_ "github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 )
 
-type statusController struct {
+type StatusController struct {
 	core.QObject
-
-	_ func() `constructor:"init"`
 
 	_ string `property:"balance"`
 	_ string `property:"delta"`
+
+	_ func(interface{}) `signal:"wallet,<-(controller.Controller.WalletChanged)"`
 }
 
-func (c *statusController) init() {
-	controller.Controller.ConnectWalletChanged(c.wallet)
-}
-
-func (c *statusController) wallet(wgI interface{}) {
+func (c *StatusController) wallet(wgI interface{}) {
 	wg := wgI.(api.WalletGET)
 	if wg.Unlocked {
 		confirmedFloat, _ := new(big.Rat).SetFrac(wg.ConfirmedSiacoinBalance.Big(), types.SiacoinPrecision.Big()).Float64()

@@ -9,26 +9,15 @@ import (
 	dcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
 )
 
-type lockController struct {
+type LockController struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
+	_ bool `property:"locked,<-(controller.Controller)"`
 
-	_ bool `property:"locked"`
-
-	_ func() `signal:"change"`
+	_ func() `signal:"change,auto"`
 }
 
-func (c *lockController) init() {
-
-	c.ConnectIsLocked(controller.Controller.IsLocked)
-	c.ConnectSetLocked(controller.Controller.SetLocked)
-	controller.Controller.ConnectLockedChanged(c.LockedChanged)
-
-	c.ConnectChange(c.change)
-}
-
-func (c *lockController) change() {
+func (c *LockController) change() {
 	if c.IsLocked() {
 		dcontroller.Controller.Show("unlock")
 	} else {

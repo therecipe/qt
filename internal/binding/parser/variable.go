@@ -20,6 +20,12 @@ type Variable struct {
 
 	IsMocSynthetic bool
 	PureGoType     string
+	Connect        int
+	ConnectGet     bool
+	ConnectSet     bool
+	ConnectChanged bool
+	Target         string
+	Inbound        bool
 }
 
 func (v *Variable) Class() (*Class, bool) {

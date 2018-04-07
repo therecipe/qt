@@ -1,15 +1,16 @@
 package setup
 
 import (
+	"fmt"
+	"os/exec"
 	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
-	"github.com/therecipe/qt/internal/utils"
-
 	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func Generate(target string, docker, vagrant bool) {
@@ -41,6 +42,15 @@ func Generate(target string, docker, vagrant bool) {
 			templater.GenModule(module, target, templater.NONE)
 		} else {
 			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors
+		}
+
+		if utils.QT_DYNAMIC_SETUP() && mode == "full" {
+			cc, _ := templater.ParseCgo(strings.ToLower(module), target)
+			if cc != "" {
+				cmd := exec.Command("go", "tool", "cgo", utils.GoQtPkgPath(strings.ToLower(module), strings.ToLower(module)+".go"))
+				cmd.Dir = utils.GoQtPkgPath(strings.ToLower(module))
+				utils.RunCmdOptional(cmd, fmt.Sprintf("failed to run cgo for %v (%v) on %v", target, strings.ToLower(module), runtime.GOOS))
+			}
 		}
 	}
 }

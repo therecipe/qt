@@ -21,7 +21,7 @@ type FilesModel struct {
 
 	_ func() `constructor:"init"`
 
-	_ func([]File) `signal:"updateWith"`
+	_ func([]File) `signal:"updateWith,auto"`
 }
 
 func (m *FilesModel) init() {
@@ -34,7 +34,6 @@ func (m *FilesModel) init() {
 	m.ConnectColumnCount(func(*core.QModelIndex) int { return 4 }) //needed for sort filter model
 	m.ConnectData(m.data)
 	m.ConnectRoleNames(m.roleNames)
-	m.ConnectUpdateWith(m.updateWith)
 }
 
 func (m *FilesModel) rowCount(parent *core.QModelIndex) int {

@@ -13,16 +13,12 @@ type statusTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ string `property:"balance"`
-	_ string `property:"delta"`
+	_ string `property:"balance,<-(this.c)"`
+	_ string `property:"delta,<-(this.c)"`
+
+	c *controller.StatusController
 }
 
 func (t *statusTemplate) init() {
-	c := controller.NewStatusController(nil)
-
-	t.ConnectBalance(c.Balance)
-	c.ConnectBalanceChanged(t.BalanceChanged)
-
-	t.ConnectDelta(c.Delta)
-	c.ConnectDeltaChanged(t.DeltaChanged)
+	t.c = controller.NewStatusController(nil)
 }

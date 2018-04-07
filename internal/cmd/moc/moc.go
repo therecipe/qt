@@ -1,6 +1,8 @@
 package moc
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"go/ast"
@@ -412,19 +414,105 @@ func parse(path string) ([]*parser.Class, string, error) {
 						continue
 					}
 
-					switch typ := string(src[field.Type.Pos()-1 : field.Type.End()-1]); meta {
+					//TODO: sync, async, lazy, ...
+					//TODO: whole class shims
+					//TODO: multi targets
+					//TODO: private
+					//TODO: qml register tag
+					var (
+						auto    int
+						target  string
+						inbound bool
+					)
+					if (meta == parser.SIGNAL || meta == parser.SLOT || meta == parser.PROP) && (strings.Contains(tag, ",->") || strings.Contains(tag, ",auto") || strings.Contains(tag, ",<-")) {
+
+						autoTag := strings.Split(tag, ",")[1]
+
+						if strings.Contains(tag, ",->") || strings.Contains(tag, ",auto") {
+							auto = 1
+							autoTag = strings.TrimPrefix(autoTag, "->")
+							autoTag = strings.TrimPrefix(autoTag, "auto")
+						} else {
+							auto = 2
+							autoTag = strings.TrimPrefix(autoTag, "<-")
+						}
+
+						if strings.Contains(autoTag, "(") {
+							if !strings.HasPrefix(autoTag, "(this.") {
+								//TODO: concurrent + cache lookups
+								var found bool
+								for _, imp := range file.Imports {
+									if strings.Contains(autoTag, "("+imp.Name.String()+".") {
+										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+
+										h := sha1.New()
+										h.Write([]byte(dir))
+
+										mname := "custom_" + name + "_" + hex.EncodeToString(h.Sum(nil)[:3]) + "m"
+										goMocImportsCacheMutex.Lock()
+										goMocImportsCache[path] = append(goMocImportsCache[path], fmt.Sprintf("%v %v", mname, imp.Path.Value))
+										goMocImportsCacheMutex.Unlock()
+
+										autoTag = strings.Replace(autoTag, "("+imp.Name.String()+".", "("+mname+".", -1)
+										found = true
+										break
+									}
+								}
+
+								if !found {
+									for _, imp := range file.Imports {
+										if imp.Name.String() != "<nil>" && imp.Name.String() != "_" {
+											continue
+										}
+										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+										if !strings.Contains(autoTag, "("+name+".") {
+											continue
+										}
+										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+
+										h := sha1.New()
+										h.Write([]byte(dir))
+
+										mname := "custom_" + name + "_" + hex.EncodeToString(h.Sum(nil)[:3]) + "m"
+										goMocImportsCacheMutex.Lock()
+										goMocImportsCache[path] = append(goMocImportsCache[path], fmt.Sprintf("%v %v", mname, imp.Path.Value))
+										goMocImportsCacheMutex.Unlock()
+
+										autoTag = strings.Replace(autoTag, "("+name+".", "("+mname+".", -1)
+										break
+									}
+								}
+							}
+							target = strings.TrimSuffix(strings.TrimPrefix(autoTag, "("), ")")
+						}
+
+						tag = strings.Split(tag, ",")[0]
+					}
+
+					name := strings.Split(tag, ":")[1]
+					if name[:1] != strings.ToLower(name[:1]) {
+						inbound = true
+						name = strings.ToLower(name[:1]) + strings.TrimPrefix(name[1:], name[:1])
+					}
+
+					typ := string(src[field.Type.Pos()-1 : field.Type.End()-1])
+					switch meta {
 					case parser.SIGNAL, parser.SLOT:
 						f := &parser.Function{
 							Access:        "public",
-							Fullname:      fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
+							Fullname:      fmt.Sprintf("%v::%v", class.Name, name),
 							Meta:          meta,
-							Name:          strings.Split(tag, ":")[1],
+							Name:          name,
 							Status:        "public",
 							Virtual:       parser.PURE,
 							Signature:     "()",
 							Output:        "void",
 							Parameters:    parameters(typ),
 							IsMocFunction: true,
+							Connect:       auto,
+							Target:        target,
+							Inbound:       inbound,
 						}
 						if meta == parser.SLOT {
 							if strings.Contains(typ, ") ") {
@@ -446,11 +534,17 @@ func parse(path string) ([]*parser.Class, string, error) {
 					case parser.PROP:
 						class.Properties = append(class.Properties,
 							&parser.Variable{
-								Access:   "public",
-								Fullname: fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
-								Name:     strings.Split(tag, ":")[1],
-								Status:   "public",
-								Output:   typ,
+								Access:         "public",
+								Fullname:       fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
+								Name:           strings.Split(tag, ":")[1],
+								Status:         "public",
+								Output:         typ,
+								Connect:        auto,
+								ConnectGet:     strings.Contains(field.Tag.Value, ",get"),
+								ConnectSet:     strings.Contains(field.Tag.Value, ",set"),
+								ConnectChanged: strings.Contains(field.Tag.Value, ",changed"),
+								Target:         target,
+								Inbound:        inbound,
 							})
 
 					case parser.CONSTRUCTOR:
@@ -623,11 +717,11 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 	tOld = strings.Replace(tOld, "$WC_", "chan<- ", -1)
 	tOld = strings.Replace(tOld, "$C_", "chan ", -1)
 
+	//TODO: directly resolve moc pkgs imports in parse ?
 	ttOld := strings.TrimPrefix(tOld, "*")
 	if strings.Contains(tOld, ".") {
 		ttOld = strings.Split(ttOld, ".")[1]
 	}
-
 	if c, ok := parser.State.GoClassMap[ttOld]; ok {
 		if c.Path != class.Path {
 			pos := c.Module + "." + ttOld

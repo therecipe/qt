@@ -12,8 +12,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string) {
-	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).Debug("running Deploy")
+func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool) {
+	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).WithField("comply", comply).Debug("running Deploy")
 	name := filepath.Base(path)
 	depPath := filepath.Join(path, "deploy", target)
 
@@ -24,6 +24,9 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			args := []string{"qtdeploy", "-debug"}
 			if fast {
 				args = append(args, "-fast")
+			}
+			if comply {
+				args = append(args, "-comply")
 			}
 			if vagrantsystem == "docker" {
 				args = append(args, "-docker")
@@ -45,6 +48,10 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			}
 		}
 
+		if utils.ExistsDir(depPath + "_obj") {
+			utils.RemoveAll(depPath + "_obj")
+		}
+
 		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"))
 		if !fast {
 			moc.Moc(path, target, tags, false, false)
@@ -54,7 +61,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			minimal.Minimal(path, target, tags)
 		}
 
-		build(mode, target, path, ldFlags, tags, name, depPath, fast)
+		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
 		if !(fast || utils.QT_DEBUG_QML()) {
 			bundle(mode, target, path, name, depPath)

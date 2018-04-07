@@ -16,13 +16,13 @@ type walletTemplate struct {
 
 	_ *core.QAbstractTableModel `property:"WalletModel"`
 
-	_ func(string) `signal:"doubleClicked"`
+	_ func(string) `signal:"doubleClicked,->(this.c)"`
+
+	c *controller.WalletController
 }
 
 func (t *walletTemplate) init() {
-	c := controller.NewWalletController(nil)
+	t.c = controller.NewWalletController(nil)
 
-	t.SetWalletModel(c.Model())
-
-	t.ConnectDoubleClicked(c.DoubleClicked)
+	t.SetWalletModel(t.c.Model())
 }

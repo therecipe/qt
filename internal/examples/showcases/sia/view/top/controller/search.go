@@ -10,13 +10,7 @@ import (
 type searchController struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
-
-	_ func(string) `signal:"search"`
-}
-
-func (c *searchController) init() {
-	c.ConnectSearch(c.search)
+	_ func(string) `signal:"search,auto"`
 }
 
 func (c *searchController) search(name string) {

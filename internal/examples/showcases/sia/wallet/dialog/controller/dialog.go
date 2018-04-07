@@ -12,8 +12,8 @@ import (
 	"github.com/NebulousLabs/Sia/node/api"
 	"github.com/NebulousLabs/Sia/types"
 
-	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
-	vcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
+	maincontroller "github.com/therecipe/qt/internal/examples/showcases/sia/controller"
+	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
 )
 
 var Controller *dialogController
@@ -24,31 +24,22 @@ type dialogController struct {
 	_ func() `constructor:"init"`
 
 	_ func(cident string) `signal:"show"`
-	_ func(bool)          `signal:"blur"`
+	_ func(bool)          `signal:"blur,->(controller.Controller)"`
 
-	_ func(password string) *core.QVariant     `slot:"unlock"`
-	_ func() string                            `slot:"receive"`
-	_ func(amount, dest string) *core.QVariant `slot:"send"`
-	_ func(seed string) *core.QVariant         `slot:"recover"`
+	_ func(password string) *core.QVariant     `slot:"unlock,auto"`
+	_ func() string                            `slot:"receive,auto"`
+	_ func(amount, dest string) *core.QVariant `slot:"send,auto"`
+	_ func(seed string) *core.QVariant         `slot:"recover,auto"`
 
-	_ func() bool `slot:"isLocked"`
+	_ func() bool `slot:"isLocked,->(maincontroller.Controller)"`
 }
 
 func (c *dialogController) init() {
 	Controller = c
-
-	c.ConnectBlur(vcontroller.Controller.Blur)
-
-	c.ConnectReceive(c.receive)
-	c.ConnectSend(c.send)
-	c.ConnectUnlock(c.unlock)
-	c.ConnectRecover(c.recover)
-
-	c.ConnectIsLocked(controller.Controller.IsLocked)
 }
 
 func (c *dialogController) receive() string {
-	wag, err := controller.Client.WalletAddressGet()
+	wag, err := maincontroller.Client.WalletAddressGet()
 	if err != nil {
 		println(err.Error())
 		return fmt.Sprintf("Could not get address: %v", err.Error())
@@ -70,7 +61,7 @@ func (c *dialogController) send(amount, dest string) *core.QVariant {
 	b, _ := new(big.Int).SetString(hastings, 10)
 	var destH types.UnlockHash
 	destH.LoadString(dest)
-	_, errW := controller.Client.WalletSiacoinsPost(types.NewCurrency(b), destH)
+	_, errW := maincontroller.Client.WalletSiacoinsPost(types.NewCurrency(b), destH)
 	if errW != nil {
 		println(errW.Error())
 		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not send siacoins: %v", errW.Error()))})
@@ -80,19 +71,19 @@ func (c *dialogController) send(amount, dest string) *core.QVariant {
 }
 
 func (c *dialogController) unlock(password string) *core.QVariant {
-	err := controller.Client.WalletUnlockPost(password)
+	err := maincontroller.Client.WalletUnlockPost(password)
 	if err != nil {
 		println(err.Error())
 		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not unlock your wallet: %v", err.Error()))})
 	}
 
-	controller.Controller.SetLocked(false)
+	maincontroller.Controller.SetLocked(false)
 	return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(true)})
 }
 
 func (c *dialogController) recover(seed string) *core.QVariant {
 	var swp api.WalletSweepPOST
-	req, _ := controller.Client.NewRequest("POST", "/wallet/sweep/seed", strings.NewReader(fmt.Sprintf("seed=%s&dictionary=%s", seed, "english"))) //TODO:
+	req, _ := maincontroller.Client.NewRequest("POST", "/wallet/sweep/seed", strings.NewReader(fmt.Sprintf("seed=%s&dictionary=%s", seed, "english"))) //TODO:
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		println(err.Error())

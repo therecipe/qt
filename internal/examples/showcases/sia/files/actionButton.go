@@ -13,16 +13,12 @@ type actionButtonTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ func(string) `signal:"showDownload"`
-	_ func(string) `signal:"deleteRequest"`
+	_ func(string) `signal:"showDownload,->(controller.ActionButtonController)"`
+	_ func(string) `signal:"deleteRequest,->(controller.ActionButtonController)"`
 }
 
 func (t *actionButtonTemplate) init() {
-	c := controller.ActionButtonController
-	if c == nil {
-		c = controller.NewActionButtonController(nil)
+	if controller.ActionButtonController == nil {
+		controller.NewActionButtonController(nil)
 	}
-
-	t.ConnectShowDownload(c.ShowDownload)
-	t.ConnectDeleteRequest(c.DeleteRequest)
 }

@@ -11,6 +11,8 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/binding/templater"
+
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -62,6 +64,20 @@ func Install(target string, docker, vagrant bool) {
 			mode = "stub"
 		}
 		utils.Log.Infof("installing %v qt/%v", mode, strings.ToLower(module))
+
+		if utils.QT_DYNAMIC_SETUP() && mode == "full" {
+			cc, com := templater.ParseCgo(strings.ToLower(module), target)
+			if cc != "" {
+				cmd := exec.Command(cc, strings.Split(com, " ")...)
+				cmd.Dir = utils.GoQtPkgPath(strings.ToLower(module))
+				utils.RunCmdOptional(cmd, fmt.Sprintf("failed to create dynamic lib for %v (%v) on %v", target, strings.ToLower(module), runtime.GOOS))
+
+				utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), strings.ToLower(module)+".cpp"))
+				utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), "_obj"))
+
+				templater.ReplaceCgo(strings.ToLower(module), target)
+			}
+		}
 
 		cmd := exec.Command("go", "install", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 		if len(tags) > 0 {

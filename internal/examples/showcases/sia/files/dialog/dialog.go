@@ -12,18 +12,14 @@ type filesDialogTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ func(cident string) `signal:"show"`
-	_ func(bool)          `signal:"blur"`
+	_ func(cident string) `signal:"show,<-(fcontroller.Controller)"`
+	_ func(bool)          `signal:"blur,->(fcontroller.Controller)"`
 }
 
 func (t *filesDialogTemplate) init() {
-	c := fcontroller.Controller
-	if c == nil {
-		c = fcontroller.NewDialogController(nil)
+	if fcontroller.Controller == nil {
+		fcontroller.NewDialogController(nil)
 	}
-
-	c.ConnectShow(t.show)
-	t.ConnectBlur(c.Blur)
 }
 
 func (t *filesDialogTemplate) show(cident string) {

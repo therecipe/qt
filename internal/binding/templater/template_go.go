@@ -209,22 +209,224 @@ func (ptr *%[1]v) Destroy%[1]v() {
 func callback%[1]v_Constructor(ptr unsafe.Pointer) {
 `, class.Name)
 
-				fmt.Fprintf(bb, "gPtr := New%vFromPointer(ptr)\nqt.Register(ptr, gPtr)\n", strings.Title(class.Name))
+				fmt.Fprintf(bb, "this := New%vFromPointer(ptr)\nqt.Register(ptr, this)\n", strings.Title(class.Name))
 
 				var lastModule string
 				for _, bcn := range class.GetAllBases() {
 					if bc := parser.State.ClassMap[bcn]; bc.Module != class.Module {
 						if len(bc.Constructors) > 0 && lastModule != bc.Module {
 							if strings.ToLower(bc.Constructors[0])[0] != bc.Constructors[0][0] {
-								fmt.Fprintf(bb, "gPtr.%v.%v()\n", strings.Title(bc.Name), bc.Constructors[0])
+								fmt.Fprintf(bb, "this.%v.%v()\n", strings.Title(bc.Name), bc.Constructors[0])
 							}
 						}
 						lastModule = bc.Module
 					}
 				}
-				if len(class.Constructors) > 0 {
-					fmt.Fprintf(bb, "gPtr.%v()\n", class.Constructors[0])
+
+				for _, bcn := range append(class.GetAllBases(), class.Name) {
+					if bc, ok := parser.State.ClassMap[bcn]; ok {
+						for _, f := range bc.Functions {
+							if f.Connect == 0 || !f.IsMocFunction {
+								continue
+							}
+
+							if class.Name != bcn {
+								fmt.Fprintf(bb, "qt.DisconnectSignal(ptr, \"%v\")\n", f.Name)
+							}
+						}
+					}
 				}
+
+				connect := func(class *parser.Class, local bool) {
+					for _, bcn := range append(class.GetAllBases(), class.Name) {
+						if bc, ok := parser.State.ClassMap[bcn]; ok {
+							for _, f := range bc.Functions {
+								if f.Connect == 0 || !f.IsMocFunction {
+									continue
+								}
+								if (local && f.Target != "") || (!local && f.Target == "") {
+									continue
+								}
+
+								name := f.Name
+								if f.Inbound {
+									name = strings.Title(name)
+								}
+
+								if f.Connect == 1 {
+									if f.Target == "" {
+										fmt.Fprintf(bb, "this.Connect%v(this.%v)\n", strings.Title(name), name)
+									} else {
+										t := f.Target
+										if strings.Count(t, ".") != 2 {
+											if !(len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
+												t = f.Target + "." + name
+											}
+										}
+										tUpper := strings.Split(f.Target, ".")
+										tUpper[len(tUpper)-1] = strings.Title(tUpper[len(tUpper)-1])
+
+										if strings.Count(f.Target, ".") >= 2 || (len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
+											fmt.Fprintf(bb, "this.Connect%v(%v)\n", strings.Title(name), strings.Join(tUpper, "."))
+										} else {
+											fmt.Fprintf(bb, "this.Connect%v(%v.%v)\n", strings.Title(name), f.Target, strings.Title(name))
+										}
+									}
+								} else {
+									if f.Target != "" {
+										t := f.Target
+										if strings.Count(t, ".") != 2 {
+											if !(len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
+												t = f.Target + "." + name
+											}
+										}
+										tCon := strings.Split(f.Target, ".")
+										tCon[len(tCon)-1] = "Connect" + strings.Title(tCon[len(tCon)-1])
+
+										if strings.Count(f.Target, ".") >= 2 || (len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
+											fmt.Fprintf(bb, "%v(this.%v)\n", strings.Join(tCon, "."), name)
+										} else {
+											fmt.Fprintf(bb, "%v.Connect%v(this.%v)\n", f.Target, strings.Title(name), name)
+										}
+									}
+								}
+							}
+						}
+					}
+
+					for _, bcn := range append(class.GetAllBases(), class.Name) {
+						if bc, ok := parser.State.ClassMap[bcn]; ok {
+							for _, p := range bc.Properties {
+								if p.Connect == 0 {
+									continue
+								}
+								if (local && p.Target != "") || (!local && p.Target == "") {
+									continue
+								}
+
+								name := p.Name
+								if p.Inbound {
+									name = strings.Title(name)
+								}
+
+								if p.Connect == 1 {
+									if p.Target == "" {
+										if p.ConnectGet || !(p.ConnectSet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "this.Connect%v(this.%v)\n",
+												func() string {
+													if p.Output == "bool" && !strings.HasPrefix(name, "is") {
+														return "Is" + strings.Title(name)
+													}
+													return strings.Title(name)
+												}(),
+												func() string {
+													if p.Output == "bool" && !strings.HasPrefix(name, "is") {
+														return "is" + strings.Title(name)
+													}
+													return name
+												}())
+										}
+										if p.ConnectSet || !(p.ConnectGet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "this.ConnectSet%v(this.set%v)\n", strings.Title(name), strings.Title(name))
+										}
+										if p.ConnectChanged || !(p.ConnectGet || p.ConnectSet) {
+											fmt.Fprintf(bb, "this.Connect%vChanged(this.%vChanged)\n", strings.Title(name), name)
+										}
+									} else {
+										t := p.Target
+										if strings.Count(t, ".") < 2 {
+											if !(len(strings.Split(p.Target, ".")) == 2 && strings.Split(p.Target, ".")[0] != "this" && strings.Split(p.Target, ".")[1][:1] == strings.ToLower(strings.Split(p.Target, ".")[1][:1])) {
+												t = p.Target + "." + name
+											}
+										}
+
+										tSet := strings.Split(t, ".")
+										tSet[len(tSet)-1] = "ConnectSet" + strings.Title(tSet[len(tSet)-1])
+
+										tChanged := strings.Split(t, ".")
+										tChanged[len(tChanged)-1] = strings.Title(tChanged[len(tChanged)-1]) + "Changed"
+
+										tUpper := strings.Split(t, ".")
+										tUpper[len(tUpper)-1] = strings.Title(tUpper[len(tUpper)-1])
+
+										tIs := strings.Split(t, ".")
+										if p.Output == "bool" && !strings.HasPrefix(tIs[len(tIs)-1], "is") {
+											tIs[len(tIs)-1] = "ConnectIs" + strings.Title(tIs[len(tIs)-1])
+										} else {
+											tIs[len(tIs)-1] = "Connect" + strings.Title(tIs[len(tIs)-1])
+										}
+
+										if p.ConnectGet || !(p.ConnectSet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "%v(this.%v)\n",
+												strings.Join(tIs, "."),
+												func() string {
+													if p.Output == "bool" && !strings.HasPrefix(name, "is") {
+														return "Is" + strings.Title(name)
+													}
+													return strings.Title(name)
+												}())
+										}
+										if p.ConnectSet || !(p.ConnectGet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "%v(this.Set%v)\n", strings.Join(tSet, "."), strings.Title(name))
+										}
+										if p.ConnectChanged || !(p.ConnectGet || p.ConnectSet) {
+											fmt.Fprintf(bb, "this.Connect%vChanged(%v)\n", strings.Title(name), strings.Join(tChanged, "."))
+										}
+									}
+								} else {
+									if p.Target != "" {
+										t := p.Target
+										if strings.Count(t, ".") < 2 {
+											if !(len(strings.Split(p.Target, ".")) == 2 && strings.Split(p.Target, ".")[0] != "this" && strings.Split(p.Target, ".")[1][:1] == strings.ToLower(strings.Split(p.Target, ".")[1][:1])) {
+												t = p.Target + "." + name
+											}
+										}
+
+										tSet := strings.Split(t, ".")
+										tSet[len(tSet)-1] = "Set" + strings.Title(tSet[len(tSet)-1])
+
+										tChanged := strings.Split(t, ".")
+										tChanged[len(tChanged)-1] = "Connect" + strings.Title(tChanged[len(tChanged)-1]) + "Changed"
+
+										tUpper := strings.Split(t, ".")
+										tUpper[len(tUpper)-1] = strings.Title(tUpper[len(tUpper)-1])
+
+										tIs := strings.Split(t, ".")
+										if p.Output == "bool" && !strings.HasPrefix(tIs[len(tIs)-1], "is") {
+											tIs[len(tIs)-1] = "Is" + strings.Title(tIs[len(tIs)-1])
+										} else {
+											tIs[len(tIs)-1] = strings.Title(tIs[len(tIs)-1])
+										}
+
+										if p.ConnectGet || !(p.ConnectSet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "this.Connect%v(%v)\n",
+												func() string {
+													if p.Output == "bool" && !strings.HasPrefix(name, "is") {
+														return "Is" + strings.Title(name)
+													}
+													return strings.Title(name)
+												}(), strings.Join(tIs, "."))
+										}
+										if p.ConnectSet || !(p.ConnectGet || p.ConnectChanged) {
+											fmt.Fprintf(bb, "this.ConnectSet%v(%v)\n", strings.Title(name), strings.Join(tSet, "."))
+										}
+										if p.ConnectChanged || !(p.ConnectGet || p.ConnectSet) {
+											fmt.Fprintf(bb, "%v(this.%vChanged)\n", strings.Join(tChanged, "."), strings.Title(name))
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				connect(class, true)
+
+				if len(class.Constructors) > 0 {
+					fmt.Fprintf(bb, "this.%v()\n", class.Constructors[0])
+				}
+
+				connect(class, false)
 
 				fmt.Fprint(bb, "}\n\n")
 			}

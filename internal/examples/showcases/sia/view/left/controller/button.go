@@ -9,12 +9,8 @@ import (
 type buttonController struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
-
-	_ func(code string) `signal:"clicked"`
+	_ func(code string) `signal:"clicked,auto"`
 }
 
-func (c *buttonController) init() {
-	//lazy binding to the view/stack controller
-	c.ConnectClicked(func(code string) { controller.StackController.Clicked(code) })
-}
+//lazy binding to the view/stack controller
+func (c *buttonController) clicked(code string) { controller.StackController.Clicked(code) }

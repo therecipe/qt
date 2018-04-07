@@ -13,20 +13,14 @@ type progressBarTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ string  `property:"text"`
-	_ float64 `property:"value"`
+	_ string  `property:"text,<-(this.c)"`
+	_ float64 `property:"value,<-(this.c)"`
 
-	_ func() `signal:"clicked"`
+	_ func() `signal:"clicked,->(this.c)"`
+
+	c *controller.ProgressBarController
 }
 
 func (t *progressBarTemplate) init() {
-	c := controller.NewProgressBarController(nil)
-
-	t.ConnectText(c.Text)
-	c.ConnectTextChanged(t.TextChanged)
-
-	t.ConnectValue(c.Value)
-	c.ConnectValueChanged(t.ValueChanged)
-
-	t.ConnectClicked(c.Clicked)
+	t.c = controller.NewProgressBarController(nil)
 }

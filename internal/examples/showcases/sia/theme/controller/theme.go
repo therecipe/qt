@@ -2,63 +2,44 @@ package controller
 
 import "github.com/therecipe/qt/core"
 
-var Controller *themeController
+var Controller *ThemeController
 
-type themeController struct {
+type ThemeController struct {
 	core.QObject
 
 	_ func() `constructor:"init"`
 
-	_ string `property:"name"`
+	_ string `property:"name,auto,changed"`
 
-	_ string `property:"accent"`
-	_ string `property:"nextAccent"`
+	_ string `property:"accent,auto,get"`
+	_ string `property:"nextAccent,auto,get"`
 
-	_ string `property:"background"`
-	_ string `property:"darkBackground"`
+	_ string `property:"background,auto,get"`
+	_ string `property:"darkBackground,auto,get"`
 
-	_ string `property:"walletTableHeader"`
-	_ string `property:"walletTableAlternate"`
-	_ string `property:"walletTableHighlight"`
+	_ string `property:"walletTableHeader,auto,get"`
+	_ string `property:"walletTableAlternate,auto,get"`
+	_ string `property:"walletTableHighlight,auto,get"`
 
-	_ string `property:"inputFieldBackground"`
+	_ string `property:"inputFieldBackground,auto,get"`
 
-	_ string `property:"font"`
-	_ string `property:"fontHighlight"`
+	_ string `property:"font,auto,get"`
+	_ string `property:"fontHighlight,auto,get"`
 
-	_ func() `signal:"change"`
+	_ func() `signal:"change,auto"`
 
 	_ func() `signal:"hide"`
 }
 
-func (c *themeController) init() {
+func (c *ThemeController) init() {
 	Controller = c
 
-	c.ConnectNameChanged(c.nameChanged)
-
-	c.ConnectAccent(c.accent)
-	c.ConnectNextAccent(c.nextAccent)
-
-	c.ConnectBackground(c.background)
-	c.ConnectDarkBackground(c.darkBackground)
-
-	c.ConnectWalletTableHeader(c.walletTableHeader)
-	c.ConnectWalletTableAlternate(c.walletTableAlternate)
-	c.ConnectWalletTableHighlight(c.walletTableHighlight)
-
-	c.ConnectInputFieldBackground(c.inputFieldBackground)
-
-	c.ConnectFont(c.font)
-	c.ConnectFontHighlight(c.fontHighlight)
-
 	c.SetName("dark")
-
-	c.ConnectChange(c.change)
 
 	initColorDialog()
 }
 
-func (c *themeController) nameChanged(string) {
+func (c *ThemeController) nameChanged(string) {
 	c.AccentChanged(c.Accent())
 	c.NextAccentChanged(c.NextAccent())
 
@@ -75,7 +56,7 @@ func (c *themeController) nameChanged(string) {
 	c.FontHighlightChanged(c.FontHighlight())
 }
 
-func (c *themeController) accent() string {
+func (c *ThemeController) accent() string {
 	if color := c.AccentDefault(); color != "" {
 		return color
 	}
@@ -89,7 +70,7 @@ func (c *themeController) accent() string {
 	}
 }
 
-func (c *themeController) nextAccent() string {
+func (c *ThemeController) nextAccent() string {
 	if color := c.NextAccentDefault(); color != "" {
 		return color
 	}
@@ -103,7 +84,7 @@ func (c *themeController) nextAccent() string {
 	}
 }
 
-func (c *themeController) background() string {
+func (c *ThemeController) background() string {
 	if color := c.BackgroundDefault(); color != "" {
 		return color
 	}
@@ -117,7 +98,7 @@ func (c *themeController) background() string {
 	}
 }
 
-func (c *themeController) darkBackground() string {
+func (c *ThemeController) darkBackground() string {
 	if color := c.DarkBackgroundDefault(); color != "" {
 		return color
 	}
@@ -131,7 +112,7 @@ func (c *themeController) darkBackground() string {
 	}
 }
 
-func (c *themeController) walletTableHeader() string {
+func (c *ThemeController) walletTableHeader() string {
 	if color := c.WalletTableHeaderDefault(); color != "" {
 		return color
 	}
@@ -145,7 +126,7 @@ func (c *themeController) walletTableHeader() string {
 	}
 }
 
-func (c *themeController) walletTableAlternate() string {
+func (c *ThemeController) walletTableAlternate() string {
 	if color := c.WalletTableAlternateDefault(); color != "" {
 		return color
 	}
@@ -159,7 +140,7 @@ func (c *themeController) walletTableAlternate() string {
 	}
 }
 
-func (c *themeController) walletTableHighlight() string {
+func (c *ThemeController) walletTableHighlight() string {
 	if color := c.WalletTableHighlightDefault(); color != "" {
 		return color
 	}
@@ -173,7 +154,7 @@ func (c *themeController) walletTableHighlight() string {
 	}
 }
 
-func (c *themeController) inputFieldBackground() string {
+func (c *ThemeController) inputFieldBackground() string {
 	if color := c.InputFieldBackgroundDefault(); color != "" {
 		return color
 	}
@@ -187,7 +168,7 @@ func (c *themeController) inputFieldBackground() string {
 	}
 }
 
-func (c *themeController) font() string {
+func (c *ThemeController) font() string {
 	if color := c.FontDefault(); color != "" {
 		return color
 	}
@@ -201,7 +182,7 @@ func (c *themeController) font() string {
 	}
 }
 
-func (c *themeController) fontHighlight() string {
+func (c *ThemeController) fontHighlight() string {
 	if color := c.FontHighlightDefault(); color != "" {
 		return color
 	}
@@ -215,7 +196,7 @@ func (c *themeController) fontHighlight() string {
 	}
 }
 
-func (c *themeController) change() {
+func (c *ThemeController) change() {
 	colorDialog.Show()
 	//TODO: there is no light theme yet
 	/*

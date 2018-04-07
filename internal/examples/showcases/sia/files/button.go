@@ -13,14 +13,11 @@ type buttonTemplate struct {
 
 	_ func() `constructor:"init"`
 
-	_ func(string) `signal:"clicked"`
+	_ func(string) `signal:"clicked,->(controller.ButtonController)"`
 }
 
 func (t *buttonTemplate) init() {
-	c := controller.ButtonController
-	if c == nil {
-		c = controller.NewButtonController(nil)
+	if controller.ButtonController == nil {
+		controller.NewButtonController(nil)
 	}
-
-	t.ConnectClicked(c.Clicked)
 }
