@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 )
 
 func QT_MSYS2() bool {
@@ -18,6 +19,7 @@ func QT_MSYS2_DIR() string {
 		}
 		return filepath.Join(dir, "mingw32")
 	}
+	drive := strings.Split(dir, string(os.PathSeparator))[0]
 	prefix := "msys32"
 	if runtime.GOARCH == "amd64" {
 		prefix = "msys64"
@@ -26,7 +28,7 @@ func QT_MSYS2_DIR() string {
 	if QT_MSYS2_ARCH() == "amd64" {
 		suffix = "mingw64"
 	}
-	return fmt.Sprintf("C:\\%v\\%v", prefix, suffix)
+	return fmt.Sprintf("%v\\%v\\%v", drive, prefix, suffix)
 }
 
 func IsMsys2QtDir() bool {
