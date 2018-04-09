@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"strings"
 )
 
 func QT_MSYS2() bool {
@@ -14,21 +13,20 @@ func QT_MSYS2() bool {
 
 func QT_MSYS2_DIR() string {
 	if dir, ok := os.LookupEnv("QT_MSYS2_DIR"); ok {
-		if QT_MSYS2_ARCH() == "amd64" {
+		if _, ok := os.LookupEnv("QT_MSYS2_ARCH"); QT_MSYS2_ARCH() == "amd64" || (!ok && runtime.GOARCH == "amd64") {
 			return filepath.Join(dir, "mingw64")
 		}
 		return filepath.Join(dir, "mingw32")
 	}
-	drive := strings.Split(dir, string(os.PathSeparator))[0]
 	prefix := "msys32"
 	if runtime.GOARCH == "amd64" {
 		prefix = "msys64"
 	}
 	suffix := "mingw32"
-	if QT_MSYS2_ARCH() == "amd64" {
+	if _, ok := os.LookupEnv("QT_MSYS2_ARCH"); QT_MSYS2_ARCH() == "amd64" || (!ok && runtime.GOARCH == "amd64") {
 		suffix = "mingw64"
 	}
-	return fmt.Sprintf("%v\\%v\\%v", drive, prefix, suffix)
+	return fmt.Sprintf("%v\\%v\\%v", windowsSystemDrive(), prefix, suffix)
 }
 
 func IsMsys2QtDir() bool {
@@ -56,4 +54,17 @@ func MSYSTEM() string {
 func MSYS_DOCKER() bool {
 	_, ok := os.LookupEnv("DOCKER_MACHINE_NAME")
 	return ok
+}
+
+func windowsSystemDrive() string {
+	if vol, ok := os.LookupEnv("SystemDrive"); ok {
+		return vol
+	}
+	if vol, ok := os.LookupEnv("SystemRoot"); ok {
+		return filepath.VolumeName(vol)
+	}
+	if vol, ok := os.LookupEnv("WinDir"); ok {
+		return filepath.VolumeName(vol)
+	}
+	return "C:"
 }
