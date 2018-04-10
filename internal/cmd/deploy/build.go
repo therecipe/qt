@@ -40,27 +40,6 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	case "sailfish", "sailfish-emulator":
 		if !utils.QT_SAILFISH() {
 			build_sailfish(mode, target, path, ldFlagsCustom, name, depPath)
-
-			if !fast {
-				walkFn := func(path string, info os.FileInfo, err error) error {
-					if err != nil {
-						return err
-					}
-					switch info.Name() {
-					case "rcc.qrc", "rcc.cpp",
-						"moc.h", "moc.cpp", "moc_moc.h",
-						"cgo_main_wrapper.go":
-						utils.RemoveAll(path)
-					default:
-						if strings.HasPrefix(info.Name(), "moc_cgo_") ||
-							strings.HasPrefix(info.Name(), "rcc_cgo_") {
-							utils.RemoveAll(path)
-						}
-					}
-					return nil
-				}
-				filepath.Walk(path, walkFn)
-			}
 			return
 		}
 	}
@@ -108,26 +87,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 	}
 
-	if !fast {
-		walkFn := func(path string, info os.FileInfo, err error) error {
-			if err != nil {
-				return err
-			}
-			switch info.Name() {
-			case "rcc.qrc", "rcc.cpp",
-				"moc.h", "moc.cpp", "moc_moc.h",
-				"cgo_main_wrapper.go":
-				utils.RemoveAll(path)
-			default:
-				if strings.HasPrefix(info.Name(), "moc_cgo_") ||
-					strings.HasPrefix(info.Name(), "rcc_cgo_") {
-					utils.RemoveAll(path)
-				}
-			}
-			return nil
-		}
-		filepath.Walk(path, walkFn)
-	}
+	utils.RemoveAll(filepath.Join(path, "cgo_main_wrapper.go"))
 
 	if comply {
 		dirs, err := ioutil.ReadDir(depPath + "_obj")
