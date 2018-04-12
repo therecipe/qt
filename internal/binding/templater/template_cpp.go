@@ -110,7 +110,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 									ty = fmt.Sprintf("type%v", hex.EncodeToString(tHash.Sum(nil)[:3]))
 								}
 
-								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
+								fmt.Fprintf(bb, "Q_PROPERTY(%v PREPRO%v READ %v WRITE set%v NOTIFY %vChanged)\n", ty, p.Name,
 									func() string {
 										if p.Output == "bool" && !strings.HasPrefix(strings.ToLower(p.Name), "is") {
 											return "is" + strings.Title(p.Name)
@@ -630,7 +630,20 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 	if mode == MOC {
 		pre := bb.String()
 		bb.Reset()
-		for _, c := range parser.SortedClassesForModule(module, true) {
+		libsm := make(map[string]struct{}, 0)
+		for _, c := range parser.State.ClassMap {
+			if c.Pkg != "" && c.IsSubClassOfQObject() {
+				libsm[c.Module] = struct{}{}
+			}
+		}
+
+		var libs []string
+		for k := range libsm {
+			libs = append(libs, k)
+		}
+		libs = append(libs, module)
+
+		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
 			hName := c.Hash()
 			sep := []string{" ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
 			for _, p := range sep {
@@ -642,6 +655,7 @@ func preambleCpp(module string, input []byte, mode int, tags string) []byte {
 				}
 			}
 		}
+		pre = strings.Replace(pre, "PREPRO", "", -1)
 		bb.WriteString(pre)
 	}
 

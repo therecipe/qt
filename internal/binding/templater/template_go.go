@@ -620,7 +620,20 @@ import "C"
 	//TODO: regexp
 	if mode == MOC {
 		pre := string(out)
-		for _, c := range parser.SortedClassesForModule(module, true) {
+		libsm := make(map[string]struct{}, 0)
+		for _, c := range parser.State.ClassMap {
+			if c.Pkg != "" && c.IsSubClassOfQObject() {
+				libsm[c.Module] = struct{}{}
+			}
+		}
+
+		var libs []string
+		for k := range libsm {
+			libs = append(libs, k)
+		}
+		libs = append(libs, module)
+
+		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
 			hName := c.Hash()
 			sep := []string{"\n", "(", "_", "callback", "C."}
 			for _, p := range sep {

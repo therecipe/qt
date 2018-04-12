@@ -57,7 +57,20 @@ func HTemplate(m string, mode int, tags string) []byte {
 	if mode == MOC {
 		pre := bb.String()
 		bb.Reset()
-		for _, c := range parser.SortedClassesForModule(m, true) {
+		libsm := make(map[string]struct{}, 0)
+		for _, c := range parser.State.ClassMap {
+			if c.Pkg != "" && c.IsSubClassOfQObject() {
+				libsm[c.Module] = struct{}{}
+			}
+		}
+
+		var libs []string
+		for k := range libsm {
+			libs = append(libs, k)
+		}
+		libs = append(libs, m)
+
+		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
 			hName := c.Hash()
 			sep := []string{" ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
 			for _, p := range sep {
