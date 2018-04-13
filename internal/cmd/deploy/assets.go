@@ -13,6 +13,7 @@ import (
 
 	"golang.org/x/crypto/ssh"
 
+	"github.com/therecipe/qt/internal/cmd/rcc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -156,6 +157,20 @@ func darwin_pkginfo() string {
 }
 
 //ios
+
+func ios_c_main_wrapper() string {
+	bb := new(bytes.Buffer)
+	bb.WriteString("#include \"libgo.h\"\n")
+	for _, n := range rcc.ResourceNames {
+		fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+	}
+	bb.WriteString("int main(int argc, char *argv[]) {\n")
+	for _, n := range rcc.ResourceNames {
+		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+	}
+	bb.WriteString("go_main_wrapper();\n}")
+	return bb.String()
+}
 
 func ios_plist(name string) string {
 	return fmt.Sprintf(`<?xml version="1.0" encoding="UTF-8"?>
@@ -526,60 +541,6 @@ func ios_xcodeproject(depPath string) string {
 	rootObject = 254BB8361B1FD08900C56DE9 /* Project object */;
 }
 `, depPath, utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-}
-
-func ios_plugins() string {
-	return `#include <QtPlugin>
-Q_IMPORT_PLUGIN(QIOSIntegrationPlugin)
-Q_IMPORT_PLUGIN(AVFServicePlugin)
-Q_IMPORT_PLUGIN(AVFMediaPlayerServicePlugin)
-Q_IMPORT_PLUGIN(AudioCaptureServicePlugin)
-Q_IMPORT_PLUGIN(CoreAudioPlugin)
-Q_IMPORT_PLUGIN(QM3uPlaylistPlugin)
-//Q_IMPORT_PLUGIN(ContextPlugin)
-//Q_IMPORT_PLUGIN(QDDSPlugin)
-Q_IMPORT_PLUGIN(QGifPlugin)
-Q_IMPORT_PLUGIN(QICNSPlugin)
-Q_IMPORT_PLUGIN(QICOPlugin)
-Q_IMPORT_PLUGIN(QJpegPlugin)
-Q_IMPORT_PLUGIN(QMacJp2Plugin)
-Q_IMPORT_PLUGIN(QTgaPlugin)
-Q_IMPORT_PLUGIN(QTiffPlugin)
-Q_IMPORT_PLUGIN(QWbmpPlugin)
-Q_IMPORT_PLUGIN(QWebpPlugin)
-Q_IMPORT_PLUGIN(QQmlDebuggerServiceFactory)
-Q_IMPORT_PLUGIN(QQmlInspectorServiceFactory)
-Q_IMPORT_PLUGIN(QLocalClientConnectionFactory)
-Q_IMPORT_PLUGIN(QQmlNativeDebugConnectorFactory)
-Q_IMPORT_PLUGIN(QQuickProfilerAdapterFactory)
-Q_IMPORT_PLUGIN(QQmlProfilerServiceFactory)
-Q_IMPORT_PLUGIN(QQmlDebugServerFactory)
-Q_IMPORT_PLUGIN(QTcpServerConnectionFactory)
-//Q_IMPORT_PLUGIN(QGenericEnginePlugin)
-`
-}
-
-func ios_qmlplugins() string {
-	return `#include <QtPlugin>
-Q_IMPORT_PLUGIN(QtQuick2Plugin)
-Q_IMPORT_PLUGIN(QMultimediaDeclarativeModule)
-Q_IMPORT_PLUGIN(QtQuickLayoutsPlugin)
-Q_IMPORT_PLUGIN(QtQuickControls2Plugin)
-Q_IMPORT_PLUGIN(QtQuickControls2MaterialStylePlugin)
-Q_IMPORT_PLUGIN(QtQuickControls2UniversalStylePlugin)
-Q_IMPORT_PLUGIN(QtQuick2DialogsPlugin)
-Q_IMPORT_PLUGIN(QtQuickControls1Plugin)
-Q_IMPORT_PLUGIN(QmlFolderListModelPlugin)
-Q_IMPORT_PLUGIN(QmlSettingsPlugin)
-Q_IMPORT_PLUGIN(QtQuickTemplates2Plugin)
-Q_IMPORT_PLUGIN(QtQuick2DialogsPrivatePlugin)
-Q_IMPORT_PLUGIN(QtQuick2WindowPlugin)
-Q_IMPORT_PLUGIN(QtQmlModelsPlugin)
-Q_IMPORT_PLUGIN(QtQuickExtrasPlugin)
-Q_IMPORT_PLUGIN(QtGraphicalEffectsPlugin)
-Q_IMPORT_PLUGIN(QtGraphicalEffectsPrivatePlugin)
-Q_IMPORT_PLUGIN(QWebViewModule)
-`
 }
 
 func ios_qtconf() string {

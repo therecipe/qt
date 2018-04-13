@@ -468,7 +468,7 @@ func bundle(mode, target, path, name, depPath string) {
 			t = "x86_64"
 		}
 
-		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp", target+"_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
 		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
 		cmd.Dir = depPath

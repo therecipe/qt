@@ -104,7 +104,7 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
 	Log.WithFields(fields).Debug("Execute")
 	out, err := cmd.CombinedOutput()
-	if err != nil {
+	if err != nil && !strings.Contains(string(out), "No template (-t) specified") {
 		Log.WithError(err).WithFields(fields).Error("failed to run command")
 		println(string(out))
 	}

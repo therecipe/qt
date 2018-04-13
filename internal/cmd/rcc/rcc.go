@@ -17,7 +17,10 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+var ResourceNames []string
+
 func Rcc(path, target, tagsCustom, output_dir string) {
+	ResourceNames = make([]string, 0)
 	rcc(path, target, tagsCustom, output_dir, true)
 }
 
@@ -116,8 +119,12 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	}
 
 	name := strings.TrimSpace(utils.RunCmd(nameCmd, "run go list"))
+	for _, s := range []string{"/", ".", "-"} {
+		name = strings.Replace(name, s, "_", -1)
+	}
+	ResourceNames = append(ResourceNames, name)
 
-	rcc := exec.Command(utils.ToolPath("rcc", target), "-name", strings.Replace(name, "/", "_", -1), "-o", rccCpp)
+	rcc := exec.Command(utils.ToolPath("rcc", target), "-name", name, "-o", rccCpp)
 	rcc.Args = append(rcc.Args, fileList...)
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc *.cpp on %v for %v", runtime.GOOS, target))
 
