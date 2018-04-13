@@ -640,7 +640,7 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 		if strings.HasPrefix(t, "[]") && t != "[]string" {
 			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)
 			if pureGoType == "" {
-				return fmt.Sprintf("QVector<%v>", o), ""
+				return fmt.Sprintf("QList<%v>", o), ""
 			}
 		}
 		if strings.HasPrefix(t, "map[") {
