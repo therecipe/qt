@@ -72,7 +72,7 @@ func QT_FAT() bool {
 }
 
 func QT_STUB() bool {
-	return (os.Getenv("QT_STUB") == "true" || QT_MSYS2()) && !QT_FAT()
+	return os.Getenv("QT_STUB") == "true" && !QT_FAT()
 }
 
 func QT_DEBUG() bool {

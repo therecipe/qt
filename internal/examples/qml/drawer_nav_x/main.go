@@ -8,12 +8,16 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
+	"github.com/therecipe/qt/quickcontrols2"
 )
 
 func main() {
 	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
-	os.Setenv("QT_QUICK_CONTROLS_STYLE", "material")
 	gui.NewQGuiApplication(len(os.Args), os.Args)
+
+	if quickcontrols2.QQuickStyle_Name() == "" {
+		quickcontrols2.QQuickStyle_SetStyle("Material")
+	}
 
 	var translator = core.NewQTranslator(nil)
 	if translator.Load2(core.NewQLocale(), "drawer_nav_x", "_", ":/translations", ".qm") {

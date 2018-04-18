@@ -13,7 +13,7 @@ func QT_MSYS2() bool {
 
 func QT_MSYS2_DIR() string {
 	if dir, ok := os.LookupEnv("QT_MSYS2_DIR"); ok {
-		if _, ok := os.LookupEnv("QT_MSYS2_ARCH"); QT_MSYS2_ARCH() == "amd64" || (!ok && runtime.GOARCH == "amd64") {
+		if QT_MSYS2_ARCH() == "amd64" {
 			return filepath.Join(dir, "mingw64")
 		}
 		return filepath.Join(dir, "mingw32")
@@ -23,7 +23,7 @@ func QT_MSYS2_DIR() string {
 		prefix = "msys64"
 	}
 	suffix := "mingw32"
-	if _, ok := os.LookupEnv("QT_MSYS2_ARCH"); QT_MSYS2_ARCH() == "amd64" || (!ok && runtime.GOARCH == "amd64") {
+	if QT_MSYS2_ARCH() == "amd64" {
 		suffix = "mingw64"
 	}
 	return fmt.Sprintf("%v\\%v\\%v", windowsSystemDrive(), prefix, suffix)
@@ -34,10 +34,11 @@ func IsMsys2QtDir() bool {
 }
 
 func QT_MSYS2_ARCH() string {
-	if arch, ok := os.LookupEnv("QT_MSYS2_ARCH"); ok {
+	arch, ok := os.LookupEnv("QT_MSYS2_ARCH")
+	if ok {
 		return arch
 	}
-	if MSYSTEM() == "MINGW64" {
+	if MSYSTEM() == "MINGW64" || (!ok && runtime.GOARCH == "amd64") {
 		return "amd64"
 	}
 	return "386"

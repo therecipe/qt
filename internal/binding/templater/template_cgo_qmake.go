@@ -262,10 +262,10 @@ func createMakefile(module, path, target string, mode int) {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
 			if (utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build windows") {
-					utils.Save(pPath, "// +build windows\n"+content)
+					utils.Save(pPath, "// +build windows\r\n"+content)
 				}
 			}
-			if mode == MOC || mode == RCC || !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
+			if mode == MOC || mode == RCC || !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) || (!strings.HasPrefix(module, "Q") && strings.Contains(pPath, "_qml_")) {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -463,6 +463,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
 			}
+			tmp = strings.Replace(tmp, ",console ", ",windows ", -1)
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {
 				tmp = strings.Replace(tmp, "arm64", "armv7", -1)
