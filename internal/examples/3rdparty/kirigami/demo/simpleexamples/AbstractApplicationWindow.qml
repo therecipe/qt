@@ -19,7 +19,7 @@
 
 import QtQuick 2.1
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kirigami 2.4 as Kirigami
 
 Kirigami.AbstractApplicationWindow {
     id: root

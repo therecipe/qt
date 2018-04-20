@@ -20,50 +20,61 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4 as Kirigami
 
-ScrollablePage {
+Kirigami.ScrollablePage {
     id: page
     Layout.fillWidth: true
     implicitWidth: applicationWindow().width
     title: "Text fields"
 
     ColumnLayout {
-        objectName: "pollo"
-        width: page.width
-        spacing: Units.smallSpacing
+        Kirigami.FormLayout {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
 
-        Label {
-            text: "Placeholder text:"
+            width: page.width
+            spacing: Units.smallSpacing
+
+            Controls.TextField {
+                placeholderText: "Search..."
+                Kirigami.FormData.label: "Placeholder text:"
+            }
+            Controls.TextField {
+                text: "Disabled"
+                enabled: false
+                Kirigami.FormData.label: "Disabled field:"
+            }
+            Controls.TextField {
+                echoMode: TextInput.Password
+                Kirigami.FormData.label: "Password:"
+            }
+
+            Controls.TextField {
+                inputMask: "99999999"
+                inputMethodHints: Qt.ImhDigitsOnly
+                Kirigami.FormData.label: "Numbers:"
+            }
         }
-        Controls.TextField {
-            placeholderText: "Search..."
-            Layout.alignment: Qt.AlignHCenter
-        }
-        Label {
-            text: "Disabled field:"
-        }
-        Controls.TextField {
-            text: "Disabled"
-            enabled: false
-            Layout.alignment: Qt.AlignHCenter
-        }
-        Label {
-            text: "Password:"
-        }
-        Controls.TextField {
-            echoMode: TextInput.Password
-            Layout.alignment: Qt.AlignHCenter
-        }
-        Label {
+
+        Controls.Label {
             text: "Text area:"
         }
+
         Controls.TextArea {
+            id: field
             Layout.fillWidth: true
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu nisl ac nibh malesuada pretium ut sit amet libero. Nulla libero arcu, pharetra a dignissim nec, iaculis sit amet metus. Suspendisse quis justo efficitur, pharetra dui maximus, aliquam dolor. Vestibulum vel imperdiet turpis. Mauris ut leo mauris. Praesent ut libero sollicitudin, tincidunt nisi a, efficitur erat. Curabitur lacinia leo et tempor aliquam."
-            Layout.minimumWidth: Units.gridUnit * 12
-            Layout.minimumHeight: Units.gridUnit * 12
-            wrapMode: TextArea.WordWrap
+            Layout.minimumWidth: Kirigami.Units.gridUnit * 12
+            Layout.minimumHeight: Kirigami.Units.gridUnit * 12
+            wrapMode: Controls.TextArea.WordWrap
+            //this to make text selection work on Android
+            //QQC2 should do this by itself
+            onPressAndHold: {
+                forceActiveFocus();
+                cursorPosition = positionAt(event.x, event.y);
+                selectWord();
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Magnus Groß <magnus.gross21@gmail.com>
+ * Copyright (C) 2018 Magnus Groß <magnus.gross21@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,18 +12,14 @@
  * $END_LICENSE$
  */
 
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Controls.Material 2.0
-import Fluid.Controls 1.0
-import Fluid.Material 1.0
+import QtQuick 2.10
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
+import Fluid.Controls 1.0 as FluidControls
 
 Item {
-    SearchBar {
+    FluidControls.SearchBar {
         id: searchbar
-        ListModel {
-            id: searchResults
-        }
         onSearchTextChanged: {
             if ("fluid".startsWith(searchText)) {
                 searchSuggestions.append({text: "fluid"});
@@ -43,20 +39,20 @@ Item {
     }
     ListView {
         id: resultsListView
-        visible: searchResults.count != 0
+        visible: searchbar.searchResults.count !== 0
         anchors.top: searchbar.bottom
         x: searchbar.x
         width: parent.width
         height: parent.height
-        model: searchResults
+        model: searchbar.searchResults
         clip: true
         delegate: Item {
             width: parent.width
             height: 128
-            Card {
+            FluidControls.Card {
                 anchors.fill: parent
                 anchors.margins: 8
-                Ripple {
+                FluidControls.Ripple {
                     anchors.fill: parent
                     onClicked: console.log(model.uri)
                 }
@@ -64,10 +60,10 @@ Item {
                     anchors.fill: parent
                     anchors.margins: 16
                     spacing: 16
-                    TitleLabel {
+                    FluidControls.TitleLabel {
                         text: model.title
                     }
-                    BodyLabel {
+                    FluidControls.BodyLabel {
                         width: parent.width
                         text: model.body
                         wrapMode: Text.WordWrap

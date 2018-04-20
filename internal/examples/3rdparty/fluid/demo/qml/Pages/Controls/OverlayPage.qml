@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,10 +12,9 @@
  * $END_LICENSE$
  */
 
-import QtQuick 2.0
-import QtQuick.Controls.Material 2.0
+import QtQuick 2.10
+import QtQuick.Controls.Material 2.3
 import Fluid.Controls 1.0 as FluidControls
-import Fluid.Material 1.0 as FluidMaterial
 
 Item {
     Image {
@@ -24,7 +23,7 @@ Item {
         width: 400
         height: 250
 
-        FluidMaterial.Ripple {
+        FluidControls.Ripple {
             anchors.fill: parent
             onClicked: overlayView.open()
         }
@@ -40,7 +39,7 @@ Item {
             anchors.fill: parent
             source: Qt.resolvedUrl("qrc:/images/balloon.jpg")
 
-            FluidMaterial.Ripple {
+            FluidControls.Ripple {
                 anchors.fill: parent
                 onClicked: overlayView.close()
             }
@@ -53,10 +52,11 @@ Item {
 
             Repeater {
                 model: ["content/add", "image/edit", "action/delete"]
-                delegate: FluidControls.IconButton {
+                delegate: FluidControls.ToolButton {
                     anchors.verticalCenter: parent.verticalCenter
-                    iconName: modelData
-                    iconColor: Material.iconColor
+
+                    icon.source: FluidControls.Utils.iconUrl(modelData)
+                    icon.color: Material.iconColor
 
                     Material.theme: Material.Dark
                 }

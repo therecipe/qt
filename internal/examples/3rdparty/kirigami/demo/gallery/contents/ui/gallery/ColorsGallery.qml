@@ -19,9 +19,11 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
+import QtQuick.Controls 2.0 as Controls
 
 ScrollablePage {
+    id: page
     title: "Colors"
 
    // leftPadding: 20//Units.gridUnit
@@ -29,43 +31,86 @@ ScrollablePage {
         var idx = subject.indexOf(predicate);
         return idx + predicate.length == subject.length;
     }
+
     function getkeys() {
-        var keys = [];
-        for(var v in Theme) {
-            if (endsWith(v, "Color"))
-                keys.push(v);
+         var keys = ["textColor",
+            "disabledTextColor",
+            "highlightedTextColor",
+            "activeTextColor",
+            "linkColor",
+            "visitedLinkColor",
+            "negativeTextColor",
+            "neutralTextColor",
+            "positiveTextColor",
+            "backgroundColor",
+            "highlightColor",
+            "focusColor",
+            "hoverColor"];
+
+            return keys;
+    }
+
+    function setName(id) {
+        switch(id) {
+        case 0:
+            return "Theme.View";
+        case 1:
+            return "Theme.Window";
+        case 2:
+            return "Theme.Button";
+        case 3:
+            return "Theme.Selection";
+        case 4:
+            return "Theme.Tooltip";
+        case 5:
+            return "Theme.Complementary";
         }
-        keys.sort();
-        return keys;
     }
 
     Column {
-        Flow {
-            id: view
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: Math.floor(parent.width / (Units.gridUnit * 9)) * (Units.gridUnit * 9)
-            Repeater {
-                model: getkeys()
+        Heading {
+            text: "Colors by Theme.colorSet"
+        }
+        Repeater {
+            model: Theme.Complementary + 1
+            delegate: Column {
+                width: parent.width
+                Heading {
+                    level: 2
+                    text: setName(modelData)
+                }
+                Flow {
+                    id: view
+                    Theme.colorSet: modelData
+                    Theme.inherit: false
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: Math.floor(parent.width / (Units.gridUnit * 9)) * (Units.gridUnit * 9)
+                    Repeater {
+                        model: page.getkeys()
 
-                delegate: ColumnLayout {
-                    width: Units.gridUnit * 9
-                    Rectangle {
-                        Layout.alignment: Qt.AlignHCenter
-                        width: Units.gridUnit * 7
-                        height: Units.gridUnit * 3
-                        color: Theme[modelData]
-                        border {
-                            width: 1
-                            color: "black"
+                        delegate: ColumnLayout {
+                            width: Units.gridUnit * 9
+                            Rectangle {
+                                Layout.alignment: Qt.AlignHCenter
+                                width: Units.gridUnit * 7
+                                height: Units.gridUnit * 3
+                                color: Theme[modelData]
+                                border {
+                                    width: 1
+                                    color: "black"
+                                }
+                            }
+                            Controls.Label {
+                                Theme.colorSet: Theme.Window
+                                Theme.inherit: false
+                                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                                text: modelData
+                            }
+                            Item {
+                                width: 1
+                                height: Units.smallSpacing
+                            }
                         }
-                    }
-                    Label {
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                        text: modelData
-                    }
-                    Item {
-                        width: 1
-                        height: Units.smallSpacing
                     }
                 }
             }

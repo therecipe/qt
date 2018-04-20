@@ -20,14 +20,16 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
-    id: page
+    id: root
     Layout.fillWidth: true
     //implicitWidth: Units.gridUnit * (Math.floor(Math.random() * 35) + 8)
 
-    title: "Multiple Columns"
+    property int depth: 1
+
+    title: "Page " + depth
 
     actions {
         main: Action {
@@ -67,10 +69,10 @@ ScrollablePage {
     }
 
     ColumnLayout {
-        width: page.width
+        width: root.width
         spacing: Units.smallSpacing
 
-        Label {
+        Controls.Label {
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
             text: "This page is used to test multiple columns: you can push and pop an arbitrary number of pages, each new page will have a random implicit width between 8 and 35 grid units.\nIf you enlarge the window enough, you can test how the application behaves with multiple columns."
@@ -82,7 +84,7 @@ ScrollablePage {
         Controls.Button {
             text: "Push Another Page"
             anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: pageStack.push(Qt.resolvedUrl("MultipleColumnsGallery.qml"));
+            onClicked: pageStack.push(Qt.resolvedUrl("MultipleColumnsGallery.qml"), {"depth": root.depth + 1});
         }
         Controls.Button {
             text: "Pop A Page"
@@ -93,11 +95,11 @@ ScrollablePage {
             anchors.horizontalCenter: parent.horizontalCenter
             Controls.TextField {
                 id: edit
-                text: page.title
+                text: root.title
             }
             Controls.Button {
                 text: "Rename Page"
-                onClicked: page.title = edit.text;
+                onClicked: root.title = edit.text;
             }
         }
     }

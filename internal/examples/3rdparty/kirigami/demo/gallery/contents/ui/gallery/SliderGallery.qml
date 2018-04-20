@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
     id: page
@@ -55,7 +55,7 @@ ScrollablePage {
                 anchors.centerIn: parent
                 spacing: Units.smallSpacing
 
-                Label {
+                Controls.Label {
                     text: "Normal:"
                 }
                 Controls.Slider {
@@ -69,7 +69,7 @@ ScrollablePage {
                         text: slider.position.toFixed(1)
                     }
                 }
-                Label {
+                Controls.Label {
                     text: "Disabled:"
                 }
                 Controls.Slider {
@@ -78,7 +78,7 @@ ScrollablePage {
                     value: 2
                     to: 5.0
                 }
-                Label {
+                Controls.Label {
                     text: "Thickmarks:"
                 }
                 Controls.Slider {
@@ -93,7 +93,8 @@ ScrollablePage {
                         text: slider2.position.toFixed(1)
                     }
                 }
-                Label {
+                Controls.RangeSlider {}
+                Controls.Label {
                     text: "Vertical:"
                 }
                 RowLayout {

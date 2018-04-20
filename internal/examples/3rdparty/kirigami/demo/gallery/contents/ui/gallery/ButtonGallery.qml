@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
     id: page
@@ -41,7 +41,8 @@ ScrollablePage {
             iconName: "go-previous"
             text: "Left Action Text"
             onTriggered: {
-                showPassiveNotification("Left action triggered")
+                showPassiveNotification("
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id risus id augue euismod accumsan. Nunc vestibulum placerat bibendum. Morbi commodo auctor varius. Donec molestie euismod ultrices. Sed facilisis augue nec eros auctor, vitae mattis quam rhoncus. Nam ut erat diam. Curabitur iaculis accumsan magna, eget fermentum massa scelerisque eu. Cras elementum erat non erat euismod accumsan. Vestibulum ac mi sed dui finibus pulvinar. Vivamus dictum, leo sed lobortis porttitor, nisl magna faucibus orci, sit amet euismod arcu elit eget est. Duis et vehicula nibh. In arcu sapien, laoreet sit amet porttitor non, rhoncus vel magna. Suspendisse imperdiet consectetur est nec ornare. Pellentesque bibendum sapien at erat efficitur vehicula. Morbi sed porta nibh. Vestibulum ut urna ut dolor sagittis mattis.")
             }
         }
         right: Action {
@@ -108,19 +109,30 @@ ScrollablePage {
     OverlaySheet {
         id: sheet
         onSheetOpenChanged: page.actions.main.checked = sheetOpen
+        header: Heading {
+            text: "Title"
+        }
+        footer: RowLayout {
+            Controls.Label {
+                text: "Footer:"
+            }
+            Controls.TextField {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
         ColumnLayout {
-            Label {
+            Controls.Label {
                 Layout.fillWidth: true
                 wrapMode: Text.WordWrap
-                text: "
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id risus id augue euismod accumsan. Nunc vestibulum placerat bibendum. Morbi commodo auctor varius. Donec molestie euismod ultrices. Sed facilisis augue nec eros auctor, vitae mattis quam rhoncus. Nam ut erat diam. Curabitur iaculis accumsan magna, eget fermentum massa scelerisque eu. Cras elementum erat non erat euismod accumsan. Vestibulum ac mi sed dui finibus pulvinar. Vivamus dictum, leo sed lobortis porttitor, nisl magna faucibus orci, sit amet euismod arcu elit eget est. Duis et vehicula nibh. In arcu sapien, laoreet sit amet porttitor non, rhoncus vel magna. Suspendisse imperdiet consectetur est nec ornare. Pellentesque bibendum sapien at erat efficitur vehicula. Morbi sed porta nibh. Vestibulum ut urna ut dolor sagittis mattis."
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id risus id augue euismod accumsan. Nunc vestibulum placerat bibendum. Morbi commodo auctor varius. Donec molestie euismod ultrices. Sed facilisis augue nec eros auctor, vitae mattis quam rhoncus. Nam ut erat diam. Curabitur iaculis accumsan magna, eget fermentum massa scelerisque eu. Cras elementum erat non erat euismod accumsan. Vestibulum ac mi sed dui finibus pulvinar. Vivamus dictum, leo sed lobortis porttitor, nisl magna faucibus orci, sit amet euismod arcu elit eget est. Duis et vehicula nibh. In arcu sapien, laoreet sit amet porttitor non, rhoncus vel magna. Suspendisse imperdiet consectetur est nec ornare. Pellentesque bibendum sapien at erat efficitur vehicula. Morbi sed porta nibh. Vestibulum ut urna ut dolor sagittis mattis."
             }
 
             Controls.TextField {
                 Layout.alignment: Qt.AlignHCenter
             }
 
-            Label {
+            Controls.Label {
                 Layout.fillWidth: true
                 wrapMode: Text.WordWrap
                 text: "
@@ -144,7 +156,7 @@ ScrollablePage {
         spacing: Units.smallSpacing
 
         Controls.Button {
-            text: "Open Bottom drawer"
+            text: "Open &Bottom drawer"
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: bottomDrawer.open()
         }

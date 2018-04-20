@@ -19,7 +19,8 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.1 as Kirigami
+import QtQuick.Controls 2.0 as Controls
+import org.kde.kirigami 2.4 as Kirigami
 
 Kirigami.ScrollablePage {
     id: page
@@ -53,12 +54,24 @@ Kirigami.ScrollablePage {
     }
 
     background: Rectangle {
-        color: Kirigami.Theme.viewBackgroundColor
+        color: Kirigami.Theme.backgroundColor
     }
     Kirigami.OverlaySheet {
         id: sheet
         onSheetOpenChanged: page.actions.main.checked = sheetOpen;
         parent: applicationWindow().overlay
+        header: Kirigami.Heading {
+            text: "Title"
+        }
+        footer: RowLayout {
+            Controls.Label {
+                text: "Footer:"
+            }
+            Controls.TextField {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
         ListView {
             model: 100
             implicitWidth: Kirigami.Units.gridUnit * 30
@@ -77,7 +90,7 @@ Kirigami.ScrollablePage {
         model: 200
         delegate: Kirigami.SwipeListItem {
             id: listItem
-            contentItem: Kirigami.Label {
+            contentItem: Controls.Label {
                 height: Math.max(implicitHeight, Kirigami.Units.iconSizes.smallMedium)
                 anchors.verticalCenter: parent.verticalCenter
                 text: "Item " + modelData
@@ -86,10 +99,12 @@ Kirigami.ScrollablePage {
             actions: [
                 Kirigami.Action {
                     iconName: "document-decrypt"
+                    text: "Action 1"
                     onTriggered: showPassiveNotification(model.text + " Action 1 clicked")
                 },
                 Kirigami.Action {
                     iconName: "mail-reply-sender"
+                    text: "Action 2"
                     onTriggered: showPassiveNotification(model.text + " Action 2 clicked")
                 }]
         }

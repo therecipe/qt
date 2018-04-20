@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,10 +12,10 @@
  * $END_LICENSE$
  */
 
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.10
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
+import QtQuick.Controls.Universal 2.3
 import Fluid.Controls 1.0
 import "Pages/Style"
 
@@ -45,6 +45,8 @@ Tab {
             model: ListModel {
                 ListElement { title: qsTr("Palette"); source: "qrc:/qml/Pages/Style/PalettePage.qml" }
                 ListElement { title: qsTr("Typography"); source: "qrc:/qml/Pages/Style/TypographyPage.qml" }
+                ListElement { title: qsTr("System Icons"); source: "qrc:/qml/Pages/Style/SystemIconsPage.qml" }
+                ListElement { title: qsTr("Material Icons"); source: "qrc:/qml/Pages/Style/IconsPage.qml" }
             }
             header: Subheader {
                 text: qsTr("Demos")

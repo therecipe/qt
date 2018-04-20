@@ -11,6 +11,11 @@ import (
 )
 
 func main() {
+	if _, ok := os.LookupEnv("QT_DIR"); !ok {
+		println("please export QT_DIR")
+		os.Exit(1)
+	}
+
 	if _, err := ioutil.ReadDir("StratifyQML"); err == nil {
 		println("StratifyQML already cloned")
 		os.Exit(1)
@@ -35,18 +40,18 @@ func main() {
 		var qmake string
 		switch target {
 		case "darwin":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.0", "clang_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.9.5", "clang_64", "bin", "qmake")
 
 		case "linux":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.0", "gcc_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.9.5", "gcc_64", "bin", "qmake")
 
 		case "android":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.0", "android_armv7", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.9.5", "android_armv7", "bin", "qmake")
 		}
 
 		ndkPATH, ndkOK := os.LookupEnv("ANDROID_NDK_DIR")
 
-		qCmd := exec.Command(qmake, "../StratifyLabs/UI/StratifyLabsUI.pro", "CONFIG-=android_install")
+		qCmd := exec.Command(qmake, "../StratifyLabs/StratifyLabsUI/StratifyLabsUI.pro", "CONFIG-=android_install")
 		qCmd.Dir = filepath.Join(pwd, "StratifyQML", target)
 		if ndkOK {
 			qCmd.Env = append(qCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)

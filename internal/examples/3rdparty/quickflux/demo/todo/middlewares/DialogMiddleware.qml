@@ -28,10 +28,12 @@ Middleware {
 
         if (type === ActionTypes.setShowCompletedTasks &&
             message.value === true) {
+            // If user want to show completed tasks, drop the action and show a dialog
             dialog.open();
             return;
         }
 
+        /// Pass the action to next middleware / store
         next(type, message);
     }
 

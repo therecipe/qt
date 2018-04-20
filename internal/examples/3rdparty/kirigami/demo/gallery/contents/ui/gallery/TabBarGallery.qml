@@ -20,7 +20,7 @@
 import QtQuick 2.1
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 Page {
     id: page
@@ -52,9 +52,9 @@ Page {
             model: 3
 
             Item {
-                Label {
+                Controls.Label {
                     width: parent.width
-                    wrapMode: Label.Wrap
+                    wrapMode: Controls.Label.Wrap
                     horizontalAlignment: Qt.AlignHCenter
                     text: "Page " + modelData
                 }

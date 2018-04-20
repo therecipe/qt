@@ -16,7 +16,16 @@
         <file alias="contents/ui/gallery/TabBarGallery.qml">../gallery/contents/ui/gallery/TabBarGallery.qml</file>
         <file alias="contents/ui/gallery/TextFieldGallery.qml">../gallery/contents/ui/gallery/TextFieldGallery.qml</file>
         <file alias="contents/ui/gallery/ColorsGallery.qml">../gallery/contents/ui/gallery/ColorsGallery.qml</file>
+        <file alias="contents/ui/gallery/CardsLayoutGallery.qml">../gallery/contents/ui/gallery/CardsLayoutGallery.qml</file>
+        <file alias="contents/ui/gallery/CardsListViewGallery.qml">../gallery/contents/ui/gallery/CardsListViewGallery.qml</file>
+        <file alias="contents/ui/gallery/CardsGridViewGallery.qml">../gallery/contents/ui/gallery/CardsGridViewGallery.qml</file>
+        <file alias="contents/ui/gallery/InlineMessagesGallery.qml">../gallery/contents/ui/gallery/InlineMessagesGallery.qml</file>
+        <file alias="contents/ui/gallery/MetricsGallery.qml">../gallery/contents/ui/gallery/MetricsGallery.qml</file>
+        <file alias="contents/ui/gallery/LayersGallery.qml">../gallery/contents/ui/gallery/LayersGallery.qml</file>
+        <file alias="contents/ui/gallery/FormLayoutGallery.qml">../gallery/contents/ui/gallery/FormLayoutGallery.qml</file>
         <file alias="contents/ui/ExampleApp.qml">../gallery/contents/ui/ExampleApp.qml</file>
+        <file alias="contents/ui/gallery/ColorSetGallery.qml">../gallery/contents/ui/gallery/ColorSetGallery.qml</file>
+        <file alias="contents/ui/DesktopExampleApp.qml">../gallery/contents/ui/DesktopExampleApp.qml</file>
         <file alias="metadata.desktop">../gallery/metadata.desktop</file>
         <file alias="qtquickcontrols2.conf">qtquickcontrols2.conf</file>
     </qresource>

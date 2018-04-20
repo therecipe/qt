@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,10 +12,10 @@
  * $END_LICENSE$
  */
 
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Controls.Material 2.0
-import QtQuick.Layouts 1.0
+import QtQuick 2.10
+import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
+import QtQuick.Layouts 1.3
 import Fluid.Core 1.0
 import Fluid.Controls 1.0
 import "../.."

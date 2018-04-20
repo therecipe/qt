@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
     id: page
@@ -64,7 +64,7 @@ ScrollablePage {
             columns: 2
             width: parent.width - Units.gridUnit*2
 
-            Label {
+            Controls.Label {
                 text: "Determinate:"
                 Layout.alignment: Qt.AlignRight
             }
@@ -74,7 +74,7 @@ ScrollablePage {
                 value: timer.value
                 Layout.maximumWidth: Units.gridUnit * 10
             }
-            Label {
+            Controls.Label {
                 text: "Indeterminate:"
                 Layout.alignment: Qt.AlignRight
             }
@@ -84,21 +84,21 @@ ScrollablePage {
                 indeterminate: true
                 Layout.maximumWidth: Units.gridUnit * 10
             }
-            Label {
+            Controls.Label {
                 text: "Busy indicator:"
                 Layout.alignment: Qt.AlignRight
             }
             Controls.BusyIndicator {
                 
             }
-            Label {
+            Controls.Label {
                 text: "Inactive indicator:"
                 Layout.alignment: Qt.AlignRight
             }
             Controls.BusyIndicator {
                 running: false
             }
-            Label {
+            Controls.Label {
                 text: "Custom size:"
                 Layout.alignment: Qt.AlignRight
             }

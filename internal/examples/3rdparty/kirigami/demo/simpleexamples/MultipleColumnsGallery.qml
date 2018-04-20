@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
     id: page
@@ -48,7 +48,7 @@ ScrollablePage {
         width: page.width
         spacing: Units.smallSpacing
 
-        Label {
+        Controls.Label {
             Layout.fillWidth: true
             wrapMode: Text.WordWrap
             text: "This page is used to test multiple columns: you can push and pop an arbitrary number of pages, each new page will have a random implicit width between 8 and 35 grid units.\nIf you enlarge the window enough, you can test how the application behaves with multiple columns."
@@ -57,7 +57,7 @@ ScrollablePage {
             Layout.minimumWidth: Units.gridUnit *2
             Layout.minimumHeight: Layout.minimumWidth
         }
-        Label {
+        Controls.Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: "Page implicitWidth: " + page.implicitWidth
         }

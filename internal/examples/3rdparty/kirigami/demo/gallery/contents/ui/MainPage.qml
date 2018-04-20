@@ -18,16 +18,16 @@
  */
 
 import QtQuick 2.1
-import QtQuick.Controls 2.0 as Controls
+import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kirigami 2.4 as Kirigami
 
 Kirigami.ScrollablePage {
     id: pageRoot
 
     implicitWidth: Kirigami.Units.gridUnit * 20
     background: Rectangle {
-        color: Kirigami.Theme.viewBackgroundColor
+        color: Kirigami.Theme.backgroundColor
     }
 
     title: "Gallery"
@@ -60,6 +60,10 @@ Kirigami.ScrollablePage {
     ListView {
         id: mainListView
         currentIndex: -1
+        //currentIndex has focus, openPageIndex is the one actually open now
+        property int openPageIndex: -1
+        activeFocusOnTab: true
+        focus: true
 
         model: ListModel {
             ListElement {
@@ -95,6 +99,26 @@ Kirigami.ScrollablePage {
                 component: "TextField"
             }
             ListElement {
+                text: "Form Layout"
+                component: "FormLayout"
+            }
+            ListElement {
+                text: "Cards Layout"
+                component: "CardsLayout"
+            }
+            ListElement {
+                text: "List view of cards"
+                component: "CardsListView"
+            }
+            ListElement {
+                text: "Grid view of cards"
+                component: "CardsGridView"
+            }
+            ListElement {
+                text: "Inline Messages"
+                component: "InlineMessages"
+            }
+            ListElement {
                 text: "Multiple Columns"
                 component: "MultipleColumns"
             }
@@ -118,6 +142,14 @@ Kirigami.ScrollablePage {
                 text: "Colors"
                 component: "Colors"
             }
+            ListElement {
+                text: "Color Sets"
+                component: "ColorSet"
+            }
+            ListElement {
+                text: "Metrics"
+                component: "Metrics"
+            }
         }
         delegate: Kirigami.BasicListItem {
             id: listItem
@@ -125,15 +157,17 @@ Kirigami.ScrollablePage {
             reserveSpaceForIcon: false
             label: model.text
 
+            Accessible.role: Accessible.MenuItem
             property Item ownPage
             onClicked: {
                 if (!model.component) {
                     return;
                 }
                 root.pageStack.pop(pageRoot);
-                ownPage = root.pageStack.push(Qt.resolvedUrl("gallery/" + model.component + "Gallery.qml"));
+                root.pageStack.push(Qt.resolvedUrl("gallery/" + model.component + "Gallery.qml"));
+                mainListView.openPageIndex = index;
             }
-            checked: ownPage && root.pageStack.lastItem == ownPage
+            checked: mainListView.openPageIndex == index
             highlighted: focus && ListView.isCurrentItem
         }
     }

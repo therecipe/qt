@@ -109,6 +109,7 @@ ApplicationWindow {
           EDrawerHeading { label: "Models"; icon: Fa.Icon.database; }
           EDrawerItem { label: "JsonModels"; }
           EDrawerItem { label: "Lists"; }
+          EDrawerItem { label: "Charts"; }
           EDrawerItem { label: "Tables"; }
         }
       }
@@ -149,7 +150,7 @@ ApplicationWindow {
       id: animationContainer;
       style: "block fill";
 
-      screen: "Introduction";
+      screen: "Charts";
 
       onScreenChanged: {
         drawer.setActiveItem(screen);
@@ -187,6 +188,7 @@ ApplicationWindow {
 
         JsonModels{},
         Lists{},
+        Charts{},
         Tables{}
       ]
     }
@@ -283,7 +285,7 @@ ApplicationWindow {
   Component.onCompleted: {
     STheme.brand_primary = "#244E99";
     STheme.brand_secondary = "#383838";
-    screen = "Introduction";
+    screen = "Charts";
     STheme.updateScreenSize(width);
   }
 

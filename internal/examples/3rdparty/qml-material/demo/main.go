@@ -23,7 +23,7 @@ func main() {
 		quickcontrols2.QQuickStyle_SetStyle("Material")
 	}
 
-	var engine = qml.NewQQmlApplicationEngine(nil)
+	engine := qml.NewQQmlApplicationEngine(nil)
 	engine.Load(core.NewQUrl3("qrc:/main.qml", 0))
 
 	gui.QGuiApplication_Exec()

@@ -11,11 +11,16 @@ Item {
     MiddlewareList {
         applyTarget: AppActions
 
+        SystemMiddleware {
+            mainWindow: mainWindow
+        }
+
         DialogMiddleware {
         }
     }
 
     MainWindow {
+        id: mainWindow
     }
 }
 

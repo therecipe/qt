@@ -20,7 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Layouts 1.2
-import org.kde.kirigami 2.0
+import org.kde.kirigami 2.4
 
 ScrollablePage {
     id: page
@@ -63,18 +63,18 @@ ScrollablePage {
                         height: 1
                         Layout.fillHeight: true
                     }
-                    Label {
+                    Controls.Label {
                         text: "On"
                         Layout.preferredHeight: radio1.height
                     }
-                    Label {
+                    Controls.Label {
                         text: "Off"
                         Layout.preferredHeight: radio1.height
                     }
                 }
                 ColumnLayout {
                     id: column1
-                    Label {
+                    Controls.Label {
                         text: "Normal"
                     }
                     Controls.RadioButton {
@@ -90,7 +90,7 @@ ScrollablePage {
                 ColumnLayout {
                     id: column2
                     enabled: false
-                    Label {
+                    Controls.Label {
                         text: "Disabled"
                     }
                     Controls.RadioButton {

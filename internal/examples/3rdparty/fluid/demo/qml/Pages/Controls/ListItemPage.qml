@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+ * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,8 +12,8 @@
  * $END_LICENSE$
  */
 
-import QtQuick 2.0
-import QtQuick.Controls 2.0
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import Fluid.Controls 1.0
 import "../.."
 
@@ -21,11 +21,11 @@ Page {
     ListView {
         anchors.fill: parent
         model: ListModel {
-            ListElement { title: "List Item 1"; source: "qrc:/qml/Pages/Compound/SubPage.qml" }
-            ListElement { title: "List Item 2"; source: "qrc:/qml/Pages/Compound/SubPage.qml" }
-            ListElement { title: "List Item 3"; source: "qrc:/qml/Pages/Compound/SubPage.qml" }
-            ListElement { title: "List Item 4"; source: "qrc:/qml/Pages/Compound/SubPage.qml" }
-            ListElement { title: "List Item 5"; source: "qrc:/qml/Pages/Compound/SubPage.qml" }
+            ListElement { title: "List Item 1"; source: "qrc:/qml/Pages/Controls/SubPage.qml" }
+            ListElement { title: "List Item 2"; source: "qrc:/qml/Pages/Controls/SubPage.qml" }
+            ListElement { title: "List Item 3"; source: "qrc:/qml/Pages/Controls/SubPage.qml" }
+            ListElement { title: "List Item 4"; source: "qrc:/qml/Pages/Controls/SubPage.qml" }
+            ListElement { title: "List Item 5"; source: "qrc:/qml/Pages/Controls/SubPage.qml" }
         }
         header: Subheader {
             text: "Header"

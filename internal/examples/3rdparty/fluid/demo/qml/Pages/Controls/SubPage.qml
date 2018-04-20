@@ -1,7 +1,7 @@
 /*
  * This file is part of Fluid.
  *
- * Copyright (C) 2017 Michael Spencer <sonrisesoftware@gmail.com>
+ * Copyright (C) 2018 Michael Spencer <sonrisesoftware@gmail.com>
  *
  * $BEGIN_LICENSE:MPL2$
  *
@@ -12,7 +12,7 @@
  * $END_LICENSE$
  */
 
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.3
 import Fluid.Controls 1.0 as FluidControls
 
 FluidControls.Page {
@@ -20,7 +20,7 @@ FluidControls.Page {
 
     actions: [
         FluidControls.Action {
-            iconName: "action/settings"
+            icon.source: FluidControls.Utils.iconUrl("action/settings")
             toolTip: qsTr("Settings")
             hoverAnimation: true
         }
