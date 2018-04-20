@@ -139,78 +139,103 @@ func (ptr *QInAppProduct) Title() string {
 	return ""
 }
 
-func (ptr *QInAppProduct) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QInAppProduct___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QInAppProduct) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QInAppProduct___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QInAppProduct) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QInAppProduct___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QInAppProduct) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppProduct___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QInAppProduct) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QInAppProduct___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppProduct) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppProduct) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppProduct) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppProduct___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppProduct) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppProduct___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppProduct) __findChildren_newList2() unsafe.Pointer {
 	return C.QInAppProduct___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QInAppProduct) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppProduct) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppProduct) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppProduct___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppProduct) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppProduct___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppProduct) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppProduct___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppProduct) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppProduct) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppProduct) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppProduct___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppProduct) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppProduct___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppProduct) __findChildren_newList() unsafe.Pointer {
 	return C.QInAppProduct___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppProduct) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppProduct) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppProduct___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppProduct) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppProduct___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppProduct) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppProduct___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppProduct) __children_newList() unsafe.Pointer {
@@ -598,78 +623,103 @@ func (ptr *QInAppStore) RegisteredProduct(identifier string) *QInAppProduct {
 	return nil
 }
 
-func (ptr *QInAppStore) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QInAppStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QInAppStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QInAppStore___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QInAppStore) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QInAppStore___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QInAppStore) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppStore___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QInAppStore) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QInAppStore___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppStore) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppStore) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppStore) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppStore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppStore) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppStore___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppStore) __findChildren_newList2() unsafe.Pointer {
 	return C.QInAppStore___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QInAppStore) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppStore) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppStore) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppStore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppStore) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppStore___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppStore) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppStore___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppStore) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppStore) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppStore___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppStore) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppStore___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppStore) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppStore___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppStore) __findChildren_newList() unsafe.Pointer {
 	return C.QInAppStore___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppStore) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppStore___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppStore) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppStore___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppStore) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppStore___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppStore) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppStore___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppStore) __children_newList() unsafe.Pointer {
@@ -1182,78 +1232,103 @@ func (ptr *QInAppTransaction) Status() QInAppTransaction__TransactionStatus {
 	return 0
 }
 
-func (ptr *QInAppTransaction) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QInAppTransaction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QInAppTransaction) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QInAppTransaction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QInAppTransaction) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QInAppTransaction___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QInAppTransaction) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppTransaction___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QInAppTransaction) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QInAppTransaction___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppTransaction) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppTransaction) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppTransaction) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppTransaction___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppTransaction) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppTransaction___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppTransaction) __findChildren_newList2() unsafe.Pointer {
 	return C.QInAppTransaction___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QInAppTransaction) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppTransaction) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppTransaction) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppTransaction___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppTransaction) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppTransaction___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppTransaction) __findChildren_newList3() unsafe.Pointer {
 	return C.QInAppTransaction___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QInAppTransaction) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppTransaction) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppTransaction) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppTransaction___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppTransaction) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppTransaction___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppTransaction) __findChildren_newList() unsafe.Pointer {
 	return C.QInAppTransaction___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QInAppTransaction) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QInAppTransaction) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QInAppTransaction___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QInAppTransaction) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QInAppTransaction___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QInAppTransaction) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QInAppTransaction___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QInAppTransaction) __children_newList() unsafe.Pointer {

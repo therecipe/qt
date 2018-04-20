@@ -648,16 +648,14 @@ int QScriptEngine_UncaughtExceptionLineNumber(void* ptr)
 	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionLineNumber();
 }
 
-void* QScriptEngine___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScriptEngine___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScriptEngine___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScriptEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScriptEngine___dynamicPropertyNames_newList(void* ptr)
@@ -666,16 +664,14 @@ void* QScriptEngine___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScriptEngine___findChildren_atList2(void* ptr, int i, void* p)
+void* QScriptEngine___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngine___findChildren_setList2(void* ptr, void* i, void* p)
+void QScriptEngine___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptEngine___findChildren_newList2(void* ptr)
@@ -684,16 +680,14 @@ void* QScriptEngine___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptEngine___findChildren_atList3(void* ptr, int i, void* p)
+void* QScriptEngine___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngine___findChildren_setList3(void* ptr, void* i, void* p)
+void QScriptEngine___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptEngine___findChildren_newList3(void* ptr)
@@ -702,16 +696,14 @@ void* QScriptEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptEngine___findChildren_atList(void* ptr, int i, void* p)
+void* QScriptEngine___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngine___findChildren_setList(void* ptr, void* i, void* p)
+void QScriptEngine___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptEngine___findChildren_newList(void* ptr)
@@ -720,16 +712,14 @@ void* QScriptEngine___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptEngine___children_atList(void* ptr, int i, void* p)
+void* QScriptEngine___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptEngine___children_setList(void* ptr, void* i, void* p)
+void QScriptEngine___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptEngine___children_newList(void* ptr)
@@ -1016,16 +1006,14 @@ struct QtScript_PackedString QScriptExtensionPlugin_Keys(void* ptr)
 	return ({ QByteArray tcd9b88 = static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(tcd9b88.prepend("WHITESPACE").constData()+10), tcd9b88.size()-10 }; });
 }
 
-void* QScriptExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScriptExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScriptExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScriptExtensionPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScriptExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
@@ -1034,16 +1022,14 @@ void* QScriptExtensionPlugin___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScriptExtensionPlugin___findChildren_atList2(void* ptr, int i, void* p)
+void* QScriptExtensionPlugin___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptExtensionPlugin___findChildren_setList2(void* ptr, void* i, void* p)
+void QScriptExtensionPlugin___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptExtensionPlugin___findChildren_newList2(void* ptr)
@@ -1052,16 +1038,14 @@ void* QScriptExtensionPlugin___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptExtensionPlugin___findChildren_atList3(void* ptr, int i, void* p)
+void* QScriptExtensionPlugin___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptExtensionPlugin___findChildren_setList3(void* ptr, void* i, void* p)
+void QScriptExtensionPlugin___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptExtensionPlugin___findChildren_newList3(void* ptr)
@@ -1070,16 +1054,14 @@ void* QScriptExtensionPlugin___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptExtensionPlugin___findChildren_atList(void* ptr, int i, void* p)
+void* QScriptExtensionPlugin___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptExtensionPlugin___findChildren_setList(void* ptr, void* i, void* p)
+void QScriptExtensionPlugin___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptExtensionPlugin___findChildren_newList(void* ptr)
@@ -1088,16 +1070,14 @@ void* QScriptExtensionPlugin___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScriptExtensionPlugin___children_atList(void* ptr, int i, void* p)
+void* QScriptExtensionPlugin___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScriptExtensionPlugin___children_setList(void* ptr, void* i, void* p)
+void QScriptExtensionPlugin___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScriptExtensionPlugin___children_newList(void* ptr)

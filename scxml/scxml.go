@@ -106,8 +106,9 @@ func (ptr *QScxmlCompiler) Errors() []*QScxmlError {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
 			out := make([]*QScxmlError, int(l.len))
+			tmpList := NewQScxmlCompilerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QScxmlCompiler)(nil).__errors_atList(i, l.data)
+				out[i] = tmpList.__errors_atList(i)
 			}
 			return out
 		}(C.QScxmlCompiler_Errors(ptr.Pointer()))
@@ -115,14 +116,19 @@ func (ptr *QScxmlCompiler) Errors() []*QScxmlError {
 	return make([]*QScxmlError, 0)
 }
 
-func (ptr *QScxmlCompiler) __errors_atList(i int, p unsafe.Pointer) *QScxmlError {
-	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlCompiler___errors_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-	return tmpValue
+func (ptr *QScxmlCompiler) __errors_atList(i int) *QScxmlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlCompiler___errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlCompiler) __errors_setList(i QScxmlError_ITF, p unsafe.Pointer) {
-	C.QScxmlCompiler___errors_setList(ptr.Pointer(), PointerFromQScxmlError(i), p)
+func (ptr *QScxmlCompiler) __errors_setList(i QScxmlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlCompiler___errors_setList(ptr.Pointer(), PointerFromQScxmlError(i))
+	}
 }
 
 func (ptr *QScxmlCompiler) __errors_newList() unsafe.Pointer {
@@ -237,8 +243,9 @@ func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.st
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QScxmlCppDataModel)(nil).__setup_keyList(l.data) {
-				out[v] = (*QScxmlCppDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+			tmpList := NewQScxmlCppDataModelFromPointer(l.data)
+			for i, v := range tmpList.__setup_keyList() {
+				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
 		}(initialDataValues)))))
@@ -246,8 +253,9 @@ func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.st
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
-		for i, v := range (*QScxmlCppDataModel)(nil).__setup_keyList(l.data) {
-			out[v] = (*QScxmlCppDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+		tmpList := NewQScxmlCppDataModelFromPointer(l.data)
+		for i, v := range tmpList.__setup_keyList() {
+			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
 	}(initialDataValues)))))
@@ -277,11 +285,11 @@ func (ptr *QScxmlCppDataModel) DisconnectSetup() {
 func (ptr *QScxmlCppDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlCppDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlCppDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -290,11 +298,11 @@ func (ptr *QScxmlCppDataModel) Setup(initialDataValues map[string]*core.QVariant
 func (ptr *QScxmlCppDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlCppDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlCppDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -528,8 +536,9 @@ func callbackQScxmlDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struc
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QScxmlDataModel)(nil).__setup_keyList(l.data) {
-				out[v] = (*QScxmlDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+			tmpList := NewQScxmlDataModelFromPointer(l.data)
+			for i, v := range tmpList.__setup_keyList() {
+				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
 		}(initialDataValues)))))
@@ -562,11 +571,11 @@ func (ptr *QScxmlDataModel) DisconnectSetup() {
 func (ptr *QScxmlDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlDataModelFromPointer(NewQScxmlDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -714,129 +723,168 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 	return false
 }
 
-func (ptr *QScxmlDataModel) __setup_initialDataValues_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QScxmlDataModel) __setup_initialDataValues_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel___setup_initialDataValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QScxmlDataModel___setup_initialDataValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __setup_initialDataValues_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QScxmlDataModel) __setup_initialDataValues_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QScxmlDataModel___setup_initialDataValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QScxmlDataModel___setup_initialDataValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_newList() unsafe.Pointer {
 	return C.QScxmlDataModel___setup_initialDataValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __setup_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtScxml_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QScxmlDataModel)(nil).____setup_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QScxmlDataModel___setup_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QScxmlDataModel) ____setup_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QScxmlDataModel_____setup_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-}
-
-func (ptr *QScxmlDataModel) ____setup_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QScxmlDataModel) __setup_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQScxmlDataModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setup_keyList_atList(i)
+			}
+			return out
+		}(C.QScxmlDataModel___setup_keyList(ptr.Pointer()))
 	}
-	C.QScxmlDataModel_____setup_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))}, p)
+	return make([]string, 0)
+}
+
+func (ptr *QScxmlDataModel) ____setup_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QScxmlDataModel_____setup_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QScxmlDataModel) ____setup_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QScxmlDataModel_____setup_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
+	}
 }
 
 func (ptr *QScxmlDataModel) ____setup_keyList_newList() unsafe.Pointer {
 	return C.QScxmlDataModel_____setup_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QScxmlDataModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QScxmlDataModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlDataModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QScxmlDataModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QScxmlDataModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlDataModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QScxmlDataModel___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlDataModel) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlDataModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlDataModel) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlDataModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlDataModel) __findChildren_newList2() unsafe.Pointer {
 	return C.QScxmlDataModel___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlDataModel) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlDataModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlDataModel) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlDataModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlDataModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlDataModel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlDataModel) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlDataModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlDataModel) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlDataModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlDataModel) __findChildren_newList() unsafe.Pointer {
 	return C.QScxmlDataModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlDataModel) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlDataModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlDataModel) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlDataModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlDataModel) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlDataModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlDataModel) __children_newList() unsafe.Pointer {
@@ -1213,8 +1261,9 @@ func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValu
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QScxmlEcmaScriptDataModel)(nil).__setup_keyList(l.data) {
-				out[v] = (*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
+			for i, v := range tmpList.__setup_keyList() {
+				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
 		}(initialDataValues)))))
@@ -1222,8 +1271,9 @@ func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValu
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
-		for i, v := range (*QScxmlEcmaScriptDataModel)(nil).__setup_keyList(l.data) {
-			out[v] = (*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+		tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
+		for i, v := range tmpList.__setup_keyList() {
+			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
 	}(initialDataValues)))))
@@ -1253,11 +1303,11 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetup() {
 func (ptr *QScxmlEcmaScriptDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -1266,11 +1316,11 @@ func (ptr *QScxmlEcmaScriptDataModel) Setup(initialDataValues map[string]*core.Q
 func (ptr *QScxmlEcmaScriptDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlEcmaScriptDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -1987,78 +2037,103 @@ func (ptr *QScxmlInvokableService) Name() string {
 	return ""
 }
 
-func (ptr *QScxmlInvokableService) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QScxmlInvokableService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlInvokableService) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableService___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QScxmlInvokableService) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableService___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QScxmlInvokableService___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableService) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableService___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableService) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableService___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_newList2() unsafe.Pointer {
 	return C.QScxmlInvokableService___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableService) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableService___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableService) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableService___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlInvokableService___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableService) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableService) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableService___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableService) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableService___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableService) __findChildren_newList() unsafe.Pointer {
 	return C.QScxmlInvokableService___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableService) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableService) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableService___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableService) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableService___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableService) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableService___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableService) __children_newList() unsafe.Pointer {
@@ -2317,78 +2392,103 @@ func (ptr *QScxmlInvokableServiceFactory) __names_newList() unsafe.Pointer {
 	return C.QScxmlInvokableServiceFactory___names_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QScxmlInvokableServiceFactory___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableServiceFactory___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableServiceFactory___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList2() unsafe.Pointer {
 	return C.QScxmlInvokableServiceFactory___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableServiceFactory___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableServiceFactory___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlInvokableServiceFactory___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableServiceFactory___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableServiceFactory) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableServiceFactory___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __findChildren_newList() unsafe.Pointer {
 	return C.QScxmlInvokableServiceFactory___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlInvokableServiceFactory) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlInvokableServiceFactory___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlInvokableServiceFactory) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlInvokableServiceFactory___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlInvokableServiceFactory) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlInvokableServiceFactory___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlInvokableServiceFactory) __children_newList() unsafe.Pointer {
@@ -2666,8 +2766,9 @@ func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.s
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QScxmlNullDataModel)(nil).__setup_keyList(l.data) {
-				out[v] = (*QScxmlNullDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+			tmpList := NewQScxmlNullDataModelFromPointer(l.data)
+			for i, v := range tmpList.__setup_keyList() {
+				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
 		}(initialDataValues)))))
@@ -2675,8 +2776,9 @@ func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.s
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
-		for i, v := range (*QScxmlNullDataModel)(nil).__setup_keyList(l.data) {
-			out[v] = (*QScxmlNullDataModel)(nil).__setup_initialDataValues_atList(v, i, l.data)
+		tmpList := NewQScxmlNullDataModelFromPointer(l.data)
+		for i, v := range tmpList.__setup_keyList() {
+			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
 	}(initialDataValues)))))
@@ -2706,11 +2808,11 @@ func (ptr *QScxmlNullDataModel) DisconnectSetup() {
 func (ptr *QScxmlNullDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlNullDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlNullDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -2719,11 +2821,11 @@ func (ptr *QScxmlNullDataModel) Setup(initialDataValues map[string]*core.QVarian
 func (ptr *QScxmlNullDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlNullDataModel)(nil).__setup_initialDataValues_newList()
+			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
-				(*QScxmlNullDataModel)(nil).__setup_initialDataValues_setList(k, v, tmpList)
+				tmpList.__setup_initialDataValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -2993,8 +3095,9 @@ func (ptr *QScxmlStateMachine) InitialValues() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QScxmlStateMachine)(nil).__initialValues_keyList(l.data) {
-				out[v] = (*QScxmlStateMachine)(nil).__initialValues_atList(v, i, l.data)
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
+			for i, v := range tmpList.__initialValues_keyList() {
+				out[v] = tmpList.__initialValues_atList(v, i)
 			}
 			return out
 		}(C.QScxmlStateMachine_InitialValues(ptr.Pointer()))
@@ -3179,8 +3282,9 @@ func callbackQScxmlStateMachine_InvokedServicesChanged(ptr unsafe.Pointer, invok
 	if signal := qt.GetSignal(ptr, "invokedServicesChanged"); signal != nil {
 		signal.(func([]*QScxmlInvokableService))(func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
 			out := make([]*QScxmlInvokableService, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QScxmlStateMachine)(nil).__invokedServicesChanged_invokedServices_atList(i, l.data)
+				out[i] = tmpList.__invokedServicesChanged_invokedServices_atList(i)
 			}
 			return out
 		}(invokedServices))
@@ -3216,11 +3320,11 @@ func (ptr *QScxmlStateMachine) DisconnectInvokedServicesChanged() {
 func (ptr *QScxmlStateMachine) InvokedServicesChanged(invokedServices []*QScxmlInvokableService) {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_InvokedServicesChanged(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlStateMachine)(nil).__invokedServicesChanged_invokedServices_newList()
+			tmpList := NewQScxmlStateMachineFromPointer(NewQScxmlStateMachineFromPointer(nil).__invokedServicesChanged_invokedServices_newList())
 			for _, v := range invokedServices {
-				(*QScxmlStateMachine)(nil).__invokedServicesChanged_invokedServices_setList(v, tmpList)
+				tmpList.__invokedServicesChanged_invokedServices_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -3361,11 +3465,11 @@ func (ptr *QScxmlStateMachine) SetDataModel(model QScxmlDataModel_ITF) {
 func (ptr *QScxmlStateMachine) SetInitialValues(initialValues map[string]*core.QVariant) {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_SetInitialValues(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScxmlStateMachine)(nil).__setInitialValues_initialValues_newList()
+			tmpList := NewQScxmlStateMachineFromPointer(NewQScxmlStateMachineFromPointer(nil).__setInitialValues_initialValues_newList())
 			for k, v := range initialValues {
-				(*QScxmlStateMachine)(nil).__setInitialValues_initialValues_setList(k, v, tmpList)
+				tmpList.__setInitialValues_initialValues_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -3583,8 +3687,9 @@ func (ptr *QScxmlStateMachine) ParseErrors() []*QScxmlError {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
 			out := make([]*QScxmlError, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QScxmlStateMachine)(nil).__parseErrors_atList(i, l.data)
+				out[i] = tmpList.__parseErrors_atList(i)
 			}
 			return out
 		}(C.QScxmlStateMachine_ParseErrors(ptr.Pointer()))
@@ -3596,8 +3701,9 @@ func (ptr *QScxmlStateMachine) InvokedServices() []*QScxmlInvokableService {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
 			out := make([]*QScxmlInvokableService, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QScxmlStateMachine)(nil).__invokedServices_atList(i, l.data)
+				out[i] = tmpList.__invokedServices_atList(i)
 			}
 			return out
 		}(C.QScxmlStateMachine_InvokedServices(ptr.Pointer()))
@@ -3657,277 +3763,359 @@ func (ptr *QScxmlStateMachine) IsRunning() bool {
 	return false
 }
 
-func (ptr *QScxmlStateMachine) __initialValues_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QScxmlStateMachine) __initialValues_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __initialValues_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QScxmlStateMachine) __initialValues_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QScxmlStateMachine___initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QScxmlStateMachine___initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QScxmlStateMachine) __initialValues_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___initialValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __initialValues_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtScxml_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QScxmlStateMachine)(nil).____initialValues_keyList_atList(i, l.data)
+func (ptr *QScxmlStateMachine) __initialValues_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____initialValues_keyList_atList(i)
+			}
+			return out
+		}(C.QScxmlStateMachine___initialValues_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
 		}
-		return out
-	}(C.QScxmlStateMachine___initialValues_keyList(ptr.Pointer(), p))
+		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValuesChanged_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QScxmlStateMachine___initialValuesChanged_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___initialValuesChanged_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
-func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
-	}
-	C.QScxmlStateMachine___initialValuesChanged_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___initialValuesChanged_initialValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __initialValuesChanged_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtScxml_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QScxmlStateMachine)(nil).____initialValuesChanged_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QScxmlStateMachine___initialValuesChanged_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_atList(i int, p unsafe.Pointer) *QScxmlInvokableService {
-	tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServicesChanged_invokedServices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __initialValuesChanged_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____initialValuesChanged_keyList_atList(i)
+			}
+			return out
+		}(C.QScxmlStateMachine___initialValuesChanged_keyList(ptr.Pointer()))
 	}
-	return tmpValue
+	return make([]string, 0)
 }
 
-func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_setList(i QScxmlInvokableService_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i), p)
+func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_atList(i int) *QScxmlInvokableService {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServicesChanged_invokedServices_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_setList(i QScxmlInvokableService_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __invokedServicesChanged_invokedServices_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___setInitialValues_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QScxmlStateMachine___setInitialValues_initialValues_atList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QScxmlStateMachine___setInitialValues_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QScxmlStateMachine___setInitialValues_initialValues_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___setInitialValues_initialValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __setInitialValues_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtScxml_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QScxmlStateMachine)(nil).____setInitialValues_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QScxmlStateMachine___setInitialValues_keyList(ptr.Pointer(), p))
+func (ptr *QScxmlStateMachine) __setInitialValues_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQScxmlStateMachineFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setInitialValues_keyList_atList(i)
+			}
+			return out
+		}(C.QScxmlStateMachine___setInitialValues_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
 }
 
-func (ptr *QScxmlStateMachine) __parseErrors_atList(i int, p unsafe.Pointer) *QScxmlError {
-	tmpValue := NewQScxmlErrorFromPointer(C.QScxmlStateMachine___parseErrors_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
-	return tmpValue
+func (ptr *QScxmlStateMachine) __parseErrors_atList(i int) *QScxmlError {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScxmlErrorFromPointer(C.QScxmlStateMachine___parseErrors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __parseErrors_setList(i QScxmlError_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___parseErrors_setList(ptr.Pointer(), PointerFromQScxmlError(i), p)
+func (ptr *QScxmlStateMachine) __parseErrors_setList(i QScxmlError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___parseErrors_setList(ptr.Pointer(), PointerFromQScxmlError(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __parseErrors_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___parseErrors_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __invokedServices_atList(i int, p unsafe.Pointer) *QScxmlInvokableService {
-	tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __invokedServices_atList(i int) *QScxmlInvokableService {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScxmlInvokableServiceFromPointer(C.QScxmlStateMachine___invokedServices_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __invokedServices_setList(i QScxmlInvokableService_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i), p)
+func (ptr *QScxmlStateMachine) __invokedServices_setList(i QScxmlInvokableService_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___invokedServices_setList(ptr.Pointer(), PointerFromQScxmlInvokableService(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __invokedServices_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___invokedServices_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) ____initialValues_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QScxmlStateMachine_____initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QScxmlStateMachine) ____initialValues_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QScxmlStateMachine_____initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QScxmlStateMachine) ____initialValues_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QScxmlStateMachine) ____initialValues_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QScxmlStateMachine_____initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QScxmlStateMachine_____initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValues_keyList_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine_____initialValues_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QScxmlStateMachine_____initialValuesChanged_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QScxmlStateMachine_____initialValuesChanged_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QScxmlStateMachine_____initialValuesChanged_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QScxmlStateMachine_____initialValuesChanged_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine_____initialValuesChanged_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QScxmlStateMachine_____setInitialValues_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QScxmlStateMachine_____setInitialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QScxmlStateMachine_____setInitialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QScxmlStateMachine_____setInitialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine_____setInitialValues_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QScxmlStateMachine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QScxmlStateMachine) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QScxmlStateMachine___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QScxmlStateMachine) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlStateMachine) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_newList2() unsafe.Pointer {
 	return C.QScxmlStateMachine___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlStateMachine) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_newList3() unsafe.Pointer {
 	return C.QScxmlStateMachine___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlStateMachine) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __findChildren_newList() unsafe.Pointer {
 	return C.QScxmlStateMachine___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScxmlStateMachine) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScxmlStateMachine___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScxmlStateMachine) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScxmlStateMachine___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScxmlStateMachine) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScxmlStateMachine) __children_newList() unsafe.Pointer {

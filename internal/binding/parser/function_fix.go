@@ -352,7 +352,6 @@ func (c *Class) FixGenericHelper() {
 						params[0].Name = "v"
 						params = append(params, &Parameter{Name: "i", Value: "int"})
 					}
-					params = append(params, &Parameter{Name: "p", Value: "void*"})
 
 					c.Functions = append(c.Functions, &Function{
 						Name:           fmt.Sprintf("__%v_atList", f.Name),
@@ -375,10 +374,10 @@ func (c *Class) FixGenericHelper() {
 				if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_setList", f.Name), f.OverloadNumber) {
 					var params = func() []*Parameter {
 						if IsPackedList(CleanValue(f.Output)) {
-							return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(f.Output, "<")[1], ">")[0]}, {Name: "p", Value: "void*"}}
+							return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(f.Output, "<")[1], ">")[0]}}
 						}
 						var key, value = UnpackedMapDirty(CleanValue(f.Output))
-						return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}, {Name: "p", Value: "void*"}}
+						return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}}
 					}()
 					c.Functions = append(c.Functions, &Function{
 						Name:           fmt.Sprintf("__%v_setList", f.Name),
@@ -424,7 +423,6 @@ func (c *Class) FixGenericHelper() {
 							Virtual:        "non",
 							Meta:           PLAIN,
 							Output:         fmt.Sprintf("QList<%v>", keyType),
-							Parameters:     []*Parameter{{Name: "p", Value: "void*"}},
 							Signature:      "()",
 							OverloadNumber: f.OverloadNumber,
 							Overload:       f.Overload,
@@ -454,7 +452,6 @@ func (c *Class) FixGenericHelper() {
 							params[0].Name = "v"
 							params = append(params, &Parameter{Name: "i", Value: "int"})
 						}
-						params = append(params, &Parameter{Name: "p", Value: "void*"})
 
 						c.Functions = append(c.Functions, &Function{
 							Name:           fmt.Sprintf("__%v_%v_atList", f.Name, p.Name),
@@ -477,10 +474,10 @@ func (c *Class) FixGenericHelper() {
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_setList", f.Name, p.Name), f.OverloadNumber) {
 						var params = func() []*Parameter {
 							if IsPackedList(CleanValue(p.Value)) {
-								return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(p.Value, "<")[1], ">")[0]}, {Name: "p", Value: "void*"}}
+								return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(p.Value, "<")[1], ">")[0]}}
 							}
 							var key, value = UnpackedMapDirty(CleanValue(p.Value))
-							return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}, {Name: "p", Value: "void*"}}
+							return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}}
 						}()
 						c.Functions = append(c.Functions, &Function{
 							Name:           fmt.Sprintf("__%v_%v_setList", f.Name, p.Name),
@@ -526,7 +523,6 @@ func (c *Class) FixGenericHelper() {
 								Virtual:        "non",
 								Meta:           PLAIN,
 								Output:         fmt.Sprintf("QList<%v>", keyType),
-								Parameters:     []*Parameter{{Name: "p", Value: "void*"}},
 								Signature:      "()",
 								OverloadNumber: f.OverloadNumber,
 								Overload:       f.Overload,

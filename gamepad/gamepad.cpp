@@ -644,16 +644,14 @@ int QGamepad_DeviceId(void* ptr)
 	return static_cast<QGamepad*>(ptr)->deviceId();
 }
 
-void* QGamepad___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QGamepad___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QGamepad___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QGamepad___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QGamepad___dynamicPropertyNames_newList(void* ptr)
@@ -662,16 +660,14 @@ void* QGamepad___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QGamepad___findChildren_atList2(void* ptr, int i, void* p)
+void* QGamepad___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepad___findChildren_setList2(void* ptr, void* i, void* p)
+void QGamepad___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepad___findChildren_newList2(void* ptr)
@@ -680,16 +676,14 @@ void* QGamepad___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepad___findChildren_atList3(void* ptr, int i, void* p)
+void* QGamepad___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepad___findChildren_setList3(void* ptr, void* i, void* p)
+void QGamepad___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepad___findChildren_newList3(void* ptr)
@@ -698,16 +692,14 @@ void* QGamepad___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepad___findChildren_atList(void* ptr, int i, void* p)
+void* QGamepad___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepad___findChildren_setList(void* ptr, void* i, void* p)
+void QGamepad___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepad___findChildren_newList(void* ptr)
@@ -716,16 +708,14 @@ void* QGamepad___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepad___children_atList(void* ptr, int i, void* p)
+void* QGamepad___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepad___children_setList(void* ptr, void* i, void* p)
+void QGamepad___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepad___children_newList(void* ptr)
@@ -1483,16 +1473,14 @@ char QGamepadKeyNavigation_Active(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->active();
 }
 
-void* QGamepadKeyNavigation___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QGamepadKeyNavigation___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QGamepadKeyNavigation___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QGamepadKeyNavigation___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QGamepadKeyNavigation___dynamicPropertyNames_newList(void* ptr)
@@ -1501,16 +1489,14 @@ void* QGamepadKeyNavigation___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QGamepadKeyNavigation___findChildren_atList2(void* ptr, int i, void* p)
+void* QGamepadKeyNavigation___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadKeyNavigation___findChildren_setList2(void* ptr, void* i, void* p)
+void QGamepadKeyNavigation___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadKeyNavigation___findChildren_newList2(void* ptr)
@@ -1519,16 +1505,14 @@ void* QGamepadKeyNavigation___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadKeyNavigation___findChildren_atList3(void* ptr, int i, void* p)
+void* QGamepadKeyNavigation___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadKeyNavigation___findChildren_setList3(void* ptr, void* i, void* p)
+void QGamepadKeyNavigation___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadKeyNavigation___findChildren_newList3(void* ptr)
@@ -1537,16 +1521,14 @@ void* QGamepadKeyNavigation___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadKeyNavigation___findChildren_atList(void* ptr, int i, void* p)
+void* QGamepadKeyNavigation___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadKeyNavigation___findChildren_setList(void* ptr, void* i, void* p)
+void QGamepadKeyNavigation___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadKeyNavigation___findChildren_newList(void* ptr)
@@ -1555,16 +1537,14 @@ void* QGamepadKeyNavigation___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadKeyNavigation___children_atList(void* ptr, int i, void* p)
+void* QGamepadKeyNavigation___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadKeyNavigation___children_setList(void* ptr, void* i, void* p)
+void QGamepadKeyNavigation___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadKeyNavigation___children_newList(void* ptr)
@@ -1879,16 +1859,14 @@ struct QtGamepad_PackedList QGamepadManager_ConnectedGamepads(void* ptr)
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-int QGamepadManager___connectedGamepads_atList(void* ptr, int i, void* p)
+int QGamepadManager___connectedGamepads_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadManager___connectedGamepads_setList(void* ptr, int i, void* p)
+void QGamepadManager___connectedGamepads_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QGamepadManager___connectedGamepads_newList(void* ptr)
@@ -1897,16 +1875,14 @@ void* QGamepadManager___connectedGamepads_newList(void* ptr)
 	return new QList<int>();
 }
 
-void* QGamepadManager___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QGamepadManager___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QGamepadManager___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QGamepadManager___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QGamepadManager___dynamicPropertyNames_newList(void* ptr)
@@ -1915,16 +1891,14 @@ void* QGamepadManager___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QGamepadManager___findChildren_atList2(void* ptr, int i, void* p)
+void* QGamepadManager___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadManager___findChildren_setList2(void* ptr, void* i, void* p)
+void QGamepadManager___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadManager___findChildren_newList2(void* ptr)
@@ -1933,16 +1907,14 @@ void* QGamepadManager___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadManager___findChildren_atList3(void* ptr, int i, void* p)
+void* QGamepadManager___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadManager___findChildren_setList3(void* ptr, void* i, void* p)
+void QGamepadManager___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadManager___findChildren_newList3(void* ptr)
@@ -1951,16 +1923,14 @@ void* QGamepadManager___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadManager___findChildren_atList(void* ptr, int i, void* p)
+void* QGamepadManager___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadManager___findChildren_setList(void* ptr, void* i, void* p)
+void QGamepadManager___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadManager___findChildren_newList(void* ptr)
@@ -1969,16 +1939,14 @@ void* QGamepadManager___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QGamepadManager___children_atList(void* ptr, int i, void* p)
+void* QGamepadManager___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGamepadManager___children_setList(void* ptr, void* i, void* p)
+void QGamepadManager___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QGamepadManager___children_newList(void* ptr)

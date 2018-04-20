@@ -72,7 +72,7 @@ func goFunctionBody(function *parser.Function) string {
 		)
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_atList") || strings.Contains(function.Name, "_setList") || strings.Contains(function.Name, "_keyList")) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")
 	}
 
@@ -524,7 +524,7 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_newList") || strings.Contains(function.Name, "_atList") || strings.Contains(function.Name, "_setList") || strings.Contains(function.Name, "_keyList")) {
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK || strings.Contains(function.Name, "_newList")) {
 		fmt.Fprint(bb, "\n}")
 
 		if converter.GoHeaderOutput(function) == "" {

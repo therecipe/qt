@@ -86,16 +86,14 @@ struct QtScxml_PackedList QScxmlCompiler_Errors(void* ptr)
 	return ({ QVector<QScxmlError>* tmpValue = new QVector<QScxmlError>(static_cast<QScxmlCompiler*>(ptr)->errors()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QScxmlCompiler___errors_atList(void* ptr, int i, void* p)
+void* QScxmlCompiler___errors_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QScxmlError(({QScxmlError tmp = static_cast<QVector<QScxmlError>*>(p)->at(i); if (i == static_cast<QVector<QScxmlError>*>(p)->size()-1) { static_cast<QVector<QScxmlError>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QScxmlError(({QScxmlError tmp = static_cast<QVector<QScxmlError>*>(ptr)->at(i); if (i == static_cast<QVector<QScxmlError>*>(ptr)->size()-1) { static_cast<QVector<QScxmlError>*>(ptr)->~QVector(); free(ptr); }; tmp; }));
 }
 
-void QScxmlCompiler___errors_setList(void* ptr, void* i, void* p)
+void QScxmlCompiler___errors_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<QScxmlError>*>(p)->append(*static_cast<QScxmlError*>(i));
+	static_cast<QVector<QScxmlError>*>(ptr)->append(*static_cast<QScxmlError*>(i));
 }
 
 void* QScxmlCompiler___errors_newList(void* ptr)
@@ -261,16 +259,14 @@ char QScxmlDataModel_HasScxmlProperty(void* ptr, struct QtScxml_PackedString nam
 	return static_cast<QScxmlDataModel*>(ptr)->hasScxmlProperty(QString::fromUtf8(name.data, name.len));
 }
 
-void* QScxmlDataModel___setup_initialDataValues_atList(void* ptr, struct QtScxml_PackedString v, int i, void* p)
+void* QScxmlDataModel___setup_initialDataValues_atList(void* ptr, struct QtScxml_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(ptr)->size()-1) { static_cast<QMap<QString, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QScxmlDataModel___setup_initialDataValues_setList(void* ptr, struct QtScxml_PackedString key, void* i, void* p)
+void QScxmlDataModel___setup_initialDataValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QVariant>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlDataModel___setup_initialDataValues_newList(void* ptr)
@@ -279,22 +275,19 @@ void* QScxmlDataModel___setup_initialDataValues_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtScxml_PackedList QScxmlDataModel___setup_keyList(void* ptr, void* p)
+struct QtScxml_PackedList QScxmlDataModel___setup_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(p)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtScxml_PackedString QScxmlDataModel_____setup_keyList_atList(void* ptr, int i, void* p)
+struct QtScxml_PackedString QScxmlDataModel_____setup_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QScxmlDataModel_____setup_keyList_setList(void* ptr, struct QtScxml_PackedString i, void* p)
+void QScxmlDataModel_____setup_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlDataModel_____setup_keyList_newList(void* ptr)
@@ -303,16 +296,14 @@ void* QScxmlDataModel_____setup_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-void* QScxmlDataModel___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScxmlDataModel___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScxmlDataModel___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScxmlDataModel___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScxmlDataModel___dynamicPropertyNames_newList(void* ptr)
@@ -321,16 +312,14 @@ void* QScxmlDataModel___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScxmlDataModel___findChildren_atList2(void* ptr, int i, void* p)
+void* QScxmlDataModel___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlDataModel___findChildren_setList2(void* ptr, void* i, void* p)
+void QScxmlDataModel___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlDataModel___findChildren_newList2(void* ptr)
@@ -339,16 +328,14 @@ void* QScxmlDataModel___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlDataModel___findChildren_atList3(void* ptr, int i, void* p)
+void* QScxmlDataModel___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlDataModel___findChildren_setList3(void* ptr, void* i, void* p)
+void QScxmlDataModel___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlDataModel___findChildren_newList3(void* ptr)
@@ -357,16 +344,14 @@ void* QScxmlDataModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlDataModel___findChildren_atList(void* ptr, int i, void* p)
+void* QScxmlDataModel___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlDataModel___findChildren_setList(void* ptr, void* i, void* p)
+void QScxmlDataModel___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlDataModel___findChildren_newList(void* ptr)
@@ -375,16 +360,14 @@ void* QScxmlDataModel___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlDataModel___children_atList(void* ptr, int i, void* p)
+void* QScxmlDataModel___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlDataModel___children_setList(void* ptr, void* i, void* p)
+void QScxmlDataModel___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlDataModel___children_newList(void* ptr)
@@ -896,16 +879,14 @@ struct QtScxml_PackedString QScxmlInvokableService_Name(void* ptr)
 	return ({ QByteArray t320c29 = static_cast<QScxmlInvokableService*>(ptr)->name().toUtf8(); QtScxml_PackedString { const_cast<char*>(t320c29.prepend("WHITESPACE").constData()+10), t320c29.size()-10 }; });
 }
 
-void* QScxmlInvokableService___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableService___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScxmlInvokableService___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableService___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScxmlInvokableService___dynamicPropertyNames_newList(void* ptr)
@@ -914,16 +895,14 @@ void* QScxmlInvokableService___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScxmlInvokableService___findChildren_atList2(void* ptr, int i, void* p)
+void* QScxmlInvokableService___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableService___findChildren_setList2(void* ptr, void* i, void* p)
+void QScxmlInvokableService___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableService___findChildren_newList2(void* ptr)
@@ -932,16 +911,14 @@ void* QScxmlInvokableService___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableService___findChildren_atList3(void* ptr, int i, void* p)
+void* QScxmlInvokableService___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableService___findChildren_setList3(void* ptr, void* i, void* p)
+void QScxmlInvokableService___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableService___findChildren_newList3(void* ptr)
@@ -950,16 +927,14 @@ void* QScxmlInvokableService___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableService___findChildren_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableService___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableService___findChildren_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableService___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableService___findChildren_newList(void* ptr)
@@ -968,16 +943,14 @@ void* QScxmlInvokableService___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableService___children_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableService___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableService___children_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableService___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableService___children_newList(void* ptr)
@@ -1081,16 +1054,14 @@ void* QScxmlInvokableServiceFactory___names_newList(void* ptr)
 	return new QVector<QScxmlExecutableContent::StringId>();
 }
 
-void* QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableServiceFactory___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableServiceFactory___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScxmlInvokableServiceFactory___dynamicPropertyNames_newList(void* ptr)
@@ -1099,16 +1070,14 @@ void* QScxmlInvokableServiceFactory___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScxmlInvokableServiceFactory___findChildren_atList2(void* ptr, int i, void* p)
+void* QScxmlInvokableServiceFactory___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableServiceFactory___findChildren_setList2(void* ptr, void* i, void* p)
+void QScxmlInvokableServiceFactory___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableServiceFactory___findChildren_newList2(void* ptr)
@@ -1117,16 +1086,14 @@ void* QScxmlInvokableServiceFactory___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableServiceFactory___findChildren_atList3(void* ptr, int i, void* p)
+void* QScxmlInvokableServiceFactory___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableServiceFactory___findChildren_setList3(void* ptr, void* i, void* p)
+void QScxmlInvokableServiceFactory___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableServiceFactory___findChildren_newList3(void* ptr)
@@ -1135,16 +1102,14 @@ void* QScxmlInvokableServiceFactory___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableServiceFactory___findChildren_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableServiceFactory___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableServiceFactory___findChildren_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableServiceFactory___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableServiceFactory___findChildren_newList(void* ptr)
@@ -1153,16 +1118,14 @@ void* QScxmlInvokableServiceFactory___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlInvokableServiceFactory___children_atList(void* ptr, int i, void* p)
+void* QScxmlInvokableServiceFactory___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlInvokableServiceFactory___children_setList(void* ptr, void* i, void* p)
+void QScxmlInvokableServiceFactory___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlInvokableServiceFactory___children_newList(void* ptr)
@@ -1743,16 +1706,14 @@ char QScxmlStateMachine_IsRunning(void* ptr)
 	return static_cast<QScxmlStateMachine*>(ptr)->isRunning();
 }
 
-void* QScxmlStateMachine___initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i, void* p)
+void* QScxmlStateMachine___initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(ptr)->size()-1) { static_cast<QMap<QString, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QScxmlStateMachine___initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i, void* p)
+void QScxmlStateMachine___initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QVariant>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___initialValues_newList(void* ptr)
@@ -1761,22 +1722,19 @@ void* QScxmlStateMachine___initialValues_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtScxml_PackedList QScxmlStateMachine___initialValues_keyList(void* ptr, void* p)
+struct QtScxml_PackedList QScxmlStateMachine___initialValues_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(p)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QScxmlStateMachine___initialValuesChanged_initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i, void* p)
+void* QScxmlStateMachine___initialValuesChanged_initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(ptr)->size()-1) { static_cast<QMap<QString, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QScxmlStateMachine___initialValuesChanged_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i, void* p)
+void QScxmlStateMachine___initialValuesChanged_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QVariant>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___initialValuesChanged_initialValues_newList(void* ptr)
@@ -1785,22 +1743,19 @@ void* QScxmlStateMachine___initialValuesChanged_initialValues_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtScxml_PackedList QScxmlStateMachine___initialValuesChanged_keyList(void* ptr, void* p)
+struct QtScxml_PackedList QScxmlStateMachine___initialValuesChanged_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(p)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QScxmlStateMachine___invokedServicesChanged_invokedServices_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___invokedServicesChanged_invokedServices_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QScxmlInvokableService * tmp = static_cast<QVector<QScxmlInvokableService *>*>(p)->at(i); if (i == static_cast<QVector<QScxmlInvokableService *>*>(p)->size()-1) { static_cast<QVector<QScxmlInvokableService *>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({QScxmlInvokableService * tmp = static_cast<QVector<QScxmlInvokableService *>*>(ptr)->at(i); if (i == static_cast<QVector<QScxmlInvokableService *>*>(ptr)->size()-1) { static_cast<QVector<QScxmlInvokableService *>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___invokedServicesChanged_invokedServices_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<QScxmlInvokableService *>*>(p)->append(static_cast<QScxmlInvokableService*>(i));
+	static_cast<QVector<QScxmlInvokableService *>*>(ptr)->append(static_cast<QScxmlInvokableService*>(i));
 }
 
 void* QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(void* ptr)
@@ -1809,16 +1764,14 @@ void* QScxmlStateMachine___invokedServicesChanged_invokedServices_newList(void* 
 	return new QVector<QScxmlInvokableService *>();
 }
 
-void* QScxmlStateMachine___setInitialValues_initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i, void* p)
+void* QScxmlStateMachine___setInitialValues_initialValues_atList(void* ptr, struct QtScxml_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(p)->size()-1) { static_cast<QMap<QString, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(ptr)->size()-1) { static_cast<QMap<QString, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QScxmlStateMachine___setInitialValues_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i, void* p)
+void QScxmlStateMachine___setInitialValues_initialValues_setList(void* ptr, struct QtScxml_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QVariant>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
 }
 
 void* QScxmlStateMachine___setInitialValues_initialValues_newList(void* ptr)
@@ -1827,22 +1780,19 @@ void* QScxmlStateMachine___setInitialValues_initialValues_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtScxml_PackedList QScxmlStateMachine___setInitialValues_keyList(void* ptr, void* p)
+struct QtScxml_PackedList QScxmlStateMachine___setInitialValues_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(p)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QScxmlStateMachine___parseErrors_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___parseErrors_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QScxmlError(({QScxmlError tmp = static_cast<QVector<QScxmlError>*>(p)->at(i); if (i == static_cast<QVector<QScxmlError>*>(p)->size()-1) { static_cast<QVector<QScxmlError>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QScxmlError(({QScxmlError tmp = static_cast<QVector<QScxmlError>*>(ptr)->at(i); if (i == static_cast<QVector<QScxmlError>*>(ptr)->size()-1) { static_cast<QVector<QScxmlError>*>(ptr)->~QVector(); free(ptr); }; tmp; }));
 }
 
-void QScxmlStateMachine___parseErrors_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___parseErrors_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<QScxmlError>*>(p)->append(*static_cast<QScxmlError*>(i));
+	static_cast<QVector<QScxmlError>*>(ptr)->append(*static_cast<QScxmlError*>(i));
 }
 
 void* QScxmlStateMachine___parseErrors_newList(void* ptr)
@@ -1851,16 +1801,14 @@ void* QScxmlStateMachine___parseErrors_newList(void* ptr)
 	return new QVector<QScxmlError>();
 }
 
-void* QScxmlStateMachine___invokedServices_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___invokedServices_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QScxmlInvokableService * tmp = static_cast<QVector<QScxmlInvokableService *>*>(p)->at(i); if (i == static_cast<QVector<QScxmlInvokableService *>*>(p)->size()-1) { static_cast<QVector<QScxmlInvokableService *>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({QScxmlInvokableService * tmp = static_cast<QVector<QScxmlInvokableService *>*>(ptr)->at(i); if (i == static_cast<QVector<QScxmlInvokableService *>*>(ptr)->size()-1) { static_cast<QVector<QScxmlInvokableService *>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___invokedServices_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___invokedServices_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<QScxmlInvokableService *>*>(p)->append(static_cast<QScxmlInvokableService*>(i));
+	static_cast<QVector<QScxmlInvokableService *>*>(ptr)->append(static_cast<QScxmlInvokableService*>(i));
 }
 
 void* QScxmlStateMachine___invokedServices_newList(void* ptr)
@@ -1869,16 +1817,14 @@ void* QScxmlStateMachine___invokedServices_newList(void* ptr)
 	return new QVector<QScxmlInvokableService *>();
 }
 
-struct QtScxml_PackedString QScxmlStateMachine_____initialValues_keyList_atList(void* ptr, int i, void* p)
+struct QtScxml_PackedString QScxmlStateMachine_____initialValues_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QScxmlStateMachine_____initialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i, void* p)
+void QScxmlStateMachine_____initialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____initialValues_keyList_newList(void* ptr)
@@ -1887,16 +1833,14 @@ void* QScxmlStateMachine_____initialValues_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-struct QtScxml_PackedString QScxmlStateMachine_____initialValuesChanged_keyList_atList(void* ptr, int i, void* p)
+struct QtScxml_PackedString QScxmlStateMachine_____initialValuesChanged_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QScxmlStateMachine_____initialValuesChanged_keyList_setList(void* ptr, struct QtScxml_PackedString i, void* p)
+void QScxmlStateMachine_____initialValuesChanged_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____initialValuesChanged_keyList_newList(void* ptr)
@@ -1905,16 +1849,14 @@ void* QScxmlStateMachine_____initialValuesChanged_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-struct QtScxml_PackedString QScxmlStateMachine_____setInitialValues_keyList_atList(void* ptr, int i, void* p)
+struct QtScxml_PackedString QScxmlStateMachine_____setInitialValues_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtScxml_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QScxmlStateMachine_____setInitialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i, void* p)
+void QScxmlStateMachine_____setInitialValues_keyList_setList(void* ptr, struct QtScxml_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QScxmlStateMachine_____setInitialValues_keyList_newList(void* ptr)
@@ -1923,16 +1865,14 @@ void* QScxmlStateMachine_____setInitialValues_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-void* QScxmlStateMachine___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QScxmlStateMachine___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QScxmlStateMachine___dynamicPropertyNames_newList(void* ptr)
@@ -1941,16 +1881,14 @@ void* QScxmlStateMachine___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QScxmlStateMachine___findChildren_atList2(void* ptr, int i, void* p)
+void* QScxmlStateMachine___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___findChildren_setList2(void* ptr, void* i, void* p)
+void QScxmlStateMachine___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlStateMachine___findChildren_newList2(void* ptr)
@@ -1959,16 +1897,14 @@ void* QScxmlStateMachine___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlStateMachine___findChildren_atList3(void* ptr, int i, void* p)
+void* QScxmlStateMachine___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___findChildren_setList3(void* ptr, void* i, void* p)
+void QScxmlStateMachine___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlStateMachine___findChildren_newList3(void* ptr)
@@ -1977,16 +1913,14 @@ void* QScxmlStateMachine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlStateMachine___findChildren_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___findChildren_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlStateMachine___findChildren_newList(void* ptr)
@@ -1995,16 +1929,14 @@ void* QScxmlStateMachine___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QScxmlStateMachine___children_atList(void* ptr, int i, void* p)
+void* QScxmlStateMachine___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QScxmlStateMachine___children_setList(void* ptr, void* i, void* p)
+void QScxmlStateMachine___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QScxmlStateMachine___children_newList(void* ptr)

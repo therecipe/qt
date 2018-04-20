@@ -68,20 +68,20 @@ func NewQAbstractAudioDeviceInfoFromPointer(ptr unsafe.Pointer) (n *QAbstractAud
 func callbackQAbstractAudioDeviceInfo_SupportedByteOrders(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedByteOrders"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedByteOrders_newList()
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedByteOrders_newList())
 			for _, v := range signal.(func() []QAudioFormat__Endian)() {
-				(*QAbstractAudioDeviceInfo)(nil).__supportedByteOrders_setList(v, tmpList)
+				tmpList.__supportedByteOrders_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedByteOrders_newList()
+		tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedByteOrders_newList())
 		for _, v := range make([]QAudioFormat__Endian, 0) {
-			(*QAbstractAudioDeviceInfo)(nil).__supportedByteOrders_setList(v, tmpList)
+			tmpList.__supportedByteOrders_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -110,8 +110,9 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedByteOrders() []QAudioFormat__Endia
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__Endian {
 			out := make([]QAudioFormat__Endian, int(l.len))
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractAudioDeviceInfo)(nil).__supportedByteOrders_atList(i, l.data)
+				out[i] = tmpList.__supportedByteOrders_atList(i)
 			}
 			return out
 		}(C.QAbstractAudioDeviceInfo_SupportedByteOrders(ptr.Pointer()))
@@ -123,20 +124,20 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedByteOrders() []QAudioFormat__Endia
 func callbackQAbstractAudioDeviceInfo_SupportedSampleTypes(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedSampleTypes"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleTypes_newList()
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleTypes_newList())
 			for _, v := range signal.(func() []QAudioFormat__SampleType)() {
-				(*QAbstractAudioDeviceInfo)(nil).__supportedSampleTypes_setList(v, tmpList)
+				tmpList.__supportedSampleTypes_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleTypes_newList()
+		tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleTypes_newList())
 		for _, v := range make([]QAudioFormat__SampleType, 0) {
-			(*QAbstractAudioDeviceInfo)(nil).__supportedSampleTypes_setList(v, tmpList)
+			tmpList.__supportedSampleTypes_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -165,8 +166,9 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedSampleTypes() []QAudioFormat__Samp
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__SampleType {
 			out := make([]QAudioFormat__SampleType, int(l.len))
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractAudioDeviceInfo)(nil).__supportedSampleTypes_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleTypes_atList(i)
 			}
 			return out
 		}(C.QAbstractAudioDeviceInfo_SupportedSampleTypes(ptr.Pointer()))
@@ -178,20 +180,20 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedSampleTypes() []QAudioFormat__Samp
 func callbackQAbstractAudioDeviceInfo_SupportedChannelCounts(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedChannelCounts"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedChannelCounts_newList()
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedChannelCounts_newList())
 			for _, v := range signal.(func() []int)() {
-				(*QAbstractAudioDeviceInfo)(nil).__supportedChannelCounts_setList(v, tmpList)
+				tmpList.__supportedChannelCounts_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedChannelCounts_newList()
+		tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedChannelCounts_newList())
 		for _, v := range make([]int, 0) {
-			(*QAbstractAudioDeviceInfo)(nil).__supportedChannelCounts_setList(v, tmpList)
+			tmpList.__supportedChannelCounts_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -220,8 +222,9 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedChannelCounts() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractAudioDeviceInfo)(nil).__supportedChannelCounts_atList(i, l.data)
+				out[i] = tmpList.__supportedChannelCounts_atList(i)
 			}
 			return out
 		}(C.QAbstractAudioDeviceInfo_SupportedChannelCounts(ptr.Pointer()))
@@ -233,20 +236,20 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedChannelCounts() []int {
 func callbackQAbstractAudioDeviceInfo_SupportedSampleRates(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedSampleRates"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleRates_newList()
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleRates_newList())
 			for _, v := range signal.(func() []int)() {
-				(*QAbstractAudioDeviceInfo)(nil).__supportedSampleRates_setList(v, tmpList)
+				tmpList.__supportedSampleRates_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleRates_newList()
+		tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleRates_newList())
 		for _, v := range make([]int, 0) {
-			(*QAbstractAudioDeviceInfo)(nil).__supportedSampleRates_setList(v, tmpList)
+			tmpList.__supportedSampleRates_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -275,8 +278,9 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedSampleRates() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractAudioDeviceInfo)(nil).__supportedSampleRates_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleRates_atList(i)
 			}
 			return out
 		}(C.QAbstractAudioDeviceInfo_SupportedSampleRates(ptr.Pointer()))
@@ -288,20 +292,20 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedSampleRates() []int {
 func callbackQAbstractAudioDeviceInfo_SupportedSampleSizes(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedSampleSizes"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleSizes_newList()
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleSizes_newList())
 			for _, v := range signal.(func() []int)() {
-				(*QAbstractAudioDeviceInfo)(nil).__supportedSampleSizes_setList(v, tmpList)
+				tmpList.__supportedSampleSizes_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractAudioDeviceInfo)(nil).__supportedSampleSizes_newList()
+		tmpList := NewQAbstractAudioDeviceInfoFromPointer(NewQAbstractAudioDeviceInfoFromPointer(nil).__supportedSampleSizes_newList())
 		for _, v := range make([]int, 0) {
-			(*QAbstractAudioDeviceInfo)(nil).__supportedSampleSizes_setList(v, tmpList)
+			tmpList.__supportedSampleSizes_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -330,8 +334,9 @@ func (ptr *QAbstractAudioDeviceInfo) SupportedSampleSizes() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAbstractAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractAudioDeviceInfo)(nil).__supportedSampleSizes_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleSizes_atList(i)
 			}
 			return out
 		}(C.QAbstractAudioDeviceInfo_SupportedSampleSizes(ptr.Pointer()))
@@ -491,138 +496,188 @@ func (ptr *QAbstractAudioDeviceInfo) IsFormatSupported(format QAudioFormat_ITF) 
 	return false
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_atList(i int, p unsafe.Pointer) QAudioFormat__Endian {
-	return QAudioFormat__Endian(C.QAbstractAudioDeviceInfo___supportedByteOrders_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_atList(i int) QAudioFormat__Endian {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__Endian(C.QAbstractAudioDeviceInfo___supportedByteOrders_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_setList(i QAudioFormat__Endian, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___supportedByteOrders_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_setList(i QAudioFormat__Endian) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedByteOrders_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __supportedByteOrders_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___supportedByteOrders_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_atList(i int, p unsafe.Pointer) QAudioFormat__SampleType {
-	return QAudioFormat__SampleType(C.QAbstractAudioDeviceInfo___supportedSampleTypes_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_atList(i int) QAudioFormat__SampleType {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__SampleType(C.QAbstractAudioDeviceInfo___supportedSampleTypes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_setList(i QAudioFormat__SampleType, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___supportedSampleTypes_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_setList(i QAudioFormat__SampleType) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleTypes_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __supportedSampleTypes_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___supportedSampleTypes_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAbstractAudioDeviceInfo___supportedChannelCounts_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedChannelCounts_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_setList(i int, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___supportedChannelCounts_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedChannelCounts_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __supportedChannelCounts_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___supportedChannelCounts_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_setList(i int, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __supportedSampleRates_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___supportedSampleRates_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleSizes_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractAudioDeviceInfo___supportedSampleSizes_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_setList(i int, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___supportedSampleSizes_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___supportedSampleSizes_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __supportedSampleSizes_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___supportedSampleSizes_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioDeviceInfo___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractAudioDeviceInfo___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioDeviceInfo) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioDeviceInfo___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioDeviceInfo) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioDeviceInfo___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioDeviceInfo) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioDeviceInfo___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioDeviceInfo) __children_newList() unsafe.Pointer {
@@ -1669,78 +1724,103 @@ func (ptr *QAbstractAudioInput) Volume() float64 {
 	return 0
 }
 
-func (ptr *QAbstractAudioInput) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractAudioInput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractAudioInput) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioInput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractAudioInput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractAudioInput) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractAudioInput___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioInput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioInput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioInput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioInput) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractAudioInput___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioInput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioInput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioInput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioInput) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractAudioInput___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioInput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioInput) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioInput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioInput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioInput) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractAudioInput___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioInput) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioInput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioInput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioInput) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioInput___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioInput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioInput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioInput) __children_newList() unsafe.Pointer {
@@ -2898,78 +2978,103 @@ func (ptr *QAbstractAudioOutput) VolumeDefault() float64 {
 	return 0
 }
 
-func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioOutput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractAudioOutput) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractAudioOutput___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioOutput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioOutput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioOutput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioOutput) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractAudioOutput___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioOutput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioOutput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioOutput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioOutput) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractAudioOutput___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioOutput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioOutput) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioOutput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioOutput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioOutput) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractAudioOutput___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractAudioOutput) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractAudioOutput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractAudioOutput) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractAudioOutput___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractAudioOutput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAudioOutput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractAudioOutput) __children_newList() unsafe.Pointer {
@@ -3749,78 +3854,103 @@ func (ptr *QAbstractVideoFilter) IsActive() bool {
 	return false
 }
 
-func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoFilter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoFilter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoFilter___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractVideoFilter___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoFilter) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoFilter___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoFilter) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractVideoFilter___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoFilter) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoFilter___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoFilter) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractVideoFilter___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoFilter) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoFilter) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoFilter___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoFilter) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractVideoFilter___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoFilter) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoFilter) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoFilter___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoFilter) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoFilter___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoFilter) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoFilter___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoFilter) __children_newList() unsafe.Pointer {
@@ -4361,20 +4491,20 @@ func (ptr *QAbstractVideoSurface) Error() QAbstractVideoSurface__Error {
 func callbackQAbstractVideoSurface_SupportedPixelFormats(ptr unsafe.Pointer, ty C.longlong) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedPixelFormats"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractVideoSurface)(nil).__supportedPixelFormats_newList()
+			tmpList := NewQAbstractVideoSurfaceFromPointer(NewQAbstractVideoSurfaceFromPointer(nil).__supportedPixelFormats_newList())
 			for _, v := range signal.(func(QAbstractVideoBuffer__HandleType) []QVideoFrame__PixelFormat)(QAbstractVideoBuffer__HandleType(ty)) {
-				(*QAbstractVideoSurface)(nil).__supportedPixelFormats_setList(v, tmpList)
+				tmpList.__supportedPixelFormats_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractVideoSurface)(nil).__supportedPixelFormats_newList()
+		tmpList := NewQAbstractVideoSurfaceFromPointer(NewQAbstractVideoSurfaceFromPointer(nil).__supportedPixelFormats_newList())
 		for _, v := range make([]QVideoFrame__PixelFormat, 0) {
-			(*QAbstractVideoSurface)(nil).__supportedPixelFormats_setList(v, tmpList)
+			tmpList.__supportedPixelFormats_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -4403,8 +4533,9 @@ func (ptr *QAbstractVideoSurface) SupportedPixelFormats(ty QAbstractVideoBuffer_
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QVideoFrame__PixelFormat {
 			out := make([]QVideoFrame__PixelFormat, int(l.len))
+			tmpList := NewQAbstractVideoSurfaceFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractVideoSurface)(nil).__supportedPixelFormats_atList(i, l.data)
+				out[i] = tmpList.__supportedPixelFormats_atList(i)
 			}
 			return out
 		}(C.QAbstractVideoSurface_SupportedPixelFormats(ptr.Pointer(), C.longlong(ty)))
@@ -4520,90 +4651,120 @@ func (ptr *QAbstractVideoSurface) IsFormatSupportedDefault(format QVideoSurfaceF
 	return false
 }
 
-func (ptr *QAbstractVideoSurface) __supportedPixelFormats_atList(i int, p unsafe.Pointer) QVideoFrame__PixelFormat {
-	return QVideoFrame__PixelFormat(C.QAbstractVideoSurface___supportedPixelFormats_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAbstractVideoSurface) __supportedPixelFormats_atList(i int) QVideoFrame__PixelFormat {
+	if ptr.Pointer() != nil {
+		return QVideoFrame__PixelFormat(C.QAbstractVideoSurface___supportedPixelFormats_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractVideoSurface) __supportedPixelFormats_setList(i QVideoFrame__PixelFormat, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___supportedPixelFormats_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAbstractVideoSurface) __supportedPixelFormats_setList(i QVideoFrame__PixelFormat) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___supportedPixelFormats_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __supportedPixelFormats_newList() unsafe.Pointer {
 	return C.QAbstractVideoSurface___supportedPixelFormats_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoSurface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractVideoSurface___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractVideoSurface___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoSurface) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoSurface) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractVideoSurface___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoSurface) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoSurface) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractVideoSurface___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoSurface) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoSurface) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoSurface) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractVideoSurface___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractVideoSurface) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractVideoSurface) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractVideoSurface___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractVideoSurface) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractVideoSurface___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractVideoSurface) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractVideoSurface) __children_newList() unsafe.Pointer {
@@ -6649,8 +6810,9 @@ func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
 func QAudioDeviceInfo_AvailableDevices(mode QAudio__Mode) []*QAudioDeviceInfo {
 	return func(l C.struct_QtMultimedia_PackedList) []*QAudioDeviceInfo {
 		out := make([]*QAudioDeviceInfo, int(l.len))
+		tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QAudioDeviceInfo)(nil).__availableDevices_atList(i, l.data)
+			out[i] = tmpList.__availableDevices_atList(i)
 		}
 		return out
 	}(C.QAudioDeviceInfo_QAudioDeviceInfo_AvailableDevices(C.longlong(mode)))
@@ -6659,8 +6821,9 @@ func QAudioDeviceInfo_AvailableDevices(mode QAudio__Mode) []*QAudioDeviceInfo {
 func (ptr *QAudioDeviceInfo) AvailableDevices(mode QAudio__Mode) []*QAudioDeviceInfo {
 	return func(l C.struct_QtMultimedia_PackedList) []*QAudioDeviceInfo {
 		out := make([]*QAudioDeviceInfo, int(l.len))
+		tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QAudioDeviceInfo)(nil).__availableDevices_atList(i, l.data)
+			out[i] = tmpList.__availableDevices_atList(i)
 		}
 		return out
 	}(C.QAudioDeviceInfo_QAudioDeviceInfo_AvailableDevices(C.longlong(mode)))
@@ -6696,8 +6859,9 @@ func (ptr *QAudioDeviceInfo) SupportedByteOrders() []QAudioFormat__Endian {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__Endian {
 			out := make([]QAudioFormat__Endian, int(l.len))
+			tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioDeviceInfo)(nil).__supportedByteOrders_atList(i, l.data)
+				out[i] = tmpList.__supportedByteOrders_atList(i)
 			}
 			return out
 		}(C.QAudioDeviceInfo_SupportedByteOrders(ptr.Pointer()))
@@ -6709,8 +6873,9 @@ func (ptr *QAudioDeviceInfo) SupportedSampleTypes() []QAudioFormat__SampleType {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudioFormat__SampleType {
 			out := make([]QAudioFormat__SampleType, int(l.len))
+			tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioDeviceInfo)(nil).__supportedSampleTypes_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleTypes_atList(i)
 			}
 			return out
 		}(C.QAudioDeviceInfo_SupportedSampleTypes(ptr.Pointer()))
@@ -6722,8 +6887,9 @@ func (ptr *QAudioDeviceInfo) SupportedChannelCounts() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioDeviceInfo)(nil).__supportedChannelCounts_atList(i, l.data)
+				out[i] = tmpList.__supportedChannelCounts_atList(i)
 			}
 			return out
 		}(C.QAudioDeviceInfo_SupportedChannelCounts(ptr.Pointer()))
@@ -6735,8 +6901,9 @@ func (ptr *QAudioDeviceInfo) SupportedSampleRates() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioDeviceInfo)(nil).__supportedSampleRates_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleRates_atList(i)
 			}
 			return out
 		}(C.QAudioDeviceInfo_SupportedSampleRates(ptr.Pointer()))
@@ -6748,8 +6915,9 @@ func (ptr *QAudioDeviceInfo) SupportedSampleSizes() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAudioDeviceInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioDeviceInfo)(nil).__supportedSampleSizes_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleSizes_atList(i)
 			}
 			return out
 		}(C.QAudioDeviceInfo_SupportedSampleSizes(ptr.Pointer()))
@@ -6785,74 +6953,104 @@ func (ptr *QAudioDeviceInfo) IsNull() bool {
 	return false
 }
 
-func (ptr *QAudioDeviceInfo) __availableDevices_atList(i int, p unsafe.Pointer) *QAudioDeviceInfo {
-	tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo___availableDevices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
-	return tmpValue
+func (ptr *QAudioDeviceInfo) __availableDevices_atList(i int) *QAudioDeviceInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioDeviceInfo) __availableDevices_setList(i QAudioDeviceInfo_ITF, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___availableDevices_setList(ptr.Pointer(), PointerFromQAudioDeviceInfo(i), p)
+func (ptr *QAudioDeviceInfo) __availableDevices_setList(i QAudioDeviceInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___availableDevices_setList(ptr.Pointer(), PointerFromQAudioDeviceInfo(i))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __availableDevices_newList() unsafe.Pointer {
 	return C.QAudioDeviceInfo___availableDevices_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioDeviceInfo) __supportedByteOrders_atList(i int, p unsafe.Pointer) QAudioFormat__Endian {
-	return QAudioFormat__Endian(C.QAudioDeviceInfo___supportedByteOrders_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioDeviceInfo) __supportedByteOrders_atList(i int) QAudioFormat__Endian {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__Endian(C.QAudioDeviceInfo___supportedByteOrders_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAudioDeviceInfo) __supportedByteOrders_setList(i QAudioFormat__Endian, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___supportedByteOrders_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAudioDeviceInfo) __supportedByteOrders_setList(i QAudioFormat__Endian) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___supportedByteOrders_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __supportedByteOrders_newList() unsafe.Pointer {
 	return C.QAudioDeviceInfo___supportedByteOrders_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleTypes_atList(i int, p unsafe.Pointer) QAudioFormat__SampleType {
-	return QAudioFormat__SampleType(C.QAudioDeviceInfo___supportedSampleTypes_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioDeviceInfo) __supportedSampleTypes_atList(i int) QAudioFormat__SampleType {
+	if ptr.Pointer() != nil {
+		return QAudioFormat__SampleType(C.QAudioDeviceInfo___supportedSampleTypes_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleTypes_setList(i QAudioFormat__SampleType, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___supportedSampleTypes_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAudioDeviceInfo) __supportedSampleTypes_setList(i QAudioFormat__SampleType) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___supportedSampleTypes_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __supportedSampleTypes_newList() unsafe.Pointer {
 	return C.QAudioDeviceInfo___supportedSampleTypes_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioDeviceInfo) __supportedChannelCounts_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAudioDeviceInfo___supportedChannelCounts_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAudioDeviceInfo) __supportedChannelCounts_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAudioDeviceInfo___supportedChannelCounts_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAudioDeviceInfo) __supportedChannelCounts_setList(i int, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___supportedChannelCounts_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAudioDeviceInfo) __supportedChannelCounts_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___supportedChannelCounts_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __supportedChannelCounts_newList() unsafe.Pointer {
 	return C.QAudioDeviceInfo___supportedChannelCounts_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleRates_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAudioDeviceInfo___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAudioDeviceInfo) __supportedSampleRates_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAudioDeviceInfo___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleRates_setList(i int, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAudioDeviceInfo) __supportedSampleRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __supportedSampleRates_newList() unsafe.Pointer {
 	return C.QAudioDeviceInfo___supportedSampleRates_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleSizes_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAudioDeviceInfo___supportedSampleSizes_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAudioDeviceInfo) __supportedSampleSizes_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAudioDeviceInfo___supportedSampleSizes_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAudioDeviceInfo) __supportedSampleSizes_setList(i int, p unsafe.Pointer) {
-	C.QAudioDeviceInfo___supportedSampleSizes_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAudioDeviceInfo) __supportedSampleSizes_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAudioDeviceInfo___supportedSampleSizes_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAudioDeviceInfo) __supportedSampleSizes_newList() unsafe.Pointer {
@@ -6951,11 +7149,11 @@ func (ptr *QAudioEncoderSettings) SetEncodingOption(option string, value core.QV
 func (ptr *QAudioEncoderSettings) SetEncodingOptions(options map[string]*core.QVariant) {
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettings_SetEncodingOptions(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QAudioEncoderSettings)(nil).__setEncodingOptions_options_newList()
+			tmpList := NewQAudioEncoderSettingsFromPointer(NewQAudioEncoderSettingsFromPointer(nil).__setEncodingOptions_options_newList())
 			for k, v := range options {
-				(*QAudioEncoderSettings)(nil).__setEncodingOptions_options_setList(k, v, tmpList)
+				tmpList.__setEncodingOptions_options_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -7019,8 +7217,9 @@ func (ptr *QAudioEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QAudioEncoderSettings)(nil).__encodingOptions_keyList(l.data) {
-				out[v] = (*QAudioEncoderSettings)(nil).__encodingOptions_atList(v, i, l.data)
+			tmpList := NewQAudioEncoderSettingsFromPointer(l.data)
+			for i, v := range tmpList.__encodingOptions_keyList() {
+				out[v] = tmpList.__encodingOptions_atList(v, i)
 			}
 			return out
 		}(C.QAudioEncoderSettings_EncodingOptions(ptr.Pointer()))
@@ -7056,102 +7255,130 @@ func (ptr *QAudioEncoderSettings) SampleRate() int {
 	return 0
 }
 
-func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QAudioEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QAudioEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_newList() unsafe.Pointer {
 	return C.QAudioEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioEncoderSettings) __setEncodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QAudioEncoderSettings)(nil).____setEncodingOptions_keyList_atList(i, l.data)
+func (ptr *QAudioEncoderSettings) __setEncodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQAudioEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QAudioEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QAudioEncoderSettings) __encodingOptions_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
 		}
-		return out
-	}(C.QAudioEncoderSettings___setEncodingOptions_keyList(ptr.Pointer(), p))
+		tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioEncoderSettings) __encodingOptions_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QAudioEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QAudioEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QAudioEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
-func (ptr *QAudioEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
-	}
-	C.QAudioEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QAudioEncoderSettings) __encodingOptions_newList() unsafe.Pointer {
 	return C.QAudioEncoderSettings___encodingOptions_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioEncoderSettings) __encodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QAudioEncoderSettings)(nil).____encodingOptions_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QAudioEncoderSettings___encodingOptions_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QAudioEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-}
-
-func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QAudioEncoderSettings) __encodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQAudioEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____encodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QAudioEncoderSettings___encodingOptions_keyList(ptr.Pointer()))
 	}
-	C.QAudioEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
+	return make([]string, 0)
+}
+
+func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QAudioEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+	}
 }
 
 func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
 	return C.QAudioEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QAudioEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QAudioEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QAudioEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_newList() unsafe.Pointer {
@@ -7328,20 +7555,20 @@ func (ptr *QAudioEncoderSettingsControl) AudioSettings() *QAudioEncoderSettings 
 func callbackQAudioEncoderSettingsControl_SupportedSampleRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedSampleRates"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAudioEncoderSettingsControl)(nil).__supportedSampleRates_newList()
+			tmpList := NewQAudioEncoderSettingsControlFromPointer(NewQAudioEncoderSettingsControlFromPointer(nil).__supportedSampleRates_newList())
 			for _, v := range signal.(func(*QAudioEncoderSettings, bool) []int)(NewQAudioEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
-				(*QAudioEncoderSettingsControl)(nil).__supportedSampleRates_setList(v, tmpList)
+				tmpList.__supportedSampleRates_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAudioEncoderSettingsControl)(nil).__supportedSampleRates_newList()
+		tmpList := NewQAudioEncoderSettingsControlFromPointer(NewQAudioEncoderSettingsControlFromPointer(nil).__supportedSampleRates_newList())
 		for _, v := range make([]int, 0) {
-			(*QAudioEncoderSettingsControl)(nil).__supportedSampleRates_setList(v, tmpList)
+			tmpList.__supportedSampleRates_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -7370,8 +7597,9 @@ func (ptr *QAudioEncoderSettingsControl) SupportedSampleRates(settings QAudioEnc
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAudioEncoderSettingsControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioEncoderSettingsControl)(nil).__supportedSampleRates_atList(i, l.data)
+				out[i] = tmpList.__supportedSampleRates_atList(i)
 			}
 			return out
 		}(C.QAudioEncoderSettingsControl_SupportedSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -7460,12 +7688,17 @@ func (ptr *QAudioEncoderSettingsControl) SupportedAudioCodecs() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QAudioEncoderSettingsControl) __supportedSampleRates_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAudioEncoderSettingsControl___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAudioEncoderSettingsControl) __supportedSampleRates_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAudioEncoderSettingsControl___supportedSampleRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAudioEncoderSettingsControl) __supportedSampleRates_setList(i int, p unsafe.Pointer) {
-	C.QAudioEncoderSettingsControl___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAudioEncoderSettingsControl) __supportedSampleRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl___supportedSampleRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAudioEncoderSettingsControl) __supportedSampleRates_newList() unsafe.Pointer {
@@ -7921,78 +8154,103 @@ func (ptr *QAudioInput) Volume() float64 {
 	return 0
 }
 
-func (ptr *QAudioInput) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAudioInput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioInput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioInput) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAudioInput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAudioInput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAudioInput) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAudioInput___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioInput) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioInput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioInput) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioInput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioInput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioInput) __findChildren_newList2() unsafe.Pointer {
 	return C.QAudioInput___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAudioInput) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioInput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioInput) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioInput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioInput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioInput) __findChildren_newList3() unsafe.Pointer {
 	return C.QAudioInput___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAudioInput) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioInput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioInput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioInput) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioInput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioInput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioInput) __findChildren_newList() unsafe.Pointer {
 	return C.QAudioInput___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioInput) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioInput___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioInput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioInput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioInput) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioInput___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioInput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioInput) __children_newList() unsafe.Pointer {
@@ -8480,17 +8738,22 @@ func (ptr *QAudioInputSelectorControl) InputDescription(name string) string {
 	return ""
 }
 
-func (ptr *QAudioInputSelectorControl) __availableInputs_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QAudioInputSelectorControl___availableInputs_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioInputSelectorControl) __availableInputs_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioInputSelectorControl___availableInputs_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QAudioInputSelectorControl) __availableInputs_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QAudioInputSelectorControl) __availableInputs_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QAudioInputSelectorControl___availableInputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QAudioInputSelectorControl___availableInputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QAudioInputSelectorControl) __availableInputs_newList() unsafe.Pointer {
@@ -8747,78 +9010,103 @@ func (ptr *QAudioOutput) Volume() float64 {
 	return 0
 }
 
-func (ptr *QAudioOutput) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAudioOutput) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioOutput___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioOutput) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAudioOutput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAudioOutput) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioOutput___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAudioOutput) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAudioOutput___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioOutput) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioOutput) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioOutput) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioOutput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioOutput) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioOutput___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioOutput) __findChildren_newList2() unsafe.Pointer {
 	return C.QAudioOutput___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAudioOutput) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioOutput) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioOutput) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioOutput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioOutput) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioOutput___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioOutput) __findChildren_newList3() unsafe.Pointer {
 	return C.QAudioOutput___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAudioOutput) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioOutput) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioOutput) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioOutput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioOutput) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioOutput___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioOutput) __findChildren_newList() unsafe.Pointer {
 	return C.QAudioOutput___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioOutput) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioOutput) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioOutput___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioOutput) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioOutput___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioOutput) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioOutput___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioOutput) __children_newList() unsafe.Pointer {
@@ -9306,17 +9594,22 @@ func (ptr *QAudioOutputSelectorControl) OutputDescription(name string) string {
 	return ""
 }
 
-func (ptr *QAudioOutputSelectorControl) __availableOutputs_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QAudioOutputSelectorControl___availableOutputs_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioOutputSelectorControl) __availableOutputs_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioOutputSelectorControl___availableOutputs_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QAudioOutputSelectorControl) __availableOutputs_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QAudioOutputSelectorControl) __availableOutputs_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QAudioOutputSelectorControl___availableOutputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QAudioOutputSelectorControl___availableOutputs_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QAudioOutputSelectorControl) __availableOutputs_newList() unsafe.Pointer {
@@ -9476,78 +9769,103 @@ func (ptr *QAudioProbe) IsActive() bool {
 	return false
 }
 
-func (ptr *QAudioProbe) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAudioProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAudioProbe) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioProbe) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAudioProbe___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAudioProbe) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioProbe___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAudioProbe) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAudioProbe___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioProbe) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioProbe) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioProbe) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioProbe___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioProbe) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioProbe___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioProbe) __findChildren_newList2() unsafe.Pointer {
 	return C.QAudioProbe___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAudioProbe) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioProbe) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioProbe) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioProbe___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioProbe) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioProbe___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioProbe) __findChildren_newList3() unsafe.Pointer {
 	return C.QAudioProbe___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAudioProbe) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioProbe) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioProbe) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioProbe___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioProbe) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioProbe___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioProbe) __findChildren_newList() unsafe.Pointer {
 	return C.QAudioProbe___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioProbe) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioProbe) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioProbe___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioProbe) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioProbe___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioProbe) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioProbe___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioProbe) __children_newList() unsafe.Pointer {
@@ -10137,20 +10455,20 @@ func (ptr *QAudioRoleControl) AudioRole() QAudio__Role {
 func callbackQAudioRoleControl_SupportedAudioRoles(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedAudioRoles"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAudioRoleControl)(nil).__supportedAudioRoles_newList()
+			tmpList := NewQAudioRoleControlFromPointer(NewQAudioRoleControlFromPointer(nil).__supportedAudioRoles_newList())
 			for _, v := range signal.(func() []QAudio__Role)() {
-				(*QAudioRoleControl)(nil).__supportedAudioRoles_setList(v, tmpList)
+				tmpList.__supportedAudioRoles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAudioRoleControl)(nil).__supportedAudioRoles_newList()
+		tmpList := NewQAudioRoleControlFromPointer(NewQAudioRoleControlFromPointer(nil).__supportedAudioRoles_newList())
 		for _, v := range make([]QAudio__Role, 0) {
-			(*QAudioRoleControl)(nil).__supportedAudioRoles_setList(v, tmpList)
+			tmpList.__supportedAudioRoles_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -10179,8 +10497,9 @@ func (ptr *QAudioRoleControl) SupportedAudioRoles() []QAudio__Role {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudio__Role {
 			out := make([]QAudio__Role, int(l.len))
+			tmpList := NewQAudioRoleControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioRoleControl)(nil).__supportedAudioRoles_atList(i, l.data)
+				out[i] = tmpList.__supportedAudioRoles_atList(i)
 			}
 			return out
 		}(C.QAudioRoleControl_SupportedAudioRoles(ptr.Pointer()))
@@ -10188,12 +10507,17 @@ func (ptr *QAudioRoleControl) SupportedAudioRoles() []QAudio__Role {
 	return make([]QAudio__Role, 0)
 }
 
-func (ptr *QAudioRoleControl) __supportedAudioRoles_atList(i int, p unsafe.Pointer) QAudio__Role {
-	return QAudio__Role(C.QAudioRoleControl___supportedAudioRoles_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QAudioRoleControl) __supportedAudioRoles_atList(i int) QAudio__Role {
+	if ptr.Pointer() != nil {
+		return QAudio__Role(C.QAudioRoleControl___supportedAudioRoles_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QAudioRoleControl) __supportedAudioRoles_setList(i QAudio__Role, p unsafe.Pointer) {
-	C.QAudioRoleControl___supportedAudioRoles_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QAudioRoleControl) __supportedAudioRoles_setList(i QAudio__Role) {
+	if ptr.Pointer() != nil {
+		C.QAudioRoleControl___supportedAudioRoles_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QAudioRoleControl) __supportedAudioRoles_newList() unsafe.Pointer {
@@ -10382,20 +10706,20 @@ func (ptr *QAudioSystemPlugin) DestroyQAudioSystemPlugin() {
 func callbackQAudioSystemPlugin_AvailableDevices(ptr unsafe.Pointer, mode C.longlong) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "availableDevices"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAudioSystemPlugin)(nil).__availableDevices_newList()
+			tmpList := NewQAudioSystemPluginFromPointer(NewQAudioSystemPluginFromPointer(nil).__availableDevices_newList())
 			for _, v := range signal.(func(QAudio__Mode) []*core.QByteArray)(QAudio__Mode(mode)) {
-				(*QAudioSystemPlugin)(nil).__availableDevices_setList(v, tmpList)
+				tmpList.__availableDevices_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAudioSystemPlugin)(nil).__availableDevices_newList()
+		tmpList := NewQAudioSystemPluginFromPointer(NewQAudioSystemPluginFromPointer(nil).__availableDevices_newList())
 		for _, v := range make([]*core.QByteArray, 0) {
-			(*QAudioSystemPlugin)(nil).__availableDevices_setList(v, tmpList)
+			tmpList.__availableDevices_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -10424,8 +10748,9 @@ func (ptr *QAudioSystemPlugin) AvailableDevices(mode QAudio__Mode) []*core.QByte
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
 			out := make([]*core.QByteArray, int(l.len))
+			tmpList := NewQAudioSystemPluginFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAudioSystemPlugin)(nil).__availableDevices_atList(i, l.data)
+				out[i] = tmpList.__availableDevices_atList(i)
 			}
 			return out
 		}(C.QAudioSystemPlugin_AvailableDevices(ptr.Pointer(), C.longlong(mode)))
@@ -10433,92 +10758,122 @@ func (ptr *QAudioSystemPlugin) AvailableDevices(mode QAudio__Mode) []*core.QByte
 	return make([]*core.QByteArray, 0)
 }
 
-func (ptr *QAudioSystemPlugin) __availableDevices_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___availableDevices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAudioSystemPlugin) __availableDevices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __availableDevices_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAudioSystemPlugin) __availableDevices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __availableDevices_newList() unsafe.Pointer {
 	return C.QAudioSystemPlugin___availableDevices_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAudioSystemPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAudioSystemPlugin___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioSystemPlugin) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioSystemPlugin) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __findChildren_newList2() unsafe.Pointer {
 	return C.QAudioSystemPlugin___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioSystemPlugin) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioSystemPlugin) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QAudioSystemPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioSystemPlugin) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioSystemPlugin) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __findChildren_newList() unsafe.Pointer {
 	return C.QAudioSystemPlugin___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioSystemPlugin) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAudioSystemPlugin) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAudioSystemPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAudioSystemPlugin) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAudioSystemPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAudioSystemPlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAudioSystemPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAudioSystemPlugin) __children_newList() unsafe.Pointer {
@@ -11653,8 +12008,9 @@ func (ptr *QCamera) SupportedViewfinderSettings(settings QCameraViewfinderSettin
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*QCameraViewfinderSettings {
 			out := make([]*QCameraViewfinderSettings, int(l.len))
+			tmpList := NewQCameraFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCamera)(nil).__supportedViewfinderSettings_atList(i, l.data)
+				out[i] = tmpList.__supportedViewfinderSettings_atList(i)
 			}
 			return out
 		}(C.QCamera_SupportedViewfinderSettings(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings)))
@@ -11666,8 +12022,9 @@ func (ptr *QCamera) SupportedViewfinderResolutions(settings QCameraViewfinderSet
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
+			tmpList := NewQCameraFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCamera)(nil).__supportedViewfinderResolutions_atList(i, l.data)
+				out[i] = tmpList.__supportedViewfinderResolutions_atList(i)
 			}
 			return out
 		}(C.QCamera_SupportedViewfinderResolutions(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings)))
@@ -11679,8 +12036,9 @@ func (ptr *QCamera) SupportedViewfinderPixelFormats(settings QCameraViewfinderSe
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QVideoFrame__PixelFormat {
 			out := make([]QVideoFrame__PixelFormat, int(l.len))
+			tmpList := NewQCameraFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCamera)(nil).__supportedViewfinderPixelFormats_atList(i, l.data)
+				out[i] = tmpList.__supportedViewfinderPixelFormats_atList(i)
 			}
 			return out
 		}(C.QCamera_SupportedViewfinderPixelFormats(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings)))
@@ -11716,54 +12074,74 @@ func (ptr *QCamera) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
 	return false
 }
 
-func (ptr *QCamera) __availableDevices_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCamera___availableDevices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCamera) __availableDevices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCamera___availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCamera) __availableDevices_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCamera___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCamera) __availableDevices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCamera___availableDevices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCamera) __availableDevices_newList() unsafe.Pointer {
 	return C.QCamera___availableDevices_newList(ptr.Pointer())
 }
 
-func (ptr *QCamera) __supportedViewfinderSettings_atList(i int, p unsafe.Pointer) *QCameraViewfinderSettings {
-	tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCamera___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
-	return tmpValue
+func (ptr *QCamera) __supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCamera___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCamera) __supportedViewfinderSettings_setList(i QCameraViewfinderSettings_ITF, p unsafe.Pointer) {
-	C.QCamera___supportedViewfinderSettings_setList(ptr.Pointer(), PointerFromQCameraViewfinderSettings(i), p)
+func (ptr *QCamera) __supportedViewfinderSettings_setList(i QCameraViewfinderSettings_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCamera___supportedViewfinderSettings_setList(ptr.Pointer(), PointerFromQCameraViewfinderSettings(i))
+	}
 }
 
 func (ptr *QCamera) __supportedViewfinderSettings_newList() unsafe.Pointer {
 	return C.QCamera___supportedViewfinderSettings_newList(ptr.Pointer())
 }
 
-func (ptr *QCamera) __supportedViewfinderResolutions_atList(i int, p unsafe.Pointer) *core.QSize {
-	tmpValue := core.NewQSizeFromPointer(C.QCamera___supportedViewfinderResolutions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-	return tmpValue
+func (ptr *QCamera) __supportedViewfinderResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QCamera___supportedViewfinderResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCamera) __supportedViewfinderResolutions_setList(i core.QSize_ITF, p unsafe.Pointer) {
-	C.QCamera___supportedViewfinderResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i), p)
+func (ptr *QCamera) __supportedViewfinderResolutions_setList(i core.QSize_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCamera___supportedViewfinderResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i))
+	}
 }
 
 func (ptr *QCamera) __supportedViewfinderResolutions_newList() unsafe.Pointer {
 	return C.QCamera___supportedViewfinderResolutions_newList(ptr.Pointer())
 }
 
-func (ptr *QCamera) __supportedViewfinderPixelFormats_atList(i int, p unsafe.Pointer) QVideoFrame__PixelFormat {
-	return QVideoFrame__PixelFormat(C.QCamera___supportedViewfinderPixelFormats_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QCamera) __supportedViewfinderPixelFormats_atList(i int) QVideoFrame__PixelFormat {
+	if ptr.Pointer() != nil {
+		return QVideoFrame__PixelFormat(C.QCamera___supportedViewfinderPixelFormats_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QCamera) __supportedViewfinderPixelFormats_setList(i QVideoFrame__PixelFormat, p unsafe.Pointer) {
-	C.QCamera___supportedViewfinderPixelFormats_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QCamera) __supportedViewfinderPixelFormats_setList(i QVideoFrame__PixelFormat) {
+	if ptr.Pointer() != nil {
+		C.QCamera___supportedViewfinderPixelFormats_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QCamera) __supportedViewfinderPixelFormats_newList() unsafe.Pointer {
@@ -11901,20 +12279,20 @@ func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatC
 func callbackQCameraCaptureBufferFormatControl_SupportedBufferFormats(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedBufferFormats"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QCameraCaptureBufferFormatControl)(nil).__supportedBufferFormats_newList()
+			tmpList := NewQCameraCaptureBufferFormatControlFromPointer(NewQCameraCaptureBufferFormatControlFromPointer(nil).__supportedBufferFormats_newList())
 			for _, v := range signal.(func() []QVideoFrame__PixelFormat)() {
-				(*QCameraCaptureBufferFormatControl)(nil).__supportedBufferFormats_setList(v, tmpList)
+				tmpList.__supportedBufferFormats_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QCameraCaptureBufferFormatControl)(nil).__supportedBufferFormats_newList()
+		tmpList := NewQCameraCaptureBufferFormatControlFromPointer(NewQCameraCaptureBufferFormatControlFromPointer(nil).__supportedBufferFormats_newList())
 		for _, v := range make([]QVideoFrame__PixelFormat, 0) {
-			(*QCameraCaptureBufferFormatControl)(nil).__supportedBufferFormats_setList(v, tmpList)
+			tmpList.__supportedBufferFormats_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -11943,8 +12321,9 @@ func (ptr *QCameraCaptureBufferFormatControl) SupportedBufferFormats() []QVideoF
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QVideoFrame__PixelFormat {
 			out := make([]QVideoFrame__PixelFormat, int(l.len))
+			tmpList := NewQCameraCaptureBufferFormatControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraCaptureBufferFormatControl)(nil).__supportedBufferFormats_atList(i, l.data)
+				out[i] = tmpList.__supportedBufferFormats_atList(i)
 			}
 			return out
 		}(C.QCameraCaptureBufferFormatControl_SupportedBufferFormats(ptr.Pointer()))
@@ -11989,12 +12368,17 @@ func (ptr *QCameraCaptureBufferFormatControl) BufferFormat() QVideoFrame__PixelF
 	return 0
 }
 
-func (ptr *QCameraCaptureBufferFormatControl) __supportedBufferFormats_atList(i int, p unsafe.Pointer) QVideoFrame__PixelFormat {
-	return QVideoFrame__PixelFormat(C.QCameraCaptureBufferFormatControl___supportedBufferFormats_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QCameraCaptureBufferFormatControl) __supportedBufferFormats_atList(i int) QVideoFrame__PixelFormat {
+	if ptr.Pointer() != nil {
+		return QVideoFrame__PixelFormat(C.QCameraCaptureBufferFormatControl___supportedBufferFormats_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QCameraCaptureBufferFormatControl) __supportedBufferFormats_setList(i QVideoFrame__PixelFormat, p unsafe.Pointer) {
-	C.QCameraCaptureBufferFormatControl___supportedBufferFormats_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QCameraCaptureBufferFormatControl) __supportedBufferFormats_setList(i QVideoFrame__PixelFormat) {
+	if ptr.Pointer() != nil {
+		C.QCameraCaptureBufferFormatControl___supportedBufferFormats_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) __supportedBufferFormats_newList() unsafe.Pointer {
@@ -13503,8 +13887,9 @@ func (ptr *QCameraExposure) SupportedIsoSensitivities(continuous bool) []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQCameraExposureFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraExposure)(nil).__supportedIsoSensitivities_atList(i, l.data)
+				out[i] = tmpList.__supportedIsoSensitivities_atList(i)
 			}
 			return out
 		}(C.QCameraExposure_SupportedIsoSensitivities(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -13516,8 +13901,9 @@ func (ptr *QCameraExposure) SupportedApertures(continuous bool) []float64 {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
+			tmpList := NewQCameraExposureFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraExposure)(nil).__supportedApertures_atList(i, l.data)
+				out[i] = tmpList.__supportedApertures_atList(i)
 			}
 			return out
 		}(C.QCameraExposure_SupportedApertures(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -13529,8 +13915,9 @@ func (ptr *QCameraExposure) SupportedShutterSpeeds(continuous bool) []float64 {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
+			tmpList := NewQCameraExposureFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraExposure)(nil).__supportedShutterSpeeds_atList(i, l.data)
+				out[i] = tmpList.__supportedShutterSpeeds_atList(i)
 			}
 			return out
 		}(C.QCameraExposure_SupportedShutterSpeeds(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -13631,114 +14018,154 @@ func (ptr *QCameraExposure) ShutterSpeed() float64 {
 	return 0
 }
 
-func (ptr *QCameraExposure) __supportedIsoSensitivities_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QCameraExposure___supportedIsoSensitivities_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QCameraExposure) __supportedIsoSensitivities_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCameraExposure___supportedIsoSensitivities_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QCameraExposure) __supportedIsoSensitivities_setList(i int, p unsafe.Pointer) {
-	C.QCameraExposure___supportedIsoSensitivities_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QCameraExposure) __supportedIsoSensitivities_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___supportedIsoSensitivities_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QCameraExposure) __supportedIsoSensitivities_newList() unsafe.Pointer {
 	return C.QCameraExposure___supportedIsoSensitivities_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __supportedApertures_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QCameraExposure___supportedApertures_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QCameraExposure) __supportedApertures_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure___supportedApertures_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QCameraExposure) __supportedApertures_setList(i float64, p unsafe.Pointer) {
-	C.QCameraExposure___supportedApertures_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QCameraExposure) __supportedApertures_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___supportedApertures_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QCameraExposure) __supportedApertures_newList() unsafe.Pointer {
 	return C.QCameraExposure___supportedApertures_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __supportedShutterSpeeds_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QCameraExposure___supportedShutterSpeeds_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QCameraExposure) __supportedShutterSpeeds_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure___supportedShutterSpeeds_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QCameraExposure) __supportedShutterSpeeds_setList(i float64, p unsafe.Pointer) {
-	C.QCameraExposure___supportedShutterSpeeds_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QCameraExposure) __supportedShutterSpeeds_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___supportedShutterSpeeds_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QCameraExposure) __supportedShutterSpeeds_newList() unsafe.Pointer {
 	return C.QCameraExposure___supportedShutterSpeeds_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCameraExposure___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCameraExposure) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCameraExposure___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraExposure) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCameraExposure___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCameraExposure) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCameraExposure) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QCameraExposure___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraExposure) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraExposure) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraExposure___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraExposure) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraExposure) __findChildren_newList2() unsafe.Pointer {
 	return C.QCameraExposure___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraExposure) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraExposure) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraExposure___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraExposure) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraExposure) __findChildren_newList3() unsafe.Pointer {
 	return C.QCameraExposure___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraExposure) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraExposure) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraExposure___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraExposure) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraExposure) __findChildren_newList() unsafe.Pointer {
 	return C.QCameraExposure___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraExposure) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraExposure) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraExposure___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraExposure) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraExposure___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraExposure) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraExposure) __children_newList() unsafe.Pointer {
@@ -14210,20 +14637,20 @@ func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureContr
 func callbackQCameraExposureControl_SupportedParameterRange(ptr unsafe.Pointer, parameter C.longlong, continuous C.char) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedParameterRange"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QCameraExposureControl)(nil).__supportedParameterRange_newList()
+			tmpList := NewQCameraExposureControlFromPointer(NewQCameraExposureControlFromPointer(nil).__supportedParameterRange_newList())
 			for _, v := range signal.(func(QCameraExposureControl__ExposureParameter, bool) []*core.QVariant)(QCameraExposureControl__ExposureParameter(parameter), int8(continuous) != 0) {
-				(*QCameraExposureControl)(nil).__supportedParameterRange_setList(v, tmpList)
+				tmpList.__supportedParameterRange_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QCameraExposureControl)(nil).__supportedParameterRange_newList()
+		tmpList := NewQCameraExposureControlFromPointer(NewQCameraExposureControlFromPointer(nil).__supportedParameterRange_newList())
 		for _, v := range make([]*core.QVariant, 0) {
-			(*QCameraExposureControl)(nil).__supportedParameterRange_setList(v, tmpList)
+			tmpList.__supportedParameterRange_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -14252,8 +14679,9 @@ func (ptr *QCameraExposureControl) SupportedParameterRange(parameter QCameraExpo
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QVariant {
 			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQCameraExposureControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraExposureControl)(nil).__supportedParameterRange_atList(i, l.data)
+				out[i] = tmpList.__supportedParameterRange_atList(i)
 			}
 			return out
 		}(C.QCameraExposureControl_SupportedParameterRange(ptr.Pointer(), C.longlong(parameter), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -14298,14 +14726,19 @@ func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposur
 	return false
 }
 
-func (ptr *QCameraExposureControl) __supportedParameterRange_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QCameraExposureControl___supportedParameterRange_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QCameraExposureControl) __supportedParameterRange_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QCameraExposureControl___supportedParameterRange_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraExposureControl) __supportedParameterRange_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QCameraExposureControl___supportedParameterRange_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QCameraExposureControl) __supportedParameterRange_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposureControl___supportedParameterRange_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QCameraExposureControl) __supportedParameterRange_newList() unsafe.Pointer {
@@ -15164,78 +15597,103 @@ func (ptr *QCameraFocus) OpticalZoom() float64 {
 	return 0
 }
 
-func (ptr *QCameraFocus) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCameraFocus___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCameraFocus) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCameraFocus___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraFocus) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCameraFocus___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCameraFocus) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraFocus___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCameraFocus) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QCameraFocus___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraFocus) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraFocus) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraFocus) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraFocus___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraFocus) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraFocus___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraFocus) __findChildren_newList2() unsafe.Pointer {
 	return C.QCameraFocus___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCameraFocus) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraFocus) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraFocus) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraFocus___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraFocus) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraFocus___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraFocus) __findChildren_newList3() unsafe.Pointer {
 	return C.QCameraFocus___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCameraFocus) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraFocus) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraFocus) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraFocus___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraFocus) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraFocus___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraFocus) __findChildren_newList() unsafe.Pointer {
 	return C.QCameraFocus___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraFocus) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraFocus) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraFocus___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraFocus) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraFocus___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraFocus) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraFocus___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraFocus) __children_newList() unsafe.Pointer {
@@ -16618,8 +17076,9 @@ func (ptr *QCameraImageCapture) SupportedResolutions(settings QImageEncoderSetti
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
+			tmpList := NewQCameraImageCaptureFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraImageCapture)(nil).__supportedResolutions_atList(i, l.data)
+				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
 		}(C.QCameraImageCapture_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -16631,8 +17090,9 @@ func (ptr *QCameraImageCapture) SupportedBufferFormats() []QVideoFrame__PixelFor
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QVideoFrame__PixelFormat {
 			out := make([]QVideoFrame__PixelFormat, int(l.len))
+			tmpList := NewQCameraImageCaptureFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraImageCapture)(nil).__supportedBufferFormats_atList(i, l.data)
+				out[i] = tmpList.__supportedBufferFormats_atList(i)
 			}
 			return out
 		}(C.QCameraImageCapture_SupportedBufferFormats(ptr.Pointer()))
@@ -16753,104 +17213,139 @@ func (ptr *QCameraImageCapture) IsReadyForCapture() bool {
 	return false
 }
 
-func (ptr *QCameraImageCapture) __supportedResolutions_atList(i int, p unsafe.Pointer) *core.QSize {
-	tmpValue := core.NewQSizeFromPointer(C.QCameraImageCapture___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-	return tmpValue
+func (ptr *QCameraImageCapture) __supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QCameraImageCapture___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __supportedResolutions_setList(i core.QSize_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i), p)
+func (ptr *QCameraImageCapture) __supportedResolutions_setList(i core.QSize_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __supportedResolutions_newList() unsafe.Pointer {
 	return C.QCameraImageCapture___supportedResolutions_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __supportedBufferFormats_atList(i int, p unsafe.Pointer) QVideoFrame__PixelFormat {
-	return QVideoFrame__PixelFormat(C.QCameraImageCapture___supportedBufferFormats_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QCameraImageCapture) __supportedBufferFormats_atList(i int) QVideoFrame__PixelFormat {
+	if ptr.Pointer() != nil {
+		return QVideoFrame__PixelFormat(C.QCameraImageCapture___supportedBufferFormats_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QCameraImageCapture) __supportedBufferFormats_setList(i QVideoFrame__PixelFormat, p unsafe.Pointer) {
-	C.QCameraImageCapture___supportedBufferFormats_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QCameraImageCapture) __supportedBufferFormats_setList(i QVideoFrame__PixelFormat) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___supportedBufferFormats_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __supportedBufferFormats_newList() unsafe.Pointer {
 	return C.QCameraImageCapture___supportedBufferFormats_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageCapture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCameraImageCapture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageCapture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCameraImageCapture) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QCameraImageCapture___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageCapture) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageCapture) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __findChildren_newList2() unsafe.Pointer {
 	return C.QCameraImageCapture___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageCapture) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageCapture) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __findChildren_newList3() unsafe.Pointer {
 	return C.QCameraImageCapture___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageCapture) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageCapture) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __findChildren_newList() unsafe.Pointer {
 	return C.QCameraImageCapture___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageCapture) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageCapture) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageCapture___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageCapture) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageCapture___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageCapture) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageCapture) __children_newList() unsafe.Pointer {
@@ -17797,78 +18292,103 @@ func (ptr *QCameraImageProcessing) SharpeningLevel() float64 {
 	return 0
 }
 
-func (ptr *QCameraImageProcessing) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageProcessing___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCameraImageProcessing) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCameraImageProcessing___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraImageProcessing) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCameraImageProcessing___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCameraImageProcessing) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCameraImageProcessing) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QCameraImageProcessing___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageProcessing) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageProcessing___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageProcessing) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageProcessing) __findChildren_newList2() unsafe.Pointer {
 	return C.QCameraImageProcessing___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageProcessing) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageProcessing___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageProcessing) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageProcessing) __findChildren_newList3() unsafe.Pointer {
 	return C.QCameraImageProcessing___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageProcessing) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageProcessing) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageProcessing___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageProcessing) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageProcessing) __findChildren_newList() unsafe.Pointer {
 	return C.QCameraImageProcessing___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCameraImageProcessing) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCameraImageProcessing) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCameraImageProcessing___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCameraImageProcessing) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCameraImageProcessing___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCameraImageProcessing) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCameraImageProcessing) __children_newList() unsafe.Pointer {
@@ -18325,8 +18845,9 @@ func NewQCameraInfo3(other QCameraInfo_ITF) *QCameraInfo {
 func QCameraInfo_AvailableCameras(position QCamera__Position) []*QCameraInfo {
 	return func(l C.struct_QtMultimedia_PackedList) []*QCameraInfo {
 		out := make([]*QCameraInfo, int(l.len))
+		tmpList := NewQCameraInfoFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QCameraInfo)(nil).__availableCameras_atList(i, l.data)
+			out[i] = tmpList.__availableCameras_atList(i)
 		}
 		return out
 	}(C.QCameraInfo_QCameraInfo_AvailableCameras(C.longlong(position)))
@@ -18335,8 +18856,9 @@ func QCameraInfo_AvailableCameras(position QCamera__Position) []*QCameraInfo {
 func (ptr *QCameraInfo) AvailableCameras(position QCamera__Position) []*QCameraInfo {
 	return func(l C.struct_QtMultimedia_PackedList) []*QCameraInfo {
 		out := make([]*QCameraInfo, int(l.len))
+		tmpList := NewQCameraInfoFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QCameraInfo)(nil).__availableCameras_atList(i, l.data)
+			out[i] = tmpList.__availableCameras_atList(i)
 		}
 		return out
 	}(C.QCameraInfo_QCameraInfo_AvailableCameras(C.longlong(position)))
@@ -18385,14 +18907,19 @@ func (ptr *QCameraInfo) Orientation() int {
 	return 0
 }
 
-func (ptr *QCameraInfo) __availableCameras_atList(i int, p unsafe.Pointer) *QCameraInfo {
-	tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo___availableCameras_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
-	return tmpValue
+func (ptr *QCameraInfo) __availableCameras_atList(i int) *QCameraInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQCameraInfoFromPointer(C.QCameraInfo___availableCameras_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraInfo) __availableCameras_setList(i QCameraInfo_ITF, p unsafe.Pointer) {
-	C.QCameraInfo___availableCameras_setList(ptr.Pointer(), PointerFromQCameraInfo(i), p)
+func (ptr *QCameraInfo) __availableCameras_setList(i QCameraInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraInfo___availableCameras_setList(ptr.Pointer(), PointerFromQCameraInfo(i))
+	}
 }
 
 func (ptr *QCameraInfo) __availableCameras_newList() unsafe.Pointer {
@@ -19406,20 +19933,20 @@ func (ptr *QCameraViewfinderSettingsControl2) ViewfinderSettings() *QCameraViewf
 func callbackQCameraViewfinderSettingsControl2_SupportedViewfinderSettings(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedViewfinderSettings"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QCameraViewfinderSettingsControl2)(nil).__supportedViewfinderSettings_newList()
+			tmpList := NewQCameraViewfinderSettingsControl2FromPointer(NewQCameraViewfinderSettingsControl2FromPointer(nil).__supportedViewfinderSettings_newList())
 			for _, v := range signal.(func() []*QCameraViewfinderSettings)() {
-				(*QCameraViewfinderSettingsControl2)(nil).__supportedViewfinderSettings_setList(v, tmpList)
+				tmpList.__supportedViewfinderSettings_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QCameraViewfinderSettingsControl2)(nil).__supportedViewfinderSettings_newList()
+		tmpList := NewQCameraViewfinderSettingsControl2FromPointer(NewQCameraViewfinderSettingsControl2FromPointer(nil).__supportedViewfinderSettings_newList())
 		for _, v := range make([]*QCameraViewfinderSettings, 0) {
-			(*QCameraViewfinderSettingsControl2)(nil).__supportedViewfinderSettings_setList(v, tmpList)
+			tmpList.__supportedViewfinderSettings_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -19448,8 +19975,9 @@ func (ptr *QCameraViewfinderSettingsControl2) SupportedViewfinderSettings() []*Q
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*QCameraViewfinderSettings {
 			out := make([]*QCameraViewfinderSettings, int(l.len))
+			tmpList := NewQCameraViewfinderSettingsControl2FromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QCameraViewfinderSettingsControl2)(nil).__supportedViewfinderSettings_atList(i, l.data)
+				out[i] = tmpList.__supportedViewfinderSettings_atList(i)
 			}
 			return out
 		}(C.QCameraViewfinderSettingsControl2_SupportedViewfinderSettings(ptr.Pointer()))
@@ -19457,14 +19985,19 @@ func (ptr *QCameraViewfinderSettingsControl2) SupportedViewfinderSettings() []*Q
 	return make([]*QCameraViewfinderSettings, 0)
 }
 
-func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_atList(i int, p unsafe.Pointer) *QCameraViewfinderSettings {
-	tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
-	return tmpValue
+func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2___supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_setList(i QCameraViewfinderSettings_ITF, p unsafe.Pointer) {
-	C.QCameraViewfinderSettingsControl2___supportedViewfinderSettings_setList(ptr.Pointer(), PointerFromQCameraViewfinderSettings(i), p)
+func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_setList(i QCameraViewfinderSettings_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl2___supportedViewfinderSettings_setList(ptr.Pointer(), PointerFromQCameraViewfinderSettings(i))
+	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) __supportedViewfinderSettings_newList() unsafe.Pointer {
@@ -20305,134 +20838,179 @@ func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
 	return 0
 }
 
-func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsVideoItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsVideoItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsVideoItem) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsVideoItem___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsVideoItem) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsVideoItem___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsVideoItem) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsVideoItem___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsVideoItem) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __children_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___children_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __setTransformations_transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
-	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __setTransformations_transformations_atList(i int) *widgets.QGraphicsTransform {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
+func (ptr *QGraphicsVideoItem) __setTransformations_transformations_setList(i widgets.QGraphicsTransform_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___setTransformations_transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __setTransformations_transformations_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___setTransformations_transformations_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __childItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
-	return widgets.NewQGraphicsItemFromPointer(C.QGraphicsVideoItem___childItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsVideoItem) __childItems_atList(i int) *widgets.QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return widgets.NewQGraphicsItemFromPointer(C.QGraphicsVideoItem___childItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __childItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsVideoItem) __childItems_setList(i widgets.QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___childItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __childItems_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___childItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __collidingItems_atList(i int, p unsafe.Pointer) *widgets.QGraphicsItem {
-	return widgets.NewQGraphicsItemFromPointer(C.QGraphicsVideoItem___collidingItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsVideoItem) __collidingItems_atList(i int) *widgets.QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return widgets.NewQGraphicsItemFromPointer(C.QGraphicsVideoItem___collidingItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __collidingItems_setList(i widgets.QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsVideoItem) __collidingItems_setList(i widgets.QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___collidingItems_setList(ptr.Pointer(), widgets.PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __collidingItems_newList() unsafe.Pointer {
 	return C.QGraphicsVideoItem___collidingItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsVideoItem) __transformations_atList(i int, p unsafe.Pointer) *widgets.QGraphicsTransform {
-	tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsVideoItem) __transformations_atList(i int) *widgets.QGraphicsTransform {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQGraphicsTransformFromPointer(C.QGraphicsVideoItem___transformations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsVideoItem) __transformations_setList(i widgets.QGraphicsTransform_ITF, p unsafe.Pointer) {
-	C.QGraphicsVideoItem___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i), p)
+func (ptr *QGraphicsVideoItem) __transformations_setList(i widgets.QGraphicsTransform_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem___transformations_setList(ptr.Pointer(), widgets.PointerFromQGraphicsTransform(i))
+	}
 }
 
 func (ptr *QGraphicsVideoItem) __transformations_newList() unsafe.Pointer {
@@ -21608,20 +22186,20 @@ func (ptr *QImageEncoderControl) ImageSettings() *QImageEncoderSettings {
 func callbackQImageEncoderControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedResolutions"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QImageEncoderControl)(nil).__supportedResolutions_newList()
+			tmpList := NewQImageEncoderControlFromPointer(NewQImageEncoderControlFromPointer(nil).__supportedResolutions_newList())
 			for _, v := range signal.(func(*QImageEncoderSettings, bool) []*core.QSize)(NewQImageEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
-				(*QImageEncoderControl)(nil).__supportedResolutions_setList(v, tmpList)
+				tmpList.__supportedResolutions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QImageEncoderControl)(nil).__supportedResolutions_newList()
+		tmpList := NewQImageEncoderControlFromPointer(NewQImageEncoderControlFromPointer(nil).__supportedResolutions_newList())
 		for _, v := range make([]*core.QSize, 0) {
-			(*QImageEncoderControl)(nil).__supportedResolutions_setList(v, tmpList)
+			tmpList.__supportedResolutions_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -21650,8 +22228,9 @@ func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSett
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
+			tmpList := NewQImageEncoderControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QImageEncoderControl)(nil).__supportedResolutions_atList(i, l.data)
+				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
 		}(C.QImageEncoderControl_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -21740,14 +22319,19 @@ func (ptr *QImageEncoderControl) SupportedImageCodecs() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QImageEncoderControl) __supportedResolutions_atList(i int, p unsafe.Pointer) *core.QSize {
-	tmpValue := core.NewQSizeFromPointer(C.QImageEncoderControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-	return tmpValue
+func (ptr *QImageEncoderControl) __supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QImageEncoderControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QImageEncoderControl) __supportedResolutions_setList(i core.QSize_ITF, p unsafe.Pointer) {
-	C.QImageEncoderControl___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i), p)
+func (ptr *QImageEncoderControl) __supportedResolutions_setList(i core.QSize_ITF) {
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i))
+	}
 }
 
 func (ptr *QImageEncoderControl) __supportedResolutions_newList() unsafe.Pointer {
@@ -21828,11 +22412,11 @@ func (ptr *QImageEncoderSettings) SetEncodingOption(option string, value core.QV
 func (ptr *QImageEncoderSettings) SetEncodingOptions(options map[string]*core.QVariant) {
 	if ptr.Pointer() != nil {
 		C.QImageEncoderSettings_SetEncodingOptions(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QImageEncoderSettings)(nil).__setEncodingOptions_options_newList()
+			tmpList := NewQImageEncoderSettingsFromPointer(NewQImageEncoderSettingsFromPointer(nil).__setEncodingOptions_options_newList())
 			for k, v := range options {
-				(*QImageEncoderSettings)(nil).__setEncodingOptions_options_setList(k, v, tmpList)
+				tmpList.__setEncodingOptions_options_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -21904,8 +22488,9 @@ func (ptr *QImageEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QImageEncoderSettings)(nil).__encodingOptions_keyList(l.data) {
-				out[v] = (*QImageEncoderSettings)(nil).__encodingOptions_atList(v, i, l.data)
+			tmpList := NewQImageEncoderSettingsFromPointer(l.data)
+			for i, v := range tmpList.__encodingOptions_keyList() {
+				out[v] = tmpList.__encodingOptions_atList(v, i)
 			}
 			return out
 		}(C.QImageEncoderSettings_EncodingOptions(ptr.Pointer()))
@@ -21920,102 +22505,130 @@ func (ptr *QImageEncoderSettings) IsNull() bool {
 	return false
 }
 
-func (ptr *QImageEncoderSettings) __setEncodingOptions_options_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QImageEncoderSettings) __setEncodingOptions_options_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QImageEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QImageEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QImageEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QImageEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QImageEncoderSettings) __setEncodingOptions_options_newList() unsafe.Pointer {
 	return C.QImageEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QImageEncoderSettings) __setEncodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QImageEncoderSettings)(nil).____setEncodingOptions_keyList_atList(i, l.data)
+func (ptr *QImageEncoderSettings) __setEncodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQImageEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QImageEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QImageEncoderSettings) __encodingOptions_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
 		}
-		return out
-	}(C.QImageEncoderSettings___setEncodingOptions_keyList(ptr.Pointer(), p))
+		tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QImageEncoderSettings) __encodingOptions_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QImageEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QImageEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QImageEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
-func (ptr *QImageEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
-	}
-	C.QImageEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QImageEncoderSettings) __encodingOptions_newList() unsafe.Pointer {
 	return C.QImageEncoderSettings___encodingOptions_newList(ptr.Pointer())
 }
 
-func (ptr *QImageEncoderSettings) __encodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QImageEncoderSettings)(nil).____encodingOptions_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QImageEncoderSettings___encodingOptions_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QImageEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-}
-
-func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QImageEncoderSettings) __encodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQImageEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____encodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QImageEncoderSettings___encodingOptions_keyList(ptr.Pointer()))
 	}
-	C.QImageEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
+	return make([]string, 0)
+}
+
+func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QImageEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QImageEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+	}
 }
 
 func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
 	return C.QImageEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QImageEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QImageEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QImageEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QImageEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_newList() unsafe.Pointer {
@@ -22791,11 +23404,11 @@ func NewQMediaContent4(resource QMediaResource_ITF) *QMediaContent {
 
 func NewQMediaContent5(resources []*QMediaResource) *QMediaContent {
 	tmpValue := NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent5(func() unsafe.Pointer {
-		tmpList := (*QMediaContent)(nil).__QMediaContent_resources_newList5()
+		tmpList := NewQMediaContentFromPointer(NewQMediaContentFromPointer(nil).__QMediaContent_resources_newList5())
 		for _, v := range resources {
-			(*QMediaContent)(nil).__QMediaContent_resources_setList5(v, tmpList)
+			tmpList.__QMediaContent_resources_setList5(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()))
 	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
 	return tmpValue
@@ -22845,8 +23458,9 @@ func (ptr *QMediaContent) Resources() []*QMediaResource {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*QMediaResource {
 			out := make([]*QMediaResource, int(l.len))
+			tmpList := NewQMediaContentFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaContent)(nil).__resources_atList(i, l.data)
+				out[i] = tmpList.__resources_atList(i)
 			}
 			return out
 		}(C.QMediaContent_Resources(ptr.Pointer()))
@@ -22879,28 +23493,38 @@ func (ptr *QMediaContent) IsNull() bool {
 	return false
 }
 
-func (ptr *QMediaContent) __QMediaContent_resources_atList5(i int, p unsafe.Pointer) *QMediaResource {
-	tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___QMediaContent_resources_atList5(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
-	return tmpValue
+func (ptr *QMediaContent) __QMediaContent_resources_atList5(i int) *QMediaResource {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___QMediaContent_resources_atList5(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaContent) __QMediaContent_resources_setList5(i QMediaResource_ITF, p unsafe.Pointer) {
-	C.QMediaContent___QMediaContent_resources_setList5(ptr.Pointer(), PointerFromQMediaResource(i), p)
+func (ptr *QMediaContent) __QMediaContent_resources_setList5(i QMediaResource_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaContent___QMediaContent_resources_setList5(ptr.Pointer(), PointerFromQMediaResource(i))
+	}
 }
 
 func (ptr *QMediaContent) __QMediaContent_resources_newList5() unsafe.Pointer {
 	return C.QMediaContent___QMediaContent_resources_newList5(ptr.Pointer())
 }
 
-func (ptr *QMediaContent) __resources_atList(i int, p unsafe.Pointer) *QMediaResource {
-	tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___resources_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
-	return tmpValue
+func (ptr *QMediaContent) __resources_atList(i int) *QMediaResource {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMediaResourceFromPointer(C.QMediaContent___resources_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaContent) __resources_setList(i QMediaResource_ITF, p unsafe.Pointer) {
-	C.QMediaContent___resources_setList(ptr.Pointer(), PointerFromQMediaResource(i), p)
+func (ptr *QMediaContent) __resources_setList(i QMediaResource_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaContent___resources_setList(ptr.Pointer(), PointerFromQMediaResource(i))
+	}
 }
 
 func (ptr *QMediaContent) __resources_newList() unsafe.Pointer {
@@ -22961,78 +23585,103 @@ func (ptr *QMediaControl) DestroyQMediaControl() {
 	}
 }
 
-func (ptr *QMediaControl) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaControl___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaControl) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaControl___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaControl) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaControl___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaControl) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaControl___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaControl) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaControl___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaControl) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaControl) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaControl) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaControl___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaControl) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaControl___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaControl) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaControl___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaControl) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaControl) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaControl) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaControl___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaControl) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaControl___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaControl) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaControl___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaControl) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaControl) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaControl___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaControl) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaControl___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaControl) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaControl___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaControl) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaControl___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaControl) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaControl___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaControl) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaControl___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaControl) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaControl___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaControl) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaControl___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaControl) __children_newList() unsafe.Pointer {
@@ -23670,8 +24319,9 @@ func callbackQMediaNetworkAccessControl_SetConfigurations(ptr unsafe.Pointer, co
 	if signal := qt.GetSignal(ptr, "setConfigurations"); signal != nil {
 		signal.(func([]*network.QNetworkConfiguration))(func(l C.struct_QtMultimedia_PackedList) []*network.QNetworkConfiguration {
 			out := make([]*network.QNetworkConfiguration, int(l.len))
+			tmpList := NewQMediaNetworkAccessControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaNetworkAccessControl)(nil).__setConfigurations_configurations_atList(i, l.data)
+				out[i] = tmpList.__setConfigurations_configurations_atList(i)
 			}
 			return out
 		}(configurations))
@@ -23703,11 +24353,11 @@ func (ptr *QMediaNetworkAccessControl) DisconnectSetConfigurations() {
 func (ptr *QMediaNetworkAccessControl) SetConfigurations(configurations []*network.QNetworkConfiguration) {
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_SetConfigurations(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QMediaNetworkAccessControl)(nil).__setConfigurations_configurations_newList()
+			tmpList := NewQMediaNetworkAccessControlFromPointer(NewQMediaNetworkAccessControlFromPointer(nil).__setConfigurations_configurations_newList())
 			for _, v := range configurations {
-				(*QMediaNetworkAccessControl)(nil).__setConfigurations_configurations_setList(v, tmpList)
+				tmpList.__setConfigurations_configurations_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -23797,14 +24447,19 @@ func (ptr *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetworkC
 	return nil
 }
 
-func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_atList(i int, p unsafe.Pointer) *network.QNetworkConfiguration {
-	tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaNetworkAccessControl___setConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
-	return tmpValue
+func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_atList(i int) *network.QNetworkConfiguration {
+	if ptr.Pointer() != nil {
+		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaNetworkAccessControl___setConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_setList(i network.QNetworkConfiguration_ITF, p unsafe.Pointer) {
-	C.QMediaNetworkAccessControl___setConfigurations_configurations_setList(ptr.Pointer(), network.PointerFromQNetworkConfiguration(i), p)
+func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_setList(i network.QNetworkConfiguration_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl___setConfigurations_configurations_setList(ptr.Pointer(), network.PointerFromQNetworkConfiguration(i))
+	}
 }
 
 func (ptr *QMediaNetworkAccessControl) __setConfigurations_configurations_newList() unsafe.Pointer {
@@ -24383,78 +25038,103 @@ func (ptr *QMediaObject) NotifyInterval() int {
 	return 0
 }
 
-func (ptr *QMediaObject) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaObject) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaObject) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaObject___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaObject) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaObject___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaObject) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaObject___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaObject) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaObject) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaObject) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaObject___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaObject) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaObject___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaObject) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaObject___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaObject) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaObject) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaObject) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaObject___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaObject) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaObject___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaObject) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaObject___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaObject) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaObject) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaObject___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaObject) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaObject___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaObject) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaObject___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaObject) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaObject___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaObject) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaObject___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaObject) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaObject___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaObject) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaObject___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaObject) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaObject___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaObject) __children_newList() unsafe.Pointer {
@@ -25422,16 +26102,18 @@ func callbackQMediaPlayer_SetNetworkConfigurations(ptr unsafe.Pointer, configura
 	if signal := qt.GetSignal(ptr, "setNetworkConfigurations"); signal != nil {
 		signal.(func([]*network.QNetworkConfiguration))(func(l C.struct_QtMultimedia_PackedList) []*network.QNetworkConfiguration {
 			out := make([]*network.QNetworkConfiguration, int(l.len))
+			tmpList := NewQMediaPlayerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_atList(i, l.data)
+				out[i] = tmpList.__setNetworkConfigurations_configurations_atList(i)
 			}
 			return out
 		}(configurations))
 	} else {
 		NewQMediaPlayerFromPointer(ptr).SetNetworkConfigurationsDefault(func(l C.struct_QtMultimedia_PackedList) []*network.QNetworkConfiguration {
 			out := make([]*network.QNetworkConfiguration, int(l.len))
+			tmpList := NewQMediaPlayerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_atList(i, l.data)
+				out[i] = tmpList.__setNetworkConfigurations_configurations_atList(i)
 			}
 			return out
 		}(configurations))
@@ -25462,11 +26144,11 @@ func (ptr *QMediaPlayer) DisconnectSetNetworkConfigurations() {
 func (ptr *QMediaPlayer) SetNetworkConfigurations(configurations []*network.QNetworkConfiguration) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_SetNetworkConfigurations(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_newList()
+			tmpList := NewQMediaPlayerFromPointer(NewQMediaPlayerFromPointer(nil).__setNetworkConfigurations_configurations_newList())
 			for _, v := range configurations {
-				(*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_setList(v, tmpList)
+				tmpList.__setNetworkConfigurations_configurations_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -25474,11 +26156,11 @@ func (ptr *QMediaPlayer) SetNetworkConfigurations(configurations []*network.QNet
 func (ptr *QMediaPlayer) SetNetworkConfigurationsDefault(configurations []*network.QNetworkConfiguration) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_SetNetworkConfigurationsDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_newList()
+			tmpList := NewQMediaPlayerFromPointer(NewQMediaPlayerFromPointer(nil).__setNetworkConfigurations_configurations_newList())
 			for _, v := range configurations {
-				(*QMediaPlayer)(nil).__setNetworkConfigurations_configurations_setList(v, tmpList)
+				tmpList.__setNetworkConfigurations_configurations_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -25861,8 +26543,9 @@ func (ptr *QMediaPlayer) SupportedAudioRoles() []QAudio__Role {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []QAudio__Role {
 			out := make([]QAudio__Role, int(l.len))
+			tmpList := NewQMediaPlayerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaPlayer)(nil).__supportedAudioRoles_atList(i, l.data)
+				out[i] = tmpList.__supportedAudioRoles_atList(i)
 			}
 			return out
 		}(C.QMediaPlayer_SupportedAudioRoles(ptr.Pointer()))
@@ -25996,26 +26679,36 @@ func (ptr *QMediaPlayer) PlaybackRate() float64 {
 	return 0
 }
 
-func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_atList(i int, p unsafe.Pointer) *network.QNetworkConfiguration {
-	tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaPlayer___setNetworkConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
-	return tmpValue
+func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_atList(i int) *network.QNetworkConfiguration {
+	if ptr.Pointer() != nil {
+		tmpValue := network.NewQNetworkConfigurationFromPointer(C.QMediaPlayer___setNetworkConfigurations_configurations_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*network.QNetworkConfiguration).DestroyQNetworkConfiguration)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_setList(i network.QNetworkConfiguration_ITF, p unsafe.Pointer) {
-	C.QMediaPlayer___setNetworkConfigurations_configurations_setList(ptr.Pointer(), network.PointerFromQNetworkConfiguration(i), p)
+func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_setList(i network.QNetworkConfiguration_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer___setNetworkConfigurations_configurations_setList(ptr.Pointer(), network.PointerFromQNetworkConfiguration(i))
+	}
 }
 
 func (ptr *QMediaPlayer) __setNetworkConfigurations_configurations_newList() unsafe.Pointer {
 	return C.QMediaPlayer___setNetworkConfigurations_configurations_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaPlayer) __supportedAudioRoles_atList(i int, p unsafe.Pointer) QAudio__Role {
-	return QAudio__Role(C.QMediaPlayer___supportedAudioRoles_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QMediaPlayer) __supportedAudioRoles_atList(i int) QAudio__Role {
+	if ptr.Pointer() != nil {
+		return QAudio__Role(C.QMediaPlayer___supportedAudioRoles_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QMediaPlayer) __supportedAudioRoles_setList(i QAudio__Role, p unsafe.Pointer) {
-	C.QMediaPlayer___supportedAudioRoles_setList(ptr.Pointer(), C.longlong(i), p)
+func (ptr *QMediaPlayer) __supportedAudioRoles_setList(i QAudio__Role) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer___supportedAudioRoles_setList(ptr.Pointer(), C.longlong(i))
+	}
 }
 
 func (ptr *QMediaPlayer) __supportedAudioRoles_newList() unsafe.Pointer {
@@ -27510,11 +28203,11 @@ func NewQMediaPlaylist(parent core.QObject_ITF) *QMediaPlaylist {
 func (ptr *QMediaPlaylist) AddMedia2(items []*QMediaContent) bool {
 	if ptr.Pointer() != nil {
 		return C.QMediaPlaylist_AddMedia2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QMediaPlaylist)(nil).__addMedia_items_newList2()
+			tmpList := NewQMediaPlaylistFromPointer(NewQMediaPlaylistFromPointer(nil).__addMedia_items_newList2())
 			for _, v := range items {
-				(*QMediaPlaylist)(nil).__addMedia_items_setList2(v, tmpList)
+				tmpList.__addMedia_items_setList2(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -27537,11 +28230,11 @@ func (ptr *QMediaPlaylist) Clear() bool {
 func (ptr *QMediaPlaylist) InsertMedia2(pos int, items []*QMediaContent) bool {
 	if ptr.Pointer() != nil {
 		return C.QMediaPlaylist_InsertMedia2(ptr.Pointer(), C.int(int32(pos)), func() unsafe.Pointer {
-			tmpList := (*QMediaPlaylist)(nil).__insertMedia_items_newList2()
+			tmpList := NewQMediaPlaylistFromPointer(NewQMediaPlaylistFromPointer(nil).__insertMedia_items_newList2())
 			for _, v := range items {
-				(*QMediaPlaylist)(nil).__insertMedia_items_setList2(v, tmpList)
+				tmpList.__insertMedia_items_setList2(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -28375,106 +29068,141 @@ func (ptr *QMediaPlaylist) PreviousIndex(steps int) int {
 	return 0
 }
 
-func (ptr *QMediaPlaylist) __addMedia_items_atList2(i int, p unsafe.Pointer) *QMediaContent {
-	tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___addMedia_items_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
-	return tmpValue
+func (ptr *QMediaPlaylist) __addMedia_items_atList2(i int) *QMediaContent {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___addMedia_items_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __addMedia_items_setList2(i QMediaContent_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___addMedia_items_setList2(ptr.Pointer(), PointerFromQMediaContent(i), p)
+func (ptr *QMediaPlaylist) __addMedia_items_setList2(i QMediaContent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___addMedia_items_setList2(ptr.Pointer(), PointerFromQMediaContent(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __addMedia_items_newList2() unsafe.Pointer {
 	return C.QMediaPlaylist___addMedia_items_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __insertMedia_items_atList2(i int, p unsafe.Pointer) *QMediaContent {
-	tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___insertMedia_items_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
-	return tmpValue
+func (ptr *QMediaPlaylist) __insertMedia_items_atList2(i int) *QMediaContent {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMediaContentFromPointer(C.QMediaPlaylist___insertMedia_items_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaContent).DestroyQMediaContent)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __insertMedia_items_setList2(i QMediaContent_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___insertMedia_items_setList2(ptr.Pointer(), PointerFromQMediaContent(i), p)
+func (ptr *QMediaPlaylist) __insertMedia_items_setList2(i QMediaContent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___insertMedia_items_setList2(ptr.Pointer(), PointerFromQMediaContent(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __insertMedia_items_newList2() unsafe.Pointer {
 	return C.QMediaPlaylist___insertMedia_items_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaPlaylist___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaPlaylist) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaPlaylist___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaPlaylist) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaPlaylist___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaPlaylist) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaPlaylist) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaPlaylist___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaPlaylist) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaPlaylist) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaPlaylist___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaPlaylist) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaPlaylist) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaPlaylist___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaPlaylist) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaPlaylist) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaPlaylist___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaPlaylist) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaPlaylist___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaPlaylist) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaPlaylist) __children_newList() unsafe.Pointer {
@@ -29607,8 +30335,9 @@ func (ptr *QMediaRecorder) SupportedResolutions(settings QVideoEncoderSettings_I
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
+			tmpList := NewQMediaRecorderFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaRecorder)(nil).__supportedResolutions_atList(i, l.data)
+				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
 		}(C.QMediaRecorder_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -29620,8 +30349,9 @@ func (ptr *QMediaRecorder) SupportedAudioSampleRates(settings QAudioEncoderSetti
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQMediaRecorderFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaRecorder)(nil).__supportedAudioSampleRates_atList(i, l.data)
+				out[i] = tmpList.__supportedAudioSampleRates_atList(i)
 			}
 			return out
 		}(C.QMediaRecorder_SupportedAudioSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -29633,8 +30363,9 @@ func (ptr *QMediaRecorder) SupportedFrameRates(settings QVideoEncoderSettings_IT
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
+			tmpList := NewQMediaRecorderFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaRecorder)(nil).__supportedFrameRates_atList(i, l.data)
+				out[i] = tmpList.__supportedFrameRates_atList(i)
 			}
 			return out
 		}(C.QMediaRecorder_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -29876,116 +30607,156 @@ func (ptr *QMediaRecorder) Volume() float64 {
 	return 0
 }
 
-func (ptr *QMediaRecorder) __supportedResolutions_atList(i int, p unsafe.Pointer) *core.QSize {
-	tmpValue := core.NewQSizeFromPointer(C.QMediaRecorder___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-	return tmpValue
+func (ptr *QMediaRecorder) __supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QMediaRecorder___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaRecorder) __supportedResolutions_setList(i core.QSize_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i), p)
+func (ptr *QMediaRecorder) __supportedResolutions_setList(i core.QSize_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __supportedResolutions_newList() unsafe.Pointer {
 	return C.QMediaRecorder___supportedResolutions_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __supportedAudioSampleRates_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QMediaRecorder___supportedAudioSampleRates_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QMediaRecorder) __supportedAudioSampleRates_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMediaRecorder___supportedAudioSampleRates_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QMediaRecorder) __supportedAudioSampleRates_setList(i int, p unsafe.Pointer) {
-	C.QMediaRecorder___supportedAudioSampleRates_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QMediaRecorder) __supportedAudioSampleRates_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___supportedAudioSampleRates_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QMediaRecorder) __supportedAudioSampleRates_newList() unsafe.Pointer {
 	return C.QMediaRecorder___supportedAudioSampleRates_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __supportedFrameRates_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QMediaRecorder___supportedFrameRates_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QMediaRecorder) __supportedFrameRates_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QMediaRecorder___supportedFrameRates_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QMediaRecorder) __supportedFrameRates_setList(i float64, p unsafe.Pointer) {
-	C.QMediaRecorder___supportedFrameRates_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QMediaRecorder) __supportedFrameRates_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___supportedFrameRates_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __supportedFrameRates_newList() unsafe.Pointer {
 	return C.QMediaRecorder___supportedFrameRates_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaRecorder___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaRecorder) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaRecorder___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaRecorder) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaRecorder) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaRecorder___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaRecorder) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaRecorder) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaRecorder) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaRecorder___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaRecorder) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaRecorder) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaRecorder) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaRecorder___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaRecorder) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaRecorder) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaRecorder) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaRecorder___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaRecorder) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaRecorder) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaRecorder___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaRecorder) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaRecorder___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaRecorder) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaRecorder) __children_newList() unsafe.Pointer {
@@ -31399,78 +32170,103 @@ func (ptr *QMediaService) DestroyQMediaService() {
 	}
 }
 
-func (ptr *QMediaService) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaService___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaService) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaService___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaService) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaService___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaService) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaService___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaService) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaService) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaService) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaService___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaService) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaService___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaService) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaService___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaService) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaService) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaService) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaService___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaService) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaService___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaService) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaService___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaService) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaService) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaService___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaService) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaService___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaService) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaService___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaService) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaService___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaService) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaService___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaService) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaService___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaService) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaService___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaService) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaService___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaService) __children_newList() unsafe.Pointer {
@@ -32114,78 +32910,103 @@ func (ptr *QMediaServiceProviderPlugin) Release(service QMediaService_ITF) {
 	}
 }
 
-func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceProviderPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceProviderPlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaServiceProviderPlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMediaServiceProviderPlugin___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaServiceProviderPlugin) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaServiceProviderPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaServiceProviderPlugin) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) __findChildren_newList2() unsafe.Pointer {
 	return C.QMediaServiceProviderPlugin___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaServiceProviderPlugin) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaServiceProviderPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaServiceProviderPlugin) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QMediaServiceProviderPlugin___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaServiceProviderPlugin) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaServiceProviderPlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaServiceProviderPlugin) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) __findChildren_newList() unsafe.Pointer {
 	return C.QMediaServiceProviderPlugin___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaServiceProviderPlugin) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMediaServiceProviderPlugin) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMediaServiceProviderPlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMediaServiceProviderPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMediaServiceProviderPlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceProviderPlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMediaServiceProviderPlugin) __children_newList() unsafe.Pointer {
@@ -32474,20 +33295,20 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupported
 func callbackQMediaServiceSupportedDevicesInterface_Devices(ptr unsafe.Pointer, service unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "devices"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QMediaServiceSupportedDevicesInterface)(nil).__devices_newList()
+			tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(NewQMediaServiceSupportedDevicesInterfaceFromPointer(nil).__devices_newList())
 			for _, v := range signal.(func(*core.QByteArray) []*core.QByteArray)(core.NewQByteArrayFromPointer(service)) {
-				(*QMediaServiceSupportedDevicesInterface)(nil).__devices_setList(v, tmpList)
+				tmpList.__devices_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QMediaServiceSupportedDevicesInterface)(nil).__devices_newList()
+		tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(NewQMediaServiceSupportedDevicesInterfaceFromPointer(nil).__devices_newList())
 		for _, v := range make([]*core.QByteArray, 0) {
-			(*QMediaServiceSupportedDevicesInterface)(nil).__devices_setList(v, tmpList)
+			tmpList.__devices_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -32516,8 +33337,9 @@ func (ptr *QMediaServiceSupportedDevicesInterface) Devices(service core.QByteArr
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
 			out := make([]*core.QByteArray, int(l.len))
+			tmpList := NewQMediaServiceSupportedDevicesInterfaceFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaServiceSupportedDevicesInterface)(nil).__devices_atList(i, l.data)
+				out[i] = tmpList.__devices_atList(i)
 			}
 			return out
 		}(C.QMediaServiceSupportedDevicesInterface_Devices(ptr.Pointer(), core.PointerFromQByteArray(service)))
@@ -32525,14 +33347,19 @@ func (ptr *QMediaServiceSupportedDevicesInterface) Devices(service core.QByteArr
 	return make([]*core.QByteArray, 0)
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) __devices_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceSupportedDevicesInterface___devices_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMediaServiceSupportedDevicesInterface) __devices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMediaServiceSupportedDevicesInterface___devices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) __devices_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMediaServiceSupportedDevicesInterface___devices_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMediaServiceSupportedDevicesInterface) __devices_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface___devices_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) __devices_newList() unsafe.Pointer {
@@ -33301,8 +34128,9 @@ func (ptr *QMediaTimeRange) Intervals() []*QMediaTimeInterval {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*QMediaTimeInterval {
 			out := make([]*QMediaTimeInterval, int(l.len))
+			tmpList := NewQMediaTimeRangeFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMediaTimeRange)(nil).__intervals_atList(i, l.data)
+				out[i] = tmpList.__intervals_atList(i)
 			}
 			return out
 		}(C.QMediaTimeRange_Intervals(ptr.Pointer()))
@@ -33345,14 +34173,19 @@ func (ptr *QMediaTimeRange) LatestTime() int64 {
 	return 0
 }
 
-func (ptr *QMediaTimeRange) __intervals_atList(i int, p unsafe.Pointer) *QMediaTimeInterval {
-	tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeRange___intervals_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
-	return tmpValue
+func (ptr *QMediaTimeRange) __intervals_atList(i int) *QMediaTimeInterval {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMediaTimeIntervalFromPointer(C.QMediaTimeRange___intervals_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMediaTimeRange) __intervals_setList(i QMediaTimeInterval_ITF, p unsafe.Pointer) {
-	C.QMediaTimeRange___intervals_setList(ptr.Pointer(), PointerFromQMediaTimeInterval(i), p)
+func (ptr *QMediaTimeRange) __intervals_setList(i QMediaTimeInterval_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaTimeRange___intervals_setList(ptr.Pointer(), PointerFromQMediaTimeInterval(i))
+	}
 }
 
 func (ptr *QMediaTimeRange) __intervals_newList() unsafe.Pointer {
@@ -34944,78 +35777,103 @@ func (ptr *QRadioData) IsAlternativeFrequenciesEnabled() bool {
 	return false
 }
 
-func (ptr *QRadioData) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QRadioData___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QRadioData) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QRadioData___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRadioData) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QRadioData___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QRadioData) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRadioData___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QRadioData) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QRadioData___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QRadioData) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRadioData) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRadioData) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRadioData___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRadioData) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRadioData___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRadioData) __findChildren_newList2() unsafe.Pointer {
 	return C.QRadioData___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QRadioData) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRadioData) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRadioData) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRadioData___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRadioData) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRadioData___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRadioData) __findChildren_newList3() unsafe.Pointer {
 	return C.QRadioData___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRadioData) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRadioData) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRadioData___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRadioData) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRadioData___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRadioData) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRadioData___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRadioData) __findChildren_newList() unsafe.Pointer {
 	return C.QRadioData___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QRadioData) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRadioData___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRadioData) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRadioData___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRadioData) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRadioData___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRadioData) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRadioData___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRadioData) __children_newList() unsafe.Pointer {
@@ -38591,78 +39449,103 @@ func (ptr *QSound) LoopsRemaining() int {
 	return 0
 }
 
-func (ptr *QSound) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QSound___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QSound) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QSound___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QSound) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QSound___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QSound) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSound___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QSound) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSound___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QSound) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSound) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSound) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSound___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSound) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSound___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSound) __findChildren_newList2() unsafe.Pointer {
 	return C.QSound___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QSound) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSound) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSound) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSound___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSound) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSound___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSound) __findChildren_newList3() unsafe.Pointer {
 	return C.QSound___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSound) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSound) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSound___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSound) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSound___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSound) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSound___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSound) __findChildren_newList() unsafe.Pointer {
 	return C.QSound___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSound) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSound___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSound) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSound___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSound) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSound___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSound) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSound___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSound) __children_newList() unsafe.Pointer {
@@ -39442,78 +40325,103 @@ func (ptr *QSoundEffect) Volume() float64 {
 	return 0
 }
 
-func (ptr *QSoundEffect) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QSoundEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QSoundEffect) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QSoundEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QSoundEffect) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QSoundEffect___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QSoundEffect) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QSoundEffect) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSoundEffect___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QSoundEffect) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSoundEffect) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSoundEffect) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSoundEffect___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSoundEffect) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSoundEffect) __findChildren_newList2() unsafe.Pointer {
 	return C.QSoundEffect___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QSoundEffect) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSoundEffect) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSoundEffect) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSoundEffect___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSoundEffect) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSoundEffect) __findChildren_newList3() unsafe.Pointer {
 	return C.QSoundEffect___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSoundEffect) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSoundEffect) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSoundEffect) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSoundEffect___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSoundEffect) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSoundEffect) __findChildren_newList() unsafe.Pointer {
 	return C.QSoundEffect___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSoundEffect) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSoundEffect) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSoundEffect___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSoundEffect) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSoundEffect___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSoundEffect) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSoundEffect) __children_newList() unsafe.Pointer {
@@ -40198,11 +41106,11 @@ func (ptr *QVideoEncoderSettings) SetEncodingOption(option string, value core.QV
 func (ptr *QVideoEncoderSettings) SetEncodingOptions(options map[string]*core.QVariant) {
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettings_SetEncodingOptions(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QVideoEncoderSettings)(nil).__setEncodingOptions_options_newList()
+			tmpList := NewQVideoEncoderSettingsFromPointer(NewQVideoEncoderSettingsFromPointer(nil).__setEncodingOptions_options_newList())
 			for k, v := range options {
-				(*QVideoEncoderSettings)(nil).__setEncodingOptions_options_setList(k, v, tmpList)
+				tmpList.__setEncodingOptions_options_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -40287,8 +41195,9 @@ func (ptr *QVideoEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QVideoEncoderSettings)(nil).__encodingOptions_keyList(l.data) {
-				out[v] = (*QVideoEncoderSettings)(nil).__encodingOptions_atList(v, i, l.data)
+			tmpList := NewQVideoEncoderSettingsFromPointer(l.data)
+			for i, v := range tmpList.__encodingOptions_keyList() {
+				out[v] = tmpList.__encodingOptions_atList(v, i)
 			}
 			return out
 		}(C.QVideoEncoderSettings_EncodingOptions(ptr.Pointer()))
@@ -40317,102 +41226,130 @@ func (ptr *QVideoEncoderSettings) FrameRate() float64 {
 	return 0
 }
 
-func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___setEncodingOptions_options_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QVideoEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QVideoEncoderSettings___setEncodingOptions_options_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_newList() unsafe.Pointer {
 	return C.QVideoEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoEncoderSettings) __setEncodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QVideoEncoderSettings)(nil).____setEncodingOptions_keyList_atList(i, l.data)
+func (ptr *QVideoEncoderSettings) __setEncodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQVideoEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QVideoEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QVideoEncoderSettings) __encodingOptions_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
 		}
-		return out
-	}(C.QVideoEncoderSettings___setEncodingOptions_keyList(ptr.Pointer(), p))
+		tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QVideoEncoderSettings) __encodingOptions_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QVideoEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QVideoEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QVideoEncoderSettings___encodingOptions_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
-func (ptr *QVideoEncoderSettings) __encodingOptions_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
-	}
-	C.QVideoEncoderSettings___encodingOptions_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QVideoEncoderSettings) __encodingOptions_newList() unsafe.Pointer {
 	return C.QVideoEncoderSettings___encodingOptions_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoEncoderSettings) __encodingOptions_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QVideoEncoderSettings)(nil).____encodingOptions_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QVideoEncoderSettings___encodingOptions_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QVideoEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-}
-
-func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QVideoEncoderSettings) __encodingOptions_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQVideoEncoderSettingsFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____encodingOptions_keyList_atList(i)
+			}
+			return out
+		}(C.QVideoEncoderSettings___encodingOptions_keyList(ptr.Pointer()))
 	}
-	C.QVideoEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
+	return make([]string, 0)
+}
+
+func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVideoEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QVideoEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+	}
 }
 
 func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
 	return C.QVideoEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QVideoEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVideoEncoderSettings_____encodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
-func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QVideoEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
-	C.QVideoEncoderSettings_____encodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
 }
 
 func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_newList() unsafe.Pointer {
@@ -40550,20 +41487,20 @@ func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefa
 func callbackQVideoEncoderSettingsControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedResolutions"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QVideoEncoderSettingsControl)(nil).__supportedResolutions_newList()
+			tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedResolutions_newList())
 			for _, v := range signal.(func(*QVideoEncoderSettings, bool) []*core.QSize)(NewQVideoEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
-				(*QVideoEncoderSettingsControl)(nil).__supportedResolutions_setList(v, tmpList)
+				tmpList.__supportedResolutions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QVideoEncoderSettingsControl)(nil).__supportedResolutions_newList()
+		tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedResolutions_newList())
 		for _, v := range make([]*core.QSize, 0) {
-			(*QVideoEncoderSettingsControl)(nil).__supportedResolutions_setList(v, tmpList)
+			tmpList.__supportedResolutions_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -40592,8 +41529,9 @@ func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEnc
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
+			tmpList := NewQVideoEncoderSettingsControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QVideoEncoderSettingsControl)(nil).__supportedResolutions_atList(i, l.data)
+				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
 		}(C.QVideoEncoderSettingsControl_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -40605,20 +41543,20 @@ func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEnc
 func callbackQVideoEncoderSettingsControl_SupportedFrameRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "supportedFrameRates"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QVideoEncoderSettingsControl)(nil).__supportedFrameRates_newList()
+			tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedFrameRates_newList())
 			for _, v := range signal.(func(*QVideoEncoderSettings, bool) []float64)(NewQVideoEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
-				(*QVideoEncoderSettingsControl)(nil).__supportedFrameRates_setList(v, tmpList)
+				tmpList.__supportedFrameRates_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QVideoEncoderSettingsControl)(nil).__supportedFrameRates_newList()
+		tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedFrameRates_newList())
 		for _, v := range make([]float64, 0) {
-			(*QVideoEncoderSettingsControl)(nil).__supportedFrameRates_setList(v, tmpList)
+			tmpList.__supportedFrameRates_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -40647,8 +41585,9 @@ func (ptr *QVideoEncoderSettingsControl) SupportedFrameRates(settings QVideoEnco
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
+			tmpList := NewQVideoEncoderSettingsControlFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QVideoEncoderSettingsControl)(nil).__supportedFrameRates_atList(i, l.data)
+				out[i] = tmpList.__supportedFrameRates_atList(i)
 			}
 			return out
 		}(C.QVideoEncoderSettingsControl_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
@@ -40776,26 +41715,36 @@ func (ptr *QVideoEncoderSettingsControl) VideoSettings() *QVideoEncoderSettings 
 	return nil
 }
 
-func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_atList(i int, p unsafe.Pointer) *core.QSize {
-	tmpValue := core.NewQSizeFromPointer(C.QVideoEncoderSettingsControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
-	return tmpValue
+func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QVideoEncoderSettingsControl___supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_setList(i core.QSize_ITF, p unsafe.Pointer) {
-	C.QVideoEncoderSettingsControl___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i), p)
+func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_setList(i core.QSize_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl___supportedResolutions_setList(ptr.Pointer(), core.PointerFromQSize(i))
+	}
 }
 
 func (ptr *QVideoEncoderSettingsControl) __supportedResolutions_newList() unsafe.Pointer {
 	return C.QVideoEncoderSettingsControl___supportedResolutions_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QVideoEncoderSettingsControl___supportedFrameRates_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QVideoEncoderSettingsControl___supportedFrameRates_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_setList(i float64, p unsafe.Pointer) {
-	C.QVideoEncoderSettingsControl___supportedFrameRates_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl___supportedFrameRates_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QVideoEncoderSettingsControl) __supportedFrameRates_newList() unsafe.Pointer {
@@ -41160,8 +42109,9 @@ func (ptr *QVideoFrame) AvailableMetaData() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
-			for i, v := range (*QVideoFrame)(nil).__availableMetaData_keyList(l.data) {
-				out[v] = (*QVideoFrame)(nil).__availableMetaData_atList(v, i, l.data)
+			tmpList := NewQVideoFrameFromPointer(l.data)
+			for i, v := range tmpList.__availableMetaData_keyList() {
+				out[v] = tmpList.__availableMetaData_atList(v, i)
 			}
 			return out
 		}(C.QVideoFrame_AvailableMetaData(ptr.Pointer()))
@@ -41267,51 +42217,65 @@ func (ptr *QVideoFrame) StartTime() int64 {
 	return 0
 }
 
-func (ptr *QVideoFrame) __availableMetaData_atList(v string, i int, p unsafe.Pointer) *core.QVariant {
-	var vC *C.char
-	if v != "" {
-		vC = C.CString(v)
-		defer C.free(unsafe.Pointer(vC))
+func (ptr *QVideoFrame) __availableMetaData_atList(v string, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := core.NewQVariantFromPointer(C.QVideoFrame___availableMetaData_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
-	tmpValue := core.NewQVariantFromPointer(C.QVideoFrame___availableMetaData_atList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoFrame) __availableMetaData_setList(key string, i core.QVariant_ITF, p unsafe.Pointer) {
-	var keyC *C.char
-	if key != "" {
-		keyC = C.CString(key)
-		defer C.free(unsafe.Pointer(keyC))
+func (ptr *QVideoFrame) __availableMetaData_setList(key string, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QVideoFrame___availableMetaData_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i))
 	}
-	C.QVideoFrame___availableMetaData_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(i), p)
 }
 
 func (ptr *QVideoFrame) __availableMetaData_newList() unsafe.Pointer {
 	return C.QVideoFrame___availableMetaData_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoFrame) __availableMetaData_keyList(p unsafe.Pointer) []string {
-	return func(l C.struct_QtMultimedia_PackedList) []string {
-		out := make([]string, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QVideoFrame)(nil).____availableMetaData_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QVideoFrame___availableMetaData_keyList(ptr.Pointer(), p))
-}
-
-func (ptr *QVideoFrame) ____availableMetaData_keyList_atList(i int, p unsafe.Pointer) string {
-	return cGoUnpackString(C.QVideoFrame_____availableMetaData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-}
-
-func (ptr *QVideoFrame) ____availableMetaData_keyList_setList(i string, p unsafe.Pointer) {
-	var iC *C.char
-	if i != "" {
-		iC = C.CString(i)
-		defer C.free(unsafe.Pointer(iC))
+func (ptr *QVideoFrame) __availableMetaData_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQVideoFrameFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____availableMetaData_keyList_atList(i)
+			}
+			return out
+		}(C.QVideoFrame___availableMetaData_keyList(ptr.Pointer()))
 	}
-	C.QVideoFrame_____availableMetaData_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))}, p)
+	return make([]string, 0)
+}
+
+func (ptr *QVideoFrame) ____availableMetaData_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QVideoFrame_____availableMetaData_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QVideoFrame) ____availableMetaData_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QVideoFrame_____availableMetaData_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+	}
 }
 
 func (ptr *QVideoFrame) ____availableMetaData_keyList_newList() unsafe.Pointer {
@@ -41471,78 +42435,103 @@ func (ptr *QVideoProbe) IsActive() bool {
 	return false
 }
 
-func (ptr *QVideoProbe) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QVideoProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QVideoProbe) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QVideoProbe___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QVideoProbe) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QVideoProbe___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QVideoProbe) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoProbe___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QVideoProbe) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVideoProbe___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoProbe) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoProbe) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoProbe) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoProbe___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoProbe) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoProbe___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoProbe) __findChildren_newList2() unsafe.Pointer {
 	return C.QVideoProbe___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QVideoProbe) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoProbe) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoProbe) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoProbe___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoProbe) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoProbe___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoProbe) __findChildren_newList3() unsafe.Pointer {
 	return C.QVideoProbe___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QVideoProbe) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoProbe) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoProbe) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoProbe___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoProbe) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoProbe___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoProbe) __findChildren_newList() unsafe.Pointer {
 	return C.QVideoProbe___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoProbe) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoProbe) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoProbe___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoProbe) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoProbe___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoProbe) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoProbe___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoProbe) __children_newList() unsafe.Pointer {
@@ -41998,8 +42987,9 @@ func (ptr *QVideoSurfaceFormat) PropertyNames() []*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
 			out := make([]*core.QByteArray, int(l.len))
+			tmpList := NewQVideoSurfaceFormatFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QVideoSurfaceFormat)(nil).__propertyNames_atList(i, l.data)
+				out[i] = tmpList.__propertyNames_atList(i)
 			}
 			return out
 		}(C.QVideoSurfaceFormat_PropertyNames(ptr.Pointer()))
@@ -42099,14 +43089,19 @@ func (ptr *QVideoSurfaceFormat) FrameRate() float64 {
 	return 0
 }
 
-func (ptr *QVideoSurfaceFormat) __propertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QVideoSurfaceFormat___propertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QVideoSurfaceFormat) __propertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QVideoSurfaceFormat___propertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QVideoSurfaceFormat) __propertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QVideoSurfaceFormat___propertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QVideoSurfaceFormat) __propertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoSurfaceFormat___propertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QVideoSurfaceFormat) __propertyNames_newList() unsafe.Pointer {
@@ -43013,126 +44008,166 @@ func (ptr *QVideoWidget) Saturation() int {
 	return 0
 }
 
-func (ptr *QVideoWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
-	tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __addActions_actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __addActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
+func (ptr *QVideoWidget) __addActions_actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___addActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
 }
 
 func (ptr *QVideoWidget) __addActions_actions_newList() unsafe.Pointer {
 	return C.QVideoWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
-	tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __insertActions_actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __insertActions_actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
+func (ptr *QVideoWidget) __insertActions_actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___insertActions_actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
 }
 
 func (ptr *QVideoWidget) __insertActions_actions_newList() unsafe.Pointer {
 	return C.QVideoWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __actions_atList(i int, p unsafe.Pointer) *widgets.QAction {
-	tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __actions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := widgets.NewQActionFromPointer(C.QVideoWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __actions_setList(i widgets.QAction_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i), p)
+func (ptr *QVideoWidget) __actions_setList(i widgets.QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___actions_setList(ptr.Pointer(), widgets.PointerFromQAction(i))
+	}
 }
 
 func (ptr *QVideoWidget) __actions_newList() unsafe.Pointer {
 	return C.QVideoWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QVideoWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QVideoWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QVideoWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QVideoWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QVideoWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QVideoWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QVideoWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoWidget) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoWidget) __findChildren_newList2() unsafe.Pointer {
 	return C.QVideoWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoWidget) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QVideoWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoWidget) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoWidget) __findChildren_newList() unsafe.Pointer {
 	return C.QVideoWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QVideoWidget) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QVideoWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QVideoWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QVideoWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QVideoWidget) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QVideoWidget) __children_newList() unsafe.Pointer {

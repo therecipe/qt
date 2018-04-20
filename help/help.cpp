@@ -308,16 +308,14 @@ int QHelpContentModel_RowCountDefault(void* ptr, void* parent)
 		return static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::rowCount(*static_cast<QModelIndex*>(parent));
 }
 
-void* QHelpContentModel___setItemData_roles_atList(void* ptr, int v, int i, void* p)
+void* QHelpContentModel___setItemData_roles_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___setItemData_roles_setList(void* ptr, int key, void* i, void* p)
+void QHelpContentModel___setItemData_roles_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QHelpContentModel___setItemData_roles_newList(void* ptr)
@@ -326,22 +324,19 @@ void* QHelpContentModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpContentModel___setItemData_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpContentModel___setItemData_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpContentModel___changePersistentIndexList_from_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___changePersistentIndexList_from_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___changePersistentIndexList_from_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___changePersistentIndexList_from_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentModel___changePersistentIndexList_from_newList(void* ptr)
@@ -350,16 +345,14 @@ void* QHelpContentModel___changePersistentIndexList_from_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpContentModel___changePersistentIndexList_to_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___changePersistentIndexList_to_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___changePersistentIndexList_to_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___changePersistentIndexList_to_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentModel___changePersistentIndexList_to_newList(void* ptr)
@@ -368,16 +361,14 @@ void* QHelpContentModel___changePersistentIndexList_to_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpContentModel___dataChanged_roles_atList(void* ptr, int i, void* p)
+int QHelpContentModel___dataChanged_roles_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel___dataChanged_roles_setList(void* ptr, int i, void* p)
+void QHelpContentModel___dataChanged_roles_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<int>*>(p)->append(i);
+	static_cast<QVector<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel___dataChanged_roles_newList(void* ptr)
@@ -386,16 +377,14 @@ void* QHelpContentModel___dataChanged_roles_newList(void* ptr)
 	return new QVector<int>();
 }
 
-void* QHelpContentModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QHelpContentModel___layoutAboutToBeChanged_parents_newList(void* ptr)
@@ -404,16 +393,14 @@ void* QHelpContentModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 	return new QList<QPersistentModelIndex>();
 }
 
-void* QHelpContentModel___layoutChanged_parents_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___layoutChanged_parents_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___layoutChanged_parents_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___layoutChanged_parents_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QHelpContentModel___layoutChanged_parents_newList(void* ptr)
@@ -422,16 +409,14 @@ void* QHelpContentModel___layoutChanged_parents_newList(void* ptr)
 	return new QList<QPersistentModelIndex>();
 }
 
-void* QHelpContentModel___roleNames_atList(void* ptr, int v, int i, void* p)
+void* QHelpContentModel___roleNames_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___roleNames_setList(void* ptr, int key, void* i, void* p)
+void QHelpContentModel___roleNames_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QHash<int, QByteArray>*>(p)->insert(key, *static_cast<QByteArray*>(i));
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
 }
 
 void* QHelpContentModel___roleNames_newList(void* ptr)
@@ -440,22 +425,19 @@ void* QHelpContentModel___roleNames_newList(void* ptr)
 	return new QHash<int, QByteArray>();
 }
 
-struct QtHelp_PackedList QHelpContentModel___roleNames_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpContentModel___roleNames_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpContentModel___itemData_atList(void* ptr, int v, int i, void* p)
+void* QHelpContentModel___itemData_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___itemData_setList(void* ptr, int key, void* i, void* p)
+void QHelpContentModel___itemData_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QHelpContentModel___itemData_newList(void* ptr)
@@ -464,22 +446,19 @@ void* QHelpContentModel___itemData_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpContentModel___itemData_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpContentModel___itemData_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpContentModel___mimeData_indexes_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___mimeData_indexes_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___mimeData_indexes_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___mimeData_indexes_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentModel___mimeData_indexes_newList(void* ptr)
@@ -488,16 +467,14 @@ void* QHelpContentModel___mimeData_indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpContentModel___match_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___match_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___match_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___match_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentModel___match_newList(void* ptr)
@@ -506,16 +483,14 @@ void* QHelpContentModel___match_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpContentModel___persistentIndexList_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___persistentIndexList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___persistentIndexList_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___persistentIndexList_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentModel___persistentIndexList_newList(void* ptr)
@@ -524,16 +499,14 @@ void* QHelpContentModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpContentModel_____setItemData_keyList_atList(void* ptr, int i, void* p)
+int QHelpContentModel_____setItemData_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____setItemData_keyList_setList(void* ptr, int i, void* p)
+void QHelpContentModel_____setItemData_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel_____setItemData_keyList_newList(void* ptr)
@@ -542,16 +515,14 @@ void* QHelpContentModel_____setItemData_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpContentModel_____doSetRoleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpContentModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____doSetRoleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpContentModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel_____doSetRoleNames_keyList_newList(void* ptr)
@@ -560,16 +531,14 @@ void* QHelpContentModel_____doSetRoleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpContentModel_____setRoleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpContentModel_____setRoleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____setRoleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpContentModel_____setRoleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel_____setRoleNames_keyList_newList(void* ptr)
@@ -578,16 +547,14 @@ void* QHelpContentModel_____setRoleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpContentModel_____roleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpContentModel_____roleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____roleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpContentModel_____roleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel_____roleNames_keyList_newList(void* ptr)
@@ -596,16 +563,14 @@ void* QHelpContentModel_____roleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpContentModel_____itemData_keyList_atList(void* ptr, int i, void* p)
+int QHelpContentModel_____itemData_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____itemData_keyList_setList(void* ptr, int i, void* p)
+void QHelpContentModel_____itemData_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentModel_____itemData_keyList_newList(void* ptr)
@@ -614,16 +579,14 @@ void* QHelpContentModel_____itemData_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-void* QHelpContentModel___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentModel___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpContentModel___dynamicPropertyNames_newList(void* ptr)
@@ -632,16 +595,14 @@ void* QHelpContentModel___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpContentModel___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpContentModel___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpContentModel___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentModel___findChildren_newList2(void* ptr)
@@ -650,16 +611,14 @@ void* QHelpContentModel___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentModel___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpContentModel___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpContentModel___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentModel___findChildren_newList3(void* ptr)
@@ -668,16 +627,14 @@ void* QHelpContentModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentModel___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentModel___findChildren_newList(void* ptr)
@@ -686,16 +643,14 @@ void* QHelpContentModel___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentModel___children_atList(void* ptr, int i, void* p)
+void* QHelpContentModel___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel___children_setList(void* ptr, void* i, void* p)
+void QHelpContentModel___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentModel___children_newList(void* ptr)
@@ -1058,16 +1013,14 @@ void QHelpContentWidget_LinkActivated(void* ptr, void* link)
 	static_cast<QHelpContentWidget*>(ptr)->linkActivated(*static_cast<QUrl*>(link));
 }
 
-int QHelpContentWidget___dataChanged_roles_atList(void* ptr, int i, void* p)
+int QHelpContentWidget___dataChanged_roles_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___dataChanged_roles_setList(void* ptr, int i, void* p)
+void QHelpContentWidget___dataChanged_roles_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<int>*>(p)->append(i);
+	static_cast<QVector<int>*>(ptr)->append(i);
 }
 
 void* QHelpContentWidget___dataChanged_roles_newList(void* ptr)
@@ -1076,16 +1029,14 @@ void* QHelpContentWidget___dataChanged_roles_newList(void* ptr)
 	return new QVector<int>();
 }
 
-void* QHelpContentWidget___selectedIndexes_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___selectedIndexes_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentWidget___selectedIndexes_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___selectedIndexes_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpContentWidget___selectedIndexes_newList(void* ptr)
@@ -1094,16 +1045,14 @@ void* QHelpContentWidget___selectedIndexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpContentWidget___scrollBarWidgets_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___scrollBarWidgets_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QWidget * tmp = static_cast<QList<QWidget *>*>(p)->at(i); if (i == static_cast<QList<QWidget *>*>(p)->size()-1) { static_cast<QList<QWidget *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QWidget * tmp = static_cast<QList<QWidget *>*>(ptr)->at(i); if (i == static_cast<QList<QWidget *>*>(ptr)->size()-1) { static_cast<QList<QWidget *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___scrollBarWidgets_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___scrollBarWidgets_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QWidget *>*>(p)->append(static_cast<QWidget*>(i));
+	static_cast<QList<QWidget *>*>(ptr)->append(static_cast<QWidget*>(i));
 }
 
 void* QHelpContentWidget___scrollBarWidgets_newList(void* ptr)
@@ -1112,16 +1061,14 @@ void* QHelpContentWidget___scrollBarWidgets_newList(void* ptr)
 	return new QList<QWidget *>();
 }
 
-void* QHelpContentWidget___addActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___addActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___addActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___addActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpContentWidget___addActions_actions_newList(void* ptr)
@@ -1130,16 +1077,14 @@ void* QHelpContentWidget___addActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpContentWidget___insertActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___insertActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___insertActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___insertActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpContentWidget___insertActions_actions_newList(void* ptr)
@@ -1148,16 +1093,14 @@ void* QHelpContentWidget___insertActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpContentWidget___actions_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___actions_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpContentWidget___actions_newList(void* ptr)
@@ -1166,16 +1109,14 @@ void* QHelpContentWidget___actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpContentWidget___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpContentWidget___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpContentWidget___dynamicPropertyNames_newList(void* ptr)
@@ -1184,16 +1125,14 @@ void* QHelpContentWidget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpContentWidget___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpContentWidget___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpContentWidget___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentWidget___findChildren_newList2(void* ptr)
@@ -1202,16 +1141,14 @@ void* QHelpContentWidget___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentWidget___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpContentWidget___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpContentWidget___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentWidget___findChildren_newList3(void* ptr)
@@ -1220,16 +1157,14 @@ void* QHelpContentWidget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentWidget___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentWidget___findChildren_newList(void* ptr)
@@ -1238,16 +1173,14 @@ void* QHelpContentWidget___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpContentWidget___children_atList(void* ptr, int i, void* p)
+void* QHelpContentWidget___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentWidget___children_setList(void* ptr, void* i, void* p)
+void QHelpContentWidget___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpContentWidget___children_newList(void* ptr)
@@ -2229,16 +2162,14 @@ char QHelpEngineCore_AutoSaveFilter(void* ptr)
 	return static_cast<QHelpEngineCore*>(ptr)->autoSaveFilter();
 }
 
-void* QHelpEngineCore___files_atList(void* ptr, int i, void* p)
+void* QHelpEngineCore___files_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QUrl(({QUrl tmp = static_cast<QList<QUrl>*>(p)->at(i); if (i == static_cast<QList<QUrl>*>(p)->size()-1) { static_cast<QList<QUrl>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QUrl(({QUrl tmp = static_cast<QList<QUrl>*>(ptr)->at(i); if (i == static_cast<QList<QUrl>*>(ptr)->size()-1) { static_cast<QList<QUrl>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpEngineCore___files_setList(void* ptr, void* i, void* p)
+void QHelpEngineCore___files_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QUrl>*>(p)->append(*static_cast<QUrl*>(i));
+	static_cast<QList<QUrl>*>(ptr)->append(*static_cast<QUrl*>(i));
 }
 
 void* QHelpEngineCore___files_newList(void* ptr)
@@ -2247,16 +2178,14 @@ void* QHelpEngineCore___files_newList(void* ptr)
 	return new QList<QUrl>();
 }
 
-struct QtHelp_PackedString QHelpEngineCore___filterAttributeSets_atList(void* ptr, int i, void* p)
+struct QtHelp_PackedString QHelpEngineCore___filterAttributeSets_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t2bb70a = ({QStringList tmp = static_cast<QList<QStringList>*>(p)->at(i); if (i == static_cast<QList<QStringList>*>(p)->size()-1) { static_cast<QList<QStringList>*>(p)->~QList(); free(p); }; tmp; }).join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t2bb70a.prepend("WHITESPACE").constData()+10), t2bb70a.size()-10 }; });
+	return ({ QByteArray tbc37c9 = ({QStringList tmp = static_cast<QList<QStringList>*>(ptr)->at(i); if (i == static_cast<QList<QStringList>*>(ptr)->size()-1) { static_cast<QList<QStringList>*>(ptr)->~QList(); free(ptr); }; tmp; }).join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(tbc37c9.prepend("WHITESPACE").constData()+10), tbc37c9.size()-10 }; });
 }
 
-void QHelpEngineCore___filterAttributeSets_setList(void* ptr, struct QtHelp_PackedString i, void* p)
+void QHelpEngineCore___filterAttributeSets_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QStringList>*>(p)->append(QString::fromUtf8(i.data, i.len).split("|", QString::SkipEmptyParts));
+	static_cast<QList<QStringList>*>(ptr)->append(QString::fromUtf8(i.data, i.len).split("|", QString::SkipEmptyParts));
 }
 
 void* QHelpEngineCore___filterAttributeSets_newList(void* ptr)
@@ -2265,16 +2194,14 @@ void* QHelpEngineCore___filterAttributeSets_newList(void* ptr)
 	return new QList<QStringList>();
 }
 
-void* QHelpEngineCore___linksForIdentifier_atList(void* ptr, struct QtHelp_PackedString v, int i, void* p)
+void* QHelpEngineCore___linksForIdentifier_atList(void* ptr, struct QtHelp_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(p)->size()-1) { static_cast<QMap<QString, QUrl>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(ptr)->size()-1) { static_cast<QMap<QString, QUrl>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpEngineCore___linksForIdentifier_setList(void* ptr, struct QtHelp_PackedString key, void* i, void* p)
+void QHelpEngineCore___linksForIdentifier_setList(void* ptr, struct QtHelp_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QUrl>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
+	static_cast<QMap<QString, QUrl>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
 }
 
 void* QHelpEngineCore___linksForIdentifier_newList(void* ptr)
@@ -2283,22 +2210,19 @@ void* QHelpEngineCore___linksForIdentifier_newList(void* ptr)
 	return new QMap<QString, QUrl>();
 }
 
-struct QtHelp_PackedList QHelpEngineCore___linksForIdentifier_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpEngineCore___linksForIdentifier_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpEngineCore___linksForKeyword_atList(void* ptr, struct QtHelp_PackedString v, int i, void* p)
+void* QHelpEngineCore___linksForKeyword_atList(void* ptr, struct QtHelp_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(p)->size()-1) { static_cast<QMap<QString, QUrl>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(ptr)->size()-1) { static_cast<QMap<QString, QUrl>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpEngineCore___linksForKeyword_setList(void* ptr, struct QtHelp_PackedString key, void* i, void* p)
+void QHelpEngineCore___linksForKeyword_setList(void* ptr, struct QtHelp_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QUrl>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
+	static_cast<QMap<QString, QUrl>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
 }
 
 void* QHelpEngineCore___linksForKeyword_newList(void* ptr)
@@ -2307,22 +2231,19 @@ void* QHelpEngineCore___linksForKeyword_newList(void* ptr)
 	return new QMap<QString, QUrl>();
 }
 
-struct QtHelp_PackedList QHelpEngineCore___linksForKeyword_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpEngineCore___linksForKeyword_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtHelp_PackedString QHelpEngineCore_____linksForIdentifier_keyList_atList(void* ptr, int i, void* p)
+struct QtHelp_PackedString QHelpEngineCore_____linksForIdentifier_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QHelpEngineCore_____linksForIdentifier_keyList_setList(void* ptr, struct QtHelp_PackedString i, void* p)
+void QHelpEngineCore_____linksForIdentifier_keyList_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QHelpEngineCore_____linksForIdentifier_keyList_newList(void* ptr)
@@ -2331,16 +2252,14 @@ void* QHelpEngineCore_____linksForIdentifier_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-struct QtHelp_PackedString QHelpEngineCore_____linksForKeyword_keyList_atList(void* ptr, int i, void* p)
+struct QtHelp_PackedString QHelpEngineCore_____linksForKeyword_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QHelpEngineCore_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i, void* p)
+void QHelpEngineCore_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QHelpEngineCore_____linksForKeyword_keyList_newList(void* ptr)
@@ -2349,16 +2268,14 @@ void* QHelpEngineCore_____linksForKeyword_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-void* QHelpEngineCore___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpEngineCore___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpEngineCore___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpEngineCore___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpEngineCore___dynamicPropertyNames_newList(void* ptr)
@@ -2367,16 +2284,14 @@ void* QHelpEngineCore___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpEngineCore___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpEngineCore___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpEngineCore___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpEngineCore___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpEngineCore___findChildren_newList2(void* ptr)
@@ -2385,16 +2300,14 @@ void* QHelpEngineCore___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpEngineCore___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpEngineCore___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpEngineCore___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpEngineCore___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpEngineCore___findChildren_newList3(void* ptr)
@@ -2403,16 +2316,14 @@ void* QHelpEngineCore___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpEngineCore___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpEngineCore___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpEngineCore___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpEngineCore___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpEngineCore___findChildren_newList(void* ptr)
@@ -2421,16 +2332,14 @@ void* QHelpEngineCore___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpEngineCore___children_atList(void* ptr, int i, void* p)
+void* QHelpEngineCore___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpEngineCore___children_setList(void* ptr, void* i, void* p)
+void QHelpEngineCore___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpEngineCore___children_newList(void* ptr)
@@ -2640,16 +2549,14 @@ char QHelpIndexModel_IsCreatingIndex(void* ptr)
 	return static_cast<QHelpIndexModel*>(ptr)->isCreatingIndex();
 }
 
-void* QHelpIndexModel___linksForKeyword_atList(void* ptr, struct QtHelp_PackedString v, int i, void* p)
+void* QHelpIndexModel___linksForKeyword_atList(void* ptr, struct QtHelp_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(p)->size()-1) { static_cast<QMap<QString, QUrl>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(ptr)->size()-1) { static_cast<QMap<QString, QUrl>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___linksForKeyword_setList(void* ptr, struct QtHelp_PackedString key, void* i, void* p)
+void QHelpIndexModel___linksForKeyword_setList(void* ptr, struct QtHelp_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QUrl>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
+	static_cast<QMap<QString, QUrl>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
 }
 
 void* QHelpIndexModel___linksForKeyword_newList(void* ptr)
@@ -2658,22 +2565,19 @@ void* QHelpIndexModel___linksForKeyword_newList(void* ptr)
 	return new QMap<QString, QUrl>();
 }
 
-struct QtHelp_PackedList QHelpIndexModel___linksForKeyword_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpIndexModel___linksForKeyword_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtHelp_PackedString QHelpIndexModel_____linksForKeyword_keyList_atList(void* ptr, int i, void* p)
+struct QtHelp_PackedString QHelpIndexModel_____linksForKeyword_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QHelpIndexModel_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i, void* p)
+void QHelpIndexModel_____linksForKeyword_keyList_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QHelpIndexModel_____linksForKeyword_keyList_newList(void* ptr)
@@ -2682,16 +2586,14 @@ void* QHelpIndexModel_____linksForKeyword_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-int QHelpIndexModel_____setItemData_keyList_atList(void* ptr, int i, void* p)
+int QHelpIndexModel_____setItemData_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____setItemData_keyList_setList(void* ptr, int i, void* p)
+void QHelpIndexModel_____setItemData_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel_____setItemData_keyList_newList(void* ptr)
@@ -2700,16 +2602,14 @@ void* QHelpIndexModel_____setItemData_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpIndexModel_____roleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpIndexModel_____roleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____roleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpIndexModel_____roleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel_____roleNames_keyList_newList(void* ptr)
@@ -2718,16 +2618,14 @@ void* QHelpIndexModel_____roleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpIndexModel_____itemData_keyList_atList(void* ptr, int i, void* p)
+int QHelpIndexModel_____itemData_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____itemData_keyList_setList(void* ptr, int i, void* p)
+void QHelpIndexModel_____itemData_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel_____itemData_keyList_newList(void* ptr)
@@ -2736,16 +2634,14 @@ void* QHelpIndexModel_____itemData_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-void* QHelpIndexModel___setItemData_roles_atList(void* ptr, int v, int i, void* p)
+void* QHelpIndexModel___setItemData_roles_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___setItemData_roles_setList(void* ptr, int key, void* i, void* p)
+void QHelpIndexModel___setItemData_roles_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QHelpIndexModel___setItemData_roles_newList(void* ptr)
@@ -2754,22 +2650,19 @@ void* QHelpIndexModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpIndexModel___setItemData_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpIndexModel___setItemData_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpIndexModel___changePersistentIndexList_from_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___changePersistentIndexList_from_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___changePersistentIndexList_from_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___changePersistentIndexList_from_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexModel___changePersistentIndexList_from_newList(void* ptr)
@@ -2778,16 +2671,14 @@ void* QHelpIndexModel___changePersistentIndexList_from_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpIndexModel___changePersistentIndexList_to_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___changePersistentIndexList_to_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___changePersistentIndexList_to_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___changePersistentIndexList_to_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexModel___changePersistentIndexList_to_newList(void* ptr)
@@ -2796,16 +2687,14 @@ void* QHelpIndexModel___changePersistentIndexList_to_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpIndexModel___dataChanged_roles_atList(void* ptr, int i, void* p)
+int QHelpIndexModel___dataChanged_roles_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel___dataChanged_roles_setList(void* ptr, int i, void* p)
+void QHelpIndexModel___dataChanged_roles_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<int>*>(p)->append(i);
+	static_cast<QVector<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel___dataChanged_roles_newList(void* ptr)
@@ -2814,16 +2703,14 @@ void* QHelpIndexModel___dataChanged_roles_newList(void* ptr)
 	return new QVector<int>();
 }
 
-void* QHelpIndexModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QHelpIndexModel___layoutAboutToBeChanged_parents_newList(void* ptr)
@@ -2832,16 +2719,14 @@ void* QHelpIndexModel___layoutAboutToBeChanged_parents_newList(void* ptr)
 	return new QList<QPersistentModelIndex>();
 }
 
-void* QHelpIndexModel___layoutChanged_parents_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___layoutChanged_parents_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(p)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(p)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___layoutChanged_parents_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___layoutChanged_parents_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QPersistentModelIndex>*>(p)->append(*static_cast<QPersistentModelIndex*>(i));
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
 }
 
 void* QHelpIndexModel___layoutChanged_parents_newList(void* ptr)
@@ -2850,16 +2735,14 @@ void* QHelpIndexModel___layoutChanged_parents_newList(void* ptr)
 	return new QList<QPersistentModelIndex>();
 }
 
-void* QHelpIndexModel___roleNames_atList(void* ptr, int v, int i, void* p)
+void* QHelpIndexModel___roleNames_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(p)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(p)->size()-1) { static_cast<QHash<int, QByteArray>*>(p)->~QHash(); free(p); }; tmp; }));
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___roleNames_setList(void* ptr, int key, void* i, void* p)
+void QHelpIndexModel___roleNames_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QHash<int, QByteArray>*>(p)->insert(key, *static_cast<QByteArray*>(i));
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
 }
 
 void* QHelpIndexModel___roleNames_newList(void* ptr)
@@ -2868,22 +2751,19 @@ void* QHelpIndexModel___roleNames_newList(void* ptr)
 	return new QHash<int, QByteArray>();
 }
 
-struct QtHelp_PackedList QHelpIndexModel___roleNames_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpIndexModel___roleNames_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpIndexModel___itemData_atList(void* ptr, int v, int i, void* p)
+void* QHelpIndexModel___itemData_atList(void* ptr, int v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(p)->value(v); if (i == static_cast<QMap<int, QVariant>*>(p)->size()-1) { static_cast<QMap<int, QVariant>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___itemData_setList(void* ptr, int key, void* i, void* p)
+void QHelpIndexModel___itemData_setList(void* ptr, int key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<int, QVariant>*>(p)->insert(key, *static_cast<QVariant*>(i));
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
 }
 
 void* QHelpIndexModel___itemData_newList(void* ptr)
@@ -2892,22 +2772,19 @@ void* QHelpIndexModel___itemData_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpIndexModel___itemData_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpIndexModel___itemData_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QHelpIndexModel___mimeData_indexes_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___mimeData_indexes_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___mimeData_indexes_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___mimeData_indexes_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexModel___mimeData_indexes_newList(void* ptr)
@@ -2916,16 +2793,14 @@ void* QHelpIndexModel___mimeData_indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpIndexModel___match_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___match_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___match_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___match_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexModel___match_newList(void* ptr)
@@ -2934,16 +2809,14 @@ void* QHelpIndexModel___match_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpIndexModel___persistentIndexList_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___persistentIndexList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___persistentIndexList_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___persistentIndexList_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexModel___persistentIndexList_newList(void* ptr)
@@ -2952,16 +2825,14 @@ void* QHelpIndexModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpIndexModel_____doSetRoleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpIndexModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____doSetRoleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpIndexModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel_____doSetRoleNames_keyList_newList(void* ptr)
@@ -2970,16 +2841,14 @@ void* QHelpIndexModel_____doSetRoleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QHelpIndexModel_____setRoleNames_keyList_atList(void* ptr, int i, void* p)
+int QHelpIndexModel_____setRoleNames_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QList<int>*>(p)->at(i); if (i == static_cast<QList<int>*>(p)->size()-1) { static_cast<QList<int>*>(p)->~QList(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____setRoleNames_keyList_setList(void* ptr, int i, void* p)
+void QHelpIndexModel_____setRoleNames_keyList_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<int>*>(p)->append(i);
+	static_cast<QList<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexModel_____setRoleNames_keyList_newList(void* ptr)
@@ -2988,16 +2857,14 @@ void* QHelpIndexModel_____setRoleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-void* QHelpIndexModel___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexModel___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpIndexModel___dynamicPropertyNames_newList(void* ptr)
@@ -3006,16 +2873,14 @@ void* QHelpIndexModel___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpIndexModel___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpIndexModel___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpIndexModel___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexModel___findChildren_newList2(void* ptr)
@@ -3024,16 +2889,14 @@ void* QHelpIndexModel___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexModel___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpIndexModel___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpIndexModel___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexModel___findChildren_newList3(void* ptr)
@@ -3042,16 +2905,14 @@ void* QHelpIndexModel___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexModel___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexModel___findChildren_newList(void* ptr)
@@ -3060,16 +2921,14 @@ void* QHelpIndexModel___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexModel___children_atList(void* ptr, int i, void* p)
+void* QHelpIndexModel___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel___children_setList(void* ptr, void* i, void* p)
+void QHelpIndexModel___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexModel___children_newList(void* ptr)
@@ -3474,16 +3333,14 @@ void QHelpIndexWidget_LinksActivated(void* ptr, void* links, struct QtHelp_Packe
 	static_cast<QHelpIndexWidget*>(ptr)->linksActivated(*static_cast<QMap<QString, QUrl>*>(links), QString::fromUtf8(keyword.data, keyword.len));
 }
 
-void* QHelpIndexWidget___linksActivated_links_atList(void* ptr, struct QtHelp_PackedString v, int i, void* p)
+void* QHelpIndexWidget___linksActivated_links_atList(void* ptr, struct QtHelp_PackedString v, int i)
 {
-	Q_UNUSED(ptr);
-	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(p)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(p)->size()-1) { static_cast<QMap<QString, QUrl>*>(p)->~QMap(); free(p); }; tmp; }));
+	return new QUrl(({ QUrl tmp = static_cast<QMap<QString, QUrl>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QUrl>*>(ptr)->size()-1) { static_cast<QMap<QString, QUrl>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexWidget___linksActivated_links_setList(void* ptr, struct QtHelp_PackedString key, void* i, void* p)
+void QHelpIndexWidget___linksActivated_links_setList(void* ptr, struct QtHelp_PackedString key, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QMap<QString, QUrl>*>(p)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
+	static_cast<QMap<QString, QUrl>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QUrl*>(i));
 }
 
 void* QHelpIndexWidget___linksActivated_links_newList(void* ptr)
@@ -3492,22 +3349,19 @@ void* QHelpIndexWidget___linksActivated_links_newList(void* ptr)
 	return new QMap<QString, QUrl>();
 }
 
-struct QtHelp_PackedList QHelpIndexWidget___linksActivated_keyList(void* ptr, void* p)
+struct QtHelp_PackedList QHelpIndexWidget___linksActivated_keyList(void* ptr)
 {
-	Q_UNUSED(ptr);
-	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(p)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtHelp_PackedString QHelpIndexWidget_____linksActivated_keyList_atList(void* ptr, int i, void* p)
+struct QtHelp_PackedString QHelpIndexWidget_____linksActivated_keyList_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({ QByteArray t3fa2e5 = ({QString tmp = static_cast<QList<QString>*>(p)->at(i); if (i == static_cast<QList<QString>*>(p)->size()-1) { static_cast<QList<QString>*>(p)->~QList(); free(p); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t3fa2e5.prepend("WHITESPACE").constData()+10), t3fa2e5.size()-10 }; });
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QHelpIndexWidget_____linksActivated_keyList_setList(void* ptr, struct QtHelp_PackedString i, void* p)
+void QHelpIndexWidget_____linksActivated_keyList_setList(void* ptr, struct QtHelp_PackedString i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QString>*>(p)->append(QString::fromUtf8(i.data, i.len));
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
 void* QHelpIndexWidget_____linksActivated_keyList_newList(void* ptr)
@@ -3516,16 +3370,14 @@ void* QHelpIndexWidget_____linksActivated_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-int QHelpIndexWidget___dataChanged_roles_atList(void* ptr, int i, void* p)
+int QHelpIndexWidget___dataChanged_roles_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({int tmp = static_cast<QVector<int>*>(p)->at(i); if (i == static_cast<QVector<int>*>(p)->size()-1) { static_cast<QVector<int>*>(p)->~QVector(); free(p); }; tmp; });
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___dataChanged_roles_setList(void* ptr, int i, void* p)
+void QHelpIndexWidget___dataChanged_roles_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<int>*>(p)->append(i);
+	static_cast<QVector<int>*>(ptr)->append(i);
 }
 
 void* QHelpIndexWidget___dataChanged_roles_newList(void* ptr)
@@ -3534,16 +3386,14 @@ void* QHelpIndexWidget___dataChanged_roles_newList(void* ptr)
 	return new QVector<int>();
 }
 
-void* QHelpIndexWidget___indexesMoved_indexes_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___indexesMoved_indexes_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexWidget___indexesMoved_indexes_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___indexesMoved_indexes_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexWidget___indexesMoved_indexes_newList(void* ptr)
@@ -3552,16 +3402,14 @@ void* QHelpIndexWidget___indexesMoved_indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpIndexWidget___selectedIndexes_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___selectedIndexes_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(p)->at(i); if (i == static_cast<QList<QModelIndex>*>(p)->size()-1) { static_cast<QList<QModelIndex>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexWidget___selectedIndexes_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___selectedIndexes_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QModelIndex>*>(p)->append(*static_cast<QModelIndex*>(i));
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
 }
 
 void* QHelpIndexWidget___selectedIndexes_newList(void* ptr)
@@ -3570,16 +3418,14 @@ void* QHelpIndexWidget___selectedIndexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-void* QHelpIndexWidget___scrollBarWidgets_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___scrollBarWidgets_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QWidget * tmp = static_cast<QList<QWidget *>*>(p)->at(i); if (i == static_cast<QList<QWidget *>*>(p)->size()-1) { static_cast<QList<QWidget *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QWidget * tmp = static_cast<QList<QWidget *>*>(ptr)->at(i); if (i == static_cast<QList<QWidget *>*>(ptr)->size()-1) { static_cast<QList<QWidget *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___scrollBarWidgets_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___scrollBarWidgets_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QWidget *>*>(p)->append(static_cast<QWidget*>(i));
+	static_cast<QList<QWidget *>*>(ptr)->append(static_cast<QWidget*>(i));
 }
 
 void* QHelpIndexWidget___scrollBarWidgets_newList(void* ptr)
@@ -3588,16 +3434,14 @@ void* QHelpIndexWidget___scrollBarWidgets_newList(void* ptr)
 	return new QList<QWidget *>();
 }
 
-void* QHelpIndexWidget___addActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___addActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___addActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___addActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpIndexWidget___addActions_actions_newList(void* ptr)
@@ -3606,16 +3450,14 @@ void* QHelpIndexWidget___addActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpIndexWidget___insertActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___insertActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___insertActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___insertActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpIndexWidget___insertActions_actions_newList(void* ptr)
@@ -3624,16 +3466,14 @@ void* QHelpIndexWidget___insertActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpIndexWidget___actions_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___actions_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpIndexWidget___actions_newList(void* ptr)
@@ -3642,16 +3482,14 @@ void* QHelpIndexWidget___actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpIndexWidget___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpIndexWidget___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpIndexWidget___dynamicPropertyNames_newList(void* ptr)
@@ -3660,16 +3498,14 @@ void* QHelpIndexWidget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpIndexWidget___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpIndexWidget___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpIndexWidget___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexWidget___findChildren_newList2(void* ptr)
@@ -3678,16 +3514,14 @@ void* QHelpIndexWidget___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexWidget___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpIndexWidget___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpIndexWidget___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexWidget___findChildren_newList3(void* ptr)
@@ -3696,16 +3530,14 @@ void* QHelpIndexWidget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexWidget___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexWidget___findChildren_newList(void* ptr)
@@ -3714,16 +3546,14 @@ void* QHelpIndexWidget___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpIndexWidget___children_atList(void* ptr, int i, void* p)
+void* QHelpIndexWidget___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexWidget___children_setList(void* ptr, void* i, void* p)
+void QHelpIndexWidget___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpIndexWidget___children_newList(void* ptr)
@@ -4459,16 +4289,14 @@ void* QHelpSearchEngine___query_newList(void* ptr)
 	return new QList<QHelpSearchQuery>();
 }
 
-void* QHelpSearchEngine___searchResults_atList(void* ptr, int i, void* p)
+void* QHelpSearchEngine___searchResults_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QHelpSearchResult(({QHelpSearchResult tmp = static_cast<QVector<QHelpSearchResult>*>(p)->at(i); if (i == static_cast<QVector<QHelpSearchResult>*>(p)->size()-1) { static_cast<QVector<QHelpSearchResult>*>(p)->~QVector(); free(p); }; tmp; }));
+	return new QHelpSearchResult(({QHelpSearchResult tmp = static_cast<QVector<QHelpSearchResult>*>(ptr)->at(i); if (i == static_cast<QVector<QHelpSearchResult>*>(ptr)->size()-1) { static_cast<QVector<QHelpSearchResult>*>(ptr)->~QVector(); free(ptr); }; tmp; }));
 }
 
-void QHelpSearchEngine___searchResults_setList(void* ptr, void* i, void* p)
+void QHelpSearchEngine___searchResults_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QVector<QHelpSearchResult>*>(p)->append(*static_cast<QHelpSearchResult*>(i));
+	static_cast<QVector<QHelpSearchResult>*>(ptr)->append(*static_cast<QHelpSearchResult*>(i));
 }
 
 void* QHelpSearchEngine___searchResults_newList(void* ptr)
@@ -4477,16 +4305,14 @@ void* QHelpSearchEngine___searchResults_newList(void* ptr)
 	return new QVector<QHelpSearchResult>();
 }
 
-void* QHelpSearchEngine___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpSearchEngine___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpSearchEngine___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpSearchEngine___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpSearchEngine___dynamicPropertyNames_newList(void* ptr)
@@ -4495,16 +4321,14 @@ void* QHelpSearchEngine___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpSearchEngine___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpSearchEngine___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchEngine___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpSearchEngine___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchEngine___findChildren_newList2(void* ptr)
@@ -4513,16 +4337,14 @@ void* QHelpSearchEngine___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchEngine___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpSearchEngine___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchEngine___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpSearchEngine___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchEngine___findChildren_newList3(void* ptr)
@@ -4531,16 +4353,14 @@ void* QHelpSearchEngine___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchEngine___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpSearchEngine___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchEngine___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpSearchEngine___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchEngine___findChildren_newList(void* ptr)
@@ -4549,16 +4369,14 @@ void* QHelpSearchEngine___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchEngine___children_atList(void* ptr, int i, void* p)
+void* QHelpSearchEngine___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchEngine___children_setList(void* ptr, void* i, void* p)
+void QHelpSearchEngine___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchEngine___children_newList(void* ptr)
@@ -4753,16 +4571,14 @@ void* QHelpSearchQueryWidget___query_newList(void* ptr)
 	return new QList<QHelpSearchQuery>();
 }
 
-void* QHelpSearchQueryWidget___addActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___addActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___addActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___addActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchQueryWidget___addActions_actions_newList(void* ptr)
@@ -4771,16 +4587,14 @@ void* QHelpSearchQueryWidget___addActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchQueryWidget___insertActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___insertActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___insertActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___insertActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchQueryWidget___insertActions_actions_newList(void* ptr)
@@ -4789,16 +4603,14 @@ void* QHelpSearchQueryWidget___insertActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchQueryWidget___actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchQueryWidget___actions_newList(void* ptr)
@@ -4807,16 +4619,14 @@ void* QHelpSearchQueryWidget___actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchQueryWidget___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpSearchQueryWidget___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpSearchQueryWidget___dynamicPropertyNames_newList(void* ptr)
@@ -4825,16 +4635,14 @@ void* QHelpSearchQueryWidget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpSearchQueryWidget___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchQueryWidget___findChildren_newList2(void* ptr)
@@ -4843,16 +4651,14 @@ void* QHelpSearchQueryWidget___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchQueryWidget___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchQueryWidget___findChildren_newList3(void* ptr)
@@ -4861,16 +4667,14 @@ void* QHelpSearchQueryWidget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchQueryWidget___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchQueryWidget___findChildren_newList(void* ptr)
@@ -4879,16 +4683,14 @@ void* QHelpSearchQueryWidget___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchQueryWidget___children_atList(void* ptr, int i, void* p)
+void* QHelpSearchQueryWidget___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchQueryWidget___children_setList(void* ptr, void* i, void* p)
+void QHelpSearchQueryWidget___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchQueryWidget___children_newList(void* ptr)
@@ -5350,16 +5152,14 @@ void QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(void* ptr)
 	static_cast<QHelpSearchResultWidget*>(ptr)->~QHelpSearchResultWidget();
 }
 
-void* QHelpSearchResultWidget___addActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___addActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___addActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___addActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchResultWidget___addActions_actions_newList(void* ptr)
@@ -5368,16 +5168,14 @@ void* QHelpSearchResultWidget___addActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchResultWidget___insertActions_actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___insertActions_actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___insertActions_actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___insertActions_actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchResultWidget___insertActions_actions_newList(void* ptr)
@@ -5386,16 +5184,14 @@ void* QHelpSearchResultWidget___insertActions_actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchResultWidget___actions_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___actions_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QAction * tmp = static_cast<QList<QAction *>*>(p)->at(i); if (i == static_cast<QList<QAction *>*>(p)->size()-1) { static_cast<QList<QAction *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QAction * tmp = static_cast<QList<QAction *>*>(ptr)->at(i); if (i == static_cast<QList<QAction *>*>(ptr)->size()-1) { static_cast<QList<QAction *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___actions_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___actions_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QAction *>*>(p)->append(static_cast<QAction*>(i));
+	static_cast<QList<QAction *>*>(ptr)->append(static_cast<QAction*>(i));
 }
 
 void* QHelpSearchResultWidget___actions_newList(void* ptr)
@@ -5404,16 +5200,14 @@ void* QHelpSearchResultWidget___actions_newList(void* ptr)
 	return new QList<QAction *>();
 }
 
-void* QHelpSearchResultWidget___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QHelpSearchResultWidget___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QHelpSearchResultWidget___dynamicPropertyNames_newList(void* ptr)
@@ -5422,16 +5216,14 @@ void* QHelpSearchResultWidget___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QHelpSearchResultWidget___findChildren_atList2(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___findChildren_setList2(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchResultWidget___findChildren_newList2(void* ptr)
@@ -5440,16 +5232,14 @@ void* QHelpSearchResultWidget___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchResultWidget___findChildren_atList3(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___findChildren_setList3(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchResultWidget___findChildren_newList3(void* ptr)
@@ -5458,16 +5248,14 @@ void* QHelpSearchResultWidget___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchResultWidget___findChildren_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___findChildren_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchResultWidget___findChildren_newList(void* ptr)
@@ -5476,16 +5264,14 @@ void* QHelpSearchResultWidget___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QHelpSearchResultWidget___children_atList(void* ptr, int i, void* p)
+void* QHelpSearchResultWidget___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpSearchResultWidget___children_setList(void* ptr, void* i, void* p)
+void QHelpSearchResultWidget___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QHelpSearchResultWidget___children_newList(void* ptr)

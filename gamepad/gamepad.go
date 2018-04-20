@@ -1272,78 +1272,103 @@ func (ptr *QGamepad) DeviceId() int {
 	return 0
 }
 
-func (ptr *QGamepad) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGamepad___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGamepad) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGamepad___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGamepad) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGamepad___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGamepad) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepad___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGamepad) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGamepad___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepad) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepad) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepad___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepad) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepad___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepad) __findChildren_newList2() unsafe.Pointer {
 	return C.QGamepad___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepad) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepad) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepad___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepad) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepad___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepad) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepad___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepad) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepad) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepad___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepad) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepad___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepad) __findChildren_newList() unsafe.Pointer {
 	return C.QGamepad___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepad) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepad___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepad) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepad___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepad) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepad___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepad) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepad___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepad) __children_newList() unsafe.Pointer {
@@ -3228,78 +3253,103 @@ func (ptr *QGamepadKeyNavigation) Active() bool {
 	return false
 }
 
-func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGamepadKeyNavigation___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadKeyNavigation___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGamepadKeyNavigation___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadKeyNavigation___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGamepadKeyNavigation) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadKeyNavigation) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadKeyNavigation___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadKeyNavigation) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadKeyNavigation___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadKeyNavigation) __findChildren_newList2() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadKeyNavigation) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadKeyNavigation___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadKeyNavigation) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadKeyNavigation___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadKeyNavigation) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadKeyNavigation) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadKeyNavigation___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadKeyNavigation) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadKeyNavigation___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadKeyNavigation) __findChildren_newList() unsafe.Pointer {
 	return C.QGamepadKeyNavigation___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadKeyNavigation) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadKeyNavigation) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadKeyNavigation___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadKeyNavigation) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadKeyNavigation___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadKeyNavigation) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadKeyNavigation___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadKeyNavigation) __children_newList() unsafe.Pointer {
@@ -4187,8 +4237,9 @@ func (ptr *QGamepadManager) ConnectedGamepads() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtGamepad_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQGamepadManagerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGamepadManager)(nil).__connectedGamepads_atList(i, l.data)
+				out[i] = tmpList.__connectedGamepads_atList(i)
 			}
 			return out
 		}(C.QGamepadManager_ConnectedGamepads(ptr.Pointer()))
@@ -4196,90 +4247,120 @@ func (ptr *QGamepadManager) ConnectedGamepads() []int {
 	return make([]int, 0)
 }
 
-func (ptr *QGamepadManager) __connectedGamepads_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QGamepadManager___connectedGamepads_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QGamepadManager) __connectedGamepads_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGamepadManager___connectedGamepads_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QGamepadManager) __connectedGamepads_setList(i int, p unsafe.Pointer) {
-	C.QGamepadManager___connectedGamepads_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QGamepadManager) __connectedGamepads_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___connectedGamepads_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QGamepadManager) __connectedGamepads_newList() unsafe.Pointer {
 	return C.QGamepadManager___connectedGamepads_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGamepadManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGamepadManager) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGamepadManager___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGamepadManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGamepadManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGamepadManager) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGamepadManager) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGamepadManager___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadManager) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadManager) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadManager) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadManager) __findChildren_newList2() unsafe.Pointer {
 	return C.QGamepadManager___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadManager) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadManager) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadManager) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadManager) __findChildren_newList3() unsafe.Pointer {
 	return C.QGamepadManager___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadManager) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadManager) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadManager) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadManager) __findChildren_newList() unsafe.Pointer {
 	return C.QGamepadManager___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGamepadManager) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGamepadManager) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGamepadManager___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGamepadManager) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGamepadManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGamepadManager) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGamepadManager___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGamepadManager) __children_newList() unsafe.Pointer {

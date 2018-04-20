@@ -1491,90 +1491,120 @@ func (ptr *QAbstractItemDelegate) UpdateEditorGeometryDefault(editor QWidget_ITF
 	}
 }
 
-func (ptr *QAbstractItemDelegate) __paintingRoles_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAbstractItemDelegate___paintingRoles_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAbstractItemDelegate) __paintingRoles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemDelegate___paintingRoles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractItemDelegate) __paintingRoles_setList(i int, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___paintingRoles_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAbstractItemDelegate) __paintingRoles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___paintingRoles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __paintingRoles_newList() unsafe.Pointer {
 	return C.QAbstractItemDelegate___paintingRoles_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemDelegate___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAbstractItemDelegate___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAbstractItemDelegate___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractItemDelegate) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractItemDelegate) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __findChildren_newList2() unsafe.Pointer {
 	return C.QAbstractItemDelegate___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractItemDelegate) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractItemDelegate) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __findChildren_newList3() unsafe.Pointer {
 	return C.QAbstractItemDelegate___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractItemDelegate) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractItemDelegate) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractItemDelegate) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __findChildren_newList() unsafe.Pointer {
 	return C.QAbstractItemDelegate___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemDelegate) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractItemDelegate) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAbstractItemDelegate___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractItemDelegate) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAbstractItemDelegate___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAbstractItemDelegate) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAbstractItemDelegate) __children_newList() unsafe.Pointer {
@@ -2234,16 +2264,18 @@ func callbackQAbstractItemView_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Po
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractItemView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
 	} else {
 		NewQAbstractItemViewFromPointer(ptr).DataChangedDefault(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQAbstractItemViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractItemView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
@@ -2274,11 +2306,11 @@ func (ptr *QAbstractItemView) DisconnectDataChanged() {
 func (ptr *QAbstractItemView) DataChanged(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemView_DataChanged(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QAbstractItemView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQAbstractItemViewFromPointer(NewQAbstractItemViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QAbstractItemView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -2286,11 +2318,11 @@ func (ptr *QAbstractItemView) DataChanged(topLeft core.QModelIndex_ITF, bottomRi
 func (ptr *QAbstractItemView) DataChangedDefault(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemView_DataChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QAbstractItemView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQAbstractItemViewFromPointer(NewQAbstractItemViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QAbstractItemView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -3666,20 +3698,20 @@ func (ptr *QAbstractItemView) RootIndex() *core.QModelIndex {
 func callbackQAbstractItemView_SelectedIndexes(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "selectedIndexes"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QAbstractItemView)(nil).__selectedIndexes_newList()
+			tmpList := NewQAbstractItemViewFromPointer(NewQAbstractItemViewFromPointer(nil).__selectedIndexes_newList())
 			for _, v := range signal.(func() []*core.QModelIndex)() {
-				(*QAbstractItemView)(nil).__selectedIndexes_setList(v, tmpList)
+				tmpList.__selectedIndexes_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QAbstractItemView)(nil).__selectedIndexes_newList()
+		tmpList := NewQAbstractItemViewFromPointer(NewQAbstractItemViewFromPointer(nil).__selectedIndexes_newList())
 		for _, v := range NewQAbstractItemViewFromPointer(ptr).SelectedIndexesDefault() {
-			(*QAbstractItemView)(nil).__selectedIndexes_setList(v, tmpList)
+			tmpList.__selectedIndexes_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -3708,8 +3740,9 @@ func (ptr *QAbstractItemView) SelectedIndexes() []*core.QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
 			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQAbstractItemViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractItemView)(nil).__selectedIndexes_atList(i, l.data)
+				out[i] = tmpList.__selectedIndexes_atList(i)
 			}
 			return out
 		}(C.QAbstractItemView_SelectedIndexes(ptr.Pointer()))
@@ -3721,8 +3754,9 @@ func (ptr *QAbstractItemView) SelectedIndexesDefault() []*core.QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
 			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQAbstractItemViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractItemView)(nil).__selectedIndexes_atList(i, l.data)
+				out[i] = tmpList.__selectedIndexes_atList(i)
 			}
 			return out
 		}(C.QAbstractItemView_SelectedIndexesDefault(ptr.Pointer()))
@@ -4184,26 +4218,36 @@ func (ptr *QAbstractItemView) VerticalOffset() int {
 	return 0
 }
 
-func (ptr *QAbstractItemView) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QAbstractItemView___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QAbstractItemView) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemView___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QAbstractItemView) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
-	C.QAbstractItemView___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QAbstractItemView) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemView___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QAbstractItemView) __dataChanged_roles_newList() unsafe.Pointer {
 	return C.QAbstractItemView___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemView) __selectedIndexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QAbstractItemView) __selectedIndexes_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QAbstractItemView___selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAbstractItemView) __selectedIndexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QAbstractItemView___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QAbstractItemView) __selectedIndexes_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemView___selectedIndexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QAbstractItemView) __selectedIndexes_newList() unsafe.Pointer {
@@ -4271,8 +4315,9 @@ func (ptr *QAbstractScrollArea) ScrollBarWidgets(alignment core.Qt__AlignmentFla
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 			out := make([]*QWidget, int(l.len))
+			tmpList := NewQAbstractScrollAreaFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAbstractScrollArea)(nil).__scrollBarWidgets_atList(i, l.data)
+				out[i] = tmpList.__scrollBarWidgets_atList(i)
 			}
 			return out
 		}(C.QAbstractScrollArea_ScrollBarWidgets(ptr.Pointer(), C.longlong(alignment)))
@@ -4607,16 +4652,21 @@ func (ptr *QAbstractScrollArea) SizeAdjustPolicy() QAbstractScrollArea__SizeAdju
 	return 0
 }
 
-func (ptr *QAbstractScrollArea) __scrollBarWidgets_atList(i int, p unsafe.Pointer) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QAbstractScrollArea___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAbstractScrollArea) __scrollBarWidgets_atList(i int) *QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWidgetFromPointer(C.QAbstractScrollArea___scrollBarWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAbstractScrollArea) __scrollBarWidgets_setList(i QWidget_ITF, p unsafe.Pointer) {
-	C.QAbstractScrollArea___scrollBarWidgets_setList(ptr.Pointer(), PointerFromQWidget(i), p)
+func (ptr *QAbstractScrollArea) __scrollBarWidgets_setList(i QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractScrollArea___scrollBarWidgets_setList(ptr.Pointer(), PointerFromQWidget(i))
+	}
 }
 
 func (ptr *QAbstractScrollArea) __scrollBarWidgets_newList() unsafe.Pointer {
@@ -7382,11 +7432,11 @@ func (ptr *QAction) SetShortcuts2(key gui.QKeySequence__StandardKey) {
 func (ptr *QAction) SetShortcuts(shortcuts []*gui.QKeySequence) {
 	if ptr.Pointer() != nil {
 		C.QAction_SetShortcuts(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QAction)(nil).__setShortcuts_shortcuts_newList()
+			tmpList := NewQActionFromPointer(NewQActionFromPointer(nil).__setShortcuts_shortcuts_newList())
 			for _, v := range shortcuts {
-				(*QAction)(nil).__setShortcuts_shortcuts_setList(v, tmpList)
+				tmpList.__setShortcuts_shortcuts_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -7703,8 +7753,9 @@ func (ptr *QAction) AssociatedGraphicsWidgets() []*QGraphicsWidget {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsWidget {
 			out := make([]*QGraphicsWidget, int(l.len))
+			tmpList := NewQActionFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAction)(nil).__associatedGraphicsWidgets_atList(i, l.data)
+				out[i] = tmpList.__associatedGraphicsWidgets_atList(i)
 			}
 			return out
 		}(C.QAction_AssociatedGraphicsWidgets(ptr.Pointer()))
@@ -7716,8 +7767,9 @@ func (ptr *QAction) Shortcuts() []*gui.QKeySequence {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*gui.QKeySequence {
 			out := make([]*gui.QKeySequence, int(l.len))
+			tmpList := NewQActionFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAction)(nil).__shortcuts_atList(i, l.data)
+				out[i] = tmpList.__shortcuts_atList(i)
 			}
 			return out
 		}(C.QAction_Shortcuts(ptr.Pointer()))
@@ -7729,8 +7781,9 @@ func (ptr *QAction) AssociatedWidgets() []*QWidget {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 			out := make([]*QWidget, int(l.len))
+			tmpList := NewQActionFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QAction)(nil).__associatedWidgets_atList(i, l.data)
+				out[i] = tmpList.__associatedWidgets_atList(i)
 			}
 			return out
 		}(C.QAction_AssociatedWidgets(ptr.Pointer()))
@@ -7867,138 +7920,183 @@ func (ptr *QAction) IsVisible() bool {
 	return false
 }
 
-func (ptr *QAction) __setShortcuts_shortcuts_atList(i int, p unsafe.Pointer) *gui.QKeySequence {
-	tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___setShortcuts_shortcuts_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
-	return tmpValue
+func (ptr *QAction) __setShortcuts_shortcuts_atList(i int) *gui.QKeySequence {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___setShortcuts_shortcuts_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAction) __setShortcuts_shortcuts_setList(i gui.QKeySequence_ITF, p unsafe.Pointer) {
-	C.QAction___setShortcuts_shortcuts_setList(ptr.Pointer(), gui.PointerFromQKeySequence(i), p)
+func (ptr *QAction) __setShortcuts_shortcuts_setList(i gui.QKeySequence_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___setShortcuts_shortcuts_setList(ptr.Pointer(), gui.PointerFromQKeySequence(i))
+	}
 }
 
 func (ptr *QAction) __setShortcuts_shortcuts_newList() unsafe.Pointer {
 	return C.QAction___setShortcuts_shortcuts_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __associatedGraphicsWidgets_atList(i int, p unsafe.Pointer) *QGraphicsWidget {
-	tmpValue := NewQGraphicsWidgetFromPointer(C.QAction___associatedGraphicsWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __associatedGraphicsWidgets_atList(i int) *QGraphicsWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGraphicsWidgetFromPointer(C.QAction___associatedGraphicsWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __associatedGraphicsWidgets_setList(i QGraphicsWidget_ITF, p unsafe.Pointer) {
-	C.QAction___associatedGraphicsWidgets_setList(ptr.Pointer(), PointerFromQGraphicsWidget(i), p)
+func (ptr *QAction) __associatedGraphicsWidgets_setList(i QGraphicsWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___associatedGraphicsWidgets_setList(ptr.Pointer(), PointerFromQGraphicsWidget(i))
+	}
 }
 
 func (ptr *QAction) __associatedGraphicsWidgets_newList() unsafe.Pointer {
 	return C.QAction___associatedGraphicsWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __shortcuts_atList(i int, p unsafe.Pointer) *gui.QKeySequence {
-	tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___shortcuts_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
-	return tmpValue
+func (ptr *QAction) __shortcuts_atList(i int) *gui.QKeySequence {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQKeySequenceFromPointer(C.QAction___shortcuts_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QKeySequence).DestroyQKeySequence)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAction) __shortcuts_setList(i gui.QKeySequence_ITF, p unsafe.Pointer) {
-	C.QAction___shortcuts_setList(ptr.Pointer(), gui.PointerFromQKeySequence(i), p)
+func (ptr *QAction) __shortcuts_setList(i gui.QKeySequence_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___shortcuts_setList(ptr.Pointer(), gui.PointerFromQKeySequence(i))
+	}
 }
 
 func (ptr *QAction) __shortcuts_newList() unsafe.Pointer {
 	return C.QAction___shortcuts_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __associatedWidgets_atList(i int, p unsafe.Pointer) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QAction___associatedWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __associatedWidgets_atList(i int) *QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWidgetFromPointer(C.QAction___associatedWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __associatedWidgets_setList(i QWidget_ITF, p unsafe.Pointer) {
-	C.QAction___associatedWidgets_setList(ptr.Pointer(), PointerFromQWidget(i), p)
+func (ptr *QAction) __associatedWidgets_setList(i QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___associatedWidgets_setList(ptr.Pointer(), PointerFromQWidget(i))
+	}
 }
 
 func (ptr *QAction) __associatedWidgets_newList() unsafe.Pointer {
 	return C.QAction___associatedWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QAction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QAction) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QAction___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QAction) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QAction___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QAction) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QAction) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QAction___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAction___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAction) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAction) __findChildren_newList2() unsafe.Pointer {
 	return C.QAction___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QAction) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAction___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAction) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAction) __findChildren_newList3() unsafe.Pointer {
 	return C.QAction___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QAction) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAction___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAction___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAction) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAction) __findChildren_newList() unsafe.Pointer {
 	return C.QAction___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QAction) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QAction___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QAction) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QAction___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QAction) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QAction___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QAction) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAction___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QAction) __children_newList() unsafe.Pointer {
@@ -8509,8 +8607,9 @@ func (ptr *QActionGroup) Actions() []*QAction {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAction {
 			out := make([]*QAction, int(l.len))
+			tmpList := NewQActionGroupFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QActionGroup)(nil).__actions_atList(i, l.data)
+				out[i] = tmpList.__actions_atList(i)
 			}
 			return out
 		}(C.QActionGroup_Actions(ptr.Pointer()))
@@ -8539,94 +8638,124 @@ func (ptr *QActionGroup) IsVisible() bool {
 	return false
 }
 
-func (ptr *QActionGroup) __actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QActionGroup___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QActionGroup) __actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QActionGroup___actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QActionGroup) __actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QActionGroup___actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QActionGroup) __actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QActionGroup) __actions_newList() unsafe.Pointer {
 	return C.QActionGroup___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QActionGroup) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QActionGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QActionGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QActionGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QActionGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QActionGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QActionGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QActionGroup) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QActionGroup___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QActionGroup) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QActionGroup) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QActionGroup) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QActionGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QActionGroup) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QActionGroup) __findChildren_newList2() unsafe.Pointer {
 	return C.QActionGroup___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QActionGroup) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QActionGroup) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QActionGroup) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QActionGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QActionGroup) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QActionGroup) __findChildren_newList3() unsafe.Pointer {
 	return C.QActionGroup___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QActionGroup) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QActionGroup) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QActionGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QActionGroup) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QActionGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QActionGroup) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QActionGroup) __findChildren_newList() unsafe.Pointer {
 	return C.QActionGroup___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QActionGroup) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QActionGroup___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QActionGroup) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QActionGroup___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QActionGroup) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QActionGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QActionGroup) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QActionGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QActionGroup) __children_newList() unsafe.Pointer {
@@ -9142,8 +9271,9 @@ func (ptr *QApplication) WidgetAt2(x int, y int) *QWidget {
 func QApplication_AllWidgets() []*QWidget {
 	return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 		out := make([]*QWidget, int(l.len))
+		tmpList := NewQApplicationFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QApplication)(nil).__allWidgets_atList(i, l.data)
+			out[i] = tmpList.__allWidgets_atList(i)
 		}
 		return out
 	}(C.QApplication_QApplication_AllWidgets())
@@ -9152,8 +9282,9 @@ func QApplication_AllWidgets() []*QWidget {
 func (ptr *QApplication) AllWidgets() []*QWidget {
 	return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 		out := make([]*QWidget, int(l.len))
+		tmpList := NewQApplicationFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QApplication)(nil).__allWidgets_atList(i, l.data)
+			out[i] = tmpList.__allWidgets_atList(i)
 		}
 		return out
 	}(C.QApplication_QApplication_AllWidgets())
@@ -9162,8 +9293,9 @@ func (ptr *QApplication) AllWidgets() []*QWidget {
 func QApplication_TopLevelWidgets() []*QWidget {
 	return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 		out := make([]*QWidget, int(l.len))
+		tmpList := NewQApplicationFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QApplication)(nil).__topLevelWidgets_atList(i, l.data)
+			out[i] = tmpList.__topLevelWidgets_atList(i)
 		}
 		return out
 	}(C.QApplication_QApplication_TopLevelWidgets())
@@ -9172,8 +9304,9 @@ func QApplication_TopLevelWidgets() []*QWidget {
 func (ptr *QApplication) TopLevelWidgets() []*QWidget {
 	return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 		out := make([]*QWidget, int(l.len))
+		tmpList := NewQApplicationFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QApplication)(nil).__topLevelWidgets_atList(i, l.data)
+			out[i] = tmpList.__topLevelWidgets_atList(i)
 		}
 		return out
 	}(C.QApplication_QApplication_TopLevelWidgets())
@@ -9729,126 +9862,166 @@ func (ptr *QApplication) AutoSipEnabledDefault() bool {
 	return false
 }
 
-func (ptr *QApplication) __allWidgets_atList(i int, p unsafe.Pointer) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QApplication___allWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __allWidgets_atList(i int) *QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWidgetFromPointer(C.QApplication___allWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __allWidgets_setList(i QWidget_ITF, p unsafe.Pointer) {
-	C.QApplication___allWidgets_setList(ptr.Pointer(), PointerFromQWidget(i), p)
+func (ptr *QApplication) __allWidgets_setList(i QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___allWidgets_setList(ptr.Pointer(), PointerFromQWidget(i))
+	}
 }
 
 func (ptr *QApplication) __allWidgets_newList() unsafe.Pointer {
 	return C.QApplication___allWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QApplication) __topLevelWidgets_atList(i int, p unsafe.Pointer) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QApplication___topLevelWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __topLevelWidgets_atList(i int) *QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWidgetFromPointer(C.QApplication___topLevelWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __topLevelWidgets_setList(i QWidget_ITF, p unsafe.Pointer) {
-	C.QApplication___topLevelWidgets_setList(ptr.Pointer(), PointerFromQWidget(i), p)
+func (ptr *QApplication) __topLevelWidgets_setList(i QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___topLevelWidgets_setList(ptr.Pointer(), PointerFromQWidget(i))
+	}
 }
 
 func (ptr *QApplication) __topLevelWidgets_newList() unsafe.Pointer {
 	return C.QApplication___topLevelWidgets_newList(ptr.Pointer())
 }
 
-func (ptr *QApplication) __screens_atList(i int, p unsafe.Pointer) *gui.QScreen {
-	tmpValue := gui.NewQScreenFromPointer(C.QApplication___screens_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __screens_atList(i int) *gui.QScreen {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQScreenFromPointer(C.QApplication___screens_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __screens_setList(i gui.QScreen_ITF, p unsafe.Pointer) {
-	C.QApplication___screens_setList(ptr.Pointer(), gui.PointerFromQScreen(i), p)
+func (ptr *QApplication) __screens_setList(i gui.QScreen_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___screens_setList(ptr.Pointer(), gui.PointerFromQScreen(i))
+	}
 }
 
 func (ptr *QApplication) __screens_newList() unsafe.Pointer {
 	return C.QApplication___screens_newList(ptr.Pointer())
 }
 
-func (ptr *QApplication) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QApplication___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QApplication) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QApplication___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QApplication) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QApplication___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QApplication) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QApplication) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QApplication___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QApplication) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QApplication___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QApplication) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QApplication) __findChildren_newList2() unsafe.Pointer {
 	return C.QApplication___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QApplication) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QApplication___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QApplication) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QApplication) __findChildren_newList3() unsafe.Pointer {
 	return C.QApplication___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QApplication) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QApplication___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QApplication___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QApplication) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QApplication) __findChildren_newList() unsafe.Pointer {
 	return C.QApplication___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QApplication) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QApplication___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QApplication) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QApplication___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QApplication) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QApplication___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QApplication) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QApplication___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QApplication) __children_newList() unsafe.Pointer {
@@ -10940,8 +11113,9 @@ func (ptr *QButtonGroup) Buttons() []*QAbstractButton {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAbstractButton {
 			out := make([]*QAbstractButton, int(l.len))
+			tmpList := NewQButtonGroupFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QButtonGroup)(nil).__buttons_atList(i, l.data)
+				out[i] = tmpList.__buttons_atList(i)
 			}
 			return out
 		}(C.QButtonGroup_Buttons(ptr.Pointer()))
@@ -10970,94 +11144,124 @@ func (ptr *QButtonGroup) Id(button QAbstractButton_ITF) int {
 	return 0
 }
 
-func (ptr *QButtonGroup) __buttons_atList(i int, p unsafe.Pointer) *QAbstractButton {
-	tmpValue := NewQAbstractButtonFromPointer(C.QButtonGroup___buttons_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QButtonGroup) __buttons_atList(i int) *QAbstractButton {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQAbstractButtonFromPointer(C.QButtonGroup___buttons_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QButtonGroup) __buttons_setList(i QAbstractButton_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i), p)
+func (ptr *QButtonGroup) __buttons_setList(i QAbstractButton_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i))
+	}
 }
 
 func (ptr *QButtonGroup) __buttons_newList() unsafe.Pointer {
 	return C.QButtonGroup___buttons_newList(ptr.Pointer())
 }
 
-func (ptr *QButtonGroup) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QButtonGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QButtonGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QButtonGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QButtonGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QButtonGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QButtonGroup) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QButtonGroup___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QButtonGroup) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QButtonGroup) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QButtonGroup) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QButtonGroup) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QButtonGroup) __findChildren_newList2() unsafe.Pointer {
 	return C.QButtonGroup___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QButtonGroup) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QButtonGroup) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QButtonGroup) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QButtonGroup) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QButtonGroup) __findChildren_newList3() unsafe.Pointer {
 	return C.QButtonGroup___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QButtonGroup) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QButtonGroup) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QButtonGroup) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QButtonGroup) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QButtonGroup) __findChildren_newList() unsafe.Pointer {
 	return C.QButtonGroup___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QButtonGroup) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QButtonGroup) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QButtonGroup___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QButtonGroup) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QButtonGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QButtonGroup) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QButtonGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QButtonGroup) __children_newList() unsafe.Pointer {
@@ -12087,8 +12291,9 @@ func (ptr *QCalendarWidget) DateTextFormat() map[*core.QDate]*gui.QTextCharForma
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) map[*core.QDate]*gui.QTextCharFormat {
 			out := make(map[*core.QDate]*gui.QTextCharFormat, int(l.len))
-			for i, v := range (*QCalendarWidget)(nil).__dateTextFormat_keyList(l.data) {
-				out[v] = (*QCalendarWidget)(nil).__dateTextFormat_atList(v, i, l.data)
+			tmpList := NewQCalendarWidgetFromPointer(l.data)
+			for i, v := range tmpList.__dateTextFormat_keyList() {
+				out[v] = tmpList.__dateTextFormat_atList(v, i)
 			}
 			return out
 		}(C.QCalendarWidget_DateTextFormat(ptr.Pointer()))
@@ -12179,38 +12384,52 @@ func (ptr *QCalendarWidget) PaintCellDefault(painter gui.QPainter_ITF, rect core
 	}
 }
 
-func (ptr *QCalendarWidget) __dateTextFormat_atList(v core.QDate_ITF, i int, p unsafe.Pointer) *gui.QTextCharFormat {
-	tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget___dateTextFormat_atList(ptr.Pointer(), core.PointerFromQDate(v), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
-	return tmpValue
+func (ptr *QCalendarWidget) __dateTextFormat_atList(v core.QDate_ITF, i int) *gui.QTextCharFormat {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQTextCharFormatFromPointer(C.QCalendarWidget___dateTextFormat_atList(ptr.Pointer(), core.PointerFromQDate(v), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCalendarWidget) __dateTextFormat_setList(key core.QDate_ITF, i gui.QTextCharFormat_ITF, p unsafe.Pointer) {
-	C.QCalendarWidget___dateTextFormat_setList(ptr.Pointer(), core.PointerFromQDate(key), gui.PointerFromQTextCharFormat(i), p)
+func (ptr *QCalendarWidget) __dateTextFormat_setList(key core.QDate_ITF, i gui.QTextCharFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget___dateTextFormat_setList(ptr.Pointer(), core.PointerFromQDate(key), gui.PointerFromQTextCharFormat(i))
+	}
 }
 
 func (ptr *QCalendarWidget) __dateTextFormat_newList() unsafe.Pointer {
 	return C.QCalendarWidget___dateTextFormat_newList(ptr.Pointer())
 }
 
-func (ptr *QCalendarWidget) __dateTextFormat_keyList(p unsafe.Pointer) []*core.QDate {
-	return func(l C.struct_QtWidgets_PackedList) []*core.QDate {
-		out := make([]*core.QDate, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QCalendarWidget)(nil).____dateTextFormat_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QCalendarWidget___dateTextFormat_keyList(ptr.Pointer(), p))
+func (ptr *QCalendarWidget) __dateTextFormat_keyList() []*core.QDate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []*core.QDate {
+			out := make([]*core.QDate, int(l.len))
+			tmpList := NewQCalendarWidgetFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____dateTextFormat_keyList_atList(i)
+			}
+			return out
+		}(C.QCalendarWidget___dateTextFormat_keyList(ptr.Pointer()))
+	}
+	return make([]*core.QDate, 0)
 }
 
-func (ptr *QCalendarWidget) ____dateTextFormat_keyList_atList(i int, p unsafe.Pointer) *core.QDate {
-	tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_____dateTextFormat_keyList_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
-	return tmpValue
+func (ptr *QCalendarWidget) ____dateTextFormat_keyList_atList(i int) *core.QDate {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQDateFromPointer(C.QCalendarWidget_____dateTextFormat_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCalendarWidget) ____dateTextFormat_keyList_setList(i core.QDate_ITF, p unsafe.Pointer) {
-	C.QCalendarWidget_____dateTextFormat_keyList_setList(ptr.Pointer(), core.PointerFromQDate(i), p)
+func (ptr *QCalendarWidget) ____dateTextFormat_keyList_setList(i core.QDate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCalendarWidget_____dateTextFormat_keyList_setList(ptr.Pointer(), core.PointerFromQDate(i))
+	}
 }
 
 func (ptr *QCalendarWidget) ____dateTextFormat_keyList_newList() unsafe.Pointer {
@@ -12815,8 +13034,9 @@ func (ptr *QColormap) Colormap() []*gui.QColor {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*gui.QColor {
 			out := make([]*gui.QColor, int(l.len))
+			tmpList := NewQColormapFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QColormap)(nil).__colormap_atList(i, l.data)
+				out[i] = tmpList.__colormap_atList(i)
 			}
 			return out
 		}(C.QColormap_Colormap(ptr.Pointer()))
@@ -12845,14 +13065,19 @@ func (ptr *QColormap) Pixel(color gui.QColor_ITF) uint {
 	return 0
 }
 
-func (ptr *QColormap) __colormap_atList(i int, p unsafe.Pointer) *gui.QColor {
-	tmpValue := gui.NewQColorFromPointer(C.QColormap___colormap_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
-	return tmpValue
+func (ptr *QColormap) __colormap_atList(i int) *gui.QColor {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQColorFromPointer(C.QColormap___colormap_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QColormap) __colormap_setList(i gui.QColor_ITF, p unsafe.Pointer) {
-	C.QColormap___colormap_setList(ptr.Pointer(), gui.PointerFromQColor(i), p)
+func (ptr *QColormap) __colormap_setList(i gui.QColor_ITF) {
+	if ptr.Pointer() != nil {
+		C.QColormap___colormap_setList(ptr.Pointer(), gui.PointerFromQColor(i))
+	}
 }
 
 func (ptr *QColormap) __colormap_newList() unsafe.Pointer {
@@ -13177,11 +13402,11 @@ func (ptr *QColumnView) SelectAllDefault() {
 func (ptr *QColumnView) SetColumnWidths(list []int) {
 	if ptr.Pointer() != nil {
 		C.QColumnView_SetColumnWidths(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QColumnView)(nil).__setColumnWidths_list_newList()
+			tmpList := NewQColumnViewFromPointer(NewQColumnViewFromPointer(nil).__setColumnWidths_list_newList())
 			for _, v := range list {
-				(*QColumnView)(nil).__setColumnWidths_list_setList(v, tmpList)
+				tmpList.__setColumnWidths_list_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -13333,8 +13558,9 @@ func (ptr *QColumnView) ColumnWidths() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQColumnViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QColumnView)(nil).__columnWidths_atList(i, l.data)
+				out[i] = tmpList.__columnWidths_atList(i)
 			}
 			return out
 		}(C.QColumnView_ColumnWidths(ptr.Pointer()))
@@ -13642,24 +13868,34 @@ func (ptr *QColumnView) InitializeColumn(column QAbstractItemView_ITF) {
 	}
 }
 
-func (ptr *QColumnView) __setColumnWidths_list_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QColumnView___setColumnWidths_list_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QColumnView) __setColumnWidths_list_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QColumnView___setColumnWidths_list_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QColumnView) __setColumnWidths_list_setList(i int, p unsafe.Pointer) {
-	C.QColumnView___setColumnWidths_list_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QColumnView) __setColumnWidths_list_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QColumnView___setColumnWidths_list_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QColumnView) __setColumnWidths_list_newList() unsafe.Pointer {
 	return C.QColumnView___setColumnWidths_list_newList(ptr.Pointer())
 }
 
-func (ptr *QColumnView) __columnWidths_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QColumnView___columnWidths_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QColumnView) __columnWidths_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QColumnView___columnWidths_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QColumnView) __columnWidths_setList(i int, p unsafe.Pointer) {
-	C.QColumnView___columnWidths_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QColumnView) __columnWidths_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QColumnView___columnWidths_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QColumnView) __columnWidths_newList() unsafe.Pointer {
@@ -16278,78 +16514,103 @@ func (ptr *QCompleter) MaxVisibleItems() int {
 	return 0
 }
 
-func (ptr *QCompleter) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QCompleter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QCompleter) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QCompleter___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QCompleter) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QCompleter___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QCompleter) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompleter___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QCompleter) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QCompleter___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QCompleter) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCompleter) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCompleter) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCompleter___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCompleter) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompleter___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCompleter) __findChildren_newList2() unsafe.Pointer {
 	return C.QCompleter___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QCompleter) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCompleter) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCompleter) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCompleter___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCompleter) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompleter___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCompleter) __findChildren_newList3() unsafe.Pointer {
 	return C.QCompleter___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QCompleter) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCompleter) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCompleter___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCompleter) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCompleter___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCompleter) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompleter___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCompleter) __findChildren_newList() unsafe.Pointer {
 	return C.QCompleter___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QCompleter) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QCompleter___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QCompleter) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QCompleter___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QCompleter) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QCompleter___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QCompleter) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCompleter___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QCompleter) __children_newList() unsafe.Pointer {
@@ -17054,78 +17315,103 @@ func (ptr *QDataWidgetMapper) MappedSection(widget QWidget_ITF) int {
 	return 0
 }
 
-func (ptr *QDataWidgetMapper) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QDataWidgetMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QDataWidgetMapper) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QDataWidgetMapper___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QDataWidgetMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QDataWidgetMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QDataWidgetMapper) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QDataWidgetMapper) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QDataWidgetMapper___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QDataWidgetMapper) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QDataWidgetMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QDataWidgetMapper) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QDataWidgetMapper) __findChildren_newList2() unsafe.Pointer {
 	return C.QDataWidgetMapper___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QDataWidgetMapper) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QDataWidgetMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QDataWidgetMapper) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QDataWidgetMapper) __findChildren_newList3() unsafe.Pointer {
 	return C.QDataWidgetMapper___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QDataWidgetMapper) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QDataWidgetMapper) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QDataWidgetMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QDataWidgetMapper) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QDataWidgetMapper) __findChildren_newList() unsafe.Pointer {
 	return C.QDataWidgetMapper___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QDataWidgetMapper) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QDataWidgetMapper) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDataWidgetMapper___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QDataWidgetMapper) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QDataWidgetMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QDataWidgetMapper) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDataWidgetMapper___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QDataWidgetMapper) __children_newList() unsafe.Pointer {
@@ -19431,8 +19717,9 @@ func (ptr *QDialogButtonBox) Buttons() []*QAbstractButton {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAbstractButton {
 			out := make([]*QAbstractButton, int(l.len))
+			tmpList := NewQDialogButtonBoxFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QDialogButtonBox)(nil).__buttons_atList(i, l.data)
+				out[i] = tmpList.__buttons_atList(i)
 			}
 			return out
 		}(C.QDialogButtonBox_Buttons(ptr.Pointer()))
@@ -19479,16 +19766,21 @@ func (ptr *QDialogButtonBox) CenterButtons() bool {
 	return false
 }
 
-func (ptr *QDialogButtonBox) __buttons_atList(i int, p unsafe.Pointer) *QAbstractButton {
-	tmpValue := NewQAbstractButtonFromPointer(C.QDialogButtonBox___buttons_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QDialogButtonBox) __buttons_atList(i int) *QAbstractButton {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQAbstractButtonFromPointer(C.QDialogButtonBox___buttons_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QDialogButtonBox) __buttons_setList(i QAbstractButton_ITF, p unsafe.Pointer) {
-	C.QDialogButtonBox___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i), p)
+func (ptr *QDialogButtonBox) __buttons_setList(i QAbstractButton_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDialogButtonBox___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i))
+	}
 }
 
 func (ptr *QDialogButtonBox) __buttons_newList() unsafe.Pointer {
@@ -20626,8 +20918,9 @@ func QFileDialog_GetOpenFileUrls(parent QWidget_ITF, caption string, dir core.QU
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 		out := make([]*core.QUrl, int(l.len))
+		tmpList := NewQFileDialogFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileDialog)(nil).__getOpenFileUrls_atList(i, l.data)
+			out[i] = tmpList.__getOpenFileUrls_atList(i)
 		}
 		return out
 	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
@@ -20653,8 +20946,9 @@ func (ptr *QFileDialog) GetOpenFileUrls(parent QWidget_ITF, caption string, dir 
 	defer C.free(unsafe.Pointer(supportedSchemesC))
 	return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 		out := make([]*core.QUrl, int(l.len))
+		tmpList := NewQFileDialogFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileDialog)(nil).__getOpenFileUrls_atList(i, l.data)
+			out[i] = tmpList.__getOpenFileUrls_atList(i)
 		}
 		return out
 	}(C.QFileDialog_QFileDialog_GetOpenFileUrls(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: captionC, len: C.longlong(len(caption))}, core.PointerFromQUrl(dir), C.struct_QtWidgets_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtWidgets_PackedString{data: selectedFilterC, len: C.longlong(len(selectedFilter))}, C.longlong(options), C.struct_QtWidgets_PackedString{data: supportedSchemesC, len: C.longlong(len(strings.Join(supportedSchemes, "|")))}))
@@ -21541,11 +21835,11 @@ func (ptr *QFileDialog) SetResolveSymlinks(enabled bool) {
 func (ptr *QFileDialog) SetSidebarUrls(urls []*core.QUrl) {
 	if ptr.Pointer() != nil {
 		C.QFileDialog_SetSidebarUrls(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QFileDialog)(nil).__setSidebarUrls_urls_newList()
+			tmpList := NewQFileDialogFromPointer(NewQFileDialogFromPointer(nil).__setSidebarUrls_urls_newList())
 			for _, v := range urls {
-				(*QFileDialog)(nil).__setSidebarUrls_urls_setList(v, tmpList)
+				tmpList.__setSidebarUrls_urls_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -21608,8 +21902,9 @@ func callbackQFileDialog_UrlsSelected(ptr unsafe.Pointer, urls C.struct_QtWidget
 	if signal := qt.GetSignal(ptr, "urlsSelected"); signal != nil {
 		signal.(func([]*core.QUrl))(func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 			out := make([]*core.QUrl, int(l.len))
+			tmpList := NewQFileDialogFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileDialog)(nil).__urlsSelected_urls_atList(i, l.data)
+				out[i] = tmpList.__urlsSelected_urls_atList(i)
 			}
 			return out
 		}(urls))
@@ -21645,11 +21940,11 @@ func (ptr *QFileDialog) DisconnectUrlsSelected() {
 func (ptr *QFileDialog) UrlsSelected(urls []*core.QUrl) {
 	if ptr.Pointer() != nil {
 		C.QFileDialog_UrlsSelected(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QFileDialog)(nil).__urlsSelected_urls_newList()
+			tmpList := NewQFileDialogFromPointer(NewQFileDialogFromPointer(nil).__urlsSelected_urls_newList())
 			for _, v := range urls {
-				(*QFileDialog)(nil).__urlsSelected_urls_setList(v, tmpList)
+				tmpList.__urlsSelected_urls_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -21741,8 +22036,9 @@ func (ptr *QFileDialog) SelectedUrls() []*core.QUrl {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 			out := make([]*core.QUrl, int(l.len))
+			tmpList := NewQFileDialogFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileDialog)(nil).__selectedUrls_atList(i, l.data)
+				out[i] = tmpList.__selectedUrls_atList(i)
 			}
 			return out
 		}(C.QFileDialog_SelectedUrls(ptr.Pointer()))
@@ -21754,8 +22050,9 @@ func (ptr *QFileDialog) SidebarUrls() []*core.QUrl {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*core.QUrl {
 			out := make([]*core.QUrl, int(l.len))
+			tmpList := NewQFileDialogFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileDialog)(nil).__sidebarUrls_atList(i, l.data)
+				out[i] = tmpList.__sidebarUrls_atList(i)
 			}
 			return out
 		}(C.QFileDialog_SidebarUrls(ptr.Pointer()))
@@ -21877,70 +22174,95 @@ func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
 	return false
 }
 
-func (ptr *QFileDialog) __getOpenFileUrls_atList(i int, p unsafe.Pointer) *core.QUrl {
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog___getOpenFileUrls_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-	return tmpValue
+func (ptr *QFileDialog) __getOpenFileUrls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___getOpenFileUrls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileDialog) __getOpenFileUrls_setList(i core.QUrl_ITF, p unsafe.Pointer) {
-	C.QFileDialog___getOpenFileUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
+func (ptr *QFileDialog) __getOpenFileUrls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileDialog___getOpenFileUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
 }
 
 func (ptr *QFileDialog) __getOpenFileUrls_newList() unsafe.Pointer {
 	return C.QFileDialog___getOpenFileUrls_newList(ptr.Pointer())
 }
 
-func (ptr *QFileDialog) __setSidebarUrls_urls_atList(i int, p unsafe.Pointer) *core.QUrl {
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog___setSidebarUrls_urls_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-	return tmpValue
+func (ptr *QFileDialog) __setSidebarUrls_urls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___setSidebarUrls_urls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileDialog) __setSidebarUrls_urls_setList(i core.QUrl_ITF, p unsafe.Pointer) {
-	C.QFileDialog___setSidebarUrls_urls_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
+func (ptr *QFileDialog) __setSidebarUrls_urls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileDialog___setSidebarUrls_urls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
 }
 
 func (ptr *QFileDialog) __setSidebarUrls_urls_newList() unsafe.Pointer {
 	return C.QFileDialog___setSidebarUrls_urls_newList(ptr.Pointer())
 }
 
-func (ptr *QFileDialog) __urlsSelected_urls_atList(i int, p unsafe.Pointer) *core.QUrl {
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog___urlsSelected_urls_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-	return tmpValue
+func (ptr *QFileDialog) __urlsSelected_urls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___urlsSelected_urls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileDialog) __urlsSelected_urls_setList(i core.QUrl_ITF, p unsafe.Pointer) {
-	C.QFileDialog___urlsSelected_urls_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
+func (ptr *QFileDialog) __urlsSelected_urls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileDialog___urlsSelected_urls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
 }
 
 func (ptr *QFileDialog) __urlsSelected_urls_newList() unsafe.Pointer {
 	return C.QFileDialog___urlsSelected_urls_newList(ptr.Pointer())
 }
 
-func (ptr *QFileDialog) __selectedUrls_atList(i int, p unsafe.Pointer) *core.QUrl {
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog___selectedUrls_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-	return tmpValue
+func (ptr *QFileDialog) __selectedUrls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___selectedUrls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileDialog) __selectedUrls_setList(i core.QUrl_ITF, p unsafe.Pointer) {
-	C.QFileDialog___selectedUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
+func (ptr *QFileDialog) __selectedUrls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileDialog___selectedUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
 }
 
 func (ptr *QFileDialog) __selectedUrls_newList() unsafe.Pointer {
 	return C.QFileDialog___selectedUrls_newList(ptr.Pointer())
 }
 
-func (ptr *QFileDialog) __sidebarUrls_atList(i int, p unsafe.Pointer) *core.QUrl {
-	tmpValue := core.NewQUrlFromPointer(C.QFileDialog___sidebarUrls_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-	return tmpValue
+func (ptr *QFileDialog) __sidebarUrls_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QFileDialog___sidebarUrls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileDialog) __sidebarUrls_setList(i core.QUrl_ITF, p unsafe.Pointer) {
-	C.QFileDialog___sidebarUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i), p)
+func (ptr *QFileDialog) __sidebarUrls_setList(i core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileDialog___sidebarUrls_setList(ptr.Pointer(), core.PointerFromQUrl(i))
+	}
 }
 
 func (ptr *QFileDialog) __sidebarUrls_newList() unsafe.Pointer {
@@ -22647,8 +22969,9 @@ func callbackQFileSystemModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtWi
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*core.QModelIndex) *core.QMimeData)(func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
 			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileSystemModel)(nil).__mimeData_indexes_atList(i, l.data)
+				out[i] = tmpList.__mimeData_indexes_atList(i)
 			}
 			return out
 		}(indexes)))
@@ -22656,8 +22979,9 @@ func callbackQFileSystemModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtWi
 
 	return core.PointerFromQMimeData(NewQFileSystemModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
 		out := make([]*core.QModelIndex, int(l.len))
+		tmpList := NewQFileSystemModelFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileSystemModel)(nil).__mimeData_indexes_atList(i, l.data)
+			out[i] = tmpList.__mimeData_indexes_atList(i)
 		}
 		return out
 	}(indexes)))
@@ -22666,11 +22990,11 @@ func callbackQFileSystemModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtWi
 func (ptr *QFileSystemModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QFileSystemModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QFileSystemModel)(nil).__mimeData_indexes_newList()
+			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__mimeData_indexes_newList())
 			for _, v := range indexes {
-				(*QFileSystemModel)(nil).__mimeData_indexes_setList(v, tmpList)
+				tmpList.__mimeData_indexes_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -23122,320 +23446,437 @@ func (ptr *QFileSystemModel) Size(index core.QModelIndex_ITF) int64 {
 	return 0
 }
 
-func (ptr *QFileSystemModel) __mimeData_indexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __mimeData_indexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QFileSystemModel) __mimeData_indexes_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __mimeData_indexes_newList() unsafe.Pointer {
 	return C.QFileSystemModel___mimeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __setItemData_roles_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QFileSystemModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __setItemData_roles_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
+func (ptr *QFileSystemModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QFileSystemModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __setItemData_keyList(p unsafe.Pointer) []int {
-	return func(l C.struct_QtWidgets_PackedList) []int {
-		out := make([]int, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileSystemModel)(nil).____setItemData_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QFileSystemModel___setItemData_keyList(ptr.Pointer(), p))
+func (ptr *QFileSystemModel) __setItemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_keyList_atList(i)
+			}
+			return out
+		}(C.QFileSystemModel___setItemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
-func (ptr *QFileSystemModel) __changePersistentIndexList_from_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QFileSystemModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
 	return C.QFileSystemModel___changePersistentIndexList_from_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __changePersistentIndexList_to_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QFileSystemModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
 	return C.QFileSystemModel___changePersistentIndexList_to_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __dataChanged_roles_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) __dataChanged_roles_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) __dataChanged_roles_newList() unsafe.Pointer {
 	return C.QFileSystemModel___dataChanged_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
-	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
+func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
 	return C.QFileSystemModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __layoutChanged_parents_atList(i int, p unsafe.Pointer) *core.QPersistentModelIndex {
-	tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QFileSystemModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i), p)
+func (ptr *QFileSystemModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __layoutChanged_parents_newList() unsafe.Pointer {
 	return C.QFileSystemModel___layoutChanged_parents_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __roleNames_atList(v int, i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QFileSystemModel) __roleNames_atList(v int, i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __roleNames_setList(key int, i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i), p)
+func (ptr *QFileSystemModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __roleNames_newList() unsafe.Pointer {
 	return C.QFileSystemModel___roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __roleNames_keyList(p unsafe.Pointer) []int {
-	return func(l C.struct_QtWidgets_PackedList) []int {
-		out := make([]int, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileSystemModel)(nil).____roleNames_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QFileSystemModel___roleNames_keyList(ptr.Pointer(), p))
+func (ptr *QFileSystemModel) __roleNames_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.QFileSystemModel___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
-func (ptr *QFileSystemModel) __itemData_atList(v int, i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QFileSystemModel) __itemData_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QFileSystemModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __itemData_setList(key int, i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i), p)
+func (ptr *QFileSystemModel) __itemData_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __itemData_newList() unsafe.Pointer {
 	return C.QFileSystemModel___itemData_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __itemData_keyList(p unsafe.Pointer) []int {
-	return func(l C.struct_QtWidgets_PackedList) []int {
-		out := make([]int, int(l.len))
-		for i := 0; i < len(out); i++ {
-			out[i] = (*QFileSystemModel)(nil).____itemData_keyList_atList(i, l.data)
-		}
-		return out
-	}(C.QFileSystemModel___itemData_keyList(ptr.Pointer(), p))
+func (ptr *QFileSystemModel) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.QFileSystemModel___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
 }
 
-func (ptr *QFileSystemModel) __match_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___match_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __match_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __match_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QFileSystemModel) __match_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __match_newList() unsafe.Pointer {
 	return C.QFileSystemModel___match_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __persistentIndexList_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QFileSystemModel) __persistentIndexList_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QFileSystemModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __persistentIndexList_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QFileSystemModel) __persistentIndexList_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QFileSystemModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____setItemData_keyList_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) ____setItemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) ____setItemData_keyList_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) ____setItemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) ____setItemData_keyList_newList() unsafe.Pointer {
 	return C.QFileSystemModel_____setItemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
 	return C.QFileSystemModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____setRoleNames_keyList_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) ____setRoleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) ____setRoleNames_keyList_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) ____setRoleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
 	return C.QFileSystemModel_____setRoleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____roleNames_keyList_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) ____roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) ____roleNames_keyList_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) ____roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) ____roleNames_keyList_newList() unsafe.Pointer {
 	return C.QFileSystemModel_____roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____itemData_keyList_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QFileSystemModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QFileSystemModel) ____itemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QFileSystemModel) ____itemData_keyList_setList(i int, p unsafe.Pointer) {
-	C.QFileSystemModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QFileSystemModel) ____itemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QFileSystemModel) ____itemData_keyList_newList() unsafe.Pointer {
 	return C.QFileSystemModel_____itemData_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QFileSystemModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QFileSystemModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QFileSystemModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QFileSystemModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QFileSystemModel___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QFileSystemModel) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QFileSystemModel) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QFileSystemModel) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __findChildren_newList2() unsafe.Pointer {
 	return C.QFileSystemModel___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QFileSystemModel) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QFileSystemModel) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QFileSystemModel) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __findChildren_newList3() unsafe.Pointer {
 	return C.QFileSystemModel___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QFileSystemModel) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QFileSystemModel) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QFileSystemModel) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __findChildren_newList() unsafe.Pointer {
 	return C.QFileSystemModel___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QFileSystemModel) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QFileSystemModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QFileSystemModel) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QFileSystemModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QFileSystemModel) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QFileSystemModel) __children_newList() unsafe.Pointer {
@@ -23559,8 +24000,9 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
-			for i, v := range (*QFileSystemModel)(nil).__setItemData_keyList(l.data) {
-				out[v] = (*QFileSystemModel)(nil).__setItemData_roles_atList(v, i, l.data)
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
 		}(roles)))))
@@ -23568,8 +24010,9 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 
 	return C.char(int8(qt.GoBoolToInt(NewQFileSystemModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 		out := make(map[int]*core.QVariant, int(l.len))
-		for i, v := range (*QFileSystemModel)(nil).__setItemData_keyList(l.data) {
-			out[v] = (*QFileSystemModel)(nil).__setItemData_roles_atList(v, i, l.data)
+		tmpList := NewQFileSystemModelFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
 	}(roles)))))
@@ -23578,11 +24021,11 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 func (ptr *QFileSystemModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
 		return C.QFileSystemModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
-			tmpList := (*QFileSystemModel)(nil).__setItemData_roles_newList()
+			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
-				(*QFileSystemModel)(nil).__setItemData_roles_setList(k, v, tmpList)
+				tmpList.__setItemData_roles_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()) != 0
 	}
 	return false
@@ -23657,8 +24100,9 @@ func callbackQFileSystemModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Poi
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileSystemModel)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
@@ -23679,8 +24123,9 @@ func callbackQFileSystemModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents
 	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtWidgets_PackedList) []*core.QPersistentModelIndex {
 			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileSystemModel)(nil).__layoutAboutToBeChanged_parents_atList(i, l.data)
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -23693,8 +24138,9 @@ func callbackQFileSystemModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct
 	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
 		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtWidgets_PackedList) []*core.QPersistentModelIndex {
 			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileSystemModel)(nil).__layoutChanged_parents_atList(i, l.data)
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
 			}
 			return out
 		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
@@ -23800,20 +24246,20 @@ func callbackQFileSystemModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Poin
 func callbackQFileSystemModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QFileSystemModel)(nil).__roleNames_newList()
+			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__roleNames_newList())
 			for k, v := range signal.(func() map[int]*core.QByteArray)() {
-				(*QFileSystemModel)(nil).__roleNames_setList(k, v, tmpList)
+				tmpList.__roleNames_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QFileSystemModel)(nil).__roleNames_newList()
+		tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__roleNames_newList())
 		for k, v := range NewQFileSystemModelFromPointer(ptr).RoleNamesDefault() {
-			(*QFileSystemModel)(nil).__roleNames_setList(k, v, tmpList)
+			tmpList.__roleNames_setList(k, v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -23821,8 +24267,9 @@ func (ptr *QFileSystemModel) RoleNamesDefault() map[int]*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) map[int]*core.QByteArray {
 			out := make(map[int]*core.QByteArray, int(l.len))
-			for i, v := range (*QFileSystemModel)(nil).__roleNames_keyList(l.data) {
-				out[v] = (*QFileSystemModel)(nil).__roleNames_atList(v, i, l.data)
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
 			}
 			return out
 		}(C.QFileSystemModel_RoleNamesDefault(ptr.Pointer()))
@@ -23834,20 +24281,20 @@ func (ptr *QFileSystemModel) RoleNamesDefault() map[int]*core.QByteArray {
 func callbackQFileSystemModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QFileSystemModel)(nil).__itemData_newList()
+			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__itemData_newList())
 			for k, v := range signal.(func(*core.QModelIndex) map[int]*core.QVariant)(core.NewQModelIndexFromPointer(index)) {
-				(*QFileSystemModel)(nil).__itemData_setList(k, v, tmpList)
+				tmpList.__itemData_setList(k, v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QFileSystemModel)(nil).__itemData_newList()
+		tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__itemData_newList())
 		for k, v := range NewQFileSystemModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
-			(*QFileSystemModel)(nil).__itemData_setList(k, v, tmpList)
+			tmpList.__itemData_setList(k, v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -23855,8 +24302,9 @@ func (ptr *QFileSystemModel) ItemDataDefault(index core.QModelIndex_ITF) map[int
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
-			for i, v := range (*QFileSystemModel)(nil).__itemData_keyList(l.data) {
-				out[v] = (*QFileSystemModel)(nil).__itemData_atList(v, i, l.data)
+			tmpList := NewQFileSystemModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
 			}
 			return out
 		}(C.QFileSystemModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
@@ -23886,20 +24334,20 @@ func (ptr *QFileSystemModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMod
 func callbackQFileSystemModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "match"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QFileSystemModel)(nil).__match_newList()
+			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__match_newList())
 			for _, v := range signal.(func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-				(*QFileSystemModel)(nil).__match_setList(v, tmpList)
+				tmpList.__match_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QFileSystemModel)(nil).__match_newList()
+		tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__match_newList())
 		for _, v := range NewQFileSystemModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
-			(*QFileSystemModel)(nil).__match_setList(v, tmpList)
+			tmpList.__match_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -23907,8 +24355,9 @@ func (ptr *QFileSystemModel) MatchDefault(start core.QModelIndex_ITF, role int, 
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
 			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QFileSystemModel)(nil).__match_atList(i, l.data)
+				out[i] = tmpList.__match_atList(i)
 			}
 			return out
 		}(C.QFileSystemModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
@@ -25424,78 +25873,103 @@ func (ptr *QGesture) HasHotSpot() bool {
 	return false
 }
 
-func (ptr *QGesture) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGesture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGesture) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGesture___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGesture) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGesture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGesture) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGesture___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGesture) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGesture___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGesture) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGesture) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGesture) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGesture___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGesture) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGesture___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGesture) __findChildren_newList2() unsafe.Pointer {
 	return C.QGesture___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGesture) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGesture) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGesture) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGesture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGesture) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGesture___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGesture) __findChildren_newList3() unsafe.Pointer {
 	return C.QGesture___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGesture) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGesture) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGesture___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGesture) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGesture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGesture) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGesture___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGesture) __findChildren_newList() unsafe.Pointer {
 	return C.QGesture___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGesture) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGesture___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGesture) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGesture___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGesture) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGesture) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGesture___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGesture) __children_newList() unsafe.Pointer {
@@ -25698,11 +26172,11 @@ func NewQGestureEventFromPointer(ptr unsafe.Pointer) (n *QGestureEvent) {
 }
 func NewQGestureEvent(gestures []*QGesture) *QGestureEvent {
 	return NewQGestureEventFromPointer(C.QGestureEvent_NewQGestureEvent(func() unsafe.Pointer {
-		tmpList := (*QGestureEvent)(nil).__QGestureEvent_gestures_newList()
+		tmpList := NewQGestureEventFromPointer(NewQGestureEventFromPointer(nil).__QGestureEvent_gestures_newList())
 		for _, v := range gestures {
-			(*QGestureEvent)(nil).__QGestureEvent_gestures_setList(v, tmpList)
+			tmpList.__QGestureEvent_gestures_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()))
 }
 
@@ -25765,8 +26239,9 @@ func (ptr *QGestureEvent) ActiveGestures() []*QGesture {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGesture {
 			out := make([]*QGesture, int(l.len))
+			tmpList := NewQGestureEventFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGestureEvent)(nil).__activeGestures_atList(i, l.data)
+				out[i] = tmpList.__activeGestures_atList(i)
 			}
 			return out
 		}(C.QGestureEvent_ActiveGestures(ptr.Pointer()))
@@ -25778,8 +26253,9 @@ func (ptr *QGestureEvent) CanceledGestures() []*QGesture {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGesture {
 			out := make([]*QGesture, int(l.len))
+			tmpList := NewQGestureEventFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGestureEvent)(nil).__canceledGestures_atList(i, l.data)
+				out[i] = tmpList.__canceledGestures_atList(i)
 			}
 			return out
 		}(C.QGestureEvent_CanceledGestures(ptr.Pointer()))
@@ -25791,8 +26267,9 @@ func (ptr *QGestureEvent) Gestures() []*QGesture {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGesture {
 			out := make([]*QGesture, int(l.len))
+			tmpList := NewQGestureEventFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGestureEvent)(nil).__gestures_atList(i, l.data)
+				out[i] = tmpList.__gestures_atList(i)
 			}
 			return out
 		}(C.QGestureEvent_Gestures(ptr.Pointer()))
@@ -25834,64 +26311,84 @@ func (ptr *QGestureEvent) IsAccepted2(gestureType core.Qt__GestureType) bool {
 	return false
 }
 
-func (ptr *QGestureEvent) __QGestureEvent_gestures_atList(i int, p unsafe.Pointer) *QGesture {
-	tmpValue := NewQGestureFromPointer(C.QGestureEvent___QGestureEvent_gestures_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGestureEvent) __QGestureEvent_gestures_atList(i int) *QGesture {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGestureFromPointer(C.QGestureEvent___QGestureEvent_gestures_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGestureEvent) __QGestureEvent_gestures_setList(i QGesture_ITF, p unsafe.Pointer) {
-	C.QGestureEvent___QGestureEvent_gestures_setList(ptr.Pointer(), PointerFromQGesture(i), p)
+func (ptr *QGestureEvent) __QGestureEvent_gestures_setList(i QGesture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGestureEvent___QGestureEvent_gestures_setList(ptr.Pointer(), PointerFromQGesture(i))
+	}
 }
 
 func (ptr *QGestureEvent) __QGestureEvent_gestures_newList() unsafe.Pointer {
 	return C.QGestureEvent___QGestureEvent_gestures_newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) __activeGestures_atList(i int, p unsafe.Pointer) *QGesture {
-	tmpValue := NewQGestureFromPointer(C.QGestureEvent___activeGestures_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGestureEvent) __activeGestures_atList(i int) *QGesture {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGestureFromPointer(C.QGestureEvent___activeGestures_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGestureEvent) __activeGestures_setList(i QGesture_ITF, p unsafe.Pointer) {
-	C.QGestureEvent___activeGestures_setList(ptr.Pointer(), PointerFromQGesture(i), p)
+func (ptr *QGestureEvent) __activeGestures_setList(i QGesture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGestureEvent___activeGestures_setList(ptr.Pointer(), PointerFromQGesture(i))
+	}
 }
 
 func (ptr *QGestureEvent) __activeGestures_newList() unsafe.Pointer {
 	return C.QGestureEvent___activeGestures_newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) __canceledGestures_atList(i int, p unsafe.Pointer) *QGesture {
-	tmpValue := NewQGestureFromPointer(C.QGestureEvent___canceledGestures_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGestureEvent) __canceledGestures_atList(i int) *QGesture {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGestureFromPointer(C.QGestureEvent___canceledGestures_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGestureEvent) __canceledGestures_setList(i QGesture_ITF, p unsafe.Pointer) {
-	C.QGestureEvent___canceledGestures_setList(ptr.Pointer(), PointerFromQGesture(i), p)
+func (ptr *QGestureEvent) __canceledGestures_setList(i QGesture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGestureEvent___canceledGestures_setList(ptr.Pointer(), PointerFromQGesture(i))
+	}
 }
 
 func (ptr *QGestureEvent) __canceledGestures_newList() unsafe.Pointer {
 	return C.QGestureEvent___canceledGestures_newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) __gestures_atList(i int, p unsafe.Pointer) *QGesture {
-	tmpValue := NewQGestureFromPointer(C.QGestureEvent___gestures_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGestureEvent) __gestures_atList(i int) *QGesture {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGestureFromPointer(C.QGestureEvent___gestures_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGestureEvent) __gestures_setList(i QGesture_ITF, p unsafe.Pointer) {
-	C.QGestureEvent___gestures_setList(ptr.Pointer(), PointerFromQGesture(i), p)
+func (ptr *QGestureEvent) __gestures_setList(i QGesture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGestureEvent___gestures_setList(ptr.Pointer(), PointerFromQGesture(i))
+	}
 }
 
 func (ptr *QGestureEvent) __gestures_newList() unsafe.Pointer {
@@ -26224,78 +26721,103 @@ func (ptr *QGraphicsAnchor) Spacing() float64 {
 	return 0
 }
 
-func (ptr *QGraphicsAnchor) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsAnchor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsAnchor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsAnchor___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsAnchor) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsAnchor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsAnchor) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsAnchor) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsAnchor___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsAnchor) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsAnchor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsAnchor) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsAnchor) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsAnchor___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsAnchor) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsAnchor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsAnchor) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsAnchor) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsAnchor___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsAnchor) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsAnchor) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsAnchor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsAnchor) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsAnchor) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsAnchor___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsAnchor) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsAnchor) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsAnchor___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsAnchor) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsAnchor___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsAnchor) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsAnchor) __children_newList() unsafe.Pointer {
@@ -28308,78 +28830,103 @@ func (ptr *QGraphicsEffect) SourceIsPixmap() bool {
 	return false
 }
 
-func (ptr *QGraphicsEffect) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsEffect) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsEffect___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsEffect) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsEffect___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsEffect) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsEffect) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsEffect___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsEffect) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsEffect) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsEffect) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsEffect___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsEffect) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsEffect) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsEffect___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsEffect) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsEffect) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsEffect) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsEffect___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsEffect) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsEffect) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsEffect___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsEffect) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsEffect) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsEffect) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsEffect___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsEffect) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsEffect) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsEffect___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsEffect) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsEffect) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsEffect___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsEffect) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsEffect___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsEffect) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsEffect___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsEffect) __children_newList() unsafe.Pointer {
@@ -30532,11 +31079,11 @@ func (ptr *QGraphicsItem) SetTransformOriginPoint2(x float64, y float64) {
 func (ptr *QGraphicsItem) SetTransformations(transformations []*QGraphicsTransform) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsItem_SetTransformations(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsItem)(nil).__setTransformations_transformations_newList()
+			tmpList := NewQGraphicsItemFromPointer(NewQGraphicsItemFromPointer(nil).__setTransformations_transformations_newList())
 			for _, v := range transformations {
-				(*QGraphicsItem)(nil).__setTransformations_transformations_setList(v, tmpList)
+				tmpList.__setTransformations_transformations_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -30844,8 +31391,9 @@ func (ptr *QGraphicsItem) ChildItems() []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsItemFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsItem)(nil).__childItems_atList(i, l.data)
+				out[i] = tmpList.__childItems_atList(i)
 			}
 			return out
 		}(C.QGraphicsItem_ChildItems(ptr.Pointer()))
@@ -30857,8 +31405,9 @@ func (ptr *QGraphicsItem) CollidingItems(mode core.Qt__ItemSelectionMode) []*QGr
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsItemFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsItem)(nil).__collidingItems_atList(i, l.data)
+				out[i] = tmpList.__collidingItems_atList(i)
 			}
 			return out
 		}(C.QGraphicsItem_CollidingItems(ptr.Pointer(), C.longlong(mode)))
@@ -30870,8 +31419,9 @@ func (ptr *QGraphicsItem) Transformations() []*QGraphicsTransform {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsTransform {
 			out := make([]*QGraphicsTransform, int(l.len))
+			tmpList := NewQGraphicsItemFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsItem)(nil).__transformations_atList(i, l.data)
+				out[i] = tmpList.__transformations_atList(i)
 			}
 			return out
 		}(C.QGraphicsItem_Transformations(ptr.Pointer()))
@@ -32051,68 +32601,93 @@ func (ptr *QGraphicsItem) UserType() int {
 	return int(int32(C.QGraphicsItem_QGraphicsItem_UserType()))
 }
 
-func (ptr *QGraphicsItem) __setTransformations_transformations_atList(i int, p unsafe.Pointer) *QGraphicsTransform {
-	tmpValue := NewQGraphicsTransformFromPointer(C.QGraphicsItem___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsItem) __setTransformations_transformations_atList(i int) *QGraphicsTransform {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGraphicsTransformFromPointer(C.QGraphicsItem___setTransformations_transformations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsItem) __setTransformations_transformations_setList(i QGraphicsTransform_ITF, p unsafe.Pointer) {
-	C.QGraphicsItem___setTransformations_transformations_setList(ptr.Pointer(), PointerFromQGraphicsTransform(i), p)
+func (ptr *QGraphicsItem) __setTransformations_transformations_setList(i QGraphicsTransform_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItem___setTransformations_transformations_setList(ptr.Pointer(), PointerFromQGraphicsTransform(i))
+	}
 }
 
 func (ptr *QGraphicsItem) __setTransformations_transformations_newList() unsafe.Pointer {
 	return C.QGraphicsItem___setTransformations_transformations_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsItem) __childItems_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsItem___childItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsItem) __childItems_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsItem___childItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsItem) __childItems_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsItem___childItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsItem) __childItems_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItem___childItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsItem) __childItems_newList() unsafe.Pointer {
 	return C.QGraphicsItem___childItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsItem) __children_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsItem___children_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsItem) __children_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsItem___children_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsItem) __children_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsItem___children_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsItem) __children_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItem___children_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsItem) __children_newList() unsafe.Pointer {
 	return C.QGraphicsItem___children_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsItem) __collidingItems_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsItem___collidingItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsItem) __collidingItems_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsItem___collidingItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsItem) __collidingItems_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsItem___collidingItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsItem) __collidingItems_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItem___collidingItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsItem) __collidingItems_newList() unsafe.Pointer {
 	return C.QGraphicsItem___collidingItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsItem) __transformations_atList(i int, p unsafe.Pointer) *QGraphicsTransform {
-	tmpValue := NewQGraphicsTransformFromPointer(C.QGraphicsItem___transformations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsItem) __transformations_atList(i int) *QGraphicsTransform {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGraphicsTransformFromPointer(C.QGraphicsItem___transformations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsItem) __transformations_setList(i QGraphicsTransform_ITF, p unsafe.Pointer) {
-	C.QGraphicsItem___transformations_setList(ptr.Pointer(), PointerFromQGraphicsTransform(i), p)
+func (ptr *QGraphicsItem) __transformations_setList(i QGraphicsTransform_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItem___transformations_setList(ptr.Pointer(), PointerFromQGraphicsTransform(i))
+	}
 }
 
 func (ptr *QGraphicsItem) __transformations_newList() unsafe.Pointer {
@@ -34275,78 +34850,103 @@ func (ptr *QGraphicsObject) SetZValue(z float64) {
 	}
 }
 
-func (ptr *QGraphicsObject) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsObject) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsObject___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsObject) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsObject___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsObject) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsObject) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsObject___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsObject) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsObject) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsObject) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsObject___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsObject) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsObject) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsObject___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsObject) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsObject) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsObject) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsObject___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsObject) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsObject) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsObject___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsObject) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsObject) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsObject) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsObject___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsObject) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsObject) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsObject___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsObject) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsObject) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsObject___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsObject) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsObject___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsObject) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsObject___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsObject) __children_newList() unsafe.Pointer {
@@ -36410,11 +37010,11 @@ func (ptr *QGraphicsScene) AddEllipse2(x float64, y float64, w float64, h float6
 func (ptr *QGraphicsScene) CreateItemGroup(items []*QGraphicsItem) *QGraphicsItemGroup {
 	if ptr.Pointer() != nil {
 		return NewQGraphicsItemGroupFromPointer(C.QGraphicsScene_CreateItemGroup(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsScene)(nil).__createItemGroup_items_newList()
+			tmpList := NewQGraphicsSceneFromPointer(NewQGraphicsSceneFromPointer(nil).__createItemGroup_items_newList())
 			for _, v := range items {
-				(*QGraphicsScene)(nil).__createItemGroup_items_setList(v, tmpList)
+				tmpList.__createItemGroup_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 	}
 	return nil
@@ -36668,8 +37268,9 @@ func callbackQGraphicsScene_Changed(ptr unsafe.Pointer, region C.struct_QtWidget
 	if signal := qt.GetSignal(ptr, "changed"); signal != nil {
 		signal.(func([]*core.QRectF))(func(l C.struct_QtWidgets_PackedList) []*core.QRectF {
 			out := make([]*core.QRectF, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__changed_region_atList(i, l.data)
+				out[i] = tmpList.__changed_region_atList(i)
 			}
 			return out
 		}(region))
@@ -36705,11 +37306,11 @@ func (ptr *QGraphicsScene) DisconnectChanged() {
 func (ptr *QGraphicsScene) Changed(region []*core.QRectF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_Changed(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsScene)(nil).__changed_region_newList()
+			tmpList := NewQGraphicsSceneFromPointer(NewQGraphicsSceneFromPointer(nil).__changed_region_newList())
 			for _, v := range region {
-				(*QGraphicsScene)(nil).__changed_region_setList(v, tmpList)
+				tmpList.__changed_region_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -38035,8 +38636,9 @@ func (ptr *QGraphicsScene) CollidingItems(item QGraphicsItem_ITF, mode core.Qt__
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__collidingItems_atList(i, l.data)
+				out[i] = tmpList.__collidingItems_atList(i)
 			}
 			return out
 		}(C.QGraphicsScene_CollidingItems(ptr.Pointer(), PointerFromQGraphicsItem(item), C.longlong(mode)))
@@ -38048,8 +38650,9 @@ func (ptr *QGraphicsScene) Items(order core.Qt__SortOrder) []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList(i, l.data)
+				out[i] = tmpList.__items_atList(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items(ptr.Pointer(), C.longlong(order)))
@@ -38061,8 +38664,9 @@ func (ptr *QGraphicsScene) Items5(path gui.QPainterPath_ITF, mode core.Qt__ItemS
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList5(i, l.data)
+				out[i] = tmpList.__items_atList5(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items5(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode), C.longlong(order), gui.PointerFromQTransform(deviceTransform)))
@@ -38074,8 +38678,9 @@ func (ptr *QGraphicsScene) Items2(pos core.QPointF_ITF, mode core.Qt__ItemSelect
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList2(i, l.data)
+				out[i] = tmpList.__items_atList2(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items2(ptr.Pointer(), core.PointerFromQPointF(pos), C.longlong(mode), C.longlong(order), gui.PointerFromQTransform(deviceTransform)))
@@ -38087,8 +38692,9 @@ func (ptr *QGraphicsScene) Items4(polygon gui.QPolygonF_ITF, mode core.Qt__ItemS
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList4(i, l.data)
+				out[i] = tmpList.__items_atList4(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items4(ptr.Pointer(), gui.PointerFromQPolygonF(polygon), C.longlong(mode), C.longlong(order), gui.PointerFromQTransform(deviceTransform)))
@@ -38100,8 +38706,9 @@ func (ptr *QGraphicsScene) Items3(rect core.QRectF_ITF, mode core.Qt__ItemSelect
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList3(i, l.data)
+				out[i] = tmpList.__items_atList3(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items3(ptr.Pointer(), core.PointerFromQRectF(rect), C.longlong(mode), C.longlong(order), gui.PointerFromQTransform(deviceTransform)))
@@ -38113,8 +38720,9 @@ func (ptr *QGraphicsScene) Items7(x float64, y float64, w float64, h float64, mo
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__items_atList7(i, l.data)
+				out[i] = tmpList.__items_atList7(i)
 			}
 			return out
 		}(C.QGraphicsScene_Items7(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), C.longlong(mode), C.longlong(order), gui.PointerFromQTransform(deviceTransform)))
@@ -38126,8 +38734,9 @@ func (ptr *QGraphicsScene) SelectedItems() []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__selectedItems_atList(i, l.data)
+				out[i] = tmpList.__selectedItems_atList(i)
 			}
 			return out
 		}(C.QGraphicsScene_SelectedItems(ptr.Pointer()))
@@ -38139,8 +38748,9 @@ func (ptr *QGraphicsScene) Views() []*QGraphicsView {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsView {
 			out := make([]*QGraphicsView, int(l.len))
+			tmpList := NewQGraphicsSceneFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsScene)(nil).__views_atList(i, l.data)
+				out[i] = tmpList.__views_atList(i)
 			}
 			return out
 		}(C.QGraphicsScene_Views(ptr.Pointer()))
@@ -38299,216 +38909,296 @@ func (ptr *QGraphicsScene) Width() float64 {
 	return 0
 }
 
-func (ptr *QGraphicsScene) __createItemGroup_items_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___createItemGroup_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __createItemGroup_items_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___createItemGroup_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __createItemGroup_items_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___createItemGroup_items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __createItemGroup_items_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___createItemGroup_items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __createItemGroup_items_newList() unsafe.Pointer {
 	return C.QGraphicsScene___createItemGroup_items_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __changed_region_atList(i int, p unsafe.Pointer) *core.QRectF {
-	tmpValue := core.NewQRectFFromPointer(C.QGraphicsScene___changed_region_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-	return tmpValue
+func (ptr *QGraphicsScene) __changed_region_atList(i int) *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QGraphicsScene___changed_region_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __changed_region_setList(i core.QRectF_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___changed_region_setList(ptr.Pointer(), core.PointerFromQRectF(i), p)
+func (ptr *QGraphicsScene) __changed_region_setList(i core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___changed_region_setList(ptr.Pointer(), core.PointerFromQRectF(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __changed_region_newList() unsafe.Pointer {
 	return C.QGraphicsScene___changed_region_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __collidingItems_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___collidingItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __collidingItems_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___collidingItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __collidingItems_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___collidingItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __collidingItems_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___collidingItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __collidingItems_newList() unsafe.Pointer {
 	return C.QGraphicsScene___collidingItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList5(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList5(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList5(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList5(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList5(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList5(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList5(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList5(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList5() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList5(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList2(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList2(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList2(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList2(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList2(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList2(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList2(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList2() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList4(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList4(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList4(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList4(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList4(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList4(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList4(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList4(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList4() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList4(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList3(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList3(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList3(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList3(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList3(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList3(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList3(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList3(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList3() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __items_atList7(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList7(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __items_atList7(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___items_atList7(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __items_setList7(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___items_setList7(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __items_setList7(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___items_setList7(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __items_newList7() unsafe.Pointer {
 	return C.QGraphicsScene___items_newList7(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __selectedItems_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsScene___selectedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsScene) __selectedItems_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene___selectedItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __selectedItems_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___selectedItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsScene) __selectedItems_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___selectedItems_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __selectedItems_newList() unsafe.Pointer {
 	return C.QGraphicsScene___selectedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __views_atList(i int, p unsafe.Pointer) *QGraphicsView {
-	tmpValue := NewQGraphicsViewFromPointer(C.QGraphicsScene___views_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsScene) __views_atList(i int) *QGraphicsView {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGraphicsViewFromPointer(C.QGraphicsScene___views_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsScene) __views_setList(i QGraphicsView_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___views_setList(ptr.Pointer(), PointerFromQGraphicsView(i), p)
+func (ptr *QGraphicsScene) __views_setList(i QGraphicsView_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___views_setList(ptr.Pointer(), PointerFromQGraphicsView(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __views_newList() unsafe.Pointer {
 	return C.QGraphicsScene___views_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsScene___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsScene) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsScene___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsScene) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsScene) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsScene___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsScene) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsScene) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsScene) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsScene___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsScene) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsScene) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsScene) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsScene___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsScene) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsScene) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsScene) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsScene___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsScene) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsScene) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsScene___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsScene) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsScene___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsScene) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsScene) __children_newList() unsafe.Pointer {
@@ -40219,78 +40909,103 @@ func (ptr *QGraphicsTransform) ApplyTo(matrix gui.QMatrix4x4_ITF) {
 	}
 }
 
-func (ptr *QGraphicsTransform) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsTransform___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QGraphicsTransform) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsTransform___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsTransform) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QGraphicsTransform___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QGraphicsTransform) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsTransform___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QGraphicsTransform) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QGraphicsTransform___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsTransform) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsTransform) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsTransform) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsTransform___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsTransform) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsTransform___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsTransform) __findChildren_newList2() unsafe.Pointer {
 	return C.QGraphicsTransform___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsTransform) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsTransform) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsTransform) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsTransform___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsTransform) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsTransform___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsTransform) __findChildren_newList3() unsafe.Pointer {
 	return C.QGraphicsTransform___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsTransform) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsTransform) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsTransform) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsTransform___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsTransform) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsTransform___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsTransform) __findChildren_newList() unsafe.Pointer {
 	return C.QGraphicsTransform___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsTransform) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsTransform) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsTransform___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsTransform) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QGraphicsTransform___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QGraphicsTransform) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsTransform___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QGraphicsTransform) __children_newList() unsafe.Pointer {
@@ -40982,16 +41697,18 @@ func callbackQGraphicsView_UpdateScene(ptr unsafe.Pointer, rects C.struct_QtWidg
 	if signal := qt.GetSignal(ptr, "updateScene"); signal != nil {
 		signal.(func([]*core.QRectF))(func(l C.struct_QtWidgets_PackedList) []*core.QRectF {
 			out := make([]*core.QRectF, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__updateScene_rects_atList(i, l.data)
+				out[i] = tmpList.__updateScene_rects_atList(i)
 			}
 			return out
 		}(rects))
 	} else {
 		NewQGraphicsViewFromPointer(ptr).UpdateSceneDefault(func(l C.struct_QtWidgets_PackedList) []*core.QRectF {
 			out := make([]*core.QRectF, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__updateScene_rects_atList(i, l.data)
+				out[i] = tmpList.__updateScene_rects_atList(i)
 			}
 			return out
 		}(rects))
@@ -41022,11 +41739,11 @@ func (ptr *QGraphicsView) DisconnectUpdateScene() {
 func (ptr *QGraphicsView) UpdateScene(rects []*core.QRectF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_UpdateScene(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsView)(nil).__updateScene_rects_newList()
+			tmpList := NewQGraphicsViewFromPointer(NewQGraphicsViewFromPointer(nil).__updateScene_rects_newList())
 			for _, v := range rects {
-				(*QGraphicsView)(nil).__updateScene_rects_setList(v, tmpList)
+				tmpList.__updateScene_rects_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -41034,11 +41751,11 @@ func (ptr *QGraphicsView) UpdateScene(rects []*core.QRectF) {
 func (ptr *QGraphicsView) UpdateSceneDefault(rects []*core.QRectF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_UpdateSceneDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsView)(nil).__updateScene_rects_newList()
+			tmpList := NewQGraphicsViewFromPointer(NewQGraphicsViewFromPointer(nil).__updateScene_rects_newList())
 			for _, v := range rects {
-				(*QGraphicsView)(nil).__updateScene_rects_setList(v, tmpList)
+				tmpList.__updateScene_rects_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -41161,8 +41878,9 @@ func (ptr *QGraphicsView) Items() []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList(i, l.data)
+				out[i] = tmpList.__items_atList(i)
 			}
 			return out
 		}(C.QGraphicsView_Items(ptr.Pointer()))
@@ -41174,8 +41892,9 @@ func (ptr *QGraphicsView) Items7(path gui.QPainterPath_ITF, mode core.Qt__ItemSe
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList7(i, l.data)
+				out[i] = tmpList.__items_atList7(i)
 			}
 			return out
 		}(C.QGraphicsView_Items7(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)))
@@ -41187,8 +41906,9 @@ func (ptr *QGraphicsView) Items2(pos core.QPoint_ITF) []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList2(i, l.data)
+				out[i] = tmpList.__items_atList2(i)
 			}
 			return out
 		}(C.QGraphicsView_Items2(ptr.Pointer(), core.PointerFromQPoint(pos)))
@@ -41200,8 +41920,9 @@ func (ptr *QGraphicsView) Items6(polygon gui.QPolygon_ITF, mode core.Qt__ItemSel
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList6(i, l.data)
+				out[i] = tmpList.__items_atList6(i)
 			}
 			return out
 		}(C.QGraphicsView_Items6(ptr.Pointer(), gui.PointerFromQPolygon(polygon), C.longlong(mode)))
@@ -41213,8 +41934,9 @@ func (ptr *QGraphicsView) Items4(rect core.QRect_ITF, mode core.Qt__ItemSelectio
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList4(i, l.data)
+				out[i] = tmpList.__items_atList4(i)
 			}
 			return out
 		}(C.QGraphicsView_Items4(ptr.Pointer(), core.PointerFromQRect(rect), C.longlong(mode)))
@@ -41226,8 +41948,9 @@ func (ptr *QGraphicsView) Items3(x int, y int) []*QGraphicsItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList3(i, l.data)
+				out[i] = tmpList.__items_atList3(i)
 			}
 			return out
 		}(C.QGraphicsView_Items3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y))))
@@ -41239,8 +41962,9 @@ func (ptr *QGraphicsView) Items5(x int, y int, w int, h int, mode core.Qt__ItemS
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QGraphicsItem {
 			out := make([]*QGraphicsItem, int(l.len))
+			tmpList := NewQGraphicsViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsView)(nil).__items_atList5(i, l.data)
+				out[i] = tmpList.__items_atList5(i)
 			}
 			return out
 		}(C.QGraphicsView_Items5(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), C.longlong(mode)))
@@ -41448,98 +42172,138 @@ func (ptr *QGraphicsView) IsTransformed() bool {
 	return false
 }
 
-func (ptr *QGraphicsView) __updateScene_rects_atList(i int, p unsafe.Pointer) *core.QRectF {
-	tmpValue := core.NewQRectFFromPointer(C.QGraphicsView___updateScene_rects_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-	return tmpValue
+func (ptr *QGraphicsView) __updateScene_rects_atList(i int) *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QGraphicsView___updateScene_rects_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __updateScene_rects_setList(i core.QRectF_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___updateScene_rects_setList(ptr.Pointer(), core.PointerFromQRectF(i), p)
+func (ptr *QGraphicsView) __updateScene_rects_setList(i core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___updateScene_rects_setList(ptr.Pointer(), core.PointerFromQRectF(i))
+	}
 }
 
 func (ptr *QGraphicsView) __updateScene_rects_newList() unsafe.Pointer {
 	return C.QGraphicsView___updateScene_rects_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList() unsafe.Pointer {
 	return C.QGraphicsView___items_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList7(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList7(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList7(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList7(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList7(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList7(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList7(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList7(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList7() unsafe.Pointer {
 	return C.QGraphicsView___items_newList7(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList2(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList2(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList2(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList2(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList2(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList2(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList2(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList2() unsafe.Pointer {
 	return C.QGraphicsView___items_newList2(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList6(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList6(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList6(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList6(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList6(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList6(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList6(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList6(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList6() unsafe.Pointer {
 	return C.QGraphicsView___items_newList6(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList4(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList4(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList4(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList4(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList4(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList4(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList4(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList4(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList4() unsafe.Pointer {
 	return C.QGraphicsView___items_newList4(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList3(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList3(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList3(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList3(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList3(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList3(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList3(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList3(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList3() unsafe.Pointer {
 	return C.QGraphicsView___items_newList3(ptr.Pointer())
 }
 
-func (ptr *QGraphicsView) __items_atList5(i int, p unsafe.Pointer) *QGraphicsItem {
-	return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList5(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QGraphicsView) __items_atList5(i int) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsView___items_atList5(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QGraphicsView) __items_setList5(i QGraphicsItem_ITF, p unsafe.Pointer) {
-	C.QGraphicsView___items_setList5(ptr.Pointer(), PointerFromQGraphicsItem(i), p)
+func (ptr *QGraphicsView) __items_setList5(i QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView___items_setList5(ptr.Pointer(), PointerFromQGraphicsItem(i))
+	}
 }
 
 func (ptr *QGraphicsView) __items_newList5() unsafe.Pointer {
@@ -41743,11 +42507,11 @@ func (ptr *QGraphicsWidget) AddAction(action QAction_ITF) {
 func (ptr *QGraphicsWidget) AddActions(actions []*QAction) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWidget_AddActions(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QGraphicsWidget)(nil).__addActions_actions_newList()
+			tmpList := NewQGraphicsWidgetFromPointer(NewQGraphicsWidgetFromPointer(nil).__addActions_actions_newList())
 			for _, v := range actions {
-				(*QGraphicsWidget)(nil).__addActions_actions_setList(v, tmpList)
+				tmpList.__addActions_actions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -42016,11 +42780,11 @@ func (ptr *QGraphicsWidget) InsertAction(before QAction_ITF, action QAction_ITF)
 func (ptr *QGraphicsWidget) InsertActions(before QAction_ITF, actions []*QAction) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsWidget_InsertActions(ptr.Pointer(), PointerFromQAction(before), func() unsafe.Pointer {
-			tmpList := (*QGraphicsWidget)(nil).__insertActions_actions_newList()
+			tmpList := NewQGraphicsWidgetFromPointer(NewQGraphicsWidgetFromPointer(nil).__insertActions_actions_newList())
 			for _, v := range actions {
-				(*QGraphicsWidget)(nil).__insertActions_actions_setList(v, tmpList)
+				tmpList.__insertActions_actions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -42539,8 +43303,9 @@ func (ptr *QGraphicsWidget) Actions() []*QAction {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAction {
 			out := make([]*QAction, int(l.len))
+			tmpList := NewQGraphicsWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QGraphicsWidget)(nil).__actions_atList(i, l.data)
+				out[i] = tmpList.__actions_atList(i)
 			}
 			return out
 		}(C.QGraphicsWidget_Actions(ptr.Pointer()))
@@ -42917,48 +43682,63 @@ func (ptr *QGraphicsWidget) SetSizePolicy(sizePolicy QSizePolicy_ITF) {
 	}
 }
 
-func (ptr *QGraphicsWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QGraphicsWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsWidget) __addActions_actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QGraphicsWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsWidget) __addActions_actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QGraphicsWidget___addActions_actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QGraphicsWidget) __addActions_actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget___addActions_actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QGraphicsWidget) __addActions_actions_newList() unsafe.Pointer {
 	return C.QGraphicsWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QGraphicsWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsWidget) __insertActions_actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QGraphicsWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsWidget) __insertActions_actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QGraphicsWidget___insertActions_actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QGraphicsWidget) __insertActions_actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget___insertActions_actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QGraphicsWidget) __insertActions_actions_newList() unsafe.Pointer {
 	return C.QGraphicsWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QGraphicsWidget) __actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QGraphicsWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QGraphicsWidget) __actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QGraphicsWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QGraphicsWidget) __actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QGraphicsWidget___actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QGraphicsWidget) __actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget___actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QGraphicsWidget) __actions_newList() unsafe.Pointer {
@@ -47087,126 +47867,166 @@ func (ptr *QKeyEventTransition) Key() int {
 	return 0
 }
 
-func (ptr *QKeyEventTransition) __setTargetStates_targets_atList(i int, p unsafe.Pointer) *core.QAbstractState {
-	tmpValue := core.NewQAbstractStateFromPointer(C.QKeyEventTransition___setTargetStates_targets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __setTargetStates_targets_atList(i int) *core.QAbstractState {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractStateFromPointer(C.QKeyEventTransition___setTargetStates_targets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __setTargetStates_targets_setList(i core.QAbstractState_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___setTargetStates_targets_setList(ptr.Pointer(), core.PointerFromQAbstractState(i), p)
+func (ptr *QKeyEventTransition) __setTargetStates_targets_setList(i core.QAbstractState_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___setTargetStates_targets_setList(ptr.Pointer(), core.PointerFromQAbstractState(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __setTargetStates_targets_newList() unsafe.Pointer {
 	return C.QKeyEventTransition___setTargetStates_targets_newList(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __animations_atList(i int, p unsafe.Pointer) *core.QAbstractAnimation {
-	tmpValue := core.NewQAbstractAnimationFromPointer(C.QKeyEventTransition___animations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __animations_atList(i int) *core.QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractAnimationFromPointer(C.QKeyEventTransition___animations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __animations_setList(i core.QAbstractAnimation_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___animations_setList(ptr.Pointer(), core.PointerFromQAbstractAnimation(i), p)
+func (ptr *QKeyEventTransition) __animations_setList(i core.QAbstractAnimation_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___animations_setList(ptr.Pointer(), core.PointerFromQAbstractAnimation(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __animations_newList() unsafe.Pointer {
 	return C.QKeyEventTransition___animations_newList(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __targetStates_atList(i int, p unsafe.Pointer) *core.QAbstractState {
-	tmpValue := core.NewQAbstractStateFromPointer(C.QKeyEventTransition___targetStates_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __targetStates_atList(i int) *core.QAbstractState {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractStateFromPointer(C.QKeyEventTransition___targetStates_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __targetStates_setList(i core.QAbstractState_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___targetStates_setList(ptr.Pointer(), core.PointerFromQAbstractState(i), p)
+func (ptr *QKeyEventTransition) __targetStates_setList(i core.QAbstractState_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___targetStates_setList(ptr.Pointer(), core.PointerFromQAbstractState(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __targetStates_newList() unsafe.Pointer {
 	return C.QKeyEventTransition___targetStates_newList(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QKeyEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QKeyEventTransition) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QKeyEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QKeyEventTransition) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QKeyEventTransition___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QKeyEventTransition) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __findChildren_newList2() unsafe.Pointer {
 	return C.QKeyEventTransition___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QKeyEventTransition) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __findChildren_newList3() unsafe.Pointer {
 	return C.QKeyEventTransition___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QKeyEventTransition) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __findChildren_newList() unsafe.Pointer {
 	return C.QKeyEventTransition___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QKeyEventTransition) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QKeyEventTransition) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QKeyEventTransition___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QKeyEventTransition) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QKeyEventTransition___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QKeyEventTransition) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QKeyEventTransition___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QKeyEventTransition) __children_newList() unsafe.Pointer {
@@ -49573,78 +50393,103 @@ func (ptr *QLayout) GetContentsMargins(left int, top int, right int, bottom int)
 	}
 }
 
-func (ptr *QLayout) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QLayout) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QLayout) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QLayout___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QLayout) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLayout___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QLayout) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QLayout___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QLayout) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QLayout) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QLayout) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QLayout___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QLayout) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLayout___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QLayout) __findChildren_newList2() unsafe.Pointer {
 	return C.QLayout___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QLayout) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QLayout) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QLayout) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QLayout___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QLayout) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLayout___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QLayout) __findChildren_newList3() unsafe.Pointer {
 	return C.QLayout___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QLayout) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QLayout) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QLayout___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QLayout) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QLayout___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QLayout) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLayout___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QLayout) __findChildren_newList() unsafe.Pointer {
 	return C.QLayout___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QLayout) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QLayout___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QLayout) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QLayout___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QLayout) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QLayout___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QLayout) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLayout___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QLayout) __children_newList() unsafe.Pointer {
@@ -51907,16 +52752,18 @@ func callbackQListView_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, b
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQListViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
 	} else {
 		NewQListViewFromPointer(ptr).DataChangedDefault(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQListViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
@@ -51947,11 +52794,11 @@ func (ptr *QListView) DisconnectDataChanged() {
 func (ptr *QListView) DataChanged(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QListView_DataChanged(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QListView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQListViewFromPointer(NewQListViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QListView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -51959,11 +52806,11 @@ func (ptr *QListView) DataChanged(topLeft core.QModelIndex_ITF, bottomRight core
 func (ptr *QListView) DataChangedDefault(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QListView_DataChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QListView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQListViewFromPointer(NewQListViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QListView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -52703,14 +53550,19 @@ func (ptr *QListView) VerticalOffsetDefault() int {
 	return 0
 }
 
-func (ptr *QListView) __indexesMoved_indexes_atList(i int, p unsafe.Pointer) *core.QModelIndex {
-	tmpValue := core.NewQModelIndexFromPointer(C.QListView___indexesMoved_indexes_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-	return tmpValue
+func (ptr *QListView) __indexesMoved_indexes_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QListView___indexesMoved_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QListView) __indexesMoved_indexes_setList(i core.QModelIndex_ITF, p unsafe.Pointer) {
-	C.QListView___indexesMoved_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i), p)
+func (ptr *QListView) __indexesMoved_indexes_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QListView___indexesMoved_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
 }
 
 func (ptr *QListView) __indexesMoved_indexes_newList() unsafe.Pointer {
@@ -53426,8 +54278,9 @@ func (ptr *QListWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QLis
 		}
 		return func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 			out := make([]*QListWidgetItem, int(l.len))
+			tmpList := NewQListWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListWidget)(nil).__findItems_atList(i, l.data)
+				out[i] = tmpList.__findItems_atList(i)
 			}
 			return out
 		}(C.QListWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags)))
@@ -53439,8 +54292,9 @@ func (ptr *QListWidget) Items(data core.QMimeData_ITF) []*QListWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 			out := make([]*QListWidgetItem, int(l.len))
+			tmpList := NewQListWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListWidget)(nil).__items_atList(i, l.data)
+				out[i] = tmpList.__items_atList(i)
 			}
 			return out
 		}(C.QListWidget_Items(ptr.Pointer(), core.PointerFromQMimeData(data)))
@@ -53452,8 +54306,9 @@ func (ptr *QListWidget) SelectedItems() []*QListWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 			out := make([]*QListWidgetItem, int(l.len))
+			tmpList := NewQListWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListWidget)(nil).__selectedItems_atList(i, l.data)
+				out[i] = tmpList.__selectedItems_atList(i)
 			}
 			return out
 		}(C.QListWidget_SelectedItems(ptr.Pointer()))
@@ -53501,8 +54356,9 @@ func callbackQListWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_P
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*QListWidgetItem) *core.QMimeData)(func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 			out := make([]*QListWidgetItem, int(l.len))
+			tmpList := NewQListWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QListWidget)(nil).__mimeData_items_atList(i, l.data)
+				out[i] = tmpList.__mimeData_items_atList(i)
 			}
 			return out
 		}(items)))
@@ -53510,8 +54366,9 @@ func callbackQListWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_P
 
 	return core.PointerFromQMimeData(NewQListWidgetFromPointer(ptr).MimeDataDefault(func(l C.struct_QtWidgets_PackedList) []*QListWidgetItem {
 		out := make([]*QListWidgetItem, int(l.len))
+		tmpList := NewQListWidgetFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QListWidget)(nil).__mimeData_items_atList(i, l.data)
+			out[i] = tmpList.__mimeData_items_atList(i)
 		}
 		return out
 	}(items)))
@@ -53541,11 +54398,11 @@ func (ptr *QListWidget) DisconnectMimeData() {
 func (ptr *QListWidget) MimeData(items []*QListWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QListWidget_MimeData(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QListWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQListWidgetFromPointer(NewQListWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QListWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -53558,11 +54415,11 @@ func (ptr *QListWidget) MimeData(items []*QListWidgetItem) *core.QMimeData {
 func (ptr *QListWidget) MimeDataDefault(items []*QListWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QListWidget_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QListWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQListWidgetFromPointer(NewQListWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QListWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -53725,48 +54582,68 @@ func (ptr *QListWidget) Row(item QListWidgetItem_ITF) int {
 	return 0
 }
 
-func (ptr *QListWidget) __findItems_atList(i int, p unsafe.Pointer) *QListWidgetItem {
-	return NewQListWidgetItemFromPointer(C.QListWidget___findItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QListWidget) __findItems_atList(i int) *QListWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQListWidgetItemFromPointer(C.QListWidget___findItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QListWidget) __findItems_setList(i QListWidgetItem_ITF, p unsafe.Pointer) {
-	C.QListWidget___findItems_setList(ptr.Pointer(), PointerFromQListWidgetItem(i), p)
+func (ptr *QListWidget) __findItems_setList(i QListWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QListWidget___findItems_setList(ptr.Pointer(), PointerFromQListWidgetItem(i))
+	}
 }
 
 func (ptr *QListWidget) __findItems_newList() unsafe.Pointer {
 	return C.QListWidget___findItems_newList(ptr.Pointer())
 }
 
-func (ptr *QListWidget) __items_atList(i int, p unsafe.Pointer) *QListWidgetItem {
-	return NewQListWidgetItemFromPointer(C.QListWidget___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QListWidget) __items_atList(i int) *QListWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQListWidgetItemFromPointer(C.QListWidget___items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QListWidget) __items_setList(i QListWidgetItem_ITF, p unsafe.Pointer) {
-	C.QListWidget___items_setList(ptr.Pointer(), PointerFromQListWidgetItem(i), p)
+func (ptr *QListWidget) __items_setList(i QListWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QListWidget___items_setList(ptr.Pointer(), PointerFromQListWidgetItem(i))
+	}
 }
 
 func (ptr *QListWidget) __items_newList() unsafe.Pointer {
 	return C.QListWidget___items_newList(ptr.Pointer())
 }
 
-func (ptr *QListWidget) __selectedItems_atList(i int, p unsafe.Pointer) *QListWidgetItem {
-	return NewQListWidgetItemFromPointer(C.QListWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QListWidget) __selectedItems_atList(i int) *QListWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQListWidgetItemFromPointer(C.QListWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QListWidget) __selectedItems_setList(i QListWidgetItem_ITF, p unsafe.Pointer) {
-	C.QListWidget___selectedItems_setList(ptr.Pointer(), PointerFromQListWidgetItem(i), p)
+func (ptr *QListWidget) __selectedItems_setList(i QListWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QListWidget___selectedItems_setList(ptr.Pointer(), PointerFromQListWidgetItem(i))
+	}
 }
 
 func (ptr *QListWidget) __selectedItems_newList() unsafe.Pointer {
 	return C.QListWidget___selectedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QListWidget) __mimeData_items_atList(i int, p unsafe.Pointer) *QListWidgetItem {
-	return NewQListWidgetItemFromPointer(C.QListWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QListWidget) __mimeData_items_atList(i int) *QListWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQListWidgetItemFromPointer(C.QListWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QListWidget) __mimeData_items_setList(i QListWidgetItem_ITF, p unsafe.Pointer) {
-	C.QListWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQListWidgetItem(i), p)
+func (ptr *QListWidget) __mimeData_items_setList(i QListWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QListWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQListWidgetItem(i))
+	}
 }
 
 func (ptr *QListWidget) __mimeData_items_newList() unsafe.Pointer {
@@ -54724,17 +55601,17 @@ func (ptr *QMainWindow) RemoveToolBarBreak(before QToolBar_ITF) {
 func (ptr *QMainWindow) ResizeDocks(docks []*QDockWidget, sizes []int, orientation core.Qt__Orientation) {
 	if ptr.Pointer() != nil {
 		C.QMainWindow_ResizeDocks(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QMainWindow)(nil).__resizeDocks_docks_newList()
+			tmpList := NewQMainWindowFromPointer(NewQMainWindowFromPointer(nil).__resizeDocks_docks_newList())
 			for _, v := range docks {
-				(*QMainWindow)(nil).__resizeDocks_docks_setList(v, tmpList)
+				tmpList.__resizeDocks_docks_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}(), func() unsafe.Pointer {
-			tmpList := (*QMainWindow)(nil).__resizeDocks_sizes_newList()
+			tmpList := NewQMainWindowFromPointer(NewQMainWindowFromPointer(nil).__resizeDocks_sizes_newList())
 			for _, v := range sizes {
-				(*QMainWindow)(nil).__resizeDocks_sizes_setList(v, tmpList)
+				tmpList.__resizeDocks_sizes_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}(), C.longlong(orientation))
 	}
 }
@@ -55049,8 +55926,9 @@ func (ptr *QMainWindow) TabifiedDockWidgets(dockwidget QDockWidget_ITF) []*QDock
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QDockWidget {
 			out := make([]*QDockWidget, int(l.len))
+			tmpList := NewQMainWindowFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMainWindow)(nil).__tabifiedDockWidgets_atList(i, l.data)
+				out[i] = tmpList.__tabifiedDockWidgets_atList(i)
 			}
 			return out
 		}(C.QMainWindow_TabifiedDockWidgets(ptr.Pointer(), PointerFromQDockWidget(dockwidget)))
@@ -55188,44 +56066,59 @@ func (ptr *QMainWindow) UnifiedTitleAndToolBarOnMac() bool {
 	return false
 }
 
-func (ptr *QMainWindow) __resizeDocks_docks_atList(i int, p unsafe.Pointer) *QDockWidget {
-	tmpValue := NewQDockWidgetFromPointer(C.QMainWindow___resizeDocks_docks_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMainWindow) __resizeDocks_docks_atList(i int) *QDockWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQDockWidgetFromPointer(C.QMainWindow___resizeDocks_docks_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMainWindow) __resizeDocks_docks_setList(i QDockWidget_ITF, p unsafe.Pointer) {
-	C.QMainWindow___resizeDocks_docks_setList(ptr.Pointer(), PointerFromQDockWidget(i), p)
+func (ptr *QMainWindow) __resizeDocks_docks_setList(i QDockWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMainWindow___resizeDocks_docks_setList(ptr.Pointer(), PointerFromQDockWidget(i))
+	}
 }
 
 func (ptr *QMainWindow) __resizeDocks_docks_newList() unsafe.Pointer {
 	return C.QMainWindow___resizeDocks_docks_newList(ptr.Pointer())
 }
 
-func (ptr *QMainWindow) __resizeDocks_sizes_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QMainWindow___resizeDocks_sizes_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QMainWindow) __resizeDocks_sizes_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QMainWindow___resizeDocks_sizes_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QMainWindow) __resizeDocks_sizes_setList(i int, p unsafe.Pointer) {
-	C.QMainWindow___resizeDocks_sizes_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QMainWindow) __resizeDocks_sizes_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QMainWindow___resizeDocks_sizes_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QMainWindow) __resizeDocks_sizes_newList() unsafe.Pointer {
 	return C.QMainWindow___resizeDocks_sizes_newList(ptr.Pointer())
 }
 
-func (ptr *QMainWindow) __tabifiedDockWidgets_atList(i int, p unsafe.Pointer) *QDockWidget {
-	tmpValue := NewQDockWidgetFromPointer(C.QMainWindow___tabifiedDockWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMainWindow) __tabifiedDockWidgets_atList(i int) *QDockWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQDockWidgetFromPointer(C.QMainWindow___tabifiedDockWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMainWindow) __tabifiedDockWidgets_setList(i QDockWidget_ITF, p unsafe.Pointer) {
-	C.QMainWindow___tabifiedDockWidgets_setList(ptr.Pointer(), PointerFromQDockWidget(i), p)
+func (ptr *QMainWindow) __tabifiedDockWidgets_setList(i QDockWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMainWindow___tabifiedDockWidgets_setList(ptr.Pointer(), PointerFromQDockWidget(i))
+	}
 }
 
 func (ptr *QMainWindow) __tabifiedDockWidgets_newList() unsafe.Pointer {
@@ -55773,8 +56666,9 @@ func (ptr *QMdiArea) SubWindowList(order QMdiArea__WindowOrder) []*QMdiSubWindow
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QMdiSubWindow {
 			out := make([]*QMdiSubWindow, int(l.len))
+			tmpList := NewQMdiAreaFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMdiArea)(nil).__subWindowList_atList(i, l.data)
+				out[i] = tmpList.__subWindowList_atList(i)
 			}
 			return out
 		}(C.QMdiArea_SubWindowList(ptr.Pointer(), C.longlong(order)))
@@ -55860,16 +56754,21 @@ func (ptr *QMdiArea) TestOption(option QMdiArea__AreaOption) bool {
 	return false
 }
 
-func (ptr *QMdiArea) __subWindowList_atList(i int, p unsafe.Pointer) *QMdiSubWindow {
-	tmpValue := NewQMdiSubWindowFromPointer(C.QMdiArea___subWindowList_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMdiArea) __subWindowList_atList(i int) *QMdiSubWindow {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMdiSubWindowFromPointer(C.QMdiArea___subWindowList_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMdiArea) __subWindowList_setList(i QMdiSubWindow_ITF, p unsafe.Pointer) {
-	C.QMdiArea___subWindowList_setList(ptr.Pointer(), PointerFromQMdiSubWindow(i), p)
+func (ptr *QMdiArea) __subWindowList_setList(i QMdiSubWindow_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMdiArea___subWindowList_setList(ptr.Pointer(), PointerFromQMdiSubWindow(i))
+	}
 }
 
 func (ptr *QMdiArea) __subWindowList_newList() unsafe.Pointer {
@@ -56374,11 +57273,11 @@ func (ptr *QMenu) Exec() *QAction {
 
 func QMenu_Exec3(actions []*QAction, pos core.QPoint_ITF, at QAction_ITF, parent QWidget_ITF) *QAction {
 	tmpValue := NewQActionFromPointer(C.QMenu_QMenu_Exec3(func() unsafe.Pointer {
-		tmpList := (*QMenu)(nil).__exec_actions_newList3()
+		tmpList := NewQMenuFromPointer(NewQMenuFromPointer(nil).__exec_actions_newList3())
 		for _, v := range actions {
-			(*QMenu)(nil).__exec_actions_setList3(v, tmpList)
+			tmpList.__exec_actions_setList3(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}(), core.PointerFromQPoint(pos), PointerFromQAction(at), PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -56388,11 +57287,11 @@ func QMenu_Exec3(actions []*QAction, pos core.QPoint_ITF, at QAction_ITF, parent
 
 func (ptr *QMenu) Exec3(actions []*QAction, pos core.QPoint_ITF, at QAction_ITF, parent QWidget_ITF) *QAction {
 	tmpValue := NewQActionFromPointer(C.QMenu_QMenu_Exec3(func() unsafe.Pointer {
-		tmpList := (*QMenu)(nil).__exec_actions_newList3()
+		tmpList := NewQMenuFromPointer(NewQMenuFromPointer(nil).__exec_actions_newList3())
 		for _, v := range actions {
-			(*QMenu)(nil).__exec_actions_setList3(v, tmpList)
+			tmpList.__exec_actions_setList3(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}(), core.PointerFromQPoint(pos), PointerFromQAction(at), PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -56882,16 +57781,21 @@ func (ptr *QMenu) InitStyleOption(option QStyleOptionMenuItem_ITF, action QActio
 	}
 }
 
-func (ptr *QMenu) __exec_actions_atList3(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QMenu___exec_actions_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMenu) __exec_actions_atList3(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QMenu___exec_actions_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMenu) __exec_actions_setList3(i QAction_ITF, p unsafe.Pointer) {
-	C.QMenu___exec_actions_setList3(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QMenu) __exec_actions_setList3(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMenu___exec_actions_setList3(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QMenu) __exec_actions_newList3() unsafe.Pointer {
@@ -57836,8 +58740,9 @@ func (ptr *QMessageBox) Buttons() []*QAbstractButton {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAbstractButton {
 			out := make([]*QAbstractButton, int(l.len))
+			tmpList := NewQMessageBoxFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QMessageBox)(nil).__buttons_atList(i, l.data)
+				out[i] = tmpList.__buttons_atList(i)
 			}
 			return out
 		}(C.QMessageBox_Buttons(ptr.Pointer()))
@@ -57863,16 +58768,21 @@ func (ptr *QMessageBox) StandardButton(button QAbstractButton_ITF) QMessageBox__
 	return 0
 }
 
-func (ptr *QMessageBox) __buttons_atList(i int, p unsafe.Pointer) *QAbstractButton {
-	tmpValue := NewQAbstractButtonFromPointer(C.QMessageBox___buttons_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMessageBox) __buttons_atList(i int) *QAbstractButton {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQAbstractButtonFromPointer(C.QMessageBox___buttons_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMessageBox) __buttons_setList(i QAbstractButton_ITF, p unsafe.Pointer) {
-	C.QMessageBox___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i), p)
+func (ptr *QMessageBox) __buttons_setList(i QAbstractButton_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMessageBox___buttons_setList(ptr.Pointer(), PointerFromQAbstractButton(i))
+	}
 }
 
 func (ptr *QMessageBox) __buttons_newList() unsafe.Pointer {
@@ -58013,126 +58923,166 @@ func (ptr *QMouseEventTransition) Button() core.Qt__MouseButton {
 	return 0
 }
 
-func (ptr *QMouseEventTransition) __setTargetStates_targets_atList(i int, p unsafe.Pointer) *core.QAbstractState {
-	tmpValue := core.NewQAbstractStateFromPointer(C.QMouseEventTransition___setTargetStates_targets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __setTargetStates_targets_atList(i int) *core.QAbstractState {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractStateFromPointer(C.QMouseEventTransition___setTargetStates_targets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __setTargetStates_targets_setList(i core.QAbstractState_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___setTargetStates_targets_setList(ptr.Pointer(), core.PointerFromQAbstractState(i), p)
+func (ptr *QMouseEventTransition) __setTargetStates_targets_setList(i core.QAbstractState_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___setTargetStates_targets_setList(ptr.Pointer(), core.PointerFromQAbstractState(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __setTargetStates_targets_newList() unsafe.Pointer {
 	return C.QMouseEventTransition___setTargetStates_targets_newList(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __animations_atList(i int, p unsafe.Pointer) *core.QAbstractAnimation {
-	tmpValue := core.NewQAbstractAnimationFromPointer(C.QMouseEventTransition___animations_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __animations_atList(i int) *core.QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractAnimationFromPointer(C.QMouseEventTransition___animations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __animations_setList(i core.QAbstractAnimation_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___animations_setList(ptr.Pointer(), core.PointerFromQAbstractAnimation(i), p)
+func (ptr *QMouseEventTransition) __animations_setList(i core.QAbstractAnimation_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___animations_setList(ptr.Pointer(), core.PointerFromQAbstractAnimation(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __animations_newList() unsafe.Pointer {
 	return C.QMouseEventTransition___animations_newList(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __targetStates_atList(i int, p unsafe.Pointer) *core.QAbstractState {
-	tmpValue := core.NewQAbstractStateFromPointer(C.QMouseEventTransition___targetStates_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __targetStates_atList(i int) *core.QAbstractState {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractStateFromPointer(C.QMouseEventTransition___targetStates_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __targetStates_setList(i core.QAbstractState_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___targetStates_setList(ptr.Pointer(), core.PointerFromQAbstractState(i), p)
+func (ptr *QMouseEventTransition) __targetStates_setList(i core.QAbstractState_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___targetStates_setList(ptr.Pointer(), core.PointerFromQAbstractState(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __targetStates_newList() unsafe.Pointer {
 	return C.QMouseEventTransition___targetStates_newList(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QMouseEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QMouseEventTransition) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QMouseEventTransition___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QMouseEventTransition) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QMouseEventTransition___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMouseEventTransition) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __findChildren_newList2() unsafe.Pointer {
 	return C.QMouseEventTransition___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMouseEventTransition) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __findChildren_newList3() unsafe.Pointer {
 	return C.QMouseEventTransition___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMouseEventTransition) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __findChildren_newList() unsafe.Pointer {
 	return C.QMouseEventTransition___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QMouseEventTransition) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QMouseEventTransition) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QMouseEventTransition___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QMouseEventTransition) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QMouseEventTransition___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QMouseEventTransition) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMouseEventTransition___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QMouseEventTransition) __children_newList() unsafe.Pointer {
@@ -59451,78 +60401,103 @@ func (ptr *QPlainTextDocumentLayout) EnsureBlockLayout(block gui.QTextBlock_ITF)
 	}
 }
 
-func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QPlainTextDocumentLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QPlainTextDocumentLayout___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QPlainTextDocumentLayout___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QPlainTextDocumentLayout___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QPlainTextDocumentLayout) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QPlainTextDocumentLayout___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QPlainTextDocumentLayout) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) __findChildren_newList2() unsafe.Pointer {
 	return C.QPlainTextDocumentLayout___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QPlainTextDocumentLayout) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QPlainTextDocumentLayout___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QPlainTextDocumentLayout) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) __findChildren_newList3() unsafe.Pointer {
 	return C.QPlainTextDocumentLayout___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QPlainTextDocumentLayout) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QPlainTextDocumentLayout) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QPlainTextDocumentLayout___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QPlainTextDocumentLayout) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) __findChildren_newList() unsafe.Pointer {
 	return C.QPlainTextDocumentLayout___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QPlainTextDocumentLayout) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QPlainTextDocumentLayout) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QPlainTextDocumentLayout___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QPlainTextDocumentLayout) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QPlainTextDocumentLayout___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QPlainTextDocumentLayout) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QPlainTextDocumentLayout) __children_newList() unsafe.Pointer {
@@ -63406,8 +64381,9 @@ const (
 func QScroller_ActiveScrollers() []*QScroller {
 	return func(l C.struct_QtWidgets_PackedList) []*QScroller {
 		out := make([]*QScroller, int(l.len))
+		tmpList := NewQScrollerFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QScroller)(nil).__activeScrollers_atList(i, l.data)
+			out[i] = tmpList.__activeScrollers_atList(i)
 		}
 		return out
 	}(C.QScroller_QScroller_ActiveScrollers())
@@ -63416,8 +64392,9 @@ func QScroller_ActiveScrollers() []*QScroller {
 func (ptr *QScroller) ActiveScrollers() []*QScroller {
 	return func(l C.struct_QtWidgets_PackedList) []*QScroller {
 		out := make([]*QScroller, int(l.len))
+		tmpList := NewQScrollerFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QScroller)(nil).__activeScrollers_atList(i, l.data)
+			out[i] = tmpList.__activeScrollers_atList(i)
 		}
 		return out
 	}(C.QScroller_QScroller_ActiveScrollers())
@@ -63780,11 +64757,11 @@ func (ptr *QScroller) SetScrollerPropertiesDefault(prop QScrollerProperties_ITF)
 func (ptr *QScroller) SetSnapPositionsX(positions []float64) {
 	if ptr.Pointer() != nil {
 		C.QScroller_SetSnapPositionsX(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScroller)(nil).__setSnapPositionsX_positions_newList()
+			tmpList := NewQScrollerFromPointer(NewQScrollerFromPointer(nil).__setSnapPositionsX_positions_newList())
 			for _, v := range positions {
-				(*QScroller)(nil).__setSnapPositionsX_positions_setList(v, tmpList)
+				tmpList.__setSnapPositionsX_positions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -63798,11 +64775,11 @@ func (ptr *QScroller) SetSnapPositionsX2(first float64, interval float64) {
 func (ptr *QScroller) SetSnapPositionsY(positions []float64) {
 	if ptr.Pointer() != nil {
 		C.QScroller_SetSnapPositionsY(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QScroller)(nil).__setSnapPositionsY_positions_newList()
+			tmpList := NewQScrollerFromPointer(NewQScrollerFromPointer(nil).__setSnapPositionsY_positions_newList())
 			for _, v := range positions {
-				(*QScroller)(nil).__setSnapPositionsY_positions_setList(v, tmpList)
+				tmpList.__setSnapPositionsY_positions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -63920,118 +64897,158 @@ func (ptr *QScroller) State() QScroller__State {
 	return 0
 }
 
-func (ptr *QScroller) __activeScrollers_atList(i int, p unsafe.Pointer) *QScroller {
-	tmpValue := NewQScrollerFromPointer(C.QScroller___activeScrollers_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScroller) __activeScrollers_atList(i int) *QScroller {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQScrollerFromPointer(C.QScroller___activeScrollers_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScroller) __activeScrollers_setList(i QScroller_ITF, p unsafe.Pointer) {
-	C.QScroller___activeScrollers_setList(ptr.Pointer(), PointerFromQScroller(i), p)
+func (ptr *QScroller) __activeScrollers_setList(i QScroller_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___activeScrollers_setList(ptr.Pointer(), PointerFromQScroller(i))
+	}
 }
 
 func (ptr *QScroller) __activeScrollers_newList() unsafe.Pointer {
 	return C.QScroller___activeScrollers_newList(ptr.Pointer())
 }
 
-func (ptr *QScroller) __setSnapPositionsX_positions_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QScroller___setSnapPositionsX_positions_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QScroller) __setSnapPositionsX_positions_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QScroller___setSnapPositionsX_positions_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QScroller) __setSnapPositionsX_positions_setList(i float64, p unsafe.Pointer) {
-	C.QScroller___setSnapPositionsX_positions_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QScroller) __setSnapPositionsX_positions_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QScroller___setSnapPositionsX_positions_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QScroller) __setSnapPositionsX_positions_newList() unsafe.Pointer {
 	return C.QScroller___setSnapPositionsX_positions_newList(ptr.Pointer())
 }
 
-func (ptr *QScroller) __setSnapPositionsY_positions_atList(i int, p unsafe.Pointer) float64 {
-	return float64(C.QScroller___setSnapPositionsY_positions_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QScroller) __setSnapPositionsY_positions_atList(i int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QScroller___setSnapPositionsY_positions_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
 }
 
-func (ptr *QScroller) __setSnapPositionsY_positions_setList(i float64, p unsafe.Pointer) {
-	C.QScroller___setSnapPositionsY_positions_setList(ptr.Pointer(), C.double(i), p)
+func (ptr *QScroller) __setSnapPositionsY_positions_setList(i float64) {
+	if ptr.Pointer() != nil {
+		C.QScroller___setSnapPositionsY_positions_setList(ptr.Pointer(), C.double(i))
+	}
 }
 
 func (ptr *QScroller) __setSnapPositionsY_positions_newList() unsafe.Pointer {
 	return C.QScroller___setSnapPositionsY_positions_newList(ptr.Pointer())
 }
 
-func (ptr *QScroller) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QScroller___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QScroller) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QScroller___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QScroller) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QScroller___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QScroller) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QScroller) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QScroller___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QScroller) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScroller) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScroller) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScroller___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScroller) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScroller) __findChildren_newList2() unsafe.Pointer {
 	return C.QScroller___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QScroller) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScroller) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScroller) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScroller___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScroller) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScroller) __findChildren_newList3() unsafe.Pointer {
 	return C.QScroller___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QScroller) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScroller) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScroller___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScroller) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScroller___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScroller) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScroller) __findChildren_newList() unsafe.Pointer {
 	return C.QScroller___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QScroller) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QScroller___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QScroller) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QScroller___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QScroller) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QScroller___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QScroller) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QScroller___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QScroller) __children_newList() unsafe.Pointer {
@@ -64606,78 +65623,103 @@ func (ptr *QShortcut) Id() int {
 	return 0
 }
 
-func (ptr *QShortcut) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QShortcut___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QShortcut) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QShortcut___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QShortcut) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QShortcut___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QShortcut) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QShortcut___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QShortcut) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QShortcut___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QShortcut) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QShortcut) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QShortcut) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QShortcut___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QShortcut) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QShortcut___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QShortcut) __findChildren_newList2() unsafe.Pointer {
 	return C.QShortcut___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QShortcut) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QShortcut) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QShortcut) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QShortcut___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QShortcut) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QShortcut___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QShortcut) __findChildren_newList3() unsafe.Pointer {
 	return C.QShortcut___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QShortcut) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QShortcut) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QShortcut___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QShortcut) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QShortcut___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QShortcut) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QShortcut___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QShortcut) __findChildren_newList() unsafe.Pointer {
 	return C.QShortcut___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QShortcut) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QShortcut___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QShortcut) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QShortcut___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QShortcut) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QShortcut___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QShortcut) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QShortcut___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QShortcut) __children_newList() unsafe.Pointer {
@@ -66555,11 +67597,11 @@ func (ptr *QSplitter) SetRubberBand(pos int) {
 func (ptr *QSplitter) SetSizes(list []int) {
 	if ptr.Pointer() != nil {
 		C.QSplitter_SetSizes(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QSplitter)(nil).__setSizes_list_newList()
+			tmpList := NewQSplitterFromPointer(NewQSplitterFromPointer(nil).__setSizes_list_newList())
 			for _, v := range list {
-				(*QSplitter)(nil).__setSizes_list_setList(v, tmpList)
+				tmpList.__setSizes_list_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -66630,8 +67672,9 @@ func (ptr *QSplitter) Sizes() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQSplitterFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QSplitter)(nil).__sizes_atList(i, l.data)
+				out[i] = tmpList.__sizes_atList(i)
 			}
 			return out
 		}(C.QSplitter_Sizes(ptr.Pointer()))
@@ -66716,24 +67759,34 @@ func (ptr *QSplitter) GetRange(index int, min int, max int) {
 	}
 }
 
-func (ptr *QSplitter) __setSizes_list_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QSplitter___setSizes_list_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QSplitter) __setSizes_list_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSplitter___setSizes_list_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QSplitter) __setSizes_list_setList(i int, p unsafe.Pointer) {
-	C.QSplitter___setSizes_list_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QSplitter) __setSizes_list_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSplitter___setSizes_list_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QSplitter) __setSizes_list_newList() unsafe.Pointer {
 	return C.QSplitter___setSizes_list_newList(ptr.Pointer())
 }
 
-func (ptr *QSplitter) __sizes_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QSplitter___sizes_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QSplitter) __sizes_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSplitter___sizes_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QSplitter) __sizes_setList(i int, p unsafe.Pointer) {
-	C.QSplitter___sizes_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QSplitter) __sizes_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSplitter___sizes_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QSplitter) __sizes_newList() unsafe.Pointer {
@@ -69727,78 +70780,103 @@ func (ptr *QStyle) StandardPixmap(standardIcon QStyle__StandardPixmap, option QS
 	return nil
 }
 
-func (ptr *QStyle) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QStyle___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QStyle) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QStyle___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStyle) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QStyle___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QStyle) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QStyle) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QStyle___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QStyle) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStyle) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStyle) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStyle___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStyle) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStyle) __findChildren_newList2() unsafe.Pointer {
 	return C.QStyle___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QStyle) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStyle) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStyle) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStyle___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStyle) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStyle) __findChildren_newList3() unsafe.Pointer {
 	return C.QStyle___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QStyle) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStyle) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStyle___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStyle) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStyle___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStyle) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStyle) __findChildren_newList() unsafe.Pointer {
 	return C.QStyle___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QStyle) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStyle___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStyle) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStyle___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStyle) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStyle___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStyle) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStyle) __children_newList() unsafe.Pointer {
@@ -74561,84 +75639,114 @@ func (ptr *QStylePainter) Style() *QStyle {
 	return nil
 }
 
-func (ptr *QStylePainter) __drawLines_lines_atList6(i int, p unsafe.Pointer) *core.QLine {
-	tmpValue := core.NewQLineFromPointer(C.QStylePainter___drawLines_lines_atList6(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
-	return tmpValue
+func (ptr *QStylePainter) __drawLines_lines_atList6(i int) *core.QLine {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQLineFromPointer(C.QStylePainter___drawLines_lines_atList6(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLine).DestroyQLine)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawLines_lines_setList6(i core.QLine_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawLines_lines_setList6(ptr.Pointer(), core.PointerFromQLine(i), p)
+func (ptr *QStylePainter) __drawLines_lines_setList6(i core.QLine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_lines_setList6(ptr.Pointer(), core.PointerFromQLine(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawLines_lines_newList6() unsafe.Pointer {
 	return C.QStylePainter___drawLines_lines_newList6(ptr.Pointer())
 }
 
-func (ptr *QStylePainter) __drawLines_lines_atList2(i int, p unsafe.Pointer) *core.QLineF {
-	tmpValue := core.NewQLineFFromPointer(C.QStylePainter___drawLines_lines_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
-	return tmpValue
+func (ptr *QStylePainter) __drawLines_lines_atList2(i int) *core.QLineF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQLineFFromPointer(C.QStylePainter___drawLines_lines_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QLineF).DestroyQLineF)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawLines_lines_setList2(i core.QLineF_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawLines_lines_setList2(ptr.Pointer(), core.PointerFromQLineF(i), p)
+func (ptr *QStylePainter) __drawLines_lines_setList2(i core.QLineF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_lines_setList2(ptr.Pointer(), core.PointerFromQLineF(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawLines_lines_newList2() unsafe.Pointer {
 	return C.QStylePainter___drawLines_lines_newList2(ptr.Pointer())
 }
 
-func (ptr *QStylePainter) __drawLines_pointPairs_atList8(i int, p unsafe.Pointer) *core.QPoint {
-	tmpValue := core.NewQPointFromPointer(C.QStylePainter___drawLines_pointPairs_atList8(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
-	return tmpValue
+func (ptr *QStylePainter) __drawLines_pointPairs_atList8(i int) *core.QPoint {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPointFromPointer(C.QStylePainter___drawLines_pointPairs_atList8(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawLines_pointPairs_setList8(i core.QPoint_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawLines_pointPairs_setList8(ptr.Pointer(), core.PointerFromQPoint(i), p)
+func (ptr *QStylePainter) __drawLines_pointPairs_setList8(i core.QPoint_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_pointPairs_setList8(ptr.Pointer(), core.PointerFromQPoint(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawLines_pointPairs_newList8() unsafe.Pointer {
 	return C.QStylePainter___drawLines_pointPairs_newList8(ptr.Pointer())
 }
 
-func (ptr *QStylePainter) __drawLines_pointPairs_atList4(i int, p unsafe.Pointer) *core.QPointF {
-	tmpValue := core.NewQPointFFromPointer(C.QStylePainter___drawLines_pointPairs_atList4(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
-	return tmpValue
+func (ptr *QStylePainter) __drawLines_pointPairs_atList4(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPointFFromPointer(C.QStylePainter___drawLines_pointPairs_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawLines_pointPairs_setList4(i core.QPointF_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawLines_pointPairs_setList4(ptr.Pointer(), core.PointerFromQPointF(i), p)
+func (ptr *QStylePainter) __drawLines_pointPairs_setList4(i core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawLines_pointPairs_setList4(ptr.Pointer(), core.PointerFromQPointF(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawLines_pointPairs_newList4() unsafe.Pointer {
 	return C.QStylePainter___drawLines_pointPairs_newList4(ptr.Pointer())
 }
 
-func (ptr *QStylePainter) __drawRects_rectangles_atList4(i int, p unsafe.Pointer) *core.QRect {
-	tmpValue := core.NewQRectFromPointer(C.QStylePainter___drawRects_rectangles_atList4(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
-	return tmpValue
+func (ptr *QStylePainter) __drawRects_rectangles_atList4(i int) *core.QRect {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFromPointer(C.QStylePainter___drawRects_rectangles_atList4(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawRects_rectangles_setList4(i core.QRect_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawRects_rectangles_setList4(ptr.Pointer(), core.PointerFromQRect(i), p)
+func (ptr *QStylePainter) __drawRects_rectangles_setList4(i core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawRects_rectangles_setList4(ptr.Pointer(), core.PointerFromQRect(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawRects_rectangles_newList4() unsafe.Pointer {
 	return C.QStylePainter___drawRects_rectangles_newList4(ptr.Pointer())
 }
 
-func (ptr *QStylePainter) __drawRects_rectangles_atList2(i int, p unsafe.Pointer) *core.QRectF {
-	tmpValue := core.NewQRectFFromPointer(C.QStylePainter___drawRects_rectangles_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
-	return tmpValue
+func (ptr *QStylePainter) __drawRects_rectangles_atList2(i int) *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QStylePainter___drawRects_rectangles_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePainter) __drawRects_rectangles_setList2(i core.QRectF_ITF, p unsafe.Pointer) {
-	C.QStylePainter___drawRects_rectangles_setList2(ptr.Pointer(), core.PointerFromQRectF(i), p)
+func (ptr *QStylePainter) __drawRects_rectangles_setList2(i core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePainter___drawRects_rectangles_setList2(ptr.Pointer(), core.PointerFromQRectF(i))
+	}
 }
 
 func (ptr *QStylePainter) __drawRects_rectangles_newList2() unsafe.Pointer {
@@ -74746,78 +75854,103 @@ func (ptr *QStylePlugin) DestroyQStylePlugin() {
 	}
 }
 
-func (ptr *QStylePlugin) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QStylePlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QStylePlugin) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QStylePlugin___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QStylePlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QStylePlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QStylePlugin) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePlugin___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QStylePlugin) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QStylePlugin___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QStylePlugin) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStylePlugin) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStylePlugin) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStylePlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStylePlugin) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePlugin___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStylePlugin) __findChildren_newList2() unsafe.Pointer {
 	return C.QStylePlugin___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QStylePlugin) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStylePlugin) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStylePlugin) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStylePlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStylePlugin) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePlugin___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStylePlugin) __findChildren_newList3() unsafe.Pointer {
 	return C.QStylePlugin___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QStylePlugin) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStylePlugin) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStylePlugin) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStylePlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStylePlugin) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePlugin___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStylePlugin) __findChildren_newList() unsafe.Pointer {
 	return C.QStylePlugin___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QStylePlugin) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QStylePlugin) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QStylePlugin___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QStylePlugin) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QStylePlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QStylePlugin) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStylePlugin___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QStylePlugin) __children_newList() unsafe.Pointer {
@@ -75822,78 +76955,103 @@ func (ptr *QSystemTrayIcon) IsVisible() bool {
 	return false
 }
 
-func (ptr *QSystemTrayIcon) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QSystemTrayIcon___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QSystemTrayIcon) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QSystemTrayIcon___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QSystemTrayIcon) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QSystemTrayIcon___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QSystemTrayIcon) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QSystemTrayIcon) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QSystemTrayIcon___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSystemTrayIcon) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSystemTrayIcon___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSystemTrayIcon) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSystemTrayIcon) __findChildren_newList2() unsafe.Pointer {
 	return C.QSystemTrayIcon___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSystemTrayIcon) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSystemTrayIcon___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSystemTrayIcon) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSystemTrayIcon) __findChildren_newList3() unsafe.Pointer {
 	return C.QSystemTrayIcon___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSystemTrayIcon) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSystemTrayIcon) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSystemTrayIcon___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSystemTrayIcon) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSystemTrayIcon) __findChildren_newList() unsafe.Pointer {
 	return C.QSystemTrayIcon___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QSystemTrayIcon) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QSystemTrayIcon) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QSystemTrayIcon___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QSystemTrayIcon) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QSystemTrayIcon___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QSystemTrayIcon) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSystemTrayIcon___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QSystemTrayIcon) __children_newList() unsafe.Pointer {
@@ -80352,8 +81510,9 @@ func (ptr *QTableWidget) FindItems(text string, flags core.Qt__MatchFlag) []*QTa
 		}
 		return func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 			out := make([]*QTableWidgetItem, int(l.len))
+			tmpList := NewQTableWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTableWidget)(nil).__findItems_atList(i, l.data)
+				out[i] = tmpList.__findItems_atList(i)
 			}
 			return out
 		}(C.QTableWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags)))
@@ -80365,8 +81524,9 @@ func (ptr *QTableWidget) Items(data core.QMimeData_ITF) []*QTableWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 			out := make([]*QTableWidgetItem, int(l.len))
+			tmpList := NewQTableWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTableWidget)(nil).__items_atList(i, l.data)
+				out[i] = tmpList.__items_atList(i)
 			}
 			return out
 		}(C.QTableWidget_Items(ptr.Pointer(), core.PointerFromQMimeData(data)))
@@ -80378,8 +81538,9 @@ func (ptr *QTableWidget) SelectedItems() []*QTableWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 			out := make([]*QTableWidgetItem, int(l.len))
+			tmpList := NewQTableWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTableWidget)(nil).__selectedItems_atList(i, l.data)
+				out[i] = tmpList.__selectedItems_atList(i)
 			}
 			return out
 		}(C.QTableWidget_SelectedItems(ptr.Pointer()))
@@ -80391,8 +81552,9 @@ func (ptr *QTableWidget) SelectedRanges() []*QTableWidgetSelectionRange {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QTableWidgetSelectionRange {
 			out := make([]*QTableWidgetSelectionRange, int(l.len))
+			tmpList := NewQTableWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTableWidget)(nil).__selectedRanges_atList(i, l.data)
+				out[i] = tmpList.__selectedRanges_atList(i)
 			}
 			return out
 		}(C.QTableWidget_SelectedRanges(ptr.Pointer()))
@@ -80405,8 +81567,9 @@ func callbackQTableWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*QTableWidgetItem) *core.QMimeData)(func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 			out := make([]*QTableWidgetItem, int(l.len))
+			tmpList := NewQTableWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTableWidget)(nil).__mimeData_items_atList(i, l.data)
+				out[i] = tmpList.__mimeData_items_atList(i)
 			}
 			return out
 		}(items)))
@@ -80414,8 +81577,9 @@ func callbackQTableWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_
 
 	return core.PointerFromQMimeData(NewQTableWidgetFromPointer(ptr).MimeDataDefault(func(l C.struct_QtWidgets_PackedList) []*QTableWidgetItem {
 		out := make([]*QTableWidgetItem, int(l.len))
+		tmpList := NewQTableWidgetFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QTableWidget)(nil).__mimeData_items_atList(i, l.data)
+			out[i] = tmpList.__mimeData_items_atList(i)
 		}
 		return out
 	}(items)))
@@ -80445,11 +81609,11 @@ func (ptr *QTableWidget) DisconnectMimeData() {
 func (ptr *QTableWidget) MimeData(items []*QTableWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QTableWidget_MimeData(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTableWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQTableWidgetFromPointer(NewQTableWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QTableWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -80462,11 +81626,11 @@ func (ptr *QTableWidget) MimeData(items []*QTableWidgetItem) *core.QMimeData {
 func (ptr *QTableWidget) MimeDataDefault(items []*QTableWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QTableWidget_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTableWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQTableWidgetFromPointer(NewQTableWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QTableWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -80713,62 +81877,87 @@ func (ptr *QTableWidget) VisualRow(logicalRow int) int {
 	return 0
 }
 
-func (ptr *QTableWidget) __findItems_atList(i int, p unsafe.Pointer) *QTableWidgetItem {
-	return NewQTableWidgetItemFromPointer(C.QTableWidget___findItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTableWidget) __findItems_atList(i int) *QTableWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTableWidgetItemFromPointer(C.QTableWidget___findItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTableWidget) __findItems_setList(i QTableWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTableWidget___findItems_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i), p)
+func (ptr *QTableWidget) __findItems_setList(i QTableWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTableWidget___findItems_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i))
+	}
 }
 
 func (ptr *QTableWidget) __findItems_newList() unsafe.Pointer {
 	return C.QTableWidget___findItems_newList(ptr.Pointer())
 }
 
-func (ptr *QTableWidget) __items_atList(i int, p unsafe.Pointer) *QTableWidgetItem {
-	return NewQTableWidgetItemFromPointer(C.QTableWidget___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTableWidget) __items_atList(i int) *QTableWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTableWidgetItemFromPointer(C.QTableWidget___items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTableWidget) __items_setList(i QTableWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTableWidget___items_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i), p)
+func (ptr *QTableWidget) __items_setList(i QTableWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTableWidget___items_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i))
+	}
 }
 
 func (ptr *QTableWidget) __items_newList() unsafe.Pointer {
 	return C.QTableWidget___items_newList(ptr.Pointer())
 }
 
-func (ptr *QTableWidget) __selectedItems_atList(i int, p unsafe.Pointer) *QTableWidgetItem {
-	return NewQTableWidgetItemFromPointer(C.QTableWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTableWidget) __selectedItems_atList(i int) *QTableWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTableWidgetItemFromPointer(C.QTableWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTableWidget) __selectedItems_setList(i QTableWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTableWidget___selectedItems_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i), p)
+func (ptr *QTableWidget) __selectedItems_setList(i QTableWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTableWidget___selectedItems_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i))
+	}
 }
 
 func (ptr *QTableWidget) __selectedItems_newList() unsafe.Pointer {
 	return C.QTableWidget___selectedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QTableWidget) __selectedRanges_atList(i int, p unsafe.Pointer) *QTableWidgetSelectionRange {
-	tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidget___selectedRanges_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
-	return tmpValue
+func (ptr *QTableWidget) __selectedRanges_atList(i int) *QTableWidgetSelectionRange {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQTableWidgetSelectionRangeFromPointer(C.QTableWidget___selectedRanges_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTableWidgetSelectionRange).DestroyQTableWidgetSelectionRange)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QTableWidget) __selectedRanges_setList(i QTableWidgetSelectionRange_ITF, p unsafe.Pointer) {
-	C.QTableWidget___selectedRanges_setList(ptr.Pointer(), PointerFromQTableWidgetSelectionRange(i), p)
+func (ptr *QTableWidget) __selectedRanges_setList(i QTableWidgetSelectionRange_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTableWidget___selectedRanges_setList(ptr.Pointer(), PointerFromQTableWidgetSelectionRange(i))
+	}
 }
 
 func (ptr *QTableWidget) __selectedRanges_newList() unsafe.Pointer {
 	return C.QTableWidget___selectedRanges_newList(ptr.Pointer())
 }
 
-func (ptr *QTableWidget) __mimeData_items_atList(i int, p unsafe.Pointer) *QTableWidgetItem {
-	return NewQTableWidgetItemFromPointer(C.QTableWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTableWidget) __mimeData_items_atList(i int) *QTableWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTableWidgetItemFromPointer(C.QTableWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTableWidget) __mimeData_items_setList(i QTableWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTableWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i), p)
+func (ptr *QTableWidget) __mimeData_items_setList(i QTableWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTableWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQTableWidgetItem(i))
+	}
 }
 
 func (ptr *QTableWidget) __mimeData_items_newList() unsafe.Pointer {
@@ -86577,16 +87766,18 @@ func callbackQTreeView_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, b
 	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQTreeViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
 	} else {
 		NewQTreeViewFromPointer(ptr).DataChangedDefault(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQTreeViewFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeView)(nil).__dataChanged_roles_atList(i, l.data)
+				out[i] = tmpList.__dataChanged_roles_atList(i)
 			}
 			return out
 		}(roles))
@@ -86617,11 +87808,11 @@ func (ptr *QTreeView) DisconnectDataChanged() {
 func (ptr *QTreeView) DataChanged(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QTreeView_DataChanged(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QTreeView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQTreeViewFromPointer(NewQTreeViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QTreeView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -86629,11 +87820,11 @@ func (ptr *QTreeView) DataChanged(topLeft core.QModelIndex_ITF, bottomRight core
 func (ptr *QTreeView) DataChangedDefault(topLeft core.QModelIndex_ITF, bottomRight core.QModelIndex_ITF, roles []int) {
 	if ptr.Pointer() != nil {
 		C.QTreeView_DataChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(topLeft), core.PointerFromQModelIndex(bottomRight), func() unsafe.Pointer {
-			tmpList := (*QTreeView)(nil).__dataChanged_roles_newList()
+			tmpList := NewQTreeViewFromPointer(NewQTreeViewFromPointer(nil).__dataChanged_roles_newList())
 			for _, v := range roles {
-				(*QTreeView)(nil).__dataChanged_roles_setList(v, tmpList)
+				tmpList.__dataChanged_roles_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -88125,11 +89316,11 @@ func (ptr *QTreeWidget) AddTopLevelItem(item QTreeWidgetItem_ITF) {
 func (ptr *QTreeWidget) AddTopLevelItems(items []*QTreeWidgetItem) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_AddTopLevelItems(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTreeWidget)(nil).__addTopLevelItems_items_newList()
+			tmpList := NewQTreeWidgetFromPointer(NewQTreeWidgetFromPointer(nil).__addTopLevelItems_items_newList())
 			for _, v := range items {
-				(*QTreeWidget)(nil).__addTopLevelItems_items_setList(v, tmpList)
+				tmpList.__addTopLevelItems_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -88320,11 +89511,11 @@ func (ptr *QTreeWidget) InsertTopLevelItem(index int, item QTreeWidgetItem_ITF) 
 func (ptr *QTreeWidget) InsertTopLevelItems(index int, items []*QTreeWidgetItem) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidget_InsertTopLevelItems(ptr.Pointer(), C.int(int32(index)), func() unsafe.Pointer {
-			tmpList := (*QTreeWidget)(nil).__insertTopLevelItems_items_newList()
+			tmpList := NewQTreeWidgetFromPointer(NewQTreeWidgetFromPointer(nil).__insertTopLevelItems_items_newList())
 			for _, v := range items {
-				(*QTreeWidget)(nil).__insertTopLevelItems_items_setList(v, tmpList)
+				tmpList.__insertTopLevelItems_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -88818,8 +90009,9 @@ func (ptr *QTreeWidget) FindItems(text string, flags core.Qt__MatchFlag, column 
 		}
 		return func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 			out := make([]*QTreeWidgetItem, int(l.len))
+			tmpList := NewQTreeWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeWidget)(nil).__findItems_atList(i, l.data)
+				out[i] = tmpList.__findItems_atList(i)
 			}
 			return out
 		}(C.QTreeWidget_FindItems(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(flags), C.int(int32(column))))
@@ -88831,8 +90023,9 @@ func (ptr *QTreeWidget) SelectedItems() []*QTreeWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 			out := make([]*QTreeWidgetItem, int(l.len))
+			tmpList := NewQTreeWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeWidget)(nil).__selectedItems_atList(i, l.data)
+				out[i] = tmpList.__selectedItems_atList(i)
 			}
 			return out
 		}(C.QTreeWidget_SelectedItems(ptr.Pointer()))
@@ -88845,8 +90038,9 @@ func callbackQTreeWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_P
 	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
 		return core.PointerFromQMimeData(signal.(func([]*QTreeWidgetItem) *core.QMimeData)(func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 			out := make([]*QTreeWidgetItem, int(l.len))
+			tmpList := NewQTreeWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeWidget)(nil).__mimeData_items_atList(i, l.data)
+				out[i] = tmpList.__mimeData_items_atList(i)
 			}
 			return out
 		}(items)))
@@ -88854,8 +90048,9 @@ func callbackQTreeWidget_MimeData(ptr unsafe.Pointer, items C.struct_QtWidgets_P
 
 	return core.PointerFromQMimeData(NewQTreeWidgetFromPointer(ptr).MimeDataDefault(func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 		out := make([]*QTreeWidgetItem, int(l.len))
+		tmpList := NewQTreeWidgetFromPointer(l.data)
 		for i := 0; i < len(out); i++ {
-			out[i] = (*QTreeWidget)(nil).__mimeData_items_atList(i, l.data)
+			out[i] = tmpList.__mimeData_items_atList(i)
 		}
 		return out
 	}(items)))
@@ -88885,11 +90080,11 @@ func (ptr *QTreeWidget) DisconnectMimeData() {
 func (ptr *QTreeWidget) MimeData(items []*QTreeWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QTreeWidget_MimeData(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTreeWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQTreeWidgetFromPointer(NewQTreeWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QTreeWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -88902,11 +90097,11 @@ func (ptr *QTreeWidget) MimeData(items []*QTreeWidgetItem) *core.QMimeData {
 func (ptr *QTreeWidget) MimeDataDefault(items []*QTreeWidgetItem) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMimeDataFromPointer(C.QTreeWidget_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTreeWidget)(nil).__mimeData_items_newList()
+			tmpList := NewQTreeWidgetFromPointer(NewQTreeWidgetFromPointer(nil).__mimeData_items_newList())
 			for _, v := range items {
-				(*QTreeWidget)(nil).__mimeData_items_setList(v, tmpList)
+				tmpList.__mimeData_items_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -89146,72 +90341,102 @@ func (ptr *QTreeWidget) TopLevelItemCount() int {
 	return 0
 }
 
-func (ptr *QTreeWidget) __addTopLevelItems_items_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___addTopLevelItems_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __addTopLevelItems_items_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___addTopLevelItems_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __addTopLevelItems_items_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___addTopLevelItems_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __addTopLevelItems_items_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___addTopLevelItems_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __addTopLevelItems_items_newList() unsafe.Pointer {
 	return C.QTreeWidget___addTopLevelItems_items_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidget) __insertTopLevelItems_items_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___insertTopLevelItems_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __insertTopLevelItems_items_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___insertTopLevelItems_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __insertTopLevelItems_items_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___insertTopLevelItems_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __insertTopLevelItems_items_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___insertTopLevelItems_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __insertTopLevelItems_items_newList() unsafe.Pointer {
 	return C.QTreeWidget___insertTopLevelItems_items_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidget) __findItems_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___findItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __findItems_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___findItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __findItems_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___findItems_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __findItems_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___findItems_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __findItems_newList() unsafe.Pointer {
 	return C.QTreeWidget___findItems_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidget) __items_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __items_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __items_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __items_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __items_newList() unsafe.Pointer {
 	return C.QTreeWidget___items_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidget) __selectedItems_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __selectedItems_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___selectedItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __selectedItems_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___selectedItems_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __selectedItems_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___selectedItems_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __selectedItems_newList() unsafe.Pointer {
 	return C.QTreeWidget___selectedItems_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidget) __mimeData_items_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidget) __mimeData_items_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget___mimeData_items_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidget) __mimeData_items_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidget) __mimeData_items_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidget___mimeData_items_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidget) __mimeData_items_newList() unsafe.Pointer {
@@ -89279,8 +90504,9 @@ func (ptr *QTreeWidgetItem) TakeChildren() []*QTreeWidgetItem {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QTreeWidgetItem {
 			out := make([]*QTreeWidgetItem, int(l.len))
+			tmpList := NewQTreeWidgetItemFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QTreeWidgetItem)(nil).__takeChildren_atList(i, l.data)
+				out[i] = tmpList.__takeChildren_atList(i)
 			}
 			return out
 		}(C.QTreeWidgetItem_TakeChildren(ptr.Pointer()))
@@ -89346,11 +90572,11 @@ func (ptr *QTreeWidgetItem) AddChild(child QTreeWidgetItem_ITF) {
 func (ptr *QTreeWidgetItem) AddChildren(children []*QTreeWidgetItem) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_AddChildren(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QTreeWidgetItem)(nil).__addChildren_children_newList()
+			tmpList := NewQTreeWidgetItemFromPointer(NewQTreeWidgetItemFromPointer(nil).__addChildren_children_newList())
 			for _, v := range children {
-				(*QTreeWidgetItem)(nil).__addChildren_children_setList(v, tmpList)
+				tmpList.__addChildren_children_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -89370,11 +90596,11 @@ func (ptr *QTreeWidgetItem) InsertChild(index int, child QTreeWidgetItem_ITF) {
 func (ptr *QTreeWidgetItem) InsertChildren(index int, children []*QTreeWidgetItem) {
 	if ptr.Pointer() != nil {
 		C.QTreeWidgetItem_InsertChildren(ptr.Pointer(), C.int(int32(index)), func() unsafe.Pointer {
-			tmpList := (*QTreeWidgetItem)(nil).__insertChildren_children_newList()
+			tmpList := NewQTreeWidgetItemFromPointer(NewQTreeWidgetItemFromPointer(nil).__insertChildren_children_newList())
 			for _, v := range children {
-				(*QTreeWidgetItem)(nil).__insertChildren_children_setList(v, tmpList)
+				tmpList.__insertChildren_children_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -89972,36 +91198,51 @@ func (ptr *QTreeWidgetItem) WriteDefault(out core.QDataStream_ITF) {
 	}
 }
 
-func (ptr *QTreeWidgetItem) __takeChildren_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___takeChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidgetItem) __takeChildren_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___takeChildren_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidgetItem) __takeChildren_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidgetItem___takeChildren_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidgetItem) __takeChildren_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem___takeChildren_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidgetItem) __takeChildren_newList() unsafe.Pointer {
 	return C.QTreeWidgetItem___takeChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidgetItem) __addChildren_children_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___addChildren_children_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidgetItem) __addChildren_children_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___addChildren_children_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidgetItem) __addChildren_children_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidgetItem___addChildren_children_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidgetItem) __addChildren_children_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem___addChildren_children_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidgetItem) __addChildren_children_newList() unsafe.Pointer {
 	return C.QTreeWidgetItem___addChildren_children_newList(ptr.Pointer())
 }
 
-func (ptr *QTreeWidgetItem) __insertChildren_children_atList(i int, p unsafe.Pointer) *QTreeWidgetItem {
-	return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___insertChildren_children_atList(ptr.Pointer(), C.int(int32(i)), p))
+func (ptr *QTreeWidgetItem) __insertChildren_children_atList(i int) *QTreeWidgetItem {
+	if ptr.Pointer() != nil {
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidgetItem___insertChildren_children_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
-func (ptr *QTreeWidgetItem) __insertChildren_children_setList(i QTreeWidgetItem_ITF, p unsafe.Pointer) {
-	C.QTreeWidgetItem___insertChildren_children_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i), p)
+func (ptr *QTreeWidgetItem) __insertChildren_children_setList(i QTreeWidgetItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTreeWidgetItem___insertChildren_children_setList(ptr.Pointer(), PointerFromQTreeWidgetItem(i))
+	}
 }
 
 func (ptr *QTreeWidgetItem) __insertChildren_children_newList() unsafe.Pointer {
@@ -90902,8 +92143,9 @@ func (ptr *QUndoGroup) Stacks() []*QUndoStack {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QUndoStack {
 			out := make([]*QUndoStack, int(l.len))
+			tmpList := NewQUndoGroupFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QUndoGroup)(nil).__stacks_atList(i, l.data)
+				out[i] = tmpList.__stacks_atList(i)
 			}
 			return out
 		}(C.QUndoGroup_Stacks(ptr.Pointer()))
@@ -90957,94 +92199,124 @@ func (ptr *QUndoGroup) IsClean() bool {
 	return false
 }
 
-func (ptr *QUndoGroup) __stacks_atList(i int, p unsafe.Pointer) *QUndoStack {
-	tmpValue := NewQUndoStackFromPointer(C.QUndoGroup___stacks_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoGroup) __stacks_atList(i int) *QUndoStack {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQUndoStackFromPointer(C.QUndoGroup___stacks_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoGroup) __stacks_setList(i QUndoStack_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___stacks_setList(ptr.Pointer(), PointerFromQUndoStack(i), p)
+func (ptr *QUndoGroup) __stacks_setList(i QUndoStack_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___stacks_setList(ptr.Pointer(), PointerFromQUndoStack(i))
+	}
 }
 
 func (ptr *QUndoGroup) __stacks_newList() unsafe.Pointer {
 	return C.QUndoGroup___stacks_newList(ptr.Pointer())
 }
 
-func (ptr *QUndoGroup) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QUndoGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QUndoGroup) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QUndoGroup___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QUndoGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QUndoGroup) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QUndoGroup) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QUndoGroup___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QUndoGroup) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoGroup) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoGroup) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoGroup) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoGroup) __findChildren_newList2() unsafe.Pointer {
 	return C.QUndoGroup___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QUndoGroup) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoGroup) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoGroup) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoGroup) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoGroup) __findChildren_newList3() unsafe.Pointer {
 	return C.QUndoGroup___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QUndoGroup) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoGroup) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoGroup) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoGroup) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoGroup) __findChildren_newList() unsafe.Pointer {
 	return C.QUndoGroup___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QUndoGroup) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoGroup) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoGroup___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoGroup) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoGroup) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoGroup___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoGroup) __children_newList() unsafe.Pointer {
@@ -91908,78 +93180,103 @@ func (ptr *QUndoStack) UndoLimit() int {
 	return 0
 }
 
-func (ptr *QUndoStack) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QUndoStack___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QUndoStack) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QUndoStack___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QUndoStack) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QUndoStack___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QUndoStack) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoStack___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QUndoStack) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QUndoStack___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QUndoStack) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoStack) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoStack) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoStack___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoStack) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoStack___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoStack) __findChildren_newList2() unsafe.Pointer {
 	return C.QUndoStack___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QUndoStack) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoStack) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoStack) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoStack___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoStack) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoStack___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoStack) __findChildren_newList3() unsafe.Pointer {
 	return C.QUndoStack___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QUndoStack) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoStack) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoStack___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoStack) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoStack___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoStack) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoStack___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoStack) __findChildren_newList() unsafe.Pointer {
 	return C.QUndoStack___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QUndoStack) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QUndoStack___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QUndoStack) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QUndoStack___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QUndoStack) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QUndoStack___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QUndoStack) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QUndoStack___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QUndoStack) __children_newList() unsafe.Pointer {
@@ -92875,11 +94172,11 @@ func (ptr *QWidget) AddAction(action QAction_ITF) {
 func (ptr *QWidget) AddActions(actions []*QAction) {
 	if ptr.Pointer() != nil {
 		C.QWidget_AddActions(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := (*QWidget)(nil).__addActions_actions_newList()
+			tmpList := NewQWidgetFromPointer(NewQWidgetFromPointer(nil).__addActions_actions_newList())
 			for _, v := range actions {
-				(*QWidget)(nil).__addActions_actions_setList(v, tmpList)
+				tmpList.__addActions_actions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -93532,11 +94829,11 @@ func (ptr *QWidget) InsertAction(before QAction_ITF, action QAction_ITF) {
 func (ptr *QWidget) InsertActions(before QAction_ITF, actions []*QAction) {
 	if ptr.Pointer() != nil {
 		C.QWidget_InsertActions(ptr.Pointer(), PointerFromQAction(before), func() unsafe.Pointer {
-			tmpList := (*QWidget)(nil).__insertActions_actions_newList()
+			tmpList := NewQWidgetFromPointer(NewQWidgetFromPointer(nil).__insertActions_actions_newList())
 			for _, v := range actions {
-				(*QWidget)(nil).__insertActions_actions_setList(v, tmpList)
+				tmpList.__insertActions_actions_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -95637,8 +96934,9 @@ func (ptr *QWidget) Actions() []*QAction {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QAction {
 			out := make([]*QAction, int(l.len))
+			tmpList := NewQWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QWidget)(nil).__actions_atList(i, l.data)
+				out[i] = tmpList.__actions_atList(i)
 			}
 			return out
 		}(C.QWidget_Actions(ptr.Pointer()))
@@ -96720,126 +98018,166 @@ func (ptr *QWidget) InitPainter(painter gui.QPainter_ITF) {
 	}
 }
 
-func (ptr *QWidget) __addActions_actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __addActions_actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QWidget___addActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __addActions_actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QWidget___addActions_actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QWidget) __addActions_actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___addActions_actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QWidget) __addActions_actions_newList() unsafe.Pointer {
 	return C.QWidget___addActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QWidget) __insertActions_actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __insertActions_actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QWidget___insertActions_actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __insertActions_actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QWidget___insertActions_actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QWidget) __insertActions_actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___insertActions_actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QWidget) __insertActions_actions_newList() unsafe.Pointer {
 	return C.QWidget___insertActions_actions_newList(ptr.Pointer())
 }
 
-func (ptr *QWidget) __actions_atList(i int, p unsafe.Pointer) *QAction {
-	tmpValue := NewQActionFromPointer(C.QWidget___actions_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __actions_atList(i int) *QAction {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQActionFromPointer(C.QWidget___actions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __actions_setList(i QAction_ITF, p unsafe.Pointer) {
-	C.QWidget___actions_setList(ptr.Pointer(), PointerFromQAction(i), p)
+func (ptr *QWidget) __actions_setList(i QAction_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___actions_setList(ptr.Pointer(), PointerFromQAction(i))
+	}
 }
 
 func (ptr *QWidget) __actions_newList() unsafe.Pointer {
 	return C.QWidget___actions_newList(ptr.Pointer())
 }
 
-func (ptr *QWidget) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QWidget) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QWidget___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QWidget) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QWidget) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QWidget___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QWidget) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QWidget) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QWidget) __findChildren_newList2() unsafe.Pointer {
 	return C.QWidget___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QWidget) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QWidget) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QWidget) __findChildren_newList3() unsafe.Pointer {
 	return C.QWidget___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QWidget) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QWidget___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QWidget) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QWidget) __findChildren_newList() unsafe.Pointer {
 	return C.QWidget___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QWidget) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QWidget___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidget) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QWidget___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidget) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QWidget) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidget___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QWidget) __children_newList() unsafe.Pointer {
@@ -97252,8 +98590,9 @@ func (ptr *QWidgetAction) CreatedWidgets() []*QWidget {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []*QWidget {
 			out := make([]*QWidget, int(l.len))
+			tmpList := NewQWidgetActionFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QWidgetAction)(nil).__createdWidgets_atList(i, l.data)
+				out[i] = tmpList.__createdWidgets_atList(i)
 			}
 			return out
 		}(C.QWidgetAction_CreatedWidgets(ptr.Pointer()))
@@ -97272,16 +98611,21 @@ func (ptr *QWidgetAction) DefaultWidget() *QWidget {
 	return nil
 }
 
-func (ptr *QWidgetAction) __createdWidgets_atList(i int, p unsafe.Pointer) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QWidgetAction___createdWidgets_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QWidgetAction) __createdWidgets_atList(i int) *QWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWidgetFromPointer(C.QWidgetAction___createdWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QWidgetAction) __createdWidgets_setList(i QWidget_ITF, p unsafe.Pointer) {
-	C.QWidgetAction___createdWidgets_setList(ptr.Pointer(), PointerFromQWidget(i), p)
+func (ptr *QWidgetAction) __createdWidgets_setList(i QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWidgetAction___createdWidgets_setList(ptr.Pointer(), PointerFromQWidget(i))
+	}
 }
 
 func (ptr *QWidgetAction) __createdWidgets_newList() unsafe.Pointer {
@@ -98422,8 +99766,9 @@ func (ptr *QWizard) PageIds() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQWizardFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QWizard)(nil).__pageIds_atList(i, l.data)
+				out[i] = tmpList.__pageIds_atList(i)
 			}
 			return out
 		}(C.QWizard_PageIds(ptr.Pointer()))
@@ -98435,8 +99780,9 @@ func (ptr *QWizard) VisitedPages() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
+			tmpList := NewQWizardFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QWizard)(nil).__visitedPages_atList(i, l.data)
+				out[i] = tmpList.__visitedPages_atList(i)
 			}
 			return out
 		}(C.QWizard_VisitedPages(ptr.Pointer()))
@@ -98607,24 +99953,34 @@ func (ptr *QWizard) StartId() int {
 	return 0
 }
 
-func (ptr *QWizard) __pageIds_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QWizard___pageIds_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QWizard) __pageIds_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWizard___pageIds_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QWizard) __pageIds_setList(i int, p unsafe.Pointer) {
-	C.QWizard___pageIds_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QWizard) __pageIds_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QWizard___pageIds_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QWizard) __pageIds_newList() unsafe.Pointer {
 	return C.QWizard___pageIds_newList(ptr.Pointer())
 }
 
-func (ptr *QWizard) __visitedPages_atList(i int, p unsafe.Pointer) int {
-	return int(int32(C.QWizard___visitedPages_atList(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QWizard) __visitedPages_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWizard___visitedPages_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QWizard) __visitedPages_setList(i int, p unsafe.Pointer) {
-	C.QWizard___visitedPages_setList(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QWizard) __visitedPages_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QWizard___visitedPages_setList(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QWizard) __visitedPages_newList() unsafe.Pointer {

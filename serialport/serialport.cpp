@@ -569,16 +569,14 @@ long long QSerialPort_ReadBufferSize(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->readBufferSize();
 }
 
-void* QSerialPort___dynamicPropertyNames_atList(void* ptr, int i, void* p)
+void* QSerialPort___dynamicPropertyNames_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(p)->at(i); if (i == static_cast<QList<QByteArray>*>(p)->size()-1) { static_cast<QList<QByteArray>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QSerialPort___dynamicPropertyNames_setList(void* ptr, void* i, void* p)
+void QSerialPort___dynamicPropertyNames_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QByteArray>*>(p)->append(*static_cast<QByteArray*>(i));
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
 void* QSerialPort___dynamicPropertyNames_newList(void* ptr)
@@ -587,16 +585,14 @@ void* QSerialPort___dynamicPropertyNames_newList(void* ptr)
 	return new QList<QByteArray>();
 }
 
-void* QSerialPort___findChildren_atList2(void* ptr, int i, void* p)
+void* QSerialPort___findChildren_atList2(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSerialPort___findChildren_setList2(void* ptr, void* i, void* p)
+void QSerialPort___findChildren_setList2(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QSerialPort___findChildren_newList2(void* ptr)
@@ -605,16 +601,14 @@ void* QSerialPort___findChildren_newList2(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSerialPort___findChildren_atList3(void* ptr, int i, void* p)
+void* QSerialPort___findChildren_atList3(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSerialPort___findChildren_setList3(void* ptr, void* i, void* p)
+void QSerialPort___findChildren_setList3(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QSerialPort___findChildren_newList3(void* ptr)
@@ -623,16 +617,14 @@ void* QSerialPort___findChildren_newList3(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSerialPort___findChildren_atList(void* ptr, int i, void* p)
+void* QSerialPort___findChildren_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject* tmp = static_cast<QList<QObject*>*>(p)->at(i); if (i == static_cast<QList<QObject*>*>(p)->size()-1) { static_cast<QList<QObject*>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSerialPort___findChildren_setList(void* ptr, void* i, void* p)
+void QSerialPort___findChildren_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject*>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QSerialPort___findChildren_newList(void* ptr)
@@ -641,16 +633,14 @@ void* QSerialPort___findChildren_newList(void* ptr)
 	return new QList<QObject*>();
 }
 
-void* QSerialPort___children_atList(void* ptr, int i, void* p)
+void* QSerialPort___children_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({QObject * tmp = static_cast<QList<QObject *>*>(p)->at(i); if (i == static_cast<QList<QObject *>*>(p)->size()-1) { static_cast<QList<QObject *>*>(p)->~QList(); free(p); }; tmp; });
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSerialPort___children_setList(void* ptr, void* i, void* p)
+void QSerialPort___children_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QObject *>*>(p)->append(static_cast<QObject*>(i));
+	static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
 }
 
 void* QSerialPort___children_newList(void* ptr)
@@ -819,16 +809,14 @@ unsigned short QSerialPortInfo_VendorIdentifier(void* ptr)
 	return static_cast<QSerialPortInfo*>(ptr)->vendorIdentifier();
 }
 
-void* QSerialPortInfo___availablePorts_atList(void* ptr, int i, void* p)
+void* QSerialPortInfo___availablePorts_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return new QSerialPortInfo(({QSerialPortInfo tmp = static_cast<QList<QSerialPortInfo>*>(p)->at(i); if (i == static_cast<QList<QSerialPortInfo>*>(p)->size()-1) { static_cast<QList<QSerialPortInfo>*>(p)->~QList(); free(p); }; tmp; }));
+	return new QSerialPortInfo(({QSerialPortInfo tmp = static_cast<QList<QSerialPortInfo>*>(ptr)->at(i); if (i == static_cast<QList<QSerialPortInfo>*>(ptr)->size()-1) { static_cast<QList<QSerialPortInfo>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QSerialPortInfo___availablePorts_setList(void* ptr, void* i, void* p)
+void QSerialPortInfo___availablePorts_setList(void* ptr, void* i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<QSerialPortInfo>*>(p)->append(*static_cast<QSerialPortInfo*>(i));
+	static_cast<QList<QSerialPortInfo>*>(ptr)->append(*static_cast<QSerialPortInfo*>(i));
 }
 
 void* QSerialPortInfo___availablePorts_newList(void* ptr)
@@ -837,16 +825,14 @@ void* QSerialPortInfo___availablePorts_newList(void* ptr)
 	return new QList<QSerialPortInfo>();
 }
 
-int QSerialPortInfo___standardBaudRates_atList(void* ptr, int i, void* p)
+int QSerialPortInfo___standardBaudRates_atList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	return ({qint32 tmp = static_cast<QList<qint32>*>(p)->at(i); if (i == static_cast<QList<qint32>*>(p)->size()-1) { static_cast<QList<qint32>*>(p)->~QList(); free(p); }; tmp; });
+	return ({qint32 tmp = static_cast<QList<qint32>*>(ptr)->at(i); if (i == static_cast<QList<qint32>*>(ptr)->size()-1) { static_cast<QList<qint32>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSerialPortInfo___standardBaudRates_setList(void* ptr, int i, void* p)
+void QSerialPortInfo___standardBaudRates_setList(void* ptr, int i)
 {
-	Q_UNUSED(ptr);
-	static_cast<QList<qint32>*>(p)->append(i);
+	static_cast<QList<qint32>*>(ptr)->append(i);
 }
 
 void* QSerialPortInfo___standardBaudRates_newList(void* ptr)

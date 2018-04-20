@@ -321,11 +321,11 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting3(model core.QAbstractItemModel_
 			defer C.free(unsafe.Pointer(nameC))
 		}
 		return C.QRemoteObjectHostBase_EnableRemoting3(ptr.Pointer(), core.PointerFromQAbstractItemModel(model), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}, func() unsafe.Pointer {
-			tmpList := (*QRemoteObjectHostBase)(nil).__enableRemoting_roles_newList3()
+			tmpList := NewQRemoteObjectHostBaseFromPointer(NewQRemoteObjectHostBaseFromPointer(nil).__enableRemoting_roles_newList3())
 			for _, v := range roles {
-				(*QRemoteObjectHostBase)(nil).__enableRemoting_roles_setList3(v, tmpList)
+				tmpList.__enableRemoting_roles_setList3(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}(), core.PointerFromQItemSelectionModel(selectionModel)) != 0
 	}
 	return false
@@ -343,12 +343,17 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting2(object core.QObject_ITF, name 
 	return false
 }
 
-func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_atList3(i int, p unsafe.Pointer) int {
-	return int(int32(C.QRemoteObjectHostBase___enableRemoting_roles_atList3(ptr.Pointer(), C.int(int32(i)), p)))
+func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_atList3(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QRemoteObjectHostBase___enableRemoting_roles_atList3(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
 }
 
-func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_setList3(i int, p unsafe.Pointer) {
-	C.QRemoteObjectHostBase___enableRemoting_roles_setList3(ptr.Pointer(), C.int(int32(i)), p)
+func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_setList3(i int) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectHostBase___enableRemoting_roles_setList3(ptr.Pointer(), C.int(int32(i)))
+	}
 }
 
 func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_newList3() unsafe.Pointer {
@@ -708,106 +713,141 @@ func (ptr *QRemoteObjectNode) Registry() *QRemoteObjectRegistry {
 	return nil
 }
 
-func (ptr *QRemoteObjectNode) __retrieveProperties_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectNode) __retrieveProperties_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __retrieveProperties_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectNode) __retrieveProperties_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __retrieveProperties_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___retrieveProperties_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __persistProperties_props_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectNode) __persistProperties_props_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectNode___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __persistProperties_props_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___persistProperties_props_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectNode) __persistProperties_props_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___persistProperties_props_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __persistProperties_props_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___persistProperties_props_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectNode___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QRemoteObjectNode) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectNode___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QRemoteObjectNode) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectNode) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectNode) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __findChildren_newList2() unsafe.Pointer {
 	return C.QRemoteObjectNode___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectNode) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectNode) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __findChildren_newList3() unsafe.Pointer {
 	return C.QRemoteObjectNode___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectNode) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectNode) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __findChildren_newList() unsafe.Pointer {
 	return C.QRemoteObjectNode___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectNode) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectNode) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectNode___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectNode) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectNode___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectNode) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectNode) __children_newList() unsafe.Pointer {
@@ -1043,20 +1083,20 @@ func NewQRemoteObjectPersistedStoreFromPointer(ptr unsafe.Pointer) (n *QRemoteOb
 func callbackQRemoteObjectPersistedStore_RestoreProperties(ptr unsafe.Pointer, repName C.struct_QtRemoteObjects_PackedString, repSig unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "restoreProperties"); signal != nil {
 		return func() unsafe.Pointer {
-			tmpList := (*QRemoteObjectPersistedStore)(nil).__restoreProperties_newList()
+			tmpList := NewQRemoteObjectPersistedStoreFromPointer(NewQRemoteObjectPersistedStoreFromPointer(nil).__restoreProperties_newList())
 			for _, v := range signal.(func(string, *core.QByteArray) []*core.QVariant)(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig)) {
-				(*QRemoteObjectPersistedStore)(nil).__restoreProperties_setList(v, tmpList)
+				tmpList.__restoreProperties_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}()
 	}
 
 	return func() unsafe.Pointer {
-		tmpList := (*QRemoteObjectPersistedStore)(nil).__restoreProperties_newList()
+		tmpList := NewQRemoteObjectPersistedStoreFromPointer(NewQRemoteObjectPersistedStoreFromPointer(nil).__restoreProperties_newList())
 		for _, v := range make([]*core.QVariant, 0) {
-			(*QRemoteObjectPersistedStore)(nil).__restoreProperties_setList(v, tmpList)
+			tmpList.__restoreProperties_setList(v)
 		}
-		return tmpList
+		return tmpList.Pointer()
 	}()
 }
 
@@ -1090,8 +1130,9 @@ func (ptr *QRemoteObjectPersistedStore) RestoreProperties(repName string, repSig
 		}
 		return func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
 			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectPersistedStoreFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QRemoteObjectPersistedStore)(nil).__restoreProperties_atList(i, l.data)
+				out[i] = tmpList.__restoreProperties_atList(i)
 			}
 			return out
 		}(C.QRemoteObjectPersistedStore_RestoreProperties(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig)))
@@ -1104,8 +1145,9 @@ func callbackQRemoteObjectPersistedStore_SaveProperties(ptr unsafe.Pointer, repN
 	if signal := qt.GetSignal(ptr, "saveProperties"); signal != nil {
 		signal.(func(string, *core.QByteArray, []*core.QVariant))(cGoUnpackString(repName), core.NewQByteArrayFromPointer(repSig), func(l C.struct_QtRemoteObjects_PackedList) []*core.QVariant {
 			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQRemoteObjectPersistedStoreFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = (*QRemoteObjectPersistedStore)(nil).__saveProperties_values_atList(i, l.data)
+				out[i] = tmpList.__saveProperties_values_atList(i)
 			}
 			return out
 		}(values))
@@ -1142,11 +1184,11 @@ func (ptr *QRemoteObjectPersistedStore) SaveProperties(repName string, repSig co
 			defer C.free(unsafe.Pointer(repNameC))
 		}
 		C.QRemoteObjectPersistedStore_SaveProperties(ptr.Pointer(), C.struct_QtRemoteObjects_PackedString{data: repNameC, len: C.longlong(len(repName))}, core.PointerFromQByteArray(repSig), func() unsafe.Pointer {
-			tmpList := (*QRemoteObjectPersistedStore)(nil).__saveProperties_values_newList()
+			tmpList := NewQRemoteObjectPersistedStoreFromPointer(NewQRemoteObjectPersistedStoreFromPointer(nil).__saveProperties_values_newList())
 			for _, v := range values {
-				(*QRemoteObjectPersistedStore)(nil).__saveProperties_values_setList(v, tmpList)
+				tmpList.__saveProperties_values_setList(v)
 			}
-			return tmpList
+			return tmpList.Pointer()
 		}())
 	}
 }
@@ -1197,28 +1239,38 @@ func (ptr *QRemoteObjectPersistedStore) DestroyQRemoteObjectPersistedStoreDefaul
 	}
 }
 
-func (ptr *QRemoteObjectPersistedStore) __restoreProperties_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectPersistedStore___restoreProperties_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectPersistedStore) __restoreProperties_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectPersistedStore___restoreProperties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectPersistedStore) __restoreProperties_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectPersistedStore___restoreProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectPersistedStore) __restoreProperties_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPersistedStore___restoreProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectPersistedStore) __restoreProperties_newList() unsafe.Pointer {
 	return C.QRemoteObjectPersistedStore___restoreProperties_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectPersistedStore) __saveProperties_values_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectPersistedStore___saveProperties_values_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectPersistedStore) __saveProperties_values_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectPersistedStore___saveProperties_values_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectPersistedStore) __saveProperties_values_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectPersistedStore___saveProperties_values_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectPersistedStore) __saveProperties_values_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectPersistedStore___saveProperties_values_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectPersistedStore) __saveProperties_values_newList() unsafe.Pointer {
@@ -1545,148 +1597,198 @@ func (ptr *QRemoteObjectReplica) IsReplicaValid() bool {
 	return false
 }
 
-func (ptr *QRemoteObjectReplica) __sendWithReply_args_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___sendWithReply_args_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __sendWithReply_args_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___sendWithReply_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __sendWithReply_args_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___sendWithReply_args_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectReplica) __sendWithReply_args_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___sendWithReply_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __sendWithReply_args_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___sendWithReply_args_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __send_args_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___send_args_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __send_args_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___send_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __send_args_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___send_args_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectReplica) __send_args_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___send_args_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __send_args_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___send_args_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __setProperties_properties_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___setProperties_properties_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __setProperties_properties_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___setProperties_properties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __setProperties_properties_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___setProperties_properties_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectReplica) __setProperties_properties_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___setProperties_properties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __setProperties_properties_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___setProperties_properties_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __retrieveProperties_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __retrieveProperties_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___retrieveProperties_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __retrieveProperties_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectReplica) __retrieveProperties_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___retrieveProperties_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __retrieveProperties_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___retrieveProperties_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __persistProperties_props_atList(i int, p unsafe.Pointer) *core.QVariant {
-	tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __persistProperties_props_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QRemoteObjectReplica___persistProperties_props_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __persistProperties_props_setList(i core.QVariant_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___persistProperties_props_setList(ptr.Pointer(), core.PointerFromQVariant(i), p)
+func (ptr *QRemoteObjectReplica) __persistProperties_props_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___persistProperties_props_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __persistProperties_props_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___persistProperties_props_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_atList(i int, p unsafe.Pointer) *core.QByteArray {
-	tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i)), p))
-	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-	return tmpValue
+func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QRemoteObjectReplica___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_setList(i core.QByteArray_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i), p)
+func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __dynamicPropertyNames_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___dynamicPropertyNames_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList2(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList2(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectReplica) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList2(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectReplica) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __findChildren_newList2() unsafe.Pointer {
 	return C.QRemoteObjectReplica___findChildren_newList2(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList3(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList3(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectReplica) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList3(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectReplica) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __findChildren_newList3() unsafe.Pointer {
 	return C.QRemoteObjectReplica___findChildren_newList3(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectReplica) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __findChildren_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectReplica) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __findChildren_newList() unsafe.Pointer {
 	return C.QRemoteObjectReplica___findChildren_newList(ptr.Pointer())
 }
 
-func (ptr *QRemoteObjectReplica) __children_atList(i int, p unsafe.Pointer) *core.QObject {
-	tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___children_atList(ptr.Pointer(), C.int(int32(i)), p))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func (ptr *QRemoteObjectReplica) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QRemoteObjectReplica___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
-	return tmpValue
+	return nil
 }
 
-func (ptr *QRemoteObjectReplica) __children_setList(i core.QObject_ITF, p unsafe.Pointer) {
-	C.QRemoteObjectReplica___children_setList(ptr.Pointer(), core.PointerFromQObject(i), p)
+func (ptr *QRemoteObjectReplica) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectReplica___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
 }
 
 func (ptr *QRemoteObjectReplica) __children_newList() unsafe.Pointer {
