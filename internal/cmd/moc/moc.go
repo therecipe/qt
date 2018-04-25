@@ -648,7 +648,7 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0], class)
 			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head), class)
 			if pureGoType1 == "" && pureGoType2 == "" {
-				return fmt.Sprintf("QHash<%v, %v>", o1, o2), ""
+				return fmt.Sprintf("QMap<%v, %v>", o1, o2), ""
 			}
 		}
 	}

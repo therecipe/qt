@@ -185,7 +185,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "darwin":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
 	case "windows":
-		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++"}...)
+		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++", "CONFIG+=windows"}...)
 	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "ios":
@@ -463,7 +463,6 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
 			}
-			tmp = strings.Replace(tmp, ",console ", ",windows ", -1)
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {
 				tmp = strings.Replace(tmp, "arm64", "armv7", -1)
