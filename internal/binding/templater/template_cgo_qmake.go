@@ -179,7 +179,11 @@ func createMakefile(module, path, target string, mode int) {
 		mPath = proPath + mPath
 	}
 
-	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", mPath, proPath)
+	relProPath, err := filepath.Rel(path, proPath)
+	if err != nil || utils.QT_UBPORTS() {
+		relProPath = proPath
+	}
+	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", mPath, relProPath)
 	cmd.Dir = path
 	switch target {
 	case "darwin":
