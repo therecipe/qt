@@ -336,13 +336,6 @@ func bundle(mode, target, path, name, depPath string) {
 		utils.MkdirAll(assets)
 		copy(assets+"/.", filepath.Join(depPath, "build"))
 
-		//create default gradle-wrapper.properties
-		if target == "android-emulator" {
-			path := filepath.Join(depPath, "build", "gradle", "wrapper")
-			utils.MkdirAll(path)
-			utils.Save(filepath.Join(path, "gradle-wrapper.properties"), android_gradle_wrapper())
-		}
-
 		//wrap exported go main inside c main
 		env, _, _, _ := cmd.BuildEnv(target, name, depPath)
 		compiler := env["CXX"]
@@ -403,13 +396,13 @@ func bundle(mode, target, path, name, depPath string) {
 			"--android-platform", "android-25",
 			"--jdk", utils.JDK_DIR(),
 			"--gradle",
+			"--no-gdbserver",
 			"--verbose",
 		)
-		if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
+		if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
 			dep.Args = append(dep.Args,
-				"--sign", filepath.Join(path, target, name+".keystore"),
-				strings.TrimSpace(utils.Load(filepath.Join(path, target, "alias.txt"))),
-				"--storepass", strings.TrimSpace(utils.Load(filepath.Join(path, target, "password.txt"))))
+				"--sign", filepath.Join(path, target, name+".jks"), strings.TrimSpace(utils.Load(filepath.Join(path, target, "jks_alias"))),
+				"--storepass", strings.TrimSpace(utils.Load(filepath.Join(path, target, "jks_pass"))))
 		}
 
 		if runtime.GOOS == "windows" {
@@ -424,13 +417,13 @@ func bundle(mode, target, path, name, depPath string) {
 
 		if utils.QT_VAGRANT() {
 			depPathUNC := strings.Replace(depPath, "C:\\media\\sf_GOPATH", "C:\\media\\UNC\\vboxsrv\\media_sf_GOPATH", -1)
-			if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
+			if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
 				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
 			} else {
 				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
 			}
 		} else {
-			if utils.ExistsFile(filepath.Join(path, target, name+".keystore")) {
+			if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
 				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
 			} else {
 				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
@@ -452,13 +445,12 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/.", depPath)
+		copy(assets+"/.", buildPath)
 
 		//add c_main_wrappers
 		if !utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
 			utils.Save(filepath.Join(depPath, target+"_qml_plugin_import.cpp"), "")
 		}
-		utils.Save(filepath.Join(depPath, "qt.conf"), ios_qtconf())
 
 		var t string
 		switch target {

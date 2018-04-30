@@ -20,9 +20,11 @@ func run(target, name, depPath, device string) {
 			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, "build-release-signed.apk")).Start()
 		}
 
+		//TODO: parse manifest for ident and start app (+ logcat)
+
 	case "ios-simulator":
 		if device == "" {
-			out, _ := exec.Command("xcrun", "instruments", "-s", "").Output()
+			out, _ := exec.Command("xcrun", "instruments", "-s").Output()
 			lines := strings.Split(string(out), "iPhone")
 			device = strings.Split(strings.Split(string(out), "iPhone 8 ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+") [")[1], "]")[0]
 		}
@@ -30,7 +32,7 @@ func run(target, name, depPath, device string) {
 		time.Sleep(1 * time.Second)
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "uninstall old app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "install new app")
-		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", name)), "start app")
+		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.yourcompany.%v", name)), "start app") //TODO: parse ident from plist
 
 	case "darwin":
 		exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app", name))).Start()
