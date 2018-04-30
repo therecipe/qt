@@ -77,7 +77,7 @@ func main() {
 			utils.Log.WithError(err).WithField("path", path).Fatal("can't resolve absolute path")
 		}
 	}
-	if !filepath.IsAbs(output) {
+	if output != "" && !filepath.IsAbs(output) {
 		output, err = filepath.Abs(output)
 		if err != nil {
 			utils.Log.WithError(err).WithField("output", output).Fatal("can't resolve absolute path")
