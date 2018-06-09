@@ -90,7 +90,8 @@ func CheckBuildTarget(buildTarget string) {
 		"sailfish", "sailfish-emulator", "asteroid",
 		"rpi1", "rpi2", "rpi3",
 		"windows", "darwin", "linux",
-		"homebrew", "ubports": //TODO: pkg_config ?
+		"homebrew", "ubports",
+		"js": //TODO: pkg_config ?
 	default:
 		if !strings.Contains(buildTarget, "_") {
 			Log.Panicf("failed to recognize build target %v", buildTarget)

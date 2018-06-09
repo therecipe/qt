@@ -9,6 +9,13 @@ func GoOutputParametersFromC(function *parser.Function, name string) string {
 	return goOutput(name, function.Output, function)
 }
 
+func GoJSOutputParametersFromC(function *parser.Function, name string) string {
+	if function.Meta == parser.CONSTRUCTOR {
+		return goOutputJS(name, function.Name, function)
+	}
+	return goOutputJS(name, function.Output, function)
+}
+
 func GoOutputParametersFromCFailed(function *parser.Function) string {
 	if function.Meta == parser.CONSTRUCTOR {
 		return goOutputFailed(function.Name, function)

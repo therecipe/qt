@@ -40,6 +40,8 @@ const (
 	MOC = "moc"
 )
 
+func UseJs() bool { return State.Target == "js" }
+
 func IsPackedList(v string) bool {
 	return (strings.HasPrefix(v, "QList<") ||
 		//TODO: QLinkedList
@@ -137,7 +139,7 @@ func CleanName(name, value string) string {
 
 //TODO: remove global
 var LibDeps = map[string][]string{
-	"Core":          {"Widgets", "Gui", "Svg"}, //Widgets, Gui //Svg (needed because it's more convenient)
+	"Core":          {"Widgets", "Gui"}, //Widgets, Gui
 	"AndroidExtras": {"Core"},
 	"Gui":           {"Widgets", "Core"}, //Widgets
 	"Network":       {"Core"},
@@ -191,7 +193,7 @@ var LibDeps = map[string][]string{
 	"WebKit": {"WebKitWidgets", "Multimedia", "Positioning", "Widgets", "Sql", "Network", "Gui", "Sensors", "Core"},
 
 	MOC:         make([]string, 0),
-	"build_ios": {"Qml"},
+	"build_ios": {"Qml"}, //TODO: REVIEW "Core", "Gui"},
 }
 
 func ShouldBuildForTarget(module, target string) bool {
@@ -228,17 +230,28 @@ func ShouldBuildForTarget(module, target string) bool {
 		}
 
 	case "sailfish", "sailfish-emulator", "asteroid":
-		if !IsWhiteListedSailfishLib(module) {
-			return false
+		{
+			if !IsWhiteListedSailfishLib(module) {
+				return false
+			}
 		}
 
 	case "rpi1", "rpi2", "rpi3":
-		switch module {
-		case "WebEngine", "Designer":
-			return false
+		{
+			switch module {
+			case "WebEngine", "Designer":
+				return false
+			}
+			if strings.HasSuffix(module, "Extras") {
+				return false
+			}
 		}
-		if strings.HasSuffix(module, "Extras") {
-			return false
+
+	case "js":
+		{
+			if !IsWhiteListedJsLib(module) && module != "build_ios" {
+				return false
+			}
 		}
 	}
 
@@ -248,6 +261,16 @@ func ShouldBuildForTarget(module, target string) bool {
 func IsWhiteListedSailfishLib(name string) bool {
 	switch name {
 	case "Sailfish", "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
+		return true
+
+	default:
+		return false
+	}
+}
+
+func IsWhiteListedJsLib(name string) bool {
+	switch name {
+	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2": //TODO: "Xml", "XmlPatterns", "WebSockets", "Svg", "Charts":
 		return true
 
 	default:

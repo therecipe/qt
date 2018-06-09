@@ -7,8 +7,12 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func cppEnum(enum *parser.Enum, value *parser.Value) string {
-	return fmt.Sprintf("%v\n{\n\t%v\n}", cppEnumHeader(enum, value), cppEnumBody(enum, value))
+func cppEnum(e *parser.Enum, v *parser.Value) string {
+	o := fmt.Sprintf("%v\n{\n\t%v\n}", cppEnumHeader(e, v), cppEnumBody(e, v))
+	if UseJs() {
+		o = "EMSCRIPTEN_KEEPALIVE\n" + o
+	}
+	return o
 }
 
 func cppEnumHeader(enum *parser.Enum, value *parser.Value) string {

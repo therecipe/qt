@@ -24,15 +24,7 @@ func IsStdPkg(pkg string) bool {
 
 	stdMutex.Lock()
 	if std == nil {
-		stdU := append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
-
-		for i := len(stdU) - 1; i >= 0; i-- {
-			if strings.Contains(stdU[i], "internal/") {
-				stdU = append(stdU[:i], stdU[i+1:]...)
-			}
-		}
-
-		std = stdU
+		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
 	}
 	stdMutex.Unlock()
 
@@ -51,15 +43,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 
 	stdMutex.Lock()
 	if std == nil {
-		stdU := append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
-
-		for i := len(stdU) - 1; i >= 0; i-- {
-			if strings.Contains(stdU[i], "internal/") {
-				stdU = append(stdU[:i], stdU[i+1:]...)
-			}
-		}
-
-		std = stdU
+		std = append(strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "std"), "go list std")), "\n"), "C")
 	}
 	stdMutex.Unlock()
 

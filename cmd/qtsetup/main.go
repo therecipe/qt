@@ -84,7 +84,7 @@ func main() {
 		target = runtime.GOOS
 	}
 
-	if dynamic && target == runtime.GOOS {
+	if dynamic && (target == runtime.GOOS || target == "js") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
 	}
 

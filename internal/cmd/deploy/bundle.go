@@ -13,6 +13,8 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/cmd/moc"
+	"github.com/therecipe/qt/internal/cmd/rcc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -172,7 +174,7 @@ func bundle(mode, target, path, name, depPath string) {
 		switch {
 		case runtime.GOOS != target:
 			if utils.QT_MXE_STATIC() {
-				return
+				break
 			}
 
 			var libraryPath = filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "bin")
@@ -461,9 +463,10 @@ func bundle(mode, target, path, name, depPath string) {
 		}
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
+		rcc.ResourceNames = make(map[string]string)
 		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp", target+"_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
-		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
 		cmd.Dir = depPath
+		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 
 		strip := exec.Command("strip", "main")
@@ -546,6 +549,69 @@ func bundle(mode, target, path, name, depPath string) {
 		click := exec.Command("click", "build", "--no-validate", depPath)
 		click.Dir = depPath
 		utils.RunCmd(click, fmt.Sprintf("deploy for %v (%v) on %v", target, utils.QT_UBPORTS_ARCH(), runtime.GOOS))
+
+	case "js":
+
+		//copy default assets
+		buildPath := filepath.Join(depPath, "build")
+		utils.MkdirAll(buildPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "html5_shell.html"), filepath.Join(depPath, "index.html"))
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtloader.js"), depPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtlogo.svg"), depPath)
+
+		//patch default assets
+		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(utils.Load(filepath.Join(depPath, "index.html")), "APPNAME", "main", -1))
+
+		//copy custom assets
+		assets := filepath.Join(path, target)
+		utils.MkdirAll(assets)
+		copy(assets+"/.", buildPath)
+
+		//add c_main_wrappers
+		if !utils.ExistsFile(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp")) {
+			utils.Save(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp"), "")
+		}
+
+		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper())
+		env, _, _, _ := cmd.BuildEnv(target, "", "")
+		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+"."+target+"_plugin_import.cpp", target+"."+target+"_qml_plugin_import.cpp")
+		cmd.Dir = depPath
+
+		for rccFile := range rcc.ResourceNames {
+			cmd.Args = append(cmd.Args, rccFile)
+		}
+		rcc.ResourceNames = make(map[string]string)
+
+		for mocFile := range moc.ResourceNames {
+			cmd.Args = append(cmd.Args, mocFile)
+		}
+		moc.ResourceNames = make(map[string]string)
+
+		for _, l := range parser.LibDeps["build_ios"] {
+			for _, ml := range parser.GetLibs() {
+				if strings.ToLower(l) == strings.ToLower(ml) {
+					cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
+					break
+				}
+			}
+		}
+
+		for _, l := range parser.LibDeps[parser.MOC] {
+			for _, ml := range parser.GetLibs() {
+				if strings.ToLower(l) == strings.ToLower(ml) {
+					cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
+					break
+				}
+			}
+		}
+
+		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
+		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, "", depPath)...)
+
+		for key, value := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+		}
+		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, target, runtime.GOOS))
 	}
 
 	if utils.QT_DOCKER() {

@@ -6,6 +6,7 @@ import (
 	"go/format"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -14,20 +15,20 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 	utils.Log.WithField("module", module).Debug("generating go")
 	parser.State.Target = target
 
-	var bb = new(bytes.Buffer)
+	bb := new(bytes.Buffer)
 	defer bb.Reset()
 
 	if mode != MOC {
 		module = "Qt" + module
 	}
 
-	if !UseStub(stub, module, mode) {
+	if !(UseStub(stub, module, mode) || UseJs()) {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
 	if module == "QtAndroidExtras" && utils.QT_VERSION_NUM() >= 5060 {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
-		if UseStub(stub, module, mode) {
+		if UseStub(stub, module, mode) || UseJs() {
 			fmt.Fprint(bb, "return nil\n")
 		} else {
 			fmt.Fprint(bb, "var err error\n")
@@ -39,7 +40,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		}
 		fmt.Fprint(bb, "}\n\n")
 
-		if UseStub(stub, module, mode) {
+		if UseStub(stub, module, mode) || UseJs() {
 			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return nil }\n")
 		} else {
 			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return QAndroidJniEnvironment_ExceptionCatch() }\n")
@@ -182,7 +183,7 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 			}
 
 			if !class.HasDestructor() {
-				if UseStub(stub, module, mode) {
+				if UseStub(stub, module, mode) || UseJs() {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
 					fmt.Fprintf(bb, `
@@ -204,12 +205,13 @@ func (ptr *%[1]v) Destroy%[1]v() {
 			}
 
 			if mode == MOC {
-				fmt.Fprintf(bb, `
-//export callback%[1]v_Constructor
-func callback%[1]v_Constructor(ptr unsafe.Pointer) {
-`, class.Name)
-
-				fmt.Fprintf(bb, "this := New%vFromPointer(ptr)\nqt.Register(ptr, this)\n", strings.Title(class.Name))
+				if UseJs() {
+					fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr uintptr) {", class.Name)
+					fmt.Fprintf(bb, "this := New%vFromPointer(unsafe.Pointer(ptr))\nqt.Register(unsafe.Pointer(ptr), this)\n", strings.Title(class.Name))
+				} else {
+					fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr unsafe.Pointer) {", class.Name)
+					fmt.Fprintf(bb, "this := New%vFromPointer(ptr)\nqt.Register(ptr, this)\n", strings.Title(class.Name))
+				}
 
 				var lastModule string
 				for _, bcn := range class.GetAllBases() {
@@ -435,6 +437,38 @@ func callback%[1]v_Constructor(ptr unsafe.Pointer) {
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
+	if UseJs() {
+		fmt.Fprint(bb, "func init() {\n")
+		for _, l := range strings.Split(bb.String(), "\n") {
+			if strings.HasPrefix(l, "//export") {
+				fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
+			}
+		}
+
+		for _, c := range parser.SortedClassesForModule(module, true) {
+			for _, f := range c.Functions {
+				if f.Meta != parser.CONSTRUCTOR {
+					continue
+				}
+				if !f.IsSupported() {
+					continue
+				}
+				var ip string
+				oldsm := f.SignalMode
+				f.SignalMode = parser.CALLBACK
+				ip = converter.GoHeaderInput(f)
+				ip = strings.TrimPrefix(ip, "ptr uintptr, ")
+				f.SignalMode = oldsm
+				out := fmt.Sprintf("qt.WASM.Set(\"%v\", func(%v) *js.Object { return js.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
+					bb.WriteString(out)
+				}
+			}
+		}
+
+		fmt.Fprint(bb, "}\n")
+	}
+
 	return preambleGo(module, goModule(module), bb.Bytes(), stub, mode, pkg, target, tags)
 }
 
@@ -442,11 +476,19 @@ func preambleGo(oldModule string, module string, input []byte, stub bool, mode i
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if UseStub(stub, oldModule, mode) {
+	if UseStub(stub, oldModule, mode) || UseJs() {
 		fmt.Fprintf(bb, `%v
 
 package %v
-`, buildTags(oldModule, stub, mode, tags), module)
+`, buildTags(oldModule, stub, mode, tags),
+
+			func() string {
+				if mode == MOC {
+					return pkg
+				}
+				return module
+			}(),
+		)
 
 	} else {
 		fmt.Fprintf(bb, `%v
@@ -511,7 +553,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -529,6 +571,9 @@ import "C"
 			case "qt":
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
 
+			case "js":
+				fmt.Fprintln(bb, "\"github.com/gopherjs/gopherjs/js\"")
+
 			default:
 				if mode == MOC {
 					fmt.Fprintf(bb, "std_%[1]v \"github.com/therecipe/qt/%[1]v\"\n", mlow)
@@ -540,49 +585,53 @@ import "C"
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], m)
 				}
 
-				if strings.HasPrefix(target, "ios") && mode == MINIMAL {
-					oldModuleGo := strings.TrimPrefix(oldModule, "Qt")
+				//TODO: REVIEW
+				if !UseJs() {
+					if strings.HasPrefix(target, "ios") && mode == MINIMAL {
+						oldModuleGo := strings.TrimPrefix(oldModule, "Qt")
 
-					var (
-						containsSub  bool
-						containsSelf bool
-					)
+						var (
+							containsSub  bool
+							containsSelf bool
+						)
 
-					for _, l := range parser.LibDeps["build_ios"] {
-						if l == m {
-							containsSub = true
-						}
-						if l == oldModuleGo {
-							containsSelf = true
-						}
-					}
-
-					if !containsSelf || !containsSub {
-
-						if !containsSelf {
-							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], oldModuleGo)
-
-							switch oldModuleGo {
-							case "Multimedia":
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
-							case "Quick":
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+						for _, l := range parser.LibDeps["build_ios"] {
+							if l == m {
+								containsSub = true
+							}
+							if l == oldModuleGo {
+								containsSelf = true
 							}
 						}
 
-						if !containsSub {
-							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], m)
+						if !containsSelf || !containsSub {
 
-							switch m {
-							case "Multimedia":
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
-							case "Quick":
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+							if !containsSelf {
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], oldModuleGo)
+
+								switch oldModuleGo {
+								case "Multimedia":
+									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+								case "Quick":
+									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+								}
 							}
-						}
 
+							if !containsSub {
+								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], m)
+
+								switch m {
+								case "Multimedia":
+									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+								case "Quick":
+									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+								}
+							}
+
+						}
 					}
 				}
+				//TODO: REVIEW
 			}
 		}
 	}
@@ -635,10 +684,10 @@ import "C"
 
 		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
 			hName := c.Hash()
-			sep := []string{"\n", "(", "_", "callback", "C."}
+			sep := []string{"\"_", "\n", "(", "_", "callback", "C."}
 			for _, p := range sep {
 				for _, s := range sep {
-					if s == "callback" || s == "C." {
+					if s == "callback" || s == "C." || (p == "_" && s == "(" && UseJs()) {
 						continue
 					}
 					pre = strings.Replace(pre, p+c.Name+s, p+c.Name+hName+s, -1)

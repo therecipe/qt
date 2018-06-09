@@ -12,7 +12,6 @@ import (
 )
 
 func goOutput(name, value string, f *parser.Function) string {
-	var vOld = value
 
 	name = parser.CleanName(name, value)
 	value = parser.CleanValue(value)
@@ -36,10 +35,6 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case "void", "GLvoid", "":
 		{
-			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("%v", name)
-			}
-
 			return name
 		}
 
@@ -279,39 +274,40 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 func cgoOutput(name, value string, f *parser.Function) string {
 
-	var vOld = value
-
 	name = parser.CleanName(name, value)
 	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
-			return func() string {
-				var out = fmt.Sprintf("cGoUnpackString(%v)", name)
-				if f.AsError {
-					return fmt.Sprintf("errors.New(%v)", out)
-				}
-				return out
-			}()
+			out := fmt.Sprintf("cGoUnpackString(%v)", name)
+			if parser.UseJs() {
+				out = name
+			}
+			if f.AsError {
+				return fmt.Sprintf("errors.New(%v)", out)
+			}
+			return out
 		}
 
 	case "QStringList":
 		{
+			if parser.UseJs() {
+				return fmt.Sprintf("strings.Split(%v, \"|\")", name)
+			}
 			return fmt.Sprintf("strings.Split(cGoUnpackString(%v), \"|\")", name)
 		}
 
 	case "void", "GLvoid", "":
 		{
-			if strings.Contains(vOld, "*") {
-				return name
-			}
-
-			return ""
+			return name
 		}
 
 	case "bool", "GLboolean":
 		{
+			if parser.UseJs() {
+				return name
+			}
 			return fmt.Sprintf("int8(%v) != 0", name)
 		}
 
@@ -369,6 +365,30 @@ func cgoOutput(name, value string, f *parser.Function) string {
 		{
 			return fmt.Sprintf("uintptr(%v)", name)
 		}
+
+		//non std types
+
+	case "T", "JavaVM", "jclass", "jobject":
+		{
+			switch f.TemplateModeJNI {
+			case "Boolean":
+				{
+					return fmt.Sprintf("int8(%v) != 0", name)
+				}
+
+			case "Int":
+				{
+					return fmt.Sprintf("int(int32(%v))", name)
+				}
+
+			case "Void":
+				{
+					return name
+				}
+			}
+
+			return fmt.Sprintf("unsafe.Pointer(%v)", name)
+		}
 	}
 
 	switch {
@@ -376,7 +396,7 @@ func cgoOutput(name, value string, f *parser.Function) string {
 		{
 			if c, ok := parser.State.ClassMap[class(cppEnum(f, value, false))]; ok && module(c.Module) != module(f) && module(c.Module) != "" {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
-					return fmt.Sprintf("int64%v)", name)
+					return fmt.Sprintf("int64(%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
 			}
@@ -392,18 +412,36 @@ func cgoOutput(name, value string, f *parser.Function) string {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
+				if parser.UseJs() {
+					return fmt.Sprintf("%v.New%vFromPointer(unsafe.Pointer(%v))", m, strings.Title(value), name)
+				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
+			}
+			if parser.UseJs() {
+				return fmt.Sprintf("New%vFromPointer(unsafe.Pointer(%v))", strings.Title(value), name)
 			}
 			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 
 	case parser.IsPackedList(value):
 		{
+			if parser.UseJs() {
+				if f.SignalMode != parser.CALLBACK {
+					return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+				}
+				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+			}
 			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\ntmpList := New%vFromPointer(l.data)\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
 		}
 
 	case parser.IsPackedMap(value):
 		{
+			if parser.UseJs() {
+				if f.SignalMode != parser.CALLBACK {
+					return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i,v:=range tmpList.__%v_keyList%v(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, f.Name, name, f.OverloadNumber, name)
+				}
+				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.Name, name, f.OverloadNumber, name)
+			}
 			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\ntmpList := New%vFromPointer(l.data)\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.Name, name, f.OverloadNumber, name)
 		}
 	}
@@ -414,6 +452,24 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 func CppOutput(name, value string, f *parser.Function) string {
 	if strings.HasSuffix(f.Name, "_atList") {
+		if parser.UseJs() {
+			if f.IsMap {
+				out := cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], strings.TrimSuffix(strings.Split(name, "_atList")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+				if !strings.Contains(cppOutput(name, value, f), "_Packed") && f.BoundByEmscripten {
+					if !strings.Contains(out, "emscripten::val::global") {
+						out = "reinterpret_cast<uintptr_t>(" + out + ")"
+					}
+				}
+				return out
+			}
+			out := cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], strings.Split(name, "_atList")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+			if !strings.Contains(cppOutput(name, value, f), "_Packed") && f.BoundByEmscripten {
+				if !strings.Contains(out, "emscripten::val::global") {
+					out = "reinterpret_cast<uintptr_t>(" + out + ")"
+				}
+			}
+			return out
+		}
 		if f.IsMap {
 			return cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); free(ptr); }; tmp; })", value, strings.Split(name, "->")[0], strings.TrimSuffix(strings.Split(name, "_atList")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 		}
@@ -431,7 +487,34 @@ func CppOutput(name, value string, f *parser.Function) string {
 	if strings.HasSuffix(f.Name, "_keyList") {
 		return cppOutput(fmt.Sprintf("static_cast<%v*>(ptr)->keys()", f.Container), value, f)
 	}
-	return cppOutput(name, value, f)
+	out := cppOutput(name, value, f)
+
+	if f.BoundByEmscripten || (strings.Contains(CppHeaderOutput(f), "uintptr_t") || strings.Contains(CppHeaderOutput(f), "void*")) && f.SignalMode != parser.CALLBACK {
+		//TODO: cleanup ?
+		//return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", out)
+	}
+
+	if parser.UseJs() && f.SignalMode != parser.CALLBACK {
+		for _, p := range f.Parameters {
+			if strings.Contains(cppType(f, p.Value), "_Packed") && isClass(parser.CleanValue(f.Output)) && !strings.Contains(cppType(f, f.Output), "_Packed") && f.BoundByEmscripten {
+				if !strings.Contains(out, "emscripten::val::global") && !strings.ContainsAny(out, ";") {
+					return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", out)
+				}
+			}
+		}
+	}
+
+	if parser.UseJs() && f.SignalMode != parser.CALLBACK {
+		if isClass(parser.CleanValue(f.Output)) && !strings.Contains(cppType(f, f.Output), "_Packed") && f.BoundByEmscripten {
+			if !strings.Contains(out, "emscripten::val::global") {
+				if strings.Contains(out, "; new") {
+					return strings.Replace(strings.Replace(out, "; new", "; reinterpret_cast<uintptr_t>(new", -1), "; })", "); })", -1)
+				}
+			}
+		}
+	}
+
+	return out
 }
 
 func cppOutputPack(name, value string, f *parser.Function) string {
@@ -453,10 +536,33 @@ func cppOutputPacked(name, value string, f *parser.Function) string {
 	var out = CppOutput(name, value, f)
 
 	if strings.Contains(out, "_PackedString") {
+		if parser.UseJs() {
+			return fmt.Sprintf("%vPacked.dataP", parser.CleanName(name, value))
+		}
 		return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
 	}
 
+	if parser.UseJs() {
+		if isClass(parser.CleanValue(value)) && !strings.Contains(out, "emscripten::val::global") {
+			return "reinterpret_cast<uintptr_t>(" + out + ")"
+		}
+	}
+
 	return out
+}
+
+func cppOutputPackingForJs(name, length string) string {
+	if parser.UseJs() {
+		return fmt.Sprintf(", QString::fromUtf8(%v, %v).toStdString()", name, length)
+	}
+	return ""
+}
+
+func cppOutputPackingListForJs() string {
+	if parser.UseJs() {
+		return "emscripten::val ret = emscripten::val::object(); ret.set(\"dataP\", reinterpret_cast<uintptr_t>(tmpValue)); ret.set(\"len\", tmpValue->size());"
+	}
+	return ""
 }
 
 func cppOutput(name, value string, f *parser.Function) string {
@@ -488,49 +594,49 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 				if strings.Contains(vOld, "const") {
 					if fSizeVariable != "" {
-						return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+						return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v%v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable, cppOutputPackingForJs(name, fSizeVariable))
 					}
-					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), -1 }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name)
+					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), -1%v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, cppOutputPackingForJs(name, "-1"))
 				} else {
 					if fSizeVariable != "" {
-						return fmt.Sprintf("%v_PackedString { %v, %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+						return fmt.Sprintf("%v_PackedString { %v, %v%v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable, cppOutputPackingForJs(name, fSizeVariable))
 					}
-					return fmt.Sprintf("%v_PackedString { %v, -1 }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name)
+					return fmt.Sprintf("%v_PackedString { %v, -1%v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, cppOutputPackingForJs(name, "-1"))
 				}
 			}
 
-			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, -1 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, -1%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, cppOutputPackingForJs("&t"+tHashName, "-1"))
 		}
 
 	case "uchar", "quint8", "GLubyte":
 		{
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, -1 }; })", tHashName, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, -1%v }; })", tHashName, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, cppOutputPackingForJs("t"+tHashName, "-1"))
 				}
-				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, cppOutputPackingForJs("t"+tHashName, "-1"))
 			}
 
 			if strings.Contains(vOld, "const") {
-				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, value, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+				return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(&pret%v))); %v_PackedString { t%v, -1%v }; })", vOld, tHashName, name, tHashName, value, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, cppOutputPackingForJs("t"+tHashName, "-1"))
 			}
-			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
+			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1%v }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, cppOutputPackingForJs("t"+tHashName, "-1"))
 		}
 
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, cppOutputPackingForJs("const_cast<char*>(t"+tHashName+".constData()+10)", "t"+tHashName+".size()-10"))
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, cppOutputPackingForJs("const_cast<char*>(t"+tHashName+".constData()+10)", "t"+tHashName+".size()-10"))
 		}
 
 	case "QStringList":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, cppOutputPackingForJs("const_cast<char*>(t"+tHashName+".constData()+10)", "t"+tHashName+".size()-10"))
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10%v }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName, cppOutputPackingForJs("const_cast<char*>(t"+tHashName+".constData()+10)", "t"+tHashName+".size()-10"))
 		}
 
 	case
@@ -577,6 +683,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
+			if parser.UseJs() {
+				return fmt.Sprintf("enum_cast<long>(%v)", name)
+			}
 			return name
 		}
 
@@ -687,25 +796,200 @@ func cppOutput(name, value string, f *parser.Function) string {
 		{
 			if strings.HasSuffix(vOld, "*") {
 				if strings.Contains(vOld, "const") {
+					if parser.UseJs() {
+						return fmt.Sprintf("({ %v* tmpValue = const_cast<%v*>(%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
+					}
 					return fmt.Sprintf("({ %v* tmpValue = const_cast<%v*>(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", value, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
+				}
+				if parser.UseJs() {
+					return fmt.Sprintf("({ %v* tmpValue = %v; %v ret; })", value, name, cppOutputPackingListForJs())
 				}
 				return fmt.Sprintf("({ %v* tmpValue = %v; %v_PackedList { tmpValue, tmpValue->size() }; })", value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 			}
 
 			if strings.HasSuffix(vOld, "&") {
 				if strings.Contains(vOld, "const") {
+					if parser.UseJs() {
+						return fmt.Sprintf("({ %v* tmpValue = const_cast<%v*>(&%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
+					}
 					return fmt.Sprintf("({ %v* tmpValue = const_cast<%v*>(&%v); %v_PackedList { tmpValue, tmpValue->size() }; })", value, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
-
 				}
 				if f.SignalMode == parser.CALLBACK {
+					if parser.UseJs() {
+						return fmt.Sprintf("({ %v* tmpValue = static_cast<%v*>(&%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
+					}
 					return fmt.Sprintf("({ %v* tmpValue = static_cast<%v*>(&%v); %v_PackedList { tmpValue, tmpValue->size() }; })", value, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 				}
 			}
 
+			if parser.UseJs() {
+				return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
+			}
 			return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", value, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 	}
 
 	f.Access = fmt.Sprintf("unsupported_cppOutput(%v)", value)
+	return f.Access
+}
+
+func goOutputJS(name, value string, f *parser.Function) string {
+
+	var vOld = value
+
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
+
+	switch value {
+	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
+		{
+			return func() string {
+				var out = fmt.Sprintf("%v.Get(\"dataP\").String()", name)
+				if f.AsError {
+					return fmt.Sprintf("errors.New(%v)", out)
+				}
+				return out
+			}()
+		}
+
+	case "QStringList":
+		{
+			return fmt.Sprintf("strings.Split(%v.Get(\"dataP\").String(), \"|\")", name)
+		}
+
+	case "void", "GLvoid", "":
+		{
+			if strings.Contains(vOld, "*") {
+				return "unsafe.Pointer(" + name + ")"
+			}
+			return name
+		}
+
+	case "bool", "GLboolean":
+		{
+			return fmt.Sprintf("%v.Bool()", name)
+		}
+
+	case "short", "qint16", "GLshort":
+		{
+			return fmt.Sprintf("int16(%v.Int64())", name)
+		}
+
+	case "ushort", "unsigned short", "quint16", "GLushort":
+		{
+			return fmt.Sprintf("uint16(%v.Uint64())", name)
+		}
+
+	case "int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx":
+		{
+			return fmt.Sprintf("int(int32(%v.Int64()))", name)
+		}
+
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+		{
+			return fmt.Sprintf("uint(uint32(%v.Uint64()))", name)
+		}
+
+	case "long":
+		{
+			return fmt.Sprintf("int(int32(%v.Int64()))", name)
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return fmt.Sprintf("uint(uint32(%v.Uint64()))", name)
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		{
+			return fmt.Sprintf("int64(%v.Int64())", name)
+		}
+
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		{
+			return fmt.Sprintf("uint64(%v.Uint64())", name)
+		}
+
+	case "float", "GLfloat", "GLclampf":
+		{
+			return fmt.Sprintf("float32(%v.Float())", name)
+		}
+
+	case "double", "qreal":
+		{
+			return fmt.Sprintf("float64(%v.Float())", name)
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			if parser.UseJs() {
+				return fmt.Sprintf("%v.Unsafe()", name)
+			}
+			return fmt.Sprintf("uintptr(%v)", name)
+		}
+
+		//non std types
+
+	case "T", "JavaVM", "jclass", "jobject":
+		{
+			switch f.TemplateModeJNI {
+			case "Boolean":
+				{
+					return fmt.Sprintf("int8(%v.Int64()) != 0", name)
+				}
+
+			case "Int":
+				{
+					return fmt.Sprintf("int(int32(%v.Uint64()))", name)
+				}
+
+			case "Void":
+				{
+					return name
+				}
+			}
+
+			return fmt.Sprintf("unsafe.Pointer(%v)", name)
+		}
+	}
+
+	switch {
+	case isEnum(f.ClassName(), value):
+		{
+			if c, ok := parser.State.ClassMap[class(cppEnum(f, value, false))]; ok && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
+					return fmt.Sprintf("int64(%v.Int64())", name)
+				}
+				return fmt.Sprintf("%v.%v(%v.Int64())", module(c.Module), goEnum(f, value), name)
+			}
+			return fmt.Sprintf("%v(%v.Int64())", goEnum(f, value), name)
+		}
+
+	case isClass(value):
+		{
+			if strings.Contains(value, ".") {
+				value = strings.Split(value, ".")[1]
+			}
+			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
+				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; ok {
+					return fmt.Sprintf("unsafe.Pointer(%v.Unsafe())", name)
+				}
+				return fmt.Sprintf("%v.New%vFromPointer(unsafe.Pointer(%v.Unsafe()))", m, strings.Title(value), name)
+			}
+			return fmt.Sprintf("New%vFromPointer(unsafe.Pointer(%v.Unsafe()))", strings.Title(value), name)
+		}
+
+	case parser.IsPackedList(value):
+		{
+			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_atList%v(i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
+		}
+
+	case parser.IsPackedMap(value):
+		{
+			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value), goType(f, value), strings.Title(f.ClassName()), f.Name, f.Name, f.OverloadNumber, name)
+		}
+	}
+
+	f.Access = fmt.Sprintf("unsupported_goOutput(%v)", value)
 	return f.Access
 }

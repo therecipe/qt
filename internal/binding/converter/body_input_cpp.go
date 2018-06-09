@@ -109,10 +109,18 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 func CppInputParametersForCallbackBody(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters)+1)
 
-	if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
-		input[0] = fmt.Sprintf("const_cast<void*>(static_cast<const void*>(this))")
+	if parser.UseJs() {
+		if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
+			input[0] = fmt.Sprintf("reinterpret_cast<uintptr_t>(const_cast<void*>(static_cast<const void*>(this)))")
+		} else {
+			input[0] = "reinterpret_cast<uintptr_t>(this)"
+		}
 	} else {
-		input[0] = "this"
+		if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
+			input[0] = fmt.Sprintf("const_cast<void*>(static_cast<const void*>(this))")
+		} else {
+			input[0] = "this"
+		}
 	}
 
 	for i, parameter := range function.Parameters {

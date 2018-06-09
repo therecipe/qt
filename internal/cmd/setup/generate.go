@@ -30,6 +30,8 @@ func Generate(target string, docker, vagrant bool) {
 
 		mode := "full"
 		switch {
+		case target == "js":
+
 		case target != runtime.GOOS:
 			mode = "cgo"
 
@@ -38,13 +40,13 @@ func Generate(target string, docker, vagrant bool) {
 		}
 		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))
 
-		if target == runtime.GOOS || utils.QT_FAT() {
+		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && target == "js") { //TODO: REVIEW
 			templater.GenModule(module, target, templater.NONE)
 		} else {
 			templater.CgoTemplate(module, "", target, templater.MINIMAL, "", "") //TODO: collect errors
 		}
 
-		if utils.QT_DYNAMIC_SETUP() && mode == "full" {
+		if utils.QT_DYNAMIC_SETUP() && mode == "full" && target != "js" {
 			cc, _ := templater.ParseCgo(strings.ToLower(module), target)
 			if cc != "" {
 				cmd := exec.Command("go", "tool", "cgo", utils.GoQtPkgPath(strings.ToLower(module), strings.ToLower(module)+".go"))

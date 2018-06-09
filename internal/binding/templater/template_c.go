@@ -30,6 +30,8 @@ func cTemplateEnums(bb *bytes.Buffer, c *parser.Class, ef func(*parser.Enum, *pa
 	}
 }
 
+var deferredFunctions []string
+
 func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Function) string, del string, isGo bool) {
 
 	var implemented = make(map[string]struct{})
@@ -104,7 +106,11 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 						if isGo {
 							f.Meta = parser.PLAIN
 						}
-						fmt.Fprintf(bb, "%v%v", ff(&f), del)
+						if UseJs() && del == "\n\n" && !isGo {
+							deferredFunctions = append(deferredFunctions, fmt.Sprintf("%v%v", ff(&f), del))
+						} else {
+							fmt.Fprintf(bb, "%v%v", ff(&f), del)
+						}
 					}
 					if f.Virtual != parser.PURE || f.IsDerivedFromImpure() || i > 0 {
 						f.Default = true

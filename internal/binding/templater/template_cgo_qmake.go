@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -47,8 +48,8 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 		path = utils.GoQtPkgPath(strings.ToLower(module))
 	}
 
-	//TODO:
-	if !(target == "sailfish" || target == "sailfish-emulator") {
+	//TODO: differentiate between docker and virtual-box build for sailfish targets
+	if !(target == "sailfish" || target == "sailfish-emulator" || target == "js") {
 		if !parser.ShouldBuildForTarget(module, target) ||
 			isAlreadyCached(module, path, target, mode, libs) {
 			utils.Log.Debugf("skipping cgo generation")
@@ -122,6 +123,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			case "sailfish", "sailfish-emulator", "asteroid":
 			case "rpi1", "rpi2", "rpi3":
 				return strings.Contains(file, strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS))))
+			case "js":
 			}
 		}
 	}
@@ -183,6 +185,7 @@ func createMakefile(module, path, target string, mode int) {
 	if err != nil || utils.QT_UBPORTS() {
 		relProPath = proPath
 	}
+	env, _, _, _ := cmd.BuildEnv(target, "", "")
 	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", mPath, relProPath)
 	cmd.Dir = path
 	switch target {
@@ -232,6 +235,10 @@ func createMakefile(module, path, target string, mode int) {
 			} else {
 				cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 			}
+		}
+	case "js":
+		for key, value := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 	}
 
@@ -301,6 +308,13 @@ func createMakefile(module, path, target string, mode int) {
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":
 	case "ubports":
+	case "js":
+		for _, suf := range []string{".js_plugin_import", ".js_qml_plugin_import"} {
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
+			if module != "build_ios" || mode == MOC || mode == RCC {
+				utils.RemoveAll(pPath)
+			}
+		}
 	}
 }
 
@@ -326,6 +340,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		guards += target
 	case "rpi1", "rpi2", "rpi3":
 		guards += target
+	case "js":
+		guards += "ignore"
 	}
 	//TODO: move "minimal" build tag in separate line -->
 	switch mode {
@@ -431,6 +447,12 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	case "android", "android-emulator":
 		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
+	case "js":
+		tmp = strings.Replace(tmp, "\"", "", -1)
+		if utils.QT_DEBUG() {
+			tmp = strings.Replace(tmp, "-s USE_FREETYPE=1", "-s USE_FREETYPE=1 -s ASSERTIONS=1", -1)
+		}
+		tmp = strings.Replace(tmp, "-s NO_EXIT_RUNTIME=0", "-s NO_EXIT_RUNTIME=1", -1) //TODO: block main instead
 	}
 
 	for _, variable := range []string{"DEFINES", "SUBLIBS", "EXPORT_QMAKE_XARCH_CFLAGS", "EXPORT_QMAKE_XARCH_LFLAGS", "EXPORT_ARCH_ARGS", "-fvisibility=hidden", "-fembed-bitcode"} {
@@ -474,6 +496,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		case "ios-simulator":
 			if strings.HasSuffix(file, "darwin_386.go") {
 				tmp = strings.Replace(tmp, "x86_64", "i386", -1)
+			}
+		case "js":
+			if mode == RCC {
+				utils.Save(filepath.Join(path, strings.Replace(file, "_cgo_", "_stub_", -1)), "package "+pkg+"\n")
 			}
 		}
 		utils.Save(filepath.Join(path, file), tmp)
@@ -523,6 +549,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		sFixes = []string{"linux_arm"}
 	case "ubports":
 		sFixes = []string{"linux_" + utils.QT_UBPORTS_ARCH()}
+	case "js":
+		sFixes = []string{"js"}
 	}
 
 	var o []string
@@ -537,7 +565,6 @@ func ParseCgo(module, target string) (string, string) {
 
 	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
 	if tmp != "" {
-
 		tmp = strings.Split(tmp, "/*")[1]
 		tmp = strings.Split(tmp, "*/")[0]
 
@@ -549,6 +576,9 @@ func ParseCgo(module, target string) (string, string) {
 		switch target {
 		case "darwin":
 			return "clang++", fmt.Sprintf("%v -Wl,-S -Wl,-x -install_name @rpath/%[2]v/lib%[2]v.so -undefined dynamic_lookup -shared -o lib%[2]v.so %[2]v.cpp", tmp, module)
+		case "js":
+			env, _, _, _ := cmd.BuildEnv(target, "", "")
+			return filepath.Join(env["EMSCRIPTEN"], "em++"), fmt.Sprintf("%v -o %[2]v.o %[2]v.js_plugin_import.cpp %[2]v.cpp", tmp, module)
 		}
 	}
 
@@ -557,6 +587,12 @@ func ParseCgo(module, target string) (string, string) {
 
 func ReplaceCgo(module, target string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("replace cgo for shared lib")
+
+	if target == "js" {
+		//TODO: cleanup ?
+		//utils.RemoveAll(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
+		return
+	}
 
 	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
 	if tmp != "" {

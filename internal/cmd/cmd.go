@@ -84,7 +84,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			image = target
 		}
 
-	case "linux", "android", "rpi1", "rpi2", "rpi3", "sailfish":
+	case "linux", "android", "rpi1", "rpi2", "rpi3", "sailfish", "js":
 		image = target
 
 	case "android-emulator":
@@ -524,6 +524,37 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"LIBRARY_PATH": "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib/pulseaudio",
 			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/",
 		}
+
+	case "js":
+		tags = []string{target}
+		out = filepath.Join(depPath, name)
+		env = map[string]string{
+			"PATH":   os.Getenv("PATH"),
+			"GOPATH": utils.GOPATH(),
+			"GOROOT": runtime.GOROOT(),
+
+			"GOOS":   runtime.GOOS,
+			"GOARCH": runtime.GOARCH,
+
+			"CGO_ENABLED": "1",
+		}
+
+		env["EM_CONFIG"] = filepath.Join(os.Getenv("HOME"), ".emscripten")
+		for _, l := range strings.Split(utils.Load(env["EM_CONFIG"]), "\n") {
+			l = strings.Replace(l, "'", "", -1)
+			switch {
+			case strings.HasPrefix(l, "LLVM_ROOT="):
+				env["LLVM_ROOT"] = strings.Split(l, "=")[1]
+			case strings.HasPrefix(l, "BINARYEN_ROOT="):
+				env["BINARYEN_ROOT"] = strings.Split(l, "=")[1]
+			case strings.HasPrefix(l, "NODE_JS="):
+				env["NODE_JS"] = strings.TrimSuffix(strings.Split(l, "=")[1], "/node")
+			case strings.HasPrefix(l, "EMSCRIPTEN_ROOT="):
+				env["EMSCRIPTEN"] = strings.Split(l, "=")[1]
+				env["EMSDK"] = strings.Split(env["EMSCRIPTEN"], "/emscripten/1.")[0]
+			}
+		}
+		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
 
 	env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()

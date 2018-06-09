@@ -15,3 +15,4 @@
 /internal/binding/dump/*
 /internal/cmd/moc/test/**/moc*
 *.so
+*/*.o

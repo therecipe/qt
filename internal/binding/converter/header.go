@@ -93,6 +93,17 @@ func GoHeaderOutput(f *parser.Function) string {
 	switch f.SignalMode {
 	case parser.CALLBACK:
 		{
+			if parser.UseJs() {
+				cv := parser.CleanValue(f.Output)
+				switch cv {
+				case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
+					return "*js.Object"
+				}
+				if isClass(cv) || parser.IsPackedList(cv) || parser.IsPackedMap(cv) {
+					return "uintptr"
+				}
+				return goType(f, f.Output)
+			}
 			return cgoTypeOutput(f, f.Output)
 		}
 
@@ -149,10 +160,35 @@ func GoHeaderInput(f *parser.Function) string {
 	}
 
 	if f.SignalMode == parser.CALLBACK {
-		fmt.Fprint(bb, "ptr unsafe.Pointer")
+		if parser.UseJs() {
+			fmt.Fprint(bb, "ptr uintptr")
+		} else {
+			fmt.Fprint(bb, "ptr unsafe.Pointer")
+		}
 		for _, p := range f.Parameters {
-			if v := cgoType(f, p.Value); v != "" {
-				fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
+			if parser.UseJs() {
+				if v := goType(f, p.Value); v != "" {
+					cv := parser.CleanValue(p.Value)
+					if isEnum(f.ClassName(), cv) {
+						fmt.Fprintf(bb, ", %v int64", parser.CleanName(p.Name, p.Value))
+					} else if isClass(cv) {
+						if cv == "QString" || cv == "QStringList" {
+							fmt.Fprintf(bb, ", %v string", parser.CleanName(p.Name, p.Value))
+						} else {
+							fmt.Fprintf(bb, ", %v uintptr", parser.CleanName(p.Name, p.Value))
+						}
+					} else {
+						if parser.IsPackedList(cv) || parser.IsPackedMap(cv) {
+							fmt.Fprintf(bb, ", %v *js.Object", parser.CleanName(p.Name, p.Value))
+						} else {
+							fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
+						}
+					}
+				}
+			} else {
+				if v := cgoType(f, p.Value); v != "" {
+					fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
+				}
 			}
 		}
 		return bb.String()

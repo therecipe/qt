@@ -17,10 +17,12 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var ResourceNames []string
+var (
+	ResourceNames      = make(map[string]string)
+	ResourceNamesMutex = new(sync.Mutex)
+)
 
 func Rcc(path, target, tagsCustom, output_dir string) {
-	ResourceNames = make([]string, 0)
 	rcc(path, target, tagsCustom, output_dir, true)
 }
 
@@ -122,7 +124,9 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	for _, s := range []string{"/", ".", "-"} {
 		name = strings.Replace(name, s, "_", -1)
 	}
-	ResourceNames = append(ResourceNames, name)
+	ResourceNamesMutex.Lock()
+	ResourceNames[rccCpp] = name
+	ResourceNamesMutex.Unlock()
 
 	rcc := exec.Command(utils.ToolPath("rcc", target), "-name", name, "-o", rccCpp)
 	rcc.Args = append(rcc.Args, fileList...)

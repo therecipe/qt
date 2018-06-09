@@ -33,7 +33,7 @@ func cleanLibs(module string, mode int) []string {
 }
 
 //needed for static linking
-func GetiOSClang(buildTarget, buildARM, path string) []string {
+func GetiOSClang(buildTarget, _, path string) []string {
 	var tmp = CgoTemplate("build_ios", path, buildTarget, NONE, "main", "")
 
 	tmp = strings.Split(tmp, "/*")[1]

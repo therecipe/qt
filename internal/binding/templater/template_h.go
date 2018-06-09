@@ -29,6 +29,14 @@ func HTemplate(m string, mode int, tags string) []byte {
 
 	fmt.Fprint(bb, "#include <stdint.h>\n\n")
 
+	if UseJs() {
+		fmt.Fprint(bb, "#include <string>\n")
+	}
+
+	if UseJs() {
+		fmt.Fprint(bb, "\n#include <emscripten.h>\n")
+	}
+
 	fmt.Fprint(bb, "#ifdef __cplusplus\n")
 	for _, c := range parser.SortedClassNamesForModule(m, true) {
 		if parser.State.ClassMap[c].IsSubClassOfQObject() {
@@ -40,10 +48,18 @@ func HTemplate(m string, mode int, tags string) []byte {
 			}
 		}
 	}
+
+	if UseJs() {
+		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; std::string dataP; };\n", strings.Title(m))
+		fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; uintptr_t dataP; };\n", strings.Title(m))
+	}
+
 	fmt.Fprint(bb, "extern \"C\" {\n#endif\n\n")
 
-	fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(m))
-	fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(m))
+	if !UseJs() {
+		fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(m))
+		fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(m))
+	}
 
 	//body
 	for _, c := range parser.SortedClassesForModule(m, true) {
@@ -72,7 +88,7 @@ func HTemplate(m string, mode int, tags string) []byte {
 
 		for _, c := range parser.SortedClassesForModule(strings.Join(libs, ","), true) {
 			hName := c.Hash()
-			sep := []string{" ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
+			sep := []string{"\"_", "LIVE_", " ", "\t", "\n", "\r", "(", ")", ":", ";", "*", "<", ">", "&", "~", "{", "}", "[", "]", "_", "callback"}
 			for _, p := range sep {
 				for _, s := range sep {
 					if s == "callback" {
@@ -85,5 +101,14 @@ func HTemplate(m string, mode int, tags string) []byte {
 		bb.WriteString(pre)
 	}
 
-	return bb.Bytes()
+	if !UseJs() {
+		return bb.Bytes()
+	}
+	tmp := bb.String()
+	for _, l := range strings.Split(tmp, "\n") {
+		if strings.Contains(l, "emscripten::val") {
+			tmp = strings.Replace(tmp, l, "", -1)
+		}
+	}
+	return []byte(tmp)
 }

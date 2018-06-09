@@ -18,6 +18,9 @@ func GoEnum(n string, v string, e *parser.Enum) string {
 	case EnumNeedsCppGlue(v):
 		{
 			e.NoConst = true
+			if parser.UseJs() {
+				return fmt.Sprintf("qt.WASM.Call(\"_%v_%v_Type\").Int64()", strings.Split(e.Fullname, "::")[0], n)
+			}
 			return fmt.Sprintf("C.%v_%v_Type()", strings.Split(e.Fullname, "::")[0], n)
 		}
 

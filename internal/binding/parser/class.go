@@ -244,6 +244,22 @@ func (c *Class) IsSupported() bool {
 	}
 	//}
 
+	if UseJs() {
+		if strings.HasPrefix(c.Name, "QSG") {
+			c.Access = "unsupported_isBlockedClass"
+			return false
+		}
+		switch c.Name {
+		case "QThreadPool", "QSharedMemory", "QPluginLoader", "QSemaphore", "QSemaphoreReleaser",
+			"QSystemSemaphore", "QThread", "QWaitCondition", "QUnhandledException", "QFileSystemModel",
+			"QLibrary":
+			{
+				c.Access = "unsupported_isBlockedClass"
+				return false
+			}
+		}
+	}
+
 	switch c.Name {
 	case
 		"QString", "QStringList", //mapped to primitive
@@ -285,7 +301,7 @@ func (c *Class) IsSupported() bool {
 		}
 	}
 
-	if strings.HasPrefix(c.Name, "QOpenGL") && os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" {
+	if strings.HasPrefix(c.Name, "QOpenGL") && (os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" || UseJs()) {
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}

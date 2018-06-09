@@ -4,6 +4,7 @@ package main
 
 import (
 	"os"
+	"runtime"
 
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
@@ -29,7 +30,11 @@ func NewCanvas() *widgets.QWidget {
 	view = widgets.NewQGraphicsView(nil)
 
 	var font = gui.NewQFont2("Meiryo", 20, 2, false)
-	scene.AddText("Hello 世界", font)
+	if runtime.GOARCH == "js" {
+		scene.AddText("Hello World", font)
+	} else {
+		scene.AddText("Hello 世界", font)
+	}
 
 	var color = gui.NewQColor3(255, 0, 0, 255)
 	var pen = gui.NewQPen3(color)

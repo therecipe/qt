@@ -39,9 +39,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		ending = ".exe"
 	case "sailfish", "sailfish-emulator":
 		if !utils.QT_SAILFISH() {
-			build_sailfish(mode, target, path, ldFlagsCustom, name, depPath)
+			build_sailfish(target, path, ldFlagsCustom, name)
 			return
 		}
+	case "js":
+		build_js(target, path, out, tags)
+		return
 	}
 
 	var pattern string
@@ -129,7 +132,9 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	}
 }
 
-func build_sailfish(mode, target, path, ldFlagsCustom, name, depPath string) {
+func build_sailfish(target, path, ldFlagsCustom, name string) {
+	//TODO: ldFlagsCustom, tags
+
 	if !strings.Contains(path, utils.MustGoPath()) {
 		utils.Log.Panicln("Project needs to be inside GOPATH; have:", path, "want:", utils.MustGoPath())
 	}
@@ -174,4 +179,15 @@ func build_sailfish(mode, target, path, ldFlagsCustom, name, depPath string) {
 		println(err.Error())
 		utils.Log.Panicf("failed to build for %v on %v", target, runtime.GOOS)
 	}
+}
+
+func build_js(target, path, out string, tags []string) {
+	cmd := exec.Command(filepath.Join(utils.GOBIN(), "gopherjs"), "build", ".", "-v", "-m", "-o", filepath.Join(filepath.Dir(out), "go.js"))
+	cmd.Dir = path
+
+	//TODO: tags = tags[1:]
+	//TOOD: cmd.Args = append(cmd.Args, fmt.Sprintf("--tags=\"%v\"", strings.Join(tags, " ")))
+	cmd.Args = append(cmd.Args, "--tags=minimal")
+
+	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 }

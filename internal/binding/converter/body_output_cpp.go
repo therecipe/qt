@@ -79,3 +79,21 @@ func CppOutputParametersJNIGenericModes(function *parser.Function) []string {
 
 	return make([]string, 0)
 }
+
+func CppOutputTemplateJS(function *parser.Function) string {
+	out := parser.CleanValue(function.Output)
+	switch out {
+	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
+		return "emscripten::val"
+	}
+	switch {
+	case isClass(out) || parser.IsPackedList(out) || parser.IsPackedMap(out) || cppType(function, function.Output) == "void*":
+		return "uintptr_t"
+	case isEnum(function.ClassName(), out) && (function.BoundByEmscripten || function.SignalMode == parser.CALLBACK):
+		return "long"
+	case len(out) == 0:
+		return "void"
+	default:
+		return out
+	}
+}

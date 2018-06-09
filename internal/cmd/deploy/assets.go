@@ -709,3 +709,23 @@ go tool link -f -o $PWD/relinked -importcfg $PWD/b001/importcfg.link -buildmode=
 			}
 		}())
 }
+
+//js
+
+func js_c_main_wrapper() string {
+	bb := new(bytes.Buffer)
+	bb.WriteString("#include <emscripten/val.h>\n")
+	for _, n := range rcc.ResourceNames {
+		fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+	}
+	bb.WriteString("int main(int argc, char *argv[]) {\n")
+	for _, n := range rcc.ResourceNames {
+		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+	}
+	bb.WriteString("emscripten::val document = emscripten::val::global(\"document\");\n")
+	bb.WriteString("emscripten::val script = document.call<emscripten::val>(\"createElement\", emscripten::val(\"script\"));\n")
+	bb.WriteString("script.set(\"src\", emscripten::val(\"go.js\"));\n")
+	bb.WriteString("document[\"body\"].call<void>(\"appendChild\", script);\n")
+	bb.WriteString("\n}")
+	return bb.String()
+}

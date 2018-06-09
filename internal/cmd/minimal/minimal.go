@@ -25,7 +25,13 @@ func Minimal(path, target, tags string) {
 		}
 	}
 	parser.LibDeps[parser.MOC] = make([]string, 0)
-	parser.LibDeps["build_ios"] = []string{"Qml"}
+	if target == "js" { //TODO: REVIEW
+		if parser.LibDeps["build_ios"][0] == "Qml" {
+			parser.LibDeps["build_ios"] = parser.LibDeps["build_ios"][1:]
+		}
+	} else {
+		parser.LibDeps["build_ios"] = []string{"Qml"}
+	}
 	//<--
 
 	wg := new(sync.WaitGroup)

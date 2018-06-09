@@ -39,6 +39,9 @@ var (
 	goMocImportsCacheMutex = new(sync.Mutex)
 
 	gL int
+
+	ResourceNames      = make(map[string]string)
+	ResourceNamesMutex = new(sync.Mutex)
 )
 
 func Moc(path, target, tags string, fast, slow bool) {
@@ -282,6 +285,10 @@ func moc(path, target, tags string, fast, slow, root bool, l int) {
 	goFilesCacheMutex.Unlock()
 	parseNonMocDeps(files)
 
+	ResourceNamesMutex.Lock()
+	ResourceNames[filepath.Join(path, "moc.cpp")] = ""
+	ResourceNamesMutex.Unlock()
+
 	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
 		return
 	}
@@ -443,8 +450,8 @@ func parse(path string) ([]*parser.Class, string, error) {
 								var found bool
 								for _, imp := range file.Imports {
 									if strings.Contains(autoTag, "("+imp.Name.String()+".") {
-										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
-										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
 
 										h := sha1.New()
 										h.Write([]byte(dir))
@@ -465,11 +472,11 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if imp.Name.String() != "<nil>" && imp.Name.String() != "_" {
 											continue
 										}
-										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
 										if !strings.Contains(autoTag, "("+name+".") {
 											continue
 										}
-										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
 
 										h := sha1.New()
 										h.Write([]byte(dir))

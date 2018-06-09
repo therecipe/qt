@@ -9,44 +9,45 @@ import (
 )
 
 type Function struct {
-	Name            string       `xml:"name,attr"`
-	Fullname        string       `xml:"fullname,attr"`
-	Href            string       `xml:"href,attr"`
-	Status          string       `xml:"status,attr"`
-	Access          string       `xml:"access,attr"`
-	Filepath        string       `xml:"filepath,attr"`
-	Virtual         string       `xml:"virtual,attr"`
-	Meta            string       `xml:"meta,attr"`
-	Static          bool         `xml:"static,attr"`
-	Overload        bool         `xml:"overload,attr"`
-	OverloadNumber  string       `xml:"overload-number,attr"`
-	Output          string       `xml:"type,attr"`
-	Signature       string       `xml:"signature,attr"`
-	Parameters      []*Parameter `xml:"parameter"`
-	Brief           string       `xml:"brief,attr"`
-	Since           string       `xml:"since,attr"`
-	SignalMode      string
-	TemplateModeJNI string
-	Default         bool
-	TmpName         string
-	Export          bool
-	NeedsFinalizer  bool
-	Container       string
-	TemplateModeGo  string
-	NonMember       bool
-	NoMocDeduce     bool
-	AsError         bool
-	Synthetic       bool
-	Checked         bool
-	Exception       bool
-	IsMap           bool
-	OgParameters    []Parameter
-	IsMocFunction   bool
-	IsMocProperty   bool
-	PureGoOutput    string
-	Connect         int
-	Target          string
-	Inbound         bool
+	Name              string       `xml:"name,attr"`
+	Fullname          string       `xml:"fullname,attr"`
+	Href              string       `xml:"href,attr"`
+	Status            string       `xml:"status,attr"`
+	Access            string       `xml:"access,attr"`
+	Filepath          string       `xml:"filepath,attr"`
+	Virtual           string       `xml:"virtual,attr"`
+	Meta              string       `xml:"meta,attr"`
+	Static            bool         `xml:"static,attr"`
+	Overload          bool         `xml:"overload,attr"`
+	OverloadNumber    string       `xml:"overload-number,attr"`
+	Output            string       `xml:"type,attr"`
+	Signature         string       `xml:"signature,attr"`
+	Parameters        []*Parameter `xml:"parameter"`
+	Brief             string       `xml:"brief,attr"`
+	Since             string       `xml:"since,attr"`
+	SignalMode        string
+	TemplateModeJNI   string
+	Default           bool
+	TmpName           string
+	Export            bool
+	NeedsFinalizer    bool
+	Container         string
+	TemplateModeGo    string
+	NonMember         bool
+	NoMocDeduce       bool
+	AsError           bool
+	Synthetic         bool
+	Checked           bool
+	Exception         bool
+	IsMap             bool
+	OgParameters      []Parameter
+	IsMocFunction     bool
+	IsMocProperty     bool
+	PureGoOutput      string
+	Connect           int
+	Target            string
+	Inbound           bool
+	BoundByEmscripten bool //TODO: needed at all ?
 }
 
 type Parameter struct {
@@ -340,6 +341,9 @@ func (f *Function) IsSupported() bool {
 		f.Name == "QRandomGenerator" && f.OverloadNumber == "4",
 
 		f.Fullname == "QAndroidBinder::onTransact", f.Fullname == "QtAndroid::checkPermission",
+
+		UseJs() && (strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" || f.Name == "metric" || f.Name == "moveCursor" ||
+			f.Name == "inputMethodEvent" || f.Name == "updateInputMethod" || f.Name == "inputMethodQuery"),
 
 		strings.Contains(f.Access, "unsupported"):
 		{

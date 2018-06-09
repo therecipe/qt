@@ -31,6 +31,8 @@ func UseStub(force bool, module string, mode int) bool {
 	return force || (utils.QT_STUB() && mode == NONE && !(module == "QtAndroidExtras" || module == "QtSailfish"))
 }
 
+func UseJs() bool { return parser.UseJs() }
+
 func buildTags(module string, stub bool, mode int, tags string) string {
 	switch {
 	case stub:

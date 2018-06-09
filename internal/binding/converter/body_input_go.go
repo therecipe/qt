@@ -28,8 +28,8 @@ func GoInputParametersForC(function *parser.Function) string {
 			} else {
 				var alloc = GoInput(parameter.Name, parameter.Value, function)
 				if strings.Contains(alloc, "C.CString") {
-					if parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList" {
-						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{ data: %vC, len: %v }", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
+					if (parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList") && !parser.UseJs() {
+						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{data: %vC, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
 								if function.AsError {
 									return "C.longlong(-1)"
@@ -52,9 +52,36 @@ func GoInputParametersForC(function *parser.Function) string {
 	return strings.Join(input, ", ")
 }
 
+func GoInputParametersForJS(function *parser.Function) string {
+
+	input := make([]string, 0)
+
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR) {
+		input = append(input, "(uintptr)(ptr.Pointer())")
+	}
+
+	if function.SignalMode == "" {
+		for _, parameter := range function.Parameters {
+			if parameter.PureGoType != "" {
+				input = append(input, GoInputJS(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
+					func() string {
+						if !strings.HasPrefix(parameter.PureGoType, "*") {
+							return "&"
+						}
+						return ""
+					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
+			} else {
+				input = append(input, GoInputJS(parameter.Name, parameter.Value, function))
+			}
+		}
+	}
+
+	return strings.Join(input, ", ")
+}
+
 func GoInputParametersForCAlloc(function *parser.Function) []string {
 
-	var input = make([]string, 0)
+	input := make([]string, 0)
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
@@ -81,7 +108,7 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 
 func GoInputParametersForCallback(function *parser.Function) string {
 
-	var input = make([]string, len(function.Parameters))
+	input := make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
 		if parameter.PureGoType != "" {

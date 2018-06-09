@@ -25,7 +25,7 @@
             <meta-data android:value="@string/ministro_not_found_msg" android:name="android.app.ministro_not_found_msg"/>
             <meta-data android:value="@string/ministro_needed_msg" android:name="android.app.ministro_needed_msg"/>
             <meta-data android:value="@string/fatal_error_msg" android:name="android.app.fatal_error_msg"/>
-            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/logo"/>
+            <meta-data android:name="android.app.splash_screen_drawable" android:resource="@drawable/icon"/>
             -->
         </activity>
     </application>

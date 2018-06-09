@@ -334,6 +334,9 @@ func cppTypeInput(f *parser.Function, value string) string {
 	switch parser.CleanValue(value) {
 	case "char", "qint8", "uchar", "quint8", "GLubyte":
 		{
+			if parser.UseJs() {
+				return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
+			}
 			return "char*"
 		}
 
@@ -361,6 +364,14 @@ func cppType(f *parser.Function, value string) string {
 	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
+				if parser.UseJs() {
+					for _, p := range f.Parameters {
+						switch parser.CleanValue(p.Value) {
+						case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
+							return "uintptr_t"
+						}
+					}
+				}
 				return "void*"
 			}
 
@@ -404,11 +415,17 @@ func cppType(f *parser.Function, value string) string {
 
 	case "longlong", "long long", "qlonglong", "qint64":
 		{
+			if parser.UseJs() && f.BoundByEmscripten {
+				return "long" //TODO:
+			}
 			return "long long"
 		}
 
 	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
 		{
+			if parser.UseJs() && f.BoundByEmscripten {
+				return "unsigned long" //TODO:
+			}
 			return "unsigned long long"
 		}
 
@@ -476,6 +493,9 @@ func cppType(f *parser.Function, value string) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
+			if parser.UseJs() && f.BoundByEmscripten {
+				return "long" //TODO:
+			}
 			return "long long"
 		}
 
@@ -486,6 +506,9 @@ func cppType(f *parser.Function, value string) string {
 
 	case parser.IsPackedList(value) || parser.IsPackedMap(value):
 		{
+			if parser.UseJs() {
+				return "emscripten::val"
+			}
 			return fmt.Sprintf("struct %v_PackedList", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 	}

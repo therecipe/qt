@@ -81,7 +81,7 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 }
 
 func cppFunctionCallbackBody(function *parser.Function) string {
-	return fmt.Sprintf("%v%v%v;",
+	out := fmt.Sprintf("%v%v%v;",
 
 		converter.CppInputParametersForCallbackBodyPrePack(function),
 
@@ -93,19 +93,37 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 		}(),
 
 		func() string {
-			var output = fmt.Sprintf("callback%v_%v%v(%v)", function.ClassName(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
-
+			var output string
+			if UseJs() {
+				output = fmt.Sprintf("emscripten::val::global(\"Module\").call<%v>(\"_callback%v_%v%v\", %v)", converter.CppOutputTemplateJS(function), function.ClassName(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
+			} else {
+				output = fmt.Sprintf("callback%v_%v%v(%v)", function.ClassName(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
+			}
 			if converter.CppHeaderOutput(function) != parser.VOID {
 				output = converter.CppInput(output, function.Output, function)
 			}
-
+			if UseJs() {
+				output = strings.Replace(output, "static_cast", "reinterpret_cast", -1)
+				output = strings.Replace(output, "enum_cast", "static_cast", -1)
+			}
 			return output
 		}(),
 	)
+	return out
 }
 
 func cppFunction(function *parser.Function) string {
 	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionUnused(function, cppFunctionBodyWithGuards(function)))
+	if UseJs() {
+		if !strings.Contains(output, "_Packed") && !strings.Contains(output, "emscripten::val") {
+			output = strings.Replace(output, converter.CppHeaderName(function), "_KEEPALIVE_"+converter.CppHeaderName(function), -1)
+			output = "EMSCRIPTEN_KEEPALIVE\n" + output
+		} else {
+			output = strings.Replace(output, "static_cast", "reinterpret_cast", -1)
+			exportedFunctions = append(exportedFunctions, converter.CppHeaderName(function))
+		}
+		output = strings.Replace(output, "enum_cast", "static_cast", -1)
+	}
 	if function.IsSupported() {
 		return output
 	}
@@ -114,6 +132,12 @@ func cppFunction(function *parser.Function) string {
 
 func cppFunctionHeader(function *parser.Function) string {
 	var output = fmt.Sprintf("%v %v(%v)", converter.CppHeaderOutput(function), converter.CppHeaderName(function), converter.CppHeaderInput(function))
+	if UseJs() {
+		if strings.Contains(output, "_Packed") || strings.Contains(output, "emscripten::val") {
+			output = strings.Replace(output, "void*", "uintptr_t", -1)
+			function.BoundByEmscripten = true
+		}
+	}
 	if function.IsSupported() {
 		return output
 	}
@@ -220,6 +244,14 @@ func cppFunctionBodyFailed(function *parser.Function) string {
 
 func cppFunctionBody(function *parser.Function) string {
 
+	var fakeDefault bool
+	if UseJs() && function.Meta == parser.SLOT {
+		defer func() { function.Meta = parser.SLOT; function.Default = false }()
+		function.Meta = parser.PLAIN
+		function.Default = true
+		fakeDefault = true
+	}
+
 	var polyinputs, polyName = function.PossiblePolymorphicDerivations(false)
 
 	var polyinputsSelf []string
@@ -257,7 +289,11 @@ func cppFunctionBody(function *parser.Function) string {
 	if (len(polyinputsSelf) == 0 && len(polyinputs) == 0) ||
 		function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT ||
 		(len(polyinputsSelf) != 0 && function.Meta == parser.CONSTRUCTOR) || (function.Meta == parser.DESTRUCTOR || strings.HasPrefix(function.Name, parser.TILDE)) {
-		return cppFunctionBodyInternal(function)
+		out := cppFunctionBodyInternal(function)
+		if fakeDefault {
+			out = strings.Replace(out, "->"+parser.State.ClassMap[function.ClassName()].GetBases()[0]+"::", "->", -1)
+		}
+		return out
 	}
 
 	var bb = new(bytes.Buffer)
@@ -291,7 +327,20 @@ func cppFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "\t%v\n", func() string {
 				var ibody string
 				if function.Default && polyName == "ptr" {
-					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<"+polyType+"*>("+polyName+")->"+polyType+"::", -1)
+					if fakeDefault {
+						ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<My"+polyType+"*>("+polyName+")->My"+polyType+"::", -1)
+
+						//TODO: only temporary until invoke works ->
+						for _, s := range append(parser.State.ClassMap["QAbstractItemView"].GetAllDerivations(), "QAbstractItemView") {
+							if strings.Contains(ibody, "static_cast<My"+s+"*>(ptr)->My"+s+"::update()") {
+								ibody = ""
+								break
+							}
+						}
+						//<-
+					} else {
+						ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<"+polyType+"*>("+polyName+")->"+polyType+"::", -1)
+					}
 				} else {
 					ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
 				}
@@ -325,10 +374,17 @@ func cppFunctionBody(function *parser.Function) string {
 			}
 		}
 
+		if fakeDefault {
+			//TODO: cleanup ?
+			//body = strings.Replace(body, "static_cast<"+function.ClassName()+"*>(ptr)->"+function.ClassName()+"::", "static_cast<My"+function.ClassName()+"*>(ptr)->My"+function.ClassName()+"::", -1)
+		}
 		if bb.String() == "" {
 			return body
 		}
 		fmt.Fprintf(bb, "{\n\t%v\n\t}", func() string {
+			if fakeDefault {
+				body = strings.Replace(body, "static_cast<"+function.ClassName()+"*>(ptr)->"+function.ClassName()+"::", "static_cast<My"+function.ClassName()+"*>(ptr)->My"+function.ClassName()+"::", -1)
+			}
 			if strings.Count(body, "\n") > 1 {
 				return "\t" + strings.Replace(body, "\n", "\n\t", -1)
 			}
@@ -353,9 +409,20 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 	switch function.Meta {
 	case parser.CONSTRUCTOR:
 		{
-			return fmt.Sprintf("%v\treturn new %v%v(%v);",
+			return fmt.Sprintf("%v\treturn %vnew %v%v(%v)%v;",
+
 				func() string {
 					if parser.State.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") || function.Name == "QAndroidService" {
+						if UseJs() {
+							return `	static int argcs = argc;
+	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
+
+	QList<QByteArray> aList = QString::fromStdString(argv.dataP).toUtf8().split('|');
+	for (int i = 0; i < argcs; i++)
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
+
+`
+						}
 						return `	static int argcs = argc;
 	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
 
@@ -364,6 +431,13 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 `
+					}
+					return ""
+				}(),
+
+				func() string {
+					if UseJs() && function.BoundByEmscripten {
+						return "reinterpret_cast<uintptr_t>("
 					}
 					return ""
 				}(),
@@ -386,6 +460,13 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 				}(),
 
 				converter.CppInputParameters(function),
+
+				func() string {
+					if UseJs() && function.BoundByEmscripten {
+						return ")"
+					}
+					return ""
+				}(),
 			)
 		}
 
