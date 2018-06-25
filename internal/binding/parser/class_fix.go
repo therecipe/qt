@@ -35,6 +35,7 @@ func (c *Class) fixFunctions(fix func(*Function)) {
 }
 
 //TODO: (*Enum) IsSupported
+//TODO: merge into (*Class).removeEnums_Version
 func (c *Class) fixEnums() {
 	for _, e := range c.Enums {
 		if e.Fullname == "QVariant::Type" {
@@ -147,6 +148,12 @@ func (c *Class) fixGeneral_Version() {
 					},
 					Signature: "QOperatingSystemVersion(const QOperatingSystemVersion &amp;other) = default",
 				})
+			}
+		}
+	case "QDesktopWidget":
+		{
+			for _, f := range c.Functions {
+				f.Status = "active"
 			}
 		}
 	}

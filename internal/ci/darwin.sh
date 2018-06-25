@@ -14,7 +14,7 @@ then
   brew update
   brew install qt5
   brew outdated qt5 || brew upgrade qt5
-  ln -s /usr/local/Cellar/qt/5.10.0 $HOME/Desktop/Qt5.10.0
+  ln -s /usr/local/Cellar/qt/5.11.1 $HOME/Desktop/Qt5.11.1
 else
   #download and install qt
   QT=qt-unified-mac-x64-online

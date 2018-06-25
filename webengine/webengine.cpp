@@ -1924,7 +1924,6 @@ public:
 	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { QByteArray t76015f = oldFiles.join("|").toUtf8(); QtWebEngine_PackedString oldFilesPacked = { const_cast<char*>(t76015f.prepend("WHITESPACE").constData()+10), t76015f.size()-10 };QByteArray t541092 = acceptedMimeTypes.join("|").toUtf8(); QtWebEngine_PackedString acceptedMimeTypesPacked = { const_cast<char*>(t541092.prepend("WHITESPACE").constData()+10), t541092.size()-10 };return ({ QtWebEngine_PackedString tempVal = callbackQWebEnginePage_ChooseFiles(this, mode, oldFilesPacked, acceptedMimeTypesPacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QWebEnginePage * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEnginePage*>(callbackQWebEnginePage_CreateWindow(this, ty)); };
 	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, const_cast<QUrl*>(&url), ty, isMainFrame) != 0; };
-	bool certificateError(const QWebEngineCertificateError & certificateError) { return callbackQWebEnginePage_CertificateError(this, const_cast<QWebEngineCertificateError*>(&certificateError)) != 0; };
 	bool event(QEvent * e) { return callbackQWebEnginePage_Event(this, e) != 0; };
 	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };return callbackQWebEnginePage_JavaScriptConfirm(this, const_cast<QUrl*>(&securityOrigin), msgPacked) != 0; };
 	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };QByteArray te940d2 = defaultValue.toUtf8(); QtWebEngine_PackedString defaultValuePacked = { const_cast<char*>(te940d2.prepend("WHITESPACE").constData()+10), te940d2.size()-10 };QByteArray t37a530 = result->toUtf8(); QtWebEngine_PackedString resultPacked = { const_cast<char*>(t37a530.prepend("WHITESPACE").constData()+10), t37a530.size()-10 };return callbackQWebEnginePage_JavaScriptPrompt(this, const_cast<QUrl*>(&securityOrigin), msgPacked, defaultValuePacked, resultPacked) != 0; };
@@ -2083,16 +2082,6 @@ char QWebEnginePage_AcceptNavigationRequest(void* ptr, void* url, long long ty, 
 char QWebEnginePage_AcceptNavigationRequestDefault(void* ptr, void* url, long long ty, char isMainFrame)
 {
 		return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::acceptNavigationRequest(*static_cast<QUrl*>(url), static_cast<QWebEnginePage::NavigationType>(ty), isMainFrame != 0);
-}
-
-char QWebEnginePage_CertificateError(void* ptr, void* certificateError)
-{
-	return static_cast<QWebEnginePage*>(ptr)->certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
-}
-
-char QWebEnginePage_CertificateErrorDefault(void* ptr, void* certificateError)
-{
-		return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
 }
 
 char QWebEnginePage_EventDefault(void* ptr, void* e)
@@ -2658,11 +2647,6 @@ void* QWebEnginePage_ContextMenuData(void* ptr)
 double QWebEnginePage_ZoomFactor(void* ptr)
 {
 	return static_cast<QWebEnginePage*>(ptr)->zoomFactor();
-}
-
-void QWebEnginePage_Save(void* ptr, struct QtWebEngine_PackedString filePath, long long format)
-{
-	static_cast<QWebEnginePage*>(ptr)->save(QString::fromUtf8(filePath.data, filePath.len), static_cast<QWebEngineDownloadItem::SavePageFormat>(format));
 }
 
 void* QWebEnginePage___dynamicPropertyNames_atList(void* ptr, int i)
@@ -3291,49 +3275,14 @@ unsigned int QWebEngineScript_WorldId(void* ptr)
 	return static_cast<QWebEngineScript*>(ptr)->worldId();
 }
 
-char QWebEngineScriptCollection_Remove(void* ptr, void* script)
-{
-	return static_cast<QWebEngineScriptCollection*>(ptr)->remove(*static_cast<QWebEngineScript*>(script));
-}
-
 void QWebEngineScriptCollection_Clear(void* ptr)
 {
 	static_cast<QWebEngineScriptCollection*>(ptr)->clear();
 }
 
-void QWebEngineScriptCollection_Insert2(void* ptr, void* list)
-{
-	static_cast<QWebEngineScriptCollection*>(ptr)->insert(*static_cast<QList<QWebEngineScript>*>(list));
-}
-
-void QWebEngineScriptCollection_Insert(void* ptr, void* s)
-{
-	static_cast<QWebEngineScriptCollection*>(ptr)->insert(*static_cast<QWebEngineScript*>(s));
-}
-
 void QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(void* ptr)
 {
 	static_cast<QWebEngineScriptCollection*>(ptr)->~QWebEngineScriptCollection();
-}
-
-struct QtWebEngine_PackedList QWebEngineScriptCollection_FindScripts(void* ptr, struct QtWebEngine_PackedString name)
-{
-	return ({ QList<QWebEngineScript>* tmpValue = new QList<QWebEngineScript>(static_cast<QWebEngineScriptCollection*>(ptr)->findScripts(QString::fromUtf8(name.data, name.len))); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtWebEngine_PackedList QWebEngineScriptCollection_ToList(void* ptr)
-{
-	return ({ QList<QWebEngineScript>* tmpValue = new QList<QWebEngineScript>(static_cast<QWebEngineScriptCollection*>(ptr)->toList()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* QWebEngineScriptCollection_FindScript(void* ptr, struct QtWebEngine_PackedString name)
-{
-	return new QWebEngineScript(static_cast<QWebEngineScriptCollection*>(ptr)->findScript(QString::fromUtf8(name.data, name.len)));
-}
-
-char QWebEngineScriptCollection_Contains(void* ptr, void* value)
-{
-	return static_cast<QWebEngineScriptCollection*>(ptr)->contains(*static_cast<QWebEngineScript*>(value));
 }
 
 char QWebEngineScriptCollection_IsEmpty(void* ptr)
@@ -4064,7 +4013,6 @@ class MyQWebEngineView: public QWebEngineView
 {
 public:
 	MyQWebEngineView(QWidget *parent = Q_NULLPTR) : QWebEngineView(parent) {QWebEngineView_QWebEngineView_QRegisterMetaType();};
-	QWebEngineView * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEngineView*>(callbackQWebEngineView_CreateWindow(this, ty)); };
 	bool event(QEvent * ev) { return callbackQWebEngineView_Event(this, ev) != 0; };
 	void back() { callbackQWebEngineView_Back(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWebEngineView_ContextMenuEvent(this, event); };
@@ -4080,7 +4028,6 @@ public:
 	void Signal_LoadProgress(int progress) { callbackQWebEngineView_LoadProgress(this, progress); };
 	void Signal_LoadStarted() { callbackQWebEngineView_LoadStarted(this); };
 	void reload() { callbackQWebEngineView_Reload(this); };
-	void Signal_RenderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode) { callbackQWebEngineView_RenderProcessTerminated(this, terminationStatus, exitCode); };
 	void Signal_SelectionChanged() { callbackQWebEngineView_SelectionChanged(this); };
 	void showEvent(QShowEvent * event) { callbackQWebEngineView_ShowEvent(this, event); };
 	void stop() { callbackQWebEngineView_Stop(this); };
@@ -4152,16 +4099,6 @@ public:
 Q_DECLARE_METATYPE(MyQWebEngineView*)
 
 int QWebEngineView_QWebEngineView_QRegisterMetaType(){qRegisterMetaType<QWebEngineView*>(); return qRegisterMetaType<MyQWebEngineView*>();}
-
-void* QWebEngineView_CreateWindow(void* ptr, long long ty)
-{
-	return static_cast<QWebEngineView*>(ptr)->createWindow(static_cast<QWebEnginePage::WebWindowType>(ty));
-}
-
-void* QWebEngineView_CreateWindowDefault(void* ptr, long long ty)
-{
-		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::createWindow(static_cast<QWebEnginePage::WebWindowType>(ty));
-}
 
 void* QWebEngineView_NewQWebEngineView(void* parent)
 {
@@ -4323,21 +4260,6 @@ void QWebEngineView_ReloadDefault(void* ptr)
 		static_cast<QWebEngineView*>(ptr)->QWebEngineView::reload();
 }
 
-void QWebEngineView_ConnectRenderProcessTerminated(void* ptr)
-{
-	QObject::connect(static_cast<QWebEngineView*>(ptr), static_cast<void (QWebEngineView::*)(QWebEnginePage::RenderProcessTerminationStatus, int)>(&QWebEngineView::renderProcessTerminated), static_cast<MyQWebEngineView*>(ptr), static_cast<void (MyQWebEngineView::*)(QWebEnginePage::RenderProcessTerminationStatus, int)>(&MyQWebEngineView::Signal_RenderProcessTerminated));
-}
-
-void QWebEngineView_DisconnectRenderProcessTerminated(void* ptr)
-{
-	QObject::disconnect(static_cast<QWebEngineView*>(ptr), static_cast<void (QWebEngineView::*)(QWebEnginePage::RenderProcessTerminationStatus, int)>(&QWebEngineView::renderProcessTerminated), static_cast<MyQWebEngineView*>(ptr), static_cast<void (MyQWebEngineView::*)(QWebEnginePage::RenderProcessTerminationStatus, int)>(&MyQWebEngineView::Signal_RenderProcessTerminated));
-}
-
-void QWebEngineView_RenderProcessTerminated(void* ptr, long long terminationStatus, int exitCode)
-{
-	static_cast<QWebEngineView*>(ptr)->renderProcessTerminated(static_cast<QWebEnginePage::RenderProcessTerminationStatus>(terminationStatus), exitCode);
-}
-
 void QWebEngineView_ConnectSelectionChanged(void* ptr)
 {
 	QObject::connect(static_cast<QWebEngineView*>(ptr), static_cast<void (QWebEngineView::*)()>(&QWebEngineView::selectionChanged), static_cast<MyQWebEngineView*>(ptr), static_cast<void (MyQWebEngineView::*)()>(&MyQWebEngineView::Signal_SelectionChanged));
@@ -4408,11 +4330,6 @@ void QWebEngineView_TitleChanged(void* ptr, struct QtWebEngine_PackedString titl
 	static_cast<QWebEngineView*>(ptr)->titleChanged(QString::fromUtf8(title.data, title.len));
 }
 
-void QWebEngineView_TriggerPageAction(void* ptr, long long action, char checked)
-{
-	static_cast<QWebEngineView*>(ptr)->triggerPageAction(static_cast<QWebEnginePage::WebAction>(action), checked != 0);
-}
-
 void QWebEngineView_ConnectUrlChanged(void* ptr)
 {
 	QObject::connect(static_cast<QWebEngineView*>(ptr), static_cast<void (QWebEngineView::*)(const QUrl &)>(&QWebEngineView::urlChanged), static_cast<MyQWebEngineView*>(ptr), static_cast<void (MyQWebEngineView::*)(const QUrl &)>(&MyQWebEngineView::Signal_UrlChanged));
@@ -4437,11 +4354,6 @@ void QWebEngineView_DestroyQWebEngineViewDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
-}
-
-void* QWebEngineView_PageAction(void* ptr, long long action)
-{
-	return static_cast<QWebEngineView*>(ptr)->pageAction(static_cast<QWebEnginePage::WebAction>(action));
 }
 
 void* QWebEngineView_Icon(void* ptr)

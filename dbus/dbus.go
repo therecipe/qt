@@ -1310,11 +1310,6 @@ const (
 	QDBusConnection__ExportNonScriptableProperties QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x400)
 	QDBusConnection__ExportNonScriptableInvokables QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x800)
 	QDBusConnection__ExportNonScriptableContents   QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0xf00)
-	QDBusConnection__ExportAllSlots                QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSlots | QDBusConnection__ExportNonScriptableSlots)
-	QDBusConnection__ExportAllSignals              QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSignals | QDBusConnection__ExportNonScriptableSignals)
-	QDBusConnection__ExportAllProperties           QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableProperties | QDBusConnection__ExportNonScriptableProperties)
-	QDBusConnection__ExportAllInvokables           QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableInvokables | QDBusConnection__ExportNonScriptableInvokables)
-	QDBusConnection__ExportAllContents             QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableContents | QDBusConnection__ExportNonScriptableContents)
 	QDBusConnection__ExportChildObjects            QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x1000)
 )
 

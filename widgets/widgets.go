@@ -17679,17 +17679,15 @@ func NewQDateTimeEditFromPointer(ptr unsafe.Pointer) (n *QDateTimeEdit) {
 type QDateTimeEdit__Section int64
 
 const (
-	QDateTimeEdit__NoSection         QDateTimeEdit__Section = QDateTimeEdit__Section(0x0000)
-	QDateTimeEdit__AmPmSection       QDateTimeEdit__Section = QDateTimeEdit__Section(0x0001)
-	QDateTimeEdit__MSecSection       QDateTimeEdit__Section = QDateTimeEdit__Section(0x0002)
-	QDateTimeEdit__SecondSection     QDateTimeEdit__Section = QDateTimeEdit__Section(0x0004)
-	QDateTimeEdit__MinuteSection     QDateTimeEdit__Section = QDateTimeEdit__Section(0x0008)
-	QDateTimeEdit__HourSection       QDateTimeEdit__Section = QDateTimeEdit__Section(0x0010)
-	QDateTimeEdit__DaySection        QDateTimeEdit__Section = QDateTimeEdit__Section(0x0100)
-	QDateTimeEdit__MonthSection      QDateTimeEdit__Section = QDateTimeEdit__Section(0x0200)
-	QDateTimeEdit__YearSection       QDateTimeEdit__Section = QDateTimeEdit__Section(0x0400)
-	QDateTimeEdit__TimeSections_Mask QDateTimeEdit__Section = QDateTimeEdit__Section(QDateTimeEdit__AmPmSection | QDateTimeEdit__MSecSection | QDateTimeEdit__SecondSection | QDateTimeEdit__MinuteSection | QDateTimeEdit__HourSection)
-	QDateTimeEdit__DateSections_Mask QDateTimeEdit__Section = QDateTimeEdit__Section(QDateTimeEdit__DaySection | QDateTimeEdit__MonthSection | QDateTimeEdit__YearSection)
+	QDateTimeEdit__NoSection     QDateTimeEdit__Section = QDateTimeEdit__Section(0x0000)
+	QDateTimeEdit__AmPmSection   QDateTimeEdit__Section = QDateTimeEdit__Section(0x0001)
+	QDateTimeEdit__MSecSection   QDateTimeEdit__Section = QDateTimeEdit__Section(0x0002)
+	QDateTimeEdit__SecondSection QDateTimeEdit__Section = QDateTimeEdit__Section(0x0004)
+	QDateTimeEdit__MinuteSection QDateTimeEdit__Section = QDateTimeEdit__Section(0x0008)
+	QDateTimeEdit__HourSection   QDateTimeEdit__Section = QDateTimeEdit__Section(0x0010)
+	QDateTimeEdit__DaySection    QDateTimeEdit__Section = QDateTimeEdit__Section(0x0100)
+	QDateTimeEdit__MonthSection  QDateTimeEdit__Section = QDateTimeEdit__Section(0x0200)
+	QDateTimeEdit__YearSection   QDateTimeEdit__Section = QDateTimeEdit__Section(0x0400)
 )
 
 func NewQDateTimeEdit(parent QWidget_ITF) *QDateTimeEdit {
@@ -18676,6 +18674,13 @@ func (ptr *QDesktopWidget) ScreenGeometry(screen int) *core.QRect {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QDesktopWidget) NumScreens() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDesktopWidget_NumScreens(ptr.Pointer())))
+	}
+	return 0
 }
 
 func (ptr *QDesktopWidget) PrimaryScreen() int {
@@ -19787,6 +19792,1873 @@ func (ptr *QDialogButtonBox) __buttons_newList() unsafe.Pointer {
 	return C.QDialogButtonBox___buttons_newList(ptr.Pointer())
 }
 
+type QDirModel struct {
+	core.QAbstractItemModel
+}
+
+type QDirModel_ITF interface {
+	core.QAbstractItemModel_ITF
+	QDirModel_PTR() *QDirModel
+}
+
+func (ptr *QDirModel) QDirModel_PTR() *QDirModel {
+	return ptr
+}
+
+func (ptr *QDirModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModel_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QDirModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractItemModel_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQDirModel(ptr QDirModel_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDirModel_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDirModelFromPointer(ptr unsafe.Pointer) (n *QDirModel) {
+	n = new(QDirModel)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QDirModel__Roles
+//QDirModel::Roles
+type QDirModel__Roles int64
+
+var (
+	QDirModel__FileIconRole QDirModel__Roles = QDirModel__Roles(core.Qt__DecorationRole)
+	QDirModel__FilePathRole QDirModel__Roles = QDirModel__Roles(C.QDirModel_FilePathRole_Type())
+	QDirModel__FileNameRole QDirModel__Roles = QDirModel__Roles(C.QDirModel_FileNameRole_Type())
+)
+
+//export callbackQDirModel_DropMimeData
+func callbackQDirModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "dropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).DropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_SetData
+func callbackQDirModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QDirModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) SetFilter(filters core.QDir__Filter) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetFilter(ptr.Pointer(), C.longlong(filters))
+	}
+}
+
+func (ptr *QDirModel) SetLazyChildCount(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetLazyChildCount(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
+func NewQDirModel2(parent core.QObject_ITF) *QDirModel {
+	tmpValue := NewQDirModelFromPointer(C.QDirModel_NewQDirModel2(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQDirModel(nameFilters []string, filters core.QDir__Filter, sort core.QDir__SortFlag, parent core.QObject_ITF) *QDirModel {
+	nameFiltersC := C.CString(strings.Join(nameFilters, "|"))
+	defer C.free(unsafe.Pointer(nameFiltersC))
+	tmpValue := NewQDirModelFromPointer(C.QDirModel_NewQDirModel(C.struct_QtWidgets_PackedString{data: nameFiltersC, len: C.longlong(len(strings.Join(nameFilters, "|")))}, C.longlong(filters), C.longlong(sort), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QDirModel) Mkdir(parent core.QModelIndex_ITF, name string) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Mkdir(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.struct_QtWidgets_PackedString{data: nameC, len: C.longlong(len(name))}))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) Remove(index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_Remove(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) Rmdir(index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_Rmdir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_Refresh
+func callbackQDirModel_Refresh(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "refresh"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQDirModelFromPointer(ptr).RefreshDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QDirModel) ConnectRefresh(f func(parent *core.QModelIndex)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "refresh"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "refresh", func(parent *core.QModelIndex) {
+				signal.(func(*core.QModelIndex))(parent)
+				f(parent)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "refresh", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectRefresh() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "refresh")
+	}
+}
+
+func (ptr *QDirModel) Refresh(parent core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_Refresh(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QDirModel) RefreshDefault(parent core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_RefreshDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QDirModel) SetIconProvider(provider QFileIconProvider_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetIconProvider(ptr.Pointer(), PointerFromQFileIconProvider(provider))
+	}
+}
+
+func (ptr *QDirModel) SetNameFilters(filters []string) {
+	if ptr.Pointer() != nil {
+		filtersC := C.CString(strings.Join(filters, "|"))
+		defer C.free(unsafe.Pointer(filtersC))
+		C.QDirModel_SetNameFilters(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))})
+	}
+}
+
+func (ptr *QDirModel) SetReadOnly(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetReadOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
+func (ptr *QDirModel) SetResolveSymlinks(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetResolveSymlinks(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
+func (ptr *QDirModel) SetSorting(sort core.QDir__SortFlag) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SetSorting(ptr.Pointer(), C.longlong(sort))
+	}
+}
+
+//export callbackQDirModel_Sort
+func callbackQDirModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
+	if signal := qt.GetSignal(ptr, "sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
+	} else {
+		NewQDirModelFromPointer(ptr).SortDefault(int(int32(column)), core.Qt__SortOrder(order))
+	}
+}
+
+func (ptr *QDirModel) SortDefault(column int, order core.Qt__SortOrder) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
+	}
+}
+
+func (ptr *QDirModel) DestroyQDirModel() {
+	if ptr.Pointer() != nil {
+		C.QDirModel_DestroyQDirModel(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QDirModel) Filter() core.QDir__Filter {
+	if ptr.Pointer() != nil {
+		return core.QDir__Filter(C.QDirModel_Filter(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) Sorting() core.QDir__SortFlag {
+	if ptr.Pointer() != nil {
+		return core.QDir__SortFlag(C.QDirModel_Sorting(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) IconProvider() *QFileIconProvider {
+	if ptr.Pointer() != nil {
+		return NewQFileIconProviderFromPointer(C.QDirModel_IconProvider(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDirModel) FileInfo(index core.QModelIndex_ITF) *core.QFileInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQFileInfoFromPointer(C.QDirModel_FileInfo(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QFileInfo).DestroyQFileInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) FileIcon(index core.QModelIndex_ITF) *gui.QIcon {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQIconFromPointer(C.QDirModel_FileIcon(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_MimeData
+func callbackQDirModel_MimeData(ptr unsafe.Pointer, indexes C.struct_QtWidgets_PackedList) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "mimeData"); signal != nil {
+		return core.PointerFromQMimeData(signal.(func([]*core.QModelIndex) *core.QMimeData)(func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__mimeData_indexes_atList(i)
+			}
+			return out
+		}(indexes)))
+	}
+
+	return core.PointerFromQMimeData(NewQDirModelFromPointer(ptr).MimeDataDefault(func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
+		out := make([]*core.QModelIndex, int(l.len))
+		tmpList := NewQDirModelFromPointer(l.data)
+		for i := 0; i < len(out); i++ {
+			out[i] = tmpList.__mimeData_indexes_atList(i)
+		}
+		return out
+	}(indexes)))
+}
+
+func (ptr *QDirModel) MimeDataDefault(indexes []*core.QModelIndex) *core.QMimeData {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQMimeDataFromPointer(C.QDirModel_MimeDataDefault(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__mimeData_indexes_newList())
+			for _, v := range indexes {
+				tmpList.__mimeData_indexes_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) Index2(path string, column int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		var pathC *C.char
+		if path != "" {
+			pathC = C.CString(path)
+			defer C.free(unsafe.Pointer(pathC))
+		}
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Index2(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: pathC, len: C.longlong(len(path))}, C.int(int32(column))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_Index
+func callbackQDirModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "index"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+	}
+
+	return core.PointerFromQModelIndex(NewQDirModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+}
+
+func (ptr *QDirModel) ConnectIndex(f func(row int, column int, parent *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "index"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "index", func(row int, column int, parent *core.QModelIndex) *core.QModelIndex {
+				signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(row, column, parent)
+				return f(row, column, parent)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "index", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectIndex() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "index")
+	}
+}
+
+func (ptr *QDirModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_Parent
+func callbackQDirModel_Parent(ptr unsafe.Pointer, child unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "parent"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(child)))
+	}
+
+	return core.PointerFromQModelIndex(NewQDirModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(child)))
+}
+
+func (ptr *QDirModel) ConnectParent(f func(child *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "parent"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "parent", func(child *core.QModelIndex) *core.QModelIndex {
+				signal.(func(*core.QModelIndex) *core.QModelIndex)(child)
+				return f(child)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "parent", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectParent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "parent")
+	}
+}
+
+func (ptr *QDirModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) ParentDefault(child core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) FileName(index core.QModelIndex_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QDirModel_FileName(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return ""
+}
+
+func (ptr *QDirModel) FilePath(index core.QModelIndex_ITF) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QDirModel_FilePath(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return ""
+}
+
+//export callbackQDirModel_MimeTypes
+func callbackQDirModel_MimeTypes(ptr unsafe.Pointer) C.struct_QtWidgets_PackedString {
+	if signal := qt.GetSignal(ptr, "mimeTypes"); signal != nil {
+		tempVal := signal.(func() []string)()
+		return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	}
+	tempVal := NewQDirModelFromPointer(ptr).MimeTypesDefault()
+	return C.struct_QtWidgets_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+}
+
+func (ptr *QDirModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QDirModel_MimeTypesDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QDirModel) NameFilters() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QDirModel_NameFilters(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackQDirModel_Data
+func callbackQDirModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "data"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQDirModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *QDirModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "data"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "data", func(index *core.QModelIndex, role int) *core.QVariant {
+				signal.(func(*core.QModelIndex, int) *core.QVariant)(index, role)
+				return f(index, role)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "data", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "data")
+	}
+}
+
+func (ptr *QDirModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QDirModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QDirModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_HeaderData
+func callbackQDirModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "headerData"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQDirModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *QDirModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QDirModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_SupportedDropActions
+func callbackQDirModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDropActions"); signal != nil {
+		return C.longlong(signal.(func() core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewQDirModelFromPointer(ptr).SupportedDropActionsDefault())
+}
+
+func (ptr *QDirModel) SupportedDropActionsDefault() core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QDirModel_SupportedDropActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQDirModel_Flags
+func callbackQDirModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "flags"); signal != nil {
+		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewQDirModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QDirModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__ItemFlag(C.QDirModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
+}
+
+//export callbackQDirModel_HasChildren
+func callbackQDirModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) IsDir(index core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_IsDir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) IsReadOnly() bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_IsReadOnly(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) LazyChildCount() bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_LazyChildCount(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QDirModel) ResolveSymlinks() bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_ResolveSymlinks(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_ColumnCount
+func callbackQDirModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "columnCount"); signal != nil {
+		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQDirModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QDirModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "columnCount"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "columnCount", func(parent *core.QModelIndex) int {
+				signal.(func(*core.QModelIndex) int)(parent)
+				return f(parent)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "columnCount", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectColumnCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "columnCount")
+	}
+}
+
+func (ptr *QDirModel) ColumnCount(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQDirModel_RowCount
+func callbackQDirModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+	if signal := qt.GetSignal(ptr, "rowCount"); signal != nil {
+		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQDirModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QDirModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "rowCount"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "rowCount", func(parent *core.QModelIndex) int {
+				signal.(func(*core.QModelIndex) int)(parent)
+				return f(parent)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "rowCount", f)
+		}
+	}
+}
+
+func (ptr *QDirModel) DisconnectRowCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "rowCount")
+	}
+}
+
+func (ptr *QDirModel) RowCount(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) RowCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) __mimeData_indexes_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___mimeData_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __mimeData_indexes_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___mimeData_indexes_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __mimeData_indexes_newList() unsafe.Pointer {
+	return C.QDirModel___mimeData_indexes_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __setItemData_roles_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QDirModel___setItemData_roles_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __setItemData_roles_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___setItemData_roles_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QDirModel) __setItemData_roles_newList() unsafe.Pointer {
+	return C.QDirModel___setItemData_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __setItemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____setItemData_keyList_atList(i)
+			}
+			return out
+		}(C.QDirModel___setItemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_from_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___changePersistentIndexList_from_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_from_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___changePersistentIndexList_from_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_from_newList() unsafe.Pointer {
+	return C.QDirModel___changePersistentIndexList_from_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_to_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___changePersistentIndexList_to_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_to_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___changePersistentIndexList_to_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __changePersistentIndexList_to_newList() unsafe.Pointer {
+	return C.QDirModel___changePersistentIndexList_to_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __dataChanged_roles_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel___dataChanged_roles_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) __dataChanged_roles_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___dataChanged_roles_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) __dataChanged_roles_newList() unsafe.Pointer {
+	return C.QDirModel___dataChanged_roles_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __layoutAboutToBeChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QDirModel___layoutAboutToBeChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __layoutAboutToBeChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___layoutAboutToBeChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __layoutAboutToBeChanged_parents_newList() unsafe.Pointer {
+	return C.QDirModel___layoutAboutToBeChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __layoutChanged_parents_atList(i int) *core.QPersistentModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPersistentModelIndexFromPointer(C.QDirModel___layoutChanged_parents_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __layoutChanged_parents_setList(i core.QPersistentModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___layoutChanged_parents_setList(ptr.Pointer(), core.PointerFromQPersistentModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __layoutChanged_parents_newList() unsafe.Pointer {
+	return C.QDirModel___layoutChanged_parents_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __roleNames_atList(v int, i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QDirModel___roleNames_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __roleNames_setList(key int, i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___roleNames_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QDirModel) __roleNames_newList() unsafe.Pointer {
+	return C.QDirModel___roleNames_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __roleNames_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____roleNames_keyList_atList(i)
+			}
+			return out
+		}(C.QDirModel___roleNames_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QDirModel) __itemData_atList(v int, i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QDirModel___itemData_atList(ptr.Pointer(), C.int(int32(v)), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __itemData_setList(key int, i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___itemData_setList(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QDirModel) __itemData_newList() unsafe.Pointer {
+	return C.QDirModel___itemData_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __itemData_keyList() []int {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____itemData_keyList_atList(i)
+			}
+			return out
+		}(C.QDirModel___itemData_keyList(ptr.Pointer()))
+	}
+	return make([]int, 0)
+}
+
+func (ptr *QDirModel) __match_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __match_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___match_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __match_newList() unsafe.Pointer {
+	return C.QDirModel___match_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __persistentIndexList_atList(i int) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel___persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __persistentIndexList_setList(i core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___persistentIndexList_setList(ptr.Pointer(), core.PointerFromQModelIndex(i))
+	}
+}
+
+func (ptr *QDirModel) __persistentIndexList_newList() unsafe.Pointer {
+	return C.QDirModel___persistentIndexList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____setItemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____setItemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____setItemData_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____setItemData_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____doSetRoleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____doSetRoleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____setRoleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____setRoleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____setRoleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____roleNames_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____itemData_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____itemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____itemData_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____itemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____itemData_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____itemData_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QDirModel___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QDirModel) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QDirModel___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDirModel___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QDirModel) __findChildren_newList2() unsafe.Pointer {
+	return C.QDirModel___findChildren_newList2(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDirModel___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QDirModel) __findChildren_newList3() unsafe.Pointer {
+	return C.QDirModel___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDirModel___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QDirModel) __findChildren_newList() unsafe.Pointer {
+	return C.QDirModel___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QDirModel___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDirModel) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QDirModel) __children_newList() unsafe.Pointer {
+	return C.QDirModel___children_newList(ptr.Pointer())
+}
+
+//export callbackQDirModel_InsertColumns
+func callbackQDirModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_InsertRows
+func callbackQDirModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_MoveColumns
+func callbackQDirModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).MoveColumnsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QDirModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_MoveRows
+func callbackQDirModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
+	if signal := qt.GetSignal(ptr, "moveRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).MoveRowsDefault(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
+}
+
+func (ptr *QDirModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_RemoveColumns
+func callbackQDirModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_RemoveRows
+func callbackQDirModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_SetHeaderData
+func callbackQDirModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+	if signal := qt.GetSignal(ptr, "setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QDirModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_SetItemData
+func callbackQDirModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, roles C.struct_QtWidgets_PackedList) C.char {
+	if signal := qt.GetSignal(ptr, "setItemData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i, v := range tmpList.__setItemData_keyList() {
+				out[v] = tmpList.__setItemData_roles_atList(v, i)
+			}
+			return out
+		}(roles)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
+		out := make(map[int]*core.QVariant, int(l.len))
+		tmpList := NewQDirModelFromPointer(l.data)
+		for i, v := range tmpList.__setItemData_keyList() {
+			out[v] = tmpList.__setItemData_roles_atList(v, i)
+		}
+		return out
+	}(roles)))))
+}
+
+func (ptr *QDirModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__setItemData_roles_newList())
+			for k, v := range roles {
+				tmpList.__setItemData_roles_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_Submit
+func callbackQDirModel_Submit(ptr unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "submit"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).SubmitDefault())))
+}
+
+func (ptr *QDirModel) SubmitDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_SubmitDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_ColumnsAboutToBeInserted
+func callbackQDirModel_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_ColumnsAboutToBeMoved
+func callbackQDirModel_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeMoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
+	}
+
+}
+
+//export callbackQDirModel_ColumnsAboutToBeRemoved
+func callbackQDirModel_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsAboutToBeRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_ColumnsInserted
+func callbackQDirModel_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_ColumnsMoved
+func callbackQDirModel_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
+	if signal := qt.GetSignal(ptr, "columnsMoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(column)))
+	}
+
+}
+
+//export callbackQDirModel_ColumnsRemoved
+func callbackQDirModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "columnsRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_DataChanged
+func callbackQDirModel_DataChanged(ptr unsafe.Pointer, topLeft unsafe.Pointer, bottomRight unsafe.Pointer, roles C.struct_QtWidgets_PackedList) {
+	if signal := qt.GetSignal(ptr, "dataChanged"); signal != nil {
+		signal.(func(*core.QModelIndex, *core.QModelIndex, []int))(core.NewQModelIndexFromPointer(topLeft), core.NewQModelIndexFromPointer(bottomRight), func(l C.struct_QtWidgets_PackedList) []int {
+			out := make([]int, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__dataChanged_roles_atList(i)
+			}
+			return out
+		}(roles))
+	}
+
+}
+
+//export callbackQDirModel_FetchMore
+func callbackQDirModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQDirModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QDirModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+//export callbackQDirModel_HeaderDataChanged
+func callbackQDirModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "headerDataChanged"); signal != nil {
+		signal.(func(core.Qt__Orientation, int, int))(core.Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_LayoutAboutToBeChanged
+func callbackQDirModel_LayoutAboutToBeChanged(ptr unsafe.Pointer, parents C.struct_QtWidgets_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutAboutToBeChanged"); signal != nil {
+		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtWidgets_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutAboutToBeChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQDirModel_LayoutChanged
+func callbackQDirModel_LayoutChanged(ptr unsafe.Pointer, parents C.struct_QtWidgets_PackedList, hint C.longlong) {
+	if signal := qt.GetSignal(ptr, "layoutChanged"); signal != nil {
+		signal.(func([]*core.QPersistentModelIndex, core.QAbstractItemModel__LayoutChangeHint))(func(l C.struct_QtWidgets_PackedList) []*core.QPersistentModelIndex {
+			out := make([]*core.QPersistentModelIndex, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__layoutChanged_parents_atList(i)
+			}
+			return out
+		}(parents), core.QAbstractItemModel__LayoutChangeHint(hint))
+	}
+
+}
+
+//export callbackQDirModel_ModelAboutToBeReset
+func callbackQDirModel_ModelAboutToBeReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelAboutToBeReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackQDirModel_ModelReset
+func callbackQDirModel_ModelReset(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "modelReset"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+//export callbackQDirModel_ResetInternalData
+func callbackQDirModel_ResetInternalData(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "resetInternalData"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDirModelFromPointer(ptr).ResetInternalDataDefault()
+	}
+}
+
+func (ptr *QDirModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.QDirModel_ResetInternalDataDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQDirModel_Revert
+func callbackQDirModel_Revert(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "revert"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDirModelFromPointer(ptr).RevertDefault()
+	}
+}
+
+func (ptr *QDirModel) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.QDirModel_RevertDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQDirModel_RowsAboutToBeInserted
+func callbackQDirModel_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
+	}
+
+}
+
+//export callbackQDirModel_RowsAboutToBeMoved
+func callbackQDirModel_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeMoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int))(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
+	}
+
+}
+
+//export callbackQDirModel_RowsAboutToBeRemoved
+func callbackQDirModel_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsAboutToBeRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_RowsInserted
+func callbackQDirModel_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsInserted"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_RowsMoved
+func callbackQDirModel_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
+	if signal := qt.GetSignal(ptr, "rowsMoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), core.NewQModelIndexFromPointer(destination), int(int32(row)))
+	}
+
+}
+
+//export callbackQDirModel_RowsRemoved
+func callbackQDirModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
+	if signal := qt.GetSignal(ptr, "rowsRemoved"); signal != nil {
+		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
+	}
+
+}
+
+//export callbackQDirModel_RoleNames
+func callbackQDirModel_RoleNames(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "roleNames"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__roleNames_newList())
+			for k, v := range signal.(func() map[int]*core.QByteArray)() {
+				tmpList.__roleNames_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__roleNames_newList())
+		for k, v := range NewQDirModelFromPointer(ptr).RoleNamesDefault() {
+			tmpList.__roleNames_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QDirModel) RoleNamesDefault() map[int]*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) map[int]*core.QByteArray {
+			out := make(map[int]*core.QByteArray, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i, v := range tmpList.__roleNames_keyList() {
+				out[v] = tmpList.__roleNames_atList(v, i)
+			}
+			return out
+		}(C.QDirModel_RoleNamesDefault(ptr.Pointer()))
+	}
+	return make(map[int]*core.QByteArray, 0)
+}
+
+//export callbackQDirModel_ItemData
+func callbackQDirModel_ItemData(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "itemData"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__itemData_newList())
+			for k, v := range signal.(func(*core.QModelIndex) map[int]*core.QVariant)(core.NewQModelIndexFromPointer(index)) {
+				tmpList.__itemData_setList(k, v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__itemData_newList())
+		for k, v := range NewQDirModelFromPointer(ptr).ItemDataDefault(core.NewQModelIndexFromPointer(index)) {
+			tmpList.__itemData_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QDirModel) ItemDataDefault(index core.QModelIndex_ITF) map[int]*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
+			out := make(map[int]*core.QVariant, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i, v := range tmpList.__itemData_keyList() {
+				out[v] = tmpList.__itemData_atList(v, i)
+			}
+			return out
+		}(C.QDirModel_ItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return make(map[int]*core.QVariant, 0)
+}
+
+//export callbackQDirModel_Buddy
+func callbackQDirModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "buddy"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQDirModelFromPointer(ptr).BuddyDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QDirModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_Sibling
+func callbackQDirModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "sibling"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQModelIndex(NewQDirModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QDirModel) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQModelIndexFromPointer(C.QDirModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_Match
+func callbackQDirModel_Match(ptr unsafe.Pointer, start unsafe.Pointer, role C.int, value unsafe.Pointer, hits C.int, flags C.longlong) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "match"); signal != nil {
+		return func() unsafe.Pointer {
+			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__match_newList())
+			for _, v := range signal.(func(*core.QModelIndex, int, *core.QVariant, int, core.Qt__MatchFlag) []*core.QModelIndex)(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+				tmpList.__match_setList(v)
+			}
+			return tmpList.Pointer()
+		}()
+	}
+
+	return func() unsafe.Pointer {
+		tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__match_newList())
+		for _, v := range NewQDirModelFromPointer(ptr).MatchDefault(core.NewQModelIndexFromPointer(start), int(int32(role)), core.NewQVariantFromPointer(value), int(int32(hits)), core.Qt__MatchFlag(flags)) {
+			tmpList.__match_setList(v)
+		}
+		return tmpList.Pointer()
+	}()
+}
+
+func (ptr *QDirModel) MatchDefault(start core.QModelIndex_ITF, role int, value core.QVariant_ITF, hits int, flags core.Qt__MatchFlag) []*core.QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWidgets_PackedList) []*core.QModelIndex {
+			out := make([]*core.QModelIndex, int(l.len))
+			tmpList := NewQDirModelFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__match_atList(i)
+			}
+			return out
+		}(C.QDirModel_MatchDefault(ptr.Pointer(), core.PointerFromQModelIndex(start), C.int(int32(role)), core.PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return make([]*core.QModelIndex, 0)
+}
+
+//export callbackQDirModel_Span
+func callbackQDirModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "span"); signal != nil {
+		return core.PointerFromQSize(signal.(func(*core.QModelIndex) *core.QSize)(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQSize(NewQDirModelFromPointer(ptr).SpanDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QDirModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQSizeFromPointer(C.QDirModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDirModel_SupportedDragActions
+func callbackQDirModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "supportedDragActions"); signal != nil {
+		return C.longlong(signal.(func() core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewQDirModelFromPointer(ptr).SupportedDragActionsDefault())
+}
+
+func (ptr *QDirModel) SupportedDragActionsDefault() core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QDirModel_SupportedDragActionsDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQDirModel_CanDropMimeData
+func callbackQDirModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canDropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).CanDropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_CanFetchMore
+func callbackQDirModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "canFetchMore"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QDirModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_Event
+func callbackQDirModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QDirModel) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_EventFilter
+func callbackQDirModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QDirModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDirModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQDirModel_ChildEvent
+func callbackQDirModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQDirModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QDirModel) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQDirModel_ConnectNotify
+func callbackQDirModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQDirModelFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QDirModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQDirModel_CustomEvent
+func callbackQDirModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQDirModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QDirModel) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQDirModel_DeleteLater
+func callbackQDirModel_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDirModelFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QDirModel) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QDirModel_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQDirModel_Destroyed
+func callbackQDirModel_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQDirModel_DisconnectNotify
+func callbackQDirModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQDirModelFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QDirModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQDirModel_ObjectNameChanged
+func callbackQDirModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQDirModel_TimerEvent
+func callbackQDirModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQDirModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QDirModel) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQDirModel_MetaObject
+func callbackQDirModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDirModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDirModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDirModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QDockWidget struct {
 	QWidget
 }
@@ -19836,7 +21708,6 @@ const (
 	QDockWidget__DockWidgetFloatable        QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(0x04)
 	QDockWidget__DockWidgetVerticalTitleBar QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(0x08)
 	QDockWidget__DockWidgetFeatureMask      QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(0x0f)
-	QDockWidget__AllDockWidgetFeatures      QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(QDockWidget__DockWidgetClosable | QDockWidget__DockWidgetMovable | QDockWidget__DockWidgetFloatable)
 	QDockWidget__NoDockWidgetFeatures       QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(0x00)
 	QDockWidget__Reserved                   QDockWidget__DockWidgetFeature = QDockWidget__DockWidgetFeature(0xff)
 )
@@ -32694,6 +34565,616 @@ func (ptr *QGraphicsItem) __transformations_newList() unsafe.Pointer {
 	return C.QGraphicsItem___transformations_newList(ptr.Pointer())
 }
 
+type QGraphicsItemAnimation struct {
+	core.QObject
+}
+
+type QGraphicsItemAnimation_ITF interface {
+	core.QObject_ITF
+	QGraphicsItemAnimation_PTR() *QGraphicsItemAnimation
+}
+
+func (ptr *QGraphicsItemAnimation) QGraphicsItemAnimation_PTR() *QGraphicsItemAnimation {
+	return ptr
+}
+
+func (ptr *QGraphicsItemAnimation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQGraphicsItemAnimation(ptr QGraphicsItemAnimation_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGraphicsItemAnimation_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGraphicsItemAnimationFromPointer(ptr unsafe.Pointer) (n *QGraphicsItemAnimation) {
+	n = new(QGraphicsItemAnimation)
+	n.SetPointer(ptr)
+	return
+}
+func NewQGraphicsItemAnimation(parent core.QObject_ITF) *QGraphicsItemAnimation {
+	tmpValue := NewQGraphicsItemAnimationFromPointer(C.QGraphicsItemAnimation_NewQGraphicsItemAnimation(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+//export callbackQGraphicsItemAnimation_AfterAnimationStep
+func callbackQGraphicsItemAnimation_AfterAnimationStep(ptr unsafe.Pointer, step C.double) {
+	if signal := qt.GetSignal(ptr, "afterAnimationStep"); signal != nil {
+		signal.(func(float64))(float64(step))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).AfterAnimationStepDefault(float64(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ConnectAfterAnimationStep(f func(step float64)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "afterAnimationStep"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "afterAnimationStep", func(step float64) {
+				signal.(func(float64))(step)
+				f(step)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "afterAnimationStep", f)
+		}
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DisconnectAfterAnimationStep() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "afterAnimationStep")
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) AfterAnimationStep(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_AfterAnimationStep(ptr.Pointer(), C.double(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) AfterAnimationStepDefault(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_AfterAnimationStepDefault(ptr.Pointer(), C.double(step))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_BeforeAnimationStep
+func callbackQGraphicsItemAnimation_BeforeAnimationStep(ptr unsafe.Pointer, step C.double) {
+	if signal := qt.GetSignal(ptr, "beforeAnimationStep"); signal != nil {
+		signal.(func(float64))(float64(step))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).BeforeAnimationStepDefault(float64(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ConnectBeforeAnimationStep(f func(step float64)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "beforeAnimationStep"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "beforeAnimationStep", func(step float64) {
+				signal.(func(float64))(step)
+				f(step)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "beforeAnimationStep", f)
+		}
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DisconnectBeforeAnimationStep() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "beforeAnimationStep")
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) BeforeAnimationStep(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_BeforeAnimationStep(ptr.Pointer(), C.double(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) BeforeAnimationStepDefault(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_BeforeAnimationStepDefault(ptr.Pointer(), C.double(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) Clear() {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetItem(item QGraphicsItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetItem(ptr.Pointer(), PointerFromQGraphicsItem(item))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetPosAt(step float64, point core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetPosAt(ptr.Pointer(), C.double(step), core.PointerFromQPointF(point))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetRotationAt(step float64, angle float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetRotationAt(ptr.Pointer(), C.double(step), C.double(angle))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetScaleAt(step float64, sx float64, sy float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetScaleAt(ptr.Pointer(), C.double(step), C.double(sx), C.double(sy))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetShearAt(step float64, sh float64, sv float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetShearAt(ptr.Pointer(), C.double(step), C.double(sh), C.double(sv))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_SetStep
+func callbackQGraphicsItemAnimation_SetStep(ptr unsafe.Pointer, step C.double) {
+	if signal := qt.GetSignal(ptr, "setStep"); signal != nil {
+		signal.(func(float64))(float64(step))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).SetStepDefault(float64(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ConnectSetStep(f func(step float64)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setStep"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setStep", func(step float64) {
+				signal.(func(float64))(step)
+				f(step)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setStep", f)
+		}
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DisconnectSetStep() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setStep")
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetStep(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetStep(ptr.Pointer(), C.double(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetStepDefault(step float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetStepDefault(ptr.Pointer(), C.double(step))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetTimeLine(timeLine core.QTimeLine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetTimeLine(ptr.Pointer(), core.PointerFromQTimeLine(timeLine))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) SetTranslationAt(step float64, dx float64, dy float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_SetTranslationAt(ptr.Pointer(), C.double(step), C.double(dx), C.double(dy))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_DestroyQGraphicsItemAnimation
+func callbackQGraphicsItemAnimation_DestroyQGraphicsItemAnimation(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QGraphicsItemAnimation"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).DestroyQGraphicsItemAnimationDefault()
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ConnectDestroyQGraphicsItemAnimation(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QGraphicsItemAnimation"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QGraphicsItemAnimation", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QGraphicsItemAnimation", f)
+		}
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DisconnectDestroyQGraphicsItemAnimation() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QGraphicsItemAnimation")
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DestroyQGraphicsItemAnimation() {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_DestroyQGraphicsItemAnimation(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DestroyQGraphicsItemAnimationDefault() {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_DestroyQGraphicsItemAnimationDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) Item() *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsItemAnimation_Item(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) MatrixAt(step float64) *gui.QMatrix {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQMatrixFromPointer(C.QGraphicsItemAnimation_MatrixAt(ptr.Pointer(), C.double(step)))
+		runtime.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) PosAt(step float64) *core.QPointF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQPointFFromPointer(C.QGraphicsItemAnimation_PosAt(ptr.Pointer(), C.double(step)))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) TimeLine() *core.QTimeLine {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQTimeLineFromPointer(C.QGraphicsItemAnimation_TimeLine(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) HorizontalScaleAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_HorizontalScaleAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) HorizontalShearAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_HorizontalShearAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) RotationAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_RotationAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) VerticalScaleAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_VerticalScaleAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) VerticalShearAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_VerticalShearAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) XTranslationAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_XTranslationAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) YTranslationAt(step float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsItemAnimation_YTranslationAt(ptr.Pointer(), C.double(step)))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsItemAnimation) __dynamicPropertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QGraphicsItemAnimation___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) __dynamicPropertyNames_newList() unsafe.Pointer {
+	return C.QGraphicsItemAnimation___dynamicPropertyNames_newList(ptr.Pointer())
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_atList2(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsItemAnimation___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_setList2(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_newList2() unsafe.Pointer {
+	return C.QGraphicsItemAnimation___findChildren_newList2(ptr.Pointer())
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_atList3(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsItemAnimation___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_setList3(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_newList3() unsafe.Pointer {
+	return C.QGraphicsItemAnimation___findChildren_newList3(ptr.Pointer())
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsItemAnimation___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) __findChildren_newList() unsafe.Pointer {
+	return C.QGraphicsItemAnimation___findChildren_newList(ptr.Pointer())
+}
+
+func (ptr *QGraphicsItemAnimation) __children_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQObjectFromPointer(C.QGraphicsItemAnimation___children_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGraphicsItemAnimation) __children_setList(i core.QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) __children_newList() unsafe.Pointer {
+	return C.QGraphicsItemAnimation___children_newList(ptr.Pointer())
+}
+
+//export callbackQGraphicsItemAnimation_Event
+func callbackQGraphicsItemAnimation_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGraphicsItemAnimationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGraphicsItemAnimation) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGraphicsItemAnimation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQGraphicsItemAnimation_EventFilter
+func callbackQGraphicsItemAnimation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGraphicsItemAnimationFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QGraphicsItemAnimation) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGraphicsItemAnimation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQGraphicsItemAnimation_ChildEvent
+func callbackQGraphicsItemAnimation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ChildEventDefault(event core.QChildEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_ConnectNotify
+func callbackQGraphicsItemAnimation_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_CustomEvent
+func callbackQGraphicsItemAnimation_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) CustomEventDefault(event core.QEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_DeleteLater
+func callbackQGraphicsItemAnimation_DeleteLater(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQGraphicsItemAnimation_Destroyed
+func callbackQGraphicsItemAnimation_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
+		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+	}
+
+}
+
+//export callbackQGraphicsItemAnimation_DisconnectNotify
+func callbackQGraphicsItemAnimation_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_ObjectNameChanged
+func callbackQGraphicsItemAnimation_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWidgets_PackedString) {
+	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
+		signal.(func(string))(cGoUnpackString(objectName))
+	}
+
+}
+
+//export callbackQGraphicsItemAnimation_TimerEvent
+func callbackQGraphicsItemAnimation_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQGraphicsItemAnimationFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsItemAnimation) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsItemAnimation_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQGraphicsItemAnimation_MetaObject
+func callbackQGraphicsItemAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQGraphicsItemAnimationFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGraphicsItemAnimation) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGraphicsItemAnimation_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QGraphicsItemGroup struct {
 	QGraphicsItem
 }
@@ -41566,6 +44047,12 @@ func (ptr *QGraphicsView) SetInteractive(allowed bool) {
 	}
 }
 
+func (ptr *QGraphicsView) SetMatrix(matrix gui.QMatrix_ITF, combine bool) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsView_SetMatrix(ptr.Pointer(), gui.PointerFromQMatrix(matrix), C.char(int8(qt.GoBoolToInt(combine))))
+	}
+}
+
 func (ptr *QGraphicsView) SetOptimizationFlag(flag QGraphicsView__OptimizationFlag, enabled bool) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsView_SetOptimizationFlag(ptr.Pointer(), C.longlong(flag), C.char(int8(qt.GoBoolToInt(enabled))))
@@ -41970,6 +44457,15 @@ func (ptr *QGraphicsView) Items5(x int, y int, w int, h int, mode core.Qt__ItemS
 		}(C.QGraphicsView_Items5(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.int(int32(w)), C.int(int32(h)), C.longlong(mode)))
 	}
 	return make([]*QGraphicsItem, 0)
+}
+
+func (ptr *QGraphicsView) Matrix() *gui.QMatrix {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQMatrixFromPointer(C.QGraphicsView_Matrix(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QGraphicsView) RenderHints() gui.QPainter__RenderHint {

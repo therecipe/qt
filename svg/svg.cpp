@@ -44,6 +44,7 @@
 #include <QKeyEvent>
 #include <QLayout>
 #include <QList>
+#include <QMatrix>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -970,6 +971,11 @@ void QSvgRenderer_SetViewBox2(void* ptr, void* viewbox)
 void QSvgRenderer_DestroyQSvgRenderer(void* ptr)
 {
 	static_cast<QSvgRenderer*>(ptr)->~QSvgRenderer();
+}
+
+void* QSvgRenderer_MatrixForElement(void* ptr, struct QtSvg_PackedString id)
+{
+	return new QMatrix(static_cast<QSvgRenderer*>(ptr)->matrixForElement(QString::fromUtf8(id.data, id.len)));
 }
 
 void* QSvgRenderer_ViewBox(void* ptr)

@@ -12,6 +12,7 @@
 #include <QCanBus>
 #include <QCanBusDevice>
 #include <QCanBusDeviceInfo>
+#include <QCanBusFactory>
 #include <QCanBusFactoryV2>
 #include <QCanBusFrame>
 #include <QChildEvent>
@@ -670,6 +671,17 @@ char QCanBusDeviceInfo_HasFlexibleDataRate(void* ptr)
 char QCanBusDeviceInfo_IsVirtual(void* ptr)
 {
 	return static_cast<QCanBusDeviceInfo*>(ptr)->isVirtual();
+}
+
+class MyQCanBusFactory: public QCanBusFactory
+{
+public:
+	QCanBusDevice * createDevice(const QString & interfaceName, QString * errorMessage) const { QByteArray tf83f00 = interfaceName.toUtf8(); QtSerialBus_PackedString interfaceNamePacked = { const_cast<char*>(tf83f00.prepend("WHITESPACE").constData()+10), tf83f00.size()-10 };QByteArray t3f2abc = errorMessage->toUtf8(); QtSerialBus_PackedString errorMessagePacked = { const_cast<char*>(t3f2abc.prepend("WHITESPACE").constData()+10), t3f2abc.size()-10 };return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<void*>(static_cast<const void*>(this)), interfaceNamePacked, errorMessagePacked)); };
+};
+
+void* QCanBusFactory_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
+{
+	return static_cast<QCanBusFactory*>(ptr)->createDevice(QString::fromUtf8(interfaceName.data, interfaceName.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
 }
 
 class MyQCanBusFactoryV2: public QCanBusFactoryV2

@@ -454,7 +454,7 @@ func CppOutput(name, value string, f *parser.Function) string {
 	if strings.HasSuffix(f.Name, "_atList") {
 		if parser.UseJs() {
 			if f.IsMap {
-				out := cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], strings.TrimSuffix(strings.Split(name, "_atList")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+				out := cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.TrimSuffix(strings.Split(name, "_atList(")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 				if !strings.Contains(cppOutput(name, value, f), "_Packed") && f.BoundByEmscripten {
 					if !strings.Contains(out, "emscripten::val::global") {
 						out = "reinterpret_cast<uintptr_t>(" + out + ")"
@@ -462,7 +462,7 @@ func CppOutput(name, value string, f *parser.Function) string {
 				}
 				return out
 			}
-			out := cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], strings.Split(name, "_atList")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+			out := cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.Split(name, "_atList(")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 			if !strings.Contains(cppOutput(name, value, f), "_Packed") && f.BoundByEmscripten {
 				if !strings.Contains(out, "emscripten::val::global") {
 					out = "reinterpret_cast<uintptr_t>(" + out + ")"
@@ -471,15 +471,15 @@ func CppOutput(name, value string, f *parser.Function) string {
 			return out
 		}
 		if f.IsMap {
-			return cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); free(ptr); }; tmp; })", value, strings.Split(name, "->")[0], strings.TrimSuffix(strings.Split(name, "_atList")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+			return cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); free(ptr); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.TrimSuffix(strings.Split(name, "_atList(")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 		}
-		return cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); free(ptr); }; tmp; })", value, strings.Split(name, "->")[0], strings.Split(name, "_atList")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+		return cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); free(ptr); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.Split(name, "_atList(")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 	}
 	if strings.HasSuffix(f.Name, "_setList") {
 		if len(f.Parameters) == 2 {
-			return cppOutput(fmt.Sprintf("%v->insert%v", strings.Split(name, "->")[0], strings.Split(name, "_setList")[1]), value, f)
+			return cppOutput(fmt.Sprintf("%v->insert%v", strings.Split(name, "->")[0], "("+strings.Split(name, "_setList(")[1]), value, f)
 		}
-		return cppOutput(fmt.Sprintf("%v->append%v", strings.Split(name, "->")[0], strings.Split(name, "_setList")[1]), value, f)
+		return cppOutput(fmt.Sprintf("%v->append%v", strings.Split(name, "->")[0], "("+strings.Split(name, "_setList(")[1]), value, f)
 	}
 	if strings.HasSuffix(f.Name, "_newList") {
 		return fmt.Sprintf("new %v()", parser.CleanValue(f.Container))

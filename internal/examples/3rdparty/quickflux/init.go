@@ -47,13 +47,13 @@ func main() {
 		var qmake string
 		switch target {
 		case "darwin":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.1", "clang_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.11.1", "clang_64", "bin", "qmake")
 
 		case "linux":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.1", "gcc_64", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.11.1", "gcc_64", "bin", "qmake")
 
 		case "android":
-			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.10.1", "android_armv7", "bin", "qmake")
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.11.1", "android_armv7", "bin", "qmake")
 		}
 
 		qCmd := exec.Command(qmake, filepath.Join(pwd, "quickflux", "quickflux.pri"))

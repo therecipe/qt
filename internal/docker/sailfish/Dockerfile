@@ -1,4 +1,4 @@
-FROM i386/ubuntu:14.04
+FROM i386/ubuntu:16.04
 LABEL maintainer therecipe
 
 
@@ -15,7 +15,7 @@ RUN apt-get -qq update && apt-get -y -qq install curl git && apt-get -qq clean
 RUN apt-get -qq update && apt-get -y -qq purge python && apt-get -qq clean
 
 
-ENV GO go1.10.linux-386.tar.gz
+ENV GO go1.10.3.linux-386.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C /usr/local && rm -f /tmp/$GO
 ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/work

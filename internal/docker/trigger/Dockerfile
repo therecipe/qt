@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 LABEL maintainer therecipe
 
 
@@ -38,6 +38,8 @@ RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "ubports_arm_xenial"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "ubports_64_xenial"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 65
+RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65

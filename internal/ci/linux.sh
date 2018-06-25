@@ -13,14 +13,6 @@ export QT_QPA_PLATFORM=minimal
 #additional deps for multimedia
 sudo apt-get -y -qq install libpulse-dev && sudo apt-get -qq clean
 
-#replace gcc4 with gcc5
-sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-sudo apt-get -qq update
-sudo apt-get -y -qq install gcc-5 g++-5 && sudo apt-get -qq clean
-sudo rm -f /usr/bin/gcc; sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
-sudo rm -f /usr/bin/g++; sudo ln -s /usr/bin/g++-5 /usr/bin/g++
-
-
 if [ "$QT_PKG_CONFIG" == "true" ]
 then
   #download and install qt

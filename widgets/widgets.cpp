@@ -59,6 +59,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QDir>
+#include <QDirModel>
 #include <QDockWidget>
 #include <QDoubleSpinBox>
 #include <QDrag>
@@ -97,6 +98,7 @@
 #include <QGraphicsEllipseItem>
 #include <QGraphicsGridLayout>
 #include <QGraphicsItem>
+#include <QGraphicsItemAnimation>
 #include <QGraphicsItemGroup>
 #include <QGraphicsLayout>
 #include <QGraphicsLayoutItem>
@@ -165,6 +167,7 @@
 #include <QMainWindow>
 #include <QMap>
 #include <QMargins>
+#include <QMatrix>
 #include <QMatrix4x4>
 #include <QMdiArea>
 #include <QMdiSubWindow>
@@ -301,6 +304,7 @@
 #include <QTileRules>
 #include <QTime>
 #include <QTimeEdit>
+#include <QTimeLine>
 #include <QTimer>
 #include <QTimerEvent>
 #include <QToolBar>
@@ -10901,6 +10905,11 @@ void* QDesktopWidget_ScreenGeometry(void* ptr, int screen)
 	return ({ QRect tmpValue = static_cast<QDesktopWidget*>(ptr)->screenGeometry(screen); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
+int QDesktopWidget_NumScreens(void* ptr)
+{
+	return static_cast<QDesktopWidget*>(ptr)->numScreens();
+}
+
 int QDesktopWidget_PrimaryScreen(void* ptr)
 {
 	return static_cast<QDesktopWidget*>(ptr)->primaryScreen();
@@ -11667,6 +11676,950 @@ void* QDialogButtonBox___buttons_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QAbstractButton *>();
+}
+
+class MyQDirModel: public QDirModel
+{
+public:
+	MyQDirModel(QObject *parent = Q_NULLPTR) : QDirModel(parent) {QDirModel_QDirModel_QRegisterMetaType();};
+	MyQDirModel(const QStringList &nameFilters, QDir::Filters filters, QDir::SortFlags sort, QObject *parent = Q_NULLPTR) : QDirModel(nameFilters, filters, sort, parent) {QDirModel_QDirModel_QRegisterMetaType();};
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQDirModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQDirModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	void refresh(const QModelIndex & parent) { callbackQDirModel_Refresh(this, const_cast<QModelIndex*>(&parent)); };
+	void sort(int column, Qt::SortOrder order) { callbackQDirModel_Sort(this, column, order); };
+	QMimeData * mimeData(const QModelIndexList & indexes) const { return static_cast<QMimeData*>(callbackQDirModel_MimeData(const_cast<void*>(static_cast<const void*>(this)), ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(indexes); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }))); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQDirModel_Index(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&parent))); };
+	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQDirModel_Parent(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&child))); };
+	QStringList mimeTypes() const { return ({ QtWidgets_PackedString tempVal = callbackQDirModel_MimeTypes(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQDirModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQDirModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
+	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQDirModel_SupportedDropActions(const_cast<void*>(static_cast<const void*>(this)))); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQDirModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQDirModel_HasChildren(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQDirModel_ColumnCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
+	int rowCount(const QModelIndex & parent) const { return callbackQDirModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQDirModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQDirModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQDirModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQDirModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQDirModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQDirModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQDirModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQDirModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool submit() { return callbackQDirModel_Submit(this) != 0; };
+	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQDirModel_ColumnsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
+	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQDirModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
+	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQDirModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void fetchMore(const QModelIndex & parent) { callbackQDirModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQDirModel_HeaderDataChanged(this, orientation, first, last); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_ModelAboutToBeReset() { callbackQDirModel_ModelAboutToBeReset(this); };
+	void Signal_ModelReset() { callbackQDirModel_ModelReset(this); };
+	void resetInternalData() { callbackQDirModel_ResetInternalData(this); };
+	void revert() { callbackQDirModel_Revert(this); };
+	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQDirModel_RowsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), start, end); };
+	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQDirModel_RowsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationRow); };
+	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_RowsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_RowsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQDirModel_RowsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
+	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_RowsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
+	QHash<int, QByteArray> roleNames() const { return ({ QHash<int, QByteArray>* tmpP = static_cast<QHash<int, QByteArray>*>(callbackQDirModel_RoleNames(const_cast<void*>(static_cast<const void*>(this)))); QHash<int, QByteArray> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; }); };
+	QMap<int, QVariant> itemData(const QModelIndex & index) const { return ({ QMap<int, QVariant>* tmpP = static_cast<QMap<int, QVariant>*>(callbackQDirModel_ItemData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); QMap<int, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQDirModel_Buddy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQDirModel_Sibling(const_cast<void*>(static_cast<const void*>(this)), row, column, const_cast<QModelIndex*>(&index))); };
+	QList<QModelIndex> match(const QModelIndex & start, int role, const QVariant & value, int hits, Qt::MatchFlags flags) const { return ({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(callbackQDirModel_Match(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&start), role, const_cast<QVariant*>(&value), hits, flags)); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQDirModel_Span(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQDirModel_SupportedDragActions(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQDirModel_CanDropMimeData(const_cast<void*>(static_cast<const void*>(this)), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQDirModel_CanFetchMore(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	bool event(QEvent * e) { return callbackQDirModel_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDirModel_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQDirModel_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDirModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQDirModel_CustomEvent(this, event); };
+	void deleteLater() { callbackQDirModel_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQDirModel_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDirModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQDirModel_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQDirModel_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDirModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQDirModel*)
+
+int QDirModel_QDirModel_QRegisterMetaType(){qRegisterMetaType<QDirModel*>(); return qRegisterMetaType<MyQDirModel*>();}
+
+int QDirModel_FilePathRole_Type()
+{
+	return QDirModel::FilePathRole;
+}
+
+int QDirModel_FileNameRole_Type()
+{
+	return QDirModel::FileNameRole;
+}
+
+char QDirModel_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_SetDataDefault(void* ptr, void* index, void* value, int role)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
+void QDirModel_SetFilter(void* ptr, long long filters)
+{
+	static_cast<QDirModel*>(ptr)->setFilter(static_cast<QDir::Filter>(filters));
+}
+
+void QDirModel_SetLazyChildCount(void* ptr, char enable)
+{
+	static_cast<QDirModel*>(ptr)->setLazyChildCount(enable != 0);
+}
+
+void* QDirModel_NewQDirModel2(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQDirModel(static_cast<QObject*>(parent));
+	}
+}
+
+void* QDirModel_NewQDirModel(struct QtWidgets_PackedString nameFilters, long long filters, long long sort, void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQDirModel(QString::fromUtf8(nameFilters.data, nameFilters.len).split("|", QString::SkipEmptyParts), static_cast<QDir::Filter>(filters), static_cast<QDir::SortFlag>(sort), static_cast<QObject*>(parent));
+	}
+}
+
+void* QDirModel_Mkdir(void* ptr, void* parent, struct QtWidgets_PackedString name)
+{
+	return new QModelIndex(static_cast<QDirModel*>(ptr)->mkdir(*static_cast<QModelIndex*>(parent), QString::fromUtf8(name.data, name.len)));
+}
+
+char QDirModel_Remove(void* ptr, void* index)
+{
+	return static_cast<QDirModel*>(ptr)->remove(*static_cast<QModelIndex*>(index));
+}
+
+char QDirModel_Rmdir(void* ptr, void* index)
+{
+	return static_cast<QDirModel*>(ptr)->rmdir(*static_cast<QModelIndex*>(index));
+}
+
+void QDirModel_Refresh(void* ptr, void* parent)
+{
+	QMetaObject::invokeMethod(static_cast<QDirModel*>(ptr), "refresh", Q_ARG(const QModelIndex, *static_cast<QModelIndex*>(parent)));
+}
+
+void QDirModel_RefreshDefault(void* ptr, void* parent)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::refresh(*static_cast<QModelIndex*>(parent));
+}
+
+void QDirModel_SetIconProvider(void* ptr, void* provider)
+{
+	static_cast<QDirModel*>(ptr)->setIconProvider(static_cast<QFileIconProvider*>(provider));
+}
+
+void QDirModel_SetNameFilters(void* ptr, struct QtWidgets_PackedString filters)
+{
+	static_cast<QDirModel*>(ptr)->setNameFilters(QString::fromUtf8(filters.data, filters.len).split("|", QString::SkipEmptyParts));
+}
+
+void QDirModel_SetReadOnly(void* ptr, char enable)
+{
+	static_cast<QDirModel*>(ptr)->setReadOnly(enable != 0);
+}
+
+void QDirModel_SetResolveSymlinks(void* ptr, char enable)
+{
+	static_cast<QDirModel*>(ptr)->setResolveSymlinks(enable != 0);
+}
+
+void QDirModel_SetSorting(void* ptr, long long sort)
+{
+	static_cast<QDirModel*>(ptr)->setSorting(static_cast<QDir::SortFlag>(sort));
+}
+
+void QDirModel_SortDefault(void* ptr, int column, long long order)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::sort(column, static_cast<Qt::SortOrder>(order));
+}
+
+void QDirModel_DestroyQDirModel(void* ptr)
+{
+	static_cast<QDirModel*>(ptr)->~QDirModel();
+}
+
+long long QDirModel_Filter(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->filter();
+}
+
+long long QDirModel_Sorting(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->sorting();
+}
+
+void* QDirModel_IconProvider(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->iconProvider();
+}
+
+void* QDirModel_FileInfo(void* ptr, void* index)
+{
+	return new QFileInfo(static_cast<QDirModel*>(ptr)->fileInfo(*static_cast<QModelIndex*>(index)));
+}
+
+void* QDirModel_FileIcon(void* ptr, void* index)
+{
+	return new QIcon(static_cast<QDirModel*>(ptr)->fileIcon(*static_cast<QModelIndex*>(index)));
+}
+
+void* QDirModel_MimeDataDefault(void* ptr, void* indexes)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
+}
+
+void* QDirModel_Index2(void* ptr, struct QtWidgets_PackedString path, int column)
+{
+	return new QModelIndex(static_cast<QDirModel*>(ptr)->index(QString::fromUtf8(path.data, path.len), column));
+}
+
+void* QDirModel_Index(void* ptr, int row, int column, void* parent)
+{
+	return new QModelIndex(static_cast<QDirModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* QDirModel_IndexDefault(void* ptr, int row, int column, void* parent)
+{
+		return new QModelIndex(static_cast<QDirModel*>(ptr)->QDirModel::index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* QDirModel_Parent(void* ptr, void* child)
+{
+	return new QModelIndex(static_cast<QDirModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
+}
+
+void* QDirModel_ParentDefault(void* ptr, void* child)
+{
+		return new QModelIndex(static_cast<QDirModel*>(ptr)->QDirModel::parent(*static_cast<QModelIndex*>(child)));
+}
+
+struct QtWidgets_PackedString QDirModel_FileName(void* ptr, void* index)
+{
+	return ({ QByteArray tefae33 = static_cast<QDirModel*>(ptr)->fileName(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tefae33.prepend("WHITESPACE").constData()+10), tefae33.size()-10 }; });
+}
+
+struct QtWidgets_PackedString QDirModel_FilePath(void* ptr, void* index)
+{
+	return ({ QByteArray t327f53 = static_cast<QDirModel*>(ptr)->filePath(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t327f53.prepend("WHITESPACE").constData()+10), t327f53.size()-10 }; });
+}
+
+struct QtWidgets_PackedString QDirModel_MimeTypesDefault(void* ptr)
+{
+		return ({ QByteArray td08e24 = static_cast<QDirModel*>(ptr)->QDirModel::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(td08e24.prepend("WHITESPACE").constData()+10), td08e24.size()-10 }; });
+}
+
+struct QtWidgets_PackedString QDirModel_NameFilters(void* ptr)
+{
+	return ({ QByteArray taf268e = static_cast<QDirModel*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(taf268e.prepend("WHITESPACE").constData()+10), taf268e.size()-10 }; });
+}
+
+void* QDirModel_Data(void* ptr, void* index, int role)
+{
+	return new QVariant(static_cast<QDirModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
+}
+
+void* QDirModel_DataDefault(void* ptr, void* index, int role)
+{
+		return new QVariant(static_cast<QDirModel*>(ptr)->QDirModel::data(*static_cast<QModelIndex*>(index), role));
+}
+
+void* QDirModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+		return new QVariant(static_cast<QDirModel*>(ptr)->QDirModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+long long QDirModel_SupportedDropActionsDefault(void* ptr)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::supportedDropActions();
+}
+
+long long QDirModel_FlagsDefault(void* ptr, void* index)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::flags(*static_cast<QModelIndex*>(index));
+}
+
+char QDirModel_HasChildrenDefault(void* ptr, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::hasChildren(*static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_IsDir(void* ptr, void* index)
+{
+	return static_cast<QDirModel*>(ptr)->isDir(*static_cast<QModelIndex*>(index));
+}
+
+char QDirModel_IsReadOnly(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->isReadOnly();
+}
+
+char QDirModel_LazyChildCount(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->lazyChildCount();
+}
+
+char QDirModel_ResolveSymlinks(void* ptr)
+{
+	return static_cast<QDirModel*>(ptr)->resolveSymlinks();
+}
+
+int QDirModel_ColumnCount(void* ptr, void* parent)
+{
+	return static_cast<QDirModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QDirModel_ColumnCountDefault(void* ptr, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QDirModel_RowCount(void* ptr, void* parent)
+{
+	return static_cast<QDirModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QDirModel_RowCountDefault(void* ptr, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+void* QDirModel___mimeData_indexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___mimeData_indexes_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QDirModel___mimeData_indexes_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* QDirModel___setItemData_roles_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___setItemData_roles_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QDirModel___setItemData_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtWidgets_PackedList QDirModel___setItemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QDirModel___changePersistentIndexList_from_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___changePersistentIndexList_from_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QDirModel___changePersistentIndexList_from_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* QDirModel___changePersistentIndexList_to_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___changePersistentIndexList_to_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QDirModel___changePersistentIndexList_to_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int QDirModel___dataChanged_roles_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QDirModel___dataChanged_roles_setList(void* ptr, int i)
+{
+	static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QDirModel___dataChanged_roles_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<int>();
+}
+
+void* QDirModel___layoutAboutToBeChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___layoutAboutToBeChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QDirModel___layoutAboutToBeChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* QDirModel___layoutChanged_parents_atList(void* ptr, int i)
+{
+	return new QPersistentModelIndex(({QPersistentModelIndex tmp = static_cast<QList<QPersistentModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QPersistentModelIndex>*>(ptr)->size()-1) { static_cast<QList<QPersistentModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___layoutChanged_parents_setList(void* ptr, void* i)
+{
+	static_cast<QList<QPersistentModelIndex>*>(ptr)->append(*static_cast<QPersistentModelIndex*>(i));
+}
+
+void* QDirModel___layoutChanged_parents_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QPersistentModelIndex>();
+}
+
+void* QDirModel___roleNames_atList(void* ptr, int v, int i)
+{
+	return new QByteArray(({ QByteArray tmp = static_cast<QHash<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QHash<int, QByteArray>*>(ptr)->size()-1) { static_cast<QHash<int, QByteArray>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___roleNames_setList(void* ptr, int key, void* i)
+{
+	static_cast<QHash<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QDirModel___roleNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QHash<int, QByteArray>();
+}
+
+struct QtWidgets_PackedList QDirModel___roleNames_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QDirModel___itemData_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___itemData_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QDirModel___itemData_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtWidgets_PackedList QDirModel___itemData_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QDirModel___match_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___match_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QDirModel___match_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+void* QDirModel___persistentIndexList_atList(void* ptr, int i)
+{
+	return new QModelIndex(({QModelIndex tmp = static_cast<QList<QModelIndex>*>(ptr)->at(i); if (i == static_cast<QList<QModelIndex>*>(ptr)->size()-1) { static_cast<QList<QModelIndex>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___persistentIndexList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QModelIndex>*>(ptr)->append(*static_cast<QModelIndex*>(i));
+}
+
+void* QDirModel___persistentIndexList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QModelIndex>();
+}
+
+int QDirModel_____setItemData_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel_____setItemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QDirModel_____setItemData_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QDirModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QDirModel_____doSetRoleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QDirModel_____setRoleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel_____setRoleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QDirModel_____setRoleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QDirModel_____roleNames_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel_____roleNames_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QDirModel_____roleNames_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QDirModel_____itemData_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel_____itemData_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QDirModel_____itemData_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+void* QDirModel___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QDirModel___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QDirModel___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* QDirModel___findChildren_atList2(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QDirModel___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QDirModel___findChildren_atList3(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QDirModel___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QDirModel___findChildren_atList(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QDirModel___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QDirModel___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QDirModel___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QDirModel___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+char QDirModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_InsertRowsDefault(void* ptr, int row, int count, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+}
+
+char QDirModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+}
+
+char QDirModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char QDirModel_SetItemDataDefault(void* ptr, void* index, void* roles)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+}
+
+char QDirModel_SubmitDefault(void* ptr)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::submit();
+}
+
+void QDirModel_FetchMoreDefault(void* ptr, void* parent)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QDirModel_ResetInternalDataDefault(void* ptr)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::resetInternalData();
+}
+
+void QDirModel_RevertDefault(void* ptr)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::revert();
+}
+
+struct QtWidgets_PackedList QDirModel_RoleNamesDefault(void* ptr)
+{
+		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QDirModel*>(ptr)->QDirModel::roleNames()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QDirModel_ItemDataDefault(void* ptr, void* index)
+{
+		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QDirModel*>(ptr)->QDirModel::itemData(*static_cast<QModelIndex*>(index))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QDirModel_BuddyDefault(void* ptr, void* index)
+{
+		return new QModelIndex(static_cast<QDirModel*>(ptr)->QDirModel::buddy(*static_cast<QModelIndex*>(index)));
+}
+
+void* QDirModel_SiblingDefault(void* ptr, int row, int column, void* index)
+{
+		return new QModelIndex(static_cast<QDirModel*>(ptr)->QDirModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
+}
+
+struct QtWidgets_PackedList QDirModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QDirModel*>(ptr)->QDirModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QDirModel_SpanDefault(void* ptr, void* index)
+{
+		return ({ QSize tmpValue = static_cast<QDirModel*>(ptr)->QDirModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+long long QDirModel_SupportedDragActionsDefault(void* ptr)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::supportedDragActions();
+}
+
+char QDirModel_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_CanFetchMoreDefault(void* ptr, void* parent)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QDirModel_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QDirModel*>(ptr)->QDirModel::event(static_cast<QEvent*>(e));
+}
+
+char QDirModel_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDirModel*>(ptr)->QDirModel::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDirModel*>(ptr)->QDirModel::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDirModel*>(ptr)->QDirModel::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDirModel*>(ptr)->QDirModel::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDirModel*>(ptr)->QDirModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QDirModel_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QDirModel_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QDirModel_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::customEvent(static_cast<QEvent*>(event));
+}
+
+void QDirModel_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::deleteLater();
+}
+
+void QDirModel_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QDirModel_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QDirModel*>(ptr)->QDirModel::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QDirModel_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QDirModel*>(ptr)->QDirModel::metaObject());
 }
 
 class MyQDockWidget: public QDockWidget
@@ -21575,6 +22528,389 @@ void* QGraphicsItem___transformations_newList(void* ptr)
 	}
 }
 
+class MyQGraphicsItemAnimation: public QGraphicsItemAnimation
+{
+public:
+	MyQGraphicsItemAnimation(QObject *parent = Q_NULLPTR) : QGraphicsItemAnimation(parent) {QGraphicsItemAnimation_QGraphicsItemAnimation_QRegisterMetaType();};
+	void afterAnimationStep(qreal step) { callbackQGraphicsItemAnimation_AfterAnimationStep(this, step); };
+	void beforeAnimationStep(qreal step) { callbackQGraphicsItemAnimation_BeforeAnimationStep(this, step); };
+	void setStep(qreal step) { callbackQGraphicsItemAnimation_SetStep(this, step); };
+	 ~MyQGraphicsItemAnimation() { callbackQGraphicsItemAnimation_DestroyQGraphicsItemAnimation(this); };
+	bool event(QEvent * e) { return callbackQGraphicsItemAnimation_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsItemAnimation_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQGraphicsItemAnimation_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQGraphicsItemAnimation_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQGraphicsItemAnimation_CustomEvent(this, event); };
+	void deleteLater() { callbackQGraphicsItemAnimation_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQGraphicsItemAnimation_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsItemAnimation_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGraphicsItemAnimation_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQGraphicsItemAnimation_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsItemAnimation_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQGraphicsItemAnimation*)
+
+int QGraphicsItemAnimation_QGraphicsItemAnimation_QRegisterMetaType(){qRegisterMetaType<QGraphicsItemAnimation*>(); return qRegisterMetaType<MyQGraphicsItemAnimation*>();}
+
+void* QGraphicsItemAnimation_NewQGraphicsItemAnimation(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGraphicsItemAnimation(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQGraphicsItemAnimation(static_cast<QObject*>(parent));
+	}
+}
+
+void QGraphicsItemAnimation_AfterAnimationStep(void* ptr, double step)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->afterAnimationStep(step);
+}
+
+void QGraphicsItemAnimation_AfterAnimationStepDefault(void* ptr, double step)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::afterAnimationStep(step);
+}
+
+void QGraphicsItemAnimation_BeforeAnimationStep(void* ptr, double step)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->beforeAnimationStep(step);
+}
+
+void QGraphicsItemAnimation_BeforeAnimationStepDefault(void* ptr, double step)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::beforeAnimationStep(step);
+}
+
+void QGraphicsItemAnimation_Clear(void* ptr)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->clear();
+}
+
+void QGraphicsItemAnimation_SetItem(void* ptr, void* item)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(item))) {
+		static_cast<QGraphicsItemAnimation*>(ptr)->setItem(static_cast<QGraphicsObject*>(item));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(item))) {
+		static_cast<QGraphicsItemAnimation*>(ptr)->setItem(static_cast<QGraphicsWidget*>(item));
+	} else {
+		static_cast<QGraphicsItemAnimation*>(ptr)->setItem(static_cast<QGraphicsItem*>(item));
+	}
+}
+
+void QGraphicsItemAnimation_SetPosAt(void* ptr, double step, void* point)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setPosAt(step, *static_cast<QPointF*>(point));
+}
+
+void QGraphicsItemAnimation_SetRotationAt(void* ptr, double step, double angle)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setRotationAt(step, angle);
+}
+
+void QGraphicsItemAnimation_SetScaleAt(void* ptr, double step, double sx, double sy)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setScaleAt(step, sx, sy);
+}
+
+void QGraphicsItemAnimation_SetShearAt(void* ptr, double step, double sh, double sv)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setShearAt(step, sh, sv);
+}
+
+void QGraphicsItemAnimation_SetStep(void* ptr, double step)
+{
+	QMetaObject::invokeMethod(static_cast<QGraphicsItemAnimation*>(ptr), "setStep", Q_ARG(qreal, step));
+}
+
+void QGraphicsItemAnimation_SetStepDefault(void* ptr, double step)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::setStep(step);
+}
+
+void QGraphicsItemAnimation_SetTimeLine(void* ptr, void* timeLine)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setTimeLine(static_cast<QTimeLine*>(timeLine));
+}
+
+void QGraphicsItemAnimation_SetTranslationAt(void* ptr, double step, double dx, double dy)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->setTranslationAt(step, dx, dy);
+}
+
+void QGraphicsItemAnimation_DestroyQGraphicsItemAnimation(void* ptr)
+{
+	static_cast<QGraphicsItemAnimation*>(ptr)->~QGraphicsItemAnimation();
+}
+
+void QGraphicsItemAnimation_DestroyQGraphicsItemAnimationDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QGraphicsItemAnimation_Item(void* ptr)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->item();
+}
+
+void* QGraphicsItemAnimation_MatrixAt(void* ptr, double step)
+{
+	return new QMatrix(static_cast<QGraphicsItemAnimation*>(ptr)->matrixAt(step));
+}
+
+void* QGraphicsItemAnimation_PosAt(void* ptr, double step)
+{
+	return ({ QPointF tmpValue = static_cast<QGraphicsItemAnimation*>(ptr)->posAt(step); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QGraphicsItemAnimation_TimeLine(void* ptr)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->timeLine();
+}
+
+double QGraphicsItemAnimation_HorizontalScaleAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->horizontalScaleAt(step);
+}
+
+double QGraphicsItemAnimation_HorizontalShearAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->horizontalShearAt(step);
+}
+
+double QGraphicsItemAnimation_RotationAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->rotationAt(step);
+}
+
+double QGraphicsItemAnimation_VerticalScaleAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->verticalScaleAt(step);
+}
+
+double QGraphicsItemAnimation_VerticalShearAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->verticalShearAt(step);
+}
+
+double QGraphicsItemAnimation_XTranslationAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->xTranslationAt(step);
+}
+
+double QGraphicsItemAnimation_YTranslationAt(void* ptr, double step)
+{
+	return static_cast<QGraphicsItemAnimation*>(ptr)->yTranslationAt(step);
+}
+
+void* QGraphicsItemAnimation___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QGraphicsItemAnimation___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QGraphicsItemAnimation___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* QGraphicsItemAnimation___findChildren_atList2(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QGraphicsItemAnimation___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QGraphicsItemAnimation___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QGraphicsItemAnimation___findChildren_atList3(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QGraphicsItemAnimation___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QGraphicsItemAnimation___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QGraphicsItemAnimation___findChildren_atList(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QGraphicsItemAnimation___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QGraphicsItemAnimation___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QGraphicsItemAnimation___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QGraphicsItemAnimation___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsObject*>(i));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsWidget*>(i));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QLayout*>(i));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWidget*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QGraphicsItemAnimation___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+char QGraphicsItemAnimation_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::event(static_cast<QEvent*>(e));
+}
+
+char QGraphicsItemAnimation_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QGraphicsItemAnimation_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGraphicsItemAnimation_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QGraphicsItemAnimation_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::customEvent(static_cast<QEvent*>(event));
+}
+
+void QGraphicsItemAnimation_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::deleteLater();
+}
+
+void QGraphicsItemAnimation_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QGraphicsItemAnimation_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QGraphicsItemAnimation_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QGraphicsItemAnimation*>(ptr)->QGraphicsItemAnimation::metaObject());
+}
+
 class MyQGraphicsItemGroup: public QGraphicsItemGroup
 {
 public:
@@ -27292,6 +28628,11 @@ void QGraphicsView_SetInteractive(void* ptr, char allowed)
 	static_cast<QGraphicsView*>(ptr)->setInteractive(allowed != 0);
 }
 
+void QGraphicsView_SetMatrix(void* ptr, void* matrix, char combine)
+{
+	static_cast<QGraphicsView*>(ptr)->setMatrix(*static_cast<QMatrix*>(matrix), combine != 0);
+}
+
 void QGraphicsView_SetOptimizationFlag(void* ptr, long long flag, char enabled)
 {
 	static_cast<QGraphicsView*>(ptr)->setOptimizationFlag(static_cast<QGraphicsView::OptimizationFlag>(flag), enabled != 0);
@@ -27470,6 +28811,11 @@ struct QtWidgets_PackedList QGraphicsView_Items3(void* ptr, int x, int y)
 struct QtWidgets_PackedList QGraphicsView_Items5(void* ptr, int x, int y, int w, int h, long long mode)
 {
 	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QGraphicsView_Matrix(void* ptr)
+{
+	return new QMatrix(static_cast<QGraphicsView*>(ptr)->matrix());
 }
 
 long long QGraphicsView_RenderHints(void* ptr)

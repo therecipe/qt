@@ -1754,6 +1754,20 @@ func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	}
 }
 
+func (ptr *QSvgRenderer) MatrixForElement(id string) *gui.QMatrix {
+	if ptr.Pointer() != nil {
+		var idC *C.char
+		if id != "" {
+			idC = C.CString(id)
+			defer C.free(unsafe.Pointer(idC))
+		}
+		tmpValue := gui.NewQMatrixFromPointer(C.QSvgRenderer_MatrixForElement(ptr.Pointer(), C.struct_QtSvg_PackedString{data: idC, len: C.longlong(len(id))}))
+		runtime.SetFinalizer(tmpValue, (*gui.QMatrix).DestroyQMatrix)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSvgRenderer) ViewBox() *core.QRect {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQRectFromPointer(C.QSvgRenderer_ViewBox(ptr.Pointer()))

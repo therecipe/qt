@@ -64,22 +64,6 @@
 #include <QWidget>
 #include <QWindow>
 
-void* OSXBluetooth___extract_services_uuids_atList(void* ptr, int i)
-{
-	return new QBluetoothUuid(({QBluetoothUuid tmp = static_cast<QList<QBluetoothUuid>*>(ptr)->at(i); if (i == static_cast<QList<QBluetoothUuid>*>(ptr)->size()-1) { static_cast<QList<QBluetoothUuid>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void OSXBluetooth___extract_services_uuids_setList(void* ptr, void* i)
-{
-	static_cast<QList<QBluetoothUuid>*>(ptr)->append(*static_cast<QBluetoothUuid*>(i));
-}
-
-void* OSXBluetooth___extract_services_uuids_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QBluetoothUuid>();
-}
-
 void* QBluetoothAddress_NewQBluetoothAddress()
 {
 	return new QBluetoothAddress();

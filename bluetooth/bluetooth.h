@@ -22,9 +22,6 @@ extern "C" {
 
 struct QtBluetooth_PackedString { char* data; long long len; };
 struct QtBluetooth_PackedList { void* data; long long len; };
-void* OSXBluetooth___extract_services_uuids_atList(void* ptr, int i);
-void OSXBluetooth___extract_services_uuids_setList(void* ptr, void* i);
-void* OSXBluetooth___extract_services_uuids_newList(void* ptr);
 void* QBluetoothAddress_NewQBluetoothAddress();
 void* QBluetoothAddress_NewQBluetoothAddress4(void* other);
 void* QBluetoothAddress_NewQBluetoothAddress3(struct QtBluetooth_PackedString address);

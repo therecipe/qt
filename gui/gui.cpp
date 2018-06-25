@@ -105,6 +105,7 @@
 #include <QMap>
 #include <QMargins>
 #include <QMarginsF>
+#include <QMatrix>
 #include <QMatrix4x4>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -180,6 +181,8 @@
 #include <QPen>
 #include <QPersistentModelIndex>
 #include <QPicture>
+#include <QPictureFormatPlugin>
+#include <QPictureIO>
 #include <QPixelFormat>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -3025,6 +3028,11 @@ void QBrush_SetColor(void* ptr, void* color)
 	static_cast<QBrush*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
+void QBrush_SetMatrix(void* ptr, void* matrix)
+{
+	static_cast<QBrush*>(ptr)->setMatrix(*static_cast<QMatrix*>(matrix));
+}
+
 void QBrush_SetStyle(void* ptr, long long style)
 {
 	static_cast<QBrush*>(ptr)->setStyle(static_cast<Qt::BrushStyle>(style));
@@ -3088,6 +3096,11 @@ void* QBrush_Color(void* ptr)
 void* QBrush_Gradient(void* ptr)
 {
 	return const_cast<QGradient*>(static_cast<QBrush*>(ptr)->gradient());
+}
+
+void* QBrush_Matrix(void* ptr)
+{
+	return const_cast<QMatrix*>(&static_cast<QBrush*>(ptr)->matrix());
 }
 
 void* QBrush_ToVariant(void* ptr)
@@ -7939,6 +7952,11 @@ long long QImage_QImage_ToImageFormat(void* format)
 	return QImage::toImageFormat(*static_cast<QPixelFormat*>(format));
 }
 
+void* QImage_QImage_TrueMatrix(void* matrix, int width, int height)
+{
+	return new QMatrix(QImage::trueMatrix(*static_cast<QMatrix*>(matrix), width, height));
+}
+
 void* QImage_QImage_ToPixelFormat(long long format)
 {
 	return new QPixelFormat(QImage::toPixelFormat(static_cast<QImage::Format>(format)));
@@ -8137,6 +8155,11 @@ void* QImage_ScaledToWidth(void* ptr, int width, long long mode)
 void* QImage_SmoothScaled(void* ptr, int w, int h)
 {
 	return new QImage(static_cast<QImage*>(ptr)->smoothScaled(w, h));
+}
+
+void* QImage_Transformed(void* ptr, void* matrix, long long mode)
+{
+	return new QImage(static_cast<QImage*>(ptr)->transformed(*static_cast<QMatrix*>(matrix), static_cast<Qt::TransformationMode>(mode)));
 }
 
 void* QImage_Transformed2(void* ptr, void* matrix, long long mode)
@@ -10288,9 +10311,180 @@ void* QLinearGradient_Start(void* ptr)
 	return ({ QPointF tmpValue = static_cast<QLinearGradient*>(ptr)->start(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
+void* QMatrix_Rotate(void* ptr, double degrees)
+{
+	return new QMatrix(static_cast<QMatrix*>(ptr)->rotate(degrees));
+}
+
+void* QMatrix_Scale(void* ptr, double sx, double sy)
+{
+	return new QMatrix(static_cast<QMatrix*>(ptr)->scale(sx, sy));
+}
+
+void* QMatrix_Shear(void* ptr, double sh, double sv)
+{
+	return new QMatrix(static_cast<QMatrix*>(ptr)->shear(sh, sv));
+}
+
+void* QMatrix_Translate(void* ptr, double dx, double dy)
+{
+	return new QMatrix(static_cast<QMatrix*>(ptr)->translate(dx, dy));
+}
+
+void* QMatrix_NewQMatrix()
+{
+	return new QMatrix();
+}
+
+void* QMatrix_NewQMatrix4(void* other)
+{
+	return new QMatrix(*static_cast<QMatrix*>(other));
+}
+
+void* QMatrix_NewQMatrix5(void* matrix)
+{
+	return new QMatrix(*static_cast<QMatrix*>(matrix));
+}
+
+void* QMatrix_NewQMatrix3(double m11, double m12, double m21, double m22, double dx, double dy)
+{
+	return new QMatrix(m11, m12, m21, m22, dx, dy);
+}
+
+void QMatrix_Reset(void* ptr)
+{
+	static_cast<QMatrix*>(ptr)->reset();
+}
+
+void QMatrix_SetMatrix(void* ptr, double m11, double m12, double m21, double m22, double dx, double dy)
+{
+	static_cast<QMatrix*>(ptr)->setMatrix(m11, m12, m21, m22, dx, dy);
+}
+
+void* QMatrix_Map5(void* ptr, void* line)
+{
+	return ({ QLine tmpValue = static_cast<QMatrix*>(ptr)->map(*static_cast<QLine*>(line)); new QLine(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void* QMatrix_Map6(void* ptr, void* line)
+{
+	return ({ QLineF tmpValue = static_cast<QMatrix*>(ptr)->map(*static_cast<QLineF*>(line)); new QLineF(tmpValue.p1(), tmpValue.p2()); });
+}
+
+void* QMatrix_Inverted(void* ptr, char invertible)
+{
+	Q_UNUSED(invertible);
+	return new QMatrix(static_cast<QMatrix*>(ptr)->inverted(NULL));
+}
+
+void* QMatrix_Map10(void* ptr, void* path)
+{
+	return new QPainterPath(static_cast<QMatrix*>(ptr)->map(*static_cast<QPainterPath*>(path)));
+}
+
+void* QMatrix_Map3(void* ptr, void* point)
+{
+	return ({ QPoint tmpValue = static_cast<QMatrix*>(ptr)->map(*static_cast<QPoint*>(point)); new QPoint(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QMatrix_Map4(void* ptr, void* point)
+{
+	return ({ QPointF tmpValue = static_cast<QMatrix*>(ptr)->map(*static_cast<QPointF*>(point)); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QMatrix_Map8(void* ptr, void* polygon)
+{
+	return new QPolygon(static_cast<QMatrix*>(ptr)->map(*static_cast<QPolygon*>(polygon)));
+}
+
+void* QMatrix_MapToPolygon(void* ptr, void* rectangle)
+{
+	return new QPolygon(static_cast<QMatrix*>(ptr)->mapToPolygon(*static_cast<QRect*>(rectangle)));
+}
+
+void* QMatrix_Map7(void* ptr, void* polygon)
+{
+	return new QPolygonF(static_cast<QMatrix*>(ptr)->map(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QMatrix_MapRect2(void* ptr, void* rectangle)
+{
+	return ({ QRect tmpValue = static_cast<QMatrix*>(ptr)->mapRect(*static_cast<QRect*>(rectangle)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QMatrix_MapRect(void* ptr, void* rectangle)
+{
+	return ({ QRectF tmpValue = static_cast<QMatrix*>(ptr)->mapRect(*static_cast<QRectF*>(rectangle)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QMatrix_Map9(void* ptr, void* region)
+{
+	return new QRegion(static_cast<QMatrix*>(ptr)->map(*static_cast<QRegion*>(region)));
+}
+
+char QMatrix_IsIdentity(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->isIdentity();
+}
+
+char QMatrix_IsInvertible(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->isInvertible();
+}
+
+double QMatrix_Determinant(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->determinant();
+}
+
+double QMatrix_Dx(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->dx();
+}
+
+double QMatrix_Dy(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->dy();
+}
+
+double QMatrix_M11(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->m11();
+}
+
+double QMatrix_M12(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->m12();
+}
+
+double QMatrix_M21(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->m21();
+}
+
+double QMatrix_M22(void* ptr)
+{
+	return static_cast<QMatrix*>(ptr)->m22();
+}
+
+void QMatrix_Map2(void* ptr, int x, int y, int tx, int ty)
+{
+	static_cast<QMatrix*>(ptr)->map(x, y, &tx, &ty);
+}
+
+void QMatrix_Map(void* ptr, double x, double y, double tx, double ty)
+{
+	static_cast<QMatrix*>(ptr)->map(x, y, &tx, &ty);
+}
+
 void* QMatrix4x4_NewQMatrix4x4()
 {
 	return new QMatrix4x4();
+}
+
+void* QMatrix4x4_NewQMatrix4x48(void* matrix)
+{
+	return new QMatrix4x4(*static_cast<QMatrix*>(matrix));
 }
 
 void* QMatrix4x4_NewQMatrix4x47(void* transform)
@@ -10426,6 +10620,11 @@ void QMatrix4x4_Viewport2(void* ptr, void* rect)
 void QMatrix4x4_Viewport(void* ptr, float left, float bottom, float width, float height, float nearPlane, float farPlane)
 {
 	static_cast<QMatrix4x4*>(ptr)->viewport(left, bottom, width, height, nearPlane, farPlane);
+}
+
+void* QMatrix4x4_ToAffine(void* ptr)
+{
+	return new QMatrix(static_cast<QMatrix4x4*>(ptr)->toAffine());
 }
 
 void* QMatrix4x4_Inverted(void* ptr, char invertible)
@@ -82048,9 +82247,19 @@ void QPainterPath_DestroyQPainterPath(void* ptr)
 	static_cast<QPainterPath*>(ptr)->~QPainterPath();
 }
 
+struct QtGui_PackedList QPainterPath_ToFillPolygons2(void* ptr, void* matrix)
+{
+	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtGui_PackedList QPainterPath_ToFillPolygons(void* ptr, void* matrix)
 {
 	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toFillPolygons(*static_cast<QTransform*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtGui_PackedList QPainterPath_ToSubpathPolygons2(void* ptr, void* matrix)
+{
+	return ({ QList<QPolygonF>* tmpValue = new QList<QPolygonF>(static_cast<QPainterPath*>(ptr)->toSubpathPolygons(*static_cast<QMatrix*>(matrix))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtGui_PackedList QPainterPath_ToSubpathPolygons(void* ptr, void* matrix)
@@ -82101,6 +82310,11 @@ void* QPainterPath_CurrentPosition(void* ptr)
 void* QPainterPath_PointAtPercent(void* ptr, double t)
 {
 	return ({ QPointF tmpValue = static_cast<QPainterPath*>(ptr)->pointAtPercent(t); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QPainterPath_ToFillPolygon2(void* ptr, void* matrix)
+{
+	return new QPolygonF(static_cast<QPainterPath*>(ptr)->toFillPolygon(*static_cast<QMatrix*>(matrix)));
 }
 
 void* QPainterPath_ToFillPolygon(void* ptr, void* matrix)
@@ -83245,6 +83459,448 @@ void* QPicture_PaintEngineDefault(void* ptr)
 		return static_cast<QPicture*>(ptr)->QPicture::paintEngine();
 }
 
+class MyQPictureFormatPlugin: public QPictureFormatPlugin
+{
+public:
+	MyQPictureFormatPlugin(QObject *parent = Q_NULLPTR) : QPictureFormatPlugin(parent) {QPictureFormatPlugin_QPictureFormatPlugin_QRegisterMetaType();};
+	bool installIOHandler(const QString & format) { QByteArray t785987 = format.toUtf8(); QtGui_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return callbackQPictureFormatPlugin_InstallIOHandler(this, formatPacked) != 0; };
+	bool loadPicture(const QString & format, const QString & fileName, QPicture * picture) { QByteArray t785987 = format.toUtf8(); QtGui_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };QByteArray td83e09 = fileName.toUtf8(); QtGui_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };return callbackQPictureFormatPlugin_LoadPicture(this, formatPacked, fileNamePacked, picture) != 0; };
+	bool savePicture(const QString & format, const QString & fileName, const QPicture & picture) { QByteArray t785987 = format.toUtf8(); QtGui_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };QByteArray td83e09 = fileName.toUtf8(); QtGui_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };return callbackQPictureFormatPlugin_SavePicture(this, formatPacked, fileNamePacked, const_cast<QPicture*>(&picture)) != 0; };
+	bool event(QEvent * e) { return callbackQPictureFormatPlugin_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPictureFormatPlugin_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQPictureFormatPlugin_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQPictureFormatPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQPictureFormatPlugin_CustomEvent(this, event); };
+	void deleteLater() { callbackQPictureFormatPlugin_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQPictureFormatPlugin_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQPictureFormatPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGui_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQPictureFormatPlugin_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQPictureFormatPlugin_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPictureFormatPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQPictureFormatPlugin*)
+
+int QPictureFormatPlugin_QPictureFormatPlugin_QRegisterMetaType(){qRegisterMetaType<QPictureFormatPlugin*>(); return qRegisterMetaType<MyQPictureFormatPlugin*>();}
+
+void* QPictureFormatPlugin_NewQPictureFormatPlugin(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQPictureFormatPlugin(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQPictureFormatPlugin(static_cast<QObject*>(parent));
+	}
+}
+
+char QPictureFormatPlugin_InstallIOHandler(void* ptr, struct QtGui_PackedString format)
+{
+	return static_cast<QPictureFormatPlugin*>(ptr)->installIOHandler(QString::fromUtf8(format.data, format.len));
+}
+
+char QPictureFormatPlugin_LoadPicture(void* ptr, struct QtGui_PackedString format, struct QtGui_PackedString fileName, void* picture)
+{
+	return static_cast<QPictureFormatPlugin*>(ptr)->loadPicture(QString::fromUtf8(format.data, format.len), QString::fromUtf8(fileName.data, fileName.len), static_cast<QPicture*>(picture));
+}
+
+char QPictureFormatPlugin_LoadPictureDefault(void* ptr, struct QtGui_PackedString format, struct QtGui_PackedString fileName, void* picture)
+{
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::loadPicture(QString::fromUtf8(format.data, format.len), QString::fromUtf8(fileName.data, fileName.len), static_cast<QPicture*>(picture));
+}
+
+char QPictureFormatPlugin_SavePicture(void* ptr, struct QtGui_PackedString format, struct QtGui_PackedString fileName, void* picture)
+{
+	return static_cast<QPictureFormatPlugin*>(ptr)->savePicture(QString::fromUtf8(format.data, format.len), QString::fromUtf8(fileName.data, fileName.len), *static_cast<QPicture*>(picture));
+}
+
+char QPictureFormatPlugin_SavePictureDefault(void* ptr, struct QtGui_PackedString format, struct QtGui_PackedString fileName, void* picture)
+{
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::savePicture(QString::fromUtf8(format.data, format.len), QString::fromUtf8(fileName.data, fileName.len), *static_cast<QPicture*>(picture));
+}
+
+void QPictureFormatPlugin_DestroyQPictureFormatPlugin(void* ptr)
+{
+	static_cast<QPictureFormatPlugin*>(ptr)->~QPictureFormatPlugin();
+}
+
+void* QPictureFormatPlugin___dynamicPropertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QPictureFormatPlugin___dynamicPropertyNames_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QPictureFormatPlugin___dynamicPropertyNames_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* QPictureFormatPlugin___findChildren_atList2(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QPictureFormatPlugin___findChildren_setList2(void* ptr, void* i)
+{
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QPictureFormatPlugin___findChildren_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QPictureFormatPlugin___findChildren_atList3(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QPictureFormatPlugin___findChildren_setList3(void* ptr, void* i)
+{
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QPictureFormatPlugin___findChildren_newList3(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QPictureFormatPlugin___findChildren_atList(void* ptr, int i)
+{
+	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QPictureFormatPlugin___findChildren_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QWindow*>(i));
+	} else {
+		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QPictureFormatPlugin___findChildren_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject*>();
+}
+
+void* QPictureFormatPlugin___children_atList(void* ptr, int i)
+{
+	return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QPictureFormatPlugin___children_setList(void* ptr, void* i)
+{
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QOffscreenSurface*>(i));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPaintDeviceWindow*>(i));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QPdfWriter*>(i));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(i))) {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QWindow*>(i));
+	} else {
+		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
+	}
+}
+
+void* QPictureFormatPlugin___children_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QObject *>();
+}
+
+char QPictureFormatPlugin_EventDefault(void* ptr, void* e)
+{
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::event(static_cast<QEvent*>(e));
+}
+
+char QPictureFormatPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
+}
+
+void QPictureFormatPlugin_ChildEventDefault(void* ptr, void* event)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QPictureFormatPlugin_ConnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QPictureFormatPlugin_CustomEventDefault(void* ptr, void* event)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::customEvent(static_cast<QEvent*>(event));
+}
+
+void QPictureFormatPlugin_DeleteLaterDefault(void* ptr)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::deleteLater();
+}
+
+void QPictureFormatPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QPictureFormatPlugin_TimerEventDefault(void* ptr, void* event)
+{
+		static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QPictureFormatPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QPictureFormatPlugin*>(ptr)->QPictureFormatPlugin::metaObject());
+}
+
+void* QPictureIO_QPictureIO_PictureFormat2(void* d)
+{
+	return new QByteArray(QPictureIO::pictureFormat(static_cast<QIODevice*>(d)));
+}
+
+void* QPictureIO_QPictureIO_PictureFormat(struct QtGui_PackedString fileName)
+{
+	return new QByteArray(QPictureIO::pictureFormat(QString::fromUtf8(fileName.data, fileName.len)));
+}
+
+struct QtGui_PackedList QPictureIO_QPictureIO_InputFormats()
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QPictureIO::inputFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtGui_PackedList QPictureIO_QPictureIO_OutputFormats()
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QPictureIO::outputFormats()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QPictureIO_NewQPictureIO()
+{
+	return new QPictureIO();
+}
+
+void* QPictureIO_NewQPictureIO2(void* ioDevice, char* format)
+{
+	return new QPictureIO(static_cast<QIODevice*>(ioDevice), const_cast<const char*>(format));
+}
+
+void* QPictureIO_NewQPictureIO3(struct QtGui_PackedString fileName, char* format)
+{
+	return new QPictureIO(QString::fromUtf8(fileName.data, fileName.len), const_cast<const char*>(format));
+}
+
+char QPictureIO_Read(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->read();
+}
+
+char QPictureIO_Write(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->write();
+}
+
+void QPictureIO_SetDescription(void* ptr, struct QtGui_PackedString description)
+{
+	static_cast<QPictureIO*>(ptr)->setDescription(QString::fromUtf8(description.data, description.len));
+}
+
+void QPictureIO_SetFileName(void* ptr, struct QtGui_PackedString fileName)
+{
+	static_cast<QPictureIO*>(ptr)->setFileName(QString::fromUtf8(fileName.data, fileName.len));
+}
+
+void QPictureIO_SetFormat(void* ptr, char* format)
+{
+	static_cast<QPictureIO*>(ptr)->setFormat(const_cast<const char*>(format));
+}
+
+void QPictureIO_SetGamma(void* ptr, float gamma)
+{
+	static_cast<QPictureIO*>(ptr)->setGamma(gamma);
+}
+
+void QPictureIO_SetIODevice(void* ptr, void* ioDevice)
+{
+	static_cast<QPictureIO*>(ptr)->setIODevice(static_cast<QIODevice*>(ioDevice));
+}
+
+void QPictureIO_SetParameters(void* ptr, char* parameters)
+{
+	static_cast<QPictureIO*>(ptr)->setParameters(const_cast<const char*>(parameters));
+}
+
+void QPictureIO_SetPicture(void* ptr, void* picture)
+{
+	static_cast<QPictureIO*>(ptr)->setPicture(*static_cast<QPicture*>(picture));
+}
+
+void QPictureIO_SetQuality(void* ptr, int q)
+{
+	static_cast<QPictureIO*>(ptr)->setQuality(q);
+}
+
+void QPictureIO_SetStatus(void* ptr, int status)
+{
+	static_cast<QPictureIO*>(ptr)->setStatus(status);
+}
+
+void QPictureIO_DestroyQPictureIO(void* ptr)
+{
+	static_cast<QPictureIO*>(ptr)->~QPictureIO();
+}
+
+void* QPictureIO_IoDevice(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->ioDevice();
+}
+
+struct QtGui_PackedString QPictureIO_Description(void* ptr)
+{
+	return ({ QByteArray te4ace0 = static_cast<QPictureIO*>(ptr)->description().toUtf8(); QtGui_PackedString { const_cast<char*>(te4ace0.prepend("WHITESPACE").constData()+10), te4ace0.size()-10 }; });
+}
+
+struct QtGui_PackedString QPictureIO_FileName(void* ptr)
+{
+	return ({ QByteArray t48ef9a = static_cast<QPictureIO*>(ptr)->fileName().toUtf8(); QtGui_PackedString { const_cast<char*>(t48ef9a.prepend("WHITESPACE").constData()+10), t48ef9a.size()-10 }; });
+}
+
+void* QPictureIO_Picture(void* ptr)
+{
+	return const_cast<QPicture*>(&static_cast<QPictureIO*>(ptr)->picture());
+}
+
+struct QtGui_PackedString QPictureIO_Format(void* ptr)
+{
+	return QtGui_PackedString { const_cast<char*>(static_cast<QPictureIO*>(ptr)->format()), -1 };
+}
+
+struct QtGui_PackedString QPictureIO_Parameters(void* ptr)
+{
+	return QtGui_PackedString { const_cast<char*>(static_cast<QPictureIO*>(ptr)->parameters()), -1 };
+}
+
+float QPictureIO_Gamma(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->gamma();
+}
+
+int QPictureIO_Quality(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->quality();
+}
+
+int QPictureIO_Status(void* ptr)
+{
+	return static_cast<QPictureIO*>(ptr)->status();
+}
+
+void* QPictureIO___inputFormats_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QPictureIO___inputFormats_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QPictureIO___inputFormats_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
+void* QPictureIO___outputFormats_atList(void* ptr, int i)
+{
+	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QPictureIO___outputFormats_setList(void* ptr, void* i)
+{
+	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
+}
+
+void* QPictureIO___outputFormats_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QByteArray>();
+}
+
 void* QPixelFormat_NewQPixelFormat()
 {
 	return new QPixelFormat();
@@ -83371,6 +84027,11 @@ public:
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPixmap_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
 };
+
+void* QPixmap_QPixmap_TrueMatrix2(void* m, int w, int h)
+{
+	return new QMatrix(QPixmap::trueMatrix(*static_cast<QMatrix*>(m), w, h));
+}
 
 void* QPixmap_QPixmap_FromImage(void* image, long long flags)
 {
@@ -83530,6 +84191,11 @@ void* QPixmap_ScaledToHeight(void* ptr, int height, long long mode)
 void* QPixmap_ScaledToWidth(void* ptr, int width, long long mode)
 {
 	return new QPixmap(static_cast<QPixmap*>(ptr)->scaledToWidth(width, static_cast<Qt::TransformationMode>(mode)));
+}
+
+void* QPixmap_Transformed2(void* ptr, void* matrix, long long mode)
+{
+	return new QPixmap(static_cast<QPixmap*>(ptr)->transformed(*static_cast<QMatrix*>(matrix), static_cast<Qt::TransformationMode>(mode)));
 }
 
 void* QPixmap_Transformed(void* ptr, void* transform, long long mode)
@@ -94209,6 +94875,11 @@ void* QTransform_NewQTransform6(void* other)
 	return new QTransform(*static_cast<QTransform*>(other));
 }
 
+void* QTransform_NewQTransform5(void* matrix)
+{
+	return new QTransform(*static_cast<QMatrix*>(matrix));
+}
+
 void* QTransform_NewQTransform7(void* other)
 {
 	return new QTransform(*static_cast<QTransform*>(other));
@@ -94353,6 +95024,11 @@ char QTransform_IsScaling(void* ptr)
 char QTransform_IsTranslating(void* ptr)
 {
 	return static_cast<QTransform*>(ptr)->isTranslating();
+}
+
+void* QTransform_ToAffine(void* ptr)
+{
+	return const_cast<QMatrix*>(&static_cast<QTransform*>(ptr)->toAffine());
 }
 
 double QTransform_Determinant(void* ptr)

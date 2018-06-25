@@ -95,25 +95,6 @@ const (
 	OSXBluetooth__OBEXAbort      OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(6)
 )
 
-func (ptr *OSXBluetooth) __extract_services_uuids_atList(i int) *QBluetoothUuid {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQBluetoothUuidFromPointer(C.OSXBluetooth___extract_services_uuids_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *OSXBluetooth) __extract_services_uuids_setList(i QBluetoothUuid_ITF) {
-	if ptr.Pointer() != nil {
-		C.OSXBluetooth___extract_services_uuids_setList(ptr.Pointer(), PointerFromQBluetoothUuid(i))
-	}
-}
-
-func (ptr *OSXBluetooth) __extract_services_uuids_newList() unsafe.Pointer {
-	return C.OSXBluetooth___extract_services_uuids_newList(ptr.Pointer())
-}
-
 type QBluetooth struct {
 	ptr unsafe.Pointer
 }

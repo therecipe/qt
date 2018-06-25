@@ -588,7 +588,8 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				"QRemoteObjectPackets",
 				"QRemoteObjectStringLiterals",
 				"ui",
-				"QStringList":
+				"QStringList",
+				"QtDwmApiDll":
 				{
 					continue
 				}

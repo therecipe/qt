@@ -14487,6 +14487,257 @@ func (ptr *QSGSimpleMaterialShader) DestroyQSGSimpleMaterialShader() {
 	}
 }
 
+type QSGSimpleRectNode struct {
+	QSGGeometryNode
+}
+
+type QSGSimpleRectNode_ITF interface {
+	QSGGeometryNode_ITF
+	QSGSimpleRectNode_PTR() *QSGSimpleRectNode
+}
+
+func (ptr *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
+	return ptr
+}
+
+func (ptr *QSGSimpleRectNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGGeometryNode_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleRectNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGGeometryNode_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQSGSimpleRectNode(ptr QSGSimpleRectNode_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGSimpleRectNode_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) (n *QSGSimpleRectNode) {
+	n = new(QSGSimpleRectNode)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QSGSimpleRectNode) DestroyQSGSimpleRectNode() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func NewQSGSimpleRectNode2() *QSGSimpleRectNode {
+	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode2())
+}
+
+func NewQSGSimpleRectNode(rect core.QRectF_ITF, color gui.QColor_ITF) *QSGSimpleRectNode {
+	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode(core.PointerFromQRectF(rect), gui.PointerFromQColor(color)))
+}
+
+func (ptr *QSGSimpleRectNode) SetColor(color gui.QColor_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_SetColor(ptr.Pointer(), gui.PointerFromQColor(color))
+	}
+}
+
+func (ptr *QSGSimpleRectNode) SetRect(rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_SetRect(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QSGSimpleRectNode) SetRect2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_SetRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
+	}
+}
+
+func (ptr *QSGSimpleRectNode) Color() *gui.QColor {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQColorFromPointer(C.QSGSimpleRectNode_Color(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleRectNode) Rect() *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QSGSimpleRectNode_Rect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+type QSGSimpleTextureNode struct {
+	QSGGeometryNode
+}
+
+type QSGSimpleTextureNode_ITF interface {
+	QSGGeometryNode_ITF
+	QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode
+}
+
+func (ptr *QSGSimpleTextureNode) QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode {
+	return ptr
+}
+
+func (ptr *QSGSimpleTextureNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGGeometryNode_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleTextureNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGGeometryNode_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQSGSimpleTextureNode(ptr QSGSimpleTextureNode_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGSimpleTextureNode_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSGSimpleTextureNodeFromPointer(ptr unsafe.Pointer) (n *QSGSimpleTextureNode) {
+	n = new(QSGSimpleTextureNode)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QSGSimpleTextureNode__TextureCoordinatesTransformFlag
+//QSGSimpleTextureNode::TextureCoordinatesTransformFlag
+type QSGSimpleTextureNode__TextureCoordinatesTransformFlag int64
+
+const (
+	QSGSimpleTextureNode__NoTransform        QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x00)
+	QSGSimpleTextureNode__MirrorHorizontally QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x01)
+	QSGSimpleTextureNode__MirrorVertically   QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x02)
+)
+
+func NewQSGSimpleTextureNode() *QSGSimpleTextureNode {
+	return NewQSGSimpleTextureNodeFromPointer(C.QSGSimpleTextureNode_NewQSGSimpleTextureNode())
+}
+
+func (ptr *QSGSimpleTextureNode) SetFiltering(filtering QSGTexture__Filtering) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetFiltering(ptr.Pointer(), C.longlong(filtering))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetOwnsTexture(owns bool) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetOwnsTexture(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(owns))))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetRect(r core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetRect(ptr.Pointer(), core.PointerFromQRectF(r))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetRect2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetSourceRect(r core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetSourceRect(ptr.Pointer(), core.PointerFromQRectF(r))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetSourceRect2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetSourceRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetTexture(texture QSGTexture_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetTexture(ptr.Pointer(), PointerFromQSGTexture(texture))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) SetTextureCoordinatesTransform(mode QSGSimpleTextureNode__TextureCoordinatesTransformFlag) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_SetTextureCoordinatesTransform(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) DestroyQSGSimpleTextureNode() {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QSGSimpleTextureNode) Rect() *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QSGSimpleTextureNode_Rect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleTextureNode) SourceRect() *core.QRectF {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQRectFFromPointer(C.QSGSimpleTextureNode_SourceRect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleTextureNode) Texture() *QSGTexture {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQSGTextureFromPointer(C.QSGSimpleTextureNode_Texture(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleTextureNode) Filtering() QSGTexture__Filtering {
+	if ptr.Pointer() != nil {
+		return QSGTexture__Filtering(C.QSGSimpleTextureNode_Filtering(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSGSimpleTextureNode) TextureCoordinatesTransform() QSGSimpleTextureNode__TextureCoordinatesTransformFlag {
+	if ptr.Pointer() != nil {
+		return QSGSimpleTextureNode__TextureCoordinatesTransformFlag(C.QSGSimpleTextureNode_TextureCoordinatesTransform(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSGSimpleTextureNode) OwnsTexture() bool {
+	if ptr.Pointer() != nil {
+		return C.QSGSimpleTextureNode_OwnsTexture(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 type QSGTexture struct {
 	core.QObject
 }

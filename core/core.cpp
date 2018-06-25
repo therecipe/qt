@@ -148,6 +148,7 @@
 #include <QSharedData>
 #include <QSharedMemory>
 #include <QSignalBlocker>
+#include <QSignalMapper>
 #include <QSignalSpy>
 #include <QSignalTransition>
 #include <QSize>
@@ -13359,6 +13360,8 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QTimer*>(ptr)->QTimer::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSignalMapper*>(ptr)->QSignalMapper::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSharedMemory*>(ptr)->QSharedMemory::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -13463,6 +13466,8 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QTimer*>(ptr)->QTimer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSignalMapper*>(ptr)->QSignalMapper::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSharedMemory*>(ptr)->QSharedMemory::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -13577,6 +13582,8 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QTimer*>(ptr)->QTimer::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -13681,6 +13688,8 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QTimer*>(ptr)->QTimer::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -13785,6 +13794,8 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QTimer*>(ptr)->QTimer::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -13889,6 +13900,8 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QTimer*>(ptr)->QTimer::deleteLater();
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::deleteLater();
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::deleteLater();
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::deleteLater();
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -14008,6 +14021,8 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QTimer*>(ptr)->QTimer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -14152,6 +14167,8 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QTimer*>(ptr)->QTimer::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSharedMemory*>(ptr)->QSharedMemory::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -14352,6 +14369,8 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QTimer*>(ptr)->QTimer::metaObject());
 	} else if (dynamic_cast<QSocketNotifier*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::metaObject());
+	} else if (dynamic_cast<QSignalMapper*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSignalMapper*>(ptr)->QSignalMapper::metaObject());
 	} else if (dynamic_cast<QSharedMemory*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSharedMemory*>(ptr)->QSharedMemory::metaObject());
 	} else if (dynamic_cast<QObjectCleanupHandler*>(static_cast<QObject*>(ptr))) {
@@ -17895,6 +17914,162 @@ void QSignalBlocker_Unblock(void* ptr)
 void QSignalBlocker_DestroyQSignalBlocker(void* ptr)
 {
 	static_cast<QSignalBlocker*>(ptr)->~QSignalBlocker();
+}
+
+class MyQSignalMapper: public QSignalMapper
+{
+public:
+	void map() { callbackQSignalMapper_Map(this); };
+	void map(QObject * sender) { callbackQSignalMapper_Map2(this, sender); };
+	void Signal_Mapped4(QObject * object) { callbackQSignalMapper_Mapped4(this, object); };
+	void Signal_Mapped3(QWidget * widget) { callbackQSignalMapper_Mapped3(this, widget); };
+	void Signal_Mapped2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtCore_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSignalMapper_Mapped2(this, textPacked); };
+	void Signal_Mapped(int i) { callbackQSignalMapper_Mapped(this, i); };
+	bool event(QEvent * e) { return callbackQObject_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQObject_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQObject_CustomEvent(this, event); };
+	void deleteLater() { callbackQObject_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQObject_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtCore_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQObject_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, event); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+Q_DECLARE_METATYPE(MyQSignalMapper*)
+
+int QSignalMapper_QSignalMapper_QRegisterMetaType(){qRegisterMetaType<QSignalMapper*>(); return qRegisterMetaType<MyQSignalMapper*>();}
+
+void QSignalMapper_Map(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "map");
+}
+
+void QSignalMapper_MapDefault(void* ptr)
+{
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::map();
+}
+
+void QSignalMapper_Map2(void* ptr, void* sender)
+{
+	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "map", Q_ARG(QObject*, static_cast<QObject*>(sender)));
+}
+
+void QSignalMapper_Map2Default(void* ptr, void* sender)
+{
+		static_cast<QSignalMapper*>(ptr)->QSignalMapper::map(static_cast<QObject*>(sender));
+}
+
+void QSignalMapper_ConnectMapped4(void* ptr)
+{
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QObject *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QObject *)>(&MyQSignalMapper::Signal_Mapped4));
+}
+
+void QSignalMapper_DisconnectMapped4(void* ptr)
+{
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QObject *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QObject *)>(&MyQSignalMapper::Signal_Mapped4));
+}
+
+void QSignalMapper_Mapped4(void* ptr, void* object)
+{
+	static_cast<QSignalMapper*>(ptr)->mapped(static_cast<QObject*>(object));
+}
+
+void QSignalMapper_ConnectMapped3(void* ptr)
+{
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QWidget *)>(&MyQSignalMapper::Signal_Mapped3));
+}
+
+void QSignalMapper_DisconnectMapped3(void* ptr)
+{
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(QWidget *)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(QWidget *)>(&MyQSignalMapper::Signal_Mapped3));
+}
+
+void QSignalMapper_Mapped3(void* ptr, void* widget)
+{
+	static_cast<QSignalMapper*>(ptr)->mapped(static_cast<QWidget*>(widget));
+}
+
+void QSignalMapper_ConnectMapped2(void* ptr)
+{
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(const QString &)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(const QString &)>(&MyQSignalMapper::Signal_Mapped2));
+}
+
+void QSignalMapper_DisconnectMapped2(void* ptr)
+{
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(const QString &)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(const QString &)>(&MyQSignalMapper::Signal_Mapped2));
+}
+
+void QSignalMapper_Mapped2(void* ptr, struct QtCore_PackedString text)
+{
+	static_cast<QSignalMapper*>(ptr)->mapped(QString::fromUtf8(text.data, text.len));
+}
+
+void QSignalMapper_ConnectMapped(void* ptr)
+{
+	QObject::connect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(int)>(&MyQSignalMapper::Signal_Mapped));
+}
+
+void QSignalMapper_DisconnectMapped(void* ptr)
+{
+	QObject::disconnect(static_cast<QSignalMapper*>(ptr), static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped), static_cast<MyQSignalMapper*>(ptr), static_cast<void (MyQSignalMapper::*)(int)>(&MyQSignalMapper::Signal_Mapped));
+}
+
+void QSignalMapper_Mapped(void* ptr, int i)
+{
+	static_cast<QSignalMapper*>(ptr)->mapped(i);
+}
+
+void QSignalMapper_RemoveMappings(void* ptr, void* sender)
+{
+	static_cast<QSignalMapper*>(ptr)->removeMappings(static_cast<QObject*>(sender));
+}
+
+void QSignalMapper_SetMapping4(void* ptr, void* sender, void* object)
+{
+	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), static_cast<QObject*>(object));
+}
+
+void QSignalMapper_SetMapping3(void* ptr, void* sender, void* widget)
+{
+	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), static_cast<QWidget*>(widget));
+}
+
+void QSignalMapper_SetMapping2(void* ptr, void* sender, struct QtCore_PackedString text)
+{
+	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), QString::fromUtf8(text.data, text.len));
+}
+
+void QSignalMapper_SetMapping(void* ptr, void* sender, int id)
+{
+	static_cast<QSignalMapper*>(ptr)->setMapping(static_cast<QObject*>(sender), id);
+}
+
+void QSignalMapper_DestroyQSignalMapper(void* ptr)
+{
+	static_cast<QSignalMapper*>(ptr)->~QSignalMapper();
+}
+
+void* QSignalMapper_Mapping4(void* ptr, void* object)
+{
+	return static_cast<QSignalMapper*>(ptr)->mapping(static_cast<QObject*>(object));
+}
+
+void* QSignalMapper_Mapping3(void* ptr, void* widget)
+{
+	return static_cast<QSignalMapper*>(ptr)->mapping(static_cast<QWidget*>(widget));
+}
+
+void* QSignalMapper_Mapping2(void* ptr, struct QtCore_PackedString id)
+{
+	return static_cast<QSignalMapper*>(ptr)->mapping(QString::fromUtf8(id.data, id.len));
+}
+
+void* QSignalMapper_Mapping(void* ptr, int id)
+{
+	return static_cast<QSignalMapper*>(ptr)->mapping(id);
 }
 
 class MyQSignalTransition: public QSignalTransition

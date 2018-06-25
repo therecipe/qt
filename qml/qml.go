@@ -7108,14 +7108,12 @@ func (ptr *QV4) DestroyQV4() {
 type QV4__PropertyFlag int64
 
 const (
-	QV4__Attr_Data                     QV4__PropertyFlag = QV4__PropertyFlag(0)
-	QV4__Attr_Accessor                 QV4__PropertyFlag = QV4__PropertyFlag(0x1)
-	QV4__Attr_NotWritable              QV4__PropertyFlag = QV4__PropertyFlag(0x2)
-	QV4__Attr_NotEnumerable            QV4__PropertyFlag = QV4__PropertyFlag(0x4)
-	QV4__Attr_NotConfigurable          QV4__PropertyFlag = QV4__PropertyFlag(0x8)
-	QV4__Attr_ReadOnly                 QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
-	QV4__Attr_ReadOnly_ButConfigurable QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable)
-	QV4__Attr_Invalid                  QV4__PropertyFlag = QV4__PropertyFlag(0xff)
+	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
+	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
+	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
+	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
+	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
+	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
 )
 
 //go:generate stringer -type=QV4__TypeHint

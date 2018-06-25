@@ -15,7 +15,7 @@ RUN apt-get -qq update && apt-get -y -qq install bison build-essential gperf fle
 RUN apt-get -qq update && apt-get -y -qq install libssl-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libfontconfig1-dev libxss-dev libsrtp0-dev libwebp-dev libjsoncpp-dev libopus-dev libavutil-dev libavformat-dev libavcodec-dev libevent-dev libxslt1-dev && apt-get -qq clean
 
 
-ENV GO go1.10.linux-amd64.tar.gz
+ENV GO go1.10.3.linux-amd64.tar.gz
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C /usr/local && rm -f /tmp/$GO
 ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/work

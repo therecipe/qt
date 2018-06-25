@@ -1523,11 +1523,110 @@ func (ptr *QCanBusDeviceInfo) IsVirtual() bool {
 	return false
 }
 
-type QCanBusFactoryV2 struct {
+type QCanBusFactory struct {
 	ptr unsafe.Pointer
 }
 
+type QCanBusFactory_ITF interface {
+	QCanBusFactory_PTR() *QCanBusFactory
+}
+
+func (ptr *QCanBusFactory) QCanBusFactory_PTR() *QCanBusFactory {
+	return ptr
+}
+
+func (ptr *QCanBusFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCanBusFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCanBusFactory(ptr QCanBusFactory_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCanBusFactory_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) (n *QCanBusFactory) {
+	n = new(QCanBusFactory)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQCanBusFactory_CreateDevice
+func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName C.struct_QtSerialBus_PackedString, errorMessage C.struct_QtSerialBus_PackedString) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "createDevice"); signal != nil {
+		return PointerFromQCanBusDevice(signal.(func(string, string) *QCanBusDevice)(cGoUnpackString(interfaceName), cGoUnpackString(errorMessage)))
+	}
+
+	return PointerFromQCanBusDevice(NewQCanBusDevice(nil))
+}
+
+func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string, errorMessage string) *QCanBusDevice) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "createDevice"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "createDevice", func(interfaceName string, errorMessage string) *QCanBusDevice {
+				signal.(func(string, string) *QCanBusDevice)(interfaceName, errorMessage)
+				return f(interfaceName, errorMessage)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "createDevice", f)
+		}
+	}
+}
+
+func (ptr *QCanBusFactory) DisconnectCreateDevice() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "createDevice")
+	}
+}
+
+func (ptr *QCanBusFactory) CreateDevice(interfaceName string, errorMessage string) *QCanBusDevice {
+	if ptr.Pointer() != nil {
+		var interfaceNameC *C.char
+		if interfaceName != "" {
+			interfaceNameC = C.CString(interfaceName)
+			defer C.free(unsafe.Pointer(interfaceNameC))
+		}
+		var errorMessageC *C.char
+		if errorMessage != "" {
+			errorMessageC = C.CString(errorMessage)
+			defer C.free(unsafe.Pointer(errorMessageC))
+		}
+		tmpValue := NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), C.struct_QtSerialBus_PackedString{data: interfaceNameC, len: C.longlong(len(interfaceName))}, C.struct_QtSerialBus_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+type QCanBusFactoryV2 struct {
+	QCanBusFactory
+}
+
 type QCanBusFactoryV2_ITF interface {
+	QCanBusFactory_ITF
 	QCanBusFactoryV2_PTR() *QCanBusFactoryV2
 }
 
@@ -1537,14 +1636,14 @@ func (ptr *QCanBusFactoryV2) QCanBusFactoryV2_PTR() *QCanBusFactoryV2 {
 
 func (ptr *QCanBusFactoryV2) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return ptr.QCanBusFactory_PTR().Pointer()
 	}
 	return nil
 }
 
 func (ptr *QCanBusFactoryV2) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.QCanBusFactory_PTR().SetPointer(p)
 	}
 }
 

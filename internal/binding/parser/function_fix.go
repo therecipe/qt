@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func (f *Function) fix() {
@@ -13,10 +15,21 @@ func (f *Function) fix() {
 	f.fixOverload()
 	f.fixOverload_Version()
 
-	f.fixGeneric()
+	//f.fixGeneric()
 }
 
 func (f *Function) fixGeneral() {
+
+	if utils.QT_VERSION_NUM() >= 5110 {
+		for _, p := range f.Parameters {
+			if p.Value == "" {
+				p.Value = p.ValueNew
+			}
+			if p.Default == "nullptr" {
+				p.Default = "Q_NULLPTR"
+			}
+		}
+	}
 
 	//linux fixes
 
@@ -96,18 +109,38 @@ func (f *Function) fixGeneral_Version() {
 				f.Overload = true
 			}
 		}
+	case "QAndroidJniEnvironment::javaVM":
+		{
+			f.Output = strings.Replace(f.Output, "int *", "JavaVM *", -1)
+			f.Signature = strings.Replace(f.Signature, "int *", "JavaVM *", -1)
+		}
+	case "QAndroidJniObject::fromLocalRef":
+		{
+			f.Parameters[0].Value = strings.Replace(f.Parameters[0].Value, "int", "jobject", -1)
+			f.Signature = strings.Replace(f.Signature, "int", "jobject", -1)
+		}
+	case "QAndroidJniObject::QAndroidJniObject":
+		{
+			if strings.HasSuffix(f.Href, "5") {
+				f.Parameters[0].Value = strings.Replace(f.Parameters[0].Value, "int", "jobject", -1)
+				f.Signature = strings.Replace(f.Signature, "int", "jobject", -1)
+			}
+		}
 	}
 }
 
 func (f *Function) fixOverload() {
 
 	if strings.Contains(f.Href, "-") {
-		var tmp, err = strconv.Atoi(strings.Split(f.Href, "-")[1])
+		tmp, err := strconv.Atoi(strings.Split(f.Href, "-")[1])
 		if err == nil && tmp > 0 {
 			f.Overload = true
-			tmp++
-			f.OverloadNumber = strconv.Itoa(tmp)
+			f.OverloadNumber = strconv.Itoa(tmp + 1)
 		}
+	}
+
+	if f.OverloadNumber == "1" {
+		f.OverloadNumber = "2"
 	}
 
 	if f.OverloadNumber != "0" {
@@ -246,6 +279,27 @@ func (f *Function) fixGenericInput() {
 
 	if len(f.OgParameters) == 0 && !skipOG {
 		for _, p := range f.Parameters {
+			if p.Default == "..." {
+				switch f.Name {
+				case "QPaintEngine":
+					p.Default = "PaintEngineFeatures()"
+				case "QLayoutItem":
+					p.Default = "Qt::Alignment()"
+				case "QBluetoothLocalDevice", "QWebEngineUrlRequestInterceptor":
+					p.Default = "Q_NULLPTR"
+				case "QMediaPlayer", "QQuickImageProvider":
+					p.Default = "Flags()"
+				case "QModbusRequest", "QModbusResponse":
+					p.Default = "QByteArray()"
+				case "QGeoServiceProvider":
+					p.Default = "QVariantMap()"
+				default:
+					p.Default = "Qt::WindowFlags()"
+				}
+			}
+			if strings.HasPrefix(p.Default, "DECLARE_READING") {
+				p.Default = ""
+			}
 			f.OgParameters = append(f.OgParameters, *p)
 		}
 	}
@@ -335,6 +389,7 @@ func (c *Class) FixGenericHelper() {
 		}
 		for _, f := range class.Functions {
 			//TODO: needed because there could be unfixed subclasses; delay this to later (also check for GetAllBases or GetBases in parser)
+			f.fixGeneral()
 			f.fixGeneric()
 
 			if IsPackedList(CleanValue(f.Output)) || IsPackedMap(CleanValue(f.Output)) {

@@ -125,6 +125,7 @@ void QCanBusDeviceInfo_DestroyQCanBusDeviceInfo(void* ptr);
 struct QtSerialBus_PackedString QCanBusDeviceInfo_Name(void* ptr);
 char QCanBusDeviceInfo_HasFlexibleDataRate(void* ptr);
 char QCanBusDeviceInfo_IsVirtual(void* ptr);
+void* QCanBusFactory_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage);
 void* QCanBusFactoryV2_CreateDevice(void* ptr, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage);
 struct QtSerialBus_PackedList QCanBusFactoryV2_AvailableDevices(void* ptr, struct QtSerialBus_PackedString errorMessage);
 void* QCanBusFactoryV2___availableDevices_atList(void* ptr, int i);

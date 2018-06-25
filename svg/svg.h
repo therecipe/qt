@@ -139,6 +139,7 @@ void QSvgRenderer_SetFramesPerSecond(void* ptr, int num);
 void QSvgRenderer_SetViewBox(void* ptr, void* viewbox);
 void QSvgRenderer_SetViewBox2(void* ptr, void* viewbox);
 void QSvgRenderer_DestroyQSvgRenderer(void* ptr);
+void* QSvgRenderer_MatrixForElement(void* ptr, struct QtSvg_PackedString id);
 void* QSvgRenderer_ViewBox(void* ptr);
 void* QSvgRenderer_BoundsOnElement(void* ptr, struct QtSvg_PackedString id);
 void* QSvgRenderer_ViewBoxF(void* ptr);

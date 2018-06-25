@@ -39,6 +39,7 @@
 #include <QKeyEvent>
 #include <QLayout>
 #include <QList>
+#include <QMatrix>
 #include <QMatrix4x4>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -99,6 +100,8 @@
 #include <QSGRectangleNode>
 #include <QSGRenderNode>
 #include <QSGRendererInterface>
+#include <QSGSimpleRectNode>
+#include <QSGSimpleTextureNode>
 #include <QSGTexture>
 #include <QSGTextureMaterial>
 #include <QSGTextureProvider>
@@ -6312,6 +6315,10 @@ void QSGNode_PreprocessDefault(void* ptr)
 		static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::preprocess();
 	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::preprocess();
+	} else if (dynamic_cast<QSGSimpleTextureNode*>(static_cast<QSGNode*>(ptr))) {
+		static_cast<QSGSimpleTextureNode*>(ptr)->QSGSimpleTextureNode::preprocess();
+	} else if (dynamic_cast<QSGSimpleRectNode*>(static_cast<QSGNode*>(ptr))) {
+		static_cast<QSGSimpleRectNode*>(ptr)->QSGSimpleRectNode::preprocess();
 	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGRectangleNode*>(ptr)->QSGRectangleNode::preprocess();
 	} else if (dynamic_cast<QSGImageNode*>(static_cast<QSGNode*>(ptr))) {
@@ -6411,6 +6418,10 @@ char QSGNode_IsSubtreeBlockedDefault(void* ptr)
 		return static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::isSubtreeBlocked();
 	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::isSubtreeBlocked();
+	} else if (dynamic_cast<QSGSimpleTextureNode*>(static_cast<QSGNode*>(ptr))) {
+		return static_cast<QSGSimpleTextureNode*>(ptr)->QSGSimpleTextureNode::isSubtreeBlocked();
+	} else if (dynamic_cast<QSGSimpleRectNode*>(static_cast<QSGNode*>(ptr))) {
+		return static_cast<QSGSimpleRectNode*>(ptr)->QSGSimpleRectNode::isSubtreeBlocked();
 	} else if (dynamic_cast<QSGRectangleNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGRectangleNode*>(ptr)->QSGRectangleNode::isSubtreeBlocked();
 	} else if (dynamic_cast<QSGImageNode*>(static_cast<QSGNode*>(ptr))) {
@@ -6751,6 +6762,138 @@ void* QSGRendererInterface_GetResource2(void* ptr, void* window, char* resource)
 void* QSGRendererInterface_GetResource2Default(void* ptr, void* window, char* resource)
 {
 		return static_cast<QSGRendererInterface*>(ptr)->QSGRendererInterface::getResource(static_cast<QQuickWindow*>(window), const_cast<const char*>(resource));
+}
+
+class MyQSGSimpleRectNode: public QSGSimpleRectNode
+{
+public:
+	MyQSGSimpleRectNode() : QSGSimpleRectNode() {};
+	MyQSGSimpleRectNode(const QRectF &rect, const QColor &color) : QSGSimpleRectNode(rect, color) {};
+	void preprocess() { callbackQSGNode_Preprocess(this); };
+	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+};
+
+void* QSGSimpleRectNode_NewQSGSimpleRectNode2()
+{
+	return new MyQSGSimpleRectNode();
+}
+
+void* QSGSimpleRectNode_NewQSGSimpleRectNode(void* rect, void* color)
+{
+	return new MyQSGSimpleRectNode(*static_cast<QRectF*>(rect), *static_cast<QColor*>(color));
+}
+
+void QSGSimpleRectNode_SetColor(void* ptr, void* color)
+{
+	static_cast<QSGSimpleRectNode*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QSGSimpleRectNode_SetRect(void* ptr, void* rect)
+{
+	static_cast<QSGSimpleRectNode*>(ptr)->setRect(*static_cast<QRectF*>(rect));
+}
+
+void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double h)
+{
+	static_cast<QSGSimpleRectNode*>(ptr)->setRect(x, y, w, h);
+}
+
+void* QSGSimpleRectNode_Color(void* ptr)
+{
+	return new QColor(static_cast<QSGSimpleRectNode*>(ptr)->color());
+}
+
+void* QSGSimpleRectNode_Rect(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QSGSimpleRectNode*>(ptr)->rect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+class MyQSGSimpleTextureNode: public QSGSimpleTextureNode
+{
+public:
+	MyQSGSimpleTextureNode() : QSGSimpleTextureNode() {};
+	void preprocess() { callbackQSGNode_Preprocess(this); };
+	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+};
+
+void* QSGSimpleTextureNode_NewQSGSimpleTextureNode()
+{
+	return new MyQSGSimpleTextureNode();
+}
+
+void QSGSimpleTextureNode_SetFiltering(void* ptr, long long filtering)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
+}
+
+void QSGSimpleTextureNode_SetOwnsTexture(void* ptr, char owns)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setOwnsTexture(owns != 0);
+}
+
+void QSGSimpleTextureNode_SetRect(void* ptr, void* r)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(*static_cast<QRectF*>(r));
+}
+
+void QSGSimpleTextureNode_SetRect2(void* ptr, double x, double y, double w, double h)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(x, y, w, h);
+}
+
+void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(*static_cast<QRectF*>(r));
+}
+
+void QSGSimpleTextureNode_SetSourceRect2(void* ptr, double x, double y, double w, double h)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(x, y, w, h);
+}
+
+void QSGSimpleTextureNode_SetTexture(void* ptr, void* texture)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setTexture(static_cast<QSGTexture*>(texture));
+}
+
+void QSGSimpleTextureNode_SetTextureCoordinatesTransform(void* ptr, long long mode)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->setTextureCoordinatesTransform(static_cast<QSGSimpleTextureNode::TextureCoordinatesTransformFlag>(mode));
+}
+
+void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(void* ptr)
+{
+	static_cast<QSGSimpleTextureNode*>(ptr)->~QSGSimpleTextureNode();
+}
+
+void* QSGSimpleTextureNode_Rect(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QSGSimpleTextureNode*>(ptr)->rect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QSGSimpleTextureNode_SourceRect(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QSGSimpleTextureNode*>(ptr)->sourceRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QSGSimpleTextureNode_Texture(void* ptr)
+{
+	return static_cast<QSGSimpleTextureNode*>(ptr)->texture();
+}
+
+long long QSGSimpleTextureNode_Filtering(void* ptr)
+{
+	return static_cast<QSGSimpleTextureNode*>(ptr)->filtering();
+}
+
+long long QSGSimpleTextureNode_TextureCoordinatesTransform(void* ptr)
+{
+	return static_cast<QSGSimpleTextureNode*>(ptr)->textureCoordinatesTransform();
+}
+
+char QSGSimpleTextureNode_OwnsTexture(void* ptr)
+{
+	return static_cast<QSGSimpleTextureNode*>(ptr)->ownsTexture();
 }
 
 class MyQSGTexture: public QSGTexture

@@ -29,7 +29,7 @@ func (t *WebSocketTransport) Init(socket *websockets.QWebSocket) {
 
 func (t *WebSocketTransport) sendMessage(message *core.QJsonObject) {
 	doc := core.NewQJsonDocument2(message)
-	t.m_socket.SendTextMessage(doc.ToJson(core.QJsonDocument__Compact).ConstData())
+	t.m_socket.SendTextMessage(doc.ToJson2(core.QJsonDocument__Compact).ConstData())
 }
 
 func (t *WebSocketTransport) textMessageReceived(messageData string) {

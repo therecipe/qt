@@ -39,6 +39,7 @@
 #include <QHelpIndexModel>
 #include <QHelpIndexWidget>
 #include <QHelpSearchEngine>
+#include <QHelpSearchQuery>
 #include <QHelpSearchQueryWidget>
 #include <QHelpSearchResult>
 #include <QHelpSearchResultWidget>
@@ -4277,10 +4278,30 @@ int QHelpSearchEngine_SearchResultCount(void* ptr)
 	return static_cast<QHelpSearchEngine*>(ptr)->searchResultCount();
 }
 
+void* QHelpSearchEngine___search_queryList_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(({QHelpSearchQuery tmp = static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i); if (i == static_cast<QList<QHelpSearchQuery>*>(ptr)->size()-1) { static_cast<QList<QHelpSearchQuery>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QHelpSearchEngine___search_queryList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHelpSearchQuery>*>(ptr)->append(*static_cast<QHelpSearchQuery*>(i));
+}
+
 void* QHelpSearchEngine___search_queryList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>();
+}
+
+void* QHelpSearchEngine___query_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(({QHelpSearchQuery tmp = static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i); if (i == static_cast<QList<QHelpSearchQuery>*>(ptr)->size()-1) { static_cast<QList<QHelpSearchQuery>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QHelpSearchEngine___query_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHelpSearchQuery>*>(ptr)->append(*static_cast<QHelpSearchQuery*>(i));
 }
 
 void* QHelpSearchEngine___query_newList(void* ptr)
@@ -4430,6 +4451,21 @@ void* QHelpSearchEngine_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::metaObject());
 }
 
+void* QHelpSearchQuery_NewQHelpSearchQuery()
+{
+	return new QHelpSearchQuery();
+}
+
+struct QtHelp_PackedString QHelpSearchQuery_WordList(void* ptr)
+{
+	return ({ QByteArray t152f34 = static_cast<QHelpSearchQuery*>(ptr)->wordList.join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t152f34.prepend("WHITESPACE").constData()+10), t152f34.size()-10 }; });
+}
+
+void QHelpSearchQuery_SetWordList(void* ptr, struct QtHelp_PackedString vqs)
+{
+	static_cast<QHelpSearchQuery*>(ptr)->wordList = QString::fromUtf8(vqs.data, vqs.len).split("|", QString::SkipEmptyParts);
+}
+
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget
 {
 public:
@@ -4559,10 +4595,30 @@ char QHelpSearchQueryWidget_IsCompactMode(void* ptr)
 	return static_cast<QHelpSearchQueryWidget*>(ptr)->isCompactMode();
 }
 
+void* QHelpSearchQueryWidget___setQuery_queryList_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(({QHelpSearchQuery tmp = static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i); if (i == static_cast<QList<QHelpSearchQuery>*>(ptr)->size()-1) { static_cast<QList<QHelpSearchQuery>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QHelpSearchQueryWidget___setQuery_queryList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHelpSearchQuery>*>(ptr)->append(*static_cast<QHelpSearchQuery*>(i));
+}
+
 void* QHelpSearchQueryWidget___setQuery_queryList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QHelpSearchQuery>();
+}
+
+void* QHelpSearchQueryWidget___query_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(({QHelpSearchQuery tmp = static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i); if (i == static_cast<QList<QHelpSearchQuery>*>(ptr)->size()-1) { static_cast<QList<QHelpSearchQuery>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QHelpSearchQueryWidget___query_setList(void* ptr, void* i)
+{
+	static_cast<QList<QHelpSearchQuery>*>(ptr)->append(*static_cast<QHelpSearchQuery*>(i));
 }
 
 void* QHelpSearchQueryWidget___query_newList(void* ptr)

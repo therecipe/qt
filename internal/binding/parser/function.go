@@ -53,6 +53,7 @@ type Function struct {
 type Parameter struct {
 	Name       string `xml:"name,attr"`
 	Value      string `xml:"left,attr"`
+	ValueNew   string `xml:"type,attr"`
 	Right      string `xml:"right,attr"`
 	Default    string `xml:"default,attr"`
 	PureGoType string
@@ -262,17 +263,17 @@ func (f *Function) IsJNIGeneric() bool {
 //TODO:
 func (f *Function) IsSupported() bool {
 
-	//if utils.QT_VERSION() == "5.8.0" {
-	if f.Fullname == "QJSEngine::newQMetaObject" && f.OverloadNumber == "2" ||
-		f.Fullname == "QScxmlTableData::instructions" || f.Fullname == "QScxmlTableData::dataNames" ||
-		f.Fullname == "QScxmlTableData::stateMachineTable" ||
-		f.Fullname == "QTextToSpeech::voiceChanged" {
-		if !strings.Contains(f.Access, "unsupported") {
-			f.Access = "unsupported_isBlockedFunction"
+	if utils.QT_VERSION_NUM() >= 5080 {
+		if f.Fullname == "QJSEngine::newQMetaObject" && f.OverloadNumber == "2" ||
+			f.Fullname == "QScxmlTableData::instructions" || f.Fullname == "QScxmlTableData::dataNames" ||
+			f.Fullname == "QScxmlTableData::stateMachineTable" ||
+			f.Fullname == "QTextToSpeech::voiceChanged" {
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
 		}
-		return false
 	}
-	//}
 
 	switch {
 	case
@@ -344,6 +345,36 @@ func (f *Function) IsSupported() bool {
 
 		UseJs() && (strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" || f.Name == "metric" || f.Name == "moveCursor" ||
 			f.Name == "inputMethodEvent" || f.Name == "updateInputMethod" || f.Name == "inputMethodQuery"),
+
+		f.Name == "qt_metacast", f.Fullname == "QVariant::fromStdVariant",
+		f.Name == "qt_check_for_QGADGET_macro",
+
+		strings.HasSuffix(f.Name, "_ptr"),
+		f.ClassName() == "QPixmap" && (f.Name == "setAlphaChannel" || f.Name == "alphaChannel"),
+		f.Fullname == "QTabletEvent::hiResGlobalPos",
+
+		f.Name == "QOpenGLPaintDevice" && f.OverloadNumber == "5",
+
+		f.Name == "d", f.Name == "setD",
+
+		f.Fullname == "QAbstractItemModelTester::failureReportingMode",
+
+		f.Fullname == "QtRemoteObjects::qt_getEnumMetaObject",
+
+		f.ClassName() == "QWebEnginePage" && (f.Name == "certificateError" ||
+			f.Name == "quotaRequested" || f.Name == "registerProtocolHandlerRequested"),
+
+		f.Fullname == "QWebEngineScriptCollection::insert",
+		f.Fullname == "QWebEngineScriptCollection::findScript",
+		f.Fullname == "QWebEngineView::pageAction",
+		f.Fullname == "QWebEnginePage::save",
+		f.Fullname == "QWebEngineScriptCollection::remove",
+		f.Fullname == "QWebEngineScriptCollection::contains",
+		f.Fullname == "QWebEngineScriptCollection::findScripts",
+		f.Fullname == "QWebEngineScriptCollection::toList",
+		f.Fullname == "QWebEngineView::createWindow",
+		f.Fullname == "QWebEngineView::renderProcessTerminated",
+		f.Fullname == "QWebEngineView::triggerPageAction",
 
 		strings.Contains(f.Access, "unsupported"):
 		{
