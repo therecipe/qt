@@ -485,6 +485,62 @@ func NewQWebSocketFromPointer(ptr unsafe.Pointer) (n *QWebSocket) {
 	n.SetPointer(ptr)
 	return
 }
+func QWebSocket_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocket_QWebSocket_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebSocket) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocket_QWebSocket_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebSocket_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocket_QWebSocket_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebSocket) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocket_QWebSocket_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func NewQWebSocket(origin string, version QWebSocketProtocol__Version, parent core.QObject_ITF) *QWebSocket {
 	var originC *C.char
 	if origin != "" {
@@ -1594,6 +1650,22 @@ func (ptr *QWebSocket) MaskGenerator() *QMaskGenerator {
 	return nil
 }
 
+//export callbackQWebSocket_MetaObject
+func callbackQWebSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebSocketFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebSocket) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebSocket_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebSocket) ReadBufferSize() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QWebSocket_ReadBufferSize(ptr.Pointer()))
@@ -1896,22 +1968,6 @@ func (ptr *QWebSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQWebSocket_MetaObject
-func callbackQWebSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebSocketFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebSocket) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebSocket_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QWebSocketCorsAuthenticator struct {
 	ptr unsafe.Pointer
 }
@@ -2135,6 +2191,62 @@ const (
 	QWebSocketServer__SecureMode    QWebSocketServer__SslMode = QWebSocketServer__SslMode(0)
 	QWebSocketServer__NonSecureMode QWebSocketServer__SslMode = QWebSocketServer__SslMode(1)
 )
+
+func QWebSocketServer_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocketServer_QWebSocketServer_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebSocketServer) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocketServer_QWebSocketServer_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebSocketServer_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocketServer_QWebSocketServer_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebSocketServer) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebSocketServer_QWebSocketServer_TrUtf8(sC, cC, C.int(int32(n))))
+}
 
 //export callbackQWebSocketServer_NextPendingConnection
 func callbackQWebSocketServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
@@ -2725,6 +2837,22 @@ func (ptr *QWebSocketServer) IsListening() bool {
 	return false
 }
 
+//export callbackQWebSocketServer_MetaObject
+func callbackQWebSocketServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebSocketServerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebSocketServer) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebSocketServer_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebSocketServer) MaxPendingConnections() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebSocketServer_MaxPendingConnections(ptr.Pointer())))
@@ -3029,20 +3157,4 @@ func (ptr *QWebSocketServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQWebSocketServer_MetaObject
-func callbackQWebSocketServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebSocketServerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebSocketServer) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebSocketServer_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }

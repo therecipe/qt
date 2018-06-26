@@ -20,6 +20,8 @@ void* QUiLoader_CreateActionGroup(void* ptr, void* parent, struct QtUiTools_Pack
 void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_CreateLayout(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_CreateLayoutDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
+struct QtUiTools_PackedString QUiLoader_QUiLoader_Tr(char* s, char* c, int n);
+struct QtUiTools_PackedString QUiLoader_QUiLoader_TrUtf8(char* s, char* c, int n);
 void* QUiLoader_NewQUiLoader(void* parent);
 void* QUiLoader_CreateWidget(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_CreateWidgetDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
@@ -36,6 +38,7 @@ struct QtUiTools_PackedString QUiLoader_AvailableLayouts(void* ptr);
 struct QtUiTools_PackedString QUiLoader_AvailableWidgets(void* ptr);
 struct QtUiTools_PackedString QUiLoader_PluginPaths(void* ptr);
 char QUiLoader_IsLanguageChangeEnabled(void* ptr);
+void* QUiLoader_MetaObjectDefault(void* ptr);
 void* QUiLoader___dynamicPropertyNames_atList(void* ptr, int i);
 void QUiLoader___dynamicPropertyNames_setList(void* ptr, void* i);
 void* QUiLoader___dynamicPropertyNames_newList(void* ptr);
@@ -59,7 +62,6 @@ void QUiLoader_CustomEventDefault(void* ptr, void* event);
 void QUiLoader_DeleteLaterDefault(void* ptr);
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign);
 void QUiLoader_TimerEventDefault(void* ptr, void* event);
-void* QUiLoader_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus
 }

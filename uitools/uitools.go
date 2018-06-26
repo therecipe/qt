@@ -258,6 +258,62 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 	return nil
 }
 
+func QUiLoader_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QUiLoader_QUiLoader_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QUiLoader) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QUiLoader_QUiLoader_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QUiLoader_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QUiLoader_QUiLoader_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QUiLoader) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QUiLoader_QUiLoader_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func NewQUiLoader(parent core.QObject_ITF) *QUiLoader {
 	tmpValue := NewQUiLoaderFromPointer(C.QUiLoader_NewQUiLoader(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -466,6 +522,22 @@ func (ptr *QUiLoader) IsLanguageChangeEnabled() bool {
 		return C.QUiLoader_IsLanguageChangeEnabled(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQUiLoader_MetaObject
+func callbackQUiLoader_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQUiLoaderFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QUiLoader) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QUiLoader_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QUiLoader) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -709,20 +781,4 @@ func (ptr *QUiLoader) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QUiLoader_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQUiLoader_MetaObject
-func callbackQUiLoader_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQUiLoaderFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QUiLoader) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QUiLoader_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }

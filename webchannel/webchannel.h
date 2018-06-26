@@ -15,6 +15,8 @@ extern "C" {
 
 struct QtWebChannel_PackedString { char* data; long long len; };
 struct QtWebChannel_PackedList { void* data; long long len; };
+struct QtWebChannel_PackedString QWebChannel_QWebChannel_Tr(char* s, char* c, int n);
+struct QtWebChannel_PackedString QWebChannel_QWebChannel_TrUtf8(char* s, char* c, int n);
 void* QWebChannel_NewQWebChannel(void* parent);
 void QWebChannel_ConnectBlockUpdatesChanged(void* ptr);
 void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr);
@@ -28,8 +30,10 @@ void QWebChannel_RegisterObject(void* ptr, struct QtWebChannel_PackedString id, 
 void QWebChannel_RegisterObjects(void* ptr, void* objects);
 void QWebChannel_SetBlockUpdates(void* ptr, char block);
 void QWebChannel_DestroyQWebChannel(void* ptr);
+void QWebChannel_DestroyQWebChannelDefault(void* ptr);
 struct QtWebChannel_PackedList QWebChannel_RegisteredObjects(void* ptr);
 char QWebChannel_BlockUpdates(void* ptr);
+void* QWebChannel_MetaObjectDefault(void* ptr);
 void* QWebChannel___registerObjects_objects_atList(void* ptr, struct QtWebChannel_PackedString v, int i);
 void QWebChannel___registerObjects_objects_setList(void* ptr, struct QtWebChannel_PackedString key, void* i);
 void* QWebChannel___registerObjects_objects_newList(void* ptr);
@@ -67,7 +71,8 @@ void QWebChannel_CustomEventDefault(void* ptr, void* event);
 void QWebChannel_DeleteLaterDefault(void* ptr);
 void QWebChannel_DisconnectNotifyDefault(void* ptr, void* sign);
 void QWebChannel_TimerEventDefault(void* ptr, void* event);
-void* QWebChannel_MetaObjectDefault(void* ptr);
+struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_Tr(char* s, char* c, int n);
+struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_TrUtf8(char* s, char* c, int n);
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent);
 void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr);
 void QWebChannelAbstractTransport_DisconnectMessageReceived(void* ptr);
@@ -75,6 +80,7 @@ void QWebChannelAbstractTransport_MessageReceived(void* ptr, void* message, void
 void QWebChannelAbstractTransport_SendMessage(void* ptr, void* message);
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr);
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(void* ptr);
+void* QWebChannelAbstractTransport_MetaObjectDefault(void* ptr);
 void* QWebChannelAbstractTransport___dynamicPropertyNames_atList(void* ptr, int i);
 void QWebChannelAbstractTransport___dynamicPropertyNames_setList(void* ptr, void* i);
 void* QWebChannelAbstractTransport___dynamicPropertyNames_newList(void* ptr);
@@ -98,7 +104,6 @@ void QWebChannelAbstractTransport_CustomEventDefault(void* ptr, void* event);
 void QWebChannelAbstractTransport_DeleteLaterDefault(void* ptr);
 void QWebChannelAbstractTransport_DisconnectNotifyDefault(void* ptr, void* sign);
 void QWebChannelAbstractTransport_TimerEventDefault(void* ptr, void* event);
-void* QWebChannelAbstractTransport_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -25,6 +25,7 @@
 #include <QGraphicsWidget>
 #include <QLayout>
 #include <QList>
+#include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -63,6 +64,7 @@
 class MyQCanBus: public QCanBus
 {
 public:
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCanBus_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCanBus_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCanBus_ChildEvent(this, event); };
@@ -73,7 +75,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCanBus_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCanBus_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCanBus_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCanBus*)
@@ -83,6 +84,16 @@ int QCanBus_QCanBus_QRegisterMetaType(){qRegisterMetaType<QCanBus*>(); return qR
 void* QCanBus_QCanBus_Instance()
 {
 	return QCanBus::instance();
+}
+
+struct QtSerialBus_PackedString QCanBus_QCanBus_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t5b76af = QCanBus::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t5b76af.prepend("WHITESPACE").constData()+10), t5b76af.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QCanBus_QCanBus_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7e44ce = QCanBus::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t7e44ce.prepend("WHITESPACE").constData()+10), t7e44ce.size()-10 }; });
 }
 
 void* QCanBus_CreateDevice(void* ptr, struct QtSerialBus_PackedString plugin, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
@@ -98,6 +109,11 @@ struct QtSerialBus_PackedList QCanBus_AvailableDevices(void* ptr, struct QtSeria
 struct QtSerialBus_PackedString QCanBus_Plugins(void* ptr)
 {
 	return ({ QByteArray t48ad25 = static_cast<QCanBus*>(ptr)->plugins().join("|").toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t48ad25.prepend("WHITESPACE").constData()+10), t48ad25.size()-10 }; });
+}
+
+void* QCanBus_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCanBus*>(ptr)->QCanBus::metaObject());
 }
 
 void* QCanBus___availableDevices_atList(void* ptr, int i)
@@ -236,26 +252,22 @@ void QCanBus_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCanBus*>(ptr)->QCanBus::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCanBus_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCanBus*>(ptr)->QCanBus::metaObject());
-}
-
 class MyQCanBusDevice: public QCanBusDevice
 {
 public:
-	MyQCanBusDevice(QObject *parent = nullptr) : QCanBusDevice(parent) {QCanBusDevice_QCanBusDevice_QRegisterMetaType();};
-	QString interpretErrorFrame(const QCanBusFrame & frame) { return ({ QtSerialBus_PackedString tempVal = callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	MyQCanBusDevice(QObject *parent = Q_NULLPTR) : QCanBusDevice(parent) {QCanBusDevice_QCanBusDevice_QRegisterMetaType();};
+	QString interpretErrorFrame(const QCanBusFrame & errorFrame) { return ({ QtSerialBus_PackedString tempVal = callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&errorFrame)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
 	bool waitForFramesReceived(int msecs) { return callbackQCanBusDevice_WaitForFramesReceived(this, msecs) != 0; };
 	bool waitForFramesWritten(int msecs) { return callbackQCanBusDevice_WaitForFramesWritten(this, msecs) != 0; };
 	bool writeFrame(const QCanBusFrame & frame) { return callbackQCanBusDevice_WriteFrame(this, const_cast<QCanBusFrame*>(&frame)) != 0; };
 	void close() { callbackQCanBusDevice_Close(this); };
-	void Signal_ErrorOccurred(QCanBusDevice::CanBusError error) { callbackQCanBusDevice_ErrorOccurred(this, error); };
+	void Signal_ErrorOccurred(QCanBusDevice::CanBusError vqc) { callbackQCanBusDevice_ErrorOccurred(this, vqc); };
 	void Signal_FramesReceived() { callbackQCanBusDevice_FramesReceived(this); };
 	void Signal_FramesWritten(qint64 framesCount) { callbackQCanBusDevice_FramesWritten(this, framesCount); };
 	void setConfigurationParameter(int key, const QVariant & value) { callbackQCanBusDevice_SetConfigurationParameter(this, key, const_cast<QVariant*>(&value)); };
 	void Signal_StateChanged(QCanBusDevice::CanBusDeviceState state) { callbackQCanBusDevice_StateChanged(this, state); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCanBusDevice_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCanBusDevice_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCanBusDevice_ChildEvent(this, event); };
@@ -266,7 +278,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCanBusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCanBusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCanBusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCanBusDevice*)
@@ -314,9 +325,19 @@ void* QCanBusDevice_NewQCanBusDevice(void* parent)
 	}
 }
 
-struct QtSerialBus_PackedString QCanBusDevice_InterpretErrorFrame(void* ptr, void* frame)
+struct QtSerialBus_PackedString QCanBusDevice_InterpretErrorFrame(void* ptr, void* errorFrame)
 {
-	return ({ QByteArray t5dc8ff = static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t5dc8ff.prepend("WHITESPACE").constData()+10), t5dc8ff.size()-10 }; });
+	return ({ QByteArray tb1b4cb = static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(errorFrame)).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(tb1b4cb.prepend("WHITESPACE").constData()+10), tb1b4cb.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QCanBusDevice_QCanBusDevice_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t35b006 = QCanBusDevice::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t35b006.prepend("WHITESPACE").constData()+10), t35b006.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QCanBusDevice_QCanBusDevice_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t6bb7f3 = QCanBusDevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t6bb7f3.prepend("WHITESPACE").constData()+10), t6bb7f3.size()-10 }; });
 }
 
 char QCanBusDevice_ConnectDevice(void* ptr)
@@ -385,9 +406,9 @@ void QCanBusDevice_DisconnectErrorOccurred(void* ptr)
 	QObject::disconnect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusError)>(&QCanBusDevice::errorOccurred), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusError)>(&MyQCanBusDevice::Signal_ErrorOccurred));
 }
 
-void QCanBusDevice_ErrorOccurred(void* ptr, long long error)
+void QCanBusDevice_ErrorOccurred(void* ptr, long long vqc)
 {
-	static_cast<QCanBusDevice*>(ptr)->errorOccurred(static_cast<QCanBusDevice::CanBusError>(error));
+	static_cast<QCanBusDevice*>(ptr)->errorOccurred(static_cast<QCanBusDevice::CanBusError>(vqc));
 }
 
 void QCanBusDevice_ConnectFramesReceived(void* ptr)
@@ -484,6 +505,11 @@ struct QtSerialBus_PackedList QCanBusDevice_ConfigurationKeys(void* ptr)
 char QCanBusDevice_HasOutgoingFrames(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->hasOutgoingFrames();
+}
+
+void* QCanBusDevice_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::metaObject());
 }
 
 long long QCanBusDevice_FramesAvailable(void* ptr)
@@ -643,11 +669,6 @@ void QCanBusDevice_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCanBusDevice_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::metaObject());
-}
-
 void QCanBusDeviceInfo_Swap(void* ptr, void* other)
 {
 	static_cast<QCanBusDeviceInfo*>(ptr)->swap(*static_cast<QCanBusDeviceInfo*>(other));
@@ -658,9 +679,19 @@ void QCanBusDeviceInfo_DestroyQCanBusDeviceInfo(void* ptr)
 	static_cast<QCanBusDeviceInfo*>(ptr)->~QCanBusDeviceInfo();
 }
 
+struct QtSerialBus_PackedString QCanBusDeviceInfo_Description(void* ptr)
+{
+	return ({ QByteArray t574a7a = static_cast<QCanBusDeviceInfo*>(ptr)->description().toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t574a7a.prepend("WHITESPACE").constData()+10), t574a7a.size()-10 }; });
+}
+
 struct QtSerialBus_PackedString QCanBusDeviceInfo_Name(void* ptr)
 {
 	return ({ QByteArray tdc7ae5 = static_cast<QCanBusDeviceInfo*>(ptr)->name().toUtf8(); QtSerialBus_PackedString { const_cast<char*>(tdc7ae5.prepend("WHITESPACE").constData()+10), tdc7ae5.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QCanBusDeviceInfo_SerialNumber(void* ptr)
+{
+	return ({ QByteArray t8317b9 = static_cast<QCanBusDeviceInfo*>(ptr)->serialNumber().toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t8317b9.prepend("WHITESPACE").constData()+10), t8317b9.size()-10 }; });
 }
 
 char QCanBusDeviceInfo_HasFlexibleDataRate(void* ptr)
@@ -671,6 +702,11 @@ char QCanBusDeviceInfo_HasFlexibleDataRate(void* ptr)
 char QCanBusDeviceInfo_IsVirtual(void* ptr)
 {
 	return static_cast<QCanBusDeviceInfo*>(ptr)->isVirtual();
+}
+
+int QCanBusDeviceInfo_Channel(void* ptr)
+{
+	return static_cast<QCanBusDeviceInfo*>(ptr)->channel();
 }
 
 class MyQCanBusFactory: public QCanBusFactory
@@ -827,6 +863,11 @@ void QCanBusFrame_SetPayload(void* ptr, void* data)
 	static_cast<QCanBusFrame*>(ptr)->setPayload(*static_cast<QByteArray*>(data));
 }
 
+void* QCanBusFrame_Payload(void* ptr)
+{
+	return new QByteArray(static_cast<QCanBusFrame*>(ptr)->payload());
+}
+
 long long QCanBusFrame_Error(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->error();
@@ -835,11 +876,6 @@ long long QCanBusFrame_Error(void* ptr)
 long long QCanBusFrame_FrameType(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->frameType();
-}
-
-void* QCanBusFrame_Payload(void* ptr)
-{
-	return new QByteArray(static_cast<QCanBusFrame*>(ptr)->payload());
 }
 
 struct QtSerialBus_PackedString QCanBusFrame_ToString(void* ptr)
@@ -885,11 +921,13 @@ unsigned int QCanBusFrame_FrameId(void* ptr)
 class MyQModbusClient: public QModbusClient
 {
 public:
-	MyQModbusClient(QObject *parent = nullptr) : QModbusClient(parent) {QModbusClient_QModbusClient_QRegisterMetaType();};
+	MyQModbusClient(QObject *parent = Q_NULLPTR) : QModbusClient(parent) {QModbusClient_QModbusClient_QRegisterMetaType();};
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool open() { return callbackQModbusClient_Open(this) != 0; };
+	
 	void close() { callbackQModbusClient_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
 	void Signal_StateChanged(QModbusDevice::State state) { callbackQModbusDevice_StateChanged(this, state); };
@@ -903,7 +941,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusClient*)
@@ -1115,14 +1152,14 @@ void QModbusDataUnit_SetValues(void* ptr, void* values)
 	static_cast<QModbusDataUnit*>(ptr)->setValues(*static_cast<QVector<quint16>*>(values));
 }
 
-struct QtSerialBus_PackedList QModbusDataUnit_Values(void* ptr)
-{
-	return ({ QVector<quint16>* tmpValue = new QVector<quint16>(static_cast<QModbusDataUnit*>(ptr)->values()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 long long QModbusDataUnit_RegisterType(void* ptr)
 {
 	return static_cast<QModbusDataUnit*>(ptr)->registerType();
+}
+
+struct QtSerialBus_PackedList QModbusDataUnit_Values(void* ptr)
+{
+	return ({ QVector<quint16>* tmpValue = new QVector<quint16>(static_cast<QModbusDataUnit*>(ptr)->values()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QModbusDataUnit_IsValid(void* ptr)
@@ -1193,14 +1230,48 @@ void* QModbusDataUnit___values_newList(void* ptr)
 	return new QVector<quint16>();
 }
 
+unsigned short QModbusDataUnit___m_values_atList(void* ptr, int i)
+{
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(ptr)->at(i); if (i == static_cast<QVector<quint16>*>(ptr)->size()-1) { static_cast<QVector<quint16>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QModbusDataUnit___m_values_setList(void* ptr, unsigned short i)
+{
+	static_cast<QVector<quint16>*>(ptr)->append(i);
+}
+
+void* QModbusDataUnit___m_values_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<quint16>();
+}
+
+unsigned short QModbusDataUnit___setM_values__atList(void* ptr, int i)
+{
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(ptr)->at(i); if (i == static_cast<QVector<quint16>*>(ptr)->size()-1) { static_cast<QVector<quint16>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QModbusDataUnit___setM_values__setList(void* ptr, unsigned short i)
+{
+	static_cast<QVector<quint16>*>(ptr)->append(i);
+}
+
+void* QModbusDataUnit___setM_values__newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<quint16>();
+}
+
 class MyQModbusDevice: public QModbusDevice
 {
 public:
-	MyQModbusDevice(QObject *parent = nullptr) : QModbusDevice(parent) {QModbusDevice_QModbusDevice_QRegisterMetaType();};
+	MyQModbusDevice(QObject *parent = Q_NULLPTR) : QModbusDevice(parent) {QModbusDevice_QModbusDevice_QRegisterMetaType();};
 	bool open() { return callbackQModbusDevice_Open(this) != 0; };
 	void close() { callbackQModbusDevice_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
 	void Signal_StateChanged(QModbusDevice::State state) { callbackQModbusDevice_StateChanged(this, state); };
+	 ~MyQModbusDevice() { callbackQModbusDevice_DestroyQModbusDevice(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQModbusDevice_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusDevice_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQModbusDevice_ChildEvent(this, event); };
@@ -1211,7 +1282,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusDevice*)
@@ -1257,6 +1327,16 @@ void* QModbusDevice_NewQModbusDevice(void* parent)
 	} else {
 		return new MyQModbusDevice(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtSerialBus_PackedString QModbusDevice_QModbusDevice_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t649e94 = QModbusDevice::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t649e94.prepend("WHITESPACE").constData()+10), t649e94.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QModbusDevice_QModbusDevice_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7a6550 = QModbusDevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t7a6550.prepend("WHITESPACE").constData()+10), t7a6550.size()-10 }; });
 }
 
 char QModbusDevice_ConnectDevice(void* ptr)
@@ -1331,9 +1411,20 @@ void QModbusDevice_DestroyQModbusDevice(void* ptr)
 	static_cast<QModbusDevice*>(ptr)->~QModbusDevice();
 }
 
+void QModbusDevice_DestroyQModbusDeviceDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QModbusDevice_Error(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->error();
+}
+
+long long QModbusDevice_State(void* ptr)
+{
+	return static_cast<QModbusDevice*>(ptr)->state();
 }
 
 struct QtSerialBus_PackedString QModbusDevice_ErrorString(void* ptr)
@@ -1346,9 +1437,23 @@ void* QModbusDevice_ConnectionParameter(void* ptr, int parameter)
 	return new QVariant(static_cast<QModbusDevice*>(ptr)->connectionParameter(parameter));
 }
 
-long long QModbusDevice_State(void* ptr)
+void* QModbusDevice_MetaObjectDefault(void* ptr)
 {
-	return static_cast<QModbusDevice*>(ptr)->state();
+	if (dynamic_cast<QModbusTcpServer*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::metaObject());
+	} else if (dynamic_cast<QModbusRtuSerialSlave*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::metaObject());
+	} else if (dynamic_cast<QModbusServer*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusServer*>(ptr)->QModbusServer::metaObject());
+	} else if (dynamic_cast<QModbusTcpClient*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::metaObject());
+	} else if (dynamic_cast<QModbusRtuSerialMaster*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::metaObject());
+	} else if (dynamic_cast<QModbusClient*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QModbusClient*>(ptr)->QModbusClient::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QModbusDevice*>(ptr)->QModbusDevice::metaObject());
+	}
 }
 
 void* QModbusDevice___dynamicPropertyNames_atList(void* ptr, int i)
@@ -1583,25 +1688,6 @@ void QModbusDevice_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QModbusDevice_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QModbusTcpServer*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::metaObject());
-	} else if (dynamic_cast<QModbusRtuSerialSlave*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::metaObject());
-	} else if (dynamic_cast<QModbusServer*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusServer*>(ptr)->QModbusServer::metaObject());
-	} else if (dynamic_cast<QModbusTcpClient*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::metaObject());
-	} else if (dynamic_cast<QModbusRtuSerialMaster*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::metaObject());
-	} else if (dynamic_cast<QModbusClient*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QModbusClient*>(ptr)->QModbusClient::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QModbusDevice*>(ptr)->QModbusDevice::metaObject());
-	}
-}
-
 void* QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(void* ba)
 {
 	return new QModbusDeviceIdentification(QModbusDeviceIdentification::fromByteArray(*static_cast<QByteArray*>(ba)));
@@ -1627,11 +1713,6 @@ void QModbusDeviceIdentification_SetConformityLevel(void* ptr, long long level)
 	static_cast<QModbusDeviceIdentification*>(ptr)->setConformityLevel(static_cast<QModbusDeviceIdentification::ConformityLevel>(level));
 }
 
-long long QModbusDeviceIdentification_ConformityLevel(void* ptr)
-{
-	return static_cast<QModbusDeviceIdentification*>(ptr)->conformityLevel();
-}
-
 void* QModbusDeviceIdentification_Value(void* ptr, unsigned int objectId)
 {
 	return new QByteArray(static_cast<QModbusDeviceIdentification*>(ptr)->value(objectId));
@@ -1640,6 +1721,11 @@ void* QModbusDeviceIdentification_Value(void* ptr, unsigned int objectId)
 struct QtSerialBus_PackedList QModbusDeviceIdentification_ObjectIds(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QModbusDeviceIdentification*>(ptr)->objectIds()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+long long QModbusDeviceIdentification_ConformityLevel(void* ptr)
+{
+	return static_cast<QModbusDeviceIdentification*>(ptr)->conformityLevel();
 }
 
 char QModbusDeviceIdentification_Contains(void* ptr, unsigned int objectId)
@@ -1668,11 +1754,85 @@ void* QModbusDeviceIdentification___objectIds_newList(void* ptr)
 	return new QList<int>();
 }
 
+void* QModbusDeviceIdentification___m_objects_atList(void* ptr, int v, int i)
+{
+	return new QByteArray(({ QByteArray tmp = static_cast<QMap<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QMap<int, QByteArray>*>(ptr)->size()-1) { static_cast<QMap<int, QByteArray>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QModbusDeviceIdentification___m_objects_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QModbusDeviceIdentification___m_objects_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QByteArray>();
+}
+
+struct QtSerialBus_PackedList QModbusDeviceIdentification___m_objects_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QModbusDeviceIdentification___setM_objects__atList(void* ptr, int v, int i)
+{
+	return new QByteArray(({ QByteArray tmp = static_cast<QMap<int, QByteArray>*>(ptr)->value(v); if (i == static_cast<QMap<int, QByteArray>*>(ptr)->size()-1) { static_cast<QMap<int, QByteArray>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QModbusDeviceIdentification___setM_objects__setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QByteArray>*>(ptr)->insert(key, *static_cast<QByteArray*>(i));
+}
+
+void* QModbusDeviceIdentification___setM_objects__newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QByteArray>();
+}
+
+struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QModbusDeviceIdentification_____m_objects_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QModbusDeviceIdentification_____m_objects_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QModbusDeviceIdentification_____m_objects_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QModbusDeviceIdentification_____setM_objects_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QModbusDeviceIdentification_____setM_objects_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QModbusDeviceIdentification_____setM_objects_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
 class MyQModbusExceptionResponse: public QModbusExceptionResponse
 {
 public:
 	MyQModbusExceptionResponse() : QModbusExceptionResponse() {};
-	MyQModbusExceptionResponse(FunctionCode code, ExceptionCode ec) : QModbusExceptionResponse(code, ec) {};
+	MyQModbusExceptionResponse(QModbusPdu::FunctionCode code, QModbusPdu::ExceptionCode ec) : QModbusExceptionResponse(code, ec) {};
 	MyQModbusExceptionResponse(const QModbusPdu &pdu) : QModbusExceptionResponse(pdu) {};
 	void setFunctionCode(QModbusPdu::FunctionCode c) { callbackQModbusPdu_SetFunctionCode(this, c); };
 };
@@ -1701,7 +1861,7 @@ class MyQModbusPdu: public QModbusPdu
 {
 public:
 	MyQModbusPdu() : QModbusPdu() {};
-	MyQModbusPdu(FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {};
+	MyQModbusPdu(QModbusPdu::FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {};
 	MyQModbusPdu(const QModbusPdu &other) : QModbusPdu(other) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 	 ~MyQModbusPdu() { callbackQModbusPdu_DestroyQModbusPdu(this); };
@@ -1756,6 +1916,11 @@ void QModbusPdu_DestroyQModbusPduDefault(void* ptr)
 
 }
 
+void* QModbusPdu_Data(void* ptr)
+{
+	return new QByteArray(static_cast<QModbusPdu*>(ptr)->data());
+}
+
 long long QModbusPdu_ExceptionCode(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->exceptionCode();
@@ -1764,11 +1929,6 @@ long long QModbusPdu_ExceptionCode(void* ptr)
 long long QModbusPdu_FunctionCode(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->functionCode();
-}
-
-void* QModbusPdu_Data(void* ptr)
-{
-	return new QByteArray(static_cast<QModbusPdu*>(ptr)->data());
 }
 
 char QModbusPdu_IsException(void* ptr)
@@ -1791,6 +1951,11 @@ short QModbusPdu_Size(void* ptr)
 	return static_cast<QModbusPdu*>(ptr)->size();
 }
 
+struct QtSerialBus_PackedString QModbusPdu_QModbusPdu_ExceptionByte()
+{
+	return ({ const quint8 pret9044a4 = QModbusPdu::ExceptionByte; char* t9044a4 = static_cast<char*>(static_cast<void*>(const_cast<quint8*>(&pret9044a4))); QtSerialBus_PackedString { t9044a4, -1 }; });
+}
+
 void* QModbusPdu___encode_vector_atList2(void* ptr, int i)
 {
 	return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
@@ -1810,9 +1975,10 @@ void* QModbusPdu___encode_vector_newList2(void* ptr)
 class MyQModbusReply: public QModbusReply
 {
 public:
-	MyQModbusReply(ReplyType ty, int serverAddress, QObject *parent = nullptr) : QModbusReply(ty, serverAddress, parent) {QModbusReply_QModbusReply_QRegisterMetaType();};
+	MyQModbusReply(QModbusReply::ReplyType ty, int serverAddress, QObject *parent = Q_NULLPTR) : QModbusReply(ty, serverAddress, parent) {QModbusReply_QModbusReply_QRegisterMetaType();};
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, error); };
 	void Signal_Finished() { callbackQModbusReply_Finished(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQModbusReply_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusReply_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQModbusReply_ChildEvent(this, event); };
@@ -1823,7 +1989,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusReply_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusReply_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusReply*)
@@ -1871,6 +2036,16 @@ void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent
 	}
 }
 
+struct QtSerialBus_PackedString QModbusReply_QModbusReply_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t57f2b7 = QModbusReply::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t57f2b7.prepend("WHITESPACE").constData()+10), t57f2b7.size()-10 }; });
+}
+
+struct QtSerialBus_PackedString QModbusReply_QModbusReply_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t3b005d = QModbusReply::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t3b005d.prepend("WHITESPACE").constData()+10), t3b005d.size()-10 }; });
+}
+
 void QModbusReply_ConnectErrorOccurred(void* ptr)
 {
 	qRegisterMetaType<QModbusDevice::Error>();
@@ -1912,6 +2087,11 @@ long long QModbusReply_Error(void* ptr)
 	return static_cast<QModbusReply*>(ptr)->error();
 }
 
+long long QModbusReply_Type(void* ptr)
+{
+	return static_cast<QModbusReply*>(ptr)->type();
+}
+
 void* QModbusReply_RawResult(void* ptr)
 {
 	return new QModbusResponse(static_cast<QModbusReply*>(ptr)->rawResult());
@@ -1922,14 +2102,14 @@ struct QtSerialBus_PackedString QModbusReply_ErrorString(void* ptr)
 	return ({ QByteArray teb6a0e = static_cast<QModbusReply*>(ptr)->errorString().toUtf8(); QtSerialBus_PackedString { const_cast<char*>(teb6a0e.prepend("WHITESPACE").constData()+10), teb6a0e.size()-10 }; });
 }
 
-long long QModbusReply_Type(void* ptr)
-{
-	return static_cast<QModbusReply*>(ptr)->type();
-}
-
 char QModbusReply_IsFinished(void* ptr)
 {
 	return static_cast<QModbusReply*>(ptr)->isFinished();
+}
+
+void* QModbusReply_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QModbusReply*>(ptr)->QModbusReply::metaObject());
 }
 
 int QModbusReply_ServerAddress(void* ptr)
@@ -2057,16 +2237,11 @@ void QModbusReply_TimerEventDefault(void* ptr, void* event)
 		static_cast<QModbusReply*>(ptr)->QModbusReply::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QModbusReply_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QModbusReply*>(ptr)->QModbusReply::metaObject());
-}
-
 class MyQModbusRequest: public QModbusRequest
 {
 public:
 	MyQModbusRequest() : QModbusRequest() {};
-	MyQModbusRequest(FunctionCode code, const QByteArray &data = QByteArray()) : QModbusRequest(code, data) {};
+	MyQModbusRequest(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusRequest(code, data) {};
 	MyQModbusRequest(const QModbusPdu &pdu) : QModbusRequest(pdu) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
@@ -2100,7 +2275,7 @@ class MyQModbusResponse: public QModbusResponse
 {
 public:
 	MyQModbusResponse() : QModbusResponse() {};
-	MyQModbusResponse(FunctionCode code, const QByteArray &data = QByteArray()) : QModbusResponse(code, data) {};
+	MyQModbusResponse(QModbusPdu::FunctionCode code, const QByteArray &data = QByteArray()) : QModbusResponse(code, data) {};
 	MyQModbusResponse(const QModbusPdu &pdu) : QModbusResponse(pdu) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
@@ -2133,9 +2308,10 @@ int QModbusResponse_QModbusResponse_MinimumDataSize(void* response)
 class MyQModbusRtuSerialMaster: public QModbusRtuSerialMaster
 {
 public:
-	MyQModbusRtuSerialMaster(QObject *parent = nullptr) : QModbusRtuSerialMaster(parent) {QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType();};
+	MyQModbusRtuSerialMaster(QObject *parent = Q_NULLPTR) : QModbusRtuSerialMaster(parent) {QModbusRtuSerialMaster_QModbusRtuSerialMaster_QRegisterMetaType();};
 	bool open() { return callbackQModbusRtuSerialMaster_Open(this) != 0; };
 	void close() { callbackQModbusRtuSerialMaster_Close(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -2151,7 +2327,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusRtuSerialMaster*)
@@ -2232,16 +2407,19 @@ int QModbusRtuSerialMaster_InterFrameDelay(void* ptr)
 class MyQModbusRtuSerialSlave: public QModbusRtuSerialSlave
 {
 public:
-	MyQModbusRtuSerialSlave(QObject *parent = nullptr) : QModbusRtuSerialSlave(parent) {QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType();};
+	MyQModbusRtuSerialSlave(QObject *parent = Q_NULLPTR) : QModbusRtuSerialSlave(parent) {QModbusRtuSerialSlave_QModbusRtuSerialSlave_QRegisterMetaType();};
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool open() { return callbackQModbusRtuSerialSlave_Open(this) != 0; };
 	void close() { callbackQModbusRtuSerialSlave_Close(this); };
+	 ~MyQModbusRtuSerialSlave() { callbackQModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(this); };
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
-	void Signal_DataWritten(QModbusDataUnit::RegisterType regist, int address, int size) { callbackQModbusServer_DataWritten(this, regist, address, size); };
+	
+	void Signal_DataWritten(QModbusDataUnit::RegisterType table, int address, int size) { callbackQModbusServer_DataWritten(this, table, address, size); };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<void*>(static_cast<const void*>(this)), option)); };
 	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<void*>(static_cast<const void*>(this)), newData) != 0; };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
@@ -2256,7 +2434,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusRtuSerialSlave*)
@@ -2329,18 +2506,25 @@ void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(void* ptr)
 	static_cast<QModbusRtuSerialSlave*>(ptr)->~QModbusRtuSerialSlave();
 }
 
+void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlaveDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 class MyQModbusServer: public QModbusServer
 {
 public:
-	MyQModbusServer(QObject *parent = nullptr) : QModbusServer(parent) {QModbusServer_QModbusServer_QRegisterMetaType();};
+	MyQModbusServer(QObject *parent = Q_NULLPTR) : QModbusServer(parent) {QModbusServer_QModbusServer_QRegisterMetaType();};
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
-	void Signal_DataWritten(QModbusDataUnit::RegisterType regist, int address, int size) { callbackQModbusServer_DataWritten(this, regist, address, size); };
+	void Signal_DataWritten(QModbusDataUnit::RegisterType table, int address, int size) { callbackQModbusServer_DataWritten(this, table, address, size); };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<void*>(static_cast<const void*>(this)), option)); };
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<void*>(static_cast<const void*>(this)), newData) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool open() { return callbackQModbusServer_Open(this) != 0; };
 	void close() { callbackQModbusServer_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
@@ -2355,7 +2539,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusServer*)
@@ -2488,9 +2671,9 @@ void QModbusServer_DisconnectDataWritten(void* ptr)
 	QObject::disconnect(static_cast<QModbusServer*>(ptr), static_cast<void (QModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&QModbusServer::dataWritten), static_cast<MyQModbusServer*>(ptr), static_cast<void (MyQModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&MyQModbusServer::Signal_DataWritten));
 }
 
-void QModbusServer_DataWritten(void* ptr, long long regist, int address, int size)
+void QModbusServer_DataWritten(void* ptr, long long table, int address, int size)
 {
-	static_cast<QModbusServer*>(ptr)->dataWritten(static_cast<QModbusDataUnit::RegisterType>(regist), address, size);
+	static_cast<QModbusServer*>(ptr)->dataWritten(static_cast<QModbusDataUnit::RegisterType>(table), address, size);
 }
 
 void QModbusServer_SetServerAddress(void* ptr, int serverAddress)
@@ -2596,9 +2779,11 @@ void QModbusServer_CloseDefault(void* ptr)
 class MyQModbusTcpClient: public QModbusTcpClient
 {
 public:
-	MyQModbusTcpClient(QObject *parent = nullptr) : QModbusTcpClient(parent) {QModbusTcpClient_QModbusTcpClient_QRegisterMetaType();};
+	MyQModbusTcpClient(QObject *parent = Q_NULLPTR) : QModbusTcpClient(parent) {QModbusTcpClient_QModbusTcpClient_QRegisterMetaType();};
 	bool open() { return callbackQModbusTcpClient_Open(this) != 0; };
 	void close() { callbackQModbusTcpClient_Close(this); };
+	 ~MyQModbusTcpClient() { callbackQModbusTcpClient_DestroyQModbusTcpClient(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
@@ -2614,7 +2799,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusTcpClient*)
@@ -2687,17 +2871,25 @@ void QModbusTcpClient_DestroyQModbusTcpClient(void* ptr)
 	static_cast<QModbusTcpClient*>(ptr)->~QModbusTcpClient();
 }
 
+void QModbusTcpClient_DestroyQModbusTcpClientDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 class MyQModbusTcpServer: public QModbusTcpServer
 {
 public:
-	MyQModbusTcpServer(QObject *parent = nullptr) : QModbusTcpServer(parent) {QModbusTcpServer_QModbusTcpServer_QRegisterMetaType();};
+	MyQModbusTcpServer(QObject *parent = Q_NULLPTR) : QModbusTcpServer(parent) {QModbusTcpServer_QModbusTcpServer_QRegisterMetaType();};
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool open() { return callbackQModbusTcpServer_Open(this) != 0; };
 	void close() { callbackQModbusTcpServer_Close(this); };
+	 ~MyQModbusTcpServer() { callbackQModbusTcpServer_DestroyQModbusTcpServer(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
-	void Signal_DataWritten(QModbusDataUnit::RegisterType regist, int address, int size) { callbackQModbusServer_DataWritten(this, regist, address, size); };
+	void Signal_DataWritten(QModbusDataUnit::RegisterType table, int address, int size) { callbackQModbusServer_DataWritten(this, table, address, size); };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<void*>(static_cast<const void*>(this)), option)); };
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<void*>(static_cast<const void*>(this)), newData) != 0; };
@@ -2713,7 +2905,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSerialBus_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQModbusDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQModbusTcpServer*)
@@ -2784,5 +2975,11 @@ void QModbusTcpServer_CloseDefault(void* ptr)
 void QModbusTcpServer_DestroyQModbusTcpServer(void* ptr)
 {
 	static_cast<QModbusTcpServer*>(ptr)->~QModbusTcpServer();
+}
+
+void QModbusTcpServer_DestroyQModbusTcpServerDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 

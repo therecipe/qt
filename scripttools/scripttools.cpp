@@ -46,6 +46,8 @@ public:
 	MyQScriptEngineDebugger(QObject *parent = Q_NULLPTR) : QScriptEngineDebugger(parent) {QScriptEngineDebugger_QScriptEngineDebugger_QRegisterMetaType();};
 	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this); };
 	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this); };
+	 ~MyQScriptEngineDebugger() { callbackQScriptEngineDebugger_DestroyQScriptEngineDebugger(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScriptEngineDebugger_ChildEvent(this, event); };
@@ -56,7 +58,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScriptTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngineDebugger_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQScriptEngineDebugger*)
@@ -107,6 +108,16 @@ void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
 	} else {
 		return new MyQScriptEngineDebugger(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tcf93f8 = QScriptEngineDebugger::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScriptTools_PackedString { const_cast<char*>(tcf93f8.prepend("WHITESPACE").constData()+10), tcf93f8.size()-10 }; });
+}
+
+struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t6bf1a8 = QScriptEngineDebugger::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScriptTools_PackedString { const_cast<char*>(t6bf1a8.prepend("WHITESPACE").constData()+10), t6bf1a8.size()-10 }; });
 }
 
 void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent)
@@ -164,9 +175,10 @@ void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
 }
 
-long long QScriptEngineDebugger_State(void* ptr)
+void QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(void* ptr)
 {
-	return static_cast<QScriptEngineDebugger*>(ptr)->state();
+	Q_UNUSED(ptr);
+
 }
 
 void* QScriptEngineDebugger_Action(void* ptr, long long action)
@@ -179,6 +191,11 @@ void* QScriptEngineDebugger_StandardWindow(void* ptr)
 	return static_cast<QScriptEngineDebugger*>(ptr)->standardWindow();
 }
 
+long long QScriptEngineDebugger_State(void* ptr)
+{
+	return static_cast<QScriptEngineDebugger*>(ptr)->state();
+}
+
 void* QScriptEngineDebugger_Widget(void* ptr, long long widget)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->widget(static_cast<QScriptEngineDebugger::DebuggerWidget>(widget));
@@ -187,6 +204,11 @@ void* QScriptEngineDebugger_Widget(void* ptr, long long widget)
 char QScriptEngineDebugger_AutoShowStandardWindow(void* ptr)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->autoShowStandardWindow();
+}
+
+void* QScriptEngineDebugger_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::metaObject());
 }
 
 void* QScriptEngineDebugger___dynamicPropertyNames_atList(void* ptr, int i)
@@ -307,10 +329,5 @@ void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign)
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QScriptEngineDebugger_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::metaObject());
 }
 

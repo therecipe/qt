@@ -16,6 +16,8 @@ struct QtScriptTools_PackedString { char* data; long long len; };
 struct QtScriptTools_PackedList { void* data; long long len; };
 void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent);
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent);
+struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_Tr(char* s, char* c, int n);
+struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_TrUtf8(char* s, char* c, int n);
 void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent);
 void QScriptEngineDebugger_AttachTo(void* ptr, void* engine);
 void QScriptEngineDebugger_Detach(void* ptr);
@@ -27,11 +29,13 @@ void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr);
 void QScriptEngineDebugger_EvaluationSuspended(void* ptr);
 void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, char autoShow);
 void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr);
-long long QScriptEngineDebugger_State(void* ptr);
+void QScriptEngineDebugger_DestroyQScriptEngineDebuggerDefault(void* ptr);
 void* QScriptEngineDebugger_Action(void* ptr, long long action);
 void* QScriptEngineDebugger_StandardWindow(void* ptr);
+long long QScriptEngineDebugger_State(void* ptr);
 void* QScriptEngineDebugger_Widget(void* ptr, long long widget);
 char QScriptEngineDebugger_AutoShowStandardWindow(void* ptr);
+void* QScriptEngineDebugger_MetaObjectDefault(void* ptr);
 void* QScriptEngineDebugger___dynamicPropertyNames_atList(void* ptr, int i);
 void QScriptEngineDebugger___dynamicPropertyNames_setList(void* ptr, void* i);
 void* QScriptEngineDebugger___dynamicPropertyNames_newList(void* ptr);
@@ -55,7 +59,6 @@ void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event);
 void QScriptEngineDebugger_DeleteLaterDefault(void* ptr);
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign);
 void QScriptEngineDebugger_TimerEventDefault(void* ptr, void* event);
-void* QScriptEngineDebugger_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -11,7 +11,7 @@ ENV QT_DOCKER true
 ENV QT_SAILFISH true
 
 
-RUN apt-get -qq update && apt-get -y -qq install curl git && apt-get -qq clean
+RUN apt-get -qq update && apt-get -y -qq install curl git bzip2 && apt-get -qq clean
 RUN apt-get -qq update && apt-get -y -qq purge python && apt-get -qq clean
 
 

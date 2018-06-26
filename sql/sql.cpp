@@ -323,6 +323,7 @@ public:
 	void setLastError(const QSqlError & error) { callbackQSqlDriver_SetLastError(this, const_cast<QSqlError*>(&error)); };
 	void setOpen(bool open) { callbackQSqlDriver_SetOpen(this, open); };
 	void setOpenError(bool error) { callbackQSqlDriver_SetOpenError(this, error); };
+	 ~MyQSqlDriver() { callbackQSqlDriver_DestroyQSqlDriver(this); };
 	QSqlIndex primaryIndex(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<void*>(static_cast<const void*>(this)), tableNamePacked)); };
 	QSqlRecord record(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<void*>(static_cast<const void*>(this)), tableNamePacked)); };
 	QSqlResult * createResult() const { return static_cast<QSqlResult*>(callbackQSqlDriver_CreateResult(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -336,6 +337,7 @@ public:
 	bool hasFeature(QSqlDriver::DriverFeature feature) const { return callbackQSqlDriver_HasFeature(const_cast<void*>(static_cast<const void*>(this)), feature) != 0; };
 	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return callbackQSqlDriver_IsIdentifierEscaped(const_cast<void*>(static_cast<const void*>(this)), identifierPacked, ty) != 0; };
 	bool isOpen() const { return callbackQSqlDriver_IsOpen(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriver_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSqlDriver_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriver_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSqlDriver_ChildEvent(this, event); };
@@ -346,7 +348,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriver_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlDriver_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriver_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlDriver*)
@@ -392,6 +393,16 @@ void* QSqlDriver_NewQSqlDriver(void* parent)
 	} else {
 		return new MyQSqlDriver(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtSql_PackedString QSqlDriver_QSqlDriver_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t3ae513 = QSqlDriver::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t3ae513.prepend("WHITESPACE").constData()+10), t3ae513.size()-10 }; });
+}
+
+struct QtSql_PackedString QSqlDriver_QSqlDriver_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tededeb = QSqlDriver::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tededeb.prepend("WHITESPACE").constData()+10), tededeb.size()-10 }; });
 }
 
 char QSqlDriver_BeginTransaction(void* ptr)
@@ -522,6 +533,12 @@ void QSqlDriver_SetOpenErrorDefault(void* ptr, char error)
 void QSqlDriver_DestroyQSqlDriver(void* ptr)
 {
 	static_cast<QSqlDriver*>(ptr)->~QSqlDriver();
+}
+
+void QSqlDriver_DestroyQSqlDriverDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 long long QSqlDriver_NumericalPrecisionPolicy(void* ptr)
@@ -659,6 +676,11 @@ char QSqlDriver_IsOpenError(void* ptr)
 	return static_cast<QSqlDriver*>(ptr)->isOpenError();
 }
 
+void* QSqlDriver_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::metaObject());
+}
+
 void* QSqlDriver___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -779,11 +801,6 @@ void QSqlDriver_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSqlDriver*>(ptr)->QSqlDriver::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSqlDriver_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::metaObject());
-}
-
 class MyQSqlDriverCreatorBase: public QSqlDriverCreatorBase
 {
 public:
@@ -812,6 +829,8 @@ class MyQSqlDriverPlugin: public QSqlDriverPlugin
 public:
 	MyQSqlDriverPlugin(QObject *parent = Q_NULLPTR) : QSqlDriverPlugin(parent) {QSqlDriverPlugin_QSqlDriverPlugin_QRegisterMetaType();};
 	QSqlDriver * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtSql_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, keyPacked)); };
+	 ~MyQSqlDriverPlugin() { callbackQSqlDriverPlugin_DestroyQSqlDriverPlugin(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriverPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSqlDriverPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriverPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSqlDriverPlugin_ChildEvent(this, event); };
@@ -822,7 +841,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlDriverPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriverPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlDriverPlugin*)
@@ -875,9 +893,30 @@ void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 	}
 }
 
+struct QtSql_PackedString QSqlDriverPlugin_QSqlDriverPlugin_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tf86c07 = QSqlDriverPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tf86c07.prepend("WHITESPACE").constData()+10), tf86c07.size()-10 }; });
+}
+
+struct QtSql_PackedString QSqlDriverPlugin_QSqlDriverPlugin_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tb59155 = QSqlDriverPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tb59155.prepend("WHITESPACE").constData()+10), tb59155.size()-10 }; });
+}
+
 void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr)
 {
 	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
+}
+
+void QSqlDriverPlugin_DestroyQSqlDriverPluginDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QSqlDriverPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::metaObject());
 }
 
 void* QSqlDriverPlugin___dynamicPropertyNames_atList(void* ptr, int i)
@@ -998,11 +1037,6 @@ void QSqlDriverPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
 void QSqlDriverPlugin_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QSqlDriverPlugin_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::metaObject());
 }
 
 void* QSqlError_NewQSqlError4(void* other)
@@ -1145,6 +1179,11 @@ void QSqlField_DestroyQSqlField(void* ptr)
 	static_cast<QSqlField*>(ptr)->~QSqlField();
 }
 
+long long QSqlField_RequiredStatus(void* ptr)
+{
+	return static_cast<QSqlField*>(ptr)->requiredStatus();
+}
+
 struct QtSql_PackedString QSqlField_Name(void* ptr)
 {
 	return ({ QByteArray t784037 = static_cast<QSqlField*>(ptr)->name().toUtf8(); QtSql_PackedString { const_cast<char*>(t784037.prepend("WHITESPACE").constData()+10), t784037.size()-10 }; });
@@ -1168,11 +1207,6 @@ void* QSqlField_Value(void* ptr)
 long long QSqlField_Type(void* ptr)
 {
 	return static_cast<QSqlField*>(ptr)->type();
-}
-
-long long QSqlField_RequiredStatus(void* ptr)
-{
-	return static_cast<QSqlField*>(ptr)->requiredStatus();
 }
 
 char QSqlField_IsAutoValue(void* ptr)
@@ -1258,6 +1292,38 @@ struct QtSql_PackedString QSqlIndex_Name(void* ptr)
 char QSqlIndex_IsDescending(void* ptr, int i)
 {
 	return static_cast<QSqlIndex*>(ptr)->isDescending(i);
+}
+
+char QSqlIndex___sorts_atList(void* ptr, int i)
+{
+	return ({bool tmp = static_cast<QVector<bool>*>(ptr)->at(i); if (i == static_cast<QVector<bool>*>(ptr)->size()-1) { static_cast<QVector<bool>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QSqlIndex___sorts_setList(void* ptr, char i)
+{
+	static_cast<QVector<bool>*>(ptr)->append(i != 0);
+}
+
+void* QSqlIndex___sorts_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<bool>();
+}
+
+char QSqlIndex___setSorts__atList(void* ptr, int i)
+{
+	return ({bool tmp = static_cast<QVector<bool>*>(ptr)->at(i); if (i == static_cast<QVector<bool>*>(ptr)->size()-1) { static_cast<QVector<bool>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QSqlIndex___setSorts__setList(void* ptr, char i)
+{
+	static_cast<QVector<bool>*>(ptr)->append(i != 0);
+}
+
+void* QSqlIndex___setSorts__newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<bool>();
 }
 
 void* QSqlQuery_NewQSqlQuery3(void* db)
@@ -1520,7 +1586,7 @@ void* QSqlQuery_____boundValues_keyList_newList(void* ptr)
 class MyQSqlQueryModel: public QSqlQueryModel
 {
 public:
-	MyQSqlQueryModel(QObject *parent = nullptr) : QSqlQueryModel(parent) {QSqlQueryModel_QSqlQueryModel_QRegisterMetaType();};
+	MyQSqlQueryModel(QObject *parent = Q_NULLPTR) : QSqlQueryModel(parent) {QSqlQueryModel_QSqlQueryModel_QRegisterMetaType();};
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlQueryModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
@@ -1533,6 +1599,7 @@ public:
 	QVariant data(const QModelIndex & item, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&item), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlQueryModel_CanFetchMore(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int columnCount(const QModelIndex & index) const { return callbackQSqlQueryModel_ColumnCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index)); };
 	int rowCount(const QModelIndex & parent) const { return callbackQSqlQueryModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlQueryModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -1588,7 +1655,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlQueryModel*)
@@ -1634,6 +1700,16 @@ void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 	} else {
 		return new MyQSqlQueryModel(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtSql_PackedString QSqlQueryModel_QSqlQueryModel_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t5980ae = QSqlQueryModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t5980ae.prepend("WHITESPACE").constData()+10), t5980ae.size()-10 }; });
+}
+
+struct QtSql_PackedString QSqlQueryModel_QSqlQueryModel_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t013540 = QSqlQueryModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t013540.prepend("WHITESPACE").constData()+10), t013540.size()-10 }; });
 }
 
 char QSqlQueryModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
@@ -1820,6 +1896,17 @@ char QSqlQueryModel_CanFetchMoreDefault(void* ptr, void* parent)
 		return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 	} else {
 		return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+	}
+}
+
+void* QSqlQueryModel_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::metaObject());
+	} else if (dynamic_cast<QSqlTableModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::metaObject());
 	}
 }
 
@@ -2569,17 +2656,6 @@ void QSqlQueryModel_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QSqlQueryModel_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QSqlRelationalTableModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::metaObject());
-	} else if (dynamic_cast<QSqlTableModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::metaObject());
-	}
-}
-
 void* QSqlRecord_NewQSqlRecord()
 {
 	return new QSqlRecord();
@@ -2763,12 +2839,14 @@ char QSqlRelation_IsValid(void* ptr)
 class MyQSqlRelationalDelegate: public QSqlRelationalDelegate
 {
 public:
-	MyQSqlRelationalDelegate(QObject *parent = nullptr) : QSqlRelationalDelegate(parent) {QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType();};
+	MyQSqlRelationalDelegate(QObject *parent = Q_NULLPTR) : QSqlRelationalDelegate(parent) {QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType();};
+	 ~MyQSqlRelationalDelegate() { callbackQSqlRelationalDelegate_DestroyQSqlRelationalDelegate(this); };
 	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQSqlRelationalDelegate_CreateEditor(const_cast<void*>(static_cast<const void*>(this)), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
 	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetModelData(const_cast<void*>(static_cast<const void*>(this)), editor, model, const_cast<QModelIndex*>(&index)); };
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQSqlRelationalDelegate_EventFilter(this, editor, event) != 0; };
 	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalDelegate_SizeHint(const_cast<void*>(static_cast<const void*>(this)), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlRelationalDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQSqlRelationalDelegate_DrawCheck(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
 	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQSqlRelationalDelegate_DrawDecoration(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
 	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtSql_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSqlRelationalDelegate_DrawDisplay(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
@@ -2790,7 +2868,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlRelationalDelegate_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlRelationalDelegate_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalDelegate_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlRelationalDelegate_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlRelationalDelegate*)
@@ -2841,6 +2918,12 @@ void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 void QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(void* ptr)
 {
 	static_cast<QSqlRelationalDelegate*>(ptr)->~QSqlRelationalDelegate();
+}
+
+void QSqlRelationalDelegate_DestroyQSqlRelationalDelegateDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QSqlRelationalDelegate_CreateEditorDefault(void* ptr, void* parent, void* option, void* index)
@@ -2948,6 +3031,11 @@ void* QSqlRelationalDelegate_SizeHintDefault(void* ptr, void* option, void* inde
 		return ({ QSize tmpValue = static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
+void* QSqlRelationalDelegate_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::metaObject());
+}
+
 void QSqlRelationalDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, long long state)
 {
 		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
@@ -3028,11 +3116,6 @@ void QSqlRelationalDelegate_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSqlRelationalDelegate_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::metaObject());
-}
-
 class MyQSqlRelationalTableModel: public QSqlRelationalTableModel
 {
 public:
@@ -3051,11 +3134,13 @@ public:
 	QString orderByClause() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_OrderByClause(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString selectStatement() const { return ({ QtSql_PackedString tempVal = callbackQSqlTableModel_SelectStatement(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool deleteRowFromTable(int row) { return callbackQSqlTableModel_DeleteRowFromTable(this, row) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool selectRow(int row) { return callbackQSqlTableModel_SelectRow(this, row) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
+	
 	void Signal_BeforeDelete(int row) { callbackQSqlTableModel_BeforeDelete(this, row); };
 	void Signal_BeforeInsert(QSqlRecord & record) { callbackQSqlTableModel_BeforeInsert(this, static_cast<QSqlRecord*>(&record)); };
 	void Signal_BeforeUpdate(int row, QSqlRecord & record) { callbackQSqlTableModel_BeforeUpdate(this, row, static_cast<QSqlRecord*>(&record)); };
@@ -3124,7 +3209,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlRelationalTableModel*)
@@ -3465,11 +3549,6 @@ void QSqlResult_DestroyQSqlResultDefault(void* ptr)
 
 }
 
-long long QSqlResult_BindingSyntax(void* ptr)
-{
-	return static_cast<QSqlResult*>(ptr)->bindingSyntax();
-}
-
 long long QSqlResult_BindValueType2(void* ptr, struct QtSql_PackedString placeholder)
 {
 	return static_cast<QSqlResult*>(ptr)->bindValueType(QString::fromUtf8(placeholder.data, placeholder.len));
@@ -3493,6 +3572,11 @@ void* QSqlResult_Record(void* ptr)
 void* QSqlResult_RecordDefault(void* ptr)
 {
 		return new QSqlRecord(static_cast<QSqlResult*>(ptr)->QSqlResult::record());
+}
+
+long long QSqlResult_BindingSyntax(void* ptr)
+{
+	return static_cast<QSqlResult*>(ptr)->bindingSyntax();
 }
 
 struct QtSql_PackedString QSqlResult_BoundValueName(void* ptr, int index)
@@ -3634,6 +3718,7 @@ public:
 	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index), role)); };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_HeaderData(const_cast<void*>(static_cast<const void*>(this)), section, orientation, role)); };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlQueryModel_Flags(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int rowCount(const QModelIndex & parent) const { return callbackQSqlQueryModel_RowCount(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&parent)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlQueryModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
@@ -3690,7 +3775,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSql_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSqlQueryModel_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSqlTableModel*)
@@ -3998,11 +4082,6 @@ void QSqlTableModel_DestroyQSqlTableModelDefault(void* ptr)
 
 }
 
-long long QSqlTableModel_EditStrategy(void* ptr)
-{
-	return static_cast<QSqlTableModel*>(ptr)->editStrategy();
-}
-
 void* QSqlTableModel_Database(void* ptr)
 {
 	return new QSqlDatabase(static_cast<QSqlTableModel*>(ptr)->database());
@@ -4016,6 +4095,11 @@ void* QSqlTableModel_PrimaryKey(void* ptr)
 void* QSqlTableModel_PrimaryValues(void* ptr, int row)
 {
 	return new QSqlRecord(static_cast<QSqlTableModel*>(ptr)->primaryValues(row));
+}
+
+long long QSqlTableModel_EditStrategy(void* ptr)
+{
+	return static_cast<QSqlTableModel*>(ptr)->editStrategy();
 }
 
 struct QtSql_PackedString QSqlTableModel_Filter(void* ptr)

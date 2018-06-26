@@ -44,7 +44,7 @@
 class MyQGamepad: public QGamepad
 {
 public:
-	MyQGamepad(int deviceId = 0, QObject *parent = nullptr) : QGamepad(deviceId, parent) {QGamepad_QGamepad_QRegisterMetaType();};
+	MyQGamepad(int deviceId = 0, QObject *parent = Q_NULLPTR) : QGamepad(deviceId, parent) {QGamepad_QGamepad_QRegisterMetaType();};
 	void Signal_AxisLeftXChanged(double value) { callbackQGamepad_AxisLeftXChanged(this, value); };
 	void Signal_AxisLeftYChanged(double value) { callbackQGamepad_AxisLeftYChanged(this, value); };
 	void Signal_AxisRightXChanged(double value) { callbackQGamepad_AxisRightXChanged(this, value); };
@@ -71,6 +71,8 @@ public:
 	void Signal_DeviceIdChanged(int value) { callbackQGamepad_DeviceIdChanged(this, value); };
 	void Signal_NameChanged(QString value) { QByteArray tf32b67 = value.toUtf8(); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQGamepad_NameChanged(this, valuePacked); };
 	void setDeviceId(int number) { callbackQGamepad_SetDeviceId(this, number); };
+	 ~MyQGamepad() { callbackQGamepad_DestroyQGamepad(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQGamepad_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepad_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGamepad_ChildEvent(this, event); };
@@ -81,7 +83,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGamepad_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepad_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepad_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQGamepad*)
@@ -127,6 +128,16 @@ void* QGamepad_NewQGamepad(int deviceId, void* parent)
 	} else {
 		return new MyQGamepad(deviceId, static_cast<QObject*>(parent));
 	}
+}
+
+struct QtGamepad_PackedString QGamepad_QGamepad_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t602467 = QGamepad::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t602467.prepend("WHITESPACE").constData()+10), t602467.size()-10 }; });
+}
+
+struct QtGamepad_PackedString QGamepad_QGamepad_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t8e5055 = QGamepad::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t8e5055.prepend("WHITESPACE").constData()+10), t8e5055.size()-10 }; });
 }
 
 void QGamepad_ConnectAxisLeftXChanged(void* ptr)
@@ -519,6 +530,12 @@ void QGamepad_DestroyQGamepad(void* ptr)
 	static_cast<QGamepad*>(ptr)->~QGamepad();
 }
 
+void QGamepad_DestroyQGamepadDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtGamepad_PackedString QGamepad_Name(void* ptr)
 {
 	return ({ QByteArray t4fe02c = static_cast<QGamepad*>(ptr)->name().toUtf8(); QtGamepad_PackedString { const_cast<char*>(t4fe02c.prepend("WHITESPACE").constData()+10), t4fe02c.size()-10 }; });
@@ -607,6 +624,11 @@ char QGamepad_ButtonY(void* ptr)
 char QGamepad_IsConnected(void* ptr)
 {
 	return static_cast<QGamepad*>(ptr)->isConnected();
+}
+
+void* QGamepad_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QGamepad*>(ptr)->QGamepad::metaObject());
 }
 
 double QGamepad_AxisLeftX(void* ptr)
@@ -764,15 +786,10 @@ void QGamepad_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGamepad*>(ptr)->QGamepad::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QGamepad_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QGamepad*>(ptr)->QGamepad::metaObject());
-}
-
 class MyQGamepadKeyNavigation: public QGamepadKeyNavigation
 {
 public:
-	MyQGamepadKeyNavigation(QObject *parent = nullptr) : QGamepadKeyNavigation(parent) {QGamepadKeyNavigation_QGamepadKeyNavigation_QRegisterMetaType();};
+	MyQGamepadKeyNavigation(QObject *parent = Q_NULLPTR) : QGamepadKeyNavigation(parent) {QGamepadKeyNavigation_QGamepadKeyNavigation_QRegisterMetaType();};
 	void Signal_ActiveChanged(bool isActive) { callbackQGamepadKeyNavigation_ActiveChanged(this, isActive); };
 	void Signal_ButtonAKeyChanged(Qt::Key key) { callbackQGamepadKeyNavigation_ButtonAKeyChanged(this, key); };
 	void Signal_ButtonBKeyChanged(Qt::Key key) { callbackQGamepadKeyNavigation_ButtonBKeyChanged(this, key); };
@@ -811,6 +828,7 @@ public:
 	void setRightKey(Qt::Key key) { callbackQGamepadKeyNavigation_SetRightKey(this, key); };
 	void setUpKey(Qt::Key key) { callbackQGamepadKeyNavigation_SetUpKey(this, key); };
 	void Signal_UpKeyChanged(Qt::Key key) { callbackQGamepadKeyNavigation_UpKeyChanged(this, key); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadKeyNavigation_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQGamepadKeyNavigation_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadKeyNavigation_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGamepadKeyNavigation_ChildEvent(this, event); };
@@ -821,7 +839,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGamepadKeyNavigation_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadKeyNavigation_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadKeyNavigation_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadKeyNavigation_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQGamepadKeyNavigation*)
@@ -867,6 +884,16 @@ void* QGamepadKeyNavigation_NewQGamepadKeyNavigation(void* parent)
 	} else {
 		return new MyQGamepadKeyNavigation(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtGamepad_PackedString QGamepadKeyNavigation_QGamepadKeyNavigation_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tbfc475 = QGamepadKeyNavigation::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tbfc475.prepend("WHITESPACE").constData()+10), tbfc475.size()-10 }; });
+}
+
+struct QtGamepad_PackedString QGamepadKeyNavigation_QGamepadKeyNavigation_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7f46cf = QGamepadKeyNavigation::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t7f46cf.prepend("WHITESPACE").constData()+10), t7f46cf.size()-10 }; });
 }
 
 void QGamepadKeyNavigation_ConnectActiveChanged(void* ptr)
@@ -1473,6 +1500,11 @@ char QGamepadKeyNavigation_Active(void* ptr)
 	return static_cast<QGamepadKeyNavigation*>(ptr)->active();
 }
 
+void* QGamepadKeyNavigation_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QGamepadKeyNavigation*>(ptr)->QGamepadKeyNavigation::metaObject());
+}
+
 void* QGamepadKeyNavigation___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -1593,11 +1625,6 @@ void QGamepadKeyNavigation_TimerEventDefault(void* ptr, void* event)
 		static_cast<QGamepadKeyNavigation*>(ptr)->QGamepadKeyNavigation::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QGamepadKeyNavigation_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QGamepadKeyNavigation*>(ptr)->QGamepadKeyNavigation::metaObject());
-}
-
 class MyQGamepadManager: public QGamepadManager
 {
 public:
@@ -1613,9 +1640,11 @@ public:
 	void Signal_GamepadButtonReleaseEvent(int deviceId, QGamepadManager::GamepadButton button) { callbackQGamepadManager_GamepadButtonReleaseEvent(this, deviceId, button); };
 	void Signal_GamepadConnected(int deviceId) { callbackQGamepadManager_GamepadConnected(this, deviceId); };
 	void Signal_GamepadDisconnected(int deviceId) { callbackQGamepadManager_GamepadDisconnected(this, deviceId); };
+	void Signal_GamepadNameChanged(int deviceId, const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtGamepad_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQGamepadManager_GamepadNameChanged(this, deviceId, namePacked); };
 	void resetConfiguration(int deviceId) { callbackQGamepadManager_ResetConfiguration(this, deviceId); };
 	void setSettingsFile(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtGamepad_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQGamepadManager_SetSettingsFile(this, filePacked); };
 	bool isConfigurationNeeded(int deviceId) const { return callbackQGamepadManager_IsConfigurationNeeded(const_cast<void*>(static_cast<const void*>(this)), deviceId) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQGamepadManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGamepadManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQGamepadManager_ChildEvent(this, event); };
@@ -1626,7 +1655,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGamepadManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtGamepad_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGamepadManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepadManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGamepadManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQGamepadManager*)
@@ -1636,6 +1664,16 @@ int QGamepadManager_QGamepadManager_QRegisterMetaType(){qRegisterMetaType<QGamep
 void* QGamepadManager_QGamepadManager_Instance()
 {
 	return QGamepadManager::instance();
+}
+
+struct QtGamepad_PackedString QGamepadManager_QGamepadManager_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t0c7aa3 = QGamepadManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t0c7aa3.prepend("WHITESPACE").constData()+10), t0c7aa3.size()-10 }; });
+}
+
+struct QtGamepad_PackedString QGamepadManager_QGamepadManager_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tfbf117 = QGamepadManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tfbf117.prepend("WHITESPACE").constData()+10), tfbf117.size()-10 }; });
 }
 
 char QGamepadManager_ConfigureAxis(void* ptr, int deviceId, long long axis)
@@ -1817,6 +1855,21 @@ void QGamepadManager_GamepadDisconnected(void* ptr, int deviceId)
 	static_cast<QGamepadManager*>(ptr)->gamepadDisconnected(deviceId);
 }
 
+void QGamepadManager_ConnectGamepadNameChanged(void* ptr)
+{
+	QObject::connect(static_cast<QGamepadManager*>(ptr), static_cast<void (QGamepadManager::*)(int, const QString &)>(&QGamepadManager::gamepadNameChanged), static_cast<MyQGamepadManager*>(ptr), static_cast<void (MyQGamepadManager::*)(int, const QString &)>(&MyQGamepadManager::Signal_GamepadNameChanged));
+}
+
+void QGamepadManager_DisconnectGamepadNameChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QGamepadManager*>(ptr), static_cast<void (QGamepadManager::*)(int, const QString &)>(&QGamepadManager::gamepadNameChanged), static_cast<MyQGamepadManager*>(ptr), static_cast<void (MyQGamepadManager::*)(int, const QString &)>(&MyQGamepadManager::Signal_GamepadNameChanged));
+}
+
+void QGamepadManager_GamepadNameChanged(void* ptr, int deviceId, struct QtGamepad_PackedString name)
+{
+	static_cast<QGamepadManager*>(ptr)->gamepadNameChanged(deviceId, QString::fromUtf8(name.data, name.len));
+}
+
 void QGamepadManager_ResetConfiguration(void* ptr, int deviceId)
 {
 	QMetaObject::invokeMethod(static_cast<QGamepadManager*>(ptr), "resetConfiguration", Q_ARG(int, deviceId));
@@ -1835,6 +1888,11 @@ void QGamepadManager_SetSettingsFile(void* ptr, struct QtGamepad_PackedString fi
 void QGamepadManager_SetSettingsFileDefault(void* ptr, struct QtGamepad_PackedString file)
 {
 		static_cast<QGamepadManager*>(ptr)->QGamepadManager::setSettingsFile(QString::fromUtf8(file.data, file.len));
+}
+
+struct QtGamepad_PackedString QGamepadManager_GamepadName(void* ptr, int deviceId)
+{
+	return ({ QByteArray tb309b5 = static_cast<QGamepadManager*>(ptr)->gamepadName(deviceId).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tb309b5.prepend("WHITESPACE").constData()+10), tb309b5.size()-10 }; });
 }
 
 char QGamepadManager_IsConfigurationNeeded(void* ptr, int deviceId)
@@ -1857,6 +1915,11 @@ char QGamepadManager_IsGamepadConnected(void* ptr, int deviceId)
 struct QtGamepad_PackedList QGamepadManager_ConnectedGamepads(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QGamepadManager*>(ptr)->connectedGamepads()); QtGamepad_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QGamepadManager_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QGamepadManager*>(ptr)->QGamepadManager::metaObject());
 }
 
 int QGamepadManager___connectedGamepads_atList(void* ptr, int i)
@@ -1993,10 +2056,5 @@ void QGamepadManager_DisconnectNotifyDefault(void* ptr, void* sign)
 void QGamepadManager_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QGamepadManager*>(ptr)->QGamepadManager::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGamepadManager_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QGamepadManager*>(ptr)->QGamepadManager::metaObject());
 }
 

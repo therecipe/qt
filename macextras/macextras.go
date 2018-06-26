@@ -615,6 +615,62 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 	return nil
 }
 
+func QMacToolBar_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBar_QMacToolBar_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QMacToolBar) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBar_QMacToolBar_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QMacToolBar_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBar_QMacToolBar_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QMacToolBar) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBar_QMacToolBar_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QMacToolBar) AddSeparator() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_AddSeparator(ptr.Pointer())
@@ -657,12 +713,66 @@ func (ptr *QMacToolBar) SetItems(items []*QMacToolBarItem) {
 	}
 }
 
+//export callbackQMacToolBar_DestroyQMacToolBar
+func callbackQMacToolBar_DestroyQMacToolBar(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QMacToolBar"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMacToolBarFromPointer(ptr).DestroyQMacToolBarDefault()
+	}
+}
+
+func (ptr *QMacToolBar) ConnectDestroyQMacToolBar(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QMacToolBar"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QMacToolBar", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QMacToolBar", f)
+		}
+	}
+}
+
+func (ptr *QMacToolBar) DisconnectDestroyQMacToolBar() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QMacToolBar")
+	}
+}
+
 func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QMacToolBar) DestroyQMacToolBarDefault() {
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_DestroyQMacToolBarDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQMacToolBar_MetaObject
+func callbackQMacToolBar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQMacToolBarFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMacToolBar) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMacToolBar_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMacToolBar) __allowedItems_atList(i int) *QMacToolBarItem {
@@ -992,22 +1102,6 @@ func (ptr *QMacToolBar) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQMacToolBar_MetaObject
-func callbackQMacToolBar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQMacToolBarFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QMacToolBar) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QMacToolBar_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QMacToolBarItem struct {
 	core.QObject
 }
@@ -1065,6 +1159,62 @@ func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
 	return tmpValue
 }
 
+func QMacToolBarItem_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBarItem_QMacToolBarItem_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QMacToolBarItem) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBarItem_QMacToolBarItem_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QMacToolBarItem_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBarItem_QMacToolBarItem_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QMacToolBarItem) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QMacToolBarItem_QMacToolBarItem_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQMacToolBarItem_Activated
 func callbackQMacToolBarItem_Activated(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "activated"); signal != nil {
@@ -1101,6 +1251,35 @@ func (ptr *QMacToolBarItem) DisconnectActivated() {
 func (ptr *QMacToolBarItem) Activated() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_Activated(ptr.Pointer())
+	}
+}
+
+func (ptr *QMacToolBarItem) SetIcon(icon gui.QIcon_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
+	}
+}
+
+func (ptr *QMacToolBarItem) SetSelectable(selectable bool) {
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_SetSelectable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(selectable))))
+	}
+}
+
+func (ptr *QMacToolBarItem) SetStandardItem(standardItem QMacToolBarItem__StandardItem) {
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_SetStandardItem(ptr.Pointer(), C.longlong(standardItem))
+	}
+}
+
+func (ptr *QMacToolBarItem) SetText(text string) {
+	if ptr.Pointer() != nil {
+		var textC *C.char
+		if text != "" {
+			textC = C.CString(text)
+			defer C.free(unsafe.Pointer(textC))
+		}
+		C.QMacToolBarItem_SetText(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))})
 	}
 }
 
@@ -1150,35 +1329,6 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItemDefault() {
 	}
 }
 
-func (ptr *QMacToolBarItem) SetIcon(icon gui.QIcon_ITF) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
-	}
-}
-
-func (ptr *QMacToolBarItem) SetSelectable(selectable bool) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_SetSelectable(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(selectable))))
-	}
-}
-
-func (ptr *QMacToolBarItem) SetStandardItem(standardItem QMacToolBarItem__StandardItem) {
-	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_SetStandardItem(ptr.Pointer(), C.longlong(standardItem))
-	}
-}
-
-func (ptr *QMacToolBarItem) SetText(text string) {
-	if ptr.Pointer() != nil {
-		var textC *C.char
-		if text != "" {
-			textC = C.CString(text)
-			defer C.free(unsafe.Pointer(textC))
-		}
-		C.QMacToolBarItem_SetText(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))})
-	}
-}
-
 func (ptr *QMacToolBarItem) Icon() *gui.QIcon {
 	if ptr.Pointer() != nil {
 		tmpValue := gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
@@ -1188,13 +1338,6 @@ func (ptr *QMacToolBarItem) Icon() *gui.QIcon {
 	return nil
 }
 
-func (ptr *QMacToolBarItem) Text() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QMacToolBarItem_Text(ptr.Pointer()))
-	}
-	return ""
-}
-
 func (ptr *QMacToolBarItem) StandardItem() QMacToolBarItem__StandardItem {
 	if ptr.Pointer() != nil {
 		return QMacToolBarItem__StandardItem(C.QMacToolBarItem_StandardItem(ptr.Pointer()))
@@ -1202,11 +1345,34 @@ func (ptr *QMacToolBarItem) StandardItem() QMacToolBarItem__StandardItem {
 	return 0
 }
 
+func (ptr *QMacToolBarItem) Text() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QMacToolBarItem_Text(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QMacToolBarItem) Selectable() bool {
 	if ptr.Pointer() != nil {
 		return C.QMacToolBarItem_Selectable(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQMacToolBarItem_MetaObject
+func callbackQMacToolBarItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQMacToolBarItemFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QMacToolBarItem) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QMacToolBarItem_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMacToolBarItem) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1450,20 +1616,4 @@ func (ptr *QMacToolBarItem) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQMacToolBarItem_MetaObject
-func callbackQMacToolBarItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQMacToolBarItemFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QMacToolBarItem) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QMacToolBarItem_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }

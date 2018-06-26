@@ -22,6 +22,182 @@ func cGoUnpackString(s C.struct_QtTestLib_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type QAbstractItemModelTester struct {
+	ptr unsafe.Pointer
+}
+
+type QAbstractItemModelTester_ITF interface {
+	QAbstractItemModelTester_PTR() *QAbstractItemModelTester
+}
+
+func (ptr *QAbstractItemModelTester) QAbstractItemModelTester_PTR() *QAbstractItemModelTester {
+	return ptr
+}
+
+func (ptr *QAbstractItemModelTester) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelTester) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAbstractItemModelTester(ptr QAbstractItemModelTester_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModelTester_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractItemModelTesterFromPointer(ptr unsafe.Pointer) (n *QAbstractItemModelTester) {
+	n = new(QAbstractItemModelTester)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QAbstractItemModelTester) DestroyQAbstractItemModelTester() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(ptr.Pointer(), "")
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QAbstractItemModelTester__FailureReportingMode
+//QAbstractItemModelTester::FailureReportingMode
+type QAbstractItemModelTester__FailureReportingMode int64
+
+const (
+	QAbstractItemModelTester__QtTest  QAbstractItemModelTester__FailureReportingMode = QAbstractItemModelTester__FailureReportingMode(0)
+	QAbstractItemModelTester__Warning QAbstractItemModelTester__FailureReportingMode = QAbstractItemModelTester__FailureReportingMode(1)
+	QAbstractItemModelTester__Fatal   QAbstractItemModelTester__FailureReportingMode = QAbstractItemModelTester__FailureReportingMode(2)
+)
+
+func NewQAbstractItemModelTester2(model core.QAbstractItemModel_ITF, mode QAbstractItemModelTester__FailureReportingMode, parent core.QObject_ITF) *QAbstractItemModelTester {
+	return NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester2(core.PointerFromQAbstractItemModel(model), C.longlong(mode), core.PointerFromQObject(parent)))
+}
+
+func NewQAbstractItemModelTester(model core.QAbstractItemModel_ITF, parent core.QObject_ITF) *QAbstractItemModelTester {
+	return NewQAbstractItemModelTesterFromPointer(C.QAbstractItemModelTester_NewQAbstractItemModelTester(core.PointerFromQAbstractItemModel(model), core.PointerFromQObject(parent)))
+}
+
+func QAbstractItemModelTester_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QAbstractItemModelTester) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QAbstractItemModelTester_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QAbstractItemModelTester) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QAbstractItemModelTester) Model() *core.QAbstractItemModel {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQAbstractItemModelFromPointer(C.QAbstractItemModelTester_Model(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQAbstractItemModelTester_MetaObject
+func callbackQAbstractItemModelTester_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQAbstractItemModelTesterFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QAbstractItemModelTester) ConnectMetaObject(f func() *core.QMetaObject) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "metaObject"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", func() *core.QMetaObject {
+				signal.(func() *core.QMetaObject)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", f)
+		}
+	}
+}
+
+func (ptr *QAbstractItemModelTester) DisconnectMetaObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "metaObject")
+	}
+}
+
+func (ptr *QAbstractItemModelTester) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractItemModelTester_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModelTester) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QAbstractItemModelTester_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 type QSignalSpy struct {
 	core.QObject
 	core.QList
@@ -97,6 +273,40 @@ func (ptr *QSignalSpy) IsValid() bool {
 		return C.QSignalSpy_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QSignalSpy) __args_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSignalSpy___args_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QSignalSpy) __args_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSignalSpy___args_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QSignalSpy) __args_newList() unsafe.Pointer {
+	return C.QSignalSpy___args_newList(ptr.Pointer())
+}
+
+func (ptr *QSignalSpy) __setArgs__atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QSignalSpy___setArgs__atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QSignalSpy) __setArgs__setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QSignalSpy___setArgs__setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QSignalSpy) __setArgs__newList() unsafe.Pointer {
+	return C.QSignalSpy___setArgs__newList(ptr.Pointer())
 }
 
 func (ptr *QSignalSpy) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -673,42 +883,27 @@ func (ptr *QTest) DestroyQTest() {
 	}
 }
 
-//go:generate stringer -type=QTest__QBenchmarkMetric
-//QTest::QBenchmarkMetric
-type QTest__QBenchmarkMetric int64
+//go:generate stringer -type=QTest__KeyAction
+//QTest::KeyAction
+type QTest__KeyAction int64
 
 const (
-	QTest__FramesPerSecond      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(0)
-	QTest__BitsPerSecond        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(1)
-	QTest__BytesPerSecond       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(2)
-	QTest__WalltimeMilliseconds QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(3)
-	QTest__CPUTicks             QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(4)
-	QTest__InstructionReads     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(5)
-	QTest__Events               QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(6)
-	QTest__WalltimeNanoseconds  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(7)
-	QTest__BytesAllocated       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(8)
-	QTest__CPUMigrations        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(9)
-	QTest__CPUCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(10)
-	QTest__BusCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(11)
-	QTest__StalledCycles        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(12)
-	QTest__Instructions         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(13)
-	QTest__BranchInstructions   QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(14)
-	QTest__BranchMisses         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(15)
-	QTest__CacheReferences      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(16)
-	QTest__CacheReads           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(17)
-	QTest__CacheWrites          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(18)
-	QTest__CachePrefetches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(19)
-	QTest__CacheMisses          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(20)
-	QTest__CacheReadMisses      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(21)
-	QTest__CacheWriteMisses     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(22)
-	QTest__CachePrefetchMisses  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(23)
-	QTest__ContextSwitches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(24)
-	QTest__PageFaults           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(25)
-	QTest__MinorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(26)
-	QTest__MajorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(27)
-	QTest__AlignmentFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(28)
-	QTest__EmulationFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(29)
-	QTest__RefCPUCycles         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(30)
+	QTest__Press    QTest__KeyAction = QTest__KeyAction(0)
+	QTest__Release  QTest__KeyAction = QTest__KeyAction(1)
+	QTest__Click    QTest__KeyAction = QTest__KeyAction(2)
+	QTest__Shortcut QTest__KeyAction = QTest__KeyAction(3)
+)
+
+//go:generate stringer -type=QTest__MouseAction
+//QTest::MouseAction
+type QTest__MouseAction int64
+
+const (
+	QTest__MousePress   QTest__MouseAction = QTest__MouseAction(0)
+	QTest__MouseRelease QTest__MouseAction = QTest__MouseAction(1)
+	QTest__MouseClick   QTest__MouseAction = QTest__MouseAction(2)
+	QTest__MouseDClick  QTest__MouseAction = QTest__MouseAction(3)
+	QTest__MouseMove    QTest__MouseAction = QTest__MouseAction(4)
 )
 
 //go:generate stringer -type=QTest__TestFailMode
@@ -760,27 +955,42 @@ const (
 	QTest__LET_SystemError QTest__LogElementType = QTest__LogElementType(7)
 )
 
-//go:generate stringer -type=QTest__KeyAction
-//QTest::KeyAction
-type QTest__KeyAction int64
+//go:generate stringer -type=QTest__QBenchmarkMetric
+//QTest::QBenchmarkMetric
+type QTest__QBenchmarkMetric int64
 
 const (
-	QTest__Press    QTest__KeyAction = QTest__KeyAction(0)
-	QTest__Release  QTest__KeyAction = QTest__KeyAction(1)
-	QTest__Click    QTest__KeyAction = QTest__KeyAction(2)
-	QTest__Shortcut QTest__KeyAction = QTest__KeyAction(3)
-)
-
-//go:generate stringer -type=QTest__MouseAction
-//QTest::MouseAction
-type QTest__MouseAction int64
-
-const (
-	QTest__MousePress   QTest__MouseAction = QTest__MouseAction(0)
-	QTest__MouseRelease QTest__MouseAction = QTest__MouseAction(1)
-	QTest__MouseClick   QTest__MouseAction = QTest__MouseAction(2)
-	QTest__MouseDClick  QTest__MouseAction = QTest__MouseAction(3)
-	QTest__MouseMove    QTest__MouseAction = QTest__MouseAction(4)
+	QTest__FramesPerSecond      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(0)
+	QTest__BitsPerSecond        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(1)
+	QTest__BytesPerSecond       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(2)
+	QTest__WalltimeMilliseconds QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(3)
+	QTest__CPUTicks             QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(4)
+	QTest__InstructionReads     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(5)
+	QTest__Events               QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(6)
+	QTest__WalltimeNanoseconds  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(7)
+	QTest__BytesAllocated       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(8)
+	QTest__CPUMigrations        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(9)
+	QTest__CPUCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(10)
+	QTest__BusCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(11)
+	QTest__StalledCycles        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(12)
+	QTest__Instructions         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(13)
+	QTest__BranchInstructions   QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(14)
+	QTest__BranchMisses         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(15)
+	QTest__CacheReferences      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(16)
+	QTest__CacheReads           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(17)
+	QTest__CacheWrites          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(18)
+	QTest__CachePrefetches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(19)
+	QTest__CacheMisses          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(20)
+	QTest__CacheReadMisses      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(21)
+	QTest__CacheWriteMisses     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(22)
+	QTest__CachePrefetchMisses  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(23)
+	QTest__ContextSwitches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(24)
+	QTest__PageFaults           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(25)
+	QTest__MinorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(26)
+	QTest__MajorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(27)
+	QTest__AlignmentFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(28)
+	QTest__EmulationFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(29)
+	QTest__RefCPUCycles         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(30)
 )
 
 type QTestEventList struct {

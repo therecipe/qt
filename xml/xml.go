@@ -101,13 +101,6 @@ func (ptr *QDomAttr) OwnerElement() *QDomElement {
 	return nil
 }
 
-func (ptr *QDomAttr) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomAttr_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomAttr) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QDomAttr_Name(ptr.Pointer()))
@@ -302,13 +295,6 @@ func (ptr *QDomCharacterData) SetData(v string) {
 		}
 		C.QDomCharacterData_SetData(ptr.Pointer(), C.struct_QtXml_PackedString{data: vC, len: C.longlong(len(v))})
 	}
-}
-
-func (ptr *QDomCharacterData) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomCharacterData_NodeType(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QDomCharacterData) Data() string {
@@ -793,13 +779,6 @@ func (ptr *QDomDocument) Implementation() *QDomImplementation {
 	return nil
 }
 
-func (ptr *QDomDocument) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomDocument_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomDocument) ElementsByTagName(tagname string) *QDomNodeList {
 	if ptr.Pointer() != nil {
 		var tagnameC *C.char
@@ -880,13 +859,6 @@ func NewQDomDocumentFragment2(x QDomDocumentFragment_ITF) *QDomDocumentFragment 
 	return tmpValue
 }
 
-func (ptr *QDomDocumentFragment) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomDocumentFragment_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 type QDomDocumentType struct {
 	QDomNode
 }
@@ -962,13 +934,6 @@ func (ptr *QDomDocumentType) Notations() *QDomNamedNodeMap {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QDomDocumentType) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomDocumentType_NodeType(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QDomDocumentType) InternalSubset() string {
@@ -1339,13 +1304,6 @@ func (ptr *QDomElement) SetTagName(name string) {
 	}
 }
 
-func (ptr *QDomElement) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomElement_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
 	if ptr.Pointer() != nil {
 		var tagnameC *C.char
@@ -1520,13 +1478,6 @@ func NewQDomEntity2(x QDomEntity_ITF) *QDomEntity {
 	return tmpValue
 }
 
-func (ptr *QDomEntity) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomEntity_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomEntity) NotationName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QDomEntity_NotationName(ptr.Pointer()))
@@ -1607,13 +1558,6 @@ func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
 	return tmpValue
 }
 
-func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomEntityReference_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 type QDomImplementation struct {
 	ptr unsafe.Pointer
 }
@@ -1661,14 +1605,6 @@ const (
 	QDomImplementation__DropInvalidChars   QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(1)
 	QDomImplementation__ReturnNullNode     QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(2)
 )
-
-func QDomImplementation_InvalidDataPolicy() QDomImplementation__InvalidDataPolicy {
-	return QDomImplementation__InvalidDataPolicy(C.QDomImplementation_QDomImplementation_InvalidDataPolicy())
-}
-
-func (ptr *QDomImplementation) InvalidDataPolicy() QDomImplementation__InvalidDataPolicy {
-	return QDomImplementation__InvalidDataPolicy(C.QDomImplementation_QDomImplementation_InvalidDataPolicy())
-}
 
 func (ptr *QDomImplementation) CreateDocument(nsURI string, qName string, doctype QDomDocumentType_ITF) *QDomDocument {
 	if ptr.Pointer() != nil {
@@ -1723,6 +1659,14 @@ func NewQDomImplementation2(x QDomImplementation_ITF) *QDomImplementation {
 	tmpValue := NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
 	runtime.SetFinalizer(tmpValue, (*QDomImplementation).DestroyQDomImplementation)
 	return tmpValue
+}
+
+func QDomImplementation_InvalidDataPolicy() QDomImplementation__InvalidDataPolicy {
+	return QDomImplementation__InvalidDataPolicy(C.QDomImplementation_QDomImplementation_InvalidDataPolicy())
+}
+
+func (ptr *QDomImplementation) InvalidDataPolicy() QDomImplementation__InvalidDataPolicy {
+	return QDomImplementation__InvalidDataPolicy(C.QDomImplementation_QDomImplementation_InvalidDataPolicy())
 }
 
 func (ptr *QDomImplementation) IsNull() bool {
@@ -2122,13 +2066,6 @@ func (ptr *QDomNode) DestroyQDomNode() {
 	}
 }
 
-func (ptr *QDomNode) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomNode_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomNode) ToAttr() *QDomAttr {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQDomAttrFromPointer(C.QDomNode_ToAttr(ptr.Pointer()))
@@ -2350,6 +2287,13 @@ func (ptr *QDomNode) PreviousSibling() *QDomNode {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QDomNode) NodeType() QDomNode__NodeType {
+	if ptr.Pointer() != nil {
+		return QDomNode__NodeType(C.QDomNode_NodeType(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QDomNode) ChildNodes() *QDomNodeList {
@@ -2734,13 +2678,6 @@ func NewQDomNotation2(x QDomNotation_ITF) *QDomNotation {
 	return tmpValue
 }
 
-func (ptr *QDomNotation) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomNotation_NodeType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QDomNotation) PublicId() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QDomNotation_PublicId(ptr.Pointer()))
@@ -2823,13 +2760,6 @@ func (ptr *QDomProcessingInstruction) SetData(d string) {
 		}
 		C.QDomProcessingInstruction_SetData(ptr.Pointer(), C.struct_QtXml_PackedString{data: dC, len: C.longlong(len(d))})
 	}
-}
-
-func (ptr *QDomProcessingInstruction) NodeType() QDomNode__NodeType {
-	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomProcessingInstruction_NodeType(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QDomProcessingInstruction) Data() string {
@@ -2955,6 +2885,52 @@ func NewQXmlAttributes() *QXmlAttributes {
 	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes())
 }
 
+func NewQXmlAttributes3(vqx QXmlAttributes_ITF) *QXmlAttributes {
+	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes3(PointerFromQXmlAttributes(vqx)))
+}
+
+func NewQXmlAttributes2(vqx QXmlAttributes_ITF) *QXmlAttributes {
+	return NewQXmlAttributesFromPointer(C.QXmlAttributes_NewQXmlAttributes2(PointerFromQXmlAttributes(vqx)))
+}
+
+func (ptr *QXmlAttributes) Append(qName string, uri string, localPart string, value string) {
+	if ptr.Pointer() != nil {
+		var qNameC *C.char
+		if qName != "" {
+			qNameC = C.CString(qName)
+			defer C.free(unsafe.Pointer(qNameC))
+		}
+		var uriC *C.char
+		if uri != "" {
+			uriC = C.CString(uri)
+			defer C.free(unsafe.Pointer(uriC))
+		}
+		var localPartC *C.char
+		if localPart != "" {
+			localPartC = C.CString(localPart)
+			defer C.free(unsafe.Pointer(localPartC))
+		}
+		var valueC *C.char
+		if value != "" {
+			valueC = C.CString(value)
+			defer C.free(unsafe.Pointer(valueC))
+		}
+		C.QXmlAttributes_Append(ptr.Pointer(), C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))}, C.struct_QtXml_PackedString{data: localPartC, len: C.longlong(len(localPart))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})
+	}
+}
+
+func (ptr *QXmlAttributes) Clear() {
+	if ptr.Pointer() != nil {
+		C.QXmlAttributes_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QXmlAttributes) Swap(other QXmlAttributes_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXmlAttributes_Swap(ptr.Pointer(), PointerFromQXmlAttributes(other))
+	}
+}
+
 //export callbackQXmlAttributes_DestroyQXmlAttributes
 func callbackQXmlAttributes_DestroyQXmlAttributes(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QXmlAttributes"); signal != nil {
@@ -2996,44 +2972,6 @@ func (ptr *QXmlAttributes) DestroyQXmlAttributesDefault() {
 	if ptr.Pointer() != nil {
 		C.QXmlAttributes_DestroyQXmlAttributesDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QXmlAttributes) Append(qName string, uri string, localPart string, value string) {
-	if ptr.Pointer() != nil {
-		var qNameC *C.char
-		if qName != "" {
-			qNameC = C.CString(qName)
-			defer C.free(unsafe.Pointer(qNameC))
-		}
-		var uriC *C.char
-		if uri != "" {
-			uriC = C.CString(uri)
-			defer C.free(unsafe.Pointer(uriC))
-		}
-		var localPartC *C.char
-		if localPart != "" {
-			localPartC = C.CString(localPart)
-			defer C.free(unsafe.Pointer(localPartC))
-		}
-		var valueC *C.char
-		if value != "" {
-			valueC = C.CString(value)
-			defer C.free(unsafe.Pointer(valueC))
-		}
-		C.QXmlAttributes_Append(ptr.Pointer(), C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))}, C.struct_QtXml_PackedString{data: localPartC, len: C.longlong(len(localPart))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})
-	}
-}
-
-func (ptr *QXmlAttributes) Clear() {
-	if ptr.Pointer() != nil {
-		C.QXmlAttributes_Clear(ptr.Pointer())
-	}
-}
-
-func (ptr *QXmlAttributes) Swap(other QXmlAttributes_ITF) {
-	if ptr.Pointer() != nil {
-		C.QXmlAttributes_Swap(ptr.Pointer(), PointerFromQXmlAttributes(other))
 	}
 }
 

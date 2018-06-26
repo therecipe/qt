@@ -151,6 +151,8 @@ class MyQMacToolBar: public QMacToolBar
 public:
 	MyQMacToolBar(QObject *parent = Q_NULLPTR) : QMacToolBar(parent) {QMacToolBar_QMacToolBar_QRegisterMetaType();};
 	MyQMacToolBar(const QString &identifier, QObject *parent = Q_NULLPTR) : QMacToolBar(identifier, parent) {QMacToolBar_QMacToolBar_QRegisterMetaType();};
+	 ~MyQMacToolBar() { callbackQMacToolBar_DestroyQMacToolBar(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMacToolBar_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBar_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMacToolBar_ChildEvent(this, event); };
@@ -161,7 +163,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMacExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMacToolBar_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBar_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBar_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMacToolBar*)
@@ -270,6 +271,16 @@ void* QMacToolBar_AddItem(void* ptr, void* icon, struct QtMacExtras_PackedString
 	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString::fromUtf8(text.data, text.len));
 }
 
+struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t32182e = QMacToolBar::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t32182e.prepend("WHITESPACE").constData()+10), t32182e.size()-10 }; });
+}
+
+struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t51abe5 = QMacToolBar::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t51abe5.prepend("WHITESPACE").constData()+10), t51abe5.size()-10 }; });
+}
+
 void QMacToolBar_AddSeparator(void* ptr)
 {
 	static_cast<QMacToolBar*>(ptr)->addSeparator();
@@ -298,6 +309,17 @@ void QMacToolBar_SetItems(void* ptr, void* items)
 void QMacToolBar_DestroyQMacToolBar(void* ptr)
 {
 	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
+}
+
+void QMacToolBar_DestroyQMacToolBarDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QMacToolBar_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMacToolBar*>(ptr)->QMacToolBar::metaObject());
 }
 
 void* QMacToolBar___allowedItems_atList(void* ptr, int i)
@@ -484,17 +506,13 @@ void QMacToolBar_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMacToolBar*>(ptr)->QMacToolBar::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QMacToolBar_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMacToolBar*>(ptr)->QMacToolBar::metaObject());
-}
-
 class MyQMacToolBarItem: public QMacToolBarItem
 {
 public:
 	MyQMacToolBarItem(QObject *parent = Q_NULLPTR) : QMacToolBarItem(parent) {QMacToolBarItem_QMacToolBarItem_QRegisterMetaType();};
 	void Signal_Activated() { callbackQMacToolBarItem_Activated(this); };
 	 ~MyQMacToolBarItem() { callbackQMacToolBarItem_DestroyQMacToolBarItem(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMacToolBarItem_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBarItem_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMacToolBarItem_ChildEvent(this, event); };
@@ -505,7 +523,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMacExtras_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMacToolBarItem_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMacToolBarItem*)
@@ -553,6 +570,16 @@ void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 	}
 }
 
+struct QtMacExtras_PackedString QMacToolBarItem_QMacToolBarItem_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray td13d23 = QMacToolBarItem::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(td13d23.prepend("WHITESPACE").constData()+10), td13d23.size()-10 }; });
+}
+
+struct QtMacExtras_PackedString QMacToolBarItem_QMacToolBarItem_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tfc3adf = QMacToolBarItem::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(tfc3adf.prepend("WHITESPACE").constData()+10), tfc3adf.size()-10 }; });
+}
+
 void QMacToolBarItem_ConnectActivated(void* ptr)
 {
 	QObject::connect(static_cast<QMacToolBarItem*>(ptr), static_cast<void (QMacToolBarItem::*)()>(&QMacToolBarItem::activated), static_cast<MyQMacToolBarItem*>(ptr), static_cast<void (MyQMacToolBarItem::*)()>(&MyQMacToolBarItem::Signal_Activated));
@@ -566,17 +593,6 @@ void QMacToolBarItem_DisconnectActivated(void* ptr)
 void QMacToolBarItem_Activated(void* ptr)
 {
 	static_cast<QMacToolBarItem*>(ptr)->activated();
-}
-
-void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr)
-{
-	static_cast<QMacToolBarItem*>(ptr)->~QMacToolBarItem();
-}
-
-void QMacToolBarItem_DestroyQMacToolBarItemDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
 }
 
 void QMacToolBarItem_SetIcon(void* ptr, void* icon)
@@ -599,14 +615,20 @@ void QMacToolBarItem_SetText(void* ptr, struct QtMacExtras_PackedString text)
 	static_cast<QMacToolBarItem*>(ptr)->setText(QString::fromUtf8(text.data, text.len));
 }
 
+void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr)
+{
+	static_cast<QMacToolBarItem*>(ptr)->~QMacToolBarItem();
+}
+
+void QMacToolBarItem_DestroyQMacToolBarItemDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QMacToolBarItem_Icon(void* ptr)
 {
 	return new QIcon(static_cast<QMacToolBarItem*>(ptr)->icon());
-}
-
-struct QtMacExtras_PackedString QMacToolBarItem_Text(void* ptr)
-{
-	return ({ QByteArray t8c9d50 = static_cast<QMacToolBarItem*>(ptr)->text().toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t8c9d50.prepend("WHITESPACE").constData()+10), t8c9d50.size()-10 }; });
 }
 
 long long QMacToolBarItem_StandardItem(void* ptr)
@@ -614,9 +636,19 @@ long long QMacToolBarItem_StandardItem(void* ptr)
 	return static_cast<QMacToolBarItem*>(ptr)->standardItem();
 }
 
+struct QtMacExtras_PackedString QMacToolBarItem_Text(void* ptr)
+{
+	return ({ QByteArray t8c9d50 = static_cast<QMacToolBarItem*>(ptr)->text().toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t8c9d50.prepend("WHITESPACE").constData()+10), t8c9d50.size()-10 }; });
+}
+
 char QMacToolBarItem_Selectable(void* ptr)
 {
 	return static_cast<QMacToolBarItem*>(ptr)->selectable();
+}
+
+void* QMacToolBarItem_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::metaObject());
 }
 
 void* QMacToolBarItem___dynamicPropertyNames_atList(void* ptr, int i)
@@ -737,10 +769,5 @@ void QMacToolBarItem_DisconnectNotifyDefault(void* ptr, void* sign)
 void QMacToolBarItem_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QMacToolBarItem_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::metaObject());
 }
 

@@ -144,6 +144,62 @@ func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 	return nil
 }
 
+func QJSEngine_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QJSEngine_QJSEngine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QJSEngine) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QJSEngine_QJSEngine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QJSEngine_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QJSEngine_QJSEngine_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QJSEngine) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QJSEngine_QJSEngine_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QJSEngine) CollectGarbage() {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_CollectGarbage(ptr.Pointer())
@@ -207,6 +263,22 @@ func (ptr *QJSEngine) GlobalObject() *QJSValue {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_GlobalObject(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQJSEngine_MetaObject
+func callbackQJSEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQJSEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QJSEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QJSEngine_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -452,22 +524,6 @@ func (ptr *QJSEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQJSEngine_MetaObject
-func callbackQJSEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQJSEngineFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QJSEngine) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QJSEngine_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QJSValue struct {
@@ -1389,9 +1445,47 @@ func (ptr *QQmlApplicationEngine) ObjectCreated(object core.QObject_ITF, url cor
 	}
 }
 
+//export callbackQQmlApplicationEngine_DestroyQQmlApplicationEngine
+func callbackQQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QQmlApplicationEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).DestroyQQmlApplicationEngineDefault()
+	}
+}
+
+func (ptr *QQmlApplicationEngine) ConnectDestroyQQmlApplicationEngine(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QQmlApplicationEngine"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QQmlApplicationEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QQmlApplicationEngine", f)
+		}
+	}
+}
+
+func (ptr *QQmlApplicationEngine) DisconnectDestroyQQmlApplicationEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QQmlApplicationEngine")
+	}
+}
+
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngineDefault() {
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_DestroyQQmlApplicationEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -1624,6 +1718,19 @@ func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlCompo
 	return tmpValue
 }
 
+func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
+	var fileNameC *C.char
+	if fileName != "" {
+		fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+	}
+	tmpValue := NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), C.struct_QtQml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
 	var fileNameC *C.char
 	if fileName != "" {
@@ -1637,13 +1744,8 @@ func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponen
 	return tmpValue
 }
 
-func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
-	var fileNameC *C.char
-	if fileName != "" {
-		fileNameC = C.CString(fileName)
-		defer C.free(unsafe.Pointer(fileNameC))
-	}
-	tmpValue := NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), C.struct_QtQml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, core.PointerFromQObject(parent)))
+func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QObject_ITF) *QQmlComponent {
+	tmpValue := NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -1658,12 +1760,60 @@ func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlCompon
 	return tmpValue
 }
 
-func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QObject_ITF) *QQmlComponent {
-	tmpValue := NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+func QQmlComponent_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
 	}
-	return tmpValue
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlComponent_QQmlComponent_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlComponent) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlComponent_QQmlComponent_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlComponent_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlComponent_QQmlComponent_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlComponent) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlComponent_QQmlComponent_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQQmlComponent_CompleteCreate
@@ -1978,6 +2128,13 @@ func (ptr *QQmlComponent) Errors() []*QQmlError {
 	return make([]*QQmlError, 0)
 }
 
+func (ptr *QQmlComponent) Status() QQmlComponent__Status {
+	if ptr.Pointer() != nil {
+		return QQmlComponent__Status(C.QQmlComponent_Status(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlContextFromPointer(C.QQmlComponent_CreationContext(ptr.Pointer()))
@@ -1996,13 +2153,6 @@ func (ptr *QQmlComponent) Url() *core.QUrl {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QQmlComponent) Status() QQmlComponent__Status {
-	if ptr.Pointer() != nil {
-		return QQmlComponent__Status(C.QQmlComponent_Status(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QQmlComponent) IsError() bool {
@@ -2031,6 +2181,22 @@ func (ptr *QQmlComponent) IsReady() bool {
 		return C.QQmlComponent_IsReady(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQmlComponent_MetaObject
+func callbackQQmlComponent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlComponentFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlComponent) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlComponent_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQmlComponent) Progress() float64 {
@@ -2302,22 +2468,6 @@ func (ptr *QQmlComponent) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQQmlComponent_MetaObject
-func callbackQQmlComponent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlComponentFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlComponent) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlComponent_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QQmlContext struct {
 	core.QObject
 }
@@ -2370,6 +2520,62 @@ func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QQmlContext_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlContext_QQmlContext_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlContext) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlContext_QQmlContext_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlContext_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlContext_QQmlContext_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlContext) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlContext_QQmlContext_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 func (ptr *QQmlContext) ResolvedUrl(src core.QUrl_ITF) *core.QUrl {
@@ -2529,6 +2735,26 @@ func (ptr *QQmlContext) IsValid() bool {
 		return C.QQmlContext_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQmlContext_MetaObject
+func callbackQQmlContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlContextFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlContext) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlContext_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQmlContext) __setContextProperties_properties_newList() unsafe.Pointer {
+	return C.QQmlContext___setContextProperties_properties_newList(ptr.Pointer())
 }
 
 func (ptr *QQmlContext) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -2774,22 +3000,6 @@ func (ptr *QQmlContext) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQQmlContext_MetaObject
-func callbackQQmlContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlContextFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlContext) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlContext_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QQmlEngine struct {
 	QJSEngine
 }
@@ -2838,14 +3048,6 @@ const (
 	QQmlEngine__JavaScriptOwnership QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(1)
 )
 
-func QQmlEngine_ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
-	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
-}
-
-func (ptr *QQmlEngine) ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
-	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
-}
-
 func QQmlEngine_ContextForObject(object core.QObject_ITF) *QQmlContext {
 	tmpValue := NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -2868,6 +3070,14 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QQmlEngine_ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
+	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
+}
+
+func (ptr *QQmlEngine) ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
+	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
 }
 
 func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlError) bool {
@@ -3640,6 +3850,62 @@ func NewQQmlExpression3(script QQmlScriptString_ITF, ctxt QQmlContext_ITF, scope
 	return tmpValue
 }
 
+func QQmlExpression_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExpression_QQmlExpression_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlExpression) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExpression_QQmlExpression_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlExpression_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExpression_QQmlExpression_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlExpression) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExpression_QQmlExpression_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QQmlExpression) Evaluate(valueIsUndefined bool) *core.QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQVariantFromPointer(C.QQmlExpression_Evaluate(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(valueIsUndefined)))))
@@ -3836,6 +4102,22 @@ func (ptr *QQmlExpression) NotifyOnValueChanged() bool {
 		return C.QQmlExpression_NotifyOnValueChanged(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQmlExpression_MetaObject
+func callbackQQmlExpression_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlExpressionFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlExpression) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlExpression_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQmlExpression) ColumnNumber() int {
@@ -4095,22 +4377,6 @@ func (ptr *QQmlExpression) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQQmlExpression_MetaObject
-func callbackQQmlExpression_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlExpressionFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlExpression) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlExpression_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QQmlExtensionPlugin struct {
 	core.QObject
 }
@@ -4155,6 +4421,62 @@ func NewQQmlExtensionPlugin(parent core.QObject_ITF) *QQmlExtensionPlugin {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QQmlExtensionPlugin_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExtensionPlugin_QQmlExtensionPlugin_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlExtensionPlugin) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExtensionPlugin_QQmlExtensionPlugin_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlExtensionPlugin_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExtensionPlugin_QQmlExtensionPlugin_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlExtensionPlugin) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlExtensionPlugin_QQmlExtensionPlugin_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQQmlExtensionPlugin_InitializeEngine
@@ -4254,6 +4576,22 @@ func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
 		tmpValue := core.NewQUrlFromPointer(C.QQmlExtensionPlugin_BaseUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQQmlExtensionPlugin_MetaObject
+func callbackQQmlExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlExtensionPluginFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4501,22 +4839,6 @@ func (ptr *QQmlExtensionPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQQmlExtensionPlugin_MetaObject
-func callbackQQmlExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlExtensionPluginFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QQmlFileSelector struct {
 	core.QObject
 }
@@ -4579,6 +4901,62 @@ func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFi
 	return tmpValue
 }
 
+func QQmlFileSelector_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlFileSelector_QQmlFileSelector_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlFileSelector) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlFileSelector_QQmlFileSelector_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlFileSelector_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlFileSelector_QQmlFileSelector_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlFileSelector) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlFileSelector_QQmlFileSelector_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
 	if ptr.Pointer() != nil {
 		strinC := C.CString(strings.Join(strin, "|"))
@@ -4601,9 +4979,47 @@ func (ptr *QQmlFileSelector) SetSelector(selector core.QFileSelector_ITF) {
 	}
 }
 
+//export callbackQQmlFileSelector_DestroyQQmlFileSelector
+func callbackQQmlFileSelector_DestroyQQmlFileSelector(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QQmlFileSelector"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlFileSelectorFromPointer(ptr).DestroyQQmlFileSelectorDefault()
+	}
+}
+
+func (ptr *QQmlFileSelector) ConnectDestroyQQmlFileSelector(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QQmlFileSelector"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QQmlFileSelector", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QQmlFileSelector", f)
+		}
+	}
+}
+
+func (ptr *QQmlFileSelector) DisconnectDestroyQQmlFileSelector() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QQmlFileSelector")
+	}
+}
+
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QQmlFileSelector) DestroyQQmlFileSelectorDefault() {
+	if ptr.Pointer() != nil {
+		C.QQmlFileSelector_DestroyQQmlFileSelectorDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4616,6 +5032,22 @@ func (ptr *QQmlFileSelector) Selector() *core.QFileSelector {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQQmlFileSelector_MetaObject
+func callbackQQmlFileSelector_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlFileSelectorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlFileSelector) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlFileSelector_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -4861,22 +5293,6 @@ func (ptr *QQmlFileSelector) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQQmlFileSelector_MetaObject
-func callbackQQmlFileSelector_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlFileSelectorFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlFileSelector) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlFileSelector_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QQmlImageProviderBase struct {
@@ -5360,13 +5776,6 @@ func (ptr *QQmlIncubator) StatusChangedDefault(status QQmlIncubator__Status) {
 	}
 }
 
-func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
-	if ptr.Pointer() != nil {
-		return QQmlIncubator__IncubationMode(C.QQmlIncubator_IncubationMode(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QQmlIncubator) Errors() []*QQmlError {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtQml_PackedList) []*QQmlError {
@@ -5390,6 +5799,13 @@ func (ptr *QQmlIncubator) Object() *core.QObject {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
+	if ptr.Pointer() != nil {
+		return QQmlIncubator__IncubationMode(C.QQmlIncubator_IncubationMode(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
@@ -6148,13 +6564,6 @@ func (ptr *QQmlProperty) Write4(object core.QObject_ITF, name string, value core
 	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
 }
 
-func (ptr *QQmlProperty) PropertyTypeCategory() QQmlProperty__PropertyTypeCategory {
-	if ptr.Pointer() != nil {
-		return QQmlProperty__PropertyTypeCategory(C.QQmlProperty_PropertyTypeCategory(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QQmlProperty) Method() *core.QMetaMethod {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQMetaMethodFromPointer(C.QQmlProperty_Method(ptr.Pointer()))
@@ -6175,6 +6584,20 @@ func (ptr *QQmlProperty) Object() *core.QObject {
 	return nil
 }
 
+func (ptr *QQmlProperty) PropertyTypeCategory() QQmlProperty__PropertyTypeCategory {
+	if ptr.Pointer() != nil {
+		return QQmlProperty__PropertyTypeCategory(C.QQmlProperty_PropertyTypeCategory(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QQmlProperty) Type() QQmlProperty__Type {
+	if ptr.Pointer() != nil {
+		return QQmlProperty__Type(C.QQmlProperty_Type(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QQmlProperty) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QQmlProperty_Name(ptr.Pointer()))
@@ -6189,13 +6612,6 @@ func (ptr *QQmlProperty) Read() *core.QVariant {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QQmlProperty) Type() QQmlProperty__Type {
-	if ptr.Pointer() != nil {
-		return QQmlProperty__Type(C.QQmlProperty_Type(ptr.Pointer()))
-	}
-	return 0
 }
 
 func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string) bool {
@@ -6352,6 +6768,62 @@ func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QQmlPropertyMap_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlPropertyMap_QQmlPropertyMap_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlPropertyMap) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlPropertyMap_QQmlPropertyMap_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQmlPropertyMap_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlPropertyMap_QQmlPropertyMap_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQmlPropertyMap) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQmlPropertyMap_QQmlPropertyMap_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQQmlPropertyMap_UpdateValue
@@ -6562,6 +7034,22 @@ func (ptr *QQmlPropertyMap) IsEmpty() bool {
 		return C.QQmlPropertyMap_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQmlPropertyMap_MetaObject
+func callbackQQmlPropertyMap_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQmlPropertyMapFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQmlPropertyMap) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQmlPropertyMap_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQmlPropertyMap) Count() int {
@@ -6819,22 +7307,6 @@ func (ptr *QQmlPropertyMap) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQQmlPropertyMap_MetaObject
-func callbackQQmlPropertyMap_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQmlPropertyMapFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQmlPropertyMap) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQmlPropertyMap_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QQmlPropertyValueSource struct {
@@ -7103,19 +7575,6 @@ func (ptr *QV4) DestroyQV4() {
 	}
 }
 
-//go:generate stringer -type=QV4__PropertyFlag
-//QV4::PropertyFlag
-type QV4__PropertyFlag int64
-
-const (
-	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
-	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
-	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
-	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
-	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
-	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
-)
-
 //go:generate stringer -type=QV4__TypeHint
 //QV4::TypeHint
 type QV4__TypeHint int64
@@ -7124,15 +7583,4 @@ const (
 	QV4__PREFERREDTYPE_HINT QV4__TypeHint = QV4__TypeHint(0)
 	QV4__NUMBER_HINT        QV4__TypeHint = QV4__TypeHint(1)
 	QV4__STRING_HINT        QV4__TypeHint = QV4__TypeHint(2)
-)
-
-//go:generate stringer -type=QV4__MarkFlags
-//QV4::MarkFlags
-type QV4__MarkFlags int64
-
-const (
-	QV4__Mark_NoMark     QV4__MarkFlags = QV4__MarkFlags(0)
-	QV4__Mark_Value      QV4__MarkFlags = QV4__MarkFlags(1)
-	QV4__Mark_Pointer    QV4__MarkFlags = QV4__MarkFlags(2)
-	QV4__Mark_ValueArray QV4__MarkFlags = QV4__MarkFlags(3)
 )

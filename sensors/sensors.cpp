@@ -114,7 +114,9 @@ public:
 	MyQAccelerometer(QObject *parent = Q_NULLPTR) : QAccelerometer(parent) {QAccelerometer_QAccelerometer_QRegisterMetaType();};
 	void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode) { callbackQAccelerometer_AccelerationModeChanged(this, accelerationMode); };
 	 ~MyQAccelerometer() { callbackQAccelerometer_DestroyQAccelerometer(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
+	
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
 	void Signal_AvailableSensorsChanged() { callbackQSensor_AvailableSensorsChanged(this); };
@@ -140,37 +142,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAccelerometer*)
 
 int QAccelerometer_QAccelerometer_QRegisterMetaType(){qRegisterMetaType<QAccelerometer*>(); return qRegisterMetaType<MyQAccelerometer*>();}
-
-void QAccelerometer_ConnectAccelerationModeChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));
-}
-
-void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));
-}
-
-void QAccelerometer_AccelerationModeChanged(void* ptr, long long accelerationMode)
-{
-	static_cast<QAccelerometer*>(ptr)->accelerationModeChanged(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
-}
-
-void QAccelerometer_SetAccelerationMode(void* ptr, long long accelerationMode)
-{
-	static_cast<QAccelerometer*>(ptr)->setAccelerationMode(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
-}
-
-long long QAccelerometer_AccelerationMode(void* ptr)
-{
-	return static_cast<QAccelerometer*>(ptr)->accelerationMode();
-}
 
 void* QAccelerometer_NewQAccelerometer(void* parent)
 {
@@ -213,6 +189,26 @@ void* QAccelerometer_NewQAccelerometer(void* parent)
 	}
 }
 
+void QAccelerometer_ConnectAccelerationModeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));
+}
+
+void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));
+}
+
+void QAccelerometer_AccelerationModeChanged(void* ptr, long long accelerationMode)
+{
+	static_cast<QAccelerometer*>(ptr)->accelerationModeChanged(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
+}
+
+void QAccelerometer_SetAccelerationMode(void* ptr, long long accelerationMode)
+{
+	static_cast<QAccelerometer*>(ptr)->setAccelerationMode(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
+}
+
 void QAccelerometer_DestroyQAccelerometer(void* ptr)
 {
 	static_cast<QAccelerometer*>(ptr)->~QAccelerometer();
@@ -222,6 +218,11 @@ void QAccelerometer_DestroyQAccelerometerDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+long long QAccelerometer_AccelerationMode(void* ptr)
+{
+	return static_cast<QAccelerometer*>(ptr)->accelerationMode();
 }
 
 void* QAccelerometer_Reading(void* ptr)
@@ -248,6 +249,11 @@ char QAccelerometerFilter_Filter(void* ptr, void* reading)
 class MyQAccelerometerReading: public QAccelerometerReading
 {
 public:
+	MyQAccelerometerReading(QObject *parent) : QAccelerometerReading(parent) {QAccelerometerReading_QAccelerometerReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQAccelerometerReading_CopyValuesFrom(this, other); };
+	 ~MyQAccelerometerReading() { callbackQAccelerometerReading_DestroyQAccelerometerReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -258,12 +264,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAccelerometerReading*)
 
 int QAccelerometerReading_QAccelerometerReading_QRegisterMetaType(){qRegisterMetaType<QAccelerometerReading*>(); return qRegisterMetaType<MyQAccelerometerReading*>();}
+
+void* QAccelerometerReading_NewQAccelerometerReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAccelerometerReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAccelerometerReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QAccelerometerReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QAccelerometerReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QAccelerometerReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QAccelerometerReading*>(ptr)->QAccelerometerReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QAccelerometerReading_SetX(void* ptr, double x)
 {
@@ -278,6 +334,17 @@ void QAccelerometerReading_SetY(void* ptr, double y)
 void QAccelerometerReading_SetZ(void* ptr, double z)
 {
 	static_cast<QAccelerometerReading*>(ptr)->setZ(z);
+}
+
+void QAccelerometerReading_DestroyQAccelerometerReading(void* ptr)
+{
+	static_cast<QAccelerometerReading*>(ptr)->~QAccelerometerReading();
+}
+
+void QAccelerometerReading_DestroyQAccelerometerReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QAccelerometerReading_X(void* ptr)
@@ -299,6 +366,8 @@ class MyQAltimeter: public QAltimeter
 {
 public:
 	MyQAltimeter(QObject *parent = Q_NULLPTR) : QAltimeter(parent) {QAltimeter_QAltimeter_QRegisterMetaType();};
+	 ~MyQAltimeter() { callbackQAltimeter_DestroyQAltimeter(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -325,7 +394,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAltimeter*)
@@ -378,6 +446,12 @@ void QAltimeter_DestroyQAltimeter(void* ptr)
 	static_cast<QAltimeter*>(ptr)->~QAltimeter();
 }
 
+void QAltimeter_DestroyQAltimeterDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QAltimeter_Reading(void* ptr)
 {
 	return static_cast<QAltimeter*>(ptr)->reading();
@@ -402,6 +476,10 @@ char QAltimeterFilter_Filter(void* ptr, void* reading)
 class MyQAltimeterReading: public QAltimeterReading
 {
 public:
+	MyQAltimeterReading(QObject *parent) : QAltimeterReading(parent) {QAltimeterReading_QAltimeterReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQAltimeterReading_CopyValuesFrom(this, other); };
+	 ~MyQAltimeterReading() { callbackQAltimeterReading_DestroyQAltimeterReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -412,16 +490,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAltimeterReading*)
 
 int QAltimeterReading_QAltimeterReading_QRegisterMetaType(){qRegisterMetaType<QAltimeterReading*>(); return qRegisterMetaType<MyQAltimeterReading*>();}
 
+void* QAltimeterReading_NewQAltimeterReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAltimeterReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAltimeterReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QAltimeterReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QAltimeterReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QAltimeterReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QAltimeterReading*>(ptr)->QAltimeterReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QAltimeterReading_SetAltitude(void* ptr, double altitude)
 {
 	static_cast<QAltimeterReading*>(ptr)->setAltitude(altitude);
+}
+
+void QAltimeterReading_DestroyQAltimeterReading(void* ptr)
+{
+	static_cast<QAltimeterReading*>(ptr)->~QAltimeterReading();
+}
+
+void QAltimeterReading_DestroyQAltimeterReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QAltimeterReading_Altitude(void* ptr)
@@ -443,6 +582,10 @@ char QAmbientLightFilter_Filter(void* ptr, void* reading)
 class MyQAmbientLightReading: public QAmbientLightReading
 {
 public:
+	MyQAmbientLightReading(QObject *parent) : QAmbientLightReading(parent) {QAmbientLightReading_QAmbientLightReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQAmbientLightReading_CopyValuesFrom(this, other); };
+	 ~MyQAmbientLightReading() { callbackQAmbientLightReading_DestroyQAmbientLightReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -453,16 +596,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAmbientLightReading*)
 
 int QAmbientLightReading_QAmbientLightReading_QRegisterMetaType(){qRegisterMetaType<QAmbientLightReading*>(); return qRegisterMetaType<MyQAmbientLightReading*>();}
 
+void* QAmbientLightReading_NewQAmbientLightReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientLightReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAmbientLightReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QAmbientLightReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QAmbientLightReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QAmbientLightReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QAmbientLightReading*>(ptr)->QAmbientLightReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QAmbientLightReading_SetLightLevel(void* ptr, long long lightLevel)
 {
 	static_cast<QAmbientLightReading*>(ptr)->setLightLevel(static_cast<QAmbientLightReading::LightLevel>(lightLevel));
+}
+
+void QAmbientLightReading_DestroyQAmbientLightReading(void* ptr)
+{
+	static_cast<QAmbientLightReading*>(ptr)->~QAmbientLightReading();
+}
+
+void QAmbientLightReading_DestroyQAmbientLightReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 long long QAmbientLightReading_LightLevel(void* ptr)
@@ -475,6 +679,7 @@ class MyQAmbientLightSensor: public QAmbientLightSensor
 public:
 	MyQAmbientLightSensor(QObject *parent = Q_NULLPTR) : QAmbientLightSensor(parent) {QAmbientLightSensor_QAmbientLightSensor_QRegisterMetaType();};
 	 ~MyQAmbientLightSensor() { callbackQAmbientLightSensor_DestroyQAmbientLightSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -501,7 +706,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAmbientLightSensor*)
@@ -584,6 +788,10 @@ char QAmbientTemperatureFilter_Filter(void* ptr, void* reading)
 class MyQAmbientTemperatureReading: public QAmbientTemperatureReading
 {
 public:
+	MyQAmbientTemperatureReading(QObject *parent) : QAmbientTemperatureReading(parent) {QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQAmbientTemperatureReading_CopyValuesFrom(this, other); };
+	 ~MyQAmbientTemperatureReading() { callbackQAmbientTemperatureReading_DestroyQAmbientTemperatureReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -594,16 +802,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAmbientTemperatureReading*)
 
 int QAmbientTemperatureReading_QAmbientTemperatureReading_QRegisterMetaType(){qRegisterMetaType<QAmbientTemperatureReading*>(); return qRegisterMetaType<MyQAmbientTemperatureReading*>();}
 
+void* QAmbientTemperatureReading_NewQAmbientTemperatureReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAmbientTemperatureReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAmbientTemperatureReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QAmbientTemperatureReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QAmbientTemperatureReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QAmbientTemperatureReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QAmbientTemperatureReading*>(ptr)->QAmbientTemperatureReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature)
 {
 	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(temperature);
+}
+
+void QAmbientTemperatureReading_DestroyQAmbientTemperatureReading(void* ptr)
+{
+	static_cast<QAmbientTemperatureReading*>(ptr)->~QAmbientTemperatureReading();
+}
+
+void QAmbientTemperatureReading_DestroyQAmbientTemperatureReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QAmbientTemperatureReading_Temperature(void* ptr)
@@ -615,6 +884,8 @@ class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor
 {
 public:
 	MyQAmbientTemperatureSensor(QObject *parent = Q_NULLPTR) : QAmbientTemperatureSensor(parent) {QAmbientTemperatureSensor_QAmbientTemperatureSensor_QRegisterMetaType();};
+	 ~MyQAmbientTemperatureSensor() { callbackQAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -641,7 +912,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAmbientTemperatureSensor*)
@@ -694,6 +964,12 @@ void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr)
 	static_cast<QAmbientTemperatureSensor*>(ptr)->~QAmbientTemperatureSensor();
 }
 
+void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QAmbientTemperatureSensor_Reading(void* ptr)
 {
 	return static_cast<QAmbientTemperatureSensor*>(ptr)->reading();
@@ -709,6 +985,7 @@ class MyQCompass: public QCompass
 public:
 	MyQCompass(QObject *parent = Q_NULLPTR) : QCompass(parent) {QCompass_QCompass_QRegisterMetaType();};
 	 ~MyQCompass() { callbackQCompass_DestroyQCompass(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -735,7 +1012,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCompass*)
@@ -818,6 +1094,10 @@ char QCompassFilter_Filter(void* ptr, void* reading)
 class MyQCompassReading: public QCompassReading
 {
 public:
+	MyQCompassReading(QObject *parent) : QCompassReading(parent) {QCompassReading_QCompassReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQCompassReading_CopyValuesFrom(this, other); };
+	 ~MyQCompassReading() { callbackQCompassReading_DestroyQCompassReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -828,12 +1108,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCompassReading*)
 
 int QCompassReading_QCompassReading_QRegisterMetaType(){qRegisterMetaType<QCompassReading*>(); return qRegisterMetaType<MyQCompassReading*>();}
+
+void* QCompassReading_NewQCompassReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCompassReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQCompassReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QCompassReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QCompassReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QCompassReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QCompassReading*>(ptr)->QCompassReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QCompassReading_SetAzimuth(void* ptr, double azimuth)
 {
@@ -843,6 +1173,17 @@ void QCompassReading_SetAzimuth(void* ptr, double azimuth)
 void QCompassReading_SetCalibrationLevel(void* ptr, double calibrationLevel)
 {
 	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(calibrationLevel);
+}
+
+void QCompassReading_DestroyQCompassReading(void* ptr)
+{
+	static_cast<QCompassReading*>(ptr)->~QCompassReading();
+}
+
+void QCompassReading_DestroyQCompassReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QCompassReading_Azimuth(void* ptr)
@@ -869,6 +1210,10 @@ char QDistanceFilter_Filter(void* ptr, void* reading)
 class MyQDistanceReading: public QDistanceReading
 {
 public:
+	MyQDistanceReading(QObject *parent) : QDistanceReading(parent) {QDistanceReading_QDistanceReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQDistanceReading_CopyValuesFrom(this, other); };
+	 ~MyQDistanceReading() { callbackQDistanceReading_DestroyQDistanceReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -879,16 +1224,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQDistanceReading*)
 
 int QDistanceReading_QDistanceReading_QRegisterMetaType(){qRegisterMetaType<QDistanceReading*>(); return qRegisterMetaType<MyQDistanceReading*>();}
 
+void* QDistanceReading_NewQDistanceReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQDistanceReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQDistanceReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QDistanceReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QDistanceReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QDistanceReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QDistanceReading*>(ptr)->QDistanceReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QDistanceReading_SetDistance(void* ptr, double distance)
 {
 	static_cast<QDistanceReading*>(ptr)->setDistance(distance);
+}
+
+void QDistanceReading_DestroyQDistanceReading(void* ptr)
+{
+	static_cast<QDistanceReading*>(ptr)->~QDistanceReading();
+}
+
+void QDistanceReading_DestroyQDistanceReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QDistanceReading_Distance(void* ptr)
@@ -900,6 +1306,8 @@ class MyQDistanceSensor: public QDistanceSensor
 {
 public:
 	MyQDistanceSensor(QObject *parent = Q_NULLPTR) : QDistanceSensor(parent) {QDistanceSensor_QDistanceSensor_QRegisterMetaType();};
+	 ~MyQDistanceSensor() { callbackQDistanceSensor_DestroyQDistanceSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -926,7 +1334,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQDistanceSensor*)
@@ -979,6 +1386,12 @@ void QDistanceSensor_DestroyQDistanceSensor(void* ptr)
 	static_cast<QDistanceSensor*>(ptr)->~QDistanceSensor();
 }
 
+void QDistanceSensor_DestroyQDistanceSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QDistanceSensor_Reading(void* ptr)
 {
 	return static_cast<QDistanceSensor*>(ptr)->reading();
@@ -994,6 +1407,7 @@ class MyQGyroscope: public QGyroscope
 public:
 	MyQGyroscope(QObject *parent = Q_NULLPTR) : QGyroscope(parent) {QGyroscope_QGyroscope_QRegisterMetaType();};
 	 ~MyQGyroscope() { callbackQGyroscope_DestroyQGyroscope(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1020,7 +1434,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQGyroscope*)
@@ -1103,6 +1516,10 @@ char QGyroscopeFilter_Filter(void* ptr, void* reading)
 class MyQGyroscopeReading: public QGyroscopeReading
 {
 public:
+	MyQGyroscopeReading(QObject *parent) : QGyroscopeReading(parent) {QGyroscopeReading_QGyroscopeReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQGyroscopeReading_CopyValuesFrom(this, other); };
+	 ~MyQGyroscopeReading() { callbackQGyroscopeReading_DestroyQGyroscopeReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1113,12 +1530,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQGyroscopeReading*)
 
 int QGyroscopeReading_QGyroscopeReading_QRegisterMetaType(){qRegisterMetaType<QGyroscopeReading*>(); return qRegisterMetaType<MyQGyroscopeReading*>();}
+
+void* QGyroscopeReading_NewQGyroscopeReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQGyroscopeReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQGyroscopeReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QGyroscopeReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QGyroscopeReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QGyroscopeReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QGyroscopeReading*>(ptr)->QGyroscopeReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QGyroscopeReading_SetX(void* ptr, double x)
 {
@@ -1133,6 +1600,17 @@ void QGyroscopeReading_SetY(void* ptr, double y)
 void QGyroscopeReading_SetZ(void* ptr, double z)
 {
 	static_cast<QGyroscopeReading*>(ptr)->setZ(z);
+}
+
+void QGyroscopeReading_DestroyQGyroscopeReading(void* ptr)
+{
+	static_cast<QGyroscopeReading*>(ptr)->~QGyroscopeReading();
+}
+
+void QGyroscopeReading_DestroyQGyroscopeReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QGyroscopeReading_X(void* ptr)
@@ -1164,6 +1642,10 @@ char QHolsterFilter_Filter(void* ptr, void* reading)
 class MyQHolsterReading: public QHolsterReading
 {
 public:
+	MyQHolsterReading(QObject *parent) : QHolsterReading(parent) {QHolsterReading_QHolsterReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQHolsterReading_CopyValuesFrom(this, other); };
+	 ~MyQHolsterReading() { callbackQHolsterReading_DestroyQHolsterReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1174,16 +1656,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQHolsterReading*)
 
 int QHolsterReading_QHolsterReading_QRegisterMetaType(){qRegisterMetaType<QHolsterReading*>(); return qRegisterMetaType<MyQHolsterReading*>();}
 
+void* QHolsterReading_NewQHolsterReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHolsterReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHolsterReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QHolsterReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QHolsterReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QHolsterReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QHolsterReading*>(ptr)->QHolsterReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QHolsterReading_SetHolstered(void* ptr, char holstered)
 {
 	static_cast<QHolsterReading*>(ptr)->setHolstered(holstered != 0);
+}
+
+void QHolsterReading_DestroyQHolsterReading(void* ptr)
+{
+	static_cast<QHolsterReading*>(ptr)->~QHolsterReading();
+}
+
+void QHolsterReading_DestroyQHolsterReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 char QHolsterReading_Holstered(void* ptr)
@@ -1195,6 +1738,8 @@ class MyQHolsterSensor: public QHolsterSensor
 {
 public:
 	MyQHolsterSensor(QObject *parent = Q_NULLPTR) : QHolsterSensor(parent) {QHolsterSensor_QHolsterSensor_QRegisterMetaType();};
+	 ~MyQHolsterSensor() { callbackQHolsterSensor_DestroyQHolsterSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1221,7 +1766,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQHolsterSensor*)
@@ -1274,6 +1818,12 @@ void QHolsterSensor_DestroyQHolsterSensor(void* ptr)
 	static_cast<QHolsterSensor*>(ptr)->~QHolsterSensor();
 }
 
+void QHolsterSensor_DestroyQHolsterSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QHolsterSensor_Reading(void* ptr)
 {
 	return static_cast<QHolsterSensor*>(ptr)->reading();
@@ -1298,6 +1848,10 @@ char QHumidityFilter_Filter(void* ptr, void* reading)
 class MyQHumidityReading: public QHumidityReading
 {
 public:
+	MyQHumidityReading(QObject *parent) : QHumidityReading(parent) {QHumidityReading_QHumidityReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQHumidityReading_CopyValuesFrom(this, other); };
+	 ~MyQHumidityReading() { callbackQHumidityReading_DestroyQHumidityReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1308,12 +1862,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQHumidityReading*)
 
 int QHumidityReading_QHumidityReading_QRegisterMetaType(){qRegisterMetaType<QHumidityReading*>(); return qRegisterMetaType<MyQHumidityReading*>();}
+
+void* QHumidityReading_NewQHumidityReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQHumidityReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQHumidityReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QHumidityReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QHumidityReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QHumidityReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QHumidityReading*>(ptr)->QHumidityReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QHumidityReading_SetAbsoluteHumidity(void* ptr, double value)
 {
@@ -1323,6 +1927,17 @@ void QHumidityReading_SetAbsoluteHumidity(void* ptr, double value)
 void QHumidityReading_SetRelativeHumidity(void* ptr, double humidity)
 {
 	static_cast<QHumidityReading*>(ptr)->setRelativeHumidity(humidity);
+}
+
+void QHumidityReading_DestroyQHumidityReading(void* ptr)
+{
+	static_cast<QHumidityReading*>(ptr)->~QHumidityReading();
+}
+
+void QHumidityReading_DestroyQHumidityReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QHumidityReading_AbsoluteHumidity(void* ptr)
@@ -1339,6 +1954,8 @@ class MyQHumiditySensor: public QHumiditySensor
 {
 public:
 	MyQHumiditySensor(QObject *parent = Q_NULLPTR) : QHumiditySensor(parent) {QHumiditySensor_QHumiditySensor_QRegisterMetaType();};
+	 ~MyQHumiditySensor() { callbackQHumiditySensor_DestroyQHumiditySensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1365,7 +1982,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQHumiditySensor*)
@@ -1418,6 +2034,12 @@ void QHumiditySensor_DestroyQHumiditySensor(void* ptr)
 	static_cast<QHumiditySensor*>(ptr)->~QHumiditySensor();
 }
 
+void QHumiditySensor_DestroyQHumiditySensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QHumiditySensor_Reading(void* ptr)
 {
 	return static_cast<QHumiditySensor*>(ptr)->reading();
@@ -1442,6 +2064,10 @@ char QIRProximityFilter_Filter(void* ptr, void* reading)
 class MyQIRProximityReading: public QIRProximityReading
 {
 public:
+	MyQIRProximityReading(QObject *parent) : QIRProximityReading(parent) {QIRProximityReading_QIRProximityReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQIRProximityReading_CopyValuesFrom(this, other); };
+	 ~MyQIRProximityReading() { callbackQIRProximityReading_DestroyQIRProximityReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1452,16 +2078,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQIRProximityReading*)
 
 int QIRProximityReading_QIRProximityReading_QRegisterMetaType(){qRegisterMetaType<QIRProximityReading*>(); return qRegisterMetaType<MyQIRProximityReading*>();}
 
+void* QIRProximityReading_NewQIRProximityReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQIRProximityReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQIRProximityReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QIRProximityReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QIRProximityReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QIRProximityReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QIRProximityReading_SetReflectance(void* ptr, double reflectance)
 {
 	static_cast<QIRProximityReading*>(ptr)->setReflectance(reflectance);
+}
+
+void QIRProximityReading_DestroyQIRProximityReading(void* ptr)
+{
+	static_cast<QIRProximityReading*>(ptr)->~QIRProximityReading();
+}
+
+void QIRProximityReading_DestroyQIRProximityReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QIRProximityReading_Reflectance(void* ptr)
@@ -1474,6 +2161,7 @@ class MyQIRProximitySensor: public QIRProximitySensor
 public:
 	MyQIRProximitySensor(QObject *parent = Q_NULLPTR) : QIRProximitySensor(parent) {QIRProximitySensor_QIRProximitySensor_QRegisterMetaType();};
 	 ~MyQIRProximitySensor() { callbackQIRProximitySensor_DestroyQIRProximitySensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1500,7 +2188,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQIRProximitySensor*)
@@ -1583,8 +2270,12 @@ char QLidFilter_Filter(void* ptr, void* reading)
 class MyQLidReading: public QLidReading
 {
 public:
+	MyQLidReading(QObject *parent) : QLidReading(parent) {QLidReading_QLidReading_QRegisterMetaType();};
 	void Signal_BackLidChanged(bool closed) { callbackQLidReading_BackLidChanged(this, closed); };
+	void copyValuesFrom(QSensorReading * other) { callbackQLidReading_CopyValuesFrom(this, other); };
 	void Signal_FrontLidChanged(bool closed) { callbackQLidReading_FrontLidChanged(this, closed); };
+	 ~MyQLidReading() { callbackQLidReading_DestroyQLidReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1595,12 +2286,52 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLidReading*)
 
 int QLidReading_QLidReading_QRegisterMetaType(){qRegisterMetaType<QLidReading*>(); return qRegisterMetaType<MyQLidReading*>();}
+
+void* QLidReading_NewQLidReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLidReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQLidReading(static_cast<QObject*>(parent));
+	}
+}
 
 void QLidReading_ConnectBackLidChanged(void* ptr)
 {
@@ -1615,6 +2346,16 @@ void QLidReading_DisconnectBackLidChanged(void* ptr)
 void QLidReading_BackLidChanged(void* ptr, char closed)
 {
 	static_cast<QLidReading*>(ptr)->backLidChanged(closed != 0);
+}
+
+void QLidReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QLidReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QLidReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QLidReading*>(ptr)->QLidReading::copyValuesFrom(static_cast<QSensorReading*>(other));
 }
 
 void QLidReading_ConnectFrontLidChanged(void* ptr)
@@ -1642,6 +2383,17 @@ void QLidReading_SetFrontLidClosed(void* ptr, char closed)
 	static_cast<QLidReading*>(ptr)->setFrontLidClosed(closed != 0);
 }
 
+void QLidReading_DestroyQLidReading(void* ptr)
+{
+	static_cast<QLidReading*>(ptr)->~QLidReading();
+}
+
+void QLidReading_DestroyQLidReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 char QLidReading_BackLidClosed(void* ptr)
 {
 	return static_cast<QLidReading*>(ptr)->backLidClosed();
@@ -1656,6 +2408,8 @@ class MyQLidSensor: public QLidSensor
 {
 public:
 	MyQLidSensor(QObject *parent = Q_NULLPTR) : QLidSensor(parent) {QLidSensor_QLidSensor_QRegisterMetaType();};
+	 ~MyQLidSensor() { callbackQLidSensor_DestroyQLidSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1682,7 +2436,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLidSensor*)
@@ -1735,6 +2488,12 @@ void QLidSensor_DestroyQLidSensor(void* ptr)
 	static_cast<QLidSensor*>(ptr)->~QLidSensor();
 }
 
+void QLidSensor_DestroyQLidSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QLidSensor_Reading(void* ptr)
 {
 	return static_cast<QLidSensor*>(ptr)->reading();
@@ -1759,6 +2518,10 @@ char QLightFilter_Filter(void* ptr, void* reading)
 class MyQLightReading: public QLightReading
 {
 public:
+	MyQLightReading(QObject *parent) : QLightReading(parent) {QLightReading_QLightReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQLightReading_CopyValuesFrom(this, other); };
+	 ~MyQLightReading() { callbackQLightReading_DestroyQLightReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -1769,16 +2532,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLightReading*)
 
 int QLightReading_QLightReading_QRegisterMetaType(){qRegisterMetaType<QLightReading*>(); return qRegisterMetaType<MyQLightReading*>();}
 
+void* QLightReading_NewQLightReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQLightReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQLightReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QLightReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QLightReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QLightReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QLightReading*>(ptr)->QLightReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QLightReading_SetLux(void* ptr, double lux)
 {
 	static_cast<QLightReading*>(ptr)->setLux(lux);
+}
+
+void QLightReading_DestroyQLightReading(void* ptr)
+{
+	static_cast<QLightReading*>(ptr)->~QLightReading();
+}
+
+void QLightReading_DestroyQLightReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QLightReading_Lux(void* ptr)
@@ -1792,6 +2616,7 @@ public:
 	MyQLightSensor(QObject *parent = Q_NULLPTR) : QLightSensor(parent) {QLightSensor_QLightSensor_QRegisterMetaType();};
 	void Signal_FieldOfViewChanged(qreal fieldOfView) { callbackQLightSensor_FieldOfViewChanged(this, fieldOfView); };
 	 ~MyQLightSensor() { callbackQLightSensor_DestroyQLightSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1818,7 +2643,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLightSensor*)
@@ -1918,6 +2742,7 @@ public:
 	MyQMagnetometer(QObject *parent = Q_NULLPTR) : QMagnetometer(parent) {QMagnetometer_QMagnetometer_QRegisterMetaType();};
 	void Signal_ReturnGeoValuesChanged(bool returnGeoValues) { callbackQMagnetometer_ReturnGeoValuesChanged(this, returnGeoValues); };
 	 ~MyQMagnetometer() { callbackQMagnetometer_DestroyQMagnetometer(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -1944,7 +2769,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMagnetometer*)
@@ -2052,6 +2876,10 @@ char QMagnetometerFilter_Filter(void* ptr, void* reading)
 class MyQMagnetometerReading: public QMagnetometerReading
 {
 public:
+	MyQMagnetometerReading(QObject *parent) : QMagnetometerReading(parent) {QMagnetometerReading_QMagnetometerReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQMagnetometerReading_CopyValuesFrom(this, other); };
+	 ~MyQMagnetometerReading() { callbackQMagnetometerReading_DestroyQMagnetometerReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -2062,12 +2890,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMagnetometerReading*)
 
 int QMagnetometerReading_QMagnetometerReading_QRegisterMetaType(){qRegisterMetaType<QMagnetometerReading*>(); return qRegisterMetaType<MyQMagnetometerReading*>();}
+
+void* QMagnetometerReading_NewQMagnetometerReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQMagnetometerReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQMagnetometerReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QMagnetometerReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QMagnetometerReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QMagnetometerReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel)
 {
@@ -2087,6 +2965,17 @@ void QMagnetometerReading_SetY(void* ptr, double y)
 void QMagnetometerReading_SetZ(void* ptr, double z)
 {
 	static_cast<QMagnetometerReading*>(ptr)->setZ(z);
+}
+
+void QMagnetometerReading_DestroyQMagnetometerReading(void* ptr)
+{
+	static_cast<QMagnetometerReading*>(ptr)->~QMagnetometerReading();
+}
+
+void QMagnetometerReading_DestroyQMagnetometerReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QMagnetometerReading_CalibrationLevel(void* ptr)
@@ -2123,6 +3012,10 @@ char QOrientationFilter_Filter(void* ptr, void* reading)
 class MyQOrientationReading: public QOrientationReading
 {
 public:
+	MyQOrientationReading(QObject *parent) : QOrientationReading(parent) {QOrientationReading_QOrientationReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQOrientationReading_CopyValuesFrom(this, other); };
+	 ~MyQOrientationReading() { callbackQOrientationReading_DestroyQOrientationReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -2133,16 +3026,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQOrientationReading*)
 
 int QOrientationReading_QOrientationReading_QRegisterMetaType(){qRegisterMetaType<QOrientationReading*>(); return qRegisterMetaType<MyQOrientationReading*>();}
 
+void* QOrientationReading_NewQOrientationReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQOrientationReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQOrientationReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QOrientationReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QOrientationReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QOrientationReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QOrientationReading*>(ptr)->QOrientationReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QOrientationReading_SetOrientation(void* ptr, long long orientation)
 {
 	static_cast<QOrientationReading*>(ptr)->setOrientation(static_cast<QOrientationReading::Orientation>(orientation));
+}
+
+void QOrientationReading_DestroyQOrientationReading(void* ptr)
+{
+	static_cast<QOrientationReading*>(ptr)->~QOrientationReading();
+}
+
+void QOrientationReading_DestroyQOrientationReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 long long QOrientationReading_Orientation(void* ptr)
@@ -2155,6 +3109,7 @@ class MyQOrientationSensor: public QOrientationSensor
 public:
 	MyQOrientationSensor(QObject *parent = Q_NULLPTR) : QOrientationSensor(parent) {QOrientationSensor_QOrientationSensor_QRegisterMetaType();};
 	 ~MyQOrientationSensor() { callbackQOrientationSensor_DestroyQOrientationSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -2181,7 +3136,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQOrientationSensor*)
@@ -2264,6 +3218,10 @@ char QPressureFilter_Filter(void* ptr, void* reading)
 class MyQPressureReading: public QPressureReading
 {
 public:
+	MyQPressureReading(QObject *parent) : QPressureReading(parent) {QPressureReading_QPressureReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQPressureReading_CopyValuesFrom(this, other); };
+	 ~MyQPressureReading() { callbackQPressureReading_DestroyQPressureReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -2274,12 +3232,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQPressureReading*)
 
 int QPressureReading_QPressureReading_QRegisterMetaType(){qRegisterMetaType<QPressureReading*>(); return qRegisterMetaType<MyQPressureReading*>();}
+
+void* QPressureReading_NewQPressureReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQPressureReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQPressureReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QPressureReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QPressureReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QPressureReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QPressureReading*>(ptr)->QPressureReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QPressureReading_SetPressure(void* ptr, double pressure)
 {
@@ -2289,6 +3297,17 @@ void QPressureReading_SetPressure(void* ptr, double pressure)
 void QPressureReading_SetTemperature(void* ptr, double temperature)
 {
 	static_cast<QPressureReading*>(ptr)->setTemperature(temperature);
+}
+
+void QPressureReading_DestroyQPressureReading(void* ptr)
+{
+	static_cast<QPressureReading*>(ptr)->~QPressureReading();
+}
+
+void QPressureReading_DestroyQPressureReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QPressureReading_Pressure(void* ptr)
@@ -2305,6 +3324,8 @@ class MyQPressureSensor: public QPressureSensor
 {
 public:
 	MyQPressureSensor(QObject *parent = Q_NULLPTR) : QPressureSensor(parent) {QPressureSensor_QPressureSensor_QRegisterMetaType();};
+	 ~MyQPressureSensor() { callbackQPressureSensor_DestroyQPressureSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -2331,7 +3352,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQPressureSensor*)
@@ -2384,6 +3404,12 @@ void QPressureSensor_DestroyQPressureSensor(void* ptr)
 	static_cast<QPressureSensor*>(ptr)->~QPressureSensor();
 }
 
+void QPressureSensor_DestroyQPressureSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QPressureSensor_Reading(void* ptr)
 {
 	return static_cast<QPressureSensor*>(ptr)->reading();
@@ -2408,6 +3434,10 @@ char QProximityFilter_Filter(void* ptr, void* reading)
 class MyQProximityReading: public QProximityReading
 {
 public:
+	MyQProximityReading(QObject *parent) : QProximityReading(parent) {QProximityReading_QProximityReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQProximityReading_CopyValuesFrom(this, other); };
+	 ~MyQProximityReading() { callbackQProximityReading_DestroyQProximityReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -2418,16 +3448,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQProximityReading*)
 
 int QProximityReading_QProximityReading_QRegisterMetaType(){qRegisterMetaType<QProximityReading*>(); return qRegisterMetaType<MyQProximityReading*>();}
 
+void* QProximityReading_NewQProximityReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQProximityReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQProximityReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QProximityReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QProximityReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QProximityReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QProximityReading*>(ptr)->QProximityReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QProximityReading_SetClose(void* ptr, char close)
 {
 	static_cast<QProximityReading*>(ptr)->setClose(close != 0);
+}
+
+void QProximityReading_DestroyQProximityReading(void* ptr)
+{
+	static_cast<QProximityReading*>(ptr)->~QProximityReading();
+}
+
+void QProximityReading_DestroyQProximityReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 char QProximityReading_Close(void* ptr)
@@ -2440,6 +3531,7 @@ class MyQProximitySensor: public QProximitySensor
 public:
 	MyQProximitySensor(QObject *parent = Q_NULLPTR) : QProximitySensor(parent) {QProximitySensor_QProximitySensor_QRegisterMetaType();};
 	 ~MyQProximitySensor() { callbackQProximitySensor_DestroyQProximitySensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -2466,7 +3558,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQProximitySensor*)
@@ -2549,6 +3640,10 @@ char QRotationFilter_Filter(void* ptr, void* reading)
 class MyQRotationReading: public QRotationReading
 {
 public:
+	MyQRotationReading(QObject *parent) : QRotationReading(parent) {QRotationReading_QRotationReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQRotationReading_CopyValuesFrom(this, other); };
+	 ~MyQRotationReading() { callbackQRotationReading_DestroyQRotationReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -2559,16 +3654,77 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRotationReading*)
 
 int QRotationReading_QRotationReading_QRegisterMetaType(){qRegisterMetaType<QRotationReading*>(); return qRegisterMetaType<MyQRotationReading*>();}
 
+void* QRotationReading_NewQRotationReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQRotationReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQRotationReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QRotationReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QRotationReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QRotationReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QRotationReading*>(ptr)->QRotationReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
 void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z)
 {
 	static_cast<QRotationReading*>(ptr)->setFromEuler(x, y, z);
+}
+
+void QRotationReading_DestroyQRotationReading(void* ptr)
+{
+	static_cast<QRotationReading*>(ptr)->~QRotationReading();
+}
+
+void QRotationReading_DestroyQRotationReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QRotationReading_X(void* ptr)
@@ -2592,6 +3748,7 @@ public:
 	MyQRotationSensor(QObject *parent = Q_NULLPTR) : QRotationSensor(parent) {QRotationSensor_QRotationSensor_QRegisterMetaType();};
 	void Signal_HasZChanged(bool hasZ) { callbackQRotationSensor_HasZChanged(this, hasZ); };
 	 ~MyQRotationSensor() { callbackQRotationSensor_DestroyQRotationSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -2618,7 +3775,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRotationSensor*)
@@ -2733,6 +3889,7 @@ public:
 	void stop() { callbackQSensor_Stop(this); };
 	void Signal_UserOrientationChanged(int userOrientation) { callbackQSensor_UserOrientationChanged(this, userOrientation); };
 	 ~MyQSensor() { callbackQSensor_DestroyQSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensor_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensor_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensor_ChildEvent(this, event); };
@@ -2743,7 +3900,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSensor*)
@@ -2804,6 +3960,16 @@ void* QSensor_NewQSensor(void* ty, void* parent)
 	} else {
 		return new MyQSensor(*static_cast<QByteArray*>(ty), static_cast<QObject*>(parent));
 	}
+}
+
+struct QtSensors_PackedString QSensor_QSensor_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray ta3bdcb = QSensor::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(ta3bdcb.prepend("WHITESPACE").constData()+10), ta3bdcb.size()-10 }; });
+}
+
+struct QtSensors_PackedString QSensor_QSensor_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tbc271c = QSensor::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(tbc271c.prepend("WHITESPACE").constData()+10), tbc271c.size()-10 }; });
 }
 
 char QSensor_ConnectToBackend(void* ptr)
@@ -3204,11 +4370,6 @@ void QSensor_DestroyQSensorDefault(void* ptr)
 
 }
 
-long long QSensor_AxesOrientationMode(void* ptr)
-{
-	return static_cast<QSensor*>(ptr)->axesOrientationMode();
-}
-
 void* QSensor_Identifier(void* ptr)
 {
 	return new QByteArray(static_cast<QSensor*>(ptr)->identifier());
@@ -3222,6 +4383,11 @@ void* QSensor_Type(void* ptr)
 struct QtSensors_PackedList QSensor_Filters(void* ptr)
 {
 	return ({ QList<QSensorFilter *>* tmpValue = new QList<QSensorFilter *>(static_cast<QSensor*>(ptr)->filters()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+long long QSensor_AxesOrientationMode(void* ptr)
+{
+	return static_cast<QSensor*>(ptr)->axesOrientationMode();
 }
 
 void* QSensor_Reading(void* ptr)
@@ -3262,6 +4428,51 @@ char QSensor_IsFeatureSupported(void* ptr, long long feature)
 char QSensor_SkipDuplicates(void* ptr)
 {
 	return static_cast<QSensor*>(ptr)->skipDuplicates();
+}
+
+void* QSensor_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QTiltSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QTiltSensor*>(ptr)->QTiltSensor::metaObject());
+	} else if (dynamic_cast<QTapSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QTapSensor*>(ptr)->QTapSensor::metaObject());
+	} else if (dynamic_cast<QRotationSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRotationSensor*>(ptr)->QRotationSensor::metaObject());
+	} else if (dynamic_cast<QProximitySensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QProximitySensor*>(ptr)->QProximitySensor::metaObject());
+	} else if (dynamic_cast<QPressureSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPressureSensor*>(ptr)->QPressureSensor::metaObject());
+	} else if (dynamic_cast<QOrientationSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QOrientationSensor*>(ptr)->QOrientationSensor::metaObject());
+	} else if (dynamic_cast<QMagnetometer*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMagnetometer*>(ptr)->QMagnetometer::metaObject());
+	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLightSensor*>(ptr)->QLightSensor::metaObject());
+	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLidSensor*>(ptr)->QLidSensor::metaObject());
+	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::metaObject());
+	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::metaObject());
+	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::metaObject());
+	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QGyroscope*>(ptr)->QGyroscope::metaObject());
+	} else if (dynamic_cast<QDistanceSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::metaObject());
+	} else if (dynamic_cast<QCompass*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCompass*>(ptr)->QCompass::metaObject());
+	} else if (dynamic_cast<QAmbientTemperatureSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::metaObject());
+	} else if (dynamic_cast<QAmbientLightSensor*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAmbientLightSensor*>(ptr)->QAmbientLightSensor::metaObject());
+	} else if (dynamic_cast<QAltimeter*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAltimeter*>(ptr)->QAltimeter::metaObject());
+	} else if (dynamic_cast<QAccelerometer*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAccelerometer*>(ptr)->QAccelerometer::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QSensor*>(ptr)->QSensor::metaObject());
+	}
 }
 
 int QSensor_BufferSize(void* ptr)
@@ -3792,57 +5003,13 @@ void QSensor_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QSensor_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QTiltSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QTiltSensor*>(ptr)->QTiltSensor::metaObject());
-	} else if (dynamic_cast<QTapSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QTapSensor*>(ptr)->QTapSensor::metaObject());
-	} else if (dynamic_cast<QRotationSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QRotationSensor*>(ptr)->QRotationSensor::metaObject());
-	} else if (dynamic_cast<QProximitySensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QProximitySensor*>(ptr)->QProximitySensor::metaObject());
-	} else if (dynamic_cast<QPressureSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QPressureSensor*>(ptr)->QPressureSensor::metaObject());
-	} else if (dynamic_cast<QOrientationSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QOrientationSensor*>(ptr)->QOrientationSensor::metaObject());
-	} else if (dynamic_cast<QMagnetometer*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMagnetometer*>(ptr)->QMagnetometer::metaObject());
-	} else if (dynamic_cast<QLightSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLightSensor*>(ptr)->QLightSensor::metaObject());
-	} else if (dynamic_cast<QLidSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLidSensor*>(ptr)->QLidSensor::metaObject());
-	} else if (dynamic_cast<QIRProximitySensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::metaObject());
-	} else if (dynamic_cast<QHumiditySensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QHumiditySensor*>(ptr)->QHumiditySensor::metaObject());
-	} else if (dynamic_cast<QHolsterSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::metaObject());
-	} else if (dynamic_cast<QGyroscope*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QGyroscope*>(ptr)->QGyroscope::metaObject());
-	} else if (dynamic_cast<QDistanceSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::metaObject());
-	} else if (dynamic_cast<QCompass*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCompass*>(ptr)->QCompass::metaObject());
-	} else if (dynamic_cast<QAmbientTemperatureSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::metaObject());
-	} else if (dynamic_cast<QAmbientLightSensor*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAmbientLightSensor*>(ptr)->QAmbientLightSensor::metaObject());
-	} else if (dynamic_cast<QAltimeter*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAltimeter*>(ptr)->QAltimeter::metaObject());
-	} else if (dynamic_cast<QAccelerometer*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAccelerometer*>(ptr)->QAccelerometer::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QSensor*>(ptr)->QSensor::metaObject());
-	}
-}
-
 class MyQSensorBackend: public QSensorBackend
 {
 public:
 	void start() { callbackQSensorBackend_Start(this); };
 	void stop() { callbackQSensorBackend_Stop(this); };
 	bool isFeatureSupported(QSensor::Feature feature) const { return callbackQSensorBackend_IsFeatureSupported(const_cast<void*>(static_cast<const void*>(this)), feature) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorBackend_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorBackend_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorBackend_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorBackend_ChildEvent(this, event); };
@@ -3853,12 +5020,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorBackend_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorBackend_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorBackend_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorBackend_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSensorBackend*)
 
 int QSensorBackend_QSensorBackend_QRegisterMetaType(){qRegisterMetaType<QSensorBackend*>(); return qRegisterMetaType<MyQSensorBackend*>();}
+
+struct QtSensors_PackedString QSensorBackend_QSensorBackend_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray te7eec4 = QSensorBackend::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(te7eec4.prepend("WHITESPACE").constData()+10), te7eec4.size()-10 }; });
+}
+
+struct QtSensors_PackedString QSensorBackend_QSensorBackend_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t447d4f = QSensorBackend::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t447d4f.prepend("WHITESPACE").constData()+10), t447d4f.size()-10 }; });
+}
 
 void QSensorBackend_AddDataRate(void* ptr, double min, double max)
 {
@@ -3928,6 +5104,11 @@ char QSensorBackend_IsFeatureSupported(void* ptr, long long feature)
 char QSensorBackend_IsFeatureSupportedDefault(void* ptr, long long feature)
 {
 		return static_cast<QSensorBackend*>(ptr)->QSensorBackend::isFeatureSupported(static_cast<QSensor::Feature>(feature));
+}
+
+void* QSensorBackend_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSensorBackend*>(ptr)->QSensorBackend::metaObject());
 }
 
 void* QSensorBackend___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4050,11 +5231,6 @@ void QSensorBackend_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSensorBackend*>(ptr)->QSensorBackend::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSensorBackend_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSensorBackend*>(ptr)->QSensorBackend::metaObject());
-}
-
 class MyQSensorBackendFactory: public QSensorBackendFactory
 {
 public:
@@ -4115,8 +5291,9 @@ class MyQSensorGesture: public QSensorGesture
 public:
 	MyQSensorGesture(const QStringList &ids, QObject *parent = Q_NULLPTR) : QSensorGesture(ids, parent) {QSensorGesture_QSensorGesture_QRegisterMetaType();};
 	#ifdef Q_QDOC
-		void Signal_Detected(QString gestureId) { QByteArray t7bc790 = gestureId.toUtf8(); QtSensors_PackedString gestureIdPacked = { const_cast<char*>(t7bc790.prepend("WHITESPACE").constData()+10), t7bc790.size()-10 };callbackQSensorGesture_Detected(this, gestureIdPacked); };
+		void Signal_Detected(QString vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtSensors_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSensorGesture_Detected(this, vqsPacked); };
 	#endif
+	 ~MyQSensorGesture() { callbackQSensorGesture_DestroyQSensorGesture(this); };
 	bool event(QEvent * e) { return callbackQSensorGesture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorGesture_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorGesture_ChildEvent(this, event); };
@@ -4194,10 +5371,10 @@ void QSensorGesture_DisconnectDetected(void* ptr)
 #endif
 }
 
-void QSensorGesture_Detected(void* ptr, struct QtSensors_PackedString gestureId)
+void QSensorGesture_Detected(void* ptr, struct QtSensors_PackedString vqs)
 {
 #ifdef Q_QDOC
-	static_cast<QSensorGesture*>(ptr)->detected(QString::fromUtf8(gestureId.data, gestureId.len));
+	static_cast<QSensorGesture*>(ptr)->detected(QString::fromUtf8(vqs.data, vqs.len));
 #endif
 }
 
@@ -4214,6 +5391,12 @@ void QSensorGesture_StopDetection(void* ptr)
 void QSensorGesture_DestroyQSensorGesture(void* ptr)
 {
 	static_cast<QSensorGesture*>(ptr)->~QSensorGesture();
+}
+
+void QSensorGesture_DestroyQSensorGestureDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 struct QtSensors_PackedString QSensorGesture_GestureSignals(void* ptr)
@@ -4361,6 +5544,8 @@ class MyQSensorGestureManager: public QSensorGestureManager
 public:
 	MyQSensorGestureManager(QObject *parent = Q_NULLPTR) : QSensorGestureManager(parent) {QSensorGestureManager_QSensorGestureManager_QRegisterMetaType();};
 	void Signal_NewSensorGestureAvailable() { callbackQSensorGestureManager_NewSensorGestureAvailable(this); };
+	 ~MyQSensorGestureManager() { callbackQSensorGestureManager_DestroyQSensorGestureManager(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorGestureManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorGestureManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorGestureManager_ChildEvent(this, event); };
@@ -4371,7 +5556,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorGestureManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorGestureManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSensorGestureManager*)
@@ -4424,6 +5608,16 @@ void* QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(struct
 	return QSensorGestureManager::sensorGestureRecognizer(QString::fromUtf8(id.data, id.len));
 }
 
+struct QtSensors_PackedString QSensorGestureManager_QSensorGestureManager_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray td8495b = QSensorGestureManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(td8495b.prepend("WHITESPACE").constData()+10), td8495b.size()-10 }; });
+}
+
+struct QtSensors_PackedString QSensorGestureManager_QSensorGestureManager_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7f6055 = QSensorGestureManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t7f6055.prepend("WHITESPACE").constData()+10), t7f6055.size()-10 }; });
+}
+
 char QSensorGestureManager_RegisterSensorGestureRecognizer(void* ptr, void* recognizer)
 {
 	return static_cast<QSensorGestureManager*>(ptr)->registerSensorGestureRecognizer(static_cast<QSensorGestureRecognizer*>(recognizer));
@@ -4449,6 +5643,12 @@ void QSensorGestureManager_DestroyQSensorGestureManager(void* ptr)
 	static_cast<QSensorGestureManager*>(ptr)->~QSensorGestureManager();
 }
 
+void QSensorGestureManager_DestroyQSensorGestureManagerDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtSensors_PackedString QSensorGestureManager_GestureIds(void* ptr)
 {
 	return ({ QByteArray t5f71c3 = static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t5f71c3.prepend("WHITESPACE").constData()+10), t5f71c3.size()-10 }; });
@@ -4457,6 +5657,11 @@ struct QtSensors_PackedString QSensorGestureManager_GestureIds(void* ptr)
 struct QtSensors_PackedString QSensorGestureManager_RecognizerSignals(void* ptr, struct QtSensors_PackedString gestureId)
 {
 	return ({ QByteArray t0f00fe = static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString::fromUtf8(gestureId.data, gestureId.len)).join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t0f00fe.prepend("WHITESPACE").constData()+10), t0f00fe.size()-10 }; });
+}
+
+void* QSensorGestureManager_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSensorGestureManager*>(ptr)->QSensorGestureManager::metaObject());
 }
 
 void* QSensorGestureManager___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4579,11 +5784,6 @@ void QSensorGestureManager_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSensorGestureManager*>(ptr)->QSensorGestureManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSensorGestureManager_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSensorGestureManager*>(ptr)->QSensorGestureManager::metaObject());
-}
-
 class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface
 {
 public:
@@ -4649,9 +5849,10 @@ public:
 	bool start() { return callbackQSensorGestureRecognizer_Start(this) != 0; };
 	bool stop() { return callbackQSensorGestureRecognizer_Stop(this) != 0; };
 	void create() { callbackQSensorGestureRecognizer_Create(this); };
-	void Signal_Detected(const QString & gestureId) { QByteArray t7bc790 = gestureId.toUtf8(); QtSensors_PackedString gestureIdPacked = { const_cast<char*>(t7bc790.prepend("WHITESPACE").constData()+10), t7bc790.size()-10 };callbackQSensorGestureRecognizer_Detected(this, gestureIdPacked); };
+	void Signal_Detected(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtSensors_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSensorGestureRecognizer_Detected(this, vqsPacked); };
 	 ~MyQSensorGestureRecognizer() { callbackQSensorGestureRecognizer_DestroyQSensorGestureRecognizer(this); };
 	QString id() const { return ({ QtSensors_PackedString tempVal = callbackQSensorGestureRecognizer_Id(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureRecognizer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorGestureRecognizer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorGestureRecognizer_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorGestureRecognizer_ChildEvent(this, event); };
@@ -4662,7 +5863,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorGestureRecognizer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorGestureRecognizer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorGestureRecognizer_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorGestureRecognizer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSensorGestureRecognizer*)
@@ -4710,6 +5910,16 @@ void* QSensorGestureRecognizer_NewQSensorGestureRecognizer(void* parent)
 	}
 }
 
+struct QtSensors_PackedString QSensorGestureRecognizer_QSensorGestureRecognizer_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t98616c = QSensorGestureRecognizer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t98616c.prepend("WHITESPACE").constData()+10), t98616c.size()-10 }; });
+}
+
+struct QtSensors_PackedString QSensorGestureRecognizer_QSensorGestureRecognizer_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tc3d5ae = QSensorGestureRecognizer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(tc3d5ae.prepend("WHITESPACE").constData()+10), tc3d5ae.size()-10 }; });
+}
+
 char QSensorGestureRecognizer_IsActive(void* ptr)
 {
 	return static_cast<QSensorGestureRecognizer*>(ptr)->isActive();
@@ -4745,9 +5955,9 @@ void QSensorGestureRecognizer_DisconnectDetected(void* ptr)
 	QObject::disconnect(static_cast<QSensorGestureRecognizer*>(ptr), static_cast<void (QSensorGestureRecognizer::*)(const QString &)>(&QSensorGestureRecognizer::detected), static_cast<MyQSensorGestureRecognizer*>(ptr), static_cast<void (MyQSensorGestureRecognizer::*)(const QString &)>(&MyQSensorGestureRecognizer::Signal_Detected));
 }
 
-void QSensorGestureRecognizer_Detected(void* ptr, struct QtSensors_PackedString gestureId)
+void QSensorGestureRecognizer_Detected(void* ptr, struct QtSensors_PackedString vqs)
 {
-	static_cast<QSensorGestureRecognizer*>(ptr)->detected(QString::fromUtf8(gestureId.data, gestureId.len));
+	static_cast<QSensorGestureRecognizer*>(ptr)->detected(QString::fromUtf8(vqs.data, vqs.len));
 }
 
 void QSensorGestureRecognizer_StartBackend(void* ptr)
@@ -4779,6 +5989,11 @@ struct QtSensors_PackedString QSensorGestureRecognizer_Id(void* ptr)
 struct QtSensors_PackedString QSensorGestureRecognizer_GestureSignals(void* ptr)
 {
 	return ({ QByteArray t79f8ee = static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8(); QtSensors_PackedString { const_cast<char*>(t79f8ee.prepend("WHITESPACE").constData()+10), t79f8ee.size()-10 }; });
+}
+
+void* QSensorGestureRecognizer_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSensorGestureRecognizer*>(ptr)->QSensorGestureRecognizer::metaObject());
 }
 
 void* QSensorGestureRecognizer___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4901,11 +6116,6 @@ void QSensorGestureRecognizer_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSensorGestureRecognizer*>(ptr)->QSensorGestureRecognizer::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSensorGestureRecognizer_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSensorGestureRecognizer*>(ptr)->QSensorGestureRecognizer::metaObject());
-}
-
 void* QSensorManager_QSensorManager_CreateBackend(void* sensor)
 {
 	return QSensorManager::createBackend(static_cast<QSensor*>(sensor));
@@ -4945,6 +6155,7 @@ void QSensorPluginInterface_RegisterSensors(void* ptr)
 class MyQSensorReading: public QSensorReading
 {
 public:
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -4955,12 +6166,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSensorReading*)
 
 int QSensorReading_QSensorReading_QRegisterMetaType(){qRegisterMetaType<QSensorReading*>(); return qRegisterMetaType<MyQSensorReading*>();}
+
+struct QtSensors_PackedString QSensorReading_QSensorReading_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t620e4f = QSensorReading::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t620e4f.prepend("WHITESPACE").constData()+10), t620e4f.size()-10 }; });
+}
+
+struct QtSensors_PackedString QSensorReading_QSensorReading_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t435db7 = QSensorReading::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t435db7.prepend("WHITESPACE").constData()+10), t435db7.size()-10 }; });
+}
 
 void QSensorReading_SetTimestamp(void* ptr, unsigned long long timestamp)
 {
@@ -4970,6 +6190,51 @@ void QSensorReading_SetTimestamp(void* ptr, unsigned long long timestamp)
 void* QSensorReading_Value(void* ptr, int index)
 {
 	return new QVariant(static_cast<QSensorReading*>(ptr)->value(index));
+}
+
+void* QSensorReading_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QTiltReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QTiltReading*>(ptr)->QTiltReading::metaObject());
+	} else if (dynamic_cast<QTapReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QTapReading*>(ptr)->QTapReading::metaObject());
+	} else if (dynamic_cast<QRotationReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRotationReading*>(ptr)->QRotationReading::metaObject());
+	} else if (dynamic_cast<QProximityReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QProximityReading*>(ptr)->QProximityReading::metaObject());
+	} else if (dynamic_cast<QPressureReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPressureReading*>(ptr)->QPressureReading::metaObject());
+	} else if (dynamic_cast<QOrientationReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QOrientationReading*>(ptr)->QOrientationReading::metaObject());
+	} else if (dynamic_cast<QMagnetometerReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::metaObject());
+	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLightReading*>(ptr)->QLightReading::metaObject());
+	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLidReading*>(ptr)->QLidReading::metaObject());
+	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::metaObject());
+	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHumidityReading*>(ptr)->QHumidityReading::metaObject());
+	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QHolsterReading*>(ptr)->QHolsterReading::metaObject());
+	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QGyroscopeReading*>(ptr)->QGyroscopeReading::metaObject());
+	} else if (dynamic_cast<QDistanceReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QDistanceReading*>(ptr)->QDistanceReading::metaObject());
+	} else if (dynamic_cast<QCompassReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCompassReading*>(ptr)->QCompassReading::metaObject());
+	} else if (dynamic_cast<QAmbientTemperatureReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAmbientTemperatureReading*>(ptr)->QAmbientTemperatureReading::metaObject());
+	} else if (dynamic_cast<QAmbientLightReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAmbientLightReading*>(ptr)->QAmbientLightReading::metaObject());
+	} else if (dynamic_cast<QAltimeterReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAltimeterReading*>(ptr)->QAltimeterReading::metaObject());
+	} else if (dynamic_cast<QAccelerometerReading*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAccelerometerReading*>(ptr)->QAccelerometerReading::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QSensorReading*>(ptr)->QSensorReading::metaObject());
+	}
 }
 
 int QSensorReading_ValueCount(void* ptr)
@@ -5422,51 +6687,6 @@ void QSensorReading_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QSensorReading_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QTiltReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QTiltReading*>(ptr)->QTiltReading::metaObject());
-	} else if (dynamic_cast<QTapReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QTapReading*>(ptr)->QTapReading::metaObject());
-	} else if (dynamic_cast<QRotationReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QRotationReading*>(ptr)->QRotationReading::metaObject());
-	} else if (dynamic_cast<QProximityReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QProximityReading*>(ptr)->QProximityReading::metaObject());
-	} else if (dynamic_cast<QPressureReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QPressureReading*>(ptr)->QPressureReading::metaObject());
-	} else if (dynamic_cast<QOrientationReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QOrientationReading*>(ptr)->QOrientationReading::metaObject());
-	} else if (dynamic_cast<QMagnetometerReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::metaObject());
-	} else if (dynamic_cast<QLightReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLightReading*>(ptr)->QLightReading::metaObject());
-	} else if (dynamic_cast<QLidReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLidReading*>(ptr)->QLidReading::metaObject());
-	} else if (dynamic_cast<QIRProximityReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::metaObject());
-	} else if (dynamic_cast<QHumidityReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QHumidityReading*>(ptr)->QHumidityReading::metaObject());
-	} else if (dynamic_cast<QHolsterReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QHolsterReading*>(ptr)->QHolsterReading::metaObject());
-	} else if (dynamic_cast<QGyroscopeReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QGyroscopeReading*>(ptr)->QGyroscopeReading::metaObject());
-	} else if (dynamic_cast<QDistanceReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QDistanceReading*>(ptr)->QDistanceReading::metaObject());
-	} else if (dynamic_cast<QCompassReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCompassReading*>(ptr)->QCompassReading::metaObject());
-	} else if (dynamic_cast<QAmbientTemperatureReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAmbientTemperatureReading*>(ptr)->QAmbientTemperatureReading::metaObject());
-	} else if (dynamic_cast<QAmbientLightReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAmbientLightReading*>(ptr)->QAmbientLightReading::metaObject());
-	} else if (dynamic_cast<QAltimeterReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAltimeterReading*>(ptr)->QAltimeterReading::metaObject());
-	} else if (dynamic_cast<QAccelerometerReading*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAccelerometerReading*>(ptr)->QAccelerometerReading::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QSensorReading*>(ptr)->QSensorReading::metaObject());
-	}
-}
-
 class MyQTapFilter: public QTapFilter
 {
 public:
@@ -5481,6 +6701,10 @@ char QTapFilter_Filter(void* ptr, void* reading)
 class MyQTapReading: public QTapReading
 {
 public:
+	MyQTapReading(QObject *parent) : QTapReading(parent) {QTapReading_QTapReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQTapReading_CopyValuesFrom(this, other); };
+	 ~MyQTapReading() { callbackQTapReading_DestroyQTapReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -5491,12 +6715,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQTapReading*)
 
 int QTapReading_QTapReading_QRegisterMetaType(){qRegisterMetaType<QTapReading*>(); return qRegisterMetaType<MyQTapReading*>();}
+
+void* QTapReading_NewQTapReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTapReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQTapReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QTapReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QTapReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QTapReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QTapReading*>(ptr)->QTapReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QTapReading_SetDoubleTap(void* ptr, char doubleTap)
 {
@@ -5506,6 +6780,17 @@ void QTapReading_SetDoubleTap(void* ptr, char doubleTap)
 void QTapReading_SetTapDirection(void* ptr, long long tapDirection)
 {
 	static_cast<QTapReading*>(ptr)->setTapDirection(static_cast<QTapReading::TapDirection>(tapDirection));
+}
+
+void QTapReading_DestroyQTapReading(void* ptr)
+{
+	static_cast<QTapReading*>(ptr)->~QTapReading();
+}
+
+void QTapReading_DestroyQTapReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 long long QTapReading_TapDirection(void* ptr)
@@ -5524,6 +6809,7 @@ public:
 	MyQTapSensor(QObject *parent = Q_NULLPTR) : QTapSensor(parent) {QTapSensor_QTapSensor_QRegisterMetaType();};
 	void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents) { callbackQTapSensor_ReturnDoubleTapEventsChanged(this, returnDoubleTapEvents); };
 	 ~MyQTapSensor() { callbackQTapSensor_DestroyQTapSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -5550,7 +6836,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQTapSensor*)
@@ -5658,6 +6943,10 @@ char QTiltFilter_Filter(void* ptr, void* reading)
 class MyQTiltReading: public QTiltReading
 {
 public:
+	MyQTiltReading(QObject *parent) : QTiltReading(parent) {QTiltReading_QTiltReading_QRegisterMetaType();};
+	void copyValuesFrom(QSensorReading * other) { callbackQTiltReading_CopyValuesFrom(this, other); };
+	 ~MyQTiltReading() { callbackQTiltReading_DestroyQTiltReading(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };
@@ -5668,12 +6957,62 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensorReading_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensorReading_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensorReading_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQTiltReading*)
 
 int QTiltReading_QTiltReading_QRegisterMetaType(){qRegisterMetaType<QTiltReading*>(); return qRegisterMetaType<MyQTiltReading*>();}
+
+void* QTiltReading_NewQTiltReading(void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQTiltReading(static_cast<QWindow*>(parent));
+	} else {
+		return new MyQTiltReading(static_cast<QObject*>(parent));
+	}
+}
+
+void QTiltReading_CopyValuesFrom(void* ptr, void* other)
+{
+	static_cast<QTiltReading*>(ptr)->copyValuesFrom(static_cast<QSensorReading*>(other));
+}
+
+void QTiltReading_CopyValuesFromDefault(void* ptr, void* other)
+{
+		static_cast<QTiltReading*>(ptr)->QTiltReading::copyValuesFrom(static_cast<QSensorReading*>(other));
+}
 
 void QTiltReading_SetXRotation(void* ptr, double x)
 {
@@ -5683,6 +7022,17 @@ void QTiltReading_SetXRotation(void* ptr, double x)
 void QTiltReading_SetYRotation(void* ptr, double y)
 {
 	static_cast<QTiltReading*>(ptr)->setYRotation(y);
+}
+
+void QTiltReading_DestroyQTiltReading(void* ptr)
+{
+	static_cast<QTiltReading*>(ptr)->~QTiltReading();
+}
+
+void QTiltReading_DestroyQTiltReadingDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 double QTiltReading_XRotation(void* ptr)
@@ -5699,6 +7049,8 @@ class MyQTiltSensor: public QTiltSensor
 {
 public:
 	MyQTiltSensor(QObject *parent = Q_NULLPTR) : QTiltSensor(parent) {QTiltSensor_QTiltSensor_QRegisterMetaType();};
+	 ~MyQTiltSensor() { callbackQTiltSensor_DestroyQTiltSensor(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
@@ -5725,7 +7077,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtSensors_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSensor_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSensor_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQTiltSensor*)
@@ -5781,6 +7132,12 @@ void QTiltSensor_Calibrate(void* ptr)
 void QTiltSensor_DestroyQTiltSensor(void* ptr)
 {
 	static_cast<QTiltSensor*>(ptr)->~QTiltSensor();
+}
+
+void QTiltSensor_DestroyQTiltSensorDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QTiltSensor_Reading(void* ptr)

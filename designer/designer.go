@@ -531,6 +531,62 @@ func NewQDesignerActionEditorInterface(parent widgets.QWidget_ITF, flags core.Qt
 	return tmpValue
 }
 
+func QDesignerActionEditorInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerActionEditorInterface_QDesignerActionEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerActionEditorInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerActionEditorInterface_QDesignerActionEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerActionEditorInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerActionEditorInterface_QDesignerActionEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerActionEditorInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerActionEditorInterface_QDesignerActionEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQDesignerActionEditorInterface_ManageAction
 func callbackQDesignerActionEditorInterface_ManageAction(ptr unsafe.Pointer, action unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "manageAction"); signal != nil {
@@ -730,6 +786,22 @@ func (ptr *QDesignerActionEditorInterface) CoreDefault() *QDesignerFormEditorInt
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDesignerActionEditorInterface_MetaObject
+func callbackQDesignerActionEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerActionEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerActionEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerActionEditorInterface_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1775,6 +1847,21 @@ func (ptr *QDesignerActionEditorInterface) MetricDefault(m gui.QPaintDevice__Pai
 	return 0
 }
 
+//export callbackQDesignerActionEditorInterface_InitPainter
+func callbackQDesignerActionEditorInterface_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QDesignerActionEditorInterface) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDesignerActionEditorInterface_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQDesignerActionEditorInterface_EventFilter
 func callbackQDesignerActionEditorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -1897,22 +1984,6 @@ func (ptr *QDesignerActionEditorInterface) TimerEventDefault(event core.QTimerEv
 	if ptr.Pointer() != nil {
 		C.QDesignerActionEditorInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQDesignerActionEditorInterface_MetaObject
-func callbackQDesignerActionEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerActionEditorInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerActionEditorInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerActionEditorInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QDesignerContainerExtension struct {
@@ -3385,6 +3456,62 @@ func NewQDesignerFormEditorInterface(parent core.QObject_ITF) *QDesignerFormEdit
 	return tmpValue
 }
 
+func QDesignerFormEditorInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormEditorInterface_QDesignerFormEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormEditorInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormEditorInterface_QDesignerFormEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerFormEditorInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormEditorInterface_QDesignerFormEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormEditorInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormEditorInterface_QDesignerFormEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QDesignerFormEditorInterface) SetActionEditor(actionEditor QDesignerActionEditorInterface_ITF) {
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_SetActionEditor(ptr.Pointer(), PointerFromQDesignerActionEditorInterface(actionEditor))
@@ -3528,6 +3655,22 @@ func (ptr *QDesignerFormEditorInterface) TopLevel() *widgets.QWidget {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDesignerFormEditorInterface_MetaObject
+func callbackQDesignerFormEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormEditorInterface_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -3802,22 +3945,6 @@ func (ptr *QDesignerFormEditorInterface) TimerEventDefault(event core.QTimerEven
 	if ptr.Pointer() != nil {
 		C.QDesignerFormEditorInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQDesignerFormEditorInterface_MetaObject
-func callbackQDesignerFormEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerFormEditorInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerFormEditorInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerFormEditorInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QDesignerFormWindowCursorInterface struct {
@@ -4528,6 +4655,62 @@ func (ptr *QDesignerFormWindowInterface) FindFormWindow(widget widgets.QWidget_I
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QDesignerFormWindowInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormWindowInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerFormWindowInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormWindowInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQDesignerFormWindowInterface_SetContents
@@ -5823,20 +6006,20 @@ func (ptr *QDesignerFormWindowInterface) SetPixmapFunction(pixmapFunction string
 }
 
 //export callbackQDesignerFormWindowInterface_SetResourceFileSaveMode
-func callbackQDesignerFormWindowInterface_SetResourceFileSaveMode(ptr unsafe.Pointer, behaviour C.longlong) {
+func callbackQDesignerFormWindowInterface_SetResourceFileSaveMode(ptr unsafe.Pointer, behavior C.longlong) {
 	if signal := qt.GetSignal(ptr, "setResourceFileSaveMode"); signal != nil {
-		signal.(func(QDesignerFormWindowInterface__ResourceFileSaveMode))(QDesignerFormWindowInterface__ResourceFileSaveMode(behaviour))
+		signal.(func(QDesignerFormWindowInterface__ResourceFileSaveMode))(QDesignerFormWindowInterface__ResourceFileSaveMode(behavior))
 	}
 
 }
 
-func (ptr *QDesignerFormWindowInterface) ConnectSetResourceFileSaveMode(f func(behaviour QDesignerFormWindowInterface__ResourceFileSaveMode)) {
+func (ptr *QDesignerFormWindowInterface) ConnectSetResourceFileSaveMode(f func(behavior QDesignerFormWindowInterface__ResourceFileSaveMode)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setResourceFileSaveMode"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setResourceFileSaveMode", func(behaviour QDesignerFormWindowInterface__ResourceFileSaveMode) {
-				signal.(func(QDesignerFormWindowInterface__ResourceFileSaveMode))(behaviour)
-				f(behaviour)
+			qt.ConnectSignal(ptr.Pointer(), "setResourceFileSaveMode", func(behavior QDesignerFormWindowInterface__ResourceFileSaveMode) {
+				signal.(func(QDesignerFormWindowInterface__ResourceFileSaveMode))(behavior)
+				f(behavior)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setResourceFileSaveMode", f)
@@ -5851,9 +6034,9 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetResourceFileSaveMode() {
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) SetResourceFileSaveMode(behaviour QDesignerFormWindowInterface__ResourceFileSaveMode) {
+func (ptr *QDesignerFormWindowInterface) SetResourceFileSaveMode(behavior QDesignerFormWindowInterface__ResourceFileSaveMode) {
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetResourceFileSaveMode(ptr.Pointer(), C.longlong(behaviour))
+		C.QDesignerFormWindowInterface_SetResourceFileSaveMode(ptr.Pointer(), C.longlong(behavior))
 	}
 }
 
@@ -6055,43 +6238,6 @@ func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterfaceDefa
 	}
 }
 
-//export callbackQDesignerFormWindowInterface_Features
-func callbackQDesignerFormWindowInterface_Features(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "features"); signal != nil {
-		return C.longlong(signal.(func() QDesignerFormWindowInterface__FeatureFlag)())
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QDesignerFormWindowInterface) ConnectFeatures(f func() QDesignerFormWindowInterface__FeatureFlag) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "features"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "features", func() QDesignerFormWindowInterface__FeatureFlag {
-				signal.(func() QDesignerFormWindowInterface__FeatureFlag)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "features", f)
-		}
-	}
-}
-
-func (ptr *QDesignerFormWindowInterface) DisconnectFeatures() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "features")
-	}
-}
-
-func (ptr *QDesignerFormWindowInterface) Features() QDesignerFormWindowInterface__FeatureFlag {
-	if ptr.Pointer() != nil {
-		return QDesignerFormWindowInterface__FeatureFlag(C.QDesignerFormWindowInterface_Features(ptr.Pointer()))
-	}
-	return 0
-}
-
 //export callbackQDesignerFormWindowInterface_Core
 func callbackQDesignerFormWindowInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "core"); signal != nil {
@@ -6179,6 +6325,80 @@ func (ptr *QDesignerFormWindowInterface) Cursor() *QDesignerFormWindowCursorInte
 		return NewQDesignerFormWindowCursorInterfaceFromPointer(C.QDesignerFormWindowInterface_Cursor(ptr.Pointer()))
 	}
 	return nil
+}
+
+//export callbackQDesignerFormWindowInterface_Features
+func callbackQDesignerFormWindowInterface_Features(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "features"); signal != nil {
+		return C.longlong(signal.(func() QDesignerFormWindowInterface__FeatureFlag)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QDesignerFormWindowInterface) ConnectFeatures(f func() QDesignerFormWindowInterface__FeatureFlag) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "features"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "features", func() QDesignerFormWindowInterface__FeatureFlag {
+				signal.(func() QDesignerFormWindowInterface__FeatureFlag)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "features", f)
+		}
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) DisconnectFeatures() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "features")
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) Features() QDesignerFormWindowInterface__FeatureFlag {
+	if ptr.Pointer() != nil {
+		return QDesignerFormWindowInterface__FeatureFlag(C.QDesignerFormWindowInterface_Features(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQDesignerFormWindowInterface_ResourceFileSaveMode
+func callbackQDesignerFormWindowInterface_ResourceFileSaveMode(ptr unsafe.Pointer) C.longlong {
+	if signal := qt.GetSignal(ptr, "resourceFileSaveMode"); signal != nil {
+		return C.longlong(signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)())
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QDesignerFormWindowInterface) ConnectResourceFileSaveMode(f func() QDesignerFormWindowInterface__ResourceFileSaveMode) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "resourceFileSaveMode"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "resourceFileSaveMode", func() QDesignerFormWindowInterface__ResourceFileSaveMode {
+				signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "resourceFileSaveMode", f)
+		}
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) DisconnectResourceFileSaveMode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "resourceFileSaveMode")
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) ResourceFileSaveMode() QDesignerFormWindowInterface__ResourceFileSaveMode {
+	if ptr.Pointer() != nil {
+		return QDesignerFormWindowInterface__ResourceFileSaveMode(C.QDesignerFormWindowInterface_ResourceFileSaveMode(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQDesignerFormWindowInterface_AbsoluteDir
@@ -6649,43 +6869,6 @@ func (ptr *QDesignerFormWindowInterface) FormContainer() *widgets.QWidget {
 	return nil
 }
 
-//export callbackQDesignerFormWindowInterface_ResourceFileSaveMode
-func callbackQDesignerFormWindowInterface_ResourceFileSaveMode(ptr unsafe.Pointer) C.longlong {
-	if signal := qt.GetSignal(ptr, "resourceFileSaveMode"); signal != nil {
-		return C.longlong(signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)())
-	}
-
-	return C.longlong(0)
-}
-
-func (ptr *QDesignerFormWindowInterface) ConnectResourceFileSaveMode(f func() QDesignerFormWindowInterface__ResourceFileSaveMode) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "resourceFileSaveMode"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "resourceFileSaveMode", func() QDesignerFormWindowInterface__ResourceFileSaveMode {
-				signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)()
-				return f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "resourceFileSaveMode", f)
-		}
-	}
-}
-
-func (ptr *QDesignerFormWindowInterface) DisconnectResourceFileSaveMode() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "resourceFileSaveMode")
-	}
-}
-
-func (ptr *QDesignerFormWindowInterface) ResourceFileSaveMode() QDesignerFormWindowInterface__ResourceFileSaveMode {
-	if ptr.Pointer() != nil {
-		return QDesignerFormWindowInterface__ResourceFileSaveMode(C.QDesignerFormWindowInterface_ResourceFileSaveMode(ptr.Pointer()))
-	}
-	return 0
-}
-
 //export callbackQDesignerFormWindowInterface_HasFeature
 func callbackQDesignerFormWindowInterface_HasFeature(ptr unsafe.Pointer, feature C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "hasFeature"); signal != nil {
@@ -6795,6 +6978,22 @@ func (ptr *QDesignerFormWindowInterface) IsManaged(widget widgets.QWidget_ITF) b
 		return C.QDesignerFormWindowInterface_IsManaged(ptr.Pointer(), widgets.PointerFromQWidget(widget)) != 0
 	}
 	return false
+}
+
+//export callbackQDesignerFormWindowInterface_MetaObject
+func callbackQDesignerFormWindowInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormWindowInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormWindowInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDesignerFormWindowInterface) __simplifySelection_widgets_atList(i int) *widgets.QWidget {
@@ -7859,6 +8058,21 @@ func (ptr *QDesignerFormWindowInterface) MetricDefault(m gui.QPaintDevice__Paint
 	return 0
 }
 
+//export callbackQDesignerFormWindowInterface_InitPainter
+func callbackQDesignerFormWindowInterface_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDesignerFormWindowInterface_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQDesignerFormWindowInterface_EventFilter
 func callbackQDesignerFormWindowInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -7983,22 +8197,6 @@ func (ptr *QDesignerFormWindowInterface) TimerEventDefault(event core.QTimerEven
 	}
 }
 
-//export callbackQDesignerFormWindowInterface_MetaObject
-func callbackQDesignerFormWindowInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerFormWindowInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerFormWindowInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QDesignerFormWindowManagerInterface struct {
 	core.QObject
 }
@@ -8112,6 +8310,62 @@ func (ptr *QDesignerFormWindowManagerInterface) CreateFormWindow(parent widgets.
 		return tmpValue
 	}
 	return nil
+}
+
+func QDesignerFormWindowManagerInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormWindowManagerInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerFormWindowManagerInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerFormWindowManagerInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerFormWindowManagerInterface_QDesignerFormWindowManagerInterface_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ActiveFormWindowChanged
@@ -8770,6 +9024,22 @@ func (ptr *QDesignerFormWindowManagerInterface) CreatePreviewPixmap() *gui.QPixm
 	return nil
 }
 
+//export callbackQDesignerFormWindowManagerInterface_MetaObject
+func callbackQDesignerFormWindowManagerInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerFormWindowManagerInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowManagerInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerFormWindowManagerInterface_FormWindowCount
 func callbackQDesignerFormWindowManagerInterface_FormWindowCount(ptr unsafe.Pointer) C.int {
 	if signal := qt.GetSignal(ptr, "formWindowCount"); signal != nil {
@@ -9052,22 +9322,6 @@ func (ptr *QDesignerFormWindowManagerInterface) TimerEventDefault(event core.QTi
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQDesignerFormWindowManagerInterface_MetaObject
-func callbackQDesignerFormWindowManagerInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerFormWindowManagerInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerFormWindowManagerInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QDesignerMemberSheetExtension struct {
@@ -9804,6 +10058,62 @@ func NewQDesignerObjectInspectorInterface(parent widgets.QWidget_ITF, flags core
 	return tmpValue
 }
 
+func QDesignerObjectInspectorInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerObjectInspectorInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerObjectInspectorInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerObjectInspectorInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerObjectInspectorInterface_QDesignerObjectInspectorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQDesignerObjectInspectorInterface_SetFormWindow
 func callbackQDesignerObjectInspectorInterface_SetFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setFormWindow"); signal != nil {
@@ -9933,6 +10243,22 @@ func (ptr *QDesignerObjectInspectorInterface) CoreDefault() *QDesignerFormEditor
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQDesignerObjectInspectorInterface_MetaObject
+func callbackQDesignerObjectInspectorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerObjectInspectorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerObjectInspectorInterface_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -10978,6 +11304,21 @@ func (ptr *QDesignerObjectInspectorInterface) MetricDefault(m gui.QPaintDevice__
 	return 0
 }
 
+//export callbackQDesignerObjectInspectorInterface_InitPainter
+func callbackQDesignerObjectInspectorInterface_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QDesignerObjectInspectorInterface) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDesignerObjectInspectorInterface_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQDesignerObjectInspectorInterface_EventFilter
 func callbackQDesignerObjectInspectorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -11102,22 +11443,6 @@ func (ptr *QDesignerObjectInspectorInterface) TimerEventDefault(event core.QTime
 	}
 }
 
-//export callbackQDesignerObjectInspectorInterface_MetaObject
-func callbackQDesignerObjectInspectorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerObjectInspectorInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerObjectInspectorInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QDesignerPropertyEditorInterface struct {
 	widgets.QWidget
 }
@@ -11162,6 +11487,62 @@ func NewQDesignerPropertyEditorInterface(parent widgets.QWidget_ITF, flags core.
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QDesignerPropertyEditorInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerPropertyEditorInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerPropertyEditorInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerPropertyEditorInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerPropertyEditorInterface_QDesignerPropertyEditorInterface_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQDesignerPropertyEditorInterface_PropertyChanged
@@ -11530,6 +11911,22 @@ func (ptr *QDesignerPropertyEditorInterface) IsReadOnly() bool {
 		return C.QDesignerPropertyEditorInterface_IsReadOnly(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQDesignerPropertyEditorInterface_MetaObject
+func callbackQDesignerPropertyEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerPropertyEditorInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerPropertyEditorInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDesignerPropertyEditorInterface) __addActions_actions_atList(i int) *widgets.QAction {
@@ -12573,6 +12970,21 @@ func (ptr *QDesignerPropertyEditorInterface) MetricDefault(m gui.QPaintDevice__P
 	return 0
 }
 
+//export callbackQDesignerPropertyEditorInterface_InitPainter
+func callbackQDesignerPropertyEditorInterface_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QDesignerPropertyEditorInterface) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDesignerPropertyEditorInterface_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQDesignerPropertyEditorInterface_EventFilter
 func callbackQDesignerPropertyEditorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -12695,22 +13107,6 @@ func (ptr *QDesignerPropertyEditorInterface) TimerEventDefault(event core.QTimer
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQDesignerPropertyEditorInterface_MetaObject
-func callbackQDesignerPropertyEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerPropertyEditorInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerPropertyEditorInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QDesignerPropertySheetExtension struct {
@@ -13649,6 +14045,61 @@ func NewQDesignerWidgetBoxInterfaceFromPointer(ptr unsafe.Pointer) (n *QDesigner
 	n.SetPointer(ptr)
 	return
 }
+func QDesignerWidgetBoxInterface_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerWidgetBoxInterface) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QDesignerWidgetBoxInterface_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QDesignerWidgetBoxInterface) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QDesignerWidgetBoxInterface_QDesignerWidgetBoxInterface_TrUtf8(sC, cC, C.int(int32(n))))
+}
 
 //export callbackQDesignerWidgetBoxInterface_Load
 func callbackQDesignerWidgetBoxInterface_Load(ptr unsafe.Pointer) C.char {
@@ -13846,6 +14297,22 @@ func (ptr *QDesignerWidgetBoxInterface) FileName() string {
 		return cGoUnpackString(C.QDesignerWidgetBoxInterface_FileName(ptr.Pointer()))
 	}
 	return ""
+}
+
+//export callbackQDesignerWidgetBoxInterface_MetaObject
+func callbackQDesignerWidgetBoxInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QDesignerWidgetBoxInterface) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QDesignerWidgetBoxInterface_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDesignerWidgetBoxInterface) __dropWidgets_item_list_newList() unsafe.Pointer {
@@ -14893,6 +15360,21 @@ func (ptr *QDesignerWidgetBoxInterface) MetricDefault(m gui.QPaintDevice__PaintD
 	return 0
 }
 
+//export callbackQDesignerWidgetBoxInterface_InitPainter
+func callbackQDesignerWidgetBoxInterface_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QDesignerWidgetBoxInterface) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QDesignerWidgetBoxInterface_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQDesignerWidgetBoxInterface_EventFilter
 func callbackQDesignerWidgetBoxInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -15017,22 +15499,6 @@ func (ptr *QDesignerWidgetBoxInterface) TimerEventDefault(event core.QTimerEvent
 	}
 }
 
-//export callbackQDesignerWidgetBoxInterface_MetaObject
-func callbackQDesignerWidgetBoxInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QDesignerWidgetBoxInterface) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QDesignerWidgetBoxInterface_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QExtensionFactory struct {
 	core.QObject
 	QAbstractExtensionFactory
@@ -15080,6 +15546,62 @@ func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QExtensionFactory_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionFactory_QExtensionFactory_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QExtensionFactory) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionFactory_QExtensionFactory_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QExtensionFactory_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionFactory_QExtensionFactory_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QExtensionFactory) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionFactory_QExtensionFactory_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 func (ptr *QExtensionFactory) ExtensionManager() *QExtensionManager {
@@ -15213,6 +15735,50 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQExtensionFactory_MetaObject
+func callbackQExtensionFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQExtensionFactoryFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QExtensionFactory) ConnectMetaObject(f func() *core.QMetaObject) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "metaObject"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", func() *core.QMetaObject {
+				signal.(func() *core.QMetaObject)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", f)
+		}
+	}
+}
+
+func (ptr *QExtensionFactory) DisconnectMetaObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "metaObject")
+	}
+}
+
+func (ptr *QExtensionFactory) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QExtensionFactory) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -15512,29 +16078,6 @@ func (ptr *QExtensionFactory) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQExtensionFactory_MetaObject
-func callbackQExtensionFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQExtensionFactoryFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QExtensionFactory) MetaObject() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObject(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QExtensionFactory) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QExtensionFactory_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QExtensionManager struct {
 	core.QObject
 	QAbstractExtensionManager
@@ -15582,6 +16125,62 @@ func NewQExtensionManager(parent core.QObject_ITF) *QExtensionManager {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QExtensionManager_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionManager_QExtensionManager_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QExtensionManager) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionManager_QExtensionManager_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QExtensionManager_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionManager_QExtensionManager_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QExtensionManager) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QExtensionManager_QExtensionManager_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQExtensionManager_RegisterExtensions
@@ -15688,9 +16287,47 @@ func (ptr *QExtensionManager) UnregisterExtensionsDefault(factory QAbstractExten
 	}
 }
 
+//export callbackQExtensionManager_DestroyQExtensionManager
+func callbackQExtensionManager_DestroyQExtensionManager(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QExtensionManager"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQExtensionManagerFromPointer(ptr).DestroyQExtensionManagerDefault()
+	}
+}
+
+func (ptr *QExtensionManager) ConnectDestroyQExtensionManager(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QExtensionManager"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QExtensionManager", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QExtensionManager", f)
+		}
+	}
+}
+
+func (ptr *QExtensionManager) DisconnectDestroyQExtensionManager() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QExtensionManager")
+	}
+}
+
 func (ptr *QExtensionManager) DestroyQExtensionManager() {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_DestroyQExtensionManager(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QExtensionManager) DestroyQExtensionManagerDefault() {
+	if ptr.Pointer() != nil {
+		C.QExtensionManager_DestroyQExtensionManagerDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -15754,6 +16391,50 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQExtensionManager_MetaObject
+func callbackQExtensionManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQExtensionManagerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QExtensionManager) ConnectMetaObject(f func() *core.QMetaObject) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "metaObject"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", func() *core.QMetaObject {
+				signal.(func() *core.QMetaObject)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "metaObject", f)
+		}
+	}
+}
+
+func (ptr *QExtensionManager) DisconnectMetaObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "metaObject")
+	}
+}
+
+func (ptr *QExtensionManager) MetaObject() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QExtensionManager) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -16051,29 +16732,6 @@ func (ptr *QExtensionManager) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QExtensionManager_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQExtensionManager_MetaObject
-func callbackQExtensionManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQExtensionManagerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QExtensionManager) MetaObject() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObject(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QExtensionManager) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QExtensionManager_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QFormBuilder struct {

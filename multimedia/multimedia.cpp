@@ -49,7 +49,6 @@
 #include <QCameraInfo>
 #include <QCameraInfoControl>
 #include <QCameraLocksControl>
-#include <QCameraViewfinder>
 #include <QCameraViewfinderSettings>
 #include <QCameraViewfinderSettingsControl>
 #include <QCameraViewfinderSettingsControl2>
@@ -57,6 +56,7 @@
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
+#include <QCustomAudioRoleControl>
 #include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDrag>
@@ -68,16 +68,7 @@
 #include <QExtensionFactory>
 #include <QExtensionManager>
 #include <QFocusEvent>
-#include <QGraphicsItem>
 #include <QGraphicsObject>
-#include <QGraphicsScene>
-#include <QGraphicsSceneContextMenuEvent>
-#include <QGraphicsSceneDragDropEvent>
-#include <QGraphicsSceneHoverEvent>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsSceneWheelEvent>
-#include <QGraphicsTransform>
-#include <QGraphicsVideoItem>
 #include <QGraphicsWidget>
 #include <QHideEvent>
 #include <QIODevice>
@@ -132,7 +123,6 @@
 #include <QPaintEngine>
 #include <QPaintEvent>
 #include <QPainter>
-#include <QPainterPath>
 #include <QPdfWriter>
 #include <QPoint>
 #include <QPointF>
@@ -147,13 +137,9 @@
 #include <QShowEvent>
 #include <QSignalSpy>
 #include <QSize>
-#include <QSizeF>
 #include <QSound>
 #include <QSoundEffect>
 #include <QString>
-#include <QStyle>
-#include <QStyleOption>
-#include <QStyleOptionGraphicsItem>
 #include <QTabletEvent>
 #include <QTime>
 #include <QTimer>
@@ -187,6 +173,7 @@ public:
 	QAudioFormat preferredFormat() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioDeviceInfo_PreferredFormat(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString deviceName() const { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioDeviceInfo_DeviceName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isFormatSupported(const QAudioFormat & format) const { return callbackQAbstractAudioDeviceInfo_IsFormatSupported(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioFormat*>(&format)) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioDeviceInfo_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAbstractAudioDeviceInfo_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAudioDeviceInfo_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractAudioDeviceInfo_ChildEvent(this, event); };
@@ -197,7 +184,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioDeviceInfo_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioDeviceInfo_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioDeviceInfo_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioDeviceInfo_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAbstractAudioDeviceInfo*)
@@ -229,6 +215,16 @@ struct QtMultimedia_PackedList QAbstractAudioDeviceInfo_SupportedSampleSizes(voi
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedSampleSizes()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_QAbstractAudioDeviceInfo_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray ta68e89 = QAbstractAudioDeviceInfo::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(ta68e89.prepend("WHITESPACE").constData()+10), ta68e89.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_QAbstractAudioDeviceInfo_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7e7e0e = QAbstractAudioDeviceInfo::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t7e7e0e.prepend("WHITESPACE").constData()+10), t7e7e0e.size()-10 }; });
+}
+
 struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
 	return ({ QByteArray t6d2a0e = static_cast<QAbstractAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6d2a0e.prepend("WHITESPACE").constData()+10), t6d2a0e.size()-10 }; });
@@ -247,6 +243,11 @@ struct QtMultimedia_PackedString QAbstractAudioDeviceInfo_DeviceName(void* ptr)
 char QAbstractAudioDeviceInfo_IsFormatSupported(void* ptr, void* format)
 {
 	return static_cast<QAbstractAudioDeviceInfo*>(ptr)->isFormatSupported(*static_cast<QAudioFormat*>(format));
+}
+
+void* QAbstractAudioDeviceInfo_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::metaObject());
 }
 
 long long QAbstractAudioDeviceInfo___supportedByteOrders_atList(void* ptr, int i)
@@ -354,8 +355,6 @@ void QAbstractAudioDeviceInfo___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -384,8 +383,6 @@ void QAbstractAudioDeviceInfo___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -414,8 +411,6 @@ void QAbstractAudioDeviceInfo___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -444,8 +439,6 @@ void QAbstractAudioDeviceInfo___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -474,8 +467,6 @@ char QAbstractAudioDeviceInfo_EventFilterDefault(void* ptr, void* watched, void*
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -519,11 +510,6 @@ void QAbstractAudioDeviceInfo_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAbstractAudioDeviceInfo_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstractAudioDeviceInfo*>(ptr)->QAbstractAudioDeviceInfo::metaObject());
-}
-
 class MyQAbstractAudioInput: public QAbstractAudioInput
 {
 public:
@@ -543,6 +529,7 @@ public:
 	QAudio::Error error() const { return static_cast<QAudio::Error>(callbackQAbstractAudioInput_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	QAudio::State state() const { return static_cast<QAudio::State>(callbackQAbstractAudioInput_State(const_cast<void*>(static_cast<const void*>(this)))); };
 	QAudioFormat format() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioInput_Format(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int bufferSize() const { return callbackQAbstractAudioInput_BufferSize(const_cast<void*>(static_cast<const void*>(this))); };
 	int bytesReady() const { return callbackQAbstractAudioInput_BytesReady(const_cast<void*>(static_cast<const void*>(this))); };
 	int notifyInterval() const { return callbackQAbstractAudioInput_NotifyInterval(const_cast<void*>(static_cast<const void*>(this))); };
@@ -560,7 +547,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioInput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioInput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioInput_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAbstractAudioInput*)
@@ -570,6 +556,16 @@ int QAbstractAudioInput_QAbstractAudioInput_QRegisterMetaType(){qRegisterMetaTyp
 void* QAbstractAudioInput_Start2(void* ptr)
 {
 	return static_cast<QAbstractAudioInput*>(ptr)->start();
+}
+
+struct QtMultimedia_PackedString QAbstractAudioInput_QAbstractAudioInput_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tf434fc = QAbstractAudioInput::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf434fc.prepend("WHITESPACE").constData()+10), tf434fc.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractAudioInput_QAbstractAudioInput_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t08eda3 = QAbstractAudioInput::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t08eda3.prepend("WHITESPACE").constData()+10), t08eda3.size()-10 }; });
 }
 
 void QAbstractAudioInput_ConnectErrorChanged(void* ptr)
@@ -679,6 +675,11 @@ void* QAbstractAudioInput_Format(void* ptr)
 	return new QAudioFormat(static_cast<QAbstractAudioInput*>(ptr)->format());
 }
 
+void* QAbstractAudioInput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::metaObject());
+}
+
 int QAbstractAudioInput_BufferSize(void* ptr)
 {
 	return static_cast<QAbstractAudioInput*>(ptr)->bufferSize();
@@ -739,8 +740,6 @@ void QAbstractAudioInput___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -769,8 +768,6 @@ void QAbstractAudioInput___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -799,8 +796,6 @@ void QAbstractAudioInput___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -829,8 +824,6 @@ void QAbstractAudioInput___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -859,8 +852,6 @@ char QAbstractAudioInput_EventFilterDefault(void* ptr, void* watched, void* even
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -904,11 +895,6 @@ void QAbstractAudioInput_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAbstractAudioInput_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstractAudioInput*>(ptr)->QAbstractAudioInput::metaObject());
-}
-
 class MyQAbstractAudioOutput: public QAbstractAudioOutput
 {
 public:
@@ -930,6 +916,7 @@ public:
 	QAudio::State state() const { return static_cast<QAudio::State>(callbackQAbstractAudioOutput_State(const_cast<void*>(static_cast<const void*>(this)))); };
 	QAudioFormat format() const { return *static_cast<QAudioFormat*>(callbackQAbstractAudioOutput_Format(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString category() const { return ({ QtMultimedia_PackedString tempVal = callbackQAbstractAudioOutput_Category(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int bufferSize() const { return callbackQAbstractAudioOutput_BufferSize(const_cast<void*>(static_cast<const void*>(this))); };
 	int bytesFree() const { return callbackQAbstractAudioOutput_BytesFree(const_cast<void*>(static_cast<const void*>(this))); };
 	int notifyInterval() const { return callbackQAbstractAudioOutput_NotifyInterval(const_cast<void*>(static_cast<const void*>(this))); };
@@ -947,7 +934,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAudioOutput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractAudioOutput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAudioOutput_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAbstractAudioOutput*)
@@ -957,6 +943,16 @@ int QAbstractAudioOutput_QAbstractAudioOutput_QRegisterMetaType(){qRegisterMetaT
 void* QAbstractAudioOutput_Start2(void* ptr)
 {
 	return static_cast<QAbstractAudioOutput*>(ptr)->start();
+}
+
+struct QtMultimedia_PackedString QAbstractAudioOutput_QAbstractAudioOutput_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t693936 = QAbstractAudioOutput::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t693936.prepend("WHITESPACE").constData()+10), t693936.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractAudioOutput_QAbstractAudioOutput_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t7e19f0 = QAbstractAudioOutput::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t7e19f0.prepend("WHITESPACE").constData()+10), t7e19f0.size()-10 }; });
 }
 
 void QAbstractAudioOutput_ConnectErrorChanged(void* ptr)
@@ -1091,6 +1087,11 @@ struct QtMultimedia_PackedString QAbstractAudioOutput_CategoryDefault(void* ptr)
 		return ({ QByteArray tf25276 = static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tf25276.prepend("WHITESPACE").constData()+10), tf25276.size()-10 }; });
 }
 
+void* QAbstractAudioOutput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::metaObject());
+}
+
 int QAbstractAudioOutput_BufferSize(void* ptr)
 {
 	return static_cast<QAbstractAudioOutput*>(ptr)->bufferSize();
@@ -1156,8 +1157,6 @@ void QAbstractAudioOutput___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1186,8 +1185,6 @@ void QAbstractAudioOutput___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1216,8 +1213,6 @@ void QAbstractAudioOutput___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1246,8 +1241,6 @@ void QAbstractAudioOutput___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1276,8 +1269,6 @@ char QAbstractAudioOutput_EventFilterDefault(void* ptr, void* watched, void* eve
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -1321,11 +1312,6 @@ void QAbstractAudioOutput_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAbstractAudioOutput_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::metaObject());
-}
-
 class MyQAbstractPlanarVideoBuffer: public QAbstractPlanarVideoBuffer
 {
 public:
@@ -1333,7 +1319,7 @@ public:
 	uchar * map(QAbstractVideoBuffer::MapMode mode, int * numBytes, int * bytesPerLine) { return static_cast<uchar*>(static_cast<void*>(callbackQAbstractPlanarVideoBuffer_Map(this, mode, *numBytes, *bytesPerLine))); };
 	void release() { callbackQAbstractVideoBuffer_Release(this); };
 	void unmap() { callbackQAbstractPlanarVideoBuffer_Unmap(this); };
-	MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractPlanarVideoBuffer_MapMode(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAbstractVideoBuffer::MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractPlanarVideoBuffer_MapMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQAbstractVideoBuffer_Handle(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
@@ -1383,12 +1369,12 @@ long long QAbstractPlanarVideoBuffer_MapModeDefault(void* ptr)
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer
 {
 public:
-	MyQAbstractVideoBuffer(HandleType ty) : QAbstractVideoBuffer(ty) {};
+	MyQAbstractVideoBuffer(QAbstractVideoBuffer::HandleType ty) : QAbstractVideoBuffer(ty) {};
 	uchar * map(QAbstractVideoBuffer::MapMode mode, int * numBytes, int * bytesPerLine) { return static_cast<uchar*>(static_cast<void*>(callbackQAbstractVideoBuffer_Map(this, mode, *numBytes, *bytesPerLine))); };
 	void release() { callbackQAbstractVideoBuffer_Release(this); };
 	void unmap() { callbackQAbstractVideoBuffer_Unmap(this); };
 	 ~MyQAbstractVideoBuffer() { callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer(this); };
-	MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractVideoBuffer_MapMode(const_cast<void*>(static_cast<const void*>(this)))); };
+	QAbstractVideoBuffer::MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractVideoBuffer_MapMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQAbstractVideoBuffer_Handle(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
@@ -1461,9 +1447,9 @@ long long QAbstractVideoBuffer_M_type(void* ptr)
 	return static_cast<QAbstractVideoBuffer*>(ptr)->m_type;
 }
 
-void QAbstractVideoBuffer_SetM_type(void* ptr, long long vha)
+void QAbstractVideoBuffer_SetM_type(void* ptr, long long vqa)
 {
-	static_cast<QAbstractVideoBuffer*>(ptr)->m_type = static_cast<QAbstractVideoBuffer::HandleType>(vha);
+	static_cast<QAbstractVideoBuffer*>(ptr)->m_type = static_cast<QAbstractVideoBuffer::HandleType>(vqa);
 }
 
 class MyQAbstractVideoFilter: public QAbstractVideoFilter
@@ -1472,6 +1458,7 @@ public:
 	MyQAbstractVideoFilter(QObject *parent = Q_NULLPTR) : QAbstractVideoFilter(parent) {QAbstractVideoFilter_QAbstractVideoFilter_QRegisterMetaType();};
 	QVideoFilterRunnable * createFilterRunnable() { return static_cast<QVideoFilterRunnable*>(callbackQAbstractVideoFilter_CreateFilterRunnable(this)); };
 	void Signal_ActiveChanged() { callbackQAbstractVideoFilter_ActiveChanged(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoFilter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAbstractVideoFilter_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractVideoFilter_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractVideoFilter_ChildEvent(this, event); };
@@ -1482,7 +1469,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractVideoFilter_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractVideoFilter_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractVideoFilter_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoFilter_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAbstractVideoFilter*)
@@ -1530,6 +1516,16 @@ void* QAbstractVideoFilter_NewQAbstractVideoFilter(void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QAbstractVideoFilter_QAbstractVideoFilter_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray td82ebe = QAbstractVideoFilter::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(td82ebe.prepend("WHITESPACE").constData()+10), td82ebe.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractVideoFilter_QAbstractVideoFilter_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray ta2c023 = QAbstractVideoFilter::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(ta2c023.prepend("WHITESPACE").constData()+10), ta2c023.size()-10 }; });
+}
+
 void* QAbstractVideoFilter_CreateFilterRunnable(void* ptr)
 {
 	return static_cast<QAbstractVideoFilter*>(ptr)->createFilterRunnable();
@@ -1560,6 +1556,11 @@ char QAbstractVideoFilter_IsActive(void* ptr)
 	return static_cast<QAbstractVideoFilter*>(ptr)->isActive();
 }
 
+void* QAbstractVideoFilter_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::metaObject());
+}
+
 void* QAbstractVideoFilter___dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -1585,8 +1586,6 @@ void QAbstractVideoFilter___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1615,8 +1614,6 @@ void QAbstractVideoFilter___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1645,8 +1642,6 @@ void QAbstractVideoFilter___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1675,8 +1670,6 @@ void QAbstractVideoFilter___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -1705,8 +1698,6 @@ char QAbstractVideoFilter_EventFilterDefault(void* ptr, void* watched, void* eve
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -1750,25 +1741,22 @@ void QAbstractVideoFilter_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAbstractVideoFilter_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::metaObject());
-}
-
 class MyQAbstractVideoSurface: public QAbstractVideoSurface
 {
 public:
 	MyQAbstractVideoSurface(QObject *parent = Q_NULLPTR) : QAbstractVideoSurface(parent) {QAbstractVideoSurface_QAbstractVideoSurface_QRegisterMetaType();};
-	void stop() { callbackQAbstractVideoSurface_Stop(this); };
 	bool present(const QVideoFrame & frame) { return callbackQAbstractVideoSurface_Present(this, const_cast<QVideoFrame*>(&frame)) != 0; };
 	bool start(const QVideoSurfaceFormat & format) { return callbackQAbstractVideoSurface_Start(this, const_cast<QVideoSurfaceFormat*>(&format)) != 0; };
 	void Signal_ActiveChanged(bool active) { callbackQAbstractVideoSurface_ActiveChanged(this, active); };
 	void Signal_NativeResolutionChanged(const QSize & resolution) { callbackQAbstractVideoSurface_NativeResolutionChanged(this, const_cast<QSize*>(&resolution)); };
+	void stop() { callbackQAbstractVideoSurface_Stop(this); };
 	void Signal_SupportedFormatsChanged() { callbackQAbstractVideoSurface_SupportedFormatsChanged(this); };
 	void Signal_SurfaceFormatChanged(const QVideoSurfaceFormat & format) { callbackQAbstractVideoSurface_SurfaceFormatChanged(this, const_cast<QVideoSurfaceFormat*>(&format)); };
+	 ~MyQAbstractVideoSurface() { callbackQAbstractVideoSurface_DestroyQAbstractVideoSurface(this); };
 	QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType ty) const { return ({ QList<QVideoFrame::PixelFormat>* tmpP = static_cast<QList<QVideoFrame::PixelFormat>*>(callbackQAbstractVideoSurface_SupportedPixelFormats(const_cast<void*>(static_cast<const void*>(this)), ty)); QList<QVideoFrame::PixelFormat> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QVideoSurfaceFormat nearestFormat(const QVideoSurfaceFormat & format) const { return *static_cast<QVideoSurfaceFormat*>(callbackQAbstractVideoSurface_NearestFormat(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoSurfaceFormat*>(&format))); };
 	bool isFormatSupported(const QVideoSurfaceFormat & format) const { return callbackQAbstractVideoSurface_IsFormatSupported(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoSurfaceFormat*>(&format)) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoSurface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAbstractVideoSurface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractVideoSurface_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAbstractVideoSurface_ChildEvent(this, event); };
@@ -1779,27 +1767,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractVideoSurface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAbstractVideoSurface_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractVideoSurface_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractVideoSurface_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAbstractVideoSurface*)
 
 int QAbstractVideoSurface_QAbstractVideoSurface_QRegisterMetaType(){qRegisterMetaType<QAbstractVideoSurface*>(); return qRegisterMetaType<MyQAbstractVideoSurface*>();}
-
-void QAbstractVideoSurface_Stop(void* ptr)
-{
-	static_cast<QAbstractVideoSurface*>(ptr)->stop();
-}
-
-void QAbstractVideoSurface_StopDefault(void* ptr)
-{
-		static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::stop();
-}
-
-void* QAbstractVideoSurface_NativeResolution(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<QAbstractVideoSurface*>(ptr)->nativeResolution(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
 
 void* QAbstractVideoSurface_NewQAbstractVideoSurface(void* parent)
 {
@@ -1840,6 +1812,16 @@ void* QAbstractVideoSurface_NewQAbstractVideoSurface(void* parent)
 	} else {
 		return new MyQAbstractVideoSurface(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtMultimedia_PackedString QAbstractVideoSurface_QAbstractVideoSurface_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t8474e3 = QAbstractVideoSurface::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t8474e3.prepend("WHITESPACE").constData()+10), t8474e3.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractVideoSurface_QAbstractVideoSurface_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t924e73 = QAbstractVideoSurface::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t924e73.prepend("WHITESPACE").constData()+10), t924e73.size()-10 }; });
 }
 
 char QAbstractVideoSurface_Present(void* ptr, void* frame)
@@ -1897,6 +1879,16 @@ void QAbstractVideoSurface_SetNativeResolution(void* ptr, void* resolution)
 	static_cast<QAbstractVideoSurface*>(ptr)->setNativeResolution(*static_cast<QSize*>(resolution));
 }
 
+void QAbstractVideoSurface_Stop(void* ptr)
+{
+	static_cast<QAbstractVideoSurface*>(ptr)->stop();
+}
+
+void QAbstractVideoSurface_StopDefault(void* ptr)
+{
+		static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::stop();
+}
+
 void QAbstractVideoSurface_ConnectSupportedFormatsChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractVideoSurface*>(ptr), static_cast<void (QAbstractVideoSurface::*)()>(&QAbstractVideoSurface::supportedFormatsChanged), static_cast<MyQAbstractVideoSurface*>(ptr), static_cast<void (MyQAbstractVideoSurface::*)()>(&MyQAbstractVideoSurface::Signal_SupportedFormatsChanged));
@@ -1932,6 +1924,12 @@ void QAbstractVideoSurface_DestroyQAbstractVideoSurface(void* ptr)
 	static_cast<QAbstractVideoSurface*>(ptr)->~QAbstractVideoSurface();
 }
 
+void QAbstractVideoSurface_DestroyQAbstractVideoSurfaceDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QAbstractVideoSurface_Error(void* ptr)
 {
 	return static_cast<QAbstractVideoSurface*>(ptr)->error();
@@ -1940,6 +1938,11 @@ long long QAbstractVideoSurface_Error(void* ptr)
 struct QtMultimedia_PackedList QAbstractVideoSurface_SupportedPixelFormats(void* ptr, long long ty)
 {
 	return ({ QList<QVideoFrame::PixelFormat>* tmpValue = new QList<QVideoFrame::PixelFormat>(static_cast<QAbstractVideoSurface*>(ptr)->supportedPixelFormats(static_cast<QAbstractVideoBuffer::HandleType>(ty))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QAbstractVideoSurface_NativeResolution(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<QAbstractVideoSurface*>(ptr)->nativeResolution(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QAbstractVideoSurface_NearestFormat(void* ptr, void* format)
@@ -1970,6 +1973,11 @@ char QAbstractVideoSurface_IsFormatSupported(void* ptr, void* format)
 char QAbstractVideoSurface_IsFormatSupportedDefault(void* ptr, void* format)
 {
 		return static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::isFormatSupported(*static_cast<QVideoSurfaceFormat*>(format));
+}
+
+void* QAbstractVideoSurface_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::metaObject());
 }
 
 long long QAbstractVideoSurface___supportedPixelFormats_atList(void* ptr, int i)
@@ -2013,8 +2021,6 @@ void QAbstractVideoSurface___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -2043,8 +2049,6 @@ void QAbstractVideoSurface___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -2073,8 +2077,6 @@ void QAbstractVideoSurface___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -2103,8 +2105,6 @@ void QAbstractVideoSurface___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -2133,8 +2133,6 @@ char QAbstractVideoSurface_EventFilterDefault(void* ptr, void* watched, void* ev
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -2178,11 +2176,6 @@ void QAbstractVideoSurface_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAbstractVideoSurface_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::metaObject());
-}
-
 double QAudio_QAudio_ConvertVolume(double volume, long long from, long long to)
 {
 	return QAudio::convertVolume(volume, static_cast<QAudio::VolumeScale>(from), static_cast<QAudio::VolumeScale>(to));
@@ -2208,11 +2201,6 @@ void* QAudioBuffer_NewQAudioBuffer5(int numFrames, void* format, long long start
 	return new QAudioBuffer(numFrames, *static_cast<QAudioFormat*>(format), startTime);
 }
 
-void* QAudioBuffer_Data4(void* ptr)
-{
-	return static_cast<QAudioBuffer*>(ptr)->data();
-}
-
 void* QAudioBuffer_Data2(void* ptr)
 {
 	return static_cast<QAudioBuffer*>(ptr)->data();
@@ -2231,16 +2219,6 @@ void* QAudioBuffer_Format(void* ptr)
 char QAudioBuffer_IsValid(void* ptr)
 {
 	return static_cast<QAudioBuffer*>(ptr)->isValid();
-}
-
-void* QAudioBuffer_ConstData2(void* ptr)
-{
-	return const_cast<void*>(static_cast<QAudioBuffer*>(ptr)->constData());
-}
-
-void* QAudioBuffer_Data3(void* ptr)
-{
-	return const_cast<void*>(static_cast<QAudioBuffer*>(ptr)->data());
 }
 
 void* QAudioBuffer_ConstData(void* ptr)
@@ -2293,7 +2271,10 @@ public:
 	void start() { callbackQAudioDecoder_Start(this); };
 	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoder_StateChanged(this, state); };
 	void stop() { callbackQAudioDecoder_Stop(this); };
+	 ~MyQAudioDecoder() { callbackQAudioDecoder_DestroyQAudioDecoder(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool bind(QObject * object) { return callbackQMediaObject_Bind(this, object) != 0; };
+	
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObject_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObject_AvailabilityChanged(this, available); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
@@ -2314,7 +2295,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioDecoder*)
@@ -2544,14 +2524,25 @@ void QAudioDecoder_DestroyQAudioDecoder(void* ptr)
 	static_cast<QAudioDecoder*>(ptr)->~QAudioDecoder();
 }
 
-long long QAudioDecoder_Error(void* ptr)
+void QAudioDecoder_DestroyQAudioDecoderDefault(void* ptr)
 {
-	return static_cast<QAudioDecoder*>(ptr)->error();
+	Q_UNUSED(ptr);
+
 }
 
 void* QAudioDecoder_Read(void* ptr)
 {
 	return new QAudioBuffer(static_cast<QAudioDecoder*>(ptr)->read());
+}
+
+long long QAudioDecoder_Error(void* ptr)
+{
+	return static_cast<QAudioDecoder*>(ptr)->error();
+}
+
+long long QAudioDecoder_State(void* ptr)
+{
+	return static_cast<QAudioDecoder*>(ptr)->state();
 }
 
 void* QAudioDecoder_AudioFormat(void* ptr)
@@ -2572,11 +2563,6 @@ struct QtMultimedia_PackedString QAudioDecoder_ErrorString(void* ptr)
 struct QtMultimedia_PackedString QAudioDecoder_SourceFilename(void* ptr)
 {
 	return ({ QByteArray t0d51d3 = static_cast<QAudioDecoder*>(ptr)->sourceFilename().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0d51d3.prepend("WHITESPACE").constData()+10), t0d51d3.size()-10 }; });
-}
-
-long long QAudioDecoder_State(void* ptr)
-{
-	return static_cast<QAudioDecoder*>(ptr)->state();
 }
 
 char QAudioDecoder_BufferAvailable(void* ptr)
@@ -2611,15 +2597,18 @@ public:
 	void setSourceFilename(const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQAudioDecoderControl_SetSourceFilename(this, fileNamePacked); };
 	void Signal_SourceChanged() { callbackQAudioDecoderControl_SourceChanged(this); };
 	void start() { callbackQAudioDecoderControl_Start(this); };
-	void Signal_StateChanged(QAudioDecoder::State state) { callbackQAudioDecoderControl_StateChanged(this, state); };
+	void Signal_StateChanged(QAudioDecoder::State newState) { callbackQAudioDecoderControl_StateChanged(this, newState); };
 	void stop() { callbackQAudioDecoderControl_Stop(this); };
+	 ~MyQAudioDecoderControl() { callbackQAudioDecoderControl_DestroyQAudioDecoderControl(this); };
 	QAudioDecoder::State state() const { return static_cast<QAudioDecoder::State>(callbackQAudioDecoderControl_State(const_cast<void*>(static_cast<const void*>(this)))); };
 	QAudioFormat audioFormat() const { return *static_cast<QAudioFormat*>(callbackQAudioDecoderControl_AudioFormat(const_cast<void*>(static_cast<const void*>(this)))); };
 	QIODevice * sourceDevice() const { return static_cast<QIODevice*>(callbackQAudioDecoderControl_SourceDevice(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString sourceFilename() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioDecoderControl_SourceFilename(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool bufferAvailable() const { return callbackQAudioDecoderControl_BufferAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 duration() const { return callbackQAudioDecoderControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 position() const { return callbackQAudioDecoderControl_Position(const_cast<void*>(static_cast<const void*>(this))); };
+	
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -2630,7 +2619,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioDecoderControl*)
@@ -2834,9 +2822,9 @@ void QAudioDecoderControl_DisconnectStateChanged(void* ptr)
 	QObject::disconnect(static_cast<QAudioDecoderControl*>(ptr), static_cast<void (QAudioDecoderControl::*)(QAudioDecoder::State)>(&QAudioDecoderControl::stateChanged), static_cast<MyQAudioDecoderControl*>(ptr), static_cast<void (MyQAudioDecoderControl::*)(QAudioDecoder::State)>(&MyQAudioDecoderControl::Signal_StateChanged));
 }
 
-void QAudioDecoderControl_StateChanged(void* ptr, long long state)
+void QAudioDecoderControl_StateChanged(void* ptr, long long newState)
 {
-	static_cast<QAudioDecoderControl*>(ptr)->stateChanged(static_cast<QAudioDecoder::State>(state));
+	static_cast<QAudioDecoderControl*>(ptr)->stateChanged(static_cast<QAudioDecoder::State>(newState));
 }
 
 void QAudioDecoderControl_Stop(void* ptr)
@@ -2847,6 +2835,12 @@ void QAudioDecoderControl_Stop(void* ptr)
 void QAudioDecoderControl_DestroyQAudioDecoderControl(void* ptr)
 {
 	static_cast<QAudioDecoderControl*>(ptr)->~QAudioDecoderControl();
+}
+
+void QAudioDecoderControl_DestroyQAudioDecoderControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 long long QAudioDecoderControl_State(void* ptr)
@@ -3247,8 +3241,9 @@ public:
 	 ~MyQAudioEncoderSettingsControl() { callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(this); };
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<int> supportedSampleRates(const QAudioEncoderSettings & settings, bool * continuous) const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAudioEncoderSettingsControl_SupportedSampleRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioEncoderSettings*>(&settings), *continuous)); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QString codecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString codecDescription(const QString & codecName) const { QByteArray t06d49e = codecName.toUtf8(); QtMultimedia_PackedString codecNamePacked = { const_cast<char*>(t06d49e.prepend("WHITESPACE").constData()+10), t06d49e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedAudioCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -3259,7 +3254,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioEncoderSettingsControl*)
@@ -3334,9 +3328,9 @@ struct QtMultimedia_PackedList QAudioEncoderSettingsControl_SupportedSampleRates
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedSampleRates(*static_cast<QAudioEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedString QAudioEncoderSettingsControl_CodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
+struct QtMultimedia_PackedString QAudioEncoderSettingsControl_CodecDescription(void* ptr, struct QtMultimedia_PackedString codecName)
 {
-	return ({ QByteArray t33db00 = static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString::fromUtf8(codec.data, codec.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t33db00.prepend("WHITESPACE").constData()+10), t33db00.size()-10 }; });
+	return ({ QByteArray t3cf24d = static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString::fromUtf8(codecName.data, codecName.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t3cf24d.prepend("WHITESPACE").constData()+10), t3cf24d.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr)
@@ -3481,6 +3475,8 @@ public:
 	MyQAudioInput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioInput(audioDevice, format, parent) {QAudioInput_QAudioInput_QRegisterMetaType();};
 	MyQAudioInput(const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioInput(format, parent) {QAudioInput_QAudioInput_QRegisterMetaType();};
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioInput_StateChanged(this, state); };
+	 ~MyQAudioInput() { callbackQAudioInput_DestroyQAudioInput(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAudioInput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioInput_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAudioInput_ChildEvent(this, event); };
@@ -3491,7 +3487,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAudioInput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioInput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioInput_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioInput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioInput*)
@@ -3585,6 +3580,16 @@ void* QAudioInput_Start2(void* ptr)
 	return static_cast<QAudioInput*>(ptr)->start();
 }
 
+struct QtMultimedia_PackedString QAudioInput_QAudioInput_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t29a292 = QAudioInput::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t29a292.prepend("WHITESPACE").constData()+10), t29a292.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAudioInput_QAudioInput_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tdb9637 = QAudioInput::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdb9637.prepend("WHITESPACE").constData()+10), tdb9637.size()-10 }; });
+}
+
 void QAudioInput_Reset(void* ptr)
 {
 	static_cast<QAudioInput*>(ptr)->reset();
@@ -3646,6 +3651,12 @@ void QAudioInput_DestroyQAudioInput(void* ptr)
 	static_cast<QAudioInput*>(ptr)->~QAudioInput();
 }
 
+void QAudioInput_DestroyQAudioInputDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QAudioInput_Error(void* ptr)
 {
 	return static_cast<QAudioInput*>(ptr)->error();
@@ -3659,6 +3670,11 @@ long long QAudioInput_State(void* ptr)
 void* QAudioInput_Format(void* ptr)
 {
 	return new QAudioFormat(static_cast<QAudioInput*>(ptr)->format());
+}
+
+void* QAudioInput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAudioInput*>(ptr)->QAudioInput::metaObject());
 }
 
 int QAudioInput_BufferSize(void* ptr)
@@ -3721,8 +3737,6 @@ void QAudioInput___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -3751,8 +3765,6 @@ void QAudioInput___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -3781,8 +3793,6 @@ void QAudioInput___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -3811,8 +3821,6 @@ void QAudioInput___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -3841,8 +3849,6 @@ char QAudioInput_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioInput*>(ptr)->QAudioInput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAudioInput*>(ptr)->QAudioInput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioInput*>(ptr)->QAudioInput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -3886,11 +3892,6 @@ void QAudioInput_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAudioInput*>(ptr)->QAudioInput::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAudioInput_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAudioInput*>(ptr)->QAudioInput::metaObject());
-}
-
 class MyQAudioInputSelectorControl: public QAudioInputSelectorControl
 {
 public:
@@ -3901,6 +3902,7 @@ public:
 	QString activeInput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_ActiveInput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString defaultInput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_DefaultInput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString inputDescription(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioInputSelectorControl_InputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -3911,7 +3913,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioInputSelectorControl*)
@@ -4001,6 +4002,8 @@ public:
 	MyQAudioOutput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioOutput(audioDevice, format, parent) {QAudioOutput_QAudioOutput_QRegisterMetaType();};
 	MyQAudioOutput(const QAudioFormat &format = QAudioFormat(), QObject *parent = Q_NULLPTR) : QAudioOutput(format, parent) {QAudioOutput_QAudioOutput_QRegisterMetaType();};
 	void Signal_StateChanged(QAudio::State state) { callbackQAudioOutput_StateChanged(this, state); };
+	 ~MyQAudioOutput() { callbackQAudioOutput_DestroyQAudioOutput(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAudioOutput_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioOutput_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAudioOutput_ChildEvent(this, event); };
@@ -4011,7 +4014,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAudioOutput_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioOutput_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioOutput_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioOutput_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioOutput*)
@@ -4105,6 +4107,16 @@ void* QAudioOutput_Start2(void* ptr)
 	return static_cast<QAudioOutput*>(ptr)->start();
 }
 
+struct QtMultimedia_PackedString QAudioOutput_QAudioOutput_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t9bd639 = QAudioOutput::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t9bd639.prepend("WHITESPACE").constData()+10), t9bd639.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAudioOutput_QAudioOutput_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t26f045 = QAudioOutput::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26f045.prepend("WHITESPACE").constData()+10), t26f045.size()-10 }; });
+}
+
 void QAudioOutput_Reset(void* ptr)
 {
 	static_cast<QAudioOutput*>(ptr)->reset();
@@ -4171,6 +4183,12 @@ void QAudioOutput_DestroyQAudioOutput(void* ptr)
 	static_cast<QAudioOutput*>(ptr)->~QAudioOutput();
 }
 
+void QAudioOutput_DestroyQAudioOutputDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QAudioOutput_Error(void* ptr)
 {
 	return static_cast<QAudioOutput*>(ptr)->error();
@@ -4189,6 +4207,11 @@ void* QAudioOutput_Format(void* ptr)
 struct QtMultimedia_PackedString QAudioOutput_Category(void* ptr)
 {
 	return ({ QByteArray t5fbcba = static_cast<QAudioOutput*>(ptr)->category().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t5fbcba.prepend("WHITESPACE").constData()+10), t5fbcba.size()-10 }; });
+}
+
+void* QAudioOutput_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAudioOutput*>(ptr)->QAudioOutput::metaObject());
 }
 
 int QAudioOutput_BufferSize(void* ptr)
@@ -4251,8 +4274,6 @@ void QAudioOutput___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4281,8 +4302,6 @@ void QAudioOutput___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4311,8 +4330,6 @@ void QAudioOutput___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4341,8 +4358,6 @@ void QAudioOutput___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4371,8 +4386,6 @@ char QAudioOutput_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioOutput*>(ptr)->QAudioOutput::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAudioOutput*>(ptr)->QAudioOutput::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioOutput*>(ptr)->QAudioOutput::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -4416,11 +4429,6 @@ void QAudioOutput_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAudioOutput*>(ptr)->QAudioOutput::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAudioOutput_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAudioOutput*>(ptr)->QAudioOutput::metaObject());
-}
-
 class MyQAudioOutputSelectorControl: public QAudioOutputSelectorControl
 {
 public:
@@ -4431,6 +4439,7 @@ public:
 	QString activeOutput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_ActiveOutput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString defaultOutput() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_DefaultOutput(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString outputDescription(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioOutputSelectorControl_OutputDescription(const_cast<void*>(static_cast<const void*>(this)), namePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -4441,7 +4450,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioOutputSelectorControl*)
@@ -4531,6 +4539,8 @@ public:
 	MyQAudioProbe(QObject *parent = Q_NULLPTR) : QAudioProbe(parent) {QAudioProbe_QAudioProbe_QRegisterMetaType();};
 	void Signal_AudioBufferProbed(const QAudioBuffer & buffer) { callbackQAudioProbe_AudioBufferProbed(this, const_cast<QAudioBuffer*>(&buffer)); };
 	void Signal_Flush() { callbackQAudioProbe_Flush(this); };
+	 ~MyQAudioProbe() { callbackQAudioProbe_DestroyQAudioProbe(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAudioProbe_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioProbe_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAudioProbe_ChildEvent(this, event); };
@@ -4541,7 +4551,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAudioProbe_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioProbe_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioProbe_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioProbe*)
@@ -4589,6 +4598,16 @@ void* QAudioProbe_NewQAudioProbe(void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QAudioProbe_QAudioProbe_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t445caf = QAudioProbe::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t445caf.prepend("WHITESPACE").constData()+10), t445caf.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAudioProbe_QAudioProbe_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tdc84a5 = QAudioProbe::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdc84a5.prepend("WHITESPACE").constData()+10), tdc84a5.size()-10 }; });
+}
+
 char QAudioProbe_SetSource(void* ptr, void* source)
 {
 	return static_cast<QAudioProbe*>(ptr)->setSource(static_cast<QMediaObject*>(source));
@@ -4634,9 +4653,20 @@ void QAudioProbe_DestroyQAudioProbe(void* ptr)
 	static_cast<QAudioProbe*>(ptr)->~QAudioProbe();
 }
 
+void QAudioProbe_DestroyQAudioProbeDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 char QAudioProbe_IsActive(void* ptr)
 {
 	return static_cast<QAudioProbe*>(ptr)->isActive();
+}
+
+void* QAudioProbe_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAudioProbe*>(ptr)->QAudioProbe::metaObject());
 }
 
 void* QAudioProbe___dynamicPropertyNames_atList(void* ptr, int i)
@@ -4664,8 +4694,6 @@ void QAudioProbe___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4694,8 +4722,6 @@ void QAudioProbe___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4724,8 +4750,6 @@ void QAudioProbe___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4754,8 +4778,6 @@ void QAudioProbe___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -4784,8 +4806,6 @@ char QAudioProbe_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioProbe*>(ptr)->QAudioProbe::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAudioProbe*>(ptr)->QAudioProbe::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioProbe*>(ptr)->QAudioProbe::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -4829,11 +4849,6 @@ void QAudioProbe_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAudioProbe*>(ptr)->QAudioProbe::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAudioProbe_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAudioProbe*>(ptr)->QAudioProbe::metaObject());
-}
-
 class MyQAudioRecorder: public QAudioRecorder
 {
 public:
@@ -4841,6 +4856,9 @@ public:
 	void Signal_AudioInputChanged(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_AudioInputChanged(this, namePacked); };
 	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorder_AvailableAudioInputsChanged(this); };
 	void setAudioInput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_SetAudioInput(this, namePacked); };
+	 ~MyQAudioRecorder() { callbackQAudioRecorder_DestroyQAudioRecorder(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorder_ActualLocationChanged(this, const_cast<QUrl*>(&location)); };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaRecorder_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorder_AvailabilityChanged(this, available); };
@@ -4870,7 +4888,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaRecorder_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaRecorder_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
 
@@ -4964,6 +4981,12 @@ void QAudioRecorder_DestroyQAudioRecorder(void* ptr)
 	static_cast<QAudioRecorder*>(ptr)->~QAudioRecorder();
 }
 
+void QAudioRecorder_DestroyQAudioRecorderDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedString QAudioRecorder_AudioInput(void* ptr)
 {
 	return ({ QByteArray t7b4459 = static_cast<QAudioRecorder*>(ptr)->audioInput().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t7b4459.prepend("WHITESPACE").constData()+10), t7b4459.size()-10 }; });
@@ -4993,6 +5016,7 @@ public:
 	 ~MyQAudioRoleControl() { callbackQAudioRoleControl_DestroyQAudioRoleControl(this); };
 	QAudio::Role audioRole() const { return static_cast<QAudio::Role>(callbackQAudioRoleControl_AudioRole(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<QAudio::Role> supportedAudioRoles() const { return ({ QList<QAudio::Role>* tmpP = static_cast<QList<QAudio::Role>*>(callbackQAudioRoleControl_SupportedAudioRoles(const_cast<void*>(static_cast<const void*>(this)))); QList<QAudio::Role> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -5003,7 +5027,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioRoleControl*)
@@ -5116,7 +5139,9 @@ public:
 	QAbstractAudioDeviceInfo * createDeviceInfo(const QByteArray & device, QAudio::Mode mode) { return static_cast<QAbstractAudioDeviceInfo*>(callbackQAudioSystemPlugin_CreateDeviceInfo(this, const_cast<QByteArray*>(&device), mode)); };
 	QAbstractAudioInput * createInput(const QByteArray & device) { return static_cast<QAbstractAudioInput*>(callbackQAudioSystemPlugin_CreateInput(this, const_cast<QByteArray*>(&device))); };
 	QAbstractAudioOutput * createOutput(const QByteArray & device) { return static_cast<QAbstractAudioOutput*>(callbackQAudioSystemPlugin_CreateOutput(this, const_cast<QByteArray*>(&device))); };
+	 ~MyQAudioSystemPlugin() { callbackQAudioSystemPlugin_DestroyQAudioSystemPlugin(this); };
 	QList<QByteArray> availableDevices(QAudio::Mode mode) const { return ({ QList<QByteArray>* tmpP = static_cast<QList<QByteArray>*>(callbackQAudioSystemPlugin_AvailableDevices(const_cast<void*>(static_cast<const void*>(this)), mode)); QList<QByteArray> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioSystemPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQAudioSystemPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAudioSystemPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQAudioSystemPlugin_ChildEvent(this, event); };
@@ -5127,7 +5152,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAudioSystemPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQAudioSystemPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioSystemPlugin_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAudioSystemPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQAudioSystemPlugin*)
@@ -5190,14 +5214,35 @@ void* QAudioSystemPlugin_NewQAudioSystemPlugin(void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QAudioSystemPlugin_QAudioSystemPlugin_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray ta39529 = QAudioSystemPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(ta39529.prepend("WHITESPACE").constData()+10), ta39529.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QAudioSystemPlugin_QAudioSystemPlugin_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tbc0054 = QAudioSystemPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tbc0054.prepend("WHITESPACE").constData()+10), tbc0054.size()-10 }; });
+}
+
 void QAudioSystemPlugin_DestroyQAudioSystemPlugin(void* ptr)
 {
 	static_cast<QAudioSystemPlugin*>(ptr)->~QAudioSystemPlugin();
 }
 
+void QAudioSystemPlugin_DestroyQAudioSystemPluginDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedList QAudioSystemPlugin_AvailableDevices(void* ptr, long long mode)
 {
 	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QAudioSystemPlugin*>(ptr)->availableDevices(static_cast<QAudio::Mode>(mode))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QAudioSystemPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::metaObject());
 }
 
 void* QAudioSystemPlugin___availableDevices_atList(void* ptr, int i)
@@ -5241,8 +5286,6 @@ void QAudioSystemPlugin___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -5271,8 +5314,6 @@ void QAudioSystemPlugin___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -5301,8 +5342,6 @@ void QAudioSystemPlugin___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -5331,8 +5370,6 @@ void QAudioSystemPlugin___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -5361,8 +5398,6 @@ char QAudioSystemPlugin_EventFilterDefault(void* ptr, void* watched, void* event
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -5406,11 +5441,6 @@ void QAudioSystemPlugin_TimerEventDefault(void* ptr, void* event)
 		static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QAudioSystemPlugin_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAudioSystemPlugin*>(ptr)->QAudioSystemPlugin::metaObject());
-}
-
 class MyQCamera: public QCamera
 {
 public:
@@ -5435,7 +5465,9 @@ public:
 	void unload() { callbackQCamera_Unload(this); };
 	void unlock() { callbackQCamera_Unlock(this); };
 	void unlock(QCamera::LockTypes locks) { callbackQCamera_Unlock2(this, locks); };
+	 ~MyQCamera() { callbackQCamera_DestroyQCamera(this); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaObject_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool bind(QObject * object) { return callbackQMediaObject_Bind(this, object) != 0; };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObject_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObject_AvailabilityChanged(this, available); };
@@ -5456,7 +5488,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCamera*)
@@ -5770,11 +5801,6 @@ void QCamera_SetViewfinder3(void* ptr, void* surface)
 	static_cast<QCamera*>(ptr)->setViewfinder(static_cast<QAbstractVideoSurface*>(surface));
 }
 
-void QCamera_SetViewfinder2(void* ptr, void* viewfinder)
-{
-		static_cast<QCamera*>(ptr)->setViewfinder(static_cast<QGraphicsVideoItem*>(viewfinder));
-}
-
 void QCamera_SetViewfinder(void* ptr, void* viewfinder)
 {
 		static_cast<QCamera*>(ptr)->setViewfinder(static_cast<QVideoWidget*>(viewfinder));
@@ -5872,6 +5898,12 @@ void QCamera_DestroyQCamera(void* ptr)
 	static_cast<QCamera*>(ptr)->~QCamera();
 }
 
+void QCamera_DestroyQCameraDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCamera_CaptureMode(void* ptr)
 {
 	return static_cast<QCamera*>(ptr)->captureMode();
@@ -5900,6 +5932,16 @@ long long QCamera_RequestedLocks(void* ptr)
 long long QCamera_SupportedLocks(void* ptr)
 {
 	return static_cast<QCamera*>(ptr)->supportedLocks();
+}
+
+long long QCamera_State(void* ptr)
+{
+	return static_cast<QCamera*>(ptr)->state();
+}
+
+long long QCamera_Status(void* ptr)
+{
+	return static_cast<QCamera*>(ptr)->status();
 }
 
 void* QCamera_Exposure(void* ptr)
@@ -5940,16 +5982,6 @@ struct QtMultimedia_PackedList QCamera_SupportedViewfinderPixelFormats(void* ptr
 struct QtMultimedia_PackedString QCamera_ErrorString(void* ptr)
 {
 	return ({ QByteArray t14c12c = static_cast<QCamera*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t14c12c.prepend("WHITESPACE").constData()+10), t14c12c.size()-10 }; });
-}
-
-long long QCamera_State(void* ptr)
-{
-	return static_cast<QCamera*>(ptr)->state();
-}
-
-long long QCamera_Status(void* ptr)
-{
-	return static_cast<QCamera*>(ptr)->status();
 }
 
 char QCamera_IsCaptureModeSupported(void* ptr, long long mode)
@@ -6027,8 +6059,10 @@ public:
 	MyQCameraCaptureBufferFormatControl(QObject *parent = Q_NULLPTR) : QCameraCaptureBufferFormatControl(parent) {QCameraCaptureBufferFormatControl_QCameraCaptureBufferFormatControl_QRegisterMetaType();};
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControl_BufferFormatChanged(this, format); };
 	void setBufferFormat(QVideoFrame::PixelFormat format) { callbackQCameraCaptureBufferFormatControl_SetBufferFormat(this, format); };
+	 ~MyQCameraCaptureBufferFormatControl() { callbackQCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(this); };
 	QList<QVideoFrame::PixelFormat> supportedBufferFormats() const { return ({ QList<QVideoFrame::PixelFormat>* tmpP = static_cast<QList<QVideoFrame::PixelFormat>*>(callbackQCameraCaptureBufferFormatControl_SupportedBufferFormats(const_cast<void*>(static_cast<const void*>(this)))); QList<QVideoFrame::PixelFormat> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QVideoFrame::PixelFormat bufferFormat() const { return static_cast<QVideoFrame::PixelFormat>(callbackQCameraCaptureBufferFormatControl_BufferFormat(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -6039,7 +6073,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraCaptureBufferFormatControl*)
@@ -6113,6 +6146,12 @@ void QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(
 	static_cast<QCameraCaptureBufferFormatControl*>(ptr)->~QCameraCaptureBufferFormatControl();
 }
 
+void QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedList QCameraCaptureBufferFormatControl_SupportedBufferFormats(void* ptr)
 {
 	return ({ QList<QVideoFrame::PixelFormat>* tmpValue = new QList<QVideoFrame::PixelFormat>(static_cast<QCameraCaptureBufferFormatControl*>(ptr)->supportedBufferFormats()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
@@ -6145,8 +6184,10 @@ public:
 	MyQCameraCaptureDestinationControl(QObject *parent = Q_NULLPTR) : QCameraCaptureDestinationControl(parent) {QCameraCaptureDestinationControl_QCameraCaptureDestinationControl_QRegisterMetaType();};
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControl_CaptureDestinationChanged(this, destination); };
 	void setCaptureDestination(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraCaptureDestinationControl_SetCaptureDestination(this, destination); };
+	 ~MyQCameraCaptureDestinationControl() { callbackQCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(this); };
 	QCameraImageCapture::CaptureDestinations captureDestination() const { return static_cast<QCameraImageCapture::CaptureDestination>(callbackQCameraCaptureDestinationControl_CaptureDestination(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isCaptureDestinationSupported(QCameraImageCapture::CaptureDestinations destination) const { return callbackQCameraCaptureDestinationControl_IsCaptureDestinationSupported(const_cast<void*>(static_cast<const void*>(this)), destination) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -6157,7 +6198,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraCaptureDestinationControl*)
@@ -6231,6 +6271,12 @@ void QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(vo
 	static_cast<QCameraCaptureDestinationControl*>(ptr)->~QCameraCaptureDestinationControl();
 }
 
+void QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraCaptureDestinationControl_CaptureDestination(void* ptr)
 {
 	return static_cast<QCameraCaptureDestinationControl*>(ptr)->captureDestination();
@@ -6251,11 +6297,13 @@ public:
 	void setState(QCamera::State state) { callbackQCameraControl_SetState(this, state); };
 	void Signal_StateChanged(QCamera::State state) { callbackQCameraControl_StateChanged(this, state); };
 	void Signal_StatusChanged(QCamera::Status status) { callbackQCameraControl_StatusChanged(this, status); };
+	 ~MyQCameraControl() { callbackQCameraControl_DestroyQCameraControl(this); };
 	QCamera::CaptureModes captureMode() const { return static_cast<QCamera::CaptureMode>(callbackQCameraControl_CaptureMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	QCamera::State state() const { return static_cast<QCamera::State>(callbackQCameraControl_State(const_cast<void*>(static_cast<const void*>(this)))); };
 	QCamera::Status status() const { return static_cast<QCamera::Status>(callbackQCameraControl_Status(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool canChangeProperty(QCameraControl::PropertyChangeType changeType, QCamera::Status status) const { return callbackQCameraControl_CanChangeProperty(const_cast<void*>(static_cast<const void*>(this)), changeType, status) != 0; };
 	bool isCaptureModeSupported(QCamera::CaptureModes mode) const { return callbackQCameraControl_IsCaptureModeSupported(const_cast<void*>(static_cast<const void*>(this)), mode) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -6266,7 +6314,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraControl*)
@@ -6392,6 +6439,12 @@ void QCameraControl_DestroyQCameraControl(void* ptr)
 	static_cast<QCameraControl*>(ptr)->~QCameraControl();
 }
 
+void QCameraControl_DestroyQCameraControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraControl_CaptureMode(void* ptr)
 {
 	return static_cast<QCameraControl*>(ptr)->captureMode();
@@ -6420,12 +6473,12 @@ char QCameraControl_IsCaptureModeSupported(void* ptr, long long mode)
 class MyQCameraExposure: public QCameraExposure
 {
 public:
-	void setAutoAperture() { callbackQCameraExposure_SetAutoAperture(this); };
 	void Signal_ApertureChanged(qreal value) { callbackQCameraExposure_ApertureChanged(this, value); };
 	void Signal_ApertureRangeChanged() { callbackQCameraExposure_ApertureRangeChanged(this); };
 	void Signal_ExposureCompensationChanged(qreal value) { callbackQCameraExposure_ExposureCompensationChanged(this, value); };
 	void Signal_FlashReady(bool ready) { callbackQCameraExposure_FlashReady(this, ready); };
 	void Signal_IsoSensitivityChanged(int value) { callbackQCameraExposure_IsoSensitivityChanged(this, value); };
+	void setAutoAperture() { callbackQCameraExposure_SetAutoAperture(this); };
 	void setAutoIsoSensitivity() { callbackQCameraExposure_SetAutoIsoSensitivity(this); };
 	void setAutoShutterSpeed() { callbackQCameraExposure_SetAutoShutterSpeed(this); };
 	void setExposureCompensation(qreal ev) { callbackQCameraExposure_SetExposureCompensation(this, ev); };
@@ -6437,6 +6490,7 @@ public:
 	void setMeteringMode(QCameraExposure::MeteringMode mode) { callbackQCameraExposure_SetMeteringMode(this, mode); };
 	void Signal_ShutterSpeedChanged(qreal speed) { callbackQCameraExposure_ShutterSpeedChanged(this, speed); };
 	void Signal_ShutterSpeedRangeChanged() { callbackQCameraExposure_ShutterSpeedRangeChanged(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraExposure_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCameraExposure_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraExposure_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCameraExposure_ChildEvent(this, event); };
@@ -6447,21 +6501,20 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCameraExposure_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraExposure_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraExposure_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraExposure_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraExposure*)
 
 int QCameraExposure_QCameraExposure_QRegisterMetaType(){qRegisterMetaType<QCameraExposure*>(); return qRegisterMetaType<MyQCameraExposure*>();}
 
-void QCameraExposure_SetAutoAperture(void* ptr)
+struct QtMultimedia_PackedString QCameraExposure_QCameraExposure_Tr(char* s, char* c, int n)
 {
-	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setAutoAperture");
+	return ({ QByteArray tec6fed = QCameraExposure::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tec6fed.prepend("WHITESPACE").constData()+10), tec6fed.size()-10 }; });
 }
 
-void QCameraExposure_SetAutoApertureDefault(void* ptr)
+struct QtMultimedia_PackedString QCameraExposure_QCameraExposure_TrUtf8(char* s, char* c, int n)
 {
-		static_cast<QCameraExposure*>(ptr)->QCameraExposure::setAutoAperture();
+	return ({ QByteArray tcbca0c = QCameraExposure::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcbca0c.prepend("WHITESPACE").constData()+10), tcbca0c.size()-10 }; });
 }
 
 void QCameraExposure_ConnectApertureChanged(void* ptr)
@@ -6537,6 +6590,16 @@ void QCameraExposure_DisconnectIsoSensitivityChanged(void* ptr)
 void QCameraExposure_IsoSensitivityChanged(void* ptr, int value)
 {
 	static_cast<QCameraExposure*>(ptr)->isoSensitivityChanged(value);
+}
+
+void QCameraExposure_SetAutoAperture(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setAutoAperture");
+}
+
+void QCameraExposure_SetAutoApertureDefault(void* ptr)
+{
+		static_cast<QCameraExposure*>(ptr)->QCameraExposure::setAutoAperture();
 }
 
 void QCameraExposure_SetAutoIsoSensitivity(void* ptr)
@@ -6730,6 +6793,11 @@ char QCameraExposure_IsMeteringModeSupported(void* ptr, long long mode)
 	return static_cast<QCameraExposure*>(ptr)->isMeteringModeSupported(static_cast<QCameraExposure::MeteringMode>(mode));
 }
 
+void* QCameraExposure_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCameraExposure*>(ptr)->QCameraExposure::metaObject());
+}
+
 int QCameraExposure_IsoSensitivity(void* ptr)
 {
 	return static_cast<QCameraExposure*>(ptr)->isoSensitivity();
@@ -6838,8 +6906,6 @@ void QCameraExposure___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -6868,8 +6934,6 @@ void QCameraExposure___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -6898,8 +6962,6 @@ void QCameraExposure___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -6928,8 +6990,6 @@ void QCameraExposure___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -6958,8 +7018,6 @@ char QCameraExposure_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraExposure*>(ptr)->QCameraExposure::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QCameraExposure*>(ptr)->QCameraExposure::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraExposure*>(ptr)->QCameraExposure::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -7003,11 +7061,6 @@ void QCameraExposure_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCameraExposure*>(ptr)->QCameraExposure::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCameraExposure_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCameraExposure*>(ptr)->QCameraExposure::metaObject());
-}
-
 class MyQCameraExposureControl: public QCameraExposureControl
 {
 public:
@@ -7016,10 +7069,12 @@ public:
 	void Signal_ActualValueChanged(int parameter) { callbackQCameraExposureControl_ActualValueChanged(this, parameter); };
 	void Signal_ParameterRangeChanged(int parameter) { callbackQCameraExposureControl_ParameterRangeChanged(this, parameter); };
 	void Signal_RequestedValueChanged(int parameter) { callbackQCameraExposureControl_RequestedValueChanged(this, parameter); };
+	 ~MyQCameraExposureControl() { callbackQCameraExposureControl_DestroyQCameraExposureControl(this); };
 	QVariant actualValue(QCameraExposureControl::ExposureParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraExposureControl_ActualValue(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	QVariant requestedValue(QCameraExposureControl::ExposureParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraExposureControl_RequestedValue(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	QList<QVariant> supportedParameterRange(QCameraExposureControl::ExposureParameter parameter, bool * continuous) const { return ({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(callbackQCameraExposureControl_SupportedParameterRange(const_cast<void*>(static_cast<const void*>(this)), parameter, *continuous)); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	bool isParameterSupported(QCameraExposureControl::ExposureParameter parameter) const { return callbackQCameraExposureControl_IsParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -7030,7 +7085,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraExposureControl*)
@@ -7133,6 +7187,12 @@ void QCameraExposureControl_DestroyQCameraExposureControl(void* ptr)
 	static_cast<QCameraExposureControl*>(ptr)->~QCameraExposureControl();
 }
 
+void QCameraExposureControl_DestroyQCameraExposureControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QCameraExposureControl_ActualValue(void* ptr, long long parameter)
 {
 	return new QVariant(static_cast<QCameraExposureControl*>(ptr)->actualValue(static_cast<QCameraExposureControl::ExposureParameter>(parameter)));
@@ -7177,8 +7237,10 @@ public:
 	bool setEventFeedbackEnabled(QCameraFeedbackControl::EventType event, bool enabled) { return callbackQCameraFeedbackControl_SetEventFeedbackEnabled(this, event, enabled) != 0; };
 	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { QByteArray t7df503 = filePath.toUtf8(); QtMultimedia_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, filePathPacked) != 0; };
 	void resetEventFeedback(QCameraFeedbackControl::EventType event) { callbackQCameraFeedbackControl_ResetEventFeedback(this, event); };
+	 ~MyQCameraFeedbackControl() { callbackQCameraFeedbackControl_DestroyQCameraFeedbackControl(this); };
 	bool isEventFeedbackEnabled(QCameraFeedbackControl::EventType event) const { return callbackQCameraFeedbackControl_IsEventFeedbackEnabled(const_cast<void*>(static_cast<const void*>(this)), event) != 0; };
 	bool isEventFeedbackLocked(QCameraFeedbackControl::EventType event) const { return callbackQCameraFeedbackControl_IsEventFeedbackLocked(const_cast<void*>(static_cast<const void*>(this)), event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -7189,7 +7251,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraFeedbackControl*)
@@ -7257,6 +7318,12 @@ void QCameraFeedbackControl_DestroyQCameraFeedbackControl(void* ptr)
 	static_cast<QCameraFeedbackControl*>(ptr)->~QCameraFeedbackControl();
 }
 
+void QCameraFeedbackControl_DestroyQCameraFeedbackControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 char QCameraFeedbackControl_IsEventFeedbackEnabled(void* ptr, long long event)
 {
 	return static_cast<QCameraFeedbackControl*>(ptr)->isEventFeedbackEnabled(static_cast<QCameraFeedbackControl::EventType>(event));
@@ -7273,9 +7340,11 @@ public:
 	MyQCameraFlashControl(QObject *parent = Q_NULLPTR) : QCameraFlashControl(parent) {QCameraFlashControl_QCameraFlashControl_QRegisterMetaType();};
 	void Signal_FlashReady(bool ready) { callbackQCameraFlashControl_FlashReady(this, ready); };
 	void setFlashMode(QCameraExposure::FlashModes mode) { callbackQCameraFlashControl_SetFlashMode(this, mode); };
+	 ~MyQCameraFlashControl() { callbackQCameraFlashControl_DestroyQCameraFlashControl(this); };
 	QCameraExposure::FlashModes flashMode() const { return static_cast<QCameraExposure::FlashMode>(callbackQCameraFlashControl_FlashMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isFlashModeSupported(QCameraExposure::FlashModes mode) const { return callbackQCameraFlashControl_IsFlashModeSupported(const_cast<void*>(static_cast<const void*>(this)), mode) != 0; };
 	bool isFlashReady() const { return callbackQCameraFlashControl_IsFlashReady(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -7286,7 +7355,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraFlashControl*)
@@ -7359,6 +7427,12 @@ void QCameraFlashControl_DestroyQCameraFlashControl(void* ptr)
 	static_cast<QCameraFlashControl*>(ptr)->~QCameraFlashControl();
 }
 
+void QCameraFlashControl_DestroyQCameraFlashControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraFlashControl_FlashMode(void* ptr)
 {
 	return static_cast<QCameraFlashControl*>(ptr)->flashMode();
@@ -7382,6 +7456,7 @@ public:
 	void Signal_MaximumDigitalZoomChanged(qreal zoom) { callbackQCameraFocus_MaximumDigitalZoomChanged(this, zoom); };
 	void Signal_MaximumOpticalZoomChanged(qreal zoom) { callbackQCameraFocus_MaximumOpticalZoomChanged(this, zoom); };
 	void Signal_OpticalZoomChanged(qreal value) { callbackQCameraFocus_OpticalZoomChanged(this, value); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraFocus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCameraFocus_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraFocus_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCameraFocus_ChildEvent(this, event); };
@@ -7392,12 +7467,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCameraFocus_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraFocus_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraFocus_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraFocus_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraFocus*)
 
 int QCameraFocus_QCameraFocus_QRegisterMetaType(){qRegisterMetaType<QCameraFocus*>(); return qRegisterMetaType<MyQCameraFocus*>();}
+
+struct QtMultimedia_PackedString QCameraFocus_QCameraFocus_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t11810b = QCameraFocus::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t11810b.prepend("WHITESPACE").constData()+10), t11810b.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QCameraFocus_QCameraFocus_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t82e134 = QCameraFocus::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t82e134.prepend("WHITESPACE").constData()+10), t82e134.size()-10 }; });
+}
 
 void QCameraFocus_ConnectDigitalZoomChanged(void* ptr)
 {
@@ -7412,11 +7496,6 @@ void QCameraFocus_DisconnectDigitalZoomChanged(void* ptr)
 void QCameraFocus_DigitalZoomChanged(void* ptr, double value)
 {
 	static_cast<QCameraFocus*>(ptr)->digitalZoomChanged(value);
-}
-
-void QCameraFocus_SetCustomFocusPoint(void* ptr, void* point)
-{
-	static_cast<QCameraFocus*>(ptr)->setCustomFocusPoint(*static_cast<QPointF*>(point));
 }
 
 void QCameraFocus_ConnectFocusZonesChanged(void* ptr)
@@ -7479,6 +7558,11 @@ void QCameraFocus_OpticalZoomChanged(void* ptr, double value)
 	static_cast<QCameraFocus*>(ptr)->opticalZoomChanged(value);
 }
 
+void QCameraFocus_SetCustomFocusPoint(void* ptr, void* point)
+{
+	static_cast<QCameraFocus*>(ptr)->setCustomFocusPoint(*static_cast<QPointF*>(point));
+}
+
 void QCameraFocus_SetFocusMode(void* ptr, long long mode)
 {
 	static_cast<QCameraFocus*>(ptr)->setFocusMode(static_cast<QCameraFocus::FocusMode>(mode));
@@ -7522,6 +7606,11 @@ char QCameraFocus_IsFocusModeSupported(void* ptr, long long mode)
 char QCameraFocus_IsFocusPointModeSupported(void* ptr, long long mode)
 {
 	return static_cast<QCameraFocus*>(ptr)->isFocusPointModeSupported(static_cast<QCameraFocus::FocusPointMode>(mode));
+}
+
+void* QCameraFocus_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCameraFocus*>(ptr)->QCameraFocus::metaObject());
 }
 
 double QCameraFocus_DigitalZoom(void* ptr)
@@ -7569,8 +7658,6 @@ void QCameraFocus___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -7599,8 +7686,6 @@ void QCameraFocus___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -7629,8 +7714,6 @@ void QCameraFocus___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -7659,8 +7742,6 @@ void QCameraFocus___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -7689,8 +7770,6 @@ char QCameraFocus_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraFocus*>(ptr)->QCameraFocus::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QCameraFocus*>(ptr)->QCameraFocus::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraFocus*>(ptr)->QCameraFocus::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -7734,11 +7813,6 @@ void QCameraFocus_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCameraFocus*>(ptr)->QCameraFocus::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCameraFocus_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCameraFocus*>(ptr)->QCameraFocus::metaObject());
-}
-
 class MyQCameraFocusControl: public QCameraFocusControl
 {
 public:
@@ -7749,11 +7823,13 @@ public:
 	void setCustomFocusPoint(const QPointF & point) { callbackQCameraFocusControl_SetCustomFocusPoint(this, const_cast<QPointF*>(&point)); };
 	void setFocusMode(QCameraFocus::FocusModes mode) { callbackQCameraFocusControl_SetFocusMode(this, mode); };
 	void setFocusPointMode(QCameraFocus::FocusPointMode mode) { callbackQCameraFocusControl_SetFocusPointMode(this, mode); };
+	 ~MyQCameraFocusControl() { callbackQCameraFocusControl_DestroyQCameraFocusControl(this); };
 	QCameraFocus::FocusModes focusMode() const { return static_cast<QCameraFocus::FocusMode>(callbackQCameraFocusControl_FocusMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	QCameraFocus::FocusPointMode focusPointMode() const { return static_cast<QCameraFocus::FocusPointMode>(callbackQCameraFocusControl_FocusPointMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	QPointF customFocusPoint() const { return *static_cast<QPointF*>(callbackQCameraFocusControl_CustomFocusPoint(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isFocusModeSupported(QCameraFocus::FocusModes mode) const { return callbackQCameraFocusControl_IsFocusModeSupported(const_cast<void*>(static_cast<const void*>(this)), mode) != 0; };
 	bool isFocusPointModeSupported(QCameraFocus::FocusPointMode mode) const { return callbackQCameraFocusControl_IsFocusPointModeSupported(const_cast<void*>(static_cast<const void*>(this)), mode) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -7764,7 +7840,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraFocusControl*)
@@ -7853,6 +7928,12 @@ void QCameraFocusControl_DestroyQCameraFocusControl(void* ptr)
 	static_cast<QCameraFocusControl*>(ptr)->~QCameraFocusControl();
 }
 
+void QCameraFocusControl_DestroyQCameraFocusControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraFocusControl_FocusMode(void* ptr)
 {
 	return static_cast<QCameraFocusControl*>(ptr)->focusMode();
@@ -7913,13 +7994,15 @@ public:
 	void cancelCapture() { callbackQCameraImageCapture_CancelCapture(this); };
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraImageCapture_CaptureDestinationChanged(this, destination); };
 	void Signal_Error2(int id, QCameraImageCapture::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQCameraImageCapture_Error2(this, id, error, errorStringPacked); };
-	void Signal_ImageAvailable(int id, const QVideoFrame & buffer) { callbackQCameraImageCapture_ImageAvailable(this, id, const_cast<QVideoFrame*>(&buffer)); };
+	void Signal_ImageAvailable(int id, const QVideoFrame & frame) { callbackQCameraImageCapture_ImageAvailable(this, id, const_cast<QVideoFrame*>(&frame)); };
 	void Signal_ImageCaptured(int id, const QImage & preview) { callbackQCameraImageCapture_ImageCaptured(this, id, const_cast<QImage*>(&preview)); };
 	void Signal_ImageExposed(int id) { callbackQCameraImageCapture_ImageExposed(this, id); };
 	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQCameraImageCapture_ImageMetadataAvailable(this, id, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_ImageSaved(int id, const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQCameraImageCapture_ImageSaved(this, id, fileNamePacked); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCapture_ReadyForCaptureChanged(this, ready); };
+	 ~MyQCameraImageCapture() { callbackQCameraImageCapture_DestroyQCameraImageCapture(this); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQCameraImageCapture_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageCapture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCameraImageCapture_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraImageCapture_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCameraImageCapture_ChildEvent(this, event); };
@@ -7930,7 +8013,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCameraImageCapture_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraImageCapture_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageCapture_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageCapture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraImageCapture*)
@@ -7940,6 +8022,16 @@ int QCameraImageCapture_QCameraImageCapture_QRegisterMetaType(){qRegisterMetaTyp
 void* QCameraImageCapture_NewQCameraImageCapture(void* mediaObject, void* parent)
 {
 	return new MyQCameraImageCapture(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+}
+
+struct QtMultimedia_PackedString QCameraImageCapture_QCameraImageCapture_Tr(char* s, char* c, int n)
+{
+		return ({ QByteArray t0eebd0 = QCameraImageCapture::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0eebd0.prepend("WHITESPACE").constData()+10), t0eebd0.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QCameraImageCapture_QCameraImageCapture_TrUtf8(char* s, char* c, int n)
+{
+		return ({ QByteArray t747325 = QCameraImageCapture::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t747325.prepend("WHITESPACE").constData()+10), t747325.size()-10 }; });
 }
 
 char QCameraImageCapture_SetMediaObject(void* ptr, void* mediaObject)
@@ -8032,9 +8124,9 @@ void QCameraImageCapture_DisconnectImageAvailable(void* ptr)
 	QObject::disconnect(static_cast<QCameraImageCapture*>(ptr), static_cast<void (QCameraImageCapture::*)(int, const QVideoFrame &)>(&QCameraImageCapture::imageAvailable), static_cast<MyQCameraImageCapture*>(ptr), static_cast<void (MyQCameraImageCapture::*)(int, const QVideoFrame &)>(&MyQCameraImageCapture::Signal_ImageAvailable));
 }
 
-void QCameraImageCapture_ImageAvailable(void* ptr, int id, void* buffer)
+void QCameraImageCapture_ImageAvailable(void* ptr, int id, void* frame)
 {
-		static_cast<QCameraImageCapture*>(ptr)->imageAvailable(id, *static_cast<QVideoFrame*>(buffer));
+		static_cast<QCameraImageCapture*>(ptr)->imageAvailable(id, *static_cast<QVideoFrame*>(frame));
 }
 
 void QCameraImageCapture_ConnectImageCaptured(void* ptr)
@@ -8132,6 +8224,12 @@ void QCameraImageCapture_DestroyQCameraImageCapture(void* ptr)
 	static_cast<QCameraImageCapture*>(ptr)->~QCameraImageCapture();
 }
 
+void QCameraImageCapture_DestroyQCameraImageCaptureDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraImageCapture_CaptureDestination(void* ptr)
 {
 		return static_cast<QCameraImageCapture*>(ptr)->captureDestination();
@@ -8208,6 +8306,16 @@ char QCameraImageCapture_IsReadyForCapture(void* ptr)
 		return static_cast<QCameraImageCapture*>(ptr)->isReadyForCapture();
 }
 
+void* QCameraImageCapture_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCameraImageCapture*>(ptr)->metaObject());
+}
+
+void* QCameraImageCapture_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::metaObject());
+}
+
 void* QCameraImageCapture___supportedResolutions_atList(void* ptr, int i)
 {
 		return ({ QSize tmpValue = ({QSize tmp = static_cast<QList<QSize>*>(ptr)->at(i); if (i == static_cast<QList<QSize>*>(ptr)->size()-1) { static_cast<QList<QSize>*>(ptr)->~QList(); free(ptr); }; tmp; }); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -8265,8 +8373,6 @@ void QCameraImageCapture___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8295,8 +8401,6 @@ void QCameraImageCapture___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8325,8 +8429,6 @@ void QCameraImageCapture___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8355,8 +8457,6 @@ void QCameraImageCapture___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8390,8 +8490,6 @@ char QCameraImageCapture_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageCapture*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QCameraImageCapture*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageCapture*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -8409,8 +8507,6 @@ char QCameraImageCapture_EventFilterDefault(void* ptr, void* watched, void* even
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -8484,16 +8580,6 @@ void QCameraImageCapture_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCameraImageCapture_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCameraImageCapture*>(ptr)->metaObject());
-}
-
-void* QCameraImageCapture_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::metaObject());
-}
-
 class MyQCameraImageCaptureControl: public QCameraImageCaptureControl
 {
 public:
@@ -8508,8 +8594,10 @@ public:
 	void Signal_ImageSaved(int requestId, const QString & fileName) { QByteArray td83e09 = fileName.toUtf8(); QtMultimedia_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQCameraImageCaptureControl_ImageSaved(this, requestId, fileNamePacked); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureControl_ReadyForCaptureChanged(this, ready); };
 	void setDriveMode(QCameraImageCapture::DriveMode mode) { callbackQCameraImageCaptureControl_SetDriveMode(this, mode); };
+	 ~MyQCameraImageCaptureControl() { callbackQCameraImageCaptureControl_DestroyQCameraImageCaptureControl(this); };
 	QCameraImageCapture::DriveMode driveMode() const { return static_cast<QCameraImageCapture::DriveMode>(callbackQCameraImageCaptureControl_DriveMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isReadyForCapture() const { return callbackQCameraImageCaptureControl_IsReadyForCapture(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -8520,7 +8608,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraImageCaptureControl*)
@@ -8693,6 +8780,12 @@ void QCameraImageCaptureControl_DestroyQCameraImageCaptureControl(void* ptr)
 	static_cast<QCameraImageCaptureControl*>(ptr)->~QCameraImageCaptureControl();
 }
 
+void QCameraImageCaptureControl_DestroyQCameraImageCaptureControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraImageCaptureControl_DriveMode(void* ptr)
 {
 	return static_cast<QCameraImageCaptureControl*>(ptr)->driveMode();
@@ -8706,6 +8799,7 @@ char QCameraImageCaptureControl_IsReadyForCapture(void* ptr)
 class MyQCameraImageProcessing: public QCameraImageProcessing
 {
 public:
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageProcessing_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQCameraImageProcessing_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraImageProcessing_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQCameraImageProcessing_ChildEvent(this, event); };
@@ -8716,12 +8810,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCameraImageProcessing_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQCameraImageProcessing_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraImageProcessing_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraImageProcessing_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraImageProcessing*)
 
 int QCameraImageProcessing_QCameraImageProcessing_QRegisterMetaType(){qRegisterMetaType<QCameraImageProcessing*>(); return qRegisterMetaType<MyQCameraImageProcessing*>();}
+
+struct QtMultimedia_PackedString QCameraImageProcessing_QCameraImageProcessing_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tbe3bd0 = QCameraImageProcessing::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tbe3bd0.prepend("WHITESPACE").constData()+10), tbe3bd0.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QCameraImageProcessing_QCameraImageProcessing_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tcceddf = QCameraImageProcessing::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcceddf.prepend("WHITESPACE").constData()+10), tcceddf.size()-10 }; });
+}
 
 void QCameraImageProcessing_SetBrightness(void* ptr, double value)
 {
@@ -8788,6 +8891,11 @@ char QCameraImageProcessing_IsWhiteBalanceModeSupported(void* ptr, long long mod
 	return static_cast<QCameraImageProcessing*>(ptr)->isWhiteBalanceModeSupported(static_cast<QCameraImageProcessing::WhiteBalanceMode>(mode));
 }
 
+void* QCameraImageProcessing_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::metaObject());
+}
+
 double QCameraImageProcessing_Brightness(void* ptr)
 {
 	return static_cast<QCameraImageProcessing*>(ptr)->brightness();
@@ -8843,8 +8951,6 @@ void QCameraImageProcessing___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8873,8 +8979,6 @@ void QCameraImageProcessing___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8903,8 +9007,6 @@ void QCameraImageProcessing___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8933,8 +9035,6 @@ void QCameraImageProcessing___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -8963,8 +9063,6 @@ char QCameraImageProcessing_EventFilterDefault(void* ptr, void* watched, void* e
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -9008,19 +9106,16 @@ void QCameraImageProcessing_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QCameraImageProcessing_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::metaObject());
-}
-
 class MyQCameraImageProcessingControl: public QCameraImageProcessingControl
 {
 public:
 	MyQCameraImageProcessingControl(QObject *parent = Q_NULLPTR) : QCameraImageProcessingControl(parent) {QCameraImageProcessingControl_QCameraImageProcessingControl_QRegisterMetaType();};
 	void setParameter(QCameraImageProcessingControl::ProcessingParameter parameter, const QVariant & value) { callbackQCameraImageProcessingControl_SetParameter(this, parameter, const_cast<QVariant*>(&value)); };
+	 ~MyQCameraImageProcessingControl() { callbackQCameraImageProcessingControl_DestroyQCameraImageProcessingControl(this); };
 	QVariant parameter(QCameraImageProcessingControl::ProcessingParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraImageProcessingControl_Parameter(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	bool isParameterSupported(QCameraImageProcessingControl::ProcessingParameter parameter) const { return callbackQCameraImageProcessingControl_IsParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
 	bool isParameterValueSupported(QCameraImageProcessingControl::ProcessingParameter parameter, const QVariant & value) const { return callbackQCameraImageProcessingControl_IsParameterValueSupported(const_cast<void*>(static_cast<const void*>(this)), parameter, const_cast<QVariant*>(&value)) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -9031,7 +9126,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraImageProcessingControl*)
@@ -9087,6 +9181,12 @@ void QCameraImageProcessingControl_SetParameter(void* ptr, long long parameter, 
 void QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(void* ptr)
 {
 	static_cast<QCameraImageProcessingControl*>(ptr)->~QCameraImageProcessingControl();
+}
+
+void QCameraImageProcessingControl_DestroyQCameraImageProcessingControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QCameraImageProcessingControl_Parameter(void* ptr, long long parameter)
@@ -9181,6 +9281,7 @@ public:
 	MyQCameraInfoControl(QObject *parent = Q_NULLPTR) : QCameraInfoControl(parent) {QCameraInfoControl_QCameraInfoControl_QRegisterMetaType();};
 	 ~MyQCameraInfoControl() { callbackQCameraInfoControl_DestroyQCameraInfoControl(this); };
 	QCamera::Position cameraPosition(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked)); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int cameraOrientation(const QString & deviceName) const { QByteArray t0f5a7b = deviceName.toUtf8(); QtMultimedia_PackedString deviceNamePacked = { const_cast<char*>(t0f5a7b.prepend("WHITESPACE").constData()+10), t0f5a7b.size()-10 };return callbackQCameraInfoControl_CameraOrientation(const_cast<void*>(static_cast<const void*>(this)), deviceNamePacked); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -9192,7 +9293,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraInfoControl*)
@@ -9265,11 +9365,13 @@ class MyQCameraLocksControl: public QCameraLocksControl
 {
 public:
 	MyQCameraLocksControl(QObject *parent = Q_NULLPTR) : QCameraLocksControl(parent) {QCameraLocksControl_QCameraLocksControl_QRegisterMetaType();};
-	void Signal_LockStatusChanged(QCamera::LockType lock, QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLocksControl_LockStatusChanged(this, lock, status, reason); };
+	void Signal_LockStatusChanged(QCamera::LockType ty, QCamera::LockStatus status, QCamera::LockChangeReason reason) { callbackQCameraLocksControl_LockStatusChanged(this, ty, status, reason); };
 	void searchAndLock(QCamera::LockTypes locks) { callbackQCameraLocksControl_SearchAndLock(this, locks); };
 	void unlock(QCamera::LockTypes locks) { callbackQCameraLocksControl_Unlock(this, locks); };
+	 ~MyQCameraLocksControl() { callbackQCameraLocksControl_DestroyQCameraLocksControl(this); };
 	QCamera::LockStatus lockStatus(QCamera::LockType lock) const { return static_cast<QCamera::LockStatus>(callbackQCameraLocksControl_LockStatus(const_cast<void*>(static_cast<const void*>(this)), lock)); };
 	QCamera::LockTypes supportedLocks() const { return static_cast<QCamera::LockType>(callbackQCameraLocksControl_SupportedLocks(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -9280,7 +9382,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraLocksControl*)
@@ -9341,9 +9442,9 @@ void QCameraLocksControl_DisconnectLockStatusChanged(void* ptr)
 	QObject::disconnect(static_cast<QCameraLocksControl*>(ptr), static_cast<void (QCameraLocksControl::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&QCameraLocksControl::lockStatusChanged), static_cast<MyQCameraLocksControl*>(ptr), static_cast<void (MyQCameraLocksControl::*)(QCamera::LockType, QCamera::LockStatus, QCamera::LockChangeReason)>(&MyQCameraLocksControl::Signal_LockStatusChanged));
 }
 
-void QCameraLocksControl_LockStatusChanged(void* ptr, long long lock, long long status, long long reason)
+void QCameraLocksControl_LockStatusChanged(void* ptr, long long ty, long long status, long long reason)
 {
-	static_cast<QCameraLocksControl*>(ptr)->lockStatusChanged(static_cast<QCamera::LockType>(lock), static_cast<QCamera::LockStatus>(status), static_cast<QCamera::LockChangeReason>(reason));
+	static_cast<QCameraLocksControl*>(ptr)->lockStatusChanged(static_cast<QCamera::LockType>(ty), static_cast<QCamera::LockStatus>(status), static_cast<QCamera::LockChangeReason>(reason));
 }
 
 void QCameraLocksControl_SearchAndLock(void* ptr, long long locks)
@@ -9361,6 +9462,12 @@ void QCameraLocksControl_DestroyQCameraLocksControl(void* ptr)
 	static_cast<QCameraLocksControl*>(ptr)->~QCameraLocksControl();
 }
 
+void QCameraLocksControl_DestroyQCameraLocksControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QCameraLocksControl_LockStatus(void* ptr, long long lock)
 {
 	return static_cast<QCameraLocksControl*>(ptr)->lockStatus(static_cast<QCamera::LockType>(lock));
@@ -9369,117 +9476,6 @@ long long QCameraLocksControl_LockStatus(void* ptr, long long lock)
 long long QCameraLocksControl_SupportedLocks(void* ptr)
 {
 	return static_cast<QCameraLocksControl*>(ptr)->supportedLocks();
-}
-
-class MyQCameraViewfinder: public QCameraViewfinder
-{
-public:
-	MyQCameraViewfinder(QWidget *parent = Q_NULLPTR) : QCameraViewfinder(parent) {QCameraViewfinder_QCameraViewfinder_QRegisterMetaType();};
-	bool setMediaObject(QMediaObject * object) { return callbackQCameraViewfinder_SetMediaObject(this, object) != 0; };
-	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQVideoWidget_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * event) { return callbackQVideoWidget_Event(this, event) != 0; };
-	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidget_BrightnessChanged(this, brightness); };
-	void Signal_ContrastChanged(int contrast) { callbackQVideoWidget_ContrastChanged(this, contrast); };
-	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWidget_FullScreenChanged(this, fullScreen); };
-	void hideEvent(QHideEvent * event) { callbackQVideoWidget_HideEvent(this, event); };
-	void Signal_HueChanged(int hue) { callbackQVideoWidget_HueChanged(this, hue); };
-	void moveEvent(QMoveEvent * event) { callbackQVideoWidget_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQVideoWidget_PaintEvent(this, event); };
-	void resizeEvent(QResizeEvent * event) { callbackQVideoWidget_ResizeEvent(this, event); };
-	void Signal_SaturationChanged(int saturation) { callbackQVideoWidget_SaturationChanged(this, saturation); };
-	void setAspectRatioMode(Qt::AspectRatioMode mode) { callbackQVideoWidget_SetAspectRatioMode(this, mode); };
-	void setBrightness(int brightness) { callbackQVideoWidget_SetBrightness(this, brightness); };
-	void setContrast(int contrast) { callbackQVideoWidget_SetContrast(this, contrast); };
-	void setFullScreen(bool fullScreen) { callbackQVideoWidget_SetFullScreen(this, fullScreen); };
-	void setHue(int hue) { callbackQVideoWidget_SetHue(this, hue); };
-	void setSaturation(int saturation) { callbackQVideoWidget_SetSaturation(this, saturation); };
-	void showEvent(QShowEvent * event) { callbackQVideoWidget_ShowEvent(this, event); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool close() { return callbackQVideoWidget_Close(this) != 0; };
-	bool focusNextPrevChild(bool next) { return callbackQVideoWidget_FocusNextPrevChild(this, next) != 0; };
-	void actionEvent(QActionEvent * event) { callbackQVideoWidget_ActionEvent(this, event); };
-	void changeEvent(QEvent * event) { callbackQVideoWidget_ChangeEvent(this, event); };
-	void closeEvent(QCloseEvent * event) { callbackQVideoWidget_CloseEvent(this, event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackQVideoWidget_ContextMenuEvent(this, event); };
-	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQVideoWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackQVideoWidget_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQVideoWidget_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackQVideoWidget_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackQVideoWidget_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackQVideoWidget_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQVideoWidget_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQVideoWidget_FocusOutEvent(this, event); };
-	void hide() { callbackQVideoWidget_Hide(this); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackQVideoWidget_InputMethodEvent(this, event); };
-	void keyPressEvent(QKeyEvent * event) { callbackQVideoWidget_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQVideoWidget_KeyReleaseEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackQVideoWidget_LeaveEvent(this, event); };
-	void lower() { callbackQVideoWidget_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQVideoWidget_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQVideoWidget_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQVideoWidget_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQVideoWidget_MouseReleaseEvent(this, event); };
-	void raise() { callbackQVideoWidget_Raise(this); };
-	void repaint() { callbackQVideoWidget_Repaint(this); };
-	void setDisabled(bool disable) { callbackQVideoWidget_SetDisabled(this, disable); };
-	void setEnabled(bool vbo) { callbackQVideoWidget_SetEnabled(this, vbo); };
-	void setFocus() { callbackQVideoWidget_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackQVideoWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtMultimedia_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQVideoWidget_SetStyleSheet(this, styleSheetPacked); };
-	void setVisible(bool visible) { callbackQVideoWidget_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackQVideoWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQVideoWidget_SetWindowTitle(this, vqsPacked); };
-	void show() { callbackQVideoWidget_Show(this); };
-	void showFullScreen() { callbackQVideoWidget_ShowFullScreen(this); };
-	void showMaximized() { callbackQVideoWidget_ShowMaximized(this); };
-	void showMinimized() { callbackQVideoWidget_ShowMinimized(this); };
-	void showNormal() { callbackQVideoWidget_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackQVideoWidget_TabletEvent(this, event); };
-	void update() { callbackQVideoWidget_Update(this); };
-	void updateMicroFocus() { callbackQVideoWidget_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackQVideoWidget_WheelEvent(this, event); };
-	void Signal_WindowIconChanged(const QIcon & icon) { callbackQVideoWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtMultimedia_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQVideoWidget_WindowTitleChanged(this, titlePacked); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQVideoWidget_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQVideoWidget_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
-	bool hasHeightForWidth() const { return callbackQVideoWidget_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	int heightForWidth(int w) const { return callbackQVideoWidget_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
-	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQVideoWidget_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoWidget_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQVideoWidget_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQVideoWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQVideoWidget_CustomEvent(this, event); };
-	void deleteLater() { callbackQVideoWidget_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackQVideoWidget_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQVideoWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVideoWidget_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackQVideoWidget_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-};
-
-Q_DECLARE_METATYPE(MyQCameraViewfinder*)
-
-int QCameraViewfinder_QCameraViewfinder_QRegisterMetaType(){qRegisterMetaType<QCameraViewfinder*>(); return qRegisterMetaType<MyQCameraViewfinder*>();}
-
-void* QCameraViewfinder_NewQCameraViewfinder(void* parent)
-{
-		return new MyQCameraViewfinder(static_cast<QWidget*>(parent));
-}
-
-char QCameraViewfinder_SetMediaObject(void* ptr, void* object)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
-}
-
-char QCameraViewfinder_SetMediaObjectDefault(void* ptr, void* object)
-{
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setMediaObject(static_cast<QMediaObject*>(object));
-}
-
-void QCameraViewfinder_DestroyQCameraViewfinder(void* ptr)
-{
-	static_cast<QCameraViewfinder*>(ptr)->~QCameraViewfinder();
 }
 
 void* QCameraViewfinderSettings_NewQCameraViewfinderSettings()
@@ -9572,8 +9568,10 @@ class MyQCameraViewfinderSettingsControl: public QCameraViewfinderSettingsContro
 public:
 	MyQCameraViewfinderSettingsControl(QObject *parent = Q_NULLPTR) : QCameraViewfinderSettingsControl(parent) {QCameraViewfinderSettingsControl_QCameraViewfinderSettingsControl_QRegisterMetaType();};
 	void setViewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter parameter, const QVariant & value) { callbackQCameraViewfinderSettingsControl_SetViewfinderParameter(this, parameter, const_cast<QVariant*>(&value)); };
+	 ~MyQCameraViewfinderSettingsControl() { callbackQCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(this); };
 	QVariant viewfinderParameter(QCameraViewfinderSettingsControl::ViewfinderParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraViewfinderSettingsControl_ViewfinderParameter(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	bool isViewfinderParameterSupported(QCameraViewfinderSettingsControl::ViewfinderParameter parameter) const { return callbackQCameraViewfinderSettingsControl_IsViewfinderParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -9584,7 +9582,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl*)
@@ -9642,6 +9639,12 @@ void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(vo
 	static_cast<QCameraViewfinderSettingsControl*>(ptr)->~QCameraViewfinderSettingsControl();
 }
 
+void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QCameraViewfinderSettingsControl_ViewfinderParameter(void* ptr, long long parameter)
 {
 	return new QVariant(static_cast<QCameraViewfinderSettingsControl*>(ptr)->viewfinderParameter(static_cast<QCameraViewfinderSettingsControl::ViewfinderParameter>(parameter)));
@@ -9660,6 +9663,7 @@ public:
 	 ~MyQCameraViewfinderSettingsControl2() { callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(this); };
 	QCameraViewfinderSettings viewfinderSettings() const { return *static_cast<QCameraViewfinderSettings*>(callbackQCameraViewfinderSettingsControl2_ViewfinderSettings(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<QCameraViewfinderSettings> supportedViewfinderSettings() const { return ({ QList<QCameraViewfinderSettings>* tmpP = static_cast<QList<QCameraViewfinderSettings>*>(callbackQCameraViewfinderSettingsControl2_SupportedViewfinderSettings(const_cast<void*>(static_cast<const void*>(this)))); QList<QCameraViewfinderSettings> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -9670,7 +9674,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraViewfinderSettingsControl2*)
@@ -9771,6 +9774,8 @@ public:
 	void Signal_RequestedDigitalZoomChanged(qreal zoom) { callbackQCameraZoomControl_RequestedDigitalZoomChanged(this, zoom); };
 	void Signal_RequestedOpticalZoomChanged(qreal zoom) { callbackQCameraZoomControl_RequestedOpticalZoomChanged(this, zoom); };
 	void zoomTo(qreal optical, qreal digital) { callbackQCameraZoomControl_ZoomTo(this, optical, digital); };
+	 ~MyQCameraZoomControl() { callbackQCameraZoomControl_DestroyQCameraZoomControl(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qreal currentDigitalZoom() const { return callbackQCameraZoomControl_CurrentDigitalZoom(const_cast<void*>(static_cast<const void*>(this))); };
 	qreal currentOpticalZoom() const { return callbackQCameraZoomControl_CurrentOpticalZoom(const_cast<void*>(static_cast<const void*>(this))); };
 	qreal maximumDigitalZoom() const { return callbackQCameraZoomControl_MaximumDigitalZoom(const_cast<void*>(static_cast<const void*>(this))); };
@@ -9787,7 +9792,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQCameraZoomControl*)
@@ -9935,6 +9939,12 @@ void QCameraZoomControl_DestroyQCameraZoomControl(void* ptr)
 	static_cast<QCameraZoomControl*>(ptr)->~QCameraZoomControl();
 }
 
+void QCameraZoomControl_DestroyQCameraZoomControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 double QCameraZoomControl_CurrentDigitalZoom(void* ptr)
 {
 	return static_cast<QCameraZoomControl*>(ptr)->currentDigitalZoom();
@@ -9965,844 +9975,112 @@ double QCameraZoomControl_RequestedOpticalZoom(void* ptr)
 	return static_cast<QCameraZoomControl*>(ptr)->requestedOpticalZoom();
 }
 
-class MyQGraphicsVideoItem: public QGraphicsVideoItem
+class MyQCustomAudioRoleControl: public QCustomAudioRoleControl
 {
 public:
-	MyQGraphicsVideoItem(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsVideoItem(parent) {QGraphicsVideoItem_QGraphicsVideoItem_QRegisterMetaType();};
-	void Signal_NativeSizeChanged(const QSizeF & size) { callbackQGraphicsVideoItem_NativeSizeChanged(this, const_cast<QSizeF*>(&size)); };
-	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsVideoItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
-	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQGraphicsVideoItem_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQGraphicsVideoItem_BoundingRect(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool event(QEvent * ev) { return callbackQGraphicsVideoItem_Event(this, ev) != 0; };
-	void Signal_EnabledChanged() { callbackQGraphicsVideoItem_EnabledChanged(this); };
-	void Signal_OpacityChanged() { callbackQGraphicsVideoItem_OpacityChanged(this); };
-	void Signal_ParentChanged() { callbackQGraphicsVideoItem_ParentChanged(this); };
-	void Signal_RotationChanged() { callbackQGraphicsVideoItem_RotationChanged(this); };
-	void Signal_ScaleChanged() { callbackQGraphicsVideoItem_ScaleChanged(this); };
-	void updateMicroFocus() { callbackQGraphicsVideoItem_UpdateMicroFocus(this); };
-	void Signal_VisibleChanged() { callbackQGraphicsVideoItem_VisibleChanged(this); };
-	void Signal_XChanged() { callbackQGraphicsVideoItem_XChanged(this); };
-	void Signal_YChanged() { callbackQGraphicsVideoItem_YChanged(this); };
-	void Signal_ZChanged() { callbackQGraphicsVideoItem_ZChanged(this); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsVideoItem_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQGraphicsVideoItem_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQGraphicsVideoItem_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQGraphicsVideoItem_CustomEvent(this, event); };
-	void deleteLater() { callbackQGraphicsVideoItem_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackQGraphicsVideoItem_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsVideoItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQGraphicsVideoItem_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackQGraphicsVideoItem_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsVideoItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant & value) { return *static_cast<QVariant*>(callbackQGraphicsVideoItem_ItemChange(this, change, const_cast<QVariant*>(&value))); };
-	bool sceneEvent(QEvent * event) { return callbackQGraphicsVideoItem_SceneEvent(this, event) != 0; };
-	bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) { return callbackQGraphicsVideoItem_SceneEventFilter(this, watched, event) != 0; };
-	void advance(int phase) { callbackQGraphicsVideoItem_Advance(this, phase); };
-	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsVideoItem_ContextMenuEvent(this, event); };
-	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItem_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItem_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItem_DragMoveEvent(this, event); };
-	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItem_DropEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQGraphicsVideoItem_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsVideoItem_FocusOutEvent(this, event); };
-	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItem_HoverEnterEvent(this, event); };
-	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItem_HoverLeaveEvent(this, event); };
-	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItem_HoverMoveEvent(this, event); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsVideoItem_InputMethodEvent(this, event); };
-	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsVideoItem_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsVideoItem_KeyReleaseEvent(this, event); };
-	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItem_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItem_MouseMoveEvent(this, event); };
-	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItem_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItem_MouseReleaseEvent(this, event); };
-	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsVideoItem_WheelEvent(this, event); };
-	QPainterPath opaqueArea() const { return *static_cast<QPainterPath*>(callbackQGraphicsVideoItem_OpaqueArea(const_cast<void*>(static_cast<const void*>(this)))); };
-	QPainterPath shape() const { return *static_cast<QPainterPath*>(callbackQGraphicsVideoItem_Shape(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQGraphicsVideoItem_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
-	bool collidesWithItem(const QGraphicsItem * other, Qt::ItemSelectionMode mode) const { return callbackQGraphicsVideoItem_CollidesWithItem(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(other), mode) != 0; };
-	bool collidesWithPath(const QPainterPath & path, Qt::ItemSelectionMode mode) const { return callbackQGraphicsVideoItem_CollidesWithPath(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPainterPath*>(&path), mode) != 0; };
-	bool contains(const QPointF & point) const { return callbackQGraphicsVideoItem_Contains(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPointF*>(&point)) != 0; };
-	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsVideoItem_IsObscuredBy(const_cast<void*>(static_cast<const void*>(this)), const_cast<QGraphicsItem*>(item)) != 0; };
-	int type() const { return callbackQGraphicsVideoItem_Type(const_cast<void*>(static_cast<const void*>(this))); };
-	bool setMediaObject(QMediaObject * object) { return callbackQGraphicsVideoItem_SetMediaObject(this, object) != 0; };
+	MyQCustomAudioRoleControl(QObject *parent = Q_NULLPTR) : QCustomAudioRoleControl(parent) {QCustomAudioRoleControl_QCustomAudioRoleControl_QRegisterMetaType();};
+	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQCustomAudioRoleControl_CustomAudioRoleChanged(this, rolePacked); };
+	void setCustomAudioRole(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQCustomAudioRoleControl_SetCustomAudioRole(this, rolePacked); };
+	 ~MyQCustomAudioRoleControl() { callbackQCustomAudioRoleControl_DestroyQCustomAudioRoleControl(this); };
+	QString customAudioRole() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_CustomAudioRole(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QStringList supportedCustomAudioRoles() const { return ({ QtMultimedia_PackedString tempVal = callbackQCustomAudioRoleControl_SupportedCustomAudioRoles(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
+	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQMediaControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQMediaControl_CustomEvent(this, event); };
+	void deleteLater() { callbackQMediaControl_DeleteLater(this); };
+	void Signal_Destroyed(QObject * obj) { callbackQMediaControl_Destroyed(this, obj); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
+	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
 };
 
-Q_DECLARE_METATYPE(MyQGraphicsVideoItem*)
+Q_DECLARE_METATYPE(MyQCustomAudioRoleControl*)
 
-int QGraphicsVideoItem_QGraphicsVideoItem_QRegisterMetaType(){qRegisterMetaType<QGraphicsVideoItem*>(); return qRegisterMetaType<MyQGraphicsVideoItem*>();}
+int QCustomAudioRoleControl_QCustomAudioRoleControl_QRegisterMetaType(){qRegisterMetaType<QCustomAudioRoleControl*>(); return qRegisterMetaType<MyQCustomAudioRoleControl*>();}
 
-void* QGraphicsVideoItem_NewQGraphicsVideoItem(void* parent)
+void* QCustomAudioRoleControl_NewQCustomAudioRoleControl(void* parent)
 {
-	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQGraphicsVideoItem(static_cast<QGraphicsObject*>(parent));
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQGraphicsVideoItem(static_cast<QGraphicsWidget*>(parent));
+		return new MyQCustomAudioRoleControl(static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQCustomAudioRoleControl(static_cast<QWindow*>(parent));
 	} else {
-		return new MyQGraphicsVideoItem(static_cast<QGraphicsItem*>(parent));
+		return new MyQCustomAudioRoleControl(static_cast<QObject*>(parent));
 	}
 }
 
-void QGraphicsVideoItem_ConnectNativeSizeChanged(void* ptr)
+void QCustomAudioRoleControl_ConnectCustomAudioRoleChanged(void* ptr)
 {
-	QObject::connect(static_cast<QGraphicsVideoItem*>(ptr), static_cast<void (QGraphicsVideoItem::*)(const QSizeF &)>(&QGraphicsVideoItem::nativeSizeChanged), static_cast<MyQGraphicsVideoItem*>(ptr), static_cast<void (MyQGraphicsVideoItem::*)(const QSizeF &)>(&MyQGraphicsVideoItem::Signal_NativeSizeChanged));
+	QObject::connect(static_cast<QCustomAudioRoleControl*>(ptr), static_cast<void (QCustomAudioRoleControl::*)(const QString &)>(&QCustomAudioRoleControl::customAudioRoleChanged), static_cast<MyQCustomAudioRoleControl*>(ptr), static_cast<void (MyQCustomAudioRoleControl::*)(const QString &)>(&MyQCustomAudioRoleControl::Signal_CustomAudioRoleChanged));
 }
 
-void QGraphicsVideoItem_DisconnectNativeSizeChanged(void* ptr)
+void QCustomAudioRoleControl_DisconnectCustomAudioRoleChanged(void* ptr)
 {
-	QObject::disconnect(static_cast<QGraphicsVideoItem*>(ptr), static_cast<void (QGraphicsVideoItem::*)(const QSizeF &)>(&QGraphicsVideoItem::nativeSizeChanged), static_cast<MyQGraphicsVideoItem*>(ptr), static_cast<void (MyQGraphicsVideoItem::*)(const QSizeF &)>(&MyQGraphicsVideoItem::Signal_NativeSizeChanged));
+	QObject::disconnect(static_cast<QCustomAudioRoleControl*>(ptr), static_cast<void (QCustomAudioRoleControl::*)(const QString &)>(&QCustomAudioRoleControl::customAudioRoleChanged), static_cast<MyQCustomAudioRoleControl*>(ptr), static_cast<void (MyQCustomAudioRoleControl::*)(const QString &)>(&MyQCustomAudioRoleControl::Signal_CustomAudioRoleChanged));
 }
 
-void QGraphicsVideoItem_NativeSizeChanged(void* ptr, void* size)
+void QCustomAudioRoleControl_CustomAudioRoleChanged(void* ptr, struct QtMultimedia_PackedString role)
 {
-		static_cast<QGraphicsVideoItem*>(ptr)->nativeSizeChanged(*static_cast<QSizeF*>(size));
+	static_cast<QCustomAudioRoleControl*>(ptr)->customAudioRoleChanged(QString::fromUtf8(role.data, role.len));
 }
 
-void QGraphicsVideoItem_Paint(void* ptr, void* painter, void* option, void* widget)
+void QCustomAudioRoleControl_SetCustomAudioRole(void* ptr, struct QtMultimedia_PackedString role)
 {
-	if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(widget))) {
-		static_cast<QGraphicsVideoItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QVideoWidget*>(widget));
-	} else {
-		static_cast<QGraphicsVideoItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	}
+	static_cast<QCustomAudioRoleControl*>(ptr)->setCustomAudioRole(QString::fromUtf8(role.data, role.len));
 }
 
-void QGraphicsVideoItem_PaintDefault(void* ptr, void* painter, void* option, void* widget)
+void QCustomAudioRoleControl_DestroyQCustomAudioRoleControl(void* ptr)
 {
-	if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(widget))) {
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QVideoWidget*>(widget));
-	} else {
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
-	}
+	static_cast<QCustomAudioRoleControl*>(ptr)->~QCustomAudioRoleControl();
 }
 
-void QGraphicsVideoItem_SetAspectRatioMode(void* ptr, long long mode)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
-}
-
-void QGraphicsVideoItem_SetOffset(void* ptr, void* offset)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->setOffset(*static_cast<QPointF*>(offset));
-}
-
-void QGraphicsVideoItem_SetSize(void* ptr, void* size)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->setSize(*static_cast<QSizeF*>(size));
-}
-
-void QGraphicsVideoItem_DestroyQGraphicsVideoItem(void* ptr)
-{
-	static_cast<QGraphicsVideoItem*>(ptr)->~QGraphicsVideoItem();
-}
-
-void* QGraphicsVideoItem_MediaObject(void* ptr)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->mediaObject();
-}
-
-void* QGraphicsVideoItem_MediaObjectDefault(void* ptr)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mediaObject();
-}
-
-void* QGraphicsVideoItem_Offset(void* ptr)
-{
-		return ({ QPointF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->offset(); new QPointF(tmpValue.x(), tmpValue.y()); });
-}
-
-void* QGraphicsVideoItem_BoundingRect(void* ptr)
-{
-		return ({ QRectF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-}
-
-void* QGraphicsVideoItem_BoundingRectDefault(void* ptr)
-{
-		return ({ QRectF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
-}
-
-void* QGraphicsVideoItem_NativeSize(void* ptr)
-{
-		return ({ QSizeF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->nativeSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
-}
-
-void* QGraphicsVideoItem_Size(void* ptr)
-{
-		return ({ QSizeF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->size(); new QSizeF(tmpValue.width(), tmpValue.height()); });
-}
-
-long long QGraphicsVideoItem_AspectRatioMode(void* ptr)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->aspectRatioMode();
-}
-
-void* QGraphicsVideoItem___dynamicPropertyNames_atList(void* ptr, int i)
-{
-		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
-}
-
-void QGraphicsVideoItem___dynamicPropertyNames_setList(void* ptr, void* i)
-{
-		static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
-}
-
-void* QGraphicsVideoItem___dynamicPropertyNames_newList(void* ptr)
+void QCustomAudioRoleControl_DestroyQCustomAudioRoleControlDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
-		return new QList<QByteArray>();
-}
-
-void* QGraphicsVideoItem___findChildren_atList2(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___findChildren_setList2(void* ptr, void* i)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___findChildren_newList2(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QGraphicsVideoItem___findChildren_atList3(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___findChildren_setList3(void* ptr, void* i)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___findChildren_newList3(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QGraphicsVideoItem___findChildren_atList(void* ptr, int i)
-{
-		return ({QObject* tmp = static_cast<QList<QObject*>*>(ptr)->at(i); if (i == static_cast<QList<QObject*>*>(ptr)->size()-1) { static_cast<QList<QObject*>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___findChildren_setList(void* ptr, void* i)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___findChildren_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject*>();
-}
-
-void* QGraphicsVideoItem___children_atList(void* ptr, int i)
-{
-		return ({QObject * tmp = static_cast<QList<QObject *>*>(ptr)->at(i); if (i == static_cast<QList<QObject *>*>(ptr)->size()-1) { static_cast<QList<QObject *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___children_setList(void* ptr, void* i)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaRecorder*>(i));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QRadioData*>(i));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QVideoWidget*>(i));
-	} else {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QObject*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___children_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QObject *>();
-}
-
-void* QGraphicsVideoItem___setTransformations_transformations_atList(void* ptr, int i)
-{
-		return ({QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(ptr)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___setTransformations_transformations_setList(void* ptr, void* i)
-{
-		static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
-}
-
-void* QGraphicsVideoItem___setTransformations_transformations_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QGraphicsTransform *>();
-}
-
-void* QGraphicsVideoItem___childItems_atList(void* ptr, int i)
-{
-		return ({QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(ptr)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(ptr)->size()-1) { static_cast<QList<QGraphicsItem *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___childItems_setList(void* ptr, void* i)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else {
-		static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___childItems_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QGraphicsItem *>();
-}
-
-void* QGraphicsVideoItem___collidingItems_atList(void* ptr, int i)
-{
-		return ({QGraphicsItem * tmp = static_cast<QList<QGraphicsItem *>*>(ptr)->at(i); if (i == static_cast<QList<QGraphicsItem *>*>(ptr)->size()-1) { static_cast<QList<QGraphicsItem *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___collidingItems_setList(void* ptr, void* i)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
-	} else {
-		static_cast<QList<QGraphicsItem *>*>(ptr)->append(static_cast<QGraphicsItem*>(i));
-	}
-}
-
-void* QGraphicsVideoItem___collidingItems_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QGraphicsItem *>();
-}
-
-void* QGraphicsVideoItem___transformations_atList(void* ptr, int i)
-{
-		return ({QGraphicsTransform * tmp = static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i); if (i == static_cast<QList<QGraphicsTransform *>*>(ptr)->size()-1) { static_cast<QList<QGraphicsTransform *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QGraphicsVideoItem___transformations_setList(void* ptr, void* i)
-{
-		static_cast<QList<QGraphicsTransform *>*>(ptr)->append(static_cast<QGraphicsTransform*>(i));
-}
-
-void* QGraphicsVideoItem___transformations_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-		return new QList<QGraphicsTransform *>();
-}
-
-char QGraphicsVideoItem_Event(void* ptr, void* ev)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->event(static_cast<QEvent*>(ev));
-}
-
-char QGraphicsVideoItem_EventDefault(void* ptr, void* ev)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::event(static_cast<QEvent*>(ev));
-}
-
-void QGraphicsVideoItem_UpdateMicroFocus(void* ptr)
-{
-		QMetaObject::invokeMethod(static_cast<QGraphicsVideoItem*>(ptr), "updateMicroFocus");
-}
-
-void QGraphicsVideoItem_UpdateMicroFocusDefault(void* ptr)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::updateMicroFocus();
-}
-
-char QGraphicsVideoItem_EventFilter(void* ptr, void* watched, void* event)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	}
-}
-
-char QGraphicsVideoItem_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	}
-}
-
-void QGraphicsVideoItem_ChildEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGraphicsVideoItem_ChildEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void QGraphicsVideoItem_ConnectNotify(void* ptr, void* sign)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGraphicsVideoItem_ConnectNotifyDefault(void* ptr, void* sign)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGraphicsVideoItem_CustomEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void QGraphicsVideoItem_CustomEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::customEvent(static_cast<QEvent*>(event));
-}
-
-void QGraphicsVideoItem_DeleteLater(void* ptr)
-{
-		QMetaObject::invokeMethod(static_cast<QGraphicsVideoItem*>(ptr), "deleteLater");
-}
-
-void QGraphicsVideoItem_DeleteLaterDefault(void* ptr)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::deleteLater();
-}
-
-void QGraphicsVideoItem_DisconnectNotify(void* ptr, void* sign)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGraphicsVideoItem_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void QGraphicsVideoItem_TimerEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QGraphicsVideoItem_TimerEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QGraphicsVideoItem_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QGraphicsVideoItem*>(ptr)->metaObject());
-}
-
-void* QGraphicsVideoItem_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::metaObject());
-}
-
-void* QGraphicsVideoItem_ItemChange(void* ptr, long long change, void* value)
-{
-		return new QVariant(static_cast<QGraphicsVideoItem*>(ptr)->itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-}
-
-void* QGraphicsVideoItem_ItemChangeDefault(void* ptr, long long change, void* value)
-{
-		return new QVariant(static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
-}
-
-char QGraphicsVideoItem_SceneEvent(void* ptr, void* event)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->sceneEvent(static_cast<QEvent*>(event));
-}
-
-char QGraphicsVideoItem_SceneEventDefault(void* ptr, void* event)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::sceneEvent(static_cast<QEvent*>(event));
-}
-
-char QGraphicsVideoItem_SceneEventFilter(void* ptr, void* watched, void* event)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->sceneEventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
-	}
-}
-
-char QGraphicsVideoItem_SceneEventFilterDefault(void* ptr, void* watched, void* event)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::sceneEventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
-	}
-}
-
-void QGraphicsVideoItem_Advance(void* ptr, int phase)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->advance(phase);
-}
-
-void QGraphicsVideoItem_AdvanceDefault(void* ptr, int phase)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::advance(phase);
-}
-
-void QGraphicsVideoItem_ContextMenuEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-}
-
-void QGraphicsVideoItem_ContextMenuEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragEnterEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragEnterEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragLeaveEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragLeaveEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragMoveEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DragMoveEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DropEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_DropEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
-}
-
-void QGraphicsVideoItem_FocusInEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
-}
-
-void QGraphicsVideoItem_FocusInEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::focusInEvent(static_cast<QFocusEvent*>(event));
-}
-
-void QGraphicsVideoItem_FocusOutEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
-}
-
-void QGraphicsVideoItem_FocusOutEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::focusOutEvent(static_cast<QFocusEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverEnterEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverEnterEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverLeaveEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverLeaveEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverMoveEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_HoverMoveEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
-}
-
-void QGraphicsVideoItem_InputMethodEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-}
-
-void QGraphicsVideoItem_InputMethodEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-}
-
-void QGraphicsVideoItem_KeyPressEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
-}
-
-void QGraphicsVideoItem_KeyPressEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::keyPressEvent(static_cast<QKeyEvent*>(event));
-}
-
-void QGraphicsVideoItem_KeyReleaseEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
-}
-
-void QGraphicsVideoItem_KeyReleaseEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseDoubleClickEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseDoubleClickEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseMoveEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseMoveEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MousePressEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MousePressEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseReleaseEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_MouseReleaseEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
-}
-
-void QGraphicsVideoItem_WheelEvent(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-}
-
-void QGraphicsVideoItem_WheelEventDefault(void* ptr, void* event)
-{
-		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
-}
-
-void* QGraphicsVideoItem_OpaqueArea(void* ptr)
-{
-		return new QPainterPath(static_cast<QGraphicsVideoItem*>(ptr)->opaqueArea());
-}
-
-void* QGraphicsVideoItem_OpaqueAreaDefault(void* ptr)
-{
-		return new QPainterPath(static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::opaqueArea());
-}
-
-void* QGraphicsVideoItem_Shape(void* ptr)
-{
-		return new QPainterPath(static_cast<QGraphicsVideoItem*>(ptr)->shape());
-}
-
-void* QGraphicsVideoItem_ShapeDefault(void* ptr)
-{
-		return new QPainterPath(static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::shape());
-}
-
-void* QGraphicsVideoItem_InputMethodQuery(void* ptr, long long query)
-{
-		return new QVariant(static_cast<QGraphicsVideoItem*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-}
-
-void* QGraphicsVideoItem_InputMethodQueryDefault(void* ptr, long long query)
-{
-		return new QVariant(static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-}
-
-char QGraphicsVideoItem_CollidesWithItem(void* ptr, void* other, long long mode)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(other))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->collidesWithItem(static_cast<QGraphicsVideoItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
-	}
-}
-
-char QGraphicsVideoItem_CollidesWithItemDefault(void* ptr, void* other, long long mode)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(other))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::collidesWithItem(static_cast<QGraphicsVideoItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
-	}
-}
-
-char QGraphicsVideoItem_CollidesWithPath(void* ptr, void* path, long long mode)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-}
-
-char QGraphicsVideoItem_CollidesWithPathDefault(void* ptr, void* path, long long mode)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
-}
-
-char QGraphicsVideoItem_Contains(void* ptr, void* point)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->contains(*static_cast<QPointF*>(point));
-}
-
-char QGraphicsVideoItem_ContainsDefault(void* ptr, void* point)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::contains(*static_cast<QPointF*>(point));
-}
 
-char QGraphicsVideoItem_IsObscuredBy(void* ptr, void* item)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(item))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->isObscuredBy(static_cast<QGraphicsVideoItem*>(item));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
-	}
-}
-
-char QGraphicsVideoItem_IsObscuredByDefault(void* ptr, void* item)
-{
-	if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(item))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::isObscuredBy(static_cast<QGraphicsVideoItem*>(item));
-	} else {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::isObscuredBy(static_cast<QGraphicsItem*>(item));
-	}
-}
-
-int QGraphicsVideoItem_Type(void* ptr)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->type();
-}
-
-int QGraphicsVideoItem_TypeDefault(void* ptr)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::type();
 }
 
-char QGraphicsVideoItem_SetMediaObject(void* ptr, void* object)
+struct QtMultimedia_PackedString QCustomAudioRoleControl_CustomAudioRole(void* ptr)
 {
-		return static_cast<QGraphicsVideoItem*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
+	return ({ QByteArray t6c015e = static_cast<QCustomAudioRoleControl*>(ptr)->customAudioRole().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t6c015e.prepend("WHITESPACE").constData()+10), t6c015e.size()-10 }; });
 }
 
-char QGraphicsVideoItem_SetMediaObjectDefault(void* ptr, void* object)
+struct QtMultimedia_PackedString QCustomAudioRoleControl_SupportedCustomAudioRoles(void* ptr)
 {
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::setMediaObject(static_cast<QMediaObject*>(object));
+	return ({ QByteArray tdb048f = static_cast<QCustomAudioRoleControl*>(ptr)->supportedCustomAudioRoles().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdb048f.prepend("WHITESPACE").constData()+10), tdb048f.size()-10 }; });
 }
 
 class MyQImageEncoderControl: public QImageEncoderControl
@@ -10815,6 +10093,7 @@ public:
 	QList<QSize> supportedResolutions(const QImageEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQImageEncoderControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QImageEncoderSettings*>(&settings), *continuous)); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString imageCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_ImageCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedImageCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_SupportedImageCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -10825,7 +10104,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQImageEncoderControl*)
@@ -11082,6 +10360,7 @@ public:
 	void Signal_AudioBufferProbed(const QAudioBuffer & buffer) { callbackQMediaAudioProbeControl_AudioBufferProbed(this, const_cast<QAudioBuffer*>(&buffer)); };
 	void Signal_Flush() { callbackQMediaAudioProbeControl_Flush(this); };
 	 ~MyQMediaAudioProbeControl() { callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -11092,7 +10371,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaAudioProbeControl*)
@@ -11186,7 +10464,9 @@ class MyQMediaAvailabilityControl: public QMediaAvailabilityControl
 public:
 	MyQMediaAvailabilityControl(QObject *parent = Q_NULLPTR) : QMediaAvailabilityControl(parent) {QMediaAvailabilityControl_QMediaAvailabilityControl_QRegisterMetaType();};
 	void Signal_AvailabilityChanged(QMultimedia::AvailabilityStatus availability) { callbackQMediaAvailabilityControl_AvailabilityChanged(this, availability); };
+	 ~MyQMediaAvailabilityControl() { callbackQMediaAvailabilityControl_DestroyQMediaAvailabilityControl(this); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaAvailabilityControl_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -11197,7 +10477,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaAvailabilityControl*)
@@ -11266,6 +10545,12 @@ void QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(void* ptr)
 	static_cast<QMediaAvailabilityControl*>(ptr)->~QMediaAvailabilityControl();
 }
 
+void QMediaAvailabilityControl_DestroyQMediaAvailabilityControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QMediaAvailabilityControl_Availability(void* ptr)
 {
 	return static_cast<QMediaAvailabilityControl*>(ptr)->availability();
@@ -11283,8 +10568,6 @@ char QMediaBindableInterface_SetMediaObject(void* ptr, void* object)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QCameraImageCapture*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlaylist*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(ptr))) {
@@ -11313,8 +10596,6 @@ void* QMediaBindableInterface_MediaObject(void* ptr)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QCameraImageCapture*>(ptr)->mediaObject();
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsVideoItem*>(ptr)->mediaObject();
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlaylist*>(ptr)->mediaObject();
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(ptr))) {
@@ -11334,9 +10615,10 @@ public:
 	MyQMediaContainerControl(QObject *parent = Q_NULLPTR) : QMediaContainerControl(parent) {QMediaContainerControl_QMediaContainerControl_QRegisterMetaType();};
 	void setContainerFormat(const QString & format) { QByteArray t785987 = format.toUtf8(); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQMediaContainerControl_SetContainerFormat(this, formatPacked); };
 	 ~MyQMediaContainerControl() { callbackQMediaContainerControl_DestroyQMediaContainerControl(this); };
-	QString containerDescription(const QString & format) const { QByteArray t785987 = format.toUtf8(); QtMultimedia_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString containerDescription(const QString & formatMimeType) const { QByteArray tb6d52e = formatMimeType.toUtf8(); QtMultimedia_PackedString formatMimeTypePacked = { const_cast<char*>(tb6d52e.prepend("WHITESPACE").constData()+10), tb6d52e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerDescription(const_cast<void*>(static_cast<const void*>(this)), formatMimeTypePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString containerFormat() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_ContainerFormat(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedContainers() const { return ({ QtMultimedia_PackedString tempVal = callbackQMediaContainerControl_SupportedContainers(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -11347,7 +10629,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaContainerControl*)
@@ -11411,9 +10692,9 @@ void QMediaContainerControl_DestroyQMediaContainerControlDefault(void* ptr)
 
 }
 
-struct QtMultimedia_PackedString QMediaContainerControl_ContainerDescription(void* ptr, struct QtMultimedia_PackedString format)
+struct QtMultimedia_PackedString QMediaContainerControl_ContainerDescription(void* ptr, struct QtMultimedia_PackedString formatMimeType)
 {
-	return ({ QByteArray tb993f2 = static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString::fromUtf8(format.data, format.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb993f2.prepend("WHITESPACE").constData()+10), tb993f2.size()-10 }; });
+	return ({ QByteArray t33fd01 = static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString::fromUtf8(formatMimeType.data, formatMimeType.len)).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t33fd01.prepend("WHITESPACE").constData()+10), t33fd01.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QMediaContainerControl_ContainerFormat(void* ptr)
@@ -11532,6 +10813,8 @@ class MyQMediaControl: public QMediaControl
 {
 public:
 	MyQMediaControl(QObject *parent = Q_NULLPTR) : QMediaControl(parent) {QMediaControl_QMediaControl_QRegisterMetaType();};
+	 ~MyQMediaControl() { callbackQMediaControl_DestroyQMediaControl(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -11542,7 +10825,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaControl*)
@@ -11590,9 +10872,110 @@ void* QMediaControl_NewQMediaControl(void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QMediaControl_QMediaControl_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t38e116 = QMediaControl::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t38e116.prepend("WHITESPACE").constData()+10), t38e116.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaControl_QMediaControl_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t97d650 = QMediaControl::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t97d650.prepend("WHITESPACE").constData()+10), t97d650.size()-10 }; });
+}
+
 void QMediaControl_DestroyQMediaControl(void* ptr)
 {
 	static_cast<QMediaControl*>(ptr)->~QMediaControl();
+}
+
+void QMediaControl_DestroyQMediaControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QMediaControl_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QVideoWidgetControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::metaObject());
+	} else if (dynamic_cast<QVideoWindowControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::metaObject());
+	} else if (dynamic_cast<QVideoRendererControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::metaObject());
+	} else if (dynamic_cast<QVideoEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::metaObject());
+	} else if (dynamic_cast<QVideoDeviceSelectorControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::metaObject());
+	} else if (dynamic_cast<QRadioTunerControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::metaObject());
+	} else if (dynamic_cast<QRadioDataControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::metaObject());
+	} else if (dynamic_cast<QMetaDataWriterControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::metaObject());
+	} else if (dynamic_cast<QMetaDataReaderControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::metaObject());
+	} else if (dynamic_cast<QMediaVideoProbeControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::metaObject());
+	} else if (dynamic_cast<QMediaStreamsControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::metaObject());
+	} else if (dynamic_cast<QMediaRecorderControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::metaObject());
+	} else if (dynamic_cast<QMediaPlayerControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::metaObject());
+	} else if (dynamic_cast<QMediaNetworkAccessControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::metaObject());
+	} else if (dynamic_cast<QMediaGaplessPlaybackControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::metaObject());
+	} else if (dynamic_cast<QMediaContainerControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::metaObject());
+	} else if (dynamic_cast<QMediaAvailabilityControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::metaObject());
+	} else if (dynamic_cast<QMediaAudioProbeControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::metaObject());
+	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::metaObject());
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::metaObject());
+	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::metaObject());
+	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::metaObject());
+	} else if (dynamic_cast<QCameraViewfinderSettingsControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::metaObject());
+	} else if (dynamic_cast<QCameraLocksControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::metaObject());
+	} else if (dynamic_cast<QCameraInfoControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::metaObject());
+	} else if (dynamic_cast<QCameraImageProcessingControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::metaObject());
+	} else if (dynamic_cast<QCameraImageCaptureControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::metaObject());
+	} else if (dynamic_cast<QCameraFocusControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::metaObject());
+	} else if (dynamic_cast<QCameraFlashControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::metaObject());
+	} else if (dynamic_cast<QCameraFeedbackControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::metaObject());
+	} else if (dynamic_cast<QCameraExposureControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::metaObject());
+	} else if (dynamic_cast<QCameraControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraControl*>(ptr)->QCameraControl::metaObject());
+	} else if (dynamic_cast<QCameraCaptureDestinationControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::metaObject());
+	} else if (dynamic_cast<QCameraCaptureBufferFormatControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::metaObject());
+	} else if (dynamic_cast<QAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioRoleControl*>(ptr)->QAudioRoleControl::metaObject());
+	} else if (dynamic_cast<QAudioOutputSelectorControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::metaObject());
+	} else if (dynamic_cast<QAudioInputSelectorControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::metaObject());
+	} else if (dynamic_cast<QAudioEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::metaObject());
+	} else if (dynamic_cast<QAudioDecoderControl*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QMediaControl*>(ptr)->QMediaControl::metaObject());
+	}
 }
 
 void* QMediaControl___dynamicPropertyNames_atList(void* ptr, int i)
@@ -11620,8 +11003,6 @@ void QMediaControl___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -11650,8 +11031,6 @@ void QMediaControl___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -11680,8 +11059,6 @@ void QMediaControl___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -11710,8 +11087,6 @@ void QMediaControl___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -11771,6 +11146,8 @@ char QMediaControl_EventDefault(void* ptr, void* e)
 		return static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -11819,8 +11196,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	if (dynamic_cast<QVideoWidgetControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11835,8 +11210,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QVideoWindowControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11851,8 +11224,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QVideoRendererControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11867,8 +11238,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QVideoEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11883,8 +11252,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QVideoDeviceSelectorControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11899,8 +11266,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QRadioTunerControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11915,8 +11280,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QRadioDataControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11931,8 +11294,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMetaDataWriterControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11947,8 +11308,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMetaDataReaderControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11963,8 +11322,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaVideoProbeControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11979,8 +11336,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaStreamsControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -11995,8 +11350,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaRecorderControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12011,8 +11364,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaPlayerControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12027,8 +11378,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaNetworkAccessControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12043,8 +11392,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaGaplessPlaybackControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12059,8 +11406,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaContainerControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12075,8 +11420,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaAvailabilityControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12091,8 +11434,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaAudioProbeControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12107,8 +11448,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12120,11 +11459,23 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12139,8 +11490,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12155,8 +11504,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12171,8 +11518,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraLocksControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12187,8 +11532,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraInfoControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12203,8 +11546,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraImageProcessingControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12219,8 +11560,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraImageCaptureControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12235,8 +11574,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraFocusControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12251,8 +11588,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraFlashControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12267,8 +11602,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraFeedbackControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12283,8 +11616,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraExposureControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12299,8 +11630,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraControl*>(ptr)->QCameraControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraControl*>(ptr)->QCameraControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraControl*>(ptr)->QCameraControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12315,8 +11644,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraCaptureDestinationControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12331,8 +11658,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QCameraCaptureBufferFormatControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12347,8 +11672,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QAudioRoleControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioRoleControl*>(ptr)->QAudioRoleControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioRoleControl*>(ptr)->QAudioRoleControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioRoleControl*>(ptr)->QAudioRoleControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12363,8 +11686,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QAudioOutputSelectorControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12379,8 +11700,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QAudioInputSelectorControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12395,8 +11714,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QAudioEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12411,8 +11728,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QAudioDecoderControl*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12427,8 +11742,6 @@ char QMediaControl_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaControl*>(ptr)->QMediaControl::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaControl*>(ptr)->QMediaControl::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaControl*>(ptr)->QMediaControl::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -12483,6 +11796,8 @@ void QMediaControl_ChildEventDefault(void* ptr, void* event)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12566,6 +11881,8 @@ void QMediaControl_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12649,6 +11966,8 @@ void QMediaControl_CustomEventDefault(void* ptr, void* event)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12732,6 +12051,8 @@ void QMediaControl_DeleteLaterDefault(void* ptr)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::deleteLater();
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::deleteLater();
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::deleteLater();
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::deleteLater();
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12815,6 +12136,8 @@ void QMediaControl_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12898,6 +12221,8 @@ void QMediaControl_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QCustomAudioRoleControl*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCustomAudioRoleControl*>(ptr)->QCustomAudioRoleControl::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
@@ -12941,89 +12266,6 @@ void QMediaControl_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QMediaControl_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QVideoWidgetControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::metaObject());
-	} else if (dynamic_cast<QVideoWindowControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::metaObject());
-	} else if (dynamic_cast<QVideoRendererControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::metaObject());
-	} else if (dynamic_cast<QVideoEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::metaObject());
-	} else if (dynamic_cast<QVideoDeviceSelectorControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::metaObject());
-	} else if (dynamic_cast<QRadioTunerControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::metaObject());
-	} else if (dynamic_cast<QRadioDataControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::metaObject());
-	} else if (dynamic_cast<QMetaDataWriterControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::metaObject());
-	} else if (dynamic_cast<QMetaDataReaderControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::metaObject());
-	} else if (dynamic_cast<QMediaVideoProbeControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::metaObject());
-	} else if (dynamic_cast<QMediaStreamsControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::metaObject());
-	} else if (dynamic_cast<QMediaRecorderControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::metaObject());
-	} else if (dynamic_cast<QMediaPlayerControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::metaObject());
-	} else if (dynamic_cast<QMediaNetworkAccessControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::metaObject());
-	} else if (dynamic_cast<QMediaGaplessPlaybackControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::metaObject());
-	} else if (dynamic_cast<QMediaContainerControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::metaObject());
-	} else if (dynamic_cast<QMediaAvailabilityControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::metaObject());
-	} else if (dynamic_cast<QMediaAudioProbeControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::metaObject());
-	} else if (dynamic_cast<QImageEncoderControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::metaObject());
-	} else if (dynamic_cast<QCameraZoomControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::metaObject());
-	} else if (dynamic_cast<QCameraViewfinderSettingsControl2*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::metaObject());
-	} else if (dynamic_cast<QCameraViewfinderSettingsControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::metaObject());
-	} else if (dynamic_cast<QCameraLocksControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::metaObject());
-	} else if (dynamic_cast<QCameraInfoControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::metaObject());
-	} else if (dynamic_cast<QCameraImageProcessingControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::metaObject());
-	} else if (dynamic_cast<QCameraImageCaptureControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::metaObject());
-	} else if (dynamic_cast<QCameraFocusControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::metaObject());
-	} else if (dynamic_cast<QCameraFlashControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::metaObject());
-	} else if (dynamic_cast<QCameraFeedbackControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::metaObject());
-	} else if (dynamic_cast<QCameraExposureControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::metaObject());
-	} else if (dynamic_cast<QCameraControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraControl*>(ptr)->QCameraControl::metaObject());
-	} else if (dynamic_cast<QCameraCaptureDestinationControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::metaObject());
-	} else if (dynamic_cast<QCameraCaptureBufferFormatControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::metaObject());
-	} else if (dynamic_cast<QAudioRoleControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioRoleControl*>(ptr)->QAudioRoleControl::metaObject());
-	} else if (dynamic_cast<QAudioOutputSelectorControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::metaObject());
-	} else if (dynamic_cast<QAudioInputSelectorControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::metaObject());
-	} else if (dynamic_cast<QAudioEncoderSettingsControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::metaObject());
-	} else if (dynamic_cast<QAudioDecoderControl*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QMediaControl*>(ptr)->QMediaControl::metaObject());
-	}
-}
-
 class MyQMediaGaplessPlaybackControl: public QMediaGaplessPlaybackControl
 {
 public:
@@ -13036,6 +12278,7 @@ public:
 	 ~MyQMediaGaplessPlaybackControl() { callbackQMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(this); };
 	QMediaContent nextMedia() const { return *static_cast<QMediaContent*>(callbackQMediaGaplessPlaybackControl_NextMedia(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isCrossfadeSupported() const { return callbackQMediaGaplessPlaybackControl_IsCrossfadeSupported(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qreal crossfadeTime() const { return callbackQMediaGaplessPlaybackControl_CrossfadeTime(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
@@ -13047,7 +12290,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaGaplessPlaybackControl*)
@@ -13183,6 +12425,7 @@ public:
 	void setConfigurations(const QList<QNetworkConfiguration> & configurations) { callbackQMediaNetworkAccessControl_SetConfigurations(this, ({ QList<QNetworkConfiguration>* tmpValue = const_cast<QList<QNetworkConfiguration>*>(&configurations); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQMediaNetworkAccessControl() { callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(this); };
 	QNetworkConfiguration currentConfiguration() const { return *static_cast<QNetworkConfiguration*>(callbackQMediaNetworkAccessControl_CurrentConfiguration(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -13193,7 +12436,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaNetworkAccessControl*)
@@ -13264,9 +12506,11 @@ public:
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMediaObject_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
+	 ~MyQMediaObject() { callbackQMediaObject_DestroyQMediaObject(this); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<void*>(static_cast<const void*>(this)))); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaObject_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaObject_ChildEvent(this, event); };
@@ -13277,7 +12521,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaObject*)
@@ -13325,12 +12568,20 @@ void* QMediaObject_NewQMediaObject(void* parent, void* service)
 	}
 }
 
+struct QtMultimedia_PackedString QMediaObject_QMediaObject_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t1c7105 = QMediaObject::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t1c7105.prepend("WHITESPACE").constData()+10), t1c7105.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaObject_QMediaObject_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t0501f4 = QMediaObject::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t0501f4.prepend("WHITESPACE").constData()+10), t0501f4.size()-10 }; });
+}
+
 char QMediaObject_Bind(void* ptr, void* object)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 		return static_cast<QMediaObject*>(ptr)->bind(static_cast<QCameraImageCapture*>(object));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-		return static_cast<QMediaObject*>(ptr)->bind(static_cast<QGraphicsVideoItem*>(object));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 		return static_cast<QMediaObject*>(ptr)->bind(static_cast<QMediaPlaylist*>(object));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13346,11 +12597,23 @@ char QMediaObject_Bind(void* ptr, void* object)
 
 char QMediaObject_BindDefault(void* ptr, void* object)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QCameraImageCapture*>(object));
+		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QMediaPlaylist*>(object));
+		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QMediaRecorder*>(object));
+		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QRadioData*>(object));
+		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(object))) {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QVideoWidget*>(object));
+		} else {
+			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QObject*>(object));
+		}
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::bind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::bind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::bind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13365,8 +12628,6 @@ char QMediaObject_BindDefault(void* ptr, void* object)
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::bind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::bind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::bind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13378,27 +12639,9 @@ char QMediaObject_BindDefault(void* ptr, void* object)
 		} else {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::bind(static_cast<QObject*>(object));
 		}
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QGraphicsVideoItem*>(object));
-		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QMediaPlaylist*>(object));
-		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QMediaRecorder*>(object));
-		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QRadioData*>(object));
-		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(object))) {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QVideoWidget*>(object));
-		} else {
-			return static_cast<QCamera*>(ptr)->QCamera::bind(static_cast<QObject*>(object));
-		}
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::bind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::bind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::bind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13413,8 +12656,6 @@ char QMediaObject_BindDefault(void* ptr, void* object)
 	} else {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			return static_cast<QMediaObject*>(ptr)->QMediaObject::bind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			return static_cast<QMediaObject*>(ptr)->QMediaObject::bind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			return static_cast<QMediaObject*>(ptr)->QMediaObject::bind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13539,8 +12780,6 @@ void QMediaObject_Unbind(void* ptr, void* object)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 		static_cast<QMediaObject*>(ptr)->unbind(static_cast<QCameraImageCapture*>(object));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-		static_cast<QMediaObject*>(ptr)->unbind(static_cast<QGraphicsVideoItem*>(object));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 		static_cast<QMediaObject*>(ptr)->unbind(static_cast<QMediaPlaylist*>(object));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13556,11 +12795,23 @@ void QMediaObject_Unbind(void* ptr, void* object)
 
 void QMediaObject_UnbindDefault(void* ptr, void* object)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QCameraImageCapture*>(object));
+		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QMediaPlaylist*>(object));
+		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QMediaRecorder*>(object));
+		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QRadioData*>(object));
+		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(object))) {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QVideoWidget*>(object));
+		} else {
+			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QObject*>(object));
+		}
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			static_cast<QRadioTuner*>(ptr)->QRadioTuner::unbind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			static_cast<QRadioTuner*>(ptr)->QRadioTuner::unbind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			static_cast<QRadioTuner*>(ptr)->QRadioTuner::unbind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13575,8 +12826,6 @@ void QMediaObject_UnbindDefault(void* ptr, void* object)
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::unbind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::unbind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::unbind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13588,27 +12837,9 @@ void QMediaObject_UnbindDefault(void* ptr, void* object)
 		} else {
 			static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::unbind(static_cast<QObject*>(object));
 		}
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QGraphicsVideoItem*>(object));
-		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QMediaPlaylist*>(object));
-		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QMediaRecorder*>(object));
-		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QRadioData*>(object));
-		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(object))) {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QVideoWidget*>(object));
-		} else {
-			static_cast<QCamera*>(ptr)->QCamera::unbind(static_cast<QObject*>(object));
-		}
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::unbind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::unbind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::unbind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13623,8 +12854,6 @@ void QMediaObject_UnbindDefault(void* ptr, void* object)
 	} else {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(object))) {
 			static_cast<QMediaObject*>(ptr)->QMediaObject::unbind(static_cast<QCameraImageCapture*>(object));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(object))) {
-			static_cast<QMediaObject*>(ptr)->QMediaObject::unbind(static_cast<QGraphicsVideoItem*>(object));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(object))) {
 			static_cast<QMediaObject*>(ptr)->QMediaObject::unbind(static_cast<QMediaPlaylist*>(object));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(object))) {
@@ -13644,6 +12873,12 @@ void QMediaObject_DestroyQMediaObject(void* ptr)
 	static_cast<QMediaObject*>(ptr)->~QMediaObject();
 }
 
+void QMediaObject_DestroyQMediaObjectDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QMediaObject_Service(void* ptr)
 {
 	return static_cast<QMediaObject*>(ptr)->service();
@@ -13651,12 +12886,12 @@ void* QMediaObject_Service(void* ptr)
 
 void* QMediaObject_ServiceDefault(void* ptr)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCamera*>(ptr)->QCamera::service();
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QRadioTuner*>(ptr)->QRadioTuner::service();
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::service();
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCamera*>(ptr)->QCamera::service();
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::service();
 	} else {
@@ -13671,12 +12906,12 @@ long long QMediaObject_Availability(void* ptr)
 
 long long QMediaObject_AvailabilityDefault(void* ptr)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCamera*>(ptr)->QCamera::availability();
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QRadioTuner*>(ptr)->QRadioTuner::availability();
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::availability();
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCamera*>(ptr)->QCamera::availability();
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::availability();
 	} else {
@@ -13701,12 +12936,12 @@ char QMediaObject_IsAvailable(void* ptr)
 
 char QMediaObject_IsAvailableDefault(void* ptr)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCamera*>(ptr)->QCamera::isAvailable();
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QRadioTuner*>(ptr)->QRadioTuner::isAvailable();
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::isAvailable();
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCamera*>(ptr)->QCamera::isAvailable();
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::isAvailable();
 	} else {
@@ -13717,6 +12952,21 @@ char QMediaObject_IsAvailableDefault(void* ptr)
 char QMediaObject_IsMetaDataAvailable(void* ptr)
 {
 	return static_cast<QMediaObject*>(ptr)->isMetaDataAvailable();
+}
+
+void* QMediaObject_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCamera*>(ptr)->QCamera::metaObject());
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QRadioTuner*>(ptr)->QRadioTuner::metaObject());
+	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::metaObject());
+	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QMediaObject*>(ptr)->QMediaObject::metaObject());
+	}
 }
 
 int QMediaObject_NotifyInterval(void* ptr)
@@ -13749,8 +12999,6 @@ void QMediaObject___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -13779,8 +13027,6 @@ void QMediaObject___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -13809,8 +13055,6 @@ void QMediaObject___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -13839,8 +13083,6 @@ void QMediaObject___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -13862,12 +13104,12 @@ void* QMediaObject___children_newList(void* ptr)
 
 char QMediaObject_EventDefault(void* ptr, void* e)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCamera*>(ptr)->QCamera::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QRadioTuner*>(ptr)->QRadioTuner::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCamera*>(ptr)->QCamera::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::event(static_cast<QEvent*>(e));
 	} else {
@@ -13877,11 +13119,23 @@ char QMediaObject_EventDefault(void* ptr, void* e)
 
 char QMediaObject_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QRadioTuner*>(ptr)->QRadioTuner::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -13896,8 +13150,6 @@ char QMediaObject_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -13909,27 +13161,9 @@ char QMediaObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QCamera*>(ptr)->QCamera::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -13944,8 +13178,6 @@ char QMediaObject_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaObject*>(ptr)->QMediaObject::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaObject*>(ptr)->QMediaObject::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaObject*>(ptr)->QMediaObject::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -13962,12 +13194,12 @@ char QMediaObject_EventFilterDefault(void* ptr, void* watched, void* event)
 
 void QMediaObject_ChildEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::childEvent(static_cast<QChildEvent*>(event));
 	} else {
@@ -13977,12 +13209,12 @@ void QMediaObject_ChildEventDefault(void* ptr, void* event)
 
 void QMediaObject_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
@@ -13992,12 +13224,12 @@ void QMediaObject_ConnectNotifyDefault(void* ptr, void* sign)
 
 void QMediaObject_CustomEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::customEvent(static_cast<QEvent*>(event));
 	} else {
@@ -14007,12 +13239,12 @@ void QMediaObject_CustomEventDefault(void* ptr, void* event)
 
 void QMediaObject_DeleteLaterDefault(void* ptr)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::deleteLater();
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::deleteLater();
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::deleteLater();
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::deleteLater();
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::deleteLater();
 	} else {
@@ -14022,12 +13254,12 @@ void QMediaObject_DeleteLaterDefault(void* ptr)
 
 void QMediaObject_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
@@ -14037,12 +13269,12 @@ void QMediaObject_DisconnectNotifyDefault(void* ptr, void* sign)
 
 void QMediaObject_TimerEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCamera*>(ptr)->QCamera::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
 		static_cast<QRadioTuner*>(ptr)->QRadioTuner::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCamera*>(ptr)->QCamera::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::timerEvent(static_cast<QTimerEvent*>(event));
 	} else {
@@ -14050,29 +13282,15 @@ void QMediaObject_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QMediaObject_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QRadioTuner*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QRadioTuner*>(ptr)->QRadioTuner::metaObject());
-	} else if (dynamic_cast<QMediaPlayer*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::metaObject());
-	} else if (dynamic_cast<QCamera*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCamera*>(ptr)->QCamera::metaObject());
-	} else if (dynamic_cast<QAudioDecoder*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QMediaObject*>(ptr)->QMediaObject::metaObject());
-	}
-}
-
 class MyQMediaPlayer: public QMediaPlayer
 {
 public:
-	MyQMediaPlayer(QObject *parent = Q_NULLPTR, Flags flags = Flags()) : QMediaPlayer(parent, flags) {QMediaPlayer_QMediaPlayer_QRegisterMetaType();};
+	MyQMediaPlayer(QObject *parent = Q_NULLPTR, QMediaPlayer::Flags flags = Flags()) : QMediaPlayer(parent, flags) {QMediaPlayer_QMediaPlayer_QRegisterMetaType();};
 	void Signal_AudioAvailableChanged(bool available) { callbackQMediaPlayer_AudioAvailableChanged(this, available); };
 	void Signal_AudioRoleChanged(QAudio::Role role) { callbackQMediaPlayer_AudioRoleChanged(this, role); };
 	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayer_BufferStatusChanged(this, percentFilled); };
 	void Signal_CurrentMediaChanged(const QMediaContent & media) { callbackQMediaPlayer_CurrentMediaChanged(this, const_cast<QMediaContent*>(&media)); };
+	void Signal_CustomAudioRoleChanged(const QString & role) { QByteArray t8dca46 = role.toUtf8(); QtMultimedia_PackedString rolePacked = { const_cast<char*>(t8dca46.prepend("WHITESPACE").constData()+10), t8dca46.size()-10 };callbackQMediaPlayer_CustomAudioRoleChanged(this, rolePacked); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayer_DurationChanged(this, duration); };
 	void Signal_Error2(QMediaPlayer::Error error) { callbackQMediaPlayer_Error2(this, error); };
 	void Signal_MediaChanged(const QMediaContent & media) { callbackQMediaPlayer_MediaChanged(this, const_cast<QMediaContent*>(&media)); };
@@ -14095,7 +13313,9 @@ public:
 	void stop() { callbackQMediaPlayer_Stop(this); };
 	void Signal_VideoAvailableChanged(bool videoAvailable) { callbackQMediaPlayer_VideoAvailableChanged(this, videoAvailable); };
 	void Signal_VolumeChanged(int volume) { callbackQMediaPlayer_VolumeChanged(this, volume); };
+	 ~MyQMediaPlayer() { callbackQMediaPlayer_DestroyQMediaPlayer(this); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaObject_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool bind(QObject * object) { return callbackQMediaObject_Bind(this, object) != 0; };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObject_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObject_AvailabilityChanged(this, available); };
@@ -14116,7 +13336,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaPlayer*)
@@ -14228,6 +13447,21 @@ void QMediaPlayer_DisconnectCurrentMediaChanged(void* ptr)
 void QMediaPlayer_CurrentMediaChanged(void* ptr, void* media)
 {
 	static_cast<QMediaPlayer*>(ptr)->currentMediaChanged(*static_cast<QMediaContent*>(media));
+}
+
+void QMediaPlayer_ConnectCustomAudioRoleChanged(void* ptr)
+{
+	QObject::connect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QString &)>(&QMediaPlayer::customAudioRoleChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QString &)>(&MyQMediaPlayer::Signal_CustomAudioRoleChanged));
+}
+
+void QMediaPlayer_DisconnectCustomAudioRoleChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QMediaPlayer*>(ptr), static_cast<void (QMediaPlayer::*)(const QString &)>(&QMediaPlayer::customAudioRoleChanged), static_cast<MyQMediaPlayer*>(ptr), static_cast<void (MyQMediaPlayer::*)(const QString &)>(&MyQMediaPlayer::Signal_CustomAudioRoleChanged));
+}
+
+void QMediaPlayer_CustomAudioRoleChanged(void* ptr, struct QtMultimedia_PackedString role)
+{
+	static_cast<QMediaPlayer*>(ptr)->customAudioRoleChanged(QString::fromUtf8(role.data, role.len));
 }
 
 void QMediaPlayer_ConnectDurationChanged(void* ptr)
@@ -14392,6 +13626,11 @@ void QMediaPlayer_SetAudioRole(void* ptr, long long audioRole)
 	static_cast<QMediaPlayer*>(ptr)->setAudioRole(static_cast<QAudio::Role>(audioRole));
 }
 
+void QMediaPlayer_SetCustomAudioRole(void* ptr, struct QtMultimedia_PackedString audioRole)
+{
+	static_cast<QMediaPlayer*>(ptr)->setCustomAudioRole(QString::fromUtf8(audioRole.data, audioRole.len));
+}
+
 void QMediaPlayer_SetMedia(void* ptr, void* media, void* stream)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setMedia", Q_ARG(const QMediaContent, *static_cast<QMediaContent*>(media)), Q_ARG(QIODevice*, static_cast<QIODevice*>(stream)));
@@ -14455,11 +13694,6 @@ void QMediaPlayer_SetPositionDefault(void* ptr, long long position)
 void QMediaPlayer_SetVideoOutput3(void* ptr, void* surface)
 {
 	static_cast<QMediaPlayer*>(ptr)->setVideoOutput(static_cast<QAbstractVideoSurface*>(surface));
-}
-
-void QMediaPlayer_SetVideoOutput2(void* ptr, void* output)
-{
-		static_cast<QMediaPlayer*>(ptr)->setVideoOutput(static_cast<QGraphicsVideoItem*>(output));
 }
 
 void QMediaPlayer_SetVideoOutput(void* ptr, void* output)
@@ -14538,14 +13772,10 @@ void QMediaPlayer_DestroyQMediaPlayer(void* ptr)
 	static_cast<QMediaPlayer*>(ptr)->~QMediaPlayer();
 }
 
-long long QMediaPlayer_Error(void* ptr)
+void QMediaPlayer_DestroyQMediaPlayerDefault(void* ptr)
 {
-	return static_cast<QMediaPlayer*>(ptr)->error();
-}
+	Q_UNUSED(ptr);
 
-long long QMediaPlayer_MediaStatus(void* ptr)
-{
-	return static_cast<QMediaPlayer*>(ptr)->mediaStatus();
 }
 
 long long QMediaPlayer_AudioRole(void* ptr)
@@ -14568,6 +13798,21 @@ void* QMediaPlayer_Media(void* ptr)
 	return new QMediaContent(static_cast<QMediaPlayer*>(ptr)->media());
 }
 
+long long QMediaPlayer_Error(void* ptr)
+{
+	return static_cast<QMediaPlayer*>(ptr)->error();
+}
+
+long long QMediaPlayer_MediaStatus(void* ptr)
+{
+	return static_cast<QMediaPlayer*>(ptr)->mediaStatus();
+}
+
+long long QMediaPlayer_State(void* ptr)
+{
+	return static_cast<QMediaPlayer*>(ptr)->state();
+}
+
 void* QMediaPlayer_Playlist(void* ptr)
 {
 	return static_cast<QMediaPlayer*>(ptr)->playlist();
@@ -14578,14 +13823,19 @@ void* QMediaPlayer_CurrentNetworkConfiguration(void* ptr)
 	return new QNetworkConfiguration(static_cast<QMediaPlayer*>(ptr)->currentNetworkConfiguration());
 }
 
+struct QtMultimedia_PackedString QMediaPlayer_CustomAudioRole(void* ptr)
+{
+	return ({ QByteArray te887b0 = static_cast<QMediaPlayer*>(ptr)->customAudioRole().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te887b0.prepend("WHITESPACE").constData()+10), te887b0.size()-10 }; });
+}
+
 struct QtMultimedia_PackedString QMediaPlayer_ErrorString(void* ptr)
 {
 	return ({ QByteArray t55328b = static_cast<QMediaPlayer*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t55328b.prepend("WHITESPACE").constData()+10), t55328b.size()-10 }; });
 }
 
-long long QMediaPlayer_State(void* ptr)
+struct QtMultimedia_PackedString QMediaPlayer_SupportedCustomAudioRoles(void* ptr)
 {
-	return static_cast<QMediaPlayer*>(ptr)->state();
+	return ({ QByteArray tb5c594 = static_cast<QMediaPlayer*>(ptr)->supportedCustomAudioRoles().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb5c594.prepend("WHITESPACE").constData()+10), tb5c594.size()-10 }; });
 }
 
 char QMediaPlayer_IsAudioAvailable(void* ptr)
@@ -14674,9 +13924,9 @@ class MyQMediaPlayerControl: public QMediaPlayerControl
 {
 public:
 	MyQMediaPlayerControl(QObject *parent = Q_NULLPTR) : QMediaPlayerControl(parent) {QMediaPlayerControl_QMediaPlayerControl_QRegisterMetaType();};
-	void Signal_AudioAvailableChanged(bool audio) { callbackQMediaPlayerControl_AudioAvailableChanged(this, audio); };
+	void Signal_AudioAvailableChanged(bool audioAvailable) { callbackQMediaPlayerControl_AudioAvailableChanged(this, audioAvailable); };
 	void Signal_AvailablePlaybackRangesChanged(const QMediaTimeRange & ranges) { callbackQMediaPlayerControl_AvailablePlaybackRangesChanged(this, const_cast<QMediaTimeRange*>(&ranges)); };
-	void Signal_BufferStatusChanged(int progress) { callbackQMediaPlayerControl_BufferStatusChanged(this, progress); };
+	void Signal_BufferStatusChanged(int percentFilled) { callbackQMediaPlayerControl_BufferStatusChanged(this, percentFilled); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayerControl_DurationChanged(this, duration); };
 	void Signal_Error(int error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtMultimedia_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQMediaPlayerControl_Error(this, error, errorStringPacked); };
 	void Signal_MediaChanged(const QMediaContent & content) { callbackQMediaPlayerControl_MediaChanged(this, const_cast<QMediaContent*>(&content)); };
@@ -14692,10 +13942,11 @@ public:
 	void setPlaybackRate(qreal rate) { callbackQMediaPlayerControl_SetPlaybackRate(this, rate); };
 	void setPosition(qint64 position) { callbackQMediaPlayerControl_SetPosition(this, position); };
 	void setVolume(int volume) { callbackQMediaPlayerControl_SetVolume(this, volume); };
-	void Signal_StateChanged(QMediaPlayer::State state) { callbackQMediaPlayerControl_StateChanged(this, state); };
+	void Signal_StateChanged(QMediaPlayer::State newState) { callbackQMediaPlayerControl_StateChanged(this, newState); };
 	void stop() { callbackQMediaPlayerControl_Stop(this); };
-	void Signal_VideoAvailableChanged(bool video) { callbackQMediaPlayerControl_VideoAvailableChanged(this, video); };
+	void Signal_VideoAvailableChanged(bool videoAvailable) { callbackQMediaPlayerControl_VideoAvailableChanged(this, videoAvailable); };
 	void Signal_VolumeChanged(int volume) { callbackQMediaPlayerControl_VolumeChanged(this, volume); };
+	 ~MyQMediaPlayerControl() { callbackQMediaPlayerControl_DestroyQMediaPlayerControl(this); };
 	QMediaContent media() const { return *static_cast<QMediaContent*>(callbackQMediaPlayerControl_Media(const_cast<void*>(static_cast<const void*>(this)))); };
 	QMediaPlayer::MediaStatus mediaStatus() const { return static_cast<QMediaPlayer::MediaStatus>(callbackQMediaPlayerControl_MediaStatus(const_cast<void*>(static_cast<const void*>(this)))); };
 	QMediaPlayer::State state() const { return static_cast<QMediaPlayer::State>(callbackQMediaPlayerControl_State(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -14705,6 +13956,7 @@ public:
 	bool isSeekable() const { return callbackQMediaPlayerControl_IsSeekable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isVideoAvailable() const { return callbackQMediaPlayerControl_IsVideoAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	const QIODevice * mediaStream() const { return static_cast<QIODevice*>(callbackQMediaPlayerControl_MediaStream(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int bufferStatus() const { return callbackQMediaPlayerControl_BufferStatus(const_cast<void*>(static_cast<const void*>(this))); };
 	int volume() const { return callbackQMediaPlayerControl_Volume(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 duration() const { return callbackQMediaPlayerControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
@@ -14720,7 +13972,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaPlayerControl*)
@@ -14778,9 +14029,9 @@ void QMediaPlayerControl_DisconnectAudioAvailableChanged(void* ptr)
 	QObject::disconnect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(bool)>(&QMediaPlayerControl::audioAvailableChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(bool)>(&MyQMediaPlayerControl::Signal_AudioAvailableChanged));
 }
 
-void QMediaPlayerControl_AudioAvailableChanged(void* ptr, char audio)
+void QMediaPlayerControl_AudioAvailableChanged(void* ptr, char audioAvailable)
 {
-	static_cast<QMediaPlayerControl*>(ptr)->audioAvailableChanged(audio != 0);
+	static_cast<QMediaPlayerControl*>(ptr)->audioAvailableChanged(audioAvailable != 0);
 }
 
 void QMediaPlayerControl_ConnectAvailablePlaybackRangesChanged(void* ptr)
@@ -14808,9 +14059,9 @@ void QMediaPlayerControl_DisconnectBufferStatusChanged(void* ptr)
 	QObject::disconnect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(int)>(&QMediaPlayerControl::bufferStatusChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(int)>(&MyQMediaPlayerControl::Signal_BufferStatusChanged));
 }
 
-void QMediaPlayerControl_BufferStatusChanged(void* ptr, int progress)
+void QMediaPlayerControl_BufferStatusChanged(void* ptr, int percentFilled)
 {
-	static_cast<QMediaPlayerControl*>(ptr)->bufferStatusChanged(progress);
+	static_cast<QMediaPlayerControl*>(ptr)->bufferStatusChanged(percentFilled);
 }
 
 void QMediaPlayerControl_ConnectDurationChanged(void* ptr)
@@ -14980,9 +14231,9 @@ void QMediaPlayerControl_DisconnectStateChanged(void* ptr)
 	QObject::disconnect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(QMediaPlayer::State)>(&QMediaPlayerControl::stateChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(QMediaPlayer::State)>(&MyQMediaPlayerControl::Signal_StateChanged));
 }
 
-void QMediaPlayerControl_StateChanged(void* ptr, long long state)
+void QMediaPlayerControl_StateChanged(void* ptr, long long newState)
 {
-	static_cast<QMediaPlayerControl*>(ptr)->stateChanged(static_cast<QMediaPlayer::State>(state));
+	static_cast<QMediaPlayerControl*>(ptr)->stateChanged(static_cast<QMediaPlayer::State>(newState));
 }
 
 void QMediaPlayerControl_Stop(void* ptr)
@@ -15000,9 +14251,9 @@ void QMediaPlayerControl_DisconnectVideoAvailableChanged(void* ptr)
 	QObject::disconnect(static_cast<QMediaPlayerControl*>(ptr), static_cast<void (QMediaPlayerControl::*)(bool)>(&QMediaPlayerControl::videoAvailableChanged), static_cast<MyQMediaPlayerControl*>(ptr), static_cast<void (MyQMediaPlayerControl::*)(bool)>(&MyQMediaPlayerControl::Signal_VideoAvailableChanged));
 }
 
-void QMediaPlayerControl_VideoAvailableChanged(void* ptr, char video)
+void QMediaPlayerControl_VideoAvailableChanged(void* ptr, char videoAvailable)
 {
-	static_cast<QMediaPlayerControl*>(ptr)->videoAvailableChanged(video != 0);
+	static_cast<QMediaPlayerControl*>(ptr)->videoAvailableChanged(videoAvailable != 0);
 }
 
 void QMediaPlayerControl_ConnectVolumeChanged(void* ptr)
@@ -15023,6 +14274,12 @@ void QMediaPlayerControl_VolumeChanged(void* ptr, int volume)
 void QMediaPlayerControl_DestroyQMediaPlayerControl(void* ptr)
 {
 	static_cast<QMediaPlayerControl*>(ptr)->~QMediaPlayerControl();
+}
+
+void QMediaPlayerControl_DestroyQMediaPlayerControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QMediaPlayerControl_Media(void* ptr)
@@ -15115,6 +14372,7 @@ public:
 	void shuffle() { callbackQMediaPlaylist_Shuffle(this); };
 	 ~MyQMediaPlaylist() { callbackQMediaPlaylist_DestroyQMediaPlaylist(this); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQMediaPlaylist_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaPlaylist_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaPlaylist_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaPlaylist_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaPlaylist_ChildEvent(this, event); };
@@ -15125,7 +14383,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaPlaylist_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaPlaylist_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaPlaylist_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaPlaylist_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaPlaylist_SetMediaObject(this, object) != 0; };
 };
 
@@ -15136,6 +14393,16 @@ int QMediaPlaylist_QMediaPlaylist_QRegisterMetaType(){qRegisterMetaType<QMediaPl
 void* QMediaPlaylist_NewQMediaPlaylist(void* parent)
 {
 	return new MyQMediaPlaylist(static_cast<QObject*>(parent));
+}
+
+struct QtMultimedia_PackedString QMediaPlaylist_QMediaPlaylist_Tr(char* s, char* c, int n)
+{
+		return ({ QByteArray tcd7384 = QMediaPlaylist::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcd7384.prepend("WHITESPACE").constData()+10), tcd7384.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaPlaylist_QMediaPlaylist_TrUtf8(char* s, char* c, int n)
+{
+		return ({ QByteArray tc382ca = QMediaPlaylist::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc382ca.prepend("WHITESPACE").constData()+10), tc382ca.size()-10 }; });
 }
 
 char QMediaPlaylist_AddMedia2(void* ptr, void* items)
@@ -15410,16 +14677,6 @@ void QMediaPlaylist_DestroyQMediaPlaylistDefault(void* ptr)
 
 }
 
-long long QMediaPlaylist_Error(void* ptr)
-{
-		return static_cast<QMediaPlaylist*>(ptr)->error();
-}
-
-long long QMediaPlaylist_PlaybackMode(void* ptr)
-{
-		return static_cast<QMediaPlaylist*>(ptr)->playbackMode();
-}
-
 void* QMediaPlaylist_CurrentMedia(void* ptr)
 {
 		return new QMediaContent(static_cast<QMediaPlaylist*>(ptr)->currentMedia());
@@ -15440,6 +14697,16 @@ void* QMediaPlaylist_MediaObjectDefault(void* ptr)
 		return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::mediaObject();
 }
 
+long long QMediaPlaylist_Error(void* ptr)
+{
+		return static_cast<QMediaPlaylist*>(ptr)->error();
+}
+
+long long QMediaPlaylist_PlaybackMode(void* ptr)
+{
+		return static_cast<QMediaPlaylist*>(ptr)->playbackMode();
+}
+
 struct QtMultimedia_PackedString QMediaPlaylist_ErrorString(void* ptr)
 {
 		return ({ QByteArray t91ff89 = static_cast<QMediaPlaylist*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t91ff89.prepend("WHITESPACE").constData()+10), t91ff89.size()-10 }; });
@@ -15453,6 +14720,16 @@ char QMediaPlaylist_IsEmpty(void* ptr)
 char QMediaPlaylist_IsReadOnly(void* ptr)
 {
 		return static_cast<QMediaPlaylist*>(ptr)->isReadOnly();
+}
+
+void* QMediaPlaylist_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMediaPlaylist*>(ptr)->metaObject());
+}
+
+void* QMediaPlaylist_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::metaObject());
 }
 
 int QMediaPlaylist_CurrentIndex(void* ptr)
@@ -15532,8 +14809,6 @@ void QMediaPlaylist___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -15562,8 +14837,6 @@ void QMediaPlaylist___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -15592,8 +14865,6 @@ void QMediaPlaylist___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -15622,8 +14893,6 @@ void QMediaPlaylist___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -15657,8 +14926,6 @@ char QMediaPlaylist_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaPlaylist*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QMediaPlaylist*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaPlaylist*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -15676,8 +14943,6 @@ char QMediaPlaylist_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -15751,16 +15016,6 @@ void QMediaPlaylist_TimerEventDefault(void* ptr, void* event)
 		static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QMediaPlaylist_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMediaPlaylist*>(ptr)->metaObject());
-}
-
-void* QMediaPlaylist_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::metaObject());
-}
-
 char QMediaPlaylist_SetMediaObject(void* ptr, void* object)
 {
 		return static_cast<QMediaPlaylist*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
@@ -15793,7 +15048,9 @@ public:
 	void Signal_StatusChanged(QMediaRecorder::Status status) { callbackQMediaRecorder_StatusChanged(this, status); };
 	void stop() { callbackQMediaRecorder_Stop(this); };
 	void Signal_VolumeChanged(qreal volume) { callbackQMediaRecorder_VolumeChanged(this, volume); };
+	 ~MyQMediaRecorder() { callbackQMediaRecorder_DestroyQMediaRecorder(this); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQMediaRecorder_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaRecorder_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaRecorder_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaRecorder_ChildEvent(this, event); };
@@ -15804,7 +15061,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaRecorder_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaRecorder_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaRecorder_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool setMediaObject(QMediaObject * object) { return callbackQMediaRecorder_SetMediaObject(this, object) != 0; };
 };
 
@@ -15815,6 +15071,16 @@ int QMediaRecorder_QMediaRecorder_QRegisterMetaType(){qRegisterMetaType<QMediaRe
 void* QMediaRecorder_NewQMediaRecorder(void* mediaObject, void* parent)
 {
 	return new MyQMediaRecorder(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+}
+
+struct QtMultimedia_PackedString QMediaRecorder_QMediaRecorder_Tr(char* s, char* c, int n)
+{
+		return ({ QByteArray t5f4bb5 = QMediaRecorder::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t5f4bb5.prepend("WHITESPACE").constData()+10), t5f4bb5.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaRecorder_QMediaRecorder_TrUtf8(char* s, char* c, int n)
+{
+		return ({ QByteArray tc856d4 = QMediaRecorder::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc856d4.prepend("WHITESPACE").constData()+10), tc856d4.size()-10 }; });
 }
 
 char QMediaRecorder_SetOutputLocation(void* ptr, void* location)
@@ -16121,9 +15387,10 @@ void QMediaRecorder_DestroyQMediaRecorder(void* ptr)
 	static_cast<QMediaRecorder*>(ptr)->~QMediaRecorder();
 }
 
-long long QMediaRecorder_Error(void* ptr)
+void QMediaRecorder_DestroyQMediaRecorderDefault(void* ptr)
 {
-		return static_cast<QMediaRecorder*>(ptr)->error();
+	Q_UNUSED(ptr);
+
 }
 
 void* QMediaRecorder_AudioSettings(void* ptr)
@@ -16161,6 +15428,21 @@ void* QMediaRecorder_MediaObjectDefault(void* ptr)
 	} else {
 		return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::mediaObject();
 	}
+}
+
+long long QMediaRecorder_Error(void* ptr)
+{
+		return static_cast<QMediaRecorder*>(ptr)->error();
+}
+
+long long QMediaRecorder_State(void* ptr)
+{
+		return static_cast<QMediaRecorder*>(ptr)->state();
+}
+
+long long QMediaRecorder_Status(void* ptr)
+{
+		return static_cast<QMediaRecorder*>(ptr)->status();
 }
 
 long long QMediaRecorder_Availability(void* ptr)
@@ -16233,16 +15515,6 @@ void* QMediaRecorder_VideoSettings(void* ptr)
 		return new QVideoEncoderSettings(static_cast<QMediaRecorder*>(ptr)->videoSettings());
 }
 
-long long QMediaRecorder_State(void* ptr)
-{
-		return static_cast<QMediaRecorder*>(ptr)->state();
-}
-
-long long QMediaRecorder_Status(void* ptr)
-{
-		return static_cast<QMediaRecorder*>(ptr)->status();
-}
-
 char QMediaRecorder_IsAvailable(void* ptr)
 {
 		return static_cast<QMediaRecorder*>(ptr)->isAvailable();
@@ -16261,6 +15533,20 @@ char QMediaRecorder_IsMetaDataWritable(void* ptr)
 char QMediaRecorder_IsMuted(void* ptr)
 {
 		return static_cast<QMediaRecorder*>(ptr)->isMuted();
+}
+
+void* QMediaRecorder_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMediaRecorder*>(ptr)->metaObject());
+}
+
+void* QMediaRecorder_MetaObjectDefault(void* ptr)
+{
+	if (dynamic_cast<QAudioRecorder*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::metaObject());
+	}
 }
 
 long long QMediaRecorder_Duration(void* ptr)
@@ -16346,8 +15632,6 @@ void QMediaRecorder___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -16376,8 +15660,6 @@ void QMediaRecorder___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -16406,8 +15688,6 @@ void QMediaRecorder___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -16436,8 +15716,6 @@ void QMediaRecorder___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -16475,8 +15753,6 @@ char QMediaRecorder_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaRecorder*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QMediaRecorder*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaRecorder*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -16495,8 +15771,6 @@ char QMediaRecorder_EventFilterDefault(void* ptr, void* watched, void* event)
 	if (dynamic_cast<QAudioRecorder*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -16511,8 +15785,6 @@ char QMediaRecorder_EventFilterDefault(void* ptr, void* watched, void* event)
 	} else {
 		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 			return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -16611,20 +15883,6 @@ void QMediaRecorder_TimerEventDefault(void* ptr, void* event)
 	}
 }
 
-void* QMediaRecorder_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMediaRecorder*>(ptr)->metaObject());
-}
-
-void* QMediaRecorder_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QAudioRecorder*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::metaObject());
-	}
-}
-
 char QMediaRecorder_SetMediaObject(void* ptr, void* object)
 {
 		return static_cast<QMediaRecorder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
@@ -16660,6 +15918,7 @@ public:
 	QMediaRecorder::Status status() const { return static_cast<QMediaRecorder::Status>(callbackQMediaRecorderControl_Status(const_cast<void*>(static_cast<const void*>(this)))); };
 	QUrl outputLocation() const { return *static_cast<QUrl*>(callbackQMediaRecorderControl_OutputLocation(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isMuted() const { return callbackQMediaRecorderControl_IsMuted(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 duration() const { return callbackQMediaRecorderControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	qreal volume() const { return callbackQMediaRecorderControl_Volume(const_cast<void*>(static_cast<const void*>(this))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
@@ -16672,7 +15931,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaRecorderControl*)
@@ -17034,12 +16292,88 @@ long long QMediaResource_DataSize(void* ptr)
 	return static_cast<QMediaResource*>(ptr)->dataSize();
 }
 
+void* QMediaResource___values_atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QMediaResource___values_setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QMediaResource___values_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtMultimedia_PackedList QMediaResource___values_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QMediaResource___setValues__atList(void* ptr, int v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<int, QVariant>*>(ptr)->value(v); if (i == static_cast<QMap<int, QVariant>*>(ptr)->size()-1) { static_cast<QMap<int, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QMediaResource___setValues__setList(void* ptr, int key, void* i)
+{
+	static_cast<QMap<int, QVariant>*>(ptr)->insert(key, *static_cast<QVariant*>(i));
+}
+
+void* QMediaResource___setValues__newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<int, QVariant>();
+}
+
+struct QtMultimedia_PackedList QMediaResource___setValues_keyList(void* ptr)
+{
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+int QMediaResource_____values_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QMediaResource_____values_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QMediaResource_____values_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
+int QMediaResource_____setValues_keyList_atList(void* ptr, int i)
+{
+	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QMediaResource_____setValues_keyList_setList(void* ptr, int i)
+{
+	static_cast<QList<int>*>(ptr)->append(i);
+}
+
+void* QMediaResource_____setValues_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<int>();
+}
+
 class MyQMediaService: public QMediaService
 {
 public:
 	MyQMediaService(QObject *parent) : QMediaService(parent) {QMediaService_QMediaService_QRegisterMetaType();};
 	QMediaControl * requestControl(const char * interfa) { QtMultimedia_PackedString interfaPacked = { const_cast<char*>(interfa), -1 };return static_cast<QMediaControl*>(callbackQMediaService_RequestControl(this, interfaPacked)); };
 	void releaseControl(QMediaControl * control) { callbackQMediaService_ReleaseControl(this, control); };
+	 ~MyQMediaService() { callbackQMediaService_DestroyQMediaService(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaService_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaService_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaService_ChildEvent(this, event); };
@@ -17050,7 +16384,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaService_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaService_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaService_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaService*)
@@ -17103,6 +16436,16 @@ void* QMediaService_NewQMediaService(void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QMediaService_QMediaService_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray te97cb8 = QMediaService::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te97cb8.prepend("WHITESPACE").constData()+10), te97cb8.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaService_QMediaService_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t34c093 = QMediaService::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t34c093.prepend("WHITESPACE").constData()+10), t34c093.size()-10 }; });
+}
+
 void* QMediaService_RequestControl2(void* ptr)
 {
 	return static_cast<QMediaService*>(ptr)->requestControl<QMediaService*>();
@@ -17116,6 +16459,17 @@ void QMediaService_ReleaseControl(void* ptr, void* control)
 void QMediaService_DestroyQMediaService(void* ptr)
 {
 	static_cast<QMediaService*>(ptr)->~QMediaService();
+}
+
+void QMediaService_DestroyQMediaServiceDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QMediaService_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMediaService*>(ptr)->QMediaService::metaObject());
 }
 
 void* QMediaService___dynamicPropertyNames_atList(void* ptr, int i)
@@ -17143,8 +16497,6 @@ void QMediaService___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17173,8 +16525,6 @@ void QMediaService___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17203,8 +16553,6 @@ void QMediaService___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17233,8 +16581,6 @@ void QMediaService___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17263,8 +16609,6 @@ char QMediaService_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaService*>(ptr)->QMediaService::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QMediaService*>(ptr)->QMediaService::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaService*>(ptr)->QMediaService::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -17306,11 +16650,6 @@ void QMediaService_DisconnectNotifyDefault(void* ptr, void* sign)
 void QMediaService_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QMediaService*>(ptr)->QMediaService::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QMediaService_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMediaService*>(ptr)->QMediaService::metaObject());
 }
 
 class MyQMediaServiceCameraInfoInterface: public QMediaServiceCameraInfoInterface
@@ -17387,6 +16726,7 @@ class MyQMediaServiceProviderPlugin: public QMediaServiceProviderPlugin
 public:
 	QMediaService * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QMediaService*>(callbackQMediaServiceProviderPlugin_Create(this, keyPacked)); };
 	void release(QMediaService * service) { callbackQMediaServiceProviderPlugin_Release(this, service); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaServiceProviderPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaServiceProviderPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaServiceProviderPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaServiceProviderPlugin_ChildEvent(this, event); };
@@ -17397,7 +16737,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaServiceProviderPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaServiceProviderPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaServiceProviderPlugin_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaServiceProviderPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaServiceProviderPlugin*)
@@ -17409,9 +16748,24 @@ void* QMediaServiceProviderPlugin_Create(void* ptr, struct QtMultimedia_PackedSt
 	return static_cast<QMediaServiceProviderPlugin*>(ptr)->create(QString::fromUtf8(key.data, key.len));
 }
 
+struct QtMultimedia_PackedString QMediaServiceProviderPlugin_QMediaServiceProviderPlugin_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tcc8604 = QMediaServiceProviderPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tcc8604.prepend("WHITESPACE").constData()+10), tcc8604.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QMediaServiceProviderPlugin_QMediaServiceProviderPlugin_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray ta802a9 = QMediaServiceProviderPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(ta802a9.prepend("WHITESPACE").constData()+10), ta802a9.size()-10 }; });
+}
+
 void QMediaServiceProviderPlugin_Release(void* ptr, void* service)
 {
 	static_cast<QMediaServiceProviderPlugin*>(ptr)->release(static_cast<QMediaService*>(service));
+}
+
+void* QMediaServiceProviderPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::metaObject());
 }
 
 void* QMediaServiceProviderPlugin___dynamicPropertyNames_atList(void* ptr, int i)
@@ -17439,8 +16793,6 @@ void QMediaServiceProviderPlugin___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17469,8 +16821,6 @@ void QMediaServiceProviderPlugin___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17499,8 +16849,6 @@ void QMediaServiceProviderPlugin___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17529,8 +16877,6 @@ void QMediaServiceProviderPlugin___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -17559,8 +16905,6 @@ char QMediaServiceProviderPlugin_EventFilterDefault(void* ptr, void* watched, vo
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -17602,11 +16946,6 @@ void QMediaServiceProviderPlugin_DisconnectNotifyDefault(void* ptr, void* sign)
 void QMediaServiceProviderPlugin_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QMediaServiceProviderPlugin_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::metaObject());
 }
 
 class MyQMediaServiceSupportedDevicesInterface: public QMediaServiceSupportedDevicesInterface
@@ -17687,14 +17026,15 @@ class MyQMediaStreamsControl: public QMediaStreamsControl
 {
 public:
 	MyQMediaStreamsControl(QObject *parent = Q_NULLPTR) : QMediaStreamsControl(parent) {QMediaStreamsControl_QMediaStreamsControl_QRegisterMetaType();};
-	QVariant metaData(int stream, const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, stream, keyPacked)); };
-	StreamType streamType(int stream) { return static_cast<QMediaStreamsControl::StreamType>(callbackQMediaStreamsControl_StreamType(this, stream)); };
-	bool isActive(int stream) { return callbackQMediaStreamsControl_IsActive(this, stream) != 0; };
+	QMediaStreamsControl::StreamType streamType(int streamNumber) { return static_cast<QMediaStreamsControl::StreamType>(callbackQMediaStreamsControl_StreamType(this, streamNumber)); };
+	QVariant metaData(int streamNumber, const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, streamNumber, keyPacked)); };
+	bool isActive(int streamNumber) { return callbackQMediaStreamsControl_IsActive(this, streamNumber) != 0; };
 	int streamCount() { return callbackQMediaStreamsControl_StreamCount(this); };
 	void Signal_ActiveStreamsChanged() { callbackQMediaStreamsControl_ActiveStreamsChanged(this); };
-	void setActive(int stream, bool state) { callbackQMediaStreamsControl_SetActive(this, stream, state); };
+	void setActive(int streamNumber, bool state) { callbackQMediaStreamsControl_SetActive(this, streamNumber, state); };
 	void Signal_StreamsChanged() { callbackQMediaStreamsControl_StreamsChanged(this); };
 	 ~MyQMediaStreamsControl() { callbackQMediaStreamsControl_DestroyQMediaStreamsControl(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -17705,7 +17045,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaStreamsControl*)
@@ -17753,19 +17092,19 @@ void* QMediaStreamsControl_NewQMediaStreamsControl(void* parent)
 	}
 }
 
-void* QMediaStreamsControl_MetaData(void* ptr, int stream, struct QtMultimedia_PackedString key)
+long long QMediaStreamsControl_StreamType(void* ptr, int streamNumber)
 {
-	return new QVariant(static_cast<QMediaStreamsControl*>(ptr)->metaData(stream, QString::fromUtf8(key.data, key.len)));
+	return static_cast<QMediaStreamsControl*>(ptr)->streamType(streamNumber);
 }
 
-long long QMediaStreamsControl_StreamType(void* ptr, int stream)
+void* QMediaStreamsControl_MetaData(void* ptr, int streamNumber, struct QtMultimedia_PackedString key)
 {
-	return static_cast<QMediaStreamsControl*>(ptr)->streamType(stream);
+	return new QVariant(static_cast<QMediaStreamsControl*>(ptr)->metaData(streamNumber, QString::fromUtf8(key.data, key.len)));
 }
 
-char QMediaStreamsControl_IsActive(void* ptr, int stream)
+char QMediaStreamsControl_IsActive(void* ptr, int streamNumber)
 {
-	return static_cast<QMediaStreamsControl*>(ptr)->isActive(stream);
+	return static_cast<QMediaStreamsControl*>(ptr)->isActive(streamNumber);
 }
 
 int QMediaStreamsControl_StreamCount(void* ptr)
@@ -17788,9 +17127,9 @@ void QMediaStreamsControl_ActiveStreamsChanged(void* ptr)
 	static_cast<QMediaStreamsControl*>(ptr)->activeStreamsChanged();
 }
 
-void QMediaStreamsControl_SetActive(void* ptr, int stream, char state)
+void QMediaStreamsControl_SetActive(void* ptr, int streamNumber, char state)
 {
-	static_cast<QMediaStreamsControl*>(ptr)->setActive(stream, state != 0);
+	static_cast<QMediaStreamsControl*>(ptr)->setActive(streamNumber, state != 0);
 }
 
 void QMediaStreamsControl_ConnectStreamsChanged(void* ptr)
@@ -17977,6 +17316,7 @@ public:
 	void Signal_Flush() { callbackQMediaVideoProbeControl_Flush(this); };
 	void Signal_VideoFrameProbed(const QVideoFrame & frame) { callbackQMediaVideoProbeControl_VideoFrameProbed(this, const_cast<QVideoFrame*>(&frame)); };
 	 ~MyQMediaVideoProbeControl() { callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -17987,7 +17327,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMediaVideoProbeControl*)
@@ -18083,9 +17422,11 @@ public:
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataReaderControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControl_MetaDataChanged(this); };
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataReaderControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
+	 ~MyQMetaDataReaderControl() { callbackQMetaDataReaderControl_DestroyQMetaDataReaderControl(this); };
 	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataReaderControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataReaderControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -18096,7 +17437,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMetaDataReaderControl*)
@@ -18194,6 +17534,12 @@ void QMetaDataReaderControl_DestroyQMetaDataReaderControl(void* ptr)
 	static_cast<QMetaDataReaderControl*>(ptr)->~QMetaDataReaderControl();
 }
 
+void QMetaDataReaderControl_DestroyQMetaDataReaderControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedString QMetaDataReaderControl_AvailableMetaData(void* ptr)
 {
 	return ({ QByteArray tff69ae = static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tff69ae.prepend("WHITESPACE").constData()+10), tff69ae.size()-10 }; });
@@ -18218,10 +17564,12 @@ public:
 	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_MetaDataChanged2(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void setMetaData(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQMetaDataWriterControl_SetMetaData(this, keyPacked, const_cast<QVariant*>(&value)); };
 	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControl_WritableChanged(this, writable); };
+	 ~MyQMetaDataWriterControl() { callbackQMetaDataWriterControl_DestroyQMetaDataWriterControl(this); };
 	QStringList availableMetaData() const { return ({ QtMultimedia_PackedString tempVal = callbackQMetaDataWriterControl_AvailableMetaData(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant metaData(const QString & key) const { QByteArray ta62f22 = key.toUtf8(); QtMultimedia_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<void*>(static_cast<const void*>(this)), keyPacked)); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataWriterControl_IsMetaDataAvailable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isWritable() const { return callbackQMetaDataWriterControl_IsWritable(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -18232,7 +17580,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQMetaDataWriterControl*)
@@ -18350,6 +17697,12 @@ void QMetaDataWriterControl_DestroyQMetaDataWriterControl(void* ptr)
 	static_cast<QMetaDataWriterControl*>(ptr)->~QMetaDataWriterControl();
 }
 
+void QMetaDataWriterControl_DestroyQMetaDataWriterControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedString QMetaDataWriterControl_AvailableMetaData(void* ptr)
 {
 	return ({ QByteArray te3166d = static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te3166d.prepend("WHITESPACE").constData()+10), te3166d.size()-10 }; });
@@ -18374,16 +17727,18 @@ class MyQRadioData: public QRadioData
 {
 public:
 	MyQRadioData(QMediaObject *mediaObject, QObject *parent = Q_NULLPTR) : QRadioData(mediaObject, parent) {QRadioData_QRadioData_QRegisterMetaType();};
-	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioData_SetAlternativeFrequenciesEnabled(this, enabled); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQRadioData_SetMediaObject(this, mediaObject) != 0; };
 	void Signal_AlternativeFrequenciesEnabledChanged(bool enabled) { callbackQRadioData_AlternativeFrequenciesEnabledChanged(this, enabled); };
 	void Signal_Error2(QRadioData::Error error) { callbackQRadioData_Error2(this, error); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioData_ProgramTypeChanged(this, programType); };
 	void Signal_ProgramTypeNameChanged(QString programTypeName) { QByteArray t2400f1 = programTypeName.toUtf8(); QtMultimedia_PackedString programTypeNamePacked = { const_cast<char*>(t2400f1.prepend("WHITESPACE").constData()+10), t2400f1.size()-10 };callbackQRadioData_ProgramTypeNameChanged(this, programTypeNamePacked); };
 	void Signal_RadioTextChanged(QString radioText) { QByteArray t7ba492 = radioText.toUtf8(); QtMultimedia_PackedString radioTextPacked = { const_cast<char*>(t7ba492.prepend("WHITESPACE").constData()+10), t7ba492.size()-10 };callbackQRadioData_RadioTextChanged(this, radioTextPacked); };
+	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioData_SetAlternativeFrequenciesEnabled(this, enabled); };
 	void Signal_StationIdChanged(QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioData_StationIdChanged(this, stationIdPacked); };
 	void Signal_StationNameChanged(QString stationName) { QByteArray t32b816 = stationName.toUtf8(); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816.prepend("WHITESPACE").constData()+10), t32b816.size()-10 };callbackQRadioData_StationNameChanged(this, stationNamePacked); };
+	 ~MyQRadioData() { callbackQRadioData_DestroyQRadioData(this); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQRadioData_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRadioData_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQRadioData_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRadioData_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQRadioData_ChildEvent(this, event); };
@@ -18394,26 +17749,25 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRadioData_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQRadioData_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQRadioData_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRadioData_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRadioData*)
 
 int QRadioData_QRadioData_QRegisterMetaType(){qRegisterMetaType<QRadioData*>(); return qRegisterMetaType<MyQRadioData*>();}
 
-void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
-{
-		QMetaObject::invokeMethod(static_cast<QRadioData*>(ptr), "setAlternativeFrequenciesEnabled", Q_ARG(bool, enabled != 0));
-}
-
-void QRadioData_SetAlternativeFrequenciesEnabledDefault(void* ptr, char enabled)
-{
-		static_cast<QRadioData*>(ptr)->QRadioData::setAlternativeFrequenciesEnabled(enabled != 0);
-}
-
 void* QRadioData_NewQRadioData(void* mediaObject, void* parent)
 {
 	return new MyQRadioData(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
+}
+
+struct QtMultimedia_PackedString QRadioData_QRadioData_Tr(char* s, char* c, int n)
+{
+		return ({ QByteArray tc0b47c = QRadioData::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc0b47c.prepend("WHITESPACE").constData()+10), tc0b47c.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QRadioData_QRadioData_TrUtf8(char* s, char* c, int n)
+{
+		return ({ QByteArray tfa37e1 = QRadioData::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tfa37e1.prepend("WHITESPACE").constData()+10), tfa37e1.size()-10 }; });
 }
 
 char QRadioData_SetMediaObject(void* ptr, void* mediaObject)
@@ -18503,6 +17857,16 @@ void QRadioData_RadioTextChanged(void* ptr, struct QtMultimedia_PackedString rad
 		static_cast<QRadioData*>(ptr)->radioTextChanged(QString::fromUtf8(radioText.data, radioText.len));
 }
 
+void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
+{
+		QMetaObject::invokeMethod(static_cast<QRadioData*>(ptr), "setAlternativeFrequenciesEnabled", Q_ARG(bool, enabled != 0));
+}
+
+void QRadioData_SetAlternativeFrequenciesEnabledDefault(void* ptr, char enabled)
+{
+		static_cast<QRadioData*>(ptr)->QRadioData::setAlternativeFrequenciesEnabled(enabled != 0);
+}
+
 void QRadioData_ConnectStationIdChanged(void* ptr)
 {
 	QObject::connect(static_cast<QRadioData*>(ptr), static_cast<void (QRadioData::*)(QString)>(&QRadioData::stationIdChanged), static_cast<MyQRadioData*>(ptr), static_cast<void (MyQRadioData::*)(QString)>(&MyQRadioData::Signal_StationIdChanged));
@@ -18538,14 +17902,10 @@ void QRadioData_DestroyQRadioData(void* ptr)
 	static_cast<QRadioData*>(ptr)->~QRadioData();
 }
 
-long long QRadioData_Error(void* ptr)
+void QRadioData_DestroyQRadioDataDefault(void* ptr)
 {
-		return static_cast<QRadioData*>(ptr)->error();
-}
+	Q_UNUSED(ptr);
 
-long long QRadioData_ProgramType(void* ptr)
-{
-		return static_cast<QRadioData*>(ptr)->programType();
 }
 
 void* QRadioData_MediaObject(void* ptr)
@@ -18561,6 +17921,16 @@ void* QRadioData_MediaObjectDefault(void* ptr)
 long long QRadioData_Availability(void* ptr)
 {
 		return static_cast<QRadioData*>(ptr)->availability();
+}
+
+long long QRadioData_Error(void* ptr)
+{
+		return static_cast<QRadioData*>(ptr)->error();
+}
+
+long long QRadioData_ProgramType(void* ptr)
+{
+		return static_cast<QRadioData*>(ptr)->programType();
 }
 
 struct QtMultimedia_PackedString QRadioData_ErrorString(void* ptr)
@@ -18593,6 +17963,16 @@ char QRadioData_IsAlternativeFrequenciesEnabled(void* ptr)
 		return static_cast<QRadioData*>(ptr)->isAlternativeFrequenciesEnabled();
 }
 
+void* QRadioData_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QRadioData*>(ptr)->metaObject());
+}
+
+void* QRadioData_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QRadioData*>(ptr)->QRadioData::metaObject());
+}
+
 void* QRadioData___dynamicPropertyNames_atList(void* ptr, int i)
 {
 		return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -18618,8 +17998,6 @@ void QRadioData___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -18648,8 +18026,6 @@ void QRadioData___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -18678,8 +18054,6 @@ void QRadioData___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -18708,8 +18082,6 @@ void QRadioData___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -18743,8 +18115,6 @@ char QRadioData_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QRadioData*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QRadioData*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QRadioData*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -18762,8 +18132,6 @@ char QRadioData_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QRadioData*>(ptr)->QRadioData::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QRadioData*>(ptr)->QRadioData::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QRadioData*>(ptr)->QRadioData::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -18837,16 +18205,6 @@ void QRadioData_TimerEventDefault(void* ptr, void* event)
 		static_cast<QRadioData*>(ptr)->QRadioData::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QRadioData_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QRadioData*>(ptr)->metaObject());
-}
-
-void* QRadioData_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QRadioData*>(ptr)->QRadioData::metaObject());
-}
-
 class MyQRadioDataControl: public QRadioDataControl
 {
 public:
@@ -18859,6 +18217,7 @@ public:
 	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioDataControl_SetAlternativeFrequenciesEnabled(this, enabled); };
 	void Signal_StationIdChanged(QString stationId) { QByteArray t6518b0 = stationId.toUtf8(); QtMultimedia_PackedString stationIdPacked = { const_cast<char*>(t6518b0.prepend("WHITESPACE").constData()+10), t6518b0.size()-10 };callbackQRadioDataControl_StationIdChanged(this, stationIdPacked); };
 	void Signal_StationNameChanged(QString stationName) { QByteArray t32b816 = stationName.toUtf8(); QtMultimedia_PackedString stationNamePacked = { const_cast<char*>(t32b816.prepend("WHITESPACE").constData()+10), t32b816.size()-10 };callbackQRadioDataControl_StationNameChanged(this, stationNamePacked); };
+	 ~MyQRadioDataControl() { callbackQRadioDataControl_DestroyQRadioDataControl(this); };
 	QRadioData::Error error() const { return static_cast<QRadioData::Error>(callbackQRadioDataControl_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRadioData::ProgramType programType() const { return static_cast<QRadioData::ProgramType>(callbackQRadioDataControl_ProgramType(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString errorString() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_ErrorString(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
@@ -18867,6 +18226,7 @@ public:
 	QString stationId() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_StationId(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString stationName() const { return ({ QtMultimedia_PackedString tempVal = callbackQRadioDataControl_StationName(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool isAlternativeFrequenciesEnabled() const { return callbackQRadioDataControl_IsAlternativeFrequenciesEnabled(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -18877,7 +18237,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRadioDataControl*)
@@ -19042,6 +18401,12 @@ void QRadioDataControl_DestroyQRadioDataControl(void* ptr)
 	static_cast<QRadioDataControl*>(ptr)->~QRadioDataControl();
 }
 
+void QRadioDataControl_DestroyQRadioDataControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QRadioDataControl_Error(void* ptr)
 {
 	return static_cast<QRadioDataControl*>(ptr)->error();
@@ -19107,7 +18472,9 @@ public:
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTuner_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTuner_Stop(this); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTuner_VolumeChanged(this, volume); };
+	 ~MyQRadioTuner() { callbackQRadioTuner_DestroyQRadioTuner(this); };
 	QMultimedia::AvailabilityStatus availability() const { return static_cast<QMultimedia::AvailabilityStatus>(callbackQMediaObject_Availability(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool bind(QObject * object) { return callbackQMediaObject_Bind(this, object) != 0; };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObject_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObject_AvailabilityChanged(this, available); };
@@ -19128,7 +18495,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaObject_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaObject_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaObject_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRadioTuner*)
@@ -19456,6 +18822,17 @@ void QRadioTuner_DestroyQRadioTuner(void* ptr)
 	static_cast<QRadioTuner*>(ptr)->~QRadioTuner();
 }
 
+void QRadioTuner_DestroyQRadioTunerDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QRadioTuner_RadioData(void* ptr)
+{
+	return static_cast<QRadioTuner*>(ptr)->radioData();
+}
+
 long long QRadioTuner_Band(void* ptr)
 {
 	return static_cast<QRadioTuner*>(ptr)->band();
@@ -19466,16 +18843,6 @@ long long QRadioTuner_Error(void* ptr)
 	return static_cast<QRadioTuner*>(ptr)->error();
 }
 
-void* QRadioTuner_RadioData(void* ptr)
-{
-	return static_cast<QRadioTuner*>(ptr)->radioData();
-}
-
-struct QtMultimedia_PackedString QRadioTuner_ErrorString(void* ptr)
-{
-	return ({ QByteArray t26ab64 = static_cast<QRadioTuner*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26ab64.prepend("WHITESPACE").constData()+10), t26ab64.size()-10 }; });
-}
-
 long long QRadioTuner_State(void* ptr)
 {
 	return static_cast<QRadioTuner*>(ptr)->state();
@@ -19484,6 +18851,11 @@ long long QRadioTuner_State(void* ptr)
 long long QRadioTuner_StereoMode(void* ptr)
 {
 	return static_cast<QRadioTuner*>(ptr)->stereoMode();
+}
+
+struct QtMultimedia_PackedString QRadioTuner_ErrorString(void* ptr)
+{
+	return ({ QByteArray t26ab64 = static_cast<QRadioTuner*>(ptr)->errorString().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t26ab64.prepend("WHITESPACE").constData()+10), t26ab64.size()-10 }; });
 }
 
 char QRadioTuner_IsAntennaConnected(void* ptr)
@@ -19556,6 +18928,7 @@ public:
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerControl_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTunerControl_Stop(this); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTunerControl_VolumeChanged(this, volume); };
+	 ~MyQRadioTunerControl() { callbackQRadioTunerControl_DestroyQRadioTunerControl(this); };
 	QRadioTuner::Band band() const { return static_cast<QRadioTuner::Band>(callbackQRadioTunerControl_Band(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRadioTuner::Error error() const { return static_cast<QRadioTuner::Error>(callbackQRadioTunerControl_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRadioTuner::State state() const { return static_cast<QRadioTuner::State>(callbackQRadioTunerControl_State(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -19566,6 +18939,7 @@ public:
 	bool isMuted() const { return callbackQRadioTunerControl_IsMuted(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isSearching() const { return callbackQRadioTunerControl_IsSearching(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isStereo() const { return callbackQRadioTunerControl_IsStereo(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int frequency() const { return callbackQRadioTunerControl_Frequency(const_cast<void*>(static_cast<const void*>(this))); };
 	int frequencyStep(QRadioTuner::Band band) const { return callbackQRadioTunerControl_FrequencyStep(const_cast<void*>(static_cast<const void*>(this)), band); };
 	int signalStrength() const { return callbackQRadioTunerControl_SignalStrength(const_cast<void*>(static_cast<const void*>(this))); };
@@ -19580,7 +18954,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQRadioTunerControl*)
@@ -19815,6 +19188,12 @@ void QRadioTunerControl_DestroyQRadioTunerControl(void* ptr)
 	static_cast<QRadioTunerControl*>(ptr)->~QRadioTunerControl();
 }
 
+void QRadioTunerControl_DestroyQRadioTunerControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QRadioTunerControl_Band(void* ptr)
 {
 	return static_cast<QRadioTunerControl*>(ptr)->band();
@@ -19896,6 +19275,8 @@ public:
 	MyQSound(const QString &filename, QObject *parent = Q_NULLPTR) : QSound(filename, parent) {QSound_QSound_QRegisterMetaType();};
 	void play() { callbackQSound_Play2(this); };
 	void stop() { callbackQSound_Stop(this); };
+	 ~MyQSound() { callbackQSound_DestroyQSound(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSound_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSound_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSound_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSound_ChildEvent(this, event); };
@@ -19906,27 +19287,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSound_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSound_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSound_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSound_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSound*)
 
 int QSound_QSound_QRegisterMetaType(){qRegisterMetaType<QSound*>(); return qRegisterMetaType<MyQSound*>();}
-
-void QSound_Play2(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<QSound*>(ptr), "play");
-}
-
-void QSound_Play2Default(void* ptr)
-{
-		static_cast<QSound*>(ptr)->QSound::play();
-}
-
-void QSound_SetLoops(void* ptr, int number)
-{
-	static_cast<QSound*>(ptr)->setLoops(number);
-}
 
 void* QSound_NewQSound(struct QtMultimedia_PackedString filename, void* parent)
 {
@@ -19969,9 +19334,34 @@ void* QSound_NewQSound(struct QtMultimedia_PackedString filename, void* parent)
 	}
 }
 
+struct QtMultimedia_PackedString QSound_QSound_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tbf3128 = QSound::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tbf3128.prepend("WHITESPACE").constData()+10), tbf3128.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QSound_QSound_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray te9d5f7 = QSound::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(te9d5f7.prepend("WHITESPACE").constData()+10), te9d5f7.size()-10 }; });
+}
+
+void QSound_Play2(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QSound*>(ptr), "play");
+}
+
+void QSound_Play2Default(void* ptr)
+{
+		static_cast<QSound*>(ptr)->QSound::play();
+}
+
 void QSound_QSound_Play(struct QtMultimedia_PackedString filename)
 {
 	QSound::play(QString::fromUtf8(filename.data, filename.len));
+}
+
+void QSound_SetLoops(void* ptr, int number)
+{
+	static_cast<QSound*>(ptr)->setLoops(number);
 }
 
 void QSound_Stop(void* ptr)
@@ -19989,6 +19379,12 @@ void QSound_DestroyQSound(void* ptr)
 	static_cast<QSound*>(ptr)->~QSound();
 }
 
+void QSound_DestroyQSoundDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 struct QtMultimedia_PackedString QSound_FileName(void* ptr)
 {
 	return ({ QByteArray t54b0ee = static_cast<QSound*>(ptr)->fileName().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t54b0ee.prepend("WHITESPACE").constData()+10), t54b0ee.size()-10 }; });
@@ -19997,6 +19393,11 @@ struct QtMultimedia_PackedString QSound_FileName(void* ptr)
 char QSound_IsFinished(void* ptr)
 {
 	return static_cast<QSound*>(ptr)->isFinished();
+}
+
+void* QSound_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSound*>(ptr)->QSound::metaObject());
 }
 
 int QSound_Loops(void* ptr)
@@ -20034,8 +19435,6 @@ void QSound___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20064,8 +19463,6 @@ void QSound___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20094,8 +19491,6 @@ void QSound___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20124,8 +19519,6 @@ void QSound___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20154,8 +19547,6 @@ char QSound_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QSound*>(ptr)->QSound::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QSound*>(ptr)->QSound::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QSound*>(ptr)->QSound::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -20199,11 +19590,6 @@ void QSound_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSound*>(ptr)->QSound::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSound_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSound*>(ptr)->QSound::metaObject());
-}
-
 class MyQSoundEffect: public QSoundEffect
 {
 public:
@@ -20219,6 +19605,8 @@ public:
 	void Signal_StatusChanged() { callbackQSoundEffect_StatusChanged(this); };
 	void stop() { callbackQSoundEffect_Stop(this); };
 	void Signal_VolumeChanged() { callbackQSoundEffect_VolumeChanged(this); };
+	 ~MyQSoundEffect() { callbackQSoundEffect_DestroyQSoundEffect(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSoundEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQSoundEffect_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSoundEffect_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSoundEffect_ChildEvent(this, event); };
@@ -20229,7 +19617,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSoundEffect_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQSoundEffect_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQSoundEffect_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSoundEffect_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQSoundEffect*)
@@ -20275,6 +19662,16 @@ void* QSoundEffect_NewQSoundEffect(void* parent)
 	} else {
 		return new MyQSoundEffect(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tc5e2c8 = QSoundEffect::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tc5e2c8.prepend("WHITESPACE").constData()+10), tc5e2c8.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t93b027 = QSoundEffect::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t93b027.prepend("WHITESPACE").constData()+10), t93b027.size()-10 }; });
 }
 
 struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_SupportedMimeTypes()
@@ -20447,9 +19844,35 @@ void QSoundEffect_StopDefault(void* ptr)
 		static_cast<QSoundEffect*>(ptr)->QSoundEffect::stop();
 }
 
+void QSoundEffect_ConnectVolumeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QSoundEffect*>(ptr), static_cast<void (QSoundEffect::*)()>(&QSoundEffect::volumeChanged), static_cast<MyQSoundEffect*>(ptr), static_cast<void (MyQSoundEffect::*)()>(&MyQSoundEffect::Signal_VolumeChanged));
+}
+
+void QSoundEffect_DisconnectVolumeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QSoundEffect*>(ptr), static_cast<void (QSoundEffect::*)()>(&QSoundEffect::volumeChanged), static_cast<MyQSoundEffect*>(ptr), static_cast<void (MyQSoundEffect::*)()>(&MyQSoundEffect::Signal_VolumeChanged));
+}
+
+void QSoundEffect_VolumeChanged(void* ptr)
+{
+	static_cast<QSoundEffect*>(ptr)->volumeChanged();
+}
+
 void QSoundEffect_DestroyQSoundEffect(void* ptr)
 {
 	static_cast<QSoundEffect*>(ptr)->~QSoundEffect();
+}
+
+void QSoundEffect_DestroyQSoundEffectDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+long long QSoundEffect_Status(void* ptr)
+{
+	return static_cast<QSoundEffect*>(ptr)->status();
 }
 
 struct QtMultimedia_PackedString QSoundEffect_Category(void* ptr)
@@ -20460,11 +19883,6 @@ struct QtMultimedia_PackedString QSoundEffect_Category(void* ptr)
 void* QSoundEffect_Source(void* ptr)
 {
 	return new QUrl(static_cast<QSoundEffect*>(ptr)->source());
-}
-
-long long QSoundEffect_Status(void* ptr)
-{
-	return static_cast<QSoundEffect*>(ptr)->status();
 }
 
 char QSoundEffect_IsLoaded(void* ptr)
@@ -20482,6 +19900,11 @@ char QSoundEffect_IsPlaying(void* ptr)
 	return static_cast<QSoundEffect*>(ptr)->isPlaying();
 }
 
+void* QSoundEffect_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QSoundEffect*>(ptr)->QSoundEffect::metaObject());
+}
+
 int QSoundEffect_LoopCount(void* ptr)
 {
 	return static_cast<QSoundEffect*>(ptr)->loopCount();
@@ -20490,21 +19913,6 @@ int QSoundEffect_LoopCount(void* ptr)
 int QSoundEffect_LoopsRemaining(void* ptr)
 {
 	return static_cast<QSoundEffect*>(ptr)->loopsRemaining();
-}
-
-void QSoundEffect_ConnectVolumeChanged(void* ptr)
-{
-	QObject::connect(static_cast<QSoundEffect*>(ptr), static_cast<void (QSoundEffect::*)()>(&QSoundEffect::volumeChanged), static_cast<MyQSoundEffect*>(ptr), static_cast<void (MyQSoundEffect::*)()>(&MyQSoundEffect::Signal_VolumeChanged));
-}
-
-void QSoundEffect_DisconnectVolumeChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QSoundEffect*>(ptr), static_cast<void (QSoundEffect::*)()>(&QSoundEffect::volumeChanged), static_cast<MyQSoundEffect*>(ptr), static_cast<void (MyQSoundEffect::*)()>(&MyQSoundEffect::Signal_VolumeChanged));
-}
-
-void QSoundEffect_VolumeChanged(void* ptr)
-{
-	static_cast<QSoundEffect*>(ptr)->volumeChanged();
 }
 
 double QSoundEffect_Volume(void* ptr)
@@ -20537,8 +19945,6 @@ void QSoundEffect___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20567,8 +19973,6 @@ void QSoundEffect___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20597,8 +20001,6 @@ void QSoundEffect___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20627,8 +20029,6 @@ void QSoundEffect___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -20657,8 +20057,6 @@ char QSoundEffect_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QSoundEffect*>(ptr)->QSoundEffect::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QSoundEffect*>(ptr)->QSoundEffect::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QSoundEffect*>(ptr)->QSoundEffect::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -20702,11 +20100,6 @@ void QSoundEffect_TimerEventDefault(void* ptr, void* event)
 		static_cast<QSoundEffect*>(ptr)->QSoundEffect::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QSoundEffect_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QSoundEffect*>(ptr)->QSoundEffect::metaObject());
-}
-
 class MyQVideoDeviceSelectorControl: public QVideoDeviceSelectorControl
 {
 public:
@@ -20718,6 +20111,7 @@ public:
 	 ~MyQVideoDeviceSelectorControl() { callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(this); };
 	QString deviceDescription(int index) const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoDeviceSelectorControl_DeviceDescription(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString deviceName(int index) const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoDeviceSelectorControl_DeviceName(const_cast<void*>(static_cast<const void*>(this)), index); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int defaultDevice() const { return callbackQVideoDeviceSelectorControl_DefaultDevice(const_cast<void*>(static_cast<const void*>(this))); };
 	int deviceCount() const { return callbackQVideoDeviceSelectorControl_DeviceCount(const_cast<void*>(static_cast<const void*>(this))); };
 	int selectedDevice() const { return callbackQVideoDeviceSelectorControl_SelectedDevice(const_cast<void*>(static_cast<const void*>(this))); };
@@ -20731,7 +20125,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoDeviceSelectorControl*)
@@ -21055,6 +20448,7 @@ public:
 	QString videoCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedVideoCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVideoEncoderSettings videoSettings() const { return *static_cast<QVideoEncoderSettings*>(callbackQVideoEncoderSettingsControl_VideoSettings(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -21065,7 +20459,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoEncoderSettingsControl*)
@@ -21199,11 +20592,6 @@ void* QVideoFilterRunnable_Run(void* ptr, void* input, void* surfaceFormat, long
 	return new QVideoFrame(static_cast<QVideoFilterRunnable*>(ptr)->run(static_cast<QVideoFrame*>(input), *static_cast<QVideoSurfaceFormat*>(surfaceFormat), static_cast<QVideoFilterRunnable::RunFlag>(flags)));
 }
 
-long long QVideoFrame_QVideoFrame_PixelFormatFromImageFormat(long long format)
-{
-	return QVideoFrame::pixelFormatFromImageFormat(static_cast<QImage::Format>(format));
-}
-
 long long QVideoFrame_QVideoFrame_ImageFormatFromPixelFormat(long long format)
 {
 	return QVideoFrame::imageFormatFromPixelFormat(static_cast<QVideoFrame::PixelFormat>(format));
@@ -21232,6 +20620,11 @@ void* QVideoFrame_NewQVideoFrame5(void* other)
 void* QVideoFrame_NewQVideoFrame3(int bytes, void* size, int bytesPerLine, long long format)
 {
 	return new QVideoFrame(bytes, *static_cast<QSize*>(size), bytesPerLine, static_cast<QVideoFrame::PixelFormat>(format));
+}
+
+long long QVideoFrame_QVideoFrame_PixelFormatFromImageFormat(long long format)
+{
+	return QVideoFrame::pixelFormatFromImageFormat(static_cast<QImage::Format>(format));
 }
 
 char QVideoFrame_Map(void* ptr, long long mode)
@@ -21279,16 +20672,6 @@ void QVideoFrame_DestroyQVideoFrame(void* ptr)
 	static_cast<QVideoFrame*>(ptr)->~QVideoFrame();
 }
 
-long long QVideoFrame_FieldType(void* ptr)
-{
-	return static_cast<QVideoFrame*>(ptr)->fieldType();
-}
-
-long long QVideoFrame_PixelFormat(void* ptr)
-{
-	return static_cast<QVideoFrame*>(ptr)->pixelFormat();
-}
-
 long long QVideoFrame_HandleType(void* ptr)
 {
 	return static_cast<QVideoFrame*>(ptr)->handleType();
@@ -21317,6 +20700,16 @@ void* QVideoFrame_MetaData(void* ptr, struct QtMultimedia_PackedString key)
 struct QtMultimedia_PackedList QVideoFrame_AvailableMetaData(void* ptr)
 {
 	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QVideoFrame*>(ptr)->availableMetaData()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+long long QVideoFrame_FieldType(void* ptr)
+{
+	return static_cast<QVideoFrame*>(ptr)->fieldType();
+}
+
+long long QVideoFrame_PixelFormat(void* ptr)
+{
+	return static_cast<QVideoFrame*>(ptr)->pixelFormat();
 }
 
 char QVideoFrame_IsMapped(void* ptr)
@@ -21432,6 +20825,8 @@ public:
 	MyQVideoProbe(QObject *parent = Q_NULLPTR) : QVideoProbe(parent) {QVideoProbe_QVideoProbe_QRegisterMetaType();};
 	void Signal_Flush() { callbackQVideoProbe_Flush(this); };
 	void Signal_VideoFrameProbed(const QVideoFrame & frame) { callbackQVideoProbe_VideoFrameProbed(this, const_cast<QVideoFrame*>(&frame)); };
+	 ~MyQVideoProbe() { callbackQVideoProbe_DestroyQVideoProbe(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQVideoProbe_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoProbe_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVideoProbe_ChildEvent(this, event); };
@@ -21442,12 +20837,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVideoProbe_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVideoProbe_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVideoProbe_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoProbe_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoProbe*)
 
 int QVideoProbe_QVideoProbe_QRegisterMetaType(){qRegisterMetaType<QVideoProbe*>(); return qRegisterMetaType<MyQVideoProbe*>();}
+
+struct QtMultimedia_PackedString QVideoProbe_QVideoProbe_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tacf71f = QVideoProbe::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tacf71f.prepend("WHITESPACE").constData()+10), tacf71f.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QVideoProbe_QVideoProbe_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tdeae01 = QVideoProbe::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tdeae01.prepend("WHITESPACE").constData()+10), tdeae01.size()-10 }; });
+}
 
 void* QVideoProbe_NewQVideoProbe(void* parent)
 {
@@ -21535,9 +20939,20 @@ void QVideoProbe_DestroyQVideoProbe(void* ptr)
 	static_cast<QVideoProbe*>(ptr)->~QVideoProbe();
 }
 
+void QVideoProbe_DestroyQVideoProbeDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 char QVideoProbe_IsActive(void* ptr)
 {
 	return static_cast<QVideoProbe*>(ptr)->isActive();
+}
+
+void* QVideoProbe_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVideoProbe*>(ptr)->QVideoProbe::metaObject());
 }
 
 void* QVideoProbe___dynamicPropertyNames_atList(void* ptr, int i)
@@ -21565,8 +20980,6 @@ void QVideoProbe___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -21595,8 +21008,6 @@ void QVideoProbe___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -21625,8 +21036,6 @@ void QVideoProbe___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -21655,8 +21064,6 @@ void QVideoProbe___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -21685,8 +21092,6 @@ char QVideoProbe_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QVideoProbe*>(ptr)->QVideoProbe::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QVideoProbe*>(ptr)->QVideoProbe::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QVideoProbe*>(ptr)->QVideoProbe::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -21730,17 +21135,14 @@ void QVideoProbe_TimerEventDefault(void* ptr, void* event)
 		static_cast<QVideoProbe*>(ptr)->QVideoProbe::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QVideoProbe_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVideoProbe*>(ptr)->QVideoProbe::metaObject());
-}
-
 class MyQVideoRendererControl: public QVideoRendererControl
 {
 public:
 	MyQVideoRendererControl(QObject *parent = Q_NULLPTR) : QVideoRendererControl(parent) {QVideoRendererControl_QVideoRendererControl_QRegisterMetaType();};
 	void setSurface(QAbstractVideoSurface * surface) { callbackQVideoRendererControl_SetSurface(this, surface); };
+	 ~MyQVideoRendererControl() { callbackQVideoRendererControl_DestroyQVideoRendererControl(this); };
 	QAbstractVideoSurface * surface() const { return static_cast<QAbstractVideoSurface*>(callbackQVideoRendererControl_Surface(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -21751,7 +21153,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoRendererControl*)
@@ -21809,6 +21210,12 @@ void QVideoRendererControl_DestroyQVideoRendererControl(void* ptr)
 	static_cast<QVideoRendererControl*>(ptr)->~QVideoRendererControl();
 }
 
+void QVideoRendererControl_DestroyQVideoRendererControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QVideoRendererControl_Surface(void* ptr)
 {
 	return static_cast<QVideoRendererControl*>(ptr)->surface();
@@ -21844,6 +21251,11 @@ void QVideoSurfaceFormat_SetFrameSize2(void* ptr, int width, int height)
 	static_cast<QVideoSurfaceFormat*>(ptr)->setFrameSize(width, height);
 }
 
+void QVideoSurfaceFormat_SetMirrored(void* ptr, char mirrored)
+{
+	static_cast<QVideoSurfaceFormat*>(ptr)->setMirrored(mirrored != 0);
+}
+
 void QVideoSurfaceFormat_SetPixelAspectRatio(void* ptr, void* ratio)
 {
 	static_cast<QVideoSurfaceFormat*>(ptr)->setPixelAspectRatio(*static_cast<QSize*>(ratio));
@@ -21877,11 +21289,6 @@ void QVideoSurfaceFormat_SetYCbCrColorSpace(void* ptr, long long space)
 void QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(void* ptr)
 {
 	static_cast<QVideoSurfaceFormat*>(ptr)->~QVideoSurfaceFormat();
-}
-
-long long QVideoSurfaceFormat_ScanLineDirection(void* ptr)
-{
-	return static_cast<QVideoSurfaceFormat*>(ptr)->scanLineDirection();
 }
 
 long long QVideoSurfaceFormat_HandleType(void* ptr)
@@ -21924,9 +21331,19 @@ long long QVideoSurfaceFormat_PixelFormat(void* ptr)
 	return static_cast<QVideoSurfaceFormat*>(ptr)->pixelFormat();
 }
 
+long long QVideoSurfaceFormat_ScanLineDirection(void* ptr)
+{
+	return static_cast<QVideoSurfaceFormat*>(ptr)->scanLineDirection();
+}
+
 long long QVideoSurfaceFormat_YCbCrColorSpace(void* ptr)
 {
 	return static_cast<QVideoSurfaceFormat*>(ptr)->yCbCrColorSpace();
+}
+
+char QVideoSurfaceFormat_IsMirrored(void* ptr)
+{
+	return static_cast<QVideoSurfaceFormat*>(ptr)->isMirrored();
 }
 
 char QVideoSurfaceFormat_IsValid(void* ptr)
@@ -21986,8 +21403,10 @@ public:
 	void setHue(int hue) { callbackQVideoWidget_SetHue(this, hue); };
 	void setSaturation(int saturation) { callbackQVideoWidget_SetSaturation(this, saturation); };
 	void showEvent(QShowEvent * event) { callbackQVideoWidget_ShowEvent(this, event); };
+	 ~MyQVideoWidget() { callbackQVideoWidget_DestroyQVideoWidget(this); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQVideoWidget_MediaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQVideoWidget_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQVideoWidget_FocusNextPrevChild(this, next) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQVideoWidget_ActionEvent(this, event); };
@@ -22039,6 +21458,7 @@ public:
 	bool hasHeightForWidth() const { return callbackQVideoWidget_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int heightForWidth(int w) const { return callbackQVideoWidget_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
 	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQVideoWidget_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
+	void initPainter(QPainter * painter) const { callbackQVideoWidget_InitPainter(const_cast<void*>(static_cast<const void*>(this)), painter); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoWidget_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQVideoWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQVideoWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -22048,13 +21468,22 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVideoWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQVideoWidget_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQVideoWidget_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool setMediaObject(QMediaObject * object) { return callbackQVideoWidget_SetMediaObject(this, object) != 0; };
 };
 
 Q_DECLARE_METATYPE(MyQVideoWidget*)
 
 int QVideoWidget_QVideoWidget_QRegisterMetaType(){qRegisterMetaType<QVideoWidget*>(); return qRegisterMetaType<MyQVideoWidget*>();}
+
+struct QtMultimedia_PackedString QVideoWidget_QVideoWidget_Tr(char* s, char* c, int n)
+{
+		return ({ QByteArray t8ae2bb = QVideoWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t8ae2bb.prepend("WHITESPACE").constData()+10), t8ae2bb.size()-10 }; });
+}
+
+struct QtMultimedia_PackedString QVideoWidget_QVideoWidget_TrUtf8(char* s, char* c, int n)
+{
+		return ({ QByteArray t8aa161 = QVideoWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t8aa161.prepend("WHITESPACE").constData()+10), t8aa161.size()-10 }; });
+}
 
 void* QVideoWidget_NewQVideoWidget(void* parent)
 {
@@ -22068,11 +21497,7 @@ char QVideoWidget_Event(void* ptr, void* event)
 
 char QVideoWidget_EventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::event(static_cast<QEvent*>(event));
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::event(static_cast<QEvent*>(event));
-	}
 }
 
 void QVideoWidget_ConnectBrightnessChanged(void* ptr)
@@ -22127,11 +21552,7 @@ void QVideoWidget_HideEvent(void* ptr, void* event)
 
 void QVideoWidget_HideEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hideEvent(static_cast<QHideEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::hideEvent(static_cast<QHideEvent*>(event));
-	}
 }
 
 void QVideoWidget_ConnectHueChanged(void* ptr)
@@ -22156,11 +21577,7 @@ void QVideoWidget_MoveEvent(void* ptr, void* event)
 
 void QVideoWidget_MoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::moveEvent(static_cast<QMoveEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::moveEvent(static_cast<QMoveEvent*>(event));
-	}
 }
 
 void QVideoWidget_PaintEvent(void* ptr, void* event)
@@ -22170,11 +21587,7 @@ void QVideoWidget_PaintEvent(void* ptr, void* event)
 
 void QVideoWidget_PaintEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEvent(static_cast<QPaintEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::paintEvent(static_cast<QPaintEvent*>(event));
-	}
 }
 
 void QVideoWidget_ResizeEvent(void* ptr, void* event)
@@ -22184,11 +21597,7 @@ void QVideoWidget_ResizeEvent(void* ptr, void* event)
 
 void QVideoWidget_ResizeEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::resizeEvent(static_cast<QResizeEvent*>(event));
-	}
 }
 
 void QVideoWidget_ConnectSaturationChanged(void* ptr)
@@ -22214,11 +21623,7 @@ void QVideoWidget_SetAspectRatioMode(void* ptr, long long mode)
 
 void QVideoWidget_SetAspectRatioModeDefault(void* ptr, long long mode)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
-	}
 }
 
 void QVideoWidget_SetBrightness(void* ptr, int brightness)
@@ -22228,11 +21633,7 @@ void QVideoWidget_SetBrightness(void* ptr, int brightness)
 
 void QVideoWidget_SetBrightnessDefault(void* ptr, int brightness)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setBrightness(brightness);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setBrightness(brightness);
-	}
 }
 
 void QVideoWidget_SetContrast(void* ptr, int contrast)
@@ -22242,11 +21643,7 @@ void QVideoWidget_SetContrast(void* ptr, int contrast)
 
 void QVideoWidget_SetContrastDefault(void* ptr, int contrast)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setContrast(contrast);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setContrast(contrast);
-	}
 }
 
 void QVideoWidget_SetFullScreen(void* ptr, char fullScreen)
@@ -22256,11 +21653,7 @@ void QVideoWidget_SetFullScreen(void* ptr, char fullScreen)
 
 void QVideoWidget_SetFullScreenDefault(void* ptr, char fullScreen)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setFullScreen(fullScreen != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setFullScreen(fullScreen != 0);
-	}
 }
 
 void QVideoWidget_SetHue(void* ptr, int hue)
@@ -22270,11 +21663,7 @@ void QVideoWidget_SetHue(void* ptr, int hue)
 
 void QVideoWidget_SetHueDefault(void* ptr, int hue)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setHue(hue);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setHue(hue);
-	}
 }
 
 void QVideoWidget_SetSaturation(void* ptr, int saturation)
@@ -22284,11 +21673,7 @@ void QVideoWidget_SetSaturation(void* ptr, int saturation)
 
 void QVideoWidget_SetSaturationDefault(void* ptr, int saturation)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setSaturation(saturation);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setSaturation(saturation);
-	}
 }
 
 void QVideoWidget_ShowEvent(void* ptr, void* event)
@@ -22298,16 +21683,18 @@ void QVideoWidget_ShowEvent(void* ptr, void* event)
 
 void QVideoWidget_ShowEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showEvent(static_cast<QShowEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showEvent(static_cast<QShowEvent*>(event));
-	}
 }
 
 void QVideoWidget_DestroyQVideoWidget(void* ptr)
 {
 	static_cast<QVideoWidget*>(ptr)->~QVideoWidget();
+}
+
+void QVideoWidget_DestroyQVideoWidgetDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QVideoWidget_MediaObject(void* ptr)
@@ -22317,11 +21704,7 @@ void* QVideoWidget_MediaObject(void* ptr)
 
 void* QVideoWidget_MediaObjectDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::mediaObject();
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::mediaObject();
-	}
 }
 
 void* QVideoWidget_SizeHint(void* ptr)
@@ -22331,11 +21714,7 @@ void* QVideoWidget_SizeHint(void* ptr)
 
 void* QVideoWidget_SizeHintDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else {
 		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->QVideoWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	}
 }
 
 long long QVideoWidget_AspectRatioMode(void* ptr)
@@ -22346,6 +21725,16 @@ long long QVideoWidget_AspectRatioMode(void* ptr)
 char QVideoWidget_IsFullScreen(void* ptr)
 {
 		return static_cast<QVideoWidget*>(ptr)->isFullScreen();
+}
+
+void* QVideoWidget_MetaObject(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVideoWidget*>(ptr)->metaObject());
+}
+
+void* QVideoWidget_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QVideoWidget*>(ptr)->QVideoWidget::metaObject());
 }
 
 int QVideoWidget_Brightness(void* ptr)
@@ -22441,8 +21830,6 @@ void QVideoWidget___findChildren_setList2(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -22471,8 +21858,6 @@ void QVideoWidget___findChildren_setList3(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -22501,8 +21886,6 @@ void QVideoWidget___findChildren_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject*>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -22531,8 +21914,6 @@ void QVideoWidget___children_setList(void* ptr, void* i)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QCameraImageCapture*>(i));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(i))) {
-		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QGraphicsVideoItem*>(i));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(i))) {
 		static_cast<QList<QObject *>*>(ptr)->append(static_cast<QMediaPlaylist*>(i));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(i))) {
@@ -22561,11 +21942,7 @@ char QVideoWidget_Close(void* ptr)
 
 char QVideoWidget_CloseDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::close();
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::close();
-	}
 }
 
 char QVideoWidget_FocusNextPrevChild(void* ptr, char next)
@@ -22575,11 +21952,7 @@ char QVideoWidget_FocusNextPrevChild(void* ptr, char next)
 
 char QVideoWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::focusNextPrevChild(next != 0);
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::focusNextPrevChild(next != 0);
-	}
 }
 
 void QVideoWidget_ActionEvent(void* ptr, void* event)
@@ -22589,11 +21962,7 @@ void QVideoWidget_ActionEvent(void* ptr, void* event)
 
 void QVideoWidget_ActionEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::actionEvent(static_cast<QActionEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::actionEvent(static_cast<QActionEvent*>(event));
-	}
 }
 
 void QVideoWidget_ChangeEvent(void* ptr, void* event)
@@ -22603,11 +21972,7 @@ void QVideoWidget_ChangeEvent(void* ptr, void* event)
 
 void QVideoWidget_ChangeEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::changeEvent(static_cast<QEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::changeEvent(static_cast<QEvent*>(event));
-	}
 }
 
 void QVideoWidget_CloseEvent(void* ptr, void* event)
@@ -22617,11 +21982,7 @@ void QVideoWidget_CloseEvent(void* ptr, void* event)
 
 void QVideoWidget_CloseEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::closeEvent(static_cast<QCloseEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::closeEvent(static_cast<QCloseEvent*>(event));
-	}
 }
 
 void QVideoWidget_ContextMenuEvent(void* ptr, void* event)
@@ -22631,11 +21992,7 @@ void QVideoWidget_ContextMenuEvent(void* ptr, void* event)
 
 void QVideoWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	}
 }
 
 void QVideoWidget_DragEnterEvent(void* ptr, void* event)
@@ -22645,11 +22002,7 @@ void QVideoWidget_DragEnterEvent(void* ptr, void* event)
 
 void QVideoWidget_DragEnterEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	}
 }
 
 void QVideoWidget_DragLeaveEvent(void* ptr, void* event)
@@ -22659,11 +22012,7 @@ void QVideoWidget_DragLeaveEvent(void* ptr, void* event)
 
 void QVideoWidget_DragLeaveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	}
 }
 
 void QVideoWidget_DragMoveEvent(void* ptr, void* event)
@@ -22673,11 +22022,7 @@ void QVideoWidget_DragMoveEvent(void* ptr, void* event)
 
 void QVideoWidget_DragMoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	}
 }
 
 void QVideoWidget_DropEvent(void* ptr, void* event)
@@ -22687,11 +22032,7 @@ void QVideoWidget_DropEvent(void* ptr, void* event)
 
 void QVideoWidget_DropEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::dropEvent(static_cast<QDropEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::dropEvent(static_cast<QDropEvent*>(event));
-	}
 }
 
 void QVideoWidget_EnterEvent(void* ptr, void* event)
@@ -22701,11 +22042,7 @@ void QVideoWidget_EnterEvent(void* ptr, void* event)
 
 void QVideoWidget_EnterEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::enterEvent(static_cast<QEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::enterEvent(static_cast<QEvent*>(event));
-	}
 }
 
 void QVideoWidget_FocusInEvent(void* ptr, void* event)
@@ -22715,11 +22052,7 @@ void QVideoWidget_FocusInEvent(void* ptr, void* event)
 
 void QVideoWidget_FocusInEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::focusInEvent(static_cast<QFocusEvent*>(event));
-	}
 }
 
 void QVideoWidget_FocusOutEvent(void* ptr, void* event)
@@ -22729,11 +22062,7 @@ void QVideoWidget_FocusOutEvent(void* ptr, void* event)
 
 void QVideoWidget_FocusOutEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
-	}
 }
 
 void QVideoWidget_Hide(void* ptr)
@@ -22743,11 +22072,7 @@ void QVideoWidget_Hide(void* ptr)
 
 void QVideoWidget_HideDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hide();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::hide();
-	}
 }
 
 void QVideoWidget_InputMethodEvent(void* ptr, void* event)
@@ -22757,11 +22082,7 @@ void QVideoWidget_InputMethodEvent(void* ptr, void* event)
 
 void QVideoWidget_InputMethodEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	}
 }
 
 void QVideoWidget_KeyPressEvent(void* ptr, void* event)
@@ -22771,11 +22092,7 @@ void QVideoWidget_KeyPressEvent(void* ptr, void* event)
 
 void QVideoWidget_KeyPressEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
-	}
 }
 
 void QVideoWidget_KeyReleaseEvent(void* ptr, void* event)
@@ -22785,11 +22102,7 @@ void QVideoWidget_KeyReleaseEvent(void* ptr, void* event)
 
 void QVideoWidget_KeyReleaseEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	}
 }
 
 void QVideoWidget_LeaveEvent(void* ptr, void* event)
@@ -22799,11 +22112,7 @@ void QVideoWidget_LeaveEvent(void* ptr, void* event)
 
 void QVideoWidget_LeaveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::leaveEvent(static_cast<QEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::leaveEvent(static_cast<QEvent*>(event));
-	}
 }
 
 void QVideoWidget_Lower(void* ptr)
@@ -22813,11 +22122,7 @@ void QVideoWidget_Lower(void* ptr)
 
 void QVideoWidget_LowerDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::lower();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::lower();
-	}
 }
 
 void QVideoWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -22827,11 +22132,7 @@ void QVideoWidget_MouseDoubleClickEvent(void* ptr, void* event)
 
 void QVideoWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	}
 }
 
 void QVideoWidget_MouseMoveEvent(void* ptr, void* event)
@@ -22841,11 +22142,7 @@ void QVideoWidget_MouseMoveEvent(void* ptr, void* event)
 
 void QVideoWidget_MouseMoveEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	}
 }
 
 void QVideoWidget_MousePressEvent(void* ptr, void* event)
@@ -22855,11 +22152,7 @@ void QVideoWidget_MousePressEvent(void* ptr, void* event)
 
 void QVideoWidget_MousePressEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
-	}
 }
 
 void QVideoWidget_MouseReleaseEvent(void* ptr, void* event)
@@ -22869,11 +22162,7 @@ void QVideoWidget_MouseReleaseEvent(void* ptr, void* event)
 
 void QVideoWidget_MouseReleaseEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	}
 }
 
 void QVideoWidget_Raise(void* ptr)
@@ -22883,11 +22172,7 @@ void QVideoWidget_Raise(void* ptr)
 
 void QVideoWidget_RaiseDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::raise();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::raise();
-	}
 }
 
 void QVideoWidget_Repaint(void* ptr)
@@ -22897,11 +22182,7 @@ void QVideoWidget_Repaint(void* ptr)
 
 void QVideoWidget_RepaintDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::repaint();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::repaint();
-	}
 }
 
 void QVideoWidget_SetDisabled(void* ptr, char disable)
@@ -22911,11 +22192,7 @@ void QVideoWidget_SetDisabled(void* ptr, char disable)
 
 void QVideoWidget_SetDisabledDefault(void* ptr, char disable)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setDisabled(disable != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setDisabled(disable != 0);
-	}
 }
 
 void QVideoWidget_SetEnabled(void* ptr, char vbo)
@@ -22925,11 +22202,7 @@ void QVideoWidget_SetEnabled(void* ptr, char vbo)
 
 void QVideoWidget_SetEnabledDefault(void* ptr, char vbo)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setEnabled(vbo != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setEnabled(vbo != 0);
-	}
 }
 
 void QVideoWidget_SetFocus2(void* ptr)
@@ -22939,11 +22212,7 @@ void QVideoWidget_SetFocus2(void* ptr)
 
 void QVideoWidget_SetFocus2Default(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setFocus();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setFocus();
-	}
 }
 
 void QVideoWidget_SetHidden(void* ptr, char hidden)
@@ -22953,11 +22222,7 @@ void QVideoWidget_SetHidden(void* ptr, char hidden)
 
 void QVideoWidget_SetHiddenDefault(void* ptr, char hidden)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setHidden(hidden != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setHidden(hidden != 0);
-	}
 }
 
 void QVideoWidget_SetStyleSheet(void* ptr, struct QtMultimedia_PackedString styleSheet)
@@ -22967,11 +22232,7 @@ void QVideoWidget_SetStyleSheet(void* ptr, struct QtMultimedia_PackedString styl
 
 void QVideoWidget_SetStyleSheetDefault(void* ptr, struct QtMultimedia_PackedString styleSheet)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	}
 }
 
 void QVideoWidget_SetVisible(void* ptr, char visible)
@@ -22981,11 +22242,7 @@ void QVideoWidget_SetVisible(void* ptr, char visible)
 
 void QVideoWidget_SetVisibleDefault(void* ptr, char visible)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setVisible(visible != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setVisible(visible != 0);
-	}
 }
 
 void QVideoWidget_SetWindowModified(void* ptr, char vbo)
@@ -22995,11 +22252,7 @@ void QVideoWidget_SetWindowModified(void* ptr, char vbo)
 
 void QVideoWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setWindowModified(vbo != 0);
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setWindowModified(vbo != 0);
-	}
 }
 
 void QVideoWidget_SetWindowTitle(void* ptr, struct QtMultimedia_PackedString vqs)
@@ -23009,11 +22262,7 @@ void QVideoWidget_SetWindowTitle(void* ptr, struct QtMultimedia_PackedString vqs
 
 void QVideoWidget_SetWindowTitleDefault(void* ptr, struct QtMultimedia_PackedString vqs)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	}
 }
 
 void QVideoWidget_Show(void* ptr)
@@ -23023,11 +22272,7 @@ void QVideoWidget_Show(void* ptr)
 
 void QVideoWidget_ShowDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::show();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::show();
-	}
 }
 
 void QVideoWidget_ShowFullScreen(void* ptr)
@@ -23037,11 +22282,7 @@ void QVideoWidget_ShowFullScreen(void* ptr)
 
 void QVideoWidget_ShowFullScreenDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showFullScreen();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showFullScreen();
-	}
 }
 
 void QVideoWidget_ShowMaximized(void* ptr)
@@ -23051,11 +22292,7 @@ void QVideoWidget_ShowMaximized(void* ptr)
 
 void QVideoWidget_ShowMaximizedDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showMaximized();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showMaximized();
-	}
 }
 
 void QVideoWidget_ShowMinimized(void* ptr)
@@ -23065,11 +22302,7 @@ void QVideoWidget_ShowMinimized(void* ptr)
 
 void QVideoWidget_ShowMinimizedDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showMinimized();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showMinimized();
-	}
 }
 
 void QVideoWidget_ShowNormal(void* ptr)
@@ -23079,11 +22312,7 @@ void QVideoWidget_ShowNormal(void* ptr)
 
 void QVideoWidget_ShowNormalDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showNormal();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showNormal();
-	}
 }
 
 void QVideoWidget_TabletEvent(void* ptr, void* event)
@@ -23093,11 +22322,7 @@ void QVideoWidget_TabletEvent(void* ptr, void* event)
 
 void QVideoWidget_TabletEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::tabletEvent(static_cast<QTabletEvent*>(event));
-	}
 }
 
 void QVideoWidget_Update(void* ptr)
@@ -23107,11 +22332,7 @@ void QVideoWidget_Update(void* ptr)
 
 void QVideoWidget_UpdateDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::update();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::update();
-	}
 }
 
 void QVideoWidget_UpdateMicroFocus(void* ptr)
@@ -23121,11 +22342,7 @@ void QVideoWidget_UpdateMicroFocus(void* ptr)
 
 void QVideoWidget_UpdateMicroFocusDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::updateMicroFocus();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::updateMicroFocus();
-	}
 }
 
 void QVideoWidget_WheelEvent(void* ptr, void* event)
@@ -23135,11 +22352,7 @@ void QVideoWidget_WheelEvent(void* ptr, void* event)
 
 void QVideoWidget_WheelEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::wheelEvent(static_cast<QWheelEvent*>(event));
-	}
 }
 
 void* QVideoWidget_PaintEngine(void* ptr)
@@ -23149,11 +22362,7 @@ void* QVideoWidget_PaintEngine(void* ptr)
 
 void* QVideoWidget_PaintEngineDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEngine();
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::paintEngine();
-	}
 }
 
 void* QVideoWidget_MinimumSizeHint(void* ptr)
@@ -23163,11 +22372,7 @@ void* QVideoWidget_MinimumSizeHint(void* ptr)
 
 void* QVideoWidget_MinimumSizeHintDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else {
 		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->QVideoWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	}
 }
 
 void* QVideoWidget_InputMethodQuery(void* ptr, long long query)
@@ -23177,11 +22382,7 @@ void* QVideoWidget_InputMethodQuery(void* ptr, long long query)
 
 void* QVideoWidget_InputMethodQueryDefault(void* ptr, long long query)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else {
 		return new QVariant(static_cast<QVideoWidget*>(ptr)->QVideoWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	}
 }
 
 char QVideoWidget_HasHeightForWidth(void* ptr)
@@ -23191,11 +22392,7 @@ char QVideoWidget_HasHeightForWidth(void* ptr)
 
 char QVideoWidget_HasHeightForWidthDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hasHeightForWidth();
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::hasHeightForWidth();
-	}
 }
 
 int QVideoWidget_HeightForWidth(void* ptr, int w)
@@ -23205,11 +22402,7 @@ int QVideoWidget_HeightForWidth(void* ptr, int w)
 
 int QVideoWidget_HeightForWidthDefault(void* ptr, int w)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::heightForWidth(w);
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::heightForWidth(w);
-	}
 }
 
 int QVideoWidget_Metric(void* ptr, long long m)
@@ -23219,19 +22412,23 @@ int QVideoWidget_Metric(void* ptr, long long m)
 
 int QVideoWidget_MetricDefault(void* ptr, long long m)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	}
+}
+
+void QVideoWidget_InitPainter(void* ptr, void* painter)
+{
+		static_cast<QVideoWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
+}
+
+void QVideoWidget_InitPainterDefault(void* ptr, void* painter)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::initPainter(static_cast<QPainter*>(painter));
 }
 
 char QVideoWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
 		return static_cast<QVideoWidget*>(ptr)->eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-		return static_cast<QVideoWidget*>(ptr)->eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
 		return static_cast<QVideoWidget*>(ptr)->eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
@@ -23247,38 +22444,18 @@ char QVideoWidget_EventFilter(void* ptr, void* watched, void* event)
 
 char QVideoWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
 	} else {
-		if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QCameraImageCapture*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsVideoItem*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QGraphicsVideoItem*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QMediaPlaylist*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QMediaRecorder*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QRadioData*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QVideoWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	}
 }
 
@@ -23289,11 +22466,7 @@ void QVideoWidget_ChildEvent(void* ptr, void* event)
 
 void QVideoWidget_ChildEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::childEvent(static_cast<QChildEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::childEvent(static_cast<QChildEvent*>(event));
-	}
 }
 
 void QVideoWidget_ConnectNotify(void* ptr, void* sign)
@@ -23303,11 +22476,7 @@ void QVideoWidget_ConnectNotify(void* ptr, void* sign)
 
 void QVideoWidget_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
-	}
 }
 
 void QVideoWidget_CustomEvent(void* ptr, void* event)
@@ -23317,11 +22486,7 @@ void QVideoWidget_CustomEvent(void* ptr, void* event)
 
 void QVideoWidget_CustomEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::customEvent(static_cast<QEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::customEvent(static_cast<QEvent*>(event));
-	}
 }
 
 void QVideoWidget_DeleteLater(void* ptr)
@@ -23331,11 +22496,7 @@ void QVideoWidget_DeleteLater(void* ptr)
 
 void QVideoWidget_DeleteLaterDefault(void* ptr)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::deleteLater();
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::deleteLater();
-	}
 }
 
 void QVideoWidget_DisconnectNotify(void* ptr, void* sign)
@@ -23345,11 +22506,7 @@ void QVideoWidget_DisconnectNotify(void* ptr, void* sign)
 
 void QVideoWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	}
 }
 
 void QVideoWidget_TimerEvent(void* ptr, void* event)
@@ -23359,25 +22516,7 @@ void QVideoWidget_TimerEvent(void* ptr, void* event)
 
 void QVideoWidget_TimerEventDefault(void* ptr, void* event)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::timerEvent(static_cast<QTimerEvent*>(event));
-	} else {
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::timerEvent(static_cast<QTimerEvent*>(event));
-	}
-}
-
-void* QVideoWidget_MetaObject(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QVideoWidget*>(ptr)->metaObject());
-}
-
-void* QVideoWidget_MetaObjectDefault(void* ptr)
-{
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::metaObject());
-	} else {
-		return const_cast<QMetaObject*>(static_cast<QVideoWidget*>(ptr)->QVideoWidget::metaObject());
-	}
 }
 
 char QVideoWidget_SetMediaObject(void* ptr, void* object)
@@ -23387,11 +22526,7 @@ char QVideoWidget_SetMediaObject(void* ptr, void* object)
 
 char QVideoWidget_SetMediaObjectDefault(void* ptr, void* object)
 {
-	if (dynamic_cast<QCameraViewfinder*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setMediaObject(static_cast<QMediaObject*>(object));
-	} else {
 		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::setMediaObject(static_cast<QMediaObject*>(object));
-	}
 }
 
 class MyQVideoWidgetControl: public QVideoWidgetControl
@@ -23413,6 +22548,7 @@ public:
 	 ~MyQVideoWidgetControl() { callbackQVideoWidgetControl_DestroyQVideoWidgetControl(this); };
 	Qt::AspectRatioMode aspectRatioMode() const { return static_cast<Qt::AspectRatioMode>(callbackQVideoWidgetControl_AspectRatioMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isFullScreen() const { return callbackQVideoWidgetControl_IsFullScreen(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int brightness() const { return callbackQVideoWidgetControl_Brightness(const_cast<void*>(static_cast<const void*>(this))); };
 	int contrast() const { return callbackQVideoWidgetControl_Contrast(const_cast<void*>(static_cast<const void*>(this))); };
 	int hue() const { return callbackQVideoWidgetControl_Hue(const_cast<void*>(static_cast<const void*>(this))); };
@@ -23427,7 +22563,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoWidgetControl*)
@@ -23645,11 +22780,13 @@ public:
 	void setHue(int hue) { callbackQVideoWindowControl_SetHue(this, hue); };
 	void setSaturation(int saturation) { callbackQVideoWindowControl_SetSaturation(this, saturation); };
 	void setWinId(WId id) { callbackQVideoWindowControl_SetWinId(this, id); };
+	 ~MyQVideoWindowControl() { callbackQVideoWindowControl_DestroyQVideoWindowControl(this); };
 	QRect displayRect() const { return *static_cast<QRect*>(callbackQVideoWindowControl_DisplayRect(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSize nativeSize() const { return *static_cast<QSize*>(callbackQVideoWindowControl_NativeSize(const_cast<void*>(static_cast<const void*>(this)))); };
 	Qt::AspectRatioMode aspectRatioMode() const { return static_cast<Qt::AspectRatioMode>(callbackQVideoWindowControl_AspectRatioMode(const_cast<void*>(static_cast<const void*>(this)))); };
 	WId winId() const { return callbackQVideoWindowControl_WinId(const_cast<void*>(static_cast<const void*>(this))); };
 	bool isFullScreen() const { return callbackQVideoWindowControl_IsFullScreen(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int brightness() const { return callbackQVideoWindowControl_Brightness(const_cast<void*>(static_cast<const void*>(this))); };
 	int contrast() const { return callbackQVideoWindowControl_Contrast(const_cast<void*>(static_cast<const void*>(this))); };
 	int hue() const { return callbackQVideoWindowControl_Hue(const_cast<void*>(static_cast<const void*>(this))); };
@@ -23664,7 +22801,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMediaControl_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtMultimedia_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQMediaControl_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaControl_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQVideoWindowControl*)
@@ -23850,6 +22986,12 @@ void QVideoWindowControl_SetWinId(void* ptr, uintptr_t id)
 void QVideoWindowControl_DestroyQVideoWindowControl(void* ptr)
 {
 	static_cast<QVideoWindowControl*>(ptr)->~QVideoWindowControl();
+}
+
+void QVideoWindowControl_DestroyQVideoWindowControlDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 void* QVideoWindowControl_DisplayRect(void* ptr)

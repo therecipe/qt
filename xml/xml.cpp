@@ -65,11 +65,6 @@ void* QDomAttr_OwnerElement(void* ptr)
 	return new QDomElement(static_cast<QDomAttr*>(ptr)->ownerElement());
 }
 
-long long QDomAttr_NodeType(void* ptr)
-{
-	return static_cast<QDomAttr*>(ptr)->nodeType();
-}
-
 struct QtXml_PackedString QDomAttr_Name(void* ptr)
 {
 	return ({ QByteArray t1fdad4 = static_cast<QDomAttr*>(ptr)->name().toUtf8(); QtXml_PackedString { const_cast<char*>(t1fdad4.prepend("WHITESPACE").constData()+10), t1fdad4.size()-10 }; });
@@ -133,11 +128,6 @@ void QDomCharacterData_ReplaceData(void* ptr, unsigned long offset, unsigned lon
 void QDomCharacterData_SetData(void* ptr, struct QtXml_PackedString v)
 {
 	static_cast<QDomCharacterData*>(ptr)->setData(QString::fromUtf8(v.data, v.len));
-}
-
-long long QDomCharacterData_NodeType(void* ptr)
-{
-	return static_cast<QDomCharacterData*>(ptr)->nodeType();
 }
 
 struct QtXml_PackedString QDomCharacterData_Data(void* ptr)
@@ -310,11 +300,6 @@ void* QDomDocument_Implementation(void* ptr)
 	return new QDomImplementation(static_cast<QDomDocument*>(ptr)->implementation());
 }
 
-long long QDomDocument_NodeType(void* ptr)
-{
-	return static_cast<QDomDocument*>(ptr)->nodeType();
-}
-
 void* QDomDocument_ElementsByTagName(void* ptr, struct QtXml_PackedString tagname)
 {
 	return new QDomNodeList(static_cast<QDomDocument*>(ptr)->elementsByTagName(QString::fromUtf8(tagname.data, tagname.len)));
@@ -335,11 +320,6 @@ void* QDomDocumentFragment_NewQDomDocumentFragment2(void* x)
 	return new QDomDocumentFragment(*static_cast<QDomDocumentFragment*>(x));
 }
 
-long long QDomDocumentFragment_NodeType(void* ptr)
-{
-	return static_cast<QDomDocumentFragment*>(ptr)->nodeType();
-}
-
 void* QDomDocumentType_NewQDomDocumentType()
 {
 	return new QDomDocumentType();
@@ -358,11 +338,6 @@ void* QDomDocumentType_Entities(void* ptr)
 void* QDomDocumentType_Notations(void* ptr)
 {
 	return new QDomNamedNodeMap(static_cast<QDomDocumentType*>(ptr)->notations());
-}
-
-long long QDomDocumentType_NodeType(void* ptr)
-{
-	return static_cast<QDomDocumentType*>(ptr)->nodeType();
 }
 
 struct QtXml_PackedString QDomDocumentType_InternalSubset(void* ptr)
@@ -500,11 +475,6 @@ void QDomElement_SetTagName(void* ptr, struct QtXml_PackedString name)
 	static_cast<QDomElement*>(ptr)->setTagName(QString::fromUtf8(name.data, name.len));
 }
 
-long long QDomElement_NodeType(void* ptr)
-{
-	return static_cast<QDomElement*>(ptr)->nodeType();
-}
-
 void* QDomElement_ElementsByTagName(void* ptr, struct QtXml_PackedString tagname)
 {
 	return new QDomNodeList(static_cast<QDomElement*>(ptr)->elementsByTagName(QString::fromUtf8(tagname.data, tagname.len)));
@@ -555,11 +525,6 @@ void* QDomEntity_NewQDomEntity2(void* x)
 	return new QDomEntity(*static_cast<QDomEntity*>(x));
 }
 
-long long QDomEntity_NodeType(void* ptr)
-{
-	return static_cast<QDomEntity*>(ptr)->nodeType();
-}
-
 struct QtXml_PackedString QDomEntity_NotationName(void* ptr)
 {
 	return ({ QByteArray t33d72c = static_cast<QDomEntity*>(ptr)->notationName().toUtf8(); QtXml_PackedString { const_cast<char*>(t33d72c.prepend("WHITESPACE").constData()+10), t33d72c.size()-10 }; });
@@ -585,16 +550,6 @@ void* QDomEntityReference_NewQDomEntityReference2(void* x)
 	return new QDomEntityReference(*static_cast<QDomEntityReference*>(x));
 }
 
-long long QDomEntityReference_NodeType(void* ptr)
-{
-	return static_cast<QDomEntityReference*>(ptr)->nodeType();
-}
-
-long long QDomImplementation_QDomImplementation_InvalidDataPolicy()
-{
-	return QDomImplementation::invalidDataPolicy();
-}
-
 void* QDomImplementation_CreateDocument(void* ptr, struct QtXml_PackedString nsURI, struct QtXml_PackedString qName, void* doctype)
 {
 	return new QDomDocument(static_cast<QDomImplementation*>(ptr)->createDocument(QString::fromUtf8(nsURI.data, nsURI.len), QString::fromUtf8(qName.data, qName.len), *static_cast<QDomDocumentType*>(doctype)));
@@ -613,6 +568,11 @@ void* QDomImplementation_NewQDomImplementation()
 void* QDomImplementation_NewQDomImplementation2(void* x)
 {
 	return new QDomImplementation(*static_cast<QDomImplementation*>(x));
+}
+
+long long QDomImplementation_QDomImplementation_InvalidDataPolicy()
+{
+	return QDomImplementation::invalidDataPolicy();
 }
 
 char QDomImplementation_IsNull(void* ptr)
@@ -770,11 +730,6 @@ void QDomNode_DestroyQDomNode(void* ptr)
 	static_cast<QDomNode*>(ptr)->~QDomNode();
 }
 
-long long QDomNode_NodeType(void* ptr)
-{
-	return static_cast<QDomNode*>(ptr)->nodeType();
-}
-
 void* QDomNode_ToAttr(void* ptr)
 {
 	return new QDomAttr(static_cast<QDomNode*>(ptr)->toAttr());
@@ -883,6 +838,11 @@ void* QDomNode_ParentNode(void* ptr)
 void* QDomNode_PreviousSibling(void* ptr)
 {
 	return new QDomNode(static_cast<QDomNode*>(ptr)->previousSibling());
+}
+
+long long QDomNode_NodeType(void* ptr)
+{
+	return static_cast<QDomNode*>(ptr)->nodeType();
 }
 
 void* QDomNode_ChildNodes(void* ptr)
@@ -1085,11 +1045,6 @@ void* QDomNotation_NewQDomNotation2(void* x)
 	return new QDomNotation(*static_cast<QDomNotation*>(x));
 }
 
-long long QDomNotation_NodeType(void* ptr)
-{
-	return static_cast<QDomNotation*>(ptr)->nodeType();
-}
-
 struct QtXml_PackedString QDomNotation_PublicId(void* ptr)
 {
 	return ({ QByteArray t66d021 = static_cast<QDomNotation*>(ptr)->publicId().toUtf8(); QtXml_PackedString { const_cast<char*>(t66d021.prepend("WHITESPACE").constData()+10), t66d021.size()-10 }; });
@@ -1113,11 +1068,6 @@ void* QDomProcessingInstruction_NewQDomProcessingInstruction2(void* x)
 void QDomProcessingInstruction_SetData(void* ptr, struct QtXml_PackedString d)
 {
 	static_cast<QDomProcessingInstruction*>(ptr)->setData(QString::fromUtf8(d.data, d.len));
-}
-
-long long QDomProcessingInstruction_NodeType(void* ptr)
-{
-	return static_cast<QDomProcessingInstruction*>(ptr)->nodeType();
 }
 
 struct QtXml_PackedString QDomProcessingInstruction_Data(void* ptr)
@@ -1149,6 +1099,8 @@ class MyQXmlAttributes: public QXmlAttributes
 {
 public:
 	MyQXmlAttributes() : QXmlAttributes() {};
+	MyQXmlAttributes(QXmlAttributes &&vqx) : QXmlAttributes(vqx) {};
+	MyQXmlAttributes(const QXmlAttributes &vqx) : QXmlAttributes(vqx) {};
 	 ~MyQXmlAttributes() { callbackQXmlAttributes_DestroyQXmlAttributes(this); };
 };
 
@@ -1157,15 +1109,14 @@ void* QXmlAttributes_NewQXmlAttributes()
 	return new MyQXmlAttributes();
 }
 
-void QXmlAttributes_DestroyQXmlAttributes(void* ptr)
+void* QXmlAttributes_NewQXmlAttributes3(void* vqx)
 {
-	static_cast<QXmlAttributes*>(ptr)->~QXmlAttributes();
+	return new MyQXmlAttributes(*static_cast<QXmlAttributes*>(vqx));
 }
 
-void QXmlAttributes_DestroyQXmlAttributesDefault(void* ptr)
+void* QXmlAttributes_NewQXmlAttributes2(void* vqx)
 {
-	Q_UNUSED(ptr);
-
+	return new MyQXmlAttributes(*static_cast<QXmlAttributes*>(vqx));
 }
 
 void QXmlAttributes_Append(void* ptr, struct QtXml_PackedString qName, struct QtXml_PackedString uri, struct QtXml_PackedString localPart, struct QtXml_PackedString value)
@@ -1181,6 +1132,17 @@ void QXmlAttributes_Clear(void* ptr)
 void QXmlAttributes_Swap(void* ptr, void* other)
 {
 	static_cast<QXmlAttributes*>(ptr)->swap(*static_cast<QXmlAttributes*>(other));
+}
+
+void QXmlAttributes_DestroyQXmlAttributes(void* ptr)
+{
+	static_cast<QXmlAttributes*>(ptr)->~QXmlAttributes();
+}
+
+void QXmlAttributes_DestroyQXmlAttributesDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 struct QtXml_PackedString QXmlAttributes_LocalName(void* ptr, int index)

@@ -6,21 +6,157 @@
 #include "testlib.h"
 #include "_cgo_export.h"
 
+#include <QAbstractItemModel>
+#include <QAbstractItemModelTester>
 #include <QByteArray>
+#include <QCamera>
+#include <QCameraImageCapture>
 #include <QChildEvent>
+#include <QDBusPendingCall>
+#include <QDBusPendingCallWatcher>
 #include <QEvent>
+#include <QExtensionFactory>
+#include <QExtensionManager>
+#include <QGraphicsObject>
+#include <QGraphicsWidget>
+#include <QLayout>
 #include <QList>
+#include <QMediaPlaylist>
+#include <QMediaRecorder>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
+#include <QOffscreenSurface>
+#include <QPaintDevice>
+#include <QPaintDeviceWindow>
+#include <QPdfWriter>
 #include <QPoint>
+#include <QQuickItem>
+#include <QRadioData>
 #include <QSignalSpy>
 #include <QString>
 #include <QTestEventList>
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
+#include <QVector>
 #include <QWidget>
+#include <QWindow>
+
+class MyQAbstractItemModelTester: public QAbstractItemModelTester
+{
+public:
+	MyQAbstractItemModelTester(QAbstractItemModel *model, QAbstractItemModelTester::FailureReportingMode mode, QObject *parent = Q_NULLPTR) : QAbstractItemModelTester(model, mode, parent) {};
+	MyQAbstractItemModelTester(QAbstractItemModel *model, QObject *parent = Q_NULLPTR) : QAbstractItemModelTester(model, parent) {};
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemModelTester_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
+};
+
+void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long long mode, void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QAbstractItemModelTester::FailureReportingMode>(mode), static_cast<QObject*>(parent));
+	}
+}
+
+void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent)
+{
+	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QCameraImageCapture*>(parent));
+	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QDBusPendingCallWatcher*>(parent));
+	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QExtensionFactory*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QExtensionManager*>(parent));
+	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QGraphicsObject*>(parent));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QGraphicsWidget*>(parent));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QLayout*>(parent));
+	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QMediaPlaylist*>(parent));
+	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QMediaRecorder*>(parent));
+	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QQuickItem*>(parent));
+	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QRadioData*>(parent));
+	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QSignalSpy*>(parent));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QWidget*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QWindow*>(parent));
+	} else {
+		return new MyQAbstractItemModelTester(static_cast<QAbstractItemModel*>(model), static_cast<QObject*>(parent));
+	}
+}
+
+struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t7bf525 = QAbstractItemModelTester::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtTestLib_PackedString { const_cast<char*>(t7bf525.prepend("WHITESPACE").constData()+10), t7bf525.size()-10 }; });
+}
+
+struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t1e3f75 = QAbstractItemModelTester::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtTestLib_PackedString { const_cast<char*>(t1e3f75.prepend("WHITESPACE").constData()+10), t1e3f75.size()-10 }; });
+}
+
+void* QAbstractItemModelTester_Model(void* ptr)
+{
+	return static_cast<QAbstractItemModelTester*>(ptr)->model();
+}
+
+void* QAbstractItemModelTester_MetaObject(void* ptr)
+{
+	return const_cast<QMetaObject*>(static_cast<QAbstractItemModelTester*>(ptr)->metaObject());
+}
+
+void* QAbstractItemModelTester_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QAbstractItemModelTester*>(ptr)->QAbstractItemModelTester::metaObject());
+}
 
 class MyQSignalSpy: public QSignalSpy
 {
@@ -61,6 +197,38 @@ void* QSignalSpy_Signal(void* ptr)
 char QSignalSpy_IsValid(void* ptr)
 {
 		return static_cast<QSignalSpy*>(ptr)->isValid();
+}
+
+int QSignalSpy___args_atList(void* ptr, int i)
+{
+		return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QSignalSpy___args_setList(void* ptr, int i)
+{
+		static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QSignalSpy___args_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+		return new QVector<int>();
+}
+
+int QSignalSpy___setArgs__atList(void* ptr, int i)
+{
+		return ({int tmp = static_cast<QVector<int>*>(ptr)->at(i); if (i == static_cast<QVector<int>*>(ptr)->size()-1) { static_cast<QVector<int>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QSignalSpy___setArgs__setList(void* ptr, int i)
+{
+		static_cast<QVector<int>*>(ptr)->append(i);
+}
+
+void* QSignalSpy___setArgs__newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+		return new QVector<int>();
 }
 
 void* QSignalSpy___dynamicPropertyNames_atList(void* ptr, int i)

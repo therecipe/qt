@@ -121,6 +121,8 @@ public:
 	void start() { callbackQBluetoothDeviceDiscoveryAgent_Start(this); };
 	void start(QBluetoothDeviceDiscoveryAgent::DiscoveryMethods methods) { callbackQBluetoothDeviceDiscoveryAgent_Start2(this, methods); };
 	void stop() { callbackQBluetoothDeviceDiscoveryAgent_Stop(this); };
+	 ~MyQBluetoothDeviceDiscoveryAgent() { callbackQBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothDeviceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothDeviceDiscoveryAgent_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothDeviceDiscoveryAgent_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothDeviceDiscoveryAgent_ChildEvent(this, event); };
@@ -131,17 +133,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothDeviceDiscoveryAgent_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothDeviceDiscoveryAgent_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothDeviceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothDeviceDiscoveryAgent*)
 
 int QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType(){qRegisterMetaType<QBluetoothDeviceDiscoveryAgent*>(); return qRegisterMetaType<MyQBluetoothDeviceDiscoveryAgent*>();}
-
-long long QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods()
-{
-	return QBluetoothDeviceDiscoveryAgent::supportedDiscoveryMethods();
-}
 
 void* QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent(void* parent)
 {
@@ -223,6 +219,21 @@ void* QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent2(void* de
 	} else {
 		return new MyQBluetoothDeviceDiscoveryAgent(*static_cast<QBluetoothAddress*>(deviceAdapter), static_cast<QObject*>(parent));
 	}
+}
+
+long long QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_SupportedDiscoveryMethods()
+{
+	return QBluetoothDeviceDiscoveryAgent::supportedDiscoveryMethods();
+}
+
+struct QtBluetooth_PackedString QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t7bb80e = QBluetoothDeviceDiscoveryAgent::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t7bb80e.prepend("WHITESPACE").constData()+10), t7bb80e.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray ta33955 = QBluetoothDeviceDiscoveryAgent::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(ta33955.prepend("WHITESPACE").constData()+10), ta33955.size()-10 }; });
 }
 
 void QBluetoothDeviceDiscoveryAgent_ConnectCanceled(void* ptr)
@@ -332,6 +343,12 @@ void QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(void* 
 	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->~QBluetoothDeviceDiscoveryAgent();
 }
 
+void QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgentDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 long long QBluetoothDeviceDiscoveryAgent_Error(void* ptr)
 {
 	return static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->error();
@@ -355,6 +372,11 @@ struct QtBluetooth_PackedString QBluetoothDeviceDiscoveryAgent_ErrorString(void*
 char QBluetoothDeviceDiscoveryAgent_IsActive(void* ptr)
 {
 	return static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->isActive();
+}
+
+void* QBluetoothDeviceDiscoveryAgent_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::metaObject());
 }
 
 int QBluetoothDeviceDiscoveryAgent_LowEnergyDiscoveryTimeout(void* ptr)
@@ -498,11 +520,6 @@ void QBluetoothDeviceDiscoveryAgent_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QBluetoothDeviceDiscoveryAgent_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::metaObject());
-}
-
 void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo()
 {
 	return new QBluetoothDeviceInfo();
@@ -553,16 +570,6 @@ void QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(void* ptr)
 	static_cast<QBluetoothDeviceInfo*>(ptr)->~QBluetoothDeviceInfo();
 }
 
-long long QBluetoothDeviceInfo_ServiceUuidsCompleteness(void* ptr)
-{
-	return static_cast<QBluetoothDeviceInfo*>(ptr)->serviceUuidsCompleteness();
-}
-
-long long QBluetoothDeviceInfo_MajorDeviceClass(void* ptr)
-{
-	return static_cast<QBluetoothDeviceInfo*>(ptr)->majorDeviceClass();
-}
-
 void* QBluetoothDeviceInfo_Address(void* ptr)
 {
 	return new QBluetoothAddress(static_cast<QBluetoothDeviceInfo*>(ptr)->address());
@@ -573,6 +580,21 @@ long long QBluetoothDeviceInfo_CoreConfigurations(void* ptr)
 	return static_cast<QBluetoothDeviceInfo*>(ptr)->coreConfigurations();
 }
 
+long long QBluetoothDeviceInfo_ServiceUuidsCompleteness(void* ptr)
+{
+	return static_cast<QBluetoothDeviceInfo*>(ptr)->serviceUuidsCompleteness();
+}
+
+long long QBluetoothDeviceInfo_MajorDeviceClass(void* ptr)
+{
+	return static_cast<QBluetoothDeviceInfo*>(ptr)->majorDeviceClass();
+}
+
+long long QBluetoothDeviceInfo_ServiceClasses(void* ptr)
+{
+	return static_cast<QBluetoothDeviceInfo*>(ptr)->serviceClasses();
+}
+
 void* QBluetoothDeviceInfo_DeviceUuid(void* ptr)
 {
 	return new QBluetoothUuid(static_cast<QBluetoothDeviceInfo*>(ptr)->deviceUuid());
@@ -581,11 +603,6 @@ void* QBluetoothDeviceInfo_DeviceUuid(void* ptr)
 struct QtBluetooth_PackedString QBluetoothDeviceInfo_Name(void* ptr)
 {
 	return ({ QByteArray t605955 = static_cast<QBluetoothDeviceInfo*>(ptr)->name().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t605955.prepend("WHITESPACE").constData()+10), t605955.size()-10 }; });
-}
-
-long long QBluetoothDeviceInfo_ServiceClasses(void* ptr)
-{
-	return static_cast<QBluetoothDeviceInfo*>(ptr)->serviceClasses();
 }
 
 char QBluetoothDeviceInfo_IsCached(void* ptr)
@@ -684,11 +701,12 @@ public:
 	void Signal_DeviceDisconnected(const QBluetoothAddress & address) { callbackQBluetoothLocalDevice_DeviceDisconnected(this, const_cast<QBluetoothAddress*>(&address)); };
 	void Signal_Error(QBluetoothLocalDevice::Error error) { callbackQBluetoothLocalDevice_Error(this, error); };
 	void Signal_HostModeStateChanged(QBluetoothLocalDevice::HostMode state) { callbackQBluetoothLocalDevice_HostModeStateChanged(this, state); };
-	void pairingConfirmation(bool accept) { callbackQBluetoothLocalDevice_PairingConfirmation(this, accept); };
+	void pairingConfirmation(bool confirmation) { callbackQBluetoothLocalDevice_PairingConfirmation(this, confirmation); };
 	void Signal_PairingDisplayConfirmation(const QBluetoothAddress & address, QString pin) { QByteArray td145a2 = pin.toUtf8(); QtBluetooth_PackedString pinPacked = { const_cast<char*>(td145a2.prepend("WHITESPACE").constData()+10), td145a2.size()-10 };callbackQBluetoothLocalDevice_PairingDisplayConfirmation(this, const_cast<QBluetoothAddress*>(&address), pinPacked); };
 	void Signal_PairingDisplayPinCode(const QBluetoothAddress & address, QString pin) { QByteArray td145a2 = pin.toUtf8(); QtBluetooth_PackedString pinPacked = { const_cast<char*>(td145a2.prepend("WHITESPACE").constData()+10), td145a2.size()-10 };callbackQBluetoothLocalDevice_PairingDisplayPinCode(this, const_cast<QBluetoothAddress*>(&address), pinPacked); };
 	void Signal_PairingFinished(const QBluetoothAddress & address, QBluetoothLocalDevice::Pairing pairing) { callbackQBluetoothLocalDevice_PairingFinished(this, const_cast<QBluetoothAddress*>(&address), pairing); };
 	 ~MyQBluetoothLocalDevice() { callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothLocalDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothLocalDevice_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothLocalDevice_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothLocalDevice_ChildEvent(this, event); };
@@ -699,7 +717,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothLocalDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothLocalDevice_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothLocalDevice_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothLocalDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothLocalDevice*)
@@ -793,6 +810,16 @@ struct QtBluetooth_PackedList QBluetoothLocalDevice_QBluetoothLocalDevice_AllDev
 	return ({ QList<QBluetoothHostInfo>* tmpValue = new QList<QBluetoothHostInfo>(QBluetoothLocalDevice::allDevices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtBluetooth_PackedString QBluetoothLocalDevice_QBluetoothLocalDevice_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t390fae = QBluetoothLocalDevice::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t390fae.prepend("WHITESPACE").constData()+10), t390fae.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothLocalDevice_QBluetoothLocalDevice_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t2926c8 = QBluetoothLocalDevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t2926c8.prepend("WHITESPACE").constData()+10), t2926c8.size()-10 }; });
+}
+
 void QBluetoothLocalDevice_ConnectDeviceConnected(void* ptr)
 {
 	QObject::connect(static_cast<QBluetoothLocalDevice*>(ptr), static_cast<void (QBluetoothLocalDevice::*)(const QBluetoothAddress &)>(&QBluetoothLocalDevice::deviceConnected), static_cast<MyQBluetoothLocalDevice*>(ptr), static_cast<void (MyQBluetoothLocalDevice::*)(const QBluetoothAddress &)>(&MyQBluetoothLocalDevice::Signal_DeviceConnected));
@@ -855,14 +882,14 @@ void QBluetoothLocalDevice_HostModeStateChanged(void* ptr, long long state)
 	static_cast<QBluetoothLocalDevice*>(ptr)->hostModeStateChanged(static_cast<QBluetoothLocalDevice::HostMode>(state));
 }
 
-void QBluetoothLocalDevice_PairingConfirmation(void* ptr, char accept)
+void QBluetoothLocalDevice_PairingConfirmation(void* ptr, char confirmation)
 {
-	QMetaObject::invokeMethod(static_cast<QBluetoothLocalDevice*>(ptr), "pairingConfirmation", Q_ARG(bool, accept != 0));
+	QMetaObject::invokeMethod(static_cast<QBluetoothLocalDevice*>(ptr), "pairingConfirmation", Q_ARG(bool, confirmation != 0));
 }
 
-void QBluetoothLocalDevice_PairingConfirmationDefault(void* ptr, char accept)
+void QBluetoothLocalDevice_PairingConfirmationDefault(void* ptr, char confirmation)
 {
-		static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::pairingConfirmation(accept != 0);
+		static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::pairingConfirmation(confirmation != 0);
 }
 
 void QBluetoothLocalDevice_ConnectPairingDisplayConfirmation(void* ptr)
@@ -937,6 +964,11 @@ void QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(void* ptr)
 
 }
 
+void* QBluetoothLocalDevice_Address(void* ptr)
+{
+	return new QBluetoothAddress(static_cast<QBluetoothLocalDevice*>(ptr)->address());
+}
+
 long long QBluetoothLocalDevice_HostMode(void* ptr)
 {
 	return static_cast<QBluetoothLocalDevice*>(ptr)->hostMode();
@@ -945,11 +977,6 @@ long long QBluetoothLocalDevice_HostMode(void* ptr)
 long long QBluetoothLocalDevice_PairingStatus(void* ptr, void* address)
 {
 	return static_cast<QBluetoothLocalDevice*>(ptr)->pairingStatus(*static_cast<QBluetoothAddress*>(address));
-}
-
-void* QBluetoothLocalDevice_Address(void* ptr)
-{
-	return new QBluetoothAddress(static_cast<QBluetoothLocalDevice*>(ptr)->address());
 }
 
 struct QtBluetooth_PackedList QBluetoothLocalDevice_ConnectedDevices(void* ptr)
@@ -965,6 +992,11 @@ struct QtBluetooth_PackedString QBluetoothLocalDevice_Name(void* ptr)
 char QBluetoothLocalDevice_IsValid(void* ptr)
 {
 	return static_cast<QBluetoothLocalDevice*>(ptr)->isValid();
+}
+
+void* QBluetoothLocalDevice_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::metaObject());
 }
 
 void* QBluetoothLocalDevice___allDevices_atList(void* ptr, int i)
@@ -1119,17 +1151,14 @@ void QBluetoothLocalDevice_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QBluetoothLocalDevice_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::metaObject());
-}
-
 class MyQBluetoothServer: public QBluetoothServer
 {
 public:
 	MyQBluetoothServer(QBluetoothServiceInfo::Protocol serverType, QObject *parent = Q_NULLPTR) : QBluetoothServer(serverType, parent) {QBluetoothServer_QBluetoothServer_QRegisterMetaType();};
 	void Signal_Error2(QBluetoothServer::Error error) { callbackQBluetoothServer_Error2(this, error); };
 	void Signal_NewConnection() { callbackQBluetoothServer_NewConnection(this); };
+	 ~MyQBluetoothServer() { callbackQBluetoothServer_DestroyQBluetoothServer(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothServer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothServer_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothServer_ChildEvent(this, event); };
@@ -1140,7 +1169,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothServer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothServer_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServer_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServer_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothServer*)
@@ -1188,6 +1216,36 @@ void* QBluetoothServer_NewQBluetoothServer(long long serverType, void* parent)
 	}
 }
 
+void* QBluetoothServer_Listen2(void* ptr, void* uuid, struct QtBluetooth_PackedString serviceName)
+{
+	return new QBluetoothServiceInfo(static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothUuid*>(uuid), QString::fromUtf8(serviceName.data, serviceName.len)));
+}
+
+void* QBluetoothServer_NextPendingConnection(void* ptr)
+{
+	return static_cast<QBluetoothServer*>(ptr)->nextPendingConnection();
+}
+
+struct QtBluetooth_PackedString QBluetoothServer_QBluetoothServer_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray tcd1d09 = QBluetoothServer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tcd1d09.prepend("WHITESPACE").constData()+10), tcd1d09.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothServer_QBluetoothServer_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t0f25b0 = QBluetoothServer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t0f25b0.prepend("WHITESPACE").constData()+10), t0f25b0.size()-10 }; });
+}
+
+char QBluetoothServer_Listen(void* ptr, void* address, unsigned short port)
+{
+	return static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothAddress*>(address), port);
+}
+
+void QBluetoothServer_Close(void* ptr)
+{
+	static_cast<QBluetoothServer*>(ptr)->close();
+}
+
 void QBluetoothServer_ConnectError2(void* ptr)
 {
 	qRegisterMetaType<QBluetoothServer::Error>();
@@ -1219,26 +1277,6 @@ void QBluetoothServer_NewConnection(void* ptr)
 	static_cast<QBluetoothServer*>(ptr)->newConnection();
 }
 
-void* QBluetoothServer_Listen2(void* ptr, void* uuid, struct QtBluetooth_PackedString serviceName)
-{
-	return new QBluetoothServiceInfo(static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothUuid*>(uuid), QString::fromUtf8(serviceName.data, serviceName.len)));
-}
-
-void* QBluetoothServer_NextPendingConnection(void* ptr)
-{
-	return static_cast<QBluetoothServer*>(ptr)->nextPendingConnection();
-}
-
-char QBluetoothServer_Listen(void* ptr, void* address, unsigned short port)
-{
-	return static_cast<QBluetoothServer*>(ptr)->listen(*static_cast<QBluetoothAddress*>(address), port);
-}
-
-void QBluetoothServer_Close(void* ptr)
-{
-	static_cast<QBluetoothServer*>(ptr)->close();
-}
-
 void QBluetoothServer_SetMaxPendingConnections(void* ptr, int numConnections)
 {
 	static_cast<QBluetoothServer*>(ptr)->setMaxPendingConnections(numConnections);
@@ -1254,9 +1292,10 @@ void QBluetoothServer_DestroyQBluetoothServer(void* ptr)
 	static_cast<QBluetoothServer*>(ptr)->~QBluetoothServer();
 }
 
-long long QBluetoothServer_Error(void* ptr)
+void QBluetoothServer_DestroyQBluetoothServerDefault(void* ptr)
 {
-	return static_cast<QBluetoothServer*>(ptr)->error();
+	Q_UNUSED(ptr);
+
 }
 
 long long QBluetoothServer_SecurityFlags(void* ptr)
@@ -1267,6 +1306,11 @@ long long QBluetoothServer_SecurityFlags(void* ptr)
 void* QBluetoothServer_ServerAddress(void* ptr)
 {
 	return new QBluetoothAddress(static_cast<QBluetoothServer*>(ptr)->serverAddress());
+}
+
+long long QBluetoothServer_Error(void* ptr)
+{
+	return static_cast<QBluetoothServer*>(ptr)->error();
 }
 
 long long QBluetoothServer_ServerType(void* ptr)
@@ -1282,6 +1326,11 @@ char QBluetoothServer_HasPendingConnections(void* ptr)
 char QBluetoothServer_IsListening(void* ptr)
 {
 	return static_cast<QBluetoothServer*>(ptr)->isListening();
+}
+
+void* QBluetoothServer_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::metaObject());
 }
 
 int QBluetoothServer_MaxPendingConnections(void* ptr)
@@ -1414,11 +1463,6 @@ void QBluetoothServer_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QBluetoothServer_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::metaObject());
-}
-
 class MyQBluetoothServiceDiscoveryAgent: public QBluetoothServiceDiscoveryAgent
 {
 public:
@@ -1431,6 +1475,8 @@ public:
 	void Signal_ServiceDiscovered(const QBluetoothServiceInfo & info) { callbackQBluetoothServiceDiscoveryAgent_ServiceDiscovered(this, const_cast<QBluetoothServiceInfo*>(&info)); };
 	void start(QBluetoothServiceDiscoveryAgent::DiscoveryMode mode) { callbackQBluetoothServiceDiscoveryAgent_Start(this, mode); };
 	void stop() { callbackQBluetoothServiceDiscoveryAgent_Stop(this); };
+	 ~MyQBluetoothServiceDiscoveryAgent() { callbackQBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServiceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothServiceDiscoveryAgent_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothServiceDiscoveryAgent_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothServiceDiscoveryAgent_ChildEvent(this, event); };
@@ -1441,7 +1487,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothServiceDiscoveryAgent_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothServiceDiscoveryAgent_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothServiceDiscoveryAgent_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothServiceDiscoveryAgent_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothServiceDiscoveryAgent*)
@@ -1528,6 +1573,16 @@ void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(void* 
 	} else {
 		return new MyQBluetoothServiceDiscoveryAgent(*static_cast<QBluetoothAddress*>(deviceAdapter), static_cast<QObject*>(parent));
 	}
+}
+
+struct QtBluetooth_PackedString QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t32985e = QBluetoothServiceDiscoveryAgent::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t32985e.prepend("WHITESPACE").constData()+10), t32985e.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t62fe0c = QBluetoothServiceDiscoveryAgent::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t62fe0c.prepend("WHITESPACE").constData()+10), t62fe0c.size()-10 }; });
 }
 
 char QBluetoothServiceDiscoveryAgent_SetRemoteAddress(void* ptr, void* address)
@@ -1642,14 +1697,20 @@ void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(void
 	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->~QBluetoothServiceDiscoveryAgent();
 }
 
-long long QBluetoothServiceDiscoveryAgent_Error(void* ptr)
+void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgentDefault(void* ptr)
 {
-	return static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->error();
+	Q_UNUSED(ptr);
+
 }
 
 void* QBluetoothServiceDiscoveryAgent_RemoteAddress(void* ptr)
 {
 	return new QBluetoothAddress(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->remoteAddress());
+}
+
+long long QBluetoothServiceDiscoveryAgent_Error(void* ptr)
+{
+	return static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->error();
 }
 
 struct QtBluetooth_PackedList QBluetoothServiceDiscoveryAgent_DiscoveredServices(void* ptr)
@@ -1670,6 +1731,11 @@ struct QtBluetooth_PackedString QBluetoothServiceDiscoveryAgent_ErrorString(void
 char QBluetoothServiceDiscoveryAgent_IsActive(void* ptr)
 {
 	return static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->isActive();
+}
+
+void* QBluetoothServiceDiscoveryAgent_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::metaObject());
 }
 
 void* QBluetoothServiceDiscoveryAgent___setUuidFilter_uuids_atList(void* ptr, int i)
@@ -1838,11 +1904,6 @@ void QBluetoothServiceDiscoveryAgent_DisconnectNotifyDefault(void* ptr, void* si
 void QBluetoothServiceDiscoveryAgent_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QBluetoothServiceDiscoveryAgent_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::metaObject());
 }
 
 int QBluetoothServiceInfo_ServiceName_Type()
@@ -2026,16 +2087,17 @@ class MyQBluetoothSocket: public QBluetoothSocket
 public:
 	MyQBluetoothSocket(QBluetoothServiceInfo::Protocol socketType, QObject *parent = Q_NULLPTR) : QBluetoothSocket(socketType, parent) {QBluetoothSocket_QBluetoothSocket_QRegisterMetaType();};
 	MyQBluetoothSocket(QObject *parent = Q_NULLPTR) : QBluetoothSocket(parent) {QBluetoothSocket_QBluetoothSocket_QRegisterMetaType();};
+	qint64 readData(char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { data, maxSize };return callbackQBluetoothSocket_ReadData(this, dataPacked, maxSize); };
+	qint64 writeData(const char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQBluetoothSocket_WriteData(this, dataPacked, maxSize); };
+	void close() { callbackQBluetoothSocket_Close(this); };
 	void Signal_Connected() { callbackQBluetoothSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQBluetoothSocket_Disconnected(this); };
 	void Signal_Error2(QBluetoothSocket::SocketError error) { callbackQBluetoothSocket_Error2(this, error); };
 	void Signal_StateChanged(QBluetoothSocket::SocketState state) { callbackQBluetoothSocket_StateChanged(this, state); };
-	qint64 readData(char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { data, maxSize };return callbackQBluetoothSocket_ReadData(this, dataPacked, maxSize); };
-	qint64 writeData(const char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQBluetoothSocket_WriteData(this, dataPacked, maxSize); };
-	void close() { callbackQBluetoothSocket_Close(this); };
 	 ~MyQBluetoothSocket() { callbackQBluetoothSocket_DestroyQBluetoothSocket(this); };
 	bool canReadLine() const { return callbackQBluetoothSocket_CanReadLine(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isSequential() const { return callbackQBluetoothSocket_IsSequential(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 bytesAvailable() const { return callbackQBluetoothSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 bytesToWrite() const { return callbackQBluetoothSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
 	bool open(QIODevice::OpenMode mode) { return callbackQBluetoothSocket_Open(this, mode) != 0; };
@@ -2063,74 +2125,11 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothSocket_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothSocket_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothSocket*)
 
 int QBluetoothSocket_QBluetoothSocket_QRegisterMetaType(){qRegisterMetaType<QBluetoothSocket*>(); return qRegisterMetaType<MyQBluetoothSocket*>();}
-
-void QBluetoothSocket_ConnectConnected(void* ptr)
-{
-	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));
-}
-
-void QBluetoothSocket_DisconnectConnected(void* ptr)
-{
-	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));
-}
-
-void QBluetoothSocket_Connected(void* ptr)
-{
-	static_cast<QBluetoothSocket*>(ptr)->connected();
-}
-
-void QBluetoothSocket_ConnectDisconnected(void* ptr)
-{
-	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));
-}
-
-void QBluetoothSocket_DisconnectDisconnected(void* ptr)
-{
-	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));
-}
-
-void QBluetoothSocket_Disconnected(void* ptr)
-{
-	static_cast<QBluetoothSocket*>(ptr)->disconnected();
-}
-
-void QBluetoothSocket_ConnectError2(void* ptr)
-{
-	qRegisterMetaType<QBluetoothSocket::SocketError>();
-	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));
-}
-
-void QBluetoothSocket_DisconnectError2(void* ptr)
-{
-	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));
-}
-
-void QBluetoothSocket_Error2(void* ptr, long long error)
-{
-	static_cast<QBluetoothSocket*>(ptr)->error(static_cast<QBluetoothSocket::SocketError>(error));
-}
-
-void QBluetoothSocket_ConnectStateChanged(void* ptr)
-{
-	qRegisterMetaType<QBluetoothSocket::SocketState>();
-	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));
-}
-
-void QBluetoothSocket_DisconnectStateChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));
-}
-
-void QBluetoothSocket_StateChanged(void* ptr, long long state)
-{
-	static_cast<QBluetoothSocket*>(ptr)->stateChanged(static_cast<QBluetoothSocket::SocketState>(state));
-}
 
 void* QBluetoothSocket_NewQBluetoothSocket(long long socketType, void* parent)
 {
@@ -2214,6 +2213,16 @@ void* QBluetoothSocket_NewQBluetoothSocket2(void* parent)
 	}
 }
 
+struct QtBluetooth_PackedString QBluetoothSocket_QBluetoothSocket_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t7732e9 = QBluetoothSocket::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t7732e9.prepend("WHITESPACE").constData()+10), t7732e9.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothSocket_QBluetoothSocket_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t367063 = QBluetoothSocket::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t367063.prepend("WHITESPACE").constData()+10), t367063.size()-10 }; });
+}
+
 char QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, long long socketType, long long socketState, long long openMode)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->setSocketDescriptor(socketDescriptor, static_cast<QBluetoothServiceInfo::Protocol>(socketType), static_cast<QBluetoothSocket::SocketState>(socketState), static_cast<QIODevice::OpenModeFlag>(openMode));
@@ -2264,14 +2273,60 @@ void QBluetoothSocket_ConnectToService(void* ptr, void* service, long long openM
 	static_cast<QBluetoothSocket*>(ptr)->connectToService(*static_cast<QBluetoothServiceInfo*>(service), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
+void QBluetoothSocket_ConnectConnected(void* ptr)
+{
+	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));
+}
+
+void QBluetoothSocket_DisconnectConnected(void* ptr)
+{
+	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));
+}
+
+void QBluetoothSocket_Connected(void* ptr)
+{
+	static_cast<QBluetoothSocket*>(ptr)->connected();
+}
+
 void QBluetoothSocket_DisconnectFromService(void* ptr)
 {
 	static_cast<QBluetoothSocket*>(ptr)->disconnectFromService();
 }
 
+void QBluetoothSocket_ConnectDisconnected(void* ptr)
+{
+	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));
+}
+
+void QBluetoothSocket_DisconnectDisconnected(void* ptr)
+{
+	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));
+}
+
+void QBluetoothSocket_Disconnected(void* ptr)
+{
+	static_cast<QBluetoothSocket*>(ptr)->disconnected();
+}
+
 void QBluetoothSocket_DoDeviceDiscovery(void* ptr, void* service, long long openMode)
 {
 	static_cast<QBluetoothSocket*>(ptr)->doDeviceDiscovery(*static_cast<QBluetoothServiceInfo*>(service), static_cast<QIODevice::OpenModeFlag>(openMode));
+}
+
+void QBluetoothSocket_ConnectError2(void* ptr)
+{
+	qRegisterMetaType<QBluetoothSocket::SocketError>();
+	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));
+}
+
+void QBluetoothSocket_DisconnectError2(void* ptr)
+{
+	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&QBluetoothSocket::error), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketError)>(&MyQBluetoothSocket::Signal_Error2));
+}
+
+void QBluetoothSocket_Error2(void* ptr, long long error)
+{
+	static_cast<QBluetoothSocket*>(ptr)->error(static_cast<QBluetoothSocket::SocketError>(error));
 }
 
 void QBluetoothSocket_SetPreferredSecurityFlags(void* ptr, long long flags)
@@ -2287,6 +2342,22 @@ void QBluetoothSocket_SetSocketError(void* ptr, long long error_)
 void QBluetoothSocket_SetSocketState(void* ptr, long long state)
 {
 	static_cast<QBluetoothSocket*>(ptr)->setSocketState(static_cast<QBluetoothSocket::SocketState>(state));
+}
+
+void QBluetoothSocket_ConnectStateChanged(void* ptr)
+{
+	qRegisterMetaType<QBluetoothSocket::SocketState>();
+	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));
+}
+
+void QBluetoothSocket_DisconnectStateChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));
+}
+
+void QBluetoothSocket_StateChanged(void* ptr, long long state)
+{
+	static_cast<QBluetoothSocket*>(ptr)->stateChanged(static_cast<QBluetoothSocket::SocketState>(state));
 }
 
 void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr)
@@ -2320,16 +2391,6 @@ long long QBluetoothSocket_SocketType(void* ptr)
 	return static_cast<QBluetoothSocket*>(ptr)->socketType();
 }
 
-struct QtBluetooth_PackedString QBluetoothSocket_LocalName(void* ptr)
-{
-	return ({ QByteArray t705949 = static_cast<QBluetoothSocket*>(ptr)->localName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t705949.prepend("WHITESPACE").constData()+10), t705949.size()-10 }; });
-}
-
-struct QtBluetooth_PackedString QBluetoothSocket_PeerName(void* ptr)
-{
-	return ({ QByteArray te958b4 = static_cast<QBluetoothSocket*>(ptr)->peerName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(te958b4.prepend("WHITESPACE").constData()+10), te958b4.size()-10 }; });
-}
-
 long long QBluetoothSocket_Error(void* ptr)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->error();
@@ -2340,6 +2401,16 @@ long long QBluetoothSocket_State(void* ptr)
 	return static_cast<QBluetoothSocket*>(ptr)->state();
 }
 
+struct QtBluetooth_PackedString QBluetoothSocket_LocalName(void* ptr)
+{
+	return ({ QByteArray t705949 = static_cast<QBluetoothSocket*>(ptr)->localName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t705949.prepend("WHITESPACE").constData()+10), t705949.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothSocket_PeerName(void* ptr)
+{
+	return ({ QByteArray te958b4 = static_cast<QBluetoothSocket*>(ptr)->peerName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(te958b4.prepend("WHITESPACE").constData()+10), te958b4.size()-10 }; });
+}
+
 char QBluetoothSocket_CanReadLineDefault(void* ptr)
 {
 		return static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::canReadLine();
@@ -2348,6 +2419,11 @@ char QBluetoothSocket_CanReadLineDefault(void* ptr)
 char QBluetoothSocket_IsSequentialDefault(void* ptr)
 {
 		return static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::isSequential();
+}
+
+void* QBluetoothSocket_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::metaObject());
 }
 
 int QBluetoothSocket_SocketDescriptor(void* ptr)
@@ -2540,16 +2616,13 @@ void QBluetoothSocket_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QBluetoothSocket_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::metaObject());
-}
-
 class MyQBluetoothTransferManager: public QBluetoothTransferManager
 {
 public:
 	MyQBluetoothTransferManager(QObject *parent = Q_NULLPTR) : QBluetoothTransferManager(parent) {QBluetoothTransferManager_QBluetoothTransferManager_QRegisterMetaType();};
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferManager_Finished(this, reply); };
+	 ~MyQBluetoothTransferManager() { callbackQBluetoothTransferManager_DestroyQBluetoothTransferManager(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothTransferManager_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothTransferManager_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothTransferManager_ChildEvent(this, event); };
@@ -2560,7 +2633,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothTransferManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothTransferManager_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferManager_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothTransferManager*)
@@ -2613,6 +2685,16 @@ void* QBluetoothTransferManager_Put(void* ptr, void* request, void* data)
 	return static_cast<QBluetoothTransferManager*>(ptr)->put(*static_cast<QBluetoothTransferRequest*>(request), static_cast<QIODevice*>(data));
 }
 
+struct QtBluetooth_PackedString QBluetoothTransferManager_QBluetoothTransferManager_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t66a0c5 = QBluetoothTransferManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t66a0c5.prepend("WHITESPACE").constData()+10), t66a0c5.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothTransferManager_QBluetoothTransferManager_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t142d76 = QBluetoothTransferManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t142d76.prepend("WHITESPACE").constData()+10), t142d76.size()-10 }; });
+}
+
 void QBluetoothTransferManager_ConnectFinished(void* ptr)
 {
 	QObject::connect(static_cast<QBluetoothTransferManager*>(ptr), static_cast<void (QBluetoothTransferManager::*)(QBluetoothTransferReply *)>(&QBluetoothTransferManager::finished), static_cast<MyQBluetoothTransferManager*>(ptr), static_cast<void (MyQBluetoothTransferManager::*)(QBluetoothTransferReply *)>(&MyQBluetoothTransferManager::Signal_Finished));
@@ -2631,6 +2713,17 @@ void QBluetoothTransferManager_Finished(void* ptr, void* reply)
 void QBluetoothTransferManager_DestroyQBluetoothTransferManager(void* ptr)
 {
 	static_cast<QBluetoothTransferManager*>(ptr)->~QBluetoothTransferManager();
+}
+
+void QBluetoothTransferManager_DestroyQBluetoothTransferManagerDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
+void* QBluetoothTransferManager_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::metaObject());
 }
 
 void* QBluetoothTransferManager___dynamicPropertyNames_atList(void* ptr, int i)
@@ -2753,11 +2846,6 @@ void QBluetoothTransferManager_TimerEventDefault(void* ptr, void* event)
 		static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QBluetoothTransferManager_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::metaObject());
-}
-
 class MyQBluetoothTransferReply: public QBluetoothTransferReply
 {
 public:
@@ -2766,10 +2854,12 @@ public:
 	void Signal_Error2(QBluetoothTransferReply::TransferError errorType) { callbackQBluetoothTransferReply_Error2(this, errorType); };
 	void Signal_Finished(QBluetoothTransferReply * reply) { callbackQBluetoothTransferReply_Finished(this, reply); };
 	void Signal_TransferProgress(qint64 bytesTransferred, qint64 bytesTotal) { callbackQBluetoothTransferReply_TransferProgress(this, bytesTransferred, bytesTotal); };
+	 ~MyQBluetoothTransferReply() { callbackQBluetoothTransferReply_DestroyQBluetoothTransferReply(this); };
+	QBluetoothTransferReply::TransferError error() const { return static_cast<QBluetoothTransferReply::TransferError>(callbackQBluetoothTransferReply_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString errorString() const { return ({ QtBluetooth_PackedString tempVal = callbackQBluetoothTransferReply_ErrorString(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	TransferError error() const { return static_cast<QBluetoothTransferReply::TransferError>(callbackQBluetoothTransferReply_Error(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isFinished() const { return callbackQBluetoothTransferReply_IsFinished(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	bool isRunning() const { return callbackQBluetoothTransferReply_IsRunning(const_cast<void*>(static_cast<const void*>(this))) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQBluetoothTransferReply_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBluetoothTransferReply_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQBluetoothTransferReply_ChildEvent(this, event); };
@@ -2780,7 +2870,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQBluetoothTransferReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQBluetoothTransferReply_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothTransferReply_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBluetoothTransferReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQBluetoothTransferReply*)
@@ -2826,6 +2915,16 @@ void* QBluetoothTransferReply_NewQBluetoothTransferReply(void* parent)
 	} else {
 		return new MyQBluetoothTransferReply(static_cast<QObject*>(parent));
 	}
+}
+
+struct QtBluetooth_PackedString QBluetoothTransferReply_QBluetoothTransferReply_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t913eb4 = QBluetoothTransferReply::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t913eb4.prepend("WHITESPACE").constData()+10), t913eb4.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QBluetoothTransferReply_QBluetoothTransferReply_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tf53614 = QBluetoothTransferReply::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tf53614.prepend("WHITESPACE").constData()+10), tf53614.size()-10 }; });
 }
 
 void QBluetoothTransferReply_Abort(void* ptr)
@@ -2899,9 +2998,20 @@ void QBluetoothTransferReply_DestroyQBluetoothTransferReply(void* ptr)
 	static_cast<QBluetoothTransferReply*>(ptr)->~QBluetoothTransferReply();
 }
 
+void QBluetoothTransferReply_DestroyQBluetoothTransferReplyDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QBluetoothTransferReply_Manager(void* ptr)
 {
 	return static_cast<QBluetoothTransferReply*>(ptr)->manager();
+}
+
+long long QBluetoothTransferReply_Error(void* ptr)
+{
+	return static_cast<QBluetoothTransferReply*>(ptr)->error();
 }
 
 void* QBluetoothTransferReply_Request(void* ptr)
@@ -2914,11 +3024,6 @@ struct QtBluetooth_PackedString QBluetoothTransferReply_ErrorString(void* ptr)
 	return ({ QByteArray te5ca71 = static_cast<QBluetoothTransferReply*>(ptr)->errorString().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(te5ca71.prepend("WHITESPACE").constData()+10), te5ca71.size()-10 }; });
 }
 
-long long QBluetoothTransferReply_Error(void* ptr)
-{
-	return static_cast<QBluetoothTransferReply*>(ptr)->error();
-}
-
 char QBluetoothTransferReply_IsFinished(void* ptr)
 {
 	return static_cast<QBluetoothTransferReply*>(ptr)->isFinished();
@@ -2927,6 +3032,11 @@ char QBluetoothTransferReply_IsFinished(void* ptr)
 char QBluetoothTransferReply_IsRunning(void* ptr)
 {
 	return static_cast<QBluetoothTransferReply*>(ptr)->isRunning();
+}
+
+void* QBluetoothTransferReply_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::metaObject());
 }
 
 void* QBluetoothTransferReply___dynamicPropertyNames_atList(void* ptr, int i)
@@ -3047,11 +3157,6 @@ void QBluetoothTransferReply_DisconnectNotifyDefault(void* ptr, void* sign)
 void QBluetoothTransferReply_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QBluetoothTransferReply_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::metaObject());
 }
 
 void* QBluetoothTransferRequest_NewQBluetoothTransferRequest(void* address)
@@ -3231,11 +3336,6 @@ void QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(void* ptr)
 	static_cast<QLowEnergyAdvertisingData*>(ptr)->~QLowEnergyAdvertisingData();
 }
 
-long long QLowEnergyAdvertisingData_Discoverability(void* ptr)
-{
-	return static_cast<QLowEnergyAdvertisingData*>(ptr)->discoverability();
-}
-
 void* QLowEnergyAdvertisingData_ManufacturerData(void* ptr)
 {
 	return new QByteArray(static_cast<QLowEnergyAdvertisingData*>(ptr)->manufacturerData());
@@ -3249,6 +3349,11 @@ void* QLowEnergyAdvertisingData_RawData(void* ptr)
 struct QtBluetooth_PackedList QLowEnergyAdvertisingData_Services(void* ptr)
 {
 	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QLowEnergyAdvertisingData*>(ptr)->services()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+long long QLowEnergyAdvertisingData_Discoverability(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->discoverability();
 }
 
 struct QtBluetooth_PackedString QLowEnergyAdvertisingData_LocalName(void* ptr)
@@ -3616,6 +3721,8 @@ public:
 	void Signal_Error2(QLowEnergyController::Error newError) { callbackQLowEnergyController_Error2(this, newError); };
 	void Signal_ServiceDiscovered(const QBluetoothUuid & newService) { callbackQLowEnergyController_ServiceDiscovered(this, const_cast<QBluetoothUuid*>(&newService)); };
 	void Signal_StateChanged(QLowEnergyController::ControllerState state) { callbackQLowEnergyController_StateChanged(this, state); };
+	 ~MyQLowEnergyController() { callbackQLowEnergyController_DestroyQLowEnergyController(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyController_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQLowEnergyController_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLowEnergyController_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQLowEnergyController_ChildEvent(this, event); };
@@ -3626,7 +3733,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLowEnergyController_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQLowEnergyController_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyController_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyController_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLowEnergyController*)
@@ -3651,6 +3757,16 @@ void* QLowEnergyController_AddService(void* ptr, void* service, void* parent)
 void* QLowEnergyController_CreateServiceObject(void* ptr, void* serviceUuid, void* parent)
 {
 	return static_cast<QLowEnergyController*>(ptr)->createServiceObject(*static_cast<QBluetoothUuid*>(serviceUuid), static_cast<QObject*>(parent));
+}
+
+struct QtBluetooth_PackedString QLowEnergyController_QLowEnergyController_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray ta1a4ff = QLowEnergyController::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(ta1a4ff.prepend("WHITESPACE").constData()+10), ta1a4ff.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QLowEnergyController_QLowEnergyController_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t115c4f = QLowEnergyController::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t115c4f.prepend("WHITESPACE").constData()+10), t115c4f.size()-10 }; });
 }
 
 void QLowEnergyController_ConnectToDevice(void* ptr)
@@ -3800,14 +3916,10 @@ void QLowEnergyController_DestroyQLowEnergyController(void* ptr)
 	static_cast<QLowEnergyController*>(ptr)->~QLowEnergyController();
 }
 
-long long QLowEnergyController_State(void* ptr)
+void QLowEnergyController_DestroyQLowEnergyControllerDefault(void* ptr)
 {
-	return static_cast<QLowEnergyController*>(ptr)->state();
-}
+	Q_UNUSED(ptr);
 
-long long QLowEnergyController_Error(void* ptr)
-{
-	return static_cast<QLowEnergyController*>(ptr)->error();
 }
 
 void* QLowEnergyController_LocalAddress(void* ptr)
@@ -3830,14 +3942,14 @@ struct QtBluetooth_PackedList QLowEnergyController_Services(void* ptr)
 	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QLowEnergyController*>(ptr)->services()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtBluetooth_PackedString QLowEnergyController_ErrorString(void* ptr)
+long long QLowEnergyController_State(void* ptr)
 {
-	return ({ QByteArray t56a9bd = static_cast<QLowEnergyController*>(ptr)->errorString().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t56a9bd.prepend("WHITESPACE").constData()+10), t56a9bd.size()-10 }; });
+	return static_cast<QLowEnergyController*>(ptr)->state();
 }
 
-struct QtBluetooth_PackedString QLowEnergyController_RemoteName(void* ptr)
+long long QLowEnergyController_Error(void* ptr)
 {
-	return ({ QByteArray tf2501f = static_cast<QLowEnergyController*>(ptr)->remoteName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tf2501f.prepend("WHITESPACE").constData()+10), tf2501f.size()-10 }; });
+	return static_cast<QLowEnergyController*>(ptr)->error();
 }
 
 long long QLowEnergyController_RemoteAddressType(void* ptr)
@@ -3848,6 +3960,21 @@ long long QLowEnergyController_RemoteAddressType(void* ptr)
 long long QLowEnergyController_Role(void* ptr)
 {
 	return static_cast<QLowEnergyController*>(ptr)->role();
+}
+
+struct QtBluetooth_PackedString QLowEnergyController_ErrorString(void* ptr)
+{
+	return ({ QByteArray t56a9bd = static_cast<QLowEnergyController*>(ptr)->errorString().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t56a9bd.prepend("WHITESPACE").constData()+10), t56a9bd.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QLowEnergyController_RemoteName(void* ptr)
+{
+	return ({ QByteArray tf2501f = static_cast<QLowEnergyController*>(ptr)->remoteName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tf2501f.prepend("WHITESPACE").constData()+10), tf2501f.size()-10 }; });
+}
+
+void* QLowEnergyController_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::metaObject());
 }
 
 void* QLowEnergyController___services_atList(void* ptr, int i)
@@ -3986,11 +4113,6 @@ void QLowEnergyController_TimerEventDefault(void* ptr, void* event)
 		static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QLowEnergyController_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::metaObject());
-}
-
 void* QLowEnergyDescriptor_NewQLowEnergyDescriptor()
 {
 	return new QLowEnergyDescriptor();
@@ -4121,6 +4243,8 @@ public:
 	void Signal_DescriptorWritten(const QLowEnergyDescriptor & descriptor, const QByteArray & newValue) { callbackQLowEnergyService_DescriptorWritten(this, const_cast<QLowEnergyDescriptor*>(&descriptor), const_cast<QByteArray*>(&newValue)); };
 	void Signal_Error2(QLowEnergyService::ServiceError newError) { callbackQLowEnergyService_Error2(this, newError); };
 	void Signal_StateChanged(QLowEnergyService::ServiceState newState) { callbackQLowEnergyService_StateChanged(this, newState); };
+	 ~MyQLowEnergyService() { callbackQLowEnergyService_DestroyQLowEnergyService(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQLowEnergyService_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLowEnergyService_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQLowEnergyService_ChildEvent(this, event); };
@@ -4131,12 +4255,21 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLowEnergyService_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtBluetooth_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQLowEnergyService_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyService_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLowEnergyService_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQLowEnergyService*)
 
 int QLowEnergyService_QLowEnergyService_QRegisterMetaType(){qRegisterMetaType<QLowEnergyService*>(); return qRegisterMetaType<MyQLowEnergyService*>();}
+
+struct QtBluetooth_PackedString QLowEnergyService_QLowEnergyService_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t2aea55 = QLowEnergyService::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t2aea55.prepend("WHITESPACE").constData()+10), t2aea55.size()-10 }; });
+}
+
+struct QtBluetooth_PackedString QLowEnergyService_QLowEnergyService_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray tda712b = QLowEnergyService::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tda712b.prepend("WHITESPACE").constData()+10), tda712b.size()-10 }; });
+}
 
 void QLowEnergyService_ConnectCharacteristicChanged(void* ptr)
 {
@@ -4275,6 +4408,12 @@ void QLowEnergyService_DestroyQLowEnergyService(void* ptr)
 	static_cast<QLowEnergyService*>(ptr)->~QLowEnergyService();
 }
 
+void QLowEnergyService_DestroyQLowEnergyServiceDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QLowEnergyService_ServiceUuid(void* ptr)
 {
 	return new QBluetoothUuid(static_cast<QLowEnergyService*>(ptr)->serviceUuid());
@@ -4295,6 +4434,11 @@ void* QLowEnergyService_Characteristic(void* ptr, void* uuid)
 	return new QLowEnergyCharacteristic(static_cast<QLowEnergyService*>(ptr)->characteristic(*static_cast<QBluetoothUuid*>(uuid)));
 }
 
+long long QLowEnergyService_Error(void* ptr)
+{
+	return static_cast<QLowEnergyService*>(ptr)->error();
+}
+
 long long QLowEnergyService_State(void* ptr)
 {
 	return static_cast<QLowEnergyService*>(ptr)->state();
@@ -4310,11 +4454,6 @@ struct QtBluetooth_PackedString QLowEnergyService_ServiceName(void* ptr)
 	return ({ QByteArray tf34544 = static_cast<QLowEnergyService*>(ptr)->serviceName().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(tf34544.prepend("WHITESPACE").constData()+10), tf34544.size()-10 }; });
 }
 
-long long QLowEnergyService_Error(void* ptr)
-{
-	return static_cast<QLowEnergyService*>(ptr)->error();
-}
-
 char QLowEnergyService_Contains(void* ptr, void* characteristic)
 {
 	return static_cast<QLowEnergyService*>(ptr)->contains(*static_cast<QLowEnergyCharacteristic*>(characteristic));
@@ -4323,6 +4462,11 @@ char QLowEnergyService_Contains(void* ptr, void* characteristic)
 char QLowEnergyService_Contains2(void* ptr, void* descriptor)
 {
 	return static_cast<QLowEnergyService*>(ptr)->contains(*static_cast<QLowEnergyDescriptor*>(descriptor));
+}
+
+void* QLowEnergyService_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::metaObject());
 }
 
 void* QLowEnergyService___includedServices_atList(void* ptr, int i)
@@ -4475,11 +4619,6 @@ void QLowEnergyService_DisconnectNotifyDefault(void* ptr, void* sign)
 void QLowEnergyService_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QLowEnergyService_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::metaObject());
 }
 
 void* QLowEnergyServiceData_NewQLowEnergyServiceData()

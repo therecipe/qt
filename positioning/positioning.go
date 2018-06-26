@@ -663,6 +663,62 @@ func NewQGeoAreaMonitorSource(parent core.QObject_ITF) *QGeoAreaMonitorSource {
 	return tmpValue
 }
 
+func QGeoAreaMonitorSource_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoAreaMonitorSource) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QGeoAreaMonitorSource_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoAreaMonitorSource) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func QGeoAreaMonitorSource_AvailableSources() []string {
 	return strings.Split(cGoUnpackString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()), "|")
 }
@@ -1276,6 +1332,22 @@ func (ptr *QGeoAreaMonitorSource) SourceName() string {
 	return ""
 }
 
+//export callbackQGeoAreaMonitorSource_MetaObject
+func callbackQGeoAreaMonitorSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoAreaMonitorSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoAreaMonitorSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoAreaMonitorSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoAreaMonitorSource) __activeMonitors_atList(i int) *QGeoAreaMonitorInfo {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource___activeMonitors_atList(ptr.Pointer(), C.int(int32(i))))
@@ -1557,22 +1629,6 @@ func (ptr *QGeoAreaMonitorSource) TimerEventDefault(event core.QTimerEvent_ITF) 
 	}
 }
 
-//export callbackQGeoAreaMonitorSource_MetaObject
-func callbackQGeoAreaMonitorSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQGeoAreaMonitorSourceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGeoAreaMonitorSource) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGeoAreaMonitorSource_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QGeoCircle struct {
 	QGeoShape
 }
@@ -1794,13 +1850,6 @@ func (ptr *QGeoCoordinate) DestroyQGeoCoordinate() {
 	}
 }
 
-func (ptr *QGeoCoordinate) Type() QGeoCoordinate__CoordinateType {
-	if ptr.Pointer() != nil {
-		return QGeoCoordinate__CoordinateType(C.QGeoCoordinate_Type(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QGeoCoordinate) AtDistanceAndAzimuth(distance float64, azimuth float64, distanceUp float64) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoCoordinate_AtDistanceAndAzimuth(ptr.Pointer(), C.double(distance), C.double(azimuth), C.double(distanceUp)))
@@ -1808,6 +1857,13 @@ func (ptr *QGeoCoordinate) AtDistanceAndAzimuth(distance float64, azimuth float6
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QGeoCoordinate) Type() QGeoCoordinate__CoordinateType {
+	if ptr.Pointer() != nil {
+		return QGeoCoordinate__CoordinateType(C.QGeoCoordinate_Type(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QGeoCoordinate) ToString(format QGeoCoordinate__CoordinateFormat) string {
@@ -2123,6 +2179,44 @@ func (ptr *QGeoPath) __setPath_path_setList(i QGeoCoordinate_ITF) {
 
 func (ptr *QGeoPath) __setPath_path_newList() unsafe.Pointer {
 	return C.QGeoPath___setPath_path_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoPath) __setVariantPath_path_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QGeoPath___setVariantPath_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) __setVariantPath_path_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath___setVariantPath_path_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoPath) __setVariantPath_path_newList() unsafe.Pointer {
+	return C.QGeoPath___setVariantPath_path_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoPath) __variantPath_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QGeoPath___variantPath_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPath) __variantPath_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPath___variantPath_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoPath) __variantPath_newList() unsafe.Pointer {
+	return C.QGeoPath___variantPath_newList(ptr.Pointer())
 }
 
 func (ptr *QGeoPath) __path_atList(i int) *QGeoCoordinate {
@@ -2579,87 +2673,6 @@ const (
 	QGeoPositionInfoSource__AllPositioningMethods          QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffffff)
 )
 
-//export callbackQGeoPositionInfoSource_PositionUpdated
-func callbackQGeoPositionInfoSource_PositionUpdated(ptr unsafe.Pointer, update unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "positionUpdated"); signal != nil {
-		signal.(func(*QGeoPositionInfo))(NewQGeoPositionInfoFromPointer(update))
-	}
-
-}
-
-func (ptr *QGeoPositionInfoSource) ConnectPositionUpdated(f func(update *QGeoPositionInfo)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "positionUpdated") {
-			C.QGeoPositionInfoSource_ConnectPositionUpdated(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "positionUpdated"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "positionUpdated", func(update *QGeoPositionInfo) {
-				signal.(func(*QGeoPositionInfo))(update)
-				f(update)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "positionUpdated", f)
-		}
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) DisconnectPositionUpdated() {
-	if ptr.Pointer() != nil {
-		C.QGeoPositionInfoSource_DisconnectPositionUpdated(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "positionUpdated")
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) PositionUpdated(update QGeoPositionInfo_ITF) {
-	if ptr.Pointer() != nil {
-		C.QGeoPositionInfoSource_PositionUpdated(ptr.Pointer(), PointerFromQGeoPositionInfo(update))
-	}
-}
-
-//export callbackQGeoPositionInfoSource_SetUpdateInterval
-func callbackQGeoPositionInfoSource_SetUpdateInterval(ptr unsafe.Pointer, msec C.int) {
-	if signal := qt.GetSignal(ptr, "setUpdateInterval"); signal != nil {
-		signal.(func(int))(int(int32(msec)))
-	} else {
-		NewQGeoPositionInfoSourceFromPointer(ptr).SetUpdateIntervalDefault(int(int32(msec)))
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) ConnectSetUpdateInterval(f func(msec int)) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "setUpdateInterval"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setUpdateInterval", func(msec int) {
-				signal.(func(int))(msec)
-				f(msec)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setUpdateInterval", f)
-		}
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) DisconnectSetUpdateInterval() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "setUpdateInterval")
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) SetUpdateInterval(msec int) {
-	if ptr.Pointer() != nil {
-		C.QGeoPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(int32(msec)))
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) SetUpdateIntervalDefault(msec int) {
-	if ptr.Pointer() != nil {
-		C.QGeoPositionInfoSource_SetUpdateIntervalDefault(ptr.Pointer(), C.int(int32(msec)))
-	}
-}
-
 func QGeoPositionInfoSource_CreateDefaultSource(parent core.QObject_ITF) *QGeoPositionInfoSource {
 	tmpValue := NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateDefaultSource(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -2710,6 +2723,62 @@ func NewQGeoPositionInfoSource(parent core.QObject_ITF) *QGeoPositionInfoSource 
 	return tmpValue
 }
 
+func QGeoPositionInfoSource_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoPositionInfoSource) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QGeoPositionInfoSource_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoPositionInfoSource) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func QGeoPositionInfoSource_AvailableSources() []string {
 	return strings.Split(cGoUnpackString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()), "|")
 }
@@ -2754,6 +2823,45 @@ func (ptr *QGeoPositionInfoSource) DisconnectError2() {
 func (ptr *QGeoPositionInfoSource) Error2(positioningError QGeoPositionInfoSource__Error) {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_Error2(ptr.Pointer(), C.longlong(positioningError))
+	}
+}
+
+//export callbackQGeoPositionInfoSource_PositionUpdated
+func callbackQGeoPositionInfoSource_PositionUpdated(ptr unsafe.Pointer, update unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "positionUpdated"); signal != nil {
+		signal.(func(*QGeoPositionInfo))(NewQGeoPositionInfoFromPointer(update))
+	}
+
+}
+
+func (ptr *QGeoPositionInfoSource) ConnectPositionUpdated(f func(update *QGeoPositionInfo)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "positionUpdated") {
+			C.QGeoPositionInfoSource_ConnectPositionUpdated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "positionUpdated"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "positionUpdated", func(update *QGeoPositionInfo) {
+				signal.(func(*QGeoPositionInfo))(update)
+				f(update)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "positionUpdated", f)
+		}
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DisconnectPositionUpdated() {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_DisconnectPositionUpdated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "positionUpdated")
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) PositionUpdated(update QGeoPositionInfo_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_PositionUpdated(ptr.Pointer(), PointerFromQGeoPositionInfo(update))
 	}
 }
 
@@ -2831,6 +2939,48 @@ func (ptr *QGeoPositionInfoSource) SetPreferredPositioningMethods(methods QGeoPo
 func (ptr *QGeoPositionInfoSource) SetPreferredPositioningMethodsDefault(methods QGeoPositionInfoSource__PositioningMethod) {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_SetPreferredPositioningMethodsDefault(ptr.Pointer(), C.longlong(methods))
+	}
+}
+
+//export callbackQGeoPositionInfoSource_SetUpdateInterval
+func callbackQGeoPositionInfoSource_SetUpdateInterval(ptr unsafe.Pointer, msec C.int) {
+	if signal := qt.GetSignal(ptr, "setUpdateInterval"); signal != nil {
+		signal.(func(int))(int(int32(msec)))
+	} else {
+		NewQGeoPositionInfoSourceFromPointer(ptr).SetUpdateIntervalDefault(int(int32(msec)))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) ConnectSetUpdateInterval(f func(msec int)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setUpdateInterval"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setUpdateInterval", func(msec int) {
+				signal.(func(int))(msec)
+				f(msec)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setUpdateInterval", f)
+		}
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DisconnectSetUpdateInterval() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setUpdateInterval")
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) SetUpdateInterval(msec int) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(int32(msec)))
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) SetUpdateIntervalDefault(msec int) {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_SetUpdateIntervalDefault(ptr.Pointer(), C.int(int32(msec)))
 	}
 }
 
@@ -2989,6 +3139,45 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSourceDefault() {
 	}
 }
 
+//export callbackQGeoPositionInfoSource_LastKnownPosition
+func callbackQGeoPositionInfoSource_LastKnownPosition(ptr unsafe.Pointer, fromSatellitePositioningMethodsOnly C.char) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "lastKnownPosition"); signal != nil {
+		return PointerFromQGeoPositionInfo(signal.(func(bool) *QGeoPositionInfo)(int8(fromSatellitePositioningMethodsOnly) != 0))
+	}
+
+	return PointerFromQGeoPositionInfo(NewQGeoPositionInfo())
+}
+
+func (ptr *QGeoPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "lastKnownPosition"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
+				signal.(func(bool) *QGeoPositionInfo)(fromSatellitePositioningMethodsOnly)
+				return f(fromSatellitePositioningMethodsOnly)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", f)
+		}
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DisconnectLastKnownPosition() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "lastKnownPosition")
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
+		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQGeoPositionInfoSource_Error
 func callbackQGeoPositionInfoSource_Error(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "error"); signal != nil {
@@ -3070,50 +3259,27 @@ func (ptr *QGeoPositionInfoSource) SupportedPositioningMethods() QGeoPositionInf
 	return 0
 }
 
-//export callbackQGeoPositionInfoSource_LastKnownPosition
-func callbackQGeoPositionInfoSource_LastKnownPosition(ptr unsafe.Pointer, fromSatellitePositioningMethodsOnly C.char) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "lastKnownPosition"); signal != nil {
-		return PointerFromQGeoPositionInfo(signal.(func(bool) *QGeoPositionInfo)(int8(fromSatellitePositioningMethodsOnly) != 0))
-	}
-
-	return PointerFromQGeoPositionInfo(NewQGeoPositionInfo())
-}
-
-func (ptr *QGeoPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "lastKnownPosition"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
-				signal.(func(bool) *QGeoPositionInfo)(fromSatellitePositioningMethodsOnly)
-				return f(fromSatellitePositioningMethodsOnly)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", f)
-		}
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) DisconnectLastKnownPosition() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "lastKnownPosition")
-	}
-}
-
-func (ptr *QGeoPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQGeoPositionInfoFromPointer(C.QGeoPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
-		return tmpValue
-	}
-	return nil
-}
-
 func (ptr *QGeoPositionInfoSource) SourceName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QGeoPositionInfoSource_SourceName(ptr.Pointer()))
 	}
 	return ""
+}
+
+//export callbackQGeoPositionInfoSource_MetaObject
+func callbackQGeoPositionInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoPositionInfoSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoPositionInfoSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoPositionInfoSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQGeoPositionInfoSource_MinimumUpdateInterval
@@ -3401,22 +3567,6 @@ func (ptr *QGeoPositionInfoSource) TimerEventDefault(event core.QTimerEvent_ITF)
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQGeoPositionInfoSource_MetaObject
-func callbackQGeoPositionInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQGeoPositionInfoSourceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGeoPositionInfoSource) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGeoPositionInfoSource_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QGeoPositionInfoSourceFactory struct {
@@ -4109,6 +4259,62 @@ func NewQGeoSatelliteInfoSource(parent core.QObject_ITF) *QGeoSatelliteInfoSourc
 	return tmpValue
 }
 
+func QGeoSatelliteInfoSource_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoSatelliteInfoSource) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QGeoSatelliteInfoSource_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QGeoSatelliteInfoSource) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func QGeoSatelliteInfoSource_AvailableSources() []string {
 	return strings.Split(cGoUnpackString(C.QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()), "|")
 }
@@ -4536,6 +4742,22 @@ func (ptr *QGeoSatelliteInfoSource) SourceName() string {
 	return ""
 }
 
+//export callbackQGeoSatelliteInfoSource_MetaObject
+func callbackQGeoSatelliteInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQGeoSatelliteInfoSourceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QGeoSatelliteInfoSource) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QGeoSatelliteInfoSource_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQGeoSatelliteInfoSource_MinimumUpdateInterval
 func callbackQGeoSatelliteInfoSource_MinimumUpdateInterval(ptr unsafe.Pointer) C.int {
 	if signal := qt.GetSignal(ptr, "minimumUpdateInterval"); signal != nil {
@@ -4861,22 +5083,6 @@ func (ptr *QGeoSatelliteInfoSource) TimerEventDefault(event core.QTimerEvent_ITF
 	}
 }
 
-//export callbackQGeoSatelliteInfoSource_MetaObject
-func callbackQGeoSatelliteInfoSource_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQGeoSatelliteInfoSourceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QGeoSatelliteInfoSource) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QGeoSatelliteInfoSource_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QGeoShape struct {
 	ptr unsafe.Pointer
 }
@@ -4965,18 +5171,18 @@ func (ptr *QGeoShape) BoundingGeoRectangle() *QGeoRectangle {
 	return nil
 }
 
-func (ptr *QGeoShape) ToString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QGeoShape_ToString(ptr.Pointer()))
-	}
-	return ""
-}
-
 func (ptr *QGeoShape) Type() QGeoShape__ShapeType {
 	if ptr.Pointer() != nil {
 		return QGeoShape__ShapeType(C.QGeoShape_Type(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QGeoShape) ToString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QGeoShape_ToString(ptr.Pointer()))
+	}
+	return ""
 }
 
 func (ptr *QGeoShape) Contains(coordinate QGeoCoordinate_ITF) bool {
@@ -5248,12 +5454,98 @@ func (ptr *QNmeaPositionInfoSource) StopUpdatesDefault() {
 	}
 }
 
+//export callbackQNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource
+func callbackQNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QNmeaPositionInfoSource"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).DestroyQNmeaPositionInfoSourceDefault()
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectDestroyQNmeaPositionInfoSource(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QNmeaPositionInfoSource"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QNmeaPositionInfoSource", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QNmeaPositionInfoSource", f)
+		}
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectDestroyQNmeaPositionInfoSource() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QNmeaPositionInfoSource")
+	}
+}
+
 func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSourceDefault() {
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSourceDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQNmeaPositionInfoSource_LastKnownPosition
+func callbackQNmeaPositionInfoSource_LastKnownPosition(ptr unsafe.Pointer, fromSatellitePositioningMethodsOnly C.char) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "lastKnownPosition"); signal != nil {
+		return PointerFromQGeoPositionInfo(signal.(func(bool) *QGeoPositionInfo)(int8(fromSatellitePositioningMethodsOnly) != 0))
+	}
+
+	return PointerFromQGeoPositionInfo(NewQNmeaPositionInfoSourceFromPointer(ptr).LastKnownPositionDefault(int8(fromSatellitePositioningMethodsOnly) != 0))
+}
+
+func (ptr *QNmeaPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "lastKnownPosition"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
+				signal.(func(bool) *QGeoPositionInfo)(fromSatellitePositioningMethodsOnly)
+				return f(fromSatellitePositioningMethodsOnly)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", f)
+		}
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DisconnectLastKnownPosition() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "lastKnownPosition")
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
+		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QNmeaPositionInfoSource) LastKnownPositionDefault(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPositionDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
+		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQNmeaPositionInfoSource_Error
@@ -5342,54 +5634,6 @@ func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethodsDefault() QGeoPos
 		return QGeoPositionInfoSource__PositioningMethod(C.QNmeaPositionInfoSource_SupportedPositioningMethodsDefault(ptr.Pointer()))
 	}
 	return 0
-}
-
-//export callbackQNmeaPositionInfoSource_LastKnownPosition
-func callbackQNmeaPositionInfoSource_LastKnownPosition(ptr unsafe.Pointer, fromSatellitePositioningMethodsOnly C.char) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "lastKnownPosition"); signal != nil {
-		return PointerFromQGeoPositionInfo(signal.(func(bool) *QGeoPositionInfo)(int8(fromSatellitePositioningMethodsOnly) != 0))
-	}
-
-	return PointerFromQGeoPositionInfo(NewQNmeaPositionInfoSourceFromPointer(ptr).LastKnownPositionDefault(int8(fromSatellitePositioningMethodsOnly) != 0))
-}
-
-func (ptr *QNmeaPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "lastKnownPosition"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
-				signal.(func(bool) *QGeoPositionInfo)(fromSatellitePositioningMethodsOnly)
-				return f(fromSatellitePositioningMethodsOnly)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "lastKnownPosition", f)
-		}
-	}
-}
-
-func (ptr *QNmeaPositionInfoSource) DisconnectLastKnownPosition() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "lastKnownPosition")
-	}
-}
-
-func (ptr *QNmeaPositionInfoSource) LastKnownPosition(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPosition(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNmeaPositionInfoSource) LastKnownPositionDefault(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQGeoPositionInfoFromPointer(C.QNmeaPositionInfoSource_LastKnownPositionDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fromSatellitePositioningMethodsOnly)))))
-		runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
-		return tmpValue
-	}
-	return nil
 }
 
 func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {

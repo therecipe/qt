@@ -52,6 +52,7 @@ public:
 	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { QByteArray td80a05 = className.toUtf8(); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05.prepend("WHITESPACE").constData()+10), td80a05.size()-10 };QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, classNamePacked, parent, namePacked)); };
 	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { QByteArray td80a05 = className.toUtf8(); QtUiTools_PackedString classNamePacked = { const_cast<char*>(td80a05.prepend("WHITESPACE").constData()+10), td80a05.size()-10 };QByteArray t6ae999 = name.toUtf8(); QtUiTools_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, classNamePacked, parent, namePacked)); };
 	 ~MyQUiLoader() { callbackQUiLoader_DestroyQUiLoader(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQUiLoader_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUiLoader_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, event); };
@@ -62,7 +63,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtUiTools_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQUiLoader_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQUiLoader*)
@@ -97,6 +97,16 @@ void* QUiLoader_CreateLayout(void* ptr, struct QtUiTools_PackedString className,
 void* QUiLoader_CreateLayoutDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name)
 {
 		return static_cast<QUiLoader*>(ptr)->QUiLoader::createLayout(QString::fromUtf8(className.data, className.len), static_cast<QObject*>(parent), QString::fromUtf8(name.data, name.len));
+}
+
+struct QtUiTools_PackedString QUiLoader_QUiLoader_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t4760af = QUiLoader::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtUiTools_PackedString { const_cast<char*>(t4760af.prepend("WHITESPACE").constData()+10), t4760af.size()-10 }; });
+}
+
+struct QtUiTools_PackedString QUiLoader_QUiLoader_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t19a35d = QUiLoader::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtUiTools_PackedString { const_cast<char*>(t19a35d.prepend("WHITESPACE").constData()+10), t19a35d.size()-10 }; });
 }
 
 void* QUiLoader_NewQUiLoader(void* parent)
@@ -214,6 +224,11 @@ struct QtUiTools_PackedString QUiLoader_PluginPaths(void* ptr)
 char QUiLoader_IsLanguageChangeEnabled(void* ptr)
 {
 	return static_cast<QUiLoader*>(ptr)->isLanguageChangeEnabled();
+}
+
+void* QUiLoader_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QUiLoader*>(ptr)->QUiLoader::metaObject());
 }
 
 void* QUiLoader___dynamicPropertyNames_atList(void* ptr, int i)
@@ -334,10 +349,5 @@ void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign)
 void QUiLoader_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QUiLoader*>(ptr)->QUiLoader::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QUiLoader_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QUiLoader*>(ptr)->QUiLoader::metaObject());
 }
 

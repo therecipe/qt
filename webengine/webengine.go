@@ -109,6 +109,62 @@ func NewQQuickWebEngineProfile(parent core.QObject_ITF) *QQuickWebEngineProfile 
 	return tmpValue
 }
 
+func QQuickWebEngineProfile_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineProfile_QQuickWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQuickWebEngineProfile) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineProfile_QQuickWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQuickWebEngineProfile_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineProfile_QQuickWebEngineProfile_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQuickWebEngineProfile) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineProfile_QQuickWebEngineProfile_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQQuickWebEngineProfile_CachePathChanged
 func callbackQQuickWebEngineProfile_CachePathChanged(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "cachePathChanged"); signal != nil {
@@ -748,6 +804,22 @@ func (ptr *QQuickWebEngineProfile) IsSpellCheckEnabled() bool {
 	return false
 }
 
+//export callbackQQuickWebEngineProfile_MetaObject
+func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme core.QByteArray_ITF) *QWebEngineUrlSchemeHandler {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQWebEngineUrlSchemeHandlerFromPointer(C.QQuickWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(scheme)))
@@ -1009,22 +1081,6 @@ func (ptr *QQuickWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF)
 	}
 }
 
-//export callbackQQuickWebEngineProfile_MetaObject
-func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQuickWebEngineProfileFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQuickWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QQuickWebEngineScript struct {
 	core.QObject
 }
@@ -1090,6 +1146,62 @@ func NewQQuickWebEngineScript(parent core.QObject_ITF) *QQuickWebEngineScript {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QQuickWebEngineScript_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineScript_QQuickWebEngineScript_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQuickWebEngineScript) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineScript_QQuickWebEngineScript_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QQuickWebEngineScript_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineScript_QQuickWebEngineScript_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QQuickWebEngineScript) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QQuickWebEngineScript_QQuickWebEngineScript_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQQuickWebEngineScript_InjectionPointChanged
@@ -1389,6 +1501,13 @@ func (ptr *QQuickWebEngineScript) InjectionPoint() QQuickWebEngineScript__Inject
 	return 0
 }
 
+func (ptr *QQuickWebEngineScript) WorldId() QQuickWebEngineScript__ScriptWorldId {
+	if ptr.Pointer() != nil {
+		return QQuickWebEngineScript__ScriptWorldId(C.QQuickWebEngineScript_WorldId(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QQuickWebEngineScript) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QQuickWebEngineScript_Name(ptr.Pointer()))
@@ -1419,18 +1538,27 @@ func (ptr *QQuickWebEngineScript) SourceUrl() *core.QUrl {
 	return nil
 }
 
-func (ptr *QQuickWebEngineScript) WorldId() QQuickWebEngineScript__ScriptWorldId {
-	if ptr.Pointer() != nil {
-		return QQuickWebEngineScript__ScriptWorldId(C.QQuickWebEngineScript_WorldId(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QQuickWebEngineScript) RunOnSubframes() bool {
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineScript_RunOnSubframes(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQuickWebEngineScript_MetaObject
+func callbackQQuickWebEngineScript_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickWebEngineScriptFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickWebEngineScript) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineScript_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickWebEngineScript) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1676,268 +1804,6 @@ func (ptr *QQuickWebEngineScript) TimerEventDefault(event core.QTimerEvent_ITF) 
 	}
 }
 
-//export callbackQQuickWebEngineScript_MetaObject
-func callbackQQuickWebEngineScript_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQQuickWebEngineScriptFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QQuickWebEngineScript) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineScript_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-type QWebEngineCertificateError struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineCertificateError_ITF interface {
-	QWebEngineCertificateError_PTR() *QWebEngineCertificateError
-}
-
-func (ptr *QWebEngineCertificateError) QWebEngineCertificateError_PTR() *QWebEngineCertificateError {
-	return ptr
-}
-
-func (ptr *QWebEngineCertificateError) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineCertificateError) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineCertificateError(ptr QWebEngineCertificateError_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineCertificateError_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineCertificateErrorFromPointer(ptr unsafe.Pointer) (n *QWebEngineCertificateError) {
-	n = new(QWebEngineCertificateError)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//go:generate stringer -type=QWebEngineCertificateError__Error
-//QWebEngineCertificateError::Error
-type QWebEngineCertificateError__Error int64
-
-const (
-	QWebEngineCertificateError__SslPinnedKeyNotInCertificateChain  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-150)
-	QWebEngineCertificateError__CertificateCommonNameInvalid       QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-200)
-	QWebEngineCertificateError__CertificateDateInvalid             QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-201)
-	QWebEngineCertificateError__CertificateAuthorityInvalid        QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-202)
-	QWebEngineCertificateError__CertificateContainsErrors          QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-203)
-	QWebEngineCertificateError__CertificateNoRevocationMechanism   QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-204)
-	QWebEngineCertificateError__CertificateUnableToCheckRevocation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-205)
-	QWebEngineCertificateError__CertificateRevoked                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-206)
-	QWebEngineCertificateError__CertificateInvalid                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-207)
-	QWebEngineCertificateError__CertificateWeakSignatureAlgorithm  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-208)
-	QWebEngineCertificateError__CertificateNonUniqueName           QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-210)
-	QWebEngineCertificateError__CertificateWeakKey                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-211)
-	QWebEngineCertificateError__CertificateNameConstraintViolation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-212)
-	QWebEngineCertificateError__CertificateValidityTooLong         QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-213)
-	QWebEngineCertificateError__CertificateTransparencyRequired    QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-214)
-)
-
-func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
-	if ptr.Pointer() != nil {
-		return QWebEngineCertificateError__Error(C.QWebEngineCertificateError_Error(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineCertificateError) ErrorDescription() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineCertificateError_ErrorDescription(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineCertificateError) IsOverridable() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineCertificateError_IsOverridable(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-type QWebEngineContextMenuData struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineContextMenuData_ITF interface {
-	QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData
-}
-
-func (ptr *QWebEngineContextMenuData) QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData {
-	return ptr
-}
-
-func (ptr *QWebEngineContextMenuData) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineContextMenuData) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineContextMenuData(ptr QWebEngineContextMenuData_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineContextMenuData_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) (n *QWebEngineContextMenuData) {
-	n = new(QWebEngineContextMenuData)
-	n.SetPointer(ptr)
-	return
-}
-
-//go:generate stringer -type=QWebEngineContextMenuData__MediaType
-//QWebEngineContextMenuData::MediaType
-type QWebEngineContextMenuData__MediaType int64
-
-const (
-	QWebEngineContextMenuData__MediaTypeNone   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(0)
-	QWebEngineContextMenuData__MediaTypeImage  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(1)
-	QWebEngineContextMenuData__MediaTypeVideo  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(2)
-	QWebEngineContextMenuData__MediaTypeAudio  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(3)
-	QWebEngineContextMenuData__MediaTypeCanvas QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(4)
-	QWebEngineContextMenuData__MediaTypeFile   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(5)
-	QWebEngineContextMenuData__MediaTypePlugin QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(6)
-)
-
-func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
-	tmpValue := NewQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData())
-	runtime.SetFinalizer(tmpValue, (*QWebEngineContextMenuData).DestroyQWebEngineContextMenuData)
-	return tmpValue
-}
-
-func NewQWebEngineContextMenuData2(other QWebEngineContextMenuData_ITF) *QWebEngineContextMenuData {
-	tmpValue := NewQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData2(PointerFromQWebEngineContextMenuData(other)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineContextMenuData).DestroyQWebEngineContextMenuData)
-	return tmpValue
-}
-
-func (ptr *QWebEngineContextMenuData) DestroyQWebEngineContextMenuData() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineContextMenuData_DestroyQWebEngineContextMenuData(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QWebEngineContextMenuData) MediaType() QWebEngineContextMenuData__MediaType {
-	if ptr.Pointer() != nil {
-		return QWebEngineContextMenuData__MediaType(C.QWebEngineContextMenuData_MediaType(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineContextMenuData) Position() *core.QPoint {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQPointFromPointer(C.QWebEngineContextMenuData_Position(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineContextMenuData) LinkText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineContextMenuData_LinkText(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineContextMenuData) MisspelledWord() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineContextMenuData_MisspelledWord(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineContextMenuData) SelectedText() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineContextMenuData_SelectedText(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineContextMenuData) SpellCheckerSuggestions() []string {
-	if ptr.Pointer() != nil {
-		return strings.Split(cGoUnpackString(C.QWebEngineContextMenuData_SpellCheckerSuggestions(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-func (ptr *QWebEngineContextMenuData) LinkUrl() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineContextMenuData_LinkUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineContextMenuData) MediaUrl() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineContextMenuData_MediaUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineContextMenuData) IsContentEditable() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineContextMenuData_IsContentEditable(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineContextMenuData) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineContextMenuData_IsValid(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 type QWebEngineCookieStore struct {
 	core.QObject
 }
@@ -1975,6 +1841,61 @@ func NewQWebEngineCookieStoreFromPointer(ptr unsafe.Pointer) (n *QWebEngineCooki
 	n = new(QWebEngineCookieStore)
 	n.SetPointer(ptr)
 	return
+}
+func QWebEngineCookieStore_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineCookieStore_QWebEngineCookieStore_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineCookieStore) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineCookieStore_QWebEngineCookieStore_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineCookieStore_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineCookieStore_QWebEngineCookieStore_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineCookieStore) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineCookieStore_QWebEngineCookieStore_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQWebEngineCookieStore_CookieAdded
@@ -2129,6 +2050,22 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+//export callbackQWebEngineCookieStore_MetaObject
+func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineCookieStoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineCookieStore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineCookieStore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebEngineCookieStore) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -2374,1231 +2311,6 @@ func (ptr *QWebEngineCookieStore) TimerEventDefault(event core.QTimerEvent_ITF) 
 	}
 }
 
-//export callbackQWebEngineCookieStore_MetaObject
-func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineCookieStoreFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineCookieStore) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineCookieStore_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-type QWebEngineDownloadItem struct {
-	core.QObject
-}
-
-type QWebEngineDownloadItem_ITF interface {
-	core.QObject_ITF
-	QWebEngineDownloadItem_PTR() *QWebEngineDownloadItem
-}
-
-func (ptr *QWebEngineDownloadItem) QWebEngineDownloadItem_PTR() *QWebEngineDownloadItem {
-	return ptr
-}
-
-func (ptr *QWebEngineDownloadItem) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQWebEngineDownloadItem(ptr QWebEngineDownloadItem_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineDownloadItem_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineDownloadItemFromPointer(ptr unsafe.Pointer) (n *QWebEngineDownloadItem) {
-	n = new(QWebEngineDownloadItem)
-	n.SetPointer(ptr)
-	return
-}
-
-//go:generate stringer -type=QWebEngineDownloadItem__DownloadInterruptReason
-//QWebEngineDownloadItem::DownloadInterruptReason
-type QWebEngineDownloadItem__DownloadInterruptReason int64
-
-const (
-	QWebEngineDownloadItem__NoReason                QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(0)
-	QWebEngineDownloadItem__FileFailed              QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(1)
-	QWebEngineDownloadItem__FileAccessDenied        QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(2)
-	QWebEngineDownloadItem__FileNoSpace             QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(3)
-	QWebEngineDownloadItem__FileNameTooLong         QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(5)
-	QWebEngineDownloadItem__FileTooLarge            QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(6)
-	QWebEngineDownloadItem__FileVirusInfected       QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(7)
-	QWebEngineDownloadItem__FileTransientError      QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(10)
-	QWebEngineDownloadItem__FileBlocked             QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(11)
-	QWebEngineDownloadItem__FileSecurityCheckFailed QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(12)
-	QWebEngineDownloadItem__FileTooShort            QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(13)
-	QWebEngineDownloadItem__FileHashMismatch        QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(14)
-	QWebEngineDownloadItem__NetworkFailed           QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(20)
-	QWebEngineDownloadItem__NetworkTimeout          QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(21)
-	QWebEngineDownloadItem__NetworkDisconnected     QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(22)
-	QWebEngineDownloadItem__NetworkServerDown       QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(23)
-	QWebEngineDownloadItem__NetworkInvalidRequest   QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(24)
-	QWebEngineDownloadItem__ServerFailed            QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(30)
-	QWebEngineDownloadItem__ServerBadContent        QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(33)
-	QWebEngineDownloadItem__ServerUnauthorized      QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(34)
-	QWebEngineDownloadItem__ServerCertProblem       QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(35)
-	QWebEngineDownloadItem__ServerForbidden         QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(36)
-	QWebEngineDownloadItem__ServerUnreachable       QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(37)
-	QWebEngineDownloadItem__UserCanceled            QWebEngineDownloadItem__DownloadInterruptReason = QWebEngineDownloadItem__DownloadInterruptReason(40)
-)
-
-//go:generate stringer -type=QWebEngineDownloadItem__DownloadState
-//QWebEngineDownloadItem::DownloadState
-type QWebEngineDownloadItem__DownloadState int64
-
-const (
-	QWebEngineDownloadItem__DownloadRequested   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(0)
-	QWebEngineDownloadItem__DownloadInProgress  QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(1)
-	QWebEngineDownloadItem__DownloadCompleted   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(2)
-	QWebEngineDownloadItem__DownloadCancelled   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(3)
-	QWebEngineDownloadItem__DownloadInterrupted QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(4)
-)
-
-//go:generate stringer -type=QWebEngineDownloadItem__DownloadType
-//QWebEngineDownloadItem::DownloadType
-type QWebEngineDownloadItem__DownloadType int64
-
-const (
-	QWebEngineDownloadItem__Attachment        QWebEngineDownloadItem__DownloadType = QWebEngineDownloadItem__DownloadType(0)
-	QWebEngineDownloadItem__DownloadAttribute QWebEngineDownloadItem__DownloadType = QWebEngineDownloadItem__DownloadType(1)
-	QWebEngineDownloadItem__UserRequested     QWebEngineDownloadItem__DownloadType = QWebEngineDownloadItem__DownloadType(2)
-	QWebEngineDownloadItem__SavePage          QWebEngineDownloadItem__DownloadType = QWebEngineDownloadItem__DownloadType(3)
-)
-
-//go:generate stringer -type=QWebEngineDownloadItem__SavePageFormat
-//QWebEngineDownloadItem::SavePageFormat
-type QWebEngineDownloadItem__SavePageFormat int64
-
-const (
-	QWebEngineDownloadItem__UnknownSaveFormat      QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(-1)
-	QWebEngineDownloadItem__SingleHtmlSaveFormat   QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(0)
-	QWebEngineDownloadItem__CompleteHtmlSaveFormat QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(1)
-	QWebEngineDownloadItem__MimeHtmlSaveFormat     QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(2)
-)
-
-//export callbackQWebEngineDownloadItem_Accept
-func callbackQWebEngineDownloadItem_Accept(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "accept"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).AcceptDefault()
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectAccept(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "accept"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "accept", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "accept", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectAccept() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "accept")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) Accept() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_Accept(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) AcceptDefault() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_AcceptDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQWebEngineDownloadItem_Cancel
-func callbackQWebEngineDownloadItem_Cancel(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "cancel"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).CancelDefault()
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectCancel(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "cancel"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "cancel", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "cancel", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectCancel() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "cancel")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) Cancel() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_Cancel(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) CancelDefault() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_CancelDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQWebEngineDownloadItem_DownloadProgress
-func callbackQWebEngineDownloadItem_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.longlong, bytesTotal C.longlong) {
-	if signal := qt.GetSignal(ptr, "downloadProgress"); signal != nil {
-		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
-	}
-
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectDownloadProgress(f func(bytesReceived int64, bytesTotal int64)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "downloadProgress") {
-			C.QWebEngineDownloadItem_ConnectDownloadProgress(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "downloadProgress"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "downloadProgress", func(bytesReceived int64, bytesTotal int64) {
-				signal.(func(int64, int64))(bytesReceived, bytesTotal)
-				f(bytesReceived, bytesTotal)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "downloadProgress", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectDownloadProgress() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DisconnectDownloadProgress(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "downloadProgress")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DownloadProgress(bytesReceived int64, bytesTotal int64) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DownloadProgress(ptr.Pointer(), C.longlong(bytesReceived), C.longlong(bytesTotal))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_Finished
-func callbackQWebEngineDownloadItem_Finished(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func())()
-	}
-
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectFinished(f func()) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "finished") {
-			C.QWebEngineDownloadItem_ConnectFinished(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectFinished() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "finished")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) Finished() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_Finished(ptr.Pointer())
-	}
-}
-
-//export callbackQWebEngineDownloadItem_IsPausedChanged
-func callbackQWebEngineDownloadItem_IsPausedChanged(ptr unsafe.Pointer, isPaused C.char) {
-	if signal := qt.GetSignal(ptr, "isPausedChanged"); signal != nil {
-		signal.(func(bool))(int8(isPaused) != 0)
-	}
-
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectIsPausedChanged(f func(isPaused bool)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "isPausedChanged") {
-			C.QWebEngineDownloadItem_ConnectIsPausedChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "isPausedChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "isPausedChanged", func(isPaused bool) {
-				signal.(func(bool))(isPaused)
-				f(isPaused)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isPausedChanged", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectIsPausedChanged() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DisconnectIsPausedChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "isPausedChanged")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) IsPausedChanged(isPaused bool) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_IsPausedChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPaused))))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_Pause
-func callbackQWebEngineDownloadItem_Pause(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "pause"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).PauseDefault()
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectPause(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "pause"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "pause", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "pause", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectPause() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "pause")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) Pause() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_Pause(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) PauseDefault() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_PauseDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQWebEngineDownloadItem_Resume
-func callbackQWebEngineDownloadItem_Resume(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "resume"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).ResumeDefault()
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectResume(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "resume"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "resume", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "resume", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectResume() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "resume")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) Resume() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_Resume(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ResumeDefault() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_ResumeDefault(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) SetPath(path string) {
-	if ptr.Pointer() != nil {
-		var pathC *C.char
-		if path != "" {
-			pathC = C.CString(path)
-			defer C.free(unsafe.Pointer(pathC))
-		}
-		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: pathC, len: C.longlong(len(path))})
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) SetSavePageFormat(format QWebEngineDownloadItem__SavePageFormat) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_SetSavePageFormat(ptr.Pointer(), C.longlong(format))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_StateChanged
-func callbackQWebEngineDownloadItem_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		signal.(func(QWebEngineDownloadItem__DownloadState))(QWebEngineDownloadItem__DownloadState(state))
-	}
-
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectStateChanged(f func(state QWebEngineDownloadItem__DownloadState)) {
-	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "stateChanged") {
-			C.QWebEngineDownloadItem_ConnectStateChanged(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(state QWebEngineDownloadItem__DownloadState) {
-				signal.(func(QWebEngineDownloadItem__DownloadState))(state)
-				f(state)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectStateChanged() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "stateChanged")
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) StateChanged(state QWebEngineDownloadItem__DownloadState) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_StateChanged(ptr.Pointer(), C.longlong(state))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) InterruptReason() QWebEngineDownloadItem__DownloadInterruptReason {
-	if ptr.Pointer() != nil {
-		return QWebEngineDownloadItem__DownloadInterruptReason(C.QWebEngineDownloadItem_InterruptReason(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) State() QWebEngineDownloadItem__DownloadState {
-	if ptr.Pointer() != nil {
-		return QWebEngineDownloadItem__DownloadState(C.QWebEngineDownloadItem_State(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) Type() QWebEngineDownloadItem__DownloadType {
-	if ptr.Pointer() != nil {
-		return QWebEngineDownloadItem__DownloadType(C.QWebEngineDownloadItem_Type(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) InterruptReasonString() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineDownloadItem_InterruptReasonString(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineDownloadItem) MimeType() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineDownloadItem_MimeType(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineDownloadItem) Path() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineDownloadItem_Path(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineDownloadItem_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) SavePageFormat() QWebEngineDownloadItem__SavePageFormat {
-	if ptr.Pointer() != nil {
-		return QWebEngineDownloadItem__SavePageFormat(C.QWebEngineDownloadItem_SavePageFormat(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) IsFinished() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineDownloadItem_IsFinished(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineDownloadItem) IsPaused() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineDownloadItem_IsPaused(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineDownloadItem) ReceivedBytes() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QWebEngineDownloadItem_ReceivedBytes(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) TotalBytes() int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QWebEngineDownloadItem_TotalBytes(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) Id() uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QWebEngineDownloadItem_Id(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_atList(i int) *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineDownloadItem___dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_setList(i core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem___dynamicPropertyNames_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) __dynamicPropertyNames_newList() unsafe.Pointer {
-	return C.QWebEngineDownloadItem___dynamicPropertyNames_newList(ptr.Pointer())
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem___findChildren_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_newList2() unsafe.Pointer {
-	return C.QWebEngineDownloadItem___findChildren_newList2(ptr.Pointer())
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem___findChildren_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_newList3() unsafe.Pointer {
-	return C.QWebEngineDownloadItem___findChildren_newList3(ptr.Pointer())
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebEngineDownloadItem___findChildren_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem___findChildren_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) __findChildren_newList() unsafe.Pointer {
-	return C.QWebEngineDownloadItem___findChildren_newList(ptr.Pointer())
-}
-
-func (ptr *QWebEngineDownloadItem) __children_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QWebEngineDownloadItem___children_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineDownloadItem) __children_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem___children_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) __children_newList() unsafe.Pointer {
-	return C.QWebEngineDownloadItem___children_newList(ptr.Pointer())
-}
-
-//export callbackQWebEngineDownloadItem_Event
-func callbackQWebEngineDownloadItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQWebEngineDownloadItemFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QWebEngineDownloadItem) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineDownloadItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-//export callbackQWebEngineDownloadItem_EventFilter
-func callbackQWebEngineDownloadItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQWebEngineDownloadItemFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QWebEngineDownloadItem) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineDownloadItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-//export callbackQWebEngineDownloadItem_ChildEvent
-func callbackQWebEngineDownloadItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ChildEventDefault(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_ConnectNotify
-func callbackQWebEngineDownloadItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_CustomEvent
-func callbackQWebEngineDownloadItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) CustomEventDefault(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_DeleteLater
-func callbackQWebEngineDownloadItem_DeleteLater(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).DeleteLaterDefault()
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DeleteLaterDefault() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-//export callbackQWebEngineDownloadItem_Destroyed
-func callbackQWebEngineDownloadItem_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
-	}
-
-}
-
-//export callbackQWebEngineDownloadItem_DisconnectNotify
-func callbackQWebEngineDownloadItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_ObjectNameChanged
-func callbackQWebEngineDownloadItem_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtWebEngine_PackedString) {
-	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
-	}
-
-}
-
-//export callbackQWebEngineDownloadItem_TimerEvent
-func callbackQWebEngineDownloadItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQWebEngineDownloadItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineDownloadItem) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
-//export callbackQWebEngineDownloadItem_MetaObject
-func callbackQWebEngineDownloadItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineDownloadItemFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineDownloadItem) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineDownloadItem_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-type QWebEngineFullScreenRequest struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineFullScreenRequest_ITF interface {
-	QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest
-}
-
-func (ptr *QWebEngineFullScreenRequest) QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest {
-	return ptr
-}
-
-func (ptr *QWebEngineFullScreenRequest) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineFullScreenRequest) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineFullScreenRequest(ptr QWebEngineFullScreenRequest_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineFullScreenRequest_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineFullScreenRequestFromPointer(ptr unsafe.Pointer) (n *QWebEngineFullScreenRequest) {
-	n = new(QWebEngineFullScreenRequest)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *QWebEngineFullScreenRequest) DestroyQWebEngineFullScreenRequest() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QWebEngineFullScreenRequest) Accept() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineFullScreenRequest_Accept(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineFullScreenRequest) Reject() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineFullScreenRequest_Reject(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineFullScreenRequest) ToggleOn() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineFullScreenRequest_ToggleOn(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineFullScreenRequest) Origin() *core.QUrl {
-	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineFullScreenRequest_Origin(ptr.Pointer()))
-	}
-	return nil
-}
-
-type QWebEngineHistory struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineHistory_ITF interface {
-	QWebEngineHistory_PTR() *QWebEngineHistory
-}
-
-func (ptr *QWebEngineHistory) QWebEngineHistory_PTR() *QWebEngineHistory {
-	return ptr
-}
-
-func (ptr *QWebEngineHistory) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineHistory(ptr QWebEngineHistory_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineHistory_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineHistoryFromPointer(ptr unsafe.Pointer) (n *QWebEngineHistory) {
-	n = new(QWebEngineHistory)
-	n.SetPointer(ptr)
-	return
-}
-
-func (ptr *QWebEngineHistory) DestroyQWebEngineHistory() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QWebEngineHistory) Back() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory_Back(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineHistory) Clear() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory_Clear(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineHistory) Forward() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory_Forward(ptr.Pointer())
-	}
-}
-
-func (ptr *QWebEngineHistory) GoToItem(item QWebEngineHistoryItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory_GoToItem(ptr.Pointer(), PointerFromQWebEngineHistoryItem(item))
-	}
-}
-
-func (ptr *QWebEngineHistory) BackItems(maxItems int) []*QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
-			out := make([]*QWebEngineHistoryItem, int(l.len))
-			tmpList := NewQWebEngineHistoryFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__backItems_atList(i)
-			}
-			return out
-		}(C.QWebEngineHistory_BackItems(ptr.Pointer(), C.int(int32(maxItems))))
-	}
-	return make([]*QWebEngineHistoryItem, 0)
-}
-
-func (ptr *QWebEngineHistory) ForwardItems(maxItems int) []*QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
-			out := make([]*QWebEngineHistoryItem, int(l.len))
-			tmpList := NewQWebEngineHistoryFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__forwardItems_atList(i)
-			}
-			return out
-		}(C.QWebEngineHistory_ForwardItems(ptr.Pointer(), C.int(int32(maxItems))))
-	}
-	return make([]*QWebEngineHistoryItem, 0)
-}
-
-func (ptr *QWebEngineHistory) Items() []*QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
-			out := make([]*QWebEngineHistoryItem, int(l.len))
-			tmpList := NewQWebEngineHistoryFromPointer(l.data)
-			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__items_atList(i)
-			}
-			return out
-		}(C.QWebEngineHistory_Items(ptr.Pointer()))
-	}
-	return make([]*QWebEngineHistoryItem, 0)
-}
-
-func (ptr *QWebEngineHistory) BackItem() *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_BackItem(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) CurrentItem() *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_CurrentItem(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) ForwardItem() *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ForwardItem(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) ItemAt(i int) *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ItemAt(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) CanGoBack() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineHistory_CanGoBack(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineHistory) CanGoForward() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineHistory_CanGoForward(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QWebEngineHistory) Count() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QWebEngineHistory_Count(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineHistory) CurrentItemIndex() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QWebEngineHistory_CurrentItemIndex(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineHistory) __backItems_atList(i int) *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___backItems_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) __backItems_setList(i QWebEngineHistoryItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory___backItems_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
-	}
-}
-
-func (ptr *QWebEngineHistory) __backItems_newList() unsafe.Pointer {
-	return C.QWebEngineHistory___backItems_newList(ptr.Pointer())
-}
-
-func (ptr *QWebEngineHistory) __forwardItems_atList(i int) *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___forwardItems_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) __forwardItems_setList(i QWebEngineHistoryItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory___forwardItems_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
-	}
-}
-
-func (ptr *QWebEngineHistory) __forwardItems_newList() unsafe.Pointer {
-	return C.QWebEngineHistory___forwardItems_newList(ptr.Pointer())
-}
-
-func (ptr *QWebEngineHistory) __items_atList(i int) *QWebEngineHistoryItem {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory___items_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistory) __items_setList(i QWebEngineHistoryItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistory___items_setList(ptr.Pointer(), PointerFromQWebEngineHistoryItem(i))
-	}
-}
-
-func (ptr *QWebEngineHistory) __items_newList() unsafe.Pointer {
-	return C.QWebEngineHistory___items_newList(ptr.Pointer())
-}
-
-type QWebEngineHistoryItem struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineHistoryItem_ITF interface {
-	QWebEngineHistoryItem_PTR() *QWebEngineHistoryItem
-}
-
-func (ptr *QWebEngineHistoryItem) QWebEngineHistoryItem_PTR() *QWebEngineHistoryItem {
-	return ptr
-}
-
-func (ptr *QWebEngineHistoryItem) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistoryItem) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineHistoryItem(ptr QWebEngineHistoryItem_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineHistoryItem_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineHistoryItemFromPointer(ptr unsafe.Pointer) (n *QWebEngineHistoryItem) {
-	n = new(QWebEngineHistoryItem)
-	n.SetPointer(ptr)
-	return
-}
-func NewQWebEngineHistoryItem(other QWebEngineHistoryItem_ITF) *QWebEngineHistoryItem {
-	tmpValue := NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistoryItem_NewQWebEngineHistoryItem(PointerFromQWebEngineHistoryItem(other)))
-	runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
-	return tmpValue
-}
-
-func (ptr *QWebEngineHistoryItem) Swap(other QWebEngineHistoryItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistoryItem_Swap(ptr.Pointer(), PointerFromQWebEngineHistoryItem(other))
-	}
-}
-
-func (ptr *QWebEngineHistoryItem) DestroyQWebEngineHistoryItem() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineHistoryItem_DestroyQWebEngineHistoryItem(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QWebEngineHistoryItem) LastVisited() *core.QDateTime {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQDateTimeFromPointer(C.QWebEngineHistoryItem_LastVisited(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistoryItem) Title() string {
-	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineHistoryItem_Title(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QWebEngineHistoryItem) IconUrl() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineHistoryItem_IconUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistoryItem) OriginalUrl() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineHistoryItem_OriginalUrl(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistoryItem) Url() *core.QUrl {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQUrlFromPointer(C.QWebEngineHistoryItem_Url(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineHistoryItem) IsValid() bool {
-	if ptr.Pointer() != nil {
-		return C.QWebEngineHistoryItem_IsValid(ptr.Pointer()) != 0
-	}
-	return false
-}
-
 type QWebEngineHttpRequest struct {
 	ptr unsafe.Pointer
 }
@@ -3726,13 +2438,6 @@ func (ptr *QWebEngineHttpRequest) DestroyQWebEngineHttpRequest() {
 	}
 }
 
-func (ptr *QWebEngineHttpRequest) Method() QWebEngineHttpRequest__Method {
-	if ptr.Pointer() != nil {
-		return QWebEngineHttpRequest__Method(C.QWebEngineHttpRequest_Method(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QWebEngineHttpRequest) Header(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineHttpRequest_Header(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
@@ -3772,6 +2477,13 @@ func (ptr *QWebEngineHttpRequest) Headers() []*core.QByteArray {
 		}(C.QWebEngineHttpRequest_Headers(ptr.Pointer()))
 	}
 	return make([]*core.QByteArray, 0)
+}
+
+func (ptr *QWebEngineHttpRequest) Method() QWebEngineHttpRequest__Method {
+	if ptr.Pointer() != nil {
+		return QWebEngineHttpRequest__Method(C.QWebEngineHttpRequest_Method(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebEngineHttpRequest) HasHeader(headerName core.QByteArray_ITF) bool {
@@ -4058,6 +2770,62 @@ func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 	return nil
 }
 
+func QWebEnginePage_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEnginePage_QWebEnginePage_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEnginePage) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEnginePage_QWebEnginePage_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEnginePage_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEnginePage_QWebEnginePage_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEnginePage) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEnginePage_QWebEnginePage_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQWebEnginePage_ChooseFiles
 func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles C.struct_QtWebEngine_PackedString, acceptedMimeTypes C.struct_QtWebEngine_PackedString) C.struct_QtWebEngine_PackedString {
 	if signal := qt.GetSignal(ptr, "chooseFiles"); signal != nil {
@@ -4224,17 +2992,17 @@ func (ptr *QWebEnginePage) AcceptNavigationRequestDefault(url core.QUrl_ITF, ty 
 }
 
 //export callbackQWebEnginePage_Event
-func callbackQWebEnginePage_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+func callbackQWebEnginePage_Event(ptr unsafe.Pointer, vqe unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(vqe)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQWebEnginePageFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+	return C.char(int8(qt.GoBoolToInt(NewQWebEnginePageFromPointer(ptr).EventDefault(core.NewQEventFromPointer(vqe)))))
 }
 
-func (ptr *QWebEnginePage) EventDefault(e core.QEvent_ITF) bool {
+func (ptr *QWebEnginePage) EventDefault(vqe core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return C.QWebEnginePage_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe)) != 0
 	}
 	return false
 }
@@ -4570,17 +3338,6 @@ func (ptr *QWebEnginePage) DisconnectFeaturePermissionRequested() {
 func (ptr *QWebEnginePage) FeaturePermissionRequested(securityOrigin core.QUrl_ITF, feature QWebEnginePage__Feature) {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_FeaturePermissionRequested(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.longlong(feature))
-	}
-}
-
-func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__FindFlag) {
-	if ptr.Pointer() != nil {
-		var subStringC *C.char
-		if subString != "" {
-			subStringC = C.CString(subString)
-			defer C.free(unsafe.Pointer(subStringC))
-		}
-		C.QWebEnginePage_FindText(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: subStringC, len: C.longlong(len(subString))}, C.longlong(options))
 	}
 }
 
@@ -5032,14 +3789,14 @@ func (ptr *QWebEnginePage) PdfPrintingFinished(filePath string, success bool) {
 	}
 }
 
-func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayout_ITF) {
+func (ptr *QWebEnginePage) PrintToPdf(filePath string, layout gui.QPageLayout_ITF) {
 	if ptr.Pointer() != nil {
 		var filePathC *C.char
 		if filePath != "" {
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: filePathC, len: C.longlong(len(filePath))}, gui.PointerFromQPageLayout(pageLayout))
+		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: filePathC, len: C.longlong(len(filePath))}, gui.PointerFromQPageLayout(layout))
 	}
 }
 
@@ -5176,14 +3933,14 @@ func (ptr *QWebEnginePage) ReplaceMisspelledWord(replacement string) {
 	}
 }
 
-func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
+func (ptr *QWebEnginePage) RunJavaScript(scriptSource string) {
 	if ptr.Pointer() != nil {
 		var scriptSourceC *C.char
 		if scriptSource != "" {
 			scriptSourceC = C.CString(scriptSource)
 			defer C.free(unsafe.Pointer(scriptSourceC))
 		}
-		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptSourceC, len: C.longlong(len(scriptSource))})
+		C.QWebEnginePage_RunJavaScript(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptSourceC, len: C.longlong(len(scriptSource))})
 	}
 }
 
@@ -5299,6 +4056,12 @@ func (ptr *QWebEnginePage) SetContent(data core.QByteArray_ITF, mimeType string,
 	}
 }
 
+func (ptr *QWebEnginePage) SetDevToolsPage(page QWebEnginePage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_SetDevToolsPage(ptr.Pointer(), PointerFromQWebEnginePage(page))
+	}
+}
+
 func (ptr *QWebEnginePage) SetFeaturePermission(securityOrigin core.QUrl_ITF, feature QWebEnginePage__Feature, policy QWebEnginePage__PermissionPolicy) {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetFeaturePermission(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.longlong(feature), C.longlong(policy))
@@ -5316,6 +4079,12 @@ func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QWebEnginePage) SetInspectedPage(page QWebEnginePage_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_SetInspectedPage(ptr.Pointer(), PointerFromQWebEnginePage(page))
+	}
+}
+
 func (ptr *QWebEnginePage) SetUrl(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
@@ -5328,15 +4097,15 @@ func (ptr *QWebEnginePage) SetView(view widgets.QWidget_ITF) {
 	}
 }
 
-func (ptr *QWebEnginePage) SetWebChannel2(channel webchannel.QWebChannel_ITF) {
+func (ptr *QWebEnginePage) SetWebChannel(vqw webchannel.QWebChannel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_SetWebChannel2(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel))
+		C.QWebEnginePage_SetWebChannel(ptr.Pointer(), webchannel.PointerFromQWebChannel(vqw))
 	}
 }
 
-func (ptr *QWebEnginePage) SetWebChannel(channel webchannel.QWebChannel_ITF, worldId uint) {
+func (ptr *QWebEnginePage) SetWebChannel2(vqw webchannel.QWebChannel_ITF, worldId uint) {
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_SetWebChannel(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel), C.uint(uint32(worldId)))
+		C.QWebEnginePage_SetWebChannel2(ptr.Pointer(), webchannel.PointerFromQWebChannel(vqw), C.uint(uint32(worldId)))
 	}
 }
 
@@ -5510,9 +4279,47 @@ func (ptr *QWebEnginePage) WindowCloseRequested() {
 	}
 }
 
+//export callbackQWebEnginePage_DestroyQWebEnginePage
+func callbackQWebEnginePage_DestroyQWebEnginePage(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QWebEnginePage"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEnginePageFromPointer(ptr).DestroyQWebEnginePageDefault()
+	}
+}
+
+func (ptr *QWebEnginePage) ConnectDestroyQWebEnginePage(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QWebEnginePage"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEnginePage", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEnginePage", f)
+		}
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectDestroyQWebEnginePage() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QWebEnginePage")
+	}
+}
+
 func (ptr *QWebEnginePage) DestroyQWebEnginePage() {
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DestroyQWebEnginePage(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEnginePage) DestroyQWebEnginePageDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DestroyQWebEnginePageDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -5617,9 +4424,24 @@ func (ptr *QWebEnginePage) WebChannel() *webchannel.QWebChannel {
 	return nil
 }
 
-func (ptr *QWebEnginePage) History() *QWebEngineHistory {
+func (ptr *QWebEnginePage) DevToolsPage() *QWebEnginePage {
 	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryFromPointer(C.QWebEnginePage_History(ptr.Pointer()))
+		tmpValue := NewQWebEnginePageFromPointer(C.QWebEnginePage_DevToolsPage(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) InspectedPage() *QWebEnginePage {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWebEnginePageFromPointer(C.QWebEnginePage_InspectedPage(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -5674,9 +4496,18 @@ func (ptr *QWebEnginePage) RecentlyAudible() bool {
 	return false
 }
 
-func (ptr *QWebEnginePage) ContextMenuData() *QWebEngineContextMenuData {
+//export callbackQWebEnginePage_MetaObject
+func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEnginePageFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEnginePage) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
-		return NewQWebEngineContextMenuDataFromPointer(C.QWebEnginePage_ContextMenuData(ptr.Pointer()))
+		return core.NewQMetaObjectFromPointer(C.QWebEnginePage_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -5915,22 +4746,6 @@ func (ptr *QWebEnginePage) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQWebEnginePage_MetaObject
-func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEnginePageFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEnginePage) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEnginePage_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QWebEngineProfile struct {
 	core.QObject
 }
@@ -5990,6 +4805,62 @@ const (
 	QWebEngineProfile__ForcePersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(2)
 )
 
+func QWebEngineProfile_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineProfile) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineProfile_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineProfile) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineProfile_QWebEngineProfile_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQWebEngineCookieStoreFromPointer(C.QWebEngineProfile_CookieStore(ptr.Pointer()))
@@ -6025,13 +4896,13 @@ func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 	return tmpValue
 }
 
-func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEngineProfile {
-	var storageNameC *C.char
-	if storageName != "" {
-		storageNameC = C.CString(storageName)
-		defer C.free(unsafe.Pointer(storageNameC))
+func NewQWebEngineProfile2(name string, parent core.QObject_ITF) *QWebEngineProfile {
+	var nameC *C.char
+	if name != "" {
+		nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
 	}
-	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(C.struct_QtWebEngine_PackedString{data: storageNameC, len: C.longlong(len(storageName))}, core.PointerFromQObject(parent)))
+	tmpValue := NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(C.struct_QtWebEngine_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -6062,48 +4933,9 @@ func (ptr *QWebEngineProfile) ClearVisitedLinks(urls []*core.QUrl) {
 	}
 }
 
-//export callbackQWebEngineProfile_DownloadRequested
-func callbackQWebEngineProfile_DownloadRequested(ptr unsafe.Pointer, download unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "downloadRequested"); signal != nil {
-		signal.(func(*QWebEngineDownloadItem))(NewQWebEngineDownloadItemFromPointer(download))
-	}
-
-}
-
-func (ptr *QWebEngineProfile) ConnectDownloadRequested(f func(download *QWebEngineDownloadItem)) {
+func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme core.QByteArray_ITF, vqw QWebEngineUrlSchemeHandler_ITF) {
 	if ptr.Pointer() != nil {
-
-		if !qt.ExistsSignal(ptr.Pointer(), "downloadRequested") {
-			C.QWebEngineProfile_ConnectDownloadRequested(ptr.Pointer())
-		}
-
-		if signal := qt.LendSignal(ptr.Pointer(), "downloadRequested"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "downloadRequested", func(download *QWebEngineDownloadItem) {
-				signal.(func(*QWebEngineDownloadItem))(download)
-				f(download)
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "downloadRequested", f)
-		}
-	}
-}
-
-func (ptr *QWebEngineProfile) DisconnectDownloadRequested() {
-	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_DisconnectDownloadRequested(ptr.Pointer())
-		qt.DisconnectSignal(ptr.Pointer(), "downloadRequested")
-	}
-}
-
-func (ptr *QWebEngineProfile) DownloadRequested(download QWebEngineDownloadItem_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_DownloadRequested(ptr.Pointer(), PointerFromQWebEngineDownloadItem(download))
-	}
-}
-
-func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme core.QByteArray_ITF, handler QWebEngineUrlSchemeHandler_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(scheme), PointerFromQWebEngineUrlSchemeHandler(handler))
+		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(scheme), PointerFromQWebEngineUrlSchemeHandler(vqw))
 	}
 }
 
@@ -6119,9 +4951,9 @@ func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme core.QByteArray_ITF) {
 	}
 }
 
-func (ptr *QWebEngineProfile) RemoveUrlSchemeHandler(handler QWebEngineUrlSchemeHandler_ITF) {
+func (ptr *QWebEngineProfile) RemoveUrlSchemeHandler(vqw QWebEngineUrlSchemeHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_RemoveUrlSchemeHandler(ptr.Pointer(), PointerFromQWebEngineUrlSchemeHandler(handler))
+		C.QWebEngineProfile_RemoveUrlSchemeHandler(ptr.Pointer(), PointerFromQWebEngineUrlSchemeHandler(vqw))
 	}
 }
 
@@ -6153,9 +4985,9 @@ func (ptr *QWebEngineProfile) SetHttpCacheMaximumSize(maxSize int) {
 	}
 }
 
-func (ptr *QWebEngineProfile) SetHttpCacheType(httpCacheType QWebEngineProfile__HttpCacheType) {
+func (ptr *QWebEngineProfile) SetHttpCacheType(vqw QWebEngineProfile__HttpCacheType) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetHttpCacheType(ptr.Pointer(), C.longlong(httpCacheType))
+		C.QWebEngineProfile_SetHttpCacheType(ptr.Pointer(), C.longlong(vqw))
 	}
 }
 
@@ -6170,9 +5002,9 @@ func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
 	}
 }
 
-func (ptr *QWebEngineProfile) SetPersistentCookiesPolicy(newPersistentCookiesPolicy QWebEngineProfile__PersistentCookiesPolicy) {
+func (ptr *QWebEngineProfile) SetPersistentCookiesPolicy(vqw QWebEngineProfile__PersistentCookiesPolicy) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetPersistentCookiesPolicy(ptr.Pointer(), C.longlong(newPersistentCookiesPolicy))
+		C.QWebEngineProfile_SetPersistentCookiesPolicy(ptr.Pointer(), C.longlong(vqw))
 	}
 }
 
@@ -6193,9 +5025,9 @@ func (ptr *QWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineUrlReq
 	}
 }
 
-func (ptr *QWebEngineProfile) SetSpellCheckEnabled(enable bool) {
+func (ptr *QWebEngineProfile) SetSpellCheckEnabled(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetSpellCheckEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+		C.QWebEngineProfile_SetSpellCheckEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
 	}
 }
 
@@ -6207,18 +5039,50 @@ func (ptr *QWebEngineProfile) SetSpellCheckLanguages(languages []string) {
 	}
 }
 
-func (ptr *QWebEngineProfile) HttpCacheType() QWebEngineProfile__HttpCacheType {
-	if ptr.Pointer() != nil {
-		return QWebEngineProfile__HttpCacheType(C.QWebEngineProfile_HttpCacheType(ptr.Pointer()))
+//export callbackQWebEngineProfile_DestroyQWebEngineProfile
+func callbackQWebEngineProfile_DestroyQWebEngineProfile(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QWebEngineProfile"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineProfileFromPointer(ptr).DestroyQWebEngineProfileDefault()
 	}
-	return 0
 }
 
-func (ptr *QWebEngineProfile) PersistentCookiesPolicy() QWebEngineProfile__PersistentCookiesPolicy {
+func (ptr *QWebEngineProfile) ConnectDestroyQWebEngineProfile(f func()) {
 	if ptr.Pointer() != nil {
-		return QWebEngineProfile__PersistentCookiesPolicy(C.QWebEngineProfile_PersistentCookiesPolicy(ptr.Pointer()))
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QWebEngineProfile"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineProfile", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineProfile", f)
+		}
 	}
-	return 0
+}
+
+func (ptr *QWebEngineProfile) DisconnectDestroyQWebEngineProfile() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QWebEngineProfile")
+	}
+}
+
+func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_DestroyQWebEngineProfile(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEngineProfile) DestroyQWebEngineProfileDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_DestroyQWebEngineProfileDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 func (ptr *QWebEngineProfile) CachePath() string {
@@ -6263,6 +5127,20 @@ func (ptr *QWebEngineProfile) SpellCheckLanguages() []string {
 	return make([]string, 0)
 }
 
+func (ptr *QWebEngineProfile) HttpCacheType() QWebEngineProfile__HttpCacheType {
+	if ptr.Pointer() != nil {
+		return QWebEngineProfile__HttpCacheType(C.QWebEngineProfile_HttpCacheType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineProfile) PersistentCookiesPolicy() QWebEngineProfile__PersistentCookiesPolicy {
+	if ptr.Pointer() != nil {
+		return QWebEngineProfile__PersistentCookiesPolicy(C.QWebEngineProfile_PersistentCookiesPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QWebEngineProfile) Scripts() *QWebEngineScriptCollection {
 	if ptr.Pointer() != nil {
 		return NewQWebEngineScriptCollectionFromPointer(C.QWebEngineProfile_Scripts(ptr.Pointer()))
@@ -6298,9 +5176,25 @@ func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
 	return false
 }
 
-func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme core.QByteArray_ITF) *QWebEngineUrlSchemeHandler {
+//export callbackQWebEngineProfile_MetaObject
+func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(scheme)))
+		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineProfile) UrlSchemeHandler(vqb core.QByteArray_ITF) *QWebEngineUrlSchemeHandler {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), core.PointerFromQByteArray(vqb)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -6578,18 +5472,150 @@ func (ptr *QWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQWebEngineProfile_MetaObject
-func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineProfileFromPointer(ptr).MetaObjectDefault())
+type QWebEngineQuotaRequest struct {
+	ptr unsafe.Pointer
 }
 
-func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
+type QWebEngineQuotaRequest_ITF interface {
+	QWebEngineQuotaRequest_PTR() *QWebEngineQuotaRequest
+}
+
+func (ptr *QWebEngineQuotaRequest) QWebEngineQuotaRequest_PTR() *QWebEngineQuotaRequest {
+	return ptr
+}
+
+func (ptr *QWebEngineQuotaRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QWebEngineQuotaRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQWebEngineQuotaRequest(ptr QWebEngineQuotaRequest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineQuotaRequest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineQuotaRequestFromPointer(ptr unsafe.Pointer) (n *QWebEngineQuotaRequest) {
+	n = new(QWebEngineQuotaRequest)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QWebEngineQuotaRequest) DestroyQWebEngineQuotaRequest() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEngineQuotaRequest) Accept() {
 	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
+		C.QWebEngineQuotaRequest_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineQuotaRequest) Reject() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineQuotaRequest_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineQuotaRequest) Origin() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QWebEngineQuotaRequest_Origin(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineQuotaRequest) RequestedSize() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QWebEngineQuotaRequest_RequestedSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+type QWebEngineRegisterProtocolHandlerRequest struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineRegisterProtocolHandlerRequest_ITF interface {
+	QWebEngineRegisterProtocolHandlerRequest_PTR() *QWebEngineRegisterProtocolHandlerRequest
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) QWebEngineRegisterProtocolHandlerRequest_PTR() *QWebEngineRegisterProtocolHandlerRequest {
+	return ptr
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQWebEngineRegisterProtocolHandlerRequest(ptr QWebEngineRegisterProtocolHandlerRequest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineRegisterProtocolHandlerRequest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineRegisterProtocolHandlerRequestFromPointer(ptr unsafe.Pointer) (n *QWebEngineRegisterProtocolHandlerRequest) {
+	n = new(QWebEngineRegisterProtocolHandlerRequest)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) DestroyQWebEngineRegisterProtocolHandlerRequest() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) Accept() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineRegisterProtocolHandlerRequest_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) Reject() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineRegisterProtocolHandlerRequest_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) Scheme() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineRegisterProtocolHandlerRequest_Scheme(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineRegisterProtocolHandlerRequest) Origin() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QWebEngineRegisterProtocolHandlerRequest_Origin(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -6664,20 +5690,20 @@ func NewQWebEngineScript2(other QWebEngineScript_ITF) *QWebEngineScript {
 	return tmpValue
 }
 
-func (ptr *QWebEngineScript) SetInjectionPoint(p QWebEngineScript__InjectionPoint) {
+func (ptr *QWebEngineScript) SetInjectionPoint(vqw QWebEngineScript__InjectionPoint) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineScript_SetInjectionPoint(ptr.Pointer(), C.longlong(p))
+		C.QWebEngineScript_SetInjectionPoint(ptr.Pointer(), C.longlong(vqw))
 	}
 }
 
-func (ptr *QWebEngineScript) SetName(scriptName string) {
+func (ptr *QWebEngineScript) SetName(vqs string) {
 	if ptr.Pointer() != nil {
-		var scriptNameC *C.char
-		if scriptName != "" {
-			scriptNameC = C.CString(scriptName)
-			defer C.free(unsafe.Pointer(scriptNameC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWebEngineScript_SetName(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptNameC, len: C.longlong(len(scriptName))})
+		C.QWebEngineScript_SetName(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
@@ -6687,20 +5713,20 @@ func (ptr *QWebEngineScript) SetRunsOnSubFrames(on bool) {
 	}
 }
 
-func (ptr *QWebEngineScript) SetSourceCode(scriptSource string) {
+func (ptr *QWebEngineScript) SetSourceCode(vqs string) {
 	if ptr.Pointer() != nil {
-		var scriptSourceC *C.char
-		if scriptSource != "" {
-			scriptSourceC = C.CString(scriptSource)
-			defer C.free(unsafe.Pointer(scriptSourceC))
+		var vqsC *C.char
+		if vqs != "" {
+			vqsC = C.CString(vqs)
+			defer C.free(unsafe.Pointer(vqsC))
 		}
-		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: scriptSourceC, len: C.longlong(len(scriptSource))})
+		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: vqsC, len: C.longlong(len(vqs))})
 	}
 }
 
-func (ptr *QWebEngineScript) SetWorldId(id uint) {
+func (ptr *QWebEngineScript) SetWorldId(vqu uint) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineScript_SetWorldId(ptr.Pointer(), C.uint(uint32(id)))
+		C.QWebEngineScript_SetWorldId(ptr.Pointer(), C.uint(uint32(vqu)))
 	}
 }
 
@@ -6718,13 +5744,6 @@ func (ptr *QWebEngineScript) DestroyQWebEngineScript() {
 	}
 }
 
-func (ptr *QWebEngineScript) InjectionPoint() QWebEngineScript__InjectionPoint {
-	if ptr.Pointer() != nil {
-		return QWebEngineScript__InjectionPoint(C.QWebEngineScript_InjectionPoint(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QWebEngineScript) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QWebEngineScript_Name(ptr.Pointer()))
@@ -6737,6 +5756,13 @@ func (ptr *QWebEngineScript) SourceCode() string {
 		return cGoUnpackString(C.QWebEngineScript_SourceCode(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QWebEngineScript) InjectionPoint() QWebEngineScript__InjectionPoint {
+	if ptr.Pointer() != nil {
+		return QWebEngineScript__InjectionPoint(C.QWebEngineScript_InjectionPoint(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebEngineScript) IsNull() bool {
@@ -6807,7 +5833,6 @@ func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(ptr.Pointer())
 		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -6830,63 +5855,6 @@ func (ptr *QWebEngineScriptCollection) Size() int {
 		return int(int32(C.QWebEngineScriptCollection_Size(ptr.Pointer())))
 	}
 	return 0
-}
-
-func (ptr *QWebEngineScriptCollection) __insert_list_atList2(i int) *QWebEngineScript {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___insert_list_atList2(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineScriptCollection) __insert_list_setList2(i QWebEngineScript_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineScriptCollection___insert_list_setList2(ptr.Pointer(), PointerFromQWebEngineScript(i))
-	}
-}
-
-func (ptr *QWebEngineScriptCollection) __insert_list_newList2() unsafe.Pointer {
-	return C.QWebEngineScriptCollection___insert_list_newList2(ptr.Pointer())
-}
-
-func (ptr *QWebEngineScriptCollection) __findScripts_atList(i int) *QWebEngineScript {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___findScripts_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineScriptCollection) __findScripts_setList(i QWebEngineScript_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineScriptCollection___findScripts_setList(ptr.Pointer(), PointerFromQWebEngineScript(i))
-	}
-}
-
-func (ptr *QWebEngineScriptCollection) __findScripts_newList() unsafe.Pointer {
-	return C.QWebEngineScriptCollection___findScripts_newList(ptr.Pointer())
-}
-
-func (ptr *QWebEngineScriptCollection) __toList_atList(i int) *QWebEngineScript {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection___toList_atList(ptr.Pointer(), C.int(int32(i))))
-		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QWebEngineScriptCollection) __toList_setList(i QWebEngineScript_ITF) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineScriptCollection___toList_setList(ptr.Pointer(), PointerFromQWebEngineScript(i))
-	}
-}
-
-func (ptr *QWebEngineScriptCollection) __toList_newList() unsafe.Pointer {
-	return C.QWebEngineScriptCollection___toList_newList(ptr.Pointer())
 }
 
 type QWebEngineSettings struct {
@@ -6960,6 +5928,16 @@ const (
 	QWebEngineSettings__DefaultFixedFontSize   QWebEngineSettings__FontSize = QWebEngineSettings__FontSize(3)
 )
 
+//go:generate stringer -type=QWebEngineSettings__UnknownUrlSchemePolicy
+//QWebEngineSettings::UnknownUrlSchemePolicy
+type QWebEngineSettings__UnknownUrlSchemePolicy int64
+
+const (
+	QWebEngineSettings__DisallowUnknownUrlSchemes                 QWebEngineSettings__UnknownUrlSchemePolicy = QWebEngineSettings__UnknownUrlSchemePolicy(1)
+	QWebEngineSettings__AllowUnknownUrlSchemesFromUserInteraction QWebEngineSettings__UnknownUrlSchemePolicy = QWebEngineSettings__UnknownUrlSchemePolicy(2)
+	QWebEngineSettings__AllowAllUnknownUrlSchemes                 QWebEngineSettings__UnknownUrlSchemePolicy = QWebEngineSettings__UnknownUrlSchemePolicy(3)
+)
+
 //go:generate stringer -type=QWebEngineSettings__WebAttribute
 //QWebEngineSettings::WebAttribute
 type QWebEngineSettings__WebAttribute int64
@@ -6991,13 +5969,10 @@ const (
 	QWebEngineSettings__AllowGeolocationOnInsecureOrigins   QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(23)
 	QWebEngineSettings__AllowWindowActivationFromJavaScript QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(24)
 	QWebEngineSettings__ShowScrollBars                      QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(25)
+	QWebEngineSettings__PlaybackRequiresUserGesture         QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(26)
+	QWebEngineSettings__WebRTCPublicInterfacesOnly          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(27)
+	QWebEngineSettings__JavascriptCanPaste                  QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(28)
 )
-
-func (ptr *QWebEngineSettings) SetAttribute(attribute QWebEngineSettings__WebAttribute, on bool) {
-	if ptr.Pointer() != nil {
-		C.QWebEngineSettings_SetAttribute(ptr.Pointer(), C.longlong(attribute), C.char(int8(qt.GoBoolToInt(on))))
-	}
-}
 
 func QWebEngineSettings_DefaultSettings() *QWebEngineSettings {
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
@@ -7007,9 +5982,17 @@ func (ptr *QWebEngineSettings) DefaultSettings() *QWebEngineSettings {
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
 }
 
-func (ptr *QWebEngineSettings) ResetAttribute(attribute QWebEngineSettings__WebAttribute) {
+func QWebEngineSettings_GlobalSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
+}
+
+func (ptr *QWebEngineSettings) GlobalSettings() *QWebEngineSettings {
+	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
+}
+
+func (ptr *QWebEngineSettings) ResetAttribute(attr QWebEngineSettings__WebAttribute) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineSettings_ResetAttribute(ptr.Pointer(), C.longlong(attribute))
+		C.QWebEngineSettings_ResetAttribute(ptr.Pointer(), C.longlong(attr))
 	}
 }
 
@@ -7022,6 +6005,18 @@ func (ptr *QWebEngineSettings) ResetFontFamily(which QWebEngineSettings__FontFam
 func (ptr *QWebEngineSettings) ResetFontSize(ty QWebEngineSettings__FontSize) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_ResetFontSize(ptr.Pointer(), C.longlong(ty))
+	}
+}
+
+func (ptr *QWebEngineSettings) ResetUnknownUrlSchemePolicy() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_ResetUnknownUrlSchemePolicy(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineSettings) SetAttribute(attr QWebEngineSettings__WebAttribute, on bool) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_SetAttribute(ptr.Pointer(), C.longlong(attr), C.char(int8(qt.GoBoolToInt(on))))
 	}
 }
 
@@ -7053,6 +6048,12 @@ func (ptr *QWebEngineSettings) SetFontSize(ty QWebEngineSettings__FontSize, size
 	}
 }
 
+func (ptr *QWebEngineSettings) SetUnknownUrlSchemePolicy(policy QWebEngineSettings__UnknownUrlSchemePolicy) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineSettings_SetUnknownUrlSchemePolicy(ptr.Pointer(), C.longlong(policy))
+	}
+}
+
 func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QWebEngineSettings_DefaultTextEncoding(ptr.Pointer()))
@@ -7067,9 +6068,16 @@ func (ptr *QWebEngineSettings) FontFamily(which QWebEngineSettings__FontFamily) 
 	return ""
 }
 
-func (ptr *QWebEngineSettings) TestAttribute(attribute QWebEngineSettings__WebAttribute) bool {
+func (ptr *QWebEngineSettings) UnknownUrlSchemePolicy() QWebEngineSettings__UnknownUrlSchemePolicy {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
+		return QWebEngineSettings__UnknownUrlSchemePolicy(C.QWebEngineSettings_UnknownUrlSchemePolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineSettings) TestAttribute(attr QWebEngineSettings__WebAttribute) bool {
+	if ptr.Pointer() != nil {
+		return C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attr)) != 0
 	}
 	return false
 }
@@ -7184,13 +6192,6 @@ func (ptr *QWebEngineUrlRequestInfo) SetHttpHeader(name core.QByteArray_ITF, val
 	}
 }
 
-func (ptr *QWebEngineUrlRequestInfo) NavigationType() QWebEngineUrlRequestInfo__NavigationType {
-	if ptr.Pointer() != nil {
-		return QWebEngineUrlRequestInfo__NavigationType(C.QWebEngineUrlRequestInfo_NavigationType(ptr.Pointer()))
-	}
-	return 0
-}
-
 func (ptr *QWebEngineUrlRequestInfo) RequestMethod() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlRequestInfo_RequestMethod(ptr.Pointer()))
@@ -7216,6 +6217,13 @@ func (ptr *QWebEngineUrlRequestInfo) RequestUrl() *core.QUrl {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QWebEngineUrlRequestInfo) NavigationType() QWebEngineUrlRequestInfo__NavigationType {
+	if ptr.Pointer() != nil {
+		return QWebEngineUrlRequestInfo__NavigationType(C.QWebEngineUrlRequestInfo_NavigationType(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebEngineUrlRequestInfo) ResourceType() QWebEngineUrlRequestInfo__ResourceType {
@@ -7263,6 +6271,62 @@ func NewQWebEngineUrlRequestInterceptorFromPointer(ptr unsafe.Pointer) (n *QWebE
 	n.SetPointer(ptr)
 	return
 }
+func QWebEngineUrlRequestInterceptor_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineUrlRequestInterceptor_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestInterceptor_QWebEngineUrlRequestInterceptor_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func NewQWebEngineUrlRequestInterceptor(p core.QObject_ITF) *QWebEngineUrlRequestInterceptor {
 	tmpValue := NewQWebEngineUrlRequestInterceptorFromPointer(C.QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(core.PointerFromQObject(p)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -7304,6 +6368,22 @@ func (ptr *QWebEngineUrlRequestInterceptor) InterceptRequest(info QWebEngineUrlR
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_InterceptRequest(ptr.Pointer(), PointerFromQWebEngineUrlRequestInfo(info))
 	}
+}
+
+//export callbackQWebEngineUrlRequestInterceptor_MetaObject
+func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestInterceptorFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestInterceptor_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -7549,22 +6629,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) TimerEventDefault(event core.QTimerE
 	}
 }
 
-//export callbackQWebEngineUrlRequestInterceptor_MetaObject
-func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestInterceptorFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineUrlRequestInterceptor) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestInterceptor_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QWebEngineUrlRequestJob struct {
 	core.QObject
 }
@@ -7617,6 +6681,62 @@ const (
 	QWebEngineUrlRequestJob__RequestFailed  QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(5)
 )
 
+func QWebEngineUrlRequestJob_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlRequestJob) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineUrlRequestJob_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlRequestJob) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlRequestJob_QWebEngineUrlRequestJob_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_Fail(ptr.Pointer(), C.longlong(r))
@@ -7644,11 +6764,36 @@ func (ptr *QWebEngineUrlRequestJob) RequestMethod() *core.QByteArray {
 	return nil
 }
 
+func (ptr *QWebEngineUrlRequestJob) Initiator() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_Initiator(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_RequestUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
 		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQWebEngineUrlRequestJob_MetaObject
+func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestJobFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlRequestJob) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestJob_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -7896,22 +7041,6 @@ func (ptr *QWebEngineUrlRequestJob) TimerEventDefault(event core.QTimerEvent_ITF
 	}
 }
 
-//export callbackQWebEngineUrlRequestJob_MetaObject
-func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineUrlRequestJobFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineUrlRequestJob) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestJob_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QWebEngineUrlSchemeHandler struct {
 	core.QObject
 }
@@ -7950,6 +7079,62 @@ func NewQWebEngineUrlSchemeHandlerFromPointer(ptr unsafe.Pointer) (n *QWebEngine
 	n.SetPointer(ptr)
 	return
 }
+func QWebEngineUrlSchemeHandler_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineUrlSchemeHandler_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineUrlSchemeHandler_QWebEngineUrlSchemeHandler_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func NewQWebEngineUrlSchemeHandler(parent core.QObject_ITF) *QWebEngineUrlSchemeHandler {
 	tmpValue := NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -7993,12 +7178,66 @@ func (ptr *QWebEngineUrlSchemeHandler) RequestStarted(request QWebEngineUrlReque
 	}
 }
 
+//export callbackQWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler
+func callbackQWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QWebEngineUrlSchemeHandler"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineUrlSchemeHandlerFromPointer(ptr).DestroyQWebEngineUrlSchemeHandlerDefault()
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) ConnectDestroyQWebEngineUrlSchemeHandler(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QWebEngineUrlSchemeHandler"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineUrlSchemeHandler", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QWebEngineUrlSchemeHandler", f)
+		}
+	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) DisconnectDestroyQWebEngineUrlSchemeHandler() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QWebEngineUrlSchemeHandler")
+	}
+}
+
 func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandlerDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandlerDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQWebEngineUrlSchemeHandler_MetaObject
+func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineUrlSchemeHandlerFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineUrlSchemeHandler) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlSchemeHandler_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -8244,22 +7483,6 @@ func (ptr *QWebEngineUrlSchemeHandler) TimerEventDefault(event core.QTimerEvent_
 	}
 }
 
-//export callbackQWebEngineUrlSchemeHandler_MetaObject
-func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineUrlSchemeHandlerFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineUrlSchemeHandler) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlSchemeHandler_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QWebEngineView struct {
 	widgets.QWidget
 }
@@ -8298,6 +7521,62 @@ func NewQWebEngineViewFromPointer(ptr unsafe.Pointer) (n *QWebEngineView) {
 	n.SetPointer(ptr)
 	return
 }
+func QWebEngineView_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineView_QWebEngineView_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineView) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineView_QWebEngineView_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QWebEngineView_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineView_QWebEngineView_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QWebEngineView) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QWebEngineView_QWebEngineView_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
 	tmpValue := NewQWebEngineViewFromPointer(C.QWebEngineView_NewQWebEngineView(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -8307,17 +7586,17 @@ func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
 }
 
 //export callbackQWebEngineView_Event
-func callbackQWebEngineView_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char {
+func callbackQWebEngineView_Event(ptr unsafe.Pointer, vqe unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(vqe)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQWebEngineViewFromPointer(ptr).EventDefault(core.NewQEventFromPointer(ev)))))
+	return C.char(int8(qt.GoBoolToInt(NewQWebEngineViewFromPointer(ptr).EventDefault(core.NewQEventFromPointer(vqe)))))
 }
 
-func (ptr *QWebEngineView) EventDefault(ev core.QEvent_ITF) bool {
+func (ptr *QWebEngineView) EventDefault(vqe core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return C.QWebEngineView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe)) != 0
 	}
 	return false
 }
@@ -8365,17 +7644,17 @@ func (ptr *QWebEngineView) BackDefault() {
 }
 
 //export callbackQWebEngineView_ContextMenuEvent
-func callbackQWebEngineView_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+func callbackQWebEngineView_ContextMenuEvent(ptr unsafe.Pointer, vqc unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "contextMenuEvent"); signal != nil {
-		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
+		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(vqc))
 	} else {
-		NewQWebEngineViewFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
+		NewQWebEngineViewFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(vqc))
 	}
 }
 
-func (ptr *QWebEngineView) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
+func (ptr *QWebEngineView) ContextMenuEventDefault(vqc gui.QContextMenuEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
+		C.QWebEngineView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(vqc))
 	}
 }
 
@@ -8439,17 +7718,6 @@ func (ptr *QWebEngineView) DropEventDefault(e gui.QDropEvent_ITF) {
 	}
 }
 
-func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__FindFlag) {
-	if ptr.Pointer() != nil {
-		var subStringC *C.char
-		if subString != "" {
-			subStringC = C.CString(subString)
-			defer C.free(unsafe.Pointer(subStringC))
-		}
-		C.QWebEngineView_FindText(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: subStringC, len: C.longlong(len(subString))}, C.longlong(options))
-	}
-}
-
 //export callbackQWebEngineView_Forward
 func callbackQWebEngineView_Forward(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "forward"); signal != nil {
@@ -8493,29 +7761,29 @@ func (ptr *QWebEngineView) ForwardDefault() {
 }
 
 //export callbackQWebEngineView_HideEvent
-func callbackQWebEngineView_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+func callbackQWebEngineView_HideEvent(ptr unsafe.Pointer, vqh unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(vqh))
 	} else {
-		NewQWebEngineViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+		NewQWebEngineViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(vqh))
 	}
 }
 
-func (ptr *QWebEngineView) HideEventDefault(event gui.QHideEvent_ITF) {
+func (ptr *QWebEngineView) HideEventDefault(vqh gui.QHideEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+		C.QWebEngineView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(vqh))
 	}
 }
 
 //export callbackQWebEngineView_IconChanged
-func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer) {
+func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, vqi unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "iconChanged"); signal != nil {
-		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
+		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(vqi))
 	}
 
 }
 
-func (ptr *QWebEngineView) ConnectIconChanged(f func(icon *gui.QIcon)) {
+func (ptr *QWebEngineView) ConnectIconChanged(f func(vqi *gui.QIcon)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconChanged") {
@@ -8523,9 +7791,9 @@ func (ptr *QWebEngineView) ConnectIconChanged(f func(icon *gui.QIcon)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "iconChanged", func(icon *gui.QIcon) {
-				signal.(func(*gui.QIcon))(icon)
-				f(icon)
+			qt.ConnectSignal(ptr.Pointer(), "iconChanged", func(vqi *gui.QIcon) {
+				signal.(func(*gui.QIcon))(vqi)
+				f(vqi)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "iconChanged", f)
@@ -8540,21 +7808,21 @@ func (ptr *QWebEngineView) DisconnectIconChanged() {
 	}
 }
 
-func (ptr *QWebEngineView) IconChanged(icon gui.QIcon_ITF) {
+func (ptr *QWebEngineView) IconChanged(vqi gui.QIcon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(icon))
+		C.QWebEngineView_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(vqi))
 	}
 }
 
 //export callbackQWebEngineView_IconUrlChanged
-func callbackQWebEngineView_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
+func callbackQWebEngineView_IconUrlChanged(ptr unsafe.Pointer, vqu unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "iconUrlChanged"); signal != nil {
-		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(vqu))
 	}
 
 }
 
-func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(url *core.QUrl)) {
+func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(vqu *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "iconUrlChanged") {
@@ -8562,9 +7830,9 @@ func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(url *core.QUrl)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "iconUrlChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "iconUrlChanged", func(url *core.QUrl) {
-				signal.(func(*core.QUrl))(url)
-				f(url)
+			qt.ConnectSignal(ptr.Pointer(), "iconUrlChanged", func(vqu *core.QUrl) {
+				signal.(func(*core.QUrl))(vqu)
+				f(vqu)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "iconUrlChanged", f)
@@ -8579,9 +7847,9 @@ func (ptr *QWebEngineView) DisconnectIconUrlChanged() {
 	}
 }
 
-func (ptr *QWebEngineView) IconUrlChanged(url core.QUrl_ITF) {
+func (ptr *QWebEngineView) IconUrlChanged(vqu core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_IconUrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
+		C.QWebEngineView_IconUrlChanged(ptr.Pointer(), core.PointerFromQUrl(vqu))
 	}
 }
 
@@ -8598,14 +7866,14 @@ func (ptr *QWebEngineView) Load2(request QWebEngineHttpRequest_ITF) {
 }
 
 //export callbackQWebEngineView_LoadFinished
-func callbackQWebEngineView_LoadFinished(ptr unsafe.Pointer, ok C.char) {
+func callbackQWebEngineView_LoadFinished(ptr unsafe.Pointer, vbo C.char) {
 	if signal := qt.GetSignal(ptr, "loadFinished"); signal != nil {
-		signal.(func(bool))(int8(ok) != 0)
+		signal.(func(bool))(int8(vbo) != 0)
 	}
 
 }
 
-func (ptr *QWebEngineView) ConnectLoadFinished(f func(ok bool)) {
+func (ptr *QWebEngineView) ConnectLoadFinished(f func(vbo bool)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "loadFinished") {
@@ -8613,9 +7881,9 @@ func (ptr *QWebEngineView) ConnectLoadFinished(f func(ok bool)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "loadFinished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "loadFinished", func(ok bool) {
-				signal.(func(bool))(ok)
-				f(ok)
+			qt.ConnectSignal(ptr.Pointer(), "loadFinished", func(vbo bool) {
+				signal.(func(bool))(vbo)
+				f(vbo)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "loadFinished", f)
@@ -8630,9 +7898,9 @@ func (ptr *QWebEngineView) DisconnectLoadFinished() {
 	}
 }
 
-func (ptr *QWebEngineView) LoadFinished(ok bool) {
+func (ptr *QWebEngineView) LoadFinished(vbo bool) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_LoadFinished(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))
+		C.QWebEngineView_LoadFinished(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -8836,17 +8104,17 @@ func (ptr *QWebEngineView) SetZoomFactor(factor float64) {
 }
 
 //export callbackQWebEngineView_ShowEvent
-func callbackQWebEngineView_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+func callbackQWebEngineView_ShowEvent(ptr unsafe.Pointer, vqs unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "showEvent"); signal != nil {
-		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(vqs))
 	} else {
-		NewQWebEngineViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
+		NewQWebEngineViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(vqs))
 	}
 }
 
-func (ptr *QWebEngineView) ShowEventDefault(event gui.QShowEvent_ITF) {
+func (ptr *QWebEngineView) ShowEventDefault(vqs gui.QShowEvent_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+		C.QWebEngineView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(vqs))
 	}
 }
 
@@ -8937,14 +8205,14 @@ func (ptr *QWebEngineView) TitleChanged(title string) {
 }
 
 //export callbackQWebEngineView_UrlChanged
-func callbackQWebEngineView_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
+func callbackQWebEngineView_UrlChanged(ptr unsafe.Pointer, vqu unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "urlChanged"); signal != nil {
-		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(vqu))
 	}
 
 }
 
-func (ptr *QWebEngineView) ConnectUrlChanged(f func(url *core.QUrl)) {
+func (ptr *QWebEngineView) ConnectUrlChanged(f func(vqu *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "urlChanged") {
@@ -8952,9 +8220,9 @@ func (ptr *QWebEngineView) ConnectUrlChanged(f func(url *core.QUrl)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "urlChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "urlChanged", func(url *core.QUrl) {
-				signal.(func(*core.QUrl))(url)
-				f(url)
+			qt.ConnectSignal(ptr.Pointer(), "urlChanged", func(vqu *core.QUrl) {
+				signal.(func(*core.QUrl))(vqu)
+				f(vqu)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "urlChanged", f)
@@ -8969,9 +8237,9 @@ func (ptr *QWebEngineView) DisconnectUrlChanged() {
 	}
 }
 
-func (ptr *QWebEngineView) UrlChanged(url core.QUrl_ITF) {
+func (ptr *QWebEngineView) UrlChanged(vqu core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_UrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
+		C.QWebEngineView_UrlChanged(ptr.Pointer(), core.PointerFromQUrl(vqu))
 	}
 }
 
@@ -9080,13 +8348,6 @@ func (ptr *QWebEngineView) Url() *core.QUrl {
 	return nil
 }
 
-func (ptr *QWebEngineView) History() *QWebEngineHistory {
-	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryFromPointer(C.QWebEngineView_History(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QWebEngineView) Page() *QWebEnginePage {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQWebEnginePageFromPointer(C.QWebEngineView_Page(ptr.Pointer()))
@@ -9110,6 +8371,22 @@ func (ptr *QWebEngineView) HasSelection() bool {
 		return C.QWebEngineView_HasSelection(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQWebEngineView_MetaObject
+func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQWebEngineViewFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebEngineView) ZoomFactor() float64 {
@@ -10021,6 +9298,21 @@ func (ptr *QWebEngineView) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) 
 	return 0
 }
 
+//export callbackQWebEngineView_InitPainter
+func callbackQWebEngineView_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQWebEngineViewFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QWebEngineView) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQWebEngineView_EventFilter
 func callbackQWebEngineView_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -10143,22 +9435,6 @@ func (ptr *QWebEngineView) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQWebEngineView_MetaObject
-func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQWebEngineViewFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QtWebEngine struct {

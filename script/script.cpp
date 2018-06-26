@@ -59,11 +59,11 @@ class MyQScriptClass: public QScriptClass
 {
 public:
 	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {};
+	QScriptClass::QueryFlags queryProperty(const QScriptValue & object, const QScriptString & name, QScriptClass::QueryFlags flags, uint * id) { return static_cast<QScriptClass::QueryFlag>(callbackQScriptClass_QueryProperty(this, const_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), flags, *id)); };
 	QScriptClassPropertyIterator * newIterator(const QScriptValue & object) { return static_cast<QScriptClassPropertyIterator*>(callbackQScriptClass_NewIterator(this, const_cast<QScriptValue*>(&object))); };
 	QScriptValue property(const QScriptValue & object, const QScriptString & name, uint id) { return *static_cast<QScriptValue*>(callbackQScriptClass_Property(this, const_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), id)); };
 	QScriptValue::PropertyFlags propertyFlags(const QScriptValue & object, const QScriptString & name, uint id) { return static_cast<QScriptValue::PropertyFlag>(callbackQScriptClass_PropertyFlags(this, const_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), id)); };
 	QVariant extension(QScriptClass::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptClass_Extension(this, extension, const_cast<QVariant*>(&argument))); };
-	QueryFlags queryProperty(const QScriptValue & object, const QScriptString & name, QScriptClass::QueryFlags flags, uint * id) { return static_cast<QScriptClass::QueryFlag>(callbackQScriptClass_QueryProperty(this, const_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), flags, *id)); };
 	void setProperty(QScriptValue & object, const QScriptString & name, uint id, const QScriptValue & value) { callbackQScriptClass_SetProperty(this, static_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), id, const_cast<QScriptValue*>(&value)); };
 	 ~MyQScriptClass() { callbackQScriptClass_DestroyQScriptClass(this); };
 	QScriptValue prototype() const { return *static_cast<QScriptValue*>(callbackQScriptClass_Prototype(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -74,6 +74,16 @@ public:
 void* QScriptClass_NewQScriptClass(void* engine)
 {
 	return new MyQScriptClass(static_cast<QScriptEngine*>(engine));
+}
+
+long long QScriptClass_QueryProperty(void* ptr, void* object, void* name, long long flags, unsigned int id)
+{
+	return static_cast<QScriptClass*>(ptr)->queryProperty(*static_cast<QScriptValue*>(object), *static_cast<QScriptString*>(name), static_cast<QScriptClass::QueryFlag>(flags), &id);
+}
+
+long long QScriptClass_QueryPropertyDefault(void* ptr, void* object, void* name, long long flags, unsigned int id)
+{
+		return static_cast<QScriptClass*>(ptr)->QScriptClass::queryProperty(*static_cast<QScriptValue*>(object), *static_cast<QScriptString*>(name), static_cast<QScriptClass::QueryFlag>(flags), &id);
 }
 
 void* QScriptClass_NewIterator(void* ptr, void* object)
@@ -114,16 +124,6 @@ void* QScriptClass_Extension(void* ptr, long long extension, void* argument)
 void* QScriptClass_ExtensionDefault(void* ptr, long long extension, void* argument)
 {
 		return new QVariant(static_cast<QScriptClass*>(ptr)->QScriptClass::extension(static_cast<QScriptClass::Extension>(extension), *static_cast<QVariant*>(argument)));
-}
-
-long long QScriptClass_QueryProperty(void* ptr, void* object, void* name, long long flags, unsigned int id)
-{
-	return static_cast<QScriptClass*>(ptr)->queryProperty(*static_cast<QScriptValue*>(object), *static_cast<QScriptString*>(name), static_cast<QScriptClass::QueryFlag>(flags), &id);
-}
-
-long long QScriptClass_QueryPropertyDefault(void* ptr, void* object, void* name, long long flags, unsigned int id)
-{
-		return static_cast<QScriptClass*>(ptr)->QScriptClass::queryProperty(*static_cast<QScriptValue*>(object), *static_cast<QScriptString*>(name), static_cast<QScriptClass::QueryFlag>(flags), &id);
 }
 
 void QScriptClass_SetProperty(void* ptr, void* object, void* name, unsigned int id, void* value)
@@ -212,14 +212,14 @@ void QScriptContext_DestroyQScriptContext(void* ptr)
 	static_cast<QScriptContext*>(ptr)->~QScriptContext();
 }
 
-long long QScriptContext_State(void* ptr)
-{
-	return static_cast<QScriptContext*>(ptr)->state();
-}
-
 void* QScriptContext_ParentContext(void* ptr)
 {
 	return static_cast<QScriptContext*>(ptr)->parentContext();
+}
+
+long long QScriptContext_State(void* ptr)
+{
+	return static_cast<QScriptContext*>(ptr)->state();
 }
 
 void* QScriptContext_Engine(void* ptr)
@@ -349,6 +349,7 @@ public:
 	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {QScriptEngine_QScriptEngine_QRegisterMetaType();};
 	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngine_SignalHandlerException(this, const_cast<QScriptValue*>(&exception)); };
 	 ~MyQScriptEngine() { callbackQScriptEngine_DestroyQScriptEngine(this); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQScriptEngine_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScriptEngine_ChildEvent(this, event); };
@@ -359,7 +360,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScript_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptEngine_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQScriptEngine*)
@@ -512,6 +512,16 @@ void* QScriptEngine_UndefinedValue(void* ptr)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->undefinedValue());
 }
 
+struct QtScript_PackedString QScriptEngine_QScriptEngine_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray ta94df5 = QScriptEngine::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(ta94df5.prepend("WHITESPACE").constData()+10), ta94df5.size()-10 }; });
+}
+
+struct QtScript_PackedString QScriptEngine_QScriptEngine_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t469d12 = QScriptEngine::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t469d12.prepend("WHITESPACE").constData()+10), t469d12.size()-10 }; });
+}
+
 void QScriptEngine_AbortEvaluation(void* ptr, void* result)
 {
 	static_cast<QScriptEngine*>(ptr)->abortEvaluation(*static_cast<QScriptValue*>(result));
@@ -636,6 +646,11 @@ char QScriptEngine_HasUncaughtException(void* ptr)
 char QScriptEngine_IsEvaluating(void* ptr)
 {
 	return static_cast<QScriptEngine*>(ptr)->isEvaluating();
+}
+
+void* QScriptEngine_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptEngine*>(ptr)->QScriptEngine::metaObject());
 }
 
 int QScriptEngine_ProcessEventsInterval(void* ptr)
@@ -766,11 +781,6 @@ void QScriptEngine_DisconnectNotifyDefault(void* ptr, void* sign)
 void QScriptEngine_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QScriptEngine*>(ptr)->QScriptEngine::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void* QScriptEngine_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QScriptEngine*>(ptr)->QScriptEngine::metaObject());
 }
 
 class MyQScriptEngineAgent: public QScriptEngineAgent
@@ -927,7 +937,9 @@ class MyQScriptExtensionPlugin: public QScriptExtensionPlugin
 public:
 	MyQScriptExtensionPlugin(QObject *parent = Q_NULLPTR) : QScriptExtensionPlugin(parent) {QScriptExtensionPlugin_QScriptExtensionPlugin_QRegisterMetaType();};
 	void initialize(const QString & key, QScriptEngine * engine) { QByteArray ta62f22 = key.toUtf8(); QtScript_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQScriptExtensionPlugin_Initialize(this, keyPacked, engine); };
+	 ~MyQScriptExtensionPlugin() { callbackQScriptExtensionPlugin_DestroyQScriptExtensionPlugin(this); };
 	QStringList keys() const { return ({ QtScript_PackedString tempVal = callbackQScriptExtensionPlugin_Keys(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptExtensionPlugin_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScriptExtensionPlugin_ChildEvent(this, event); };
@@ -938,7 +950,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtScript_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQScriptExtensionPlugin_ObjectNameChanged(this, objectNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, event); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptExtensionPlugin_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 };
 
 Q_DECLARE_METATYPE(MyQScriptExtensionPlugin*)
@@ -986,6 +997,16 @@ void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 	}
 }
 
+struct QtScript_PackedString QScriptExtensionPlugin_QScriptExtensionPlugin_Tr(char* s, char* c, int n)
+{
+	return ({ QByteArray t2a245f = QScriptExtensionPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t2a245f.prepend("WHITESPACE").constData()+10), t2a245f.size()-10 }; });
+}
+
+struct QtScript_PackedString QScriptExtensionPlugin_QScriptExtensionPlugin_TrUtf8(char* s, char* c, int n)
+{
+	return ({ QByteArray t94b9b2 = QScriptExtensionPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t94b9b2.prepend("WHITESPACE").constData()+10), t94b9b2.size()-10 }; });
+}
+
 void QScriptExtensionPlugin_Initialize(void* ptr, struct QtScript_PackedString key, void* engine)
 {
 	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine));
@@ -996,6 +1017,12 @@ void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr)
 	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
 }
 
+void QScriptExtensionPlugin_DestroyQScriptExtensionPluginDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
+}
+
 void* QScriptExtensionPlugin_SetupPackage(void* ptr, struct QtScript_PackedString key, void* engine)
 {
 	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString::fromUtf8(key.data, key.len), static_cast<QScriptEngine*>(engine)));
@@ -1004,6 +1031,11 @@ void* QScriptExtensionPlugin_SetupPackage(void* ptr, struct QtScript_PackedStrin
 struct QtScript_PackedString QScriptExtensionPlugin_Keys(void* ptr)
 {
 	return ({ QByteArray tcd9b88 = static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(tcd9b88.prepend("WHITESPACE").constData()+10), tcd9b88.size()-10 }; });
+}
+
+void* QScriptExtensionPlugin_MetaObjectDefault(void* ptr)
+{
+		return const_cast<QMetaObject*>(static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::metaObject());
 }
 
 void* QScriptExtensionPlugin___dynamicPropertyNames_atList(void* ptr, int i)
@@ -1126,11 +1158,6 @@ void QScriptExtensionPlugin_TimerEventDefault(void* ptr, void* event)
 		static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void* QScriptExtensionPlugin_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::metaObject());
-}
-
 void* QScriptProgram_NewQScriptProgram()
 {
 	return new QScriptProgram();
@@ -1212,14 +1239,14 @@ void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr)
 	static_cast<QScriptSyntaxCheckResult*>(ptr)->~QScriptSyntaxCheckResult();
 }
 
-struct QtScript_PackedString QScriptSyntaxCheckResult_ErrorMessage(void* ptr)
-{
-	return ({ QByteArray t5bd6f3 = static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8(); QtScript_PackedString { const_cast<char*>(t5bd6f3.prepend("WHITESPACE").constData()+10), t5bd6f3.size()-10 }; });
-}
-
 long long QScriptSyntaxCheckResult_State(void* ptr)
 {
 	return static_cast<QScriptSyntaxCheckResult*>(ptr)->state();
+}
+
+struct QtScript_PackedString QScriptSyntaxCheckResult_ErrorMessage(void* ptr)
+{
+	return ({ QByteArray t5bd6f3 = static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8(); QtScript_PackedString { const_cast<char*>(t5bd6f3.prepend("WHITESPACE").constData()+10), t5bd6f3.size()-10 }; });
 }
 
 int QScriptSyntaxCheckResult_ErrorColumnNumber(void* ptr)
@@ -1232,6 +1259,11 @@ int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr)
 	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorLineNumber();
 }
 
+void* QScriptValue_Call2(void* ptr, void* thisObject, void* arguments)
+{
+	return new QScriptValue(static_cast<QScriptValue*>(ptr)->call(*static_cast<QScriptValue*>(thisObject), *static_cast<QScriptValue*>(arguments)));
+}
+
 void* QScriptValue_Construct2(void* ptr, void* arguments)
 {
 	return new QScriptValue(static_cast<QScriptValue*>(ptr)->construct(*static_cast<QScriptValue*>(arguments)));
@@ -1240,11 +1272,6 @@ void* QScriptValue_Construct2(void* ptr, void* arguments)
 void* QScriptValue_NewQScriptValue()
 {
 	return new QScriptValue();
-}
-
-void* QScriptValue_Call2(void* ptr, void* thisObject, void* arguments)
-{
-	return new QScriptValue(static_cast<QScriptValue*>(ptr)->call(*static_cast<QScriptValue*>(thisObject), *static_cast<QScriptValue*>(arguments)));
 }
 
 void* QScriptValue_NewQScriptValue10(long long value)

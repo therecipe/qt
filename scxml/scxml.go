@@ -483,6 +483,61 @@ func NewQScxmlDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlDataModel) {
 	n.SetPointer(ptr)
 	return
 }
+func QScxmlDataModel_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlDataModel) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QScxmlDataModel_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlDataModel) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_TrUtf8(sC, cC, C.int(int32(n))))
+}
 
 //export callbackQScxmlDataModel_SetScxmlProperty
 func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
@@ -721,6 +776,22 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 		return C.QScxmlDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
 	}
 	return false
+}
+
+//export callbackQScxmlDataModel_MetaObject
+func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQScxmlDataModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScxmlDataModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScxmlDataModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QScxmlDataModel) __setup_initialDataValues_atList(v string, i int) *core.QVariant {
@@ -1029,22 +1100,6 @@ func (ptr *QScxmlDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQScxmlDataModel_MetaObject
-func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlDataModelFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QScxmlDataModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlDataModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QScxmlDynamicScxmlServiceFactory struct {
@@ -1878,6 +1933,62 @@ func NewQScxmlInvokableService(parentStateMachine QScxmlStateMachine_ITF, parent
 	return tmpValue
 }
 
+func QScxmlInvokableService_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlInvokableService) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QScxmlInvokableService_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlInvokableService) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQScxmlInvokableService_Start
 func callbackQScxmlInvokableService_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "start"); signal != nil {
@@ -2035,6 +2146,22 @@ func (ptr *QScxmlInvokableService) Name() string {
 		return cGoUnpackString(C.QScxmlInvokableService_Name(ptr.Pointer()))
 	}
 	return ""
+}
+
+//export callbackQScxmlInvokableService_MetaObject
+func callbackQScxmlInvokableService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScxmlInvokableService) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableService_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QScxmlInvokableService) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -2280,22 +2407,6 @@ func (ptr *QScxmlInvokableService) TimerEventDefault(event core.QTimerEvent_ITF)
 	}
 }
 
-//export callbackQScxmlInvokableService_MetaObject
-func callbackQScxmlInvokableService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QScxmlInvokableService) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableService_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QScxmlInvokableServiceFactory struct {
 	core.QObject
 }
@@ -2372,6 +2483,78 @@ func (ptr *QScxmlInvokableServiceFactory) Invoke(parentStateMachine QScxmlStateM
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+func QScxmlInvokableServiceFactory_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlInvokableServiceFactory) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QScxmlInvokableServiceFactory_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlInvokableServiceFactory) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+//export callbackQScxmlInvokableServiceFactory_MetaObject
+func callbackQScxmlInvokableServiceFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFactoryFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScxmlInvokableServiceFactory) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableServiceFactory_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2635,22 +2818,6 @@ func (ptr *QScxmlInvokableServiceFactory) TimerEventDefault(event core.QTimerEve
 	}
 }
 
-//export callbackQScxmlInvokableServiceFactory_MetaObject
-func callbackQScxmlInvokableServiceFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFactoryFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QScxmlInvokableServiceFactory) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlInvokableServiceFactory_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QScxmlNullDataModel struct {
 	QScxmlDataModel
 }
@@ -2873,9 +3040,47 @@ func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
 	}
 }
 
+//export callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel
+func callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QScxmlNullDataModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQScxmlNullDataModelFromPointer(ptr).DestroyQScxmlNullDataModelDefault()
+	}
+}
+
+func (ptr *QScxmlNullDataModel) ConnectDestroyQScxmlNullDataModel(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QScxmlNullDataModel"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", f)
+		}
+	}
+}
+
+func (ptr *QScxmlNullDataModel) DisconnectDestroyQScxmlNullDataModel() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QScxmlNullDataModel")
+	}
+}
+
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
+	if ptr.Pointer() != nil {
+		C.QScxmlNullDataModel_DestroyQScxmlNullDataModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -3089,6 +3294,62 @@ func NewQScxmlStateMachine(metaObject core.QMetaObject_ITF, parent core.QObject_
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func QScxmlStateMachine_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlStateMachine) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QScxmlStateMachine_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QScxmlStateMachine) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 func (ptr *QScxmlStateMachine) InitialValues() map[string]*core.QVariant {
@@ -3763,6 +4024,22 @@ func (ptr *QScxmlStateMachine) IsRunning() bool {
 	return false
 }
 
+//export callbackQScxmlStateMachine_MetaObject
+func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQScxmlStateMachineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QScxmlStateMachine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QScxmlStateMachine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QScxmlStateMachine) __initialValues_atList(v string, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		var vC *C.char
@@ -4260,22 +4537,6 @@ func (ptr *QScxmlStateMachine) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQScxmlStateMachine_MetaObject
-func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQScxmlStateMachineFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QScxmlStateMachine) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QScxmlStateMachine_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QScxmlStaticScxmlServiceFactory struct {

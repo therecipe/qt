@@ -14,10 +14,23 @@ extern "C" {
 
 struct QtTestLib_PackedString { char* data; long long len; };
 struct QtTestLib_PackedList { void* data; long long len; };
+void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long long mode, void* parent);
+void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent);
+struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_Tr(char* s, char* c, int n);
+struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(char* s, char* c, int n);
+void* QAbstractItemModelTester_Model(void* ptr);
+void* QAbstractItemModelTester_MetaObject(void* ptr);
+void* QAbstractItemModelTester_MetaObjectDefault(void* ptr);
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign);
 char QSignalSpy_Wait(void* ptr, int timeout);
 void* QSignalSpy_Signal(void* ptr);
 char QSignalSpy_IsValid(void* ptr);
+int QSignalSpy___args_atList(void* ptr, int i);
+void QSignalSpy___args_setList(void* ptr, int i);
+void* QSignalSpy___args_newList(void* ptr);
+int QSignalSpy___setArgs__atList(void* ptr, int i);
+void QSignalSpy___setArgs__setList(void* ptr, int i);
+void* QSignalSpy___setArgs__newList(void* ptr);
 void* QSignalSpy___dynamicPropertyNames_atList(void* ptr, int i);
 void QSignalSpy___dynamicPropertyNames_setList(void* ptr, void* i);
 void* QSignalSpy___dynamicPropertyNames_newList(void* ptr);

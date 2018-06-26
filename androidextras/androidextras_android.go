@@ -167,6 +167,14 @@ const (
 	QAndroidBinder__OneWay QAndroidBinder__CallType = QAndroidBinder__CallType(1)
 )
 
+func NewQAndroidBinder() *QAndroidBinder {
+	return NewQAndroidBinderFromPointer(C.QAndroidBinder_NewQAndroidBinder())
+}
+
+func NewQAndroidBinder2(binder QAndroidJniObject_ITF) *QAndroidBinder {
+	return NewQAndroidBinderFromPointer(C.QAndroidBinder_NewQAndroidBinder2(PointerFromQAndroidJniObject(binder)))
+}
+
 //export callbackQAndroidBinder_DestroyQAndroidBinder
 func callbackQAndroidBinder_DestroyQAndroidBinder(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QAndroidBinder"); signal != nil {
@@ -211,14 +219,6 @@ func (ptr *QAndroidBinder) DestroyQAndroidBinderDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func NewQAndroidBinder() *QAndroidBinder {
-	return NewQAndroidBinderFromPointer(C.QAndroidBinder_NewQAndroidBinder())
-}
-
-func NewQAndroidBinder2(binder QAndroidJniObject_ITF) *QAndroidBinder {
-	return NewQAndroidBinderFromPointer(C.QAndroidBinder_NewQAndroidBinder2(PointerFromQAndroidJniObject(binder)))
 }
 
 func (ptr *QAndroidBinder) Handle() *QAndroidJniObject {
@@ -442,18 +442,18 @@ func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) (n *QAndroidJniEnv
 	n.SetPointer(ptr)
 	return
 }
+func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
+	tmpValue := NewQAndroidJniEnvironmentFromPointer(C.QAndroidJniEnvironment_NewQAndroidJniEnvironment())
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniEnvironment).DestroyQAndroidJniEnvironment)
+	return tmpValue
+}
+
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
 	return unsafe.Pointer(C.QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM())
 }
 
 func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
 	return unsafe.Pointer(C.QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM())
-}
-
-func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
-	tmpValue := NewQAndroidJniEnvironmentFromPointer(C.QAndroidJniEnvironment_NewQAndroidJniEnvironment())
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniEnvironment).DestroyQAndroidJniEnvironment)
-	return tmpValue
 }
 
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
@@ -1555,6 +1555,12 @@ func NewQAndroidJniObject3(className string, signature string, v ...interface{})
 	return tmpValue
 }
 
+func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
+	tmpValue := NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject6(object))
+	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
+	return tmpValue
+}
+
 func NewQAndroidJniObject4(clazz unsafe.Pointer) *QAndroidJniObject {
 	tmpValue := NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject4(clazz))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
@@ -1608,12 +1614,6 @@ func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interfac
 		defer C.free(unsafe.Pointer(signatureC))
 	}
 	tmpValue := NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject5(clazz, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))
-	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
-	return tmpValue
-}
-
-func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
-	tmpValue := NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject6(object))
 	runtime.SetFinalizer(tmpValue, (*QAndroidJniObject).DestroyQAndroidJniObject)
 	return tmpValue
 }
@@ -3281,7 +3281,7 @@ func (ptr *QAndroidJniObject) CallMethodVoidCaught(methodName string) error {
 	return errors.New("*.Pointer() == nil")
 }
 
-func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
+func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, sig string, v ...interface{}) int {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3328,17 +3328,17 @@ func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		return int(int32(C.QAndroidJniObject_CallMethodInt2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)))
+		return int(int32(C.QAndroidJniObject_CallMethodInt2(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)))
 	}
 	return 0
 }
 
-func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature string, v ...interface{}) (int, error) {
+func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, sig string, v ...interface{}) (int, error) {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3385,17 +3385,17 @@ func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature 
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		return int(int32(C.QAndroidJniObject_CallMethodInt2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))), QAndroidJniEnvironment_ExceptionCatch()
+		return int(int32(C.QAndroidJniObject_CallMethodInt2Caught(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9))), QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return 0, errors.New("*.Pointer() == nil")
 }
 
-func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
+func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, sig string, v ...interface{}) bool {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3442,17 +3442,17 @@ func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature st
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		return int8(C.QAndroidJniObject_CallMethodBoolean2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0
+		return int8(C.QAndroidJniObject_CallMethodBoolean2(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0
 	}
 	return false
 }
 
-func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signature string, v ...interface{}) (bool, error) {
+func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, sig string, v ...interface{}) (bool, error) {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3499,17 +3499,17 @@ func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signat
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		return int8(C.QAndroidJniObject_CallMethodBoolean2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0, QAndroidJniEnvironment_ExceptionCatch()
+		return int8(C.QAndroidJniObject_CallMethodBoolean2Caught(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)) != 0, QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return false, errors.New("*.Pointer() == nil")
 }
 
-func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
+func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, sig string, v ...interface{}) {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3556,16 +3556,16 @@ func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature strin
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		C.QAndroidJniObject_CallMethodVoid2(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
+		C.QAndroidJniObject_CallMethodVoid2(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 	}
 }
 
-func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature string, v ...interface{}) error {
+func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, sig string, v ...interface{}) error {
 	if ptr.Pointer() != nil {
 		p0, d0 := assertion(0, v...)
 		if d0 != nil {
@@ -3612,12 +3612,12 @@ func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature
 			methodNameC = C.CString(methodName)
 			defer C.free(unsafe.Pointer(methodNameC))
 		}
-		var signatureC *C.char
-		if signature != "" {
-			signatureC = C.CString(signature)
-			defer C.free(unsafe.Pointer(signatureC))
+		var sigC *C.char
+		if sig != "" {
+			sigC = C.CString(sig)
+			defer C.free(unsafe.Pointer(sigC))
 		}
-		C.QAndroidJniObject_CallMethodVoid2Caught(ptr.Pointer(), methodNameC, signatureC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
+		C.QAndroidJniObject_CallMethodVoid2Caught(ptr.Pointer(), methodNameC, sigC, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
 		return QAndroidJniEnvironment_ExceptionCatch()
 	}
 	return errors.New("*.Pointer() == nil")

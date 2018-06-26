@@ -40,6 +40,16 @@ public:
 	 ~MyQAndroidBinder() { callbackQAndroidBinder_DestroyQAndroidBinder(this); };
 };
 
+void* QAndroidBinder_NewQAndroidBinder()
+{
+	return new MyQAndroidBinder();
+}
+
+void* QAndroidBinder_NewQAndroidBinder2(void* binder)
+{
+	return new MyQAndroidBinder(*static_cast<QAndroidJniObject*>(binder));
+}
+
 void QAndroidBinder_DestroyQAndroidBinder(void* ptr)
 {
 	static_cast<QAndroidBinder*>(ptr)->~QAndroidBinder();
@@ -49,16 +59,6 @@ void QAndroidBinder_DestroyQAndroidBinderDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
-}
-
-void* QAndroidBinder_NewQAndroidBinder()
-{
-	return new MyQAndroidBinder();
-}
-
-void* QAndroidBinder_NewQAndroidBinder2(void* binder)
-{
-	return new MyQAndroidBinder(*static_cast<QAndroidJniObject*>(binder));
 }
 
 void* QAndroidBinder_Handle(void* ptr)
@@ -137,14 +137,14 @@ void* QAndroidIntent_Handle(void* ptr)
 	return new QAndroidJniObject(static_cast<QAndroidIntent*>(ptr)->handle().object());
 }
 
-void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM()
-{
-	return QAndroidJniEnvironment::javaVM();
-}
-
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment()
 {
 	return new QAndroidJniEnvironment();
+}
+
+void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM()
+{
+	return QAndroidJniEnvironment::javaVM();
 }
 
 void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr)
@@ -372,6 +372,11 @@ void* QAndroidJniObject_NewQAndroidJniObject3(char* className, char* signature, 
 	return new QAndroidJniObject(const_cast<const char*>(className), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
+void* QAndroidJniObject_NewQAndroidJniObject6(void* object)
+{
+	return new QAndroidJniObject(static_cast<jobject>(object));
+}
+
 void* QAndroidJniObject_NewQAndroidJniObject4(void* clazz)
 {
 	return new QAndroidJniObject(static_cast<jclass>(clazz));
@@ -380,11 +385,6 @@ void* QAndroidJniObject_NewQAndroidJniObject4(void* clazz)
 void* QAndroidJniObject_NewQAndroidJniObject5(void* clazz, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
 	return new QAndroidJniObject(static_cast<jclass>(clazz), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
-}
-
-void* QAndroidJniObject_NewQAndroidJniObject6(void* object)
-{
-	return new QAndroidJniObject(static_cast<jobject>(object));
 }
 
 int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt(char* className, char* methodName)
@@ -732,34 +732,34 @@ void QAndroidJniObject_CallMethodVoidCaught(void* ptr, char* methodName)
 	static_cast<QAndroidJniObject*>(ptr)->callMethod<void>(const_cast<const char*>(methodName));
 }
 
-int QAndroidJniObject_CallMethodInt2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+int QAndroidJniObject_CallMethodInt2(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-int QAndroidJniObject_CallMethodInt2Caught(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+int QAndroidJniObject_CallMethodInt2Caught(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-char QAndroidJniObject_CallMethodBoolean2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+char QAndroidJniObject_CallMethodBoolean2(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-char QAndroidJniObject_CallMethodBoolean2Caught(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+char QAndroidJniObject_CallMethodBoolean2Caught(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-void QAndroidJniObject_CallMethodVoid2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+void QAndroidJniObject_CallMethodVoid2(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	static_cast<QAndroidJniObject*>(ptr)->callMethod<void>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	static_cast<QAndroidJniObject*>(ptr)->callMethod<void>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-void QAndroidJniObject_CallMethodVoid2Caught(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+void QAndroidJniObject_CallMethodVoid2Caught(void* ptr, char* methodName, char* sig, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
-	static_cast<QAndroidJniObject*>(ptr)->callMethod<void>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
+	static_cast<QAndroidJniObject*>(ptr)->callMethod<void>(const_cast<const char*>(methodName), const_cast<const char*>(sig), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
 int QAndroidJniObject_GetFieldInt(void* ptr, char* fieldName)

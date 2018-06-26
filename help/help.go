@@ -158,6 +158,61 @@ func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) (n *QHelpContentModel) 
 	n.SetPointer(ptr)
 	return
 }
+func QHelpContentModel_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentModel_QHelpContentModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpContentModel) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentModel_QHelpContentModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpContentModel_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentModel_QHelpContentModel_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpContentModel) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentModel_QHelpContentModel_TrUtf8(sC, cC, C.int(int32(n))))
+}
 
 //export callbackQHelpContentModel_ContentsCreated
 func callbackQHelpContentModel_ContentsCreated(ptr unsafe.Pointer) {
@@ -248,9 +303,47 @@ func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 	}
 }
 
+//export callbackQHelpContentModel_DestroyQHelpContentModel
+func callbackQHelpContentModel_DestroyQHelpContentModel(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QHelpContentModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpContentModelFromPointer(ptr).DestroyQHelpContentModelDefault()
+	}
+}
+
+func (ptr *QHelpContentModel) ConnectDestroyQHelpContentModel(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QHelpContentModel"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpContentModel", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpContentModel", f)
+		}
+	}
+}
+
+func (ptr *QHelpContentModel) DisconnectDestroyQHelpContentModel() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QHelpContentModel")
+	}
+}
+
 func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHelpContentModel) DestroyQHelpContentModelDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_DestroyQHelpContentModelDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -412,6 +505,22 @@ func (ptr *QHelpContentModel) IsCreatingContents() bool {
 		return C.QHelpContentModel_IsCreatingContents(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQHelpContentModel_MetaObject
+func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpContentModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpContentModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpContentModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQHelpContentModel_ColumnCount
@@ -1830,22 +1939,6 @@ func (ptr *QHelpContentModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQHelpContentModel_MetaObject
-func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpContentModelFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpContentModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpContentModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpContentWidget struct {
 	widgets.QTreeView
 }
@@ -1893,6 +1986,62 @@ func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	return nil
 }
 
+func QHelpContentWidget_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentWidget_QHelpContentWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpContentWidget) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentWidget_QHelpContentWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpContentWidget_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentWidget_QHelpContentWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpContentWidget) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpContentWidget_QHelpContentWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 //export callbackQHelpContentWidget_LinkActivated
 func callbackQHelpContentWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "linkActivated"); signal != nil {
@@ -1930,6 +2079,22 @@ func (ptr *QHelpContentWidget) LinkActivated(link core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_LinkActivated(ptr.Pointer(), core.PointerFromQUrl(link))
 	}
+}
+
+//export callbackQHelpContentWidget_MetaObject
+func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpContentWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpContentWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpContentWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpContentWidget) __dataChanged_roles_atList(i int) int {
@@ -2953,6 +3118,22 @@ func (ptr *QHelpContentWidget) EventDefault(event core.QEvent_ITF) bool {
 	return false
 }
 
+//export callbackQHelpContentWidget_EventFilter
+func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, object unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(object), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(object), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHelpContentWidget) EventFilterDefault(object core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpContentWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 //export callbackQHelpContentWidget_FocusNextPrevChild
 func callbackQHelpContentWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	if signal := qt.GetSignal(ptr, "focusNextPrevChild"); signal != nil {
@@ -3963,20 +4144,19 @@ func (ptr *QHelpContentWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetr
 	return 0
 }
 
-//export callbackQHelpContentWidget_EventFilter
-func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+//export callbackQHelpContentWidget_InitPainter
+func callbackQHelpContentWidget_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *QHelpContentWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QHelpContentWidget) InitPainterDefault(painter gui.QPainter_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QHelpContentWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
-	return false
 }
 
 //export callbackQHelpContentWidget_ChildEvent
@@ -4072,22 +4252,6 @@ func callbackQHelpContentWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName
 
 }
 
-//export callbackQHelpContentWidget_MetaObject
-func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpContentWidgetFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpContentWidget) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpContentWidget_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpEngine struct {
 	QHelpEngineCore
 }
@@ -4172,9 +4336,47 @@ func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 	return nil
 }
 
+//export callbackQHelpEngine_DestroyQHelpEngine
+func callbackQHelpEngine_DestroyQHelpEngine(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QHelpEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpEngineFromPointer(ptr).DestroyQHelpEngineDefault()
+	}
+}
+
+func (ptr *QHelpEngine) ConnectDestroyQHelpEngine(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QHelpEngine"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpEngine", f)
+		}
+	}
+}
+
+func (ptr *QHelpEngine) DisconnectDestroyQHelpEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QHelpEngine")
+	}
+}
+
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHelpEngine) DestroyQHelpEngineDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_DestroyQHelpEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -4307,6 +4509,62 @@ func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
 		defer C.free(unsafe.Pointer(documentationFileNameC))
 	}
 	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}))
+}
+
+func QHelpEngineCore_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpEngineCore) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpEngineCore_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpEngineCore) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
@@ -4844,6 +5102,22 @@ func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 	return false
 }
 
+//export callbackQHelpEngineCore_MetaObject
+func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpEngineCoreFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpEngineCore) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpEngineCore_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QHelpEngineCore) __files_atList(i int) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QHelpEngineCore___files_atList(ptr.Pointer(), C.int(int32(i))))
@@ -5255,22 +5529,6 @@ func (ptr *QHelpEngineCore) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQHelpEngineCore_MetaObject
-func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpEngineCoreFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpEngineCore) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpEngineCore_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpIndexModel struct {
 	core.QStringListModel
 }
@@ -5326,6 +5584,62 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 		return tmpValue
 	}
 	return nil
+}
+
+func QHelpIndexModel_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexModel_QHelpIndexModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpIndexModel) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexModel_QHelpIndexModel_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpIndexModel_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexModel_QHelpIndexModel_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpIndexModel) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexModel_QHelpIndexModel_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
@@ -5422,6 +5736,22 @@ func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 		return C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQHelpIndexModel_MetaObject
+func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpIndexModelFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpIndexModel) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpIndexModel_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpIndexModel) __linksForKeyword_atList(v string, i int) *core.QUrl {
@@ -6903,22 +7233,6 @@ func (ptr *QHelpIndexModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQHelpIndexModel_MetaObject
-func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpIndexModelFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpIndexModel) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpIndexModel_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpIndexWidget struct {
 	widgets.QListView
 }
@@ -6956,6 +7270,61 @@ func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpIndexWidget) {
 	n = new(QHelpIndexWidget)
 	n.SetPointer(ptr)
 	return
+}
+func QHelpIndexWidget_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexWidget_QHelpIndexWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpIndexWidget) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexWidget_QHelpIndexWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpIndexWidget_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexWidget_QHelpIndexWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpIndexWidget) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpIndexWidget_QHelpIndexWidget_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQHelpIndexWidget_ActivateCurrentItem
@@ -7161,6 +7530,22 @@ func (ptr *QHelpIndexWidget) LinksActivated(links map[string]*core.QUrl, keyword
 			return tmpList.Pointer()
 		}(), C.struct_QtHelp_PackedString{data: keywordC, len: C.longlong(len(keyword))})
 	}
+}
+
+//export callbackQHelpIndexWidget_MetaObject
+func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpIndexWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpIndexWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpIndexWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpIndexWidget) __linksActivated_links_atList(v string, i int) *core.QUrl {
@@ -7979,6 +8364,22 @@ func callbackQHelpIndexWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, tr
 func (ptr *QHelpIndexWidget) Edit2Default(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQHelpIndexWidget_EventFilter
+func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, object unsafe.Pointer, event unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(object), core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(object), core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHelpIndexWidget) EventFilterDefault(object core.QObject_ITF, event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpIndexWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
@@ -9087,20 +9488,19 @@ func (ptr *QHelpIndexWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric
 	return 0
 }
 
-//export callbackQHelpIndexWidget_EventFilter
-func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+//export callbackQHelpIndexWidget_InitPainter
+func callbackQHelpIndexWidget_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
 	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *QHelpIndexWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+func (ptr *QHelpIndexWidget) InitPainterDefault(painter gui.QPainter_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		C.QHelpIndexWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
-	return false
 }
 
 //export callbackQHelpIndexWidget_ChildEvent
@@ -9196,22 +9596,6 @@ func callbackQHelpIndexWidget_ObjectNameChanged(ptr unsafe.Pointer, objectName C
 
 }
 
-//export callbackQHelpIndexWidget_MetaObject
-func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpIndexWidgetFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpIndexWidget) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpIndexWidget_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpSearchEngine struct {
 	core.QObject
 }
@@ -9249,6 +9633,91 @@ func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) (n *QHelpSearchEngine) 
 	n = new(QHelpSearchEngine)
 	n.SetPointer(ptr)
 	return
+}
+func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
+	tmpValue := NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func QHelpSearchEngine_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchEngine_QHelpSearchEngine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchEngine) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchEngine_QHelpSearchEngine_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpSearchEngine_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchEngine_QHelpSearchEngine_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchEngine) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchEngine_QHelpSearchEngine_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
 //export callbackQHelpSearchEngine_CancelIndexing
@@ -9333,36 +9802,6 @@ func (ptr *QHelpSearchEngine) CancelSearchingDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelSearchingDefault(ptr.Pointer())
 	}
-}
-
-func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
-	tmpValue := NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
-	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-	}
-	return tmpValue
-}
-
-func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
-	if ptr.Pointer() != nil {
-		tmpValue := NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
 }
 
 //export callbackQHelpSearchEngine_IndexingFinished
@@ -9615,9 +10054,47 @@ func (ptr *QHelpSearchEngine) SearchingStarted() {
 	}
 }
 
+//export callbackQHelpSearchEngine_DestroyQHelpSearchEngine
+func callbackQHelpSearchEngine_DestroyQHelpSearchEngine(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QHelpSearchEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).DestroyQHelpSearchEngineDefault()
+	}
+}
+
+func (ptr *QHelpSearchEngine) ConnectDestroyQHelpSearchEngine(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QHelpSearchEngine"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchEngine", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchEngine", f)
+		}
+	}
+}
+
+func (ptr *QHelpSearchEngine) DisconnectDestroyQHelpSearchEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QHelpSearchEngine")
+	}
+}
+
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngineDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_DestroyQHelpSearchEngineDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -9642,6 +10119,22 @@ func (ptr *QHelpSearchEngine) SearchResults(start int, end int) []*QHelpSearchRe
 		}(C.QHelpSearchEngine_SearchResults(ptr.Pointer(), C.int(int32(start)), C.int(int32(end))))
 	}
 	return make([]*QHelpSearchResult, 0)
+}
+
+//export callbackQHelpSearchEngine_MetaObject
+func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchEngineFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchEngine_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpSearchEngine) SearchResultCount() int {
@@ -9951,22 +10444,6 @@ func (ptr *QHelpSearchEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
-//export callbackQHelpSearchEngine_MetaObject
-func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpSearchEngineFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpSearchEngine_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 type QHelpSearchQuery struct {
 	ptr unsafe.Pointer
 }
@@ -10080,6 +10557,62 @@ func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidg
 	return tmpValue
 }
 
+func QHelpSearchQueryWidget_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchQueryWidget_QHelpSearchQueryWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchQueryWidget) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchQueryWidget_QHelpSearchQueryWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpSearchQueryWidget_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchQueryWidget_QHelpSearchQueryWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchQueryWidget) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchQueryWidget_QHelpSearchQueryWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QHelpSearchQueryWidget) CollapseExtendedSearch() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CollapseExtendedSearch(ptr.Pointer())
@@ -10131,6 +10664,48 @@ func (ptr *QHelpSearchQueryWidget) Search() {
 	}
 }
 
+//export callbackQHelpSearchQueryWidget_SetCompactMode
+func callbackQHelpSearchQueryWidget_SetCompactMode(ptr unsafe.Pointer, on C.char) {
+	if signal := qt.GetSignal(ptr, "setCompactMode"); signal != nil {
+		signal.(func(bool))(int8(on) != 0)
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetCompactModeDefault(int8(on) != 0)
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ConnectSetCompactMode(f func(on bool)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setCompactMode"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setCompactMode", func(on bool) {
+				signal.(func(bool))(on)
+				f(on)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setCompactMode", f)
+		}
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DisconnectSetCompactMode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setCompactMode")
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) SetCompactMode(on bool) {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetCompactMode(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(on))))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) SetCompactModeDefault(on bool) {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetCompactModeDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(on))))
+	}
+}
+
 func (ptr *QHelpSearchQueryWidget) SetSearchInput(searchInput string) {
 	if ptr.Pointer() != nil {
 		var searchInputC *C.char
@@ -10142,9 +10717,47 @@ func (ptr *QHelpSearchQueryWidget) SetSearchInput(searchInput string) {
 	}
 }
 
+//export callbackQHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget
+func callbackQHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QHelpSearchQueryWidget"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DestroyQHelpSearchQueryWidgetDefault()
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ConnectDestroyQHelpSearchQueryWidget(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QHelpSearchQueryWidget"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchQueryWidget", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchQueryWidget", f)
+		}
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DisconnectDestroyQHelpSearchQueryWidget() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QHelpSearchQueryWidget")
+	}
+}
+
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidgetDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidgetDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
@@ -10162,6 +10775,22 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQHelpSearchQueryWidget_MetaObject
+func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchQueryWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchQueryWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpSearchQueryWidget) __setQuery_queryList_atList(i int) *QHelpSearchQuery {
@@ -11243,6 +11872,21 @@ func (ptr *QHelpSearchQueryWidget) MetricDefault(m gui.QPaintDevice__PaintDevice
 	return 0
 }
 
+//export callbackQHelpSearchQueryWidget_InitPainter
+func callbackQHelpSearchQueryWidget_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_EventFilter
 func callbackQHelpSearchQueryWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -11365,22 +12009,6 @@ func (ptr *QHelpSearchQueryWidget) TimerEventDefault(event core.QTimerEvent_ITF)
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQHelpSearchQueryWidget_MetaObject
-func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpSearchQueryWidgetFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpSearchQueryWidget) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 type QHelpSearchResult struct {
@@ -11517,6 +12145,62 @@ func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) (n *QHelpSearchRe
 	n.SetPointer(ptr)
 	return
 }
+func QHelpSearchResultWidget_Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchResultWidget_QHelpSearchResultWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchResultWidget) Tr(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchResultWidget_QHelpSearchResultWidget_Tr(sC, cC, C.int(int32(n))))
+}
+
+func QHelpSearchResultWidget_TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchResultWidget_QHelpSearchResultWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
+func (ptr *QHelpSearchResultWidget) TrUtf8(s string, c string, n int) string {
+	var sC *C.char
+	if s != "" {
+		sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+	}
+	var cC *C.char
+	if c != "" {
+		cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+	}
+	return cGoUnpackString(C.QHelpSearchResultWidget_QHelpSearchResultWidget_TrUtf8(sC, cC, C.int(int32(n))))
+}
+
 func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
 	if ptr.Pointer() != nil {
 		tmpValue := core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
@@ -11565,12 +12249,66 @@ func (ptr *QHelpSearchResultWidget) RequestShowLink(link core.QUrl_ITF) {
 	}
 }
 
+//export callbackQHelpSearchResultWidget_DestroyQHelpSearchResultWidget
+func callbackQHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QHelpSearchResultWidget"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).DestroyQHelpSearchResultWidgetDefault()
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) ConnectDestroyQHelpSearchResultWidget(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QHelpSearchResultWidget"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchResultWidget", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QHelpSearchResultWidget", f)
+		}
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) DisconnectDestroyQHelpSearchResultWidget() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QHelpSearchResultWidget")
+	}
+}
+
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidgetDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidgetDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//export callbackQHelpSearchResultWidget_MetaObject
+func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQHelpSearchResultWidgetFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QHelpSearchResultWidget) MetaObjectDefault() *core.QMetaObject {
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QHelpSearchResultWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QHelpSearchResultWidget) __addActions_actions_atList(i int) *widgets.QAction {
@@ -12614,6 +13352,21 @@ func (ptr *QHelpSearchResultWidget) MetricDefault(m gui.QPaintDevice__PaintDevic
 	return 0
 }
 
+//export callbackQHelpSearchResultWidget_InitPainter
+func callbackQHelpSearchResultWidget_InitPainter(ptr unsafe.Pointer, painter unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "initPainter"); signal != nil {
+		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) InitPainterDefault(painter gui.QPainter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
+	}
+}
+
 //export callbackQHelpSearchResultWidget_EventFilter
 func callbackQHelpSearchResultWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
@@ -12736,20 +13489,4 @@ func (ptr *QHelpSearchResultWidget) TimerEventDefault(event core.QTimerEvent_ITF
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
-}
-
-//export callbackQHelpSearchResultWidget_MetaObject
-func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
-	}
-
-	return core.PointerFromQMetaObject(NewQHelpSearchResultWidgetFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QHelpSearchResultWidget) MetaObjectDefault() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QHelpSearchResultWidget_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
 }

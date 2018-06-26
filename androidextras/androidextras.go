@@ -112,6 +112,16 @@ const (
 	QAndroidBinder__OneWay QAndroidBinder__CallType = QAndroidBinder__CallType(1)
 )
 
+func NewQAndroidBinder() *QAndroidBinder {
+
+	return nil
+}
+
+func NewQAndroidBinder2(binder QAndroidJniObject_ITF) *QAndroidBinder {
+
+	return nil
+}
+
 func (ptr *QAndroidBinder) ConnectDestroyQAndroidBinder(f func()) {
 
 }
@@ -126,16 +136,6 @@ func (ptr *QAndroidBinder) DestroyQAndroidBinder() {
 
 func (ptr *QAndroidBinder) DestroyQAndroidBinderDefault() {
 
-}
-
-func NewQAndroidBinder() *QAndroidBinder {
-
-	return nil
-}
-
-func NewQAndroidBinder2(binder QAndroidJniObject_ITF) *QAndroidBinder {
-
-	return nil
 }
 
 func (ptr *QAndroidBinder) Handle() *QAndroidJniObject {
@@ -281,17 +281,17 @@ func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) (n *QAndroidJniEnv
 	n.SetPointer(ptr)
 	return
 }
+func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
+
+	return nil
+}
+
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
 
 	return nil
 }
 
 func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
-
-	return nil
-}
-
-func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
 
 	return nil
 }
@@ -628,17 +628,17 @@ func NewQAndroidJniObject3(className string, signature string, v ...interface{})
 	return nil
 }
 
+func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
 func NewQAndroidJniObject4(clazz unsafe.Pointer) *QAndroidJniObject {
 
 	return nil
 }
 
 func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interface{}) *QAndroidJniObject {
-
-	return nil
-}
-
-func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
 
 	return nil
 }
@@ -987,31 +987,31 @@ func (ptr *QAndroidJniObject) CallMethodVoidCaught(methodName string) error {
 	return nil
 }
 
-func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
+func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, sig string, v ...interface{}) int {
 
 	return 0
 }
 
-func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, signature string, v ...interface{}) (int, error) {
+func (ptr *QAndroidJniObject) CallMethodInt2Caught(methodName string, sig string, v ...interface{}) (int, error) {
 
 	return 0, nil
 }
 
-func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
+func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, sig string, v ...interface{}) bool {
 
 	return false
 }
 
-func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, signature string, v ...interface{}) (bool, error) {
+func (ptr *QAndroidJniObject) CallMethodBoolean2Caught(methodName string, sig string, v ...interface{}) (bool, error) {
 
 	return false, nil
 }
 
-func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
+func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, sig string, v ...interface{}) {
 
 }
 
-func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, signature string, v ...interface{}) error {
+func (ptr *QAndroidJniObject) CallMethodVoid2Caught(methodName string, sig string, v ...interface{}) error {
 
 	return nil
 }
