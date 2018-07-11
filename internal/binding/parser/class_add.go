@@ -140,6 +140,24 @@ func (c *Class) addGeneralFuncs() {
 				Signature:  "()",
 			})
 		}
+	case "QVideoFrame":
+		{
+			//QImage qt_imageFromVideoFrame(const QVideoFrame &frame)
+			c.Functions = append(c.Functions, &Function{
+				Name:      "qt_imageFromVideoFrame",
+				Fullname:  fmt.Sprintf("%v::qt_imageFromVideoFrame", c.Name),
+				Access:    "public",
+				Virtual:   "non",
+				Meta:      PLAIN,
+				NonMember: true,
+				Static:    true,
+				Output:    fmt.Sprintf("QImage"),
+				Parameters: []*Parameter{
+					{Name: "frame", Value: "const QVideoFrame &"},
+				},
+				Signature: "(const QVideoFrame &frame)",
+			})
+		}
 	}
 
 	//TODO: make general

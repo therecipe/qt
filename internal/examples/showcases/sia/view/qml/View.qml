@@ -1,5 +1,5 @@
 import QtQuick 2.7            //Rectangle
-import QtGraphicalEffects 1.0 //FastBlur
+//import QtGraphicalEffects 1.0 //FastBlur
 
 import Theme 1.0              //Theme
 
@@ -43,6 +43,7 @@ ViewTemplate {
     }
   }
 
+  /*
   FastBlur {
     anchors.fill: root
     source: root
@@ -51,6 +52,7 @@ ViewTemplate {
   }
 
   onBlur: root.visible = !b
+  */
 
   onWidthChanged: Theme.currentWidth = width
   onHeightChanged: Theme.currentHeight = height

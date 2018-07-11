@@ -55,7 +55,6 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
-#include <QList>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -76,7 +75,6 @@
 #include <QRadioData>
 #include <QResizeEvent>
 #include <QShowEvent>
-#include <QSignalSpy>
 #include <QSize>
 #include <QString>
 #include <QTabletEvent>
@@ -1190,8 +1188,6 @@ void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 		return new MyQDesignerFormEditorInterface(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDesignerFormEditorInterface(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDesignerFormEditorInterface(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

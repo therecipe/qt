@@ -343,8 +343,14 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QAndroidBinder::onTransact", f.Fullname == "QtAndroid::checkPermission",
 
-		UseJs() && (strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" || f.Name == "metric" || f.Name == "moveCursor" ||
-			f.Name == "inputMethodEvent" || f.Name == "updateInputMethod" || f.Name == "inputMethodQuery"),
+		UseJs() &&
+			(strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" || f.Name == "metric" || f.Name == "moveCursor" ||
+				f.Name == "inputMethodEvent" || f.Name == "updateInputMethod" || f.Name == "inputMethodQuery" ||
+				f.Fullname == "QHeaderView::isFirstSectionMovable" || f.Fullname == "QXmlSimpleReader::property" || f.Fullname == "QXmlReader::property" ||
+				f.Fullname == "QWebSocket::ignoreSslErrors" || f.Fullname == "QWebSocket::preSharedKeyAuthenticationRequired" ||
+				f.Fullname == "QWebSocket::sslConfiguration" || f.Fullname == "QWebSocket::setSslConfiguration" ||
+				f.Fullname == "QWebSocketServer::peerVerifyError" || (strings.HasPrefix(f.ClassName(), "QWeb") && strings.Contains(f.Name, "slErrors")) ||
+				f.Fullname == "QWebSocketServer::preSharedKeyAuthenticationRequired" || f.Fullname == "QWebSocketServer::setSslConfiguration" || f.Fullname == "QWebSocketServer::sslConfiguration"),
 
 		f.Name == "qt_metacast", f.Fullname == "QVariant::fromStdVariant",
 		f.Name == "qt_check_for_QGADGET_macro",

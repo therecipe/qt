@@ -119,16 +119,21 @@ func goFunctionBody(function *parser.Function) string {
 		}
 		fmt.Fprint(bb, func() string {
 			if function.IsMocFunction && function.SignalMode == "" {
-				for _, p := range function.Parameters {
+				for i, p := range function.Parameters {
 					if p.PureGoType != "" {
-						fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
-							func() string {
-								if !strings.HasPrefix(p.PureGoType, "*") {
-									return "&"
-								}
-								return ""
-							}(),
-							parser.CleanName(p.Name, p.Value))
+						if UseJs() {
+							fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), %[1]v)\n", parser.CleanName(p.Name, p.Value))
+						} else {
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
+								func() string {
+									if !strings.HasPrefix(p.PureGoType, "*") {
+										return "&"
+									}
+									return ""
+								}(),
+								parser.CleanName(p.Name, p.Value))
+						}
 					}
 				}
 

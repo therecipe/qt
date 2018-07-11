@@ -36,7 +36,6 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
-#include <QList>
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -63,7 +62,6 @@
 #include <QRect>
 #include <QResizeEvent>
 #include <QShowEvent>
-#include <QSignalSpy>
 #include <QSize>
 #include <QSizeF>
 #include <QString>
@@ -161,8 +159,6 @@ void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
 		return new MyQQuickWebEngineProfile(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQuickWebEngineProfile(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineProfile(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -679,8 +675,6 @@ void* QQuickWebEngineScript_NewQQuickWebEngineScript(void* parent)
 		return new MyQQuickWebEngineScript(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQuickWebEngineScript(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickWebEngineScript(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1456,8 +1450,6 @@ void* QWebEnginePage_NewQWebEnginePage(void* parent)
 		return new MyQWebEnginePage(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebEnginePage(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1497,8 +1489,6 @@ void* QWebEnginePage_NewQWebEnginePage2(void* profile, void* parent)
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEnginePage(static_cast<QWebEngineProfile*>(profile), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2287,8 +2277,6 @@ void* QWebEngineProfile_NewQWebEngineProfile(void* parent)
 		return new MyQWebEngineProfile(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineProfile(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebEngineProfile(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineProfile(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2328,8 +2316,6 @@ void* QWebEngineProfile_NewQWebEngineProfile2(struct QtWebEngine_PackedString na
 		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineProfile(QString::fromUtf8(name.data, name.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2973,8 +2959,6 @@ void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QQuickItem*>(p));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QRadioData*>(p));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(p))) {
-		return new MyQWebEngineUrlRequestInterceptor(static_cast<QSignalSpy*>(p));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(p))) {
 		return new MyQWebEngineUrlRequestInterceptor(static_cast<QWidget*>(p));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(p))) {
@@ -3362,8 +3346,6 @@ void* QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(void* parent)
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQWebEngineUrlSchemeHandler(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQWebEngineUrlSchemeHandler(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

@@ -126,6 +126,14 @@ func (f *Function) fixGeneral_Version() {
 				f.Signature = strings.Replace(f.Signature, "int", "jobject", -1)
 			}
 		}
+	case "QImage::QImage":
+		{
+			for i := len(f.Parameters) - 1; i >= 0; i-- {
+				if strings.HasPrefix(f.Parameters[i].Name, "cleanup") {
+					f.Parameters = append(f.Parameters[:i], f.Parameters[i+1:]...)
+				}
+			}
+		}
 	}
 }
 

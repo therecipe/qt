@@ -726,6 +726,6 @@ func js_c_main_wrapper() string {
 	bb.WriteString("emscripten::val script = document.call<emscripten::val>(\"createElement\", emscripten::val(\"script\"));\n")
 	bb.WriteString("script.set(\"src\", emscripten::val(\"go.js\"));\n")
 	bb.WriteString("document[\"body\"].call<void>(\"appendChild\", script);\n")
-	bb.WriteString("\n}")
+	bb.WriteString("}")
 	return bb.String()
 }

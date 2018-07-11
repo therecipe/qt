@@ -186,6 +186,11 @@ func (c *Class) fixBases() {
 		return
 	}
 
+	if c.Bases == "QList" {
+		c.Bases = ""
+		return
+	}
+
 	switch c.Name {
 	case "QChart", "QLegend":
 		c.Bases = "QGraphicsWidget"

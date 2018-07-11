@@ -11,6 +11,11 @@ import (
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
 )
 
+func init() {
+	if maincontroller.Controller != nil {
+	}
+}
+
 var Controller *dialogController
 
 type dialogController struct {
@@ -34,9 +39,6 @@ func (c *dialogController) init() {
 }
 
 func (c *dialogController) uploadFiles(files []string) {
-	for _, f := range files {
-		go maincontroller.Client.RenterUploadPost("/renter/upload/"+filepath.Base(f), "source="+f, 1, 1) //TODO: dataPieces, parityPieces ?
-	}
 }
 
 func (c *dialogController) uploadFolder(source string) {
@@ -59,10 +61,4 @@ func (c *dialogController) uploadFolder(source string) {
 }
 
 func (c *dialogController) download(name, path string) {
-	go func() {
-		err := maincontroller.Client.RenterDownloadGet(name, path, 0, 1, true) //TODO: offset, lenght, async ?
-		if err != nil {
-			println("Could not download file:", err.Error())
-		}
-	}()
 }

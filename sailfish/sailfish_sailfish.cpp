@@ -7,7 +7,6 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
-#include <QList>
 #include <QString>
 #include <QUrl>
 #include <sailfishapp.h>

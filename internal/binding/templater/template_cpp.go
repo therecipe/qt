@@ -321,11 +321,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 					if strings.HasPrefix(class.Name, "QMac") && !strings.HasPrefix(parser.State.ClassMap[class.Name].Module, "QtMac") {
 						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){\n\t#ifdef Q_OS_OSX\n\t\tqRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();\n\t#else\n\t\treturn 0;\n\t#endif\n}\n\n", class.Name)
 					} else {
-						if UseJs() && (class.IsSubClassOf("QCoreApplication") || class.Name == "QCoreApplication") {
-							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); qRegisterMetaType<QVector<int>>(\"QVector<int>\"); qRegisterMetaType<Qt::ApplicationState>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
-						} else {
-							fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
-						}
+						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
 					}
 				} else {
 					var typeMap = make(map[string]string)
@@ -407,7 +403,6 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 		rand.Seed(time.Now().UTC().UnixNano())
 		fmt.Fprintf(bb, "EMSCRIPTEN_BINDINGS(r%v) {\n", rand.Intn(10000000))
-		fmt.Fprintf(bb, "\temscripten::value_object<%[1]v_PackedString>(\"%[1]v_PackedString\").field(\"dataP\", &%[1]v_PackedString::dataP);\n\n", strings.Title(module))
 
 		sort.Stable(sort.StringSlice(exportedFunctions))
 
@@ -503,7 +498,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 #define private public
 
 #include "%v.h"
-%v
+%v%v
 
 `,
 		buildTags(module, false, mode, tags),
@@ -537,7 +532,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 		func() string {
 			if UseJs() {
-				return "\n#include <emscripten/bind.h>\n#include <emscripten/val.h>"
+				return "\n#include <string>\n#include <emscripten.h>\n#include <emscripten/bind.h>\n#include <emscripten/val.h>"
 			}
 			switch module {
 			case "QtAndroidExtras", "QtSailfish":
@@ -548,6 +543,13 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 				return "#include \"_cgo_export.h\""
 			}
+		}(),
+
+		func() string {
+			if module == "QtMultimedia" {
+				return "\n#include \"private/qvideoframe_p.h\""
+			}
+			return ""
 		}(),
 	)
 
@@ -589,7 +591,9 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				"QRemoteObjectStringLiterals",
 				"ui",
 				"QStringList",
-				"QtDwmApiDll":
+				"QtDwmApiDll",
+				"content",
+				"QStringView":
 				{
 					continue
 				}

@@ -5,11 +5,10 @@ import (
 
 	"github.com/therecipe/qt/core"
 
-	"github.com/NebulousLabs/Sia/node/api/client"
 	"github.com/NebulousLabs/Sia/types"
 )
 
-var Client = client.New("127.0.0.1:9980")
+var DEMO bool
 
 var Controller *controller
 
@@ -29,7 +28,8 @@ type controller struct {
 func (c *controller) init() {
 	Controller = c
 
-	c.SetLocked(false) //TODO:
+	c.SetSynced(false)
+	c.SetLocked(!DEMO)
 
 	go c.loop()
 }
@@ -37,21 +37,5 @@ func (c *controller) init() {
 func (c *controller) loop() {
 	for range time.NewTicker(1 * time.Second).C {
 
-		cg, errC := Client.ConsensusGet()
-		if errC != nil {
-			println(errC.Error())
-		} else {
-			c.SetSynced(cg.Synced)
-			c.SetHeight(cg.Height)
-		}
-
-		wg, errW := Client.WalletGet()
-		if errW != nil {
-			println(errW.Error())
-		} else {
-			c.SetLocked(!wg.Unlocked)
-			c.SetEncrypted(wg.Encrypted)
-			c.SetWallet(wg)
-		}
 	}
 }

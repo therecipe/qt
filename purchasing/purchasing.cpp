@@ -23,7 +23,6 @@
 #include <QInAppStore>
 #include <QInAppTransaction>
 #include <QLayout>
-#include <QList>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -35,7 +34,6 @@
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QSignalSpy>
 #include <QString>
 #include <QTime>
 #include <QTimer>
@@ -284,8 +282,6 @@ void* QInAppStore_NewQInAppStore(void* parent)
 		return new MyQInAppStore(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQInAppStore(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQInAppStore(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQInAppStore(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

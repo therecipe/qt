@@ -42,10 +42,6 @@ type Class struct {
 }
 
 func (c *Class) register(m *Module) {
-	if _, ok := State.ClassMap[c.Name]; ok {
-		return
-	}
-
 	c.DocModule = c.Module
 	c.Module = m.Project
 	c.Pkg = m.Pkg

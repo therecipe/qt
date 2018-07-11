@@ -4,17 +4,20 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
-	"net/http"
 	"strings"
 
 	"github.com/therecipe/qt/core"
 
-	"github.com/NebulousLabs/Sia/node/api"
 	"github.com/NebulousLabs/Sia/types"
 
 	maincontroller "github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/view/controller"
 )
+
+func init() {
+	if maincontroller.Controller != nil {
+	}
+}
 
 var Controller *dialogController
 
@@ -39,58 +42,19 @@ func (c *dialogController) init() {
 }
 
 func (c *dialogController) receive() string {
-	wag, err := maincontroller.Client.WalletAddressGet()
-	if err != nil {
-		println(err.Error())
-		return fmt.Sprintf("Could not get address: %v", err.Error())
-	}
-	return wag.Address.String()
+	return ""
 }
 
 func (c *dialogController) send(amount, dest string) *core.QVariant {
-	if !strings.HasSuffix(amount, "SC") {
-		amount += "SC"
-	}
-
-	hastings, errC := parseCurrency(amount)
-	if errC != nil {
-		println(errC.Error())
-		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not parse amount: %v", errC.Error()))})
-	}
-
-	b, _ := new(big.Int).SetString(hastings, 10)
-	var destH types.UnlockHash
-	destH.LoadString(dest)
-	_, errW := maincontroller.Client.WalletSiacoinsPost(types.NewCurrency(b), destH)
-	if errW != nil {
-		println(errW.Error())
-		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not send siacoins: %v", errW.Error()))})
-	}
-
-	return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(true), core.NewQVariant14(fmt.Sprintf("Sent %s hastings to %s\n", hastings, dest))})
+	return core.NewQVariant()
 }
 
 func (c *dialogController) unlock(password string) *core.QVariant {
-	err := maincontroller.Client.WalletUnlockPost(password)
-	if err != nil {
-		println(err.Error())
-		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not unlock your wallet: %v", err.Error()))})
-	}
-
-	maincontroller.Controller.SetLocked(false)
-	return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(true)})
+	return core.NewQVariant()
 }
 
 func (c *dialogController) recover(seed string) *core.QVariant {
-	var swp api.WalletSweepPOST
-	req, _ := maincontroller.Client.NewRequest("POST", "/wallet/sweep/seed", strings.NewReader(fmt.Sprintf("seed=%s&dictionary=%s", seed, "english"))) //TODO:
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		println(err.Error())
-		return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(false), core.NewQVariant14(fmt.Sprintf("Could not sweep seed: %v", err.Error()))})
-	}
-	res.Body.Close()
-	return core.NewQVariant24([]*core.QVariant{core.NewQVariant11(true), core.NewQVariant14(fmt.Sprintf("Swept %v and %v SF from seed.", currencyUnits(swp.Coins), swp.Funds))})
+	return core.NewQVariant()
 }
 
 // currencyUnits converts a types.Currency to a string with human-readable

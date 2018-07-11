@@ -40,7 +40,6 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
-#include <QList>
 #include <QMatrix>
 #include <QMatrix4x4>
 #include <QMediaPlaylist>
@@ -111,7 +110,6 @@
 #include <QSGVertexColorMaterial>
 #include <QScreen>
 #include <QShowEvent>
-#include <QSignalSpy>
 #include <QSize>
 #include <QSizeF>
 #include <QString>
@@ -2518,8 +2516,6 @@ void* QQuickRenderControl_NewQQuickRenderControl(void* parent)
 		return new MyQQuickRenderControl(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickRenderControl(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQQuickRenderControl(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQQuickRenderControl(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -5742,8 +5738,6 @@ void* QSGEngine_NewQSGEngine(void* parent)
 		return new MyQSGEngine(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSGEngine(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSGEngine(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSGEngine(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

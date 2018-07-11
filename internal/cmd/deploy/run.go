@@ -74,7 +74,7 @@ func run(target, name, depPath, device string) {
 
 	case "js": //TODO: REVIEW
 		if runtime.GOOS == "darwin" {
-			exec.Command("/Applications/FirefoxNightly.app/Contents/MacOS/firefox", filepath.Join(depPath, "index.html")).Start()
+			exec.Command("/Applications/Firefox Nightly.app/Contents/MacOS/firefox", filepath.Join(depPath, "index.html")).Start()
 		}
 	}
 }

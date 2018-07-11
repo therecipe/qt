@@ -553,8 +553,6 @@ func bundle(mode, target, path, name, depPath string) {
 	case "js":
 
 		//copy default assets
-		buildPath := filepath.Join(depPath, "build")
-		utils.MkdirAll(buildPath)
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "html5_shell.html"), filepath.Join(depPath, "index.html"))
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtloader.js"), depPath)
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtlogo.svg"), depPath)
@@ -565,7 +563,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
-		copy(assets+"/.", buildPath)
+		copy(assets+"/.", depPath)
 
 		//add c_main_wrappers
 		if !utils.ExistsFile(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp")) {
@@ -605,6 +603,7 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 		}
 
+		//TODO: pack js into wasm
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
 		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, "", depPath)...)
 
@@ -612,6 +611,12 @@ func bundle(mode, target, path, name, depPath string) {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, target, runtime.GOOS))
+
+		utils.RemoveAll(filepath.Join(depPath, "c_main_wrapper_js.cpp"))
+		utils.RemoveAll(filepath.Join(depPath, target+"."+target+"_plugin_import.cpp"))
+		utils.RemoveAll(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp"))
+		//TODO: remove go.js
+		utils.RemoveAll(filepath.Join(depPath, "go.js.map"))
 	}
 
 	if utils.QT_DOCKER() {

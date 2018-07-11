@@ -16,7 +16,6 @@
 #include <QAndroidService>
 #include <QAndroidServiceConnection>
 #include <QByteArray>
-#include <QList>
 #include <QString>
 #include <QVariant>
 #include <QtAndroid>

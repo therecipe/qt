@@ -3,7 +3,6 @@ package controller
 import (
 	"github.com/therecipe/qt/core"
 
-	maincontroller "github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/files/dialog/controller"
 )
 
@@ -23,8 +22,4 @@ func (c *actionButtonController) init() {
 }
 
 func (c *actionButtonController) deleteRequest(name string) {
-	err := maincontroller.Client.RenterDeletePost(name)
-	if err != nil {
-		println("Couldn't delete file:", err.Error())
-	}
 }

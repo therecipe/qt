@@ -335,7 +335,7 @@ func cppTypeInput(f *parser.Function, value string) string {
 	case "char", "qint8", "uchar", "quint8", "GLubyte":
 		{
 			if parser.UseJs() {
-				return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
+				return "emscripten::val"
 			}
 			return "char*"
 		}
@@ -358,6 +358,9 @@ func cppType(f *parser.Function, value string) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 		{
+			if parser.UseJs() {
+				return "emscripten::val"
+			}
 			return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 

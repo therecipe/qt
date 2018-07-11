@@ -23,6 +23,7 @@ type WalletModel struct {
 
 func (m *WalletModel) init() {
 	m.ConnectRowCount(m.rowCount)
+	m.ConnectColumnCount(func(*core.QModelIndex) int { return 6 })
 	m.ConnectData(m.data)
 	m.ConnectRoleNames(m.roleNames)
 }

@@ -150,6 +150,9 @@ func createProject(module, path, target string, mode int, libs []string) {
 		if v == "Speech" {
 			out[i] = "TextToSpeech"
 		}
+		if v == "Multimedia" {
+			out = append(out, "multimedia-private")
+		}
 		out[i] = strings.ToLower(out[i])
 	}
 

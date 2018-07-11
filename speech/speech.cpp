@@ -18,7 +18,6 @@
 #include <QGraphicsObject>
 #include <QGraphicsWidget>
 #include <QLayout>
-#include <QList>
 #include <QLocale>
 #include <QMap>
 #include <QMediaPlaylist>
@@ -32,7 +31,6 @@
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QSignalSpy>
 #include <QString>
 #include <QTextToSpeech>
 #include <QTextToSpeechEngine>
@@ -127,8 +125,6 @@ void* QTextToSpeech_NewQTextToSpeech(void* parent)
 		return new MyQTextToSpeech(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -168,8 +164,6 @@ void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void*
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeech(QString::fromUtf8(engine.data, engine.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -622,8 +616,6 @@ void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
 		return new MyQTextToSpeechEngine(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextToSpeechEngine(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextToSpeechEngine(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

@@ -43,7 +43,6 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
-#include <QList>
 #include <QMatrix>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -68,7 +67,6 @@
 #include <QRectF>
 #include <QResizeEvent>
 #include <QShowEvent>
-#include <QSignalSpy>
 #include <QSize>
 #include <QString>
 #include <QStyle>
@@ -766,8 +764,6 @@ void* QSvgRenderer_NewQSvgRenderer(void* parent)
 		return new MyQSvgRenderer(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -807,8 +803,6 @@ void* QSvgRenderer_NewQSvgRenderer4(void* contents, void* parent)
 		return new MyQSvgRenderer(static_cast<QXmlStreamReader*>(contents), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(static_cast<QXmlStreamReader*>(contents), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(static_cast<QXmlStreamReader*>(contents), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(static_cast<QXmlStreamReader*>(contents), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -848,8 +842,6 @@ void* QSvgRenderer_NewQSvgRenderer3(void* contents, void* parent)
 		return new MyQSvgRenderer(*static_cast<QByteArray*>(contents), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(*static_cast<QByteArray*>(contents), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(*static_cast<QByteArray*>(contents), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(*static_cast<QByteArray*>(contents), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -889,8 +881,6 @@ void* QSvgRenderer_NewQSvgRenderer2(struct QtSvg_PackedString filename, void* pa
 		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSvgRenderer(QString::fromUtf8(filename.data, filename.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

@@ -233,7 +233,11 @@ func (ptr *%[1]v) Destroy%[1]v() {
 							}
 
 							if class.Name != bcn {
-								fmt.Fprintf(bb, "qt.DisconnectSignal(ptr, \"%v\")\n", f.Name)
+								if parser.UseJs() {
+									fmt.Fprintf(bb, "qt.DisconnectSignal(unsafe.Pointer(ptr), \"%v\")\n", f.Name)
+								} else {
+									fmt.Fprintf(bb, "qt.DisconnectSignal(ptr, \"%v\")\n", f.Name)
+								}
 							}
 						}
 					}
@@ -553,7 +557,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -565,7 +569,7 @@ import "C"
 			strings.Contains(inputString, fmt.Sprintf(")%v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("std_%v.", mlow)) {
 			switch mlow {
-			case "strings", "unsafe", "log", "runtime", "fmt", "errors":
+			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
 
 			case "qt":

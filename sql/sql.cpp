@@ -23,7 +23,6 @@
 #include <QHash>
 #include <QHelpEvent>
 #include <QLayout>
-#include <QList>
 #include <QMap>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -42,7 +41,6 @@
 #include <QQuickItem>
 #include <QRadioData>
 #include <QRect>
-#include <QSignalSpy>
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -384,8 +382,6 @@ void* QSqlDriver_NewQSqlDriver(void* parent)
 		return new MyQSqlDriver(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlDriver(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriver(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -882,8 +878,6 @@ void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 		return new MyQSqlDriverPlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlDriverPlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlDriverPlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1691,8 +1685,6 @@ void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 		return new MyQSqlQueryModel(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlQueryModel(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlQueryModel(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2904,8 +2896,6 @@ void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 		return new MyQSqlRelationalDelegate(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlRelationalDelegate(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalDelegate(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -3245,8 +3235,6 @@ void* QSqlRelationalTableModel_NewQSqlRelationalTableModel(void* parent, void* d
 		return new MyQSqlRelationalTableModel(static_cast<QQuickItem*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QRadioData*>(parent), *static_cast<QSqlDatabase*>(db));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlRelationalTableModel(static_cast<QSignalSpy*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlRelationalTableModel(static_cast<QWidget*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -3811,8 +3799,6 @@ void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db)
 		return new MyQSqlTableModel(static_cast<QQuickItem*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QRadioData*>(parent), *static_cast<QSqlDatabase*>(db));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSqlTableModel(static_cast<QSignalSpy*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSqlTableModel(static_cast<QWidget*>(parent), *static_cast<QSqlDatabase*>(db));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

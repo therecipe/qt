@@ -43784,6 +43784,18 @@ func (ptr *QVideoFrame) StartTime() int64 {
 	return 0
 }
 
+func QVideoFrame_Qt_imageFromVideoFrame(frame QVideoFrame_ITF) *gui.QImage {
+	tmpValue := gui.NewQImageFromPointer(C.QVideoFrame_QVideoFrame_Qt_imageFromVideoFrame(PointerFromQVideoFrame(frame)))
+	runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
+	return tmpValue
+}
+
+func (ptr *QVideoFrame) Qt_imageFromVideoFrame(frame QVideoFrame_ITF) *gui.QImage {
+	tmpValue := gui.NewQImageFromPointer(C.QVideoFrame_QVideoFrame_Qt_imageFromVideoFrame(PointerFromQVideoFrame(frame)))
+	runtime.SetFinalizer(tmpValue, (*gui.QImage).DestroyQImage)
+	return tmpValue
+}
+
 func (ptr *QVideoFrame) __availableMetaData_atList(v string, i int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		var vC *C.char

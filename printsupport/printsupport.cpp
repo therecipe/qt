@@ -25,7 +25,6 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
-#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>

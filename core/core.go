@@ -8942,11 +8942,10 @@ func (ptr *QByteArray) __split_newList() unsafe.Pointer {
 }
 
 type QByteArrayList struct {
-	QList
+	ptr unsafe.Pointer
 }
 
 type QByteArrayList_ITF interface {
-	QList_ITF
 	QByteArrayList_PTR() *QByteArrayList
 }
 
@@ -8956,14 +8955,14 @@ func (ptr *QByteArrayList) QByteArrayList_PTR() *QByteArrayList {
 
 func (ptr *QByteArrayList) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QByteArrayList) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 
@@ -20332,11 +20331,10 @@ func (ptr *QIdentityProxyModel) RowCountDefault(parent QModelIndex_ITF) int {
 }
 
 type QItemSelection struct {
-	QList
+	ptr unsafe.Pointer
 }
 
 type QItemSelection_ITF interface {
-	QList_ITF
 	QItemSelection_PTR() *QItemSelection
 }
 
@@ -20346,14 +20344,14 @@ func (ptr *QItemSelection) QItemSelection_PTR() *QItemSelection {
 
 func (ptr *QItemSelection) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QItemSelection) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 
@@ -24295,44 +24293,6 @@ func (ptr *QLinkedListIterator) DestroyQLinkedListIterator() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-type QList struct {
-	ptr unsafe.Pointer
-}
-
-type QList_ITF interface {
-	QList_PTR() *QList
-}
-
-func (ptr *QList) QList_PTR() *QList {
-	return ptr
-}
-
-func (ptr *QList) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QList) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQList(ptr QList_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQListFromPointer(ptr unsafe.Pointer) (n *QList) {
-	n = new(QList)
-	n.SetPointer(ptr)
-	return
 }
 
 type QListIterator struct {
@@ -33249,11 +33209,10 @@ func (ptr *QPropertyAnimation) TargetObject() *QObject {
 }
 
 type QQueue struct {
-	QList
+	ptr unsafe.Pointer
 }
 
 type QQueue_ITF interface {
-	QList_ITF
 	QQueue_PTR() *QQueue
 }
 
@@ -33263,14 +33222,14 @@ func (ptr *QQueue) QQueue_PTR() *QQueue {
 
 func (ptr *QQueue) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QQueue) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 
@@ -41600,11 +41559,10 @@ const (
 )
 
 type QStringList struct {
-	QList
+	ptr unsafe.Pointer
 }
 
 type QStringList_ITF interface {
-	QList_ITF
 	QStringList_PTR() *QStringList
 }
 
@@ -41614,14 +41572,14 @@ func (ptr *QStringList) QStringList_PTR() *QStringList {
 
 func (ptr *QStringList) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QStringList) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 

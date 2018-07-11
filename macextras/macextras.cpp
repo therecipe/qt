@@ -19,7 +19,6 @@
 #include <QGraphicsWidget>
 #include <QIcon>
 #include <QLayout>
-#include <QList>
 #include <QMacPasteboardMime>
 #include <QMacToolBar>
 #include <QMacToolBarItem>
@@ -35,7 +34,6 @@
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QSignalSpy>
 #include <QString>
 #include <QTime>
 #include <QTimer>
@@ -209,8 +207,6 @@ void* QMacToolBar_NewQMacToolBar(void* parent)
 		return new MyQMacToolBar(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBar(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBar(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -250,8 +246,6 @@ void* QMacToolBar_NewQMacToolBar2(struct QtMacExtras_PackedString identifier, vo
 		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBar(QString::fromUtf8(identifier.data, identifier.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -559,8 +553,6 @@ void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 		return new MyQMacToolBarItem(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBarItem(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMacToolBarItem(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMacToolBarItem(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

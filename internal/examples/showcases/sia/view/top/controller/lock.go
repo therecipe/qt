@@ -1,13 +1,17 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/therecipe/qt/core"
 
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 	dcontroller "github.com/therecipe/qt/internal/examples/showcases/sia/wallet/dialog/controller"
 )
+
+func init() {
+	if false {
+		controller.Controller = nil
+	}
+}
 
 type LockController struct {
 	core.QObject
@@ -21,13 +25,5 @@ func (c *LockController) change() {
 	if c.IsLocked() {
 		dcontroller.Controller.Show("unlock")
 	} else {
-		req, _ := controller.Client.NewRequest("POST", "/wallet/lock", nil) //TODO:
-		res, err := http.DefaultClient.Do(req)
-		if err != nil {
-			println(err.Error())
-		} else {
-			c.SetLocked(true)
-			res.Body.Close()
-		}
 	}
 }

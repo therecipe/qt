@@ -15,12 +15,20 @@ import (
 type ProgressBarController struct {
 	core.QObject
 
+	_ func() `constructor:"init"`
+
 	_ string  `property:"text"`
 	_ float64 `property:"value"`
 
 	_ func() `signal:"clicked,auto"`
 
 	_ func(types.BlockHeight) `signal:"heightChanged,<-(controller.Controller)"`
+}
+
+func (c *ProgressBarController) init() {
+	if controller.DEMO {
+		c.heightChanged(types.BlockHeight(0))
+	}
 }
 
 func (c *ProgressBarController) clicked() {
@@ -31,6 +39,9 @@ func (c *ProgressBarController) heightChanged(height types.BlockHeight) {
 	if controller.Controller.IsSynced() {
 		c.SetText(fmt.Sprintf("BH: %v", controller.Controller.Height()))
 		c.SetValue(100)
+	} else if controller.DEMO {
+		c.SetText("BH: DEMO")
+		c.SetValue(80)
 	} else {
 		estimatedHeight := estimatedHeightAt(time.Now())
 		estimatedProgress := float64(height) / float64(estimatedHeight) * 100

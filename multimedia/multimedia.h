@@ -2752,6 +2752,7 @@ int QVideoFrame_PlaneCount(void* ptr);
 int QVideoFrame_Width(void* ptr);
 long long QVideoFrame_EndTime(void* ptr);
 long long QVideoFrame_StartTime(void* ptr);
+void* QVideoFrame_QVideoFrame_Qt_imageFromVideoFrame(void* frame);
 void* QVideoFrame___availableMetaData_atList(void* ptr, struct QtMultimedia_PackedString v, int i);
 void QVideoFrame___availableMetaData_setList(void* ptr, struct QtMultimedia_PackedString key, void* i);
 void* QVideoFrame___availableMetaData_newList(void* ptr);

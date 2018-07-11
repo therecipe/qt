@@ -36,7 +36,6 @@
 #include <QGraphicsWidget>
 #include <QLatin1String>
 #include <QLayout>
-#include <QList>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
 #include <QMetaMethod>
@@ -48,7 +47,6 @@
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
-#include <QSignalSpy>
 #include <QString>
 #include <QTime>
 #include <QTimer>
@@ -109,8 +107,6 @@ void* QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(void* obj)
 		return new MyQDBusAbstractAdaptor(static_cast<QQuickItem*>(obj));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(obj))) {
 		return new MyQDBusAbstractAdaptor(static_cast<QRadioData*>(obj));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(obj))) {
-		return new MyQDBusAbstractAdaptor(static_cast<QSignalSpy*>(obj));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(obj))) {
 		return new MyQDBusAbstractAdaptor(static_cast<QWidget*>(obj));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(obj))) {
@@ -1239,8 +1235,6 @@ void* QDBusInterface_NewQDBusInterface(struct QtDBus_PackedString service, struc
 		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusInterface(QString::fromUtf8(service.data, service.len), QString::fromUtf8(path.data, path.len), QString::fromUtf8(interfa.data, interfa.len), *static_cast<QDBusConnection*>(connection), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1863,8 +1857,6 @@ void* QDBusServer_NewQDBusServer2(void* parent)
 		return new MyQDBusServer(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServer(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServer(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -1904,8 +1896,6 @@ void* QDBusServer_NewQDBusServer(struct QtDBus_PackedString address, void* paren
 		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServer(QString::fromUtf8(address.data, address.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2177,8 +2167,6 @@ void* QDBusServiceWatcher_NewQDBusServiceWatcher(void* parent)
 		return new MyQDBusServiceWatcher(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServiceWatcher(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServiceWatcher(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2218,8 +2206,6 @@ void* QDBusServiceWatcher_NewQDBusServiceWatcher2(struct QtDBus_PackedString ser
 		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusServiceWatcher(QString::fromUtf8(service.data, service.len), *static_cast<QDBusConnection*>(connection), static_cast<QDBusServiceWatcher::WatchModeFlag>(watchMode), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2649,8 +2635,6 @@ void* QDBusVirtualObject_NewQDBusVirtualObject(void* parent)
 		return new MyQDBusVirtualObject(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusVirtualObject(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDBusVirtualObject(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDBusVirtualObject(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

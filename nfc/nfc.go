@@ -157,11 +157,10 @@ func (ptr *QNdefFilter) RecordCount() int {
 }
 
 type QNdefMessage struct {
-	core.QList
+	ptr unsafe.Pointer
 }
 
 type QNdefMessage_ITF interface {
-	core.QList_ITF
 	QNdefMessage_PTR() *QNdefMessage
 }
 
@@ -171,14 +170,14 @@ func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
 
 func (ptr *QNdefMessage) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QNdefMessage) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 
@@ -271,216 +270,6 @@ func (ptr *QNdefMessage) __QNdefMessage_records_setList4(i QNdefRecord_ITF) {
 
 func (ptr *QNdefMessage) __QNdefMessage_records_newList4() unsafe.Pointer {
 	return C.QNdefMessage___QNdefMessage_records_newList4(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __QList_other_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___QList_other_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __QList_other_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___QList_other_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __QList_other_newList3() unsafe.Pointer {
-	return C.QNdefMessage___QList_other_newList3(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __QList_other_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___QList_other_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __QList_other_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___QList_other_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __QList_other_newList2() unsafe.Pointer {
-	return C.QNdefMessage___QList_other_newList2(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __fromSet_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___fromSet_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __fromSet_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___fromSet_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __fromSet_newList() unsafe.Pointer {
-	return C.QNdefMessage___fromSet_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __fromStdList_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___fromStdList_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __fromStdList_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___fromStdList_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __fromStdList_newList() unsafe.Pointer {
-	return C.QNdefMessage___fromStdList_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __fromVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___fromVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __fromVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___fromVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __fromVector_newList() unsafe.Pointer {
-	return C.QNdefMessage___fromVector_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __fromVector_vector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___fromVector_vector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __fromVector_vector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___fromVector_vector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __fromVector_vector_newList() unsafe.Pointer {
-	return C.QNdefMessage___fromVector_vector_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __append_value_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___append_value_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __append_value_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___append_value_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __append_value_newList2() unsafe.Pointer {
-	return C.QNdefMessage___append_value_newList2(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __swap_other_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___swap_other_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __swap_other_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___swap_other_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __swap_other_newList() unsafe.Pointer {
-	return C.QNdefMessage___swap_other_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __mid_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___mid_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __mid_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___mid_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __mid_newList() unsafe.Pointer {
-	return C.QNdefMessage___mid_newList(ptr.Pointer())
-}
-
-func (ptr *QNdefMessage) __toVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QNdefMessage___toVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QNdefMessage) __toVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QNdefMessage___toVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QNdefMessage) __toVector_newList() unsafe.Pointer {
-	return C.QNdefMessage___toVector_newList(ptr.Pointer())
 }
 
 type QNdefNfcSmartPosterRecord struct {

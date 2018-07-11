@@ -30,6 +30,9 @@ ProgressBarTemplate {
     } }
 
     Label {
+
+      z: 1
+      
       anchors.centerIn: parent
 
       font.pointSize: 12

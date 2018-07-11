@@ -57,19 +57,13 @@ func GoInputParametersForJS(function *parser.Function) string {
 	input := make([]string, 0)
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR) {
-		input = append(input, "(uintptr)(ptr.Pointer())")
+		input = append(input, "uintptr(ptr.Pointer())")
 	}
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
 			if parameter.PureGoType != "" {
-				input = append(input, GoInputJS(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
-					func() string {
-						if !strings.HasPrefix(parameter.PureGoType, "*") {
-							return "&"
-						}
-						return ""
-					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
+				input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
 			} else {
 				input = append(input, GoInputJS(parameter.Name, parameter.Value, function))
 			}

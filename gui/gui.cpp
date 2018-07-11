@@ -100,7 +100,6 @@
 #include <QLine>
 #include <QLineF>
 #include <QLinearGradient>
-#include <QList>
 #include <QLocale>
 #include <QMap>
 #include <QMargins>
@@ -214,7 +213,6 @@
 #include <QShortcut>
 #include <QShortcutEvent>
 #include <QShowEvent>
-#include <QSignalSpy>
 #include <QSize>
 #include <QSizeF>
 #include <QStandardItem>
@@ -222,7 +220,6 @@
 #include <QStaticText>
 #include <QStatusTipEvent>
 #include <QString>
-#include <QStringView>
 #include <QStyle>
 #include <QStyleHints>
 #include <QSurface>
@@ -977,8 +974,6 @@ void* QAccessibleEvent_NewQAccessibleEvent(void* object, long long ty)
 		return new MyQAccessibleEvent(static_cast<QQuickItem*>(object), static_cast<QAccessible::Event>(ty));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleEvent(static_cast<QRadioData*>(object), static_cast<QAccessible::Event>(ty));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleEvent(static_cast<QSignalSpy*>(object), static_cast<QAccessible::Event>(ty));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleEvent(static_cast<QWidget*>(object), static_cast<QAccessible::Event>(ty));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -1471,8 +1466,6 @@ void* QAccessiblePlugin_NewQAccessiblePlugin(void* parent)
 		return new MyQAccessiblePlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQAccessiblePlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQAccessiblePlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQAccessiblePlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -2013,8 +2006,6 @@ void* QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent(void*
 		return new MyQAccessibleTableModelChangeEvent(static_cast<QQuickItem*>(object), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTableModelChangeEvent(static_cast<QRadioData*>(object), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTableModelChangeEvent(static_cast<QSignalSpy*>(object), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTableModelChangeEvent(static_cast<QWidget*>(object), static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2171,8 +2162,6 @@ void* QAccessibleTextCursorEvent_NewQAccessibleTextCursorEvent(void* object, int
 		return new MyQAccessibleTextCursorEvent(static_cast<QQuickItem*>(object), cursorPos);
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextCursorEvent(static_cast<QRadioData*>(object), cursorPos);
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTextCursorEvent(static_cast<QSignalSpy*>(object), cursorPos);
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextCursorEvent(static_cast<QWidget*>(object), cursorPos);
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2249,8 +2238,6 @@ void* QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(void* object, int
 		return new MyQAccessibleTextInsertEvent(static_cast<QQuickItem*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextInsertEvent(static_cast<QRadioData*>(object), position, QString::fromUtf8(text.data, text.len));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTextInsertEvent(static_cast<QSignalSpy*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextInsertEvent(static_cast<QWidget*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2459,8 +2446,6 @@ void* QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(void* object, int
 		return new MyQAccessibleTextRemoveEvent(static_cast<QQuickItem*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextRemoveEvent(static_cast<QRadioData*>(object), position, QString::fromUtf8(text.data, text.len));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTextRemoveEvent(static_cast<QSignalSpy*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextRemoveEvent(static_cast<QWidget*>(object), position, QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2547,8 +2532,6 @@ void* QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(void* objec
 		return new MyQAccessibleTextSelectionEvent(static_cast<QQuickItem*>(object), start, end);
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextSelectionEvent(static_cast<QRadioData*>(object), start, end);
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTextSelectionEvent(static_cast<QSignalSpy*>(object), start, end);
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextSelectionEvent(static_cast<QWidget*>(object), start, end);
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2640,8 +2623,6 @@ void* QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(void* object, int
 		return new MyQAccessibleTextUpdateEvent(static_cast<QQuickItem*>(object), position, QString::fromUtf8(oldText.data, oldText.len), QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextUpdateEvent(static_cast<QRadioData*>(object), position, QString::fromUtf8(oldText.data, oldText.len), QString::fromUtf8(text.data, text.len));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleTextUpdateEvent(static_cast<QSignalSpy*>(object), position, QString::fromUtf8(oldText.data, oldText.len), QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleTextUpdateEvent(static_cast<QWidget*>(object), position, QString::fromUtf8(oldText.data, oldText.len), QString::fromUtf8(text.data, text.len));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -2743,8 +2724,6 @@ void* QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(void* object, v
 		return new MyQAccessibleValueChangeEvent(static_cast<QQuickItem*>(object), *static_cast<QVariant*>(value));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleValueChangeEvent(static_cast<QRadioData*>(object), *static_cast<QVariant*>(value));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(object))) {
-		return new MyQAccessibleValueChangeEvent(static_cast<QSignalSpy*>(object), *static_cast<QVariant*>(value));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
 		return new MyQAccessibleValueChangeEvent(static_cast<QWidget*>(object), *static_cast<QVariant*>(value));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
@@ -4286,8 +4265,6 @@ void* QDoubleValidator_NewQDoubleValidator(void* parent)
 		return new MyQDoubleValidator(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDoubleValidator(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDoubleValidator(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDoubleValidator(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -4327,8 +4304,6 @@ void* QDoubleValidator_NewQDoubleValidator2(double bottom, double top, int decim
 		return new MyQDoubleValidator(bottom, top, decimals, static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQDoubleValidator(bottom, top, decimals, static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQDoubleValidator(bottom, top, decimals, static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQDoubleValidator(bottom, top, decimals, static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -4463,8 +4438,6 @@ void* QDrag_NewQDrag(void* dragSource)
 		return new MyQDrag(static_cast<QQuickItem*>(dragSource));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(dragSource))) {
 		return new MyQDrag(static_cast<QRadioData*>(dragSource));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(dragSource))) {
-		return new MyQDrag(static_cast<QSignalSpy*>(dragSource));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(dragSource))) {
 		return new MyQDrag(static_cast<QWidget*>(dragSource));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(dragSource))) {
@@ -6120,8 +6093,6 @@ void* QGenericPlugin_NewQGenericPlugin(void* parent)
 		return new MyQGenericPlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQGenericPlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQGenericPlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQGenericPlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -7826,8 +7797,6 @@ void* QIconEnginePlugin_NewQIconEnginePlugin(void* parent)
 		return new MyQIconEnginePlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQIconEnginePlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQIconEnginePlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQIconEnginePlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -8041,7 +8010,11 @@ public:
 	MyQImage(const QImage &image) : QImage(image) {};
 	MyQImage(const QSize &size, QImage::Format format) : QImage(size, format) {};
 	MyQImage(const QString &fileName, const char *format = Q_NULLPTR) : QImage(fileName, format) {};
+	MyQImage(const uchar *data, int width, int height, QImage::Format format) : QImage(data, width, height, format) {};
+	MyQImage(const uchar *data, int width, int height, int bytesPerLine, QImage::Format format) : QImage(data, width, height, bytesPerLine, format) {};
 	MyQImage(int width, int height, QImage::Format format) : QImage(width, height, format) {};
+	MyQImage(uchar *data, int width, int height, QImage::Format format) : QImage(data, width, height, format) {};
+	MyQImage(uchar *data, int width, int height, int bytesPerLine, QImage::Format format) : QImage(data, width, height, bytesPerLine, format) {};
 	 ~MyQImage() { callbackQImage_DestroyQImage(this); };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQImage_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPaintDevice_Metric(const_cast<void*>(static_cast<const void*>(this)), metric); };
@@ -8097,9 +8070,29 @@ void* QImage_NewQImage9(struct QtGui_PackedString fileName, char* format)
 	return new MyQImage(QString::fromUtf8(fileName.data, fileName.len), const_cast<const char*>(format));
 }
 
+void* QImage_NewQImage5(char* data, int width, int height, long long format)
+{
+	return new MyQImage(const_cast<const uchar*>(static_cast<uchar*>(static_cast<void*>(data))), width, height, static_cast<QImage::Format>(format));
+}
+
+void* QImage_NewQImage7(char* data, int width, int height, int bytesPerLine, long long format)
+{
+	return new MyQImage(const_cast<const uchar*>(static_cast<uchar*>(static_cast<void*>(data))), width, height, bytesPerLine, static_cast<QImage::Format>(format));
+}
+
 void* QImage_NewQImage3(int width, int height, long long format)
 {
 	return new MyQImage(width, height, static_cast<QImage::Format>(format));
+}
+
+void* QImage_NewQImage4(char* data, int width, int height, long long format)
+{
+	return new MyQImage(static_cast<uchar*>(static_cast<void*>(data)), width, height, static_cast<QImage::Format>(format));
+}
+
+void* QImage_NewQImage6(char* data, int width, int height, int bytesPerLine, long long format)
+{
+	return new MyQImage(static_cast<uchar*>(static_cast<void*>(data)), width, height, bytesPerLine, static_cast<QImage::Format>(format));
 }
 
 long long QImage_QImage_ToImageFormat(void* format)
@@ -8726,8 +8719,6 @@ void* QImageIOPlugin_NewQImageIOPlugin(void* parent)
 		return new MyQImageIOPlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQImageIOPlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQImageIOPlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQImageIOPlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -10157,8 +10148,6 @@ void* QIntValidator_NewQIntValidator(void* parent)
 		return new MyQIntValidator(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQIntValidator(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQIntValidator(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQIntValidator(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -10198,8 +10187,6 @@ void* QIntValidator_NewQIntValidator2(int minimum, int maximum, void* parent)
 		return new MyQIntValidator(minimum, maximum, static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQIntValidator(minimum, maximum, static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQIntValidator(minimum, maximum, static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQIntValidator(minimum, maximum, static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -11248,8 +11235,6 @@ void* QMovie_NewQMovie2(void* device, void* format, void* parent)
 		return new MyQMovie(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMovie(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -11289,8 +11274,6 @@ void* QMovie_NewQMovie(void* parent)
 		return new MyQMovie(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMovie(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -11330,8 +11313,6 @@ void* QMovie_NewQMovie3(struct QtGui_PackedString fileName, void* format, void* 
 		return new MyQMovie(QString::fromUtf8(fileName.data, fileName.len), *static_cast<QByteArray*>(format), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(QString::fromUtf8(fileName.data, fileName.len), *static_cast<QByteArray*>(format), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQMovie(QString::fromUtf8(fileName.data, fileName.len), *static_cast<QByteArray*>(format), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQMovie(QString::fromUtf8(fileName.data, fileName.len), *static_cast<QByteArray*>(format), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -12520,8 +12501,6 @@ void* QOpenGLContext_NewQOpenGLContext(void* parent)
 		return new MyQOpenGLContext(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLContext(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLContext(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLContext(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -13170,8 +13149,6 @@ void* QOpenGLDebugLogger_NewQOpenGLDebugLogger(void* parent)
 		return new MyQOpenGLDebugLogger(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLDebugLogger(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLDebugLogger(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLDebugLogger(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -77484,8 +77461,6 @@ void* QOpenGLShader_NewQOpenGLShader(long long ty, void* parent)
 		return new MyQOpenGLShader(static_cast<QOpenGLShader::ShaderTypeBit>(ty), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLShader(static_cast<QOpenGLShader::ShaderTypeBit>(ty), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLShader(static_cast<QOpenGLShader::ShaderTypeBit>(ty), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLShader(static_cast<QOpenGLShader::ShaderTypeBit>(ty), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -77794,8 +77769,6 @@ void* QOpenGLShaderProgram_NewQOpenGLShaderProgram(void* parent)
 		return new MyQOpenGLShaderProgram(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLShaderProgram(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLShaderProgram(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLShaderProgram(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -79238,8 +79211,6 @@ void* QOpenGLTimeMonitor_NewQOpenGLTimeMonitor(void* parent)
 		return new MyQOpenGLTimeMonitor(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLTimeMonitor(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLTimeMonitor(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLTimeMonitor(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -79570,8 +79541,6 @@ void* QOpenGLTimerQuery_NewQOpenGLTimerQuery(void* parent)
 		return new MyQOpenGLTimerQuery(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLTimerQuery(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLTimerQuery(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLTimerQuery(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -79919,8 +79888,6 @@ void* QOpenGLVertexArrayObject_NewQOpenGLVertexArrayObject(void* parent)
 		return new MyQOpenGLVertexArrayObject(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLVertexArrayObject(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQOpenGLVertexArrayObject(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQOpenGLVertexArrayObject(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -84228,8 +84195,6 @@ void* QPictureFormatPlugin_NewQPictureFormatPlugin(void* parent)
 		return new MyQPictureFormatPlugin(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQPictureFormatPlugin(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQPictureFormatPlugin(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQPictureFormatPlugin(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -86655,8 +86620,6 @@ void* QRegExpValidator_NewQRegExpValidator(void* parent)
 		return new MyQRegExpValidator(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQRegExpValidator(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQRegExpValidator(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRegExpValidator(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -86696,8 +86659,6 @@ void* QRegExpValidator_NewQRegExpValidator2(void* rx, void* parent)
 		return new MyQRegExpValidator(*static_cast<QRegExp*>(rx), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQRegExpValidator(*static_cast<QRegExp*>(rx), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQRegExpValidator(*static_cast<QRegExp*>(rx), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRegExpValidator(*static_cast<QRegExp*>(rx), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -86947,8 +86908,6 @@ void* QRegularExpressionValidator_NewQRegularExpressionValidator(void* parent)
 		return new MyQRegularExpressionValidator(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQRegularExpressionValidator(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQRegularExpressionValidator(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRegularExpressionValidator(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -86988,8 +86947,6 @@ void* QRegularExpressionValidator_NewQRegularExpressionValidator2(void* re, void
 		return new MyQRegularExpressionValidator(*static_cast<QRegularExpression*>(re), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQRegularExpressionValidator(*static_cast<QRegularExpression*>(re), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQRegularExpressionValidator(*static_cast<QRegularExpression*>(re), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQRegularExpressionValidator(*static_cast<QRegularExpression*>(re), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -88970,8 +88927,6 @@ void* QStandardItemModel_NewQStandardItemModel(void* parent)
 		return new MyQStandardItemModel(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQStandardItemModel(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQStandardItemModel(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQStandardItemModel(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -89011,8 +88966,6 @@ void* QStandardItemModel_NewQStandardItemModel2(int rows, int columns, void* par
 		return new MyQStandardItemModel(rows, columns, static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQStandardItemModel(rows, columns, static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQStandardItemModel(rows, columns, static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQStandardItemModel(rows, columns, static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -90952,8 +90905,6 @@ void* QSyntaxHighlighter_NewQSyntaxHighlighter(void* parent)
 		return new MyQSyntaxHighlighter(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQSyntaxHighlighter(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQSyntaxHighlighter(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQSyntaxHighlighter(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -92584,8 +92535,6 @@ void* QTextDocument_NewQTextDocument(void* parent)
 		return new MyQTextDocument(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQTextDocument(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextDocument(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextDocument(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -92625,8 +92574,6 @@ void* QTextDocument_NewQTextDocument2(struct QtGui_PackedString text, void* pare
 		return new MyQTextDocument(QString::fromUtf8(text.data, text.len), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQTextDocument(QString::fromUtf8(text.data, text.len), static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQTextDocument(QString::fromUtf8(text.data, text.len), static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQTextDocument(QString::fromUtf8(text.data, text.len), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
@@ -96202,8 +96149,6 @@ void* QValidator_NewQValidator(void* parent)
 		return new MyQValidator(static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
 		return new MyQValidator(static_cast<QRadioData*>(parent));
-	} else if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(parent))) {
-		return new MyQValidator(static_cast<QSignalSpy*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
 		return new MyQValidator(static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {

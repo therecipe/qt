@@ -200,12 +200,10 @@ func (ptr *QAbstractItemModelTester) MetaObjectDefault() *core.QMetaObject {
 
 type QSignalSpy struct {
 	core.QObject
-	core.QList
 }
 
 type QSignalSpy_ITF interface {
 	core.QObject_ITF
-	core.QList_ITF
 	QSignalSpy_PTR() *QSignalSpy
 }
 
@@ -223,7 +221,6 @@ func (ptr *QSignalSpy) Pointer() unsafe.Pointer {
 func (ptr *QSignalSpy) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
 		ptr.QObject_PTR().SetPointer(p)
-		ptr.QList_PTR().SetPointer(p)
 	}
 }
 
@@ -412,216 +409,6 @@ func (ptr *QSignalSpy) __children_newList() unsafe.Pointer {
 	return C.QSignalSpy___children_newList(ptr.Pointer())
 }
 
-func (ptr *QSignalSpy) __QList_other_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___QList_other_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __QList_other_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___QList_other_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __QList_other_newList3() unsafe.Pointer {
-	return C.QSignalSpy___QList_other_newList3(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __QList_other_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___QList_other_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __QList_other_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___QList_other_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __QList_other_newList2() unsafe.Pointer {
-	return C.QSignalSpy___QList_other_newList2(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __fromSet_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___fromSet_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __fromSet_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___fromSet_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __fromSet_newList() unsafe.Pointer {
-	return C.QSignalSpy___fromSet_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __fromStdList_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___fromStdList_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __fromStdList_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___fromStdList_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __fromStdList_newList() unsafe.Pointer {
-	return C.QSignalSpy___fromStdList_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __fromVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___fromVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __fromVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___fromVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __fromVector_newList() unsafe.Pointer {
-	return C.QSignalSpy___fromVector_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __fromVector_vector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___fromVector_vector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __fromVector_vector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___fromVector_vector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __fromVector_vector_newList() unsafe.Pointer {
-	return C.QSignalSpy___fromVector_vector_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __append_value_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___append_value_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __append_value_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___append_value_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __append_value_newList2() unsafe.Pointer {
-	return C.QSignalSpy___append_value_newList2(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __swap_other_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___swap_other_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __swap_other_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___swap_other_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __swap_other_newList() unsafe.Pointer {
-	return C.QSignalSpy___swap_other_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __mid_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___mid_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __mid_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___mid_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __mid_newList() unsafe.Pointer {
-	return C.QSignalSpy___mid_newList(ptr.Pointer())
-}
-
-func (ptr *QSignalSpy) __toVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QSignalSpy___toVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSignalSpy) __toVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy___toVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QSignalSpy) __toVector_newList() unsafe.Pointer {
-	return C.QSignalSpy___toVector_newList(ptr.Pointer())
-}
-
 //export callbackQSignalSpy_Event
 func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
@@ -629,13 +416,6 @@ func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QSignalSpy) Event(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSignalSpy_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
 }
 
 func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
@@ -654,13 +434,6 @@ func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
-func (ptr *QSignalSpy) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QSignalSpy_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
 func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QSignalSpy_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
@@ -674,12 +447,6 @@ func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
-	}
-}
-
-func (ptr *QSignalSpy) ChildEvent(event core.QChildEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
@@ -698,12 +465,6 @@ func callbackQSignalSpy_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	}
 }
 
-func (ptr *QSignalSpy) ConnectNotify(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
-
 func (ptr *QSignalSpy) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
@@ -719,12 +480,6 @@ func callbackQSignalSpy_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	}
 }
 
-func (ptr *QSignalSpy) CustomEvent(event core.QEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
-	}
-}
-
 func (ptr *QSignalSpy) CustomEventDefault(event core.QEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
@@ -737,14 +492,6 @@ func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 		signal.(func())()
 	} else {
 		NewQSignalSpyFromPointer(ptr).DeleteLaterDefault()
-	}
-}
-
-func (ptr *QSignalSpy) DeleteLater() {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_DeleteLater(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
 	}
 }
 
@@ -773,12 +520,6 @@ func callbackQSignalSpy_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 	}
 }
 
-func (ptr *QSignalSpy) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
-	}
-}
-
 func (ptr *QSignalSpy) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
@@ -802,12 +543,6 @@ func callbackQSignalSpy_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	}
 }
 
-func (ptr *QSignalSpy) TimerEvent(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSignalSpy_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
 func (ptr *QSignalSpy) TimerEventDefault(event core.QTimerEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
@@ -821,13 +556,6 @@ func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	}
 
 	return core.PointerFromQMetaObject(NewQSignalSpyFromPointer(ptr).MetaObjectDefault())
-}
-
-func (ptr *QSignalSpy) MetaObject() *core.QMetaObject {
-	if ptr.Pointer() != nil {
-		return core.NewQMetaObjectFromPointer(C.QSignalSpy_MetaObject(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QSignalSpy) MetaObjectDefault() *core.QMetaObject {
@@ -994,11 +722,10 @@ const (
 )
 
 type QTestEventList struct {
-	core.QList
+	ptr unsafe.Pointer
 }
 
 type QTestEventList_ITF interface {
-	core.QList_ITF
 	QTestEventList_PTR() *QTestEventList
 }
 
@@ -1008,14 +735,14 @@ func (ptr *QTestEventList) QTestEventList_PTR() *QTestEventList {
 
 func (ptr *QTestEventList) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QList_PTR().Pointer()
+		return ptr.ptr
 	}
 	return nil
 }
 
 func (ptr *QTestEventList) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.QList_PTR().SetPointer(p)
+		ptr.ptr = p
 	}
 }
 
@@ -1141,6 +868,12 @@ func (ptr *QTestEventList) AddMouseRelease(button core.Qt__MouseButton, modifier
 	}
 }
 
+func (ptr *QTestEventList) Clear() {
+	if ptr.Pointer() != nil {
+		C.QTestEventList_Clear(ptr.Pointer())
+	}
+}
+
 func (ptr *QTestEventList) Simulate(w widgets.QWidget_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTestEventList_Simulate(ptr.Pointer(), widgets.PointerFromQWidget(w))
@@ -1153,214 +886,4 @@ func (ptr *QTestEventList) DestroyQTestEventList() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QTestEventList) __QList_other_atList3(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___QList_other_atList3(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __QList_other_setList3(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___QList_other_setList3(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __QList_other_newList3() unsafe.Pointer {
-	return C.QTestEventList___QList_other_newList3(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __QList_other_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___QList_other_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __QList_other_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___QList_other_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __QList_other_newList2() unsafe.Pointer {
-	return C.QTestEventList___QList_other_newList2(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __fromSet_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___fromSet_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __fromSet_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___fromSet_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __fromSet_newList() unsafe.Pointer {
-	return C.QTestEventList___fromSet_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __fromStdList_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___fromStdList_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __fromStdList_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___fromStdList_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __fromStdList_newList() unsafe.Pointer {
-	return C.QTestEventList___fromStdList_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __fromVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___fromVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __fromVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___fromVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __fromVector_newList() unsafe.Pointer {
-	return C.QTestEventList___fromVector_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __fromVector_vector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___fromVector_vector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __fromVector_vector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___fromVector_vector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __fromVector_vector_newList() unsafe.Pointer {
-	return C.QTestEventList___fromVector_vector_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __append_value_atList2(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___append_value_atList2(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __append_value_setList2(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___append_value_setList2(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __append_value_newList2() unsafe.Pointer {
-	return C.QTestEventList___append_value_newList2(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __swap_other_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___swap_other_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __swap_other_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___swap_other_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __swap_other_newList() unsafe.Pointer {
-	return C.QTestEventList___swap_other_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __mid_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___mid_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __mid_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___mid_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __mid_newList() unsafe.Pointer {
-	return C.QTestEventList___mid_newList(ptr.Pointer())
-}
-
-func (ptr *QTestEventList) __toVector_atList(i int) *core.QObject {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQObjectFromPointer(C.QTestEventList___toVector_atList(ptr.Pointer(), C.int(int32(i))))
-		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
-		}
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QTestEventList) __toVector_setList(i core.QObject_ITF) {
-	if ptr.Pointer() != nil {
-		C.QTestEventList___toVector_setList(ptr.Pointer(), core.PointerFromQObject(i))
-	}
-}
-
-func (ptr *QTestEventList) __toVector_newList() unsafe.Pointer {
-	return C.QTestEventList___toVector_newList(ptr.Pointer())
 }
