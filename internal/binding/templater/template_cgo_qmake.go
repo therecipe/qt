@@ -105,6 +105,20 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 				return false
 			}
 
+			if target == "windows" {
+				if utils.QT_DEBUG_CONSOLE() {
+					if strings.Contains(file, "subsystem,windows") {
+						utils.Log.Debugln("wrong subsystem: have windows and want console, re-creating ...")
+						return false
+					}
+				} else {
+					if strings.Contains(file, "subsystem,console") {
+						utils.Log.Debugln("wrong subsystem: have console and want windows, re-creating ...")
+						return false
+					}
+				}
+			}
+
 			switch target {
 			case "darwin", "linux", "windows", "ubports":
 				//TODO: msys pkg-config mxe brew
@@ -195,7 +209,11 @@ func createMakefile(module, path, target string, mode int) {
 	case "darwin":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-clang", "CONFIG+=x86_64"}...)
 	case "windows":
-		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++", "CONFIG+=windows"}...)
+		subsystem := "windows"
+		if utils.QT_DEBUG_CONSOLE() {
+			subsystem = "console"
+		}
+		cmd.Args = append(cmd.Args, []string{"-spec", "win32-g++", "CONFIG+=" + subsystem}...)
 	case "linux":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 	case "ios":
@@ -491,6 +509,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			}
 			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
+			}
+			if utils.QT_DEBUG_CONSOLE() {
+				//TODO: necessary at all?
+				tmp = strings.Replace(tmp, "subsystem,windows", "subsystem,console", -1)
 			}
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {

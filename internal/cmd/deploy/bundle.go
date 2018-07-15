@@ -137,7 +137,7 @@ func bundle(mode, target, path, name, depPath string) {
 				}
 			}
 
-			libs := []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg"}
+			libs := []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg", "MultimediaGstTools"}
 			if usesQml {
 				libs = append(libs, []string{"3DCore", "3DExtras", "3DInput", "3DLogic", "3DQuick", "3DQuickExtras", "3DQuickInput", "3DQuickRender", "3DRender", "Gamepad"}...)
 			}
@@ -153,6 +153,19 @@ func bundle(mode, target, path, name, depPath string) {
 			libraryPath = filepath.Dir(libraryPath)
 			utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), fmt.Sprintf("copy qml dir for %v on %v", target, runtime.GOOS))
 			utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/"), depPath), fmt.Sprintf("copy plugins dir for %v on %v", target, runtime.GOOS))
+			//TODO: use rsync with exclude instead ...
+			filepath.Walk(depPath, func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+				if info.IsDir() {
+					return nil
+				}
+				if filepath.Ext(info.Name()) == ".debug" || filepath.Ext(info.Name()) == ".qmlc" {
+					utils.RemoveAll(path)
+				}
+				return nil
+			})
 
 			if usesWebEngine {
 				utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "libexec", "QtWebEngineProcess"), depPath), fmt.Sprintf("copy QtWebEngineProcess for %v on %v", target, runtime.GOOS))

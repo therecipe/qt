@@ -617,6 +617,12 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 			}
 
+			if strings.HasPrefix(parser.State.Target, "rpi") && utils.QT_RPI() {
+				if !parser.IsWhiteListedRaspberryLib(strings.TrimPrefix(c.Module, "Qt")) {
+					continue
+				}
+			}
+
 			if c, ok := parser.State.ClassMap[class]; ok {
 				if strings.Contains(c.Pkg, "/vendor/") {
 					continue

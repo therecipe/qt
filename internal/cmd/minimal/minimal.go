@@ -88,6 +88,7 @@ func Minimal(path, target, tags string) {
 			if since >= 5.3 || !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
 				c.Export = false
 				delete(parser.State.ClassMap, c.Name)
+				continue
 			}
 
 			for _, f := range c.Functions {
@@ -117,6 +118,7 @@ func Minimal(path, target, tags string) {
 			if since >= 5.7 || !parser.IsWhiteListedSailfishLib(strings.TrimPrefix(c.Module, "Qt")) {
 				c.Export = false
 				delete(parser.State.ClassMap, c.Name)
+				continue
 			}
 
 			for _, f := range c.Functions {
@@ -135,6 +137,39 @@ func Minimal(path, target, tags string) {
 			if c, ok := parser.State.ClassMap[bl]; ok {
 				c.Export = false
 				delete(parser.State.ClassMap, bl)
+			}
+		}
+
+	case "rpi1", "rpi2", "rpi3":
+		if !utils.QT_RPI() {
+			break
+		}
+		for _, bl := range []string{"TestCase", "QQuickWidget"} {
+			if c, ok := parser.State.ClassMap[bl]; ok {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+			}
+		}
+
+		for _, c := range parser.State.ClassMap {
+			since, err := strconv.ParseFloat(strings.TrimPrefix(c.Since, "Qt "), 64)
+			if err != nil {
+				continue
+			}
+			if since >= 5.8 || !parser.IsWhiteListedRaspberryLib(strings.TrimPrefix(c.Module, "Qt")) {
+				c.Export = false
+				delete(parser.State.ClassMap, c.Name)
+				continue
+			}
+
+			for _, f := range c.Functions {
+				since, err := strconv.ParseFloat(strings.TrimPrefix(f.Since, "Qt "), 64)
+				if err != nil {
+					continue
+				}
+				if since >= 5.8 {
+					f.Export = false
+				}
 			}
 		}
 	}

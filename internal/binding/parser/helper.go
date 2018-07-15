@@ -245,6 +245,9 @@ func ShouldBuildForTarget(module, target string) bool {
 			if strings.HasSuffix(module, "Extras") {
 				return false
 			}
+			if utils.QT_RPI() && !IsWhiteListedRaspberryLib(module) {
+				return false
+			}
 		}
 
 	case "js":
@@ -271,6 +274,16 @@ func IsWhiteListedSailfishLib(name string) bool {
 func IsWhiteListedJsLib(name string) bool {
 	switch name {
 	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Xml", "XmlPatterns", "WebSockets", "Svg", "Charts", "Multimedia":
+		return true
+
+	default:
+		return false
+	}
+}
+
+func IsWhiteListedRaspberryLib(name string) bool {
+	switch name {
+	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Xml", "Svg", "SerialPort":
 		return true
 
 	default:

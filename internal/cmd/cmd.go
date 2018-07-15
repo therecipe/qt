@@ -387,7 +387,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		}
 
 	case "windows":
-		ldFlags = []string{"-s", "-w", "-H=windowsgui"}
+		ldFlags = []string{"-s", "-w"}
+		if !utils.QT_DEBUG_CONSOLE() {
+			ldFlags = append(ldFlags, "-H=windowsgui")
+		}
 		if runtime.GOOS != target {
 			tags = []string{"windows"}
 		}

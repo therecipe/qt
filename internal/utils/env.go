@@ -83,6 +83,10 @@ func QT_DEBUG_QML() bool {
 	return os.Getenv("QT_DEBUG_QML") == "true"
 }
 
+func QT_DEBUG_CONSOLE() bool {
+	return os.Getenv("QT_DEBUG_CONSOLE") == "true"
+}
+
 func CheckBuildTarget(buildTarget string) {
 	switch buildTarget {
 	case "android", "android-emulator",
