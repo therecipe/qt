@@ -41,6 +41,13 @@ func QT_VERSION_MAJOR() string {
 	return strings.Join(strings.Split(QT_VERSION(), ".")[:2], ".")
 }
 
+func QT_API(def string) string {
+	if api, ok := os.LookupEnv("QT_API"); ok {
+		return api
+	}
+	return def
+}
+
 func QT_DIR() string {
 	path := qT_DIR()
 	if ExistsFile(path) {

@@ -19,6 +19,7 @@ var buildVersion = "no build version"
 
 func ParseFlags() bool {
 	var (
+		qt_api     = flag.String("api", "", "specify the api version to be used")
 		debug      = flag.Bool("debug", false, "print debug logs")
 		help       = flag.Bool("help", false, "print help")
 		p          = flag.Int("p", runtime.NumCPU(), "specify the number of cpu's to be used")
@@ -27,6 +28,10 @@ func ParseFlags() bool {
 		version    = flag.Bool("version", false, "print build version (if available)")
 	)
 	flag.Parse()
+
+	if api := *qt_api; api != utils.QT_API("") {
+		os.Setenv("QT_API", api)
+	}
 
 	if *debug {
 		utils.Log.Level = logrus.DebugLevel
@@ -176,6 +181,14 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.QT_DEBUG_QML() {
 		args = append(args, []string{"-e", "QT_DEBUG_QML=true"}...)
+	}
+
+	if utils.QT_DEBUG_CONSOLE() {
+		args = append(args, []string{"-e", "QT_DEBUG_CONSOLE=true"}...)
+	}
+
+	if api := utils.QT_API(""); api != "" {
+		args = append(args, []string{"-e", "QT_API=" + api}...)
 	}
 
 	if utils.CI() {

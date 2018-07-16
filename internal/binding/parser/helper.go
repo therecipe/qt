@@ -283,7 +283,7 @@ func IsWhiteListedJsLib(name string) bool {
 
 func IsWhiteListedRaspberryLib(name string) bool {
 	switch name {
-	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Xml", "Svg", "SerialPort":
+	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Svg", "SerialPort":
 		return true
 
 	default:

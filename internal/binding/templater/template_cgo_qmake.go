@@ -31,7 +31,7 @@ func CgoTemplateSafe(module, path, target string, mode int, ipkg, tags string, l
 }
 
 func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs []string) (o string) {
-	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg)
+	utils.Log.WithField("module", module).WithField("path", path).WithField("target", target).WithField("mode", mode).WithField("pkg", ipkg).Debug("running cgoTemplate")
 
 	switch module {
 	case "AndroidExtras":
@@ -50,7 +50,7 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 
 	//TODO: differentiate between docker and virtual-box build for sailfish targets
 	if !(target == "sailfish" || target == "sailfish-emulator" || target == "js") {
-		if !parser.ShouldBuildForTarget(module, target) ||
+		if !(parser.ShouldBuildForTarget(module, target) || mode == MOC || mode == RCC) ||
 			isAlreadyCached(module, path, target, mode, libs) {
 			utils.Log.Debugf("skipping cgo generation")
 			return
@@ -510,9 +510,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
 			}
-			if utils.QT_DEBUG_CONSOLE() {
-				//TODO: necessary at all?
+			if utils.QT_DEBUG_CONSOLE() { //TODO: necessary at all?
 				tmp = strings.Replace(tmp, "subsystem,windows", "subsystem,console", -1)
+			} else {
+				tmp = strings.Replace(tmp, "subsystem,console", "subsystem,windows", -1)
 			}
 		case "ios":
 			if strings.HasSuffix(file, "darwin_arm.go") {
