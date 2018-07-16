@@ -156,10 +156,6 @@ func createProject(module, path, target string, mode int, libs []string) {
 		out = append([]string{module}, libs...)
 	}
 
-	if strings.HasPrefix(target, "rpi") && module == "Core" {
-		out = append([]string{module}, []string{"Widgets", "Gui"}...)
-	}
-
 	for i, v := range out {
 		if v == "Speech" {
 			out[i] = "TextToSpeech"
