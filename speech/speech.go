@@ -2387,7 +2387,7 @@ func callbackQTextToSpeechPlugin_CreateTextToSpeechEngine(ptr unsafe.Pointer, pa
 		return PointerFromQTextToSpeechEngine(signal.(func(map[string]*core.QVariant, *core.QObject, string) *QTextToSpeechEngine)(func(l C.struct_QtSpeech_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQTextToSpeechPluginFromPointer(l.data)
-			for i, v := range tmpList.__createTextToSpeechEngine_keyList() {
+			for i, v := range tmpList.__createTextToSpeechEngine_parameters_keyList() {
 				out[v] = tmpList.__createTextToSpeechEngine_parameters_atList(v, i)
 			}
 			return out
@@ -2397,7 +2397,7 @@ func callbackQTextToSpeechPlugin_CreateTextToSpeechEngine(ptr unsafe.Pointer, pa
 	return PointerFromQTextToSpeechEngine(NewQTextToSpeechPluginFromPointer(ptr).CreateTextToSpeechEngineDefault(func(l C.struct_QtSpeech_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
 		tmpList := NewQTextToSpeechPluginFromPointer(l.data)
-		for i, v := range tmpList.__createTextToSpeechEngine_keyList() {
+		for i, v := range tmpList.__createTextToSpeechEngine_parameters_keyList() {
 			out[v] = tmpList.__createTextToSpeechEngine_parameters_atList(v, i)
 		}
 		return out
@@ -2498,40 +2498,40 @@ func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_newList() 
 	return C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(ptr.Pointer())
 }
 
-func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_keyList() []string {
+func (ptr *QTextToSpeechPlugin) __createTextToSpeechEngine_parameters_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtSpeech_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQTextToSpeechPluginFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____createTextToSpeechEngine_keyList_atList(i)
+				out[i] = tmpList.____createTextToSpeechEngine_parameters_keyList_atList(i)
 			}
 			return out
-		}(C.QTextToSpeechPlugin___createTextToSpeechEngine_keyList(ptr.Pointer()))
+		}(C.QTextToSpeechPlugin___createTextToSpeechEngine_parameters_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
 
-func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_atList(i int) string {
+func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_parameters_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_setList(i string) {
+func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_parameters_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_setList(ptr.Pointer(), C.struct_QtSpeech_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_keyList_newList() unsafe.Pointer {
-	return C.QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(ptr.Pointer())
+func (ptr *QTextToSpeechPlugin) ____createTextToSpeechEngine_parameters_keyList_newList() unsafe.Pointer {
+	return C.QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_newList(ptr.Pointer())
 }
 
 type QVoice struct {

@@ -414,6 +414,19 @@ func (c *Class) FixGenericHelper() {
 					if isMap {
 						params[0].Name = "v"
 						params = append(params, &Parameter{Name: "i", Value: "int"})
+						params[0].PureGoType = func() string {
+							if strings.Contains(f.PureGoOutput, "[error]") {
+								return "error"
+							}
+							return ""
+						}()
+					} else {
+						params[0].PureGoType = func() string {
+							if strings.Contains(f.PureGoOutput, "]error") {
+								return "error"
+							}
+							return ""
+						}()
 					}
 
 					c.Functions = append(c.Functions, &Function{
@@ -429,18 +442,41 @@ func (c *Class) FixGenericHelper() {
 						OverloadNumber: f.OverloadNumber,
 						Overload:       f.Overload,
 						NoMocDeduce:    true,
-						AsError:        f.AsError,
-						IsMap:          isMap,
+						PureGoOutput: func() string {
+							if strings.Contains(f.PureGoOutput, "]error") {
+								return "error"
+							}
+							return ""
+						}(),
+						IsMap: isMap,
 					})
 				}
 
 				if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_setList", f.Name), f.OverloadNumber) {
 					var params = func() []*Parameter {
 						if IsPackedList(CleanValue(f.Output)) {
-							return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(f.Output, "<")[1], ">")[0]}}
+							return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(f.Output, "<")[1], ">")[0],
+								PureGoType: func() string {
+									if strings.Contains(f.PureGoOutput, "]error") {
+										return "error"
+									}
+									return ""
+								}()}}
 						}
 						var key, value = UnpackedMapDirty(CleanValue(f.Output))
-						return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}}
+						return []*Parameter{{Name: "key", Value: key,
+							PureGoType: func() string {
+								if strings.Contains(f.PureGoOutput, "[error]") {
+									return "error"
+								}
+								return ""
+							}()}, {Name: "i", Value: value,
+							PureGoType: func() string {
+								if strings.Contains(f.PureGoOutput, "]error") {
+									return "error"
+								}
+								return ""
+							}()}}
 					}()
 					c.Functions = append(c.Functions, &Function{
 						Name:           fmt.Sprintf("__%v_setList", f.Name),
@@ -455,7 +491,6 @@ func (c *Class) FixGenericHelper() {
 						OverloadNumber: f.OverloadNumber,
 						Overload:       f.Overload,
 						NoMocDeduce:    true,
-						AsError:        f.AsError,
 					})
 				}
 
@@ -472,7 +507,6 @@ func (c *Class) FixGenericHelper() {
 						OverloadNumber: f.OverloadNumber,
 						Overload:       f.Overload,
 						NoMocDeduce:    true,
-						AsError:        f.AsError,
 					})
 				}
 
@@ -490,8 +524,13 @@ func (c *Class) FixGenericHelper() {
 							OverloadNumber: f.OverloadNumber,
 							Overload:       f.Overload,
 							NoMocDeduce:    true,
-							AsError:        f.AsError,
-							Container:      CleanValue(f.Output),
+							PureGoOutput: func() string {
+								if strings.Contains(f.PureGoOutput, "[error]") {
+									return "[]error"
+								}
+								return ""
+							}(),
+							Container: CleanValue(f.Output),
 						})
 						rec = true
 					}
@@ -500,7 +539,6 @@ func (c *Class) FixGenericHelper() {
 
 			for _, p := range f.Parameters {
 				if IsPackedList(CleanValue(p.Value)) || IsPackedMap(CleanValue(p.Value)) {
-
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_atList", f.Name, p.Name), f.OverloadNumber) {
 						var key, output, isMap = func() (string, string, bool) {
 							if IsPackedList(CleanValue(p.Value)) {
@@ -514,6 +552,19 @@ func (c *Class) FixGenericHelper() {
 						if isMap {
 							params[0].Name = "v"
 							params = append(params, &Parameter{Name: "i", Value: "int"})
+							params[0].PureGoType = func() string {
+								if strings.Contains(p.PureGoType, "[error]") {
+									return "error"
+								}
+								return ""
+							}()
+						} else {
+							params[0].PureGoType = func() string {
+								if strings.Contains(p.PureGoType, "]error") {
+									return "error"
+								}
+								return ""
+							}()
 						}
 
 						c.Functions = append(c.Functions, &Function{
@@ -529,18 +580,41 @@ func (c *Class) FixGenericHelper() {
 							OverloadNumber: f.OverloadNumber,
 							Overload:       f.Overload,
 							NoMocDeduce:    true,
-							AsError:        f.AsError,
-							IsMap:          isMap,
+							PureGoOutput: func() string {
+								if strings.Contains(p.PureGoType, "]error") {
+									return "error"
+								}
+								return ""
+							}(),
+							IsMap: isMap,
 						})
 					}
 
 					if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_setList", f.Name, p.Name), f.OverloadNumber) {
 						var params = func() []*Parameter {
 							if IsPackedList(CleanValue(p.Value)) {
-								return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(p.Value, "<")[1], ">")[0]}}
+								return []*Parameter{{Name: "i", Value: strings.Split(strings.Split(p.Value, "<")[1], ">")[0],
+									PureGoType: func() string {
+										if strings.Contains(p.PureGoType, "]error") {
+											return "error"
+										}
+										return ""
+									}()}}
 							}
 							var key, value = UnpackedMapDirty(CleanValue(p.Value))
-							return []*Parameter{{Name: "key", Value: key}, {Name: "i", Value: value}}
+							return []*Parameter{{Name: "key", Value: key,
+								PureGoType: func() string {
+									if strings.Contains(p.PureGoType, "[error]") {
+										return "error"
+									}
+									return ""
+								}()}, {Name: "i", Value: value,
+								PureGoType: func() string {
+									if strings.Contains(p.PureGoType, "]error") {
+										return "error"
+									}
+									return ""
+								}()}}
 						}()
 						c.Functions = append(c.Functions, &Function{
 							Name:           fmt.Sprintf("__%v_%v_setList", f.Name, p.Name),
@@ -555,7 +629,6 @@ func (c *Class) FixGenericHelper() {
 							OverloadNumber: f.OverloadNumber,
 							Overload:       f.Overload,
 							NoMocDeduce:    true,
-							AsError:        f.AsError,
 						})
 					}
 
@@ -572,16 +645,15 @@ func (c *Class) FixGenericHelper() {
 							OverloadNumber: f.OverloadNumber,
 							Overload:       f.Overload,
 							NoMocDeduce:    true,
-							AsError:        f.AsError,
 						})
 					}
 
 					if IsPackedMap(CleanValue(p.Value)) {
-						if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_keyList", f.Name), f.OverloadNumber) {
+						if !c.HasFunctionWithNameAndOverloadNumber(fmt.Sprintf("__%v_%v_keyList", f.Name, p.Name), f.OverloadNumber) {
 							var keyType, _ = UnpackedMapDirty(CleanValue(p.Value))
 							c.Functions = append(c.Functions, &Function{
-								Name:           fmt.Sprintf("__%v_keyList", f.Name),
-								Fullname:       fmt.Sprintf("%v::__%v_keyList", c.Name, f.Name),
+								Name:           fmt.Sprintf("__%v_%v_keyList", f.Name, p.Name),
+								Fullname:       fmt.Sprintf("%v::__%v_%v_keyList", c.Name, f.Name, p.Name),
 								Access:         "public",
 								Virtual:        "non",
 								Meta:           PLAIN,
@@ -590,8 +662,13 @@ func (c *Class) FixGenericHelper() {
 								OverloadNumber: f.OverloadNumber,
 								Overload:       f.Overload,
 								NoMocDeduce:    true,
-								AsError:        f.AsError,
-								Container:      CleanValue(p.Value),
+								PureGoOutput: func() string {
+									if strings.Contains(p.PureGoType, "[error]") {
+										return "[]error"
+									}
+									return ""
+								}(),
+								Container: CleanValue(p.Value),
 							})
 							rec = true
 						}

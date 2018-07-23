@@ -1783,7 +1783,7 @@ void* QModbusDeviceIdentification___setM_objects__newList(void* ptr)
 	return new QMap<int, QByteArray>();
 }
 
-struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects_keyList(void* ptr)
+struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects__keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QByteArray>*>(ptr)->keys()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -1804,17 +1804,17 @@ void* QModbusDeviceIdentification_____m_objects_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QModbusDeviceIdentification_____setM_objects_keyList_atList(void* ptr, int i)
+int QModbusDeviceIdentification_____setM_objects__keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QModbusDeviceIdentification_____setM_objects_keyList_setList(void* ptr, int i)
+void QModbusDeviceIdentification_____setM_objects__keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QModbusDeviceIdentification_____setM_objects_keyList_newList(void* ptr)
+void* QModbusDeviceIdentification_____setM_objects__keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();

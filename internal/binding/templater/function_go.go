@@ -120,7 +120,7 @@ func goFunctionBody(function *parser.Function) string {
 		fmt.Fprint(bb, func() string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for i, p := range function.Parameters {
-					if p.PureGoType != "" {
+					if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
 						if UseJs() {
 							fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), %[1]v)\n", parser.CleanName(p.Name, p.Value))
@@ -137,7 +137,7 @@ func goFunctionBody(function *parser.Function) string {
 					}
 				}
 
-				if function.PureGoOutput != "" {
+				if function.PureGoOutput != "" && !strings.Contains(function.PureGoOutput, "error") {
 					bb := new(bytes.Buffer)
 					defer bb.Reset()
 					fmt.Fprintf(bb, "oP := unsafe.Pointer(%v)\n", body)
@@ -274,7 +274,7 @@ func goFunctionBody(function *parser.Function) string {
 
 			if function.IsMocFunction {
 				for _, p := range function.Parameters {
-					if p.PureGoType != "" {
+					if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
 						fmt.Fprintf(bb, "var %vD %v\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
 						fmt.Fprintf(bb, "if  %[1]vI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(%[1]v))); ok {\n", parser.CleanName(p.Name, p.Value))
 						if !strings.HasSuffix(function.Name, "Changed") { //TODO: check if property instead
@@ -304,14 +304,14 @@ func goFunctionBody(function *parser.Function) string {
 				if function.Name == "readData" && len(function.Parameters) == 2 {
 					if !UseJs() {
 						fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
-						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
 						fmt.Fprint(bb, "return ret")
 					} else {
 						fmt.Fprint(bb, "return 0")
 					}
 				} else {
-					if function.IsMocFunction && function.PureGoOutput != "" {
+					if function.IsMocFunction && function.PureGoOutput != "" && !strings.Contains(function.PureGoOutput, "error") {
 						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
 						fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%voP), oP)\n", func() string {
 							if !strings.HasPrefix(function.PureGoOutput, "*") {
@@ -324,13 +324,13 @@ func goFunctionBody(function *parser.Function) string {
 								return "&"
 							}
 							return ""
-						}()), function.Output, function))
+						}()), function.Output, function, function.PureGoOutput))
 					} else {
 						if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
 							fmt.Fprintf(bb, "tempVal := signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
-							fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+							fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function, function.PureGoOutput),
 								func() string {
-									if function.AsError {
+									if strings.Contains(function.PureGoOutput, "error") {
 										return "C.longlong(-1)"
 									}
 									if parser.CleanValue(function.Output) == "QStringList" {
@@ -339,7 +339,7 @@ func goFunctionBody(function *parser.Function) string {
 									return "C.longlong(len(tempVal))"
 								}())
 						} else {
-							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 						}
 					}
 				}
@@ -369,14 +369,14 @@ func goFunctionBody(function *parser.Function) string {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
 						if !UseJs() {
 							fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
-							fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+							fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 							fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
 							fmt.Fprint(bb, "return ret")
 						} else {
 							fmt.Fprint(bb, "return 0")
 						}
 					} else {
-						if function.IsMocFunction && function.IsMocProperty && function.PureGoOutput != "" {
+						if function.IsMocFunction && function.IsMocProperty && function.PureGoOutput != "" && !strings.Contains(function.PureGoOutput, "error") {
 							if UseJs() {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							} else {
@@ -393,7 +393,7 @@ func goFunctionBody(function *parser.Function) string {
 									return "&"
 								}
 								return ""
-							}()), function.Output, function))
+							}()), function.Output, function, function.PureGoOutput))
 						} else {
 							if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
 								if UseJs() {
@@ -401,9 +401,9 @@ func goFunctionBody(function *parser.Function) string {
 								} else {
 									fmt.Fprintf(bb, "tempVal := New%vFromPointer(ptr).%v%vDefault(%v)\n", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 								}
-								fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+								fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function, function.PureGoOutput),
 									func() string {
-										if function.AsError {
+										if strings.Contains(function.PureGoOutput, "error") {
 											return "C.longlong(-1)"
 										}
 										if parser.CleanValue(function.Output) == "QStringList" {
@@ -413,9 +413,9 @@ func goFunctionBody(function *parser.Function) string {
 									}())
 							} else {
 								if UseJs() {
-									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 								} else {
-									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 								}
 							}
 						}
@@ -431,9 +431,9 @@ func goFunctionBody(function *parser.Function) string {
 							for _, f := range c.Functions {
 								if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 0 {
 									if c.Module == class.Module {
-										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v()", converter.GoHeaderName(f)), function.Output, function))
+										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v()", converter.GoHeaderName(f)), function.Output, function, function.PureGoOutput))
 									} else {
-										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v()", goModule(c.Module), converter.GoHeaderName(f)), function.Output, function))
+										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v()", goModule(c.Module), converter.GoHeaderName(f)), function.Output, function, function.PureGoOutput))
 									}
 									found = true
 									break
@@ -443,9 +443,9 @@ func goFunctionBody(function *parser.Function) string {
 								for _, f := range c.Functions {
 									if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 {
 										if c.Module == class.Module {
-											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f)), function.Output, function))
+											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f, f.Parameters[0].PureGoType)), function.Output, function, function.PureGoOutput))
 										} else {
-											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v(%v)", goModule(c.Module), converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f)), function.Output, function))
+											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v(%v)", goModule(c.Module), converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f, f.Parameters[0].PureGoType)), function.Output, function, function.PureGoOutput))
 										}
 										found = true
 										break
@@ -457,14 +457,14 @@ func goFunctionBody(function *parser.Function) string {
 						if !found {
 							//TODO:
 							//function.Access = fmt.Sprintf("unsupported_FailedNilOutputInCallbacksForPureVirtualFunctions(%v)", function.Output)
-							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function, function.PureGoOutput))
 						}
 					} else {
 						if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
 							fmt.Fprintf(bb, "tempVal := %v\n", converter.GoOutputParametersFromCFailed(function))
-							fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function),
+							fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function, function.PureGoOutput),
 								func() string {
-									if function.AsError {
+									if strings.Contains(function.PureGoOutput, "error") {
 										return "C.longlong(-1)"
 									}
 									if parser.CleanValue(function.Output) == "QStringList" {
@@ -473,7 +473,7 @@ func goFunctionBody(function *parser.Function) string {
 									return "C.longlong(len(tempVal))"
 								}())
 						} else {
-							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function, function.PureGoOutput))
 						}
 					}
 				}
@@ -577,7 +577,7 @@ func goFunctionBody(function *parser.Function) string {
 			return bb.String()
 		}
 
-		if function.IsMocFunction && function.PureGoOutput != "" && function.SignalMode == "" {
+		if function.IsMocFunction && function.PureGoOutput != "" && !strings.Contains(function.PureGoOutput, "error") && function.SignalMode == "" {
 			fmt.Fprintf(bb, "\nvar out %v\nreturn out", function.PureGoOutput)
 		} else {
 			//TODO: collect -->

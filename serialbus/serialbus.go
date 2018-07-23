@@ -3603,16 +3603,16 @@ func (ptr *QModbusDeviceIdentification) __setM_objects__newList() unsafe.Pointer
 	return C.QModbusDeviceIdentification___setM_objects__newList(ptr.Pointer())
 }
 
-func (ptr *QModbusDeviceIdentification) __setM_objects_keyList() []int {
+func (ptr *QModbusDeviceIdentification) __setM_objects__keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtSerialBus_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQModbusDeviceIdentificationFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setM_objects_keyList_atList(i)
+				out[i] = tmpList.____setM_objects__keyList_atList(i)
 			}
 			return out
-		}(C.QModbusDeviceIdentification___setM_objects_keyList(ptr.Pointer()))
+		}(C.QModbusDeviceIdentification___setM_objects__keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -3634,21 +3634,21 @@ func (ptr *QModbusDeviceIdentification) ____m_objects_keyList_newList() unsafe.P
 	return C.QModbusDeviceIdentification_____m_objects_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QModbusDeviceIdentification) ____setM_objects_keyList_atList(i int) int {
+func (ptr *QModbusDeviceIdentification) ____setM_objects__keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QModbusDeviceIdentification_____setM_objects_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QModbusDeviceIdentification_____setM_objects__keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QModbusDeviceIdentification) ____setM_objects_keyList_setList(i int) {
+func (ptr *QModbusDeviceIdentification) ____setM_objects__keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QModbusDeviceIdentification_____setM_objects_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QModbusDeviceIdentification_____setM_objects__keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QModbusDeviceIdentification) ____setM_objects_keyList_newList() unsafe.Pointer {
-	return C.QModbusDeviceIdentification_____setM_objects_keyList_newList(ptr.Pointer())
+func (ptr *QModbusDeviceIdentification) ____setM_objects__keyList_newList() unsafe.Pointer {
+	return C.QModbusDeviceIdentification_____setM_objects__keyList_newList(ptr.Pointer())
 }
 
 type QModbusExceptionResponse struct {

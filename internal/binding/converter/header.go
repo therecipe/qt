@@ -102,7 +102,7 @@ func GoHeaderOutput(f *parser.Function) string {
 				if isClass(cv) || parser.IsPackedList(cv) || parser.IsPackedMap(cv) {
 					return "uintptr"
 				}
-				return goType(f, f.Output)
+				return goType(f, f.Output, f.PureGoOutput)
 			}
 			return cgoTypeOutput(f, f.Output)
 		}
@@ -113,7 +113,7 @@ func GoHeaderOutput(f *parser.Function) string {
 		}
 	}
 
-	if f.PureGoOutput != "" {
+	if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
 		return f.PureGoOutput
 	}
 
@@ -123,7 +123,7 @@ func GoHeaderOutput(f *parser.Function) string {
 		value = f.Name
 	}
 
-	var o = goType(f, value)
+	var o = goType(f, value, f.PureGoOutput)
 	if isClass(o) {
 		if !strings.HasPrefix(o, "[]") && !strings.HasPrefix(o, "map[") {
 			o = fmt.Sprintf("*%v", o)
@@ -167,7 +167,7 @@ func GoHeaderInput(f *parser.Function) string {
 		}
 		for _, p := range f.Parameters {
 			if parser.UseJs() {
-				if v := goType(f, p.Value); v != "" {
+				if v := goType(f, p.Value, p.PureGoType); v != "" {
 					cv := parser.CleanValue(p.Value)
 					if isEnum(f.ClassName(), cv) {
 						fmt.Fprintf(bb, ", %v int64", parser.CleanName(p.Name, p.Value))
@@ -207,10 +207,10 @@ func GoHeaderInput(f *parser.Function) string {
 
 	var tmp = make([]string, 0)
 	for _, p := range f.Parameters {
-		if p.PureGoType != "" {
+		if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
 			tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), p.PureGoType))
 		} else {
-			if v := goType(f, p.Value); v != "" {
+			if v := goType(f, p.Value, p.PureGoType); v != "" {
 				if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
 					if f.SignalMode == parser.CONNECT {
 						tmp = append(tmp, fmt.Sprintf("%v *%v", parser.CleanName(p.Name, p.Value), v))
@@ -231,13 +231,13 @@ func GoHeaderInput(f *parser.Function) string {
 	if f.SignalMode == parser.CONNECT {
 		fmt.Fprint(bb, ")")
 
-		if f.PureGoOutput != "" {
+		if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
 			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
-			if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
-				fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+			if isClass(goType(f, f.Output, f.PureGoOutput)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
+				fmt.Fprintf(bb, " *%v", goType(f, f.Output, f.PureGoOutput))
 			} else {
-				fmt.Fprintf(bb, " %v", goType(f, f.Output))
+				fmt.Fprintf(bb, " %v", goType(f, f.Output, f.PureGoOutput))
 			}
 		}
 	}
@@ -255,10 +255,10 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	var tmp = make([]string, 0)
 
 	for _, p := range f.Parameters {
-		if p.PureGoType != "" {
+		if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
 			tmp = append(tmp, fmt.Sprintf("%v", p.PureGoType))
 		} else {
-			if v := goType(f, p.Value); v != "" {
+			if v := goType(f, p.Value, p.PureGoType); v != "" {
 				if isClass(v) && !parser.IsPackedList(parser.CleanValue(p.Value)) && !parser.IsPackedMap(parser.CleanValue(p.Value)) {
 					tmp = append(tmp, fmt.Sprintf("*%v", v))
 				} else {
@@ -276,13 +276,13 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	fmt.Fprint(bb, ")")
 
 	if f.SignalMode == parser.CALLBACK {
-		if f.PureGoOutput != "" {
+		if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
 			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
-			if isClass(goType(f, f.Output)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
-				fmt.Fprintf(bb, " *%v", goType(f, f.Output))
+			if isClass(goType(f, f.Output, f.PureGoOutput)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
+				fmt.Fprintf(bb, " *%v", goType(f, f.Output, f.PureGoOutput))
 			} else {
-				fmt.Fprintf(bb, " %v", goType(f, f.Output))
+				fmt.Fprintf(bb, " %v", goType(f, f.Output, f.PureGoOutput))
 			}
 		}
 	}

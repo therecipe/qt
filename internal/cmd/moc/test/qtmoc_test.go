@@ -307,6 +307,25 @@ type testStruct struct {
 	_ func([]*core.QObject, *core.QObject) `signal:"mixedSignal2"`
 	_ func(*core.QObject, []*core.QObject) `signal:"mixedSlot"`
 	_ func([]*core.QObject, *core.QObject) `signal:"mixedSlot2"`
+
+	_ func(string, string, string) error `slot:"errorStringTest1,auto"`
+	_ func(string, string, error) string `slot:"errorStringTest2,auto"`
+	_ func(string, error, string) string `slot:"errorStringTest3,auto"`
+
+	_ func(string, string, string) []error `slot:"errorStringTest4,auto"`
+	_ func(string, string, []error) string `slot:"errorStringTest5,auto"`
+	_ func(string, []error, string) string `slot:"errorStringTest6,auto"`
+
+	_ func(string, string, string) map[error]error `slot:"errorStringTest7,auto"`
+	_ func(string, string, map[error]error) string `slot:"errorStringTest8,auto"`
+	_ func(string, map[error]error, string) string `slot:"errorStringTest9,auto"`
+
+	_ func(string, map[error]error, []error) error `slot:"errorStringTest10,auto"`
+	_ func(map[error]error, []error, error) string `slot:"errorStringTest11,auto"`
+	_ func([]error, error, string) map[error]error `slot:"errorStringTest12,auto"`
+
+	_ func(map[string]error, map[error]string, map[error]error) map[string]string `slot:"errorStringTest13,auto"`
+	_ func(map[error][]string)                                                    `slot:"errorStringTest14,auto"` //TODO: map[string][]error
 }
 
 type subTestStruct struct {
@@ -1721,3 +1740,29 @@ func TestSubSubStructs(t *testing.T) {
 		}
 	*/
 }
+
+func (*testStruct) errorStringTest1(string, string, string) error { return errors.New("") }
+func (*testStruct) errorStringTest2(string, string, error) string { return "" }
+func (*testStruct) errorStringTest3(string, error, string) string { return "" }
+
+func (*testStruct) errorStringTest4(string, string, string) []error { return []error{} }
+func (*testStruct) errorStringTest5(string, string, []error) string { return "" }
+func (*testStruct) errorStringTest6(string, []error, string) string { return "" }
+
+func (*testStruct) errorStringTest7(string, string, string) map[error]error {
+	return map[error]error{}
+}
+func (*testStruct) errorStringTest8(string, string, map[error]error) string { return "" }
+func (*testStruct) errorStringTest9(string, map[error]error, string) string { return "" }
+
+func (*testStruct) errorStringTest10(string, map[error]error, []error) error { return errors.New("") }
+func (*testStruct) errorStringTest11(map[error]error, []error, error) string { return "" }
+func (*testStruct) errorStringTest12([]error, error, string) map[error]error {
+	return map[error]error{}
+}
+
+func (*testStruct) errorStringTest13(map[string]error, map[error]string, map[error]error) map[string]string {
+	return map[string]string{}
+}
+
+func (*testStruct) errorStringTest14(map[error][]string) {}

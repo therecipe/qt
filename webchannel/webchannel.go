@@ -395,16 +395,16 @@ func (ptr *QWebChannel) __registerObjects_objects_newList() unsafe.Pointer {
 	return C.QWebChannel___registerObjects_objects_newList(ptr.Pointer())
 }
 
-func (ptr *QWebChannel) __registerObjects_keyList() []string {
+func (ptr *QWebChannel) __registerObjects_objects_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWebChannel_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQWebChannelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____registerObjects_keyList_atList(i)
+				out[i] = tmpList.____registerObjects_objects_keyList_atList(i)
 			}
 			return out
-		}(C.QWebChannel___registerObjects_keyList(ptr.Pointer()))
+		}(C.QWebChannel___registerObjects_objects_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -454,26 +454,26 @@ func (ptr *QWebChannel) __registeredObjects_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QWebChannel) ____registerObjects_keyList_atList(i int) string {
+func (ptr *QWebChannel) ____registerObjects_objects_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebChannel_____registerObjects_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QWebChannel_____registerObjects_objects_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QWebChannel) ____registerObjects_keyList_setList(i string) {
+func (ptr *QWebChannel) ____registerObjects_objects_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QWebChannel_____registerObjects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QWebChannel_____registerObjects_objects_keyList_setList(ptr.Pointer(), C.struct_QtWebChannel_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QWebChannel) ____registerObjects_keyList_newList() unsafe.Pointer {
-	return C.QWebChannel_____registerObjects_keyList_newList(ptr.Pointer())
+func (ptr *QWebChannel) ____registerObjects_objects_keyList_newList() unsafe.Pointer {
+	return C.QWebChannel_____registerObjects_objects_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QWebChannel) ____registeredObjects_keyList_atList(i int) string {

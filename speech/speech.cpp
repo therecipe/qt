@@ -948,22 +948,22 @@ void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(void* pt
 	return new QMap<QString, QVariant>();
 }
 
-struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_keyList(void* ptr)
+struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_parameters_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtSpeech_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_atList(void* ptr, int i)
+struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, struct QtSpeech_PackedString i)
+void QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_setList(void* ptr, struct QtSpeech_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr)
+void* QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

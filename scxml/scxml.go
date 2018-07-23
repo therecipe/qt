@@ -244,7 +244,7 @@ func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.st
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlCppDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_keyList() {
+			for i, v := range tmpList.__setup_initialDataValues_keyList() {
 				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
@@ -254,7 +254,7 @@ func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.st
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
 		tmpList := NewQScxmlCppDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_keyList() {
+		for i, v := range tmpList.__setup_initialDataValues_keyList() {
 			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
@@ -592,7 +592,7 @@ func callbackQScxmlDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struc
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_keyList() {
+			for i, v := range tmpList.__setup_initialDataValues_keyList() {
 				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
@@ -823,40 +823,40 @@ func (ptr *QScxmlDataModel) __setup_initialDataValues_newList() unsafe.Pointer {
 	return C.QScxmlDataModel___setup_initialDataValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlDataModel) __setup_keyList() []string {
+func (ptr *QScxmlDataModel) __setup_initialDataValues_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQScxmlDataModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setup_keyList_atList(i)
+				out[i] = tmpList.____setup_initialDataValues_keyList_atList(i)
 			}
 			return out
-		}(C.QScxmlDataModel___setup_keyList(ptr.Pointer()))
+		}(C.QScxmlDataModel___setup_initialDataValues_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
 
-func (ptr *QScxmlDataModel) ____setup_keyList_atList(i int) string {
+func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlDataModel_____setup_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QScxmlDataModel_____setup_initialDataValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QScxmlDataModel) ____setup_keyList_setList(i string) {
+func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QScxmlDataModel_____setup_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QScxmlDataModel_____setup_initialDataValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QScxmlDataModel) ____setup_keyList_newList() unsafe.Pointer {
-	return C.QScxmlDataModel_____setup_keyList_newList(ptr.Pointer())
+func (ptr *QScxmlDataModel) ____setup_initialDataValues_keyList_newList() unsafe.Pointer {
+	return C.QScxmlDataModel_____setup_initialDataValues_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QScxmlDataModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -1317,7 +1317,7 @@ func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValu
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_keyList() {
+			for i, v := range tmpList.__setup_initialDataValues_keyList() {
 				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
@@ -1327,7 +1327,7 @@ func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValu
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
 		tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_keyList() {
+		for i, v := range tmpList.__setup_initialDataValues_keyList() {
 			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
@@ -2934,7 +2934,7 @@ func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.s
 		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlNullDataModelFromPointer(l.data)
-			for i, v := range tmpList.__setup_keyList() {
+			for i, v := range tmpList.__setup_initialDataValues_keyList() {
 				out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 			}
 			return out
@@ -2944,7 +2944,7 @@ func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.s
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetupDefault(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 		out := make(map[string]*core.QVariant, int(l.len))
 		tmpList := NewQScxmlNullDataModelFromPointer(l.data)
-		for i, v := range tmpList.__setup_keyList() {
+		for i, v := range tmpList.__setup_initialDataValues_keyList() {
 			out[v] = tmpList.__setup_initialDataValues_atList(v, i)
 		}
 		return out
@@ -4112,16 +4112,16 @@ func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_newList() un
 	return C.QScxmlStateMachine___initialValuesChanged_initialValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __initialValuesChanged_keyList() []string {
+func (ptr *QScxmlStateMachine) __initialValuesChanged_initialValues_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____initialValuesChanged_keyList_atList(i)
+				out[i] = tmpList.____initialValuesChanged_initialValues_keyList_atList(i)
 			}
 			return out
-		}(C.QScxmlStateMachine___initialValuesChanged_keyList(ptr.Pointer()))
+		}(C.QScxmlStateMachine___initialValuesChanged_initialValues_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -4176,16 +4176,16 @@ func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_newList() unsafe
 	return C.QScxmlStateMachine___setInitialValues_initialValues_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) __setInitialValues_keyList() []string {
+func (ptr *QScxmlStateMachine) __setInitialValues_initialValues_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setInitialValues_keyList_atList(i)
+				out[i] = tmpList.____setInitialValues_initialValues_keyList_atList(i)
 			}
 			return out
-		}(C.QScxmlStateMachine___setInitialValues_keyList(ptr.Pointer()))
+		}(C.QScxmlStateMachine___setInitialValues_initialValues_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -4252,48 +4252,48 @@ func (ptr *QScxmlStateMachine) ____initialValues_keyList_newList() unsafe.Pointe
 	return C.QScxmlStateMachine_____initialValues_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_atList(i int) string {
+func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_____initialValuesChanged_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_setList(i string) {
+func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QScxmlStateMachine_____initialValuesChanged_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QScxmlStateMachine) ____initialValuesChanged_keyList_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine_____initialValuesChanged_keyList_newList(ptr.Pointer())
+func (ptr *QScxmlStateMachine) ____initialValuesChanged_initialValues_keyList_newList() unsafe.Pointer {
+	return C.QScxmlStateMachine_____initialValuesChanged_initialValues_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_atList(i int) string {
+func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QScxmlStateMachine_____setInitialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_setList(i string) {
+func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QScxmlStateMachine_____setInitialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_setList(ptr.Pointer(), C.struct_QtScxml_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QScxmlStateMachine) ____setInitialValues_keyList_newList() unsafe.Pointer {
-	return C.QScxmlStateMachine_____setInitialValues_keyList_newList(ptr.Pointer())
+func (ptr *QScxmlStateMachine) ____setInitialValues_initialValues_keyList_newList() unsafe.Pointer {
+	return C.QScxmlStateMachine_____setInitialValues_initialValues_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QScxmlStateMachine) __dynamicPropertyNames_atList(i int) *core.QByteArray {

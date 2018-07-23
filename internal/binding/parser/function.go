@@ -35,7 +35,6 @@ type Function struct {
 	TemplateModeGo    string
 	NonMember         bool
 	NoMocDeduce       bool
-	AsError           bool
 	Synthetic         bool
 	Checked           bool
 	Exception         bool

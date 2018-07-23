@@ -630,16 +630,16 @@ func (ptr *QHelpContentModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QHelpContentModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) __setItemData_keyList() []int {
+func (ptr *QHelpContentModel) __setItemData_roles_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQHelpContentModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_keyList_atList(i)
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
 			}
 			return out
-		}(C.QHelpContentModel___setItemData_keyList(ptr.Pointer()))
+		}(C.QHelpContentModel___setItemData_roles_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -860,55 +860,55 @@ func (ptr *QHelpContentModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QHelpContentModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QHelpContentModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QHelpContentModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QHelpContentModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QHelpContentModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QHelpContentModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QHelpContentModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return C.QHelpContentModel_____setItemData_keyList_newList(ptr.Pointer())
+func (ptr *QHelpContentModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QHelpContentModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_atList(i int) int {
+func (ptr *QHelpContentModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QHelpContentModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QHelpContentModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *QHelpContentModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpContentModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QHelpContentModel_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QHelpContentModel) ____setRoleNames_keyList_setList(i int) {
+func (ptr *QHelpContentModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QHelpContentModel_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QHelpContentModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QHelpContentModel_____setRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QHelpContentModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QHelpContentModel_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QHelpContentModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QHelpContentModel_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QHelpContentModel) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QHelpContentModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QHelpContentModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpContentModel) ____roleNames_keyList_atList(i int) int {
@@ -1198,7 +1198,7 @@ func callbackQHelpContentModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poin
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
 			tmpList := NewQHelpContentModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_keyList() {
+			for i, v := range tmpList.__setItemData_roles_keyList() {
 				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
@@ -1208,7 +1208,7 @@ func callbackQHelpContentModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poin
 	return C.char(int8(qt.GoBoolToInt(NewQHelpContentModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
 		out := make(map[int]*core.QVariant, int(l.len))
 		tmpList := NewQHelpContentModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_keyList() {
+		for i, v := range tmpList.__setItemData_roles_keyList() {
 			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
@@ -5819,21 +5819,21 @@ func (ptr *QHelpIndexModel) ____linksForKeyword_keyList_newList() unsafe.Pointer
 	return C.QHelpIndexModel_____linksForKeyword_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QHelpIndexModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QHelpIndexModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QHelpIndexModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QHelpIndexModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QHelpIndexModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QHelpIndexModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return C.QHelpIndexModel_____setItemData_keyList_newList(ptr.Pointer())
+func (ptr *QHelpIndexModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QHelpIndexModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpIndexModel) ____roleNames_keyList_atList(i int) int {
@@ -5889,16 +5889,16 @@ func (ptr *QHelpIndexModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QHelpIndexModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) __setItemData_keyList() []int {
+func (ptr *QHelpIndexModel) __setItemData_roles_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQHelpIndexModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_keyList_atList(i)
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
 			}
 			return out
-		}(C.QHelpIndexModel___setItemData_keyList(ptr.Pointer()))
+		}(C.QHelpIndexModel___setItemData_roles_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -6119,38 +6119,38 @@ func (ptr *QHelpIndexModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QHelpIndexModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_atList(i int) int {
+func (ptr *QHelpIndexModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QHelpIndexModel_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_setList(i int) {
+func (ptr *QHelpIndexModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QHelpIndexModel_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QHelpIndexModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QHelpIndexModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QHelpIndexModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QHelpIndexModel_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexModel) ____setRoleNames_keyList_atList(i int) int {
+func (ptr *QHelpIndexModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QHelpIndexModel_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QHelpIndexModel) ____setRoleNames_keyList_setList(i int) {
+func (ptr *QHelpIndexModel) ____setRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QHelpIndexModel_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QHelpIndexModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QHelpIndexModel_____setRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QHelpIndexModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QHelpIndexModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpIndexModel) __dynamicPropertyNames_atList(i int) *core.QByteArray {
@@ -6523,7 +6523,7 @@ func callbackQHelpIndexModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointe
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
 			tmpList := NewQHelpIndexModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_keyList() {
+			for i, v := range tmpList.__setItemData_roles_keyList() {
 				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
@@ -6533,7 +6533,7 @@ func callbackQHelpIndexModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointe
 	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtHelp_PackedList) map[int]*core.QVariant {
 		out := make(map[int]*core.QVariant, int(l.len))
 		tmpList := NewQHelpIndexModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_keyList() {
+		for i, v := range tmpList.__setItemData_roles_keyList() {
 			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
@@ -7481,7 +7481,7 @@ func callbackQHelpIndexWidget_LinksActivated(ptr unsafe.Pointer, links C.struct_
 		signal.(func(map[string]*core.QUrl, string))(func(l C.struct_QtHelp_PackedList) map[string]*core.QUrl {
 			out := make(map[string]*core.QUrl, int(l.len))
 			tmpList := NewQHelpIndexWidgetFromPointer(l.data)
-			for i, v := range tmpList.__linksActivated_keyList() {
+			for i, v := range tmpList.__linksActivated_links_keyList() {
 				out[v] = tmpList.__linksActivated_links_atList(v, i)
 			}
 			return out
@@ -7577,40 +7577,40 @@ func (ptr *QHelpIndexWidget) __linksActivated_links_newList() unsafe.Pointer {
 	return C.QHelpIndexWidget___linksActivated_links_newList(ptr.Pointer())
 }
 
-func (ptr *QHelpIndexWidget) __linksActivated_keyList() []string {
+func (ptr *QHelpIndexWidget) __linksActivated_links_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtHelp_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQHelpIndexWidgetFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____linksActivated_keyList_atList(i)
+				out[i] = tmpList.____linksActivated_links_keyList_atList(i)
 			}
 			return out
-		}(C.QHelpIndexWidget___linksActivated_keyList(ptr.Pointer()))
+		}(C.QHelpIndexWidget___linksActivated_links_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
 
-func (ptr *QHelpIndexWidget) ____linksActivated_keyList_atList(i int) string {
+func (ptr *QHelpIndexWidget) ____linksActivated_links_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QHelpIndexWidget_____linksActivated_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QHelpIndexWidget_____linksActivated_links_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QHelpIndexWidget) ____linksActivated_keyList_setList(i string) {
+func (ptr *QHelpIndexWidget) ____linksActivated_links_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QHelpIndexWidget_____linksActivated_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QHelpIndexWidget_____linksActivated_links_keyList_setList(ptr.Pointer(), C.struct_QtHelp_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QHelpIndexWidget) ____linksActivated_keyList_newList() unsafe.Pointer {
-	return C.QHelpIndexWidget_____linksActivated_keyList_newList(ptr.Pointer())
+func (ptr *QHelpIndexWidget) ____linksActivated_links_keyList_newList() unsafe.Pointer {
+	return C.QHelpIndexWidget_____linksActivated_links_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QHelpIndexWidget) __dataChanged_roles_atList(i int) int {

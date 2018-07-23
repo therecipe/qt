@@ -21968,16 +21968,16 @@ func (ptr *QDirModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QDirModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QDirModel) __setItemData_keyList() []int {
+func (ptr *QDirModel) __setItemData_roles_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQDirModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_keyList_atList(i)
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
 			}
 			return out
-		}(C.QDirModel___setItemData_keyList(ptr.Pointer()))
+		}(C.QDirModel___setItemData_roles_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -22179,55 +22179,55 @@ func (ptr *QDirModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QDirModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QDirModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QDirModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QDirModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QDirModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QDirModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QDirModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QDirModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QDirModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QDirModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return C.QDirModel_____setItemData_keyList_newList(ptr.Pointer())
+func (ptr *QDirModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QDirModel) ____doSetRoleNames_keyList_atList(i int) int {
+func (ptr *QDirModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QDirModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QDirModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QDirModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QDirModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QDirModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *QDirModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QDirModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QDirModel_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QDirModel) ____setRoleNames_keyList_setList(i int) {
+func (ptr *QDirModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QDirModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QDirModel_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QDirModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QDirModel_____setRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QDirModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QDirModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QDirModel_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QDirModel) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QDirModel_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QDirModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QDirModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QDirModel) ____roleNames_keyList_atList(i int) int {
@@ -22485,7 +22485,7 @@ func callbackQDirModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, rol
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
 			tmpList := NewQDirModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_keyList() {
+			for i, v := range tmpList.__setItemData_roles_keyList() {
 				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
@@ -22495,7 +22495,7 @@ func callbackQDirModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, rol
 	return C.char(int8(qt.GoBoolToInt(NewQDirModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 		out := make(map[int]*core.QVariant, int(l.len))
 		tmpList := NewQDirModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_keyList() {
+		for i, v := range tmpList.__setItemData_roles_keyList() {
 			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
@@ -27049,16 +27049,16 @@ func (ptr *QFileSystemModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QFileSystemModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) __setItemData_keyList() []int {
+func (ptr *QFileSystemModel) __setItemData_roles_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQFileSystemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_keyList_atList(i)
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
 			}
 			return out
-		}(C.QFileSystemModel___setItemData_keyList(ptr.Pointer()))
+		}(C.QFileSystemModel___setItemData_roles_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -27260,55 +27260,55 @@ func (ptr *QFileSystemModel) __persistentIndexList_newList() unsafe.Pointer {
 	return C.QFileSystemModel___persistentIndexList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QFileSystemModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QFileSystemModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QFileSystemModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QFileSystemModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QFileSystemModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QFileSystemModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QFileSystemModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QFileSystemModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return C.QFileSystemModel_____setItemData_keyList_newList(ptr.Pointer())
+func (ptr *QFileSystemModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QFileSystemModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_atList(i int) int {
+func (ptr *QFileSystemModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QFileSystemModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QFileSystemModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QFileSystemModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QFileSystemModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *QFileSystemModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QFileSystemModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QFileSystemModel_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QFileSystemModel) ____setRoleNames_keyList_setList(i int) {
+func (ptr *QFileSystemModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QFileSystemModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QFileSystemModel_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QFileSystemModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QFileSystemModel_____setRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QFileSystemModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QFileSystemModel_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QFileSystemModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QFileSystemModel_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QFileSystemModel) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QFileSystemModel_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QFileSystemModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QFileSystemModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QFileSystemModel) ____roleNames_keyList_atList(i int) int {
@@ -27566,7 +27566,7 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, map[int]*core.QVariant) bool)(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 			out := make(map[int]*core.QVariant, int(l.len))
 			tmpList := NewQFileSystemModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_keyList() {
+			for i, v := range tmpList.__setItemData_roles_keyList() {
 				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
@@ -27576,7 +27576,7 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 	return C.char(int8(qt.GoBoolToInt(NewQFileSystemModelFromPointer(ptr).SetItemDataDefault(core.NewQModelIndexFromPointer(index), func(l C.struct_QtWidgets_PackedList) map[int]*core.QVariant {
 		out := make(map[int]*core.QVariant, int(l.len))
 		tmpList := NewQFileSystemModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_keyList() {
+		for i, v := range tmpList.__setItemData_roles_keyList() {
 			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
@@ -30277,16 +30277,16 @@ func (ptr *QGestureEvent) __setM_accepted__newList() unsafe.Pointer {
 	return C.QGestureEvent___setM_accepted__newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) __setM_accepted_keyList() []core.Qt__GestureType {
+func (ptr *QGestureEvent) __setM_accepted__keyList() []core.Qt__GestureType {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []core.Qt__GestureType {
 			out := make([]core.Qt__GestureType, int(l.len))
 			tmpList := NewQGestureEventFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setM_accepted_keyList_atList(i)
+				out[i] = tmpList.____setM_accepted__keyList_atList(i)
 			}
 			return out
-		}(C.QGestureEvent___setM_accepted_keyList(ptr.Pointer()))
+		}(C.QGestureEvent___setM_accepted__keyList(ptr.Pointer()))
 	}
 	return make([]core.Qt__GestureType, 0)
 }
@@ -30389,16 +30389,16 @@ func (ptr *QGestureEvent) __setM_targetWidgets__newList() unsafe.Pointer {
 	return C.QGestureEvent___setM_targetWidgets__newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) __setM_targetWidgets_keyList() []core.Qt__GestureType {
+func (ptr *QGestureEvent) __setM_targetWidgets__keyList() []core.Qt__GestureType {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []core.Qt__GestureType {
 			out := make([]core.Qt__GestureType, int(l.len))
 			tmpList := NewQGestureEventFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setM_targetWidgets_keyList_atList(i)
+				out[i] = tmpList.____setM_targetWidgets__keyList_atList(i)
 			}
 			return out
-		}(C.QGestureEvent___setM_targetWidgets_keyList(ptr.Pointer()))
+		}(C.QGestureEvent___setM_targetWidgets__keyList(ptr.Pointer()))
 	}
 	return make([]core.Qt__GestureType, 0)
 }
@@ -30420,21 +30420,21 @@ func (ptr *QGestureEvent) ____m_accepted_keyList_newList() unsafe.Pointer {
 	return C.QGestureEvent_____m_accepted_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) ____setM_accepted_keyList_atList(i int) core.Qt__GestureType {
+func (ptr *QGestureEvent) ____setM_accepted__keyList_atList(i int) core.Qt__GestureType {
 	if ptr.Pointer() != nil {
-		return core.Qt__GestureType(C.QGestureEvent_____setM_accepted_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return core.Qt__GestureType(C.QGestureEvent_____setM_accepted__keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return 0
 }
 
-func (ptr *QGestureEvent) ____setM_accepted_keyList_setList(i core.Qt__GestureType) {
+func (ptr *QGestureEvent) ____setM_accepted__keyList_setList(i core.Qt__GestureType) {
 	if ptr.Pointer() != nil {
-		C.QGestureEvent_____setM_accepted_keyList_setList(ptr.Pointer(), C.longlong(i))
+		C.QGestureEvent_____setM_accepted__keyList_setList(ptr.Pointer(), C.longlong(i))
 	}
 }
 
-func (ptr *QGestureEvent) ____setM_accepted_keyList_newList() unsafe.Pointer {
-	return C.QGestureEvent_____setM_accepted_keyList_newList(ptr.Pointer())
+func (ptr *QGestureEvent) ____setM_accepted__keyList_newList() unsafe.Pointer {
+	return C.QGestureEvent_____setM_accepted__keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QGestureEvent) ____m_targetWidgets_keyList_atList(i int) core.Qt__GestureType {
@@ -30454,21 +30454,21 @@ func (ptr *QGestureEvent) ____m_targetWidgets_keyList_newList() unsafe.Pointer {
 	return C.QGestureEvent_____m_targetWidgets_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QGestureEvent) ____setM_targetWidgets_keyList_atList(i int) core.Qt__GestureType {
+func (ptr *QGestureEvent) ____setM_targetWidgets__keyList_atList(i int) core.Qt__GestureType {
 	if ptr.Pointer() != nil {
-		return core.Qt__GestureType(C.QGestureEvent_____setM_targetWidgets_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return core.Qt__GestureType(C.QGestureEvent_____setM_targetWidgets__keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return 0
 }
 
-func (ptr *QGestureEvent) ____setM_targetWidgets_keyList_setList(i core.Qt__GestureType) {
+func (ptr *QGestureEvent) ____setM_targetWidgets__keyList_setList(i core.Qt__GestureType) {
 	if ptr.Pointer() != nil {
-		C.QGestureEvent_____setM_targetWidgets_keyList_setList(ptr.Pointer(), C.longlong(i))
+		C.QGestureEvent_____setM_targetWidgets__keyList_setList(ptr.Pointer(), C.longlong(i))
 	}
 }
 
-func (ptr *QGestureEvent) ____setM_targetWidgets_keyList_newList() unsafe.Pointer {
-	return C.QGestureEvent_____setM_targetWidgets_keyList_newList(ptr.Pointer())
+func (ptr *QGestureEvent) ____setM_targetWidgets__keyList_newList() unsafe.Pointer {
+	return C.QGestureEvent_____setM_targetWidgets__keyList_newList(ptr.Pointer())
 }
 
 type QGestureRecognizer struct {
@@ -54338,16 +54338,16 @@ func (ptr *QItemEditorFactory) __setCreatorMap__newList() unsafe.Pointer {
 	return C.QItemEditorFactory___setCreatorMap__newList(ptr.Pointer())
 }
 
-func (ptr *QItemEditorFactory) __setCreatorMap_keyList() []int {
+func (ptr *QItemEditorFactory) __setCreatorMap__keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWidgets_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQItemEditorFactoryFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setCreatorMap_keyList_atList(i)
+				out[i] = tmpList.____setCreatorMap__keyList_atList(i)
 			}
 			return out
-		}(C.QItemEditorFactory___setCreatorMap_keyList(ptr.Pointer()))
+		}(C.QItemEditorFactory___setCreatorMap__keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -54369,21 +54369,21 @@ func (ptr *QItemEditorFactory) ____creatorMap_keyList_newList() unsafe.Pointer {
 	return C.QItemEditorFactory_____creatorMap_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QItemEditorFactory) ____setCreatorMap_keyList_atList(i int) int {
+func (ptr *QItemEditorFactory) ____setCreatorMap__keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QItemEditorFactory_____setCreatorMap_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QItemEditorFactory_____setCreatorMap__keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QItemEditorFactory) ____setCreatorMap_keyList_setList(i int) {
+func (ptr *QItemEditorFactory) ____setCreatorMap__keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QItemEditorFactory_____setCreatorMap_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QItemEditorFactory_____setCreatorMap__keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QItemEditorFactory) ____setCreatorMap_keyList_newList() unsafe.Pointer {
-	return C.QItemEditorFactory_____setCreatorMap_keyList_newList(ptr.Pointer())
+func (ptr *QItemEditorFactory) ____setCreatorMap__keyList_newList() unsafe.Pointer {
+	return C.QItemEditorFactory_____setCreatorMap__keyList_newList(ptr.Pointer())
 }
 
 type QKeyEventTransition struct {

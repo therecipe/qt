@@ -211,7 +211,7 @@ void* QWebChannel___registerObjects_objects_newList(void* ptr)
 	return new QHash<QString, QObject *>();
 }
 
-struct QtWebChannel_PackedList QWebChannel___registerObjects_keyList(void* ptr)
+struct QtWebChannel_PackedList QWebChannel___registerObjects_objects_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -237,17 +237,17 @@ struct QtWebChannel_PackedList QWebChannel___registeredObjects_keyList(void* ptr
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QObject *>*>(ptr)->keys()); QtWebChannel_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtWebChannel_PackedString QWebChannel_____registerObjects_keyList_atList(void* ptr, int i)
+struct QtWebChannel_PackedString QWebChannel_____registerObjects_objects_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QWebChannel_____registerObjects_keyList_setList(void* ptr, struct QtWebChannel_PackedString i)
+void QWebChannel_____registerObjects_objects_keyList_setList(void* ptr, struct QtWebChannel_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QWebChannel_____registerObjects_keyList_newList(void* ptr)
+void* QWebChannel_____registerObjects_objects_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

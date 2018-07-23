@@ -80,6 +80,13 @@ func UnpackedMapDirty(v string) (string, string) {
 	return splitted[0], splitted[1]
 }
 
+func UnpackedGoMapDirty(v string) []string {
+	if !strings.Contains(v, "]") { //TODO: multidimensional array and nested maps
+		return make([]string, 2)
+	}
+	return strings.Split(v, "]")
+}
+
 func CleanValue(v string) string {
 	if IsPackedList(cleanValueUnsafe(v)) || IsPackedMap(cleanValueUnsafe(v)) {
 		var inside = strings.Split(strings.Split(v, "<")[1], ">")[0]

@@ -453,16 +453,16 @@ func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_newList()
 	return C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(ptr.Pointer())
 }
 
-func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_keyList() []string {
+func (ptr *QGeoAreaMonitorInfo) __setNotificationParameters_parameters_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtPositioning_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQGeoAreaMonitorInfoFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setNotificationParameters_keyList_atList(i)
+				out[i] = tmpList.____setNotificationParameters_parameters_keyList_atList(i)
 			}
 			return out
-		}(C.QGeoAreaMonitorInfo___setNotificationParameters_keyList(ptr.Pointer()))
+		}(C.QGeoAreaMonitorInfo___setNotificationParameters_parameters_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -510,26 +510,26 @@ func (ptr *QGeoAreaMonitorInfo) __notificationParameters_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_atList(i int) string {
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_parameters_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_setList(i string) {
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_parameters_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_setList(ptr.Pointer(), C.struct_QtPositioning_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_keyList_newList() unsafe.Pointer {
-	return C.QGeoAreaMonitorInfo_____setNotificationParameters_keyList_newList(ptr.Pointer())
+func (ptr *QGeoAreaMonitorInfo) ____setNotificationParameters_parameters_keyList_newList() unsafe.Pointer {
+	return C.QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QGeoAreaMonitorInfo) ____notificationParameters_keyList_atList(i int) string {

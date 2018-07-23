@@ -171,7 +171,7 @@ func CppRegisterMetaType(function *parser.Function) string {
 			"QAbstract3DGraph::ElementType", "QImage::Format", "QItemModelBarDataProxy::MultiMatchBehavior", "QSurface3DSeries::DrawFlags",
 			"QAbstractBarSeries::LabelsPosition", "QScatterSeries::MarkerShape", "QWebPage::MessageSource", "QWebPage::MessageLevel",
 			"QWebPage::Feature", "QItemModelSurfaceDataProxy::MultiMatchBehavior", "QCategoryAxis::AxisLabelsPosition",
-			"QLegend::MarkerShape", "QDesignerFormWindowInterface::Feature":
+			"QLegend::MarkerShape", "QDesignerFormWindowInterface::Feature", "QValidator::State":
 			out = append(out[:i], out[i+1:]...)
 
 		default:

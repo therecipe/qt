@@ -12380,7 +12380,7 @@ void* QDirModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtWidgets_PackedList QDirModel___setItemData_keyList(void* ptr)
+struct QtWidgets_PackedList QDirModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -12539,49 +12539,49 @@ void* QDirModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QDirModel_____setItemData_keyList_atList(void* ptr, int i)
+int QDirModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QDirModel_____setItemData_keyList_setList(void* ptr, int i)
+void QDirModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QDirModel_____setItemData_keyList_newList(void* ptr)
+void* QDirModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QDirModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QDirModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QDirModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QDirModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QDirModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QDirModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QDirModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QDirModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QDirModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QDirModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QDirModel_____setRoleNames_keyList_newList(void* ptr)
+void* QDirModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -14778,7 +14778,7 @@ void* QFileSystemModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtWidgets_PackedList QFileSystemModel___setItemData_keyList(void* ptr)
+struct QtWidgets_PackedList QFileSystemModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -14937,49 +14937,49 @@ void* QFileSystemModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QFileSystemModel_____setItemData_keyList_atList(void* ptr, int i)
+int QFileSystemModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QFileSystemModel_____setItemData_keyList_setList(void* ptr, int i)
+void QFileSystemModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QFileSystemModel_____setItemData_keyList_newList(void* ptr)
+void* QFileSystemModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QFileSystemModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QFileSystemModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QFileSystemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QFileSystemModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QFileSystemModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QFileSystemModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QFileSystemModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QFileSystemModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QFileSystemModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QFileSystemModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QFileSystemModel_____setRoleNames_keyList_newList(void* ptr)
+void* QFileSystemModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -16831,7 +16831,7 @@ void* QGestureEvent___setM_accepted__newList(void* ptr)
 	return new QMap<Qt::GestureType, bool>();
 }
 
-struct QtWidgets_PackedList QGestureEvent___setM_accepted_keyList(void* ptr)
+struct QtWidgets_PackedList QGestureEvent___setM_accepted__keyList(void* ptr)
 {
 	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, bool>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -16905,7 +16905,7 @@ void* QGestureEvent___setM_targetWidgets__newList(void* ptr)
 	return new QMap<Qt::GestureType, QWidget *>();
 }
 
-struct QtWidgets_PackedList QGestureEvent___setM_targetWidgets_keyList(void* ptr)
+struct QtWidgets_PackedList QGestureEvent___setM_targetWidgets__keyList(void* ptr)
 {
 	return ({ QList<Qt::GestureType>* tmpValue = new QList<Qt::GestureType>(static_cast<QMap<Qt::GestureType, QWidget *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -16926,17 +16926,17 @@ void* QGestureEvent_____m_accepted_keyList_newList(void* ptr)
 	return new QList<Qt::GestureType>();
 }
 
-long long QGestureEvent_____setM_accepted_keyList_atList(void* ptr, int i)
+long long QGestureEvent_____setM_accepted__keyList_atList(void* ptr, int i)
 {
 	return ({Qt::GestureType tmp = static_cast<QList<Qt::GestureType>*>(ptr)->at(i); if (i == static_cast<QList<Qt::GestureType>*>(ptr)->size()-1) { static_cast<QList<Qt::GestureType>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGestureEvent_____setM_accepted_keyList_setList(void* ptr, long long i)
+void QGestureEvent_____setM_accepted__keyList_setList(void* ptr, long long i)
 {
 	static_cast<QList<Qt::GestureType>*>(ptr)->append(static_cast<Qt::GestureType>(i));
 }
 
-void* QGestureEvent_____setM_accepted_keyList_newList(void* ptr)
+void* QGestureEvent_____setM_accepted__keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<Qt::GestureType>();
@@ -16958,17 +16958,17 @@ void* QGestureEvent_____m_targetWidgets_keyList_newList(void* ptr)
 	return new QList<Qt::GestureType>();
 }
 
-long long QGestureEvent_____setM_targetWidgets_keyList_atList(void* ptr, int i)
+long long QGestureEvent_____setM_targetWidgets__keyList_atList(void* ptr, int i)
 {
 	return ({Qt::GestureType tmp = static_cast<QList<Qt::GestureType>*>(ptr)->at(i); if (i == static_cast<QList<Qt::GestureType>*>(ptr)->size()-1) { static_cast<QList<Qt::GestureType>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QGestureEvent_____setM_targetWidgets_keyList_setList(void* ptr, long long i)
+void QGestureEvent_____setM_targetWidgets__keyList_setList(void* ptr, long long i)
 {
 	static_cast<QList<Qt::GestureType>*>(ptr)->append(static_cast<Qt::GestureType>(i));
 }
 
-void* QGestureEvent_____setM_targetWidgets_keyList_newList(void* ptr)
+void* QGestureEvent_____setM_targetWidgets__keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<Qt::GestureType>();
@@ -32709,7 +32709,7 @@ void* QItemEditorFactory___setCreatorMap__newList(void* ptr)
 	return new QHash<int, QItemEditorCreatorBase *>();
 }
 
-struct QtWidgets_PackedList QItemEditorFactory___setCreatorMap_keyList(void* ptr)
+struct QtWidgets_PackedList QItemEditorFactory___setCreatorMap__keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QItemEditorCreatorBase *>*>(ptr)->keys()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -32730,17 +32730,17 @@ void* QItemEditorFactory_____creatorMap_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QItemEditorFactory_____setCreatorMap_keyList_atList(void* ptr, int i)
+int QItemEditorFactory_____setCreatorMap__keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QItemEditorFactory_____setCreatorMap_keyList_setList(void* ptr, int i)
+void QItemEditorFactory_____setCreatorMap__keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QItemEditorFactory_____setCreatorMap_keyList_newList(void* ptr)
+void* QItemEditorFactory_____setCreatorMap__keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();

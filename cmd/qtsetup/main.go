@@ -19,28 +19,27 @@ func main() {
 
 		println("Flags:\n")
 		flag.PrintDefaults()
-		print("\n")
+		println()
 
 		println("Modes:\n")
-		modes := []struct{ name, desc string }{
-			{"prep", "try to symlink tooling into the PATH"},
-			{"check", "do some basic env checks"},
-			{"generate", "generate the code for all packages"},
-			{"install", "run go install for all packages"},
-			{"test", "build some examples"},
+		for _, m := range []struct{ name, desc string }{
+			{"prep", "symlink tooling into the PATH"},
+			{"check", "perform some basic env checks"},
+			{"generate", "generate code for all packages"},
+			{"install", "go install all packages"},
+			{"test", "build and test some examples"},
 			{"full", "run all of the above"},
 			{"help", "print help"},
 			{"update", "update 'cmd' and 'internal/cmd'"},
 			{"upgrade", "update everything"},
+		} {
+			fmt.Printf("  %v%v%v\n", m.name, strings.Repeat(" ", 12-len(m.name)), m.desc)
 		}
-		for _, mode := range modes {
-			fmt.Printf("  %v%v%v\n", mode.name, strings.Repeat(" ", 12-len(mode.name)), mode.desc)
-		}
-		print("\n")
+		println()
 
 		println("Targets:\n")
 		//TODO:
-		print("\n")
+		println()
 
 		os.Exit(0)
 	}
@@ -74,10 +73,10 @@ func main() {
 		flag.Usage()
 	}
 
-	var vagrantsystem string
-	if vagrant && strings.Contains(target, "/") {
-		vagrantsystem = strings.Split(target, "/")[0]
-		target = strings.Split(target, "/")[1]
+	var vagrant_system string
+	if target_splitted := strings.Split(target, "/"); vagrant && len(target_splitted) == 2 {
+		vagrant_system = target_splitted[0]
+		target = target_splitted[1]
 	}
 
 	if target == "desktop" {
@@ -89,14 +88,7 @@ func main() {
 	}
 
 	utils.CheckBuildTarget(target)
-
 	switch mode {
-	case "full":
-		setup.Prep()
-		setup.Check(target, docker, vagrant)
-		setup.Generate(target, docker, vagrant)
-		setup.Install(target, docker, vagrant)
-		setup.Test(target, docker, vagrant, vagrantsystem)
 	case "prep":
 		setup.Prep()
 	case "check":
@@ -106,7 +98,13 @@ func main() {
 	case "install":
 		setup.Install(target, docker, vagrant)
 	case "test":
-		setup.Test(target, docker, vagrant, vagrantsystem)
+		setup.Test(target, docker, vagrant, vagrant_system)
+	case "full":
+		setup.Prep()
+		setup.Check(target, docker, vagrant)
+		setup.Generate(target, docker, vagrant)
+		setup.Install(target, docker, vagrant)
+		setup.Test(target, docker, vagrant, vagrant_system)
 	case "update":
 		setup.Update()
 	case "upgrade":

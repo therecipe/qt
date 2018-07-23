@@ -17,21 +17,21 @@ func GoInputParametersForC(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			if parameter.PureGoType != "" {
+			if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
 				input = append(input, GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
 					func() string {
 						if !strings.HasPrefix(parameter.PureGoType, "*") {
 							return "&"
 						}
 						return ""
-					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
+					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 			} else {
-				var alloc = GoInput(parameter.Name, parameter.Value, function)
+				var alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 				if strings.Contains(alloc, "C.CString") {
 					if (parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList") && !parser.UseJs() {
 						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{data: %vC, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
-								if function.AsError {
+								if strings.Contains(parameter.PureGoType, "error") {
 									return "C.longlong(-1)"
 								}
 								if parser.CleanValue(parameter.Value) == "QStringList" {
@@ -62,7 +62,7 @@ func GoInputParametersForJS(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			if parameter.PureGoType != "" {
+			if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
 				input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
 			} else {
 				input = append(input, GoInputJS(parameter.Name, parameter.Value, function))
@@ -80,10 +80,10 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
 			var (
-				alloc = GoInput(parameter.Name, parameter.Value, function)
+				alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 				name  = fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value))
 			)
-			switch goType(function, parameter.Value) {
+			switch goType(function, parameter.Value, parameter.PureGoType) {
 			case "string":
 				{
 					input = append(input, fmt.Sprintf("var %v *C.char\nif %v != \"\" {\n %v = %v\ndefer C.free(unsafe.Pointer(%v))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
@@ -105,13 +105,13 @@ func GoInputParametersForCallback(function *parser.Function) string {
 	input := make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		if parameter.PureGoType != "" {
+		if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
 			input[i] = fmt.Sprintf("%vD", parser.CleanName(parameter.Name, parameter.Value))
 		} else {
-			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function), "cGoUnpackString") {
+			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpackString") {
 				input[i] = "&retS"
 			} else {
-				input[i] = cgoOutput(parameter.Name, parameter.Value, function)
+				input[i] = cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 			}
 		}
 	}

@@ -345,7 +345,7 @@ void* QHelpContentModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpContentModel___setItemData_keyList(void* ptr)
+struct QtHelp_PackedList QHelpContentModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -520,49 +520,49 @@ void* QHelpContentModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpContentModel_____setItemData_keyList_atList(void* ptr, int i)
+int QHelpContentModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____setItemData_keyList_setList(void* ptr, int i)
+void QHelpContentModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpContentModel_____setItemData_keyList_newList(void* ptr)
+void* QHelpContentModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QHelpContentModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QHelpContentModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QHelpContentModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpContentModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QHelpContentModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QHelpContentModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QHelpContentModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpContentModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QHelpContentModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpContentModel_____setRoleNames_keyList_newList(void* ptr)
+void* QHelpContentModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -2649,17 +2649,17 @@ void* QHelpIndexModel_____linksForKeyword_keyList_newList(void* ptr)
 	return new QList<QString>();
 }
 
-int QHelpIndexModel_____setItemData_keyList_atList(void* ptr, int i)
+int QHelpIndexModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____setItemData_keyList_setList(void* ptr, int i)
+void QHelpIndexModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpIndexModel_____setItemData_keyList_newList(void* ptr)
+void* QHelpIndexModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -2713,7 +2713,7 @@ void* QHelpIndexModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtHelp_PackedList QHelpIndexModel___setItemData_keyList(void* ptr)
+struct QtHelp_PackedList QHelpIndexModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -2888,33 +2888,33 @@ void* QHelpIndexModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QHelpIndexModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QHelpIndexModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QHelpIndexModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpIndexModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QHelpIndexModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QHelpIndexModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QHelpIndexModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QHelpIndexModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QHelpIndexModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QHelpIndexModel_____setRoleNames_keyList_newList(void* ptr)
+void* QHelpIndexModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -3425,22 +3425,22 @@ void* QHelpIndexWidget___linksActivated_links_newList(void* ptr)
 	return new QMap<QString, QUrl>();
 }
 
-struct QtHelp_PackedList QHelpIndexWidget___linksActivated_keyList(void* ptr)
+struct QtHelp_PackedList QHelpIndexWidget___linksActivated_links_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QUrl>*>(ptr)->keys()); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtHelp_PackedString QHelpIndexWidget_____linksActivated_keyList_atList(void* ptr, int i)
+struct QtHelp_PackedString QHelpIndexWidget_____linksActivated_links_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtHelp_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QHelpIndexWidget_____linksActivated_keyList_setList(void* ptr, struct QtHelp_PackedString i)
+void QHelpIndexWidget_____linksActivated_links_keyList_setList(void* ptr, struct QtHelp_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QHelpIndexWidget_____linksActivated_keyList_newList(void* ptr)
+void* QHelpIndexWidget_____linksActivated_links_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

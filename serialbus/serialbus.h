@@ -287,13 +287,13 @@ struct QtSerialBus_PackedList QModbusDeviceIdentification___m_objects_keyList(vo
 void* QModbusDeviceIdentification___setM_objects__atList(void* ptr, int v, int i);
 void QModbusDeviceIdentification___setM_objects__setList(void* ptr, int key, void* i);
 void* QModbusDeviceIdentification___setM_objects__newList(void* ptr);
-struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects_keyList(void* ptr);
+struct QtSerialBus_PackedList QModbusDeviceIdentification___setM_objects__keyList(void* ptr);
 int QModbusDeviceIdentification_____m_objects_keyList_atList(void* ptr, int i);
 void QModbusDeviceIdentification_____m_objects_keyList_setList(void* ptr, int i);
 void* QModbusDeviceIdentification_____m_objects_keyList_newList(void* ptr);
-int QModbusDeviceIdentification_____setM_objects_keyList_atList(void* ptr, int i);
-void QModbusDeviceIdentification_____setM_objects_keyList_setList(void* ptr, int i);
-void* QModbusDeviceIdentification_____setM_objects_keyList_newList(void* ptr);
+int QModbusDeviceIdentification_____setM_objects__keyList_atList(void* ptr, int i);
+void QModbusDeviceIdentification_____setM_objects__keyList_setList(void* ptr, int i);
+void* QModbusDeviceIdentification_____setM_objects__keyList_newList(void* ptr);
 void* QModbusExceptionResponse_NewQModbusExceptionResponse();
 void* QModbusExceptionResponse_NewQModbusExceptionResponse3(long long code, long long ec);
 void* QModbusExceptionResponse_NewQModbusExceptionResponse2(void* pdu);

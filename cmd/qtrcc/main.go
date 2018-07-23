@@ -19,11 +19,11 @@ func main() {
 
 		println("Flags:\n")
 		flag.PrintDefaults()
-		print("\n")
+		println()
 
 		println("Targets:\n")
 		//TODO:
-		print("\n")
+		println()
 
 		os.Exit(0)
 	}
@@ -61,10 +61,10 @@ func main() {
 		flag.Usage()
 	}
 
-	var vagrantsystem string
-	if vagrant && strings.Contains(target, "/") {
-		vagrantsystem = strings.Split(target, "/")[0]
-		target = strings.Split(target, "/")[1]
+	var vagrant_system string
+	if target_splitted := strings.Split(target, "/"); vagrant && len(target_splitted) == 2 {
+		vagrant_system = target_splitted[0]
+		target = target_splitted[1]
 	}
 
 	if target == "desktop" {
@@ -85,11 +85,12 @@ func main() {
 	}
 
 	utils.CheckBuildTarget(target)
-	if docker {
+	switch {
+	case docker:
 		cmd.Docker([]string{"qtrcc", "-debug"}, target, path, false)
-	} else if vagrant {
-		cmd.Vagrant([]string{"qtrcc", "-debug"}, target, path, false, vagrantsystem)
-	} else {
+	case vagrant:
+		cmd.Vagrant([]string{"qtrcc", "-debug"}, target, path, false, vagrant_system)
+	default:
 		rcc.Rcc(path, target, tags, output)
 	}
 }

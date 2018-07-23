@@ -1296,7 +1296,7 @@ void* QWebEngineHttpRequest___postRequest_postData_newList(void* ptr)
 	return new QMap<QString, QString>();
 }
 
-struct QtWebEngine_PackedList QWebEngineHttpRequest___postRequest_keyList(void* ptr)
+struct QtWebEngine_PackedList QWebEngineHttpRequest___postRequest_postData_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QString>*>(ptr)->keys()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -1317,17 +1317,17 @@ void* QWebEngineHttpRequest___headers_newList(void* ptr)
 	return new QVector<QByteArray>();
 }
 
-struct QtWebEngine_PackedString QWebEngineHttpRequest_____postRequest_keyList_atList(void* ptr, int i)
+struct QtWebEngine_PackedString QWebEngineHttpRequest_____postRequest_postData_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QWebEngineHttpRequest_____postRequest_keyList_setList(void* ptr, struct QtWebEngine_PackedString i)
+void QWebEngineHttpRequest_____postRequest_postData_keyList_setList(void* ptr, struct QtWebEngine_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QWebEngineHttpRequest_____postRequest_keyList_newList(void* ptr)
+void* QWebEngineHttpRequest_____postRequest_postData_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

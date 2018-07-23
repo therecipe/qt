@@ -3166,7 +3166,7 @@ void* QAudioEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtMultimedia_PackedList QAudioEncoderSettings___setEncodingOptions_keyList(void* ptr)
+struct QtMultimedia_PackedList QAudioEncoderSettings___setEncodingOptions_options_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -3192,17 +3192,17 @@ struct QtMultimedia_PackedList QAudioEncoderSettings___encodingOptions_keyList(v
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedString QAudioEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i)
+struct QtMultimedia_PackedString QAudioEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QAudioEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
+void QAudioEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QAudioEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
+void* QAudioEncoderSettings_____setEncodingOptions_options_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
@@ -10230,7 +10230,7 @@ void* QImageEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtMultimedia_PackedList QImageEncoderSettings___setEncodingOptions_keyList(void* ptr)
+struct QtMultimedia_PackedList QImageEncoderSettings___setEncodingOptions_options_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -10256,17 +10256,17 @@ struct QtMultimedia_PackedList QImageEncoderSettings___encodingOptions_keyList(v
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedString QImageEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i)
+struct QtMultimedia_PackedString QImageEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QImageEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
+void QImageEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QImageEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
+void* QImageEncoderSettings_____setEncodingOptions_options_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
@@ -16246,7 +16246,7 @@ void* QMediaResource___setValues__newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtMultimedia_PackedList QMediaResource___setValues_keyList(void* ptr)
+struct QtMultimedia_PackedList QMediaResource___setValues__keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -16267,17 +16267,17 @@ void* QMediaResource_____values_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QMediaResource_____setValues_keyList_atList(void* ptr, int i)
+int QMediaResource_____setValues__keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QMediaResource_____setValues_keyList_setList(void* ptr, int i)
+void QMediaResource_____setValues__keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QMediaResource_____setValues_keyList_newList(void* ptr)
+void* QMediaResource_____setValues__keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -20276,7 +20276,7 @@ void* QVideoEncoderSettings___setEncodingOptions_options_newList(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtMultimedia_PackedList QVideoEncoderSettings___setEncodingOptions_keyList(void* ptr)
+struct QtMultimedia_PackedList QVideoEncoderSettings___setEncodingOptions_options_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -20302,17 +20302,17 @@ struct QtMultimedia_PackedList QVideoEncoderSettings___encodingOptions_keyList(v
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedString QVideoEncoderSettings_____setEncodingOptions_keyList_atList(void* ptr, int i)
+struct QtMultimedia_PackedString QVideoEncoderSettings_____setEncodingOptions_options_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QVideoEncoderSettings_____setEncodingOptions_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
+void QVideoEncoderSettings_____setEncodingOptions_options_keyList_setList(void* ptr, struct QtMultimedia_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QVideoEncoderSettings_____setEncodingOptions_keyList_newList(void* ptr)
+void* QVideoEncoderSettings_____setEncodingOptions_options_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

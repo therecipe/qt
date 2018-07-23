@@ -89334,7 +89334,7 @@ void* QStandardItemModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtGui_PackedList QStandardItemModel___setItemData_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -89419,7 +89419,7 @@ void* QStandardItemModel___setItemRoleNames_roleNames_newList(void* ptr)
 	return new QHash<int, QByteArray>();
 }
 
-struct QtGui_PackedList QStandardItemModel___setItemRoleNames_keyList(void* ptr)
+struct QtGui_PackedList QStandardItemModel___setItemRoleNames_roleNames_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -89477,33 +89477,33 @@ void* QStandardItemModel___mimeData_indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QStandardItemModel_____setItemData_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QStandardItemModel_____setItemData_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QStandardItemModel_____setItemData_keyList_newList(void* ptr)
+void* QStandardItemModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QStandardItemModel_____setItemRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setItemRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QStandardItemModel_____setItemRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setItemRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QStandardItemModel_____setItemRoleNames_keyList_newList(void* ptr)
+void* QStandardItemModel_____setItemRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -89658,33 +89658,33 @@ void* QStandardItemModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QStandardItemModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QStandardItemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QStandardItemModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QStandardItemModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QStandardItemModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QStandardItemModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QStandardItemModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QStandardItemModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QStandardItemModel_____setRoleNames_keyList_newList(void* ptr)
+void* QStandardItemModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();

@@ -20,23 +20,22 @@ func main() {
 
 		println("Flags:\n")
 		flag.PrintDefaults()
-		print("\n")
+		println()
 
 		println("Modes:\n")
-		modes := []struct{ name, desc string }{
+		for _, m := range []struct{ name, desc string }{
 			{"build", "compile and bundle"},
 			{"run", "run the binary"},
 			{"test", "build and run"},
 			{"help", "print help"},
+		} {
+			fmt.Printf("  %v%v%v\n", m.name, strings.Repeat(" ", 12-len(m.name)), m.desc)
 		}
-		for _, mode := range modes {
-			fmt.Printf("  %v%v%v\n", mode.name, strings.Repeat(" ", 12-len(mode.name)), mode.desc)
-		}
-		print("\n")
+		println()
 
 		println("Targets:\n")
 		//TODO:
-		print("\n")
+		println()
 
 		os.Exit(0)
 	}
@@ -92,14 +91,16 @@ func main() {
 		flag.Usage()
 	}
 
-	var vagrantsystem string
-	if vagrant && strings.Contains(target, "/") {
-		vagrantsystem = strings.Split(target, "/")[0]
-		target = strings.Split(target, "/")[1]
+	var vagrant_system string
+	if target_splitted := strings.Split(target, "/"); vagrant && len(target_splitted) == 2 {
+		vagrant_system = target_splitted[0]
+		target = target_splitted[1]
 	}
 
 	if target == "desktop" {
 		target = runtime.GOOS
+	} else {
+		fast = false
 	}
 
 	if !filepath.IsAbs(path) {
@@ -110,12 +111,5 @@ func main() {
 	}
 
 	utils.CheckBuildTarget(target)
-
-	//TODO: check mode here
-
-	switch target {
-	case "android", "android-emulator", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
-		fast = false
-	}
-	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !docker, device, vagrant, vagrantsystem, comply)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !(docker || vagrant), device, vagrant, vagrant_system, comply)
 }

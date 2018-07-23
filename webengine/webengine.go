@@ -2525,16 +2525,16 @@ func (ptr *QWebEngineHttpRequest) __postRequest_postData_newList() unsafe.Pointe
 	return C.QWebEngineHttpRequest___postRequest_postData_newList(ptr.Pointer())
 }
 
-func (ptr *QWebEngineHttpRequest) __postRequest_keyList() []string {
+func (ptr *QWebEngineHttpRequest) __postRequest_postData_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtWebEngine_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQWebEngineHttpRequestFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____postRequest_keyList_atList(i)
+				out[i] = tmpList.____postRequest_postData_keyList_atList(i)
 			}
 			return out
-		}(C.QWebEngineHttpRequest___postRequest_keyList(ptr.Pointer()))
+		}(C.QWebEngineHttpRequest___postRequest_postData_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -2558,26 +2558,26 @@ func (ptr *QWebEngineHttpRequest) __headers_newList() unsafe.Pointer {
 	return C.QWebEngineHttpRequest___headers_newList(ptr.Pointer())
 }
 
-func (ptr *QWebEngineHttpRequest) ____postRequest_keyList_atList(i int) string {
+func (ptr *QWebEngineHttpRequest) ____postRequest_postData_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QWebEngineHttpRequest_____postRequest_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QWebEngineHttpRequest_____postRequest_postData_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QWebEngineHttpRequest) ____postRequest_keyList_setList(i string) {
+func (ptr *QWebEngineHttpRequest) ____postRequest_postData_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QWebEngineHttpRequest_____postRequest_keyList_setList(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QWebEngineHttpRequest_____postRequest_postData_keyList_setList(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QWebEngineHttpRequest) ____postRequest_keyList_newList() unsafe.Pointer {
-	return C.QWebEngineHttpRequest_____postRequest_keyList_newList(ptr.Pointer())
+func (ptr *QWebEngineHttpRequest) ____postRequest_postData_keyList_newList() unsafe.Pointer {
+	return C.QWebEngineHttpRequest_____postRequest_postData_keyList_newList(ptr.Pointer())
 }
 
 type QWebEnginePage struct {

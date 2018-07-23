@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func GoInput(name, value string, f *parser.Function) string {
+func GoInput(name, value string, f *parser.Function, p string) string {
 	if parser.UseJs() {
 		return GoInputJS(name, value, f)
 	}
@@ -36,7 +36,7 @@ func GoInput(name, value string, f *parser.Function) string {
 	case "uchar", "quint8", "GLubyte", "QString":
 		{
 			return fmt.Sprintf("C.CString(%v)", func() string {
-				if f.AsError {
+				if strings.Contains(p, "error") {
 					return fmt.Sprintf("func() string { tmp := %v\n if tmp != nil { return tmp.Error() }\n return \"\" }()", name)
 				}
 				return name

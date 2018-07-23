@@ -267,7 +267,7 @@ void* QGeoAreaMonitorInfo___setNotificationParameters_parameters_newList(void* p
 	return new QMap<QString, QVariant>();
 }
 
-struct QtPositioning_PackedList QGeoAreaMonitorInfo___setNotificationParameters_keyList(void* ptr)
+struct QtPositioning_PackedList QGeoAreaMonitorInfo___setNotificationParameters_parameters_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -293,17 +293,17 @@ struct QtPositioning_PackedList QGeoAreaMonitorInfo___notificationParameters_key
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtPositioning_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtPositioning_PackedString QGeoAreaMonitorInfo_____setNotificationParameters_keyList_atList(void* ptr, int i)
+struct QtPositioning_PackedString QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QGeoAreaMonitorInfo_____setNotificationParameters_keyList_setList(void* ptr, struct QtPositioning_PackedString i)
+void QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_setList(void* ptr, struct QtPositioning_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QGeoAreaMonitorInfo_____setNotificationParameters_keyList_newList(void* ptr)
+void* QGeoAreaMonitorInfo_____setNotificationParameters_parameters_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();

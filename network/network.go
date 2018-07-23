@@ -17494,16 +17494,16 @@ func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_new
 	return C.QSslConfiguration___setBackendConfiguration_backendConfiguration_newList(ptr.Pointer())
 }
 
-func (ptr *QSslConfiguration) __setBackendConfiguration_keyList() []*core.QByteArray {
+func (ptr *QSslConfiguration) __setBackendConfiguration_backendConfiguration_keyList() []*core.QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtNetwork_PackedList) []*core.QByteArray {
 			out := make([]*core.QByteArray, int(l.len))
 			tmpList := NewQSslConfigurationFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setBackendConfiguration_keyList_atList(i)
+				out[i] = tmpList.____setBackendConfiguration_backendConfiguration_keyList_atList(i)
 			}
 			return out
-		}(C.QSslConfiguration___setBackendConfiguration_keyList(ptr.Pointer()))
+		}(C.QSslConfiguration___setBackendConfiguration_backendConfiguration_keyList(ptr.Pointer()))
 	}
 	return make([]*core.QByteArray, 0)
 }
@@ -17731,23 +17731,23 @@ func (ptr *QSslConfiguration) __ellipticCurves_newList() unsafe.Pointer {
 	return C.QSslConfiguration___ellipticCurves_newList(ptr.Pointer())
 }
 
-func (ptr *QSslConfiguration) ____setBackendConfiguration_keyList_atList(i int) *core.QByteArray {
+func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_atList(i int) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____setBackendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		tmpValue := core.NewQByteArrayFromPointer(C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QSslConfiguration) ____setBackendConfiguration_keyList_setList(i core.QByteArray_ITF) {
+func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_setList(i core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSslConfiguration_____setBackendConfiguration_keyList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
+		C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_setList(ptr.Pointer(), core.PointerFromQByteArray(i))
 	}
 }
 
-func (ptr *QSslConfiguration) ____setBackendConfiguration_keyList_newList() unsafe.Pointer {
-	return C.QSslConfiguration_____setBackendConfiguration_keyList_newList(ptr.Pointer())
+func (ptr *QSslConfiguration) ____setBackendConfiguration_backendConfiguration_keyList_newList() unsafe.Pointer {
+	return C.QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QSslConfiguration) ____backendConfiguration_keyList_atList(i int) *core.QByteArray {

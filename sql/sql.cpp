@@ -1971,17 +1971,17 @@ void* QSqlQueryModel_____roleNames_keyList_newList(void* ptr)
 	return new QList<int>();
 }
 
-int QSqlQueryModel_____setItemData_keyList_atList(void* ptr, int i)
+int QSqlQueryModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSqlQueryModel_____setItemData_keyList_setList(void* ptr, int i)
+void QSqlQueryModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QSqlQueryModel_____setItemData_keyList_newList(void* ptr)
+void* QSqlQueryModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -2019,7 +2019,7 @@ void* QSqlQueryModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtSql_PackedList QSqlQueryModel___setItemData_keyList(void* ptr)
+struct QtSql_PackedList QSqlQueryModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -2173,33 +2173,33 @@ void* QSqlQueryModel___persistentIndexList_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QSqlQueryModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QSqlQueryModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSqlQueryModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QSqlQueryModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QSqlQueryModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QSqlQueryModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QSqlQueryModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QSqlQueryModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QSqlQueryModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QSqlQueryModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QSqlQueryModel_____setRoleNames_keyList_newList(void* ptr)
+void* QSqlQueryModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();

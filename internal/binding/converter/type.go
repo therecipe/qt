@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func goType(f *parser.Function, value string) string {
+func goType(f *parser.Function, value string, p string) string {
 	var vOld = value
 
 	value = parser.CleanValue(value)
@@ -21,7 +21,7 @@ func goType(f *parser.Function, value string) string {
 				return "[]string"
 			}
 
-			if f.AsError {
+			if strings.Contains(p, "error") {
 				return "error"
 			}
 
@@ -180,7 +180,7 @@ func goType(f *parser.Function, value string) string {
 					return "*"
 				}
 				return ""
-			}(), goType(f, parser.UnpackedListDirty(value)))
+			}(), goType(f, parser.UnpackedListDirty(value), p))
 		}
 
 	case parser.IsPackedMap(value):
@@ -192,14 +192,14 @@ func goType(f *parser.Function, value string) string {
 						return "*"
 					}
 					return ""
-				}(), goType(f, key),
+				}(), goType(f, key, parser.UnpackedGoMapDirty(p)[0]),
 
 				func() string {
 					if isClass(parser.CleanValue(value)) && parser.CleanValue(value) != "QString" && parser.CleanValue(value) != "QStringList" {
 						return "*"
 					}
 					return ""
-				}(), goType(f, value))
+				}(), goType(f, value, parser.UnpackedGoMapDirty(p)[1]))
 		}
 	}
 

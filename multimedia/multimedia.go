@@ -7658,16 +7658,16 @@ func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_newList() unsafe.
 	return C.QAudioEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QAudioEncoderSettings) __setEncodingOptions_keyList() []string {
+func (ptr *QAudioEncoderSettings) __setEncodingOptions_options_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQAudioEncoderSettingsFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+				out[i] = tmpList.____setEncodingOptions_options_keyList_atList(i)
 			}
 			return out
-		}(C.QAudioEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+		}(C.QAudioEncoderSettings___setEncodingOptions_options_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -7715,26 +7715,26 @@ func (ptr *QAudioEncoderSettings) __encodingOptions_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+func (ptr *QAudioEncoderSettings) ____setEncodingOptions_options_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QAudioEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QAudioEncoderSettings_____setEncodingOptions_options_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+func (ptr *QAudioEncoderSettings) ____setEncodingOptions_options_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QAudioEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QAudioEncoderSettings_____setEncodingOptions_options_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QAudioEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
-	return C.QAudioEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
+func (ptr *QAudioEncoderSettings) ____setEncodingOptions_options_keyList_newList() unsafe.Pointer {
+	return C.QAudioEncoderSettings_____setEncodingOptions_options_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QAudioEncoderSettings) ____encodingOptions_keyList_atList(i int) string {
@@ -22796,16 +22796,16 @@ func (ptr *QImageEncoderSettings) __setEncodingOptions_options_newList() unsafe.
 	return C.QImageEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QImageEncoderSettings) __setEncodingOptions_keyList() []string {
+func (ptr *QImageEncoderSettings) __setEncodingOptions_options_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQImageEncoderSettingsFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+				out[i] = tmpList.____setEncodingOptions_options_keyList_atList(i)
 			}
 			return out
-		}(C.QImageEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+		}(C.QImageEncoderSettings___setEncodingOptions_options_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -22853,26 +22853,26 @@ func (ptr *QImageEncoderSettings) __encodingOptions_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+func (ptr *QImageEncoderSettings) ____setEncodingOptions_options_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QImageEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QImageEncoderSettings_____setEncodingOptions_options_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+func (ptr *QImageEncoderSettings) ____setEncodingOptions_options_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QImageEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QImageEncoderSettings_____setEncodingOptions_options_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QImageEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
-	return C.QImageEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
+func (ptr *QImageEncoderSettings) ____setEncodingOptions_options_keyList_newList() unsafe.Pointer {
+	return C.QImageEncoderSettings_____setEncodingOptions_options_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QImageEncoderSettings) ____encodingOptions_keyList_atList(i int) string {
@@ -32899,16 +32899,16 @@ func (ptr *QMediaResource) __setValues__newList() unsafe.Pointer {
 	return C.QMediaResource___setValues__newList(ptr.Pointer())
 }
 
-func (ptr *QMediaResource) __setValues_keyList() []int {
+func (ptr *QMediaResource) __setValues__keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQMediaResourceFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setValues_keyList_atList(i)
+				out[i] = tmpList.____setValues__keyList_atList(i)
 			}
 			return out
-		}(C.QMediaResource___setValues_keyList(ptr.Pointer()))
+		}(C.QMediaResource___setValues__keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -32930,21 +32930,21 @@ func (ptr *QMediaResource) ____values_keyList_newList() unsafe.Pointer {
 	return C.QMediaResource_____values_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QMediaResource) ____setValues_keyList_atList(i int) int {
+func (ptr *QMediaResource) ____setValues__keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QMediaResource_____setValues_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QMediaResource_____setValues__keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QMediaResource) ____setValues_keyList_setList(i int) {
+func (ptr *QMediaResource) ____setValues__keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QMediaResource_____setValues_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QMediaResource_____setValues__keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QMediaResource) ____setValues_keyList_newList() unsafe.Pointer {
-	return C.QMediaResource_____setValues_keyList_newList(ptr.Pointer())
+func (ptr *QMediaResource) ____setValues__keyList_newList() unsafe.Pointer {
+	return C.QMediaResource_____setValues__keyList_newList(ptr.Pointer())
 }
 
 type QMediaService struct {
@@ -42822,16 +42822,16 @@ func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_newList() unsafe.
 	return C.QVideoEncoderSettings___setEncodingOptions_options_newList(ptr.Pointer())
 }
 
-func (ptr *QVideoEncoderSettings) __setEncodingOptions_keyList() []string {
+func (ptr *QVideoEncoderSettings) __setEncodingOptions_options_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtMultimedia_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQVideoEncoderSettingsFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setEncodingOptions_keyList_atList(i)
+				out[i] = tmpList.____setEncodingOptions_options_keyList_atList(i)
 			}
 			return out
-		}(C.QVideoEncoderSettings___setEncodingOptions_keyList(ptr.Pointer()))
+		}(C.QVideoEncoderSettings___setEncodingOptions_options_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -42879,26 +42879,26 @@ func (ptr *QVideoEncoderSettings) __encodingOptions_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_atList(i int) string {
+func (ptr *QVideoEncoderSettings) ____setEncodingOptions_options_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVideoEncoderSettings_____setEncodingOptions_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QVideoEncoderSettings_____setEncodingOptions_options_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_setList(i string) {
+func (ptr *QVideoEncoderSettings) ____setEncodingOptions_options_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVideoEncoderSettings_____setEncodingOptions_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QVideoEncoderSettings_____setEncodingOptions_options_keyList_setList(ptr.Pointer(), C.struct_QtMultimedia_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QVideoEncoderSettings) ____setEncodingOptions_keyList_newList() unsafe.Pointer {
-	return C.QVideoEncoderSettings_____setEncodingOptions_keyList_newList(ptr.Pointer())
+func (ptr *QVideoEncoderSettings) ____setEncodingOptions_options_keyList_newList() unsafe.Pointer {
+	return C.QVideoEncoderSettings_____setEncodingOptions_options_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QVideoEncoderSettings) ____encodingOptions_keyList_atList(i int) string {

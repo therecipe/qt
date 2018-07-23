@@ -8152,7 +8152,7 @@ void* QSslConfiguration___setBackendConfiguration_backendConfiguration_newList(v
 	return new QMap<QByteArray, QVariant>();
 }
 
-struct QtNetwork_PackedList QSslConfiguration___setBackendConfiguration_keyList(void* ptr)
+struct QtNetwork_PackedList QSslConfiguration___setBackendConfiguration_backendConfiguration_keyList(void* ptr)
 {
 	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMap<QByteArray, QVariant>*>(ptr)->keys()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -8338,17 +8338,17 @@ void* QSslConfiguration___ellipticCurves_newList(void* ptr)
 	return new QVector<QSslEllipticCurve>();
 }
 
-void* QSslConfiguration_____setBackendConfiguration_keyList_atList(void* ptr, int i)
+void* QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_atList(void* ptr, int i)
 {
 	return new QByteArray(({QByteArray tmp = static_cast<QList<QByteArray>*>(ptr)->at(i); if (i == static_cast<QList<QByteArray>*>(ptr)->size()-1) { static_cast<QList<QByteArray>*>(ptr)->~QList(); free(ptr); }; tmp; }));
 }
 
-void QSslConfiguration_____setBackendConfiguration_keyList_setList(void* ptr, void* i)
+void QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_setList(void* ptr, void* i)
 {
 	static_cast<QList<QByteArray>*>(ptr)->append(*static_cast<QByteArray*>(i));
 }
 
-void* QSslConfiguration_____setBackendConfiguration_keyList_newList(void* ptr)
+void* QSslConfiguration_____setBackendConfiguration_backendConfiguration_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QByteArray>();

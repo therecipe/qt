@@ -1987,7 +1987,7 @@ func callbackQAbstractItemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poi
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, map[int]*QVariant) bool)(NewQModelIndexFromPointer(index), func(l C.struct_QtCore_PackedList) map[int]*QVariant {
 			out := make(map[int]*QVariant, int(l.len))
 			tmpList := NewQAbstractItemModelFromPointer(l.data)
-			for i, v := range tmpList.__setItemData_keyList() {
+			for i, v := range tmpList.__setItemData_roles_keyList() {
 				out[v] = tmpList.__setItemData_roles_atList(v, i)
 			}
 			return out
@@ -1997,7 +1997,7 @@ func callbackQAbstractItemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poi
 	return C.char(int8(qt.GoBoolToInt(NewQAbstractItemModelFromPointer(ptr).SetItemDataDefault(NewQModelIndexFromPointer(index), func(l C.struct_QtCore_PackedList) map[int]*QVariant {
 		out := make(map[int]*QVariant, int(l.len))
 		tmpList := NewQAbstractItemModelFromPointer(l.data)
-		for i, v := range tmpList.__setItemData_keyList() {
+		for i, v := range tmpList.__setItemData_roles_keyList() {
 			out[v] = tmpList.__setItemData_roles_atList(v, i)
 		}
 		return out
@@ -4107,16 +4107,16 @@ func (ptr *QAbstractItemModel) __setItemData_roles_newList() unsafe.Pointer {
 	return C.QAbstractItemModel___setItemData_roles_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemModel) __setItemData_keyList() []int {
+func (ptr *QAbstractItemModel) __setItemData_roles_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQAbstractItemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setItemData_keyList_atList(i)
+				out[i] = tmpList.____setItemData_roles_keyList_atList(i)
 			}
 			return out
-		}(C.QAbstractItemModel___setItemData_keyList(ptr.Pointer()))
+		}(C.QAbstractItemModel___setItemData_roles_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -4195,16 +4195,16 @@ func (ptr *QAbstractItemModel) __doSetRoleNames_roleNames_newList() unsafe.Point
 	return C.QAbstractItemModel___doSetRoleNames_roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemModel) __doSetRoleNames_keyList() []int {
+func (ptr *QAbstractItemModel) __doSetRoleNames_roleNames_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQAbstractItemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____doSetRoleNames_keyList_atList(i)
+				out[i] = tmpList.____doSetRoleNames_roleNames_keyList_atList(i)
 			}
 			return out
-		}(C.QAbstractItemModel___doSetRoleNames_keyList(ptr.Pointer()))
+		}(C.QAbstractItemModel___doSetRoleNames_roleNames_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -4266,16 +4266,16 @@ func (ptr *QAbstractItemModel) __setRoleNames_roleNames_newList() unsafe.Pointer
 	return C.QAbstractItemModel___setRoleNames_roleNames_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemModel) __setRoleNames_keyList() []int {
+func (ptr *QAbstractItemModel) __setRoleNames_roleNames_keyList() []int {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQAbstractItemModelFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____setRoleNames_keyList_atList(i)
+				out[i] = tmpList.____setRoleNames_roleNames_keyList_atList(i)
 			}
 			return out
-		}(C.QAbstractItemModel___setRoleNames_keyList(ptr.Pointer()))
+		}(C.QAbstractItemModel___setRoleNames_roleNames_keyList(ptr.Pointer()))
 	}
 	return make([]int, 0)
 }
@@ -4422,55 +4422,55 @@ func (ptr *QAbstractItemModel) __encodeData_indexes_newList() unsafe.Pointer {
 	return C.QAbstractItemModel___encodeData_indexes_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemModel) ____setItemData_keyList_atList(i int) int {
+func (ptr *QAbstractItemModel) ____setItemData_roles_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractItemModel_____setItemData_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QAbstractItemModel_____setItemData_roles_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QAbstractItemModel) ____setItemData_keyList_setList(i int) {
+func (ptr *QAbstractItemModel) ____setItemData_roles_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemModel_____setItemData_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QAbstractItemModel_____setItemData_roles_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QAbstractItemModel) ____setItemData_keyList_newList() unsafe.Pointer {
-	return C.QAbstractItemModel_____setItemData_keyList_newList(ptr.Pointer())
+func (ptr *QAbstractItemModel) ____setItemData_roles_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModel_____setItemData_roles_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QAbstractItemModel) ____doSetRoleNames_keyList_atList(i int) int {
+func (ptr *QAbstractItemModel) ____doSetRoleNames_roleNames_keyList_atList(i int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractItemModel_____doSetRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
-	}
-	return 0
-}
-
-func (ptr *QAbstractItemModel) ____doSetRoleNames_keyList_setList(i int) {
-	if ptr.Pointer() != nil {
-		C.QAbstractItemModel_____doSetRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
-	}
-}
-
-func (ptr *QAbstractItemModel) ____doSetRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QAbstractItemModel_____doSetRoleNames_keyList_newList(ptr.Pointer())
-}
-
-func (ptr *QAbstractItemModel) ____setRoleNames_keyList_atList(i int) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractItemModel_____setRoleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+		return int(int32(C.QAbstractItemModel_____doSetRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
 	}
 	return 0
 }
 
-func (ptr *QAbstractItemModel) ____setRoleNames_keyList_setList(i int) {
+func (ptr *QAbstractItemModel) ____doSetRoleNames_roleNames_keyList_setList(i int) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemModel_____setRoleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+		C.QAbstractItemModel_____doSetRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
 	}
 }
 
-func (ptr *QAbstractItemModel) ____setRoleNames_keyList_newList() unsafe.Pointer {
-	return C.QAbstractItemModel_____setRoleNames_keyList_newList(ptr.Pointer())
+func (ptr *QAbstractItemModel) ____doSetRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModel_____doSetRoleNames_roleNames_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QAbstractItemModel) ____setRoleNames_roleNames_keyList_atList(i int) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QAbstractItemModel_____setRoleNames_roleNames_keyList_atList(ptr.Pointer(), C.int(int32(i)))))
+	}
+	return 0
+}
+
+func (ptr *QAbstractItemModel) ____setRoleNames_roleNames_keyList_setList(i int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_____setRoleNames_roleNames_keyList_setList(ptr.Pointer(), C.int(int32(i)))
+	}
+}
+
+func (ptr *QAbstractItemModel) ____setRoleNames_roleNames_keyList_newList() unsafe.Pointer {
+	return C.QAbstractItemModel_____setRoleNames_roleNames_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QAbstractItemModel) ____roleNames_keyList_atList(i int) int {
@@ -22336,16 +22336,16 @@ func (ptr *QJsonObject) __fromVariantHash_hash_newList() unsafe.Pointer {
 	return C.QJsonObject___fromVariantHash_hash_newList(ptr.Pointer())
 }
 
-func (ptr *QJsonObject) __fromVariantHash_keyList() []string {
+func (ptr *QJsonObject) __fromVariantHash_hash_keyList() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQJsonObjectFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____fromVariantHash_keyList_atList(i)
+				out[i] = tmpList.____fromVariantHash_hash_keyList_atList(i)
 			}
 			return out
-		}(C.QJsonObject___fromVariantHash_keyList(ptr.Pointer()))
+		}(C.QJsonObject___fromVariantHash_hash_keyList(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -22436,48 +22436,48 @@ func (ptr *QJsonObject) __toVariantMap_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QJsonObject) ____fromVariantHash_keyList_atList(i int) string {
+func (ptr *QJsonObject) ____fromVariantHash_hash_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QJsonObject_____fromVariantHash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QJsonObject_____fromVariantHash_hash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QJsonObject) ____fromVariantHash_keyList_setList(i string) {
+func (ptr *QJsonObject) ____fromVariantHash_hash_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QJsonObject_____fromVariantHash_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QJsonObject_____fromVariantHash_hash_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QJsonObject) ____fromVariantHash_keyList_newList() unsafe.Pointer {
-	return C.QJsonObject_____fromVariantHash_keyList_newList(ptr.Pointer())
+func (ptr *QJsonObject) ____fromVariantHash_hash_keyList_newList() unsafe.Pointer {
+	return C.QJsonObject_____fromVariantHash_hash_keyList_newList(ptr.Pointer())
 }
 
-func (ptr *QJsonObject) ____fromVariantMap_keyList_atList(i int) string {
+func (ptr *QJsonObject) ____fromVariantMap_map_keyList_atList(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QJsonObject_____fromVariantMap_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QJsonObject_____fromVariantMap_map_keyList_atList(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QJsonObject) ____fromVariantMap_keyList_setList(i string) {
+func (ptr *QJsonObject) ____fromVariantMap_map_keyList_setList(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QJsonObject_____fromVariantMap_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QJsonObject_____fromVariantMap_map_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QJsonObject) ____fromVariantMap_keyList_newList() unsafe.Pointer {
-	return C.QJsonObject_____fromVariantMap_keyList_newList(ptr.Pointer())
+func (ptr *QJsonObject) ____fromVariantMap_map_keyList_newList() unsafe.Pointer {
+	return C.QJsonObject_____fromVariantMap_map_keyList_newList(ptr.Pointer())
 }
 
 func (ptr *QJsonObject) ____toVariantHash_keyList_atList(i int) string {
@@ -50516,16 +50516,16 @@ func (ptr *QVariant) __QVariant_val_newList26() unsafe.Pointer {
 	return C.QVariant___QVariant_val_newList26(ptr.Pointer())
 }
 
-func (ptr *QVariant) __QVariant_keyList26() []string {
+func (ptr *QVariant) __QVariant_val_keyList26() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQVariantFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____QVariant_keyList_atList26(i)
+				out[i] = tmpList.____QVariant_val_keyList_atList26(i)
 			}
 			return out
-		}(C.QVariant___QVariant_keyList26(ptr.Pointer()))
+		}(C.QVariant___QVariant_val_keyList26(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -50578,16 +50578,16 @@ func (ptr *QVariant) __QVariant_val_newList25() unsafe.Pointer {
 	return C.QVariant___QVariant_val_newList25(ptr.Pointer())
 }
 
-func (ptr *QVariant) __QVariant_keyList25() []string {
+func (ptr *QVariant) __QVariant_val_keyList25() []string {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []string {
 			out := make([]string, int(l.len))
 			tmpList := NewQVariantFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.____QVariant_keyList_atList25(i)
+				out[i] = tmpList.____QVariant_val_keyList_atList25(i)
 			}
 			return out
-		}(C.QVariant___QVariant_keyList25(ptr.Pointer()))
+		}(C.QVariant___QVariant_val_keyList25(ptr.Pointer()))
 	}
 	return make([]string, 0)
 }
@@ -50697,48 +50697,48 @@ func (ptr *QVariant) __toMap_keyList() []string {
 	return make([]string, 0)
 }
 
-func (ptr *QVariant) ____QVariant_keyList_atList26(i int) string {
+func (ptr *QVariant) ____QVariant_val_keyList_atList26(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVariant_____QVariant_keyList_atList26(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QVariant_____QVariant_val_keyList_atList26(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QVariant) ____QVariant_keyList_setList26(i string) {
+func (ptr *QVariant) ____QVariant_val_keyList_setList26(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVariant_____QVariant_keyList_setList26(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QVariant_____QVariant_val_keyList_setList26(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QVariant) ____QVariant_keyList_newList26() unsafe.Pointer {
-	return C.QVariant_____QVariant_keyList_newList26(ptr.Pointer())
+func (ptr *QVariant) ____QVariant_val_keyList_newList26() unsafe.Pointer {
+	return C.QVariant_____QVariant_val_keyList_newList26(ptr.Pointer())
 }
 
-func (ptr *QVariant) ____QVariant_keyList_atList25(i int) string {
+func (ptr *QVariant) ____QVariant_val_keyList_atList25(i int) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QVariant_____QVariant_keyList_atList25(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QVariant_____QVariant_val_keyList_atList25(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
-func (ptr *QVariant) ____QVariant_keyList_setList25(i string) {
+func (ptr *QVariant) ____QVariant_val_keyList_setList25(i string) {
 	if ptr.Pointer() != nil {
 		var iC *C.char
 		if i != "" {
 			iC = C.CString(i)
 			defer C.free(unsafe.Pointer(iC))
 		}
-		C.QVariant_____QVariant_keyList_setList25(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+		C.QVariant_____QVariant_val_keyList_setList25(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
 	}
 }
 
-func (ptr *QVariant) ____QVariant_keyList_newList25() unsafe.Pointer {
-	return C.QVariant_____QVariant_keyList_newList25(ptr.Pointer())
+func (ptr *QVariant) ____QVariant_val_keyList_newList25() unsafe.Pointer {
+	return C.QVariant_____QVariant_val_keyList_newList25(ptr.Pointer())
 }
 
 func (ptr *QVariant) ____toHash_keyList_atList(i int) string {

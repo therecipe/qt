@@ -155,10 +155,10 @@ void* QTextToSpeechPlugin_CreateTextToSpeechEngineDefault(void* ptr, void* param
 void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_atList(void* ptr, struct QtSpeech_PackedString v, int i);
 void QTextToSpeechPlugin___createTextToSpeechEngine_parameters_setList(void* ptr, struct QtSpeech_PackedString key, void* i);
 void* QTextToSpeechPlugin___createTextToSpeechEngine_parameters_newList(void* ptr);
-struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_keyList(void* ptr);
-struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_atList(void* ptr, int i);
-void QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_setList(void* ptr, struct QtSpeech_PackedString i);
-void* QTextToSpeechPlugin_____createTextToSpeechEngine_keyList_newList(void* ptr);
+struct QtSpeech_PackedList QTextToSpeechPlugin___createTextToSpeechEngine_parameters_keyList(void* ptr);
+struct QtSpeech_PackedString QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_atList(void* ptr, int i);
+void QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_setList(void* ptr, struct QtSpeech_PackedString i);
+void* QTextToSpeechPlugin_____createTextToSpeechEngine_parameters_keyList_newList(void* ptr);
 struct QtSpeech_PackedString QVoice_QVoice_AgeName(long long age);
 struct QtSpeech_PackedString QVoice_QVoice_GenderName(long long gender);
 void* QVoice_NewQVoice();

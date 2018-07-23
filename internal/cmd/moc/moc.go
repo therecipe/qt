@@ -648,6 +648,8 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)
 			if pureGoType == "" {
 				return fmt.Sprintf("QList<%v>", o), ""
+			} else if strings.Contains(pureGoType, "error") {
+				return fmt.Sprintf("QList<%v>", o), t
 			}
 		}
 		if strings.HasPrefix(t, "map[") {
@@ -656,17 +658,17 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head), class)
 			if pureGoType1 == "" && pureGoType2 == "" {
 				return fmt.Sprintf("QMap<%v, %v>", o1, o2), ""
+			} else if strings.Contains(pureGoType1, "error") || strings.Contains(pureGoType2, "error") {
+				return fmt.Sprintf("QMap<%v, %v>", o1, o2), t
 			}
 		}
 	}
 
-	if f != nil && t == "error" {
-		f.AsError = true
-	}
-
 	switch t {
-	case "string", "error":
+	case "string":
 		return "QString", ""
+	case "error":
+		return "QString", t
 	case "[]string":
 		return "QStringList", ""
 	case "bool":

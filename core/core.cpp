@@ -2011,7 +2011,7 @@ void* QAbstractItemModel___setItemData_roles_newList(void* ptr)
 	return new QMap<int, QVariant>();
 }
 
-struct QtCore_PackedList QAbstractItemModel___setItemData_keyList(void* ptr)
+struct QtCore_PackedList QAbstractItemModel___setItemData_roles_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMap<int, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -2080,7 +2080,7 @@ void* QAbstractItemModel___doSetRoleNames_roleNames_newList(void* ptr)
 	return new QHash<int, QByteArray>();
 }
 
-struct QtCore_PackedList QAbstractItemModel___doSetRoleNames_keyList(void* ptr)
+struct QtCore_PackedList QAbstractItemModel___doSetRoleNames_roleNames_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -2133,7 +2133,7 @@ void* QAbstractItemModel___setRoleNames_roleNames_newList(void* ptr)
 	return new QHash<int, QByteArray>();
 }
 
-struct QtCore_PackedList QAbstractItemModel___setRoleNames_keyList(void* ptr)
+struct QtCore_PackedList QAbstractItemModel___setRoleNames_roleNames_keyList(void* ptr)
 {
 	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QHash<int, QByteArray>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -2244,49 +2244,49 @@ void* QAbstractItemModel___encodeData_indexes_newList(void* ptr)
 	return new QList<QModelIndex>();
 }
 
-int QAbstractItemModel_____setItemData_keyList_atList(void* ptr, int i)
+int QAbstractItemModel_____setItemData_roles_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QAbstractItemModel_____setItemData_keyList_setList(void* ptr, int i)
+void QAbstractItemModel_____setItemData_roles_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QAbstractItemModel_____setItemData_keyList_newList(void* ptr)
+void* QAbstractItemModel_____setItemData_roles_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QAbstractItemModel_____doSetRoleNames_keyList_atList(void* ptr, int i)
+int QAbstractItemModel_____doSetRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QAbstractItemModel_____doSetRoleNames_keyList_setList(void* ptr, int i)
+void QAbstractItemModel_____doSetRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QAbstractItemModel_____doSetRoleNames_keyList_newList(void* ptr)
+void* QAbstractItemModel_____doSetRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
 }
 
-int QAbstractItemModel_____setRoleNames_keyList_atList(void* ptr, int i)
+int QAbstractItemModel_____setRoleNames_roleNames_keyList_atList(void* ptr, int i)
 {
 	return ({int tmp = static_cast<QList<int>*>(ptr)->at(i); if (i == static_cast<QList<int>*>(ptr)->size()-1) { static_cast<QList<int>*>(ptr)->~QList(); free(ptr); }; tmp; });
 }
 
-void QAbstractItemModel_____setRoleNames_keyList_setList(void* ptr, int i)
+void QAbstractItemModel_____setRoleNames_roleNames_keyList_setList(void* ptr, int i)
 {
 	static_cast<QList<int>*>(ptr)->append(i);
 }
 
-void* QAbstractItemModel_____setRoleNames_keyList_newList(void* ptr)
+void* QAbstractItemModel_____setRoleNames_roleNames_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<int>();
@@ -10390,7 +10390,7 @@ void* QJsonObject___fromVariantHash_hash_newList(void* ptr)
 	return new QHash<QString, QVariant>();
 }
 
-struct QtCore_PackedList QJsonObject___fromVariantHash_keyList(void* ptr)
+struct QtCore_PackedList QJsonObject___fromVariantHash_hash_keyList(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -10437,33 +10437,33 @@ struct QtCore_PackedList QJsonObject___toVariantMap_keyList(void* ptr)
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtCore_PackedString QJsonObject_____fromVariantHash_keyList_atList(void* ptr, int i)
+struct QtCore_PackedString QJsonObject_____fromVariantHash_hash_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QJsonObject_____fromVariantHash_keyList_setList(void* ptr, struct QtCore_PackedString i)
+void QJsonObject_____fromVariantHash_hash_keyList_setList(void* ptr, struct QtCore_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QJsonObject_____fromVariantHash_keyList_newList(void* ptr)
+void* QJsonObject_____fromVariantHash_hash_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
 }
 
-struct QtCore_PackedString QJsonObject_____fromVariantMap_keyList_atList(void* ptr, int i)
+struct QtCore_PackedString QJsonObject_____fromVariantMap_map_keyList_atList(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QJsonObject_____fromVariantMap_keyList_setList(void* ptr, struct QtCore_PackedString i)
+void QJsonObject_____fromVariantMap_map_keyList_setList(void* ptr, struct QtCore_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QJsonObject_____fromVariantMap_keyList_newList(void* ptr)
+void* QJsonObject_____fromVariantMap_map_keyList_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
@@ -24139,7 +24139,7 @@ void* QVariant___QVariant_val_newList26(void* ptr)
 	return new QHash<QString, QVariant>();
 }
 
-struct QtCore_PackedList QVariant___QVariant_keyList26(void* ptr)
+struct QtCore_PackedList QVariant___QVariant_val_keyList26(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -24176,7 +24176,7 @@ void* QVariant___QVariant_val_newList25(void* ptr)
 	return new QMap<QString, QVariant>();
 }
 
-struct QtCore_PackedList QVariant___QVariant_keyList25(void* ptr)
+struct QtCore_PackedList QVariant___QVariant_val_keyList25(void* ptr)
 {
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
@@ -24239,33 +24239,33 @@ struct QtCore_PackedList QVariant___toMap_keyList(void* ptr)
 	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtCore_PackedString QVariant_____QVariant_keyList_atList26(void* ptr, int i)
+struct QtCore_PackedString QVariant_____QVariant_val_keyList_atList26(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QVariant_____QVariant_keyList_setList26(void* ptr, struct QtCore_PackedString i)
+void QVariant_____QVariant_val_keyList_setList26(void* ptr, struct QtCore_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QVariant_____QVariant_keyList_newList26(void* ptr)
+void* QVariant_____QVariant_val_keyList_newList26(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
 }
 
-struct QtCore_PackedString QVariant_____QVariant_keyList_atList25(void* ptr, int i)
+struct QtCore_PackedString QVariant_____QVariant_val_keyList_atList25(void* ptr, int i)
 {
 	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
 }
 
-void QVariant_____QVariant_keyList_setList25(void* ptr, struct QtCore_PackedString i)
+void QVariant_____QVariant_val_keyList_setList25(void* ptr, struct QtCore_PackedString i)
 {
 	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
 }
 
-void* QVariant_____QVariant_keyList_newList25(void* ptr)
+void* QVariant_____QVariant_val_keyList_newList25(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QString>();
