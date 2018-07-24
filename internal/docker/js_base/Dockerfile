@@ -15,5 +15,5 @@ RUN git clone -b wip/webassembly https://code.qt.io/qt/qtbase.git /opt/qtbase
 
 
 RUN echo "#!/bin/bash\ncd $HOME/emsdk && source ./emsdk_env.sh \
-	&& cd /opt/qtbase && ./configure -xplatform emscripten -developer-build -release -static -no-thread -nomake tests -nomake examples -no-dbus -no-headersclean -system-libpng -no-ssl -no-warnings-are-errors -confirm-license -opensource && make" > $HOME/build.sh \
+	&& cd /opt/qtbase && ./configure -xplatform wasm-emscripten -developer-build -release -static -no-thread -nomake tests -nomake examples -no-dbus -no-headersclean -system-libpng -no-ssl -no-warnings-are-errors -confirm-license -opensource && make" > $HOME/build.sh \
 	&& chmod +x $HOME/build.sh && $HOME/build.sh
