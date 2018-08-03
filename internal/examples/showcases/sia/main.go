@@ -6,7 +6,6 @@ import (
 
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
-	_ "github.com/therecipe/qt/svg" //QSvgWidget <- TODO: this comment is needed for js
 	"github.com/therecipe/qt/widgets"
 
 	_ "github.com/therecipe/qt/internal/examples/showcases/sia/assets"

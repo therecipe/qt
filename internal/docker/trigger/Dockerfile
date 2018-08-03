@@ -1,19 +1,16 @@
 FROM ubuntu:16.04
 LABEL maintainer therecipe
 
-
 ARG SECRET
 
-
-RUN apt-get -qq update && apt-get -y -qq install curl && apt-get -qq clean
-
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl && apt-get -qq clean
 
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "linux"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
-RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_ext"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_ext"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
@@ -27,7 +24,7 @@ RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_static"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
-RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi_base"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi1"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
@@ -45,6 +42,5 @@ RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "ubports_arm
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "ubports_64_xenial"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
-
 
 RUN exit 1

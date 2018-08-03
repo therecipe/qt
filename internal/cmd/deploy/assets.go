@@ -99,8 +99,13 @@ func android_config(target, path, depPath string) string {
 		jsonStruct.Targetarchitecture = "x86"
 	}
 
-	if utils.QT_DOCKER() && target == "android" {
-		jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2k", "libssl.so")
+	if utils.QT_DOCKER() {
+		switch target {
+		case "android":
+			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-arm", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-arm", "libssl.so")
+		case "android-emulator":
+			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-x86", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-x86", "libssl.so")
+		}
 	}
 
 	out, err := json.Marshal(jsonStruct)

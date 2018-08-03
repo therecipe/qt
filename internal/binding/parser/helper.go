@@ -146,7 +146,7 @@ func CleanName(name, value string) string {
 
 //TODO: remove global
 var LibDeps = map[string][]string{
-	"Core":          {"Widgets", "Gui"}, //Widgets, Gui
+	"Core":          {"Widgets", "Gui", "Svg"}, //Widgets, Gui //Svg
 	"AndroidExtras": {"Core"},
 	"Gui":           {"Widgets", "Core"}, //Widgets
 	"Network":       {"Core"},

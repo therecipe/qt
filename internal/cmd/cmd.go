@@ -29,7 +29,7 @@ func ParseFlags() bool {
 	)
 	flag.Parse()
 
-	if api := *qt_api; api != utils.QT_API("") {
+	if api := *qt_api; api != "" {
 		os.Setenv("QT_API", api)
 	}
 
