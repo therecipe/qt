@@ -1,4 +1,4 @@
-FROM therecipe/qt:windows_32_static_self_base_ext as base
+FROM therecipe/qt:windows_32_static_self_base_ext_2 as base
 
 RUN cd /usr/lib/mxe && make MXE_TARGETS='i686-w64-mingw32.static' qt5
 RUN rm -rf /usr/lib/mxe/log && rm -rf /usr/lib/mxe/pkg

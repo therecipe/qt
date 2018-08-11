@@ -18,8 +18,8 @@ COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/g
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install qt*5-doc-html && apt-get -qq clean
 
-RUN ln -s /usr/lib/x86_64-linux-gnu/qt5/bin/rcc /usr/lib/arm-linux-gnueabihf/qt5/bin/ 
-RUN ln -s /usr/lib/x86_64-linux-gnu/qt5/bin/moc /usr/lib/arm-linux-gnueabihf/qt5/bin/ 
+RUN ln -s /usr/lib/x86_64-linux-gnu/qt5/bin/rcc /usr/lib/arm-linux-gnueabihf/qt5/bin/
+RUN ln -s /usr/lib/x86_64-linux-gnu/qt5/bin/moc /usr/lib/arm-linux-gnueabihf/qt5/bin/
 
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check ubports

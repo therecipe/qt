@@ -172,6 +172,8 @@ func Minimal(path, target, tags string) {
 				}
 			}
 		}
+	case "js":
+		parser.State.ClassMap["QSvgWidget"].Export = true
 	}
 
 	wg.Add(len(files))

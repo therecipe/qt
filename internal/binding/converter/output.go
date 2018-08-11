@@ -189,6 +189,9 @@ func goOutputFailed(value string, f *parser.Function, p string) string {
 	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
+				if parser.UseJs() {
+					return "0"
+				}
 				return "nil"
 			}
 
@@ -894,6 +897,9 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
+				if parser.UseJs() {
+					return "uintptr(unsafe.Pointer(" + name + "))"
+				}
 				return "unsafe.Pointer(" + name + ")"
 			}
 			return name

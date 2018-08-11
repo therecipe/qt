@@ -612,17 +612,17 @@ func GoInputJS(name, value string, f *parser.Function) string {
 	case parser.IsPackedList(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(unsafe.Pointer(New%vFromPointer(nil).__%v_newList%v()))\nfor _,v := range %v{\ntmpList.__%v_setList%v(v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(unsafe.Pointer(New%vFromPointer(nil).__%v_%v_newList%v()))\nfor _,v := range %v{\ntmpList.__%v_%v_setList%v(v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
 		}
 
 	case parser.IsPackedMap(value):
 		{
 			if strings.ContainsAny(name, "*&()[]") {
-				return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(New%vFromPointer(nil).__%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_setList%v(k, v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
+				return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(unsafe.Pointer(New%vFromPointer(nil).__%v_newList%v()))\nfor k,v := range %v{\ntmpList.__%v_setList%v(k, v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name, f.Name, f.OverloadNumber)
 			}
-			return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(New%vFromPointer(nil).__%v_%v_newList%v())\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k, v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
+			return fmt.Sprintf("func() uintptr {\ntmpList := New%vFromPointer(unsafe.Pointer(New%vFromPointer(nil).__%v_%v_newList%v()))\nfor k,v := range %v{\ntmpList.__%v_%v_setList%v(k, v)\n}\nreturn uintptr(tmpList.Pointer())\n}()", strings.Title(f.ClassName()), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name, f.Name, name, f.OverloadNumber)
 		}
 	}
 

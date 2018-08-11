@@ -35,6 +35,9 @@ func goType(f *parser.Function, value string, p string) string {
 	case "void", "GLvoid", "":
 		{
 			if strings.Contains(vOld, "*") {
+				if parser.UseJs() {
+					return "uintptr"
+				}
 				return "unsafe.Pointer"
 			}
 

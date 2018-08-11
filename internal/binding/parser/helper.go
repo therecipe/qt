@@ -559,3 +559,7 @@ func SortedClassesForModule(module string, template bool) []*Class {
 	}
 	return output
 }
+
+func IsBlackListedPureGoType(s string) bool {
+	return strings.Contains(s, "error") && !strings.HasSuffix(s, "][]error")
+}

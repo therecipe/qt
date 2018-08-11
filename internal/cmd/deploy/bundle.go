@@ -566,9 +566,9 @@ func bundle(mode, target, path, name, depPath string) {
 	case "js":
 
 		//copy default assets
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "wasm", "wasm_shell.html"), filepath.Join(depPath, "index.html"))
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "wasm", "qtloader.js"), depPath)
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "wasm", "qtlogo.svg"), depPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "html5_shell.html"), filepath.Join(depPath, "index.html"))
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtloader.js"), depPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtlogo.svg"), depPath)
 
 		//patch default assets
 		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(utils.Load(filepath.Join(depPath, "index.html")), "APPNAME", "main", -1))

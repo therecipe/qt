@@ -113,7 +113,7 @@ func GoHeaderOutput(f *parser.Function) string {
 		}
 	}
 
-	if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
+	if f.PureGoOutput != "" && !parser.IsBlackListedPureGoType(f.PureGoOutput) {
 		return f.PureGoOutput
 	}
 
@@ -207,7 +207,7 @@ func GoHeaderInput(f *parser.Function) string {
 
 	var tmp = make([]string, 0)
 	for _, p := range f.Parameters {
-		if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
+		if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
 			tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), p.PureGoType))
 		} else {
 			if v := goType(f, p.Value, p.PureGoType); v != "" {
@@ -231,7 +231,7 @@ func GoHeaderInput(f *parser.Function) string {
 	if f.SignalMode == parser.CONNECT {
 		fmt.Fprint(bb, ")")
 
-		if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
+		if f.PureGoOutput != "" && !parser.IsBlackListedPureGoType(f.PureGoOutput) {
 			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
 			if isClass(goType(f, f.Output, f.PureGoOutput)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {
@@ -255,7 +255,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	var tmp = make([]string, 0)
 
 	for _, p := range f.Parameters {
-		if p.PureGoType != "" && !strings.Contains(p.PureGoType, "error") {
+		if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
 			tmp = append(tmp, fmt.Sprintf("%v", p.PureGoType))
 		} else {
 			if v := goType(f, p.Value, p.PureGoType); v != "" {
@@ -276,7 +276,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) string {
 	fmt.Fprint(bb, ")")
 
 	if f.SignalMode == parser.CALLBACK {
-		if f.PureGoOutput != "" && !strings.Contains(f.PureGoOutput, "error") {
+		if f.PureGoOutput != "" && !parser.IsBlackListedPureGoType(f.PureGoOutput) {
 			fmt.Fprintf(bb, " %v", f.PureGoOutput)
 		} else {
 			if isClass(goType(f, f.Output, f.PureGoOutput)) && !parser.IsPackedList(parser.CleanValue(f.Output)) && !parser.IsPackedMap(parser.CleanValue(f.Output)) {

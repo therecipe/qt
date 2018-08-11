@@ -324,8 +324,8 @@ type testStruct struct {
 	_ func(map[error]error, []error, error) string `slot:"errorStringTest11,auto"`
 	_ func([]error, error, string) map[error]error `slot:"errorStringTest12,auto"`
 
-	_ func(map[string]error, map[error]string, map[error]error) map[string]string `slot:"errorStringTest13,auto"`
-	_ func(map[error][]string, map[string][]string)                               `slot:"errorStringTest14,auto"`
+	_ func(map[string]error, map[error]string, map[error]error) map[string]string          `slot:"errorStringTest13,auto"`
+	_ func(map[error][]string, map[string][]string, map[error][]error, map[string][]error) `slot:"errorStringTest14,auto"`
 }
 
 type subTestStruct struct {
@@ -1765,4 +1765,5 @@ func (*testStruct) errorStringTest13(map[string]error, map[error]string, map[err
 	return map[string]string{}
 }
 
-func (*testStruct) errorStringTest14(map[error][]string, map[string][]string) {} //map[error][]error map[string][]error
+func (*testStruct) errorStringTest14(map[error][]string, map[string][]string, map[error][]error, map[string][]error) {
+}

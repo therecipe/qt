@@ -10,7 +10,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install python2
 RUN ln -s /usr/bin/python2.7 /usr/bin/python
 RUN git clone https://github.com/juj/emsdk.git $HOME/emsdk && cd $HOME/emsdk && ./emsdk install latest && ./emsdk activate latest
 
-RUN git clone -b wip/webassembly https://code.qt.io/qt/qtbase.git /opt/qtbase
+RUN git clone -b wip/webassembly https://code.qt.io/qt/qtbase.git /opt/qtbase && cd /opt/qtbase && git checkout -f 95e9cbb3eef695aa7b1192678c75d4be166b93a0
 RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
-	&& cd /opt/qtbase && ./configure -xplatform wasm-emscripten -developer-build -release -static -no-thread -nomake tests -nomake examples -no-dbus -no-headersclean -system-libpng -no-ssl -no-warnings-are-errors -confirm-license -opensource && make" > $HOME/build.sh \
+	&& cd /opt/qtbase && ./configure -xplatform emscripten -developer-build -release -static -no-thread -nomake tests -nomake examples -no-dbus -no-headersclean -system-libpng -no-ssl -no-warnings-are-errors -confirm-license -opensource && make" > $HOME/build.sh \
 	&& chmod +x $HOME/build.sh && $HOME/build.sh

@@ -17,7 +17,7 @@ func GoInputParametersForC(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
+			if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
 				input = append(input, GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%v%v))",
 					func() string {
 						if !strings.HasPrefix(parameter.PureGoType, "*") {
@@ -31,7 +31,7 @@ func GoInputParametersForC(function *parser.Function) string {
 					if (parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList") && !parser.UseJs() {
 						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{data: %vC, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
-								if strings.Contains(parameter.PureGoType, "error") {
+								if parser.IsBlackListedPureGoType(parameter.PureGoType) {
 									return "C.longlong(-1)"
 								}
 								if parser.CleanValue(parameter.Value) == "QStringList" {
@@ -62,7 +62,7 @@ func GoInputParametersForJS(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
+			if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
 				input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function))
 			} else {
 				input = append(input, GoInputJS(parameter.Name, parameter.Value, function))
@@ -105,7 +105,7 @@ func GoInputParametersForCallback(function *parser.Function) string {
 	input := make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		if parameter.PureGoType != "" && !strings.Contains(parameter.PureGoType, "error") {
+		if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
 			input[i] = fmt.Sprintf("%vD", parser.CleanName(parameter.Name, parameter.Value))
 		} else {
 			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpackString") {

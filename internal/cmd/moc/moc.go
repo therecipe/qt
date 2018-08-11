@@ -642,7 +642,7 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 	tOld := t //TODO: also for differentiation of QVariant and *QVariant
 	//t = strings.TrimPrefix(t, "*")
 
-	if strings.Count(t, "[") == 1 || strings.HasSuffix(t, "][]string") { //TODO: || strings.HasSuffix(t, "][]error")
+	if strings.Count(t, "[") == 1 || strings.HasSuffix(t, "][]string") {
 		//TODO: multidimensional array and nested maps
 		if strings.HasPrefix(t, "[]") && t != "[]string" {
 			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)

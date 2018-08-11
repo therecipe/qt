@@ -279,6 +279,7 @@ func createMakefile(module, path, target string, mode int) {
 
 	if utils.QT_UBPORTS() {
 		utils.Save(filepath.Join(path, "Mfile"), utils.Load(mPath))
+		utils.RemoveAll(mPath)
 	}
 
 	utils.RemoveAll(proPath)
