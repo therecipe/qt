@@ -1,0 +1,12 @@
+FROM therecipe/qt:js_base_1
+LABEL maintainer therecipe
+
+RUN git clone -b wip/webassembly https://code.qt.io/qt/qtdeclarative.git /opt/qtdeclarative
+RUN git clone -b wip/webassembly https://code.qt.io/qt/qtwebsockets.git /opt/qtwebsockets
+RUN git clone -b 5.11.0 https://code.qt.io/qt/qtgraphicaleffects.git /opt/qtgraphicaleffects
+
+RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
+	&& cd /opt/qtdeclarative && /opt/qtbase/bin/qmake *.pro && make \
+	&& cd /opt/qtwebsockets && /opt/qtbase/bin/qmake *.pro && make \
+	&& cd /opt/qtgraphicaleffects && /opt/qtbase/bin/qmake *.pro && make" > $HOME/build.sh \
+	&& chmod +x $HOME/build.sh && $HOME/build.sh

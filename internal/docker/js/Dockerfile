@@ -1,4 +1,4 @@
-FROM therecipe/qt:js_base_ext as base
+FROM therecipe/qt:js_base_3 as base
 
 RUN git clone -b 5.11.0 https://code.qt.io/qt/qtcharts.git /opt/qtcharts
 RUN git clone -b 5.11.0 https://code.qt.io/qt/qtxmlpatterns.git /opt/qtxmlpatterns

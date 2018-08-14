@@ -11,7 +11,7 @@ ENV QT_UBPORTS true
 ENV QT_UBPORTS_ARCH amd64
 ENV QT_UBPORTS_VERSION vivid
 
-RUN rm -R /usr/local/go | true
+RUN rm -rf /usr/local/go | true
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
@@ -22,4 +22,3 @@ RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check ubports
 RUN $GOPATH/bin/qtsetup generate ubports
 RUN $GOPATH/bin/qtsetup install ubports
-RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/ubports/view && $GOPATH/bin/qtdeploy build ubports && rm -rf ./deploy
