@@ -14,6 +14,8 @@ RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_2"}
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_3"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
+RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_4"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "js"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "android"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/

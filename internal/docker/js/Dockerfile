@@ -1,20 +1,3 @@
-FROM therecipe/qt:js_base_3 as base
-
-RUN git clone -b 5.11.0 https://code.qt.io/qt/qtcharts.git /opt/qtcharts
-RUN git clone -b 5.11.0 https://code.qt.io/qt/qtxmlpatterns.git /opt/qtxmlpatterns
-RUN git clone -b 5.11.0 https://code.qt.io/qt/qtcanvas3d.git /opt/qtcanvas3d
-RUN git clone -b 5.11.0 https://code.qt.io/qt/qtdatavis3d.git /opt/qtdatavis3d
-RUN git clone -b 5.11.0 https://code.qt.io/qt/qtmultimedia.git /opt/qtmultimedia
-
-RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
-	&& cd /opt/qtcharts && /opt/qtbase/bin/qmake *.pro && make \
-	&& cd /opt/qtxmlpatterns && /opt/qtbase/bin/qmake *.pro && make \
-	&& cd /opt/qtcanvas3d && /opt/qtbase/bin/qmake *.pro && make \
-	&& cd /opt/qtdatavis3d && /opt/qtbase/bin/qmake *.pro && make \
-	&& cd /opt/qtmultimedia && /opt/qtbase/bin/qmake *.pro && make" > $HOME/build.sh \
-	&& chmod +x $HOME/build.sh && $HOME/build.sh
-
-
 FROM ubuntu:16.04
 LABEL maintainer therecipe
 
@@ -31,9 +14,9 @@ COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 COPY --from=therecipe/qt:linux /opt/Qt/5.11.1/gcc_64/include /opt/Qt/5.11.1/gcc_64/include
 COPY --from=therecipe/qt:linux /opt/Qt/Docs /opt/Qt/Docs
-COPY --from=base $HOME/emsdk $HOME/emsdk
-COPY --from=base $HOME/.emscripten $HOME/.emscripten
-COPY --from=base /opt /opt
+COPY --from=therecipe/qt:js_base_4 $HOME/emsdk $HOME/emsdk
+COPY --from=therecipe/qt:js_base_4 $HOME/.emscripten $HOME/.emscripten
+COPY --from=therecipe/qt:js_base_4 /opt /opt
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install git && apt-get -qq clean
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install python2.7 nodejs cmake default-jre && apt-get -qq clean

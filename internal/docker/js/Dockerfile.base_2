@@ -1,7 +1,7 @@
 FROM therecipe/qt:js_base_1
 LABEL maintainer therecipe
 
-RUN git clone -b wip/webassembly https://code.qt.io/qt/qtdeclarative.git /opt/qtdeclarative
+RUN git clone -b wip/webassembly https://code.qt.io/qt/qtdeclarative.git /opt/qtdeclarative && cd /opt/qtdeclarative && git checkout -f a62637358f23546a9edef397fd4d5869a16f0645
 RUN git clone -b wip/webassembly https://code.qt.io/qt/qtwebsockets.git /opt/qtwebsockets
 RUN git clone -b 5.11.0 https://code.qt.io/qt/qtgraphicaleffects.git /opt/qtgraphicaleffects
 
