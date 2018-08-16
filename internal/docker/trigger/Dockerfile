@@ -56,6 +56,8 @@ RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_
 RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_static_self_base_5"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
+RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_static_self_base_6"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 65
 RUN curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_static_self"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 65
 
