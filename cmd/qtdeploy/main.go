@@ -99,7 +99,8 @@ func main() {
 
 	if target == "desktop" {
 		target = runtime.GOOS
-	} else {
+	}
+	if target != runtime.GOOS {
 		fast = false
 	}
 
