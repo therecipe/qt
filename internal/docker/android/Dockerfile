@@ -8,7 +8,7 @@ RUN mkdir -p $HOME
 
 RUN SDK=sdk-tools-linux-3859397.zip && curl -sL --retry 10 --retry-delay 10 -O https://dl.google.com/android/repository/$SDK && unzip -qq $SDK -d $HOME/android-sdk-linux
 RUN $HOME/android-sdk-linux/tools/bin/sdkmanager --list --verbose
-RUN echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;26.0.0" "platforms;android-25"
+RUN echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;28.0.2" "platforms;android-28"
 RUN $HOME/android-sdk-linux/tools/bin/sdkmanager --update
 
 RUN NDK=android-ndk-r14b-linux-x86_64.zip && curl -sL --retry 10 --retry-delay 10 -O https://dl.google.com/android/repository/$NDK && unzip -qq $NDK -d $HOME
@@ -21,7 +21,7 @@ ENV ANDROID_DEV $HOME/android-ndk-r14b/platforms/android-16/arch-arm/usr
 RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/' $HOME/openssl-1.0.2o/Makefile
 RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/' $HOME/openssl-1.0.2o/Makefile
 RUN cd $HOME/openssl-1.0.2o && ./Configure shared android-armv7 && make build_libs $HOME/openssl-1.0.2o
-RUN mkdir -p $HOME/openssl-1.0.2o-arm && mv $HOME/openssl-1.0.2o/*.so $HOME/openssl-1.0.2o-arm
+RUN mkdir -p $HOME/openssl-1.0.2o-arm && mv $HOME/openssl-1.0.2o/*.so* $HOME/openssl-1.0.2o-arm
 
 RUN rm -rf $HOME/openssl-1.0.2o && tar -xzf openssl-1.0.2o.tar.gz -C $HOME
 
@@ -31,7 +31,7 @@ ENV ANDROID_DEV $HOME/android-ndk-r14b/platforms/android-16/arch-x86/usr
 RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/' $HOME/openssl-1.0.2o/Makefile
 RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/' $HOME/openssl-1.0.2o/Makefile
 RUN cd $HOME/openssl-1.0.2o && ./Configure shared android-x86 && make build_libs $HOME/openssl-1.0.2o
-RUN mkdir -p $HOME/openssl-1.0.2o-x86 && mv $HOME/openssl-1.0.2o/*.so $HOME/openssl-1.0.2o-x86
+RUN mkdir -p $HOME/openssl-1.0.2o-x86 && mv $HOME/openssl-1.0.2o/*.so* $HOME/openssl-1.0.2o-x86
 
 
 FROM ubuntu:16.04

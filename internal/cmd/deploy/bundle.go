@@ -408,7 +408,7 @@ func bundle(mode, target, path, name, depPath string) {
 			"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 			"--output", filepath.Join(depPath, "build"),
 			"--deployment", "bundled",
-			"--android-platform", "android-25",
+			"--android-platform", "android-28",
 			"--jdk", utils.JDK_DIR(),
 			"--gradle",
 			"--no-gdbserver",

@@ -79,7 +79,7 @@ func android_config(target, path, depPath string) string {
 	}{
 		Qt:  filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
 		Sdk: utils.ANDROID_SDK_DIR(),
-		SdkBuildToolsRevision: "26.0.0",
+		SdkBuildToolsRevision: "28.0.2",
 		Ndk:                           utils.ANDROID_NDK_DIR(),
 		Toolchainprefix:               "arm-linux-androideabi",
 		Toolprefix:                    "arm-linux-androideabi",
