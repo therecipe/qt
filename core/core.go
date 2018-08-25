@@ -8263,6 +8263,16 @@ func NewQByteArray3(size int, ch string) *QByteArray {
 	return tmpValue
 }
 
+func NewQByteArray4(data []byte, size int) *QByteArray {
+	var dataC *C.char
+	if len(data) != 0 {
+		dataC = (*C.char)(unsafe.Pointer(&data[0]))
+	}
+	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray2(dataC, C.int(int32(size))))
+	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+	return tmpValue
+}
+
 func (ptr *QByteArray) Data() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QByteArray_Data(ptr.Pointer()))
