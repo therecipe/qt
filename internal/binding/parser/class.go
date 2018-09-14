@@ -285,7 +285,9 @@ func (c *Class) IsSupported() bool {
 
 		"QtROClientFactory", "QtROServerFactory",
 
-		"QWebViewFactory", "QGeoServiceProviderFactoryV2":
+		"QWebViewFactory", "QGeoServiceProviderFactoryV2",
+
+		"QtDwmApiDll", "QWinMime":
 		{
 			c.Access = "unsupported_isBlockedClass"
 			return false

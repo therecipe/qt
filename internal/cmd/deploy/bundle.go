@@ -128,7 +128,7 @@ func bundle(mode, target, path, name, depPath string) {
 						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 					}
 
-					if strings.Contains(dep, "WebEngine") {
+					if strings.Contains(dep, "WebEngine") || strings.Contains(dep, "WebView") {
 						usesWebEngine = true
 					}
 					if strings.Contains(dep, "Quick") || strings.Contains(dep, "Qml") {
@@ -140,6 +140,9 @@ func bundle(mode, target, path, name, depPath string) {
 			libs := []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent", "Svg", "MultimediaGstTools"}
 			if usesQml {
 				libs = append(libs, []string{"3DCore", "3DExtras", "3DInput", "3DLogic", "3DQuick", "3DQuickExtras", "3DQuickInput", "3DQuickRender", "3DRender", "Gamepad"}...)
+			}
+			if usesWebEngine {
+				libs = append(libs, []string{"WebEngine", "WebEngineCore", "WebChannel", "Positioning"}...)
 			}
 			for _, libName := range libs {
 				if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
@@ -191,7 +194,7 @@ func bundle(mode, target, path, name, depPath string) {
 			}
 
 			var libraryPath = filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "bin")
-			for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
+			for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32", "libcrypto-1_1", "libpcre2-16-0", "libssl-1_1"} {
 				utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, target, runtime.GOOS))
 			}
 			for _, d := range []string{"libjasper-1", "libjpeg-9", "libmng-2", "libtiff-5", "libwebp-5", "liblcms2-2", "liblzma-5", "libwebpdemux-1"} {
