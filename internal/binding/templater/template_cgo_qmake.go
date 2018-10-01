@@ -105,7 +105,8 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 				return false
 			}
 
-			if target == "windows" {
+			switch target {
+			case "windows":
 				if utils.QT_DEBUG_CONSOLE() {
 					if strings.Contains(file, "subsystem,windows") {
 						utils.Log.Debugln("wrong subsystem: have windows and want console, re-creating ...")
@@ -116,6 +117,21 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 						utils.Log.Debugln("wrong subsystem: have console and want windows, re-creating ...")
 						return false
 					}
+				}
+			case "darwin":
+				if !strings.Contains(file, utils.MACOS_SDK_DIR()) {
+					utils.Log.Debugln("wrong MACOS_SDK_DIR, re-creating ...")
+					return false
+				}
+			case "ios":
+				if !strings.Contains(file, utils.IPHONEOS_SDK_DIR()) {
+					utils.Log.Debugln("wrong IPHONEOS_SDK_DIR, re-creating ...")
+					return false
+				}
+			case "ios-simulator":
+				if !strings.Contains(file, utils.IPHONESIMULATOR_SDK_DIR()) {
+					utils.Log.Debugln("wrong IPHONESIMULATOR_SDK_DIR, re-creating ...")
+					return false
 				}
 			}
 

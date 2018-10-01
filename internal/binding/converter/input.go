@@ -75,7 +75,7 @@ func GoInput(name, value string, f *parser.Function, p string) string {
 			return fmt.Sprintf("C.int(int32(%v))", name)
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return fmt.Sprintf("C.uint(uint32(%v))", name)
 		}
@@ -346,7 +346,7 @@ func cppInput(name, value string, f *parser.Function) string {
 		"ushort", "unsigned short", "quint16", "GLushort",
 
 		"int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx",
-		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint",
+		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb",
 
 		"long",
 		"ulong", "unsigned long",
@@ -518,7 +518,7 @@ func GoInputJS(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("int(int32(%v))", name)
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return fmt.Sprintf("uint(uint32(%v))", name)
 		}

@@ -380,6 +380,7 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QWebEngineView::createWindow",
 		f.Fullname == "QWebEngineView::renderProcessTerminated",
 		f.Fullname == "QWebEngineView::triggerPageAction",
+		f.Fullname == "QCustom3DVolume::QCustom3DVolume" && f.OverloadNumber == "2",
 
 		strings.Contains(f.Access, "unsupported"):
 		{

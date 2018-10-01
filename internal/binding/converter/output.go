@@ -58,7 +58,7 @@ func goOutput(name, value string, f *parser.Function, p string) string {
 			return fmt.Sprintf("int(int32(%v))", name)
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return fmt.Sprintf("uint(uint32(%v))", name)
 		}
@@ -208,7 +208,7 @@ func goOutputFailed(value string, f *parser.Function, p string) string {
 		"ushort", "unsigned short", "quint16", "GLushort",
 
 		"int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx",
-		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint",
+		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb",
 
 		"long",
 		"ulong", "unsigned long",
@@ -331,7 +331,7 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 			return fmt.Sprintf("int(int32(%v))", name)
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return fmt.Sprintf("uint(uint32(%v))", name)
 		}
@@ -683,7 +683,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 		"ushort", "unsigned short", "quint16", "GLushort",
 
 		"int", "qint32", "GLint", "GLsizei", "GLintptrARB", "GLsizeiptrARB", "GLfixed", "GLclampx",
-		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint",
+		"uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb",
 
 		"long",
 		"ulong", "unsigned long",
@@ -925,7 +925,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 			return fmt.Sprintf("int(int32(%v.Int64()))", name)
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return fmt.Sprintf("uint(uint32(%v.Uint64()))", name)
 		}

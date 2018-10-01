@@ -3,10 +3,10 @@ set -ev
 
 if [[ "$OS" == "darwin" ]]; then
   export PROF=.bash_profile
-  export GO=go1.10.3.darwin-amd64.tar.gz
+  export GO=go1.11.darwin-amd64.tar.gz
 else if [[ "$OS" == "linux" ]]; then
   export PROF=.profile
-  export GO=go1.10.3.linux-amd64.tar.gz
+  export GO=go1.11.linux-amd64.tar.gz
 
   sudo apt-get -qq update && sudo apt-get -y -qq install curl git software-properties-common libgl1-mesa-dev fontconfig unzip && sudo apt-get -qq clean
 

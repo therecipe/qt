@@ -64,7 +64,7 @@ func goType(f *parser.Function, value string, p string) string {
 			return "int"
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return "uint"
 		}
@@ -268,7 +268,7 @@ func cgoType(f *parser.Function, value string) string {
 			return "C.int"
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return "C.uint"
 		}
@@ -404,7 +404,7 @@ func cppType(f *parser.Function, value string) string {
 			return "int"
 		}
 
-	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint":
+	case "uint", "unsigned int", "quint32", "GLenum", "GLbitfield", "GLuint", "QRgb":
 		{
 			return "unsigned int"
 		}
