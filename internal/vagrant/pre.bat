@@ -14,8 +14,8 @@ mv -f /cygdrive/c/tmp/AMD64/* "/cygdrive/c/Program Files/OpenSSH/bin/"
 
 
 ::install 7z
-set SZ=7z1604-x64.exe
-curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SZ% http://7-zip.org/a/%SZ%
+set SZ=7z1805-x64.exe
+curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SZ% https://7-zip.org/a/%SZ%
 %TMP%\%SZ% /S
 del %TMP%\%SZ% /Q
 setx /M PATH "%PATH%;C:\Progra~1\7-Zip"
@@ -23,8 +23,8 @@ set PATH=%PATH%;C:\Progra~1\7-Zip
 
 
 ::install Git
-set GIT=Git-2.13.2-64-bit.exe
-curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GIT% https://github.com/git-for-windows/git/releases/download/v2.13.2.windows.1/%GIT%
+set GIT=Git-2.19.0-64-bit.exe
+curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GIT% https://github.com/git-for-windows/git/releases/download/v2.19.0.windows.1/%GIT%
 %TMP%\%GIT% /silent /norestart
 del %TMP%\%GIT% /Q
 setx /M PATH "%PATH%;C:\Progra~1\Git\bin"
@@ -32,8 +32,8 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.11.windows-amd64.msi
-curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% http://storage.googleapis.com/golang/%GO%
+set GO=go1.11.1.windows-amd64.msi
+curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% https://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
 reg delete "HKCU\Environment" /v GOPATH /f
@@ -73,7 +73,7 @@ if "%QT_MSYS2%" == "true" (
 
 
   ::install msys2
-  set MSYS2=msys2-x86_64-20161025.exe
+  set MSYS2=msys2-x86_64-20180531.exe
   set AI=auto-install.js
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!MSYS2! http://repo.msys2.org/distrib/x86_64/!MSYS2!
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!AI! https://raw.githubusercontent.com/msys2/msys2-installer/master/!AI!
@@ -123,16 +123,16 @@ net start "OpenSSH Server"
 
 if "%ANDROID%" == "true" (
   ::install JDK
-  set JDK=jdk-8u131-windows-x64.exe
-  curl -sL --retry 10 --retry-delay 10 -o %TMP%\!JDK! -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/!JDK!
+  set JDK=jdk-8u192-ea-bin-b04-windows-x64-01_aug_2018.exe
+  curl -sL --retry 10 --retry-delay 10 -o %TMP%\!JDK! https://download.java.net/java/jdk8u192/archive/b04/binaries/!JDK!
   %TMP%\!JDK! /s
   del %TMP%\!JDK! /Q
-  setx /M JAVA_HOME "C:\Progra~1\Java\jdk1.8.0_131"
-  set JAVA_HOME=C:\Progra~1\Java\jdk1.8.0_131
 
+  setx /M JAVA_HOME "C:\Progra~1\Java\jdk1.8.0_192"
+  set JAVA_HOME=C:\Progra~1\Java\jdk1.8.0_192
 
   ::install Android SDK
-  set SDK=sdk-tools-windows-3859397.zip
+  set SDK=sdk-tools-windows-4333796.zip
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!SDK! https://dl.google.com/android/repository/!SDK!
   7z x %TMP%\!SDK! -oC:\android-sdk-windows\
   del %TMP%\!SDK! /Q

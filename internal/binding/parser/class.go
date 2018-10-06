@@ -287,7 +287,9 @@ func (c *Class) IsSupported() bool {
 
 		"QWebViewFactory", "QGeoServiceProviderFactoryV2",
 
-		"QtDwmApiDll", "QWinMime":
+		"QtDwmApiDll", "QWinMime",
+
+		"QAbstract3DGraph":
 		{
 			c.Access = "unsupported_isBlockedClass"
 			return false

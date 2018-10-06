@@ -4,8 +4,6 @@ import (
 	"time"
 
 	"github.com/therecipe/qt/core"
-
-	"github.com/NebulousLabs/Sia/types"
 )
 
 var DEMO bool
@@ -17,8 +15,8 @@ type controller struct {
 
 	_ func() `constructor:"init"`
 
-	_ bool              `property:"synced"`
-	_ types.BlockHeight `property:"height"`
+	_ bool   `property:"synced"`
+	_ uint64 `property:"height"`
 
 	_ bool        `property:"locked"`
 	_ bool        `property:"encrypted"`

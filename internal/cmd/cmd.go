@@ -19,25 +19,25 @@ var buildVersion = "no build version"
 
 func ParseFlags() bool {
 	var (
-		qt_api     = flag.String("api", "", "specify the api version to be used")
 		debug      = flag.Bool("debug", false, "print debug logs")
 		help       = flag.Bool("help", false, "print help")
 		p          = flag.Int("p", runtime.NumCPU(), "specify the number of cpu's to be used")
+		qt_api     = flag.String("qt_api", "", "specify the api version to be used")
 		qt_dir     = flag.String("qt_dir", utils.QT_DIR(), "export QT_DIR")
 		qt_version = flag.String("qt_version", utils.QT_VERSION(), "export QT_VERSION")
 		version    = flag.Bool("version", false, "print build version (if available)")
 	)
 	flag.Parse()
 
-	if api := *qt_api; api != "" {
-		os.Setenv("QT_API", api)
-	}
-
 	if *debug {
 		utils.Log.Level = logrus.DebugLevel
 	}
 
 	runtime.GOMAXPROCS(*p)
+
+	if api := *qt_api; api != "" {
+		os.Setenv("QT_API", api)
+	}
 
 	if dir := *qt_dir; dir != utils.QT_DIR() {
 		os.Setenv("QT_DIR", dir)
@@ -89,13 +89,13 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			image = target
 		}
 
-	case "linux", "android", "rpi1", "rpi2", "rpi3", "sailfish", "js":
+	case "linux", "rpi1", "rpi2", "rpi3", "js":
 		image = target
 
-	case "android-emulator":
+	case "android", "android-emulator":
 		image = "android"
 
-	case "sailfish-emulator":
+	case "sailfish", "sailfish-emulator":
 		image = "sailfish"
 
 	default:
