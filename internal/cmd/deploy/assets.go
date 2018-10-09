@@ -77,9 +77,9 @@ func android_config(target, path, depPath string) string {
 		Qmlrootpath                   string `json:"qml-root-path"`
 		Applicationbinary             string `json:"application-binary"`
 	}{
-		Qt:  filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
-		Sdk: utils.ANDROID_SDK_DIR(),
-		SdkBuildToolsRevision: "28.0.2",
+		Qt:                            filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
+		Sdk:                           utils.ANDROID_SDK_DIR(),
+		SdkBuildToolsRevision:         "28.0.2",
 		Ndk:                           utils.ANDROID_NDK_DIR(),
 		Toolchainprefix:               "arm-linux-androideabi",
 		Toolprefix:                    "arm-linux-androideabi",
@@ -153,6 +153,14 @@ func darwin_plist(name string) string {
 
 func darwin_pkginfo() string {
 	return "APPL????\n"
+}
+
+func darwin_nix_script(name string) string {
+	return fmt.Sprintf(`#!/bin/bash
+export PATH=$HOME/.nix-profile/bin:$PATH
+cd "${0%%/*}"
+./%v_bin
+`, name)
 }
 
 //ios

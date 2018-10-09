@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -67,6 +68,14 @@ func QT_HOMEBREW() bool {
 	return os.Getenv("QT_HOMEBREW") == "true" || isHomeBrewQtDir()
 }
 
+func QT_MACPORTS() bool {
+	return os.Getenv("QT_MACPORTS") == "true"
+}
+
+func QT_NIX() bool {
+	return len(os.Getenv("NIX_STORE")) != 0
+}
+
 func isHomeBrewQtDir() bool {
 	return ExistsFile(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
 }
@@ -79,12 +88,23 @@ func QT_DARWIN_DIR() string {
 	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
 }
 
+var qt_darwin_dir_nix string
+
 func qT_DARWIN_DIR() string {
 	if QT_HOMEBREW() {
 		if isHomeBrewQtDir() {
 			return QT_DIR()
 		}
 		return "/usr/local/opt/qt5"
+	}
+	if QT_MACPORTS() {
+		return "/opt/local/libexec/qt5"
+	}
+	if QT_NIX() {
+		if len(qt_darwin_dir_nix) == 0 {
+			qt_darwin_dir_nix = strings.TrimSpace(RunCmd(exec.Command(ToolPath("qmake", "darwin"), "-query", "QT_INSTALL_PREFIX"), "nix qt dir"))
+		}
+		return qt_darwin_dir_nix
 	}
 	return filepath.Join(QT_DIR(), fmt.Sprintf("%v/clang_64", QT_VERSION_MAJOR()))
 }

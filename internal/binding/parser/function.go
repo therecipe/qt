@@ -262,6 +262,19 @@ func (f *Function) IsJNIGeneric() bool {
 //TODO:
 func (f *Function) IsSupported() bool {
 
+	if utils.QT_MACPORTS() {
+		if f.Fullname == "QWebFrame::ownerElement" || f.Fullname == "QWebHistory::toMap" ||
+			f.Fullname == "QWebHistoryItem::toMap" || f.Fullname == "QWebPage::consoleMessageReceived" ||
+			f.Fullname == "QWebPage::focusedElementChanged" || f.Fullname == "QWebPage::recentlyAudibleChanged" ||
+			f.Fullname == "QWebPage::recentlyAudible" || f.Fullname == "QWebSettings::pluginSearchPaths" ||
+			f.Fullname == "QWebSettings::setPluginSearchPaths" {
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
+		}
+	}
+
 	if utils.QT_VERSION_NUM() >= 5080 {
 		if f.Fullname == "QJSEngine::newQMetaObject" && f.OverloadNumber == "2" ||
 			f.Fullname == "QScxmlTableData::instructions" || f.Fullname == "QScxmlTableData::dataNames" ||

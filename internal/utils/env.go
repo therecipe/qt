@@ -112,8 +112,8 @@ func CheckBuildTarget(buildTarget string) {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-		case QT_HOMEBREW():
-			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
+		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX():
+			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew/MacPorts/Nix -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		case QT_PKG_CONFIG() && !QT_UBPORTS():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		}
@@ -151,6 +151,11 @@ func ToolPath(tool, target string) string {
 
 	switch target {
 	case "darwin":
+		if QT_NIX() {
+			path, _ := exec.LookPath(tool)
+			path, _ = filepath.Abs(path)
+			return path
+		}
 		return filepath.Join(QT_DARWIN_DIR(), "bin", tool)
 	case "windows":
 		if runtime.GOOS == target {

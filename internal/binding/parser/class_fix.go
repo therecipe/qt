@@ -3,6 +3,7 @@ package parser
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -46,10 +47,26 @@ func (c *Class) fixEnums() {
 				}
 			}
 		}
-		if utils.QT_VERSION_NUM() <= 5042 && e.Fullname == "QFileSystemModel::Roles" {
+		if e.Fullname == "QFileSystemModel::Roles" && utils.QT_VERSION_NUM() <= 5042 {
 			for i := len(e.Values) - 1; i >= 0; i-- {
 				if v := e.Values[i]; v.Name == "FileIconRole" {
 					e.Values = append(e.Values[:i], e.Values[i+1:]...)
+				}
+			}
+		}
+		if utils.QT_MACPORTS() {
+			if e.Fullname == "QWebSettings::WebAttribute" {
+				for i := len(e.Values) - 1; i >= 0; i-- {
+					if v := e.Values[i]; v.Name == "MediaSourceEnabled" || v.Name == "MediaEnabled" || v.Name == "WebSecurityEnabled" || v.Name == "FullScreenSupportEnabled" {
+						e.Values = append(e.Values[:i], e.Values[i+1:]...)
+					}
+				}
+			}
+			if e.Fullname == "QWebPage::MessageSource" {
+				for i := len(e.Values) - 1; i >= 0; i-- {
+					if v := e.Values[i]; v.Name == "MessageSource" || v.Name == "MessageLevel" {
+						e.Values = append(e.Values[:i], e.Values[i+1:]...)
+					}
 				}
 			}
 		}
@@ -235,9 +252,20 @@ func (c *Class) fixBases() {
 
 	case "darwin":
 		{
-			prefixPath = utils.QT_DARWIN_DIR()
-			infixPath = "lib"
-			suffixPath = ".framework/Headers/"
+			if utils.QT_NIX() {
+				infixPath = "include"
+				suffixPath = string(filepath.Separator)
+				for _, qmakepath := range strings.Split(os.Getenv("QMAKEPATH"), string(filepath.ListSeparator)) {
+					if utils.ExistsFile(filepath.Join(qmakepath, infixPath, c.DocModule+suffixPath+c.Name)) {
+						prefixPath = qmakepath
+						break
+					}
+				}
+			} else {
+				prefixPath = utils.QT_DARWIN_DIR()
+				infixPath = "lib"
+				suffixPath = ".framework/Headers/"
+			}
 		}
 
 	case "linux":

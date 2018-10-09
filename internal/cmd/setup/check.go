@@ -60,6 +60,8 @@ func Check(target string, docker, vagrant bool) {
 	case "darwin", "ios", "ios-simulator":
 		vars = append(vars, [][]string{
 			{"QT_HOMEBREW", fmt.Sprint(utils.QT_HOMEBREW())},
+			{"QT_MACPORTS", fmt.Sprint(utils.QT_MACPORTS())},
+			{"QT_NIX", fmt.Sprint(utils.QT_NIX())},
 			{"XCODE_DIR", utils.XCODE_DIR()},
 			//{"IPHONEOS_SDK_DIR", utils.IPHONEOS_SDK_DIR()},               //TODO: re-add with absolute path
 			//{"IPHONESIMULATOR_SDK_DIR", utils.IPHONESIMULATOR_SDK_DIR()}, //TODO: re-add with absolute path
@@ -140,7 +142,7 @@ func Check(target string, docker, vagrant bool) {
 		if !strings.HasSuffix(v[0], "_DIR") {
 			continue
 		}
-		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER()) {
+		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER()) {
 			continue
 		}
 		if _, err := ioutil.ReadDir(v[1]); err != nil && v[1] != "" {

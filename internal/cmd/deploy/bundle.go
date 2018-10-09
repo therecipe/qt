@@ -55,19 +55,34 @@ func bundle(mode, target, path, name, depPath string) {
 	case "darwin":
 
 		//copy default assets
-		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Info.plist")), darwin_plist(name))
-		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "PkgInfo")), darwin_pkginfo())
-		utils.MkdirAll(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Resources")))
-		utils.Save(filepath.Join(depPath, filepath.Join(name+".app", "Contents", "Resources", "empty.lproj")), "")
+		utils.Save(filepath.Join(depPath, name+".app", "Contents", "Info.plist"), darwin_plist(name))
+		utils.Save(filepath.Join(depPath, name+".app", "Contents", "PkgInfo"), darwin_pkginfo())
+		utils.MkdirAll(filepath.Join(depPath, name+".app", "Contents", "Resources"))
+		utils.Save(filepath.Join(depPath, name+".app", "Contents", "Resources", "empty.lproj"), "")
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
 		copy(assets+"/.", filepath.Join(depPath, name+".app"))
 
-		dep := exec.Command(filepath.Join(utils.QT_DARWIN_DIR(), "bin", "macdeployqt"))
+		if utils.QT_NIX() {
+			/*
+				TODO:
+				no self containing deployments possible because
+				macdeployqt can't find qmlimportscanner and
+				icu libs are still partially linked against
+				the store libs after macdeployqt
+			*/
+
+			//workaround to make bundled applications start when they are double clicked from within the finder
+			os.Rename(filepath.Join(depPath, name+".app", "Contents", "MacOS", name), filepath.Join(depPath, name+".app", "Contents", "MacOS", name+"_bin"))
+			utils.SaveExec(filepath.Join(depPath, name+".app", "Contents", "MacOS", name), darwin_nix_script(name))
+			break
+		}
+
+		dep := exec.Command(utils.ToolPath("macdeployqt", target))
 		dep.Args = append(dep.Args, filepath.Join(depPath, name+".app"), "-qmldir="+path)
-		dep.Dir = filepath.Join(utils.QT_DARWIN_DIR(), "bin")
+		dep.Dir = filepath.Dir(dep.Path)
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
 	case "linux", "rpi1", "rpi2", "rpi3":
@@ -83,7 +98,7 @@ func bundle(mode, target, path, name, depPath string) {
 		//TODO: -->
 		{
 			if utils.QT_PKG_CONFIG() {
-				return
+				break
 			}
 
 			libDir := "lib"
@@ -226,7 +241,7 @@ func bundle(mode, target, path, name, depPath string) {
 
 		case utils.QT_MSYS2():
 			if utils.QT_MSYS2_STATIC() {
-				return
+				break
 			}
 
 			paths := make([]string, 0)

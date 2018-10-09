@@ -386,7 +386,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		}
 
 	case "darwin":
-		ldFlags = []string{"-w", fmt.Sprintf("-r=%v", filepath.Join(utils.QT_DARWIN_DIR(), "lib"))}
+		ldFlags = []string{"-w"}
 		out = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", name, name))
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
@@ -397,6 +397,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARCH": "amd64",
 
 			"CGO_ENABLED": "1",
+		}
+
+		if utils.QT_NIX() {
+			for _, e := range os.Environ() {
+				es := strings.Split(e, "=")
+				env[es[0]] = strings.Join(es[1:], "=")
+			}
 		}
 
 	case "windows":
