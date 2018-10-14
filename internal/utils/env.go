@@ -168,14 +168,25 @@ func ToolPath(tool, target string) string {
 				}
 				return filepath.Join(QT_MSYS2_DIR(), "bin", tool)
 			}
-			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
+			path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
+			if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
+				path = strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+			}
+			if !ExistsFile(path) {
+				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
+			}
+			return path
 		}
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
 	case "linux", "ubports":
 		if QT_PKG_CONFIG() {
 			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
 		}
-		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
+		path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
+		if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
+			path = strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+		}
+		return path
 	case "ios", "ios-simulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":

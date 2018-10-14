@@ -436,7 +436,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
 				// use gcc shipped with qt installation
-				env["PATH"] = filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin") + ";" + env["PATH"]
+				path := filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin")
+				if !utils.ExistsDir(path) {
+					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
+				}
+				env["PATH"] = path + ";" + env["PATH"]
 			}
 		} else {
 			delete(env, "TMP")

@@ -83,7 +83,7 @@ func isHomeBrewQtDir() bool {
 
 func QT_DARWIN_DIR() string {
 	path := qT_DARWIN_DIR()
-	if ExistsFile(path) {
+	if ExistsDir(path) {
 		return path
 	}
 	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)

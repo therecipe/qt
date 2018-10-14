@@ -423,6 +423,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		case strings.HasPrefix(l, "LFLAGS"), strings.HasPrefix(l, "LIBS"):
 			if target == "windows" && !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
 				pFix := []string{
+					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw49_32"),
+					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32"),
+					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw49_32"),
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
 					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
 					utils.QT_MSYS2_DIR(),

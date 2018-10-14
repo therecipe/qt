@@ -264,7 +264,14 @@ func IsPrivateSignal(f *parser.Function) bool {
 						fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 					}
 				} else {
-					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
+					if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
+						path = strings.Replace(path, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+					}
+					if !utils.ExistsFile(path) {
+						path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
+					}
+					fData = utils.Load(path)
 				}
 			}
 
@@ -276,7 +283,11 @@ func IsPrivateSignal(f *parser.Function) bool {
 				case utils.QT_SAILFISH():
 					fData = utils.LoadOptional(filepath.Join("/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/include/qt5", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				default:
-					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
+					if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
+						path = strings.Replace(path, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+					}
+					fData = utils.Load(path)
 				}
 			}
 		}

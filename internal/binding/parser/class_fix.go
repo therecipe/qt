@@ -247,6 +247,12 @@ func (c *Class) fixBases() {
 				}
 			} else {
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32")
+				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
+					prefixPath = strings.Replace(prefixPath, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+				}
+				if !utils.ExistsDir(prefixPath) {
+					prefixPath = strings.Replace(prefixPath, "mingw53_32", "mingw49_32", -1)
+				}
 			}
 		}
 
@@ -281,6 +287,9 @@ func (c *Class) fixBases() {
 				infixPath = ""
 			default:
 				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
+				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
+					prefixPath = strings.Replace(prefixPath, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+				}
 			}
 		}
 	}

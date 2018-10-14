@@ -324,8 +324,16 @@ func bundle(mode, target, path, name, depPath string) {
 		default:
 			paths := make([]string, 0)
 			// make windeployqt run correctly
-			paths = append(paths, filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin"))
-			paths = append(paths, filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin"))
+			path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
+			if !utils.ExistsDir(path) {
+				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
+			}
+			paths = append(paths, path)
+			path = filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin")
+			if !utils.ExistsDir(path) {
+				path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
+			}
+			paths = append(paths, path)
 			paths = append(paths, os.Getenv("PATH"))
 			os.Setenv("PATH", strings.Join(paths, ";"))
 
@@ -339,6 +347,9 @@ func bundle(mode, target, path, name, depPath string) {
 
 			if utils.QT_WEBKIT() {
 				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
+				if !utils.ExistsDir(libraryPath) {
+					libraryPath = strings.Replace(libraryPath, "mingw53_32", "mingw49_32", -1)
+				}
 				output := utils.RunCmd(exec.Command(filepath.Join("objdump"), "-x", filepath.Join(depPath, name+".exe")), fmt.Sprintf("objdump binary for %v on %v", target, runtime.GOOS))
 				for lib, deps := range parser.LibDeps {
 					if strings.Contains(output, lib) && lib == "WebKit" {
@@ -358,7 +369,7 @@ func bundle(mode, target, path, name, depPath string) {
 				}
 			}
 
-			dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "windeployqt"))
+			dep := exec.Command(utils.ToolPath("windeployqt", target))
 			dep.Args = append(dep.Args, filepath.Join(depPath, name+".exe"), "-qmldir="+path)
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 		}
