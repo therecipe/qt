@@ -60,18 +60,21 @@ func qT_DIR() string {
 	if dir, ok := os.LookupEnv("QT_DIR"); ok {
 		return filepath.Clean(dir)
 	}
+
+	prefix := os.Getenv("HOME")
 	if runtime.GOOS == "windows" {
-		dir := "C:\\Qt"
-		if ExistsDir(dir) {
-			return dir
-		}
-		return dir + "\\Qt" + QT_VERSION()
+		prefix = "C:\\"
 	}
-	dir := filepath.Join(os.Getenv("HOME"), "Qt")
-	if ExistsDir(dir) {
+
+	if dir := filepath.Join(prefix, "Qt", "Qt"+QT_VERSION()); ExistsDir(dir) {
 		return dir
 	}
-	return dir + QT_VERSION()
+
+	if dir := filepath.Join(prefix, "Qt"+QT_VERSION()); ExistsDir(dir) {
+		return dir
+	}
+
+	return filepath.Join(prefix, "Qt")
 }
 
 func QT_FAT() bool {
@@ -190,6 +193,7 @@ func ToolPath(tool, target string) string {
 	return ""
 }
 
+//TODO: detect webkit support automatically
 func QT_WEBKIT() bool {
 	return os.Getenv("QT_WEBKIT") == "true"
 }

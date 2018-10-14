@@ -461,6 +461,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
+		if utils.QT_VERSION_NUM() <= 5051 {
+			env["CGO_CXXFLAGS"] = "-std=c++11"
+		}
+
 		if arm, ok := os.LookupEnv("GOARM"); ok {
 			env["GOARM"] = arm
 			env["CC"] = os.Getenv("CC")

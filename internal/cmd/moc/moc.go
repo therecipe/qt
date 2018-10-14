@@ -349,19 +349,25 @@ func moc(path, target, tags string, fast, slow, root bool, l int) {
 }
 
 func parse(path string) ([]*parser.Class, string, error) {
-	utils.Log.WithField("path", path).Debug("parse")
+	if base := filepath.Base(path); strings.HasPrefix(base, "rcc") || strings.HasPrefix(base, "moc") {
+		return nil, "", errors.New("file contains no moc structs")
+	}
 
 	if strings.HasPrefix(path, filepath.Join(runtime.GOROOT(), "src")) {
 		return nil, "", errors.New("path is in GOROOT/src")
 	}
 
+	utils.Log.WithField("path", path).Debug("parse")
+
 	src, err := ioutil.ReadFile(path)
 	if err != nil {
+		utils.Log.WithField("path", path).WithError(err).Debug("failed to read file")
 		return nil, "", err
 	}
 
 	file, err := goparser.ParseFile(token.NewFileSet(), path, nil, 0)
 	if err != nil {
+		utils.Log.WithField("path", path).WithError(err).Debug("failed to parse file")
 		return nil, "", err
 	}
 
@@ -764,7 +770,7 @@ func parseNonMocDeps(files []string) {
 	wc := make(chan bool, 50)
 
 	for _, fpath := range files {
-		if filepath.Base(fpath) == "moc.go" {
+		if base := filepath.Base(fpath); strings.HasPrefix(base, "rcc") || strings.HasPrefix(base, "moc") {
 			continue
 		}
 

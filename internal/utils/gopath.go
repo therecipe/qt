@@ -6,11 +6,13 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 )
 
 const packageName = "github.com/therecipe/qt"
 
 var mustGoPath string
+var mustGoPathMutex = new(sync.Mutex)
 
 //GOBIN returns the general GOBIN string
 func GOBIN() string {
@@ -23,9 +25,11 @@ func GOBIN() string {
 // MustGoPath returns the GOPATH that holds this package
 // it exits if any error occurres and also caches the result
 func MustGoPath() string {
-	if mustGoPath == "" {
-		mustGoPath = strings.TrimSpace(RunCmd(exec.Command(filepath.Join(runtime.GOROOT(), "bin", "go"), "list", "-f", "{{.Root}}", "github.com/therecipe/qt"), "get list gopath"))
+	mustGoPathMutex.Lock()
+	if len(mustGoPath) == 0 {
+		mustGoPath = strings.TrimSpace(RunCmd(exec.Command("go", "list", "-f", "{{.Root}}", "github.com/therecipe/qt"), "get list gopath"))
 	}
+	mustGoPathMutex.Unlock()
 	return mustGoPath
 }
 

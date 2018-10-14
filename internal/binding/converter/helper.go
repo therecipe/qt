@@ -258,7 +258,11 @@ func IsPrivateSignal(f *parser.Function) bool {
 		case "windows":
 			{
 				if utils.QT_MSYS2() {
-					fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					if utils.QT_MSYS2_STATIC() {
+						fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "qt5-static", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					} else {
+						fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					}
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}

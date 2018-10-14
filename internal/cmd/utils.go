@@ -7,8 +7,6 @@ import (
 	"strings"
 	"sync"
 
-	iparser "github.com/therecipe/qt/internal/binding/parser"
-
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -58,7 +56,8 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 		imp = "Imports"
 	}
 
-	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .TestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	//TODO: cache
+	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .TestImports \"|\" }}':'{{ join .XTestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -92,7 +91,6 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 		}
 	}
 
-	libDepsMutex := new(sync.Mutex)
 	wg := new(sync.WaitGroup)
 	wc := make(chan bool, 50)
 	wg.Add(len(libs))
@@ -104,6 +102,10 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 				wg.Done()
 			}()
 
+			if strings.Contains(l, "github.com/therecipe/qt") && !strings.Contains(l, "qt/internal") {
+				return
+			}
+
 			cmd := exec.Command("go", "list", "-e", "-f", "{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
 			for k, v := range env {
 				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -112,16 +114,6 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 			dep := strings.TrimSpace(utils.RunCmd(cmd, "go list dir"))
 			if dep == "" {
 				return
-			}
-
-			if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt")) && !strings.Contains(dep, filepath.Join("qt", "internal")) {
-				return
-			}
-
-			if strings.Contains(dep, filepath.Join("github.com", "therecipe", "qt", "q")) {
-				libDepsMutex.Lock()
-				iparser.LibDeps[iparser.MOC] = append(iparser.LibDeps[iparser.MOC], "Qml")
-				libDepsMutex.Unlock()
 			}
 
 			importedMutex.Lock()
@@ -147,7 +139,8 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
 
-	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .GoFiles \"|\" }}':'{{ join .CgoFiles \"|\" }}':'{{ join .TestGoFiles \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	//TODO: cache
+	cmd := exec.Command("go", "list", "-e", "-f", "'{{ join .GoFiles \"|\" }}':'{{ join .CgoFiles \"|\" }}':'{{ join .TestGoFiles \"|\" }}':'{{ join .XTestGoFiles \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))

@@ -100,7 +100,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 				}
 			}
 
-			if !strings.Contains(file, utils.QT_VERSION()) {
+			if !strings.Contains(file, utils.QT_VERSION()) && strings.Contains(file, "5.") {
 				utils.Log.Debugln("wrong cgo file qt version, re-creating ...")
 				return false
 			}
@@ -135,24 +135,32 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 				}
 			}
 
+			containsPath := func(file, path string) bool {
+				r := strings.Contains(strings.Replace(strings.Replace(file, "\\", "", -1), "/", "", -1), strings.Replace(strings.Replace(strings.TrimPrefix(path, filepath.VolumeName(path)), "\\", "", -1), "/", "", -1))
+				if !r {
+					utils.Log.Debugln("wrong qt path, re-creating ...")
+				}
+				return r
+			}
+
 			switch target {
 			case "darwin", "linux", "windows", "ubports":
 				//TODO: msys pkg-config mxe brew
 				switch {
 				case utils.QT_HOMEBREW(), utils.QT_MACPORTS(), utils.QT_NIX():
-					return strings.Contains(file, utils.QT_DARWIN_DIR())
+					return containsPath(file, utils.QT_DARWIN_DIR())
 				case utils.QT_MSYS2():
-					return strings.Contains(file, utils.QT_MSYS2_DIR())
+					return containsPath(file, utils.QT_MSYS2_DIR())
 				default:
-					return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
+					return containsPath(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_MXE_TRIPLET())
 				}
 			case "android", "android-emulator":
-				return strings.Contains(file, utils.QT_DIR()) && strings.Contains(file, utils.ANDROID_NDK_DIR())
+				return containsPath(file, utils.QT_DIR()) && strings.Contains(file, utils.ANDROID_NDK_DIR())
 			case "ios", "ios-simulator":
-				return strings.Contains(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR())
+				return containsPath(file, utils.QT_DIR()) || strings.Contains(file, utils.QT_DARWIN_DIR())
 			case "sailfish", "sailfish-emulator", "asteroid":
 			case "rpi1", "rpi2", "rpi3":
-				return strings.Contains(file, strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS))))
+				return containsPath(file, strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS))))
 			case "js":
 			}
 		}
@@ -175,9 +183,6 @@ func createProject(module, path, target string, mode int, libs []string) {
 	for i, v := range out {
 		if v == "Speech" {
 			out[i] = "TextToSpeech"
-		}
-		if v == "Multimedia" {
-			out = append(out, "multimedia-private")
 		}
 		out[i] = strings.ToLower(out[i])
 	}

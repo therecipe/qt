@@ -3150,656 +3150,6 @@ float QAbstract3DAxis_Min(void* ptr)
 	return static_cast<QAbstract3DAxis*>(ptr)->min();
 }
 
-class MyQAbstract3DGraph: public QAbstract3DGraph
-{
-public:
-	void Signal_ActiveInputHandlerChanged(QAbstract3DInputHandler * inputHandler) { callbackQAbstract3DGraph_ActiveInputHandlerChanged(this, inputHandler); };
-	void Signal_ActiveThemeChanged(Q3DTheme * theme) { callbackQAbstract3DGraph_ActiveThemeChanged(this, theme); };
-	void Signal_AspectRatioChanged(qreal ratio) { callbackQAbstract3DGraph_AspectRatioChanged(this, ratio); };
-	void Signal_CurrentFpsChanged(qreal fps) { callbackQAbstract3DGraph_CurrentFpsChanged(this, fps); };
-	void Signal_HorizontalAspectRatioChanged(qreal ratio) { callbackQAbstract3DGraph_HorizontalAspectRatioChanged(this, ratio); };
-	void Signal_LocaleChanged(const QLocale & locale) { callbackQAbstract3DGraph_LocaleChanged(this, const_cast<QLocale*>(&locale)); };
-	void Signal_MarginChanged(qreal margin) { callbackQAbstract3DGraph_MarginChanged(this, margin); };
-	void Signal_MeasureFpsChanged(bool enabled) { callbackQAbstract3DGraph_MeasureFpsChanged(this, enabled); };
-	void Signal_OptimizationHintsChanged(QAbstract3DGraph::OptimizationHints hints) { callbackQAbstract3DGraph_OptimizationHintsChanged(this, hints); };
-	void Signal_OrthoProjectionChanged(bool enabled) { callbackQAbstract3DGraph_OrthoProjectionChanged(this, enabled); };
-	void Signal_PolarChanged(bool enabled) { callbackQAbstract3DGraph_PolarChanged(this, enabled); };
-	void Signal_QueriedGraphPositionChanged(const QVector3D & data) { callbackQAbstract3DGraph_QueriedGraphPositionChanged(this, const_cast<QVector3D*>(&data)); };
-	void Signal_RadialLabelOffsetChanged(float offset) { callbackQAbstract3DGraph_RadialLabelOffsetChanged(this, offset); };
-	void Signal_ReflectionChanged(bool enabled) { callbackQAbstract3DGraph_ReflectionChanged(this, enabled); };
-	void Signal_ReflectivityChanged(qreal reflectivity) { callbackQAbstract3DGraph_ReflectivityChanged(this, reflectivity); };
-	void Signal_SelectedElementChanged(QAbstract3DGraph::ElementType ty) { callbackQAbstract3DGraph_SelectedElementChanged(this, ty); };
-	void Signal_SelectionModeChanged(QAbstract3DGraph::SelectionFlags mode) { callbackQAbstract3DGraph_SelectionModeChanged(this, mode); };
-	void Signal_ShadowQualityChanged(QAbstract3DGraph::ShadowQuality quality) { callbackQAbstract3DGraph_ShadowQualityChanged(this, quality); };
-	 ~MyQAbstract3DGraph() { callbackQAbstract3DGraph_DestroyQAbstract3DGraph(this); };
-	bool shadowsSupported() const { return callbackQAbstract3DGraph_ShadowsSupported(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstract3DGraph_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-};
-
-void* QAbstract3DGraph_RenderToImage(void* ptr, int msaaSamples, void* imageSize)
-{
-	return new QImage(static_cast<QAbstract3DGraph*>(ptr)->renderToImage(msaaSamples, *static_cast<QSize*>(imageSize)));
-}
-
-struct QtDataVisualization_PackedString QAbstract3DGraph_QAbstract3DGraph_Tr(char* s, char* c, int n)
-{
-	return ({ QByteArray t947268 = QAbstract3DGraph::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t947268.prepend("WHITESPACE").constData()+10), t947268.size()-10 }; });
-}
-
-struct QtDataVisualization_PackedString QAbstract3DGraph_QAbstract3DGraph_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t545ea9 = QAbstract3DGraph::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDataVisualization_PackedString { const_cast<char*>(t545ea9.prepend("WHITESPACE").constData()+10), t545ea9.size()-10 }; });
-}
-
-int QAbstract3DGraph_AddCustomItem(void* ptr, void* item)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->addCustomItem(static_cast<QCustom3DItem*>(item));
-}
-
-void QAbstract3DGraph_ConnectActiveInputHandlerChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DInputHandler *)>(&QAbstract3DGraph::activeInputHandlerChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DInputHandler *)>(&MyQAbstract3DGraph::Signal_ActiveInputHandlerChanged));
-}
-
-void QAbstract3DGraph_DisconnectActiveInputHandlerChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DInputHandler *)>(&QAbstract3DGraph::activeInputHandlerChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DInputHandler *)>(&MyQAbstract3DGraph::Signal_ActiveInputHandlerChanged));
-}
-
-void QAbstract3DGraph_ActiveInputHandlerChanged(void* ptr, void* inputHandler)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->activeInputHandlerChanged(static_cast<QAbstract3DInputHandler*>(inputHandler));
-}
-
-void QAbstract3DGraph_ConnectActiveThemeChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(Q3DTheme *)>(&QAbstract3DGraph::activeThemeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(Q3DTheme *)>(&MyQAbstract3DGraph::Signal_ActiveThemeChanged));
-}
-
-void QAbstract3DGraph_DisconnectActiveThemeChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(Q3DTheme *)>(&QAbstract3DGraph::activeThemeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(Q3DTheme *)>(&MyQAbstract3DGraph::Signal_ActiveThemeChanged));
-}
-
-void QAbstract3DGraph_ActiveThemeChanged(void* ptr, void* theme)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->activeThemeChanged(static_cast<Q3DTheme*>(theme));
-}
-
-void QAbstract3DGraph_AddInputHandler(void* ptr, void* inputHandler)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->addInputHandler(static_cast<QAbstract3DInputHandler*>(inputHandler));
-}
-
-void QAbstract3DGraph_AddTheme(void* ptr, void* theme)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->addTheme(static_cast<Q3DTheme*>(theme));
-}
-
-void QAbstract3DGraph_ConnectAspectRatioChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::aspectRatioChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_AspectRatioChanged));
-}
-
-void QAbstract3DGraph_DisconnectAspectRatioChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::aspectRatioChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_AspectRatioChanged));
-}
-
-void QAbstract3DGraph_AspectRatioChanged(void* ptr, double ratio)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->aspectRatioChanged(ratio);
-}
-
-void QAbstract3DGraph_ClearSelection(void* ptr)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->clearSelection();
-}
-
-void QAbstract3DGraph_ConnectCurrentFpsChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::currentFpsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_CurrentFpsChanged));
-}
-
-void QAbstract3DGraph_DisconnectCurrentFpsChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::currentFpsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_CurrentFpsChanged));
-}
-
-void QAbstract3DGraph_CurrentFpsChanged(void* ptr, double fps)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->currentFpsChanged(fps);
-}
-
-void QAbstract3DGraph_ConnectHorizontalAspectRatioChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::horizontalAspectRatioChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_HorizontalAspectRatioChanged));
-}
-
-void QAbstract3DGraph_DisconnectHorizontalAspectRatioChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::horizontalAspectRatioChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_HorizontalAspectRatioChanged));
-}
-
-void QAbstract3DGraph_HorizontalAspectRatioChanged(void* ptr, double ratio)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->horizontalAspectRatioChanged(ratio);
-}
-
-void QAbstract3DGraph_ConnectLocaleChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(const QLocale &)>(&QAbstract3DGraph::localeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(const QLocale &)>(&MyQAbstract3DGraph::Signal_LocaleChanged));
-}
-
-void QAbstract3DGraph_DisconnectLocaleChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(const QLocale &)>(&QAbstract3DGraph::localeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(const QLocale &)>(&MyQAbstract3DGraph::Signal_LocaleChanged));
-}
-
-void QAbstract3DGraph_LocaleChanged(void* ptr, void* locale)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->localeChanged(*static_cast<QLocale*>(locale));
-}
-
-void QAbstract3DGraph_ConnectMarginChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::marginChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_MarginChanged));
-}
-
-void QAbstract3DGraph_DisconnectMarginChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::marginChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_MarginChanged));
-}
-
-void QAbstract3DGraph_MarginChanged(void* ptr, double margin)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->marginChanged(margin);
-}
-
-void QAbstract3DGraph_ConnectMeasureFpsChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::measureFpsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_MeasureFpsChanged));
-}
-
-void QAbstract3DGraph_DisconnectMeasureFpsChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::measureFpsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_MeasureFpsChanged));
-}
-
-void QAbstract3DGraph_MeasureFpsChanged(void* ptr, char enabled)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->measureFpsChanged(enabled != 0);
-}
-
-void QAbstract3DGraph_ConnectOptimizationHintsChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::OptimizationHints)>(&QAbstract3DGraph::optimizationHintsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::OptimizationHints)>(&MyQAbstract3DGraph::Signal_OptimizationHintsChanged));
-}
-
-void QAbstract3DGraph_DisconnectOptimizationHintsChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::OptimizationHints)>(&QAbstract3DGraph::optimizationHintsChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::OptimizationHints)>(&MyQAbstract3DGraph::Signal_OptimizationHintsChanged));
-}
-
-void QAbstract3DGraph_OptimizationHintsChanged(void* ptr, long long hints)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->optimizationHintsChanged(static_cast<QAbstract3DGraph::OptimizationHint>(hints));
-}
-
-void QAbstract3DGraph_ConnectOrthoProjectionChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::orthoProjectionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_OrthoProjectionChanged));
-}
-
-void QAbstract3DGraph_DisconnectOrthoProjectionChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::orthoProjectionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_OrthoProjectionChanged));
-}
-
-void QAbstract3DGraph_OrthoProjectionChanged(void* ptr, char enabled)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->orthoProjectionChanged(enabled != 0);
-}
-
-void QAbstract3DGraph_ConnectPolarChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::polarChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_PolarChanged));
-}
-
-void QAbstract3DGraph_DisconnectPolarChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::polarChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_PolarChanged));
-}
-
-void QAbstract3DGraph_PolarChanged(void* ptr, char enabled)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->polarChanged(enabled != 0);
-}
-
-void QAbstract3DGraph_ConnectQueriedGraphPositionChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(const QVector3D &)>(&QAbstract3DGraph::queriedGraphPositionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(const QVector3D &)>(&MyQAbstract3DGraph::Signal_QueriedGraphPositionChanged));
-}
-
-void QAbstract3DGraph_DisconnectQueriedGraphPositionChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(const QVector3D &)>(&QAbstract3DGraph::queriedGraphPositionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(const QVector3D &)>(&MyQAbstract3DGraph::Signal_QueriedGraphPositionChanged));
-}
-
-void QAbstract3DGraph_QueriedGraphPositionChanged(void* ptr, void* data)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->queriedGraphPositionChanged(*static_cast<QVector3D*>(data));
-}
-
-void QAbstract3DGraph_ConnectRadialLabelOffsetChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(float)>(&QAbstract3DGraph::radialLabelOffsetChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(float)>(&MyQAbstract3DGraph::Signal_RadialLabelOffsetChanged));
-}
-
-void QAbstract3DGraph_DisconnectRadialLabelOffsetChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(float)>(&QAbstract3DGraph::radialLabelOffsetChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(float)>(&MyQAbstract3DGraph::Signal_RadialLabelOffsetChanged));
-}
-
-void QAbstract3DGraph_RadialLabelOffsetChanged(void* ptr, float offset)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->radialLabelOffsetChanged(offset);
-}
-
-void QAbstract3DGraph_ConnectReflectionChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::reflectionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_ReflectionChanged));
-}
-
-void QAbstract3DGraph_DisconnectReflectionChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(bool)>(&QAbstract3DGraph::reflectionChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(bool)>(&MyQAbstract3DGraph::Signal_ReflectionChanged));
-}
-
-void QAbstract3DGraph_ReflectionChanged(void* ptr, char enabled)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->reflectionChanged(enabled != 0);
-}
-
-void QAbstract3DGraph_ConnectReflectivityChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::reflectivityChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_ReflectivityChanged));
-}
-
-void QAbstract3DGraph_DisconnectReflectivityChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(qreal)>(&QAbstract3DGraph::reflectivityChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(qreal)>(&MyQAbstract3DGraph::Signal_ReflectivityChanged));
-}
-
-void QAbstract3DGraph_ReflectivityChanged(void* ptr, double reflectivity)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->reflectivityChanged(reflectivity);
-}
-
-void QAbstract3DGraph_ReleaseCustomItem(void* ptr, void* item)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->releaseCustomItem(static_cast<QCustom3DItem*>(item));
-}
-
-void QAbstract3DGraph_ReleaseInputHandler(void* ptr, void* inputHandler)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->releaseInputHandler(static_cast<QAbstract3DInputHandler*>(inputHandler));
-}
-
-void QAbstract3DGraph_ReleaseTheme(void* ptr, void* theme)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->releaseTheme(static_cast<Q3DTheme*>(theme));
-}
-
-void QAbstract3DGraph_RemoveCustomItem(void* ptr, void* item)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->removeCustomItem(static_cast<QCustom3DItem*>(item));
-}
-
-void QAbstract3DGraph_RemoveCustomItemAt(void* ptr, void* position)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->removeCustomItemAt(*static_cast<QVector3D*>(position));
-}
-
-void QAbstract3DGraph_RemoveCustomItems(void* ptr)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->removeCustomItems();
-}
-
-void QAbstract3DGraph_ConnectSelectedElementChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::ElementType)>(&QAbstract3DGraph::selectedElementChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::ElementType)>(&MyQAbstract3DGraph::Signal_SelectedElementChanged));
-}
-
-void QAbstract3DGraph_DisconnectSelectedElementChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::ElementType)>(&QAbstract3DGraph::selectedElementChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::ElementType)>(&MyQAbstract3DGraph::Signal_SelectedElementChanged));
-}
-
-void QAbstract3DGraph_SelectedElementChanged(void* ptr, long long ty)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->selectedElementChanged(static_cast<QAbstract3DGraph::ElementType>(ty));
-}
-
-void QAbstract3DGraph_ConnectSelectionModeChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::SelectionFlags)>(&QAbstract3DGraph::selectionModeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::SelectionFlags)>(&MyQAbstract3DGraph::Signal_SelectionModeChanged));
-}
-
-void QAbstract3DGraph_DisconnectSelectionModeChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::SelectionFlags)>(&QAbstract3DGraph::selectionModeChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::SelectionFlags)>(&MyQAbstract3DGraph::Signal_SelectionModeChanged));
-}
-
-void QAbstract3DGraph_SelectionModeChanged(void* ptr, long long mode)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->selectionModeChanged(static_cast<QAbstract3DGraph::SelectionFlag>(mode));
-}
-
-void QAbstract3DGraph_SetActiveInputHandler(void* ptr, void* inputHandler)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setActiveInputHandler(static_cast<QAbstract3DInputHandler*>(inputHandler));
-}
-
-void QAbstract3DGraph_SetActiveTheme(void* ptr, void* theme)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setActiveTheme(static_cast<Q3DTheme*>(theme));
-}
-
-void QAbstract3DGraph_SetAspectRatio(void* ptr, double ratio)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setAspectRatio(ratio);
-}
-
-void QAbstract3DGraph_SetHorizontalAspectRatio(void* ptr, double ratio)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setHorizontalAspectRatio(ratio);
-}
-
-void QAbstract3DGraph_SetLocale(void* ptr, void* locale)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
-}
-
-void QAbstract3DGraph_SetMargin(void* ptr, double margin)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setMargin(margin);
-}
-
-void QAbstract3DGraph_SetMeasureFps(void* ptr, char enable)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setMeasureFps(enable != 0);
-}
-
-void QAbstract3DGraph_SetOptimizationHints(void* ptr, long long hints)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setOptimizationHints(static_cast<QAbstract3DGraph::OptimizationHint>(hints));
-}
-
-void QAbstract3DGraph_SetOrthoProjection(void* ptr, char enable)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setOrthoProjection(enable != 0);
-}
-
-void QAbstract3DGraph_SetPolar(void* ptr, char enable)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setPolar(enable != 0);
-}
-
-void QAbstract3DGraph_SetRadialLabelOffset(void* ptr, float offset)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setRadialLabelOffset(offset);
-}
-
-void QAbstract3DGraph_SetReflection(void* ptr, char enable)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setReflection(enable != 0);
-}
-
-void QAbstract3DGraph_SetReflectivity(void* ptr, double reflectivity)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setReflectivity(reflectivity);
-}
-
-void QAbstract3DGraph_SetSelectionMode(void* ptr, long long mode)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setSelectionMode(static_cast<QAbstract3DGraph::SelectionFlag>(mode));
-}
-
-void QAbstract3DGraph_SetShadowQuality(void* ptr, long long quality)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->setShadowQuality(static_cast<QAbstract3DGraph::ShadowQuality>(quality));
-}
-
-void QAbstract3DGraph_ConnectShadowQualityChanged(void* ptr)
-{
-	QObject::connect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::ShadowQuality)>(&QAbstract3DGraph::shadowQualityChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::ShadowQuality)>(&MyQAbstract3DGraph::Signal_ShadowQualityChanged));
-}
-
-void QAbstract3DGraph_DisconnectShadowQualityChanged(void* ptr)
-{
-	QObject::disconnect(static_cast<QAbstract3DGraph*>(ptr), static_cast<void (QAbstract3DGraph::*)(QAbstract3DGraph::ShadowQuality)>(&QAbstract3DGraph::shadowQualityChanged), static_cast<MyQAbstract3DGraph*>(ptr), static_cast<void (MyQAbstract3DGraph::*)(QAbstract3DGraph::ShadowQuality)>(&MyQAbstract3DGraph::Signal_ShadowQualityChanged));
-}
-
-void QAbstract3DGraph_ShadowQualityChanged(void* ptr, long long quality)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->shadowQualityChanged(static_cast<QAbstract3DGraph::ShadowQuality>(quality));
-}
-
-void QAbstract3DGraph_DestroyQAbstract3DGraph(void* ptr)
-{
-	static_cast<QAbstract3DGraph*>(ptr)->~QAbstract3DGraph();
-}
-
-void QAbstract3DGraph_DestroyQAbstract3DGraphDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-
-}
-
-void* QAbstract3DGraph_Scene(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->scene();
-}
-
-void* QAbstract3DGraph_ActiveTheme(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->activeTheme();
-}
-
-void* QAbstract3DGraph_SelectedAxis(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectedAxis();
-}
-
-long long QAbstract3DGraph_SelectedElement(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectedElement();
-}
-
-long long QAbstract3DGraph_OptimizationHints(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->optimizationHints();
-}
-
-long long QAbstract3DGraph_SelectionMode(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectionMode();
-}
-
-long long QAbstract3DGraph_ShadowQuality(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->shadowQuality();
-}
-
-void* QAbstract3DGraph_ActiveInputHandler(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->activeInputHandler();
-}
-
-void* QAbstract3DGraph_SelectedCustomItem(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectedCustomItem();
-}
-
-struct QtDataVisualization_PackedList QAbstract3DGraph_Themes(void* ptr)
-{
-	return ({ QList<Q3DTheme *>* tmpValue = new QList<Q3DTheme *>(static_cast<QAbstract3DGraph*>(ptr)->themes()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtDataVisualization_PackedList QAbstract3DGraph_InputHandlers(void* ptr)
-{
-	return ({ QList<QAbstract3DInputHandler *>* tmpValue = new QList<QAbstract3DInputHandler *>(static_cast<QAbstract3DGraph*>(ptr)->inputHandlers()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtDataVisualization_PackedList QAbstract3DGraph_CustomItems(void* ptr)
-{
-	return ({ QList<QCustom3DItem *>* tmpValue = new QList<QCustom3DItem *>(static_cast<QAbstract3DGraph*>(ptr)->customItems()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-void* QAbstract3DGraph_Locale(void* ptr)
-{
-	return new QLocale(static_cast<QAbstract3DGraph*>(ptr)->locale());
-}
-
-void* QAbstract3DGraph_QueriedGraphPosition(void* ptr)
-{
-	return new QVector3D(static_cast<QAbstract3DGraph*>(ptr)->queriedGraphPosition());
-}
-
-char QAbstract3DGraph_HasContext(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->hasContext();
-}
-
-char QAbstract3DGraph_IsOrthoProjection(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->isOrthoProjection();
-}
-
-char QAbstract3DGraph_IsPolar(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->isPolar();
-}
-
-char QAbstract3DGraph_IsReflection(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->isReflection();
-}
-
-char QAbstract3DGraph_MeasureFps(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->measureFps();
-}
-
-char QAbstract3DGraph_ShadowsSupported(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->shadowsSupported();
-}
-
-char QAbstract3DGraph_ShadowsSupportedDefault(void* ptr)
-{
-		return static_cast<QAbstract3DGraph*>(ptr)->QAbstract3DGraph::shadowsSupported();
-}
-
-void* QAbstract3DGraph_MetaObject(void* ptr)
-{
-	return const_cast<QMetaObject*>(static_cast<QAbstract3DGraph*>(ptr)->metaObject());
-}
-
-void* QAbstract3DGraph_MetaObjectDefault(void* ptr)
-{
-		return const_cast<QMetaObject*>(static_cast<QAbstract3DGraph*>(ptr)->QAbstract3DGraph::metaObject());
-}
-
-float QAbstract3DGraph_RadialLabelOffset(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->radialLabelOffset();
-}
-
-int QAbstract3DGraph_SelectedCustomItemIndex(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectedCustomItemIndex();
-}
-
-int QAbstract3DGraph_SelectedLabelIndex(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->selectedLabelIndex();
-}
-
-double QAbstract3DGraph_AspectRatio(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->aspectRatio();
-}
-
-double QAbstract3DGraph_CurrentFps(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->currentFps();
-}
-
-double QAbstract3DGraph_HorizontalAspectRatio(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->horizontalAspectRatio();
-}
-
-double QAbstract3DGraph_Margin(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->margin();
-}
-
-double QAbstract3DGraph_Reflectivity(void* ptr)
-{
-	return static_cast<QAbstract3DGraph*>(ptr)->reflectivity();
-}
-
-void* QAbstract3DGraph___themes_atList(void* ptr, int i)
-{
-	return ({Q3DTheme * tmp = static_cast<QList<Q3DTheme *>*>(ptr)->at(i); if (i == static_cast<QList<Q3DTheme *>*>(ptr)->size()-1) { static_cast<QList<Q3DTheme *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstract3DGraph___themes_setList(void* ptr, void* i)
-{
-	static_cast<QList<Q3DTheme *>*>(ptr)->append(static_cast<Q3DTheme*>(i));
-}
-
-void* QAbstract3DGraph___themes_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<Q3DTheme *>();
-}
-
-void* QAbstract3DGraph___inputHandlers_atList(void* ptr, int i)
-{
-	return ({QAbstract3DInputHandler * tmp = static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->at(i); if (i == static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->size()-1) { static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstract3DGraph___inputHandlers_setList(void* ptr, void* i)
-{
-	static_cast<QList<QAbstract3DInputHandler *>*>(ptr)->append(static_cast<QAbstract3DInputHandler*>(i));
-}
-
-void* QAbstract3DGraph___inputHandlers_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QAbstract3DInputHandler *>();
-}
-
-void* QAbstract3DGraph___customItems_atList(void* ptr, int i)
-{
-	return ({QCustom3DItem * tmp = static_cast<QList<QCustom3DItem *>*>(ptr)->at(i); if (i == static_cast<QList<QCustom3DItem *>*>(ptr)->size()-1) { static_cast<QList<QCustom3DItem *>*>(ptr)->~QList(); free(ptr); }; tmp; });
-}
-
-void QAbstract3DGraph___customItems_setList(void* ptr, void* i)
-{
-	static_cast<QList<QCustom3DItem *>*>(ptr)->append(static_cast<QCustom3DItem*>(i));
-}
-
-void* QAbstract3DGraph___customItems_newList(void* ptr)
-{
-	Q_UNUSED(ptr);
-	return new QList<QCustom3DItem *>();
-}
-
 class MyQAbstract3DInputHandler: public QAbstract3DInputHandler
 {
 public:
@@ -6013,6 +5363,11 @@ void QCustom3DVolume_SetAlphaMultiplier(void* ptr, float mult)
 	static_cast<QCustom3DVolume*>(ptr)->setAlphaMultiplier(mult);
 }
 
+void QCustom3DVolume_SetColorTable(void* ptr, void* colors)
+{
+	static_cast<QCustom3DVolume*>(ptr)->setColorTable(*static_cast<QVector<QRgb>*>(colors));
+}
+
 void QCustom3DVolume_SetDrawSliceFrames(void* ptr, char enable)
 {
 	static_cast<QCustom3DVolume*>(ptr)->setDrawSliceFrames(enable != 0);
@@ -6324,6 +5679,11 @@ void* QCustom3DVolume_SliceFrameWidths(void* ptr)
 	return new QVector3D(static_cast<QCustom3DVolume*>(ptr)->sliceFrameWidths());
 }
 
+struct QtDataVisualization_PackedList QCustom3DVolume_ColorTable(void* ptr)
+{
+	return ({ QVector<QRgb>* tmpValue = new QVector<QRgb>(static_cast<QCustom3DVolume*>(ptr)->colorTable()); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QCustom3DVolume_DrawSliceFrames(void* ptr)
 {
 	return static_cast<QCustom3DVolume*>(ptr)->drawSliceFrames();
@@ -6389,16 +5749,46 @@ int QCustom3DVolume_TextureWidth(void* ptr)
 	return static_cast<QCustom3DVolume*>(ptr)->textureWidth();
 }
 
+unsigned int QCustom3DVolume___QCustom3DVolume_colorTable_atList2(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QCustom3DVolume___QCustom3DVolume_colorTable_setList2(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
+}
+
 void* QCustom3DVolume___QCustom3DVolume_colorTable_newList2(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<QRgb>();
 }
 
+unsigned int QCustom3DVolume___setColorTable_colors_atList(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QCustom3DVolume___setColorTable_colors_setList(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
+}
+
 void* QCustom3DVolume___setColorTable_colors_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<QRgb>();
+}
+
+unsigned int QCustom3DVolume___colorTable_atList(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QCustom3DVolume___colorTable_setList(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
 }
 
 void* QCustom3DVolume___colorTable_newList(void* ptr)

@@ -5,7 +5,6 @@
 
 #include "multimedia.h"
 #include "_cgo_export.h"
-#include "private/qvideoframe_p.h"
 
 #include <QAbstractAudioDeviceInfo>
 #include <QAbstractAudioInput>
@@ -20675,11 +20674,6 @@ long long QVideoFrame_EndTime(void* ptr)
 long long QVideoFrame_StartTime(void* ptr)
 {
 	return static_cast<QVideoFrame*>(ptr)->startTime();
-}
-
-void* QVideoFrame_QVideoFrame_Qt_imageFromVideoFrame(void* frame)
-{
-	return new QImage(qt_imageFromVideoFrame(*static_cast<QVideoFrame*>(frame)));
 }
 
 void* QVideoFrame___availableMetaData_atList(void* ptr, struct QtMultimedia_PackedString v, int i)

@@ -36,7 +36,7 @@ set GO=go1.11.1.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% https://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
-reg delete "HKCU\Environment" /v GOPATH /f
+reg delete "HKEY_CURRENT_USER\Environment" /v GOPATH /f
 setx /M PATH "%PATH%;C:\Go\bin"
 set PATH=%PATH%;C:\Go\bin
 setx /M GOPATH "C:\gopath"

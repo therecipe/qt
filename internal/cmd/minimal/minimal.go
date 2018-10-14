@@ -2,6 +2,7 @@ package minimal
 
 import (
 	"fmt"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"sync"
@@ -46,6 +47,9 @@ func Minimal(path, target, tags string) {
 		wc <- true
 		go func(path string) {
 			for _, path := range cmd.GetGoFiles(path, target, tags) {
+				if base := filepath.Base(path); strings.HasPrefix(base, "rcc_cgo") || strings.HasPrefix(base, "moc_cgo") {
+					continue
+				}
 				utils.Log.WithField("path", path).Debug("analyse for minimal")
 				file := utils.Load(path)
 				fileMutex.Lock()

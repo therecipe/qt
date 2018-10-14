@@ -289,7 +289,7 @@ func (c *Class) IsSupported() bool {
 
 		"QtDwmApiDll", "QWinMime",
 
-		"QAbstract3DGraph":
+		"QAbstract3DGraph": //TODO: only for arch with pkg_config
 		{
 			c.Access = "unsupported_isBlockedClass"
 			return false

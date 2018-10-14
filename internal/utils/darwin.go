@@ -73,7 +73,8 @@ func QT_MACPORTS() bool {
 }
 
 func QT_NIX() bool {
-	return len(os.Getenv("NIX_STORE")) != 0
+	_, ok := os.LookupEnv("NIX_STORE")
+	return ok
 }
 
 func isHomeBrewQtDir() bool {

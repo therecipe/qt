@@ -34,38 +34,44 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function()
 {
+  var version = "5111";
+  if (installer.value("VERSION") != "")
+  {
+    version = installer.value("VERSION");
+  }
+
   if (installer.value("DARWIN") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.qt5.5111.clang_64");
-  } 
+    gui.currentPageWidget().selectComponent("qt.qt5."+version+".clang_64");
+  }
 
   if (installer.value("IOS") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.qt5.5111.ios");
-  } 
+    gui.currentPageWidget().selectComponent("qt.qt5."+version+".ios");
+  }
 
   if (installer.value("WINDOWS") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.qt5.5111.win32_mingw53");
+    gui.currentPageWidget().selectComponent("qt.qt5."+version+".win32_mingw53");
   }
 
   if (installer.value("LINUX") == "true")
   {
-    gui.currentPageWidget().selectComponent("qt.qt5.5111.gcc_64");
+    gui.currentPageWidget().selectComponent("qt.qt5."+version+".gcc_64");
   }
 
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtvirtualkeyboard");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtscript");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtremoteobjects");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtpurchasing");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtnetworkauth");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtdatavis3d");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtcharts");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtwebengine");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.qtwebglplugin");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtvirtualkeyboard");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtscript");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtremoteobjects");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtpurchasing");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtnetworkauth");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtdatavis3d");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtcharts");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtwebengine");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".qtwebglplugin");
 
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.android_armv7");
-  gui.currentPageWidget().selectComponent("qt.qt5.5111.android_x86");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".android_armv7");
+  gui.currentPageWidget().selectComponent("qt.qt5."+version+".android_x86");
 
   gui.clickButton(buttons.NextButton);
 }
@@ -88,7 +94,7 @@ Controller.prototype.ReadyForInstallationPageCallback = function()
 
 Controller.prototype.FinishedPageCallback = function()
 {
-  var checkBox = gui.currentPageWidget().LaunchQtCreatorCheckBoxForm
+  var checkBox = gui.currentPageWidget().LaunchQtCreatorCheckBoxForm;
   if (checkBox && checkBox.launchQtCreatorCheckBox)
   {
     checkBox.launchQtCreatorCheckBox.checked = false;

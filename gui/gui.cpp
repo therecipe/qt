@@ -3499,6 +3499,11 @@ void* QColor_QColor_FromHsvF(double h, double s, double v, double a)
 	return new QColor(QColor::fromHsvF(h, s, v, a));
 }
 
+void* QColor_QColor_FromRgb(unsigned int rgb)
+{
+	return new QColor(QColor::fromRgb(rgb));
+}
+
 void* QColor_QColor_FromRgb2(int r, int g, int b, int a)
 {
 	return new QColor(QColor::fromRgb(r, g, b, a));
@@ -3507,6 +3512,11 @@ void* QColor_QColor_FromRgb2(int r, int g, int b, int a)
 void* QColor_QColor_FromRgbF(double r, double g, double b, double a)
 {
 	return new QColor(QColor::fromRgbF(r, g, b, a));
+}
+
+void* QColor_QColor_FromRgba(unsigned int rgba)
+{
+	return new QColor(QColor::fromRgba(rgba));
 }
 
 void* QColor_QColor_FromRgba642(void* rgba64)
@@ -3532,6 +3542,11 @@ void* QColor_NewQColor12(void* other)
 void* QColor_NewQColor9(void* name)
 {
 	return new QColor(*static_cast<QLatin1String*>(name));
+}
+
+void* QColor_NewQColor4(unsigned int color)
+{
+	return new QColor(color);
 }
 
 void* QColor_NewQColor5(void* rgba64)
@@ -3684,6 +3699,11 @@ void QColor_SetRedF(void* ptr, double red)
 	static_cast<QColor*>(ptr)->setRedF(red);
 }
 
+void QColor_SetRgb2(void* ptr, unsigned int rgb)
+{
+	static_cast<QColor*>(ptr)->setRgb(rgb);
+}
+
 void QColor_SetRgb(void* ptr, int r, int g, int b, int a)
 {
 	static_cast<QColor*>(ptr)->setRgb(r, g, b, a);
@@ -3692,6 +3712,11 @@ void QColor_SetRgb(void* ptr, int r, int g, int b, int a)
 void QColor_SetRgbF(void* ptr, double r, double g, double b, double a)
 {
 	static_cast<QColor*>(ptr)->setRgbF(r, g, b, a);
+}
+
+void QColor_SetRgba(void* ptr, unsigned int rgba)
+{
+	static_cast<QColor*>(ptr)->setRgba(rgba);
 }
 
 void QColor_SetRgba64(void* ptr, void* rgba)
@@ -3737,6 +3762,16 @@ void* QColor_ToRgb(void* ptr)
 long long QColor_Spec(void* ptr)
 {
 	return static_cast<QColor*>(ptr)->spec();
+}
+
+unsigned int QColor_Rgb(void* ptr)
+{
+	return static_cast<QColor*>(ptr)->rgb();
+}
+
+unsigned int QColor_Rgba(void* ptr)
+{
+	return static_cast<QColor*>(ptr)->rgba();
 }
 
 void* QColor_Rgba64(void* ptr)
@@ -8170,9 +8205,19 @@ void QImage_InvertPixels(void* ptr, long long mode)
 	static_cast<QImage*>(ptr)->invertPixels(static_cast<QImage::InvertMode>(mode));
 }
 
+void QImage_SetColor(void* ptr, int index, unsigned int colorValue)
+{
+	static_cast<QImage*>(ptr)->setColor(index, colorValue);
+}
+
 void QImage_SetColorCount(void* ptr, int colorCount)
 {
 	static_cast<QImage*>(ptr)->setColorCount(colorCount);
+}
+
+void QImage_SetColorTable(void* ptr, void* colors)
+{
+	static_cast<QImage*>(ptr)->setColorTable(*static_cast<QVector<QRgb>*>(colors));
 }
 
 void QImage_SetDevicePixelRatio(void* ptr, double scaleFactor)
@@ -8251,6 +8296,11 @@ void* QImage_ConvertToFormat(void* ptr, long long format, long long flags)
 	return new QImage(static_cast<QImage*>(ptr)->convertToFormat(static_cast<QImage::Format>(format), static_cast<Qt::ImageConversionFlag>(flags)));
 }
 
+void* QImage_ConvertToFormat3(void* ptr, long long format, void* colorTable, long long flags)
+{
+	return new QImage(static_cast<QImage*>(ptr)->convertToFormat(static_cast<QImage::Format>(format), *static_cast<QVector<QRgb>*>(colorTable), static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
 void* QImage_Copy(void* ptr, void* rectangle)
 {
 	return new QImage(static_cast<QImage*>(ptr)->copy(*static_cast<QRect*>(rectangle)));
@@ -8269,6 +8319,11 @@ void* QImage_CreateAlphaMask(void* ptr, long long flags)
 void* QImage_CreateHeuristicMask(void* ptr, char clipTight)
 {
 	return new QImage(static_cast<QImage*>(ptr)->createHeuristicMask(clipTight != 0));
+}
+
+void* QImage_CreateMaskFromColor(void* ptr, unsigned int color, long long mode)
+{
+	return new QImage(static_cast<QImage*>(ptr)->createMaskFromColor(color, static_cast<Qt::MaskMode>(mode)));
 }
 
 void* QImage_Mirrored(void* ptr, char horizontal, char vertical)
@@ -8336,6 +8391,21 @@ void* QImage_Rect(void* ptr)
 	return ({ QRect tmpValue = static_cast<QImage*>(ptr)->rect(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
+unsigned int QImage_Color(void* ptr, int i)
+{
+	return static_cast<QImage*>(ptr)->color(i);
+}
+
+unsigned int QImage_Pixel(void* ptr, void* position)
+{
+	return static_cast<QImage*>(ptr)->pixel(*static_cast<QPoint*>(position));
+}
+
+unsigned int QImage_Pixel2(void* ptr, int x, int y)
+{
+	return static_cast<QImage*>(ptr)->pixel(x, y);
+}
+
 void* QImage_Size(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QImage*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -8349,6 +8419,11 @@ struct QtGui_PackedString QImage_Text(void* ptr, struct QtGui_PackedString key)
 struct QtGui_PackedString QImage_TextKeys(void* ptr)
 {
 	return ({ QByteArray t71d2ff = static_cast<QImage*>(ptr)->textKeys().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t71d2ff.prepend("WHITESPACE").constData()+10), t71d2ff.size()-10 }; });
+}
+
+struct QtGui_PackedList QImage_ColorTable(void* ptr)
+{
+	return ({ QVector<QRgb>* tmpValue = new QVector<QRgb>(static_cast<QImage*>(ptr)->colorTable()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QImage_AllGray(void* ptr)
@@ -8456,16 +8531,46 @@ void* QImage_ToVariant(void* ptr)
 	return new QVariant(*static_cast<QImage*>(ptr));
 }
 
+unsigned int QImage___setColorTable_colors_atList(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QImage___setColorTable_colors_setList(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
+}
+
 void* QImage___setColorTable_colors_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<QRgb>();
 }
 
+unsigned int QImage___convertToFormat_colorTable_atList3(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QImage___convertToFormat_colorTable_setList3(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
+}
+
 void* QImage___convertToFormat_colorTable_newList3(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<QRgb>();
+}
+
+unsigned int QImage___colorTable_atList(void* ptr, int i)
+{
+	return ({QRgb tmp = static_cast<QVector<QRgb>*>(ptr)->at(i); if (i == static_cast<QVector<QRgb>*>(ptr)->size()-1) { static_cast<QVector<QRgb>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QImage___colorTable_setList(void* ptr, unsigned int i)
+{
+	static_cast<QVector<QRgb>*>(ptr)->append(i);
 }
 
 void* QImage___colorTable_newList(void* ptr)
