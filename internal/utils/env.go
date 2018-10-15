@@ -172,7 +172,7 @@ func ToolPath(tool, target string) string {
 			if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
 				path = strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
 			}
-			if !ExistsFile(path) {
+			if !ExistsFile(path + ".exe") {
 				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
 			}
 			return path

@@ -52,6 +52,7 @@ Controller.prototype.ComponentSelectionPageCallback = function()
 
   if (installer.value("WINDOWS") == "true")
   {
+    gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw49");
     gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw53");
   }
 
