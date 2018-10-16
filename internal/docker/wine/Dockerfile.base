@@ -1,0 +1,24 @@
+FROM ubuntu:16.04
+LABEL maintainer therecipe
+
+ENV USER user
+ENV HOME /home/$USER
+ENV GOPATH $HOME/.wine/drive_c/gopath
+ENV WINEDEBUG -all
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
+RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
+RUN GOOS=windows /usr/local/go/bin/go get -d github.com/therecipe/qt/cmd/...
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install software-properties-common apt-transport-https
+RUN dpkg --add-architecture i386
+RUN curl -sL --retry 10 --retry-delay 10 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
+RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging xvfb cabextract
+RUN WINEDLLOVERRIDES="mscoree,mshtml=" xvfb-run wineboot && wineserver -w
+RUN curl -sL --retry 10 --retry-delay 10 -O https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && chmod +x winetricks && mv winetricks /usr/bin && xvfb-run winetricks -q vcrun2015
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install unzip
+RUN GO=go1.11.1.windows-amd64.zip && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && unzip -qq $GO -d $HOME/.wine/drive_c
+RUN GOPATH=C:\\gopath wine C:\\go\\bin\\go install github.com/therecipe/qt/cmd/...

@@ -5,6 +5,8 @@ ARG SECRET
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl && apt-get -qq clean
 
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "wine_base"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared_wine"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "linux"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "android"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_1"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
