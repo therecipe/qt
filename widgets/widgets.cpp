@@ -30727,6 +30727,16 @@ void QGridLayout_AddWidget(void* ptr, void* widget, int row, int column, long lo
 		static_cast<QGridLayout*>(ptr)->addWidget(static_cast<QWidget*>(widget), row, column, static_cast<Qt::AlignmentFlag>(alignment));
 }
 
+void QGridLayout_AddItem2(void* ptr, void* item, int row, int column, int rowSpan, int columnSpan, long long alignment)
+{
+		static_cast<QGridLayout*>(ptr)->addItem(static_cast<QLayoutItem*>(item), row, column, rowSpan, columnSpan, static_cast<Qt::AlignmentFlag>(alignment));
+}
+
+void QGridLayout_AddItem3(void* ptr, void* item, int row, int column, long long alignment)
+{
+		static_cast<QGridLayout*>(ptr)->addItem(static_cast<QLayoutItem*>(item), row, column, 1, 1, static_cast<Qt::AlignmentFlag>(alignment));
+}
+
 void QGridLayout_SetColumnMinimumWidth(void* ptr, int column, int minSize)
 {
 	static_cast<QGridLayout*>(ptr)->setColumnMinimumWidth(column, minSize);

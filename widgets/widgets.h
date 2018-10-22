@@ -3763,6 +3763,8 @@ void QGridLayout_AddLayout(void* ptr, void* layout, int row, int column, long lo
 void QGridLayout_AddLayout2(void* ptr, void* layout, int row, int column, int rowSpan, int columnSpan, long long alignment);
 void QGridLayout_AddWidget3(void* ptr, void* widget, int fromRow, int fromColumn, int rowSpan, int columnSpan, long long alignment);
 void QGridLayout_AddWidget(void* ptr, void* widget, int row, int column, long long alignment);
+void QGridLayout_AddItem2(void* ptr, void* item, int row, int column, int rowSpan, int columnSpan, long long alignment);
+void QGridLayout_AddItem3(void* ptr, void* item, int row, int column, long long alignment);
 void QGridLayout_SetColumnMinimumWidth(void* ptr, int column, int minSize);
 void QGridLayout_SetColumnStretch(void* ptr, int column, int stretch);
 void QGridLayout_SetHorizontalSpacing(void* ptr, int spacing);
