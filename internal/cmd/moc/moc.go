@@ -42,14 +42,50 @@ var (
 
 	ResourceNames      = make(map[string]string)
 	ResourceNamesMutex = new(sync.Mutex)
+
+	goNameCache      = make(map[string]string)
+	goNameCacheMutex = new(sync.Mutex)
+
+	goDirCache      = make(map[string]string)
+	goDirCacheMutex = new(sync.Mutex)
 )
 
 func Moc(path, target, tags string, fast, slow bool) {
-	moc(path, target, tags, fast, slow, true, -1)
+	moc(path, target, tags, fast, slow, true, -1, false)
 }
 
-func moc(path, target, tags string, fast, slow, root bool, l int) {
+func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
+
+	if !dirty {
+		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+		scmd := exec.Command("go", "list")
+		scmd.Dir = path
+
+		if !fast && !utils.QT_FAT() {
+			tagsEnv = append(tagsEnv, "minimal")
+		}
+		if tags != "" {
+			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+		}
+		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+
+		if target != runtime.GOOS {
+			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
+
+		for key, value := range env {
+			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+		}
+
+		scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
+
+		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+			utils.Log.WithField("path", path).Debug("skipping already cached moc")
+			return
+		}
+		dirty = true
+	}
 
 	l++
 	if l <= gL {
@@ -103,12 +139,12 @@ func moc(path, target, tags string, fast, slow, root bool, l int) {
 	for i, spath := range append([]string{path}, goImportsCache[path]...) {
 		if _, ok := done[spath]; !ok && i > 0 && !fast {
 			done[spath] = i
-			moc(spath, target, tags, false, slow, false, l)
+			moc(spath, target, tags, false, slow, false, l, dirty)
 		}
 
 		for _, fpath := range goFilesCache[spath] {
 			cls, ipkg, err := parse(fpath)
-			if pkg == "" {
+			if pkg == "" || strings.TrimSuffix(pkg, "_test") == ipkg {
 				pkg = ipkg
 			}
 			if err != nil {
@@ -289,39 +325,80 @@ func moc(path, target, tags string, fast, slow, root bool, l int) {
 	ResourceNames[filepath.Join(path, "moc.cpp")] = ""
 	ResourceNamesMutex.Unlock()
 
-	if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
-		return
+	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+	scmd := exec.Command("go", "list")
+	scmd.Dir = path
+
+	if !fast && !utils.QT_FAT() {
+		tagsEnv = append(tagsEnv, "minimal")
+	}
+	if tags != "" {
+		tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+	}
+	scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+
+	if target != runtime.GOOS {
+		scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
 	}
 
-	if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
-		return
+	for key, value := range env {
+		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
 	}
-	fixR := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
 
-	rootWg.Add(1)
-	go func() {
-		defer rootWg.Done()
+	scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
 
-		var fix []byte
-		var err error
-		for i := 0; i < 5; i++ {
-			fix, err = imports.Process("moc.go", fixR, nil)
-			if err != nil {
-				utils.Log.WithError(err).Error("failed to fix go imports")
-				fix = fixR
-			}
-		}
-
-		if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
+	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+		utils.Log.WithField("path", path).Debug("skipping already cached moc")
+	} else {
+		if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
 			return
 		}
-	}()
 
-	rootWg.Add(1)
-	go func(libs []string) {
-		templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
-		rootWg.Done()
-	}(parser.LibDeps[parser.MOC])
+		if err := utils.SaveBytes(filepath.Join(path, "moc.h"), templater.HTemplate(parser.MOC, templater.MOC, tags)); err != nil {
+			return
+		}
+		fixR := templater.GoTemplate(parser.MOC, false, templater.MOC, pkg, target, tags)
+
+		rootWg.Add(1)
+		go func() {
+			defer rootWg.Done()
+
+			var fix []byte
+			var err error
+			for i := 0; i < 5; i++ {
+				fix, err = imports.Process("moc.go", fixR, nil)
+				if err != nil {
+					utils.Log.WithError(err).Error("failed to fix go imports")
+					fix = fixR
+				}
+			}
+
+			if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
+				return
+			}
+		}()
+
+		rootWg.Add(1)
+		go func(libs []string) {
+			templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
+			rootWg.Done()
+		}(parser.LibDeps[parser.MOC])
+
+		rootWg.Add(1)
+		go func() {
+			utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
+			if tags != "" {
+				utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
+			}
+
+			if utils.QT_DOCKER() {
+				if idug, ok := os.LookupEnv("IDUG"); ok {
+					utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+				}
+			}
+			rootWg.Done()
+		}()
+	}
 
 	//TODO: cleanup state -->
 	for _, c := range parser.State.ClassMap {
@@ -331,21 +408,6 @@ func moc(path, target, tags string, fast, slow, root bool, l int) {
 	}
 	parser.LibDeps[parser.MOC] = make([]string, 0)
 	//<--
-
-	rootWg.Add(1)
-	go func() {
-		utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
-		if tags != "" {
-			utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
-		}
-
-		if utils.QT_DOCKER() {
-			if idug, ok := os.LookupEnv("IDUG"); ok {
-				utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
-			}
-		}
-		rootWg.Done()
-	}()
 }
 
 func parse(path string) ([]*parser.Class, string, error) {
@@ -370,6 +432,8 @@ func parse(path string) ([]*parser.Class, string, error) {
 		utils.Log.WithField("path", path).WithError(err).Debug("failed to parse file")
 		return nil, "", err
 	}
+
+	//TODO: cache moc struct hashes in moc.go files to indentify staled moc structs in staled go packages
 
 	var classes []*parser.Class
 	for _, d := range file.Decls {
@@ -452,12 +516,29 @@ func parse(path string) ([]*parser.Class, string, error) {
 
 						if strings.Contains(autoTag, "(") {
 							if !strings.HasPrefix(autoTag, "(this.") {
-								//TODO: concurrent + cache lookups
+								//TODO: concurrent?
 								var found bool
 								for _, imp := range file.Imports {
 									if strings.Contains(autoTag, "("+imp.Name.String()+".") {
-										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
-										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+										var name string
+										goNameCacheMutex.Lock()
+										if n, ok := goNameCache[imp.Path.Value]; ok {
+											name = n
+										} else {
+											name = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											goNameCache[imp.Path.Value] = name
+										}
+										goNameCacheMutex.Unlock()
+
+										var dir string
+										goDirCacheMutex.Lock()
+										if d, ok := goDirCache[imp.Path.Value]; ok {
+											dir = d
+										} else {
+											dir = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											goDirCache[imp.Path.Value] = dir
+										}
+										goDirCacheMutex.Unlock()
 
 										h := sha1.New()
 										h.Write([]byte(dir))
@@ -478,11 +559,30 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if imp.Name.String() != "<nil>" && imp.Name.String() != "_" {
 											continue
 										}
-										name := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+
+										var name string
+										goNameCacheMutex.Lock()
+										if n, ok := goNameCache[imp.Path.Value]; ok {
+											name = n
+										} else {
+											name = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											goNameCache[imp.Path.Value] = name
+										}
+										goNameCacheMutex.Unlock()
+
 										if !strings.Contains(autoTag, "("+name+".") {
 											continue
 										}
-										dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+
+										var dir string
+										goDirCacheMutex.Lock()
+										if d, ok := goDirCache[imp.Path.Value]; ok {
+											dir = d
+										} else {
+											dir = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											goDirCache[imp.Path.Value] = dir
+										}
+										goDirCacheMutex.Unlock()
 
 										h := sha1.New()
 										h.Write([]byte(dir))

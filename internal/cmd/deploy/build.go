@@ -11,8 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/therecipe/qt/internal/cmd"
+	"github.com/sirupsen/logrus"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -52,7 +53,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		pattern = "all="
 	}
 
-	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=%v\"%v\"", pattern, strings.Join(ldFlags, "\" \"")), "-o", out+ending)
+	var extraLdFlag string
+	if utils.Log.Level == logrus.DebugLevel {
+		extraLdFlag = " \"-extldflags=-v\""
+	}
+
+	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=%v\"%v\"%v", pattern, strings.Join(ldFlags, "\" \""), extraLdFlag), "-o", out+ending)
 	cmd.Dir = path
 
 	if fast && !utils.QT_STUB() {
@@ -63,6 +69,8 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		utils.MkdirAll(depPath + "_obj")
 		cmd.Env = append(cmd.Env, fmt.Sprintf("GOTMPDIR=%v", depPath+"_obj"))
 		cmd.Args = append(cmd.Args, "-a", "-x", "-work")
+	} else if utils.Log.Level == logrus.DebugLevel {
+		cmd.Args = append(cmd.Args, "-x")
 	}
 
 	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
@@ -84,7 +92,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 
-	if target == "darwin" {
+	if target == "darwin" && !fast {
 		strip := exec.Command("strip", "-x", out) //TODO: -u -r
 		strip.Dir = path
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))

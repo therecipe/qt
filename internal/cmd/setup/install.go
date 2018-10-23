@@ -91,7 +91,7 @@ func Install(target string, docker, vagrant bool) {
 			}
 		}
 
-		cmd := exec.Command("go", "install", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
+		cmd := exec.Command("go", "install", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 		if len(tags) > 0 {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 		}

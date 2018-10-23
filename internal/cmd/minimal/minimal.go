@@ -2,7 +2,9 @@ package minimal
 
 import (
 	"fmt"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -17,6 +19,33 @@ import (
 )
 
 func Minimal(path, target, tags string) {
+
+	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+	scmd := exec.Command("go", "list")
+	scmd.Dir = path
+
+	tagsEnv = append(tagsEnv, "minimal")
+
+	if tags != "" {
+		tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+	}
+	scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+
+	if target != runtime.GOOS {
+		scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+	}
+
+	for key, value := range env {
+		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+	}
+
+	scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
+
+	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+		utils.Log.WithField("path", path).Debug("skipping already cached minimal")
+		return
+	}
+
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")
 
 	//TODO: cleanup state from moc for minimal first -->

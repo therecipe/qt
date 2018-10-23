@@ -1,2 +1,2 @@
 #!/bin/bash
-$GOPATH/bin/godepgraph -horizontal -s -i=github.com/therecipe/qt,github.com/therecipe/qt/core,github.com/therecipe/qt/gui,github.com/therecipe/qt/widgets,github.com/therecipe/qt/qml,github.com/therecipe/qt/quick,github.com/therecipe/qt/xml,github.com/NebulousLabs/Sia/node/api,github.com/NebulousLabs/Sia/types,github.com/NebulousLabs/Sia/modules github.com/therecipe/qt/internal/examples/showcases/sia | dot -Tpng -o depgraph.png
+$GOPATH/bin/godepgraph -horizontal -s -i=github.com/therecipe/qt,github.com/therecipe/qt/core,github.com/therecipe/qt/gui,github.com/therecipe/qt/widgets,github.com/therecipe/qt/qml,github.com/therecipe/qt/quick,github.com/therecipe/qt/xml github.com/therecipe/qt/internal/examples/showcases/sia | dot -Tpng -o depgraph.png

@@ -17,14 +17,14 @@ func Prep() {
 	sucString := "successfully created %v symlink in your PATH (%v)"
 
 	for _, app := range []string{"qtrcc", "qtmoc", "qtminimal", "qtdeploy", "go"} {
-		if app == "go" && !utils.QT_MSYS2() {
+		if app == "go" && !(utils.QT_MSYS2() && !utils.QT_DOCKER()) {
 			continue
 		}
 
 		if runtime.GOOS == "windows" {
 			sPath := filepath.Join(utils.GOBIN(), fmt.Sprintf("%v.exe", app))
 			dPath := filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("%v.exe", app))
-			if utils.QT_MSYS2() {
+			if utils.QT_MSYS2() && !utils.QT_DOCKER() {
 				if app == "go" {
 					sPath = dPath
 				}

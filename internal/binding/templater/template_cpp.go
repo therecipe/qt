@@ -16,6 +16,7 @@ import (
 )
 
 var exportedFunctions []string
+var CleanupDepsForCI = func() {}
 
 func CppTemplate(module string, mode int, target, tags string) []byte {
 	utils.Log.WithField("module", module).Debug("generating cpp")
@@ -102,13 +103,13 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 
 					func() string {
 						if mode == MOC {
-							var bb = new(bytes.Buffer)
+							bb := new(bytes.Buffer)
 							defer bb.Reset()
 							fmt.Fprintln(bb, "Q_OBJECT")
 
 							for _, p := range class.Properties {
 
-								var ty = p.Output
+								ty := p.Output
 								if parser.IsPackedMap(p.Output) {
 									var tHash = sha1.New()
 									tHash.Write([]byte(p.Output))
@@ -135,7 +136,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							continue
 						}
 
-						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {%v};\n",
+						out := fmt.Sprintf("\t%v%v(%v) : %v(%v) {%v};\n",
 							func() string {
 								if mode == MOC {
 									return ""
@@ -201,7 +202,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 				}
 
 				//callback functions
-				var implementedVirtuals = make(map[string]struct{})
+				implementedVirtuals := make(map[string]struct{})
 				for i, parentClassName := range append([]string{class.Name}, class.GetAllBases()...) {
 					var parentClass, e = parser.State.ClassMap[parentClassName]
 					if !e || !parentClass.IsSupported() {
@@ -230,7 +231,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						f.Fullname = fmt.Sprintf("%v::%v", f.FindDeepestImplementation(), f.Name)
 
 						if f.Meta == parser.SLOT || f.Meta == parser.SIGNAL || f.Virtual == parser.IMPURE || f.Virtual == parser.PURE {
-							fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&f))
+							if fb := cppFunctionCallback(&f); len(fb) != 0 {
+								fmt.Fprintf(bb, "\t%v\n", fb)
+							}
 						}
 					}
 				}
@@ -282,14 +285,18 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						if function.Meta == parser.SIGNAL {
 							var function = *function
 							function.Meta = parser.SLOT
-							fmt.Fprintf(bb, "\t%v;\n", cppFunctionCallbackHeader(&function))
+							if fb := cppFunctionCallbackHeader(&function); len(fb) != 0 {
+								fmt.Fprintf(bb, "\t%v;\n", fb)
+							}
 						}
 					}
 
 					fmt.Fprintln(bb, "public slots:")
 					for _, function := range class.Functions {
 						if function.Meta == parser.SLOT {
-							fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(function))
+							if fb := cppFunctionCallback(function); len(fb) != 0 {
+								fmt.Fprintf(bb, "\t%v\n", fb)
+							}
 						}
 					}
 
@@ -690,13 +697,33 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 			utils.Log.Debugf("%v add dependency: %v", module, c.Module)
 			parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], strings.TrimPrefix(c.Module, "Qt"))
+			old := CleanupDepsForCI
+			CleanupDepsForCI = func() {
+				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = parser.LibDeps[strings.TrimPrefix(module, "Qt")][:len(parser.LibDeps[strings.TrimPrefix(module, "Qt")])-1]
+				old()
+			}
 			switch c.Module {
 			case "QtMultimedia":
 				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "MultimediaWidgets")
+				old := CleanupDepsForCI
+				CleanupDepsForCI = func() {
+					parser.LibDeps[strings.TrimPrefix(module, "Qt")] = parser.LibDeps[strings.TrimPrefix(module, "Qt")][:len(parser.LibDeps[strings.TrimPrefix(module, "Qt")])-1]
+					old()
+				}
 			case "QtWebEngine":
 				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "WebEngineWidgets")
+				old := CleanupDepsForCI
+				CleanupDepsForCI = func() {
+					parser.LibDeps[strings.TrimPrefix(module, "Qt")] = parser.LibDeps[strings.TrimPrefix(module, "Qt")][:len(parser.LibDeps[strings.TrimPrefix(module, "Qt")])-1]
+					old()
+				}
 			case "QtQuick":
 				parser.LibDeps[strings.TrimPrefix(module, "Qt")] = append(parser.LibDeps[strings.TrimPrefix(module, "Qt")], "QuickWidgets")
+				old := CleanupDepsForCI
+				CleanupDepsForCI = func() {
+					parser.LibDeps[strings.TrimPrefix(module, "Qt")] = parser.LibDeps[strings.TrimPrefix(module, "Qt")][:len(parser.LibDeps[strings.TrimPrefix(module, "Qt")])-1]
+					old()
+				}
 			}
 		}
 	}

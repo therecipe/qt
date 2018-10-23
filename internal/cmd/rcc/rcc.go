@@ -29,6 +29,8 @@ func Rcc(path, target, tagsCustom, output_dir string) {
 func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
+	//TODO: cache non go asset (*.qml, ...) hashes in rcc.go files to indentify staled assets in cached go packages
+
 	if root {
 		wg := new(sync.WaitGroup)
 		defer wg.Wait()
@@ -84,9 +86,9 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	rccCpp := filepath.Join(path, "rcc.cpp")
 	if output_dir != "" {
 		rccCpp = filepath.Join(output_dir, "rcc.cpp")
-		templater.CgoTemplate(pkg, output_dir, target, templater.RCC, "", "")
+		templater.CgoTemplateSafe(pkg, output_dir, target, templater.RCC, "", "", []string{"Core"})
 	} else {
-		templater.CgoTemplate(pkg, path, target, templater.RCC, "", "")
+		templater.CgoTemplateSafe(pkg, path, target, templater.RCC, "", "", []string{"Core"})
 	}
 
 	if dir := filepath.Join(path, "qml"); utils.ExistsDir(dir) {

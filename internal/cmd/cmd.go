@@ -199,6 +199,8 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "QT_WEBKIT=true"}...)
 	}
 
+	//TODO: flag for shared GOCACHE
+
 	if docker {
 		args = append(args, []string{"-e", "GOPATH=" + gpath}...)
 	} else {
@@ -399,13 +401,6 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
-		if utils.QT_NIX() {
-			for _, e := range os.Environ() {
-				es := strings.Split(e, "=")
-				env[es[0]] = strings.Join(es[1:], "=")
-			}
-		}
-
 	case "windows":
 		ldFlags = []string{"-s", "-w"}
 		if !utils.QT_DEBUG_CONSOLE() {
@@ -591,6 +586,13 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
 	env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
 	env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
+
+	for _, e := range os.Environ() {
+		es := strings.Split(e, "=")
+		if _, ok := env[es[0]]; !ok {
+			env[es[0]] = strings.Join(es[1:], "=")
+		}
+	}
 
 	return env, tags, ldFlags, out
 }

@@ -173,8 +173,8 @@ var LibDeps = map[string][]string{
 	"UiTools":       {"Widgets", "Gui", "Core"},
 	"X11Extras":     {"Gui", "Core"},
 	"WinExtras":     {"Widgets", "Gui", "Core"},
-	"WebEngine":     {"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
-	"TestLib":       {"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
+	"WebEngine":     {"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "PrintSupport", "Gui", "Qml", "Positioning", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
+	"TestLib":       {"Widgets", "Gui", "Core"},                                                                                                              //Widgets, Gui
 	"SerialPort":    {"Core"},
 	"SerialBus":     {"Core"},
 	"PrintSupport":  {"Widgets", "Gui", "Core"},
@@ -527,7 +527,7 @@ func SortedClassNamesForModule(module string, template bool) []string {
 
 			}
 		}
-		output = tmpOutput
+		output = tmpOutput //TODO: make order deterministic
 	}
 
 	return output

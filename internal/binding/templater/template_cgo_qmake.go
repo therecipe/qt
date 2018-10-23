@@ -82,8 +82,32 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			file = utils.Load(file)
 
 			for _, dep := range libs {
-				if !strings.Contains(strings.ToLower(file), strings.ToLower(dep)) {
+				if !strings.Contains(strings.ToLower(file), "_"+strings.ToLower(dep)+"_") {
 					utils.Log.Debugln("cgo does not contain:", strings.ToLower(dep))
+					return false
+				}
+			}
+
+			allLibs := parser.GetLibs()
+			for i := len(allLibs) - 1; i >= 0; i-- {
+				for _, dep := range append(libs, module) {
+					var broke bool
+					for _, lib := range append(parser.LibDeps[dep], dep) {
+						if allLibs[i] == lib {
+							allLibs = append(allLibs[:i], allLibs[i+1:]...)
+							broke = true
+							break
+						}
+					}
+					if broke {
+						break
+					}
+				}
+			}
+
+			for _, dep := range allLibs {
+				if strings.Contains(strings.ToLower(file), "_"+strings.ToLower(dep)+"_") {
+					utils.Log.Debugln("cgo does contain extra:", strings.ToLower(dep))
 					return false
 				}
 			}
@@ -202,6 +226,14 @@ func createProject(module, path, target string, mode int, libs []string) {
 }
 
 func createMakefile(module, path, target string, mode int) {
+
+	for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
+		pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
+		if utils.ExistsFile(pPath) {
+			utils.RemoveAll(pPath)
+		}
+	}
+
 	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	if module == "build_ios" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))

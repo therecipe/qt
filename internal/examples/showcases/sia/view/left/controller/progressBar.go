@@ -7,8 +7,6 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 
-	"github.com/NebulousLabs/Sia/types"
-
 	"github.com/therecipe/qt/internal/examples/showcases/sia/controller"
 )
 
@@ -22,12 +20,12 @@ type ProgressBarController struct {
 
 	_ func() `signal:"clicked,auto"`
 
-	_ func(types.BlockHeight) `signal:"heightChanged,<-(controller.Controller)"`
+	_ func(uint64) `signal:"heightChanged,<-(controller.Controller)"`
 }
 
 func (c *ProgressBarController) init() {
 	if controller.DEMO {
-		c.heightChanged(types.BlockHeight(0))
+		c.heightChanged(uint64(0))
 	}
 }
 
@@ -35,7 +33,7 @@ func (c *ProgressBarController) clicked() {
 	gui.QDesktopServices_OpenUrl(core.NewQUrl3("https://explore.sia.tech", 0))
 }
 
-func (c *ProgressBarController) heightChanged(height types.BlockHeight) {
+func (c *ProgressBarController) heightChanged(height uint64) {
 	if controller.Controller.IsSynced() {
 		c.SetText(fmt.Sprintf("BH: %v", controller.Controller.Height()))
 		c.SetValue(100)
@@ -56,10 +54,10 @@ func (c *ProgressBarController) heightChanged(height types.BlockHeight) {
 // estimatedHeightAt returns the estimated block height for the given time.
 // Block height is estimated by calculating the minutes since a known block in
 // the past and dividing by 10 minutes (the block time).
-func estimatedHeightAt(t time.Time) types.BlockHeight {
+func estimatedHeightAt(t time.Time) uint64 {
 	block100kTimestamp := time.Date(2017, time.April, 13, 23, 29, 49, 0, time.UTC)
 	blockTime := float64(9) // overestimate block time for better UX
 	diff := t.Sub(block100kTimestamp)
 	estimatedHeight := 100e3 + (diff.Minutes() / blockTime)
-	return types.BlockHeight(estimatedHeight + 0.5) // round to the nearest block
+	return uint64(estimatedHeight + 0.5) // round to the nearest block
 }

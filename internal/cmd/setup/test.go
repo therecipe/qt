@@ -8,6 +8,8 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/templater"
+
 	"github.com/therecipe/qt/internal/cmd/deploy"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
@@ -158,6 +160,8 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrantsystem,
 				false,
 			)
+			templater.CleanupDepsForCI()
+			templater.CleanupDepsForCI = func() {}
 		}
 	}
 }
