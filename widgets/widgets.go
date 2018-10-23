@@ -50205,6 +50205,18 @@ func (ptr *QGridLayout) AddWidget(widget QWidget_ITF, row int, column int, align
 	}
 }
 
+func (ptr *QGridLayout) AddItem2(item QLayoutItem_ITF, row int, column int, rowSpan int, columnSpan int, alignment core.Qt__AlignmentFlag) {
+	if ptr.Pointer() != nil {
+		C.QGridLayout_AddItem2(ptr.Pointer(), PointerFromQLayoutItem(item), C.int(int32(row)), C.int(int32(column)), C.int(int32(rowSpan)), C.int(int32(columnSpan)), C.longlong(alignment))
+	}
+}
+
+func (ptr *QGridLayout) AddItem3(item QLayoutItem_ITF, row int, column int, alignment core.Qt__AlignmentFlag) {
+	if ptr.Pointer() != nil {
+		C.QGridLayout_AddItem3(ptr.Pointer(), PointerFromQLayoutItem(item), C.int(int32(row)), C.int(int32(column)), C.longlong(alignment))
+	}
+}
+
 func (ptr *QGridLayout) SetColumnMinimumWidth(column int, minSize int) {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_SetColumnMinimumWidth(ptr.Pointer(), C.int(int32(column)), C.int(int32(minSize)))
