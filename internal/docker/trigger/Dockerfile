@@ -55,5 +55,13 @@ RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag":
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_shared_base_6"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_shared_base_7"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_shared"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "wine_base_xp"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_shared_msys2"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_64_static_msys2"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared_msys2"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_static_msys2"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared_xp"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared_563"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "windows_32_shared_596"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 
 RUN exit 1

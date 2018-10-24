@@ -50181,6 +50181,54 @@ func (ptr *QGridLayout) TakeAtDefault(index int) *QLayoutItem {
 	return nil
 }
 
+//export callbackQGridLayout_AddItem2
+func callbackQGridLayout_AddItem2(ptr unsafe.Pointer, item unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "addItem2"); signal != nil {
+		signal.(func(*QLayoutItem))(NewQLayoutItemFromPointer(item))
+	} else {
+		NewQGridLayoutFromPointer(ptr).AddItem2Default(NewQLayoutItemFromPointer(item))
+	}
+}
+
+func (ptr *QGridLayout) ConnectAddItem2(f func(item *QLayoutItem)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "addItem2"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "addItem2", func(item *QLayoutItem) {
+				signal.(func(*QLayoutItem))(item)
+				f(item)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "addItem2", f)
+		}
+	}
+}
+
+func (ptr *QGridLayout) DisconnectAddItem2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "addItem2")
+	}
+}
+
+func (ptr *QGridLayout) AddItem2(item QLayoutItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGridLayout_AddItem2(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
+}
+
+func (ptr *QGridLayout) AddItem2Default(item QLayoutItem_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGridLayout_AddItem2Default(ptr.Pointer(), PointerFromQLayoutItem(item))
+	}
+}
+
+func (ptr *QGridLayout) AddItem(item QLayoutItem_ITF, row int, column int, rowSpan int, columnSpan int, alignment core.Qt__AlignmentFlag) {
+	if ptr.Pointer() != nil {
+		C.QGridLayout_AddItem(ptr.Pointer(), PointerFromQLayoutItem(item), C.int(int32(row)), C.int(int32(column)), C.int(int32(rowSpan)), C.int(int32(columnSpan)), C.longlong(alignment))
+	}
+}
+
 func (ptr *QGridLayout) AddLayout(layout QLayout_ITF, row int, column int, alignment core.Qt__AlignmentFlag) {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_AddLayout(ptr.Pointer(), PointerFromQLayout(layout), C.int(int32(row)), C.int(int32(column)), C.longlong(alignment))
@@ -50202,18 +50250,6 @@ func (ptr *QGridLayout) AddWidget3(widget QWidget_ITF, fromRow int, fromColumn i
 func (ptr *QGridLayout) AddWidget(widget QWidget_ITF, row int, column int, alignment core.Qt__AlignmentFlag) {
 	if ptr.Pointer() != nil {
 		C.QGridLayout_AddWidget(ptr.Pointer(), PointerFromQWidget(widget), C.int(int32(row)), C.int(int32(column)), C.longlong(alignment))
-	}
-}
-
-func (ptr *QGridLayout) AddItem2(item QLayoutItem_ITF, row int, column int, rowSpan int, columnSpan int, alignment core.Qt__AlignmentFlag) {
-	if ptr.Pointer() != nil {
-		C.QGridLayout_AddItem2(ptr.Pointer(), PointerFromQLayoutItem(item), C.int(int32(row)), C.int(int32(column)), C.int(int32(rowSpan)), C.int(int32(columnSpan)), C.longlong(alignment))
-	}
-}
-
-func (ptr *QGridLayout) AddItem3(item QLayoutItem_ITF, row int, column int, alignment core.Qt__AlignmentFlag) {
-	if ptr.Pointer() != nil {
-		C.QGridLayout_AddItem3(ptr.Pointer(), PointerFromQLayoutItem(item), C.int(int32(row)), C.int(int32(column)), C.longlong(alignment))
 	}
 }
 

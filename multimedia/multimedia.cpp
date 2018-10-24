@@ -2268,7 +2268,6 @@ public:
 	 ~MyQAudioDecoder() { callbackQAudioDecoder_DestroyQAudioDecoder(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool bind(QObject * object) { return callbackQMediaObject_Bind(this, object) != 0; };
-	
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaObject_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaObject_AvailabilityChanged(this, available); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
@@ -2600,7 +2599,6 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 duration() const { return callbackQAudioDecoderControl_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 position() const { return callbackQAudioDecoderControl_Position(const_cast<void*>(static_cast<const void*>(this))); };
-	
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMediaControl_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQMediaControl_ChildEvent(this, event); };
@@ -4836,7 +4834,6 @@ public:
 	void setAudioInput(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtMultimedia_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQAudioRecorder_SetAudioInput(this, namePacked); };
 	 ~MyQAudioRecorder() { callbackQAudioRecorder_DestroyQAudioRecorder(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaRecorder_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_ActualLocationChanged(const QUrl & location) { callbackQMediaRecorder_ActualLocationChanged(this, const_cast<QUrl*>(&location)); };
 	void Signal_AvailabilityChanged2(QMultimedia::AvailabilityStatus availability) { callbackQMediaRecorder_AvailabilityChanged2(this, availability); };
 	void Signal_AvailabilityChanged(bool available) { callbackQMediaRecorder_AvailabilityChanged(this, available); };

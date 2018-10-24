@@ -307,7 +307,6 @@ class MyQRemoteObjectDynamicReplica: public QRemoteObjectDynamicReplica
 {
 public:
 	 ~MyQRemoteObjectDynamicReplica() { callbackQRemoteObjectDynamicReplica_DestroyQRemoteObjectDynamicReplica(this); };
-	
 	void Signal_Initialized() { callbackQRemoteObjectReplica_Initialized(this); };
 	void setNode(QRemoteObjectNode * node) { callbackQRemoteObjectReplica_SetNode(this, node); };
 	void Signal_StateChanged(QRemoteObjectReplica::State state, QRemoteObjectReplica::State oldState) { callbackQRemoteObjectReplica_StateChanged(this, state, oldState); };
@@ -349,13 +348,10 @@ public:
 	 ~MyQRemoteObjectHost() { callbackQRemoteObjectHost_DestroyQRemoteObjectHost(this); };
 	QUrl hostUrl() const { return *static_cast<QUrl*>(callbackQRemoteObjectHost_HostUrl(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void setName(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtRemoteObjects_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQRemoteObjectNode_SetName(this, namePacked); };
 	bool setRegistryUrl(const QUrl & registryAddress) { return callbackQRemoteObjectNode_SetRegistryUrl(this, const_cast<QUrl*>(&registryAddress)) != 0; };
 	void Signal_Error(QRemoteObjectNode::ErrorCode errorCode) { callbackQRemoteObjectNode_Error(this, errorCode); };
 	void Signal_HeartbeatIntervalChanged(int heartbeatInterval) { callbackQRemoteObjectNode_HeartbeatIntervalChanged(this, heartbeatInterval); };
-	
-	
 	void timerEvent(QTimerEvent * vqt) { callbackQRemoteObjectNode_TimerEvent(this, vqt); };
 	bool event(QEvent * e) { return callbackQRemoteObjectNode_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRemoteObjectNode_EventFilter(this, watched, event) != 0; };

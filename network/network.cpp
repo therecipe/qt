@@ -8660,7 +8660,6 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSocket_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 bytesAvailable() const { return callbackQAbstractSocket_BytesAvailable(const_cast<void*>(static_cast<const void*>(this))); };
 	qint64 bytesToWrite() const { return callbackQAbstractSocket_BytesToWrite(const_cast<void*>(static_cast<const void*>(this))); };
-	
 	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadLineData(this, dataPacked, maxlen); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQAbstractSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };

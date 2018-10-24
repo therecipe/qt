@@ -225,7 +225,6 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	int duration() const { return callbackQAbstractAnimation_Duration(const_cast<void*>(static_cast<const void*>(this))); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
-	
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQObject_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQObject_CustomEvent(this, event); };
@@ -3677,7 +3676,6 @@ public:
 	bool reset() { return callbackQIODevice_Reset(this) != 0; };
 	bool waitForBytesWritten(int msecs) { return callbackQIODevice_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQIODevice_WaitForReadyRead(this, msecs) != 0; };
-	
 	qint64 readLineData(char * data, qint64 maxSize) { QtCore_PackedString dataPacked = { data, maxSize };return callbackQIODevice_ReadLineData(this, dataPacked, maxSize); };
 	void Signal_AboutToClose() { callbackQIODevice_AboutToClose(this); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQIODevice_BytesWritten(this, bytes); };
@@ -7353,7 +7351,6 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	qint64 size() const { return callbackQIODevice_Size(const_cast<void*>(static_cast<const void*>(this))); };
 	bool seek(qint64 pos) { return callbackQIODevice_Seek(this, pos) != 0; };
-	
 	qint64 readData(char * data, qint64 l) { QtCore_PackedString dataPacked = { data, l };return callbackQFileDevice_ReadData(this, dataPacked, l); };
 	qint64 readLineData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQIODevice_ReadLineData(this, dataPacked, maxlen); };
 	qint64 writeData(const char * data, qint64 l) { QtCore_PackedString dataPacked = { const_cast<char*>(data), l };return callbackQFileDevice_WriteData(this, dataPacked, l); };
@@ -15615,7 +15612,6 @@ public:
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAbstractAnimation_UpdateState(this, newState, oldState); };
 	 ~MyQPropertyAnimation() { callbackQPropertyAnimation_DestroyQPropertyAnimation(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void updateCurrentTime(int vin) { callbackQVariantAnimation_UpdateCurrentTime(this, vin); };
 	void Signal_ValueChanged(const QVariant & value) { callbackQVariantAnimation_ValueChanged(this, const_cast<QVariant*>(&value)); };
 	QVariant interpolated(const QVariant & from, const QVariant & to, qreal progress) const { return *static_cast<QVariant*>(callbackQVariantAnimation_Interpolated(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVariant*>(&from), const_cast<QVariant*>(&to), progress)); };
@@ -21127,7 +21123,6 @@ public:
 	 ~MyQTextCodec() { callbackQTextCodec_DestroyQTextCodec(this); };
 	QByteArray name() const { return *static_cast<QByteArray*>(callbackQTextCodec_Name(const_cast<void*>(static_cast<const void*>(this)))); };
 	QList<QByteArray> aliases() const { return ({ QList<QByteArray>* tmpP = static_cast<QList<QByteArray>*>(callbackQTextCodec_Aliases(const_cast<void*>(static_cast<const void*>(this)))); QList<QByteArray> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	
 	int mibEnum() const { return callbackQTextCodec_MibEnum(const_cast<void*>(static_cast<const void*>(this))); };
 };
 

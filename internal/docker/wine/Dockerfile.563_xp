@@ -1,12 +1,12 @@
 FROM therecipe/qt:wine_base_xp as base
 
-RUN QT=qt-unified-windows-x86-online.exe && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/online_installers/$QT \
-	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=563
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
-RUN rm -f $(find $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)
-RUN find $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32 -name "*.exe" -size +7M -maxdepth 4 -delete
-RUN find $HOME/.wine/drive_c/Qt/Docs -type f ! -name "*.index" -delete
+RUN QT=qt-opensource-windows-x86-5.6.3.exe && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/qt/5.6/5.6.3/$QT \
+	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=563 && rm -f $QT
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
+RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)
+RUN find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*.exe" -size +7M -maxdepth 4 -delete
+RUN find $HOME/.wine/drive_c/Qt/Qt5.6.3/Docs -type f ! -name "*.index" -delete
 
 
 FROM ubuntu:16.04
@@ -16,14 +16,14 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH C:\\gopath
 ENV WINEDEBUG -all
-ENV WINEPATH C:\\Qt\\Tools\\mingw492_32\\bin;C:\\go\\bin
+ENV WINEPATH C:\\Qt\\Qt5.6.3\\Tools\\mingw492_32\\bin;C:\\go\\bin
 
 COPY --from=base $HOME/.wine/drive_c/go $HOME/.wine/drive_c/go
 COPY --from=base $HOME/.wine/drive_c/gopath/bin $HOME/.wine/drive_c/gopath/bin
 COPY --from=base $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt
-COPY --from=base $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32 $HOME/.wine/drive_c/Qt/5.6.3/mingw49_32
-COPY --from=base $HOME/.wine/drive_c/Qt/Docs $HOME/.wine/drive_c/Qt/Docs
-COPY --from=base $HOME/.wine/drive_c/Qt/Tools/mingw492_32 $HOME/.wine/drive_c/Qt/Tools/mingw492_32
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.6.3/Docs $HOME/.wine/drive_c/Qt/Qt5.6.3/Docs
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.6.3/Tools/mingw492_32 $HOME/.wine/drive_c/Qt/Qt5.6.3/Tools/mingw492_32
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl software-properties-common apt-transport-https && apt-get -qq clean
 RUN dpkg --add-architecture i386

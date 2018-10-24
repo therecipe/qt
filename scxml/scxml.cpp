@@ -108,14 +108,6 @@ public:
 	QVariant scxmlProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return *static_cast<QVariant*>(callbackQScxmlCppDataModel_ScxmlProperty(const_cast<void*>(static_cast<const void*>(this)), namePacked)); };
 	bool hasScxmlProperty(const QString & name) const { QByteArray t6ae999 = name.toUtf8(); QtScxml_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQScxmlCppDataModel_HasScxmlProperty(const_cast<void*>(static_cast<const void*>(this)), namePacked) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlDataModel_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
-	
-	
-	
-	
-	
-	
-	
 	void Signal_StateMachineChanged(QScxmlStateMachine * stateMachine) { callbackQScxmlDataModel_StateMachineChanged(this, stateMachine); };
 	bool event(QEvent * e) { return callbackQScxmlDataModel_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScxmlDataModel_EventFilter(this, watched, event) != 0; };
@@ -507,7 +499,6 @@ class MyQScxmlDynamicScxmlServiceFactory: public QScxmlDynamicScxmlServiceFactor
 public:
 	QScxmlInvokableService * invoke(QScxmlStateMachine * parentStateMachine) { return static_cast<QScxmlInvokableService*>(callbackQScxmlDynamicScxmlServiceFactory_Invoke(this, parentStateMachine)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScxmlInvokableServiceFactory_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	bool event(QEvent * e) { return callbackQScxmlInvokableServiceFactory_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScxmlInvokableServiceFactory_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQScxmlInvokableServiceFactory_ChildEvent(this, event); };
@@ -2078,12 +2069,8 @@ class MyQScxmlTableData: public QScxmlTableData
 {
 public:
 	 ~MyQScxmlTableData() { callbackQScxmlTableData_DestroyQScxmlTableData(this); };
-	
-	
-	
 	QScxmlInvokableServiceFactory * serviceFactory(int id) const { return static_cast<QScxmlInvokableServiceFactory*>(callbackQScxmlTableData_ServiceFactory(const_cast<void*>(static_cast<const void*>(this)), id)); };
 	QString name() const { return ({ QtScxml_PackedString tempVal = callbackQScxmlTableData_Name(const_cast<void*>(static_cast<const void*>(this))); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	
 };
 
 void QScxmlTableData_DestroyQScxmlTableData(void* ptr)

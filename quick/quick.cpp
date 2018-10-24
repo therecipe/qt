@@ -171,10 +171,8 @@ public:
 	QSGTextureProvider * textureProvider() const { return static_cast<QSGTextureProvider*>(callbackQQuickItem_TextureProvider(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isTextureProvider() const { return callbackQQuickItem_IsTextureProvider(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickItem_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	bool childMouseEventFilter(QQuickItem * item, QEvent * event) { return callbackQQuickItem_ChildMouseEventFilter(this, item, event) != 0; };
 	bool event(QEvent * ev) { return callbackQQuickItem_Event(this, ev) != 0; };
-	
 	void classBegin() { callbackQQuickItem_ClassBegin(this); };
 	void componentComplete() { callbackQQuickItem_ComponentComplete(this); };
 	void Signal_ContainmentMaskChanged() { callbackQQuickItem_ContainmentMaskChanged(this); };
@@ -189,7 +187,6 @@ public:
 	void hoverLeaveEvent(QHoverEvent * event) { callbackQQuickItem_HoverLeaveEvent(this, event); };
 	void hoverMoveEvent(QHoverEvent * event) { callbackQQuickItem_HoverMoveEvent(this, event); };
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQQuickItem_InputMethodEvent(this, event); };
-	
 	void keyPressEvent(QKeyEvent * event) { callbackQQuickItem_KeyPressEvent(this, event); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQQuickItem_KeyReleaseEvent(this, event); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQQuickItem_MouseDoubleClickEvent(this, event); };
@@ -3195,7 +3192,6 @@ public:
 	 ~MyQQuickView() { callbackQQuickView_DestroyQQuickView(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQQuickWindow_Event(this, e) != 0; };
-	
 	void Signal_ActiveFocusItemChanged() { callbackQQuickWindow_ActiveFocusItemChanged(this); };
 	void Signal_AfterAnimating() { callbackQQuickWindow_AfterAnimating(this); };
 	void Signal_AfterRendering() { callbackQQuickWindow_AfterRendering(this); };
@@ -5601,7 +5597,6 @@ class MyQSGDynamicTexture: public QSGDynamicTexture
 public:
 	bool updateTexture() { return callbackQSGDynamicTexture_UpdateTexture(this) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSGTexture_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void bind() { callbackQSGDynamicTexture_Bind(this); };
 	QRectF normalizedTextureSubRect() const { return *static_cast<QRectF*>(callbackQSGTexture_NormalizedTextureSubRect(const_cast<void*>(static_cast<const void*>(this)))); };
 	QSGTexture * removedFromAtlas() const { return static_cast<QSGTexture*>(callbackQSGTexture_RemovedFromAtlas(const_cast<void*>(static_cast<const void*>(this)))); };

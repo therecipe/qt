@@ -3130,7 +3130,6 @@ public:
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool selectRow(int row) { return callbackQSqlTableModel_SelectRow(this, row) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
-	
 	void Signal_BeforeDelete(int row) { callbackQSqlTableModel_BeforeDelete(this, row); };
 	void Signal_BeforeInsert(QSqlRecord & record) { callbackQSqlTableModel_BeforeInsert(this, static_cast<QSqlRecord*>(&record)); };
 	void Signal_BeforeUpdate(int row, QSqlRecord & record) { callbackQSqlTableModel_BeforeUpdate(this, row, static_cast<QSqlRecord*>(&record)); };

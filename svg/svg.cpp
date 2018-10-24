@@ -581,7 +581,6 @@ public:
 	MyQSvgGenerator() : QSvgGenerator() {};
 	 ~MyQSvgGenerator() { callbackQSvgGenerator_DestroyQSvgGenerator(this); };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgGenerator_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 };
 
 void* QSvgGenerator_NewQSvgGenerator()

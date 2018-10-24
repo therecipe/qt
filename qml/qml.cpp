@@ -703,7 +703,6 @@ public:
 	 ~MyQQmlApplicationEngine() { callbackQQmlApplicationEngine_DestroyQQmlApplicationEngine(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
-	
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
 	void retranslate() { callbackQQmlEngine_Retranslate(this); };

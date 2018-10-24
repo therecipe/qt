@@ -988,7 +988,6 @@ public:
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQPageSetupDialog_ContextMenuEvent(this, e); };
 	void Signal_Finished(int result) { callbackQPageSetupDialog_Finished(this, result); };
 	void keyPressEvent(QKeyEvent * e) { callbackQPageSetupDialog_KeyPressEvent(this, e); };
-	
 	void reject() { callbackQPageSetupDialog_Reject(this); };
 	void Signal_Rejected() { callbackQPageSetupDialog_Rejected(this); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQPageSetupDialog_ResizeEvent(this, vqr); };
@@ -1827,7 +1826,6 @@ public:
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQPrintPreviewDialog_ContextMenuEvent(this, e); };
 	void Signal_Finished(int result) { callbackQPrintPreviewDialog_Finished(this, result); };
 	void keyPressEvent(QKeyEvent * e) { callbackQPrintPreviewDialog_KeyPressEvent(this, e); };
-	
 	void reject() { callbackQPrintPreviewDialog_Reject(this); };
 	void Signal_Rejected() { callbackQPrintPreviewDialog_Rejected(this); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQPrintPreviewDialog_ResizeEvent(this, vqr); };

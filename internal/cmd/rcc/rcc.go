@@ -51,6 +51,10 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	}
 	var hasQMLFiles bool
 	for _, file := range files {
+		if !file.IsDir() && file.Name() == "qml" && !file.Mode().IsRegular() {
+			hasQMLFiles = true
+			break
+		}
 		if file.IsDir() && file.Name() == "qml" {
 			hasQMLFiles = true
 			break

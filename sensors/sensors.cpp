@@ -114,7 +114,6 @@ public:
 	 ~MyQAccelerometer() { callbackQAccelerometer_DestroyQAccelerometer(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensor_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool start() { return callbackQSensor_Start(this) != 0; };
-	
 	void Signal_ActiveChanged() { callbackQSensor_ActiveChanged(this); };
 	void Signal_AlwaysOnChanged() { callbackQSensor_AlwaysOnChanged(this); };
 	void Signal_AvailableSensorsChanged() { callbackQSensor_AvailableSensorsChanged(this); };
@@ -249,7 +248,6 @@ public:
 	void copyValuesFrom(QSensorReading * other) { callbackQAccelerometerReading_CopyValuesFrom(this, other); };
 	 ~MyQAccelerometerReading() { callbackQAccelerometerReading_DestroyQAccelerometerReading(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSensorReading_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	bool event(QEvent * e) { return callbackQSensorReading_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSensorReading_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQSensorReading_ChildEvent(this, event); };

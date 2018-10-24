@@ -1176,7 +1176,6 @@ public:
 	void Signal_Released(int index, QBarSet * barset) { callbackQAbstractBarSeries_Released(this, index, barset); };
 	 ~MyQAbstractBarSeries() { callbackQAbstractBarSeries_DestroyQAbstractBarSeries(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSeries_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_NameChanged() { callbackQAbstractSeries_NameChanged(this); };
 	void Signal_OpacityChanged() { callbackQAbstractSeries_OpacityChanged(this); };
 	void Signal_UseOpenGLChanged() { callbackQAbstractSeries_UseOpenGLChanged(this); };
@@ -2210,7 +2209,6 @@ public:
 	QLegendMarker::LegendMarkerType type() { return static_cast<QLegendMarker::LegendMarkerType>(callbackQAreaLegendMarker_Type(this)); };
 	 ~MyQAreaLegendMarker() { callbackQAreaLegendMarker_DestroyQAreaLegendMarker(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLegendMarker_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_BrushChanged() { callbackQLegendMarker_BrushChanged(this); };
 	void Signal_Clicked() { callbackQLegendMarker_Clicked(this); };
 	void Signal_FontChanged() { callbackQLegendMarker_FontChanged(this); };
@@ -6229,7 +6227,6 @@ public:
 	 ~MyQCategoryAxis() { callbackQCategoryAxis_DestroyQCategoryAxis(this); };
 	QAbstractAxis::AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAxis_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void applyNiceNumbers() { callbackQValueAxis_ApplyNiceNumbers(this); };
 	void Signal_LabelFormatChanged(const QString & format) { QByteArray t785987 = format.toUtf8(); QtCharts_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };callbackQValueAxis_LabelFormatChanged(this, formatPacked); };
 	void Signal_MaxChanged(qreal max) { callbackQValueAxis_MaxChanged(this, max); };
@@ -11759,7 +11756,6 @@ public:
 	 ~MyQLineSeries() { callbackQLineSeries_DestroyQLineSeries(this); };
 	QAbstractSeries::SeriesType type() const { return static_cast<QAbstractSeries::SeriesType>(callbackQLineSeries_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSeries_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_Clicked(const QPointF & point) { callbackQXYSeries_Clicked(this, const_cast<QPointF*>(&point)); };
 	void Signal_ColorChanged(QColor color) { callbackQXYSeries_ColorChanged(this, new QColor(color)); };
 	void Signal_DoubleClicked(const QPointF & point) { callbackQXYSeries_DoubleClicked(this, const_cast<QPointF*>(&point)); };

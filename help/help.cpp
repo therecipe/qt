@@ -915,7 +915,6 @@ public:
 	void timerEvent(QTimerEvent * event) { callbackQHelpContentWidget_TimerEvent(this, event); };
 	void updateGeometries() { callbackQHelpContentWidget_UpdateGeometries(this); };
 	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQHelpContentWidget_IndexAt(const_cast<void*>(static_cast<const void*>(this)), const_cast<QPoint*>(&point))); };
-	
 	QRect visualRect(const QModelIndex & index) const { return *static_cast<QRect*>(callbackQHelpContentWidget_VisualRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QModelIndex*>(&index))); };
 	QRegion visualRegionForSelection(const QItemSelection & selection) const { return *static_cast<QRegion*>(callbackQHelpContentWidget_VisualRegionForSelection(const_cast<void*>(static_cast<const void*>(this)), const_cast<QItemSelection*>(&selection))); };
 	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQHelpContentWidget_ViewportSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -1811,7 +1810,6 @@ public:
 	MyQHelpEngine(const QString &collectionFile, QObject *parent = Q_NULLPTR) : QHelpEngine(collectionFile, parent) {QHelpEngine_QHelpEngine_QRegisterMetaType();};
 	 ~MyQHelpEngine() { callbackQHelpEngine_DestroyQHelpEngine(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_CurrentFilterChanged(const QString & newFilter) { QByteArray t56548b = newFilter.toUtf8(); QtHelp_PackedString newFilterPacked = { const_cast<char*>(t56548b.prepend("WHITESPACE").constData()+10), t56548b.size()-10 };callbackQHelpEngineCore_CurrentFilterChanged(this, newFilterPacked); };
 	void Signal_ReadersAboutToBeInvalidated() { callbackQHelpEngineCore_ReadersAboutToBeInvalidated(this); };
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };

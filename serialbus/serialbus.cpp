@@ -923,7 +923,6 @@ public:
 	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool open() { return callbackQModbusClient_Open(this) != 0; };
-	
 	void close() { callbackQModbusClient_Close(this); };
 	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
 	void Signal_StateChanged(QModbusDevice::State state) { callbackQModbusDevice_StateChanged(this, state); };
@@ -2403,10 +2402,8 @@ public:
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
-	
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
-	
 	void Signal_DataWritten(QModbusDataUnit::RegisterType table, int address, int size) { callbackQModbusServer_DataWritten(this, table, address, size); };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<void*>(static_cast<const void*>(this)), option)); };
 	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<void*>(static_cast<const void*>(this)), newData) != 0; };

@@ -315,10 +315,7 @@ class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout
 public:
 	void documentChanged(int position, int charsRemoved, int charsAdded) { callbackQAbstractTextDocumentLayout_DocumentChanged(this, position, charsRemoved, charsAdded); };
 	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQAbstractTextDocumentLayout_DocumentSizeChanged(this, const_cast<QSizeF*>(&newSize)); };
-	
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayout_PageCountChanged(this, newPages); };
-	
-	
 	void Signal_Update(const QRectF & rect) { callbackQAbstractTextDocumentLayout_Update(this, const_cast<QRectF*>(&rect)); };
 	void Signal_UpdateBlock(const QTextBlock & block) { callbackQAbstractTextDocumentLayout_UpdateBlock(this, const_cast<QTextBlock*>(&block)); };
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQAbstractTextDocumentLayout_BlockBoundingRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QTextBlock*>(&block))); };
@@ -1078,7 +1075,6 @@ public:
 	QObject * object() const { return static_cast<QObject*>(callbackQAccessibleInterface_Object(const_cast<void*>(static_cast<const void*>(this)))); };
 	QRect rect() const { return *static_cast<QRect*>(callbackQAccessibleInterface_Rect(const_cast<void*>(static_cast<const void*>(this)))); };
 	QString text(QAccessible::Text t) const { return ({ QtGui_PackedString tempVal = callbackQAccessibleInterface_Text(const_cast<void*>(static_cast<const void*>(this)), t); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
-	
 	QWindow * window() const { return static_cast<QWindow*>(callbackQAccessibleInterface_Window(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool isValid() const { return callbackQAccessibleInterface_IsValid(const_cast<void*>(static_cast<const void*>(this))) != 0; };
 	int childCount() const { return callbackQAccessibleInterface_ChildCount(const_cast<void*>(static_cast<const void*>(this))); };
@@ -4251,7 +4247,6 @@ public:
 	 ~MyQDoubleValidator() { callbackQDoubleValidator_DestroyQDoubleValidator(this); };
 	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQDoubleValidator_Validate(const_cast<void*>(static_cast<const void*>(this)), inputPacked, pos)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQValidator_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void Signal_Changed() { callbackQValidator_Changed(this); };
 	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtGui_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQValidator_Fixup(const_cast<void*>(static_cast<const void*>(this)), inputPacked); };
 	bool event(QEvent * e) { return callbackQValidator_Event(this, e) != 0; };
@@ -80243,7 +80238,6 @@ public:
 	void resizeGL(int w, int h) { callbackQOpenGLWindow_ResizeGL(this, w, h); };
 	 ~MyQOpenGLWindow() { callbackQOpenGLWindow_DestroyQOpenGLWindow(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
@@ -91813,7 +91807,6 @@ public:
 	void blockRemoved(const QTextBlock & block) { callbackQTextBlockGroup_BlockRemoved(this, const_cast<QTextBlock*>(&block)); };
 	 ~MyQTextBlockGroup() { callbackQTextBlockGroup_DestroyQTextBlockGroup(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	
 	bool event(QEvent * e) { return callbackQTextObject_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextObject_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQTextObject_ChildEvent(this, event); };

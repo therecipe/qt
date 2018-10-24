@@ -445,7 +445,6 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QXmlEntityResolver::resolveEntity" ||
 		f.Fullname == "QXmlReader::parse" && f.OverloadNumber == "2" ||
 		f.Fullname == "QGraphicsItem::updateMicroFocus" ||
-		f.Fullname == "QGridLayout::addItem" && f.OverloadNumber == "2" ||
 		f.Fullname == "QSvgGenerator::metric" ||
 		f.Fullname == "QScxmlDataModel::setScxmlEvent" ||
 		f.Fullname == "QPageSetupDialog::open" ||
@@ -456,7 +455,6 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QSqlTableModel::submit" ||
 		f.Fullname == "QFormLayout::itemAt" ||
 		f.Fullname == "QGraphicsGridLayout::itemAt" ||
-		f.Fullname == "QGridLayout::addItem" ||
 
 		((f.ClassName() == "QGraphicsGridLayout" || f.ClassName() == "QFormLayout") && f.Name == "itemAt" && f.OverloadNumber == "2") {
 		return false
