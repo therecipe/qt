@@ -50,7 +50,7 @@ func QT_API(def string) string {
 
 func QT_DIR() string {
 	path := qT_DIR()
-	if ExistsFile(path) {
+	if ExistsDir(path) {
 		return path
 	}
 	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)

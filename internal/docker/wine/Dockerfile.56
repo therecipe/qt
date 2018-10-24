@@ -1,6 +1,6 @@
-FROM therecipe/qt:wine_base_xp as base
+FROM therecipe/qt:wine_base as base
 
-RUN QT=qt-opensource-windows-x86-5.6.3.exe && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/qt/5.6/5.6.3/$QT \
+RUN QT=qt-opensource-windows-x86-mingw492-5.6.3.exe && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/qt/5.6/5.6.3/$QT \
 	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=563 && rm -f $QT
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.6.3/5.6.3/mingw49_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
