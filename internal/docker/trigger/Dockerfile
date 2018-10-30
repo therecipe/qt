@@ -14,6 +14,7 @@ RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag":
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_3"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "js_base_4"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "js"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
+RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "wasm"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi_base"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi1"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/
 #RUN sleep 120 && curl -H "Content-Type: application/json" --data '{"docker_tag": "rpi2"}' -X POST https://registry.hub.docker.com/u/therecipe/qt/trigger/$SECRET/

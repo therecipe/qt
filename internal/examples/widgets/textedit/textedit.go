@@ -333,7 +333,7 @@ func (t *TextEdit) setupTextActions() {
 	})
 	t.comboStyle.ConnectActivated(t.textStyle)
 
-	if runtime.GOARCH != "js" {
+	if runtime.GOARCH != "js" && runtime.GOARCH != "wasm" {
 		t.comboFont = widgets.NewQFontComboBox(tb)
 		tb.AddWidget(t.comboFont)
 		t.comboFont.ConnectActivated2(t.textFamily)
@@ -360,7 +360,7 @@ func (t *TextEdit) setupTextActions() {
 }
 
 func (t *TextEdit) fontChanged(f *gui.QFont) {
-	if runtime.GOARCH == "js" {
+	if runtime.GOARCH == "js" || runtime.GOARCH == "wasm" {
 		return
 	}
 	t.comboFont.SetCurrentIndex(t.comboFont.FindText(gui.NewQFontInfo(f).Family(), core.Qt__MatchExactly|core.Qt__MatchCaseSensitive))
@@ -423,7 +423,7 @@ func (t *TextEdit) clipboardDataChanged() {
 }
 
 func (t *TextEdit) load(f string) bool {
-	if runtime.GOARCH == "js" {
+	if runtime.GOARCH == "js" || runtime.GOARCH == "wasm" {
 		return false
 	}
 	if !(core.QFile_Exists(f)) {

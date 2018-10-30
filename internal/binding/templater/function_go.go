@@ -122,7 +122,11 @@ func goFunctionBody(function *parser.Function) string {
 				for i, p := range function.Parameters {
 					if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
 						if UseJs() {
-							fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
+							if parser.UseWasm() {
+								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
+							} else {
+								fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
+							}
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), %[1]v)\n", parser.CleanName(p.Name, p.Value))
 						} else {
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
@@ -271,6 +275,29 @@ func goFunctionBody(function *parser.Function) string {
 	switch function.SignalMode {
 	case parser.CALLBACK:
 		{
+			headerOutputFakeFunc := *function
+			headerOutputFakeFunc.SignalMode = ""
+
+			if parser.UseWasm() {
+				bb.WriteString("ptr := uintptr(args[0].Int())\n")
+				for i, p := range function.Parameters {
+					if !(function.Name == "readData" && len(function.Parameters) == 2) {
+						//TODO: fix in GoOutputJS instead ? ->
+						conv := converter.GoOutputJS(fmt.Sprintf("args[%v]", i+1), p.Value, function, function.PureGoOutput)
+						conv = strings.Replace(conv, "Get(\"dataP\").", "", -1)
+						conv = strings.Replace(conv, ".Int() != 0", ".Bool()", -1)
+
+						if strings.Contains(conv, "strings.Split") {
+							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v].String()", i+1))
+						} else if !strings.Contains(conv, "func(") {
+							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
+						} else {
+							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v]", i+1))
+						}
+						//<-
+					}
+				}
+			}
 
 			if function.IsMocFunction {
 				for _, p := range function.Parameters {
@@ -298,8 +325,13 @@ func goFunctionBody(function *parser.Function) string {
 				)
 			}
 
-			if converter.GoHeaderOutput(function) == "" {
-				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+			if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+				if parser.UseWasm() {
+					//TODO: workaround for https://github.com/golang/go/issues/26045#issuecomment-400017599
+					fmt.Fprintf(bb, "go signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+				} else {
+					fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+				}
 			} else {
 				if function.Name == "readData" && len(function.Parameters) == 2 {
 					if !UseJs() {
@@ -347,7 +379,7 @@ func goFunctionBody(function *parser.Function) string {
 
 			fmt.Fprintf(bb, "\n}%v\n",
 				func() string {
-					if converter.GoHeaderOutput(function) == "" {
+					if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
 						if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 							return "else{"
 						}
@@ -356,10 +388,15 @@ func goFunctionBody(function *parser.Function) string {
 				}(),
 			)
 
-			if converter.GoHeaderOutput(function) == "" {
+			if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
 				if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 					if UseJs() {
-						fmt.Fprintf(bb, "New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+						if parser.UseWasm() {
+							//TODO: workaround for https://github.com/golang/go/issues/26045#issuecomment-400017599
+							fmt.Fprintf(bb, "go New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+						} else {
+							fmt.Fprintf(bb, "New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+						}
 					} else {
 						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 					}
@@ -481,7 +518,7 @@ func goFunctionBody(function *parser.Function) string {
 
 			fmt.Fprintf(bb, "%v",
 				func() string {
-					if converter.GoHeaderOutput(function) == "" {
+					if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
 						if (!function.IsDerivedFromPure() || function.IsDerivedFromImpure() || function.Synthetic) && function.Meta != parser.SIGNAL {
 							return "\n}"
 						}
@@ -490,6 +527,11 @@ func goFunctionBody(function *parser.Function) string {
 				}(),
 			)
 
+			if parser.UseWasm() {
+				if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
+					bb.WriteString("\nreturn nil")
+				}
+			}
 		}
 
 	case parser.CONNECT:

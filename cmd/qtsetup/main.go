@@ -83,8 +83,12 @@ func main() {
 		target = runtime.GOOS
 	}
 
-	if dynamic && (target == runtime.GOOS || target == "js") {
+	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
+	}
+
+	if target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") {
+		os.Setenv("GOCACHE", "off")
 	}
 
 	utils.CheckBuildTarget(target)

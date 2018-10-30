@@ -18,7 +18,7 @@ func cleanLibs(module string, mode int) []string {
 	switch {
 	case mode == RCC:
 		out = []string{"Core"}
-	case mode == MOC, module == "build_ios":
+	case mode == MOC, module == "build_static":
 		out = parser.LibDeps[module]
 	case mode == MINIMAL, mode == NONE:
 		out = append([]string{module}, parser.LibDeps[module]...)
@@ -34,7 +34,7 @@ func cleanLibs(module string, mode int) []string {
 
 //needed for static linking
 func GetiOSClang(buildTarget, _, path string) []string {
-	var tmp = CgoTemplate("build_ios", path, buildTarget, NONE, "main", "")
+	var tmp = CgoTemplate("build_static", path, buildTarget, NONE, "main", "")
 
 	tmp = strings.Split(tmp, "/*")[1]
 	tmp = strings.Split(tmp, "*/")[0]

@@ -206,7 +206,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 			if mode == MOC {
 				if UseJs() {
-					fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr uintptr) {", class.Name)
+					if parser.UseWasm() {
+						fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(_ js.Value, args []js.Value) interface{} {", class.Name)
+						fmt.Fprint(bb, "\nptr := uintptr(args[0].Int())\n")
+					} else {
+						fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr uintptr) {", class.Name)
+					}
 					fmt.Fprintf(bb, "this := New%vFromPointer(unsafe.Pointer(ptr))\nqt.Register(unsafe.Pointer(ptr), this)\n", strings.Title(class.Name))
 				} else {
 					fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(ptr unsafe.Pointer) {", class.Name)
@@ -434,6 +439,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 				connect(class, false)
 
+				if UseJs() {
+					if parser.UseWasm() {
+						bb.WriteString("\nreturn nil\n")
+					}
+				}
+
 				fmt.Fprint(bb, "}\n\n")
 			}
 		}
@@ -445,7 +456,11 @@ func (ptr *%[1]v) Destroy%[1]v() {
 		fmt.Fprint(bb, "func init() {\n")
 		for _, l := range strings.Split(bb.String(), "\n") {
 			if strings.HasPrefix(l, "//export") {
-				fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
+				if parser.UseWasm() {
+					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", js.NewCallback(%[1]v))\n", strings.TrimPrefix(l, "//export "))
+				} else {
+					fmt.Fprintf(bb, "qt.WASM.Set(\"_%[1]v\", %[1]v)\n", strings.TrimPrefix(l, "//export "))
+				}
 			}
 		}
 
@@ -463,7 +478,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				ip = converter.GoHeaderInput(f)
 				ip = strings.TrimPrefix(ip, "ptr uintptr, ")
 				f.SignalMode = oldsm
-				out := fmt.Sprintf("qt.WASM.Set(\"%v\", func(%v) *js.Object { return js.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+				var out string
+				if parser.UseWasm() {
+					out = "" //TODO: export classes for jsinterop example
+				} else {
+					out = fmt.Sprintf("qt.WASM.Set(\"%v\", func(%v) *js.Object { return js.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+				}
 				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
 					bb.WriteString(out)
 				}
@@ -576,7 +596,11 @@ import "C"
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
 
 			case "js":
-				fmt.Fprintln(bb, "\"github.com/gopherjs/gopherjs/js\"")
+				if parser.UseWasm() {
+					fmt.Fprintln(bb, "\"syscall/js\"")
+				} else {
+					fmt.Fprintln(bb, "\"github.com/gopherjs/gopherjs/js\"")
+				}
 
 			default:
 				if mode == MOC {
@@ -599,7 +623,7 @@ import "C"
 							containsSelf bool
 						)
 
-						for _, l := range parser.LibDeps["build_ios"] {
+						for _, l := range parser.LibDeps["build_static"] {
 							if l == m {
 								containsSub = true
 							}
@@ -611,24 +635,24 @@ import "C"
 						if !containsSelf || !containsSub {
 
 							if !containsSelf {
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], oldModuleGo)
+								parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], oldModuleGo)
 
 								switch oldModuleGo {
 								case "Multimedia":
-									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+									parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "MultimediaWidgets")
 								case "Quick":
-									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+									parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "QuickWidgets")
 								}
 							}
 
 							if !containsSub {
-								parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], m)
+								parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], m)
 
 								switch m {
 								case "Multimedia":
-									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+									parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "MultimediaWidgets")
 								case "Quick":
-									parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+									parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "QuickWidgets")
 								}
 							}
 

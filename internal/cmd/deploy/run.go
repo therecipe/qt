@@ -72,7 +72,7 @@ func run(target, name, depPath, device string) {
 			utils.Log.WithError(err).Errorf("failed to run %v for %v", name, target)
 		}
 
-	case "js": //TODO: REVIEW
+	case "js", "wasm": //TODO: REVIEW
 		if runtime.GOOS == "darwin" {
 			exec.Command("/Applications/Firefox Nightly.app/Contents/MacOS/firefox", filepath.Join(depPath, "index.html")).Start()
 		}

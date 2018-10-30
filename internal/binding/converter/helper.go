@@ -266,7 +266,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 				} else {
 					path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
 					if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-						path = strings.Replace(path, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+						path = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
 					}
 					if !utils.ExistsFile(path) {
 						path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
@@ -285,7 +285,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 				default:
 					path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
 					if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-						path = strings.Replace(path, utils.QT_VERSION_MAJOR(), utils.QT_VERSION(), -1)
+						path = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath)
 					}
 					fData = utils.Load(path)
 				}

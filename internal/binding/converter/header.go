@@ -94,12 +94,15 @@ func GoHeaderOutput(f *parser.Function) string {
 	case parser.CALLBACK:
 		{
 			if parser.UseJs() {
+				if parser.UseWasm() {
+					return "interface{}"
+				}
 				cv := parser.CleanValue(f.Output)
 				switch cv {
 				case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 					return "*js.Object"
 				}
-				if isClass(cv) || parser.IsPackedList(cv) || parser.IsPackedMap(cv) {
+				if isClass(cv) || parser.IsPackedList(cv) || parser.IsPackedMap(cv) || goType(f, f.Output, f.PureGoOutput) == "unsafe.Pointer" {
 					return "uintptr"
 				}
 				return goType(f, f.Output, f.PureGoOutput)
@@ -161,6 +164,9 @@ func GoHeaderInput(f *parser.Function) string {
 
 	if f.SignalMode == parser.CALLBACK {
 		if parser.UseJs() {
+			if parser.UseWasm() {
+				return "_ js.Value, args []js.Value"
+			}
 			fmt.Fprint(bb, "ptr uintptr")
 		} else {
 			fmt.Fprint(bb, "ptr unsafe.Pointer")
@@ -179,7 +185,11 @@ func GoHeaderInput(f *parser.Function) string {
 						}
 					} else {
 						if parser.IsPackedList(cv) || parser.IsPackedMap(cv) {
-							fmt.Fprintf(bb, ", %v *js.Object", parser.CleanName(p.Name, p.Value))
+							if parser.UseWasm() {
+								fmt.Fprintf(bb, ", %v js.Value", parser.CleanName(p.Name, p.Value))
+							} else {
+								fmt.Fprintf(bb, ", %v *js.Object", parser.CleanName(p.Name, p.Value))
+							}
 						} else {
 							fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
 						}

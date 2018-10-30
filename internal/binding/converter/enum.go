@@ -19,6 +19,9 @@ func GoEnum(n string, v string, e *parser.Enum) string {
 		{
 			e.NoConst = true
 			if parser.UseJs() {
+				if parser.UseWasm() {
+					return fmt.Sprintf("int64(qt.WASM.Call(\"_%v_%v_Type\").Int())", strings.Split(e.Fullname, "::")[0], n)
+				}
 				return fmt.Sprintf("qt.WASM.Call(\"_%v_%v_Type\").Int64()", strings.Split(e.Fullname, "::")[0], n)
 			}
 			return fmt.Sprintf("C.%v_%v_Type()", strings.Split(e.Fullname, "::")[0], n)

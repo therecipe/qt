@@ -723,7 +723,7 @@ go tool link -f -o $PWD/relinked -importcfg $PWD/b001/importcfg.link -buildmode=
 		}())
 }
 
-//js
+//js/wasm
 
 func js_c_main_wrapper() string {
 	bb := new(bytes.Buffer)
@@ -735,10 +735,41 @@ func js_c_main_wrapper() string {
 	for _, n := range rcc.ResourceNames {
 		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
 	}
+
+	//TODO: use eval in EM_ASM instead ? also make blocking ...
 	bb.WriteString("emscripten::val document = emscripten::val::global(\"document\");\n")
 	bb.WriteString("emscripten::val script = document.call<emscripten::val>(\"createElement\", emscripten::val(\"script\"));\n")
 	bb.WriteString("script.set(\"src\", emscripten::val(\"go.js\"));\n")
 	bb.WriteString("document[\"body\"].call<void>(\"appendChild\", script);\n")
 	bb.WriteString("}")
 	return bb.String()
+}
+
+//TODO: cleanup
+func wasm_js() string {
+	return `
+if (!WebAssembly.instantiateStreaming) { // polyfill 
+	WebAssembly.instantiateStreaming = async (resp, importObject) => { 
+		const source = await (await resp).arrayBuffer(); 
+		return await WebAssembly.instantiate(source, importObject); 
+	}; 
+} 
+
+const go = new Go(); 
+WebAssembly.instantiateStreaming(fetch("go.wasm"), go.importObject).then((result) => { 
+	go.run(result.instance); 
+}).catch((err) => { 
+	//console.error(err); 
+
+	fetch('go.wasm').then(response =>
+		response.arrayBuffer()
+	).then(bytes =>
+		WebAssembly.instantiate(bytes, go.importObject)
+	).then(result => {
+		go.run(result.instance); 
+	});
+
+});
+
+})();`
 }

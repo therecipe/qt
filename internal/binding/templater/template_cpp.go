@@ -631,11 +631,11 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 			fmt.Fprintf(bb, "#include <%v>\n", class)
 
-			if (strings.HasPrefix(target, "ios") || target == "js") && mode == MINIMAL {
+			if (strings.HasPrefix(target, "ios") || target == "js" || target == "wasm") && mode == MINIMAL {
 				oldModuleGo := strings.TrimPrefix(c.Module, "Qt")
 
 				var containsSelf bool
-				for _, l := range parser.LibDeps["build_ios"] {
+				for _, l := range parser.LibDeps["build_static"] {
 					if l == oldModuleGo {
 						containsSelf = true
 						break
@@ -643,13 +643,13 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 
 				if !containsSelf {
-					parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], oldModuleGo)
+					parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], oldModuleGo)
 
 					switch oldModuleGo {
 					case "Multimedia":
-						parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+						parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "MultimediaWidgets")
 					case "Quick":
-						parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+						parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "QuickWidgets")
 					}
 				}
 			}
@@ -666,23 +666,23 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.TrimPrefix(c.Module, "Qt"))
 				}
 
-				if target == "js" {
+				if target == "js" || target == "wasm" {
 
 					found = false
-					for _, m := range parser.LibDeps["build_ios"] {
+					for _, m := range parser.LibDeps["build_static"] {
 						if m == strings.TrimPrefix(c.Module, "Qt") {
 							found = true
 							break
 						}
 					}
 					if !found {
-						parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], strings.TrimPrefix(c.Module, "Qt"))
+						parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], strings.TrimPrefix(c.Module, "Qt"))
 
 						switch strings.TrimPrefix(c.Module, "Qt") {
 						case "Multimedia":
-							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "MultimediaWidgets")
+							parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "MultimediaWidgets")
 						case "Quick":
-							parser.LibDeps["build_ios"] = append(parser.LibDeps["build_ios"], "QuickWidgets")
+							parser.LibDeps["build_static"] = append(parser.LibDeps["build_static"], "QuickWidgets")
 						}
 					}
 				}

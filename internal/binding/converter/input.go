@@ -475,6 +475,9 @@ func GoInputJS(name, value string, f *parser.Function) string {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
 			if strings.Contains(vOld, "**") {
+				if parser.UseWasm() {
+					return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+				}
 				return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
 			}
 
@@ -482,11 +485,17 @@ func GoInputJS(name, value string, f *parser.Function) string {
 				//TODO:
 			}
 
+			if parser.UseWasm() {
+				return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", %v); return tmp }()", name)
+			}
 			return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", %v); return tmp }()", name)
 		}
 
 	case "QStringList":
 		{
+			if parser.UseWasm() {
+				return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+			}
 			return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
 		}
 
@@ -590,7 +599,13 @@ func GoInputJS(name, value string, f *parser.Function) string {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
 					return fmt.Sprintf("int64(%v)", name)
 				}
+				if parser.UseWasm() {
+					return fmt.Sprintf("int64(%v.%v(%v))", module(c.Module), goEnum(f, value), name)
+				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
+			}
+			if parser.UseWasm() {
+				return fmt.Sprintf("int64(%v(%v))", goEnum(f, value), name)
 			}
 			return fmt.Sprintf("%v(%v)", goEnum(f, value), name)
 		}

@@ -63,7 +63,7 @@ func qT_DIR() string {
 
 	prefix := os.Getenv("HOME")
 	if runtime.GOOS == "windows" {
-		prefix = "C:\\"
+		prefix = windowsSystemDrive() + "\\"
 	}
 
 	if dir := filepath.Join(prefix, "Qt", "Qt"+QT_VERSION()); ExistsDir(dir) {
@@ -105,7 +105,7 @@ func CheckBuildTarget(buildTarget string) {
 		"rpi1", "rpi2", "rpi3",
 		"windows", "darwin", "linux",
 		"homebrew", "ubports",
-		"js": //TODO: pkg_config ?
+		"js", "wasm": //TODO: pkg_config ?
 	default:
 		if !strings.Contains(buildTarget, "_") {
 			Log.Panicf("failed to recognize build target %v", buildTarget)
@@ -170,7 +170,7 @@ func ToolPath(tool, target string) string {
 			}
 			path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw53_32", "bin", tool)
 			if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
-				path = strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+				path = filepath.Join(QT_DIR(), QT_VERSION(), "mingw53_32", "bin", tool)
 			}
 			if !ExistsFile(path + ".exe") {
 				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
@@ -184,7 +184,7 @@ func ToolPath(tool, target string) string {
 		}
 		path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
 		if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
-			path = strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
+			path = filepath.Join(QT_DIR(), QT_VERSION(), "gcc_64", "bin", tool)
 		}
 		return path
 	case "ios", "ios-simulator":

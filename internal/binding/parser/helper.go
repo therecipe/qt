@@ -40,7 +40,8 @@ const (
 	MOC = "moc"
 )
 
-func UseJs() bool { return State.Target == "js" }
+func UseJs() bool   { return State.Target == "js" || State.Target == "wasm" }
+func UseWasm() bool { return State.Target == "wasm" }
 
 func IsPackedList(v string) bool {
 	return (strings.HasPrefix(v, "QList<") ||
@@ -199,8 +200,8 @@ var LibDeps = map[string][]string{
 
 	"WebKit": {"WebKitWidgets", "Multimedia", "Positioning", "Widgets", "Sql", "Network", "Gui", "Sensors", "Core"},
 
-	MOC:         make([]string, 0),
-	"build_ios": {"Qml"}, //TODO: REVIEW "Core", "Gui"},
+	MOC:            make([]string, 0),
+	"build_static": {"Qml"}, //TODO: REVIEW "Core", "Gui"},
 }
 
 func ShouldBuildForTarget(module, target string) bool {
@@ -257,9 +258,9 @@ func ShouldBuildForTarget(module, target string) bool {
 			}
 		}
 
-	case "js":
+	case "js", "wasm":
 		{
-			if !IsWhiteListedJsLib(module) && module != "build_ios" {
+			if !IsWhiteListedJsLib(module) && module != "build_static" {
 				return false
 			}
 		}

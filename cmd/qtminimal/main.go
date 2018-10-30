@@ -75,6 +75,10 @@ func main() {
 		}
 	}
 
+	if target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") {
+		os.Setenv("GOCACHE", "off")
+	}
+
 	utils.CheckBuildTarget(target)
 	switch {
 	case docker:

@@ -49,7 +49,7 @@ func cgoTemplate(module, path, target string, mode int, ipkg, tags string, libs 
 	}
 
 	//TODO: differentiate between docker and virtual-box build for sailfish targets
-	if !(target == "sailfish" || target == "sailfish-emulator" || target == "js") {
+	if !(target == "sailfish" || target == "sailfish-emulator" || target == "js" || target == "wasm") {
 		if !(parser.ShouldBuildForTarget(module, target) || mode == MOC || mode == RCC) ||
 			isAlreadyCached(module, path, target, mode, libs) {
 			utils.Log.Debugf("skipping cgo generation")
@@ -185,7 +185,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			case "sailfish", "sailfish-emulator", "asteroid":
 			case "rpi1", "rpi2", "rpi3":
 				return containsPath(file, strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS))))
-			case "js":
+			case "js", "wasm":
 			}
 		}
 	}
@@ -198,7 +198,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	switch {
 	case mode == RCC:
 		out = []string{"Core"}
-	case mode == MOC, module == "build_ios":
+	case mode == MOC, module == "build_static":
 		out = libs
 	case mode == MINIMAL, mode == NONE:
 		out = append([]string{module}, libs...)
@@ -212,7 +212,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	}
 
 	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
-	if module == "build_ios" {
+	if module == "build_static" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
@@ -235,7 +235,7 @@ func createMakefile(module, path, target string, mode int) {
 	}
 
 	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
-	if module == "build_ios" {
+	if module == "build_static" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
@@ -306,7 +306,7 @@ func createMakefile(module, path, target string, mode int) {
 				cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
 			}
 		}
-	case "js":
+	case "js", "wasm":
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
@@ -358,14 +358,14 @@ func createMakefile(module, path, target string, mode int) {
 	case "ios", "ios-simulator":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
-			/* TODO:
+			/* TODO when shared builds are available:
 			if utils.QT_VERSION_MAJOR() == "5.9" && utils.ExistsFile(pPath) {
 				if content := utils.Load(pPath); !strings.Contains(content, "+build ios,!darwin") {
 					utils.Save(pPath, "// +build ios,!darwin\n"+utils.Load(pPath))
 				}
 			}
 			*/
-			if module != "build_ios" /*TODO: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
+			if module != "build_static" /*TODO when shared builds are available: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -379,10 +379,10 @@ func createMakefile(module, path, target string, mode int) {
 	case "asteroid":
 	case "rpi1", "rpi2", "rpi3":
 	case "ubports":
-	case "js":
+	case "js", "wasm":
 		for _, suf := range []string{".js_plugin_import", ".js_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
-			if module != "build_ios" || mode == MOC || mode == RCC {
+			if module != "build_static" || mode == MOC || mode == RCC {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -411,7 +411,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		guards += target
 	case "rpi1", "rpi2", "rpi3":
 		guards += target
-	case "js":
+	case "js", "wasm":
 		guards += "ignore"
 	}
 	//TODO: move "minimal" build tag in separate line -->
@@ -433,7 +433,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	//<--
 
 	pkg := strings.ToLower(module)
-	if mode == MOC || pkg == "build_ios" {
+	if mode == MOC || pkg == "build_static" {
 		pkg = ipkg
 	}
 	fmt.Fprintf(bb, "package %v\n\n/*\n", pkg)
@@ -521,7 +521,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	case "android", "android-emulator":
 		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
-	case "js":
+	case "js", "wasm":
 		tmp = strings.Replace(tmp, "\"", "", -1)
 		if utils.QT_DEBUG() {
 			tmp = strings.Replace(tmp, "-s USE_FREETYPE=1", "-s USE_FREETYPE=1 -s ASSERTIONS=1", -1)
@@ -543,7 +543,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	}
 	tmp = strings.Replace(tmp, "\\", "/", -1)
 
-	if module == "build_ios" {
+	if module == "build_static" {
 		return tmp
 	}
 
@@ -576,7 +576,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if strings.HasSuffix(file, "darwin_386.go") {
 				tmp = strings.Replace(tmp, "x86_64", "i386", -1)
 			}
-		case "js":
+		case "js", "wasm":
 			if mode == RCC {
 				utils.Save(filepath.Join(path, strings.Replace(file, "_cgo_", "_stub_", -1)), "package "+pkg+"\n")
 			}
@@ -630,6 +630,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		sFixes = []string{"linux_" + utils.QT_UBPORTS_ARCH()}
 	case "js":
 		sFixes = []string{"js"}
+	case "wasm":
+		sFixes = []string{"wasm"}
 	}
 
 	var o []string
@@ -641,6 +643,8 @@ func cgoFileNames(module, path, target string, mode int) []string {
 
 func ParseCgo(module, target string) (string, string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("parse cgo for shared lib")
+
+	//TODO: use "go list" instead
 
 	tmp := utils.LoadOptional(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
 	if tmp != "" {
@@ -655,7 +659,7 @@ func ParseCgo(module, target string) (string, string) {
 		switch target {
 		case "darwin":
 			return "clang++", fmt.Sprintf("%v -Wl,-S -Wl,-x -install_name @rpath/%[2]v/lib%[2]v.so -undefined dynamic_lookup -shared -o lib%[2]v.so %[2]v.cpp", tmp, module)
-		case "js":
+		case "js", "wasm":
 			env, _, _, _ := cmd.BuildEnv(target, "", "")
 			return filepath.Join(env["EMSCRIPTEN"], "em++"), fmt.Sprintf("%v -o %[2]v.o %[2]v.js_plugin_import.cpp %[2]v.cpp", tmp, module)
 		}
@@ -667,7 +671,7 @@ func ParseCgo(module, target string) (string, string) {
 func ReplaceCgo(module, target string) {
 	utils.Log.WithField("module", module).WithField("target", target).Debug("replace cgo for shared lib")
 
-	if target == "js" {
+	if target == "js" || target == "wasm" {
 		//TODO: cleanup ?
 		//utils.RemoveAll(utils.GoQtPkgPath(module, cgoFileNames(module, "", target, NONE)[0]))
 		return

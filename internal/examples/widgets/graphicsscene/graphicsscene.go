@@ -30,7 +30,7 @@ func NewCanvas() *widgets.QWidget {
 	view = widgets.NewQGraphicsView(nil)
 
 	var font = gui.NewQFont2("Meiryo", 20, 2, false)
-	if runtime.GOARCH == "js" {
+	if runtime.GOARCH == "js" || runtime.GOARCH == "wasm" {
 		scene.AddText("Hello World", font)
 	} else {
 		scene.AddText("Hello 世界", font)

@@ -18,7 +18,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func bundle(mode, target, path, name, depPath string) {
+func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 	copy := func(src, dst string) {
 		copy := "cp"
 
@@ -594,15 +594,21 @@ func bundle(mode, target, path, name, depPath string) {
 		click.Dir = depPath
 		utils.RunCmd(click, fmt.Sprintf("deploy for %v (%v) on %v", target, utils.QT_UBPORTS_ARCH(), runtime.GOOS))
 
-	case "js":
+	case "js", "wasm":
 
 		//copy default assets
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "html5_shell.html"), filepath.Join(depPath, "index.html"))
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtloader.js"), depPath)
 		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtlogo.svg"), depPath)
+		if parser.UseWasm() {
+			copy(filepath.Join(runtime.GOROOT(), "misc", "wasm", "wasm_exec.js"), filepath.Join(depPath, "go.js"))
+		}
 
 		//patch default assets
 		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(utils.Load(filepath.Join(depPath, "index.html")), "APPNAME", "main", -1))
+		if parser.UseWasm() {
+			utils.Save(filepath.Join(depPath, "go.js"), strings.Replace(utils.Load(filepath.Join(depPath, "go.js")), "})();", wasm_js(), -1))
+		}
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
@@ -610,13 +616,13 @@ func bundle(mode, target, path, name, depPath string) {
 		copy(assets+"/.", depPath)
 
 		//add c_main_wrappers
-		if !utils.ExistsFile(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp")) {
-			utils.Save(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp"), "")
+		if !utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
+			utils.Save(filepath.Join(depPath, target+".js_qml_plugin_import.cpp"), "")
 		}
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper())
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
-		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+"."+target+"_plugin_import.cpp", target+"."+target+"_qml_plugin_import.cpp")
+		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp", target+".js_qml_plugin_import.cpp")
 		cmd.Dir = depPath
 
 		for rccFile := range rcc.ResourceNames {
@@ -629,7 +635,9 @@ func bundle(mode, target, path, name, depPath string) {
 		}
 		moc.ResourceNames = make(map[string]string)
 
-		for _, l := range parser.LibDeps["build_ios"] {
+		//TODO: use "go list" deps instead ? and get rid of "build_static" ->
+		//also re-enable GOCACHE support once done
+		for _, l := range parser.LibDeps["build_static"] {
 			for _, ml := range parser.GetLibs() {
 				if strings.ToLower(l) == strings.ToLower(ml) {
 					cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(l), strings.ToLower(l)+"-minimal.cpp"))
@@ -646,6 +654,28 @@ func bundle(mode, target, path, name, depPath string) {
 				}
 			}
 		}
+		/*
+			if !utils.QT_FAT() {
+				tags = append(tags, "minimal")
+			}
+			if tagsCustom != "" {
+				tags = append(tags, strings.Split(tagsCustom, " ")...)
+			}
+			lcmd := exec.Command("go", "list", "-e", "-f", "{{ join .Deps \"|\" }}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+			lcmd.Dir = path
+			for k, v := range env {
+				lcmd.Env = append(lcmd.Env, fmt.Sprintf("%v=%v", k, v))
+			}
+			for _, l := range strings.Split(strings.TrimSpace(utils.RunCmd(lcmd, "go list deps")), "|") {
+				for _, ml := range parser.GetLibs() {
+					if strings.HasSuffix(strings.ToLower(l), "github.com/therecipe/qt/"+strings.ToLower(ml)) {
+						cmd.Args = append(cmd.Args, utils.GoQtPkgPath(strings.ToLower(ml), strings.ToLower(ml)+"-minimal.cpp"))
+						break
+					}
+				}
+			}
+		*/
+		//<-
 
 		//TODO: pack js into wasm
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
@@ -657,9 +687,9 @@ func bundle(mode, target, path, name, depPath string) {
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, target, runtime.GOOS))
 
 		utils.RemoveAll(filepath.Join(depPath, "c_main_wrapper_js.cpp"))
-		utils.RemoveAll(filepath.Join(depPath, target+"."+target+"_plugin_import.cpp"))
-		utils.RemoveAll(filepath.Join(depPath, target+"."+target+"_qml_plugin_import.cpp"))
-		//TODO: remove go.js
+		utils.RemoveAll(filepath.Join(depPath, target+".js_plugin_import.cpp"))
+		utils.RemoveAll(filepath.Join(depPath, target+".js_qml_plugin_import.cpp"))
+		//TODO: remove packed go.js
 		utils.RemoveAll(filepath.Join(depPath, "go.js.map"))
 	}
 

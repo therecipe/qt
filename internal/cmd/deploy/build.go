@@ -44,21 +44,28 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			return
 		}
 	case "js":
-		build_js(target, path, out, tags)
+		build_js(target, path, env, tags, out)
 		return
+	case "wasm":
+		ending = ".wasm"
 	}
 
 	var pattern string
-	if strings.Contains(runtime.Version(), "1.1") {
+	if strings.Contains(runtime.Version(), "1.1") || strings.Contains(runtime.Version(), "devel") {
 		pattern = "all="
 	}
 
 	var extraLdFlag string
-	if utils.Log.Level == logrus.DebugLevel {
+	if utils.Log.Level == logrus.DebugLevel && target != "wasm" {
 		extraLdFlag = " \"-extldflags=-v\""
 	}
 
-	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=%v\"%v\"%v", pattern, strings.Join(ldFlags, "\" \""), extraLdFlag), "-o", out+ending)
+	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
+	if len(ldFlags) > 0 || len(extraLdFlag) > 0 {
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v\"%v\"%v", pattern, strings.Join(ldFlags, "\" \""), extraLdFlag))
+	}
+	cmd.Args = append(cmd.Args, "-o", out+ending)
+
 	cmd.Dir = path
 
 	if fast && !utils.QT_STUB() {
@@ -172,7 +179,7 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 	sailfish_ssh("2222", "root", "ln", "-s", fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/bin/%v-meego-linux-%v-ld", arch, gcc), fmt.Sprintf("/srv/mer/toolings/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"/opt/cross/libexec/gcc/%v-meego-linux-%v/4.8.3/ld", arch, gcc))
 
 	var pattern string
-	if strings.Contains(runtime.Version(), "1.1") {
+	if strings.Contains(runtime.Version(), "1.1") || strings.Contains(runtime.Version(), "devel") {
 		pattern = "all="
 	}
 
@@ -189,13 +196,16 @@ func build_sailfish(target, path, ldFlagsCustom, name string) {
 	}
 }
 
-func build_js(target, path, out string, tags []string) {
+func build_js(target string, path string, env map[string]string, tags []string, out string) {
 	cmd := exec.Command(filepath.Join(utils.GOBIN(), "gopherjs"), "build", ".", "-v", "-m", "-o", filepath.Join(filepath.Dir(out), "go.js"))
 	cmd.Dir = path
 
-	//TODO: tags = tags[1:]
-	//TOOD: cmd.Args = append(cmd.Args, fmt.Sprintf("--tags=\"%v\"", strings.Join(tags, " ")))
-	cmd.Args = append(cmd.Args, "--tags=minimal")
+	//TODO (bug in gopherjs?): cmd.Args = append(cmd.Args, fmt.Sprintf("--tags=\"%v\"", strings.Join(tags[1:], " ")))
+	cmd.Args = append(cmd.Args, fmt.Sprintf("--tags=%v", tags[1]))
+
+	for key, value := range env {
+		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+	}
 
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 }

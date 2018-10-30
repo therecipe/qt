@@ -12,11 +12,23 @@ import (
 
 func ExistsFile(name string) bool {
 	_, err := ioutil.ReadFile(name)
+	if err != nil {
+		_, errS := ioutil.ReadDir(name)
+		if errS == nil {
+			logrus.WithError(err).WithField("path", name).Warn("should be file, not dir")
+		}
+	}
 	return err == nil
 }
 
 func ExistsDir(name string) bool {
 	_, err := ioutil.ReadDir(name)
+	if err != nil {
+		_, errS := ioutil.ReadFile(name)
+		if errS == nil {
+			logrus.WithError(err).WithField("path", name).Warn("should be dir, not file")
+		}
+	}
 	return err == nil
 }
 

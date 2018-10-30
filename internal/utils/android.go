@@ -19,7 +19,7 @@ func JDK_DIR() string {
 	}
 	switch runtime.GOOS {
 	case "windows":
-		return fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
+		return fmt.Sprintf(windowsSystemDrive()+"\\Program Files\\Java\\jdk%v", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
 	case "darwin":
 		return fmt.Sprintf("/Library/Java/JavaVirtualMachines/jdk%v.jdk/Contents/Home", strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1])
 	default:
@@ -36,7 +36,7 @@ func ANDROID_SDK_DIR() string {
 	}
 	switch runtime.GOOS {
 	case "windows":
-		return "C:\\android-sdk-windows"
+		return windowsSystemDrive() + "\\android-sdk-windows"
 	case "darwin":
 		return filepath.Join(os.Getenv("HOME"), "android-sdk-macosx")
 	default:
@@ -52,7 +52,7 @@ func ANDROID_NDK_DIR() string {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
-		return "C:\\android-ndk-r14b"
+		return windowsSystemDrive() + "\\android-ndk-r14b"
 	}
 	return filepath.Join(os.Getenv("HOME"), "android-ndk-r14b")
 }

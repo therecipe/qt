@@ -111,6 +111,10 @@ func main() {
 		}
 	}
 
+	if target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") {
+		os.Setenv("GOCACHE", "off")
+	}
+
 	utils.CheckBuildTarget(target)
 	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !(docker || vagrant), device, vagrant, vagrant_system, comply)
 }

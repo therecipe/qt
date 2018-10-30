@@ -55,12 +55,12 @@ func Minimal(path, target, tags string) {
 		}
 	}
 	parser.LibDeps[parser.MOC] = make([]string, 0)
-	if target == "js" { //TODO: REVIEW
-		if parser.LibDeps["build_ios"][0] == "Qml" {
-			parser.LibDeps["build_ios"] = parser.LibDeps["build_ios"][1:]
+	if target == "js" || target == "wasm" { //TODO: REVIEW
+		if parser.LibDeps["build_static"][0] == "Qml" {
+			parser.LibDeps["build_static"] = parser.LibDeps["build_static"][1:]
 		}
 	} else {
-		parser.LibDeps["build_ios"] = []string{"Qml"}
+		parser.LibDeps["build_static"] = []string{"Qml"}
 	}
 	//<--
 
@@ -205,7 +205,7 @@ func Minimal(path, target, tags string) {
 				}
 			}
 		}
-	case "js":
+	case "js", "wasm":
 		parser.State.ClassMap["QSvgWidget"].Export = true
 	}
 

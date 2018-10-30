@@ -140,7 +140,7 @@ func Recover(fn string) {
 }
 
 func Debug(fn ...interface{}) {
-	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" || runtime.GOARCH == "js" {
+	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" || runtime.GOARCH == "js" || runtime.GOARCH == "wasm" {
 		Logger.Println(fn...)
 	}
 }

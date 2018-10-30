@@ -89,7 +89,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			image = target
 		}
 
-	case "linux", "rpi1", "rpi2", "rpi3", "js":
+	case "linux", "rpi1", "rpi2", "rpi3", "js", "wasm":
 		image = target
 
 	case "android", "android-emulator":
@@ -551,9 +551,9 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/",
 		}
 
-	case "js":
+	case "js", "wasm":
 		tags = []string{target}
-		out = filepath.Join(depPath, name)
+		out = filepath.Join(depPath, "go")
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
 			"GOPATH": utils.GOPATH(),
@@ -562,7 +562,12 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOOS":   runtime.GOOS,
 			"GOARCH": runtime.GOARCH,
 
-			"CGO_ENABLED": "1",
+			"CGO_ENABLED": "0",
+		}
+
+		if target == "wasm" {
+			env["GOOS"] = "js"
+			env["GOARCH"] = "wasm"
 		}
 
 		env["EM_CONFIG"] = filepath.Join(os.Getenv("HOME"), ".emscripten")

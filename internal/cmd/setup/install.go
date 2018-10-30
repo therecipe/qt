@@ -46,7 +46,7 @@ func Install(target string, docker, vagrant bool) {
 		}
 	}
 
-	if !(target == runtime.GOOS || target == "js") && !utils.QT_FAT() {
+	if !(target == runtime.GOOS || target == "js" || target == "wasm") && !utils.QT_FAT() {
 		utils.Log.Debugf("target is %v; skipping installation of modules", target)
 		return
 	}
@@ -68,19 +68,19 @@ func Install(target string, docker, vagrant bool) {
 		if utils.QT_DYNAMIC_SETUP() && mode == "full" {
 			cc, com := templater.ParseCgo(strings.ToLower(module), target)
 			if cc != "" {
-				if target == "js" {
+				if target == "js" || target == "wasm" {
 					com = strings.Replace(com, strings.ToLower(module)+".js_plugin_import.cpp ", "", -1)
 				}
 				cmd := exec.Command(cc, strings.Split(com, " ")...)
 				cmd.Dir = utils.GoQtPkgPath(strings.ToLower(module))
-				if target == "js" {
+				if target == "js" || target == "wasm" {
 					for key, value := range env {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}
 				}
 				utils.RunCmdOptional(cmd, fmt.Sprintf("failed to create dynamic lib for %v (%v) on %v", target, strings.ToLower(module), runtime.GOOS))
 
-				if target == "js" {
+				if target == "js" || target == "wasm" {
 					continue
 				}
 
