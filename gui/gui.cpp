@@ -275,6 +275,7 @@
 #include <QWindow>
 #include <QWindowStateChangeEvent>
 
+typedef QAbstractTextDocumentLayout::PaintContext PaintContext;
 void* PaintContext_NewPaintContext()
 {
 	return new QAbstractTextDocumentLayout::PaintContext();
@@ -313,8 +314,10 @@ void PaintContext_SetPalette(void* ptr, void* vqp)
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout
 {
 public:
+	MyQAbstractTextDocumentLayout(QTextDocument *document) : QAbstractTextDocumentLayout(document) {QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_QRegisterMetaType();};
 	void documentChanged(int position, int charsRemoved, int charsAdded) { callbackQAbstractTextDocumentLayout_DocumentChanged(this, position, charsRemoved, charsAdded); };
 	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQAbstractTextDocumentLayout_DocumentSizeChanged(this, const_cast<QSizeF*>(&newSize)); };
+	void draw(QPainter * painter, const QAbstractTextDocumentLayout::PaintContext & context) { callbackQAbstractTextDocumentLayout_Draw(this, painter, const_cast<PaintContext*>(&context)); };
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayout_PageCountChanged(this, newPages); };
 	void Signal_Update(const QRectF & rect) { callbackQAbstractTextDocumentLayout_Update(this, const_cast<QRectF*>(&rect)); };
 	void Signal_UpdateBlock(const QTextBlock & block) { callbackQAbstractTextDocumentLayout_UpdateBlock(this, const_cast<QTextBlock*>(&block)); };
@@ -339,6 +342,11 @@ public:
 Q_DECLARE_METATYPE(MyQAbstractTextDocumentLayout*)
 
 int QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_QRegisterMetaType(){qRegisterMetaType<QAbstractTextDocumentLayout*>(); return qRegisterMetaType<MyQAbstractTextDocumentLayout*>();}
+
+void* QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(void* document)
+{
+	return new MyQAbstractTextDocumentLayout(static_cast<QTextDocument*>(document));
+}
 
 struct QtGui_PackedString QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_Tr(char* s, char* c, int n)
 {
@@ -373,6 +381,11 @@ void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr)
 void QAbstractTextDocumentLayout_DocumentSizeChanged(void* ptr, void* newSize)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSizeChanged(*static_cast<QSizeF*>(newSize));
+}
+
+void QAbstractTextDocumentLayout_Draw(void* ptr, void* painter, void* context)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(painter), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(context));
 }
 
 void QAbstractTextDocumentLayout_DrawInlineObject(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)

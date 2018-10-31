@@ -688,7 +688,7 @@ import "C"
 
 	bb.WriteString(inputString)
 
-	out, err := format.Source(renameSubClasses(bb.Bytes(), "_"))
+	out, err := format.Source(renameSubClasses(bb.Bytes()))
 	if err != nil {
 		utils.Log.WithError(err).Errorln("failed to format:", pkg, module)
 		out = bb.Bytes()
@@ -728,13 +728,16 @@ import "C"
 	return out
 }
 
-//TODO:
-func renameSubClasses(in []byte, r string) []byte {
+///TODO: regexp
+func renameSubClasses(in []byte) []byte {
 	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {
-			in = []byte(strings.Replace(string(in), c.Name, strings.Replace(c.Fullname, "::", r, -1), -1))
-			in = []byte(strings.Replace(string(in), "C."+strings.Replace(c.Fullname, "::", r, -1), "C."+c.Name, -1))
-			in = []byte(strings.Replace(string(in), "_New"+strings.Replace(c.Fullname, "::", r, -1), "_New"+c.Name, -1))
+			sep := []string{"\n", ".", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "From", "Destroy"}
+			for _, p := range sep {
+				for _, s := range sep {
+					in = bytes.Replace(in, []byte(p+c.Name+s), []byte(p+strings.Replace(c.Fullname, "::", "_", -1)+s), -1)
+				}
+			}
 		}
 	}
 	return in

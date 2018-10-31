@@ -12875,6 +12875,11 @@ int QMetaType_QMetaType_SizeOf(int ty)
 	return QMetaType::sizeOf(ty);
 }
 
+int QMetaType_QMetaType_Type2(void* typeName)
+{
+	return QMetaType::type(*static_cast<QByteArray*>(typeName));
+}
+
 int QMetaType_QMetaType_Type(char* typeName)
 {
 	return QMetaType::type(const_cast<const char*>(typeName));

@@ -748,6 +748,12 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 	fmt.Fprint(bb, "\n")
 
+	for _, class := range parser.State.ClassMap {
+		if class.Fullname != "" && bytes.Contains(input, []byte("<"+class.Name)) {
+			fmt.Fprintf(bb, "typedef %v %v;\n", class.Fullname, class.Name)
+		}
+	}
+
 	bb.Write(input)
 
 	//TODO: regexp

@@ -56,23 +56,12 @@ func class(input interface{}) string {
 }
 
 func isClass(value string) bool {
-	if strings.Contains(value, ".") {
-		return isClass(strings.Split(value, ".")[1])
-	}
-
-	var _, ok = parser.State.ClassMap[value]
+	_, ok := parser.IsClass(value)
 	return ok
 }
 
 func isEnum(class, value string) bool {
-	if strings.ContainsAny(value, "<>") {
-		return false
-	}
-	if strings.Contains(value, "::") {
-		return true
-	}
-
-	var outE, _ = findEnum(class, value, false)
+	outE, _ := findEnum(class, value, false)
 	return outE != ""
 }
 

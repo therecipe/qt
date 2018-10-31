@@ -62,6 +62,7 @@ int PaintContext_CursorPosition(void* ptr);
 void PaintContext_SetCursorPosition(void* ptr, int vin);
 void* PaintContext_Palette(void* ptr);
 void PaintContext_SetPalette(void* ptr, void* vqp);
+void* QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(void* document);
 struct QtGui_PackedString QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_Tr(char* s, char* c, int n);
 struct QtGui_PackedString QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_TrUtf8(char* s, char* c, int n);
 void* QAbstractTextDocumentLayout_Format(void* ptr, int position);
@@ -69,6 +70,7 @@ void QAbstractTextDocumentLayout_DocumentChanged(void* ptr, int position, int ch
 void QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(void* ptr);
 void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr);
 void QAbstractTextDocumentLayout_DocumentSizeChanged(void* ptr, void* newSize);
+void QAbstractTextDocumentLayout_Draw(void* ptr, void* painter, void* context);
 void QAbstractTextDocumentLayout_DrawInlineObject(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format);
 void QAbstractTextDocumentLayout_DrawInlineObjectDefault(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format);
 void QAbstractTextDocumentLayout_ConnectPageCountChanged(void* ptr);

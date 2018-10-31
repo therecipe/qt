@@ -67852,6 +67852,48 @@ func (ptr *QPlainTextDocumentLayout) DocumentChangedDefault(from int, charsRemov
 	}
 }
 
+//export callbackQPlainTextDocumentLayout_Draw
+func callbackQPlainTextDocumentLayout_Draw(ptr unsafe.Pointer, vqp unsafe.Pointer, vpa unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "draw"); signal != nil {
+		signal.(func(*gui.QPainter, *gui.QAbstractTextDocumentLayout_PaintContext))(gui.NewQPainterFromPointer(vqp), gui.NewQAbstractTextDocumentLayout_PaintContextFromPointer(vpa))
+	} else {
+		NewQPlainTextDocumentLayoutFromPointer(ptr).DrawDefault(gui.NewQPainterFromPointer(vqp), gui.NewQAbstractTextDocumentLayout_PaintContextFromPointer(vpa))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) ConnectDraw(f func(vqp *gui.QPainter, vpa *gui.QAbstractTextDocumentLayout_PaintContext)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "draw"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "draw", func(vqp *gui.QPainter, vpa *gui.QAbstractTextDocumentLayout_PaintContext) {
+				signal.(func(*gui.QPainter, *gui.QAbstractTextDocumentLayout_PaintContext))(vqp, vpa)
+				f(vqp, vpa)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "draw", f)
+		}
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DisconnectDraw() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "draw")
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) Draw(vqp gui.QPainter_ITF, vpa gui.QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_Draw(ptr.Pointer(), gui.PointerFromQPainter(vqp), gui.PointerFromQAbstractTextDocumentLayout_PaintContext(vpa))
+	}
+}
+
+func (ptr *QPlainTextDocumentLayout) DrawDefault(vqp gui.QPainter_ITF, vpa gui.QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPlainTextDocumentLayout_DrawDefault(ptr.Pointer(), gui.PointerFromQPainter(vqp), gui.PointerFromQAbstractTextDocumentLayout_PaintContext(vpa))
+	}
+}
+
 func (ptr *QPlainTextDocumentLayout) RequestUpdate() {
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_RequestUpdate(ptr.Pointer())
@@ -69850,6 +69892,15 @@ func (ptr *QPlainTextEdit) DestroyQPlainTextEditDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QPlainTextEdit) GetPaintContext() *gui.QAbstractTextDocumentLayout_PaintContext {
+	if ptr.Pointer() != nil {
+		tmpValue := gui.NewQAbstractTextDocumentLayout_PaintContextFromPointer(C.QPlainTextEdit_GetPaintContext(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QAbstractTextDocumentLayout_PaintContext).DestroyQAbstractTextDocumentLayout_PaintContext)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQPlainTextEdit_CreateMimeDataFromSelection

@@ -28599,6 +28599,14 @@ func (ptr *QMetaType) SizeOf(ty int) int {
 	return int(int32(C.QMetaType_QMetaType_SizeOf(C.int(int32(ty)))))
 }
 
+func QMetaType_Type2(typeName QByteArray_ITF) int {
+	return int(int32(C.QMetaType_QMetaType_Type2(PointerFromQByteArray(typeName))))
+}
+
+func (ptr *QMetaType) Type2(typeName QByteArray_ITF) int {
+	return int(int32(C.QMetaType_QMetaType_Type2(PointerFromQByteArray(typeName))))
+}
+
 func QMetaType_Type(typeName string) int {
 	var typeNameC *C.char
 	if typeName != "" {

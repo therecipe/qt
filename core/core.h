@@ -2045,6 +2045,7 @@ char QMetaType_QMetaType_Save(void* stream, int ty, void* data);
 void* QMetaType_QMetaType_MetaObjectForType(int ty);
 struct QtCore_PackedString QMetaType_QMetaType_TypeName(int typeId);
 int QMetaType_QMetaType_SizeOf(int ty);
+int QMetaType_QMetaType_Type2(void* typeName);
 int QMetaType_QMetaType_Type(char* typeName);
 void* QMetaType_QMetaType_Construct(int ty, void* where, void* copy);
 void* QMetaType_QMetaType_Create(int ty, void* copy);

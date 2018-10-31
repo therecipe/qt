@@ -5054,6 +5054,8 @@ struct QtWidgets_PackedString QPlainTextDocumentLayout_QPlainTextDocumentLayout_
 struct QtWidgets_PackedString QPlainTextDocumentLayout_QPlainTextDocumentLayout_TrUtf8(char* s, char* c, int n);
 void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemoved, int charsAdded);
 void QPlainTextDocumentLayout_DocumentChangedDefault(void* ptr, int from, int charsRemoved, int charsAdded);
+void QPlainTextDocumentLayout_Draw(void* ptr, void* vqp, void* vpa);
+void QPlainTextDocumentLayout_DrawDefault(void* ptr, void* vqp, void* vpa);
 void QPlainTextDocumentLayout_RequestUpdate(void* ptr);
 void QPlainTextDocumentLayout_SetCursorWidth(void* ptr, int width);
 void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(void* ptr);
@@ -5185,6 +5187,7 @@ void QPlainTextEdit_ZoomOut(void* ptr, int ran);
 void QPlainTextEdit_ZoomOutDefault(void* ptr, int ran);
 void QPlainTextEdit_DestroyQPlainTextEdit(void* ptr);
 void QPlainTextEdit_DestroyQPlainTextEditDefault(void* ptr);
+void* QPlainTextEdit_GetPaintContext(void* ptr);
 void* QPlainTextEdit_CreateMimeDataFromSelection(void* ptr);
 void* QPlainTextEdit_CreateMimeDataFromSelectionDefault(void* ptr);
 long long QPlainTextEdit_LineWrapMode(void* ptr);

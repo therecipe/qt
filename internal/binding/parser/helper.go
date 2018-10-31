@@ -93,7 +93,22 @@ func CleanValue(v string) string {
 		var inside = strings.Split(strings.Split(v, "<")[1], ">")[0]
 		return strings.Replace(cleanValueUnsafe(v), strings.Split(strings.Split(cleanValueUnsafe(v), "<")[1], ">")[0], inside, -1)
 	}
-	return cleanValueUnsafe(v)
+	v = cleanValueUnsafe(v)
+	if vC, ok := IsClass(v); ok {
+		v = vC
+	}
+	return v
+}
+
+func IsClass(value string) (string, bool) {
+	if strings.Contains(value, ".") {
+		return IsClass(strings.Split(value, ".")[1])
+	}
+	if strings.Contains(value, "::") {
+		return IsClass(strings.Split(value, "::")[1])
+	}
+	var _, ok = State.ClassMap[value]
+	return value, ok
 }
 
 func cleanValueUnsafe(v string) string {

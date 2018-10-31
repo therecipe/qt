@@ -100,7 +100,7 @@ func GoQtPkgPath(s ...string) string {
 
 //TODO: export error
 func RunCmd(cmd *exec.Cmd, name string) string {
-	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
+	fields := logrus.Fields{"_func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
 	Log.WithFields(fields).Debug("Execute")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
@@ -113,7 +113,7 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 
 //TODO: export error
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
-	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
+	fields := logrus.Fields{"_func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
 	Log.WithFields(fields).Debug("Execute")
 	out, err := cmd.CombinedOutput()
 	if err != nil && !strings.Contains(string(out), "No template (-t) specified") {
@@ -124,7 +124,7 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 }
 
 func RunCmdOptionalError(cmd *exec.Cmd, name string) (string, error) {
-	fields := logrus.Fields{"func": "RunCmdOptionalError", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " ")}
+	fields := logrus.Fields{"_func": "RunCmdOptionalError", "name": name, "cmd": strings.Join(cmd.Args, " "), "env": strings.Join(cmd.Env, " "), "dir": cmd.Dir}
 	Log.WithFields(fields).Debug("Execute")
 	out, err := cmd.CombinedOutput()
 	if err != nil {

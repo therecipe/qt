@@ -17,6 +17,7 @@
 #include <QAbstractSlider>
 #include <QAbstractSpinBox>
 #include <QAbstractState>
+#include <QAbstractTextDocumentLayout>
 #include <QAccessible>
 #include <QAccessibleInterface>
 #include <QAccessibleWidget>
@@ -331,6 +332,7 @@
 #include <QWizard>
 #include <QWizardPage>
 
+typedef QAbstractTextDocumentLayout::PaintContext PaintContext;
 class MyQAbstractButton: public QAbstractButton
 {
 public:
@@ -40193,6 +40195,7 @@ class MyQPlainTextDocumentLayout: public QPlainTextDocumentLayout
 public:
 	MyQPlainTextDocumentLayout(QTextDocument *document) : QPlainTextDocumentLayout(document) {QPlainTextDocumentLayout_QPlainTextDocumentLayout_QRegisterMetaType();};
 	void documentChanged(int from, int charsRemoved, int charsAdded) { callbackQPlainTextDocumentLayout_DocumentChanged(this, from, charsRemoved, charsAdded); };
+	void draw(QPainter * vqp, const QAbstractTextDocumentLayout::PaintContext & vpa) { callbackQPlainTextDocumentLayout_Draw(this, vqp, const_cast<PaintContext*>(&vpa)); };
 	 ~MyQPlainTextDocumentLayout() { callbackQPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(this); };
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQPlainTextDocumentLayout_BlockBoundingRect(const_cast<void*>(static_cast<const void*>(this)), const_cast<QTextBlock*>(&block))); };
 	QRectF frameBoundingRect(QTextFrame * vqt) const { return *static_cast<QRectF*>(callbackQPlainTextDocumentLayout_FrameBoundingRect(const_cast<void*>(static_cast<const void*>(this)), vqt)); };
@@ -40243,6 +40246,16 @@ void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemo
 void QPlainTextDocumentLayout_DocumentChangedDefault(void* ptr, int from, int charsRemoved, int charsAdded)
 {
 		static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::documentChanged(from, charsRemoved, charsAdded);
+}
+
+void QPlainTextDocumentLayout_Draw(void* ptr, void* vqp, void* vpa)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(vqp), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(vpa));
+}
+
+void QPlainTextDocumentLayout_DrawDefault(void* ptr, void* vqp, void* vpa)
+{
+		static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::draw(static_cast<QPainter*>(vqp), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(vpa));
 }
 
 void QPlainTextDocumentLayout_RequestUpdate(void* ptr)
@@ -41067,6 +41080,11 @@ void QPlainTextEdit_DestroyQPlainTextEditDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+void* QPlainTextEdit_GetPaintContext(void* ptr)
+{
+	return new PaintContext(static_cast<QPlainTextEdit*>(ptr)->getPaintContext());
 }
 
 void* QPlainTextEdit_CreateMimeDataFromSelection(void* ptr)
