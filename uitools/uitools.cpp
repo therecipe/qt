@@ -9,10 +9,8 @@
 #include <QAction>
 #include <QActionGroup>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDir>
 #include <QEvent>
@@ -28,14 +26,11 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
 #include <QString>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUiLoader>
 #include <QWidget>

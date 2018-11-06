@@ -293,7 +293,7 @@ func callbackQAbstractMessageHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QAbstractMessageHandler) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractMessageHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -309,7 +309,7 @@ func callbackQAbstractMessageHandler_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QAbstractMessageHandler) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractMessageHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractMessageHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -739,7 +739,7 @@ func callbackQAbstractUriResolver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QAbstractUriResolver) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractUriResolver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -755,7 +755,7 @@ func callbackQAbstractUriResolver_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QAbstractUriResolver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractUriResolver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractUriResolver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2276,7 +2276,7 @@ func (ptr *QSourceLocation) Uri() *core.QUrl {
 
 func (ptr *QSourceLocation) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSourceLocation_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSourceLocation_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2449,21 +2449,21 @@ func (ptr *QXmlItem) ToNodeModelIndex() *QXmlNodeModelIndex {
 
 func (ptr *QXmlItem) IsAtomicValue() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsAtomicValue(ptr.Pointer()) != 0
+		return int8(C.QXmlItem_IsAtomicValue(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlItem) IsNode() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsNode(ptr.Pointer()) != 0
+		return int8(C.QXmlItem_IsNode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlItem) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlItem_IsNull(ptr.Pointer()) != 0
+		return int8(C.QXmlItem_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2575,7 +2575,7 @@ func QXmlName_IsNCName(candidate string) bool {
 		candidateC = C.CString(candidate)
 		defer C.free(unsafe.Pointer(candidateC))
 	}
-	return C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{data: candidateC, len: C.longlong(len(candidate))}) != 0
+	return int8(C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{data: candidateC, len: C.longlong(len(candidate))})) != 0
 }
 
 func (ptr *QXmlName) IsNCName(candidate string) bool {
@@ -2584,7 +2584,7 @@ func (ptr *QXmlName) IsNCName(candidate string) bool {
 		candidateC = C.CString(candidate)
 		defer C.free(unsafe.Pointer(candidateC))
 	}
-	return C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{data: candidateC, len: C.longlong(len(candidate))}) != 0
+	return int8(C.QXmlName_QXmlName_IsNCName(C.struct_QtXmlPatterns_PackedString{data: candidateC, len: C.longlong(len(candidate))})) != 0
 }
 
 func (ptr *QXmlName) LocalName(namePool QXmlNamePool_ITF) string {
@@ -2617,7 +2617,7 @@ func (ptr *QXmlName) ToClarkName(namePool QXmlNamePool_ITF) string {
 
 func (ptr *QXmlName) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlName_IsNull(ptr.Pointer()) != 0
+		return int8(C.QXmlName_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2763,7 +2763,7 @@ func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
 
 func (ptr *QXmlNodeModelIndex) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlNodeModelIndex_IsNull(ptr.Pointer()) != 0
+		return int8(C.QXmlNodeModelIndex_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2891,7 +2891,7 @@ func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
 
 func (ptr *QXmlQuery) SetFocus3(document core.QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus3(ptr.Pointer(), core.PointerFromQIODevice(document)) != 0
+		return int8(C.QXmlQuery_SetFocus3(ptr.Pointer(), core.PointerFromQIODevice(document))) != 0
 	}
 	return false
 }
@@ -2903,14 +2903,14 @@ func (ptr *QXmlQuery) SetFocus4(focus string) bool {
 			focusC = C.CString(focus)
 			defer C.free(unsafe.Pointer(focusC))
 		}
-		return C.QXmlQuery_SetFocus4(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: focusC, len: C.longlong(len(focus))}) != 0
+		return int8(C.QXmlQuery_SetFocus4(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: focusC, len: C.longlong(len(focus))})) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlQuery) SetFocus2(documentURI core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus2(ptr.Pointer(), core.PointerFromQUrl(documentURI)) != 0
+		return int8(C.QXmlQuery_SetFocus2(ptr.Pointer(), core.PointerFromQUrl(documentURI))) != 0
 	}
 	return false
 }
@@ -3087,7 +3087,7 @@ func (ptr *QXmlQuery) QueryLanguage() QXmlQuery__QueryLanguage {
 
 func (ptr *QXmlQuery) EvaluateTo4(target core.QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_EvaluateTo4(ptr.Pointer(), core.PointerFromQIODevice(target)) != 0
+		return int8(C.QXmlQuery_EvaluateTo4(ptr.Pointer(), core.PointerFromQIODevice(target))) != 0
 	}
 	return false
 }
@@ -3099,7 +3099,7 @@ func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 			outputC = C.CString(output)
 			defer C.free(unsafe.Pointer(outputC))
 		}
-		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: outputC, len: C.longlong(len(output))}) != 0
+		return int8(C.QXmlQuery_EvaluateTo5(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: outputC, len: C.longlong(len(output))})) != 0
 	}
 	return false
 }
@@ -3108,14 +3108,14 @@ func (ptr *QXmlQuery) EvaluateTo3(target []string) bool {
 	if ptr.Pointer() != nil {
 		targetC := C.CString(strings.Join(target, "|"))
 		defer C.free(unsafe.Pointer(targetC))
-		return C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: targetC, len: C.longlong(len(strings.Join(target, "|")))}) != 0
+		return int8(C.QXmlQuery_EvaluateTo3(ptr.Pointer(), C.struct_QtXmlPatterns_PackedString{data: targetC, len: C.longlong(len(strings.Join(target, "|")))})) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlQuery) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_IsValid(ptr.Pointer()) != 0
+		return int8(C.QXmlQuery_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3244,7 +3244,7 @@ func (ptr *QXmlResultItems) Current() *QXmlItem {
 
 func (ptr *QXmlResultItems) HasError() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
+		return int8(C.QXmlResultItems_HasError(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3300,21 +3300,21 @@ func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
 
 func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
+		return int8(C.QXmlSchema_Load2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSchema) Load3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
+		return int8(C.QXmlSchema_Load3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSchema) Load(source core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load(ptr.Pointer(), core.PointerFromQUrl(source)) != 0
+		return int8(C.QXmlSchema_Load(ptr.Pointer(), core.PointerFromQUrl(source))) != 0
 	}
 	return false
 }
@@ -3387,7 +3387,7 @@ func (ptr *QXmlSchema) NamePool() *QXmlNamePool {
 
 func (ptr *QXmlSchema) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_IsValid(ptr.Pointer()) != 0
+		return int8(C.QXmlSchema_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3526,21 +3526,21 @@ func (ptr *QXmlSchemaValidator) Schema() *QXmlSchema {
 
 func (ptr *QXmlSchemaValidator) Validate2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchemaValidator_Validate2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
+		return int8(C.QXmlSchemaValidator_Validate2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSchemaValidator) Validate3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchemaValidator_Validate3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
+		return int8(C.QXmlSchemaValidator_Validate3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSchemaValidator) Validate(source core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchemaValidator_Validate(ptr.Pointer(), core.PointerFromQUrl(source)) != 0
+		return int8(C.QXmlSchemaValidator_Validate(ptr.Pointer(), core.PointerFromQUrl(source))) != 0
 	}
 	return false
 }

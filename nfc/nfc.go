@@ -144,7 +144,7 @@ func (ptr *QNdefFilter) DestroyQNdefFilter() {
 
 func (ptr *QNdefFilter) OrderMatch() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefFilter_OrderMatch(ptr.Pointer()) != 0
+		return int8(C.QNdefFilter_OrderMatch(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -342,7 +342,7 @@ func NewQNdefNfcSmartPosterRecord2(other QNdefRecord_ITF) *QNdefNfcSmartPosterRe
 
 func (ptr *QNdefNfcSmartPosterRecord) AddTitle(text QNdefNfcTextRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_AddTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text)) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_AddTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text))) != 0
 	}
 	return false
 }
@@ -359,21 +359,21 @@ func (ptr *QNdefNfcSmartPosterRecord) AddTitle2(text string, locale string, enco
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}, C.longlong(encoding)) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_AddTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}, C.longlong(encoding))) != 0
 	}
 	return false
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty)) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty))) != 0
 	}
 	return false
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle(text QNdefNfcTextRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_RemoveTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text)) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle(ptr.Pointer(), PointerFromQNdefNfcTextRecord(text))) != 0
 	}
 	return false
 }
@@ -385,7 +385,7 @@ func (ptr *QNdefNfcSmartPosterRecord) RemoveTitle2(locale string) bool {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_RemoveTitle2(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))})) != 0
 	}
 	return false
 }
@@ -512,21 +512,21 @@ func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
 
 func (ptr *QNdefNfcSmartPosterRecord) HasAction() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_HasAction(ptr.Pointer()) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_HasAction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) HasIcon(mimetype core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_HasIcon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_HasIcon(ptr.Pointer(), core.PointerFromQByteArray(mimetype))) != 0
 	}
 	return false
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) HasSize() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_HasSize(ptr.Pointer()) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_HasSize(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -538,14 +538,14 @@ func (ptr *QNdefNfcSmartPosterRecord) HasTitle(locale string) bool {
 			localeC = C.CString(locale)
 			defer C.free(unsafe.Pointer(localeC))
 		}
-		return C.QNdefNfcSmartPosterRecord_HasTitle(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))}) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_HasTitle(ptr.Pointer(), C.struct_QtNfc_PackedString{data: localeC, len: C.longlong(len(locale))})) != 0
 	}
 	return false
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) HasTypeInfo() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefNfcSmartPosterRecord_HasTypeInfo(ptr.Pointer()) != 0
+		return int8(C.QNdefNfcSmartPosterRecord_HasTypeInfo(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -939,7 +939,7 @@ func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
 
 func (ptr *QNdefRecord) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefRecord_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QNdefRecord_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1060,14 +1060,14 @@ func (ptr *QNearFieldManager) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QNearFieldManager) StartTargetDetection() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldManager_StartTargetDetection(ptr.Pointer()) != 0
+		return int8(C.QNearFieldManager_StartTargetDetection(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldManager_UnregisterNdefMessageHandler(ptr.Pointer(), C.int(int32(handlerId))) != 0
+		return int8(C.QNearFieldManager_UnregisterNdefMessageHandler(ptr.Pointer(), C.int(int32(handlerId)))) != 0
 	}
 	return false
 }
@@ -1253,7 +1253,7 @@ func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAcces
 
 func (ptr *QNearFieldManager) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldManager_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QNearFieldManager_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1388,7 +1388,7 @@ func callbackQNearFieldManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QNearFieldManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNearFieldManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1404,7 +1404,7 @@ func callbackQNearFieldManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QNearFieldManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNearFieldManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1967,7 +1967,7 @@ func callbackQNearFieldShareManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QNearFieldShareManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNearFieldShareManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1983,7 +1983,7 @@ func callbackQNearFieldShareManager_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QNearFieldShareManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNearFieldShareManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2192,20 +2192,20 @@ func (ptr *QNearFieldShareTarget) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QNearFieldShareTarget) Share2(files []*core.QFileInfo) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareTarget_Share2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QNearFieldShareTarget_Share2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQNearFieldShareTargetFromPointer(NewQNearFieldShareTargetFromPointer(nil).__share_files_newList2())
 			for _, v := range files {
 				tmpList.__share_files_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldShareTarget) Share(message QNdefMessage_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareTarget_Share(ptr.Pointer(), PointerFromQNdefMessage(message)) != 0
+		return int8(C.QNearFieldShareTarget_Share(ptr.Pointer(), PointerFromQNdefMessage(message))) != 0
 	}
 	return false
 }
@@ -2356,7 +2356,7 @@ func (ptr *QNearFieldShareTarget) ShareModes() QNearFieldShareManager__ShareMode
 
 func (ptr *QNearFieldShareTarget) IsShareInProgress() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareTarget_IsShareInProgress(ptr.Pointer()) != 0
+		return int8(C.QNearFieldShareTarget_IsShareInProgress(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2510,7 +2510,7 @@ func callbackQNearFieldShareTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QNearFieldShareTarget) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNearFieldShareTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2526,7 +2526,7 @@ func callbackQNearFieldShareTarget_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QNearFieldShareTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldShareTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNearFieldShareTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2785,7 +2785,7 @@ func (ptr *QNearFieldTarget) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QNearFieldTarget) Disconnect() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_Disconnect(ptr.Pointer()) != 0
+		return int8(C.QNearFieldTarget_Disconnect(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2822,21 +2822,21 @@ func (ptr *QNearFieldTarget) DisconnectHasNdefMessage() {
 
 func (ptr *QNearFieldTarget) HasNdefMessage() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_HasNdefMessage(ptr.Pointer()) != 0
+		return int8(C.QNearFieldTarget_HasNdefMessage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldTarget) HasNdefMessageDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_HasNdefMessageDefault(ptr.Pointer()) != 0
+		return int8(C.QNearFieldTarget_HasNdefMessageDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldTarget) SetKeepConnection(isPersistent bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_SetKeepConnection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent)))) != 0
+		return int8(C.QNearFieldTarget_SetKeepConnection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isPersistent))))) != 0
 	}
 	return false
 }
@@ -3167,14 +3167,14 @@ func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 
 func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer()) != 0
+		return int8(C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldTarget) KeepConnection() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_KeepConnection(ptr.Pointer()) != 0
+		return int8(C.QNearFieldTarget_KeepConnection(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3354,7 +3354,7 @@ func callbackQNearFieldTarget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QNearFieldTarget) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNearFieldTarget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3370,7 +3370,7 @@ func callbackQNearFieldTarget_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QNearFieldTarget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNearFieldTarget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3946,7 +3946,7 @@ func callbackQQmlNdefRecord_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQmlNdefRecord) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlNdefRecord_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlNdefRecord_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3962,7 +3962,7 @@ func callbackQQmlNdefRecord_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QQmlNdefRecord) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlNdefRecord_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlNdefRecord_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

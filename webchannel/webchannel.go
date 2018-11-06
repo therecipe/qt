@@ -343,7 +343,7 @@ func (ptr *QWebChannel) RegisteredObjects() map[string]*core.QObject {
 
 func (ptr *QWebChannel) BlockUpdates() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebChannel_BlockUpdates(ptr.Pointer()) != 0
+		return int8(C.QWebChannel_BlockUpdates(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -612,7 +612,7 @@ func callbackQWebChannel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QWebChannel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebChannel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebChannel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -628,7 +628,7 @@ func callbackQWebChannel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QWebChannel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebChannel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebChannel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1093,7 +1093,7 @@ func callbackQWebChannelAbstractTransport_Event(ptr unsafe.Pointer, e unsafe.Poi
 
 func (ptr *QWebChannelAbstractTransport) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebChannelAbstractTransport_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebChannelAbstractTransport_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1109,7 +1109,7 @@ func callbackQWebChannelAbstractTransport_EventFilter(ptr unsafe.Pointer, watche
 
 func (ptr *QWebChannelAbstractTransport) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebChannelAbstractTransport_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebChannelAbstractTransport_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

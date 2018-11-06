@@ -13,12 +13,10 @@
 #include <QActionEvent>
 #include <QActionGroup>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDesignerActionEditorInterface>
 #include <QDesignerContainerExtension>
@@ -36,7 +34,6 @@
 #include <QDesignerTaskMenuExtension>
 #include <QDesignerWidgetBoxInterface>
 #include <QDir>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -51,7 +48,6 @@
 #include <QHideEvent>
 #include <QIODevice>
 #include <QIcon>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
@@ -78,8 +74,6 @@
 #include <QSize>
 #include <QString>
 #include <QTabletEvent>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWheelEvent>

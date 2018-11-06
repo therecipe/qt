@@ -266,7 +266,7 @@ func (ptr *QBluetoothAddress) ToString() string {
 
 func (ptr *QBluetoothAddress) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothAddress_IsNull(ptr.Pointer()) != 0
+		return int8(C.QBluetoothAddress_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -807,7 +807,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ErrorString() string {
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceDiscoveryAgent_IsActive(ptr.Pointer()) != 0
+		return int8(C.QBluetoothDeviceDiscoveryAgent_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -968,7 +968,7 @@ func callbackQBluetoothDeviceDiscoveryAgent_Event(ptr unsafe.Pointer, e unsafe.P
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceDiscoveryAgent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothDeviceDiscoveryAgent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -984,7 +984,7 @@ func callbackQBluetoothDeviceDiscoveryAgent_EventFilter(ptr unsafe.Pointer, watc
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceDiscoveryAgent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothDeviceDiscoveryAgent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1468,14 +1468,14 @@ func (ptr *QBluetoothDeviceInfo) Name() string {
 
 func (ptr *QBluetoothDeviceInfo) IsCached() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceInfo_IsCached(ptr.Pointer()) != 0
+		return int8(C.QBluetoothDeviceInfo_IsCached(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothDeviceInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceInfo_IsValid(ptr.Pointer()) != 0
+		return int8(C.QBluetoothDeviceInfo_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2221,7 +2221,7 @@ func (ptr *QBluetoothLocalDevice) Name() string {
 
 func (ptr *QBluetoothLocalDevice) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothLocalDevice_IsValid(ptr.Pointer()) != 0
+		return int8(C.QBluetoothLocalDevice_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2394,7 +2394,7 @@ func callbackQBluetoothLocalDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QBluetoothLocalDevice) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothLocalDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothLocalDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2410,7 +2410,7 @@ func callbackQBluetoothLocalDevice_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QBluetoothLocalDevice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothLocalDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothLocalDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2666,7 +2666,7 @@ func (ptr *QBluetoothServer) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QBluetoothServer) Listen(address QBluetoothAddress_ITF, port uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServer_Listen(ptr.Pointer(), PointerFromQBluetoothAddress(address), C.ushort(port)) != 0
+		return int8(C.QBluetoothServer_Listen(ptr.Pointer(), PointerFromQBluetoothAddress(address), C.ushort(port))) != 0
 	}
 	return false
 }
@@ -2845,14 +2845,14 @@ func (ptr *QBluetoothServer) ServerType() QBluetoothServiceInfo__Protocol {
 
 func (ptr *QBluetoothServer) HasPendingConnections() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServer_HasPendingConnections(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServer_HasPendingConnections(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothServer) IsListening() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServer_IsListening(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServer_IsListening(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3001,7 +3001,7 @@ func callbackQBluetoothServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QBluetoothServer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3017,7 +3017,7 @@ func callbackQBluetoothServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QBluetoothServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3264,7 +3264,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) TrUtf8(s string, c string, n int) st
 
 func (ptr *QBluetoothServiceDiscoveryAgent) SetRemoteAddress(address QBluetoothAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceDiscoveryAgent_SetRemoteAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address)) != 0
+		return int8(C.QBluetoothServiceDiscoveryAgent_SetRemoteAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address))) != 0
 	}
 	return false
 }
@@ -3668,7 +3668,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ErrorString() string {
 
 func (ptr *QBluetoothServiceDiscoveryAgent) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceDiscoveryAgent_IsActive(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServiceDiscoveryAgent_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3860,7 +3860,7 @@ func callbackQBluetoothServiceDiscoveryAgent_Event(ptr unsafe.Pointer, e unsafe.
 
 func (ptr *QBluetoothServiceDiscoveryAgent) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceDiscoveryAgent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothServiceDiscoveryAgent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3876,7 +3876,7 @@ func callbackQBluetoothServiceDiscoveryAgent_EventFilter(ptr unsafe.Pointer, wat
 
 func (ptr *QBluetoothServiceDiscoveryAgent) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceDiscoveryAgent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothServiceDiscoveryAgent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4076,14 +4076,14 @@ func NewQBluetoothServiceInfo2(other QBluetoothServiceInfo_ITF) *QBluetoothServi
 
 func (ptr *QBluetoothServiceInfo) RegisterService(localAdapter QBluetoothAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_RegisterService(ptr.Pointer(), PointerFromQBluetoothAddress(localAdapter)) != 0
+		return int8(C.QBluetoothServiceInfo_RegisterService(ptr.Pointer(), PointerFromQBluetoothAddress(localAdapter))) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_UnregisterService(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServiceInfo_UnregisterService(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4241,28 +4241,28 @@ func (ptr *QBluetoothServiceInfo) Attribute(attributeId uint16) *core.QVariant {
 
 func (ptr *QBluetoothServiceInfo) Contains(attributeId uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_Contains(ptr.Pointer(), C.ushort(attributeId)) != 0
+		return int8(C.QBluetoothServiceInfo_Contains(ptr.Pointer(), C.ushort(attributeId))) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothServiceInfo) IsComplete() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_IsComplete(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServiceInfo_IsComplete(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothServiceInfo) IsRegistered() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_IsRegistered(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServiceInfo_IsRegistered(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothServiceInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothServiceInfo_IsValid(ptr.Pointer()) != 0
+		return int8(C.QBluetoothServiceInfo_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4449,7 +4449,7 @@ func (ptr *QBluetoothSocket) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketType QBluetoothServiceInfo__Protocol, socketState QBluetoothSocket__SocketState, openMode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor)), C.longlong(socketType), C.longlong(socketState), C.longlong(openMode)) != 0
+		return int8(C.QBluetoothSocket_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor)), C.longlong(socketType), C.longlong(socketState), C.longlong(openMode))) != 0
 	}
 	return false
 }
@@ -4915,7 +4915,7 @@ func callbackQBluetoothSocket_CanReadLine(ptr unsafe.Pointer) C.char {
 
 func (ptr *QBluetoothSocket) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QBluetoothSocket_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4931,7 +4931,7 @@ func callbackQBluetoothSocket_IsSequential(ptr unsafe.Pointer) C.char {
 
 func (ptr *QBluetoothSocket) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QBluetoothSocket_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5119,7 +5119,7 @@ func callbackQBluetoothSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
 func (ptr *QBluetoothSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_OpenDefault(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QBluetoothSocket_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -5135,7 +5135,7 @@ func callbackQBluetoothSocket_Reset(ptr unsafe.Pointer) C.char {
 
 func (ptr *QBluetoothSocket) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QBluetoothSocket_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5151,7 +5151,7 @@ func callbackQBluetoothSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
 func (ptr *QBluetoothSocket) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QBluetoothSocket_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -5167,7 +5167,7 @@ func callbackQBluetoothSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.in
 
 func (ptr *QBluetoothSocket) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QBluetoothSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -5183,7 +5183,7 @@ func callbackQBluetoothSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) 
 
 func (ptr *QBluetoothSocket) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QBluetoothSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -5268,7 +5268,7 @@ func callbackQBluetoothSocket_AtEnd(ptr unsafe.Pointer) C.char {
 
 func (ptr *QBluetoothSocket) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QBluetoothSocket_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5316,7 +5316,7 @@ func callbackQBluetoothSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QBluetoothSocket) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5332,7 +5332,7 @@ func callbackQBluetoothSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QBluetoothSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5773,7 +5773,7 @@ func callbackQBluetoothTransferManager_Event(ptr unsafe.Pointer, e unsafe.Pointe
 
 func (ptr *QBluetoothTransferManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothTransferManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5789,7 +5789,7 @@ func callbackQBluetoothTransferManager_EventFilter(ptr unsafe.Pointer, watched u
 
 func (ptr *QBluetoothTransferManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothTransferManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6364,7 +6364,7 @@ func (ptr *QBluetoothTransferReply) DisconnectIsFinished() {
 
 func (ptr *QBluetoothTransferReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferReply_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QBluetoothTransferReply_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6401,7 +6401,7 @@ func (ptr *QBluetoothTransferReply) DisconnectIsRunning() {
 
 func (ptr *QBluetoothTransferReply) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferReply_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QBluetoothTransferReply_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6536,7 +6536,7 @@ func callbackQBluetoothTransferReply_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QBluetoothTransferReply) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBluetoothTransferReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6552,7 +6552,7 @@ func callbackQBluetoothTransferReply_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QBluetoothTransferReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothTransferReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBluetoothTransferReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7395,7 +7395,7 @@ func (ptr *QLowEnergyAdvertisingData) LocalName() string {
 
 func (ptr *QLowEnergyAdvertisingData) IncludePowerLevel() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyAdvertisingData_IncludePowerLevel(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyAdvertisingData_IncludePowerLevel(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7701,7 +7701,7 @@ func (ptr *QLowEnergyCharacteristic) Name() string {
 
 func (ptr *QLowEnergyCharacteristic) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyCharacteristic_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyCharacteristic_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7897,7 +7897,7 @@ func (ptr *QLowEnergyCharacteristicData) Properties() QLowEnergyCharacteristic__
 
 func (ptr *QLowEnergyCharacteristicData) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyCharacteristicData_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyCharacteristicData_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8852,7 +8852,7 @@ func callbackQLowEnergyController_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QLowEnergyController) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyController_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLowEnergyController_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8868,7 +8868,7 @@ func callbackQLowEnergyController_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QLowEnergyController) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyController_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLowEnergyController_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9072,7 +9072,7 @@ func (ptr *QLowEnergyDescriptor) Name() string {
 
 func (ptr *QLowEnergyDescriptor) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyDescriptor_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyDescriptor_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9204,21 +9204,21 @@ func (ptr *QLowEnergyDescriptorData) Value() *core.QByteArray {
 
 func (ptr *QLowEnergyDescriptorData) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyDescriptorData_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyDescriptorData_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLowEnergyDescriptorData) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyDescriptorData_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyDescriptorData_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLowEnergyDescriptorData) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyDescriptorData_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyDescriptorData_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9788,14 +9788,14 @@ func (ptr *QLowEnergyService) ServiceName() string {
 
 func (ptr *QLowEnergyService) Contains(characteristic QLowEnergyCharacteristic_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyService_Contains(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic)) != 0
+		return int8(C.QLowEnergyService_Contains(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic))) != 0
 	}
 	return false
 }
 
 func (ptr *QLowEnergyService) Contains2(descriptor QLowEnergyDescriptor_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyService_Contains2(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor)) != 0
+		return int8(C.QLowEnergyService_Contains2(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor))) != 0
 	}
 	return false
 }
@@ -9968,7 +9968,7 @@ func callbackQLowEnergyService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QLowEnergyService) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLowEnergyService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9984,7 +9984,7 @@ func callbackQLowEnergyService_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QLowEnergyService) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLowEnergyService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10264,7 +10264,7 @@ func (ptr *QLowEnergyServiceData) Type() QLowEnergyServiceData__ServiceType {
 
 func (ptr *QLowEnergyServiceData) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyServiceData_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLowEnergyServiceData_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }

@@ -476,7 +476,7 @@ func callbackQAbstractPrintDialog_EventFilter(ptr unsafe.Pointer, o unsafe.Point
 
 func (ptr *QAbstractPrintDialog) EventFilterDefault(o core.QObject_ITF, e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractPrintDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -702,7 +702,7 @@ func callbackQAbstractPrintDialog_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractPrintDialog) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractPrintDialog_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -718,7 +718,7 @@ func callbackQAbstractPrintDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer
 
 func (ptr *QAbstractPrintDialog) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractPrintDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -734,7 +734,7 @@ func callbackQAbstractPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.
 
 func (ptr *QAbstractPrintDialog) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QAbstractPrintDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -1403,7 +1403,7 @@ func callbackQAbstractPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractPrintDialog) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractPrintDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractPrintDialog_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2005,7 +2005,7 @@ func callbackQPageSetupDialog_EventFilter(ptr unsafe.Pointer, o unsafe.Pointer, 
 
 func (ptr *QPageSetupDialog) EventFilterDefault(o core.QObject_ITF, e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+		return int8(C.QPageSetupDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2201,7 +2201,7 @@ func callbackQPageSetupDialog_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPageSetupDialog) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QPageSetupDialog_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2217,7 +2217,7 @@ func callbackQPageSetupDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.
 
 func (ptr *QPageSetupDialog) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPageSetupDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2233,7 +2233,7 @@ func callbackQPageSetupDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char
 
 func (ptr *QPageSetupDialog) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QPageSetupDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -2902,7 +2902,7 @@ func callbackQPageSetupDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPageSetupDialog) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPageSetupDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QPageSetupDialog_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3475,7 +3475,7 @@ func (ptr *QPrintDialog) Options() QAbstractPrintDialog__PrintDialogOption {
 
 func (ptr *QPrintDialog) TestOption(option QAbstractPrintDialog__PrintDialogOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QPrintDialog_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -3589,7 +3589,7 @@ func (ptr *QPrintEngine) DisconnectAbort() {
 
 func (ptr *QPrintEngine) Abort() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintEngine_Abort(ptr.Pointer()) != 0
+		return int8(C.QPrintEngine_Abort(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3626,7 +3626,7 @@ func (ptr *QPrintEngine) DisconnectNewPage() {
 
 func (ptr *QPrintEngine) NewPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintEngine_NewPage(ptr.Pointer()) != 0
+		return int8(C.QPrintEngine_NewPage(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4277,7 +4277,7 @@ func callbackQPrintPreviewDialog_EventFilter(ptr unsafe.Pointer, o unsafe.Pointe
 
 func (ptr *QPrintPreviewDialog) EventFilterDefault(o core.QObject_ITF, e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+		return int8(C.QPrintPreviewDialog_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4474,7 +4474,7 @@ func callbackQPrintPreviewDialog_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPrintPreviewDialog) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QPrintPreviewDialog_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4490,7 +4490,7 @@ func callbackQPrintPreviewDialog_Event(ptr unsafe.Pointer, event unsafe.Pointer)
 
 func (ptr *QPrintPreviewDialog) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPrintPreviewDialog_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4506,7 +4506,7 @@ func callbackQPrintPreviewDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.c
 
 func (ptr *QPrintPreviewDialog) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QPrintPreviewDialog_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -5175,7 +5175,7 @@ func callbackQPrintPreviewDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPrintPreviewDialog) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewDialog_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QPrintPreviewDialog_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6539,7 +6539,7 @@ func callbackQPrintPreviewWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPrintPreviewWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QPrintPreviewWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6555,7 +6555,7 @@ func callbackQPrintPreviewWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer)
 
 func (ptr *QPrintPreviewWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPrintPreviewWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6571,7 +6571,7 @@ func callbackQPrintPreviewWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.c
 
 func (ptr *QPrintPreviewWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QPrintPreviewWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -7351,7 +7351,7 @@ func callbackQPrintPreviewWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QPrintPreviewWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QPrintPreviewWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7414,7 +7414,7 @@ func callbackQPrintPreviewWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QPrintPreviewWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPrintPreviewWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPrintPreviewWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7693,7 +7693,7 @@ func NewQPrinter2(printer QPrinterInfo_ITF, mode QPrinter__PrinterMode) *QPrinte
 
 func (ptr *QPrinter) Abort() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_Abort(ptr.Pointer()) != 0
+		return int8(C.QPrinter_Abort(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7730,14 +7730,14 @@ func (ptr *QPrinter) DisconnectNewPage() {
 
 func (ptr *QPrinter) NewPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_NewPage(ptr.Pointer()) != 0
+		return int8(C.QPrinter_NewPage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinter) NewPageDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_NewPageDefault(ptr.Pointer()) != 0
+		return int8(C.QPrinter_NewPageDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8121,35 +8121,35 @@ func (ptr *QPrinter) PrinterSelectionOption() string {
 
 func (ptr *QPrinter) CollateCopies() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_CollateCopies(ptr.Pointer()) != 0
+		return int8(C.QPrinter_CollateCopies(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinter) FontEmbeddingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_FontEmbeddingEnabled(ptr.Pointer()) != 0
+		return int8(C.QPrinter_FontEmbeddingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinter) FullPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_FullPage(ptr.Pointer()) != 0
+		return int8(C.QPrinter_FullPage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinter) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_IsValid(ptr.Pointer()) != 0
+		return int8(C.QPrinter_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinter) SupportsMultipleCopies() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinter_SupportsMultipleCopies(ptr.Pointer()) != 0
+		return int8(C.QPrinter_SupportsMultipleCopies(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8493,28 +8493,28 @@ func (ptr *QPrinterInfo) PrinterName() string {
 
 func (ptr *QPrinterInfo) IsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinterInfo_IsDefault(ptr.Pointer()) != 0
+		return int8(C.QPrinterInfo_IsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinterInfo) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinterInfo_IsNull(ptr.Pointer()) != 0
+		return int8(C.QPrinterInfo_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinterInfo) IsRemote() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinterInfo_IsRemote(ptr.Pointer()) != 0
+		return int8(C.QPrinterInfo_IsRemote(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPrinterInfo) SupportsCustomPageSizes() bool {
 	if ptr.Pointer() != nil {
-		return C.QPrinterInfo_SupportsCustomPageSizes(ptr.Pointer()) != 0
+		return int8(C.QPrinterInfo_SupportsCustomPageSizes(ptr.Pointer())) != 0
 	}
 	return false
 }

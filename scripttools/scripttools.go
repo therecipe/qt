@@ -379,7 +379,7 @@ func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerW
 
 func (ptr *QScriptEngineDebugger) AutoShowStandardWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_AutoShowStandardWindow(ptr.Pointer()) != 0
+		return int8(C.QScriptEngineDebugger_AutoShowStandardWindow(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -514,7 +514,7 @@ func callbackQScriptEngineDebugger_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QScriptEngineDebugger) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScriptEngineDebugger_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -530,7 +530,7 @@ func callbackQScriptEngineDebugger_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QScriptEngineDebugger) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineDebugger_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScriptEngineDebugger_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

@@ -7,10 +7,8 @@
 #include "_cgo_export.h"
 
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QEvent>
 #include <QExtensionFactory>
@@ -26,7 +24,6 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
@@ -45,8 +42,6 @@
 #include <QScxmlStaticScxmlServiceFactory>
 #include <QScxmlTableData>
 #include <QString>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QVector>

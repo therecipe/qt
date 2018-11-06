@@ -31,7 +31,6 @@
 #include <QButtonGroup>
 #include <QByteArray>
 #include <QCalendarWidget>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QCheckBox>
 #include <QChildEvent>
@@ -46,7 +45,6 @@
 #include <QCompleter>
 #include <QContextMenuEvent>
 #include <QCursor>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDataStream>
 #include <QDataWidgetMapper>
@@ -62,7 +60,6 @@
 #include <QDirModel>
 #include <QDockWidget>
 #include <QDoubleSpinBox>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -71,7 +68,6 @@
 #include <QEvent>
 #include <QExtensionFactory>
 #include <QExtensionManager>
-#include <QFile>
 #include <QFileDialog>
 #include <QFileIconProvider>
 #include <QFileInfo>
@@ -138,10 +134,8 @@
 #include <QIcon>
 #include <QImage>
 #include <QInputDialog>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QItemDelegate>
-#include <QItemEditorCreator>
 #include <QItemEditorCreatorBase>
 #include <QItemEditorFactory>
 #include <QItemSelection>
@@ -238,7 +232,6 @@
 #include <QSplashScreen>
 #include <QSplitter>
 #include <QSplitterHandle>
-#include <QStack>
 #include <QStackedLayout>
 #include <QStackedWidget>
 #include <QState>
@@ -276,7 +269,6 @@
 #include <QStylePainter>
 #include <QStylePlugin>
 #include <QStyledItemDelegate>
-#include <QSurface>
 #include <QSurfaceFormat>
 #include <QSwipeGesture>
 #include <QSystemTrayIcon>
@@ -303,7 +295,6 @@
 #include <QTime>
 #include <QTimeEdit>
 #include <QTimeLine>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QToolBar>
 #include <QToolBox>

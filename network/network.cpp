@@ -10,13 +10,10 @@
 #include <QAbstractSocket>
 #include <QAuthenticator>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCryptographicHash>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDate>
 #include <QDateTime>
 #include <QDeadlineTimer>
 #include <QDnsDomainNameRecord>
@@ -64,7 +61,6 @@
 #include <QNetworkSession>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
@@ -83,8 +79,6 @@
 #include <QString>
 #include <QTcpServer>
 #include <QTcpSocket>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUdpSocket>
 #include <QUrl>

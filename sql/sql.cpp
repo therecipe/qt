@@ -10,10 +10,8 @@
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QEvent>
 #include <QExtensionFactory>
@@ -32,7 +30,6 @@
 #include <QModelIndex>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPainter>
 #include <QPdfWriter>
@@ -44,7 +41,6 @@
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
-#include <QSqlDriverCreator>
 #include <QSqlDriverCreatorBase>
 #include <QSqlDriverPlugin>
 #include <QSqlError>
@@ -59,11 +55,7 @@
 #include <QSqlResult>
 #include <QSqlTableModel>
 #include <QString>
-#include <QStyle>
-#include <QStyleOption>
 #include <QStyleOptionViewItem>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QVector>

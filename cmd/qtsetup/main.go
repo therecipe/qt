@@ -51,7 +51,7 @@ func main() {
 	flag.BoolVar(&vagrant, "vagrant", false, "run command inside vagrant vm")
 
 	var dynamic bool
-	if runtime.GOOS == "darwin" {
+	if runtime.GOOS != "windows" {
 		flag.BoolVar(&dynamic, "dynamic", false, "create and use semi-dynamic libraries during the generation and installation process (experimental; no real replacement for dynamic linking)")
 	}
 

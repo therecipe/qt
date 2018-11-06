@@ -509,7 +509,7 @@ func callbackQGraphicsSvgItem_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.cha
 
 func (ptr *QGraphicsSvgItem) EventDefault(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QGraphicsSvgItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
@@ -612,7 +612,7 @@ func callbackQGraphicsSvgItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QGraphicsSvgItem) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsSvgItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -754,7 +754,7 @@ func callbackQGraphicsSvgItem_SceneEvent(ptr unsafe.Pointer, event unsafe.Pointe
 
 func (ptr *QGraphicsSvgItem) SceneEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsSvgItem_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -770,7 +770,7 @@ func callbackQGraphicsSvgItem_SceneEventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QGraphicsSvgItem) SceneEventFilterDefault(watched widgets.QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsSvgItem_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1125,7 +1125,7 @@ func callbackQGraphicsSvgItem_CollidesWithItem(ptr unsafe.Pointer, other unsafe.
 
 func (ptr *QGraphicsSvgItem) CollidesWithItemDefault(other widgets.QGraphicsItem_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode)) != 0
+		return int8(C.QGraphicsSvgItem_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -1141,7 +1141,7 @@ func callbackQGraphicsSvgItem_CollidesWithPath(ptr unsafe.Pointer, path unsafe.P
 
 func (ptr *QGraphicsSvgItem) CollidesWithPathDefault(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)) != 0
+		return int8(C.QGraphicsSvgItem_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -1157,7 +1157,7 @@ func callbackQGraphicsSvgItem_Contains(ptr unsafe.Pointer, point unsafe.Pointer)
 
 func (ptr *QGraphicsSvgItem) ContainsDefault(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QGraphicsSvgItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
@@ -1173,7 +1173,7 @@ func callbackQGraphicsSvgItem_IsObscuredBy(ptr unsafe.Pointer, item unsafe.Point
 
 func (ptr *QGraphicsSvgItem) IsObscuredByDefault(item widgets.QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSvgItem_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item)) != 0
+		return int8(C.QGraphicsSvgItem_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item))) != 0
 	}
 	return false
 }
@@ -1602,14 +1602,14 @@ func (ptr *QSvgRenderer) DisconnectLoad3() {
 
 func (ptr *QSvgRenderer) Load3(contents core.QXmlStreamReader_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load3(ptr.Pointer(), core.PointerFromQXmlStreamReader(contents)) != 0
+		return int8(C.QSvgRenderer_Load3(ptr.Pointer(), core.PointerFromQXmlStreamReader(contents))) != 0
 	}
 	return false
 }
 
 func (ptr *QSvgRenderer) Load3Default(contents core.QXmlStreamReader_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load3Default(ptr.Pointer(), core.PointerFromQXmlStreamReader(contents)) != 0
+		return int8(C.QSvgRenderer_Load3Default(ptr.Pointer(), core.PointerFromQXmlStreamReader(contents))) != 0
 	}
 	return false
 }
@@ -1646,14 +1646,14 @@ func (ptr *QSvgRenderer) DisconnectLoad2() {
 
 func (ptr *QSvgRenderer) Load2(contents core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents)) != 0
+		return int8(C.QSvgRenderer_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents))) != 0
 	}
 	return false
 }
 
 func (ptr *QSvgRenderer) Load2Default(contents core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load2Default(ptr.Pointer(), core.PointerFromQByteArray(contents)) != 0
+		return int8(C.QSvgRenderer_Load2Default(ptr.Pointer(), core.PointerFromQByteArray(contents))) != 0
 	}
 	return false
 }
@@ -1695,7 +1695,7 @@ func (ptr *QSvgRenderer) Load(filename string) bool {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		return C.QSvgRenderer_Load(ptr.Pointer(), C.struct_QtSvg_PackedString{data: filenameC, len: C.longlong(len(filename))}) != 0
+		return int8(C.QSvgRenderer_Load(ptr.Pointer(), C.struct_QtSvg_PackedString{data: filenameC, len: C.longlong(len(filename))})) != 0
 	}
 	return false
 }
@@ -1707,7 +1707,7 @@ func (ptr *QSvgRenderer) LoadDefault(filename string) bool {
 			filenameC = C.CString(filename)
 			defer C.free(unsafe.Pointer(filenameC))
 		}
-		return C.QSvgRenderer_LoadDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{data: filenameC, len: C.longlong(len(filename))}) != 0
+		return int8(C.QSvgRenderer_LoadDefault(ptr.Pointer(), C.struct_QtSvg_PackedString{data: filenameC, len: C.longlong(len(filename))})) != 0
 	}
 	return false
 }
@@ -2008,7 +2008,7 @@ func (ptr *QSvgRenderer) DefaultSize() *core.QSize {
 
 func (ptr *QSvgRenderer) Animated() bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Animated(ptr.Pointer()) != 0
+		return int8(C.QSvgRenderer_Animated(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2020,14 +2020,14 @@ func (ptr *QSvgRenderer) ElementExists(id string) bool {
 			idC = C.CString(id)
 			defer C.free(unsafe.Pointer(idC))
 		}
-		return C.QSvgRenderer_ElementExists(ptr.Pointer(), C.struct_QtSvg_PackedString{data: idC, len: C.longlong(len(id))}) != 0
+		return int8(C.QSvgRenderer_ElementExists(ptr.Pointer(), C.struct_QtSvg_PackedString{data: idC, len: C.longlong(len(id))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSvgRenderer) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSvgRenderer_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2169,7 +2169,7 @@ func callbackQSvgRenderer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSvgRenderer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSvgRenderer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2185,7 +2185,7 @@ func callbackQSvgRenderer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QSvgRenderer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSvgRenderer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2790,7 +2790,7 @@ func callbackQSvgWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSvgWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QSvgWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2806,7 +2806,7 @@ func callbackQSvgWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
 
 func (ptr *QSvgWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSvgWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2822,7 +2822,7 @@ func callbackQSvgWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.ch
 
 func (ptr *QSvgWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QSvgWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -3584,7 +3584,7 @@ func callbackQSvgWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSvgWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QSvgWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3647,7 +3647,7 @@ func callbackQSvgWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QSvgWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSvgWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

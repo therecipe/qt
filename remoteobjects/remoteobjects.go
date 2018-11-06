@@ -452,7 +452,7 @@ func callbackQRemoteObjectAbstractPersistedStore_Event(ptr unsafe.Pointer, e uns
 
 func (ptr *QRemoteObjectAbstractPersistedStore) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectAbstractPersistedStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QRemoteObjectAbstractPersistedStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -468,7 +468,7 @@ func callbackQRemoteObjectAbstractPersistedStore_EventFilter(ptr unsafe.Pointer,
 
 func (ptr *QRemoteObjectAbstractPersistedStore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectAbstractPersistedStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QRemoteObjectAbstractPersistedStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -760,14 +760,14 @@ func (ptr *QRemoteObjectHost) DisconnectSetHostUrl() {
 
 func (ptr *QRemoteObjectHost) SetHostUrl(hostAddress core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress)) != 0
+		return int8(C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress))) != 0
 	}
 	return false
 }
 
 func (ptr *QRemoteObjectHost) SetHostUrlDefault(hostAddress core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress)) != 0
+		return int8(C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress))) != 0
 	}
 	return false
 }
@@ -906,7 +906,7 @@ func NewQRemoteObjectHostBaseFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectHo
 }
 func (ptr *QRemoteObjectHostBase) DisableRemoting(remoteObject core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectHostBase_DisableRemoting(ptr.Pointer(), core.PointerFromQObject(remoteObject)) != 0
+		return int8(C.QRemoteObjectHostBase_DisableRemoting(ptr.Pointer(), core.PointerFromQObject(remoteObject))) != 0
 	}
 	return false
 }
@@ -918,13 +918,13 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting3(model core.QAbstractItemModel_
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QRemoteObjectHostBase_EnableRemoting3(ptr.Pointer(), core.PointerFromQAbstractItemModel(model), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}, func() unsafe.Pointer {
+		return int8(C.QRemoteObjectHostBase_EnableRemoting3(ptr.Pointer(), core.PointerFromQAbstractItemModel(model), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}, func() unsafe.Pointer {
 			tmpList := NewQRemoteObjectHostBaseFromPointer(NewQRemoteObjectHostBaseFromPointer(nil).__enableRemoting_roles_newList3())
 			for _, v := range roles {
 				tmpList.__enableRemoting_roles_setList3(v)
 			}
 			return tmpList.Pointer()
-		}(), core.PointerFromQItemSelectionModel(selectionModel)) != 0
+		}(), core.PointerFromQItemSelectionModel(selectionModel))) != 0
 	}
 	return false
 }
@@ -936,7 +936,7 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting2(object core.QObject_ITF, name 
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QRemoteObjectHostBase_EnableRemoting2(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QRemoteObjectHostBase_EnableRemoting2(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1105,7 +1105,7 @@ func (ptr *QRemoteObjectNode) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QRemoteObjectNode) ConnectToNode(address core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_ConnectToNode(ptr.Pointer(), core.PointerFromQUrl(address)) != 0
+		return int8(C.QRemoteObjectNode_ConnectToNode(ptr.Pointer(), core.PointerFromQUrl(address))) != 0
 	}
 	return false
 }
@@ -1142,21 +1142,21 @@ func (ptr *QRemoteObjectNode) DisconnectSetRegistryUrl() {
 
 func (ptr *QRemoteObjectNode) SetRegistryUrl(registryAddress core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_SetRegistryUrl(ptr.Pointer(), core.PointerFromQUrl(registryAddress)) != 0
+		return int8(C.QRemoteObjectNode_SetRegistryUrl(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
 	}
 	return false
 }
 
 func (ptr *QRemoteObjectNode) SetRegistryUrlDefault(registryAddress core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_SetRegistryUrlDefault(ptr.Pointer(), core.PointerFromQUrl(registryAddress)) != 0
+		return int8(C.QRemoteObjectNode_SetRegistryUrlDefault(ptr.Pointer(), core.PointerFromQUrl(registryAddress))) != 0
 	}
 	return false
 }
 
 func (ptr *QRemoteObjectNode) WaitForRegistry(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_WaitForRegistry(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QRemoteObjectNode_WaitForRegistry(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -1606,7 +1606,7 @@ func callbackQRemoteObjectNode_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QRemoteObjectNode) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QRemoteObjectNode_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1622,7 +1622,7 @@ func callbackQRemoteObjectNode_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QRemoteObjectNode) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectNode_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QRemoteObjectNode_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2068,7 +2068,7 @@ func (ptr *QRemoteObjectReplica) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QRemoteObjectReplica) WaitForSource(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectReplica_WaitForSource(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QRemoteObjectReplica_WaitForSource(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -2213,14 +2213,14 @@ func (ptr *QRemoteObjectReplica) State() QRemoteObjectReplica__State {
 
 func (ptr *QRemoteObjectReplica) IsInitialized() bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectReplica_IsInitialized(ptr.Pointer()) != 0
+		return int8(C.QRemoteObjectReplica_IsInitialized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRemoteObjectReplica) IsReplicaValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectReplica_IsReplicaValid(ptr.Pointer()) != 0
+		return int8(C.QRemoteObjectReplica_IsReplicaValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2450,7 +2450,7 @@ func callbackQRemoteObjectReplica_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QRemoteObjectReplica) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectReplica_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QRemoteObjectReplica_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2466,7 +2466,7 @@ func callbackQRemoteObjectReplica_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QRemoteObjectReplica) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRemoteObjectReplica_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QRemoteObjectReplica_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

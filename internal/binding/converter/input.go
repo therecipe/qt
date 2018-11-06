@@ -11,7 +11,7 @@ import (
 
 func GoInput(name, value string, f *parser.Function, p string) string {
 	if parser.UseJs() {
-		return GoInputJS(name, value, f)
+		return GoInputJS(name, value, f, p)
 	}
 
 	var vOld = value
@@ -199,7 +199,10 @@ func CppInput(name, value string, f *parser.Function) string {
 
 	if (f.SignalMode == parser.CALLBACK || strings.HasPrefix(name, "callback") || strings.HasPrefix(name, "emscripten::val::global")) && (parser.CleanValue(value) == "QString" || parser.CleanValue(value) == "QStringList") {
 		if parser.UseJs() {
-			return fmt.Sprintf("({ std::string tempVal = %v[\"dataP\"].as<std::string>(); %v ret = %v; ret; })", name, parser.CleanValue(value), cppInput("tempVal", value, f))
+			if parser.UseWasm() {
+				return fmt.Sprintf("({ emscripten::val tempVal = %v; %v ret = %v; emscripten::val::global(\"Module\").call<void>(\"_callbackReleaseTypedArray\", tempVal[\"data_ptr\"].as<uintptr_t>()); ret; })", name, parser.CleanValue(value), cppInput("tempVal", value, f))
+			}
+			return fmt.Sprintf("({ emscripten::val tempVal = %v; %v ret = %v; ret; })", name, parser.CleanValue(value), cppInput("tempVal", value, f))
 		}
 		return fmt.Sprintf("({ %v_PackedString tempVal = %v; %v ret = %v; free(tempVal.data); ret; })", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, parser.CleanValue(value), cppInput("tempVal", value, f))
 	}
@@ -231,11 +234,11 @@ func cppInput(name, value string, f *parser.Function) string {
 			if parser.UseJs() {
 				if strings.Contains(vOld, "*") {
 					if strings.Contains(vOld, "const") {
-						return fmt.Sprintf("QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData()", name)
+						return fmt.Sprintf("QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData()", name)
 					}
-					return fmt.Sprintf("const_cast<char*>(QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData())", name)
+					return fmt.Sprintf("const_cast<char*>(QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData())", name)
 				}
-				return fmt.Sprintf("*const_cast<char*>(QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData())", name)
+				return fmt.Sprintf("*const_cast<char*>(QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData())", name)
 			}
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
@@ -252,11 +255,11 @@ func cppInput(name, value string, f *parser.Function) string {
 			if parser.UseJs() {
 				if strings.Contains(vOld, "*") {
 					if strings.Contains(vOld, "const") {
-						return fmt.Sprintf("const_cast<const %v*>(static_cast<%v*>(static_cast<void*>(const_cast<char*>(QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData()))))", value, value, name)
+						return fmt.Sprintf("const_cast<const %v*>(static_cast<%v*>(static_cast<void*>(const_cast<char*>(QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData()))))", value, value, name)
 					}
-					return fmt.Sprintf("static_cast<%v*>(static_cast<void*>(const_cast<char*>(QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData())))", value, name)
+					return fmt.Sprintf("static_cast<%v*>(static_cast<void*>(const_cast<char*>(QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData())))", value, name)
 				}
-				return fmt.Sprintf("*static_cast<%v*>(static_cast<void*>(const_cast<char*>(QString::fromStdString(%v[\"dataP\"].as<std::string>()).toUtf8().constData())))", value, name)
+				return fmt.Sprintf("*static_cast<%v*>(static_cast<void*>(const_cast<char*>(QByteArray::fromStdString(%v[\"data\"].as<std::string>()).constData())))", value, name)
 			}
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
@@ -271,10 +274,7 @@ func cppInput(name, value string, f *parser.Function) string {
 		{
 			if strings.Contains(vOld, "*") {
 				if parser.UseJs() {
-					if name == "tempVal" {
-						return fmt.Sprintf("new QString(QString::fromStdString(%[1]v))", name)
-					}
-					return fmt.Sprintf("new QString(QString::fromStdString(%v[\"dataP\"].as<std::string>()))", name)
+					return fmt.Sprintf("new QString(QString::fromStdString(%v[\"data\"].as<std::string>()))", name)
 				}
 				return fmt.Sprintf("new QString(QString::fromUtf8(%[1]v.data, %[1]v.len))", name)
 			}
@@ -284,10 +284,7 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 
 			if parser.UseJs() {
-				if name == "tempVal" {
-					return fmt.Sprintf("QString::fromStdString(%[1]v)", name)
-				}
-				return fmt.Sprintf("QString::fromStdString(%v[\"dataP\"].as<std::string>())", name)
+				return fmt.Sprintf("QString::fromStdString(%v[\"data\"].as<std::string>())", name)
 			}
 			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len)", name)
 		}
@@ -303,10 +300,7 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 
 			if parser.UseJs() {
-				if name == "tempVal" {
-					return fmt.Sprintf("QString::fromStdString(%[1]v).split(\"|\", QString::SkipEmptyParts)", name)
-				}
-				return fmt.Sprintf("QString::fromStdString(%v[\"dataP\"].as<std::string>()).split(\"|\", QString::SkipEmptyParts)", name)
+				return fmt.Sprintf("QString::fromStdString(%v[\"data\"].as<std::string>()).split(\"|\", QString::SkipEmptyParts)", name)
 			}
 			return fmt.Sprintf("QString::fromUtf8(%[1]v.data, %[1]v.len).split(\"|\", QString::SkipEmptyParts)", name)
 		}
@@ -465,7 +459,7 @@ func cppInput(name, value string, f *parser.Function) string {
 	return f.Access
 }
 
-func GoInputJS(name, value string, f *parser.Function) string {
+func GoInputJS(name, value string, f *parser.Function, p string) string {
 	var vOld = value
 
 	name = parser.CleanName(name, value)
@@ -474,11 +468,15 @@ func GoInputJS(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
+			if strings.Contains(p, "error") {
+				name = fmt.Sprintf("func() string {\ntmp := %v\nif tmp != nil { return tmp.Error() }\nreturn \"\"\n}()", name)
+			}
+
 			if strings.Contains(vOld, "**") {
 				if parser.UseWasm() {
-					return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+					return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 				}
-				return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 			}
 
 			if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {
@@ -486,17 +484,17 @@ func GoInputJS(name, value string, f *parser.Function) string {
 			}
 
 			if parser.UseWasm() {
-				return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", %v); return tmp }()", name)
+				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(%v))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
-			return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", %v); return tmp }()", name)
+			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(%v))\nreturn tmp\n}()", name)
 		}
 
 	case "QStringList":
 		{
 			if parser.UseWasm() {
-				return fmt.Sprintf("func() js.Value { tmp := js.ValueOf(make(map[string]interface{})); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
-			return fmt.Sprintf("func() *js.Object { tmp := new(js.Object); tmp.Set(\"dataP\", strings.Join(%v, \"|\")); return tmp }()", name)
+			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 		}
 
 	case "void", "GLvoid", "":

@@ -312,7 +312,7 @@ func (c *Class) IsSupported() bool {
 		}
 	}
 
-	if strings.HasPrefix(c.Name, "QOpenGL") && (os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" || UseJs()) {
+	if strings.HasPrefix(c.Name, "QOpenGL") && (os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" || UseJs() || (strings.HasPrefix(State.Target, "android") && utils.QT_FAT())) { //TODO: block indiv classes for fat android build instead
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}

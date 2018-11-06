@@ -1200,119 +1200,119 @@ func (ptr *QGamepad) Name() string {
 
 func (ptr *QGamepad) ButtonA() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonA(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonA(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonB() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonB(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonB(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonCenter() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonCenter(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonCenter(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonDown() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonDown(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonDown(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonGuide() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonGuide(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonGuide(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonL1() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonL1(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonL1(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonL3() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonL3(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonL3(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonLeft() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonLeft(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonLeft(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonR1() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonR1(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonR1(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonR3() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonR3(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonR3(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonRight() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonRight(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonRight(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonSelect() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonSelect(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonSelect(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonStart() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonStart(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonStart(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonUp() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonUp(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonUp(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonX() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonX(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonX(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) ButtonY() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_ButtonY(ptr.Pointer()) != 0
+		return int8(C.QGamepad_ButtonY(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepad) IsConnected() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_IsConnected(ptr.Pointer()) != 0
+		return int8(C.QGamepad_IsConnected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1496,7 +1496,7 @@ func callbackQGamepad_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QGamepad) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGamepad_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1512,7 +1512,7 @@ func callbackQGamepad_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, ev
 
 func (ptr *QGamepad) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepad_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGamepad_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3398,7 +3398,7 @@ func (ptr *QGamepadKeyNavigation) UpKey() core.Qt__Key {
 
 func (ptr *QGamepadKeyNavigation) Active() bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadKeyNavigation_Active(ptr.Pointer()) != 0
+		return int8(C.QGamepadKeyNavigation_Active(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3533,7 +3533,7 @@ func callbackQGamepadKeyNavigation_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QGamepadKeyNavigation) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadKeyNavigation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGamepadKeyNavigation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3549,7 +3549,7 @@ func callbackQGamepadKeyNavigation_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QGamepadKeyNavigation) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadKeyNavigation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGamepadKeyNavigation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3843,14 +3843,14 @@ func (ptr *QGamepadManager) DisconnectConfigureAxis() {
 
 func (ptr *QGamepadManager) ConfigureAxis(deviceId int, axis QGamepadManager__GamepadAxis) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_ConfigureAxis(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis)) != 0
+		return int8(C.QGamepadManager_ConfigureAxis(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis))) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepadManager) ConfigureAxisDefault(deviceId int, axis QGamepadManager__GamepadAxis) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_ConfigureAxisDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis)) != 0
+		return int8(C.QGamepadManager_ConfigureAxisDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(axis))) != 0
 	}
 	return false
 }
@@ -3887,14 +3887,14 @@ func (ptr *QGamepadManager) DisconnectConfigureButton() {
 
 func (ptr *QGamepadManager) ConfigureButton(deviceId int, button QGamepadManager__GamepadButton) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_ConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button)) != 0
+		return int8(C.QGamepadManager_ConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepadManager) ConfigureButtonDefault(deviceId int, button QGamepadManager__GamepadButton) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_ConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button)) != 0
+		return int8(C.QGamepadManager_ConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
 	}
 	return false
 }
@@ -3931,14 +3931,14 @@ func (ptr *QGamepadManager) DisconnectSetCancelConfigureButton() {
 
 func (ptr *QGamepadManager) SetCancelConfigureButton(deviceId int, button QGamepadManager__GamepadButton) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_SetCancelConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button)) != 0
+		return int8(C.QGamepadManager_SetCancelConfigureButton(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepadManager) SetCancelConfigureButtonDefault(deviceId int, button QGamepadManager__GamepadButton) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_SetCancelConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button)) != 0
+		return int8(C.QGamepadManager_SetCancelConfigureButtonDefault(ptr.Pointer(), C.int(int32(deviceId)), C.longlong(button))) != 0
 	}
 	return false
 }
@@ -4471,21 +4471,21 @@ func (ptr *QGamepadManager) DisconnectIsConfigurationNeeded() {
 
 func (ptr *QGamepadManager) IsConfigurationNeeded(deviceId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_IsConfigurationNeeded(ptr.Pointer(), C.int(int32(deviceId))) != 0
+		return int8(C.QGamepadManager_IsConfigurationNeeded(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepadManager) IsConfigurationNeededDefault(deviceId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_IsConfigurationNeededDefault(ptr.Pointer(), C.int(int32(deviceId))) != 0
+		return int8(C.QGamepadManager_IsConfigurationNeededDefault(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
 	return false
 }
 
 func (ptr *QGamepadManager) IsGamepadConnected(deviceId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_IsGamepadConnected(ptr.Pointer(), C.int(int32(deviceId))) != 0
+		return int8(C.QGamepadManager_IsGamepadConnected(ptr.Pointer(), C.int(int32(deviceId)))) != 0
 	}
 	return false
 }
@@ -4651,7 +4651,7 @@ func callbackQGamepadManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QGamepadManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGamepadManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4667,7 +4667,7 @@ func callbackQGamepadManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QGamepadManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGamepadManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGamepadManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

@@ -251,7 +251,7 @@ func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 
 func (ptr *QSignalSpy) Wait(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalSpy_Wait(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QSignalSpy_Wait(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -267,7 +267,7 @@ func (ptr *QSignalSpy) Signal() *core.QByteArray {
 
 func (ptr *QSignalSpy) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalSpy_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSignalSpy_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -420,7 +420,7 @@ func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalSpy_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSignalSpy_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -436,7 +436,7 @@ func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalSpy_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSignalSpy_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

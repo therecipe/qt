@@ -5,6 +5,7 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
+	"math"
 	"math/rand"
 	"sort"
 	"strings"
@@ -409,7 +410,7 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 		deferredFunctions = nil
 
 		rand.Seed(time.Now().UTC().UnixNano())
-		fmt.Fprintf(bb, "EMSCRIPTEN_BINDINGS(r%v) {\n", rand.Intn(10000000))
+		fmt.Fprintf(bb, "EMSCRIPTEN_BINDINGS(r%v) {\n", rand.Intn(math.MaxInt32)) //TODO: use deterministic hash instead
 
 		sort.Stable(sort.StringSlice(exportedFunctions))
 
@@ -555,7 +556,15 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 	var classes = make([]string, 0)
 	for _, class := range parser.State.ClassMap {
-		if strings.Contains(string(input), class.Name) && class.Module != parser.MOC {
+		if (strings.Contains(string(input), class.Name+";") ||
+			strings.Contains(string(input), class.Name+":") ||
+			strings.Contains(string(input), class.Name+"*") ||
+			strings.Contains(string(input), class.Name+" ") ||
+			strings.Contains(string(input), class.Name+"<") ||
+			strings.Contains(string(input), class.Name+">") ||
+			strings.Contains(string(input), class.Name+"(") ||
+			strings.Contains(string(input), class.Name+")") ||
+			strings.Contains(string(input), class.Name+"_")) && class.Module != parser.MOC {
 			classes = append(classes, class.Name)
 		}
 	}

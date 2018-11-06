@@ -232,7 +232,7 @@ func (ptr *QAndroidBinder) Handle() *QAndroidJniObject {
 
 func (ptr *QAndroidBinder) Transact(code int, data QAndroidParcel_ITF, reply QAndroidParcel_ITF, flags QAndroidBinder__CallType) bool {
 	if ptr.Pointer() != nil {
-		return C.QAndroidBinder_Transact(ptr.Pointer(), C.int(int32(code)), PointerFromQAndroidParcel(data), PointerFromQAndroidParcel(reply), C.longlong(flags)) != 0
+		return int8(C.QAndroidBinder_Transact(ptr.Pointer(), C.int(int32(code)), PointerFromQAndroidParcel(data), PointerFromQAndroidParcel(reply), C.longlong(flags))) != 0
 	}
 	return false
 }
@@ -465,11 +465,11 @@ func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 }
 
 func QAndroidJniEnvironment_ExceptionCheck() bool {
-	return C.QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionCheck() != 0
+	return int8(C.QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionCheck()) != 0
 }
 
 func (ptr *QAndroidJniEnvironment) ExceptionCheck() bool {
-	return C.QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionCheck() != 0
+	return int8(C.QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionCheck()) != 0
 }
 
 func QAndroidJniEnvironment_ExceptionDescribe() {
@@ -2536,7 +2536,7 @@ func QAndroidJniObject_IsClassAvailable(className string) bool {
 		classNameC = C.CString(className)
 		defer C.free(unsafe.Pointer(classNameC))
 	}
-	return C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC) != 0
+	return int8(C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC)) != 0
 }
 
 func (ptr *QAndroidJniObject) IsClassAvailable(className string) bool {
@@ -2545,7 +2545,7 @@ func (ptr *QAndroidJniObject) IsClassAvailable(className string) bool {
 		classNameC = C.CString(className)
 		defer C.free(unsafe.Pointer(classNameC))
 	}
-	return C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC) != 0
+	return int8(C.QAndroidJniObject_QAndroidJniObject_IsClassAvailable(classNameC)) != 0
 }
 
 func (ptr *QAndroidJniObject) SetField(fieldName string, value interface{}) {
@@ -3680,7 +3680,7 @@ func (ptr *QAndroidJniObject) Object() unsafe.Pointer {
 
 func (ptr *QAndroidJniObject) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QAndroidJniObject_IsValid(ptr.Pointer()) != 0
+		return int8(C.QAndroidJniObject_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4264,11 +4264,11 @@ func (ptr *QtAndroid) AndroidService() *QAndroidJniObject {
 }
 
 func QtAndroid_BindService(serviceIntent QAndroidIntent_ITF, serviceConnection QAndroidServiceConnection_ITF, flags QtAndroid__BindFlag) bool {
-	return C.QtAndroid_QtAndroid_BindService(PointerFromQAndroidIntent(serviceIntent), PointerFromQAndroidServiceConnection(serviceConnection), C.longlong(flags)) != 0
+	return int8(C.QtAndroid_QtAndroid_BindService(PointerFromQAndroidIntent(serviceIntent), PointerFromQAndroidServiceConnection(serviceConnection), C.longlong(flags))) != 0
 }
 
 func (ptr *QtAndroid) BindService(serviceIntent QAndroidIntent_ITF, serviceConnection QAndroidServiceConnection_ITF, flags QtAndroid__BindFlag) bool {
-	return C.QtAndroid_QtAndroid_BindService(PointerFromQAndroidIntent(serviceIntent), PointerFromQAndroidServiceConnection(serviceConnection), C.longlong(flags)) != 0
+	return int8(C.QtAndroid_QtAndroid_BindService(PointerFromQAndroidIntent(serviceIntent), PointerFromQAndroidServiceConnection(serviceConnection), C.longlong(flags))) != 0
 }
 
 func QtAndroid_ShouldShowRequestPermissionRationale(permission string) bool {
@@ -4277,7 +4277,7 @@ func QtAndroid_ShouldShowRequestPermissionRationale(permission string) bool {
 		permissionC = C.CString(permission)
 		defer C.free(unsafe.Pointer(permissionC))
 	}
-	return C.QtAndroid_QtAndroid_ShouldShowRequestPermissionRationale(C.struct_QtAndroidExtras_PackedString{data: permissionC, len: C.longlong(len(permission))}) != 0
+	return int8(C.QtAndroid_QtAndroid_ShouldShowRequestPermissionRationale(C.struct_QtAndroidExtras_PackedString{data: permissionC, len: C.longlong(len(permission))})) != 0
 }
 
 func (ptr *QtAndroid) ShouldShowRequestPermissionRationale(permission string) bool {
@@ -4286,7 +4286,7 @@ func (ptr *QtAndroid) ShouldShowRequestPermissionRationale(permission string) bo
 		permissionC = C.CString(permission)
 		defer C.free(unsafe.Pointer(permissionC))
 	}
-	return C.QtAndroid_QtAndroid_ShouldShowRequestPermissionRationale(C.struct_QtAndroidExtras_PackedString{data: permissionC, len: C.longlong(len(permission))}) != 0
+	return int8(C.QtAndroid_QtAndroid_ShouldShowRequestPermissionRationale(C.struct_QtAndroidExtras_PackedString{data: permissionC, len: C.longlong(len(permission))})) != 0
 }
 
 func QtAndroid_AndroidSdkVersion() int {

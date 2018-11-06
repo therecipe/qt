@@ -117,7 +117,7 @@ func (ptr *QDomAttr) Value() string {
 
 func (ptr *QDomAttr) Specified() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomAttr_Specified(ptr.Pointer()) != 0
+		return int8(C.QDomAttr_Specified(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -636,7 +636,7 @@ func (ptr *QDomDocument) SetContent7(dev core.QIODevice_ITF, errorMsg string, er
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent7(ptr.Pointer(), core.PointerFromQIODevice(dev), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent7(ptr.Pointer(), core.PointerFromQIODevice(dev), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -648,7 +648,7 @@ func (ptr *QDomDocument) SetContent3(dev core.QIODevice_ITF, namespaceProcessing
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent3(ptr.Pointer(), core.PointerFromQIODevice(dev), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent3(ptr.Pointer(), core.PointerFromQIODevice(dev), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -660,7 +660,7 @@ func (ptr *QDomDocument) SetContent8(source QXmlInputSource_ITF, reader QXmlRead
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent8(ptr.Pointer(), PointerFromQXmlInputSource(source), PointerFromQXmlReader(reader), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent8(ptr.Pointer(), PointerFromQXmlInputSource(source), PointerFromQXmlReader(reader), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -672,7 +672,7 @@ func (ptr *QDomDocument) SetContent4(source QXmlInputSource_ITF, namespaceProces
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent4(ptr.Pointer(), PointerFromQXmlInputSource(source), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent4(ptr.Pointer(), PointerFromQXmlInputSource(source), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -684,7 +684,7 @@ func (ptr *QDomDocument) SetContent5(buffer core.QByteArray_ITF, errorMsg string
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent5(ptr.Pointer(), core.PointerFromQByteArray(buffer), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent5(ptr.Pointer(), core.PointerFromQByteArray(buffer), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -696,7 +696,7 @@ func (ptr *QDomDocument) SetContent(data core.QByteArray_ITF, namespaceProcessin
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -713,7 +713,7 @@ func (ptr *QDomDocument) SetContent6(text string, errorMsg string, errorLine int
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent6(ptr.Pointer(), C.struct_QtXml_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent6(ptr.Pointer(), C.struct_QtXml_PackedString{data: textC, len: C.longlong(len(text))}, C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -730,7 +730,7 @@ func (ptr *QDomDocument) SetContent2(text string, namespaceProcessing bool, erro
 			errorMsgC = C.CString(errorMsg)
 			defer C.free(unsafe.Pointer(errorMsgC))
 		}
-		return C.QDomDocument_SetContent2(ptr.Pointer(), C.struct_QtXml_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn))) != 0
+		return int8(C.QDomDocument_SetContent2(ptr.Pointer(), C.struct_QtXml_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(namespaceProcessing))), C.struct_QtXml_PackedString{data: errorMsgC, len: C.longlong(len(errorMsg))}, C.int(int32(errorLine)), C.int(int32(errorColumn)))) != 0
 	}
 	return false
 }
@@ -1397,7 +1397,7 @@ func (ptr *QDomElement) HasAttribute(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QDomElement_HasAttribute(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QDomElement_HasAttribute(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1414,7 +1414,7 @@ func (ptr *QDomElement) HasAttributeNS(nsURI string, localName string) bool {
 			localNameC = C.CString(localName)
 			defer C.free(unsafe.Pointer(localNameC))
 		}
-		return C.QDomElement_HasAttributeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}) != 0
+		return int8(C.QDomElement_HasAttributeNS(ptr.Pointer(), C.struct_QtXml_PackedString{data: nsURIC, len: C.longlong(len(nsURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))})) != 0
 	}
 	return false
 }
@@ -1671,7 +1671,7 @@ func (ptr *QDomImplementation) InvalidDataPolicy() QDomImplementation__InvalidDa
 
 func (ptr *QDomImplementation) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomImplementation_IsNull(ptr.Pointer()) != 0
+		return int8(C.QDomImplementation_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1704,7 +1704,7 @@ func (ptr *QDomImplementation) HasFeature(feature string, version string) bool {
 			versionC = C.CString(version)
 			defer C.free(unsafe.Pointer(versionC))
 		}
-		return C.QDomImplementation_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: featureC, len: C.longlong(len(feature))}, C.struct_QtXml_PackedString{data: versionC, len: C.longlong(len(version))}) != 0
+		return int8(C.QDomImplementation_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: featureC, len: C.longlong(len(feature))}, C.struct_QtXml_PackedString{data: versionC, len: C.longlong(len(version))})) != 0
 	}
 	return false
 }
@@ -1866,14 +1866,14 @@ func (ptr *QDomNamedNodeMap) Contains(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QDomNamedNodeMap_Contains(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QDomNamedNodeMap_Contains(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNamedNodeMap) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNamedNodeMap_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QDomNamedNodeMap_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2369,105 +2369,105 @@ func (ptr *QDomNode) Prefix() string {
 
 func (ptr *QDomNode) HasAttributes() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_HasAttributes(ptr.Pointer()) != 0
+		return int8(C.QDomNode_HasAttributes(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) HasChildNodes() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_HasChildNodes(ptr.Pointer()) != 0
+		return int8(C.QDomNode_HasChildNodes(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsAttr() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsAttr(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsAttr(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsCDATASection() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsCDATASection(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsCDATASection(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsCharacterData() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsCharacterData(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsCharacterData(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsComment() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsComment(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsComment(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsDocument(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsDocumentFragment() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsDocumentFragment(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsDocumentFragment(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsDocumentType() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsDocumentType(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsDocumentType(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsElement() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsElement(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsElement(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsEntity() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsEntity(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsEntity(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsEntityReference() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsEntityReference(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsEntityReference(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsNotation() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsNotation(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsNotation(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsNull(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsProcessingInstruction() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsProcessingInstruction(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsProcessingInstruction(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2484,14 +2484,14 @@ func (ptr *QDomNode) IsSupported(feature string, version string) bool {
 			versionC = C.CString(version)
 			defer C.free(unsafe.Pointer(versionC))
 		}
-		return C.QDomNode_IsSupported(ptr.Pointer(), C.struct_QtXml_PackedString{data: featureC, len: C.longlong(len(feature))}, C.struct_QtXml_PackedString{data: versionC, len: C.longlong(len(version))}) != 0
+		return int8(C.QDomNode_IsSupported(ptr.Pointer(), C.struct_QtXml_PackedString{data: featureC, len: C.longlong(len(feature))}, C.struct_QtXml_PackedString{data: versionC, len: C.longlong(len(version))})) != 0
 	}
 	return false
 }
 
 func (ptr *QDomNode) IsText() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNode_IsText(ptr.Pointer()) != 0
+		return int8(C.QDomNode_IsText(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2593,7 +2593,7 @@ func (ptr *QDomNodeList) Item(index int) *QDomNode {
 
 func (ptr *QDomNodeList) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QDomNodeList_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QDomNodeList_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3200,7 +3200,7 @@ func (ptr *QXmlContentHandler) Characters(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlContentHandler_Characters(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlContentHandler_Characters(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -3237,7 +3237,7 @@ func (ptr *QXmlContentHandler) DisconnectEndDocument() {
 
 func (ptr *QXmlContentHandler) EndDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlContentHandler_EndDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlContentHandler_EndDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3289,7 +3289,7 @@ func (ptr *QXmlContentHandler) EndElement(namespaceURI string, localName string,
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlContentHandler_EndElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}) != 0
+		return int8(C.QXmlContentHandler_EndElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))})) != 0
 	}
 	return false
 }
@@ -3331,7 +3331,7 @@ func (ptr *QXmlContentHandler) EndPrefixMapping(prefix string) bool {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		return C.QXmlContentHandler_EndPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}) != 0
+		return int8(C.QXmlContentHandler_EndPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))})) != 0
 	}
 	return false
 }
@@ -3373,7 +3373,7 @@ func (ptr *QXmlContentHandler) IgnorableWhitespace(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlContentHandler_IgnorableWhitespace(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlContentHandler_IgnorableWhitespace(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -3420,7 +3420,7 @@ func (ptr *QXmlContentHandler) ProcessingInstruction(target string, data string)
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		return C.QXmlContentHandler_ProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))}) != 0
+		return int8(C.QXmlContentHandler_ProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))})) != 0
 	}
 	return false
 }
@@ -3462,7 +3462,7 @@ func (ptr *QXmlContentHandler) SkippedEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlContentHandler_SkippedEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlContentHandler_SkippedEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -3499,7 +3499,7 @@ func (ptr *QXmlContentHandler) DisconnectStartDocument() {
 
 func (ptr *QXmlContentHandler) StartDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlContentHandler_StartDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlContentHandler_StartDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3551,7 +3551,7 @@ func (ptr *QXmlContentHandler) StartElement(namespaceURI string, localName strin
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlContentHandler_StartElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts)) != 0
+		return int8(C.QXmlContentHandler_StartElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts))) != 0
 	}
 	return false
 }
@@ -3598,7 +3598,7 @@ func (ptr *QXmlContentHandler) StartPrefixMapping(prefix string, uri string) boo
 			uriC = C.CString(uri)
 			defer C.free(unsafe.Pointer(uriC))
 		}
-		return C.QXmlContentHandler_StartPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))}) != 0
+		return int8(C.QXmlContentHandler_StartPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))})) != 0
 	}
 	return false
 }
@@ -3805,7 +3805,7 @@ func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId s
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDTDHandler_NotationDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDTDHandler_NotationDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -3862,7 +3862,7 @@ func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, syst
 			notationNameC = C.CString(notationName)
 			defer C.free(unsafe.Pointer(notationNameC))
 		}
-		return C.QXmlDTDHandler_UnparsedEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))}) != 0
+		return int8(C.QXmlDTDHandler_UnparsedEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))})) != 0
 	}
 	return false
 }
@@ -4044,7 +4044,7 @@ func (ptr *QXmlDeclHandler) AttributeDecl(eName string, aName string, ty string,
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDeclHandler_AttributeDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDeclHandler_AttributeDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -4096,7 +4096,7 @@ func (ptr *QXmlDeclHandler) ExternalEntityDecl(name string, publicId string, sys
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDeclHandler_ExternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDeclHandler_ExternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -4143,7 +4143,7 @@ func (ptr *QXmlDeclHandler) InternalEntityDecl(name string, value string) bool {
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDeclHandler_InternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDeclHandler_InternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -4344,7 +4344,7 @@ func (ptr *QXmlDefaultHandler) AttributeDecl(eName string, aName string, ty stri
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDefaultHandler_AttributeDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDefaultHandler_AttributeDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -4376,7 +4376,7 @@ func (ptr *QXmlDefaultHandler) AttributeDeclDefault(eName string, aName string, 
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDefaultHandler_AttributeDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDefaultHandler_AttributeDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: eNameC, len: C.longlong(len(eName))}, C.struct_QtXml_PackedString{data: aNameC, len: C.longlong(len(aName))}, C.struct_QtXml_PackedString{data: tyC, len: C.longlong(len(ty))}, C.struct_QtXml_PackedString{data: valueDefaultC, len: C.longlong(len(valueDefault))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -4418,7 +4418,7 @@ func (ptr *QXmlDefaultHandler) Characters(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_Characters(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_Characters(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -4430,7 +4430,7 @@ func (ptr *QXmlDefaultHandler) CharactersDefault(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_CharactersDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_CharactersDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -4472,7 +4472,7 @@ func (ptr *QXmlDefaultHandler) Comment(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_Comment(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_Comment(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -4484,7 +4484,7 @@ func (ptr *QXmlDefaultHandler) CommentDefault(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_CommentDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_CommentDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -4521,14 +4521,14 @@ func (ptr *QXmlDefaultHandler) DisconnectEndCDATA() {
 
 func (ptr *QXmlDefaultHandler) EndCDATA() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndCDATA(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndCDATA(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) EndCDATADefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndCDATADefault(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndCDATADefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4565,14 +4565,14 @@ func (ptr *QXmlDefaultHandler) DisconnectEndDTD() {
 
 func (ptr *QXmlDefaultHandler) EndDTD() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndDTD(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndDTD(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) EndDTDDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndDTDDefault(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndDTDDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4609,14 +4609,14 @@ func (ptr *QXmlDefaultHandler) DisconnectEndDocument() {
 
 func (ptr *QXmlDefaultHandler) EndDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) EndDocumentDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_EndDocumentDefault(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_EndDocumentDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4668,7 +4668,7 @@ func (ptr *QXmlDefaultHandler) EndElement(namespaceURI string, localName string,
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlDefaultHandler_EndElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}) != 0
+		return int8(C.QXmlDefaultHandler_EndElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))})) != 0
 	}
 	return false
 }
@@ -4690,7 +4690,7 @@ func (ptr *QXmlDefaultHandler) EndElementDefault(namespaceURI string, localName 
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlDefaultHandler_EndElementDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}) != 0
+		return int8(C.QXmlDefaultHandler_EndElementDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))})) != 0
 	}
 	return false
 }
@@ -4732,7 +4732,7 @@ func (ptr *QXmlDefaultHandler) EndEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_EndEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_EndEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -4744,7 +4744,7 @@ func (ptr *QXmlDefaultHandler) EndEntityDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_EndEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_EndEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -4786,7 +4786,7 @@ func (ptr *QXmlDefaultHandler) EndPrefixMapping(prefix string) bool {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		return C.QXmlDefaultHandler_EndPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}) != 0
+		return int8(C.QXmlDefaultHandler_EndPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))})) != 0
 	}
 	return false
 }
@@ -4798,7 +4798,7 @@ func (ptr *QXmlDefaultHandler) EndPrefixMappingDefault(prefix string) bool {
 			prefixC = C.CString(prefix)
 			defer C.free(unsafe.Pointer(prefixC))
 		}
-		return C.QXmlDefaultHandler_EndPrefixMappingDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}) != 0
+		return int8(C.QXmlDefaultHandler_EndPrefixMappingDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))})) != 0
 	}
 	return false
 }
@@ -4835,14 +4835,14 @@ func (ptr *QXmlDefaultHandler) DisconnectError() {
 
 func (ptr *QXmlDefaultHandler) Error(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) ErrorDefault(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_ErrorDefault(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_ErrorDefault(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -4894,7 +4894,7 @@ func (ptr *QXmlDefaultHandler) ExternalEntityDecl(name string, publicId string, 
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_ExternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_ExternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -4916,7 +4916,7 @@ func (ptr *QXmlDefaultHandler) ExternalEntityDeclDefault(name string, publicId s
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_ExternalEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_ExternalEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -4953,14 +4953,14 @@ func (ptr *QXmlDefaultHandler) DisconnectFatalError() {
 
 func (ptr *QXmlDefaultHandler) FatalError(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) FatalErrorDefault(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_FatalErrorDefault(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_FatalErrorDefault(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -5002,7 +5002,7 @@ func (ptr *QXmlDefaultHandler) IgnorableWhitespace(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_IgnorableWhitespace(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_IgnorableWhitespace(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -5014,7 +5014,7 @@ func (ptr *QXmlDefaultHandler) IgnorableWhitespaceDefault(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlDefaultHandler_IgnorableWhitespaceDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlDefaultHandler_IgnorableWhitespaceDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -5061,7 +5061,7 @@ func (ptr *QXmlDefaultHandler) InternalEntityDecl(name string, value string) boo
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDefaultHandler_InternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDefaultHandler_InternalEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -5078,7 +5078,7 @@ func (ptr *QXmlDefaultHandler) InternalEntityDeclDefault(name string, value stri
 			valueC = C.CString(value)
 			defer C.free(unsafe.Pointer(valueC))
 		}
-		return C.QXmlDefaultHandler_InternalEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))}) != 0
+		return int8(C.QXmlDefaultHandler_InternalEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: valueC, len: C.longlong(len(value))})) != 0
 	}
 	return false
 }
@@ -5130,7 +5130,7 @@ func (ptr *QXmlDefaultHandler) NotationDecl(name string, publicId string, system
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_NotationDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_NotationDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -5152,7 +5152,7 @@ func (ptr *QXmlDefaultHandler) NotationDeclDefault(name string, publicId string,
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_NotationDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_NotationDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -5199,7 +5199,7 @@ func (ptr *QXmlDefaultHandler) ProcessingInstruction(target string, data string)
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		return C.QXmlDefaultHandler_ProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))}) != 0
+		return int8(C.QXmlDefaultHandler_ProcessingInstruction(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))})) != 0
 	}
 	return false
 }
@@ -5216,7 +5216,7 @@ func (ptr *QXmlDefaultHandler) ProcessingInstructionDefault(target string, data 
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		return C.QXmlDefaultHandler_ProcessingInstructionDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))}) != 0
+		return int8(C.QXmlDefaultHandler_ProcessingInstructionDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: targetC, len: C.longlong(len(target))}, C.struct_QtXml_PackedString{data: dataC, len: C.longlong(len(data))})) != 0
 	}
 	return false
 }
@@ -5258,7 +5258,7 @@ func (ptr *QXmlDefaultHandler) SkippedEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_SkippedEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_SkippedEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -5270,7 +5270,7 @@ func (ptr *QXmlDefaultHandler) SkippedEntityDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_SkippedEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_SkippedEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -5307,14 +5307,14 @@ func (ptr *QXmlDefaultHandler) DisconnectStartCDATA() {
 
 func (ptr *QXmlDefaultHandler) StartCDATA() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_StartCDATA(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_StartCDATA(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) StartCDATADefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_StartCDATADefault(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_StartCDATADefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5366,7 +5366,7 @@ func (ptr *QXmlDefaultHandler) StartDTD(name string, publicId string, systemId s
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_StartDTD(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_StartDTD(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -5388,7 +5388,7 @@ func (ptr *QXmlDefaultHandler) StartDTDDefault(name string, publicId string, sys
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlDefaultHandler_StartDTDDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlDefaultHandler_StartDTDDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -5425,14 +5425,14 @@ func (ptr *QXmlDefaultHandler) DisconnectStartDocument() {
 
 func (ptr *QXmlDefaultHandler) StartDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_StartDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_StartDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) StartDocumentDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_StartDocumentDefault(ptr.Pointer()) != 0
+		return int8(C.QXmlDefaultHandler_StartDocumentDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5484,7 +5484,7 @@ func (ptr *QXmlDefaultHandler) StartElement(namespaceURI string, localName strin
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlDefaultHandler_StartElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts)) != 0
+		return int8(C.QXmlDefaultHandler_StartElement(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts))) != 0
 	}
 	return false
 }
@@ -5506,7 +5506,7 @@ func (ptr *QXmlDefaultHandler) StartElementDefault(namespaceURI string, localNam
 			qNameC = C.CString(qName)
 			defer C.free(unsafe.Pointer(qNameC))
 		}
-		return C.QXmlDefaultHandler_StartElementDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts)) != 0
+		return int8(C.QXmlDefaultHandler_StartElementDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: namespaceURIC, len: C.longlong(len(namespaceURI))}, C.struct_QtXml_PackedString{data: localNameC, len: C.longlong(len(localName))}, C.struct_QtXml_PackedString{data: qNameC, len: C.longlong(len(qName))}, PointerFromQXmlAttributes(atts))) != 0
 	}
 	return false
 }
@@ -5548,7 +5548,7 @@ func (ptr *QXmlDefaultHandler) StartEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_StartEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_StartEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -5560,7 +5560,7 @@ func (ptr *QXmlDefaultHandler) StartEntityDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlDefaultHandler_StartEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlDefaultHandler_StartEntityDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -5607,7 +5607,7 @@ func (ptr *QXmlDefaultHandler) StartPrefixMapping(prefix string, uri string) boo
 			uriC = C.CString(uri)
 			defer C.free(unsafe.Pointer(uriC))
 		}
-		return C.QXmlDefaultHandler_StartPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))}) != 0
+		return int8(C.QXmlDefaultHandler_StartPrefixMapping(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))})) != 0
 	}
 	return false
 }
@@ -5624,7 +5624,7 @@ func (ptr *QXmlDefaultHandler) StartPrefixMappingDefault(prefix string, uri stri
 			uriC = C.CString(uri)
 			defer C.free(unsafe.Pointer(uriC))
 		}
-		return C.QXmlDefaultHandler_StartPrefixMappingDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))}) != 0
+		return int8(C.QXmlDefaultHandler_StartPrefixMappingDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtXml_PackedString{data: uriC, len: C.longlong(len(uri))})) != 0
 	}
 	return false
 }
@@ -5681,7 +5681,7 @@ func (ptr *QXmlDefaultHandler) UnparsedEntityDecl(name string, publicId string, 
 			notationNameC = C.CString(notationName)
 			defer C.free(unsafe.Pointer(notationNameC))
 		}
-		return C.QXmlDefaultHandler_UnparsedEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))}) != 0
+		return int8(C.QXmlDefaultHandler_UnparsedEntityDecl(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))})) != 0
 	}
 	return false
 }
@@ -5708,7 +5708,7 @@ func (ptr *QXmlDefaultHandler) UnparsedEntityDeclDefault(name string, publicId s
 			notationNameC = C.CString(notationName)
 			defer C.free(unsafe.Pointer(notationNameC))
 		}
-		return C.QXmlDefaultHandler_UnparsedEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))}) != 0
+		return int8(C.QXmlDefaultHandler_UnparsedEntityDeclDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}, C.struct_QtXml_PackedString{data: notationNameC, len: C.longlong(len(notationName))})) != 0
 	}
 	return false
 }
@@ -5745,14 +5745,14 @@ func (ptr *QXmlDefaultHandler) DisconnectWarning() {
 
 func (ptr *QXmlDefaultHandler) Warning(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlDefaultHandler) WarningDefault(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlDefaultHandler_WarningDefault(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlDefaultHandler_WarningDefault(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -6078,7 +6078,7 @@ func (ptr *QXmlErrorHandler) DisconnectError() {
 
 func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlErrorHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -6115,7 +6115,7 @@ func (ptr *QXmlErrorHandler) DisconnectFatalError() {
 
 func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlErrorHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -6152,7 +6152,7 @@ func (ptr *QXmlErrorHandler) DisconnectWarning() {
 
 func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
+		return int8(C.QXmlErrorHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception))) != 0
 	}
 	return false
 }
@@ -6738,7 +6738,7 @@ func (ptr *QXmlLexicalHandler) Comment(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QXmlLexicalHandler_Comment(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))}) != 0
+		return int8(C.QXmlLexicalHandler_Comment(ptr.Pointer(), C.struct_QtXml_PackedString{data: chC, len: C.longlong(len(ch))})) != 0
 	}
 	return false
 }
@@ -6775,7 +6775,7 @@ func (ptr *QXmlLexicalHandler) DisconnectEndCDATA() {
 
 func (ptr *QXmlLexicalHandler) EndCDATA() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlLexicalHandler_EndCDATA(ptr.Pointer()) != 0
+		return int8(C.QXmlLexicalHandler_EndCDATA(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6812,7 +6812,7 @@ func (ptr *QXmlLexicalHandler) DisconnectEndDTD() {
 
 func (ptr *QXmlLexicalHandler) EndDTD() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlLexicalHandler_EndDTD(ptr.Pointer()) != 0
+		return int8(C.QXmlLexicalHandler_EndDTD(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6854,7 +6854,7 @@ func (ptr *QXmlLexicalHandler) EndEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlLexicalHandler_EndEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlLexicalHandler_EndEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -6891,7 +6891,7 @@ func (ptr *QXmlLexicalHandler) DisconnectStartCDATA() {
 
 func (ptr *QXmlLexicalHandler) StartCDATA() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlLexicalHandler_StartCDATA(ptr.Pointer()) != 0
+		return int8(C.QXmlLexicalHandler_StartCDATA(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6943,7 +6943,7 @@ func (ptr *QXmlLexicalHandler) StartDTD(name string, publicId string, systemId s
 			systemIdC = C.CString(systemId)
 			defer C.free(unsafe.Pointer(systemIdC))
 		}
-		return C.QXmlLexicalHandler_StartDTD(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))}) != 0
+		return int8(C.QXmlLexicalHandler_StartDTD(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtXml_PackedString{data: publicIdC, len: C.longlong(len(publicId))}, C.struct_QtXml_PackedString{data: systemIdC, len: C.longlong(len(systemId))})) != 0
 	}
 	return false
 }
@@ -6985,7 +6985,7 @@ func (ptr *QXmlLexicalHandler) StartEntity(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlLexicalHandler_StartEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlLexicalHandler_StartEntity(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -7578,7 +7578,7 @@ func (ptr *QXmlReader) DisconnectParse() {
 
 func (ptr *QXmlReader) Parse(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
+		return int8(C.QXmlReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input))) != 0
 	}
 	return false
 }
@@ -8176,7 +8176,7 @@ func (ptr *QXmlReader) Feature(name string, ok bool) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))) != 0
+		return int8(C.QXmlReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
 	}
 	return false
 }
@@ -8218,7 +8218,7 @@ func (ptr *QXmlReader) HasFeature(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlReader_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlReader_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -8260,7 +8260,7 @@ func (ptr *QXmlReader) HasProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlReader_HasProperty(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlReader_HasProperty(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -8381,14 +8381,14 @@ func (ptr *QXmlSimpleReader) DisconnectParse() {
 
 func (ptr *QXmlSimpleReader) Parse(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
+		return int8(C.QXmlSimpleReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSimpleReader) ParseDefault(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_ParseDefault(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
+		return int8(C.QXmlSimpleReader_ParseDefault(ptr.Pointer(), PointerFromQXmlInputSource(input))) != 0
 	}
 	return false
 }
@@ -8425,14 +8425,14 @@ func (ptr *QXmlSimpleReader) DisconnectParse2() {
 
 func (ptr *QXmlSimpleReader) Parse2(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse2(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
+		return int8(C.QXmlSimpleReader_Parse2(ptr.Pointer(), PointerFromQXmlInputSource(input))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSimpleReader) Parse2Default(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse2Default(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
+		return int8(C.QXmlSimpleReader_Parse2Default(ptr.Pointer(), PointerFromQXmlInputSource(input))) != 0
 	}
 	return false
 }
@@ -8469,14 +8469,14 @@ func (ptr *QXmlSimpleReader) DisconnectParse3() {
 
 func (ptr *QXmlSimpleReader) Parse3(input QXmlInputSource_ITF, incremental bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse3(ptr.Pointer(), PointerFromQXmlInputSource(input), C.char(int8(qt.GoBoolToInt(incremental)))) != 0
+		return int8(C.QXmlSimpleReader_Parse3(ptr.Pointer(), PointerFromQXmlInputSource(input), C.char(int8(qt.GoBoolToInt(incremental))))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSimpleReader) Parse3Default(input QXmlInputSource_ITF, incremental bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_Parse3Default(ptr.Pointer(), PointerFromQXmlInputSource(input), C.char(int8(qt.GoBoolToInt(incremental)))) != 0
+		return int8(C.QXmlSimpleReader_Parse3Default(ptr.Pointer(), PointerFromQXmlInputSource(input), C.char(int8(qt.GoBoolToInt(incremental))))) != 0
 	}
 	return false
 }
@@ -8513,14 +8513,14 @@ func (ptr *QXmlSimpleReader) DisconnectParseContinue() {
 
 func (ptr *QXmlSimpleReader) ParseContinue() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_ParseContinue(ptr.Pointer()) != 0
+		return int8(C.QXmlSimpleReader_ParseContinue(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSimpleReader) ParseContinueDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSimpleReader_ParseContinueDefault(ptr.Pointer()) != 0
+		return int8(C.QXmlSimpleReader_ParseContinueDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9226,7 +9226,7 @@ func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))) != 0
+		return int8(C.QXmlSimpleReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
 	}
 	return false
 }
@@ -9238,7 +9238,7 @@ func (ptr *QXmlSimpleReader) FeatureDefault(name string, ok bool) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_FeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok)))) != 0
+		return int8(C.QXmlSimpleReader_FeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
 	}
 	return false
 }
@@ -9280,7 +9280,7 @@ func (ptr *QXmlSimpleReader) HasFeature(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlSimpleReader_HasFeature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -9292,7 +9292,7 @@ func (ptr *QXmlSimpleReader) HasFeatureDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_HasFeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlSimpleReader_HasFeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -9334,7 +9334,7 @@ func (ptr *QXmlSimpleReader) HasProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_HasProperty(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlSimpleReader_HasProperty(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -9346,7 +9346,7 @@ func (ptr *QXmlSimpleReader) HasPropertyDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_HasPropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlSimpleReader_HasPropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }

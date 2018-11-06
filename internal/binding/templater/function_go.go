@@ -95,7 +95,11 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if !UseJs() {
+	if UseJs() {
+		for _, alloc := range converter.GoInputParametersForJSAlloc(function) {
+			fmt.Fprint(bb, alloc)
+		}
+	} else {
 		for _, alloc := range converter.GoInputParametersForCAlloc(function) {
 			fmt.Fprint(bb, alloc)
 		}
@@ -123,7 +127,7 @@ func goFunctionBody(function *parser.Function) string {
 					if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
 						if UseJs() {
 							if parser.UseWasm() {
-								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
+								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i) //TODO: use real pointer for wasm instead ?
 							} else {
 								fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
 							}
@@ -280,21 +284,23 @@ func goFunctionBody(function *parser.Function) string {
 
 			if parser.UseWasm() {
 				bb.WriteString("ptr := uintptr(args[0].Int())\n")
+			}
+			if parser.UseJs() {
 				for i, p := range function.Parameters {
-					if !(function.Name == "readData" && len(function.Parameters) == 2) {
-						//TODO: fix in GoOutputJS instead ? ->
-						conv := converter.GoOutputJS(fmt.Sprintf("args[%v]", i+1), p.Value, function, function.PureGoOutput)
-						conv = strings.Replace(conv, "Get(\"dataP\").", "", -1)
-						conv = strings.Replace(conv, ".Int() != 0", ".Bool()", -1)
-
-						if strings.Contains(conv, "strings.Split") {
-							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v].String()", i+1))
-						} else if !strings.Contains(conv, "func(") {
-							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
+					if !(function.Name == "readData" && len(function.Parameters) == 2) { //TODO:
+						if parser.UseWasm() {
+							conv := converter.GoOutputJS(fmt.Sprintf("args[%v]", i+1), p.Value, function, function.PureGoOutput)
+							if strings.Contains(conv, "func(") {
+								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v]", i+1))
+							} else {
+								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
+							}
 						} else {
-							fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v]", i+1))
+							conv := converter.GoOutputJS(parser.CleanName(p.Name, p.Value)+"P", p.Value, function, function.PureGoOutput)
+							if strings.Contains(conv, "jsGoUnpackString") {
+								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
+							}
 						}
-						//<-
 					}
 				}
 			}

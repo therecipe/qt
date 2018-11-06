@@ -322,10 +322,12 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARCH": "arm",
 			"GOARM":  "7",
 
-			"CGO_ENABLED":  "1",
-			"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-			"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include")),
+			"CGO_ENABLED": "1",
+			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+
+			//TODO: move flags into template_cgo_qmake ?
+			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v -I %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include"), filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "lib", "gcc", "arm-linux-androideabi", "4.9.x", "include")),
 			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 		}
 		if runtime.GOOS == "windows" {
@@ -345,10 +347,12 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOOS":   "android",
 			"GOARCH": "386",
 
-			"CGO_ENABLED":  "1",
-			"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-gcc"),
-			"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-g++"),
-			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86", "usr", "include")),
+			"CGO_ENABLED": "1",
+			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-gcc"),
+			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-g++"),
+
+			//TODO: move flags into template_cgo_qmake ?
+			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v -I %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86", "usr", "include"), filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "lib", "gcc", "i686-linux-android", "4.9.x", "include")),
 			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86")),
 		}
 		if runtime.GOOS == "windows" {
@@ -382,7 +386,9 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOOS":   runtime.GOOS,
 			"GOARCH": GOARCH,
 
-			"CGO_ENABLED":  "1",
+			"CGO_ENABLED": "1",
+
+			//TODO: move flags into template_cgo_qmake ?
 			"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=10.0 -arch %v", utils.XCODE_DIR(), CLANGDIR, CLANGPLAT, CLANGFLAG, CLANGARCH),
 			"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=10.0 -arch %v", utils.XCODE_DIR(), CLANGDIR, CLANGPLAT, CLANGFLAG, CLANGARCH),
 		}
@@ -523,12 +529,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARCH": "arm",
 			"GOARM":  "7",
 
-			"CGO_ENABLED":  "1",
-			"CC":           "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc",
-			"CXX":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++",
+			"CGO_ENABLED": "1",
+			"CC":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc",
+			"CXX":         "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++",
+
+			//TODO: use plain -I and -L instead ?
 			"CPATH":        "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/include",
 			"LIBRARY_PATH": "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/usr/lib/pulseaudio",
-			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/",
+
+			//TODO: move flags into template_cgo_qmake ?
+			"CGO_LDFLAGS": "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-armv7hl/",
 		}
 
 	case "sailfish-emulator":
@@ -543,12 +553,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOOS":   "linux",
 			"GOARCH": "386",
 
-			"CGO_ENABLED":  "1",
-			"CC":           "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-gcc",
-			"CXX":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-g++",
+			"CGO_ENABLED": "1",
+			"CC":          "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-gcc",
+			"CXX":         "/srv/mer/toolings/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "/opt/cross/bin/i486-meego-linux-gnu-g++",
+
+			//TODO: use plain -I and -L instead ?
 			"CPATH":        "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include",
 			"LIBRARY_PATH": "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/lib:/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/lib/pulseaudio",
-			"CGO_LDFLAGS":  "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/",
+
+			//TODO: move flags into template_cgo_qmake ?
+			"CGO_LDFLAGS": "--sysroot=/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/",
 		}
 
 	case "js", "wasm":

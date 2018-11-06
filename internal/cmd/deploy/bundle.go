@@ -597,9 +597,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 	case "js", "wasm":
 
 		//copy default assets
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "html5_shell.html"), filepath.Join(depPath, "index.html"))
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtloader.js"), depPath)
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "src", "plugins", "platforms", "html5", "qtlogo.svg"), depPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "wasm_shell.html"), filepath.Join(depPath, "index.html"))
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "qtloader.js"), depPath)
+		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "qtlogo.svg"), depPath)
 		if parser.UseWasm() {
 			copy(filepath.Join(runtime.GOROOT(), "misc", "wasm", "wasm_exec.js"), filepath.Join(depPath, "go.js"))
 		}

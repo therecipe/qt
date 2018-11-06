@@ -294,7 +294,7 @@ func (ptr *QSqlDatabase) Drivers() []string {
 
 func (ptr *QSqlDatabase) Commit() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Commit(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_Commit(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -305,7 +305,7 @@ func QSqlDatabase_Contains(connectionName string) bool {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}) != 0
+	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
 }
 
 func (ptr *QSqlDatabase) Contains(connectionName string) bool {
@@ -314,7 +314,7 @@ func (ptr *QSqlDatabase) Contains(connectionName string) bool {
 		connectionNameC = C.CString(connectionName)
 		defer C.free(unsafe.Pointer(connectionNameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))}) != 0
+	return int8(C.QSqlDatabase_QSqlDatabase_Contains(C.struct_QtSql_PackedString{data: connectionNameC, len: C.longlong(len(connectionName))})) != 0
 }
 
 func QSqlDatabase_IsDriverAvailable(name string) bool {
@@ -323,7 +323,7 @@ func QSqlDatabase_IsDriverAvailable(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+	return int8(C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 }
 
 func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
@@ -332,12 +332,12 @@ func (ptr *QSqlDatabase) IsDriverAvailable(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+	return int8(C.QSqlDatabase_QSqlDatabase_IsDriverAvailable(C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 }
 
 func (ptr *QSqlDatabase) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Open(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -354,21 +354,21 @@ func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 			passwordC = C.CString(password)
 			defer C.free(unsafe.Pointer(passwordC))
 		}
-		return C.QSqlDatabase_Open2(ptr.Pointer(), C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}) != 0
+		return int8(C.QSqlDatabase_Open2(ptr.Pointer(), C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) Rollback() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Rollback(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_Rollback(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) Transaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Transaction(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_Transaction(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -617,21 +617,21 @@ func (ptr *QSqlDatabase) Tables(ty QSql__TableType) []string {
 
 func (ptr *QSqlDatabase) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsOpen(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_IsOpen(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) IsOpenError() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsOpenError(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_IsOpenError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlDatabase_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -839,14 +839,14 @@ func (ptr *QSqlDriver) DisconnectBeginTransaction() {
 
 func (ptr *QSqlDriver) BeginTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_BeginTransaction(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_BeginTransaction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) BeginTransactionDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_BeginTransactionDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_BeginTransactionDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -883,14 +883,14 @@ func (ptr *QSqlDriver) DisconnectCommitTransaction() {
 
 func (ptr *QSqlDriver) CommitTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_CommitTransaction(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_CommitTransaction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) CommitTransactionDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_CommitTransactionDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_CommitTransactionDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -952,7 +952,7 @@ func (ptr *QSqlDriver) Open(db string, user string, password string, host string
 			optionsC = C.CString(options)
 			defer C.free(unsafe.Pointer(optionsC))
 		}
-		return C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{data: dbC, len: C.longlong(len(db))}, C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}, C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))}) != 0
+		return int8(C.QSqlDriver_Open(ptr.Pointer(), C.struct_QtSql_PackedString{data: dbC, len: C.longlong(len(db))}, C.struct_QtSql_PackedString{data: userC, len: C.longlong(len(user))}, C.struct_QtSql_PackedString{data: passwordC, len: C.longlong(len(password))}, C.struct_QtSql_PackedString{data: hostC, len: C.longlong(len(host))}, C.int(int32(port)), C.struct_QtSql_PackedString{data: optionsC, len: C.longlong(len(options))})) != 0
 	}
 	return false
 }
@@ -989,14 +989,14 @@ func (ptr *QSqlDriver) DisconnectRollbackTransaction() {
 
 func (ptr *QSqlDriver) RollbackTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_RollbackTransaction(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_RollbackTransaction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) RollbackTransactionDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_RollbackTransactionDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_RollbackTransactionDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1038,7 +1038,7 @@ func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1050,7 +1050,7 @@ func (ptr *QSqlDriver) SubscribeToNotificationDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlDriver_SubscribeToNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1092,7 +1092,7 @@ func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1104,7 +1104,7 @@ func (ptr *QSqlDriver) UnsubscribeFromNotificationDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlDriver_UnsubscribeFromNotificationDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1959,7 +1959,7 @@ func (ptr *QSqlDriver) DisconnectHasFeature() {
 
 func (ptr *QSqlDriver) HasFeature(feature QSqlDriver__DriverFeature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_HasFeature(ptr.Pointer(), C.longlong(feature)) != 0
+		return int8(C.QSqlDriver_HasFeature(ptr.Pointer(), C.longlong(feature))) != 0
 	}
 	return false
 }
@@ -2001,7 +2001,7 @@ func (ptr *QSqlDriver) IsIdentifierEscaped(identifier string, ty QSqlDriver__Ide
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)) != 0
+		return int8(C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty))) != 0
 	}
 	return false
 }
@@ -2013,7 +2013,7 @@ func (ptr *QSqlDriver) IsIdentifierEscapedDefault(identifier string, ty QSqlDriv
 			identifierC = C.CString(identifier)
 			defer C.free(unsafe.Pointer(identifierC))
 		}
-		return C.QSqlDriver_IsIdentifierEscapedDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty)) != 0
+		return int8(C.QSqlDriver_IsIdentifierEscapedDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: identifierC, len: C.longlong(len(identifier))}, C.longlong(ty))) != 0
 	}
 	return false
 }
@@ -2050,21 +2050,21 @@ func (ptr *QSqlDriver) DisconnectIsOpen() {
 
 func (ptr *QSqlDriver) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsOpen(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_IsOpen(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) IsOpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsOpenDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_IsOpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) IsOpenError() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsOpenError(ptr.Pointer()) != 0
+		return int8(C.QSqlDriver_IsOpenError(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2199,7 +2199,7 @@ func callbackQSqlDriver_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSqlDriver) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSqlDriver_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2215,7 +2215,7 @@ func callbackQSqlDriver_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QSqlDriver) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSqlDriver_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2824,7 +2824,7 @@ func callbackQSqlDriverPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QSqlDriverPlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriverPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSqlDriverPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2840,7 +2840,7 @@ func callbackQSqlDriverPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QSqlDriverPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriverPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSqlDriverPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3087,7 +3087,7 @@ func (ptr *QSqlError) Text() string {
 
 func (ptr *QSqlError) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlError_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlError_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3317,35 +3317,35 @@ func (ptr *QSqlField) Type() core.QVariant__Type {
 
 func (ptr *QSqlField) IsAutoValue() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlField_IsAutoValue(ptr.Pointer()) != 0
+		return int8(C.QSqlField_IsAutoValue(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlField) IsGenerated() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlField_IsGenerated(ptr.Pointer()) != 0
+		return int8(C.QSqlField_IsGenerated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlField) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlField_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSqlField_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlField) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlField_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QSqlField_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlField) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlField_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlField_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3482,14 +3482,14 @@ func (ptr *QSqlIndex) Name() string {
 
 func (ptr *QSqlIndex) IsDescending(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlIndex_IsDescending(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QSqlIndex_IsDescending(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlIndex) __sorts_atList(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlIndex___sorts_atList(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QSqlIndex___sorts_atList(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -3506,7 +3506,7 @@ func (ptr *QSqlIndex) __sorts_newList() unsafe.Pointer {
 
 func (ptr *QSqlIndex) __setSorts__atList(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlIndex___setSorts__atList(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QSqlIndex___setSorts__atList(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -3599,7 +3599,7 @@ func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
 
 func (ptr *QSqlQuery) Exec2() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_Exec2(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_Exec2(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3611,42 +3611,42 @@ func (ptr *QSqlQuery) Exec(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlQuery_Exec(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) ExecBatch(mode QSqlQuery__BatchExecutionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_ExecBatch(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QSqlQuery_ExecBatch(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) First() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_First(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_First(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) Last() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_Last(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_Last(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) Next() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_Next(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_Next(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) NextResult() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_NextResult(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_NextResult(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3658,21 +3658,21 @@ func (ptr *QSqlQuery) Prepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlQuery_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) Previous() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_Previous(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_Previous(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) Seek(index int, relative bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_Seek(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(relative)))) != 0
+		return int8(C.QSqlQuery_Seek(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(relative))))) != 0
 	}
 	return false
 }
@@ -3842,14 +3842,14 @@ func (ptr *QSqlQuery) Value(index int) *core.QVariant {
 
 func (ptr *QSqlQuery) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_IsActive(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) IsForwardOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_IsForwardOnly(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_IsForwardOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3861,28 +3861,28 @@ func (ptr *QSqlQuery) IsNull2(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlQuery_IsNull2(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) IsNull(field int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_IsNull(ptr.Pointer(), C.int(int32(field))) != 0
+		return int8(C.QSqlQuery_IsNull(ptr.Pointer(), C.int(int32(field)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) IsSelect() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_IsSelect(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_IsSelect(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlQuery) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQuery_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlQuery_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4104,7 +4104,7 @@ func callbackQSqlQueryModel_InsertColumns(ptr unsafe.Pointer, column C.int, coun
 
 func (ptr *QSqlQueryModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -4120,7 +4120,7 @@ func callbackQSqlQueryModel_RemoveColumns(ptr unsafe.Pointer, column C.int, coun
 
 func (ptr *QSqlQueryModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -4136,7 +4136,7 @@ func callbackQSqlQueryModel_SetHeaderData(ptr unsafe.Pointer, section C.int, ori
 
 func (ptr *QSqlQueryModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QSqlQueryModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -4505,7 +4505,7 @@ func callbackQSqlQueryModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Point
 
 func (ptr *QSqlQueryModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5062,7 +5062,7 @@ func callbackQSqlQueryModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer
 
 func (ptr *QSqlQueryModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5130,7 +5130,7 @@ func callbackQSqlQueryModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.in
 
 func (ptr *QSqlQueryModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5146,7 +5146,7 @@ func callbackQSqlQueryModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.
 
 func (ptr *QSqlQueryModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QSqlQueryModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -5162,7 +5162,7 @@ func callbackQSqlQueryModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Poi
 
 func (ptr *QSqlQueryModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QSqlQueryModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -5178,7 +5178,7 @@ func callbackQSqlQueryModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.in
 
 func (ptr *QSqlQueryModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5194,7 +5194,7 @@ func callbackQSqlQueryModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, va
 
 func (ptr *QSqlQueryModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QSqlQueryModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -5224,13 +5224,13 @@ func callbackQSqlQueryModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer
 
 func (ptr *QSqlQueryModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QSqlQueryModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQSqlQueryModelFromPointer(NewQSqlQueryModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -5246,7 +5246,7 @@ func callbackQSqlQueryModel_Submit(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSqlQueryModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlQueryModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5685,7 +5685,7 @@ func callbackQSqlQueryModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Poin
 
 func (ptr *QSqlQueryModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5701,7 +5701,7 @@ func callbackQSqlQueryModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointe
 
 func (ptr *QSqlQueryModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QSqlQueryModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -5717,7 +5717,7 @@ func callbackQSqlQueryModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSqlQueryModel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSqlQueryModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5733,7 +5733,7 @@ func callbackQSqlQueryModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QSqlQueryModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSqlQueryModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6059,14 +6059,14 @@ func (ptr *QSqlRecord) Contains(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlRecord_Contains(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlRecord) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRecord_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QSqlRecord_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6078,14 +6078,14 @@ func (ptr *QSqlRecord) IsGenerated(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_IsGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlRecord_IsGenerated(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlRecord) IsGenerated2(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRecord_IsGenerated2(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QSqlRecord_IsGenerated2(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -6097,14 +6097,14 @@ func (ptr *QSqlRecord) IsNull(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QSqlRecord_IsNull(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QSqlRecord_IsNull(ptr.Pointer(), C.struct_QtSql_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlRecord) IsNull2(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRecord_IsNull2(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QSqlRecord_IsNull2(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -6230,7 +6230,7 @@ func (ptr *QSqlRelation) TableName() string {
 
 func (ptr *QSqlRelation) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelation_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlRelation_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6476,7 +6476,7 @@ func callbackQSqlRelationalDelegate_EditorEvent(ptr unsafe.Pointer, event unsafe
 
 func (ptr *QSqlRelationalDelegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QSqlRelationalDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -6492,7 +6492,7 @@ func callbackQSqlRelationalDelegate_EventFilter(ptr unsafe.Pointer, editor unsaf
 
 func (ptr *QSqlRelationalDelegate) EventFilterDefault(editor core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(editor), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSqlRelationalDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(editor), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6652,7 +6652,7 @@ func callbackQSqlRelationalDelegate_HelpEvent(ptr unsafe.Pointer, event unsafe.P
 
 func (ptr *QSqlRelationalDelegate) HelpEventDefault(event gui.QHelpEvent_ITF, view widgets.QAbstractItemView_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QSqlRelationalDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -6707,7 +6707,7 @@ func callbackQSqlRelationalDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QSqlRelationalDelegate) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6908,14 +6908,14 @@ func (ptr *QSqlRelationalTableModel) DisconnectSelect() {
 
 func (ptr *QSqlRelationalTableModel) Select() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_Select(ptr.Pointer()) != 0
+		return int8(C.QSqlRelationalTableModel_Select(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlRelationalTableModel) SelectDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_SelectDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlRelationalTableModel_SelectDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7239,14 +7239,14 @@ func (ptr *QSqlResult) DisconnectExec() {
 
 func (ptr *QSqlResult) Exec() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_Exec(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_Exec(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) ExecDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_ExecDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_ExecDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7283,7 +7283,7 @@ func (ptr *QSqlResult) DisconnectFetch() {
 
 func (ptr *QSqlResult) Fetch(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_Fetch(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QSqlResult_Fetch(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -7320,7 +7320,7 @@ func (ptr *QSqlResult) DisconnectFetchFirst() {
 
 func (ptr *QSqlResult) FetchFirst() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchFirst(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchFirst(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7357,7 +7357,7 @@ func (ptr *QSqlResult) DisconnectFetchLast() {
 
 func (ptr *QSqlResult) FetchLast() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchLast(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchLast(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7394,14 +7394,14 @@ func (ptr *QSqlResult) DisconnectFetchNext() {
 
 func (ptr *QSqlResult) FetchNext() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchNext(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchNext(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) FetchNextDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchNextDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchNextDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7438,14 +7438,14 @@ func (ptr *QSqlResult) DisconnectFetchPrevious() {
 
 func (ptr *QSqlResult) FetchPrevious() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchPrevious(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchPrevious(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) FetchPreviousDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_FetchPreviousDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_FetchPreviousDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7482,7 +7482,7 @@ func (ptr *QSqlResult) DisconnectIsNull() {
 
 func (ptr *QSqlResult) IsNull(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_IsNull(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QSqlResult_IsNull(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -7524,7 +7524,7 @@ func (ptr *QSqlResult) Prepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlResult_Prepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
@@ -7536,7 +7536,7 @@ func (ptr *QSqlResult) PrepareDefault(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_PrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlResult_PrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
@@ -7578,7 +7578,7 @@ func (ptr *QSqlResult) Reset(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_Reset(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlResult_Reset(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
@@ -7620,7 +7620,7 @@ func (ptr *QSqlResult) SavePrepare(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_SavePrepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlResult_SavePrepare(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
@@ -7632,7 +7632,7 @@ func (ptr *QSqlResult) SavePrepareDefault(query string) bool {
 			queryC = C.CString(query)
 			defer C.free(unsafe.Pointer(queryC))
 		}
-		return C.QSqlResult_SavePrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))}) != 0
+		return int8(C.QSqlResult_SavePrepareDefault(ptr.Pointer(), C.struct_QtSql_PackedString{data: queryC, len: C.longlong(len(query))})) != 0
 	}
 	return false
 }
@@ -8370,35 +8370,35 @@ func (ptr *QSqlResult) BoundValues() []*core.QVariant {
 
 func (ptr *QSqlResult) HasOutValues() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_HasOutValues(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_HasOutValues(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_IsActive(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) IsForwardOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_IsForwardOnly(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_IsForwardOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) IsSelect() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_IsSelect(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_IsSelect(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlResult) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlResult_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSqlResult_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8536,21 +8536,21 @@ func (ptr *QSqlTableModel) DisconnectDeleteRowFromTable() {
 
 func (ptr *QSqlTableModel) DeleteRowFromTable(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_DeleteRowFromTable(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QSqlTableModel_DeleteRowFromTable(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) DeleteRowFromTableDefault(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_DeleteRowFromTableDefault(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QSqlTableModel_DeleteRowFromTableDefault(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) InsertRecord(row int, record QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(record)) != 0
+		return int8(C.QSqlTableModel_InsertRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(record))) != 0
 	}
 	return false
 }
@@ -8587,14 +8587,14 @@ func (ptr *QSqlTableModel) DisconnectInsertRowIntoTable() {
 
 func (ptr *QSqlTableModel) InsertRowIntoTable(values QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertRowIntoTable(ptr.Pointer(), PointerFromQSqlRecord(values)) != 0
+		return int8(C.QSqlTableModel_InsertRowIntoTable(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) InsertRowIntoTableDefault(values QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertRowIntoTableDefault(ptr.Pointer(), PointerFromQSqlRecord(values)) != 0
+		return int8(C.QSqlTableModel_InsertRowIntoTableDefault(ptr.Pointer(), PointerFromQSqlRecord(values))) != 0
 	}
 	return false
 }
@@ -8631,14 +8631,14 @@ func (ptr *QSqlTableModel) DisconnectSelect() {
 
 func (ptr *QSqlTableModel) Select() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_Select(ptr.Pointer()) != 0
+		return int8(C.QSqlTableModel_Select(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) SelectDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SelectDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlTableModel_SelectDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8675,21 +8675,21 @@ func (ptr *QSqlTableModel) DisconnectSelectRow() {
 
 func (ptr *QSqlTableModel) SelectRow(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SelectRow(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QSqlTableModel_SelectRow(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) SelectRowDefault(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SelectRowDefault(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QSqlTableModel_SelectRowDefault(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) SetRecord(row int, values QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SetRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values)) != 0
+		return int8(C.QSqlTableModel_SetRecord(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
 	}
 	return false
 }
@@ -8726,14 +8726,14 @@ func (ptr *QSqlTableModel) DisconnectSubmitAll() {
 
 func (ptr *QSqlTableModel) SubmitAll() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SubmitAll(ptr.Pointer()) != 0
+		return int8(C.QSqlTableModel_SubmitAll(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) SubmitAllDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SubmitAllDefault(ptr.Pointer()) != 0
+		return int8(C.QSqlTableModel_SubmitAllDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8770,14 +8770,14 @@ func (ptr *QSqlTableModel) DisconnectUpdateRowInTable() {
 
 func (ptr *QSqlTableModel) UpdateRowInTable(row int, values QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_UpdateRowInTable(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values)) != 0
+		return int8(C.QSqlTableModel_UpdateRowInTable(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) UpdateRowInTableDefault(row int, values QSqlRecord_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_UpdateRowInTableDefault(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values)) != 0
+		return int8(C.QSqlTableModel_UpdateRowInTableDefault(ptr.Pointer(), C.int(int32(row)), PointerFromQSqlRecord(values))) != 0
 	}
 	return false
 }
@@ -9402,14 +9402,14 @@ func (ptr *QSqlTableModel) TableName() string {
 
 func (ptr *QSqlTableModel) IsDirty2() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_IsDirty2(ptr.Pointer()) != 0
+		return int8(C.QSqlTableModel_IsDirty2(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlTableModel) IsDirty(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_IsDirty(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QSqlTableModel_IsDirty(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }

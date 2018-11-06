@@ -20,10 +20,8 @@
 #include <QBluetoothTransferRequest>
 #include <QBluetoothUuid>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QEvent>
 #include <QExtensionFactory>
@@ -48,14 +46,11 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
 #include <QRadioData>
 #include <QString>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUuid>
 #include <QVariant>

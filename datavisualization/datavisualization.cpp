@@ -25,14 +25,12 @@
 #include <QBarDataItem>
 #include <QBarDataProxy>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QCategory3DAxis>
 #include <QColor>
 #include <QCustom3DItem>
 #include <QCustom3DLabel>
 #include <QCustom3DVolume>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QExtensionFactory>
 #include <QExtensionManager>
@@ -45,7 +43,6 @@
 #include <QItemModelScatterDataProxy>
 #include <QItemModelSurfaceDataProxy>
 #include <QLayout>
-#include <QLine>
 #include <QLinearGradient>
 #include <QLocale>
 #include <QLogValue3DAxisFormatter>
@@ -55,7 +52,6 @@
 #include <QMouseEvent>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QPoint>
@@ -67,10 +63,8 @@
 #include <QScatter3DSeries>
 #include <QScatterDataItem>
 #include <QScatterDataProxy>
-#include <QSize>
 #include <QSizeF>
 #include <QString>
-#include <QSurface>
 #include <QSurface3DSeries>
 #include <QSurfaceDataItem>
 #include <QSurfaceDataProxy>

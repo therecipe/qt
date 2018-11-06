@@ -19,13 +19,11 @@
 #include <QAmbientTemperatureReading>
 #include <QAmbientTemperatureSensor>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCompass>
 #include <QCompassFilter>
 #include <QCompassReading>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDistanceFilter>
 #include <QDistanceReading>
@@ -66,7 +64,6 @@
 #include <QOrientationFilter>
 #include <QOrientationReading>
 #include <QOrientationSensor>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QPressureFilter>
@@ -99,8 +96,6 @@
 #include <QTiltFilter>
 #include <QTiltReading>
 #include <QTiltSensor>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWidget>

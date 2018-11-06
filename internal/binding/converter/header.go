@@ -179,7 +179,11 @@ func GoHeaderInput(f *parser.Function) string {
 						fmt.Fprintf(bb, ", %v int64", parser.CleanName(p.Name, p.Value))
 					} else if isClass(cv) {
 						if cv == "QString" || cv == "QStringList" {
-							fmt.Fprintf(bb, ", %v string", parser.CleanName(p.Name, p.Value))
+							if f.FakeForJSCallback {
+								fmt.Fprintf(bb, ", %v string", parser.CleanName(p.Name, p.Value))
+							} else {
+								fmt.Fprintf(bb, ", %vP *js.Object", parser.CleanName(p.Name, p.Value))
+							}
 						} else {
 							fmt.Fprintf(bb, ", %v uintptr", parser.CleanName(p.Name, p.Value))
 						}
@@ -191,7 +195,15 @@ func GoHeaderInput(f *parser.Function) string {
 								fmt.Fprintf(bb, ", %v *js.Object", parser.CleanName(p.Name, p.Value))
 							}
 						} else {
-							fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
+							if v == "string" {
+								if f.FakeForJSCallback {
+									fmt.Fprintf(bb, ", %v string", parser.CleanName(p.Name, p.Value))
+								} else {
+									fmt.Fprintf(bb, ", %vP *js.Object", parser.CleanName(p.Name, p.Value))
+								}
+							} else {
+								fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
+							}
 						}
 					}
 				}

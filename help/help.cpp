@@ -12,14 +12,11 @@
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -45,7 +42,6 @@
 #include <QHelpSearchResultWidget>
 #include <QHideEvent>
 #include <QIcon>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QItemSelection>
 #include <QItemSelectionModel>
@@ -78,12 +74,8 @@
 #include <QShowEvent>
 #include <QSize>
 #include <QString>
-#include <QStyle>
-#include <QStyleOption>
 #include <QStyleOptionViewItem>
 #include <QTabletEvent>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>

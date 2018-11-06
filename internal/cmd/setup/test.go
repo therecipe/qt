@@ -115,7 +115,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			"widgets": []string{"bridge2" /*"dropsite"*/, "graphicsscene", "line_edits", "pixel_editor",
 				/*"renderer"*/ "share", "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),
-				filepath.Join("treeview", "treeview_filelist"), "video_player" /*"webengine"*/},
+				filepath.Join("treeview", "treeview_filelist"), "video_player" /*"webengine"*/, "xkcd"},
 		}
 	} else {
 		if strings.HasPrefix(target, "sailfish") {
@@ -144,6 +144,12 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			if target != runtime.GOOS && example == "textedit" {
 				continue
 			}
+
+			if (target == "js" || target == "wasm") &&
+				cat == "charts" || cat == "uitools" || cat == "sql" {
+				continue
+			}
+
 			example := filepath.Join(cat, example)
 			path := utils.GoQtPkgPath("internal", "examples", example)
 			utils.Log.Infof("testing %v", example)

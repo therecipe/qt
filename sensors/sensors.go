@@ -346,7 +346,7 @@ func (ptr *QAccelerometerFilter) DisconnectFilter() {
 
 func (ptr *QAccelerometerFilter) Filter(reading QAccelerometerReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAccelerometerFilter_Filter(ptr.Pointer(), PointerFromQAccelerometerReading(reading)) != 0
+		return int8(C.QAccelerometerFilter_Filter(ptr.Pointer(), PointerFromQAccelerometerReading(reading))) != 0
 	}
 	return false
 }
@@ -715,7 +715,7 @@ func (ptr *QAltimeterFilter) DisconnectFilter() {
 
 func (ptr *QAltimeterFilter) Filter(reading QAltimeterReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAltimeterFilter_Filter(ptr.Pointer(), PointerFromQAltimeterReading(reading)) != 0
+		return int8(C.QAltimeterFilter_Filter(ptr.Pointer(), PointerFromQAltimeterReading(reading))) != 0
 	}
 	return false
 }
@@ -947,7 +947,7 @@ func (ptr *QAmbientLightFilter) DisconnectFilter() {
 
 func (ptr *QAmbientLightFilter) Filter(reading QAmbientLightReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightFilter_Filter(ptr.Pointer(), PointerFromQAmbientLightReading(reading)) != 0
+		return int8(C.QAmbientLightFilter_Filter(ptr.Pointer(), PointerFromQAmbientLightReading(reading))) != 0
 	}
 	return false
 }
@@ -1304,7 +1304,7 @@ func (ptr *QAmbientTemperatureFilter) DisconnectFilter() {
 
 func (ptr *QAmbientTemperatureFilter) Filter(reading QAmbientTemperatureReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAmbientTemperatureFilter_Filter(ptr.Pointer(), PointerFromQAmbientTemperatureReading(reading)) != 0
+		return int8(C.QAmbientTemperatureFilter_Filter(ptr.Pointer(), PointerFromQAmbientTemperatureReading(reading))) != 0
 	}
 	return false
 }
@@ -1758,7 +1758,7 @@ func (ptr *QCompassFilter) DisconnectFilter() {
 
 func (ptr *QCompassFilter) Filter(reading QCompassReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCompassFilter_Filter(ptr.Pointer(), PointerFromQCompassReading(reading)) != 0
+		return int8(C.QCompassFilter_Filter(ptr.Pointer(), PointerFromQCompassReading(reading))) != 0
 	}
 	return false
 }
@@ -2003,7 +2003,7 @@ func (ptr *QDistanceFilter) DisconnectFilter() {
 
 func (ptr *QDistanceFilter) Filter(reading QDistanceReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDistanceFilter_Filter(ptr.Pointer(), PointerFromQDistanceReading(reading)) != 0
+		return int8(C.QDistanceFilter_Filter(ptr.Pointer(), PointerFromQDistanceReading(reading))) != 0
 	}
 	return false
 }
@@ -2457,7 +2457,7 @@ func (ptr *QGyroscopeFilter) DisconnectFilter() {
 
 func (ptr *QGyroscopeFilter) Filter(reading QGyroscopeReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGyroscopeFilter_Filter(ptr.Pointer(), PointerFromQGyroscopeReading(reading)) != 0
+		return int8(C.QGyroscopeFilter_Filter(ptr.Pointer(), PointerFromQGyroscopeReading(reading))) != 0
 	}
 	return false
 }
@@ -2715,7 +2715,7 @@ func (ptr *QHolsterFilter) DisconnectFilter() {
 
 func (ptr *QHolsterFilter) Filter(reading QHolsterReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHolsterFilter_Filter(ptr.Pointer(), PointerFromQHolsterReading(reading)) != 0
+		return int8(C.QHolsterFilter_Filter(ptr.Pointer(), PointerFromQHolsterReading(reading))) != 0
 	}
 	return false
 }
@@ -2862,7 +2862,7 @@ func (ptr *QHolsterReading) DestroyQHolsterReadingDefault() {
 
 func (ptr *QHolsterReading) Holstered() bool {
 	if ptr.Pointer() != nil {
-		return C.QHolsterReading_Holstered(ptr.Pointer()) != 0
+		return int8(C.QHolsterReading_Holstered(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3058,7 +3058,7 @@ func (ptr *QHumidityFilter) DisconnectFilter() {
 
 func (ptr *QHumidityFilter) Filter(reading QHumidityReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHumidityFilter_Filter(ptr.Pointer(), PointerFromQHumidityReading(reading)) != 0
+		return int8(C.QHumidityFilter_Filter(ptr.Pointer(), PointerFromQHumidityReading(reading))) != 0
 	}
 	return false
 }
@@ -3414,7 +3414,7 @@ func (ptr *QIRProximityFilter) DisconnectFilter() {
 
 func (ptr *QIRProximityFilter) Filter(reading QIRProximityReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QIRProximityFilter_Filter(ptr.Pointer(), PointerFromQIRProximityReading(reading)) != 0
+		return int8(C.QIRProximityFilter_Filter(ptr.Pointer(), PointerFromQIRProximityReading(reading))) != 0
 	}
 	return false
 }
@@ -3757,7 +3757,7 @@ func (ptr *QLidFilter) DisconnectFilter() {
 
 func (ptr *QLidFilter) Filter(reading QLidReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLidFilter_Filter(ptr.Pointer(), PointerFromQLidReading(reading)) != 0
+		return int8(C.QLidFilter_Filter(ptr.Pointer(), PointerFromQLidReading(reading))) != 0
 	}
 	return false
 }
@@ -3988,14 +3988,14 @@ func (ptr *QLidReading) DestroyQLidReadingDefault() {
 
 func (ptr *QLidReading) BackLidClosed() bool {
 	if ptr.Pointer() != nil {
-		return C.QLidReading_BackLidClosed(ptr.Pointer()) != 0
+		return int8(C.QLidReading_BackLidClosed(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLidReading) FrontLidClosed() bool {
 	if ptr.Pointer() != nil {
-		return C.QLidReading_FrontLidClosed(ptr.Pointer()) != 0
+		return int8(C.QLidReading_FrontLidClosed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4191,7 +4191,7 @@ func (ptr *QLightFilter) DisconnectFilter() {
 
 func (ptr *QLightFilter) Filter(reading QLightReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLightFilter_Filter(ptr.Pointer(), PointerFromQLightReading(reading)) != 0
+		return int8(C.QLightFilter_Filter(ptr.Pointer(), PointerFromQLightReading(reading))) != 0
 	}
 	return false
 }
@@ -4656,7 +4656,7 @@ func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
 
 func (ptr *QMagnetometer) ReturnGeoValues() bool {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometer_ReturnGeoValues(ptr.Pointer()) != 0
+		return int8(C.QMagnetometer_ReturnGeoValues(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4749,7 +4749,7 @@ func (ptr *QMagnetometerFilter) DisconnectFilter() {
 
 func (ptr *QMagnetometerFilter) Filter(reading QMagnetometerReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometerFilter_Filter(ptr.Pointer(), PointerFromQMagnetometerReading(reading)) != 0
+		return int8(C.QMagnetometerFilter_Filter(ptr.Pointer(), PointerFromQMagnetometerReading(reading))) != 0
 	}
 	return false
 }
@@ -5020,7 +5020,7 @@ func (ptr *QOrientationFilter) DisconnectFilter() {
 
 func (ptr *QOrientationFilter) Filter(reading QOrientationReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QOrientationFilter_Filter(ptr.Pointer(), PointerFromQOrientationReading(reading)) != 0
+		return int8(C.QOrientationFilter_Filter(ptr.Pointer(), PointerFromQOrientationReading(reading))) != 0
 	}
 	return false
 }
@@ -5378,7 +5378,7 @@ func (ptr *QPressureFilter) DisconnectFilter() {
 
 func (ptr *QPressureFilter) Filter(reading QPressureReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPressureFilter_Filter(ptr.Pointer(), PointerFromQPressureReading(reading)) != 0
+		return int8(C.QPressureFilter_Filter(ptr.Pointer(), PointerFromQPressureReading(reading))) != 0
 	}
 	return false
 }
@@ -5734,7 +5734,7 @@ func (ptr *QProximityFilter) DisconnectFilter() {
 
 func (ptr *QProximityFilter) Filter(reading QProximityReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QProximityFilter_Filter(ptr.Pointer(), PointerFromQProximityReading(reading)) != 0
+		return int8(C.QProximityFilter_Filter(ptr.Pointer(), PointerFromQProximityReading(reading))) != 0
 	}
 	return false
 }
@@ -5881,7 +5881,7 @@ func (ptr *QProximityReading) DestroyQProximityReadingDefault() {
 
 func (ptr *QProximityReading) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QProximityReading_Close(ptr.Pointer()) != 0
+		return int8(C.QProximityReading_Close(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6077,7 +6077,7 @@ func (ptr *QRotationFilter) DisconnectFilter() {
 
 func (ptr *QRotationFilter) Filter(reading QRotationReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRotationFilter_Filter(ptr.Pointer(), PointerFromQRotationReading(reading)) != 0
+		return int8(C.QRotationFilter_Filter(ptr.Pointer(), PointerFromQRotationReading(reading))) != 0
 	}
 	return false
 }
@@ -6393,7 +6393,7 @@ func (ptr *QRotationSensor) Reading() *QRotationReading {
 
 func (ptr *QRotationSensor) HasZ() bool {
 	if ptr.Pointer() != nil {
-		return C.QRotationSensor_HasZ(ptr.Pointer()) != 0
+		return int8(C.QRotationSensor_HasZ(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6593,7 +6593,7 @@ func (ptr *QSensor) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QSensor) ConnectToBackend() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_ConnectToBackend(ptr.Pointer()) != 0
+		return int8(C.QSensor_ConnectToBackend(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6630,14 +6630,14 @@ func (ptr *QSensor) DisconnectStart() {
 
 func (ptr *QSensor) Start() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_Start(ptr.Pointer()) != 0
+		return int8(C.QSensor_Start(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) StartDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_StartDefault(ptr.Pointer()) != 0
+		return int8(C.QSensor_StartDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7419,42 +7419,42 @@ func (ptr *QSensor) Description() string {
 
 func (ptr *QSensor) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsActive(ptr.Pointer()) != 0
+		return int8(C.QSensor_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsAlwaysOn() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsAlwaysOn(ptr.Pointer()) != 0
+		return int8(C.QSensor_IsAlwaysOn(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsBusy() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsBusy(ptr.Pointer()) != 0
+		return int8(C.QSensor_IsBusy(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsConnectedToBackend() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsConnectedToBackend(ptr.Pointer()) != 0
+		return int8(C.QSensor_IsConnectedToBackend(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
+		return int8(C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature))) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) SkipDuplicates() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_SkipDuplicates(ptr.Pointer()) != 0
+		return int8(C.QSensor_SkipDuplicates(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7700,7 +7700,7 @@ func callbackQSensor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSensor) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -7716,7 +7716,7 @@ func callbackQSensor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QSensor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8100,14 +8100,14 @@ func (ptr *QSensorBackend) DisconnectIsFeatureSupported() {
 
 func (ptr *QSensorBackend) IsFeatureSupported(feature QSensor__Feature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
+		return int8(C.QSensorBackend_IsFeatureSupported(ptr.Pointer(), C.longlong(feature))) != 0
 	}
 	return false
 }
 
 func (ptr *QSensorBackend) IsFeatureSupportedDefault(feature QSensor__Feature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_IsFeatureSupportedDefault(ptr.Pointer(), C.longlong(feature)) != 0
+		return int8(C.QSensorBackend_IsFeatureSupportedDefault(ptr.Pointer(), C.longlong(feature))) != 0
 	}
 	return false
 }
@@ -8242,7 +8242,7 @@ func callbackQSensorBackend_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSensorBackend) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensorBackend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8258,7 +8258,7 @@ func callbackQSensorBackend_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QSensorBackend) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensorBackend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8611,7 +8611,7 @@ func (ptr *QSensorFilter) DisconnectFilter() {
 
 func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorFilter_Filter(ptr.Pointer(), PointerFromQSensorReading(reading)) != 0
+		return int8(C.QSensorFilter_Filter(ptr.Pointer(), PointerFromQSensorReading(reading))) != 0
 	}
 	return false
 }
@@ -8727,7 +8727,7 @@ func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 
 func (ptr *QSensorGesture) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGesture_IsActive(ptr.Pointer()) != 0
+		return int8(C.QSensorGesture_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8969,7 +8969,7 @@ func callbackQSensorGesture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSensorGesture) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensorGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8985,7 +8985,7 @@ func callbackQSensorGesture_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QSensorGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensorGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9244,7 +9244,7 @@ func (ptr *QSensorGestureManager) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSensorGestureRecognizer_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer)) != 0
+		return int8(C.QSensorGestureManager_RegisterSensorGestureRecognizer(ptr.Pointer(), PointerFromQSensorGestureRecognizer(recognizer))) != 0
 	}
 	return false
 }
@@ -9483,7 +9483,7 @@ func callbackQSensorGestureManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QSensorGestureManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensorGestureManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9499,7 +9499,7 @@ func callbackQSensorGestureManager_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QSensorGestureManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensorGestureManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9985,7 +9985,7 @@ func (ptr *QSensorGestureRecognizer) DisconnectIsActive() {
 
 func (ptr *QSensorGestureRecognizer) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_IsActive(ptr.Pointer()) != 0
+		return int8(C.QSensorGestureRecognizer_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10022,7 +10022,7 @@ func (ptr *QSensorGestureRecognizer) DisconnectStart() {
 
 func (ptr *QSensorGestureRecognizer) Start() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_Start(ptr.Pointer()) != 0
+		return int8(C.QSensorGestureRecognizer_Start(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10059,7 +10059,7 @@ func (ptr *QSensorGestureRecognizer) DisconnectStop() {
 
 func (ptr *QSensorGestureRecognizer) Stop() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_Stop(ptr.Pointer()) != 0
+		return int8(C.QSensorGestureRecognizer_Stop(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10382,7 +10382,7 @@ func callbackQSensorGestureRecognizer_Event(ptr unsafe.Pointer, e unsafe.Pointer
 
 func (ptr *QSensorGestureRecognizer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensorGestureRecognizer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10398,7 +10398,7 @@ func callbackQSensorGestureRecognizer_EventFilter(ptr unsafe.Pointer, watched un
 
 func (ptr *QSensorGestureRecognizer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensorGestureRecognizer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10574,11 +10574,11 @@ func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 }
 
 func QSensorManager_IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
+	return int8(C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))) != 0
 }
 
 func (ptr *QSensorManager) IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
+	return int8(C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))) != 0
 }
 
 func QSensorManager_RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
@@ -10940,7 +10940,7 @@ func callbackQSensorReading_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSensorReading) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSensorReading_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10956,7 +10956,7 @@ func callbackQSensorReading_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QSensorReading) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSensorReading_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11149,7 +11149,7 @@ func (ptr *QTapFilter) DisconnectFilter() {
 
 func (ptr *QTapFilter) Filter(reading QTapReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTapFilter_Filter(ptr.Pointer(), PointerFromQTapReading(reading)) != 0
+		return int8(C.QTapFilter_Filter(ptr.Pointer(), PointerFromQTapReading(reading))) != 0
 	}
 	return false
 }
@@ -11330,7 +11330,7 @@ func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
 
 func (ptr *QTapReading) IsDoubleTap() bool {
 	if ptr.Pointer() != nil {
-		return C.QTapReading_IsDoubleTap(ptr.Pointer()) != 0
+		return int8(C.QTapReading_IsDoubleTap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11485,7 +11485,7 @@ func (ptr *QTapSensor) Reading() *QTapReading {
 
 func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer()) != 0
+		return int8(C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11578,7 +11578,7 @@ func (ptr *QTiltFilter) DisconnectFilter() {
 
 func (ptr *QTiltFilter) Filter(reading QTiltReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTiltFilter_Filter(ptr.Pointer(), PointerFromQTiltReading(reading)) != 0
+		return int8(C.QTiltFilter_Filter(ptr.Pointer(), PointerFromQTiltReading(reading))) != 0
 	}
 	return false
 }

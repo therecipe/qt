@@ -216,7 +216,7 @@ func (ptr *QScxmlCppDataModel) SetScxmlProperty(name string, value core.QVariant
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlCppDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlCppDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -233,7 +233,7 @@ func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.Q
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlCppDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlCppDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -284,26 +284,26 @@ func (ptr *QScxmlCppDataModel) DisconnectSetup() {
 
 func (ptr *QScxmlCppDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlCppDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlCppDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlCppDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlCppDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlCppDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlCppDataModelFromPointer(NewQScxmlCppDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -409,7 +409,7 @@ func (ptr *QScxmlCppDataModel) HasScxmlProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlCppDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlCppDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -421,7 +421,7 @@ func (ptr *QScxmlCppDataModel) HasScxmlPropertyDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlCppDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlCppDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -433,7 +433,7 @@ func (ptr *QScxmlCppDataModel) InState(stateName string) bool {
 			stateNameC = C.CString(stateName)
 			defer C.free(unsafe.Pointer(stateNameC))
 		}
-		return C.QScxmlCppDataModel_InState(ptr.Pointer(), C.struct_QtScxml_PackedString{data: stateNameC, len: C.longlong(len(stateName))}) != 0
+		return int8(C.QScxmlCppDataModel_InState(ptr.Pointer(), C.struct_QtScxml_PackedString{data: stateNameC, len: C.longlong(len(stateName))})) != 0
 	}
 	return false
 }
@@ -581,7 +581,7 @@ func (ptr *QScxmlDataModel) SetScxmlProperty(name string, value core.QVariant_IT
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -625,13 +625,13 @@ func (ptr *QScxmlDataModel) DisconnectSetup() {
 
 func (ptr *QScxmlDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlDataModelFromPointer(NewQScxmlDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -773,7 +773,7 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -973,7 +973,7 @@ func callbackQScxmlDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QScxmlDataModel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScxmlDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -989,7 +989,7 @@ func callbackQScxmlDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QScxmlDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScxmlDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1289,7 +1289,7 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlProperty(name string, value core.Q
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlEcmaScriptDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlEcmaScriptDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -1306,7 +1306,7 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlEcmaScriptDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -1357,26 +1357,26 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetup() {
 
 func (ptr *QScxmlEcmaScriptDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlEcmaScriptDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlEcmaScriptDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlEcmaScriptDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlEcmaScriptDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(NewQScxmlEcmaScriptDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -1518,7 +1518,7 @@ func (ptr *QScxmlEcmaScriptDataModel) HasScxmlProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlEcmaScriptDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlEcmaScriptDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1530,7 +1530,7 @@ func (ptr *QScxmlEcmaScriptDataModel) HasScxmlPropertyDefault(name string) bool 
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlEcmaScriptDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlEcmaScriptDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -1631,7 +1631,7 @@ func (ptr *QScxmlError) ToString() string {
 
 func (ptr *QScxmlError) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlError_IsValid(ptr.Pointer()) != 0
+		return int8(C.QScxmlError_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1875,7 +1875,7 @@ func (ptr *QScxmlEvent) Data() *core.QVariant {
 
 func (ptr *QScxmlEvent) IsErrorEvent() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlEvent_IsErrorEvent(ptr.Pointer()) != 0
+		return int8(C.QScxmlEvent_IsErrorEvent(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2021,7 +2021,7 @@ func (ptr *QScxmlInvokableService) DisconnectStart() {
 
 func (ptr *QScxmlInvokableService) Start() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlInvokableService_Start(ptr.Pointer()) != 0
+		return int8(C.QScxmlInvokableService_Start(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2278,7 +2278,7 @@ func callbackQScxmlInvokableService_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QScxmlInvokableService) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlInvokableService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScxmlInvokableService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2294,7 +2294,7 @@ func callbackQScxmlInvokableService_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QScxmlInvokableService) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlInvokableService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScxmlInvokableService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2689,7 +2689,7 @@ func callbackQScxmlInvokableServiceFactory_Event(ptr unsafe.Pointer, e unsafe.Po
 
 func (ptr *QScxmlInvokableServiceFactory) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlInvokableServiceFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScxmlInvokableServiceFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2705,7 +2705,7 @@ func callbackQScxmlInvokableServiceFactory_EventFilter(ptr unsafe.Pointer, watch
 
 func (ptr *QScxmlInvokableServiceFactory) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlInvokableServiceFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScxmlInvokableServiceFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2906,7 +2906,7 @@ func (ptr *QScxmlNullDataModel) SetScxmlProperty(name string, value core.QVarian
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlNullDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlNullDataModel_SetScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -2923,7 +2923,7 @@ func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.
 			contextC = C.CString(context)
 			defer C.free(unsafe.Pointer(contextC))
 		}
-		return C.QScxmlNullDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))}) != 0
+		return int8(C.QScxmlNullDataModel_SetScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), C.struct_QtScxml_PackedString{data: contextC, len: C.longlong(len(context))})) != 0
 	}
 	return false
 }
@@ -2974,26 +2974,26 @@ func (ptr *QScxmlNullDataModel) DisconnectSetup() {
 
 func (ptr *QScxmlNullDataModel) Setup(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlNullDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlNullDataModel_Setup(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlNullDataModel) SetupDefault(initialDataValues map[string]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlNullDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QScxmlNullDataModel_SetupDefault(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQScxmlNullDataModelFromPointer(NewQScxmlNullDataModelFromPointer(nil).__setup_initialDataValues_newList())
 			for k, v := range initialDataValues {
 				tmpList.__setup_initialDataValues_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -3181,7 +3181,7 @@ func (ptr *QScxmlNullDataModel) HasScxmlProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlNullDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlNullDataModel_HasScxmlProperty(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -3193,7 +3193,7 @@ func (ptr *QScxmlNullDataModel) HasScxmlPropertyDefault(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QScxmlNullDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QScxmlNullDataModel_HasScxmlPropertyDefault(ptr.Pointer(), C.struct_QtScxml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -3398,14 +3398,14 @@ func (ptr *QScxmlStateMachine) DisconnectInit() {
 
 func (ptr *QScxmlStateMachine) Init() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_Init(ptr.Pointer()) != 0
+		return int8(C.QScxmlStateMachine_Init(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlStateMachine) InitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_InitDefault(ptr.Pointer()) != 0
+		return int8(C.QScxmlStateMachine_InitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3979,14 +3979,14 @@ func (ptr *QScxmlStateMachine) IsActive(scxmlStateName string) bool {
 			scxmlStateNameC = C.CString(scxmlStateName)
 			defer C.free(unsafe.Pointer(scxmlStateNameC))
 		}
-		return C.QScxmlStateMachine_IsActive(ptr.Pointer(), C.struct_QtScxml_PackedString{data: scxmlStateNameC, len: C.longlong(len(scxmlStateName))}) != 0
+		return int8(C.QScxmlStateMachine_IsActive(ptr.Pointer(), C.struct_QtScxml_PackedString{data: scxmlStateNameC, len: C.longlong(len(scxmlStateName))})) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlStateMachine) IsActive2(stateIndex int) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_IsActive2(ptr.Pointer(), C.int(int32(stateIndex))) != 0
+		return int8(C.QScxmlStateMachine_IsActive2(ptr.Pointer(), C.int(int32(stateIndex)))) != 0
 	}
 	return false
 }
@@ -3998,28 +3998,28 @@ func (ptr *QScxmlStateMachine) IsDispatchableTarget(target string) bool {
 			targetC = C.CString(target)
 			defer C.free(unsafe.Pointer(targetC))
 		}
-		return C.QScxmlStateMachine_IsDispatchableTarget(ptr.Pointer(), C.struct_QtScxml_PackedString{data: targetC, len: C.longlong(len(target))}) != 0
+		return int8(C.QScxmlStateMachine_IsDispatchableTarget(ptr.Pointer(), C.struct_QtScxml_PackedString{data: targetC, len: C.longlong(len(target))})) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlStateMachine) IsInitialized() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_IsInitialized(ptr.Pointer()) != 0
+		return int8(C.QScxmlStateMachine_IsInitialized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlStateMachine) IsInvoked() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_IsInvoked(ptr.Pointer()) != 0
+		return int8(C.QScxmlStateMachine_IsInvoked(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScxmlStateMachine) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QScxmlStateMachine_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4410,7 +4410,7 @@ func callbackQScxmlStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QScxmlStateMachine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScxmlStateMachine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4426,7 +4426,7 @@ func callbackQScxmlStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QScxmlStateMachine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScxmlStateMachine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScxmlStateMachine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

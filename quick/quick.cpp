@@ -6,21 +6,17 @@
 #include "quick.h"
 #include "_cgo_export.h"
 
-#include <QAccessible>
 #include <QAccessibleInterface>
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QColor>
 #include <QContextMenuEvent>
 #include <QCursor>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -36,11 +32,9 @@
 #include <QHoverEvent>
 #include <QIcon>
 #include <QImage>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
-#include <QMatrix>
 #include <QMatrix4x4>
 #include <QMediaPlaylist>
 #include <QMediaRecorder>
@@ -117,8 +111,6 @@
 #include <QSurfaceFormat>
 #include <QTabletEvent>
 #include <QThread>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QTouchEvent>
 #include <QUrl>

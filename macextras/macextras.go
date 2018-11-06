@@ -363,7 +363,7 @@ func (ptr *QMacPasteboardMime) CanConvert(mime string, flav string) bool {
 			flavC = C.CString(flav)
 			defer C.free(unsafe.Pointer(flavC))
 		}
-		return C.QMacPasteboardMime_CanConvert(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: mimeC, len: C.longlong(len(mime))}, C.struct_QtMacExtras_PackedString{data: flavC, len: C.longlong(len(flav))}) != 0
+		return int8(C.QMacPasteboardMime_CanConvert(ptr.Pointer(), C.struct_QtMacExtras_PackedString{data: mimeC, len: C.longlong(len(mime))}, C.struct_QtMacExtras_PackedString{data: flavC, len: C.longlong(len(flav))})) != 0
 	}
 	return false
 }
@@ -973,7 +973,7 @@ func callbackQMacToolBar_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMacToolBar) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMacToolBar_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMacToolBar_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -989,7 +989,7 @@ func callbackQMacToolBar_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QMacToolBar) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMacToolBar_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMacToolBar_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1354,7 +1354,7 @@ func (ptr *QMacToolBarItem) Text() string {
 
 func (ptr *QMacToolBarItem) Selectable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMacToolBarItem_Selectable(ptr.Pointer()) != 0
+		return int8(C.QMacToolBarItem_Selectable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1489,7 +1489,7 @@ func callbackQMacToolBarItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QMacToolBarItem) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMacToolBarItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMacToolBarItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1505,7 +1505,7 @@ func callbackQMacToolBarItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QMacToolBarItem) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMacToolBarItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMacToolBarItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

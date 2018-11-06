@@ -41,6 +41,7 @@ func Check(target string, docker, vagrant bool) {
 		{"GOPATH", utils.MustGoPath()},
 		{"GOBIN", utils.GOBIN()},
 		{"QT_HASH", hash},
+		{"QT_API", utils.QT_API("")},
 		{"QT_VERSION", utils.QT_VERSION()},
 		{"QT_VERSION_MAJOR", utils.QT_VERSION_MAJOR()},
 		{"QT_DIR", utils.QT_DIR()},

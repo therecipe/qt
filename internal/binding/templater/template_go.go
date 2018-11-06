@@ -26,6 +26,10 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if int(s.len) == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
+	if UseJs() {
+		fmt.Fprint(bb, "func jsGoUnpackString(s string) string { dec, _ := hex.DecodeString(s)\n return string(dec)\n }\n") //TODO: calling it cGoUnpackString won't work, bug in go wasm ?
+	}
+
 	if module == "QtAndroidExtras" && utils.QT_VERSION_NUM() >= 5060 {
 		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
 		if UseStub(stub, module, mode) || UseJs() {
@@ -183,10 +187,27 @@ func New%vFromPointer(ptr unsafe.Pointer) (n *%[2]v) {
 			}
 
 			if !class.HasDestructor() {
-				if UseStub(stub, module, mode) || UseJs() {
+				if UseStub(stub, module, mode) {
 					fmt.Fprintf(bb, "\nfunc (ptr *%v) Destroy%v() {}\n\n", class.Name, strings.Title(class.Name))
 				} else if !class.IsSubClassOfQObject() {
-					fmt.Fprintf(bb, `
+					if UseJs() {
+						fmt.Fprintf(bb, `
+func (ptr *%[1]v) Destroy%[1]v() {
+	if ptr != nil {
+		%v
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+`, class.Name, func() string {
+							if class.HasCallbackFunctions() {
+								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
+							}
+							return ""
+						}())
+					} else {
+						fmt.Fprintf(bb, `
 func (ptr *%[1]v) Destroy%[1]v() {
 	if ptr != nil {
 		C.free(ptr.Pointer())%v
@@ -196,11 +217,12 @@ func (ptr *%[1]v) Destroy%[1]v() {
 }
 
 `, class.Name, func() string {
-						if class.HasCallbackFunctions() {
-							return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
-						}
-						return ""
-					}())
+							if class.HasCallbackFunctions() {
+								return "\nqt.DisconnectAllSignals(ptr.Pointer(), \"\")"
+							}
+							return ""
+						}())
+					}
 				}
 			}
 
@@ -475,9 +497,11 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				var ip string
 				oldsm := f.SignalMode
 				f.SignalMode = parser.CALLBACK
+				f.FakeForJSCallback = true
 				ip = converter.GoHeaderInput(f)
 				ip = strings.TrimPrefix(ip, "ptr uintptr, ")
 				f.SignalMode = oldsm
+				f.FakeForJSCallback = false
 				var out string
 				if parser.UseWasm() {
 					out = "" //TODO: export classes for jsinterop example
@@ -577,7 +601,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -591,6 +615,9 @@ import "C"
 			switch mlow {
 			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
+
+			case "hex":
+				fmt.Fprintln(bb, "\"encoding/hex\"")
 
 			case "qt":
 				fmt.Fprintln(bb, "\"github.com/therecipe/qt\"")
@@ -728,11 +755,11 @@ import "C"
 	return out
 }
 
-///TODO: regexp
+//TODO: regexp
 func renameSubClasses(in []byte) []byte {
 	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {
-			sep := []string{"\n", ".", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "From", "Destroy"}
+			sep := []string{"\n", ".", "\"", " ", "*", "(", ")", "{", "C.", "_ITF", "_PTR", " New", ".New", "(New", "\"New", "From", "Destroy"}
 			for _, p := range sep {
 				for _, s := range sep {
 					in = bytes.Replace(in, []byte(p+c.Name+s), []byte(p+strings.Replace(c.Fullname, "::", "_", -1)+s), -1)

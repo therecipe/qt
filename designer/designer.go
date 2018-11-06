@@ -983,7 +983,7 @@ func callbackQDesignerActionEditorInterface_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QDesignerActionEditorInterface) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerActionEditorInterface_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -999,7 +999,7 @@ func callbackQDesignerActionEditorInterface_Event(ptr unsafe.Pointer, event unsa
 
 func (ptr *QDesignerActionEditorInterface) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerActionEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1015,7 +1015,7 @@ func callbackQDesignerActionEditorInterface_FocusNextPrevChild(ptr unsafe.Pointe
 
 func (ptr *QDesignerActionEditorInterface) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QDesignerActionEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -1810,7 +1810,7 @@ func callbackQDesignerActionEditorInterface_HasHeightForWidth(ptr unsafe.Pointer
 
 func (ptr *QDesignerActionEditorInterface) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerActionEditorInterface_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1873,7 +1873,7 @@ func callbackQDesignerActionEditorInterface_EventFilter(ptr unsafe.Pointer, watc
 
 func (ptr *QDesignerActionEditorInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerActionEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2281,14 +2281,14 @@ func (ptr *QDesignerContainerExtension) DisconnectCanAddWidget() {
 
 func (ptr *QDesignerContainerExtension) CanAddWidget() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanAddWidget(ptr.Pointer()) != 0
+		return int8(C.QDesignerContainerExtension_CanAddWidget(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDesignerContainerExtension) CanAddWidgetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanAddWidgetDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerContainerExtension_CanAddWidgetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2325,14 +2325,14 @@ func (ptr *QDesignerContainerExtension) DisconnectCanRemove() {
 
 func (ptr *QDesignerContainerExtension) CanRemove(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanRemove(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerContainerExtension_CanRemove(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
 
 func (ptr *QDesignerContainerExtension) CanRemoveDefault(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanRemoveDefault(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerContainerExtension_CanRemoveDefault(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -3084,7 +3084,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIsContainer() {
 
 func (ptr *QDesignerCustomWidgetInterface) IsContainer() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerCustomWidgetInterface_IsContainer(ptr.Pointer()) != 0
+		return int8(C.QDesignerCustomWidgetInterface_IsContainer(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3121,14 +3121,14 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIsInitialized() {
 
 func (ptr *QDesignerCustomWidgetInterface) IsInitialized() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerCustomWidgetInterface_IsInitialized(ptr.Pointer()) != 0
+		return int8(C.QDesignerCustomWidgetInterface_IsInitialized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDesignerCustomWidgetInterface) IsInitializedDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerCustomWidgetInterface_IsInitializedDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerCustomWidgetInterface_IsInitializedDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3203,7 +3203,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectRemoveDynamicProper
 
 func (ptr *QDesignerDynamicPropertySheetExtension) RemoveDynamicProperty(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -3331,7 +3331,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) CanAddDynamicProperty(propert
 			propertyNameC = C.CString(propertyName)
 			defer C.free(unsafe.Pointer(propertyNameC))
 		}
-		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: propertyNameC, len: C.longlong(len(propertyName))}) != 0
+		return int8(C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: propertyNameC, len: C.longlong(len(propertyName))})) != 0
 	}
 	return false
 }
@@ -3368,7 +3368,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectDynamicPropertiesAl
 
 func (ptr *QDesignerDynamicPropertySheetExtension) DynamicPropertiesAllowed() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(ptr.Pointer()) != 0
+		return int8(C.QDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3405,7 +3405,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectIsDynamicProperty()
 
 func (ptr *QDesignerDynamicPropertySheetExtension) IsDynamicProperty(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -3818,7 +3818,7 @@ func callbackQDesignerFormEditorInterface_Event(ptr unsafe.Pointer, e unsafe.Poi
 
 func (ptr *QDesignerFormEditorInterface) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDesignerFormEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3834,7 +3834,7 @@ func callbackQDesignerFormEditorInterface_EventFilter(ptr unsafe.Pointer, watche
 
 func (ptr *QDesignerFormEditorInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerFormEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4042,7 +4042,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectMovePosition() {
 
 func (ptr *QDesignerFormWindowCursorInterface) MovePosition(operation QDesignerFormWindowCursorInterface__MoveOperation, mode QDesignerFormWindowCursorInterface__MoveMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowCursorInterface_MovePosition(ptr.Pointer(), C.longlong(operation), C.longlong(mode)) != 0
+		return int8(C.QDesignerFormWindowCursorInterface_MovePosition(ptr.Pointer(), C.longlong(operation), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -4442,14 +4442,14 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectHasSelection() {
 
 func (ptr *QDesignerFormWindowCursorInterface) HasSelection() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowCursorInterface_HasSelection(ptr.Pointer()) != 0
+		return int8(C.QDesignerFormWindowCursorInterface_HasSelection(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) IsWidgetSelected(widget widgets.QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowCursorInterface_IsWidgetSelected(ptr.Pointer(), widgets.PointerFromQWidget(widget)) != 0
+		return int8(C.QDesignerFormWindowCursorInterface_IsWidgetSelected(ptr.Pointer(), widgets.PointerFromQWidget(widget))) != 0
 	}
 	return false
 }
@@ -4750,7 +4750,7 @@ func (ptr *QDesignerFormWindowInterface) SetContents(device core.QIODevice_ITF, 
 			errorMessageC = C.CString(errorMessage)
 			defer C.free(unsafe.Pointer(errorMessageC))
 		}
-		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), C.struct_QtDesigner_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))}) != 0
+		return int8(C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), C.struct_QtDesigner_PackedString{data: errorMessageC, len: C.longlong(len(errorMessage))})) != 0
 	}
 	return false
 }
@@ -4792,7 +4792,7 @@ func (ptr *QDesignerFormWindowInterface) SetContents2(contents string) bool {
 			contentsC = C.CString(contents)
 			defer C.free(unsafe.Pointer(contentsC))
 		}
-		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: contentsC, len: C.longlong(len(contents))}) != 0
+		return int8(C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), C.struct_QtDesigner_PackedString{data: contentsC, len: C.longlong(len(contents))})) != 0
 	}
 	return false
 }
@@ -6901,7 +6901,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHasFeature() {
 
 func (ptr *QDesignerFormWindowInterface) HasFeature(feature QDesignerFormWindowInterface__FeatureFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_HasFeature(ptr.Pointer(), C.longlong(feature)) != 0
+		return int8(C.QDesignerFormWindowInterface_HasFeature(ptr.Pointer(), C.longlong(feature))) != 0
 	}
 	return false
 }
@@ -6938,7 +6938,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIsDirty() {
 
 func (ptr *QDesignerFormWindowInterface) IsDirty() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_IsDirty(ptr.Pointer()) != 0
+		return int8(C.QDesignerFormWindowInterface_IsDirty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6975,7 +6975,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIsManaged() {
 
 func (ptr *QDesignerFormWindowInterface) IsManaged(widget widgets.QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_IsManaged(ptr.Pointer(), widgets.PointerFromQWidget(widget)) != 0
+		return int8(C.QDesignerFormWindowInterface_IsManaged(ptr.Pointer(), widgets.PointerFromQWidget(widget))) != 0
 	}
 	return false
 }
@@ -7194,7 +7194,7 @@ func callbackQDesignerFormWindowInterface_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QDesignerFormWindowInterface) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerFormWindowInterface_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7210,7 +7210,7 @@ func callbackQDesignerFormWindowInterface_Event(ptr unsafe.Pointer, event unsafe
 
 func (ptr *QDesignerFormWindowInterface) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerFormWindowInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7226,7 +7226,7 @@ func callbackQDesignerFormWindowInterface_FocusNextPrevChild(ptr unsafe.Pointer,
 
 func (ptr *QDesignerFormWindowInterface) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QDesignerFormWindowInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -8021,7 +8021,7 @@ func callbackQDesignerFormWindowInterface_HasHeightForWidth(ptr unsafe.Pointer) 
 
 func (ptr *QDesignerFormWindowInterface) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerFormWindowInterface_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8084,7 +8084,7 @@ func callbackQDesignerFormWindowInterface_EventFilter(ptr unsafe.Pointer, watche
 
 func (ptr *QDesignerFormWindowInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerFormWindowInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9195,7 +9195,7 @@ func callbackQDesignerFormWindowManagerInterface_Event(ptr unsafe.Pointer, e uns
 
 func (ptr *QDesignerFormWindowManagerInterface) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowManagerInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDesignerFormWindowManagerInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9211,7 +9211,7 @@ func callbackQDesignerFormWindowManagerInterface_EventFilter(ptr unsafe.Pointer,
 
 func (ptr *QDesignerFormWindowManagerInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowManagerInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerFormWindowManagerInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9779,7 +9779,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectInheritedFromWidget() {
 
 func (ptr *QDesignerMemberSheetExtension) InheritedFromWidget(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_InheritedFromWidget(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerMemberSheetExtension_InheritedFromWidget(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -9816,7 +9816,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsSignal() {
 
 func (ptr *QDesignerMemberSheetExtension) IsSignal(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsSignal(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerMemberSheetExtension_IsSignal(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -9853,7 +9853,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsSlot() {
 
 func (ptr *QDesignerMemberSheetExtension) IsSlot(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsSlot(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerMemberSheetExtension_IsSlot(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -9890,7 +9890,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsVisible() {
 
 func (ptr *QDesignerMemberSheetExtension) IsVisible(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerMemberSheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -10440,7 +10440,7 @@ func callbackQDesignerObjectInspectorInterface_Close(ptr unsafe.Pointer) C.char 
 
 func (ptr *QDesignerObjectInspectorInterface) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerObjectInspectorInterface_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10456,7 +10456,7 @@ func callbackQDesignerObjectInspectorInterface_Event(ptr unsafe.Pointer, event u
 
 func (ptr *QDesignerObjectInspectorInterface) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerObjectInspectorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10472,7 +10472,7 @@ func callbackQDesignerObjectInspectorInterface_FocusNextPrevChild(ptr unsafe.Poi
 
 func (ptr *QDesignerObjectInspectorInterface) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QDesignerObjectInspectorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -11267,7 +11267,7 @@ func callbackQDesignerObjectInspectorInterface_HasHeightForWidth(ptr unsafe.Poin
 
 func (ptr *QDesignerObjectInspectorInterface) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerObjectInspectorInterface_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11330,7 +11330,7 @@ func callbackQDesignerObjectInspectorInterface_EventFilter(ptr unsafe.Pointer, w
 
 func (ptr *QDesignerObjectInspectorInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerObjectInspectorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11908,7 +11908,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectIsReadOnly() {
 
 func (ptr *QDesignerPropertyEditorInterface) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QDesignerPropertyEditorInterface_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12106,7 +12106,7 @@ func callbackQDesignerPropertyEditorInterface_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QDesignerPropertyEditorInterface) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerPropertyEditorInterface_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12122,7 +12122,7 @@ func callbackQDesignerPropertyEditorInterface_Event(ptr unsafe.Pointer, event un
 
 func (ptr *QDesignerPropertyEditorInterface) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerPropertyEditorInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12138,7 +12138,7 @@ func callbackQDesignerPropertyEditorInterface_FocusNextPrevChild(ptr unsafe.Poin
 
 func (ptr *QDesignerPropertyEditorInterface) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QDesignerPropertyEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -12933,7 +12933,7 @@ func callbackQDesignerPropertyEditorInterface_HasHeightForWidth(ptr unsafe.Point
 
 func (ptr *QDesignerPropertyEditorInterface) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerPropertyEditorInterface_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12996,7 +12996,7 @@ func callbackQDesignerPropertyEditorInterface_EventFilter(ptr unsafe.Pointer, wa
 
 func (ptr *QDesignerPropertyEditorInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerPropertyEditorInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13179,7 +13179,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectReset() {
 
 func (ptr *QDesignerPropertySheetExtension) Reset(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_Reset(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_Reset(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -13557,7 +13557,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectHasReset() {
 
 func (ptr *QDesignerPropertySheetExtension) HasReset(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_HasReset(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_HasReset(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -13594,7 +13594,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsAttribute() {
 
 func (ptr *QDesignerPropertySheetExtension) IsAttribute(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsAttribute(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_IsAttribute(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -13631,7 +13631,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsChanged() {
 
 func (ptr *QDesignerPropertySheetExtension) IsChanged(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsChanged(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_IsChanged(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -13668,14 +13668,14 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsEnabled() {
 
 func (ptr *QDesignerPropertySheetExtension) IsEnabled(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsEnabled(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_IsEnabled(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
 
 func (ptr *QDesignerPropertySheetExtension) IsEnabledDefault(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsEnabledDefault(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_IsEnabledDefault(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -13712,7 +13712,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsVisible() {
 
 func (ptr *QDesignerPropertySheetExtension) IsVisible(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QDesignerPropertySheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -14133,7 +14133,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectLoad() {
 
 func (ptr *QDesignerWidgetBoxInterface) Load() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_Load(ptr.Pointer()) != 0
+		return int8(C.QDesignerWidgetBoxInterface_Load(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14170,7 +14170,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSave() {
 
 func (ptr *QDesignerWidgetBoxInterface) Save() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_Save(ptr.Pointer()) != 0
+		return int8(C.QDesignerWidgetBoxInterface_Save(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14496,7 +14496,7 @@ func callbackQDesignerWidgetBoxInterface_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QDesignerWidgetBoxInterface) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerWidgetBoxInterface_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14512,7 +14512,7 @@ func callbackQDesignerWidgetBoxInterface_Event(ptr unsafe.Pointer, event unsafe.
 
 func (ptr *QDesignerWidgetBoxInterface) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerWidgetBoxInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -14528,7 +14528,7 @@ func callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(ptr unsafe.Pointer, 
 
 func (ptr *QDesignerWidgetBoxInterface) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QDesignerWidgetBoxInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -15323,7 +15323,7 @@ func callbackQDesignerWidgetBoxInterface_HasHeightForWidth(ptr unsafe.Pointer) C
 
 func (ptr *QDesignerWidgetBoxInterface) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QDesignerWidgetBoxInterface_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15386,7 +15386,7 @@ func callbackQDesignerWidgetBoxInterface_EventFilter(ptr unsafe.Pointer, watched
 
 func (ptr *QDesignerWidgetBoxInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDesignerWidgetBoxInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -15897,14 +15897,14 @@ func callbackQExtensionFactory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QExtensionFactory) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionFactory_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QExtensionFactory_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QExtensionFactory) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QExtensionFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -15920,14 +15920,14 @@ func callbackQExtensionFactory_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QExtensionFactory) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionFactory_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QExtensionFactory_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QExtensionFactory) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QExtensionFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -16553,14 +16553,14 @@ func callbackQExtensionManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QExtensionManager) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionManager_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QExtensionManager_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QExtensionManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QExtensionManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -16576,14 +16576,14 @@ func callbackQExtensionManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QExtensionManager) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionManager_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QExtensionManager_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QExtensionManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QExtensionManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QExtensionManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

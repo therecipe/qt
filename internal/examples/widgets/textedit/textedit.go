@@ -333,11 +333,9 @@ func (t *TextEdit) setupTextActions() {
 	})
 	t.comboStyle.ConnectActivated(t.textStyle)
 
-	if runtime.GOARCH != "js" && runtime.GOARCH != "wasm" {
-		t.comboFont = widgets.NewQFontComboBox(tb)
-		tb.AddWidget(t.comboFont)
-		t.comboFont.ConnectActivated2(t.textFamily)
-	}
+	t.comboFont = widgets.NewQFontComboBox(tb)
+	tb.AddWidget(t.comboFont)
+	t.comboFont.ConnectActivated2(t.textFamily)
 
 	t.comboSize = widgets.NewQComboBox(tb)
 	t.comboSize.SetObjectName("comboSize")
@@ -360,9 +358,6 @@ func (t *TextEdit) setupTextActions() {
 }
 
 func (t *TextEdit) fontChanged(f *gui.QFont) {
-	if runtime.GOARCH == "js" || runtime.GOARCH == "wasm" {
-		return
-	}
 	t.comboFont.SetCurrentIndex(t.comboFont.FindText(gui.NewQFontInfo(f).Family(), core.Qt__MatchExactly|core.Qt__MatchCaseSensitive))
 	t.comboSize.SetCurrentIndex(t.comboSize.FindText(strconv.Itoa(f.PointSize()), core.Qt__MatchExactly|core.Qt__MatchCaseSensitive))
 	t.actionTextBold.SetChecked(f.Bold())

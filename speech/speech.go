@@ -982,7 +982,7 @@ func callbackQTextToSpeech_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QTextToSpeech) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeech_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QTextToSpeech_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -998,7 +998,7 @@ func callbackQTextToSpeech_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QTextToSpeech) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeech_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QTextToSpeech_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1279,7 +1279,7 @@ func (ptr *QTextToSpeechEngine) DisconnectSetLocale() {
 
 func (ptr *QTextToSpeechEngine) SetLocale(locale core.QLocale_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale)) != 0
+		return int8(C.QTextToSpeechEngine_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))) != 0
 	}
 	return false
 }
@@ -1316,7 +1316,7 @@ func (ptr *QTextToSpeechEngine) DisconnectSetPitch() {
 
 func (ptr *QTextToSpeechEngine) SetPitch(pitch float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_SetPitch(ptr.Pointer(), C.double(pitch)) != 0
+		return int8(C.QTextToSpeechEngine_SetPitch(ptr.Pointer(), C.double(pitch))) != 0
 	}
 	return false
 }
@@ -1353,7 +1353,7 @@ func (ptr *QTextToSpeechEngine) DisconnectSetRate() {
 
 func (ptr *QTextToSpeechEngine) SetRate(rate float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_SetRate(ptr.Pointer(), C.double(rate)) != 0
+		return int8(C.QTextToSpeechEngine_SetRate(ptr.Pointer(), C.double(rate))) != 0
 	}
 	return false
 }
@@ -1390,7 +1390,7 @@ func (ptr *QTextToSpeechEngine) DisconnectSetVoice() {
 
 func (ptr *QTextToSpeechEngine) SetVoice(voice QVoice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_SetVoice(ptr.Pointer(), PointerFromQVoice(voice)) != 0
+		return int8(C.QTextToSpeechEngine_SetVoice(ptr.Pointer(), PointerFromQVoice(voice))) != 0
 	}
 	return false
 }
@@ -1427,7 +1427,7 @@ func (ptr *QTextToSpeechEngine) DisconnectSetVolume() {
 
 func (ptr *QTextToSpeechEngine) SetVolume(volume float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_SetVolume(ptr.Pointer(), C.double(volume)) != 0
+		return int8(C.QTextToSpeechEngine_SetVolume(ptr.Pointer(), C.double(volume))) != 0
 	}
 	return false
 }
@@ -2168,7 +2168,7 @@ func callbackQTextToSpeechEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QTextToSpeechEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QTextToSpeechEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2184,7 +2184,7 @@ func callbackQTextToSpeechEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QTextToSpeechEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextToSpeechEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QTextToSpeechEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

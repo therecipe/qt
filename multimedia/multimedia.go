@@ -547,7 +547,7 @@ func (ptr *QAbstractAudioDeviceInfo) DisconnectIsFormatSupported() {
 
 func (ptr *QAbstractAudioDeviceInfo) IsFormatSupported(format QAudioFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(format)) != 0
+		return int8(C.QAbstractAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(format))) != 0
 	}
 	return false
 }
@@ -767,7 +767,7 @@ func callbackQAbstractAudioDeviceInfo_Event(ptr unsafe.Pointer, e unsafe.Pointer
 
 func (ptr *QAbstractAudioDeviceInfo) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioDeviceInfo_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractAudioDeviceInfo_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -783,7 +783,7 @@ func callbackQAbstractAudioDeviceInfo_EventFilter(ptr unsafe.Pointer, watched un
 
 func (ptr *QAbstractAudioDeviceInfo) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioDeviceInfo_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractAudioDeviceInfo_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1966,7 +1966,7 @@ func callbackQAbstractAudioInput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QAbstractAudioInput) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioInput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractAudioInput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1982,7 +1982,7 @@ func callbackQAbstractAudioInput_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QAbstractAudioInput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3276,7 +3276,7 @@ func callbackQAbstractAudioOutput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QAbstractAudioOutput) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioOutput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractAudioOutput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3292,7 +3292,7 @@ func callbackQAbstractAudioOutput_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QAbstractAudioOutput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAudioOutput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractAudioOutput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4073,7 +4073,7 @@ func (ptr *QAbstractVideoFilter) SetActive(v bool) {
 
 func (ptr *QAbstractVideoFilter) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoFilter_IsActive(ptr.Pointer()) != 0
+		return int8(C.QAbstractVideoFilter_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4208,7 +4208,7 @@ func callbackQAbstractVideoFilter_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QAbstractVideoFilter) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoFilter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractVideoFilter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4224,7 +4224,7 @@ func callbackQAbstractVideoFilter_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QAbstractVideoFilter) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoFilter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractVideoFilter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4484,7 +4484,7 @@ func (ptr *QAbstractVideoSurface) DisconnectPresent() {
 
 func (ptr *QAbstractVideoSurface) Present(frame QVideoFrame_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_Present(ptr.Pointer(), PointerFromQVideoFrame(frame)) != 0
+		return int8(C.QAbstractVideoSurface_Present(ptr.Pointer(), PointerFromQVideoFrame(frame))) != 0
 	}
 	return false
 }
@@ -4521,14 +4521,14 @@ func (ptr *QAbstractVideoSurface) DisconnectStart() {
 
 func (ptr *QAbstractVideoSurface) Start(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_Start(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
+		return int8(C.QAbstractVideoSurface_Start(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractVideoSurface) StartDefault(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_StartDefault(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
+		return int8(C.QAbstractVideoSurface_StartDefault(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format))) != 0
 	}
 	return false
 }
@@ -4920,7 +4920,7 @@ func (ptr *QAbstractVideoSurface) SurfaceFormat() *QVideoSurfaceFormat {
 
 func (ptr *QAbstractVideoSurface) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_IsActive(ptr.Pointer()) != 0
+		return int8(C.QAbstractVideoSurface_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4957,14 +4957,14 @@ func (ptr *QAbstractVideoSurface) DisconnectIsFormatSupported() {
 
 func (ptr *QAbstractVideoSurface) IsFormatSupported(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_IsFormatSupported(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
+		return int8(C.QAbstractVideoSurface_IsFormatSupported(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractVideoSurface) IsFormatSupportedDefault(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_IsFormatSupportedDefault(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
+		return int8(C.QAbstractVideoSurface_IsFormatSupportedDefault(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format))) != 0
 	}
 	return false
 }
@@ -5116,7 +5116,7 @@ func callbackQAbstractVideoSurface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QAbstractVideoSurface) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractVideoSurface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5132,7 +5132,7 @@ func callbackQAbstractVideoSurface_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QAbstractVideoSurface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractVideoSurface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5448,7 +5448,7 @@ func (ptr *QAudioBuffer) Format() *QAudioFormat {
 
 func (ptr *QAudioBuffer) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioBuffer_IsValid(ptr.Pointer()) != 0
+		return int8(C.QAudioBuffer_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6155,7 +6155,7 @@ func (ptr *QAudioDecoder) SourceFilename() string {
 
 func (ptr *QAudioDecoder) BufferAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioDecoder_BufferAvailable(ptr.Pointer()) != 0
+		return int8(C.QAudioDecoder_BufferAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7029,7 +7029,7 @@ func (ptr *QAudioDecoderControl) DisconnectBufferAvailable() {
 
 func (ptr *QAudioDecoderControl) BufferAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioDecoderControl_BufferAvailable(ptr.Pointer()) != 0
+		return int8(C.QAudioDecoderControl_BufferAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7315,14 +7315,14 @@ func (ptr *QAudioDeviceInfo) SupportedCodecs() []string {
 
 func (ptr *QAudioDeviceInfo) IsFormatSupported(settings QAudioFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(settings)) != 0
+		return int8(C.QAudioDeviceInfo_IsFormatSupported(ptr.Pointer(), PointerFromQAudioFormat(settings))) != 0
 	}
 	return false
 }
 
 func (ptr *QAudioDeviceInfo) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioDeviceInfo_IsNull(ptr.Pointer()) != 0
+		return int8(C.QAudioDeviceInfo_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7603,7 +7603,7 @@ func (ptr *QAudioEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 
 func (ptr *QAudioEncoderSettings) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioEncoderSettings_IsNull(ptr.Pointer()) != 0
+		return int8(C.QAudioEncoderSettings_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8221,7 +8221,7 @@ func (ptr *QAudioFormat) Codec() string {
 
 func (ptr *QAudioFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioFormat_IsValid(ptr.Pointer()) != 0
+		return int8(C.QAudioFormat_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8752,7 +8752,7 @@ func callbackQAudioInput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QAudioInput) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioInput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAudioInput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8768,7 +8768,7 @@ func callbackQAudioInput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QAudioInput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAudioInput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9704,7 +9704,7 @@ func callbackQAudioOutput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QAudioOutput) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioOutput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAudioOutput_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9720,7 +9720,7 @@ func callbackQAudioOutput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QAudioOutput) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioOutput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAudioOutput_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10286,14 +10286,14 @@ func (ptr *QAudioProbe) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QAudioProbe) SetSource(source QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source)) != 0
+		return int8(C.QAudioProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QAudioProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
+		return int8(C.QAudioProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder))) != 0
 	}
 	return false
 }
@@ -10424,7 +10424,7 @@ func (ptr *QAudioProbe) DestroyQAudioProbeDefault() {
 
 func (ptr *QAudioProbe) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioProbe_IsActive(ptr.Pointer()) != 0
+		return int8(C.QAudioProbe_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10559,7 +10559,7 @@ func callbackQAudioProbe_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QAudioProbe) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioProbe_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAudioProbe_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10575,7 +10575,7 @@ func callbackQAudioProbe_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QAudioProbe) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioProbe_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAudioProbe_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11701,7 +11701,7 @@ func callbackQAudioSystemPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QAudioSystemPlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioSystemPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAudioSystemPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -11717,7 +11717,7 @@ func callbackQAudioSystemPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QAudioSystemPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAudioSystemPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAudioSystemPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12895,7 +12895,7 @@ func (ptr *QCamera) ErrorString() string {
 
 func (ptr *QCamera) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCamera_IsCaptureModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCamera_IsCaptureModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -13485,7 +13485,7 @@ func (ptr *QCameraCaptureDestinationControl) DisconnectIsCaptureDestinationSuppo
 
 func (ptr *QCameraCaptureDestinationControl) IsCaptureDestinationSupported(destination QCameraImageCapture__CaptureDestination) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraCaptureDestinationControl_IsCaptureDestinationSupported(ptr.Pointer(), C.longlong(destination)) != 0
+		return int8(C.QCameraCaptureDestinationControl_IsCaptureDestinationSupported(ptr.Pointer(), C.longlong(destination))) != 0
 	}
 	return false
 }
@@ -13969,7 +13969,7 @@ func (ptr *QCameraControl) DisconnectCanChangeProperty() {
 
 func (ptr *QCameraControl) CanChangeProperty(changeType QCameraControl__PropertyChangeType, status QCamera__Status) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraControl_CanChangeProperty(ptr.Pointer(), C.longlong(changeType), C.longlong(status)) != 0
+		return int8(C.QCameraControl_CanChangeProperty(ptr.Pointer(), C.longlong(changeType), C.longlong(status))) != 0
 	}
 	return false
 }
@@ -14006,7 +14006,7 @@ func (ptr *QCameraControl) DisconnectIsCaptureModeSupported() {
 
 func (ptr *QCameraControl) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraControl_IsCaptureModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraControl_IsCaptureModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -14935,35 +14935,35 @@ func (ptr *QCameraExposure) SpotMeteringPoint() *core.QPointF {
 
 func (ptr *QCameraExposure) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QCameraExposure_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsExposureModeSupported(mode QCameraExposure__ExposureMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsExposureModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraExposure_IsExposureModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsFlashModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraExposure_IsFlashModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsFlashReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsFlashReady(ptr.Pointer()) != 0
+		return int8(C.QCameraExposure_IsFlashReady(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsMeteringModeSupported(mode QCameraExposure__MeteringMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsMeteringModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraExposure_IsMeteringModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -15198,7 +15198,7 @@ func callbackQCameraExposure_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QCameraExposure) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCameraExposure_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -15214,7 +15214,7 @@ func callbackQCameraExposure_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QCameraExposure) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCameraExposure_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -15424,7 +15424,7 @@ func (ptr *QCameraExposureControl) DisconnectSetValue() {
 
 func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__ExposureParameter, value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposureControl_SetValue(ptr.Pointer(), C.longlong(parameter), core.PointerFromQVariant(value)) != 0
+		return int8(C.QCameraExposureControl_SetValue(ptr.Pointer(), C.longlong(parameter), core.PointerFromQVariant(value))) != 0
 	}
 	return false
 }
@@ -15758,7 +15758,7 @@ func (ptr *QCameraExposureControl) DisconnectIsParameterSupported() {
 
 func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposureControl__ExposureParameter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposureControl_IsParameterSupported(ptr.Pointer(), C.longlong(parameter)) != 0
+		return int8(C.QCameraExposureControl_IsParameterSupported(ptr.Pointer(), C.longlong(parameter))) != 0
 	}
 	return false
 }
@@ -15879,7 +15879,7 @@ func (ptr *QCameraFeedbackControl) DisconnectSetEventFeedbackEnabled() {
 
 func (ptr *QCameraFeedbackControl) SetEventFeedbackEnabled(event QCameraFeedbackControl__EventType, enabled bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_SetEventFeedbackEnabled(ptr.Pointer(), C.longlong(event), C.char(int8(qt.GoBoolToInt(enabled)))) != 0
+		return int8(C.QCameraFeedbackControl_SetEventFeedbackEnabled(ptr.Pointer(), C.longlong(event), C.char(int8(qt.GoBoolToInt(enabled))))) != 0
 	}
 	return false
 }
@@ -15921,7 +15921,7 @@ func (ptr *QCameraFeedbackControl) SetEventFeedbackSound(event QCameraFeedbackCo
 			filePathC = C.CString(filePath)
 			defer C.free(unsafe.Pointer(filePathC))
 		}
-		return C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.longlong(event), C.struct_QtMultimedia_PackedString{data: filePathC, len: C.longlong(len(filePath))}) != 0
+		return int8(C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.longlong(event), C.struct_QtMultimedia_PackedString{data: filePathC, len: C.longlong(len(filePath))})) != 0
 	}
 	return false
 }
@@ -16039,7 +16039,7 @@ func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackEnabled() {
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackEnabled(event QCameraFeedbackControl__EventType) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_IsEventFeedbackEnabled(ptr.Pointer(), C.longlong(event)) != 0
+		return int8(C.QCameraFeedbackControl_IsEventFeedbackEnabled(ptr.Pointer(), C.longlong(event))) != 0
 	}
 	return false
 }
@@ -16076,7 +16076,7 @@ func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackLocked() {
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackLocked(event QCameraFeedbackControl__EventType) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_IsEventFeedbackLocked(ptr.Pointer(), C.longlong(event)) != 0
+		return int8(C.QCameraFeedbackControl_IsEventFeedbackLocked(ptr.Pointer(), C.longlong(event))) != 0
 	}
 	return false
 }
@@ -16316,7 +16316,7 @@ func (ptr *QCameraFlashControl) DisconnectIsFlashModeSupported() {
 
 func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFlashControl_IsFlashModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraFlashControl_IsFlashModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -16353,7 +16353,7 @@ func (ptr *QCameraFlashControl) DisconnectIsFlashReady() {
 
 func (ptr *QCameraFlashControl) IsFlashReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFlashControl_IsFlashReady(ptr.Pointer()) != 0
+		return int8(C.QCameraFlashControl_IsFlashReady(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16721,21 +16721,21 @@ func (ptr *QCameraFocus) CustomFocusPoint() *core.QPointF {
 
 func (ptr *QCameraFocus) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocus_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QCameraFocus_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFocus) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocus_IsFocusModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraFocus_IsFocusModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFocus) IsFocusPointModeSupported(mode QCameraFocus__FocusPointMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocus_IsFocusPointModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraFocus_IsFocusPointModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -16898,7 +16898,7 @@ func callbackQCameraFocus_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QCameraFocus) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocus_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCameraFocus_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -16914,7 +16914,7 @@ func callbackQCameraFocus_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QCameraFocus) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCameraFocus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -17518,7 +17518,7 @@ func (ptr *QCameraFocusControl) DisconnectIsFocusModeSupported() {
 
 func (ptr *QCameraFocusControl) IsFocusModeSupported(mode QCameraFocus__FocusMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocusControl_IsFocusModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraFocusControl_IsFocusModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -17555,7 +17555,7 @@ func (ptr *QCameraFocusControl) DisconnectIsFocusPointModeSupported() {
 
 func (ptr *QCameraFocusControl) IsFocusPointModeSupported(mode QCameraFocus__FocusPointMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocusControl_IsFocusPointModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraFocusControl_IsFocusPointModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -17641,7 +17641,7 @@ func (ptr *QCameraFocusZone) Area() *core.QRectF {
 
 func (ptr *QCameraFocusZone) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocusZone_IsValid(ptr.Pointer()) != 0
+		return int8(C.QCameraFocusZone_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17814,14 +17814,14 @@ func (ptr *QCameraImageCapture) DisconnectSetMediaObject() {
 
 func (ptr *QCameraImageCapture) SetMediaObject(mediaObject QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(mediaObject)) != 0
+		return int8(C.QCameraImageCapture_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(mediaObject))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageCapture) SetMediaObjectDefault(mediaObject QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(mediaObject)) != 0
+		return int8(C.QCameraImageCapture_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(mediaObject))) != 0
 	}
 	return false
 }
@@ -18497,21 +18497,21 @@ func (ptr *QCameraImageCapture) BufferFormat() QVideoFrame__PixelFormat {
 
 func (ptr *QCameraImageCapture) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QCameraImageCapture_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageCapture) IsCaptureDestinationSupported(destination QCameraImageCapture__CaptureDestination) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_IsCaptureDestinationSupported(ptr.Pointer(), C.longlong(destination)) != 0
+		return int8(C.QCameraImageCapture_IsCaptureDestinationSupported(ptr.Pointer(), C.longlong(destination))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageCapture) IsReadyForCapture() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_IsReadyForCapture(ptr.Pointer()) != 0
+		return int8(C.QCameraImageCapture_IsReadyForCapture(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18710,14 +18710,14 @@ func callbackQCameraImageCapture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QCameraImageCapture) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCameraImageCapture_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageCapture) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCameraImageCapture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -18733,14 +18733,14 @@ func callbackQCameraImageCapture_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QCameraImageCapture) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCameraImageCapture_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageCapture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCapture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCameraImageCapture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -19452,7 +19452,7 @@ func (ptr *QCameraImageCaptureControl) DisconnectIsReadyForCapture() {
 
 func (ptr *QCameraImageCaptureControl) IsReadyForCapture() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageCaptureControl_IsReadyForCapture(ptr.Pointer()) != 0
+		return int8(C.QCameraImageCaptureControl_IsReadyForCapture(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19650,21 +19650,21 @@ func (ptr *QCameraImageProcessing) WhiteBalanceMode() QCameraImageProcessing__Wh
 
 func (ptr *QCameraImageProcessing) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QCameraImageProcessing_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageProcessing) IsColorFilterSupported(filter QCameraImageProcessing__ColorFilter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsColorFilterSupported(ptr.Pointer(), C.longlong(filter)) != 0
+		return int8(C.QCameraImageProcessing_IsColorFilterSupported(ptr.Pointer(), C.longlong(filter))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageProcessing) IsWhiteBalanceModeSupported(mode QCameraImageProcessing__WhiteBalanceMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsWhiteBalanceModeSupported(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QCameraImageProcessing_IsWhiteBalanceModeSupported(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -19841,7 +19841,7 @@ func callbackQCameraImageProcessing_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QCameraImageProcessing) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCameraImageProcessing_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -19857,7 +19857,7 @@ func callbackQCameraImageProcessing_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QCameraImageProcessing) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCameraImageProcessing_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20190,7 +20190,7 @@ func (ptr *QCameraImageProcessingControl) DisconnectIsParameterSupported() {
 
 func (ptr *QCameraImageProcessingControl) IsParameterSupported(parameter QCameraImageProcessingControl__ProcessingParameter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessingControl_IsParameterSupported(ptr.Pointer(), C.longlong(parameter)) != 0
+		return int8(C.QCameraImageProcessingControl_IsParameterSupported(ptr.Pointer(), C.longlong(parameter))) != 0
 	}
 	return false
 }
@@ -20227,7 +20227,7 @@ func (ptr *QCameraImageProcessingControl) DisconnectIsParameterValueSupported() 
 
 func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessingControl_IsParameterValueSupported(ptr.Pointer(), C.longlong(parameter), core.PointerFromQVariant(value)) != 0
+		return int8(C.QCameraImageProcessingControl_IsParameterValueSupported(ptr.Pointer(), C.longlong(parameter), core.PointerFromQVariant(value))) != 0
 	}
 	return false
 }
@@ -20352,7 +20352,7 @@ func (ptr *QCameraInfo) DeviceName() string {
 
 func (ptr *QCameraInfo) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraInfo_IsNull(ptr.Pointer()) != 0
+		return int8(C.QCameraInfo_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20966,7 +20966,7 @@ func (ptr *QCameraViewfinderSettings) PixelFormat() QVideoFrame__PixelFormat {
 
 func (ptr *QCameraViewfinderSettings) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraViewfinderSettings_IsNull(ptr.Pointer()) != 0
+		return int8(C.QCameraViewfinderSettings_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -21197,7 +21197,7 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectIsViewfinderParameterSupp
 
 func (ptr *QCameraViewfinderSettingsControl) IsViewfinderParameterSupported(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(ptr.Pointer(), C.longlong(parameter)) != 0
+		return int8(C.QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(ptr.Pointer(), C.longlong(parameter))) != 0
 	}
 	return false
 }
@@ -22762,7 +22762,7 @@ func (ptr *QImageEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 
 func (ptr *QImageEncoderSettings) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QImageEncoderSettings_IsNull(ptr.Pointer()) != 0
+		return int8(C.QImageEncoderSettings_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -23305,7 +23305,7 @@ func (ptr *QMediaBindableInterface) DisconnectSetMediaObject() {
 
 func (ptr *QMediaBindableInterface) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaBindableInterface_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QMediaBindableInterface_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
@@ -23793,7 +23793,7 @@ func (ptr *QMediaContent) CanonicalUrl() *core.QUrl {
 
 func (ptr *QMediaContent) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaContent_IsNull(ptr.Pointer()) != 0
+		return int8(C.QMediaContent_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24114,7 +24114,7 @@ func callbackQMediaControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMediaControl) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaControl_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaControl_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -24130,7 +24130,7 @@ func callbackQMediaControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QMediaControl) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaControl_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaControl_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -24593,7 +24593,7 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectIsCrossfadeSupported() {
 
 func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaGaplessPlaybackControl_IsCrossfadeSupported(ptr.Pointer()) != 0
+		return int8(C.QMediaGaplessPlaybackControl_IsCrossfadeSupported(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24999,14 +24999,14 @@ func (ptr *QMediaObject) DisconnectBind() {
 
 func (ptr *QMediaObject) Bind(object core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_Bind(ptr.Pointer(), core.PointerFromQObject(object)) != 0
+		return int8(C.QMediaObject_Bind(ptr.Pointer(), core.PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaObject) BindDefault(object core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_BindDefault(ptr.Pointer(), core.PointerFromQObject(object)) != 0
+		return int8(C.QMediaObject_BindDefault(ptr.Pointer(), core.PointerFromQObject(object))) != 0
 	}
 	return false
 }
@@ -25505,21 +25505,21 @@ func (ptr *QMediaObject) DisconnectIsAvailable() {
 
 func (ptr *QMediaObject) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaObject_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaObject) IsAvailableDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_IsAvailableDefault(ptr.Pointer()) != 0
+		return int8(C.QMediaObject_IsAvailableDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaObject) IsMetaDataAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_IsMetaDataAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaObject_IsMetaDataAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -25661,7 +25661,7 @@ func callbackQMediaObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMediaObject) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -25677,7 +25677,7 @@ func callbackQMediaObject_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QMediaObject) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -27201,28 +27201,28 @@ func (ptr *QMediaPlayer) SupportedCustomAudioRoles() []string {
 
 func (ptr *QMediaPlayer) IsAudioAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayer_IsAudioAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayer_IsAudioAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlayer) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayer_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayer_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlayer) IsSeekable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayer_IsSeekable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayer_IsSeekable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlayer) IsVideoAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayer_IsVideoAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayer_IsVideoAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -28416,7 +28416,7 @@ func (ptr *QMediaPlayerControl) DisconnectIsAudioAvailable() {
 
 func (ptr *QMediaPlayerControl) IsAudioAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayerControl_IsAudioAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayerControl_IsAudioAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -28453,7 +28453,7 @@ func (ptr *QMediaPlayerControl) DisconnectIsMuted() {
 
 func (ptr *QMediaPlayerControl) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayerControl_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayerControl_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -28490,7 +28490,7 @@ func (ptr *QMediaPlayerControl) DisconnectIsSeekable() {
 
 func (ptr *QMediaPlayerControl) IsSeekable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayerControl_IsSeekable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayerControl_IsSeekable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -28527,7 +28527,7 @@ func (ptr *QMediaPlayerControl) DisconnectIsVideoAvailable() {
 
 func (ptr *QMediaPlayerControl) IsVideoAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlayerControl_IsVideoAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaPlayerControl_IsVideoAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -28890,68 +28890,68 @@ func (ptr *QMediaPlaylist) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QMediaPlaylist) AddMedia2(items []*QMediaContent) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_AddMedia2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QMediaPlaylist_AddMedia2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQMediaPlaylistFromPointer(NewQMediaPlaylistFromPointer(nil).__addMedia_items_newList2())
 			for _, v := range items {
 				tmpList.__addMedia_items_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) AddMedia(content QMediaContent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_AddMedia(ptr.Pointer(), PointerFromQMediaContent(content)) != 0
+		return int8(C.QMediaPlaylist_AddMedia(ptr.Pointer(), PointerFromQMediaContent(content))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) Clear() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_Clear(ptr.Pointer()) != 0
+		return int8(C.QMediaPlaylist_Clear(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) InsertMedia2(pos int, items []*QMediaContent) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_InsertMedia2(ptr.Pointer(), C.int(int32(pos)), func() unsafe.Pointer {
+		return int8(C.QMediaPlaylist_InsertMedia2(ptr.Pointer(), C.int(int32(pos)), func() unsafe.Pointer {
 			tmpList := NewQMediaPlaylistFromPointer(NewQMediaPlaylistFromPointer(nil).__insertMedia_items_newList2())
 			for _, v := range items {
 				tmpList.__insertMedia_items_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) InsertMedia(pos int, content QMediaContent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_InsertMedia(ptr.Pointer(), C.int(int32(pos)), PointerFromQMediaContent(content)) != 0
+		return int8(C.QMediaPlaylist_InsertMedia(ptr.Pointer(), C.int(int32(pos)), PointerFromQMediaContent(content))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) MoveMedia(from int, to int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_MoveMedia(ptr.Pointer(), C.int(int32(from)), C.int(int32(to))) != 0
+		return int8(C.QMediaPlaylist_MoveMedia(ptr.Pointer(), C.int(int32(from)), C.int(int32(to)))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) RemoveMedia(pos int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_RemoveMedia(ptr.Pointer(), C.int(int32(pos))) != 0
+		return int8(C.QMediaPlaylist_RemoveMedia(ptr.Pointer(), C.int(int32(pos)))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) RemoveMedia2(start int, end int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_RemoveMedia2(ptr.Pointer(), C.int(int32(start)), C.int(int32(end))) != 0
+		return int8(C.QMediaPlaylist_RemoveMedia2(ptr.Pointer(), C.int(int32(start)), C.int(int32(end)))) != 0
 	}
 	return false
 }
@@ -28963,7 +28963,7 @@ func (ptr *QMediaPlaylist) Save2(device core.QIODevice_ITF, format string) bool 
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QMediaPlaylist_Save2(ptr.Pointer(), core.PointerFromQIODevice(device), formatC) != 0
+		return int8(C.QMediaPlaylist_Save2(ptr.Pointer(), core.PointerFromQIODevice(device), formatC)) != 0
 	}
 	return false
 }
@@ -28975,7 +28975,7 @@ func (ptr *QMediaPlaylist) Save(location core.QUrl_ITF, format string) bool {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return C.QMediaPlaylist_Save(ptr.Pointer(), core.PointerFromQUrl(location), formatC) != 0
+		return int8(C.QMediaPlaylist_Save(ptr.Pointer(), core.PointerFromQUrl(location), formatC)) != 0
 	}
 	return false
 }
@@ -29716,14 +29716,14 @@ func (ptr *QMediaPlaylist) ErrorString() string {
 
 func (ptr *QMediaPlaylist) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QMediaPlaylist_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QMediaPlaylist_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29952,14 +29952,14 @@ func callbackQMediaPlaylist_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMediaPlaylist) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaPlaylist_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaPlaylist_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -29975,14 +29975,14 @@ func callbackQMediaPlaylist_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QMediaPlaylist) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaPlaylist_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaPlaylist_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -30144,14 +30144,14 @@ func callbackQMediaPlaylist_SetMediaObject(ptr unsafe.Pointer, object unsafe.Poi
 
 func (ptr *QMediaPlaylist) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QMediaPlaylist_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) SetMediaObjectDefault(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QMediaPlaylist_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
@@ -30300,7 +30300,7 @@ func (ptr *QMediaRecorder) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QMediaRecorder) SetOutputLocation(location core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_SetOutputLocation(ptr.Pointer(), core.PointerFromQUrl(location)) != 0
+		return int8(C.QMediaRecorder_SetOutputLocation(ptr.Pointer(), core.PointerFromQUrl(location))) != 0
 	}
 	return false
 }
@@ -31370,28 +31370,28 @@ func (ptr *QMediaRecorder) VideoSettings() *QVideoEncoderSettings {
 
 func (ptr *QMediaRecorder) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_IsAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaRecorder_IsAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) IsMetaDataAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_IsMetaDataAvailable(ptr.Pointer()) != 0
+		return int8(C.QMediaRecorder_IsMetaDataAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) IsMetaDataWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_IsMetaDataWritable(ptr.Pointer()) != 0
+		return int8(C.QMediaRecorder_IsMetaDataWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QMediaRecorder_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -31621,14 +31621,14 @@ func callbackQMediaRecorder_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMediaRecorder) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaRecorder_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaRecorder_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -31644,14 +31644,14 @@ func callbackQMediaRecorder_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QMediaRecorder) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaRecorder_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaRecorder_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -31813,14 +31813,14 @@ func callbackQMediaRecorder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Poi
 
 func (ptr *QMediaRecorder) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QMediaRecorder_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaRecorder) SetMediaObjectDefault(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QMediaRecorder_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
@@ -31903,7 +31903,7 @@ func (ptr *QMediaRecorderControl) DisconnectSetOutputLocation() {
 
 func (ptr *QMediaRecorderControl) SetOutputLocation(location core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorderControl_SetOutputLocation(ptr.Pointer(), core.PointerFromQUrl(location)) != 0
+		return int8(C.QMediaRecorderControl_SetOutputLocation(ptr.Pointer(), core.PointerFromQUrl(location))) != 0
 	}
 	return false
 }
@@ -32517,7 +32517,7 @@ func (ptr *QMediaRecorderControl) DisconnectIsMuted() {
 
 func (ptr *QMediaRecorderControl) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaRecorderControl_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QMediaRecorderControl_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32807,7 +32807,7 @@ func (ptr *QMediaResource) Url() *core.QUrl {
 
 func (ptr *QMediaResource) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaResource_IsNull(ptr.Pointer()) != 0
+		return int8(C.QMediaResource_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -33318,7 +33318,7 @@ func callbackQMediaService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMediaService) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaService_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -33334,7 +33334,7 @@ func callbackQMediaService_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QMediaService) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaService_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -34114,7 +34114,7 @@ func callbackQMediaServiceProviderPlugin_Event(ptr unsafe.Pointer, e unsafe.Poin
 
 func (ptr *QMediaServiceProviderPlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaServiceProviderPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMediaServiceProviderPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -34130,7 +34130,7 @@ func callbackQMediaServiceProviderPlugin_EventFilter(ptr unsafe.Pointer, watched
 
 func (ptr *QMediaServiceProviderPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaServiceProviderPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMediaServiceProviderPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -34776,7 +34776,7 @@ func (ptr *QMediaStreamsControl) DisconnectIsActive() {
 
 func (ptr *QMediaStreamsControl) IsActive(streamNumber int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaStreamsControl_IsActive(ptr.Pointer(), C.int(int32(streamNumber))) != 0
+		return int8(C.QMediaStreamsControl_IsActive(ptr.Pointer(), C.int(int32(streamNumber)))) != 0
 	}
 	return false
 }
@@ -35061,14 +35061,14 @@ func (ptr *QMediaTimeInterval) Translated(offset int64) *QMediaTimeInterval {
 
 func (ptr *QMediaTimeInterval) Contains(time int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeInterval_Contains(ptr.Pointer(), C.longlong(time)) != 0
+		return int8(C.QMediaTimeInterval_Contains(ptr.Pointer(), C.longlong(time))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaTimeInterval) IsNormal() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeInterval_IsNormal(ptr.Pointer()) != 0
+		return int8(C.QMediaTimeInterval_IsNormal(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35214,21 +35214,21 @@ func (ptr *QMediaTimeRange) Intervals() []*QMediaTimeInterval {
 
 func (ptr *QMediaTimeRange) Contains(time int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeRange_Contains(ptr.Pointer(), C.longlong(time)) != 0
+		return int8(C.QMediaTimeRange_Contains(ptr.Pointer(), C.longlong(time))) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaTimeRange) IsContinuous() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeRange_IsContinuous(ptr.Pointer()) != 0
+		return int8(C.QMediaTimeRange_IsContinuous(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaTimeRange) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeRange_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QMediaTimeRange_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35764,7 +35764,7 @@ func (ptr *QMetaDataReaderControl) DisconnectIsMetaDataAvailable() {
 
 func (ptr *QMetaDataReaderControl) IsMetaDataAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaDataReaderControl_IsMetaDataAvailable(ptr.Pointer()) != 0
+		return int8(C.QMetaDataReaderControl_IsMetaDataAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36176,7 +36176,7 @@ func (ptr *QMetaDataWriterControl) DisconnectIsMetaDataAvailable() {
 
 func (ptr *QMetaDataWriterControl) IsMetaDataAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaDataWriterControl_IsMetaDataAvailable(ptr.Pointer()) != 0
+		return int8(C.QMetaDataWriterControl_IsMetaDataAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36213,7 +36213,7 @@ func (ptr *QMetaDataWriterControl) DisconnectIsWritable() {
 
 func (ptr *QMetaDataWriterControl) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaDataWriterControl_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QMetaDataWriterControl_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36513,14 +36513,14 @@ func (ptr *QRadioData) DisconnectSetMediaObject() {
 
 func (ptr *QRadioData) SetMediaObject(mediaObject QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(mediaObject)) != 0
+		return int8(C.QRadioData_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(mediaObject))) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioData) SetMediaObjectDefault(mediaObject QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(mediaObject)) != 0
+		return int8(C.QRadioData_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(mediaObject))) != 0
 	}
 	return false
 }
@@ -37016,7 +37016,7 @@ func (ptr *QRadioData) StationName() string {
 
 func (ptr *QRadioData) IsAlternativeFrequenciesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_IsAlternativeFrequenciesEnabled(ptr.Pointer()) != 0
+		return int8(C.QRadioData_IsAlternativeFrequenciesEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -37179,14 +37179,14 @@ func callbackQRadioData_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QRadioData) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QRadioData_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioData) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QRadioData_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -37202,14 +37202,14 @@ func callbackQRadioData_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QRadioData) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QRadioData_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioData) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioData_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QRadioData_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -38076,7 +38076,7 @@ func (ptr *QRadioDataControl) DisconnectIsAlternativeFrequenciesEnabled() {
 
 func (ptr *QRadioDataControl) IsAlternativeFrequenciesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioDataControl_IsAlternativeFrequenciesEnabled(ptr.Pointer()) != 0
+		return int8(C.QRadioDataControl_IsAlternativeFrequenciesEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39133,35 +39133,35 @@ func (ptr *QRadioTuner) ErrorString() string {
 
 func (ptr *QRadioTuner) IsAntennaConnected() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTuner_IsAntennaConnected(ptr.Pointer()) != 0
+		return int8(C.QRadioTuner_IsAntennaConnected(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioTuner) IsBandSupported(band QRadioTuner__Band) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTuner_IsBandSupported(ptr.Pointer(), C.longlong(band)) != 0
+		return int8(C.QRadioTuner_IsBandSupported(ptr.Pointer(), C.longlong(band))) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioTuner) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTuner_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QRadioTuner_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioTuner) IsSearching() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTuner_IsSearching(ptr.Pointer()) != 0
+		return int8(C.QRadioTuner_IsSearching(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioTuner) IsStereo() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTuner_IsStereo(ptr.Pointer()) != 0
+		return int8(C.QRadioTuner_IsStereo(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40316,14 +40316,14 @@ func (ptr *QRadioTunerControl) DisconnectIsAntennaConnected() {
 
 func (ptr *QRadioTunerControl) IsAntennaConnected() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsAntennaConnected(ptr.Pointer()) != 0
+		return int8(C.QRadioTunerControl_IsAntennaConnected(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioTunerControl) IsAntennaConnectedDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsAntennaConnectedDefault(ptr.Pointer()) != 0
+		return int8(C.QRadioTunerControl_IsAntennaConnectedDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40360,7 +40360,7 @@ func (ptr *QRadioTunerControl) DisconnectIsBandSupported() {
 
 func (ptr *QRadioTunerControl) IsBandSupported(band QRadioTuner__Band) bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsBandSupported(ptr.Pointer(), C.longlong(band)) != 0
+		return int8(C.QRadioTunerControl_IsBandSupported(ptr.Pointer(), C.longlong(band))) != 0
 	}
 	return false
 }
@@ -40397,7 +40397,7 @@ func (ptr *QRadioTunerControl) DisconnectIsMuted() {
 
 func (ptr *QRadioTunerControl) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QRadioTunerControl_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40434,7 +40434,7 @@ func (ptr *QRadioTunerControl) DisconnectIsSearching() {
 
 func (ptr *QRadioTunerControl) IsSearching() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsSearching(ptr.Pointer()) != 0
+		return int8(C.QRadioTunerControl_IsSearching(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40471,7 +40471,7 @@ func (ptr *QRadioTunerControl) DisconnectIsStereo() {
 
 func (ptr *QRadioTunerControl) IsStereo() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioTunerControl_IsStereo(ptr.Pointer()) != 0
+		return int8(C.QRadioTunerControl_IsStereo(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40903,7 +40903,7 @@ func (ptr *QSound) FileName() string {
 
 func (ptr *QSound) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QSound_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QSound_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -41052,7 +41052,7 @@ func callbackQSound_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSound) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSound_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSound_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -41068,7 +41068,7 @@ func callbackQSound_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, even
 
 func (ptr *QSound) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSound_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSound_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -41852,21 +41852,21 @@ func (ptr *QSoundEffect) Source() *core.QUrl {
 
 func (ptr *QSoundEffect) IsLoaded() bool {
 	if ptr.Pointer() != nil {
-		return C.QSoundEffect_IsLoaded(ptr.Pointer()) != 0
+		return int8(C.QSoundEffect_IsLoaded(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSoundEffect) IsMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QSoundEffect_IsMuted(ptr.Pointer()) != 0
+		return int8(C.QSoundEffect_IsMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSoundEffect) IsPlaying() bool {
 	if ptr.Pointer() != nil {
-		return C.QSoundEffect_IsPlaying(ptr.Pointer()) != 0
+		return int8(C.QSoundEffect_IsPlaying(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -42022,7 +42022,7 @@ func callbackQSoundEffect_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSoundEffect) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSoundEffect_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSoundEffect_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -42038,7 +42038,7 @@ func callbackQSoundEffect_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QSoundEffect) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSoundEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSoundEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -42774,7 +42774,7 @@ func (ptr *QVideoEncoderSettings) EncodingOptions() map[string]*core.QVariant {
 
 func (ptr *QVideoEncoderSettings) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoEncoderSettings_IsNull(ptr.Pointer()) != 0
+		return int8(C.QVideoEncoderSettings_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43550,7 +43550,7 @@ func (ptr *QVideoFrame) PixelFormatFromImageFormat(format gui.QImage__Format) QV
 
 func (ptr *QVideoFrame) Map(mode QAbstractVideoBuffer__MapMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_Map(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QVideoFrame_Map(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -43688,28 +43688,28 @@ func (ptr *QVideoFrame) PixelFormat() QVideoFrame__PixelFormat {
 
 func (ptr *QVideoFrame) IsMapped() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsMapped(ptr.Pointer()) != 0
+		return int8(C.QVideoFrame_IsMapped(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QVideoFrame_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsValid(ptr.Pointer()) != 0
+		return int8(C.QVideoFrame_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QVideoFrame_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43953,14 +43953,14 @@ func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
 
 func (ptr *QVideoProbe) SetSource(source QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source)) != 0
+		return int8(C.QVideoProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
+		return int8(C.QVideoProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder))) != 0
 	}
 	return false
 }
@@ -44091,7 +44091,7 @@ func (ptr *QVideoProbe) DestroyQVideoProbeDefault() {
 
 func (ptr *QVideoProbe) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_IsActive(ptr.Pointer()) != 0
+		return int8(C.QVideoProbe_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -44226,7 +44226,7 @@ func callbackQVideoProbe_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QVideoProbe) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QVideoProbe_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -44242,7 +44242,7 @@ func callbackQVideoProbe_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QVideoProbe) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVideoProbe_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -44768,14 +44768,14 @@ func (ptr *QVideoSurfaceFormat) YCbCrColorSpace() QVideoSurfaceFormat__YCbCrColo
 
 func (ptr *QVideoSurfaceFormat) IsMirrored() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoSurfaceFormat_IsMirrored(ptr.Pointer()) != 0
+		return int8(C.QVideoSurfaceFormat_IsMirrored(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoSurfaceFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoSurfaceFormat_IsValid(ptr.Pointer()) != 0
+		return int8(C.QVideoSurfaceFormat_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -44957,14 +44957,14 @@ func (ptr *QVideoWidget) DisconnectEvent() {
 
 func (ptr *QVideoWidget) Event(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVideoWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVideoWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -45781,7 +45781,7 @@ func (ptr *QVideoWidget) AspectRatioMode() core.Qt__AspectRatioMode {
 
 func (ptr *QVideoWidget) IsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_IsFullScreen(ptr.Pointer()) != 0
+		return int8(C.QVideoWidget_IsFullScreen(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -46035,14 +46035,14 @@ func callbackQVideoWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QVideoWidget) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_Close(ptr.Pointer()) != 0
+		return int8(C.QVideoWidget_Close(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QVideoWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -46058,14 +46058,14 @@ func callbackQVideoWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.
 
 func (ptr *QVideoWidget) FocusNextPrevChild(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QVideoWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QVideoWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -47042,14 +47042,14 @@ func callbackQVideoWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QVideoWidget) HasHeightForWidth() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_HasHeightForWidth(ptr.Pointer()) != 0
+		return int8(C.QVideoWidget_HasHeightForWidth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QVideoWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -47132,14 +47132,14 @@ func callbackQVideoWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QVideoWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVideoWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVideoWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -47301,14 +47301,14 @@ func callbackQVideoWidget_SetMediaObject(ptr unsafe.Pointer, object unsafe.Point
 
 func (ptr *QVideoWidget) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QVideoWidget_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) SetMediaObjectDefault(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
+		return int8(C.QVideoWidget_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object))) != 0
 	}
 	return false
 }
@@ -47920,7 +47920,7 @@ func (ptr *QVideoWidgetControl) DisconnectIsFullScreen() {
 
 func (ptr *QVideoWidgetControl) IsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidgetControl_IsFullScreen(ptr.Pointer()) != 0
+		return int8(C.QVideoWidgetControl_IsFullScreen(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -48898,7 +48898,7 @@ func (ptr *QVideoWindowControl) DisconnectIsFullScreen() {
 
 func (ptr *QVideoWindowControl) IsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWindowControl_IsFullScreen(ptr.Pointer()) != 0
+		return int8(C.QVideoWindowControl_IsFullScreen(ptr.Pointer())) != 0
 	}
 	return false
 }

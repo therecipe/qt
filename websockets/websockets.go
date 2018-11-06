@@ -100,7 +100,7 @@ func (ptr *QMaskGenerator) DisconnectSeed() {
 
 func (ptr *QMaskGenerator) Seed() bool {
 	if ptr.Pointer() != nil {
-		return C.QMaskGenerator_Seed(ptr.Pointer()) != 0
+		return int8(C.QMaskGenerator_Seed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -302,7 +302,7 @@ func callbackQMaskGenerator_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QMaskGenerator) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMaskGenerator_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMaskGenerator_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -318,7 +318,7 @@ func callbackQMaskGenerator_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QMaskGenerator) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMaskGenerator_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMaskGenerator_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -556,7 +556,7 @@ func NewQWebSocket(origin string, version QWebSocketProtocol__Version, parent co
 
 func (ptr *QWebSocket) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocket_Flush(ptr.Pointer()) != 0
+		return int8(C.QWebSocket_Flush(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1634,7 +1634,7 @@ func (ptr *QWebSocket) Version() QWebSocketProtocol__Version {
 
 func (ptr *QWebSocket) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocket_IsValid(ptr.Pointer()) != 0
+		return int8(C.QWebSocket_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1839,7 +1839,7 @@ func callbackQWebSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QWebSocket) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1855,7 +1855,7 @@ func callbackQWebSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QWebSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2057,7 +2057,7 @@ func (ptr *QWebSocketCorsAuthenticator) Origin() string {
 
 func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketCorsAuthenticator_Allowed(ptr.Pointer()) != 0
+		return int8(C.QWebSocketCorsAuthenticator_Allowed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2315,14 +2315,14 @@ func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode
 
 func (ptr *QWebSocketServer) Listen(address network.QHostAddress_ITF, port uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_Listen(ptr.Pointer(), network.PointerFromQHostAddress(address), C.ushort(port)) != 0
+		return int8(C.QWebSocketServer_Listen(ptr.Pointer(), network.PointerFromQHostAddress(address), C.ushort(port))) != 0
 	}
 	return false
 }
 
 func (ptr *QWebSocketServer) SetSocketDescriptor(socketDescriptor int) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor))) != 0
+		return int8(C.QWebSocketServer_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor)))) != 0
 	}
 	return false
 }
@@ -2825,14 +2825,14 @@ func (ptr *QWebSocketServer) SecureMode() QWebSocketServer__SslMode {
 
 func (ptr *QWebSocketServer) HasPendingConnections() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_HasPendingConnections(ptr.Pointer()) != 0
+		return int8(C.QWebSocketServer_HasPendingConnections(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebSocketServer) IsListening() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_IsListening(ptr.Pointer()) != 0
+		return int8(C.QWebSocketServer_IsListening(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3030,7 +3030,7 @@ func callbackQWebSocketServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QWebSocketServer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebSocketServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3046,7 +3046,7 @@ func callbackQWebSocketServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QWebSocketServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebSocketServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebSocketServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

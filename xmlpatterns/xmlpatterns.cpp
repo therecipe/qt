@@ -10,10 +10,8 @@
 #include <QAbstractUriResolver>
 #include <QAbstractXmlNodeModel>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QEvent>
 #include <QExtensionFactory>
@@ -29,7 +27,6 @@
 #include <QNetworkAccessManager>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
@@ -39,8 +36,6 @@
 #include <QString>
 #include <QStringRef>
 #include <QTextCodec>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>

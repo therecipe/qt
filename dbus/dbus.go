@@ -235,7 +235,7 @@ func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptorDefault() {
 
 func (ptr *QDBusAbstractAdaptor) AutoRelaySignals() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractAdaptor_AutoRelaySignals(ptr.Pointer()) != 0
+		return int8(C.QDBusAbstractAdaptor_AutoRelaySignals(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -370,7 +370,7 @@ func callbackQDBusAbstractAdaptor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QDBusAbstractAdaptor) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractAdaptor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusAbstractAdaptor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -386,7 +386,7 @@ func callbackQDBusAbstractAdaptor_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QDBusAbstractAdaptor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractAdaptor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusAbstractAdaptor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -692,13 +692,13 @@ func (ptr *QDBusAbstractInterface) CallWithCallback(method string, args []*core.
 			errorMethodC = C.CString(errorMethod)
 			defer C.free(unsafe.Pointer(errorMethodC))
 		}
-		return C.QDBusAbstractInterface_CallWithCallback(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
+		return int8(C.QDBusAbstractInterface_CallWithCallback(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			tmpList := NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__callWithCallback_args_newList())
 			for _, v := range args {
 				tmpList.__callWithCallback_args_setList(v)
 			}
 			return tmpList.Pointer()
-		}(), core.PointerFromQObject(receiver), returnMethodC, errorMethodC) != 0
+		}(), core.PointerFromQObject(receiver), returnMethodC, errorMethodC)) != 0
 	}
 	return false
 }
@@ -715,13 +715,13 @@ func (ptr *QDBusAbstractInterface) CallWithCallback2(method string, args []*core
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusAbstractInterface_CallWithCallback2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
+		return int8(C.QDBusAbstractInterface_CallWithCallback2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: methodC, len: C.longlong(len(method))}, func() unsafe.Pointer {
 			tmpList := NewQDBusAbstractInterfaceFromPointer(NewQDBusAbstractInterfaceFromPointer(nil).__callWithCallback_args_newList2())
 			for _, v := range args {
 				tmpList.__callWithCallback_args_setList2(v)
 			}
 			return tmpList.Pointer()
-		}(), core.PointerFromQObject(receiver), slotC) != 0
+		}(), core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -819,7 +819,7 @@ func (ptr *QDBusAbstractInterface) Service() string {
 
 func (ptr *QDBusAbstractInterface) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractInterface_IsValid(ptr.Pointer()) != 0
+		return int8(C.QDBusAbstractInterface_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1056,7 +1056,7 @@ func callbackQDBusAbstractInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QDBusAbstractInterface) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusAbstractInterface_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1072,7 +1072,7 @@ func callbackQDBusAbstractInterface_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QDBusAbstractInterface) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusAbstractInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusAbstractInterface_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1335,7 +1335,7 @@ func (ptr *QDBusArgument) AsVariant() *core.QVariant {
 
 func (ptr *QDBusArgument) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusArgument_AtEnd(ptr.Pointer()) != 0
+		return int8(C.QDBusArgument_AtEnd(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1644,7 +1644,7 @@ func (ptr *QDBusConnection) Connect(service string, path string, interfa string,
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Connect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1681,7 +1681,7 @@ func (ptr *QDBusConnection) Connect2(service string, path string, interfa string
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Connect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1720,7 +1720,7 @@ func (ptr *QDBusConnection) Connect3(service string, path string, interfa string
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Connect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1752,7 +1752,7 @@ func (ptr *QDBusConnection) Disconnect(service string, path string, interfa stri
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Disconnect(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1789,7 +1789,7 @@ func (ptr *QDBusConnection) Disconnect2(service string, path string, interfa str
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Disconnect2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1828,7 +1828,7 @@ func (ptr *QDBusConnection) Disconnect3(service string, path string, interfa str
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC) != 0
+		return int8(C.QDBusConnection_Disconnect3(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}, C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, C.struct_QtDBus_PackedString{data: nameC, len: C.longlong(len(name))}, C.struct_QtDBus_PackedString{data: argumentMatchC, len: C.longlong(len(strings.Join(argumentMatch, "|")))}, C.struct_QtDBus_PackedString{data: signatureC, len: C.longlong(len(signature))}, core.PointerFromQObject(receiver), slotC)) != 0
 	}
 	return false
 }
@@ -1840,7 +1840,7 @@ func (ptr *QDBusConnection) RegisterObject(path string, object core.QObject_ITF,
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QDBusConnection_RegisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, core.PointerFromQObject(object), C.longlong(options)) != 0
+		return int8(C.QDBusConnection_RegisterObject(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, core.PointerFromQObject(object), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -1857,7 +1857,7 @@ func (ptr *QDBusConnection) RegisterObject2(path string, interfa string, object 
 			interfaC = C.CString(interfa)
 			defer C.free(unsafe.Pointer(interfaC))
 		}
-		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, core.PointerFromQObject(object), C.longlong(options)) != 0
+		return int8(C.QDBusConnection_RegisterObject2(ptr.Pointer(), C.struct_QtDBus_PackedString{data: pathC, len: C.longlong(len(path))}, C.struct_QtDBus_PackedString{data: interfaC, len: C.longlong(len(interfa))}, core.PointerFromQObject(object), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -1869,7 +1869,7 @@ func (ptr *QDBusConnection) RegisterService(serviceName string) bool {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		return C.QDBusConnection_RegisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}) != 0
+		return int8(C.QDBusConnection_RegisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})) != 0
 	}
 	return false
 }
@@ -1881,7 +1881,7 @@ func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
 			serviceNameC = C.CString(serviceName)
 			defer C.free(unsafe.Pointer(serviceNameC))
 		}
-		return C.QDBusConnection_UnregisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))}) != 0
+		return int8(C.QDBusConnection_UnregisterService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceNameC, len: C.longlong(len(serviceName))})) != 0
 	}
 	return false
 }
@@ -2034,21 +2034,21 @@ func (ptr *QDBusConnection) CallWithCallback(message QDBusMessage_ITF, receiver 
 			errorMethodC = C.CString(errorMethod)
 			defer C.free(unsafe.Pointer(errorMethodC))
 		}
-		return C.QDBusConnection_CallWithCallback(ptr.Pointer(), PointerFromQDBusMessage(message), core.PointerFromQObject(receiver), returnMethodC, errorMethodC, C.int(int32(timeout))) != 0
+		return int8(C.QDBusConnection_CallWithCallback(ptr.Pointer(), PointerFromQDBusMessage(message), core.PointerFromQObject(receiver), returnMethodC, errorMethodC, C.int(int32(timeout)))) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusConnection) IsConnected() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusConnection_IsConnected(ptr.Pointer()) != 0
+		return int8(C.QDBusConnection_IsConnected(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusConnection) Send(message QDBusMessage_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusConnection_Send(ptr.Pointer(), PointerFromQDBusMessage(message)) != 0
+		return int8(C.QDBusConnection_Send(ptr.Pointer(), PointerFromQDBusMessage(message))) != 0
 	}
 	return false
 }
@@ -2310,14 +2310,14 @@ func (ptr *QDBusContext) Connection() *QDBusConnection {
 
 func (ptr *QDBusContext) CalledFromDBus() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusContext_CalledFromDBus(ptr.Pointer()) != 0
+		return int8(C.QDBusContext_CalledFromDBus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusContext) IsDelayedReply() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusContext_IsDelayedReply(ptr.Pointer()) != 0
+		return int8(C.QDBusContext_IsDelayedReply(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2486,7 +2486,7 @@ func (ptr *QDBusError) Name() string {
 
 func (ptr *QDBusError) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusError_IsValid(ptr.Pointer()) != 0
+		return int8(C.QDBusError_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3042,21 +3042,21 @@ func (ptr *QDBusMessage) Signature() string {
 
 func (ptr *QDBusMessage) AutoStartService() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusMessage_AutoStartService(ptr.Pointer()) != 0
+		return int8(C.QDBusMessage_AutoStartService(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusMessage) IsDelayedReply() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusMessage_IsDelayedReply(ptr.Pointer()) != 0
+		return int8(C.QDBusMessage_IsDelayedReply(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusMessage) IsReplyRequired() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusMessage_IsReplyRequired(ptr.Pointer()) != 0
+		return int8(C.QDBusMessage_IsReplyRequired(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3518,7 +3518,7 @@ func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcherDefault() {
 
 func (ptr *QDBusPendingCallWatcher) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusPendingCallWatcher_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QDBusPendingCallWatcher_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3681,14 +3681,14 @@ func callbackQDBusPendingCallWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QDBusPendingCallWatcher) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusPendingCallWatcher_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusPendingCallWatcher_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusPendingCallWatcher) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusPendingCallWatcher_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusPendingCallWatcher_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3704,14 +3704,14 @@ func callbackQDBusPendingCallWatcher_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QDBusPendingCallWatcher) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusPendingCallWatcher_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusPendingCallWatcher_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusPendingCallWatcher) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusPendingCallWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusPendingCallWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4241,14 +4241,14 @@ func (ptr *QDBusServer) Address() string {
 
 func (ptr *QDBusServer) IsAnonymousAuthenticationAllowed() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServer_IsAnonymousAuthenticationAllowed(ptr.Pointer()) != 0
+		return int8(C.QDBusServer_IsAnonymousAuthenticationAllowed(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusServer) IsConnected() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServer_IsConnected(ptr.Pointer()) != 0
+		return int8(C.QDBusServer_IsConnected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4383,7 +4383,7 @@ func callbackQDBusServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QDBusServer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4399,7 +4399,7 @@ func callbackQDBusServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QDBusServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4645,7 +4645,7 @@ func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
 			serviceC = C.CString(service)
 			defer C.free(unsafe.Pointer(serviceC))
 		}
-		return C.QDBusServiceWatcher_RemoveWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))}) != 0
+		return int8(C.QDBusServiceWatcher_RemoveWatchedService(ptr.Pointer(), C.struct_QtDBus_PackedString{data: serviceC, len: C.longlong(len(service))})) != 0
 	}
 	return false
 }
@@ -5022,7 +5022,7 @@ func callbackQDBusServiceWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QDBusServiceWatcher) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServiceWatcher_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusServiceWatcher_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5038,7 +5038,7 @@ func callbackQDBusServiceWatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QDBusServiceWatcher) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusServiceWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusServiceWatcher_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5322,11 +5322,11 @@ func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
 }
 
 func QDBusUnixFileDescriptor_IsSupported() bool {
-	return C.QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported() != 0
+	return int8(C.QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported()) != 0
 }
 
 func (ptr *QDBusUnixFileDescriptor) IsSupported() bool {
-	return C.QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported() != 0
+	return int8(C.QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported()) != 0
 }
 
 func (ptr *QDBusUnixFileDescriptor) SetFileDescriptor(fileDescriptor int) {
@@ -5351,7 +5351,7 @@ func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 
 func (ptr *QDBusUnixFileDescriptor) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusUnixFileDescriptor_IsValid(ptr.Pointer()) != 0
+		return int8(C.QDBusUnixFileDescriptor_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5582,7 +5582,7 @@ func (ptr *QDBusVirtualObject) DisconnectHandleMessage() {
 
 func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connection QDBusConnection_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusVirtualObject_HandleMessage(ptr.Pointer(), PointerFromQDBusMessage(message), PointerFromQDBusConnection(connection)) != 0
+		return int8(C.QDBusVirtualObject_HandleMessage(ptr.Pointer(), PointerFromQDBusMessage(message), PointerFromQDBusConnection(connection))) != 0
 	}
 	return false
 }
@@ -5806,7 +5806,7 @@ func callbackQDBusVirtualObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QDBusVirtualObject) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusVirtualObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDBusVirtualObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5822,7 +5822,7 @@ func callbackQDBusVirtualObject_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QDBusVirtualObject) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusVirtualObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDBusVirtualObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

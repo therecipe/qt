@@ -668,14 +668,14 @@ func (ptr *QScriptClass) DisconnectSupportsExtension() {
 
 func (ptr *QScriptClass) SupportsExtension(extension QScriptClass__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptClass_SupportsExtension(ptr.Pointer(), C.longlong(extension)) != 0
+		return int8(C.QScriptClass_SupportsExtension(ptr.Pointer(), C.longlong(extension))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptClass) SupportsExtensionDefault(extension QScriptClass__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptClass_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension)) != 0
+		return int8(C.QScriptClass_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension))) != 0
 	}
 	return false
 }
@@ -921,7 +921,7 @@ func (ptr *QScriptContext) Backtrace() []string {
 
 func (ptr *QScriptContext) IsCalledAsConstructor() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptContext_IsCalledAsConstructor(ptr.Pointer()) != 0
+		return int8(C.QScriptContext_IsCalledAsConstructor(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1038,7 +1038,7 @@ func (ptr *QScriptContextInfo) FunctionParameterNames() []string {
 
 func (ptr *QScriptContextInfo) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptContextInfo_IsNull(ptr.Pointer()) != 0
+		return int8(C.QScriptContextInfo_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1645,14 +1645,14 @@ func (ptr *QScriptEngine) UncaughtExceptionBacktrace() []string {
 
 func (ptr *QScriptEngine) HasUncaughtException() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngine_HasUncaughtException(ptr.Pointer()) != 0
+		return int8(C.QScriptEngine_HasUncaughtException(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptEngine) IsEvaluating() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngine_IsEvaluating(ptr.Pointer()) != 0
+		return int8(C.QScriptEngine_IsEvaluating(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1801,7 +1801,7 @@ func callbackQScriptEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QScriptEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScriptEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1817,7 +1817,7 @@ func callbackQScriptEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QScriptEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScriptEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2515,14 +2515,14 @@ func (ptr *QScriptEngineAgent) DisconnectSupportsExtension() {
 
 func (ptr *QScriptEngineAgent) SupportsExtension(extension QScriptEngineAgent__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.longlong(extension)) != 0
+		return int8(C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.longlong(extension))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptEngineAgent) SupportsExtensionDefault(extension QScriptEngineAgent__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineAgent_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension)) != 0
+		return int8(C.QScriptEngineAgent_SupportsExtensionDefault(ptr.Pointer(), C.longlong(extension))) != 0
 	}
 	return false
 }
@@ -2897,7 +2897,7 @@ func callbackQScriptExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QScriptExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScriptExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2913,7 +2913,7 @@ func callbackQScriptExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QScriptExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScriptExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3115,7 +3115,7 @@ func (ptr *QScriptProgram) SourceCode() string {
 
 func (ptr *QScriptProgram) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptProgram_IsNull(ptr.Pointer()) != 0
+		return int8(C.QScriptProgram_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3193,7 +3193,7 @@ func (ptr *QScriptString) ToString() string {
 
 func (ptr *QScriptString) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptString_IsValid(ptr.Pointer()) != 0
+		return int8(C.QScriptString_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3633,140 +3633,140 @@ func (ptr *QScriptValue) ToVariant() *core.QVariant {
 
 func (ptr *QScriptValue) Equals(other QScriptValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_Equals(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
+		return int8(C.QScriptValue_Equals(ptr.Pointer(), PointerFromQScriptValue(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) InstanceOf(other QScriptValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_InstanceOf(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
+		return int8(C.QScriptValue_InstanceOf(ptr.Pointer(), PointerFromQScriptValue(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsArray() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsArray(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsArray(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsBool(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsBool(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsDate() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsDate(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsDate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsError() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsError(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsFunction() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsFunction(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsFunction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsNull(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsNumber(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsNumber(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsObject(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsQMetaObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsQMetaObject(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsQMetaObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsQObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsQObject(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsQObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsRegExp() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsRegExp(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsRegExp(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsString() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsString(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsString(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsUndefined() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsUndefined(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsUndefined(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsValid(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) IsVariant() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_IsVariant(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_IsVariant(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) LessThan(other QScriptValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_LessThan(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
+		return int8(C.QScriptValue_LessThan(ptr.Pointer(), PointerFromQScriptValue(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) StrictlyEquals(other QScriptValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_StrictlyEquals(ptr.Pointer(), PointerFromQScriptValue(other)) != 0
+		return int8(C.QScriptValue_StrictlyEquals(ptr.Pointer(), PointerFromQScriptValue(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptValue) ToBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptValue_ToBool(ptr.Pointer()) != 0
+		return int8(C.QScriptValue_ToBool(ptr.Pointer())) != 0
 	}
 	return false
 }

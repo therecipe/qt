@@ -1538,56 +1538,56 @@ func (ptr *QAbstractAxis) Orientation() core.Qt__Orientation {
 
 func (ptr *QAbstractAxis) IsGridLineVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsGridLineVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsGridLineVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) IsLineVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsLineVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsLineVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) IsMinorGridLineVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsMinorGridLineVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsMinorGridLineVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) IsReverse() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsReverse(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsReverse(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) IsTitleVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsTitleVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsTitleVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) LabelsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_LabelsVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_LabelsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractAxis) ShadesVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_ShadesVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractAxis_ShadesVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1729,7 +1729,7 @@ func callbackQAbstractAxis_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QAbstractAxis) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractAxis_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1745,7 +1745,7 @@ func callbackQAbstractAxis_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QAbstractAxis) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractAxis_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractAxis_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1910,41 +1910,41 @@ const (
 
 func (ptr *QAbstractBarSeries) Append(set QBarSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_Append(ptr.Pointer(), PointerFromQBarSet(set)) != 0
+		return int8(C.QAbstractBarSeries_Append(ptr.Pointer(), PointerFromQBarSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractBarSeries) Append2(sets []*QBarSet) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QAbstractBarSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQAbstractBarSeriesFromPointer(NewQAbstractBarSeriesFromPointer(nil).__append_sets_newList2())
 			for _, v := range sets {
 				tmpList.__append_sets_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractBarSeries) Insert(index int, set QBarSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQBarSet(set)) != 0
+		return int8(C.QAbstractBarSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQBarSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractBarSeries) Remove(set QBarSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_Remove(ptr.Pointer(), PointerFromQBarSet(set)) != 0
+		return int8(C.QAbstractBarSeries_Remove(ptr.Pointer(), PointerFromQBarSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractBarSeries) Take(set QBarSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_Take(ptr.Pointer(), PointerFromQBarSet(set)) != 0
+		return int8(C.QAbstractBarSeries_Take(ptr.Pointer(), PointerFromQBarSet(set))) != 0
 	}
 	return false
 }
@@ -2610,7 +2610,7 @@ func (ptr *QAbstractBarSeries) LabelsFormat() string {
 
 func (ptr *QAbstractBarSeries) IsLabelsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractBarSeries_IsLabelsVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractBarSeries_IsLabelsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2881,14 +2881,14 @@ func (ptr *QAbstractSeries) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QAbstractSeries) AttachAxis(axis QAbstractAxis_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_AttachAxis(ptr.Pointer(), PointerFromQAbstractAxis(axis)) != 0
+		return int8(C.QAbstractSeries_AttachAxis(ptr.Pointer(), PointerFromQAbstractAxis(axis))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSeries) DetachAxis(axis QAbstractAxis_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_DetachAxis(ptr.Pointer(), PointerFromQAbstractAxis(axis)) != 0
+		return int8(C.QAbstractSeries_DetachAxis(ptr.Pointer(), PointerFromQAbstractAxis(axis))) != 0
 	}
 	return false
 }
@@ -3193,14 +3193,14 @@ func (ptr *QAbstractSeries) Name() string {
 
 func (ptr *QAbstractSeries) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstractSeries_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSeries) UseOpenGL() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_UseOpenGL(ptr.Pointer()) != 0
+		return int8(C.QAbstractSeries_UseOpenGL(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3363,7 +3363,7 @@ func callbackQAbstractSeries_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QAbstractSeries) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractSeries_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3379,7 +3379,7 @@ func callbackQAbstractSeries_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QAbstractSeries) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSeries_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractSeries_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4452,21 +4452,21 @@ func (ptr *QAreaSeries) PointLabelsFormat() string {
 
 func (ptr *QAreaSeries) PointLabelsClipping() bool {
 	if ptr.Pointer() != nil {
-		return C.QAreaSeries_PointLabelsClipping(ptr.Pointer()) != 0
+		return int8(C.QAreaSeries_PointLabelsClipping(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAreaSeries) PointLabelsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAreaSeries_PointLabelsVisible(ptr.Pointer()) != 0
+		return int8(C.QAreaSeries_PointLabelsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAreaSeries) PointsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAreaSeries_PointsVisible(ptr.Pointer()) != 0
+		return int8(C.QAreaSeries_PointsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6398,7 +6398,7 @@ func callbackQBarSet_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QBarSet) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBarSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBarSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6414,7 +6414,7 @@ func callbackQBarSet_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QBarSet) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBarSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBarSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6756,48 +6756,48 @@ func NewQBoxPlotSeries(parent core.QObject_ITF) *QBoxPlotSeries {
 
 func (ptr *QBoxPlotSeries) Append(set QBoxSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_Append(ptr.Pointer(), PointerFromQBoxSet(set)) != 0
+		return int8(C.QBoxPlotSeries_Append(ptr.Pointer(), PointerFromQBoxSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxPlotSeries) Append2(sets []*QBoxSet) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QBoxPlotSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQBoxPlotSeriesFromPointer(NewQBoxPlotSeriesFromPointer(nil).__append_sets_newList2())
 			for _, v := range sets {
 				tmpList.__append_sets_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxPlotSeries) BoxOutlineVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_BoxOutlineVisible(ptr.Pointer()) != 0
+		return int8(C.QBoxPlotSeries_BoxOutlineVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxPlotSeries) Insert(index int, set QBoxSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQBoxSet(set)) != 0
+		return int8(C.QBoxPlotSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQBoxSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxPlotSeries) Remove(set QBoxSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_Remove(ptr.Pointer(), PointerFromQBoxSet(set)) != 0
+		return int8(C.QBoxPlotSeries_Remove(ptr.Pointer(), PointerFromQBoxSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxPlotSeries) Take(set QBoxSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxPlotSeries_Take(ptr.Pointer(), PointerFromQBoxSet(set)) != 0
+		return int8(C.QBoxPlotSeries_Take(ptr.Pointer(), PointerFromQBoxSet(set))) != 0
 	}
 	return false
 }
@@ -8354,7 +8354,7 @@ func callbackQBoxSet_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QBoxSet) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QBoxSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8370,7 +8370,7 @@ func callbackQBoxSet_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QBoxSet) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QBoxSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9136,7 +9136,7 @@ func callbackQCandlestickModelMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QCandlestickModelMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCandlestickModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9152,7 +9152,7 @@ func callbackQCandlestickModelMapper_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QCandlestickModelMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCandlestickModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9313,54 +9313,54 @@ func NewQCandlestickSeries(parent core.QObject_ITF) *QCandlestickSeries {
 
 func (ptr *QCandlestickSeries) Append(set QCandlestickSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Append(ptr.Pointer(), PointerFromQCandlestickSet(set)) != 0
+		return int8(C.QCandlestickSeries_Append(ptr.Pointer(), PointerFromQCandlestickSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) Append2(sets []*QCandlestickSet) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QCandlestickSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__append_sets_newList2())
 			for _, v := range sets {
 				tmpList.__append_sets_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) Insert(index int, set QCandlestickSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQCandlestickSet(set)) != 0
+		return int8(C.QCandlestickSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQCandlestickSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) Remove(set QCandlestickSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Remove(ptr.Pointer(), PointerFromQCandlestickSet(set)) != 0
+		return int8(C.QCandlestickSeries_Remove(ptr.Pointer(), PointerFromQCandlestickSet(set))) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) Remove2(sets []*QCandlestickSet) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Remove2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QCandlestickSeries_Remove2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQCandlestickSeriesFromPointer(NewQCandlestickSeriesFromPointer(nil).__remove_sets_newList2())
 			for _, v := range sets {
 				tmpList.__remove_sets_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) Take(set QCandlestickSet_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_Take(ptr.Pointer(), PointerFromQCandlestickSet(set)) != 0
+		return int8(C.QCandlestickSeries_Take(ptr.Pointer(), PointerFromQCandlestickSet(set))) != 0
 	}
 	return false
 }
@@ -10301,14 +10301,14 @@ func (ptr *QCandlestickSeries) Pen() *gui.QPen {
 
 func (ptr *QCandlestickSeries) BodyOutlineVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_BodyOutlineVisible(ptr.Pointer()) != 0
+		return int8(C.QCandlestickSeries_BodyOutlineVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCandlestickSeries) CapsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSeries_CapsVisible(ptr.Pointer()) != 0
+		return int8(C.QCandlestickSeries_CapsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11302,7 +11302,7 @@ func callbackQCandlestickSet_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QCandlestickSet) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCandlestickSet_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -11318,7 +11318,7 @@ func callbackQCandlestickSet_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QCandlestickSet) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCandlestickSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCandlestickSet_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11865,7 +11865,7 @@ func (ptr *QChart) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QChart) IsZoomed() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_IsZoomed(ptr.Pointer()) != 0
+		return int8(C.QChart_IsZoomed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12333,28 +12333,28 @@ func (ptr *QChart) Title() string {
 
 func (ptr *QChart) IsBackgroundVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_IsBackgroundVisible(ptr.Pointer()) != 0
+		return int8(C.QChart_IsBackgroundVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChart) IsDropShadowEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_IsDropShadowEnabled(ptr.Pointer()) != 0
+		return int8(C.QChart_IsDropShadowEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChart) IsPlotAreaBackgroundVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_IsPlotAreaBackgroundVisible(ptr.Pointer()) != 0
+		return int8(C.QChart_IsPlotAreaBackgroundVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChart) LocalizeNumbers() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_LocalizeNumbers(ptr.Pointer()) != 0
+		return int8(C.QChart_LocalizeNumbers(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12702,7 +12702,7 @@ func callbackQChart_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QChart) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QChart_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12718,7 +12718,7 @@ func callbackQChart_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
 
 func (ptr *QChart) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChart_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12734,7 +12734,7 @@ func callbackQChart_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 
 func (ptr *QChart) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QChart_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -12750,7 +12750,7 @@ func callbackQChart_SceneEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char 
 
 func (ptr *QChart) SceneEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChart_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12766,7 +12766,7 @@ func callbackQChart_WindowFrameEvent(ptr unsafe.Pointer, event unsafe.Pointer) C
 
 func (ptr *QChart) WindowFrameEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChart_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13278,7 +13278,7 @@ func callbackQChart_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, even
 
 func (ptr *QChart) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChart_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13402,7 +13402,7 @@ func callbackQChart_SceneEventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QChart) SceneEventFilterDefault(watched widgets.QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChart_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13679,7 +13679,7 @@ func callbackQChart_CollidesWithItem(ptr unsafe.Pointer, other unsafe.Pointer, m
 
 func (ptr *QChart) CollidesWithItemDefault(other widgets.QGraphicsItem_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode)) != 0
+		return int8(C.QChart_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -13695,7 +13695,7 @@ func callbackQChart_CollidesWithPath(ptr unsafe.Pointer, path unsafe.Pointer, mo
 
 func (ptr *QChart) CollidesWithPathDefault(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)) != 0
+		return int8(C.QChart_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -13711,7 +13711,7 @@ func callbackQChart_Contains(ptr unsafe.Pointer, point unsafe.Pointer) C.char {
 
 func (ptr *QChart) ContainsDefault(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QChart_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
@@ -13727,7 +13727,7 @@ func callbackQChart_IsObscuredBy(ptr unsafe.Pointer, item unsafe.Pointer) C.char
 
 func (ptr *QChart) IsObscuredByDefault(item widgets.QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChart_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item)) != 0
+		return int8(C.QChart_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item))) != 0
 	}
 	return false
 }
@@ -14342,7 +14342,7 @@ func callbackQChartView_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
 
 func (ptr *QChartView) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChartView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -14358,7 +14358,7 @@ func callbackQChartView_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.ch
 
 func (ptr *QChartView) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QChartView_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -14374,7 +14374,7 @@ func callbackQChartView_ViewportEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 
 func (ptr *QChartView) ViewportEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChartView_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -14820,7 +14820,7 @@ func callbackQChartView_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QChartView) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QChartView_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15276,7 +15276,7 @@ func callbackQChartView_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QChartView) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QChartView_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15339,7 +15339,7 @@ func callbackQChartView_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QChartView) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QChartView_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QChartView_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -16407,7 +16407,7 @@ func callbackQHBarModelMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QHBarModelMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHBarModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHBarModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -16423,7 +16423,7 @@ func callbackQHBarModelMapper_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QHBarModelMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHBarModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHBarModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -17088,7 +17088,7 @@ func callbackQHBoxPlotModelMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QHBoxPlotModelMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHBoxPlotModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHBoxPlotModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -17104,7 +17104,7 @@ func callbackQHBoxPlotModelMapper_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QHBoxPlotModelMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHBoxPlotModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHBoxPlotModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -19147,14 +19147,14 @@ func (ptr *QLegend) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QLegend) IsAttachedToChart() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_IsAttachedToChart(ptr.Pointer()) != 0
+		return int8(C.QLegend_IsAttachedToChart(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLegend) ReverseMarkers() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_ReverseMarkers(ptr.Pointer()) != 0
+		return int8(C.QLegend_ReverseMarkers(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19661,14 +19661,14 @@ func (ptr *QLegend) Alignment() core.Qt__AlignmentFlag {
 
 func (ptr *QLegend) IsBackgroundVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_IsBackgroundVisible(ptr.Pointer()) != 0
+		return int8(C.QLegend_IsBackgroundVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLegend) ShowToolTips() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_ShowToolTips(ptr.Pointer()) != 0
+		return int8(C.QLegend_ShowToolTips(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19981,7 +19981,7 @@ func callbackQLegend_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QLegend) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QLegend_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19997,7 +19997,7 @@ func callbackQLegend_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
 
 func (ptr *QLegend) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegend_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20013,7 +20013,7 @@ func callbackQLegend_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char 
 
 func (ptr *QLegend) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QLegend_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -20029,7 +20029,7 @@ func callbackQLegend_SceneEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char
 
 func (ptr *QLegend) SceneEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegend_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20045,7 +20045,7 @@ func callbackQLegend_WindowFrameEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 
 func (ptr *QLegend) WindowFrameEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegend_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20557,7 +20557,7 @@ func callbackQLegend_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QLegend) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegend_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20681,7 +20681,7 @@ func callbackQLegend_SceneEventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QLegend) SceneEventFilterDefault(watched widgets.QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegend_SceneEventFilterDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20958,7 +20958,7 @@ func callbackQLegend_CollidesWithItem(ptr unsafe.Pointer, other unsafe.Pointer, 
 
 func (ptr *QLegend) CollidesWithItemDefault(other widgets.QGraphicsItem_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode)) != 0
+		return int8(C.QLegend_CollidesWithItemDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(other), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -20974,7 +20974,7 @@ func callbackQLegend_CollidesWithPath(ptr unsafe.Pointer, path unsafe.Pointer, m
 
 func (ptr *QLegend) CollidesWithPathDefault(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)) != 0
+		return int8(C.QLegend_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -20990,7 +20990,7 @@ func callbackQLegend_Contains(ptr unsafe.Pointer, point unsafe.Pointer) C.char {
 
 func (ptr *QLegend) ContainsDefault(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QLegend_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
@@ -21006,7 +21006,7 @@ func callbackQLegend_IsObscuredBy(ptr unsafe.Pointer, item unsafe.Pointer) C.cha
 
 func (ptr *QLegend) IsObscuredByDefault(item widgets.QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegend_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item)) != 0
+		return int8(C.QLegend_IsObscuredByDefault(ptr.Pointer(), widgets.PointerFromQGraphicsItem(item))) != 0
 	}
 	return false
 }
@@ -21693,7 +21693,7 @@ func (ptr *QLegendMarker) Label() string {
 
 func (ptr *QLegendMarker) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QLegendMarker_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QLegendMarker_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -21828,7 +21828,7 @@ func callbackQLegendMarker_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QLegendMarker) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegendMarker_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLegendMarker_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -21844,7 +21844,7 @@ func callbackQLegendMarker_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QLegendMarker) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLegendMarker_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLegendMarker_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -22982,41 +22982,41 @@ func (ptr *QPieSeries) Append3(label string, value float64) *QPieSlice {
 
 func (ptr *QPieSeries) Append2(slices []*QPieSlice) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QPieSeries_Append2(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQPieSeriesFromPointer(NewQPieSeriesFromPointer(nil).__append_slices_newList2())
 			for _, v := range slices {
 				tmpList.__append_slices_setList2(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QPieSeries) Append(slice QPieSlice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_Append(ptr.Pointer(), PointerFromQPieSlice(slice)) != 0
+		return int8(C.QPieSeries_Append(ptr.Pointer(), PointerFromQPieSlice(slice))) != 0
 	}
 	return false
 }
 
 func (ptr *QPieSeries) Insert(index int, slice QPieSlice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQPieSlice(slice)) != 0
+		return int8(C.QPieSeries_Insert(ptr.Pointer(), C.int(int32(index)), PointerFromQPieSlice(slice))) != 0
 	}
 	return false
 }
 
 func (ptr *QPieSeries) Remove(slice QPieSlice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_Remove(ptr.Pointer(), PointerFromQPieSlice(slice)) != 0
+		return int8(C.QPieSeries_Remove(ptr.Pointer(), PointerFromQPieSlice(slice))) != 0
 	}
 	return false
 }
 
 func (ptr *QPieSeries) Take(slice QPieSlice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_Take(ptr.Pointer(), PointerFromQPieSlice(slice)) != 0
+		return int8(C.QPieSeries_Take(ptr.Pointer(), PointerFromQPieSlice(slice))) != 0
 	}
 	return false
 }
@@ -23558,7 +23558,7 @@ func (ptr *QPieSeries) Slices() []*QPieSlice {
 
 func (ptr *QPieSeries) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSeries_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QPieSeries_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24809,14 +24809,14 @@ func (ptr *QPieSlice) Label() string {
 
 func (ptr *QPieSlice) IsExploded() bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSlice_IsExploded(ptr.Pointer()) != 0
+		return int8(C.QPieSlice_IsExploded(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPieSlice) IsLabelVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSlice_IsLabelVisible(ptr.Pointer()) != 0
+		return int8(C.QPieSlice_IsLabelVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24993,7 +24993,7 @@ func callbackQPieSlice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QPieSlice) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSlice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QPieSlice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -25009,7 +25009,7 @@ func callbackQPieSlice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QPieSlice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPieSlice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPieSlice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -26336,7 +26336,7 @@ func callbackQVBarModelMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QVBarModelMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVBarModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QVBarModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -26352,7 +26352,7 @@ func callbackQVBarModelMapper_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QVBarModelMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVBarModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVBarModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -27017,7 +27017,7 @@ func callbackQVBoxPlotModelMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QVBoxPlotModelMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVBoxPlotModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QVBoxPlotModelMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -27033,7 +27033,7 @@ func callbackQVBoxPlotModelMapper_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QVBoxPlotModelMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVBoxPlotModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QVBoxPlotModelMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -30364,21 +30364,21 @@ func (ptr *QXYSeries) PointsVector() []*core.QPointF {
 
 func (ptr *QXYSeries) PointLabelsClipping() bool {
 	if ptr.Pointer() != nil {
-		return C.QXYSeries_PointLabelsClipping(ptr.Pointer()) != 0
+		return int8(C.QXYSeries_PointLabelsClipping(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXYSeries) PointLabelsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QXYSeries_PointLabelsVisible(ptr.Pointer()) != 0
+		return int8(C.QXYSeries_PointLabelsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXYSeries) PointsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QXYSeries_PointsVisible(ptr.Pointer()) != 0
+		return int8(C.QXYSeries_PointsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }

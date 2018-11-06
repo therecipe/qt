@@ -40,7 +40,7 @@ func goOutput(name, value string, f *parser.Function, p string) string {
 
 	case "bool", "GLboolean":
 		{
-			return fmt.Sprintf("%v != 0", name)
+			return fmt.Sprintf("int8(%v) != 0", name)
 		}
 
 	case "short", "qint16", "GLshort":
@@ -429,9 +429,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 		{
 			if parser.UseJs() {
 				if parser.UseWasm() {
-					return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"dataP\").Int())))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+					return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"data\").Int())))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
 				}
-				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
+				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"data\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
 			}
 			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\ntmpList := New%vFromPointer(l.data)\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_%v_atList%v(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, name)
 		}
@@ -440,9 +440,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 		{
 			if parser.UseJs() {
 				if parser.UseWasm() {
-					return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"dataP\").Int())))\nfor i,v:=range tmpList.__%v_%v_keyList%v(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, f.Name, name, f.OverloadNumber, name)
+					return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"data\").Int())))\nfor i,v:=range tmpList.__%v_%v_keyList%v(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, f.Name, name, f.OverloadNumber, name)
 				}
-				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i,v:=range tmpList.__%v_%v_keyList%v(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, f.Name, name, f.OverloadNumber, name)
+				return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"data\").Unsafe()))\nfor i,v:=range tmpList.__%v_%v_keyList%v(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.OverloadNumber, f.Name, name, f.OverloadNumber, name)
 			}
 			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{out := make(%v, int(l.len))\ntmpList := New%vFromPointer(l.data)\nfor i,v:=range tmpList.__%v_%v_keyList(){ out[v] = tmpList.__%v_%v_atList%v(v, i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, name, f.Name, name, f.OverloadNumber, name)
 		}
@@ -456,7 +456,7 @@ func CppOutput(name, value string, f *parser.Function) string {
 	if strings.HasSuffix(f.Name, "_atList") {
 		if parser.UseJs() {
 			if f.IsMap {
-				out := cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.TrimSuffix(strings.Split(name, "_atList(")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+				out := cppOutput(fmt.Sprintf("({%v tmp = %v->value%v; if (i == %v->size()-1) { %v->~%v(); free(reinterpret_cast<void*>(ptr)); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.TrimSuffix(strings.Split(name, "_atList(")[1], ", i)")+")", strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 				if !strings.Contains(cppOutput(name, value, f), "emscripten::val") && f.BoundByEmscripten {
 					if !strings.Contains(out, "emscripten::val::global") {
 						out = "reinterpret_cast<uintptr_t>(" + out + ")"
@@ -464,7 +464,7 @@ func CppOutput(name, value string, f *parser.Function) string {
 				}
 				return out
 			}
-			out := cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.Split(name, "_atList(")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
+			out := cppOutput(fmt.Sprintf("({%v tmp = %v->at%v; if (i == %v->size()-1) { %v->~%v(); free(reinterpret_cast<void*>(ptr)); }; tmp; })", value, strings.Split(name, "->")[0], "("+strings.Split(name, "_atList(")[1], strings.Split(name, "->")[0], strings.Split(name, "->")[0], parser.CleanValue(f.Container)), value, f)
 			if !strings.Contains(cppOutput(name, value, f), "emscripten::val") && f.BoundByEmscripten {
 				if !strings.Contains(out, "emscripten::val::global") {
 					out = "reinterpret_cast<uintptr_t>(" + out + ")"
@@ -537,33 +537,31 @@ func cppOutputPack(name, value string, f *parser.Function) string {
 func cppOutputPacked(name, value string, f *parser.Function) string {
 	var out = CppOutput(name, value, f)
 
-	if strings.Contains(out, "_PackedString") {
-		return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
-	}
-
 	if parser.UseJs() {
-		if strings.Contains(out, "WHITESPACE") {
-			return out + "[\"dataP\"].as<std::string>()"
-		}
-
-		if isClass(parser.CleanValue(value)) && !strings.Contains(out, "emscripten::val::global") {
+		if isClass(parser.CleanValue(value)) && !strings.Contains(out, "emscripten::val::object()") {
 			return "reinterpret_cast<uintptr_t>(" + out + ")"
+		}
+	} else {
+		if strings.Contains(out, "_PackedString") {
+			return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
 		}
 	}
 
 	return out
 }
 
+//TODO: remove hex encoding once QByteArray <-> ArrayBuffer conversion is possible and/or more TypedArray functions are available for gopherjs/wasm
+//TODO: make exemption for QString and QStringList? they usually won't need the extra hex encoding ...
 func cppOutputPackingStringForJs(name, length string) string {
 	if parser.UseJs() {
-		return fmt.Sprintf("emscripten::val ret = emscripten::val::object(); ret.set(\"dataP\", QString::fromUtf8(%v, %v).toStdString()); ret.set(\"len\", %v); ret;", name, length, length)
+		return fmt.Sprintf("emscripten::val ret = emscripten::val::object(); ret.set(\"data\", QByteArray::fromRawData(%v, %v).toHex().toStdString()); ret.set(\"len\", %v); ret;", name, length, length)
 	}
 	return ""
 }
 
 func cppOutputPackingListForJs() string {
 	if parser.UseJs() {
-		return "emscripten::val ret = emscripten::val::object(); ret.set(\"dataP\", reinterpret_cast<uintptr_t>(tmpValue)); ret.set(\"len\", tmpValue->size());"
+		return "emscripten::val ret = emscripten::val::object(); ret.set(\"data\", reinterpret_cast<uintptr_t>(tmpValue)); ret.set(\"len\", tmpValue->size());"
 	}
 	return ""
 }
@@ -882,7 +880,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
 			return func() string {
-				var out = fmt.Sprintf("%v.Get(\"dataP\").String()", name)
+				var out = fmt.Sprintf("jsGoUnpackString(%v.Get(\"data\").String())", name)
 				if strings.Contains(p, "error") {
 					return fmt.Sprintf("errors.New(%v)", out)
 				}
@@ -892,7 +890,10 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(%v.Get(\"dataP\").String(), \"|\")", name)
+			if f.SignalMode == parser.CALLBACK {
+				return fmt.Sprintf("jsGoUnpackString(%v.Get(\"data\").String())", name)
+			}
+			return fmt.Sprintf("strings.Split(jsGoUnpackString(%v.Get(\"data\").String()), \"|\")", name)
 		}
 
 	case "void", "GLvoid", "":
@@ -908,7 +909,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 
 	case "bool", "GLboolean":
 		{
-			if parser.UseWasm() {
+			if parser.UseWasm() && f.SignalMode != parser.CALLBACK { //callback arguments for wasm are proper bools, this would panic otherwise: https://github.com/golang/go/blob/master/src/syscall/js/js.go#L361
 				return fmt.Sprintf("%v.Int() != 0", name)
 			}
 			return fmt.Sprintf("%v.Bool()", name)
@@ -1009,7 +1010,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 					if parser.UseWasm() {
 						return fmt.Sprintf("int8(%v.Int()) != 0", name)
 					}
-					return fmt.Sprintf("int8(%v.Int64()) != 0", name)
+					return fmt.Sprintf("%v.Bool()", name)
 				}
 
 			case "Int":
@@ -1078,17 +1079,17 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 	case parser.IsPackedList(value):
 		{
 			if parser.UseWasm() {
-				return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"dataP\").Int())))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
+				return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"data\").Int())))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
 			}
-			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"data\").Unsafe()))\nfor i:=0;i<len(out);i++{ out[i] = tmpList.__%v_atList%v(i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.OverloadNumber, name)
 		}
 
 	case parser.IsPackedMap(value):
 		{
 			if parser.UseWasm() {
-				return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"dataP\").Int())))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.Name, f.OverloadNumber, name)
+				return fmt.Sprintf("func(l js.Value)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(uintptr(l.Get(\"data\").Int())))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.Name, f.OverloadNumber, name)
 			}
-			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"dataP\").Unsafe()))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.Name, f.OverloadNumber, name)
+			return fmt.Sprintf("func(l *js.Object)%v{out := make(%v, int(l.Get(\"len\").Int()))\ntmpList := New%vFromPointer(unsafe.Pointer(l.Get(\"data\").Unsafe()))\nfor i,v:=range tmpList.__%v_keyList(){ out[v] = tmpList.__%v_atList%v(v, i) }\nreturn out}(%v)", goType(f, value, p), goType(f, value, p), strings.Title(f.ClassName()), f.Name, f.Name, f.OverloadNumber, name)
 		}
 	}
 

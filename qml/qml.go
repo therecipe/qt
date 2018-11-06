@@ -397,7 +397,7 @@ func callbackQJSEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QJSEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJSEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QJSEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -413,7 +413,7 @@ func callbackQJSEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QJSEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJSEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QJSEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -695,7 +695,7 @@ func (ptr *QJSValue) DeleteProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QJSValue_DeleteProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QJSValue_DeleteProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -801,7 +801,7 @@ func (ptr *QJSValue) ToVariant() *core.QVariant {
 
 func (ptr *QJSValue) Equals(other QJSValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_Equals(ptr.Pointer(), PointerFromQJSValue(other)) != 0
+		return int8(C.QJSValue_Equals(ptr.Pointer(), PointerFromQJSValue(other))) != 0
 	}
 	return false
 }
@@ -813,7 +813,7 @@ func (ptr *QJSValue) HasOwnProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QJSValue_HasOwnProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QJSValue_HasOwnProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -825,119 +825,119 @@ func (ptr *QJSValue) HasProperty(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QJSValue_HasProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QJSValue_HasProperty(ptr.Pointer(), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsArray() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsArray(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsArray(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsBool(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsBool(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsCallable() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsCallable(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsCallable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsDate() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsDate(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsDate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsError() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsError(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsNull(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsNumber(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsNumber(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsObject(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsQMetaObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsQMetaObject(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsQMetaObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsQObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsQObject(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsQObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsRegExp() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsRegExp(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsRegExp(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsString() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsString(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsString(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsUndefined() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsUndefined(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsUndefined(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) IsVariant() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_IsVariant(ptr.Pointer()) != 0
+		return int8(C.QJSValue_IsVariant(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) StrictlyEquals(other QJSValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_StrictlyEquals(ptr.Pointer(), PointerFromQJSValue(other)) != 0
+		return int8(C.QJSValue_StrictlyEquals(ptr.Pointer(), PointerFromQJSValue(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QJSValue) ToBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QJSValue_ToBool(ptr.Pointer()) != 0
+		return int8(C.QJSValue_ToBool(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2157,28 +2157,28 @@ func (ptr *QQmlComponent) Url() *core.QUrl {
 
 func (ptr *QQmlComponent) IsError() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_IsError(ptr.Pointer()) != 0
+		return int8(C.QQmlComponent_IsError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlComponent) IsLoading() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_IsLoading(ptr.Pointer()) != 0
+		return int8(C.QQmlComponent_IsLoading(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlComponent) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_IsNull(ptr.Pointer()) != 0
+		return int8(C.QQmlComponent_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlComponent) IsReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_IsReady(ptr.Pointer()) != 0
+		return int8(C.QQmlComponent_IsReady(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2339,7 +2339,7 @@ func callbackQQmlComponent_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQmlComponent) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlComponent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2355,7 +2355,7 @@ func callbackQQmlComponent_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QQmlComponent) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlComponent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlComponent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2732,7 +2732,7 @@ func (ptr *QQmlContext) ContextProperty(name string) *core.QVariant {
 
 func (ptr *QQmlContext) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlContext_IsValid(ptr.Pointer()) != 0
+		return int8(C.QQmlContext_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2871,7 +2871,7 @@ func callbackQQmlContext_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQmlContext) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlContext_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlContext_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2887,7 +2887,7 @@ func callbackQQmlContext_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QQmlContext) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlContext_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlContext_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3092,13 +3092,13 @@ func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlE
 			uriC = C.CString(uri)
 			defer C.free(unsafe.Pointer(uriC))
 		}
-		return C.QQmlEngine_ImportPlugin(ptr.Pointer(), C.struct_QtQml_PackedString{data: filePathC, len: C.longlong(len(filePath))}, C.struct_QtQml_PackedString{data: uriC, len: C.longlong(len(uri))}, func() unsafe.Pointer {
+		return int8(C.QQmlEngine_ImportPlugin(ptr.Pointer(), C.struct_QtQml_PackedString{data: filePathC, len: C.longlong(len(filePath))}, C.struct_QtQml_PackedString{data: uriC, len: C.longlong(len(uri))}, func() unsafe.Pointer {
 			tmpList := NewQQmlEngineFromPointer(NewQQmlEngineFromPointer(nil).__importPlugin_errors_newList())
 			for _, v := range errors {
 				tmpList.__importPlugin_errors_setList(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -3536,7 +3536,7 @@ func (ptr *QQmlEngine) BaseUrl() *core.QUrl {
 
 func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlEngine_OutputWarningsToStandardError(ptr.Pointer()) != 0
+		return int8(C.QQmlEngine_OutputWarningsToStandardError(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3764,7 +3764,7 @@ func (ptr *QQmlError) Url() *core.QUrl {
 
 func (ptr *QQmlError) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlError_IsValid(ptr.Pointer()) != 0
+		return int8(C.QQmlError_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4092,14 +4092,14 @@ func (ptr *QQmlExpression) SourceFile() string {
 
 func (ptr *QQmlExpression) HasError() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExpression_HasError(ptr.Pointer()) != 0
+		return int8(C.QQmlExpression_HasError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlExpression) NotifyOnValueChanged() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExpression_NotifyOnValueChanged(ptr.Pointer()) != 0
+		return int8(C.QQmlExpression_NotifyOnValueChanged(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4248,7 +4248,7 @@ func callbackQQmlExpression_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQmlExpression) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExpression_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlExpression_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4264,7 +4264,7 @@ func callbackQQmlExpression_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QQmlExpression) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExpression_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlExpression_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4710,7 +4710,7 @@ func callbackQQmlExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QQmlExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4726,7 +4726,7 @@ func callbackQQmlExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QQmlExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5166,7 +5166,7 @@ func callbackQQmlFileSelector_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QQmlFileSelector) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlFileSelector_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlFileSelector_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5182,7 +5182,7 @@ func callbackQQmlFileSelector_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QQmlFileSelector) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlFileSelector_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlFileSelector_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5817,28 +5817,28 @@ func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
 
 func (ptr *QQmlIncubator) IsError() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlIncubator_IsError(ptr.Pointer()) != 0
+		return int8(C.QQmlIncubator_IsError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlIncubator) IsLoading() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlIncubator_IsLoading(ptr.Pointer()) != 0
+		return int8(C.QQmlIncubator_IsLoading(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlIncubator) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlIncubator_IsNull(ptr.Pointer()) != 0
+		return int8(C.QQmlIncubator_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlIncubator) IsReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlIncubator_IsReady(ptr.Pointer()) != 0
+		return int8(C.QQmlIncubator_IsReady(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5995,63 +5995,63 @@ func (ptr *QQmlListReference) Object() *core.QObject {
 
 func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_Append(ptr.Pointer(), core.PointerFromQObject(object)) != 0
+		return int8(C.QQmlListReference_Append(ptr.Pointer(), core.PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) CanAppend() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_CanAppend(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_CanAppend(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) CanAt() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_CanAt(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_CanAt(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) CanClear() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_CanClear(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_CanClear(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) CanCount() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_CanCount(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_CanCount(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) Clear() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_Clear(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_Clear(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) IsManipulable() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_IsManipulable(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_IsManipulable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlListReference) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlListReference_IsValid(ptr.Pointer()) != 0
+		return int8(C.QQmlListReference_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6516,7 +6516,7 @@ func QQmlProperty_Write2(object core.QObject_ITF, name string, value core.QVaria
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value))) != 0
 }
 
 func (ptr *QQmlProperty) Write2(object core.QObject_ITF, name string, value core.QVariant_ITF) bool {
@@ -6525,7 +6525,7 @@ func (ptr *QQmlProperty) Write2(object core.QObject_ITF, name string, value core
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value))) != 0
 }
 
 func QQmlProperty_Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
@@ -6534,7 +6534,7 @@ func QQmlProperty_Write3(object core.QObject_ITF, name string, value core.QVaria
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt))) != 0
 }
 
 func (ptr *QQmlProperty) Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
@@ -6543,7 +6543,7 @@ func (ptr *QQmlProperty) Write3(object core.QObject_ITF, name string, value core
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt))) != 0
 }
 
 func QQmlProperty_Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
@@ -6552,7 +6552,7 @@ func QQmlProperty_Write4(object core.QObject_ITF, name string, value core.QVaria
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine))) != 0
 }
 
 func (ptr *QQmlProperty) Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
@@ -6561,7 +6561,7 @@ func (ptr *QQmlProperty) Write4(object core.QObject_ITF, name string, value core
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
+	return int8(C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), C.struct_QtQml_PackedString{data: nameC, len: C.longlong(len(name))}, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine))) != 0
 }
 
 func (ptr *QQmlProperty) Method() *core.QMetaMethod {
@@ -6621,84 +6621,84 @@ func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string)
 			slotC = C.CString(slot)
 			defer C.free(unsafe.Pointer(slotC))
 		}
-		return C.QQmlProperty_ConnectNotifySignal(ptr.Pointer(), core.PointerFromQObject(dest), slotC) != 0
+		return int8(C.QQmlProperty_ConnectNotifySignal(ptr.Pointer(), core.PointerFromQObject(dest), slotC)) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) ConnectNotifySignal2(dest core.QObject_ITF, method int) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_ConnectNotifySignal2(ptr.Pointer(), core.PointerFromQObject(dest), C.int(int32(method))) != 0
+		return int8(C.QQmlProperty_ConnectNotifySignal2(ptr.Pointer(), core.PointerFromQObject(dest), C.int(int32(method)))) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) HasNotifySignal() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_HasNotifySignal(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_HasNotifySignal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsDesignable() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsDesignable(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsDesignable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsProperty() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsProperty(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsProperty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsResettable() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsResettable(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsResettable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsSignalProperty() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsSignalProperty(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsSignalProperty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsValid(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) NeedsNotifySignal() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_NeedsNotifySignal(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_NeedsNotifySignal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) Reset() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_Reset(ptr.Pointer()) != 0
+		return int8(C.QQmlProperty_Reset(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlProperty) Write(value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlProperty_Write(ptr.Pointer(), core.PointerFromQVariant(value)) != 0
+		return int8(C.QQmlProperty_Write(ptr.Pointer(), core.PointerFromQVariant(value))) != 0
 	}
 	return false
 }
@@ -7024,14 +7024,14 @@ func (ptr *QQmlPropertyMap) Contains(key string) bool {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QQmlPropertyMap_Contains(ptr.Pointer(), C.struct_QtQml_PackedString{data: keyC, len: C.longlong(len(key))}) != 0
+		return int8(C.QQmlPropertyMap_Contains(ptr.Pointer(), C.struct_QtQml_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlPropertyMap) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlPropertyMap_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QQmlPropertyMap_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7180,7 +7180,7 @@ func callbackQQmlPropertyMap_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QQmlPropertyMap) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlPropertyMap_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQmlPropertyMap_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -7196,7 +7196,7 @@ func callbackQQmlPropertyMap_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QQmlPropertyMap) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlPropertyMap_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQmlPropertyMap_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7496,28 +7496,28 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 
 func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))) != 0
+		return int8(C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QQmlScriptString_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsNullLiteral() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsNullLiteral(ptr.Pointer()) != 0
+		return int8(C.QQmlScriptString_IsNullLiteral(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsUndefinedLiteral(ptr.Pointer()) != 0
+		return int8(C.QQmlScriptString_IsUndefinedLiteral(ptr.Pointer())) != 0
 	}
 	return false
 }

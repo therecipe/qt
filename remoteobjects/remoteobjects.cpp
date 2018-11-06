@@ -8,10 +8,8 @@
 
 #include <QAbstractItemModel>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDataStream>
 #include <QEvent>
@@ -19,7 +17,6 @@
 #include <QExtensionManager>
 #include <QGraphicsObject>
 #include <QGraphicsWidget>
-#include <QItemSelection>
 #include <QItemSelectionModel>
 #include <QLayout>
 #include <QMediaPlaylist>
@@ -28,7 +25,6 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QQuickItem>
@@ -42,8 +38,6 @@
 #include <QRemoteObjectRegistryHost>
 #include <QRemoteObjectReplica>
 #include <QString>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>

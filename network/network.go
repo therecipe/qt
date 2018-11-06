@@ -323,7 +323,7 @@ func (ptr *QAbstractNetworkCache) DisconnectRemove() {
 
 func (ptr *QAbstractNetworkCache) Remove(url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractNetworkCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
+		return int8(C.QAbstractNetworkCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
@@ -646,7 +646,7 @@ func callbackQAbstractNetworkCache_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QAbstractNetworkCache) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractNetworkCache_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractNetworkCache_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -662,7 +662,7 @@ func callbackQAbstractNetworkCache_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QAbstractNetworkCache) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractNetworkCache_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractNetworkCache_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1030,21 +1030,21 @@ func (ptr *QAbstractSocket) SocketOptionDefault(option QAbstractSocket__SocketOp
 
 func (ptr *QAbstractSocket) Bind(address QHostAddress_ITF, port uint16, mode QAbstractSocket__BindFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_Bind(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port), C.longlong(mode)) != 0
+		return int8(C.QAbstractSocket_Bind(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSocket) Bind2(port uint16, mode QAbstractSocket__BindFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_Bind2(ptr.Pointer(), C.ushort(port), C.longlong(mode)) != 0
+		return int8(C.QAbstractSocket_Bind2(ptr.Pointer(), C.ushort(port), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSocket) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_Flush(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_Flush(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1060,7 +1060,7 @@ func callbackQAbstractSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int
 
 func (ptr *QAbstractSocket) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -1097,14 +1097,14 @@ func (ptr *QAbstractSocket) DisconnectWaitForConnected() {
 
 func (ptr *QAbstractSocket) WaitForConnected(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSocket) WaitForConnectedDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForConnectedDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForConnectedDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -1141,14 +1141,14 @@ func (ptr *QAbstractSocket) DisconnectWaitForDisconnected() {
 
 func (ptr *QAbstractSocket) WaitForDisconnected(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSocket) WaitForDisconnectedDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForDisconnectedDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForDisconnectedDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -1164,7 +1164,7 @@ func callbackQAbstractSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C
 
 func (ptr *QAbstractSocket) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QAbstractSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -2004,7 +2004,7 @@ func callbackQAbstractSocket_AtEnd(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractSocket) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2020,7 +2020,7 @@ func callbackQAbstractSocket_CanReadLine(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractSocket) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2036,14 +2036,14 @@ func callbackQAbstractSocket_IsSequential(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractSocket) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSocket) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_IsValid(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2231,7 +2231,7 @@ func callbackQAbstractSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
 func (ptr *QAbstractSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_OpenDefault(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QAbstractSocket_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -2247,7 +2247,7 @@ func callbackQAbstractSocket_Reset(ptr unsafe.Pointer) C.char {
 
 func (ptr *QAbstractSocket) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractSocket_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2263,7 +2263,7 @@ func callbackQAbstractSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
 func (ptr *QAbstractSocket) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QAbstractSocket_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -2359,7 +2359,7 @@ func callbackQAbstractSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QAbstractSocket) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2375,7 +2375,7 @@ func callbackQAbstractSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QAbstractSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2629,7 +2629,7 @@ func (ptr *QAuthenticator) Options() map[string]*core.QVariant {
 
 func (ptr *QAuthenticator) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QAuthenticator_IsNull(ptr.Pointer()) != 0
+		return int8(C.QAuthenticator_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3480,7 +3480,7 @@ func (ptr *QDnsLookup) Name() string {
 
 func (ptr *QDnsLookup) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QDnsLookup_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QDnsLookup_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3748,7 +3748,7 @@ func callbackQDnsLookup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QDnsLookup) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDnsLookup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDnsLookup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3764,7 +3764,7 @@ func callbackQDnsLookup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QDnsLookup) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDnsLookup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDnsLookup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4312,7 +4312,7 @@ func (ptr *QHostAddress) SetAddress6(address string) bool {
 			addressC = C.CString(address)
 			defer C.free(unsafe.Pointer(addressC))
 		}
-		return C.QHostAddress_SetAddress6(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))}) != 0
+		return int8(C.QHostAddress_SetAddress6(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: addressC, len: C.longlong(len(address))})) != 0
 	}
 	return false
 }
@@ -4405,70 +4405,70 @@ func (ptr *QHostAddress) ToString() string {
 
 func (ptr *QHostAddress) IsBroadcast() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsBroadcast(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsBroadcast(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsEqual(other QHostAddress_ITF, mode QHostAddress__ConversionModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsEqual(ptr.Pointer(), PointerFromQHostAddress(other), C.longlong(mode)) != 0
+		return int8(C.QHostAddress_IsEqual(ptr.Pointer(), PointerFromQHostAddress(other), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsGlobal() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsGlobal(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsGlobal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsInSubnet(subnet QHostAddress_ITF, netmask int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsInSubnet(ptr.Pointer(), PointerFromQHostAddress(subnet), C.int(int32(netmask))) != 0
+		return int8(C.QHostAddress_IsInSubnet(ptr.Pointer(), PointerFromQHostAddress(subnet), C.int(int32(netmask)))) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsLinkLocal() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsLinkLocal(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsLinkLocal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsLoopback() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsLoopback(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsLoopback(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsMulticast() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsMulticast(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsMulticast(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsNull(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsSiteLocal() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsSiteLocal(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsSiteLocal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsUniqueLocalUnicast() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsUniqueLocalUnicast(ptr.Pointer()) != 0
+		return int8(C.QHostAddress_IsUniqueLocalUnicast(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4885,14 +4885,14 @@ func (ptr *QHstsPolicy) Host(options core.QUrl__ComponentFormattingOption) strin
 
 func (ptr *QHstsPolicy) IncludesSubDomains() bool {
 	if ptr.Pointer() != nil {
-		return C.QHstsPolicy_IncludesSubDomains(ptr.Pointer()) != 0
+		return int8(C.QHstsPolicy_IncludesSubDomains(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHstsPolicy) IsExpired() bool {
 	if ptr.Pointer() != nil {
-		return C.QHstsPolicy_IsExpired(ptr.Pointer()) != 0
+		return int8(C.QHstsPolicy_IsExpired(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5222,7 +5222,7 @@ func callbackQHttpMultiPart_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QHttpMultiPart) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHttpMultiPart_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHttpMultiPart_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5238,7 +5238,7 @@ func callbackQHttpMultiPart_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QHttpMultiPart) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHttpMultiPart_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHttpMultiPart_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5612,7 +5612,7 @@ func (ptr *QLocalServer) Listen(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QLocalServer_Listen(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QLocalServer_Listen(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -5623,7 +5623,7 @@ func QLocalServer_RemoveServer(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+	return int8(C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 }
 
 func (ptr *QLocalServer) RemoveServer(name string) bool {
@@ -5632,12 +5632,12 @@ func (ptr *QLocalServer) RemoveServer(name string) bool {
 		nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 	}
-	return C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+	return int8(C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 }
 
 func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut)))) != 0
+		return int8(C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut))))) != 0
 	}
 	return false
 }
@@ -5854,21 +5854,21 @@ func (ptr *QLocalServer) DisconnectHasPendingConnections() {
 
 func (ptr *QLocalServer) HasPendingConnections() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_HasPendingConnections(ptr.Pointer()) != 0
+		return int8(C.QLocalServer_HasPendingConnections(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) HasPendingConnectionsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_HasPendingConnectionsDefault(ptr.Pointer()) != 0
+		return int8(C.QLocalServer_HasPendingConnectionsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) IsListening() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_IsListening(ptr.Pointer()) != 0
+		return int8(C.QLocalServer_IsListening(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6010,7 +6010,7 @@ func callbackQLocalServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QLocalServer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLocalServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6026,7 +6026,7 @@ func callbackQLocalServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QLocalServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLocalServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6273,7 +6273,7 @@ func (ptr *QLocalSocket) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QLocalSocket) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_Flush(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_Flush(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6289,7 +6289,7 @@ func callbackQLocalSocket_Open(ptr unsafe.Pointer, openMode C.longlong) C.char {
 
 func (ptr *QLocalSocket) OpenDefault(openMode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_OpenDefault(ptr.Pointer(), C.longlong(openMode)) != 0
+		return int8(C.QLocalSocket_OpenDefault(ptr.Pointer(), C.longlong(openMode))) != 0
 	}
 	return false
 }
@@ -6305,21 +6305,21 @@ func callbackQLocalSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C
 
 func (ptr *QLocalSocket) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QLocalSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalSocket) WaitForConnected(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QLocalSocket_WaitForConnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalSocket) WaitForDisconnected(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QLocalSocket_WaitForDisconnected(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -6335,7 +6335,7 @@ func callbackQLocalSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.ch
 
 func (ptr *QLocalSocket) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QLocalSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -6761,7 +6761,7 @@ func callbackQLocalSocket_CanReadLine(ptr unsafe.Pointer) C.char {
 
 func (ptr *QLocalSocket) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6777,14 +6777,14 @@ func callbackQLocalSocket_IsSequential(ptr unsafe.Pointer) C.char {
 
 func (ptr *QLocalSocket) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalSocket) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_IsValid(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6958,7 +6958,7 @@ func callbackQLocalSocket_Reset(ptr unsafe.Pointer) C.char {
 
 func (ptr *QLocalSocket) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6974,7 +6974,7 @@ func callbackQLocalSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
 func (ptr *QLocalSocket) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QLocalSocket_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -7059,7 +7059,7 @@ func callbackQLocalSocket_AtEnd(ptr unsafe.Pointer) C.char {
 
 func (ptr *QLocalSocket) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QLocalSocket_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7107,7 +7107,7 @@ func callbackQLocalSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QLocalSocket) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLocalSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -7123,7 +7123,7 @@ func callbackQLocalSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QLocalSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLocalSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8122,14 +8122,14 @@ func (ptr *QNetworkAccessManager) StrictTransportSecurityHosts() []*QHstsPolicy 
 
 func (ptr *QNetworkAccessManager) IsStrictTransportSecurityEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAccessManager_IsStrictTransportSecurityEnabled(ptr.Pointer()) != 0
+		return int8(C.QNetworkAccessManager_IsStrictTransportSecurityEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkAccessManager) IsStrictTransportSecurityStoreEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(ptr.Pointer()) != 0
+		return int8(C.QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8321,7 +8321,7 @@ func callbackQNetworkAccessManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QNetworkAccessManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAccessManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNetworkAccessManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8337,7 +8337,7 @@ func callbackQNetworkAccessManager_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QNetworkAccessManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAccessManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNetworkAccessManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8602,21 +8602,21 @@ func (ptr *QNetworkAddressEntry) DnsEligibility() QNetworkAddressEntry__DnsEligi
 
 func (ptr *QNetworkAddressEntry) IsLifetimeKnown() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAddressEntry_IsLifetimeKnown(ptr.Pointer()) != 0
+		return int8(C.QNetworkAddressEntry_IsLifetimeKnown(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkAddressEntry) IsPermanent() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAddressEntry_IsPermanent(ptr.Pointer()) != 0
+		return int8(C.QNetworkAddressEntry_IsPermanent(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkAddressEntry) IsTemporary() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkAddressEntry_IsTemporary(ptr.Pointer()) != 0
+		return int8(C.QNetworkAddressEntry_IsTemporary(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8744,14 +8744,14 @@ func (ptr *QNetworkCacheMetaData) Url() *core.QUrl {
 
 func (ptr *QNetworkCacheMetaData) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCacheMetaData_IsValid(ptr.Pointer()) != 0
+		return int8(C.QNetworkCacheMetaData_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCacheMetaData) SaveToDisk() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCacheMetaData_SaveToDisk(ptr.Pointer()) != 0
+		return int8(C.QNetworkCacheMetaData_SaveToDisk(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8861,7 +8861,7 @@ func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfigu
 
 func (ptr *QNetworkConfiguration) SetConnectTimeout(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfiguration_SetConnectTimeout(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QNetworkConfiguration_SetConnectTimeout(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -8952,14 +8952,14 @@ func (ptr *QNetworkConfiguration) Name() string {
 
 func (ptr *QNetworkConfiguration) IsRoamingAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfiguration_IsRoamingAvailable(ptr.Pointer()) != 0
+		return int8(C.QNetworkConfiguration_IsRoamingAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkConfiguration) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfiguration_IsValid(ptr.Pointer()) != 0
+		return int8(C.QNetworkConfiguration_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9436,7 +9436,7 @@ func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationMan
 
 func (ptr *QNetworkConfigurationManager) IsOnline() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfigurationManager_IsOnline(ptr.Pointer()) != 0
+		return int8(C.QNetworkConfigurationManager_IsOnline(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9590,7 +9590,7 @@ func callbackQNetworkConfigurationManager_Event(ptr unsafe.Pointer, e unsafe.Poi
 
 func (ptr *QNetworkConfigurationManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfigurationManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNetworkConfigurationManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9606,7 +9606,7 @@ func callbackQNetworkConfigurationManager_EventFilter(ptr unsafe.Pointer, watche
 
 func (ptr *QNetworkConfigurationManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfigurationManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNetworkConfigurationManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9924,28 +9924,28 @@ func (ptr *QNetworkCookie) Path() string {
 
 func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_HasSameIdentifier(ptr.Pointer(), PointerFromQNetworkCookie(other)) != 0
+		return int8(C.QNetworkCookie_HasSameIdentifier(ptr.Pointer(), PointerFromQNetworkCookie(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsHttpOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsHttpOnly(ptr.Pointer()) != 0
+		return int8(C.QNetworkCookie_IsHttpOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsSecure() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsSecure(ptr.Pointer()) != 0
+		return int8(C.QNetworkCookie_IsSecure(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsSessionCookie() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsSessionCookie(ptr.Pointer()) != 0
+		return int8(C.QNetworkCookie_IsSessionCookie(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10103,14 +10103,14 @@ func (ptr *QNetworkCookieJar) DisconnectDeleteCookie() {
 
 func (ptr *QNetworkCookieJar) DeleteCookie(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_DeleteCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_DeleteCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookieJar) DeleteCookieDefault(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_DeleteCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_DeleteCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
@@ -10147,14 +10147,14 @@ func (ptr *QNetworkCookieJar) DisconnectInsertCookie() {
 
 func (ptr *QNetworkCookieJar) InsertCookie(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_InsertCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_InsertCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookieJar) InsertCookieDefault(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_InsertCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_InsertCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
@@ -10205,26 +10205,26 @@ func (ptr *QNetworkCookieJar) DisconnectSetCookiesFromUrl() {
 
 func (ptr *QNetworkCookieJar) SetCookiesFromUrl(cookieList []*QNetworkCookie, url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_SetCookiesFromUrl(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QNetworkCookieJar_SetCookiesFromUrl(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__setCookiesFromUrl_cookieList_newList())
 			for _, v := range cookieList {
 				tmpList.__setCookiesFromUrl_cookieList_setList(v)
 			}
 			return tmpList.Pointer()
-		}(), core.PointerFromQUrl(url)) != 0
+		}(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookieJar) SetCookiesFromUrlDefault(cookieList []*QNetworkCookie, url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_SetCookiesFromUrlDefault(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QNetworkCookieJar_SetCookiesFromUrlDefault(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQNetworkCookieJarFromPointer(NewQNetworkCookieJarFromPointer(nil).__setCookiesFromUrl_cookieList_newList())
 			for _, v := range cookieList {
 				tmpList.__setCookiesFromUrl_cookieList_setList(v)
 			}
 			return tmpList.Pointer()
-		}(), core.PointerFromQUrl(url)) != 0
+		}(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
@@ -10261,14 +10261,14 @@ func (ptr *QNetworkCookieJar) DisconnectUpdateCookie() {
 
 func (ptr *QNetworkCookieJar) UpdateCookie(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_UpdateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_UpdateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookieJar) UpdateCookieDefault(cookie QNetworkCookie_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_UpdateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
+		return int8(C.QNetworkCookieJar_UpdateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie))) != 0
 	}
 	return false
 }
@@ -10447,14 +10447,14 @@ func (ptr *QNetworkCookieJar) DisconnectValidateCookie() {
 
 func (ptr *QNetworkCookieJar) ValidateCookie(cookie QNetworkCookie_ITF, url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_ValidateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url)) != 0
+		return int8(C.QNetworkCookieJar_ValidateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookieJar) ValidateCookieDefault(cookie QNetworkCookie_ITF, url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_ValidateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url)) != 0
+		return int8(C.QNetworkCookieJar_ValidateCookieDefault(ptr.Pointer(), PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
@@ -10665,7 +10665,7 @@ func callbackQNetworkCookieJar_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QNetworkCookieJar) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNetworkCookieJar_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10681,7 +10681,7 @@ func callbackQNetworkCookieJar_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QNetworkCookieJar) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookieJar_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNetworkCookieJar_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10952,14 +10952,14 @@ func (ptr *QNetworkDatagram) MakeReply(payload core.QByteArray_ITF) *QNetworkDat
 
 func (ptr *QNetworkDatagram) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkDatagram_IsNull(ptr.Pointer()) != 0
+		return int8(C.QNetworkDatagram_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkDatagram) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkDatagram_IsValid(ptr.Pointer()) != 0
+		return int8(C.QNetworkDatagram_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11223,14 +11223,14 @@ func (ptr *QNetworkDiskCache) DisconnectRemove() {
 
 func (ptr *QNetworkDiskCache) Remove(url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkDiskCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
+		return int8(C.QNetworkDiskCache_Remove(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkDiskCache) RemoveDefault(url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkDiskCache_RemoveDefault(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
+		return int8(C.QNetworkDiskCache_RemoveDefault(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
@@ -11794,7 +11794,7 @@ func (ptr *QNetworkInterface) Name() string {
 
 func (ptr *QNetworkInterface) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkInterface_IsValid(ptr.Pointer()) != 0
+		return int8(C.QNetworkInterface_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12134,21 +12134,21 @@ func (ptr *QNetworkProxy) Header(header QNetworkRequest__KnownHeaders) *core.QVa
 
 func (ptr *QNetworkProxy) HasRawHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkProxy_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
+		return int8(C.QNetworkProxy_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkProxy) IsCachingProxy() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkProxy_IsCachingProxy(ptr.Pointer()) != 0
+		return int8(C.QNetworkProxy_IsCachingProxy(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkProxy) IsTransparentProxy() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkProxy_IsTransparentProxy(ptr.Pointer()) != 0
+		return int8(C.QNetworkProxy_IsTransparentProxy(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12321,11 +12321,11 @@ func NewQNetworkProxyFactory() *QNetworkProxyFactory {
 }
 
 func QNetworkProxyFactory_UsesSystemConfiguration() bool {
-	return C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration() != 0
+	return int8(C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration()) != 0
 }
 
 func (ptr *QNetworkProxyFactory) UsesSystemConfiguration() bool {
-	return C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration() != 0
+	return int8(C.QNetworkProxyFactory_QNetworkProxyFactory_UsesSystemConfiguration()) != 0
 }
 
 func QNetworkProxyFactory_SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
@@ -13650,21 +13650,21 @@ func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVa
 
 func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
+		return int8(C.QNetworkReply_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkReply) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13924,7 +13924,7 @@ func callbackQNetworkReply_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
 func (ptr *QNetworkReply) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_OpenDefault(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QNetworkReply_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -13940,7 +13940,7 @@ func callbackQNetworkReply_Reset(ptr unsafe.Pointer) C.char {
 
 func (ptr *QNetworkReply) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13956,7 +13956,7 @@ func callbackQNetworkReply_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
 func (ptr *QNetworkReply) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QNetworkReply_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -13972,7 +13972,7 @@ func callbackQNetworkReply_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) 
 
 func (ptr *QNetworkReply) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QNetworkReply_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -13988,7 +13988,7 @@ func callbackQNetworkReply_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.c
 
 func (ptr *QNetworkReply) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QNetworkReply_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -14150,7 +14150,7 @@ func callbackQNetworkReply_AtEnd(ptr unsafe.Pointer) C.char {
 
 func (ptr *QNetworkReply) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14166,7 +14166,7 @@ func callbackQNetworkReply_CanReadLine(ptr unsafe.Pointer) C.char {
 
 func (ptr *QNetworkReply) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14182,7 +14182,7 @@ func callbackQNetworkReply_IsSequential(ptr unsafe.Pointer) C.char {
 
 func (ptr *QNetworkReply) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QNetworkReply_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14262,7 +14262,7 @@ func callbackQNetworkReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QNetworkReply) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNetworkReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -14278,7 +14278,7 @@ func callbackQNetworkReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QNetworkReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNetworkReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -14676,7 +14676,7 @@ func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.Q
 
 func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkRequest_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
+		return int8(C.QNetworkRequest_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
 	}
 	return false
 }
@@ -14847,7 +14847,7 @@ func (ptr *QNetworkSession) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QNetworkSession) WaitForOpened(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkSession_WaitForOpened(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QNetworkSession_WaitForOpened(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -15538,7 +15538,7 @@ func (ptr *QNetworkSession) SessionProperty(key string) *core.QVariant {
 
 func (ptr *QNetworkSession) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkSession_IsOpen(ptr.Pointer()) != 0
+		return int8(C.QNetworkSession_IsOpen(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15694,7 +15694,7 @@ func callbackQNetworkSession_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QNetworkSession) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkSession_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QNetworkSession_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -15710,7 +15710,7 @@ func callbackQNetworkSession_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QNetworkSession) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkSession_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QNetworkSession_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -16213,23 +16213,23 @@ func NewQSslCertificate3(other QSslCertificate_ITF) *QSslCertificate {
 }
 
 func QSslCertificate_ImportPkcs12(device core.QIODevice_ITF, key QSslKey_ITF, certificate QSslCertificate_ITF, caCertificates []*QSslCertificate, passPhrase core.QByteArray_ITF) bool {
-	return C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
+	return int8(C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
 		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__importPkcs12_caCertificates_newList())
 		for _, v := range caCertificates {
 			tmpList.__importPkcs12_caCertificates_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), core.PointerFromQByteArray(passPhrase)) != 0
+	}(), core.PointerFromQByteArray(passPhrase))) != 0
 }
 
 func (ptr *QSslCertificate) ImportPkcs12(device core.QIODevice_ITF, key QSslKey_ITF, certificate QSslCertificate_ITF, caCertificates []*QSslCertificate, passPhrase core.QByteArray_ITF) bool {
-	return C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
+	return int8(C.QSslCertificate_QSslCertificate_ImportPkcs12(core.PointerFromQIODevice(device), PointerFromQSslKey(key), PointerFromQSslCertificate(certificate), func() unsafe.Pointer {
 		tmpList := NewQSslCertificateFromPointer(NewQSslCertificateFromPointer(nil).__importPkcs12_caCertificates_newList())
 		for _, v := range caCertificates {
 			tmpList.__importPkcs12_caCertificates_setList(v)
 		}
 		return tmpList.Pointer()
-	}(), core.PointerFromQByteArray(passPhrase)) != 0
+	}(), core.PointerFromQByteArray(passPhrase))) != 0
 }
 
 func (ptr *QSslCertificate) Clear() {
@@ -16417,21 +16417,21 @@ func (ptr *QSslCertificate) SubjectInfo2(attribute core.QByteArray_ITF) []string
 
 func (ptr *QSslCertificate) IsBlacklisted() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCertificate_IsBlacklisted(ptr.Pointer()) != 0
+		return int8(C.QSslCertificate_IsBlacklisted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslCertificate) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCertificate_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSslCertificate_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslCertificate) IsSelfSigned() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCertificate_IsSelfSigned(ptr.Pointer()) != 0
+		return int8(C.QSslCertificate_IsSelfSigned(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16748,14 +16748,14 @@ func (ptr *QSslCertificateExtension) Value() *core.QVariant {
 
 func (ptr *QSslCertificateExtension) IsCritical() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCertificateExtension_IsCritical(ptr.Pointer()) != 0
+		return int8(C.QSslCertificateExtension_IsCritical(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslCertificateExtension) IsSupported() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCertificateExtension_IsSupported(ptr.Pointer()) != 0
+		return int8(C.QSslCertificateExtension_IsSupported(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16889,7 +16889,7 @@ func (ptr *QSslCipher) ProtocolString() string {
 
 func (ptr *QSslCipher) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslCipher_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSslCipher_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17373,14 +17373,14 @@ func (ptr *QSslConfiguration) PeerVerifyMode() QSslSocket__PeerVerifyMode {
 
 func (ptr *QSslConfiguration) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslConfiguration_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSslConfiguration_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslConfiguration) TestSslOption(option QSsl__SslOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QSslConfiguration_TestSslOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QSslConfiguration_TestSslOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -17901,14 +17901,14 @@ func (ptr *QSslDiffieHellmanParameters) ErrorString() string {
 
 func (ptr *QSslDiffieHellmanParameters) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslDiffieHellmanParameters_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QSslDiffieHellmanParameters_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslDiffieHellmanParameters) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslDiffieHellmanParameters_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSslDiffieHellmanParameters_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18025,14 +18025,14 @@ func (ptr *QSslEllipticCurve) ShortName() string {
 
 func (ptr *QSslEllipticCurve) IsTlsNamedCurve() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslEllipticCurve_IsTlsNamedCurve(ptr.Pointer()) != 0
+		return int8(C.QSslEllipticCurve_IsTlsNamedCurve(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSslEllipticCurve) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslEllipticCurve_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSslEllipticCurve_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18284,7 +18284,7 @@ func (ptr *QSslKey) Type() QSsl__KeyType {
 
 func (ptr *QSslKey) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslKey_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSslKey_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18503,7 +18503,7 @@ func (ptr *QSslSocket) AddCaCertificates(path string, format QSsl__EncodingForma
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QSslSocket_AddCaCertificates(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax)) != 0
+		return int8(C.QSslSocket_AddCaCertificates(ptr.Pointer(), C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(format), C.longlong(syntax))) != 0
 	}
 	return false
 }
@@ -18514,7 +18514,7 @@ func QSslSocket_AddDefaultCaCertificates(path string, encoding QSsl__EncodingFor
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
+	return int8(C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax))) != 0
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
@@ -18523,20 +18523,20 @@ func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__Enco
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax)) != 0
+	return int8(C.QSslSocket_QSslSocket_AddDefaultCaCertificates(C.struct_QtNetwork_PackedString{data: pathC, len: C.longlong(len(path))}, C.longlong(encoding), C.longlong(syntax))) != 0
 }
 
 func QSslSocket_SupportsSsl() bool {
-	return C.QSslSocket_QSslSocket_SupportsSsl() != 0
+	return int8(C.QSslSocket_QSslSocket_SupportsSsl()) != 0
 }
 
 func (ptr *QSslSocket) SupportsSsl() bool {
-	return C.QSslSocket_QSslSocket_SupportsSsl() != 0
+	return int8(C.QSslSocket_QSslSocket_SupportsSsl()) != 0
 }
 
 func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSslSocket_WaitForEncrypted(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QSslSocket_WaitForEncrypted(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -19266,7 +19266,7 @@ func (ptr *QSslSocket) PeerVerifyName() string {
 
 func (ptr *QSslSocket) IsEncrypted() bool {
 	if ptr.Pointer() != nil {
-		return C.QSslSocket_IsEncrypted(ptr.Pointer()) != 0
+		return int8(C.QSslSocket_IsEncrypted(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19790,14 +19790,14 @@ func (ptr *QTcpServer) NextPendingConnectionDefault() *QTcpSocket {
 
 func (ptr *QTcpServer) Listen(address QHostAddress_ITF, port uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_Listen(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port)) != 0
+		return int8(C.QTcpServer_Listen(ptr.Pointer(), PointerFromQHostAddress(address), C.ushort(port))) != 0
 	}
 	return false
 }
 
 func (ptr *QTcpServer) WaitForNewConnection(msec int, timedOut bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut)))) != 0
+		return int8(C.QTcpServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut))))) != 0
 	}
 	return false
 }
@@ -20026,21 +20026,21 @@ func (ptr *QTcpServer) DisconnectHasPendingConnections() {
 
 func (ptr *QTcpServer) HasPendingConnections() bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_HasPendingConnections(ptr.Pointer()) != 0
+		return int8(C.QTcpServer_HasPendingConnections(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTcpServer) HasPendingConnectionsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_HasPendingConnectionsDefault(ptr.Pointer()) != 0
+		return int8(C.QTcpServer_HasPendingConnectionsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTcpServer) IsListening() bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_IsListening(ptr.Pointer()) != 0
+		return int8(C.QTcpServer_IsListening(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20189,7 +20189,7 @@ func callbackQTcpServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QTcpServer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QTcpServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -20205,7 +20205,7 @@ func callbackQTcpServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QTcpServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTcpServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QTcpServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -20467,28 +20467,28 @@ func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
 
 func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_JoinMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
+		return int8(C.QUdpSocket_JoinMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress))) != 0
 	}
 	return false
 }
 
 func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_JoinMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
+		return int8(C.QUdpSocket_JoinMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface))) != 0
 	}
 	return false
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_LeaveMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
+		return int8(C.QUdpSocket_LeaveMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress))) != 0
 	}
 	return false
 }
 
 func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_LeaveMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
+		return int8(C.QUdpSocket_LeaveMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface))) != 0
 	}
 	return false
 }
@@ -20594,7 +20594,7 @@ func (ptr *QUdpSocket) MulticastInterface() *QNetworkInterface {
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_HasPendingDatagrams(ptr.Pointer()) != 0
+		return int8(C.QUdpSocket_HasPendingDatagrams(ptr.Pointer())) != 0
 	}
 	return false
 }

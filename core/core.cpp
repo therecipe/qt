@@ -25,7 +25,6 @@
 #include <QByteArray>
 #include <QByteArrayList>
 #include <QByteArrayMatcher>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChar>
 #include <QChildEvent>
@@ -36,7 +35,6 @@
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QCryptographicHash>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDataStream>
 #include <QDate>
@@ -114,7 +112,6 @@
 #include <QObjectCleanupHandler>
 #include <QOffscreenSurface>
 #include <QOperatingSystemVersion>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QParallelAnimationGroup>
 #include <QPauseAnimation>
@@ -143,7 +140,6 @@
 #include <QSemaphoreReleaser>
 #include <QSequentialAnimationGroup>
 #include <QSequentialIterable>
-#include <QSet>
 #include <QSettings>
 #include <QSharedData>
 #include <QSharedMemory>

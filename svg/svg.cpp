@@ -9,14 +9,11 @@
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -27,7 +24,6 @@
 #include <QFocusEvent>
 #include <QGraphicsItem>
 #include <QGraphicsObject>
-#include <QGraphicsScene>
 #include <QGraphicsSceneContextMenuEvent>
 #include <QGraphicsSceneDragDropEvent>
 #include <QGraphicsSceneHoverEvent>
@@ -39,7 +35,6 @@
 #include <QHideEvent>
 #include <QIODevice>
 #include <QIcon>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
@@ -69,15 +64,11 @@
 #include <QShowEvent>
 #include <QSize>
 #include <QString>
-#include <QStyle>
-#include <QStyleOption>
 #include <QStyleOptionGraphicsItem>
 #include <QSvgGenerator>
 #include <QSvgRenderer>
 #include <QSvgWidget>
 #include <QTabletEvent>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWheelEvent>

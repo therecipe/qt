@@ -519,7 +519,7 @@ func (ptr *QUiLoader) PluginPaths() []string {
 
 func (ptr *QUiLoader) IsLanguageChangeEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QUiLoader_IsLanguageChangeEnabled(ptr.Pointer()) != 0
+		return int8(C.QUiLoader_IsLanguageChangeEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -654,7 +654,7 @@ func callbackQUiLoader_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QUiLoader) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUiLoader_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QUiLoader_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -670,7 +670,7 @@ func callbackQUiLoader_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QUiLoader) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUiLoader_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QUiLoader_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

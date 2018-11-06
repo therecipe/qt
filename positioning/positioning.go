@@ -249,14 +249,14 @@ func (ptr *QGeoAddress) Text() string {
 
 func (ptr *QGeoAddress) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAddress_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QGeoAddress_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoAddress) IsTextGenerated() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAddress_IsTextGenerated(ptr.Pointer()) != 0
+		return int8(C.QGeoAddress_IsTextGenerated(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -412,14 +412,14 @@ func (ptr *QGeoAreaMonitorInfo) NotificationParameters() map[string]*core.QVaria
 
 func (ptr *QGeoAreaMonitorInfo) IsPersistent() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorInfo_IsPersistent(ptr.Pointer()) != 0
+		return int8(C.QGeoAreaMonitorInfo_IsPersistent(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoAreaMonitorInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorInfo_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoAreaMonitorInfo_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -764,7 +764,7 @@ func (ptr *QGeoAreaMonitorSource) RequestUpdate(monitor QGeoAreaMonitorInfo_ITF,
 			signC = C.CString(sign)
 			defer C.free(unsafe.Pointer(signC))
 		}
-		return C.QGeoAreaMonitorSource_RequestUpdate(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor), signC) != 0
+		return int8(C.QGeoAreaMonitorSource_RequestUpdate(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor), signC)) != 0
 	}
 	return false
 }
@@ -801,7 +801,7 @@ func (ptr *QGeoAreaMonitorSource) DisconnectStartMonitoring() {
 
 func (ptr *QGeoAreaMonitorSource) StartMonitoring(monitor QGeoAreaMonitorInfo_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorSource_StartMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor)) != 0
+		return int8(C.QGeoAreaMonitorSource_StartMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor))) != 0
 	}
 	return false
 }
@@ -838,7 +838,7 @@ func (ptr *QGeoAreaMonitorSource) DisconnectStopMonitoring() {
 
 func (ptr *QGeoAreaMonitorSource) StopMonitoring(monitor QGeoAreaMonitorInfo_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorSource_StopMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor)) != 0
+		return int8(C.QGeoAreaMonitorSource_StopMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor))) != 0
 	}
 	return false
 }
@@ -1500,7 +1500,7 @@ func callbackQGeoAreaMonitorSource_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QGeoAreaMonitorSource) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoAreaMonitorSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1516,7 +1516,7 @@ func callbackQGeoAreaMonitorSource_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QGeoAreaMonitorSource) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoAreaMonitorSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoAreaMonitorSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1875,7 +1875,7 @@ func (ptr *QGeoCoordinate) ToString(format QGeoCoordinate__CoordinateFormat) str
 
 func (ptr *QGeoCoordinate) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoCoordinate_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoCoordinate_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2103,7 +2103,7 @@ func (ptr *QGeoPath) Translated(degreesLatitude float64, degreesLongitude float6
 
 func (ptr *QGeoPath) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPath_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
+		return int8(C.QGeoPath_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))) != 0
 	}
 	return false
 }
@@ -2382,7 +2382,7 @@ func (ptr *QGeoPolygon) Translated(degreesLatitude float64, degreesLongitude flo
 
 func (ptr *QGeoPolygon) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPolygon_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
+		return int8(C.QGeoPolygon_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))) != 0
 	}
 	return false
 }
@@ -2593,14 +2593,14 @@ func (ptr *QGeoPositionInfo) Coordinate() *QGeoCoordinate {
 
 func (ptr *QGeoPositionInfo) HasAttribute(attribute QGeoPositionInfo__Attribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPositionInfo_HasAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
+		return int8(C.QGeoPositionInfo_HasAttribute(ptr.Pointer(), C.longlong(attribute))) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoPositionInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPositionInfo_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoPositionInfo_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3440,7 +3440,7 @@ func callbackQGeoPositionInfoSource_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QGeoPositionInfoSource) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPositionInfoSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoPositionInfoSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3456,7 +3456,7 @@ func callbackQGeoPositionInfoSource_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QGeoPositionInfoSource) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoPositionInfoSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoPositionInfoSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3972,14 +3972,14 @@ func (ptr *QGeoRectangle) United(rectangle QGeoRectangle_ITF) *QGeoRectangle {
 
 func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangle_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRectangle_Contains(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
+		return int8(C.QGeoRectangle_Contains(ptr.Pointer(), PointerFromQGeoRectangle(rectangle))) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoRectangle) Intersects(rectangle QGeoRectangle_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRectangle_Intersects(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
+		return int8(C.QGeoRectangle_Intersects(ptr.Pointer(), PointerFromQGeoRectangle(rectangle))) != 0
 	}
 	return false
 }
@@ -4133,7 +4133,7 @@ func (ptr *QGeoSatelliteInfo) SatelliteSystem() QGeoSatelliteInfo__SatelliteSyst
 
 func (ptr *QGeoSatelliteInfo) HasAttribute(attribute QGeoSatelliteInfo__Attribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoSatelliteInfo_HasAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
+		return int8(C.QGeoSatelliteInfo_HasAttribute(ptr.Pointer(), C.longlong(attribute))) != 0
 	}
 	return false
 }
@@ -4954,7 +4954,7 @@ func callbackQGeoSatelliteInfoSource_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QGeoSatelliteInfoSource) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoSatelliteInfoSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoSatelliteInfoSource_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4970,7 +4970,7 @@ func callbackQGeoSatelliteInfoSource_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QGeoSatelliteInfoSource) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoSatelliteInfoSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoSatelliteInfoSource_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5187,21 +5187,21 @@ func (ptr *QGeoShape) ToString() string {
 
 func (ptr *QGeoShape) Contains(coordinate QGeoCoordinate_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoShape_Contains(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
+		return int8(C.QGeoShape_Contains(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoShape) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoShape_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QGeoShape_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoShape) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoShape_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoShape_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5299,7 +5299,7 @@ func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size i
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		return C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix)))) != 0
+		return int8(C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix))))) != 0
 	}
 	return false
 }
@@ -5311,7 +5311,7 @@ func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaDataDefault(data string,
 			dataC = C.CString(data)
 			defer C.free(unsafe.Pointer(dataC))
 		}
-		return C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix)))) != 0
+		return int8(C.QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(ptr.Pointer(), dataC, C.int(int32(size)), PointerFromQGeoPositionInfo(posInfo), C.char(int8(qt.GoBoolToInt(hasFix))))) != 0
 	}
 	return false
 }

@@ -890,7 +890,7 @@ func (ptr *QAbstractEventDispatcher) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QAbstractEventDispatcher) FilterNativeEvent(eventType QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_FilterNativeEvent(ptr.Pointer(), PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		return int8(C.QAbstractEventDispatcher_FilterNativeEvent(ptr.Pointer(), PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
 	}
 	return false
 }
@@ -927,7 +927,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectProcessEvents() {
 
 func (ptr *QAbstractEventDispatcher) ProcessEvents(flags QEventLoop__ProcessEventsFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_ProcessEvents(ptr.Pointer(), C.longlong(flags)) != 0
+		return int8(C.QAbstractEventDispatcher_ProcessEvents(ptr.Pointer(), C.longlong(flags))) != 0
 	}
 	return false
 }
@@ -964,7 +964,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectRegisterEventNotifier() {
 
 func (ptr *QAbstractEventDispatcher) RegisterEventNotifier(notifier QWinEventNotifier_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_RegisterEventNotifier(ptr.Pointer(), PointerFromQWinEventNotifier(notifier)) != 0
+		return int8(C.QAbstractEventDispatcher_RegisterEventNotifier(ptr.Pointer(), PointerFromQWinEventNotifier(notifier))) != 0
 	}
 	return false
 }
@@ -1001,7 +1001,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimer() {
 
 func (ptr *QAbstractEventDispatcher) UnregisterTimer(timerId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_UnregisterTimer(ptr.Pointer(), C.int(int32(timerId))) != 0
+		return int8(C.QAbstractEventDispatcher_UnregisterTimer(ptr.Pointer(), C.int(int32(timerId)))) != 0
 	}
 	return false
 }
@@ -1038,7 +1038,7 @@ func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimers() {
 
 func (ptr *QAbstractEventDispatcher) UnregisterTimers(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_UnregisterTimers(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QAbstractEventDispatcher_UnregisterTimers(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
@@ -1531,14 +1531,14 @@ func (ptr *QAbstractItemModel) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QAbstractItemModel) BeginMoveColumns(sourceParent QModelIndex_ITF, sourceFirst int, sourceLast int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_BeginMoveColumns(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceFirst)), C.int(int32(sourceLast)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_BeginMoveColumns(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceFirst)), C.int(int32(sourceLast)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) BeginMoveRows(sourceParent QModelIndex_ITF, sourceFirst int, sourceLast int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_BeginMoveRows(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceFirst)), C.int(int32(sourceLast)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_BeginMoveRows(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceFirst)), C.int(int32(sourceLast)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -1575,21 +1575,21 @@ func (ptr *QAbstractItemModel) DisconnectDropMimeData() {
 
 func (ptr *QAbstractItemModel) DropMimeData(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_DropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_DropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) DropMimeDataDefault(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_DropMimeDataDefault(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_DropMimeDataDefault(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) InsertColumn(column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertColumn(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertColumn(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1626,21 +1626,21 @@ func (ptr *QAbstractItemModel) DisconnectInsertColumns() {
 
 func (ptr *QAbstractItemModel) InsertColumns(column int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) InsertColumnsDefault(column int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) InsertRow(row int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertRow(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertRow(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1677,21 +1677,21 @@ func (ptr *QAbstractItemModel) DisconnectInsertRows() {
 
 func (ptr *QAbstractItemModel) InsertRows(row int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) InsertRowsDefault(row int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) MoveColumn(sourceParent QModelIndex_ITF, sourceColumn int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveColumn(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveColumn(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -1728,21 +1728,21 @@ func (ptr *QAbstractItemModel) DisconnectMoveColumns() {
 
 func (ptr *QAbstractItemModel) MoveColumns(sourceParent QModelIndex_ITF, sourceColumn int, count int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveColumns(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveColumns(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) MoveColumnsDefault(sourceParent QModelIndex_ITF, sourceColumn int, count int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveColumnsDefault(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveColumnsDefault(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) MoveRow(sourceParent QModelIndex_ITF, sourceRow int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveRow(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveRow(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -1779,21 +1779,21 @@ func (ptr *QAbstractItemModel) DisconnectMoveRows() {
 
 func (ptr *QAbstractItemModel) MoveRows(sourceParent QModelIndex_ITF, sourceRow int, count int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveRows(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveRows(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) MoveRowsDefault(sourceParent QModelIndex_ITF, sourceRow int, count int, destinationParent QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_MoveRowsDefault(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QAbstractItemModel_MoveRowsDefault(ptr.Pointer(), PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) RemoveColumn(column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveColumn(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveColumn(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1830,21 +1830,21 @@ func (ptr *QAbstractItemModel) DisconnectRemoveColumns() {
 
 func (ptr *QAbstractItemModel) RemoveColumns(column int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) RemoveColumnsDefault(column int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) RemoveRow(row int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveRow(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveRow(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1881,14 +1881,14 @@ func (ptr *QAbstractItemModel) DisconnectRemoveRows() {
 
 func (ptr *QAbstractItemModel) RemoveRows(row int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) RemoveRowsDefault(row int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1925,14 +1925,14 @@ func (ptr *QAbstractItemModel) DisconnectSetData() {
 
 func (ptr *QAbstractItemModel) SetData(index QModelIndex_ITF, value QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetData(ptr.Pointer(), PointerFromQModelIndex(index), PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QAbstractItemModel_SetData(ptr.Pointer(), PointerFromQModelIndex(index), PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) SetDataDefault(index QModelIndex_ITF, value QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetDataDefault(ptr.Pointer(), PointerFromQModelIndex(index), PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QAbstractItemModel_SetDataDefault(ptr.Pointer(), PointerFromQModelIndex(index), PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -1969,14 +1969,14 @@ func (ptr *QAbstractItemModel) DisconnectSetHeaderData() {
 
 func (ptr *QAbstractItemModel) SetHeaderData(section int, orientation Qt__Orientation, value QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetHeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QAbstractItemModel_SetHeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) SetHeaderDataDefault(section int, orientation Qt__Orientation, value QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QAbstractItemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -2027,26 +2027,26 @@ func (ptr *QAbstractItemModel) DisconnectSetItemData() {
 
 func (ptr *QAbstractItemModel) SetItemData(index QModelIndex_ITF, roles map[int]*QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetItemData(ptr.Pointer(), PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QAbstractItemModel_SetItemData(ptr.Pointer(), PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQAbstractItemModelFromPointer(NewQAbstractItemModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) SetItemDataDefault(index QModelIndex_ITF, roles map[int]*QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SetItemDataDefault(ptr.Pointer(), PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QAbstractItemModel_SetItemDataDefault(ptr.Pointer(), PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQAbstractItemModelFromPointer(NewQAbstractItemModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -2083,14 +2083,14 @@ func (ptr *QAbstractItemModel) DisconnectSubmit() {
 
 func (ptr *QAbstractItemModel) Submit() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_Submit(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemModel_Submit(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3900,14 +3900,14 @@ func (ptr *QAbstractItemModel) DisconnectCanDropMimeData() {
 
 func (ptr *QAbstractItemModel) CanDropMimeData(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_CanDropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_CanDropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) CanDropMimeDataDefault(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_CanDropMimeDataDefault(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_CanDropMimeDataDefault(ptr.Pointer(), PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -3944,21 +3944,21 @@ func (ptr *QAbstractItemModel) DisconnectCanFetchMore() {
 
 func (ptr *QAbstractItemModel) CanFetchMore(parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_CanFetchMore(ptr.Pointer(), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_CanFetchMore(ptr.Pointer(), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_CanFetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_CanFetchMoreDefault(ptr.Pointer(), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) CheckIndex(index QModelIndex_ITF, options QAbstractItemModel__CheckIndexOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_CheckIndex(ptr.Pointer(), PointerFromQModelIndex(index), C.longlong(options)) != 0
+		return int8(C.QAbstractItemModel_CheckIndex(ptr.Pointer(), PointerFromQModelIndex(index), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -3995,21 +3995,21 @@ func (ptr *QAbstractItemModel) DisconnectHasChildren() {
 
 func (ptr *QAbstractItemModel) HasChildren(parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_HasChildren(ptr.Pointer(), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_HasChildren(ptr.Pointer(), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) HasChildrenDefault(parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_HasChildrenDefault(ptr.Pointer(), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_HasChildrenDefault(ptr.Pointer(), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemModel) HasIndex(row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemModel_HasIndex(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QAbstractItemModel_HasIndex(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -4820,7 +4820,7 @@ func (ptr *QAbstractNativeEventFilter) DisconnectNativeEventFilter() {
 
 func (ptr *QAbstractNativeEventFilter) NativeEventFilter(eventType QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractNativeEventFilter_NativeEventFilter(ptr.Pointer(), PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
+		return int8(C.QAbstractNativeEventFilter_NativeEventFilter(ptr.Pointer(), PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
 	}
 	return false
 }
@@ -4947,14 +4947,14 @@ func (ptr *QAbstractProxyModel) DisconnectSubmit() {
 
 func (ptr *QAbstractProxyModel) Submit() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractProxyModel_Submit(ptr.Pointer()) != 0
+		return int8(C.QAbstractProxyModel_Submit(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractProxyModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractProxyModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QAbstractProxyModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5774,7 +5774,7 @@ func (ptr *QAbstractState) Machine() *QStateMachine {
 
 func (ptr *QAbstractState) Active() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractState_Active(ptr.Pointer()) != 0
+		return int8(C.QAbstractState_Active(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6135,7 +6135,7 @@ func (ptr *QAbstractTransition) DisconnectEventTest() {
 
 func (ptr *QAbstractTransition) EventTest(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7001,7 +7001,7 @@ func (ptr *QBasicTimer) DestroyQBasicTimer() {
 
 func (ptr *QBasicTimer) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QBasicTimer_IsActive(ptr.Pointer()) != 0
+		return int8(C.QBasicTimer_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7085,14 +7085,14 @@ func NewQBitArray2(size int, value bool) *QBitArray {
 
 func (ptr *QBitArray) Fill(value bool, size int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_Fill(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))), C.int(int32(size))) != 0
+		return int8(C.QBitArray_Fill(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))), C.int(int32(size)))) != 0
 	}
 	return false
 }
 
 func (ptr *QBitArray) ToggleBit(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_ToggleBit(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QBitArray_ToggleBit(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -7147,28 +7147,28 @@ func (ptr *QBitArray) Truncate(pos int) {
 
 func (ptr *QBitArray) At(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_At(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QBitArray_At(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
 
 func (ptr *QBitArray) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QBitArray_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBitArray) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_IsNull(ptr.Pointer()) != 0
+		return int8(C.QBitArray_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QBitArray) TestBit(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBitArray_TestBit(ptr.Pointer(), C.int(int32(i))) != 0
+		return int8(C.QBitArray_TestBit(ptr.Pointer(), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -8582,14 +8582,14 @@ func (ptr *QByteArray) Contains3(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QByteArray_Contains3(ptr.Pointer(), chC) != 0
+		return int8(C.QByteArray_Contains3(ptr.Pointer(), chC)) != 0
 	}
 	return false
 }
 
 func (ptr *QByteArray) Contains(ba QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QByteArray_Contains(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
+		return int8(C.QByteArray_Contains(ptr.Pointer(), PointerFromQByteArray(ba))) != 0
 	}
 	return false
 }
@@ -8601,7 +8601,7 @@ func (ptr *QByteArray) Contains2(str string) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QByteArray_Contains2(ptr.Pointer(), strC) != 0
+		return int8(C.QByteArray_Contains2(ptr.Pointer(), strC)) != 0
 	}
 	return false
 }
@@ -8613,14 +8613,14 @@ func (ptr *QByteArray) EndsWith2(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QByteArray_EndsWith2(ptr.Pointer(), chC) != 0
+		return int8(C.QByteArray_EndsWith2(ptr.Pointer(), chC)) != 0
 	}
 	return false
 }
 
 func (ptr *QByteArray) EndsWith(ba QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QByteArray_EndsWith(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
+		return int8(C.QByteArray_EndsWith(ptr.Pointer(), PointerFromQByteArray(ba))) != 0
 	}
 	return false
 }
@@ -8632,21 +8632,21 @@ func (ptr *QByteArray) EndsWith3(str string) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QByteArray_EndsWith3(ptr.Pointer(), strC) != 0
+		return int8(C.QByteArray_EndsWith3(ptr.Pointer(), strC)) != 0
 	}
 	return false
 }
 
 func (ptr *QByteArray) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QByteArray_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QByteArray_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QByteArray) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QByteArray_IsNull(ptr.Pointer()) != 0
+		return int8(C.QByteArray_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8658,14 +8658,14 @@ func (ptr *QByteArray) StartsWith2(ch string) bool {
 			chC = C.CString(ch)
 			defer C.free(unsafe.Pointer(chC))
 		}
-		return C.QByteArray_StartsWith2(ptr.Pointer(), chC) != 0
+		return int8(C.QByteArray_StartsWith2(ptr.Pointer(), chC)) != 0
 	}
 	return false
 }
 
 func (ptr *QByteArray) StartsWith(ba QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QByteArray_StartsWith(ptr.Pointer(), PointerFromQByteArray(ba)) != 0
+		return int8(C.QByteArray_StartsWith(ptr.Pointer(), PointerFromQByteArray(ba))) != 0
 	}
 	return false
 }
@@ -8677,7 +8677,7 @@ func (ptr *QByteArray) StartsWith3(str string) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QByteArray_StartsWith3(ptr.Pointer(), strC) != 0
+		return int8(C.QByteArray_StartsWith3(ptr.Pointer(), strC)) != 0
 	}
 	return false
 }
@@ -9691,147 +9691,147 @@ func (ptr *QChar) Decomposition2(ucs4 uint) string {
 }
 
 func QChar_HasMirrored2(ucs4 uint) bool {
-	return C.QChar_QChar_HasMirrored2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_HasMirrored2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) HasMirrored2(ucs4 uint) bool {
-	return C.QChar_QChar_HasMirrored2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_HasMirrored2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsDigit2(ucs4 uint) bool {
-	return C.QChar_QChar_IsDigit2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsDigit2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsDigit2(ucs4 uint) bool {
-	return C.QChar_QChar_IsDigit2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsDigit2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsHighSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsHighSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsHighSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsHighSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsHighSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsHighSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsLetter2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLetter2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLetter2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsLetter2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLetter2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLetter2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsLetterOrNumber2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLetterOrNumber2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLetterOrNumber2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsLetterOrNumber2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLetterOrNumber2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLetterOrNumber2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsLowSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLowSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLowSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsLowSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLowSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLowSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsLower2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLower2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLower2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsLower2(ucs4 uint) bool {
-	return C.QChar_QChar_IsLower2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsLower2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsMark2(ucs4 uint) bool {
-	return C.QChar_QChar_IsMark2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsMark2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsMark2(ucs4 uint) bool {
-	return C.QChar_QChar_IsMark2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsMark2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsNonCharacter2(ucs4 uint) bool {
-	return C.QChar_QChar_IsNonCharacter2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsNonCharacter2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsNonCharacter2(ucs4 uint) bool {
-	return C.QChar_QChar_IsNonCharacter2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsNonCharacter2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsNumber2(ucs4 uint) bool {
-	return C.QChar_QChar_IsNumber2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsNumber2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsNumber2(ucs4 uint) bool {
-	return C.QChar_QChar_IsNumber2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsNumber2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsPrint2(ucs4 uint) bool {
-	return C.QChar_QChar_IsPrint2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsPrint2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsPrint2(ucs4 uint) bool {
-	return C.QChar_QChar_IsPrint2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsPrint2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsPunct2(ucs4 uint) bool {
-	return C.QChar_QChar_IsPunct2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsPunct2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsPunct2(ucs4 uint) bool {
-	return C.QChar_QChar_IsPunct2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsPunct2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsSpace2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSpace2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSpace2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsSpace2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSpace2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSpace2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsSurrogate2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSurrogate2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSurrogate2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsSymbol2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSymbol2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSymbol2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsSymbol2(ucs4 uint) bool {
-	return C.QChar_QChar_IsSymbol2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsSymbol2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsTitleCase2(ucs4 uint) bool {
-	return C.QChar_QChar_IsTitleCase2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsTitleCase2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsTitleCase2(ucs4 uint) bool {
-	return C.QChar_QChar_IsTitleCase2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsTitleCase2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_IsUpper2(ucs4 uint) bool {
-	return C.QChar_QChar_IsUpper2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsUpper2(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) IsUpper2(ucs4 uint) bool {
-	return C.QChar_QChar_IsUpper2(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_IsUpper2(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_RequiresSurrogates(ucs4 uint) bool {
-	return C.QChar_QChar_RequiresSurrogates(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_RequiresSurrogates(C.uint(uint32(ucs4)))) != 0
 }
 
 func (ptr *QChar) RequiresSurrogates(ucs4 uint) bool {
-	return C.QChar_QChar_RequiresSurrogates(C.uint(uint32(ucs4))) != 0
+	return int8(C.QChar_QChar_RequiresSurrogates(C.uint(uint32(ucs4)))) != 0
 }
 
 func QChar_DigitValue2(ucs4 uint) int {
@@ -10017,126 +10017,126 @@ func (ptr *QChar) Decomposition() string {
 
 func (ptr *QChar) HasMirrored() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_HasMirrored(ptr.Pointer()) != 0
+		return int8(C.QChar_HasMirrored(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsDigit() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsDigit(ptr.Pointer()) != 0
+		return int8(C.QChar_IsDigit(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsHighSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsHighSurrogate(ptr.Pointer()) != 0
+		return int8(C.QChar_IsHighSurrogate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLetter() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLetter(ptr.Pointer()) != 0
+		return int8(C.QChar_IsLetter(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLetterOrNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLetterOrNumber(ptr.Pointer()) != 0
+		return int8(C.QChar_IsLetterOrNumber(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLowSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLowSurrogate(ptr.Pointer()) != 0
+		return int8(C.QChar_IsLowSurrogate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLower() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLower(ptr.Pointer()) != 0
+		return int8(C.QChar_IsLower(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsMark() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsMark(ptr.Pointer()) != 0
+		return int8(C.QChar_IsMark(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNonCharacter() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNonCharacter(ptr.Pointer()) != 0
+		return int8(C.QChar_IsNonCharacter(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNull(ptr.Pointer()) != 0
+		return int8(C.QChar_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNumber(ptr.Pointer()) != 0
+		return int8(C.QChar_IsNumber(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsPrint() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsPrint(ptr.Pointer()) != 0
+		return int8(C.QChar_IsPrint(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsPunct() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsPunct(ptr.Pointer()) != 0
+		return int8(C.QChar_IsPunct(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSpace() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSpace(ptr.Pointer()) != 0
+		return int8(C.QChar_IsSpace(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSurrogate(ptr.Pointer()) != 0
+		return int8(C.QChar_IsSurrogate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSymbol() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSymbol(ptr.Pointer()) != 0
+		return int8(C.QChar_IsSymbol(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsTitleCase() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsTitleCase(ptr.Pointer()) != 0
+		return int8(C.QChar_IsTitleCase(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsUpper() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsUpper(ptr.Pointer()) != 0
+		return int8(C.QChar_IsUpper(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10241,21 +10241,21 @@ func (ptr *QChildEvent) Child() *QObject {
 
 func (ptr *QChildEvent) Added() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Added(ptr.Pointer()) != 0
+		return int8(C.QChildEvent_Added(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChildEvent) Polished() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Polished(ptr.Pointer()) != 0
+		return int8(C.QChildEvent_Polished(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QChildEvent) Removed() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Removed(ptr.Pointer()) != 0
+		return int8(C.QChildEvent_Removed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10402,14 +10402,14 @@ func (ptr *QCollator) CaseSensitivity() Qt__CaseSensitivity {
 
 func (ptr *QCollator) IgnorePunctuation() bool {
 	if ptr.Pointer() != nil {
-		return C.QCollator_IgnorePunctuation(ptr.Pointer()) != 0
+		return int8(C.QCollator_IgnorePunctuation(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCollator) NumericMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QCollator_NumericMode(ptr.Pointer()) != 0
+		return int8(C.QCollator_NumericMode(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10864,20 +10864,20 @@ func (ptr *QCommandLineParser) TrUtf8(sourceText string, disambiguation string, 
 
 func (ptr *QCommandLineParser) AddOption(option QCommandLineOption_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCommandLineParser_AddOption(ptr.Pointer(), PointerFromQCommandLineOption(option)) != 0
+		return int8(C.QCommandLineParser_AddOption(ptr.Pointer(), PointerFromQCommandLineOption(option))) != 0
 	}
 	return false
 }
 
 func (ptr *QCommandLineParser) AddOptions(options []*QCommandLineOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QCommandLineParser_AddOptions(ptr.Pointer(), func() unsafe.Pointer {
+		return int8(C.QCommandLineParser_AddOptions(ptr.Pointer(), func() unsafe.Pointer {
 			tmpList := NewQCommandLineParserFromPointer(NewQCommandLineParserFromPointer(nil).__addOptions_options_newList())
 			for _, v := range options {
 				tmpList.__addOptions_options_setList(v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -10886,7 +10886,7 @@ func (ptr *QCommandLineParser) Parse(arguments []string) bool {
 	if ptr.Pointer() != nil {
 		argumentsC := C.CString(strings.Join(arguments, "|"))
 		defer C.free(unsafe.Pointer(argumentsC))
-		return C.QCommandLineParser_Parse(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "|")))}) != 0
+		return int8(C.QCommandLineParser_Parse(ptr.Pointer(), C.struct_QtCore_PackedString{data: argumentsC, len: C.longlong(len(strings.Join(arguments, "|")))})) != 0
 	}
 	return false
 }
@@ -11057,7 +11057,7 @@ func (ptr *QCommandLineParser) Values(optionName string) []string {
 
 func (ptr *QCommandLineParser) IsSet2(option QCommandLineOption_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCommandLineParser_IsSet2(ptr.Pointer(), PointerFromQCommandLineOption(option)) != 0
+		return int8(C.QCommandLineParser_IsSet2(ptr.Pointer(), PointerFromQCommandLineOption(option))) != 0
 	}
 	return false
 }
@@ -11069,7 +11069,7 @@ func (ptr *QCommandLineParser) IsSet(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QCommandLineParser_IsSet(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QCommandLineParser_IsSet(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -11342,67 +11342,67 @@ func (ptr *QCoreApplication) LibraryPaths() []string {
 }
 
 func QCoreApplication_ClosingDown() bool {
-	return C.QCoreApplication_QCoreApplication_ClosingDown() != 0
+	return int8(C.QCoreApplication_QCoreApplication_ClosingDown()) != 0
 }
 
 func (ptr *QCoreApplication) ClosingDown() bool {
-	return C.QCoreApplication_QCoreApplication_ClosingDown() != 0
+	return int8(C.QCoreApplication_QCoreApplication_ClosingDown()) != 0
 }
 
 func QCoreApplication_InstallTranslator(translationFile QTranslator_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_InstallTranslator(PointerFromQTranslator(translationFile)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_InstallTranslator(PointerFromQTranslator(translationFile))) != 0
 }
 
 func (ptr *QCoreApplication) InstallTranslator(translationFile QTranslator_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_InstallTranslator(PointerFromQTranslator(translationFile)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_InstallTranslator(PointerFromQTranslator(translationFile))) != 0
 }
 
 func QCoreApplication_IsQuitLockEnabled() bool {
-	return C.QCoreApplication_QCoreApplication_IsQuitLockEnabled() != 0
+	return int8(C.QCoreApplication_QCoreApplication_IsQuitLockEnabled()) != 0
 }
 
 func (ptr *QCoreApplication) IsQuitLockEnabled() bool {
-	return C.QCoreApplication_QCoreApplication_IsQuitLockEnabled() != 0
+	return int8(C.QCoreApplication_QCoreApplication_IsQuitLockEnabled()) != 0
 }
 
 func QCoreApplication_IsSetuidAllowed() bool {
-	return C.QCoreApplication_QCoreApplication_IsSetuidAllowed() != 0
+	return int8(C.QCoreApplication_QCoreApplication_IsSetuidAllowed()) != 0
 }
 
 func (ptr *QCoreApplication) IsSetuidAllowed() bool {
-	return C.QCoreApplication_QCoreApplication_IsSetuidAllowed() != 0
+	return int8(C.QCoreApplication_QCoreApplication_IsSetuidAllowed()) != 0
 }
 
 func QCoreApplication_RemoveTranslator(translationFile QTranslator_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_RemoveTranslator(PointerFromQTranslator(translationFile)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_RemoveTranslator(PointerFromQTranslator(translationFile))) != 0
 }
 
 func (ptr *QCoreApplication) RemoveTranslator(translationFile QTranslator_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_RemoveTranslator(PointerFromQTranslator(translationFile)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_RemoveTranslator(PointerFromQTranslator(translationFile))) != 0
 }
 
 func QCoreApplication_SendEvent(receiver QObject_ITF, event QEvent_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_SendEvent(PointerFromQObject(receiver), PointerFromQEvent(event)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_SendEvent(PointerFromQObject(receiver), PointerFromQEvent(event))) != 0
 }
 
 func (ptr *QCoreApplication) SendEvent(receiver QObject_ITF, event QEvent_ITF) bool {
-	return C.QCoreApplication_QCoreApplication_SendEvent(PointerFromQObject(receiver), PointerFromQEvent(event)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_SendEvent(PointerFromQObject(receiver), PointerFromQEvent(event))) != 0
 }
 
 func QCoreApplication_StartingUp() bool {
-	return C.QCoreApplication_QCoreApplication_StartingUp() != 0
+	return int8(C.QCoreApplication_QCoreApplication_StartingUp()) != 0
 }
 
 func (ptr *QCoreApplication) StartingUp() bool {
-	return C.QCoreApplication_QCoreApplication_StartingUp() != 0
+	return int8(C.QCoreApplication_QCoreApplication_StartingUp()) != 0
 }
 
 func QCoreApplication_TestAttribute(attribute Qt__ApplicationAttribute) bool {
-	return C.QCoreApplication_QCoreApplication_TestAttribute(C.longlong(attribute)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_TestAttribute(C.longlong(attribute))) != 0
 }
 
 func (ptr *QCoreApplication) TestAttribute(attribute Qt__ApplicationAttribute) bool {
-	return C.QCoreApplication_QCoreApplication_TestAttribute(C.longlong(attribute)) != 0
+	return int8(C.QCoreApplication_QCoreApplication_TestAttribute(C.longlong(attribute))) != 0
 }
 
 func QCoreApplication_Exec() int {
@@ -11838,7 +11838,7 @@ func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographic
 
 func (ptr *QCryptographicHash) AddData3(device QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCryptographicHash_AddData3(ptr.Pointer(), PointerFromQIODevice(device)) != 0
+		return int8(C.QCryptographicHash_AddData3(ptr.Pointer(), PointerFromQIODevice(device))) != 0
 	}
 	return false
 }
@@ -12012,7 +12012,7 @@ func NewQDataStream4(a QByteArray_ITF) *QDataStream {
 
 func (ptr *QDataStream) CommitTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataStream_CommitTransaction(ptr.Pointer()) != 0
+		return int8(C.QDataStream_CommitTransaction(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12144,7 +12144,7 @@ func (ptr *QDataStream) Device() *QIODevice {
 
 func (ptr *QDataStream) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataStream_AtEnd(ptr.Pointer()) != 0
+		return int8(C.QDataStream_AtEnd(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12302,24 +12302,24 @@ func NewQDate3(y int, m int, d int) *QDate {
 }
 
 func QDate_IsLeapYear(year int) bool {
-	return C.QDate_QDate_IsLeapYear(C.int(int32(year))) != 0
+	return int8(C.QDate_QDate_IsLeapYear(C.int(int32(year)))) != 0
 }
 
 func (ptr *QDate) IsLeapYear(year int) bool {
-	return C.QDate_QDate_IsLeapYear(C.int(int32(year))) != 0
+	return int8(C.QDate_QDate_IsLeapYear(C.int(int32(year)))) != 0
 }
 
 func QDate_IsValid2(year int, month int, day int) bool {
-	return C.QDate_QDate_IsValid2(C.int(int32(year)), C.int(int32(month)), C.int(int32(day))) != 0
+	return int8(C.QDate_QDate_IsValid2(C.int(int32(year)), C.int(int32(month)), C.int(int32(day)))) != 0
 }
 
 func (ptr *QDate) IsValid2(year int, month int, day int) bool {
-	return C.QDate_QDate_IsValid2(C.int(int32(year)), C.int(int32(month)), C.int(int32(day))) != 0
+	return int8(C.QDate_QDate_IsValid2(C.int(int32(year)), C.int(int32(month)), C.int(int32(day)))) != 0
 }
 
 func (ptr *QDate) SetDate(year int, month int, day int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDate_SetDate(ptr.Pointer(), C.int(int32(year)), C.int(int32(month)), C.int(int32(day))) != 0
+		return int8(C.QDate_SetDate(ptr.Pointer(), C.int(int32(year)), C.int(int32(month)), C.int(int32(day)))) != 0
 	}
 	return false
 }
@@ -12379,14 +12379,14 @@ func (ptr *QDate) ToString(format string) string {
 
 func (ptr *QDate) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QDate_IsNull(ptr.Pointer()) != 0
+		return int8(C.QDate_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDate) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDate_IsValid(ptr.Pointer()) != 0
+		return int8(C.QDate_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12915,21 +12915,21 @@ func (ptr *QDateTime) TimeSpec() Qt__TimeSpec {
 
 func (ptr *QDateTime) IsDaylightTime() bool {
 	if ptr.Pointer() != nil {
-		return C.QDateTime_IsDaylightTime(ptr.Pointer()) != 0
+		return int8(C.QDateTime_IsDaylightTime(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDateTime) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QDateTime_IsNull(ptr.Pointer()) != 0
+		return int8(C.QDateTime_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDateTime) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDateTime_IsValid(ptr.Pointer()) != 0
+		return int8(C.QDateTime_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13093,14 +13093,14 @@ func (ptr *QDeadlineTimer) TimerType() Qt__TimerType {
 
 func (ptr *QDeadlineTimer) HasExpired() bool {
 	if ptr.Pointer() != nil {
-		return C.QDeadlineTimer_HasExpired(ptr.Pointer()) != 0
+		return int8(C.QDeadlineTimer_HasExpired(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDeadlineTimer) IsForever() bool {
 	if ptr.Pointer() != nil {
-		return C.QDeadlineTimer_IsForever(ptr.Pointer()) != 0
+		return int8(C.QDeadlineTimer_IsForever(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13289,7 +13289,7 @@ func (ptr *QDebug) DestroyQDebug() {
 
 func (ptr *QDebug) AutoInsertSpaces() bool {
 	if ptr.Pointer() != nil {
-		return C.QDebug_AutoInsertSpaces(ptr.Pointer()) != 0
+		return int8(C.QDebug_AutoInsertSpaces(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13674,14 +13674,14 @@ func (ptr *QDir) Cd(dirName string) bool {
 			dirNameC = C.CString(dirName)
 			defer C.free(unsafe.Pointer(dirNameC))
 		}
-		return C.QDir_Cd(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))}) != 0
+		return int8(C.QDir_Cd(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))})) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) CdUp() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_CdUp(ptr.Pointer()) != 0
+		return int8(C.QDir_CdUp(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13692,7 +13692,7 @@ func QDir_IsAbsolutePath(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_IsAbsolutePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_IsAbsolutePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func (ptr *QDir) IsAbsolutePath(path string) bool {
@@ -13701,7 +13701,7 @@ func (ptr *QDir) IsAbsolutePath(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_IsAbsolutePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_IsAbsolutePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func QDir_IsRelativePath(path string) bool {
@@ -13710,7 +13710,7 @@ func QDir_IsRelativePath(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_IsRelativePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_IsRelativePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func (ptr *QDir) IsRelativePath(path string) bool {
@@ -13719,12 +13719,12 @@ func (ptr *QDir) IsRelativePath(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_IsRelativePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_IsRelativePath(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func (ptr *QDir) MakeAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_MakeAbsolute(ptr.Pointer()) != 0
+		return int8(C.QDir_MakeAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13740,7 +13740,7 @@ func QDir_Match(filter string, fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QDir_QDir_Match(C.struct_QtCore_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QDir_QDir_Match(C.struct_QtCore_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QDir) Match(filter string, fileName string) bool {
@@ -13754,7 +13754,7 @@ func (ptr *QDir) Match(filter string, fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QDir_QDir_Match(C.struct_QtCore_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QDir_QDir_Match(C.struct_QtCore_PackedString{data: filterC, len: C.longlong(len(filter))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func QDir_Match2(filters []string, fileName string) bool {
@@ -13765,7 +13765,7 @@ func QDir_Match2(filters []string, fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QDir) Match2(filters []string, fileName string) bool {
@@ -13776,7 +13776,7 @@ func (ptr *QDir) Match2(filters []string, fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QDir_QDir_Match2(C.struct_QtCore_PackedString{data: filtersC, len: C.longlong(len(strings.Join(filters, "|")))}, C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QDir) Remove(fileName string) bool {
@@ -13786,14 +13786,14 @@ func (ptr *QDir) Remove(fileName string) bool {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		return C.QDir_Remove(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+		return int8(C.QDir_Remove(ptr.Pointer(), C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) RemoveRecursively() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_RemoveRecursively(ptr.Pointer()) != 0
+		return int8(C.QDir_RemoveRecursively(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13810,7 +13810,7 @@ func (ptr *QDir) Rename(oldName string, newName string) bool {
 			newNameC = C.CString(newName)
 			defer C.free(unsafe.Pointer(newNameC))
 		}
-		return C.QDir_Rename(ptr.Pointer(), C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+		return int8(C.QDir_Rename(ptr.Pointer(), C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 	}
 	return false
 }
@@ -13821,7 +13821,7 @@ func QDir_SetCurrent(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_SetCurrent(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_SetCurrent(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func (ptr *QDir) SetCurrent(path string) bool {
@@ -13830,7 +13830,7 @@ func (ptr *QDir) SetCurrent(path string) bool {
 		pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
 	}
-	return C.QDir_QDir_SetCurrent(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+	return int8(C.QDir_QDir_SetCurrent(C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 }
 
 func QDir_AddSearchPath(prefix string, path string) {
@@ -14061,7 +14061,7 @@ func (ptr *QDir) NameFilters() []string {
 
 func (ptr *QDir) Exists2() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_Exists2(ptr.Pointer()) != 0
+		return int8(C.QDir_Exists2(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14073,42 +14073,42 @@ func (ptr *QDir) Exists(name string) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QDir_Exists(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QDir_Exists(ptr.Pointer(), C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) IsAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_IsAbsolute(ptr.Pointer()) != 0
+		return int8(C.QDir_IsAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) IsEmpty(filters QDir__Filter) bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_IsEmpty(ptr.Pointer(), C.longlong(filters)) != 0
+		return int8(C.QDir_IsEmpty(ptr.Pointer(), C.longlong(filters))) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QDir_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) IsRelative() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_IsRelative(ptr.Pointer()) != 0
+		return int8(C.QDir_IsRelative(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDir) IsRoot() bool {
 	if ptr.Pointer() != nil {
-		return C.QDir_IsRoot(ptr.Pointer()) != 0
+		return int8(C.QDir_IsRoot(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14120,7 +14120,7 @@ func (ptr *QDir) Mkdir(dirName string) bool {
 			dirNameC = C.CString(dirName)
 			defer C.free(unsafe.Pointer(dirNameC))
 		}
-		return C.QDir_Mkdir(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))}) != 0
+		return int8(C.QDir_Mkdir(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))})) != 0
 	}
 	return false
 }
@@ -14132,7 +14132,7 @@ func (ptr *QDir) Mkpath(dirPath string) bool {
 			dirPathC = C.CString(dirPath)
 			defer C.free(unsafe.Pointer(dirPathC))
 		}
-		return C.QDir_Mkpath(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirPathC, len: C.longlong(len(dirPath))}) != 0
+		return int8(C.QDir_Mkpath(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirPathC, len: C.longlong(len(dirPath))})) != 0
 	}
 	return false
 }
@@ -14144,7 +14144,7 @@ func (ptr *QDir) Rmdir(dirName string) bool {
 			dirNameC = C.CString(dirName)
 			defer C.free(unsafe.Pointer(dirNameC))
 		}
-		return C.QDir_Rmdir(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))}) != 0
+		return int8(C.QDir_Rmdir(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirNameC, len: C.longlong(len(dirName))})) != 0
 	}
 	return false
 }
@@ -14156,7 +14156,7 @@ func (ptr *QDir) Rmpath(dirPath string) bool {
 			dirPathC = C.CString(dirPath)
 			defer C.free(unsafe.Pointer(dirPathC))
 		}
-		return C.QDir_Rmpath(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirPathC, len: C.longlong(len(dirPath))}) != 0
+		return int8(C.QDir_Rmpath(ptr.Pointer(), C.struct_QtCore_PackedString{data: dirPathC, len: C.longlong(len(dirPath))})) != 0
 	}
 	return false
 }
@@ -14662,11 +14662,11 @@ func (ptr *QElapsedTimer) ClockType() QElapsedTimer__ClockType {
 }
 
 func QElapsedTimer_IsMonotonic() bool {
-	return C.QElapsedTimer_QElapsedTimer_IsMonotonic() != 0
+	return int8(C.QElapsedTimer_QElapsedTimer_IsMonotonic()) != 0
 }
 
 func (ptr *QElapsedTimer) IsMonotonic() bool {
-	return C.QElapsedTimer_QElapsedTimer_IsMonotonic() != 0
+	return int8(C.QElapsedTimer_QElapsedTimer_IsMonotonic()) != 0
 }
 
 func (ptr *QElapsedTimer) Restart() int64 {
@@ -14690,14 +14690,14 @@ func (ptr *QElapsedTimer) Start() {
 
 func (ptr *QElapsedTimer) HasExpired(timeout int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QElapsedTimer_HasExpired(ptr.Pointer(), C.longlong(timeout)) != 0
+		return int8(C.QElapsedTimer_HasExpired(ptr.Pointer(), C.longlong(timeout))) != 0
 	}
 	return false
 }
 
 func (ptr *QElapsedTimer) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QElapsedTimer_IsValid(ptr.Pointer()) != 0
+		return int8(C.QElapsedTimer_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15087,14 +15087,14 @@ func (ptr *QEvent) Type() QEvent__Type {
 
 func (ptr *QEvent) IsAccepted() bool {
 	if ptr.Pointer() != nil {
-		return C.QEvent_IsAccepted(ptr.Pointer()) != 0
+		return int8(C.QEvent_IsAccepted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QEvent) Spontaneous() bool {
 	if ptr.Pointer() != nil {
-		return C.QEvent_Spontaneous(ptr.Pointer()) != 0
+		return int8(C.QEvent_Spontaneous(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15203,7 +15203,7 @@ func (ptr *QEventLoop) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QEventLoop) ProcessEvents(flags QEventLoop__ProcessEventsFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QEventLoop_ProcessEvents(ptr.Pointer(), C.longlong(flags)) != 0
+		return int8(C.QEventLoop_ProcessEvents(ptr.Pointer(), C.longlong(flags))) != 0
 	}
 	return false
 }
@@ -15323,7 +15323,7 @@ func (ptr *QEventLoop) DestroyQEventLoopDefault() {
 
 func (ptr *QEventLoop) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QEventLoop_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QEventLoop_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15477,14 +15477,14 @@ func (ptr *QEventTransition) DisconnectEventTest() {
 
 func (ptr *QEventTransition) EventTest(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QEventTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event)) != 0
+		return int8(C.QEventTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QEventTransition) EventTestDefault(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QEventTransition_EventTestDefault(ptr.Pointer(), PointerFromQEvent(event)) != 0
+		return int8(C.QEventTransition_EventTestDefault(ptr.Pointer(), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -15858,7 +15858,7 @@ func QFile_Copy2(fileName string, newName string) bool {
 		newNameC = C.CString(newName)
 		defer C.free(unsafe.Pointer(newNameC))
 	}
-	return C.QFile_QFile_Copy2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+	return int8(C.QFile_QFile_Copy2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 }
 
 func (ptr *QFile) Copy2(fileName string, newName string) bool {
@@ -15872,7 +15872,7 @@ func (ptr *QFile) Copy2(fileName string, newName string) bool {
 		newNameC = C.CString(newName)
 		defer C.free(unsafe.Pointer(newNameC))
 	}
-	return C.QFile_QFile_Copy2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+	return int8(C.QFile_QFile_Copy2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 }
 
 func (ptr *QFile) Copy(newName string) bool {
@@ -15882,7 +15882,7 @@ func (ptr *QFile) Copy(newName string) bool {
 			newNameC = C.CString(newName)
 			defer C.free(unsafe.Pointer(newNameC))
 		}
-		return C.QFile_Copy(ptr.Pointer(), C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+		return int8(C.QFile_Copy(ptr.Pointer(), C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 	}
 	return false
 }
@@ -15893,7 +15893,7 @@ func QFile_Exists(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Exists(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QFile_QFile_Exists(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QFile) Exists(fileName string) bool {
@@ -15902,7 +15902,7 @@ func (ptr *QFile) Exists(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Exists(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QFile_QFile_Exists(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func QFile_Link2(fileName string, linkName string) bool {
@@ -15916,7 +15916,7 @@ func QFile_Link2(fileName string, linkName string) bool {
 		linkNameC = C.CString(linkName)
 		defer C.free(unsafe.Pointer(linkNameC))
 	}
-	return C.QFile_QFile_Link2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))}) != 0
+	return int8(C.QFile_QFile_Link2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))})) != 0
 }
 
 func (ptr *QFile) Link2(fileName string, linkName string) bool {
@@ -15930,7 +15930,7 @@ func (ptr *QFile) Link2(fileName string, linkName string) bool {
 		linkNameC = C.CString(linkName)
 		defer C.free(unsafe.Pointer(linkNameC))
 	}
-	return C.QFile_QFile_Link2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))}) != 0
+	return int8(C.QFile_QFile_Link2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))})) != 0
 }
 
 func (ptr *QFile) Link(linkName string) bool {
@@ -15940,21 +15940,21 @@ func (ptr *QFile) Link(linkName string) bool {
 			linkNameC = C.CString(linkName)
 			defer C.free(unsafe.Pointer(linkNameC))
 		}
-		return C.QFile_Link(ptr.Pointer(), C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))}) != 0
+		return int8(C.QFile_Link(ptr.Pointer(), C.struct_QtCore_PackedString{data: linkNameC, len: C.longlong(len(linkName))})) != 0
 	}
 	return false
 }
 
 func (ptr *QFile) Open3(fd int, mode QIODevice__OpenModeFlag, handleFlags QFileDevice__FileHandleFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QFile_Open3(ptr.Pointer(), C.int(int32(fd)), C.longlong(mode), C.longlong(handleFlags)) != 0
+		return int8(C.QFile_Open3(ptr.Pointer(), C.int(int32(fd)), C.longlong(mode), C.longlong(handleFlags))) != 0
 	}
 	return false
 }
 
 func (ptr *QFile) Remove() bool {
 	if ptr.Pointer() != nil {
-		return C.QFile_Remove(ptr.Pointer()) != 0
+		return int8(C.QFile_Remove(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15965,7 +15965,7 @@ func QFile_Remove2(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Remove2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QFile_QFile_Remove2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QFile) Remove2(fileName string) bool {
@@ -15974,7 +15974,7 @@ func (ptr *QFile) Remove2(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Remove2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QFile_QFile_Remove2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QFile) Rename(newName string) bool {
@@ -15984,7 +15984,7 @@ func (ptr *QFile) Rename(newName string) bool {
 			newNameC = C.CString(newName)
 			defer C.free(unsafe.Pointer(newNameC))
 		}
-		return C.QFile_Rename(ptr.Pointer(), C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+		return int8(C.QFile_Rename(ptr.Pointer(), C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 	}
 	return false
 }
@@ -16000,7 +16000,7 @@ func QFile_Rename2(oldName string, newName string) bool {
 		newNameC = C.CString(newName)
 		defer C.free(unsafe.Pointer(newNameC))
 	}
-	return C.QFile_QFile_Rename2(C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+	return int8(C.QFile_QFile_Rename2(C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 }
 
 func (ptr *QFile) Rename2(oldName string, newName string) bool {
@@ -16014,7 +16014,7 @@ func (ptr *QFile) Rename2(oldName string, newName string) bool {
 		newNameC = C.CString(newName)
 		defer C.free(unsafe.Pointer(newNameC))
 	}
-	return C.QFile_QFile_Rename2(C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))}) != 0
+	return int8(C.QFile_QFile_Rename2(C.struct_QtCore_PackedString{data: oldNameC, len: C.longlong(len(oldName))}, C.struct_QtCore_PackedString{data: newNameC, len: C.longlong(len(newName))})) != 0
 }
 
 func QFile_Resize2(fileName string, sz int64) bool {
@@ -16023,7 +16023,7 @@ func QFile_Resize2(fileName string, sz int64) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Resize2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(sz)) != 0
+	return int8(C.QFile_QFile_Resize2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(sz))) != 0
 }
 
 func (ptr *QFile) Resize2(fileName string, sz int64) bool {
@@ -16032,7 +16032,7 @@ func (ptr *QFile) Resize2(fileName string, sz int64) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_Resize2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(sz)) != 0
+	return int8(C.QFile_QFile_Resize2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(sz))) != 0
 }
 
 func QFile_SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
@@ -16041,7 +16041,7 @@ func QFile_SetPermissions2(fileName string, permissions QFileDevice__Permission)
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_SetPermissions2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(permissions)) != 0
+	return int8(C.QFile_QFile_SetPermissions2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(permissions))) != 0
 }
 
 func (ptr *QFile) SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
@@ -16050,7 +16050,7 @@ func (ptr *QFile) SetPermissions2(fileName string, permissions QFileDevice__Perm
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QFile_QFile_SetPermissions2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(permissions)) != 0
+	return int8(C.QFile_QFile_SetPermissions2(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}, C.longlong(permissions))) != 0
 }
 
 func (ptr *QFile) SetFileName(name string) {
@@ -16119,7 +16119,7 @@ func (ptr *QFile) SymLinkTarget2() string {
 
 func (ptr *QFile) Exists2() bool {
 	if ptr.Pointer() != nil {
-		return C.QFile_Exists2(ptr.Pointer()) != 0
+		return int8(C.QFile_Exists2(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16235,7 +16235,7 @@ const (
 
 func (ptr *QFileDevice) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_Flush(ptr.Pointer()) != 0
+		return int8(C.QFileDevice_Flush(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16272,21 +16272,21 @@ func (ptr *QFileDevice) DisconnectResize() {
 
 func (ptr *QFileDevice) Resize(sz int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_Resize(ptr.Pointer(), C.longlong(sz)) != 0
+		return int8(C.QFileDevice_Resize(ptr.Pointer(), C.longlong(sz))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) ResizeDefault(sz int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_ResizeDefault(ptr.Pointer(), C.longlong(sz)) != 0
+		return int8(C.QFileDevice_ResizeDefault(ptr.Pointer(), C.longlong(sz))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) SetFileTime(newDate QDateTime_ITF, fileTime QFileDevice__FileTime) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_SetFileTime(ptr.Pointer(), PointerFromQDateTime(newDate), C.longlong(fileTime)) != 0
+		return int8(C.QFileDevice_SetFileTime(ptr.Pointer(), PointerFromQDateTime(newDate), C.longlong(fileTime))) != 0
 	}
 	return false
 }
@@ -16323,14 +16323,14 @@ func (ptr *QFileDevice) DisconnectSetPermissions() {
 
 func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_SetPermissions(ptr.Pointer(), C.longlong(permissions)) != 0
+		return int8(C.QFileDevice_SetPermissions(ptr.Pointer(), C.longlong(permissions))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) SetPermissionsDefault(permissions QFileDevice__Permission) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_SetPermissionsDefault(ptr.Pointer(), C.longlong(permissions)) != 0
+		return int8(C.QFileDevice_SetPermissionsDefault(ptr.Pointer(), C.longlong(permissions))) != 0
 	}
 	return false
 }
@@ -16342,7 +16342,7 @@ func (ptr *QFileDevice) Unmap(address string) bool {
 			addressC = C.CString(address)
 			defer C.free(unsafe.Pointer(addressC))
 		}
-		return C.QFileDevice_Unmap(ptr.Pointer(), addressC) != 0
+		return int8(C.QFileDevice_Unmap(ptr.Pointer(), addressC)) != 0
 	}
 	return false
 }
@@ -16720,7 +16720,7 @@ func QFileInfo_Exists2(file string) bool {
 		fileC = C.CString(file)
 		defer C.free(unsafe.Pointer(fileC))
 	}
-	return C.QFileInfo_QFileInfo_Exists2(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))}) != 0
+	return int8(C.QFileInfo_QFileInfo_Exists2(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))})) != 0
 }
 
 func (ptr *QFileInfo) Exists2(file string) bool {
@@ -16729,12 +16729,12 @@ func (ptr *QFileInfo) Exists2(file string) bool {
 		fileC = C.CString(file)
 		defer C.free(unsafe.Pointer(fileC))
 	}
-	return C.QFileInfo_QFileInfo_Exists2(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))}) != 0
+	return int8(C.QFileInfo_QFileInfo_Exists2(C.struct_QtCore_PackedString{data: fileC, len: C.longlong(len(file))})) != 0
 }
 
 func (ptr *QFileInfo) MakeAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_MakeAbsolute(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_MakeAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16954,98 +16954,98 @@ func (ptr *QFileInfo) SymLinkTarget() string {
 
 func (ptr *QFileInfo) Caching() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_Caching(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_Caching(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) Exists() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_Exists(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_Exists(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsAbsolute(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsBundle() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsBundle(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsBundle(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsDir() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsDir(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsDir(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsExecutable() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsExecutable(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsExecutable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsFile() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsFile(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsFile(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsHidden(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsNativePath() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsNativePath(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsNativePath(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsRelative() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsRelative(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsRelative(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsRoot() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsRoot(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsRoot(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsSymLink() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsSymLink(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsSymLink(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileInfo) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileInfo_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QFileInfo_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17343,7 +17343,7 @@ func (ptr *QFileSystemWatcher) AddPath(path string) bool {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QFileSystemWatcher_AddPath(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+		return int8(C.QFileSystemWatcher_AddPath(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 	}
 	return false
 }
@@ -17355,7 +17355,7 @@ func (ptr *QFileSystemWatcher) RemovePath(path string) bool {
 			pathC = C.CString(path)
 			defer C.free(unsafe.Pointer(pathC))
 		}
-		return C.QFileSystemWatcher_RemovePath(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))}) != 0
+		return int8(C.QFileSystemWatcher_RemovePath(ptr.Pointer(), C.struct_QtCore_PackedString{data: pathC, len: C.longlong(len(path))})) != 0
 	}
 	return false
 }
@@ -18742,7 +18742,7 @@ func (ptr *QIODevice) GetChar(c string) bool {
 			cC = C.CString(c)
 			defer C.free(unsafe.Pointer(cC))
 		}
-		return C.QIODevice_GetChar(ptr.Pointer(), cC) != 0
+		return int8(C.QIODevice_GetChar(ptr.Pointer(), cC)) != 0
 	}
 	return false
 }
@@ -18779,14 +18779,14 @@ func (ptr *QIODevice) DisconnectOpen() {
 
 func (ptr *QIODevice) Open(mode QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_Open(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QIODevice_Open(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) OpenDefault(mode QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_OpenDefault(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QIODevice_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -18798,7 +18798,7 @@ func (ptr *QIODevice) PutChar(c string) bool {
 			cC = C.CString(c)
 			defer C.free(unsafe.Pointer(cC))
 		}
-		return C.QIODevice_PutChar(ptr.Pointer(), cC) != 0
+		return int8(C.QIODevice_PutChar(ptr.Pointer(), cC)) != 0
 	}
 	return false
 }
@@ -18835,14 +18835,14 @@ func (ptr *QIODevice) DisconnectReset() {
 
 func (ptr *QIODevice) Reset() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_Reset(ptr.Pointer()) != 0
+		return int8(C.QIODevice_Reset(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QIODevice_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18879,14 +18879,14 @@ func (ptr *QIODevice) DisconnectSeek() {
 
 func (ptr *QIODevice) Seek(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QIODevice_Seek(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QIODevice_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -18923,14 +18923,14 @@ func (ptr *QIODevice) DisconnectWaitForBytesWritten() {
 
 func (ptr *QIODevice) WaitForBytesWritten(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_WaitForBytesWritten(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QIODevice_WaitForBytesWritten(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QIODevice_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -18967,14 +18967,14 @@ func (ptr *QIODevice) DisconnectWaitForReadyRead() {
 
 func (ptr *QIODevice) WaitForReadyRead(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_WaitForReadyRead(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QIODevice_WaitForReadyRead(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QIODevice_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -19629,14 +19629,14 @@ func (ptr *QIODevice) DisconnectAtEnd() {
 
 func (ptr *QIODevice) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_AtEnd(ptr.Pointer()) != 0
+		return int8(C.QIODevice_AtEnd(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QIODevice_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19673,28 +19673,28 @@ func (ptr *QIODevice) DisconnectCanReadLine() {
 
 func (ptr *QIODevice) CanReadLine() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_CanReadLine(ptr.Pointer()) != 0
+		return int8(C.QIODevice_CanReadLine(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QIODevice_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsOpen(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsOpen(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19731,35 +19731,35 @@ func (ptr *QIODevice) DisconnectIsSequential() {
 
 func (ptr *QIODevice) IsSequential() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsSequential(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsSequential(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsTextModeEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsTextModeEnabled(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsTextModeEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsTransactionStarted() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsTransactionStarted(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsTransactionStarted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QIODevice) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QIODevice_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QIODevice_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20434,7 +20434,7 @@ func (ptr *QItemSelection) Indexes() []*QModelIndex {
 
 func (ptr *QItemSelection) Contains(index QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelection_Contains(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
+		return int8(C.QItemSelection_Contains(ptr.Pointer(), PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -21170,42 +21170,42 @@ func (ptr *QItemSelectionModel) SelectedRows(column int) []*QModelIndex {
 
 func (ptr *QItemSelectionModel) ColumnIntersectsSelection(column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_ColumnIntersectsSelection(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QItemSelectionModel_ColumnIntersectsSelection(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionModel) HasSelection() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_HasSelection(ptr.Pointer()) != 0
+		return int8(C.QItemSelectionModel_HasSelection(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionModel) IsColumnSelected(column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_IsColumnSelected(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QItemSelectionModel_IsColumnSelected(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionModel) IsRowSelected(row int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_IsRowSelected(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QItemSelectionModel_IsRowSelected(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionModel) IsSelected(index QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_IsSelected(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
+		return int8(C.QItemSelectionModel_IsSelected(ptr.Pointer(), PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionModel) RowIntersectsSelection(row int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionModel_RowIntersectsSelection(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent)) != 0
+		return int8(C.QItemSelectionModel_RowIntersectsSelection(ptr.Pointer(), C.int(int32(row)), PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -21403,35 +21403,35 @@ func (ptr *QItemSelectionRange) Indexes() []*QModelIndex {
 
 func (ptr *QItemSelectionRange) Contains(index QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionRange_Contains(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
+		return int8(C.QItemSelectionRange_Contains(ptr.Pointer(), PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionRange) Contains2(row int, column int, parentIndex QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionRange_Contains2(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parentIndex)) != 0
+		return int8(C.QItemSelectionRange_Contains2(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), PointerFromQModelIndex(parentIndex))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionRange) Intersects(other QItemSelectionRange_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionRange_Intersects(ptr.Pointer(), PointerFromQItemSelectionRange(other)) != 0
+		return int8(C.QItemSelectionRange_Intersects(ptr.Pointer(), PointerFromQItemSelectionRange(other))) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionRange) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionRange_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QItemSelectionRange_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemSelectionRange) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelectionRange_IsValid(ptr.Pointer()) != 0
+		return int8(C.QItemSelectionRange_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -21749,21 +21749,21 @@ func (ptr *QJsonArray) ToVariantList() []*QVariant {
 
 func (ptr *QJsonArray) Contains(value QJsonValue_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonArray_Contains(ptr.Pointer(), PointerFromQJsonValue(value)) != 0
+		return int8(C.QJsonArray_Contains(ptr.Pointer(), PointerFromQJsonValue(value))) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonArray) Empty() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonArray_Empty(ptr.Pointer()) != 0
+		return int8(C.QJsonArray_Empty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonArray) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonArray_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QJsonArray_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -22046,28 +22046,28 @@ func (ptr *QJsonDocument) ToVariant() *QVariant {
 
 func (ptr *QJsonDocument) IsArray() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonDocument_IsArray(ptr.Pointer()) != 0
+		return int8(C.QJsonDocument_IsArray(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonDocument) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonDocument_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QJsonDocument_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonDocument) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonDocument_IsNull(ptr.Pointer()) != 0
+		return int8(C.QJsonDocument_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonDocument) IsObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonDocument_IsObject(ptr.Pointer()) != 0
+		return int8(C.QJsonDocument_IsObject(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -22265,7 +22265,7 @@ func (ptr *QJsonObject) ToVariantMap() map[string]*QVariant {
 
 func (ptr *QJsonObject) Contains2(key QLatin1String_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonObject_Contains2(ptr.Pointer(), PointerFromQLatin1String(key)) != 0
+		return int8(C.QJsonObject_Contains2(ptr.Pointer(), PointerFromQLatin1String(key))) != 0
 	}
 	return false
 }
@@ -22277,21 +22277,21 @@ func (ptr *QJsonObject) Contains(key string) bool {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QJsonObject_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}) != 0
+		return int8(C.QJsonObject_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonObject) Empty() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonObject_Empty(ptr.Pointer()) != 0
+		return int8(C.QJsonObject_Empty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonObject) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonObject_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QJsonObject_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -22868,56 +22868,56 @@ func (ptr *QJsonValue) ToVariant() *QVariant {
 
 func (ptr *QJsonValue) IsArray() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsArray(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsArray(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsBool(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsBool(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsDouble() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsDouble(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsDouble(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsNull(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsObject() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsObject(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsObject(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsString() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsString(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsString(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) IsUndefined() bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_IsUndefined(ptr.Pointer()) != 0
+		return int8(C.QJsonValue_IsUndefined(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QJsonValue) ToBool(defaultValue bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QJsonValue_ToBool(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(defaultValue)))) != 0
+		return int8(C.QJsonValue_ToBool(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(defaultValue))))) != 0
 	}
 	return false
 }
@@ -23263,70 +23263,70 @@ func (ptr *QLatin1String) Trimmed() *QLatin1String {
 
 func (ptr *QLatin1String) EndsWith3(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_EndsWith3(ptr.Pointer(), PointerFromQChar(ch)) != 0
+		return int8(C.QLatin1String_EndsWith3(ptr.Pointer(), PointerFromQChar(ch))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) EndsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_EndsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_EndsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) EndsWith2(l1 QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) EndsWith(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_EndsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_EndsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QLatin1String_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_IsNull(ptr.Pointer()) != 0
+		return int8(C.QLatin1String_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) StartsWith3(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_StartsWith3(ptr.Pointer(), PointerFromQChar(ch)) != 0
+		return int8(C.QLatin1String_StartsWith3(ptr.Pointer(), PointerFromQChar(ch))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) StartsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_StartsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_StartsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) StartsWith2(l1 QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QLatin1String) StartsWith(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QLatin1String_StartsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QLatin1String_StartsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -23489,7 +23489,7 @@ func QLibrary_IsLibrary(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QLibrary_QLibrary_IsLibrary(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QLibrary_QLibrary_IsLibrary(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QLibrary) IsLibrary(fileName string) bool {
@@ -23498,19 +23498,19 @@ func (ptr *QLibrary) IsLibrary(fileName string) bool {
 		fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
 	}
-	return C.QLibrary_QLibrary_IsLibrary(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+	return int8(C.QLibrary_QLibrary_IsLibrary(C.struct_QtCore_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 }
 
 func (ptr *QLibrary) Load() bool {
 	if ptr.Pointer() != nil {
-		return C.QLibrary_Load(ptr.Pointer()) != 0
+		return int8(C.QLibrary_Load(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLibrary) Unload() bool {
 	if ptr.Pointer() != nil {
-		return C.QLibrary_Unload(ptr.Pointer()) != 0
+		return int8(C.QLibrary_Unload(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -23628,7 +23628,7 @@ func (ptr *QLibrary) FileName() string {
 
 func (ptr *QLibrary) IsLoaded() bool {
 	if ptr.Pointer() != nil {
-		return C.QLibrary_IsLoaded(ptr.Pointer()) != 0
+		return int8(C.QLibrary_IsLoaded(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -23722,11 +23722,11 @@ func (ptr *QLibraryInfo) Version() *QVersionNumber {
 }
 
 func QLibraryInfo_IsDebugBuild() bool {
-	return C.QLibraryInfo_QLibraryInfo_IsDebugBuild() != 0
+	return int8(C.QLibraryInfo_QLibraryInfo_IsDebugBuild()) != 0
 }
 
 func (ptr *QLibraryInfo) IsDebugBuild() bool {
-	return C.QLibraryInfo_QLibraryInfo_IsDebugBuild() != 0
+	return int8(C.QLibraryInfo_QLibraryInfo_IsDebugBuild()) != 0
 }
 
 type QLine struct {
@@ -23876,7 +23876,7 @@ func (ptr *QLine) P2() *QPoint {
 
 func (ptr *QLine) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QLine_IsNull(ptr.Pointer()) != 0
+		return int8(C.QLine_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24153,7 +24153,7 @@ func (ptr *QLineF) PointAt(t float64) *QPointF {
 
 func (ptr *QLineF) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineF_IsNull(ptr.Pointer()) != 0
+		return int8(C.QLineF_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -26365,21 +26365,21 @@ func NewQLockFile(fileName string) *QLockFile {
 
 func (ptr *QLockFile) Lock() bool {
 	if ptr.Pointer() != nil {
-		return C.QLockFile_Lock(ptr.Pointer()) != 0
+		return int8(C.QLockFile_Lock(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLockFile) RemoveStaleLockFile() bool {
 	if ptr.Pointer() != nil {
-		return C.QLockFile_RemoveStaleLockFile(ptr.Pointer()) != 0
+		return int8(C.QLockFile_RemoveStaleLockFile(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLockFile) TryLock(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLockFile_TryLock(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QLockFile_TryLock(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -26423,14 +26423,14 @@ func (ptr *QLockFile) GetLockInfo(pid int64, hostname string, appname string) bo
 			appnameC = C.CString(appname)
 			defer C.free(unsafe.Pointer(appnameC))
 		}
-		return C.QLockFile_GetLockInfo(ptr.Pointer(), C.longlong(pid), C.struct_QtCore_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.struct_QtCore_PackedString{data: appnameC, len: C.longlong(len(appname))}) != 0
+		return int8(C.QLockFile_GetLockInfo(ptr.Pointer(), C.longlong(pid), C.struct_QtCore_PackedString{data: hostnameC, len: C.longlong(len(hostname))}, C.struct_QtCore_PackedString{data: appnameC, len: C.longlong(len(appname))})) != 0
 	}
 	return false
 }
 
 func (ptr *QLockFile) IsLocked() bool {
 	if ptr.Pointer() != nil {
-		return C.QLockFile_IsLocked(ptr.Pointer()) != 0
+		return int8(C.QLockFile_IsLocked(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -26526,28 +26526,28 @@ func (ptr *QLoggingCategory) DestroyQLoggingCategory() {
 
 func (ptr *QLoggingCategory) IsCriticalEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLoggingCategory_IsCriticalEnabled(ptr.Pointer()) != 0
+		return int8(C.QLoggingCategory_IsCriticalEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLoggingCategory) IsDebugEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLoggingCategory_IsDebugEnabled(ptr.Pointer()) != 0
+		return int8(C.QLoggingCategory_IsDebugEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLoggingCategory) IsInfoEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLoggingCategory_IsInfoEnabled(ptr.Pointer()) != 0
+		return int8(C.QLoggingCategory_IsInfoEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLoggingCategory) IsWarningEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLoggingCategory_IsWarningEnabled(ptr.Pointer()) != 0
+		return int8(C.QLoggingCategory_IsWarningEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -26727,7 +26727,7 @@ func (ptr *QMargins) SetTop(Top int) {
 
 func (ptr *QMargins) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMargins_IsNull(ptr.Pointer()) != 0
+		return int8(C.QMargins_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -26859,7 +26859,7 @@ func (ptr *QMarginsF) ToMargins() *QMargins {
 
 func (ptr *QMarginsF) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMarginsF_IsNull(ptr.Pointer()) != 0
+		return int8(C.QMarginsF_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -26949,7 +26949,7 @@ func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm, key QBy
 
 func (ptr *QMessageAuthenticationCode) AddData3(device QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMessageAuthenticationCode_AddData3(ptr.Pointer(), PointerFromQIODevice(device)) != 0
+		return int8(C.QMessageAuthenticationCode_AddData3(ptr.Pointer(), PointerFromQIODevice(device))) != 0
 	}
 	return false
 }
@@ -27371,21 +27371,21 @@ func (ptr *QMetaEnum) ValueToKeys(value int) *QByteArray {
 
 func (ptr *QMetaEnum) IsFlag() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaEnum_IsFlag(ptr.Pointer()) != 0
+		return int8(C.QMetaEnum_IsFlag(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaEnum) IsScoped() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaEnum_IsScoped(ptr.Pointer()) != 0
+		return int8(C.QMetaEnum_IsScoped(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaEnum) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaEnum_IsValid(ptr.Pointer()) != 0
+		return int8(C.QMetaEnum_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -27585,49 +27585,49 @@ func (ptr *QMetaMethod) MethodType() QMetaMethod__MethodType {
 
 func (ptr *QMetaMethod) Invoke4(object QObject_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke4(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_Invoke4(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) Invoke2(object QObject_ITF, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke2(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_Invoke2(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) Invoke3(object QObject_ITF, connectionType Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke3(ptr.Pointer(), PointerFromQObject(object), C.longlong(connectionType), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_Invoke3(ptr.Pointer(), PointerFromQObject(object), C.longlong(connectionType), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) Invoke(object QObject_ITF, connectionType Qt__ConnectionType, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke(ptr.Pointer(), PointerFromQObject(object), C.longlong(connectionType), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_Invoke(ptr.Pointer(), PointerFromQObject(object), C.longlong(connectionType), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) InvokeOnGadget2(gadget unsafe.Pointer, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_InvokeOnGadget2(ptr.Pointer(), gadget, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_InvokeOnGadget2(ptr.Pointer(), gadget, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) InvokeOnGadget(gadget unsafe.Pointer, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_InvokeOnGadget(ptr.Pointer(), gadget, PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+		return int8(C.QMetaMethod_InvokeOnGadget(ptr.Pointer(), gadget, PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_IsValid(ptr.Pointer()) != 0
+		return int8(C.QMetaMethod_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -27810,11 +27810,11 @@ func (ptr *QMetaObject) NormalizedType(ty string) *QByteArray {
 }
 
 func QMetaObject_CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMethod_ITF) bool {
-	return C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method)) != 0
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method))) != 0
 }
 
 func (ptr *QMetaObject) CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMethod_ITF) bool {
-	return C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method)) != 0
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method))) != 0
 }
 
 func QMetaObject_CheckConnectArgs(sign string, method string) bool {
@@ -27828,7 +27828,7 @@ func QMetaObject_CheckConnectArgs(sign string, method string) bool {
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC)) != 0
 }
 
 func (ptr *QMetaObject) CheckConnectArgs(sign string, method string) bool {
@@ -27842,7 +27842,7 @@ func (ptr *QMetaObject) CheckConnectArgs(sign string, method string) bool {
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
+	return int8(C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC)) != 0
 }
 
 func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27851,7 +27851,7 @@ func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgu
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27860,7 +27860,7 @@ func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGene
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func QMetaObject_InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27869,7 +27869,7 @@ func QMetaObject_InvokeMethod2(obj QObject_ITF, member string, ret QGenericRetur
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27878,7 +27878,7 @@ func (ptr *QMetaObject) InvokeMethod2(obj QObject_ITF, member string, ret QGener
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func QMetaObject_InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27887,7 +27887,7 @@ func QMetaObject_InvokeMethod3(obj QObject_ITF, member string, ty Qt__Connection
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27896,7 +27896,7 @@ func (ptr *QMetaObject) InvokeMethod3(obj QObject_ITF, member string, ty Qt__Con
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func QMetaObject_InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27905,7 +27905,7 @@ func QMetaObject_InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionT
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -27914,7 +27914,7 @@ func (ptr *QMetaObject) InvokeMethod(obj QObject_ITF, member string, ty Qt__Conn
 		memberC = C.CString(member)
 		defer C.free(unsafe.Pointer(memberC))
 	}
-	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	return int8(C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.longlong(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9))) != 0
 }
 
 func QMetaObject_ConnectSlotsByName(object QObject_ITF) {
@@ -27956,7 +27956,7 @@ func (ptr *QMetaObject) NewInstance(val0 QGenericArgument_ITF, val1 QGenericArgu
 
 func (ptr *QMetaObject) Inherits(metaObject QMetaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaObject_Inherits(ptr.Pointer(), PointerFromQMetaObject(metaObject)) != 0
+		return int8(C.QMetaObject_Inherits(ptr.Pointer(), PointerFromQMetaObject(metaObject))) != 0
 	}
 	return false
 }
@@ -28204,119 +28204,119 @@ func (ptr *QMetaProperty) Type() QVariant__Type {
 
 func (ptr *QMetaProperty) HasNotifySignal() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_HasNotifySignal(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_HasNotifySignal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsConstant() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsConstant(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsConstant(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsDesignable(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsDesignable(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QMetaProperty_IsDesignable(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsEnumType() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsEnumType(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsEnumType(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsFinal() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsFinal(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsFinal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsFlagType() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsFlagType(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsFlagType(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsReadable(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsReadable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsResettable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsResettable(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsResettable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsScriptable(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsScriptable(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QMetaProperty_IsScriptable(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsStored(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsStored(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QMetaProperty_IsStored(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsUser(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsUser(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QMetaProperty_IsUser(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsValid(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QMetaProperty_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) Reset(object QObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_Reset(ptr.Pointer(), PointerFromQObject(object)) != 0
+		return int8(C.QMetaProperty_Reset(ptr.Pointer(), PointerFromQObject(object))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) ResetOnGadget(gadget unsafe.Pointer) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_ResetOnGadget(ptr.Pointer(), gadget) != 0
+		return int8(C.QMetaProperty_ResetOnGadget(ptr.Pointer(), gadget)) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) Write(object QObject_ITF, value QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_Write(ptr.Pointer(), PointerFromQObject(object), PointerFromQVariant(value)) != 0
+		return int8(C.QMetaProperty_Write(ptr.Pointer(), PointerFromQObject(object), PointerFromQVariant(value))) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaProperty) WriteOnGadget(gadget unsafe.Pointer, value QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaProperty_WriteOnGadget(ptr.Pointer(), gadget, PointerFromQVariant(value)) != 0
+		return int8(C.QMetaProperty_WriteOnGadget(ptr.Pointer(), gadget, PointerFromQVariant(value))) != 0
 	}
 	return false
 }
@@ -28520,59 +28520,59 @@ func (ptr *QMetaType) TypeFlags(ty int) QMetaType__TypeFlag {
 }
 
 func QMetaType_Compare(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
-	return C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(int32(typeId)), C.int(int32(result))) != 0
+	return int8(C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(int32(typeId)), C.int(int32(result)))) != 0
 }
 
 func (ptr *QMetaType) Compare(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
-	return C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(int32(typeId)), C.int(int32(result))) != 0
+	return int8(C.QMetaType_QMetaType_Compare(lhs, rhs, C.int(int32(typeId)), C.int(int32(result)))) != 0
 }
 
 func QMetaType_Convert(from unsafe.Pointer, fromTypeId int, to unsafe.Pointer, toTypeId int) bool {
-	return C.QMetaType_QMetaType_Convert(from, C.int(int32(fromTypeId)), to, C.int(int32(toTypeId))) != 0
+	return int8(C.QMetaType_QMetaType_Convert(from, C.int(int32(fromTypeId)), to, C.int(int32(toTypeId)))) != 0
 }
 
 func (ptr *QMetaType) Convert(from unsafe.Pointer, fromTypeId int, to unsafe.Pointer, toTypeId int) bool {
-	return C.QMetaType_QMetaType_Convert(from, C.int(int32(fromTypeId)), to, C.int(int32(toTypeId))) != 0
+	return int8(C.QMetaType_QMetaType_Convert(from, C.int(int32(fromTypeId)), to, C.int(int32(toTypeId)))) != 0
 }
 
 func QMetaType_DebugStream(dbg QDebug_ITF, rhs unsafe.Pointer, typeId int) bool {
-	return C.QMetaType_QMetaType_DebugStream(PointerFromQDebug(dbg), rhs, C.int(int32(typeId))) != 0
+	return int8(C.QMetaType_QMetaType_DebugStream(PointerFromQDebug(dbg), rhs, C.int(int32(typeId)))) != 0
 }
 
 func (ptr *QMetaType) DebugStream(dbg QDebug_ITF, rhs unsafe.Pointer, typeId int) bool {
-	return C.QMetaType_QMetaType_DebugStream(PointerFromQDebug(dbg), rhs, C.int(int32(typeId))) != 0
+	return int8(C.QMetaType_QMetaType_DebugStream(PointerFromQDebug(dbg), rhs, C.int(int32(typeId)))) != 0
 }
 
 func QMetaType_Equals(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
-	return C.QMetaType_QMetaType_Equals(lhs, rhs, C.int(int32(typeId)), C.int(int32(result))) != 0
+	return int8(C.QMetaType_QMetaType_Equals(lhs, rhs, C.int(int32(typeId)), C.int(int32(result)))) != 0
 }
 
 func (ptr *QMetaType) Equals(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result int) bool {
-	return C.QMetaType_QMetaType_Equals(lhs, rhs, C.int(int32(typeId)), C.int(int32(result))) != 0
+	return int8(C.QMetaType_QMetaType_Equals(lhs, rhs, C.int(int32(typeId)), C.int(int32(result)))) != 0
 }
 
 func QMetaType_IsRegistered(ty int) bool {
-	return C.QMetaType_QMetaType_IsRegistered(C.int(int32(ty))) != 0
+	return int8(C.QMetaType_QMetaType_IsRegistered(C.int(int32(ty)))) != 0
 }
 
 func (ptr *QMetaType) IsRegistered(ty int) bool {
-	return C.QMetaType_QMetaType_IsRegistered(C.int(int32(ty))) != 0
+	return int8(C.QMetaType_QMetaType_IsRegistered(C.int(int32(ty)))) != 0
 }
 
 func QMetaType_Load(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
-	return C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(int32(ty)), data) != 0
+	return int8(C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
 
 func (ptr *QMetaType) Load(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
-	return C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(int32(ty)), data) != 0
+	return int8(C.QMetaType_QMetaType_Load(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
 
 func QMetaType_Save(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
-	return C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(int32(ty)), data) != 0
+	return int8(C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
 
 func (ptr *QMetaType) Save(stream QDataStream_ITF, ty int, data unsafe.Pointer) bool {
-	return C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(int32(ty)), data) != 0
+	return int8(C.QMetaType_QMetaType_Save(PointerFromQDataStream(stream), C.int(int32(ty)), data)) != 0
 }
 
 func QMetaType_MetaObjectForType(ty int) *QMetaObject {
@@ -28674,14 +28674,14 @@ func (ptr *QMetaType) Flags() QMetaType__TypeFlag {
 
 func (ptr *QMetaType) IsRegistered2() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaType_IsRegistered2(ptr.Pointer()) != 0
+		return int8(C.QMetaType_IsRegistered2(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaType) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaType_IsValid(ptr.Pointer()) != 0
+		return int8(C.QMetaType_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29040,7 +29040,7 @@ func (ptr *QMimeData) RetrieveDataDefault(mimeType string, ty QVariant__Type) *Q
 
 func (ptr *QMimeData) HasColor() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasColor(ptr.Pointer()) != 0
+		return int8(C.QMimeData_HasColor(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29082,7 +29082,7 @@ func (ptr *QMimeData) HasFormat(mimeType string) bool {
 			mimeTypeC = C.CString(mimeType)
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
-		return C.QMimeData_HasFormat(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}) != 0
+		return int8(C.QMimeData_HasFormat(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))})) != 0
 	}
 	return false
 }
@@ -29094,35 +29094,35 @@ func (ptr *QMimeData) HasFormatDefault(mimeType string) bool {
 			mimeTypeC = C.CString(mimeType)
 			defer C.free(unsafe.Pointer(mimeTypeC))
 		}
-		return C.QMimeData_HasFormatDefault(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))}) != 0
+		return int8(C.QMimeData_HasFormatDefault(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeC, len: C.longlong(len(mimeType))})) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeData) HasHtml() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasHtml(ptr.Pointer()) != 0
+		return int8(C.QMimeData_HasHtml(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeData) HasImage() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasImage(ptr.Pointer()) != 0
+		return int8(C.QMimeData_HasImage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeData) HasText() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasText(ptr.Pointer()) != 0
+		return int8(C.QMimeData_HasText(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeData) HasUrls() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasUrls(ptr.Pointer()) != 0
+		return int8(C.QMimeData_HasUrls(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29549,21 +29549,21 @@ func (ptr *QMimeType) Inherits(mimeTypeName string) bool {
 			mimeTypeNameC = C.CString(mimeTypeName)
 			defer C.free(unsafe.Pointer(mimeTypeNameC))
 		}
-		return C.QMimeType_Inherits(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeNameC, len: C.longlong(len(mimeTypeName))}) != 0
+		return int8(C.QMimeType_Inherits(ptr.Pointer(), C.struct_QtCore_PackedString{data: mimeTypeNameC, len: C.longlong(len(mimeTypeName))})) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeType) IsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeType_IsDefault(ptr.Pointer()) != 0
+		return int8(C.QMimeType_IsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMimeType) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMimeType_IsValid(ptr.Pointer()) != 0
+		return int8(C.QMimeType_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29674,7 +29674,7 @@ func (ptr *QModelIndex) Flags() Qt__ItemFlag {
 
 func (ptr *QModelIndex) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QModelIndex_IsValid(ptr.Pointer()) != 0
+		return int8(C.QModelIndex_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -30143,14 +30143,14 @@ func NewQMutex(mode QMutex__RecursionMode) *QMutex {
 
 func (ptr *QMutex) TryLock(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMutex_TryLock(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QMutex_TryLock(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
 
 func (ptr *QMutex) Try_lock() bool {
 	if ptr.Pointer() != nil {
-		return C.QMutex_Try_lock(ptr.Pointer()) != 0
+		return int8(C.QMutex_Try_lock(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -30177,7 +30177,7 @@ func (ptr *QMutex) DestroyQMutex() {
 
 func (ptr *QMutex) IsRecursive() bool {
 	if ptr.Pointer() != nil {
-		return C.QMutex_IsRecursive(ptr.Pointer()) != 0
+		return int8(C.QMutex_IsRecursive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -30327,17 +30327,17 @@ func (ptr *QObject) Tr(sourceText string, disambiguation string, n int) string {
 
 func (ptr *QObject) BlockSignals(block bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_BlockSignals(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(block)))) != 0
+		return int8(C.QObject_BlockSignals(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(block))))) != 0
 	}
 	return false
 }
 
 func QObject_Disconnect2(sender QObject_ITF, sign QMetaMethod_ITF, receiver QObject_ITF, method QMetaMethod_ITF) bool {
-	return C.QObject_QObject_Disconnect2(PointerFromQObject(sender), PointerFromQMetaMethod(sign), PointerFromQObject(receiver), PointerFromQMetaMethod(method)) != 0
+	return int8(C.QObject_QObject_Disconnect2(PointerFromQObject(sender), PointerFromQMetaMethod(sign), PointerFromQObject(receiver), PointerFromQMetaMethod(method))) != 0
 }
 
 func (ptr *QObject) Disconnect2(sender QObject_ITF, sign QMetaMethod_ITF, receiver QObject_ITF, method QMetaMethod_ITF) bool {
-	return C.QObject_QObject_Disconnect2(PointerFromQObject(sender), PointerFromQMetaMethod(sign), PointerFromQObject(receiver), PointerFromQMetaMethod(method)) != 0
+	return int8(C.QObject_QObject_Disconnect2(PointerFromQObject(sender), PointerFromQMetaMethod(sign), PointerFromQObject(receiver), PointerFromQMetaMethod(method))) != 0
 }
 
 func QObject_Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
@@ -30351,7 +30351,7 @@ func QObject_Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, m
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
+	return int8(C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC)) != 0
 }
 
 func (ptr *QObject) Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
@@ -30365,7 +30365,7 @@ func (ptr *QObject) Disconnect(sender QObject_ITF, sign string, receiver QObject
 		methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
 	}
-	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
+	return int8(C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC)) != 0
 }
 
 //export callbackQObject_Event
@@ -30400,14 +30400,14 @@ func (ptr *QObject) DisconnectEvent() {
 
 func (ptr *QObject) Event(e QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_Event(ptr.Pointer(), PointerFromQEvent(e)) != 0
+		return int8(C.QObject_Event(ptr.Pointer(), PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) EventDefault(e QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_EventDefault(ptr.Pointer(), PointerFromQEvent(e)) != 0
+		return int8(C.QObject_EventDefault(ptr.Pointer(), PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -30444,14 +30444,14 @@ func (ptr *QObject) DisconnectEventFilter() {
 
 func (ptr *QObject) EventFilter(watched QObject_ITF, event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_EventFilter(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event)) != 0
+		return int8(C.QObject_EventFilter(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_EventFilterDefault(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event)) != 0
+		return int8(C.QObject_EventFilterDefault(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -30463,7 +30463,7 @@ func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QObject_SetProperty(ptr.Pointer(), nameC, PointerFromQVariant(value)) != 0
+		return int8(C.QObject_SetProperty(ptr.Pointer(), nameC, PointerFromQVariant(value))) != 0
 	}
 	return false
 }
@@ -31028,7 +31028,7 @@ func (ptr *QObject) Disconnect4(receiver QObject_ITF, method string) bool {
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		return C.QObject_Disconnect4(ptr.Pointer(), PointerFromQObject(receiver), methodC) != 0
+		return int8(C.QObject_Disconnect4(ptr.Pointer(), PointerFromQObject(receiver), methodC)) != 0
 	}
 	return false
 }
@@ -31045,7 +31045,7 @@ func (ptr *QObject) Disconnect3(sign string, receiver QObject_ITF, method string
 			methodC = C.CString(method)
 			defer C.free(unsafe.Pointer(methodC))
 		}
-		return C.QObject_Disconnect3(ptr.Pointer(), signC, PointerFromQObject(receiver), methodC) != 0
+		return int8(C.QObject_Disconnect3(ptr.Pointer(), signC, PointerFromQObject(receiver), methodC)) != 0
 	}
 	return false
 }
@@ -31057,35 +31057,35 @@ func (ptr *QObject) Inherits(className string) bool {
 			classNameC = C.CString(className)
 			defer C.free(unsafe.Pointer(classNameC))
 		}
-		return C.QObject_Inherits(ptr.Pointer(), classNameC) != 0
+		return int8(C.QObject_Inherits(ptr.Pointer(), classNameC)) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) IsSignalConnected(sign QMetaMethod_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_IsSignalConnected(ptr.Pointer(), PointerFromQMetaMethod(sign)) != 0
+		return int8(C.QObject_IsSignalConnected(ptr.Pointer(), PointerFromQMetaMethod(sign))) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) IsWidgetType() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_IsWidgetType(ptr.Pointer()) != 0
+		return int8(C.QObject_IsWidgetType(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) IsWindowType() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_IsWindowType(ptr.Pointer()) != 0
+		return int8(C.QObject_IsWindowType(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) SignalsBlocked() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_SignalsBlocked(ptr.Pointer()) != 0
+		return int8(C.QObject_SignalsBlocked(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -31436,7 +31436,7 @@ func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandlerDefault() {
 
 func (ptr *QObjectCleanupHandler) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QObjectCleanupHandler_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QObjectCleanupHandler_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32367,7 +32367,7 @@ func (ptr *QPersistentModelIndex) Flags() Qt__ItemFlag {
 
 func (ptr *QPersistentModelIndex) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QPersistentModelIndex_IsValid(ptr.Pointer()) != 0
+		return int8(C.QPersistentModelIndex_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32519,14 +32519,14 @@ func (ptr *QPluginLoader) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QPluginLoader) Load() bool {
 	if ptr.Pointer() != nil {
-		return C.QPluginLoader_Load(ptr.Pointer()) != 0
+		return int8(C.QPluginLoader_Load(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPluginLoader) Unload() bool {
 	if ptr.Pointer() != nil {
-		return C.QPluginLoader_Unload(ptr.Pointer()) != 0
+		return int8(C.QPluginLoader_Unload(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32626,7 +32626,7 @@ func (ptr *QPluginLoader) FileName() string {
 
 func (ptr *QPluginLoader) IsLoaded() bool {
 	if ptr.Pointer() != nil {
-		return C.QPluginLoader_IsLoaded(ptr.Pointer()) != 0
+		return int8(C.QPluginLoader_IsLoaded(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32756,7 +32756,7 @@ func (ptr *QPoint) SetY(y int) {
 
 func (ptr *QPoint) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QPoint_IsNull(ptr.Pointer()) != 0
+		return int8(C.QPoint_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -32891,7 +32891,7 @@ func (ptr *QPointF) ToPoint() *QPoint {
 
 func (ptr *QPointF) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QPointF_IsNull(ptr.Pointer()) != 0
+		return int8(C.QPointF_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -33611,28 +33611,28 @@ func NewQReadWriteLock(recursionMode QReadWriteLock__RecursionMode) *QReadWriteL
 
 func (ptr *QReadWriteLock) TryLockForRead() bool {
 	if ptr.Pointer() != nil {
-		return C.QReadWriteLock_TryLockForRead(ptr.Pointer()) != 0
+		return int8(C.QReadWriteLock_TryLockForRead(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QReadWriteLock) TryLockForRead2(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QReadWriteLock_TryLockForRead2(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QReadWriteLock_TryLockForRead2(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
 
 func (ptr *QReadWriteLock) TryLockForWrite() bool {
 	if ptr.Pointer() != nil {
-		return C.QReadWriteLock_TryLockForWrite(ptr.Pointer()) != 0
+		return int8(C.QReadWriteLock_TryLockForWrite(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QReadWriteLock) TryLockForWrite2(timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QReadWriteLock_TryLockForWrite2(ptr.Pointer(), C.int(int32(timeout))) != 0
+		return int8(C.QReadWriteLock_TryLockForWrite2(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -34044,56 +34044,56 @@ func (ptr *QRect) Size() *QSize {
 
 func (ptr *QRect) Contains(point QPoint_ITF, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains(ptr.Pointer(), PointerFromQPoint(point), C.char(int8(qt.GoBoolToInt(proper)))) != 0
+		return int8(C.QRect_Contains(ptr.Pointer(), PointerFromQPoint(point), C.char(int8(qt.GoBoolToInt(proper))))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Contains2(rectangle QRect_ITF, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains2(ptr.Pointer(), PointerFromQRect(rectangle), C.char(int8(qt.GoBoolToInt(proper)))) != 0
+		return int8(C.QRect_Contains2(ptr.Pointer(), PointerFromQRect(rectangle), C.char(int8(qt.GoBoolToInt(proper))))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Contains3(x int, y int) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y))) != 0
+		return int8(C.QRect_Contains3(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Contains4(x int, y int, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains4(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.char(int8(qt.GoBoolToInt(proper)))) != 0
+		return int8(C.QRect_Contains4(ptr.Pointer(), C.int(int32(x)), C.int(int32(y)), C.char(int8(qt.GoBoolToInt(proper))))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Intersects(rectangle QRect_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Intersects(ptr.Pointer(), PointerFromQRect(rectangle)) != 0
+		return int8(C.QRect_Intersects(ptr.Pointer(), PointerFromQRect(rectangle))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QRect_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsNull(ptr.Pointer()) != 0
+		return int8(C.QRect_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsValid(ptr.Pointer()) != 0
+		return int8(C.QRect_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -34571,49 +34571,49 @@ func (ptr *QRectF) Size() *QSizeF {
 
 func (ptr *QRectF) Contains(point QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_Contains(ptr.Pointer(), PointerFromQPointF(point)) != 0
+		return int8(C.QRectF_Contains(ptr.Pointer(), PointerFromQPointF(point))) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) Contains2(rectangle QRectF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_Contains2(ptr.Pointer(), PointerFromQRectF(rectangle)) != 0
+		return int8(C.QRectF_Contains2(ptr.Pointer(), PointerFromQRectF(rectangle))) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) Contains3(x float64, y float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_Contains3(ptr.Pointer(), C.double(x), C.double(y)) != 0
+		return int8(C.QRectF_Contains3(ptr.Pointer(), C.double(x), C.double(y))) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) Intersects(rectangle QRectF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_Intersects(ptr.Pointer(), PointerFromQRectF(rectangle)) != 0
+		return int8(C.QRectF_Intersects(ptr.Pointer(), PointerFromQRectF(rectangle))) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QRectF_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_IsNull(ptr.Pointer()) != 0
+		return int8(C.QRectF_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRectF) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRectF_IsValid(ptr.Pointer()) != 0
+		return int8(C.QRectF_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -34880,28 +34880,28 @@ func (ptr *QRegExp) ExactMatch(str string) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QRegExp_ExactMatch(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}) != 0
+		return int8(C.QRegExp_ExactMatch(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))})) != 0
 	}
 	return false
 }
 
 func (ptr *QRegExp) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegExp_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QRegExp_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRegExp) IsMinimal() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegExp_IsMinimal(ptr.Pointer()) != 0
+		return int8(C.QRegExp_IsMinimal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRegExp) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegExp_IsValid(ptr.Pointer()) != 0
+		return int8(C.QRegExp_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35171,7 +35171,7 @@ func (ptr *QRegularExpression) NamedCaptureGroups() []string {
 
 func (ptr *QRegularExpression) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegularExpression_IsValid(ptr.Pointer()) != 0
+		return int8(C.QRegularExpression_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35367,21 +35367,21 @@ func (ptr *QRegularExpressionMatch) CapturedView(nth int) *QStringView {
 
 func (ptr *QRegularExpressionMatch) HasMatch() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegularExpressionMatch_HasMatch(ptr.Pointer()) != 0
+		return int8(C.QRegularExpressionMatch_HasMatch(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRegularExpressionMatch) HasPartialMatch() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegularExpressionMatch_HasPartialMatch(ptr.Pointer()) != 0
+		return int8(C.QRegularExpressionMatch_HasPartialMatch(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QRegularExpressionMatch) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRegularExpressionMatch_IsValid(ptr.Pointer()) != 0
+		return int8(C.QRegularExpressionMatch_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35568,7 +35568,7 @@ func QResource_RegisterResource(rccFileName string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_RegisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_RegisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func (ptr *QResource) RegisterResource(rccFileName string, mapRoot string) bool {
@@ -35582,7 +35582,7 @@ func (ptr *QResource) RegisterResource(rccFileName string, mapRoot string) bool 
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_RegisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_RegisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func QResource_RegisterResource2(rccData string, mapRoot string) bool {
@@ -35596,7 +35596,7 @@ func QResource_RegisterResource2(rccData string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_RegisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_RegisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func (ptr *QResource) RegisterResource2(rccData string, mapRoot string) bool {
@@ -35610,7 +35610,7 @@ func (ptr *QResource) RegisterResource2(rccData string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_RegisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_RegisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func QResource_UnregisterResource(rccFileName string, mapRoot string) bool {
@@ -35624,7 +35624,7 @@ func QResource_UnregisterResource(rccFileName string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_UnregisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_UnregisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func (ptr *QResource) UnregisterResource(rccFileName string, mapRoot string) bool {
@@ -35638,7 +35638,7 @@ func (ptr *QResource) UnregisterResource(rccFileName string, mapRoot string) boo
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_UnregisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_UnregisterResource(C.struct_QtCore_PackedString{data: rccFileNameC, len: C.longlong(len(rccFileName))}, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func QResource_UnregisterResource2(rccData string, mapRoot string) bool {
@@ -35652,7 +35652,7 @@ func QResource_UnregisterResource2(rccData string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_UnregisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_UnregisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func (ptr *QResource) UnregisterResource2(rccData string, mapRoot string) bool {
@@ -35666,7 +35666,7 @@ func (ptr *QResource) UnregisterResource2(rccData string, mapRoot string) bool {
 		mapRootC = C.CString(mapRoot)
 		defer C.free(unsafe.Pointer(mapRootC))
 	}
-	return C.QResource_QResource_UnregisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))}) != 0
+	return int8(C.QResource_QResource_UnregisterResource2(rccDataC, C.struct_QtCore_PackedString{data: mapRootC, len: C.longlong(len(mapRoot))})) != 0
 }
 
 func (ptr *QResource) SetFileName(file string) {
@@ -35735,28 +35735,28 @@ func (ptr *QResource) Children() []string {
 
 func (ptr *QResource) IsCompressed() bool {
 	if ptr.Pointer() != nil {
-		return C.QResource_IsCompressed(ptr.Pointer()) != 0
+		return int8(C.QResource_IsCompressed(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QResource) IsDir() bool {
 	if ptr.Pointer() != nil {
-		return C.QResource_IsDir(ptr.Pointer()) != 0
+		return int8(C.QResource_IsDir(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QResource) IsFile() bool {
 	if ptr.Pointer() != nil {
-		return C.QResource_IsFile(ptr.Pointer()) != 0
+		return int8(C.QResource_IsFile(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QResource) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QResource_IsValid(ptr.Pointer()) != 0
+		return int8(C.QResource_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35903,7 +35903,7 @@ func (ptr *QRunnable) DestroyQRunnableDefault() {
 
 func (ptr *QRunnable) AutoDelete() bool {
 	if ptr.Pointer() != nil {
-		return C.QRunnable_AutoDelete(ptr.Pointer()) != 0
+		return int8(C.QRunnable_AutoDelete(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -35982,7 +35982,7 @@ func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
 
 func (ptr *QSaveFile) Commit() bool {
 	if ptr.Pointer() != nil {
-		return C.QSaveFile_Commit(ptr.Pointer()) != 0
+		return int8(C.QSaveFile_Commit(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36058,7 +36058,7 @@ func (ptr *QSaveFile) DestroyQSaveFileDefault() {
 
 func (ptr *QSaveFile) DirectWriteFallback() bool {
 	if ptr.Pointer() != nil {
-		return C.QSaveFile_DirectWriteFallback(ptr.Pointer()) != 0
+		return int8(C.QSaveFile_DirectWriteFallback(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36231,14 +36231,14 @@ func NewQSemaphore(n int) *QSemaphore {
 
 func (ptr *QSemaphore) TryAcquire(n int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSemaphore_TryAcquire(ptr.Pointer(), C.int(int32(n))) != 0
+		return int8(C.QSemaphore_TryAcquire(ptr.Pointer(), C.int(int32(n)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSemaphore) TryAcquire2(n int, timeout int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSemaphore_TryAcquire2(ptr.Pointer(), C.int(int32(n)), C.int(int32(timeout))) != 0
+		return int8(C.QSemaphore_TryAcquire2(ptr.Pointer(), C.int(int32(n)), C.int(int32(timeout)))) != 0
 	}
 	return false
 }
@@ -36660,7 +36660,7 @@ func (ptr *QSequentialIterable) At(idx int) *QVariant {
 
 func (ptr *QSequentialIterable) CanReverseIterate() bool {
 	if ptr.Pointer() != nil {
-		return C.QSequentialIterable_CanReverseIterate(ptr.Pointer()) != 0
+		return int8(C.QSequentialIterable_CanReverseIterate(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -37246,28 +37246,28 @@ func (ptr *QSettings) Contains(key string) bool {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QSettings_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}) != 0
+		return int8(C.QSettings_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
 	}
 	return false
 }
 
 func (ptr *QSettings) FallbacksEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSettings_FallbacksEnabled(ptr.Pointer()) != 0
+		return int8(C.QSettings_FallbacksEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSettings) IsAtomicSyncRequired() bool {
 	if ptr.Pointer() != nil {
-		return C.QSettings_IsAtomicSyncRequired(ptr.Pointer()) != 0
+		return int8(C.QSettings_IsAtomicSyncRequired(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSettings) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QSettings_IsWritable(ptr.Pointer()) != 0
+		return int8(C.QSettings_IsWritable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -37489,35 +37489,35 @@ func (ptr *QSharedMemory) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QSharedMemory) Attach(mode QSharedMemory__AccessMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Attach(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QSharedMemory_Attach(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Create(size int, mode QSharedMemory__AccessMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Create(ptr.Pointer(), C.int(int32(size)), C.longlong(mode)) != 0
+		return int8(C.QSharedMemory_Create(ptr.Pointer(), C.int(int32(size)), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Detach() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Detach(ptr.Pointer()) != 0
+		return int8(C.QSharedMemory_Detach(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Lock() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Lock(ptr.Pointer()) != 0
+		return int8(C.QSharedMemory_Lock(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Unlock() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Unlock(ptr.Pointer()) != 0
+		return int8(C.QSharedMemory_Unlock(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -37627,7 +37627,7 @@ func (ptr *QSharedMemory) NativeKey() string {
 
 func (ptr *QSharedMemory) IsAttached() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_IsAttached(ptr.Pointer()) != 0
+		return int8(C.QSharedMemory_IsAttached(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -38300,14 +38300,14 @@ func (ptr *QSignalTransition) DisconnectEventTest() {
 
 func (ptr *QSignalTransition) EventTest(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event)) != 0
+		return int8(C.QSignalTransition_EventTest(ptr.Pointer(), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QSignalTransition) EventTestDefault(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSignalTransition_EventTestDefault(ptr.Pointer(), PointerFromQEvent(event)) != 0
+		return int8(C.QSignalTransition_EventTestDefault(ptr.Pointer(), PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -38647,21 +38647,21 @@ func (ptr *QSize) Transposed() *QSize {
 
 func (ptr *QSize) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QSize_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSize) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSize_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSize) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSize_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -38844,21 +38844,21 @@ func (ptr *QSizeF) Transposed() *QSizeF {
 
 func (ptr *QSizeF) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizeF_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QSizeF_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSizeF) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizeF_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSizeF_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSizeF) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizeF_IsValid(ptr.Pointer()) != 0
+		return int8(C.QSizeF_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39084,7 +39084,7 @@ func (ptr *QSocketNotifier) Type() QSocketNotifier__Type {
 
 func (ptr *QSocketNotifier) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSocketNotifier_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QSocketNotifier_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39663,7 +39663,7 @@ func (ptr *QSortFilterProxyModel) SortOrder() Qt__SortOrder {
 
 func (ptr *QSortFilterProxyModel) DynamicSortFilter() bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_DynamicSortFilter(ptr.Pointer()) != 0
+		return int8(C.QSortFilterProxyModel_DynamicSortFilter(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39700,14 +39700,14 @@ func (ptr *QSortFilterProxyModel) DisconnectFilterAcceptsColumn() {
 
 func (ptr *QSortFilterProxyModel) FilterAcceptsColumn(source_column int, source_parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_FilterAcceptsColumn(ptr.Pointer(), C.int(int32(source_column)), PointerFromQModelIndex(source_parent)) != 0
+		return int8(C.QSortFilterProxyModel_FilterAcceptsColumn(ptr.Pointer(), C.int(int32(source_column)), PointerFromQModelIndex(source_parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QSortFilterProxyModel) FilterAcceptsColumnDefault(source_column int, source_parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_FilterAcceptsColumnDefault(ptr.Pointer(), C.int(int32(source_column)), PointerFromQModelIndex(source_parent)) != 0
+		return int8(C.QSortFilterProxyModel_FilterAcceptsColumnDefault(ptr.Pointer(), C.int(int32(source_column)), PointerFromQModelIndex(source_parent))) != 0
 	}
 	return false
 }
@@ -39744,28 +39744,28 @@ func (ptr *QSortFilterProxyModel) DisconnectFilterAcceptsRow() {
 
 func (ptr *QSortFilterProxyModel) FilterAcceptsRow(source_row int, source_parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_FilterAcceptsRow(ptr.Pointer(), C.int(int32(source_row)), PointerFromQModelIndex(source_parent)) != 0
+		return int8(C.QSortFilterProxyModel_FilterAcceptsRow(ptr.Pointer(), C.int(int32(source_row)), PointerFromQModelIndex(source_parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QSortFilterProxyModel) FilterAcceptsRowDefault(source_row int, source_parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_FilterAcceptsRowDefault(ptr.Pointer(), C.int(int32(source_row)), PointerFromQModelIndex(source_parent)) != 0
+		return int8(C.QSortFilterProxyModel_FilterAcceptsRowDefault(ptr.Pointer(), C.int(int32(source_row)), PointerFromQModelIndex(source_parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QSortFilterProxyModel) IsRecursiveFilteringEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_IsRecursiveFilteringEnabled(ptr.Pointer()) != 0
+		return int8(C.QSortFilterProxyModel_IsRecursiveFilteringEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSortFilterProxyModel) IsSortLocaleAware() bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_IsSortLocaleAware(ptr.Pointer()) != 0
+		return int8(C.QSortFilterProxyModel_IsSortLocaleAware(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39802,14 +39802,14 @@ func (ptr *QSortFilterProxyModel) DisconnectLessThan() {
 
 func (ptr *QSortFilterProxyModel) LessThan(source_left QModelIndex_ITF, source_right QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_LessThan(ptr.Pointer(), PointerFromQModelIndex(source_left), PointerFromQModelIndex(source_right)) != 0
+		return int8(C.QSortFilterProxyModel_LessThan(ptr.Pointer(), PointerFromQModelIndex(source_left), PointerFromQModelIndex(source_right))) != 0
 	}
 	return false
 }
 
 func (ptr *QSortFilterProxyModel) LessThanDefault(source_left QModelIndex_ITF, source_right QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSortFilterProxyModel_LessThanDefault(ptr.Pointer(), PointerFromQModelIndex(source_left), PointerFromQModelIndex(source_right)) != 0
+		return int8(C.QSortFilterProxyModel_LessThanDefault(ptr.Pointer(), PointerFromQModelIndex(source_left), PointerFromQModelIndex(source_right))) != 0
 	}
 	return false
 }
@@ -40726,7 +40726,7 @@ func NewQStateMachine2(childMode QState__ChildMode, parent QObject_ITF) *QStateM
 
 func (ptr *QStateMachine) CancelDelayedEvent(id int) bool {
 	if ptr.Pointer() != nil {
-		return C.QStateMachine_CancelDelayedEvent(ptr.Pointer(), C.int(int32(id))) != 0
+		return int8(C.QStateMachine_CancelDelayedEvent(ptr.Pointer(), C.int(int32(id)))) != 0
 	}
 	return false
 }
@@ -41100,14 +41100,14 @@ func (ptr *QStateMachine) ErrorString() string {
 
 func (ptr *QStateMachine) IsAnimated() bool {
 	if ptr.Pointer() != nil {
-		return C.QStateMachine_IsAnimated(ptr.Pointer()) != 0
+		return int8(C.QStateMachine_IsAnimated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStateMachine) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QStateMachine_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QStateMachine_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -41433,28 +41433,28 @@ func (ptr *QStorageInfo) RootPath() string {
 
 func (ptr *QStorageInfo) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QStorageInfo_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsReady(ptr.Pointer()) != 0
+		return int8(C.QStorageInfo_IsReady(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsRoot() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsRoot(ptr.Pointer()) != 0
+		return int8(C.QStorageInfo_IsRoot(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsValid(ptr.Pointer()) != 0
+		return int8(C.QStorageInfo_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -42232,14 +42232,14 @@ func (ptr *QStringRef) ToUcs4() []uint {
 
 func (ptr *QStringRef) Contains2(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_Contains2(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QStringRef_Contains2(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) Contains3(str QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_Contains3(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_Contains3(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -42251,35 +42251,35 @@ func (ptr *QStringRef) Contains(str string, cs Qt__CaseSensitivity) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QStringRef_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs)) != 0
+		return int8(C.QStringRef_Contains(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) Contains4(str QStringRef_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_Contains4(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_Contains4(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) EndsWith3(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_EndsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QStringRef_EndsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) EndsWith2(str QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) EndsWith4(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_EndsWith4(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_EndsWith4(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -42291,56 +42291,56 @@ func (ptr *QStringRef) EndsWith(str string, cs Qt__CaseSensitivity) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QStringRef_EndsWith(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs)) != 0
+		return int8(C.QStringRef_EndsWith(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) EndsWith5(str QStringRef_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_EndsWith5(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_EndsWith5(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QStringRef_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_IsNull(ptr.Pointer()) != 0
+		return int8(C.QStringRef_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) IsRightToLeft() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_IsRightToLeft(ptr.Pointer()) != 0
+		return int8(C.QStringRef_IsRightToLeft(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) StartsWith3(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_StartsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QStringRef_StartsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) StartsWith2(str QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) StartsWith4(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_StartsWith4(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_StartsWith4(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -42352,14 +42352,14 @@ func (ptr *QStringRef) StartsWith(str string, cs Qt__CaseSensitivity) bool {
 			strC = C.CString(str)
 			defer C.free(unsafe.Pointer(strC))
 		}
-		return C.QStringRef_StartsWith(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs)) != 0
+		return int8(C.QStringRef_StartsWith(ptr.Pointer(), C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}, C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringRef) StartsWith5(str QStringRef_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringRef_StartsWith5(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs)) != 0
+		return int8(C.QStringRef_StartsWith5(ptr.Pointer(), PointerFromQStringRef(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -42862,84 +42862,84 @@ func (ptr *QStringView) ToUcs4() []uint {
 
 func (ptr *QStringView) Empty() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_Empty(ptr.Pointer()) != 0
+		return int8(C.QStringView_Empty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) EndsWith3(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_EndsWith3(ptr.Pointer(), PointerFromQChar(ch)) != 0
+		return int8(C.QStringView_EndsWith3(ptr.Pointer(), PointerFromQChar(ch))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) EndsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_EndsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QStringView_EndsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) EndsWith2(l1 QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs)) != 0
+		return int8(C.QStringView_EndsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) EndsWith(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_EndsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QStringView_EndsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QStringView_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_IsNull(ptr.Pointer()) != 0
+		return int8(C.QStringView_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) IsRightToLeft() bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_IsRightToLeft(ptr.Pointer()) != 0
+		return int8(C.QStringView_IsRightToLeft(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) StartsWith3(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_StartsWith3(ptr.Pointer(), PointerFromQChar(ch)) != 0
+		return int8(C.QStringView_StartsWith3(ptr.Pointer(), PointerFromQChar(ch))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) StartsWith4(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_StartsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
+		return int8(C.QStringView_StartsWith4(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) StartsWith2(l1 QLatin1String_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs)) != 0
+		return int8(C.QStringView_StartsWith2(ptr.Pointer(), PointerFromQLatin1String(l1), C.longlong(cs))) != 0
 	}
 	return false
 }
 
 func (ptr *QStringView) StartsWith(str QStringView_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
-		return C.QStringView_StartsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs)) != 0
+		return int8(C.QStringView_StartsWith(ptr.Pointer(), PointerFromQStringView(str), C.longlong(cs))) != 0
 	}
 	return false
 }
@@ -43201,14 +43201,14 @@ func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__Ac
 
 func (ptr *QSystemSemaphore) Acquire() bool {
 	if ptr.Pointer() != nil {
-		return C.QSystemSemaphore_Acquire(ptr.Pointer()) != 0
+		return int8(C.QSystemSemaphore_Acquire(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSystemSemaphore) Release(n int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSystemSemaphore_Release(ptr.Pointer(), C.int(int32(n))) != 0
+		return int8(C.QSystemSemaphore_Release(ptr.Pointer(), C.int(int32(n)))) != 0
 	}
 	return false
 }
@@ -43309,7 +43309,7 @@ func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
 
 func (ptr *QTemporaryDir) Remove() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryDir_Remove(ptr.Pointer()) != 0
+		return int8(C.QTemporaryDir_Remove(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43356,14 +43356,14 @@ func (ptr *QTemporaryDir) Path() string {
 
 func (ptr *QTemporaryDir) AutoRemove() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryDir_AutoRemove(ptr.Pointer()) != 0
+		return int8(C.QTemporaryDir_AutoRemove(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTemporaryDir) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryDir_IsValid(ptr.Pointer()) != 0
+		return int8(C.QTemporaryDir_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43492,7 +43492,7 @@ func NewQTemporaryFile4(templateName string, parent QObject_ITF) *QTemporaryFile
 
 func (ptr *QTemporaryFile) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryFile_Open(ptr.Pointer()) != 0
+		return int8(C.QTemporaryFile_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43569,7 +43569,7 @@ func (ptr *QTemporaryFile) FileTemplate() string {
 
 func (ptr *QTemporaryFile) AutoRemove() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryFile_AutoRemove(ptr.Pointer()) != 0
+		return int8(C.QTemporaryFile_AutoRemove(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -43722,14 +43722,14 @@ func (ptr *QTextBoundaryFinder) Type() QTextBoundaryFinder__BoundaryType {
 
 func (ptr *QTextBoundaryFinder) IsAtBoundary() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBoundaryFinder_IsAtBoundary(ptr.Pointer()) != 0
+		return int8(C.QTextBoundaryFinder_IsAtBoundary(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextBoundaryFinder) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBoundaryFinder_IsValid(ptr.Pointer()) != 0
+		return int8(C.QTextBoundaryFinder_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -44129,14 +44129,14 @@ func (ptr *QTextCodec) MakeEncoder(flags QTextCodec__ConversionFlag) *QTextEncod
 
 func (ptr *QTextCodec) CanEncode(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextCodec_CanEncode(ptr.Pointer(), PointerFromQChar(ch)) != 0
+		return int8(C.QTextCodec_CanEncode(ptr.Pointer(), PointerFromQChar(ch))) != 0
 	}
 	return false
 }
 
 func (ptr *QTextCodec) CanEncode3(s QStringView_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextCodec_CanEncode3(ptr.Pointer(), PointerFromQStringView(s)) != 0
+		return int8(C.QTextCodec_CanEncode3(ptr.Pointer(), PointerFromQStringView(s))) != 0
 	}
 	return false
 }
@@ -44148,7 +44148,7 @@ func (ptr *QTextCodec) CanEncode2(s string) bool {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return C.QTextCodec_CanEncode2(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}) != 0
+		return int8(C.QTextCodec_CanEncode2(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))})) != 0
 	}
 	return false
 }
@@ -44561,14 +44561,14 @@ func (ptr *QTextStream) ReadLineInto(line string, maxlen int64) bool {
 			lineC = C.CString(line)
 			defer C.free(unsafe.Pointer(lineC))
 		}
-		return C.QTextStream_ReadLineInto(ptr.Pointer(), C.struct_QtCore_PackedString{data: lineC, len: C.longlong(len(line))}, C.longlong(maxlen)) != 0
+		return int8(C.QTextStream_ReadLineInto(ptr.Pointer(), C.struct_QtCore_PackedString{data: lineC, len: C.longlong(len(line))}, C.longlong(maxlen))) != 0
 	}
 	return false
 }
 
 func (ptr *QTextStream) Seek(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextStream_Seek(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QTextStream_Seek(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -44816,21 +44816,21 @@ func (ptr *QTextStream) Status() QTextStream__Status {
 
 func (ptr *QTextStream) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextStream_AtEnd(ptr.Pointer()) != 0
+		return int8(C.QTextStream_AtEnd(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextStream) AutoDetectUnicode() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextStream_AutoDetectUnicode(ptr.Pointer()) != 0
+		return int8(C.QTextStream_AutoDetectUnicode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextStream) GenerateByteOrderMark() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextStream_GenerateByteOrderMark(ptr.Pointer()) != 0
+		return int8(C.QTextStream_GenerateByteOrderMark(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -44971,7 +44971,7 @@ func NewQThread(parent QObject_ITF) *QThread {
 
 func (ptr *QThread) Wait(time uint) bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_Wait(ptr.Pointer(), C.ulong(uint32(time))) != 0
+		return int8(C.QThread_Wait(ptr.Pointer(), C.ulong(uint32(time)))) != 0
 	}
 	return false
 }
@@ -45361,21 +45361,21 @@ func (ptr *QThread) Priority() QThread__Priority {
 
 func (ptr *QThread) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QThread_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) IsInterruptionRequested() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsInterruptionRequested(ptr.Pointer()) != 0
+		return int8(C.QThread_IsInterruptionRequested(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsRunning(ptr.Pointer()) != 0
+		return int8(C.QThread_IsRunning(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -45486,21 +45486,21 @@ func NewQThreadPool(parent QObject_ITF) *QThreadPool {
 
 func (ptr *QThreadPool) TryStart(runnable QRunnable_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QThreadPool_TryStart(ptr.Pointer(), PointerFromQRunnable(runnable)) != 0
+		return int8(C.QThreadPool_TryStart(ptr.Pointer(), PointerFromQRunnable(runnable))) != 0
 	}
 	return false
 }
 
 func (ptr *QThreadPool) TryTake(runnable QRunnable_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QThreadPool_TryTake(ptr.Pointer(), PointerFromQRunnable(runnable)) != 0
+		return int8(C.QThreadPool_TryTake(ptr.Pointer(), PointerFromQRunnable(runnable))) != 0
 	}
 	return false
 }
 
 func (ptr *QThreadPool) WaitForDone(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QThreadPool_WaitForDone(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QThreadPool_WaitForDone(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -45796,16 +45796,16 @@ func NewQTime3(h int, m int, s int, ms int) *QTime {
 }
 
 func QTime_IsValid2(h int, m int, s int, ms int) bool {
-	return C.QTime_QTime_IsValid2(C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms))) != 0
+	return int8(C.QTime_QTime_IsValid2(C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms)))) != 0
 }
 
 func (ptr *QTime) IsValid2(h int, m int, s int, ms int) bool {
-	return C.QTime_QTime_IsValid2(C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms))) != 0
+	return int8(C.QTime_QTime_IsValid2(C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms)))) != 0
 }
 
 func (ptr *QTime) SetHMS(h int, m int, s int, ms int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTime_SetHMS(ptr.Pointer(), C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms))) != 0
+		return int8(C.QTime_SetHMS(ptr.Pointer(), C.int(int32(h)), C.int(int32(m)), C.int(int32(s)), C.int(int32(ms)))) != 0
 	}
 	return false
 }
@@ -45869,14 +45869,14 @@ func (ptr *QTime) AddSecs(s int) *QTime {
 
 func (ptr *QTime) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QTime_IsNull(ptr.Pointer()) != 0
+		return int8(C.QTime_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTime) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTime_IsValid(ptr.Pointer()) != 0
+		return int8(C.QTime_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -46952,11 +46952,11 @@ func NewQTimeZone3(offsetSeconds int) *QTimeZone {
 }
 
 func QTimeZone_IsTimeZoneIdAvailable(ianaId QByteArray_ITF) bool {
-	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(PointerFromQByteArray(ianaId)) != 0
+	return int8(C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(PointerFromQByteArray(ianaId))) != 0
 }
 
 func (ptr *QTimeZone) IsTimeZoneIdAvailable(ianaId QByteArray_ITF) bool {
-	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(PointerFromQByteArray(ianaId)) != 0
+	return int8(C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(PointerFromQByteArray(ianaId))) != 0
 }
 
 func (ptr *QTimeZone) Swap(other QTimeZone_ITF) {
@@ -47019,28 +47019,28 @@ func (ptr *QTimeZone) DisplayName(atDateTime QDateTime_ITF, nameType QTimeZone__
 
 func (ptr *QTimeZone) HasDaylightTime() bool {
 	if ptr.Pointer() != nil {
-		return C.QTimeZone_HasDaylightTime(ptr.Pointer()) != 0
+		return int8(C.QTimeZone_HasDaylightTime(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTimeZone) HasTransitions() bool {
 	if ptr.Pointer() != nil {
-		return C.QTimeZone_HasTransitions(ptr.Pointer()) != 0
+		return int8(C.QTimeZone_HasTransitions(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTimeZone) IsDaylightTime(atDateTime QDateTime_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTimeZone_IsDaylightTime(ptr.Pointer(), PointerFromQDateTime(atDateTime)) != 0
+		return int8(C.QTimeZone_IsDaylightTime(ptr.Pointer(), PointerFromQDateTime(atDateTime))) != 0
 	}
 	return false
 }
 
 func (ptr *QTimeZone) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTimeZone_IsValid(ptr.Pointer()) != 0
+		return int8(C.QTimeZone_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -47503,14 +47503,14 @@ func (ptr *QTimer) TimerType() Qt__TimerType {
 
 func (ptr *QTimer) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QTimer_IsActive(ptr.Pointer()) != 0
+		return int8(C.QTimer_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTimer) IsSingleShot() bool {
 	if ptr.Pointer() != nil {
-		return C.QTimer_IsSingleShot(ptr.Pointer()) != 0
+		return int8(C.QTimer_IsSingleShot(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -47704,7 +47704,7 @@ func (ptr *QTranslator) Load2(locale QLocale_ITF, filename string, prefix string
 			suffixC = C.CString(suffix)
 			defer C.free(unsafe.Pointer(suffixC))
 		}
-		return C.QTranslator_Load2(ptr.Pointer(), PointerFromQLocale(locale), C.struct_QtCore_PackedString{data: filenameC, len: C.longlong(len(filename))}, C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))}, C.struct_QtCore_PackedString{data: suffixC, len: C.longlong(len(suffix))}) != 0
+		return int8(C.QTranslator_Load2(ptr.Pointer(), PointerFromQLocale(locale), C.struct_QtCore_PackedString{data: filenameC, len: C.longlong(len(filename))}, C.struct_QtCore_PackedString{data: prefixC, len: C.longlong(len(prefix))}, C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))}, C.struct_QtCore_PackedString{data: suffixC, len: C.longlong(len(suffix))})) != 0
 	}
 	return false
 }
@@ -47731,7 +47731,7 @@ func (ptr *QTranslator) Load(filename string, directory string, search_delimiter
 			suffixC = C.CString(suffix)
 			defer C.free(unsafe.Pointer(suffixC))
 		}
-		return C.QTranslator_Load(ptr.Pointer(), C.struct_QtCore_PackedString{data: filenameC, len: C.longlong(len(filename))}, C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))}, C.struct_QtCore_PackedString{data: search_delimitersC, len: C.longlong(len(search_delimiters))}, C.struct_QtCore_PackedString{data: suffixC, len: C.longlong(len(suffix))}) != 0
+		return int8(C.QTranslator_Load(ptr.Pointer(), C.struct_QtCore_PackedString{data: filenameC, len: C.longlong(len(filename))}, C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))}, C.struct_QtCore_PackedString{data: search_delimitersC, len: C.longlong(len(search_delimiters))}, C.struct_QtCore_PackedString{data: suffixC, len: C.longlong(len(suffix))})) != 0
 	}
 	return false
 }
@@ -47748,7 +47748,7 @@ func (ptr *QTranslator) Load3(data string, l int, directory string) bool {
 			directoryC = C.CString(directory)
 			defer C.free(unsafe.Pointer(directoryC))
 		}
-		return C.QTranslator_Load3(ptr.Pointer(), dataC, C.int(int32(l)), C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))}) != 0
+		return int8(C.QTranslator_Load3(ptr.Pointer(), dataC, C.int(int32(l)), C.struct_QtCore_PackedString{data: directoryC, len: C.longlong(len(directory))})) != 0
 	}
 	return false
 }
@@ -47906,14 +47906,14 @@ func (ptr *QTranslator) DisconnectIsEmpty() {
 
 func (ptr *QTranslator) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QTranslator_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QTranslator_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTranslator) IsEmptyDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QTranslator_IsEmptyDefault(ptr.Pointer()) != 0
+		return int8(C.QTranslator_IsEmptyDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -48850,56 +48850,56 @@ func (ptr *QUrl) Resolved(relative QUrl_ITF) *QUrl {
 
 func (ptr *QUrl) HasFragment() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_HasFragment(ptr.Pointer()) != 0
+		return int8(C.QUrl_HasFragment(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) HasQuery() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_HasQuery(ptr.Pointer()) != 0
+		return int8(C.QUrl_HasQuery(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QUrl_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) IsLocalFile() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_IsLocalFile(ptr.Pointer()) != 0
+		return int8(C.QUrl_IsLocalFile(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) IsParentOf(childUrl QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_IsParentOf(ptr.Pointer(), PointerFromQUrl(childUrl)) != 0
+		return int8(C.QUrl_IsParentOf(ptr.Pointer(), PointerFromQUrl(childUrl))) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) IsRelative() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_IsRelative(ptr.Pointer()) != 0
+		return int8(C.QUrl_IsRelative(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_IsValid(ptr.Pointer()) != 0
+		return int8(C.QUrl_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUrl) Matches(url QUrl_ITF, options QUrl__UrlFormattingOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QUrl_Matches(ptr.Pointer(), PointerFromQUrl(url), C.longlong(options)) != 0
+		return int8(C.QUrl_Matches(ptr.Pointer(), PointerFromQUrl(url), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -49196,14 +49196,14 @@ func (ptr *QUrlQuery) HasQueryItem(key string) bool {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QUrlQuery_HasQueryItem(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}) != 0
+		return int8(C.QUrlQuery_HasQueryItem(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
 	}
 	return false
 }
 
 func (ptr *QUrlQuery) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QUrlQuery_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QUrlQuery_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -49532,7 +49532,7 @@ func (ptr *QUuid) Version() QUuid__Version {
 
 func (ptr *QUuid) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QUuid_IsNull(ptr.Pointer()) != 0
+		return int8(C.QUuid_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -50045,7 +50045,7 @@ func (ptr *QVariant) NameToType(name string) QVariant__Type {
 
 func (ptr *QVariant) Convert(targetTypeId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QVariant_Convert(ptr.Pointer(), C.int(int32(targetTypeId))) != 0
+		return int8(C.QVariant_Convert(ptr.Pointer(), C.int(int32(targetTypeId)))) != 0
 	}
 	return false
 }
@@ -50377,21 +50377,21 @@ func (ptr *QVariant) Type() QVariant__Type {
 
 func (ptr *QVariant) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QVariant_IsNull(ptr.Pointer()) != 0
+		return int8(C.QVariant_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVariant) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QVariant_IsValid(ptr.Pointer()) != 0
+		return int8(C.QVariant_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVariant) ToBool() bool {
 	if ptr.Pointer() != nil {
-		return C.QVariant_ToBool(ptr.Pointer()) != 0
+		return int8(C.QVariant_ToBool(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -51461,21 +51461,21 @@ func (ptr *QVersionNumber) Normalized() *QVersionNumber {
 
 func (ptr *QVersionNumber) IsNormalized() bool {
 	if ptr.Pointer() != nil {
-		return C.QVersionNumber_IsNormalized(ptr.Pointer()) != 0
+		return int8(C.QVersionNumber_IsNormalized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVersionNumber) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QVersionNumber_IsNull(ptr.Pointer()) != 0
+		return int8(C.QVersionNumber_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QVersionNumber) IsPrefixOf(other QVersionNumber_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVersionNumber_IsPrefixOf(ptr.Pointer(), PointerFromQVersionNumber(other)) != 0
+		return int8(C.QVersionNumber_IsPrefixOf(ptr.Pointer(), PointerFromQVersionNumber(other))) != 0
 	}
 	return false
 }
@@ -51611,14 +51611,14 @@ func NewQWaitCondition() *QWaitCondition {
 
 func (ptr *QWaitCondition) Wait(lockedMutex QMutex_ITF, time uint) bool {
 	if ptr.Pointer() != nil {
-		return C.QWaitCondition_Wait(ptr.Pointer(), PointerFromQMutex(lockedMutex), C.ulong(uint32(time))) != 0
+		return int8(C.QWaitCondition_Wait(ptr.Pointer(), PointerFromQMutex(lockedMutex), C.ulong(uint32(time)))) != 0
 	}
 	return false
 }
 
 func (ptr *QWaitCondition) Wait2(lockedReadWriteLock QReadWriteLock_ITF, time uint) bool {
 	if ptr.Pointer() != nil {
-		return C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(time))) != 0
+		return int8(C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(time)))) != 0
 	}
 	return false
 }
@@ -51949,7 +51949,7 @@ func (ptr *QXmlStreamAttribute) Value() *QStringRef {
 
 func (ptr *QXmlStreamAttribute) IsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamAttribute_IsDefault(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamAttribute_IsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -52111,7 +52111,7 @@ func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
 
 func (ptr *QXmlStreamAttributes) HasAttribute2(qualifiedName QLatin1String_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamAttributes_HasAttribute2(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)) != 0
+		return int8(C.QXmlStreamAttributes_HasAttribute2(ptr.Pointer(), PointerFromQLatin1String(qualifiedName))) != 0
 	}
 	return false
 }
@@ -52128,7 +52128,7 @@ func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string)
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}, C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))}) != 0
+		return int8(C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), C.struct_QtCore_PackedString{data: namespaceUriC, len: C.longlong(len(namespaceUri))}, C.struct_QtCore_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
 }
@@ -52140,7 +52140,7 @@ func (ptr *QXmlStreamAttributes) HasAttribute(qualifiedName string) bool {
 			qualifiedNameC = C.CString(qualifiedName)
 			defer C.free(unsafe.Pointer(qualifiedNameC))
 		}
-		return C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), C.struct_QtCore_PackedString{data: qualifiedNameC, len: C.longlong(len(qualifiedName))}) != 0
+		return int8(C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), C.struct_QtCore_PackedString{data: qualifiedNameC, len: C.longlong(len(qualifiedName))})) != 0
 	}
 	return false
 }
@@ -52711,7 +52711,7 @@ func (ptr *QXmlStreamReader) ReadNext() QXmlStreamReader__TokenType {
 
 func (ptr *QXmlStreamReader) ReadNextStartElement() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_ReadNextStartElement(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_ReadNextStartElement(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -52955,105 +52955,105 @@ func (ptr *QXmlStreamReader) TokenType() QXmlStreamReader__TokenType {
 
 func (ptr *QXmlStreamReader) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_AtEnd(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_AtEnd(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) HasError() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_HasError(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_HasError(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsCDATA() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsCDATA(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsCDATA(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsCharacters() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsCharacters(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsCharacters(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsComment() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsComment(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsComment(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsDTD() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsDTD(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsDTD(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsEndDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsEndDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsEndDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsEndElement() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsEndElement(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsEndElement(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsEntityReference() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsEntityReference(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsEntityReference(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsProcessingInstruction() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsProcessingInstruction(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsProcessingInstruction(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsStandaloneDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsStandaloneDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsStandaloneDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsStartDocument() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsStartDocument(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsStartDocument(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsStartElement() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsStartElement(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsStartElement(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) IsWhitespace() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_IsWhitespace(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_IsWhitespace(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamReader) NamespaceProcessing() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamReader_NamespaceProcessing(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamReader_NamespaceProcessing(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -53492,14 +53492,14 @@ func (ptr *QXmlStreamWriter) Codec() *QTextCodec {
 
 func (ptr *QXmlStreamWriter) AutoFormatting() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamWriter_AutoFormatting(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamWriter_AutoFormatting(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlStreamWriter) HasError() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamWriter_HasError(ptr.Pointer()) != 0
+		return int8(C.QXmlStreamWriter_HasError(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -55344,7 +55344,7 @@ func Qt_MightBeRichText(text string) bool {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))}) != 0
+	return int8(C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))})) != 0
 }
 
 func (ptr *Qt) MightBeRichText(text string) bool {
@@ -55353,7 +55353,7 @@ func (ptr *Qt) MightBeRichText(text string) bool {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))}) != 0
+	return int8(C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))})) != 0
 }
 
 type QtDummyFutex struct {

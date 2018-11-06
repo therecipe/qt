@@ -267,28 +267,28 @@ func (ptr *QSerialPort) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QSerialPort) Clear(directions QSerialPort__Direction) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_Clear(ptr.Pointer(), C.longlong(directions)) != 0
+		return int8(C.QSerialPort_Clear(ptr.Pointer(), C.longlong(directions))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_Flush(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_Flush(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) IsDataTerminalReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_IsDataTerminalReady(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_IsDataTerminalReady(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) IsRequestToSend() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_IsRequestToSend(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_IsRequestToSend(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -304,70 +304,70 @@ func callbackQSerialPort_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
 func (ptr *QSerialPort) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_OpenDefault(ptr.Pointer(), C.longlong(mode)) != 0
+		return int8(C.QSerialPort_OpenDefault(ptr.Pointer(), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SendBreak(duration int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SendBreak(ptr.Pointer(), C.int(int32(duration))) != 0
+		return int8(C.QSerialPort_SendBreak(ptr.Pointer(), C.int(int32(duration)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetBaudRate(baudRate int, directions QSerialPort__Direction) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetBaudRate(ptr.Pointer(), C.int(int32(baudRate)), C.longlong(directions)) != 0
+		return int8(C.QSerialPort_SetBaudRate(ptr.Pointer(), C.int(int32(baudRate)), C.longlong(directions))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetBreakEnabled(set bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetBreakEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set)))) != 0
+		return int8(C.QSerialPort_SetBreakEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set))))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetDataBits(dataBits QSerialPort__DataBits) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetDataBits(ptr.Pointer(), C.longlong(dataBits)) != 0
+		return int8(C.QSerialPort_SetDataBits(ptr.Pointer(), C.longlong(dataBits))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetDataTerminalReady(set bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetDataTerminalReady(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set)))) != 0
+		return int8(C.QSerialPort_SetDataTerminalReady(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set))))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetFlowControl(flowControl QSerialPort__FlowControl) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetFlowControl(ptr.Pointer(), C.longlong(flowControl)) != 0
+		return int8(C.QSerialPort_SetFlowControl(ptr.Pointer(), C.longlong(flowControl))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetParity(parity QSerialPort__Parity) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetParity(ptr.Pointer(), C.longlong(parity)) != 0
+		return int8(C.QSerialPort_SetParity(ptr.Pointer(), C.longlong(parity))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetRequestToSend(set bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetRequestToSend(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set)))) != 0
+		return int8(C.QSerialPort_SetRequestToSend(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(set))))) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SetStopBits(stopBits QSerialPort__StopBits) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SetStopBits(ptr.Pointer(), C.longlong(stopBits)) != 0
+		return int8(C.QSerialPort_SetStopBits(ptr.Pointer(), C.longlong(stopBits))) != 0
 	}
 	return false
 }
@@ -383,7 +383,7 @@ func callbackQSerialPort_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.
 
 func (ptr *QSerialPort) WaitForBytesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QSerialPort_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -399,7 +399,7 @@ func callbackQSerialPort_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.cha
 
 func (ptr *QSerialPort) WaitForReadyReadDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QSerialPort_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -1044,7 +1044,7 @@ func callbackQSerialPort_AtEnd(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSerialPort) AtEndDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_AtEndDefault(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_AtEndDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1060,14 +1060,14 @@ func callbackQSerialPort_CanReadLine(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSerialPort) CanReadLineDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_CanReadLineDefault(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_CanReadLineDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) IsBreakEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_IsBreakEnabled(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_IsBreakEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1083,14 +1083,14 @@ func callbackQSerialPort_IsSequential(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSerialPort) IsSequentialDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_IsSequentialDefault(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_IsSequentialDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPort) SettingsRestoredOnClose() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SettingsRestoredOnClose(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_SettingsRestoredOnClose(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1271,7 +1271,7 @@ func callbackQSerialPort_Reset(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSerialPort) ResetDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_ResetDefault(ptr.Pointer()) != 0
+		return int8(C.QSerialPort_ResetDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1287,7 +1287,7 @@ func callbackQSerialPort_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
 func (ptr *QSerialPort) SeekDefault(pos int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
+		return int8(C.QSerialPort_SeekDefault(ptr.Pointer(), C.longlong(pos))) != 0
 	}
 	return false
 }
@@ -1383,7 +1383,7 @@ func callbackQSerialPort_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSerialPort) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSerialPort_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1399,7 +1399,7 @@ func callbackQSerialPort_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 
 func (ptr *QSerialPort) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPort_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSerialPort_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1673,28 +1673,28 @@ func (ptr *QSerialPortInfo) SystemLocation() string {
 
 func (ptr *QSerialPortInfo) HasProductIdentifier() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPortInfo_HasProductIdentifier(ptr.Pointer()) != 0
+		return int8(C.QSerialPortInfo_HasProductIdentifier(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPortInfo) HasVendorIdentifier() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPortInfo_HasVendorIdentifier(ptr.Pointer()) != 0
+		return int8(C.QSerialPortInfo_HasVendorIdentifier(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPortInfo) IsBusy() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPortInfo_IsBusy(ptr.Pointer()) != 0
+		return int8(C.QSerialPortInfo_IsBusy(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSerialPortInfo) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSerialPortInfo_IsNull(ptr.Pointer()) != 0
+		return int8(C.QSerialPortInfo_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }

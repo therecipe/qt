@@ -47,6 +47,7 @@ type Function struct {
 	Target            string
 	Inbound           bool
 	BoundByEmscripten bool //TODO: needed at all ?
+	FakeForJSCallback bool
 }
 
 type Parameter struct {
@@ -362,7 +363,8 @@ func (f *Function) IsSupported() bool {
 				f.Fullname == "QWebSocket::ignoreSslErrors" || f.Fullname == "QWebSocket::preSharedKeyAuthenticationRequired" ||
 				f.Fullname == "QWebSocket::sslConfiguration" || f.Fullname == "QWebSocket::setSslConfiguration" ||
 				f.Fullname == "QWebSocketServer::peerVerifyError" || (strings.HasPrefix(f.ClassName(), "QWeb") && strings.Contains(f.Name, "slErrors")) ||
-				f.Fullname == "QWebSocketServer::preSharedKeyAuthenticationRequired" || f.Fullname == "QWebSocketServer::setSslConfiguration" || f.Fullname == "QWebSocketServer::sslConfiguration"),
+				f.Fullname == "QWebSocketServer::preSharedKeyAuthenticationRequired" || f.Fullname == "QWebSocketServer::setSslConfiguration" || f.Fullname == "QWebSocketServer::sslConfiguration" ||
+				(f.Name == "readData" && len(f.Parameters) == 2)),
 
 		f.Name == "qt_metacast", f.Fullname == "QVariant::fromStdVariant",
 		f.Name == "qt_check_for_QGADGET_macro",

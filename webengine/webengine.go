@@ -792,14 +792,14 @@ func (ptr *QQuickWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 
 func (ptr *QQuickWebEngineProfile) IsOffTheRecord() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineProfile_IsOffTheRecord(ptr.Pointer()) != 0
+		return int8(C.QQuickWebEngineProfile_IsOffTheRecord(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWebEngineProfile) IsSpellCheckEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineProfile_IsSpellCheckEnabled(ptr.Pointer()) != 0
+		return int8(C.QQuickWebEngineProfile_IsSpellCheckEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -952,7 +952,7 @@ func callbackQQuickWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QQuickWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -968,7 +968,7 @@ func callbackQQuickWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QQuickWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1540,7 +1540,7 @@ func (ptr *QQuickWebEngineScript) SourceUrl() *core.QUrl {
 
 func (ptr *QQuickWebEngineScript) RunOnSubframes() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineScript_RunOnSubframes(ptr.Pointer()) != 0
+		return int8(C.QQuickWebEngineScript_RunOnSubframes(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1675,7 +1675,7 @@ func callbackQQuickWebEngineScript_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QQuickWebEngineScript) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineScript_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickWebEngineScript_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1691,7 +1691,7 @@ func callbackQQuickWebEngineScript_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QQuickWebEngineScript) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWebEngineScript_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickWebEngineScript_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2182,7 +2182,7 @@ func callbackQWebEngineCookieStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QWebEngineCookieStore) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineCookieStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebEngineCookieStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2198,7 +2198,7 @@ func callbackQWebEngineCookieStore_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QWebEngineCookieStore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineCookieStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineCookieStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2488,7 +2488,7 @@ func (ptr *QWebEngineHttpRequest) Method() QWebEngineHttpRequest__Method {
 
 func (ptr *QWebEngineHttpRequest) HasHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineHttpRequest_HasHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
+		return int8(C.QWebEngineHttpRequest_HasHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName))) != 0
 	}
 	return false
 }
@@ -2979,14 +2979,14 @@ func (ptr *QWebEnginePage) DisconnectAcceptNavigationRequest() {
 
 func (ptr *QWebEnginePage) AcceptNavigationRequest(url core.QUrl_ITF, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_AcceptNavigationRequest(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame)))) != 0
+		return int8(C.QWebEnginePage_AcceptNavigationRequest(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame))))) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEnginePage) AcceptNavigationRequestDefault(url core.QUrl_ITF, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_AcceptNavigationRequestDefault(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame)))) != 0
+		return int8(C.QWebEnginePage_AcceptNavigationRequestDefault(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame))))) != 0
 	}
 	return false
 }
@@ -3002,7 +3002,7 @@ func callbackQWebEnginePage_Event(ptr unsafe.Pointer, vqe unsafe.Pointer) C.char
 
 func (ptr *QWebEnginePage) EventDefault(vqe core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe)) != 0
+		return int8(C.QWebEnginePage_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe))) != 0
 	}
 	return false
 }
@@ -3044,7 +3044,7 @@ func (ptr *QWebEnginePage) JavaScriptConfirm(securityOrigin core.QUrl_ITF, msg s
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		return C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}) != 0
+		return int8(C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))})) != 0
 	}
 	return false
 }
@@ -3056,7 +3056,7 @@ func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF
 			msgC = C.CString(msg)
 			defer C.free(unsafe.Pointer(msgC))
 		}
-		return C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}) != 0
+		return int8(C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))})) != 0
 	}
 	return false
 }
@@ -3108,7 +3108,7 @@ func (ptr *QWebEnginePage) JavaScriptPrompt(securityOrigin core.QUrl_ITF, msg st
 			resultC = C.CString(result)
 			defer C.free(unsafe.Pointer(resultC))
 		}
-		return C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{data: resultC, len: C.longlong(len(result))}) != 0
+		return int8(C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{data: resultC, len: C.longlong(len(result))})) != 0
 	}
 	return false
 }
@@ -3130,7 +3130,7 @@ func (ptr *QWebEnginePage) JavaScriptPromptDefault(securityOrigin core.QUrl_ITF,
 			resultC = C.CString(result)
 			defer C.free(unsafe.Pointer(resultC))
 		}
-		return C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{data: resultC, len: C.longlong(len(result))}) != 0
+		return int8(C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.struct_QtWebEngine_PackedString{data: msgC, len: C.longlong(len(msg))}, C.struct_QtWebEngine_PackedString{data: defaultValueC, len: C.longlong(len(defaultValue))}, C.struct_QtWebEngine_PackedString{data: resultC, len: C.longlong(len(result))})) != 0
 	}
 	return false
 }
@@ -4477,21 +4477,21 @@ func (ptr *QWebEnginePage) View() *widgets.QWidget {
 
 func (ptr *QWebEnginePage) HasSelection() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_HasSelection(ptr.Pointer()) != 0
+		return int8(C.QWebEnginePage_HasSelection(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEnginePage) IsAudioMuted() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_IsAudioMuted(ptr.Pointer()) != 0
+		return int8(C.QWebEnginePage_IsAudioMuted(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEnginePage) RecentlyAudible() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_RecentlyAudible(ptr.Pointer()) != 0
+		return int8(C.QWebEnginePage_RecentlyAudible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4633,7 +4633,7 @@ func callbackQWebEnginePage_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QWebEnginePage) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEnginePage_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5157,21 +5157,21 @@ func (ptr *QWebEngineProfile) Settings() *QWebEngineSettings {
 
 func (ptr *QWebEngineProfile) IsOffTheRecord() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineProfile_IsOffTheRecord(ptr.Pointer()) != 0
+		return int8(C.QWebEngineProfile_IsOffTheRecord(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEngineProfile) IsSpellCheckEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineProfile_IsSpellCheckEnabled(ptr.Pointer()) != 0
+		return int8(C.QWebEngineProfile_IsSpellCheckEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineProfile_VisitedLinksContainsUrl(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
+		return int8(C.QWebEngineProfile_VisitedLinksContainsUrl(ptr.Pointer(), core.PointerFromQUrl(url))) != 0
 	}
 	return false
 }
@@ -5343,7 +5343,7 @@ func callbackQWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5359,7 +5359,7 @@ func callbackQWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5767,14 +5767,14 @@ func (ptr *QWebEngineScript) InjectionPoint() QWebEngineScript__InjectionPoint {
 
 func (ptr *QWebEngineScript) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineScript_IsNull(ptr.Pointer()) != 0
+		return int8(C.QWebEngineScript_IsNull(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWebEngineScript) RunsOnSubFrames() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineScript_RunsOnSubFrames(ptr.Pointer()) != 0
+		return int8(C.QWebEngineScript_RunsOnSubFrames(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5838,7 +5838,7 @@ func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 
 func (ptr *QWebEngineScriptCollection) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineScriptCollection_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QWebEngineScriptCollection_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6077,7 +6077,7 @@ func (ptr *QWebEngineSettings) UnknownUrlSchemePolicy() QWebEngineSettings__Unkn
 
 func (ptr *QWebEngineSettings) TestAttribute(attr QWebEngineSettings__WebAttribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attr)) != 0
+		return int8(C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attr))) != 0
 	}
 	return false
 }
@@ -6500,7 +6500,7 @@ func callbackQWebEngineUrlRequestInterceptor_Event(ptr unsafe.Pointer, e unsafe.
 
 func (ptr *QWebEngineUrlRequestInterceptor) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlRequestInterceptor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebEngineUrlRequestInterceptor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6516,7 +6516,7 @@ func callbackQWebEngineUrlRequestInterceptor_EventFilter(ptr unsafe.Pointer, wat
 
 func (ptr *QWebEngineUrlRequestInterceptor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlRequestInterceptor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineUrlRequestInterceptor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6912,7 +6912,7 @@ func callbackQWebEngineUrlRequestJob_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 
 func (ptr *QWebEngineUrlRequestJob) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlRequestJob_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebEngineUrlRequestJob_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6928,7 +6928,7 @@ func callbackQWebEngineUrlRequestJob_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QWebEngineUrlRequestJob) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlRequestJob_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineUrlRequestJob_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7354,7 +7354,7 @@ func callbackQWebEngineUrlSchemeHandler_Event(ptr unsafe.Pointer, e unsafe.Point
 
 func (ptr *QWebEngineUrlSchemeHandler) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlSchemeHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QWebEngineUrlSchemeHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -7370,7 +7370,7 @@ func callbackQWebEngineUrlSchemeHandler_EventFilter(ptr unsafe.Pointer, watched 
 
 func (ptr *QWebEngineUrlSchemeHandler) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineUrlSchemeHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineUrlSchemeHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7596,7 +7596,7 @@ func callbackQWebEngineView_Event(ptr unsafe.Pointer, vqe unsafe.Pointer) C.char
 
 func (ptr *QWebEngineView) EventDefault(vqe core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe)) != 0
+		return int8(C.QWebEngineView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(vqe))) != 0
 	}
 	return false
 }
@@ -8368,7 +8368,7 @@ func (ptr *QWebEngineView) Settings() *QWebEngineSettings {
 
 func (ptr *QWebEngineView) HasSelection() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_HasSelection(ptr.Pointer()) != 0
+		return int8(C.QWebEngineView_HasSelection(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8573,7 +8573,7 @@ func callbackQWebEngineView_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QWebEngineView) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QWebEngineView_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8589,7 +8589,7 @@ func callbackQWebEngineView_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) 
 
 func (ptr *QWebEngineView) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QWebEngineView_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -9261,7 +9261,7 @@ func callbackQWebEngineView_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QWebEngineView) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QWebEngineView_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9324,7 +9324,7 @@ func callbackQWebEngineView_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QWebEngineView) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWebEngineView_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

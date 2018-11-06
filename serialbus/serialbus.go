@@ -461,7 +461,7 @@ func callbackQCanBus_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QCanBus) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBus_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCanBus_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -477,7 +477,7 @@ func callbackQCanBus_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QCanBus) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCanBus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -772,7 +772,7 @@ func (ptr *QCanBusDevice) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QCanBusDevice) ConnectDevice() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_ConnectDevice(ptr.Pointer()) != 0
+		return int8(C.QCanBusDevice_ConnectDevice(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -809,7 +809,7 @@ func (ptr *QCanBusDevice) DisconnectOpen() {
 
 func (ptr *QCanBusDevice) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_Open(ptr.Pointer()) != 0
+		return int8(C.QCanBusDevice_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -846,14 +846,14 @@ func (ptr *QCanBusDevice) DisconnectWaitForFramesReceived() {
 
 func (ptr *QCanBusDevice) WaitForFramesReceived(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_WaitForFramesReceived(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QCanBusDevice_WaitForFramesReceived(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusDevice) WaitForFramesReceivedDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_WaitForFramesReceivedDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QCanBusDevice_WaitForFramesReceivedDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -890,14 +890,14 @@ func (ptr *QCanBusDevice) DisconnectWaitForFramesWritten() {
 
 func (ptr *QCanBusDevice) WaitForFramesWritten(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_WaitForFramesWritten(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QCanBusDevice_WaitForFramesWritten(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusDevice) WaitForFramesWrittenDefault(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_WaitForFramesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+		return int8(C.QCanBusDevice_WaitForFramesWrittenDefault(ptr.Pointer(), C.int(int32(msecs)))) != 0
 	}
 	return false
 }
@@ -934,7 +934,7 @@ func (ptr *QCanBusDevice) DisconnectWriteFrame() {
 
 func (ptr *QCanBusDevice) WriteFrame(frame QCanBusFrame_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_WriteFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)) != 0
+		return int8(C.QCanBusDevice_WriteFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame))) != 0
 	}
 	return false
 }
@@ -1259,7 +1259,7 @@ func (ptr *QCanBusDevice) ConfigurationKeys() []int {
 
 func (ptr *QCanBusDevice) HasOutgoingFrames() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_HasOutgoingFrames(ptr.Pointer()) != 0
+		return int8(C.QCanBusDevice_HasOutgoingFrames(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1435,7 +1435,7 @@ func callbackQCanBusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QCanBusDevice) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCanBusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1451,7 +1451,7 @@ func callbackQCanBusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QCanBusDevice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QCanBusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1637,14 +1637,14 @@ func (ptr *QCanBusDeviceInfo) SerialNumber() string {
 
 func (ptr *QCanBusDeviceInfo) HasFlexibleDataRate() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDeviceInfo_HasFlexibleDataRate(ptr.Pointer()) != 0
+		return int8(C.QCanBusDeviceInfo_HasFlexibleDataRate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusDeviceInfo) IsVirtual() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusDeviceInfo_IsVirtual(ptr.Pointer()) != 0
+		return int8(C.QCanBusDeviceInfo_IsVirtual(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2108,42 +2108,42 @@ func (ptr *QCanBusFrame) ToString() string {
 
 func (ptr *QCanBusFrame) HasBitrateSwitch() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_HasBitrateSwitch(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_HasBitrateSwitch(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusFrame) HasErrorStateIndicator() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_HasErrorStateIndicator(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_HasErrorStateIndicator(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusFrame) HasExtendedFrameFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_HasExtendedFrameFormat(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_HasExtendedFrameFormat(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusFrame) HasFlexibleDataRateFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_HasFlexibleDataRateFormat(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_HasFlexibleDataRateFormat(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusFrame) HasLocalEcho() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_HasLocalEcho(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_HasLocalEcho(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCanBusFrame) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QCanBusFrame_IsValid(ptr.Pointer()) != 0
+		return int8(C.QCanBusFrame_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2277,14 +2277,14 @@ func (ptr *QModbusClient) DisconnectProcessPrivateResponse() {
 
 func (ptr *QModbusClient) ProcessPrivateResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_ProcessPrivateResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
+		return int8(C.QModbusClient_ProcessPrivateResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusClient) ProcessPrivateResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_ProcessPrivateResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
+		return int8(C.QModbusClient_ProcessPrivateResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data))) != 0
 	}
 	return false
 }
@@ -2321,14 +2321,14 @@ func (ptr *QModbusClient) DisconnectProcessResponse() {
 
 func (ptr *QModbusClient) ProcessResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_ProcessResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
+		return int8(C.QModbusClient_ProcessResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusClient) ProcessResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_ProcessResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
+		return int8(C.QModbusClient_ProcessResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data))) != 0
 	}
 	return false
 }
@@ -2409,14 +2409,14 @@ func callbackQModbusClient_Open(ptr unsafe.Pointer) C.char {
 
 func (ptr *QModbusClient) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusClient_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusClient) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusClient_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusClient_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2589,7 +2589,7 @@ func (ptr *QModbusDataUnit) Values() []uint16 {
 
 func (ptr *QModbusDataUnit) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDataUnit_IsValid(ptr.Pointer()) != 0
+		return int8(C.QModbusDataUnit_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2847,7 +2847,7 @@ func (ptr *QModbusDevice) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QModbusDevice) ConnectDevice() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDevice_ConnectDevice(ptr.Pointer()) != 0
+		return int8(C.QModbusDevice_ConnectDevice(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2884,7 +2884,7 @@ func (ptr *QModbusDevice) DisconnectOpen() {
 
 func (ptr *QModbusDevice) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDevice_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusDevice_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3237,7 +3237,7 @@ func callbackQModbusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QModbusDevice) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QModbusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3253,7 +3253,7 @@ func callbackQModbusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 
 func (ptr *QModbusDevice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QModbusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3473,7 +3473,7 @@ func NewQModbusDeviceIdentification() *QModbusDeviceIdentification {
 
 func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDeviceIdentification_Insert(ptr.Pointer(), C.uint(uint32(objectId)), core.PointerFromQByteArray(value)) != 0
+		return int8(C.QModbusDeviceIdentification_Insert(ptr.Pointer(), C.uint(uint32(objectId)), core.PointerFromQByteArray(value))) != 0
 	}
 	return false
 }
@@ -3522,14 +3522,14 @@ func (ptr *QModbusDeviceIdentification) ConformityLevel() QModbusDeviceIdentific
 
 func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDeviceIdentification_Contains(ptr.Pointer(), C.uint(uint32(objectId))) != 0
+		return int8(C.QModbusDeviceIdentification_Contains(ptr.Pointer(), C.uint(uint32(objectId)))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusDeviceIdentification) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusDeviceIdentification_IsValid(ptr.Pointer()) != 0
+		return int8(C.QModbusDeviceIdentification_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3932,14 +3932,14 @@ func (ptr *QModbusPdu) FunctionCode() QModbusPdu__FunctionCode {
 
 func (ptr *QModbusPdu) IsException() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusPdu_IsException(ptr.Pointer()) != 0
+		return int8(C.QModbusPdu_IsException(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusPdu) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusPdu_IsValid(ptr.Pointer()) != 0
+		return int8(C.QModbusPdu_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4218,7 +4218,7 @@ func (ptr *QModbusReply) ErrorString() string {
 
 func (ptr *QModbusReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusReply_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QModbusReply_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4360,7 +4360,7 @@ func callbackQModbusReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QModbusReply) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QModbusReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4376,7 +4376,7 @@ func callbackQModbusReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QModbusReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QModbusReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4719,14 +4719,14 @@ func (ptr *QModbusRtuSerialMaster) DisconnectOpen() {
 
 func (ptr *QModbusRtuSerialMaster) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialMaster_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusRtuSerialMaster_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusRtuSerialMaster) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialMaster_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusRtuSerialMaster_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4864,14 +4864,14 @@ func (ptr *QModbusRtuSerialSlave) DisconnectOpen() {
 
 func (ptr *QModbusRtuSerialSlave) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialSlave_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusRtuSerialSlave_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusRtuSerialSlave) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialSlave_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusRtuSerialSlave_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5126,14 +5126,14 @@ func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
 
 func (ptr *QModbusServer) SetData2(table QModbusDataUnit__RegisterType, address uint16, data uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_SetData2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data)) != 0
+		return int8(C.QModbusServer_SetData2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) SetData(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_SetData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_SetData(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
@@ -5170,14 +5170,14 @@ func (ptr *QModbusServer) DisconnectSetValue() {
 
 func (ptr *QModbusServer) SetValue(option int, newValue core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_SetValue(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
+		return int8(C.QModbusServer_SetValue(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) SetValueDefault(option int, newValue core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_SetValueDefault(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
+		return int8(C.QModbusServer_SetValueDefault(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue))) != 0
 	}
 	return false
 }
@@ -5214,14 +5214,14 @@ func (ptr *QModbusServer) DisconnectWriteData() {
 
 func (ptr *QModbusServer) WriteData(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_WriteData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_WriteData(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_WriteDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_WriteDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
@@ -5321,14 +5321,14 @@ func (ptr *QModbusServer) ValueDefault(option int) *core.QVariant {
 
 func (ptr *QModbusServer) Data(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_Data(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_Data(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) Data2(table QModbusDataUnit__RegisterType, address uint16, data uint16) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_Data2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data)) != 0
+		return int8(C.QModbusServer_Data2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data))) != 0
 	}
 	return false
 }
@@ -5365,14 +5365,14 @@ func (ptr *QModbusServer) DisconnectProcessesBroadcast() {
 
 func (ptr *QModbusServer) ProcessesBroadcast() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_ProcessesBroadcast(ptr.Pointer()) != 0
+		return int8(C.QModbusServer_ProcessesBroadcast(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) ProcessesBroadcastDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusServer_ProcessesBroadcastDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5409,14 +5409,14 @@ func (ptr *QModbusServer) DisconnectReadData() {
 
 func (ptr *QModbusServer) ReadData(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_ReadData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_ReadData(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) ReadDataDefault(newData QModbusDataUnit_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_ReadDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+		return int8(C.QModbusServer_ReadDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData))) != 0
 	}
 	return false
 }
@@ -5439,14 +5439,14 @@ func callbackQModbusServer_Open(ptr unsafe.Pointer) C.char {
 
 func (ptr *QModbusServer) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusServer_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusServer) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusServer_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusServer_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5550,14 +5550,14 @@ func (ptr *QModbusTcpClient) DisconnectOpen() {
 
 func (ptr *QModbusTcpClient) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusTcpClient_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusTcpClient_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusTcpClient) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusTcpClient_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusTcpClient_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5728,14 +5728,14 @@ func (ptr *QModbusTcpServer) DisconnectOpen() {
 
 func (ptr *QModbusTcpServer) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusTcpServer_Open(ptr.Pointer()) != 0
+		return int8(C.QModbusTcpServer_Open(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QModbusTcpServer) OpenDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QModbusTcpServer_OpenDefault(ptr.Pointer()) != 0
+		return int8(C.QModbusTcpServer_OpenDefault(ptr.Pointer())) != 0
 	}
 	return false
 }

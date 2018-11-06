@@ -714,14 +714,14 @@ func (ptr *Q3DBars) ValueAxis() *QValue3DAxis {
 
 func (ptr *Q3DBars) IsBarSpacingRelative() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DBars_IsBarSpacingRelative(ptr.Pointer()) != 0
+		return int8(C.Q3DBars_IsBarSpacingRelative(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DBars) IsMultiSeriesUniform() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DBars_IsMultiSeriesUniform(ptr.Pointer()) != 0
+		return int8(C.Q3DBars_IsMultiSeriesUniform(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1465,14 +1465,14 @@ func (ptr *Q3DCamera) Target() *gui.QVector3D {
 
 func (ptr *Q3DCamera) WrapXRotation() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DCamera_WrapXRotation(ptr.Pointer()) != 0
+		return int8(C.Q3DCamera_WrapXRotation(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DCamera) WrapYRotation() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DCamera_WrapYRotation(ptr.Pointer()) != 0
+		return int8(C.Q3DCamera_WrapYRotation(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2049,28 +2049,28 @@ func (ptr *Q3DInputHandler) DestroyQ3DInputHandlerDefault() {
 
 func (ptr *Q3DInputHandler) IsRotationEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DInputHandler_IsRotationEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DInputHandler_IsRotationEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DInputHandler) IsSelectionEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DInputHandler_IsSelectionEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DInputHandler_IsSelectionEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DInputHandler) IsZoomAtTargetEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DInputHandler_IsZoomAtTargetEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DInputHandler_IsZoomAtTargetEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DInputHandler) IsZoomEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DInputHandler_IsZoomEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DInputHandler_IsZoomEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2218,7 +2218,7 @@ func (ptr *Q3DLight) TrUtf8(s string, c string, n int) string {
 
 func (ptr *Q3DLight) IsAutoPosition() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DLight_IsAutoPosition(ptr.Pointer()) != 0
+		return int8(C.Q3DLight_IsAutoPosition(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2612,7 +2612,7 @@ func (ptr *Q3DObject) Position() *gui.QVector3D {
 
 func (ptr *Q3DObject) IsDirty() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DObject_IsDirty(ptr.Pointer()) != 0
+		return int8(C.Q3DObject_IsDirty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3247,14 +3247,14 @@ func (ptr *Q3DScene) TrUtf8(s string, c string, n int) string {
 
 func (ptr *Q3DScene) IsPointInPrimarySubView(point core.QPoint_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DScene_IsPointInPrimarySubView(ptr.Pointer(), core.PointerFromQPoint(point)) != 0
+		return int8(C.Q3DScene_IsPointInPrimarySubView(ptr.Pointer(), core.PointerFromQPoint(point))) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DScene) IsPointInSecondarySubView(point core.QPoint_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DScene_IsPointInSecondarySubView(ptr.Pointer(), core.PointerFromQPoint(point)) != 0
+		return int8(C.Q3DScene_IsPointInSecondarySubView(ptr.Pointer(), core.PointerFromQPoint(point))) != 0
 	}
 	return false
 }
@@ -3810,14 +3810,14 @@ func (ptr *Q3DScene) Viewport() *core.QRect {
 
 func (ptr *Q3DScene) IsSecondarySubviewOnTop() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DScene_IsSecondarySubviewOnTop(ptr.Pointer()) != 0
+		return int8(C.Q3DScene_IsSecondarySubviewOnTop(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DScene) IsSlicingActive() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DScene_IsSlicingActive(ptr.Pointer()) != 0
+		return int8(C.Q3DScene_IsSlicingActive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4317,7 +4317,7 @@ func (ptr *Q3DSurface) AxisZ() *QValue3DAxis {
 
 func (ptr *Q3DSurface) FlipHorizontalGrid() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DSurface_FlipHorizontalGrid(ptr.Pointer()) != 0
+		return int8(C.Q3DSurface_FlipHorizontalGrid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5745,28 +5745,28 @@ func (ptr *Q3DTheme) BaseGradients() []*gui.QLinearGradient {
 
 func (ptr *Q3DTheme) IsBackgroundEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DTheme_IsBackgroundEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DTheme_IsBackgroundEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DTheme) IsGridEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DTheme_IsGridEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DTheme_IsGridEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DTheme) IsLabelBackgroundEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DTheme_IsLabelBackgroundEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DTheme_IsLabelBackgroundEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *Q3DTheme) IsLabelBorderEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.Q3DTheme_IsLabelBorderEnabled(ptr.Pointer()) != 0
+		return int8(C.Q3DTheme_IsLabelBorderEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6597,21 +6597,21 @@ func (ptr *QAbstract3DAxis) Labels() []string {
 
 func (ptr *QAbstract3DAxis) IsAutoAdjustRange() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DAxis_IsAutoAdjustRange(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DAxis_IsAutoAdjustRange(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstract3DAxis) IsTitleFixed() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DAxis_IsTitleFixed(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DAxis_IsTitleFixed(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstract3DAxis) IsTitleVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DAxis_IsTitleVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DAxis_IsTitleVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8447,21 +8447,21 @@ func (ptr *QAbstract3DSeries) UserDefinedMesh() string {
 
 func (ptr *QAbstract3DSeries) IsItemLabelVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DSeries_IsItemLabelVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DSeries_IsItemLabelVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstract3DSeries) IsMeshSmooth() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DSeries_IsMeshSmooth(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DSeries_IsMeshSmooth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstract3DSeries) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstract3DSeries_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QAbstract3DSeries_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10700,28 +10700,28 @@ func (ptr *QCustom3DItem) Scaling() *gui.QVector3D {
 
 func (ptr *QCustom3DItem) IsPositionAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DItem_IsPositionAbsolute(ptr.Pointer()) != 0
+		return int8(C.QCustom3DItem_IsPositionAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DItem) IsScalingAbsolute() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DItem_IsScalingAbsolute(ptr.Pointer()) != 0
+		return int8(C.QCustom3DItem_IsScalingAbsolute(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DItem) IsShadowCasting() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DItem_IsShadowCasting(ptr.Pointer()) != 0
+		return int8(C.QCustom3DItem_IsShadowCasting(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DItem) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DItem_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QCustom3DItem_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11283,21 +11283,21 @@ func (ptr *QCustom3DLabel) Text() string {
 
 func (ptr *QCustom3DLabel) IsBackgroundEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DLabel_IsBackgroundEnabled(ptr.Pointer()) != 0
+		return int8(C.QCustom3DLabel_IsBackgroundEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DLabel) IsBorderEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DLabel_IsBorderEnabled(ptr.Pointer()) != 0
+		return int8(C.QCustom3DLabel_IsBorderEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DLabel) IsFacingCamera() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DLabel_IsFacingCamera(ptr.Pointer()) != 0
+		return int8(C.QCustom3DLabel_IsFacingCamera(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12357,28 +12357,28 @@ func (ptr *QCustom3DVolume) ColorTable() []uint {
 
 func (ptr *QCustom3DVolume) DrawSliceFrames() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_DrawSliceFrames(ptr.Pointer()) != 0
+		return int8(C.QCustom3DVolume_DrawSliceFrames(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DVolume) DrawSlices() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_DrawSlices(ptr.Pointer()) != 0
+		return int8(C.QCustom3DVolume_DrawSlices(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DVolume) PreserveOpacity() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_PreserveOpacity(ptr.Pointer()) != 0
+		return int8(C.QCustom3DVolume_PreserveOpacity(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCustom3DVolume) UseHighDefShader() bool {
 	if ptr.Pointer() != nil {
-		return C.QCustom3DVolume_UseHighDefShader(ptr.Pointer()) != 0
+		return int8(C.QCustom3DVolume_UseHighDefShader(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14438,21 +14438,21 @@ func (ptr *QItemModelBarDataProxy) RowCategories() []string {
 
 func (ptr *QItemModelBarDataProxy) AutoColumnCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelBarDataProxy_AutoColumnCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelBarDataProxy_AutoColumnCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemModelBarDataProxy) AutoRowCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelBarDataProxy_AutoRowCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelBarDataProxy_AutoRowCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemModelBarDataProxy) UseModelCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelBarDataProxy_UseModelCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelBarDataProxy_UseModelCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17103,21 +17103,21 @@ func (ptr *QItemModelSurfaceDataProxy) RowCategories() []string {
 
 func (ptr *QItemModelSurfaceDataProxy) AutoColumnCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelSurfaceDataProxy_AutoColumnCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelSurfaceDataProxy_AutoColumnCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemModelSurfaceDataProxy) AutoRowCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelSurfaceDataProxy_AutoRowCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelSurfaceDataProxy_AutoRowCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QItemModelSurfaceDataProxy) UseModelCategories() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemModelSurfaceDataProxy_UseModelCategories(ptr.Pointer()) != 0
+		return int8(C.QItemModelSurfaceDataProxy_UseModelCategories(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17446,14 +17446,14 @@ func (ptr *QLogValue3DAxisFormatter) DestroyQLogValue3DAxisFormatterDefault() {
 
 func (ptr *QLogValue3DAxisFormatter) AutoSubGrid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLogValue3DAxisFormatter_AutoSubGrid(ptr.Pointer()) != 0
+		return int8(C.QLogValue3DAxisFormatter_AutoSubGrid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLogValue3DAxisFormatter) ShowEdgeLabels() bool {
 	if ptr.Pointer() != nil {
-		return C.QLogValue3DAxisFormatter_ShowEdgeLabels(ptr.Pointer()) != 0
+		return int8(C.QLogValue3DAxisFormatter_ShowEdgeLabels(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19038,14 +19038,14 @@ func (ptr *QSurface3DSeries) DataProxy() *QSurfaceDataProxy {
 
 func (ptr *QSurface3DSeries) IsFlatShadingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSurface3DSeries_IsFlatShadingEnabled(ptr.Pointer()) != 0
+		return int8(C.QSurface3DSeries_IsFlatShadingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSurface3DSeries) IsFlatShadingSupported() bool {
 	if ptr.Pointer() != nil {
-		return C.QSurface3DSeries_IsFlatShadingSupported(ptr.Pointer()) != 0
+		return int8(C.QSurface3DSeries_IsFlatShadingSupported(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20425,7 +20425,7 @@ func (ptr *QValue3DAxis) Formatter() *QValue3DAxisFormatter {
 
 func (ptr *QValue3DAxis) Reversed() bool {
 	if ptr.Pointer() != nil {
-		return C.QValue3DAxis_Reversed(ptr.Pointer()) != 0
+		return int8(C.QValue3DAxis_Reversed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20863,14 +20863,14 @@ func (ptr *QValue3DAxisFormatter) SubGridPositions() []float32 {
 
 func (ptr *QValue3DAxisFormatter) AllowNegatives() bool {
 	if ptr.Pointer() != nil {
-		return C.QValue3DAxisFormatter_AllowNegatives(ptr.Pointer()) != 0
+		return int8(C.QValue3DAxisFormatter_AllowNegatives(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QValue3DAxisFormatter) AllowZero() bool {
 	if ptr.Pointer() != nil {
-		return C.QValue3DAxisFormatter_AllowZero(ptr.Pointer()) != 0
+		return int8(C.QValue3DAxisFormatter_AllowZero(ptr.Pointer())) != 0
 	}
 	return false
 }

@@ -39,7 +39,6 @@
 #include <QXmlInputSource>
 #include <QXmlLexicalHandler>
 #include <QXmlLocator>
-#include <QXmlName>
 #include <QXmlNamespaceSupport>
 #include <QXmlParseException>
 #include <QXmlReader>

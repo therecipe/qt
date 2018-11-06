@@ -332,7 +332,7 @@ func (ptr *QGeoManeuver) ExtendedAttributes() map[string]*core.QVariant {
 
 func (ptr *QGeoManeuver) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoManeuver_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoManeuver_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1123,7 +1123,7 @@ func (ptr *QGeoRouteReply) ErrorString() string {
 
 func (ptr *QGeoRouteReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRouteReply_IsFinished(ptr.Pointer()) != 0
+		return int8(C.QGeoRouteReply_IsFinished(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1315,7 +1315,7 @@ func callbackQGeoRouteReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QGeoRouteReply) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRouteReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoRouteReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1331,7 +1331,7 @@ func callbackQGeoRouteReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QGeoRouteReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRouteReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoRouteReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2412,7 +2412,7 @@ func (ptr *QGeoRouteSegment) Path() []*positioning.QGeoCoordinate {
 
 func (ptr *QGeoRouteSegment) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRouteSegment_IsValid(ptr.Pointer()) != 0
+		return int8(C.QGeoRouteSegment_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -2928,7 +2928,7 @@ func callbackQGeoRoutingManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QGeoRoutingManager) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRoutingManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoRoutingManager_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -2944,7 +2944,7 @@ func callbackQGeoRoutingManager_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QGeoRoutingManager) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRoutingManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoRoutingManager_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3703,7 +3703,7 @@ func callbackQGeoRoutingManagerEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer
 
 func (ptr *QGeoRoutingManagerEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRoutingManagerEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoRoutingManagerEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -3719,7 +3719,7 @@ func callbackQGeoRoutingManagerEngine_EventFilter(ptr unsafe.Pointer, watched un
 
 func (ptr *QGeoRoutingManagerEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRoutingManagerEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoRoutingManagerEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4449,7 +4449,7 @@ func callbackQGeoServiceProvider_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QGeoServiceProvider) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoServiceProvider_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGeoServiceProvider_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4465,7 +4465,7 @@ func callbackQGeoServiceProvider_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QGeoServiceProvider) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoServiceProvider_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGeoServiceProvider_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

@@ -9,10 +9,8 @@
 #include <QAbstractItemModel>
 #include <QAbstractItemModelTester>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChildEvent>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QEvent>
 #include <QExtensionFactory>
@@ -26,7 +24,6 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QOffscreenSurface>
-#include <QPaintDevice>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
 #include <QPoint>
@@ -35,8 +32,6 @@
 #include <QSignalSpy>
 #include <QString>
 #include <QTestEventList>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVector>
 #include <QWidget>

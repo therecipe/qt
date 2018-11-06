@@ -34,7 +34,6 @@
 #include <QBitmap>
 #include <QBrush>
 #include <QByteArray>
-#include <QCamera>
 #include <QCameraImageCapture>
 #include <QChar>
 #include <QChildEvent>
@@ -44,7 +43,6 @@
 #include <QConicalGradient>
 #include <QContextMenuEvent>
 #include <QCursor>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDataStream>
 #include <QDesktopServices>
@@ -210,7 +208,6 @@
 #include <QScrollEvent>
 #include <QScrollPrepareEvent>
 #include <QSessionManager>
-#include <QShortcut>
 #include <QShortcutEvent>
 #include <QShowEvent>
 #include <QSize>
@@ -220,7 +217,6 @@
 #include <QStaticText>
 #include <QStatusTipEvent>
 #include <QString>
-#include <QStyle>
 #include <QStyleHints>
 #include <QSurface>
 #include <QSurfaceFormat>
@@ -255,8 +251,6 @@
 #include <QTextTableCell>
 #include <QTextTableCellFormat>
 #include <QTextTableFormat>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QTouchDevice>
 #include <QTouchEvent>
@@ -268,7 +262,6 @@
 #include <QVector2D>
 #include <QVector3D>
 #include <QVector4D>
-#include <QWhatsThis>
 #include <QWhatsThisClickedEvent>
 #include <QWheelEvent>
 #include <QWidget>

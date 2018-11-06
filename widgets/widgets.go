@@ -706,14 +706,14 @@ func (ptr *QAbstractButton) Text() string {
 
 func (ptr *QAbstractButton) AutoExclusive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_AutoExclusive(ptr.Pointer()) != 0
+		return int8(C.QAbstractButton_AutoExclusive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractButton) AutoRepeat() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_AutoRepeat(ptr.Pointer()) != 0
+		return int8(C.QAbstractButton_AutoRepeat(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -750,35 +750,35 @@ func (ptr *QAbstractButton) DisconnectHitButton() {
 
 func (ptr *QAbstractButton) HitButton(pos core.QPoint_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_HitButton(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
+		return int8(C.QAbstractButton_HitButton(ptr.Pointer(), core.PointerFromQPoint(pos))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractButton) HitButtonDefault(pos core.QPoint_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_HitButtonDefault(ptr.Pointer(), core.PointerFromQPoint(pos)) != 0
+		return int8(C.QAbstractButton_HitButtonDefault(ptr.Pointer(), core.PointerFromQPoint(pos))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractButton) IsCheckable() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_IsCheckable(ptr.Pointer()) != 0
+		return int8(C.QAbstractButton_IsCheckable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractButton) IsChecked() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_IsChecked(ptr.Pointer()) != 0
+		return int8(C.QAbstractButton_IsChecked(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractButton) IsDown() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractButton_IsDown(ptr.Pointer()) != 0
+		return int8(C.QAbstractButton_IsDown(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1110,14 +1110,14 @@ func (ptr *QAbstractItemDelegate) DisconnectEditorEvent() {
 
 func (ptr *QAbstractItemDelegate) EditorEvent(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_EditorEvent(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemDelegate_EditorEvent(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemDelegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -1154,14 +1154,14 @@ func (ptr *QAbstractItemDelegate) DisconnectHelpEvent() {
 
 func (ptr *QAbstractItemDelegate) HelpEvent(event gui.QHelpEvent_ITF, view QAbstractItemView_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_HelpEvent(ptr.Pointer(), gui.PointerFromQHelpEvent(event), PointerFromQAbstractItemView(view), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemDelegate_HelpEvent(ptr.Pointer(), gui.PointerFromQHelpEvent(event), PointerFromQAbstractItemView(view), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemDelegate) HelpEventDefault(event gui.QHelpEvent_ITF, view QAbstractItemView_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), PointerFromQAbstractItemView(view), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), PointerFromQAbstractItemView(view), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -1770,7 +1770,7 @@ func callbackQAbstractItemDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QAbstractItemDelegate) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAbstractItemDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1786,7 +1786,7 @@ func callbackQAbstractItemDelegate_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QAbstractItemDelegate) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractItemDelegate_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2127,14 +2127,14 @@ func (ptr *QAbstractItemView) DisconnectEdit2() {
 
 func (ptr *QAbstractItemView) Edit2(index core.QModelIndex_ITF, trigger QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_Edit2(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractItemView_Edit2(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) Edit2Default(index core.QModelIndex_ITF, trigger QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractItemView_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4135,28 +4135,28 @@ func (ptr *QAbstractItemView) TextElideMode() core.Qt__TextElideMode {
 
 func (ptr *QAbstractItemView) AlternatingRowColors() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_AlternatingRowColors(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_AlternatingRowColors(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) DragDropOverwriteMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_DragDropOverwriteMode(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_DragDropOverwriteMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) DragEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_DragEnabled(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_DragEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) HasAutoScroll() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_HasAutoScroll(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_HasAutoScroll(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4193,28 +4193,28 @@ func (ptr *QAbstractItemView) DisconnectIsIndexHidden() {
 
 func (ptr *QAbstractItemView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) IsPersistentEditorOpen(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_IsPersistentEditorOpen(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QAbstractItemView_IsPersistentEditorOpen(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) ShowDropIndicator() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_ShowDropIndicator(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_ShowDropIndicator(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractItemView) TabKeyNavigation() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemView_TabKeyNavigation(ptr.Pointer()) != 0
+		return int8(C.QAbstractItemView_TabKeyNavigation(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4527,14 +4527,14 @@ func (ptr *QAbstractScrollArea) DisconnectViewportEvent() {
 
 func (ptr *QAbstractScrollArea) ViewportEvent(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractScrollArea_ViewportEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractScrollArea_ViewportEvent(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractScrollArea) ViewportEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractScrollArea_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAbstractScrollArea_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5484,28 +5484,28 @@ func (ptr *QAbstractSlider) Orientation() core.Qt__Orientation {
 
 func (ptr *QAbstractSlider) HasTracking() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSlider_HasTracking(ptr.Pointer()) != 0
+		return int8(C.QAbstractSlider_HasTracking(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSlider) InvertedAppearance() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSlider_InvertedAppearance(ptr.Pointer()) != 0
+		return int8(C.QAbstractSlider_InvertedAppearance(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSlider) InvertedControls() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSlider_InvertedControls(ptr.Pointer()) != 0
+		return int8(C.QAbstractSlider_InvertedControls(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSlider) IsSliderDown() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSlider_IsSliderDown(ptr.Pointer()) != 0
+		return int8(C.QAbstractSlider_IsSliderDown(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6146,49 +6146,49 @@ func (ptr *QAbstractSpinBox) Alignment() core.Qt__AlignmentFlag {
 
 func (ptr *QAbstractSpinBox) HasAcceptableInput() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_HasAcceptableInput(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_HasAcceptableInput(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) HasFrame() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_HasFrame(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_HasFrame(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) IsAccelerated() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_IsAccelerated(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_IsAccelerated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) IsGroupSeparatorShown() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_IsGroupSeparatorShown(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_IsGroupSeparatorShown(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) KeyboardTracking() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_KeyboardTracking(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_KeyboardTracking(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractSpinBox) Wrapping() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractSpinBox_Wrapping(ptr.Pointer()) != 0
+		return int8(C.QAbstractSpinBox_Wrapping(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7017,14 +7017,14 @@ func (ptr *QAccessibleWidget) DisconnectIsValid() {
 
 func (ptr *QAccessibleWidget) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QAccessibleWidget_IsValid(ptr.Pointer()) != 0
+		return int8(C.QAccessibleWidget_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAccessibleWidget) IsValidDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QAccessibleWidget_IsValidDefault(ptr.Pointer()) != 0
+		return int8(C.QAccessibleWidget_IsValidDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7443,14 +7443,14 @@ func callbackQAction_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QAction) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QAction_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) ShowStatusText(widget QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_ShowStatusText(ptr.Pointer(), PointerFromQWidget(widget)) != 0
+		return int8(C.QAction_ShowStatusText(ptr.Pointer(), PointerFromQWidget(widget))) != 0
 	}
 	return false
 }
@@ -8283,56 +8283,56 @@ func (ptr *QAction) ShortcutContext() core.Qt__ShortcutContext {
 
 func (ptr *QAction) AutoRepeat() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_AutoRepeat(ptr.Pointer()) != 0
+		return int8(C.QAction_AutoRepeat(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsCheckable() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsCheckable(ptr.Pointer()) != 0
+		return int8(C.QAction_IsCheckable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsChecked() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsChecked(ptr.Pointer()) != 0
+		return int8(C.QAction_IsChecked(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QAction_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsIconVisibleInMenu() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsIconVisibleInMenu(ptr.Pointer()) != 0
+		return int8(C.QAction_IsIconVisibleInMenu(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsSeparator() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsSeparator(ptr.Pointer()) != 0
+		return int8(C.QAction_IsSeparator(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsShortcutVisibleInContextMenu() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsShortcutVisibleInContextMenu(ptr.Pointer()) != 0
+		return int8(C.QAction_IsShortcutVisibleInContextMenu(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QAction) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QAction_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8547,7 +8547,7 @@ func callbackQAction_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QAction) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAction_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QAction_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9130,21 +9130,21 @@ func (ptr *QActionGroup) Actions() []*QAction {
 
 func (ptr *QActionGroup) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QActionGroup_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QActionGroup_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QActionGroup) IsExclusive() bool {
 	if ptr.Pointer() != nil {
-		return C.QActionGroup_IsExclusive(ptr.Pointer()) != 0
+		return int8(C.QActionGroup_IsExclusive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QActionGroup) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QActionGroup_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QActionGroup_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9300,7 +9300,7 @@ func callbackQActionGroup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QActionGroup) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QActionGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QActionGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -9316,7 +9316,7 @@ func callbackQActionGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QActionGroup) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QActionGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QActionGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -9898,17 +9898,17 @@ func callbackQApplication_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QApplication) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func QApplication_IsEffectEnabled(effect core.Qt__UIEffect) bool {
-	return C.QApplication_QApplication_IsEffectEnabled(C.longlong(effect)) != 0
+	return int8(C.QApplication_QApplication_IsEffectEnabled(C.longlong(effect))) != 0
 }
 
 func (ptr *QApplication) IsEffectEnabled(effect core.Qt__UIEffect) bool {
-	return C.QApplication_QApplication_IsEffectEnabled(C.longlong(effect)) != 0
+	return int8(C.QApplication_QApplication_IsEffectEnabled(C.longlong(effect))) != 0
 }
 
 func QApplication_CursorFlashTime() int {
@@ -10417,14 +10417,14 @@ func (ptr *QApplication) DisconnectAutoSipEnabled() {
 
 func (ptr *QApplication) AutoSipEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QApplication_AutoSipEnabled(ptr.Pointer()) != 0
+		return int8(C.QApplication_AutoSipEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QApplication) AutoSipEnabledDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QApplication_AutoSipEnabledDefault(ptr.Pointer()) != 0
+		return int8(C.QApplication_AutoSipEnabledDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10757,7 +10757,7 @@ func callbackQApplication_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QApplication) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QApplication_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QApplication_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10976,14 +10976,14 @@ func (ptr *QBoxLayout) TakeAtDefault(index int) *QLayoutItem {
 
 func (ptr *QBoxLayout) SetStretchFactor2(layout QLayout_ITF, stretch int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxLayout_SetStretchFactor2(ptr.Pointer(), PointerFromQLayout(layout), C.int(int32(stretch))) != 0
+		return int8(C.QBoxLayout_SetStretchFactor2(ptr.Pointer(), PointerFromQLayout(layout), C.int(int32(stretch)))) != 0
 	}
 	return false
 }
 
 func (ptr *QBoxLayout) SetStretchFactor(widget QWidget_ITF, stretch int) bool {
 	if ptr.Pointer() != nil {
-		return C.QBoxLayout_SetStretchFactor(ptr.Pointer(), PointerFromQWidget(widget), C.int(int32(stretch))) != 0
+		return int8(C.QBoxLayout_SetStretchFactor(ptr.Pointer(), PointerFromQWidget(widget), C.int(int32(stretch)))) != 0
 	}
 	return false
 }
@@ -11832,7 +11832,7 @@ func (ptr *QButtonGroup) Buttons() []*QAbstractButton {
 
 func (ptr *QButtonGroup) Exclusive() bool {
 	if ptr.Pointer() != nil {
-		return C.QButtonGroup_Exclusive(ptr.Pointer()) != 0
+		return int8(C.QButtonGroup_Exclusive(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12002,7 +12002,7 @@ func callbackQButtonGroup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QButtonGroup) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QButtonGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QButtonGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -12018,7 +12018,7 @@ func callbackQButtonGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QButtonGroup) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QButtonGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QButtonGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13047,21 +13047,21 @@ func (ptr *QCalendarWidget) FirstDayOfWeek() core.Qt__DayOfWeek {
 
 func (ptr *QCalendarWidget) IsDateEditEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QCalendarWidget_IsDateEditEnabled(ptr.Pointer()) != 0
+		return int8(C.QCalendarWidget_IsDateEditEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCalendarWidget) IsGridVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QCalendarWidget_IsGridVisible(ptr.Pointer()) != 0
+		return int8(C.QCalendarWidget_IsGridVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QCalendarWidget) IsNavigationBarVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QCalendarWidget_IsNavigationBarVisible(ptr.Pointer()) != 0
+		return int8(C.QCalendarWidget_IsNavigationBarVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13388,7 +13388,7 @@ func (ptr *QCheckBox) CheckState() core.Qt__CheckState {
 
 func (ptr *QCheckBox) IsTristate() bool {
 	if ptr.Pointer() != nil {
-		return C.QCheckBox_IsTristate(ptr.Pointer()) != 0
+		return int8(C.QCheckBox_IsTristate(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13756,7 +13756,7 @@ func (ptr *QColorDialog) Options() QColorDialog__ColorDialogOption {
 
 func (ptr *QColorDialog) TestOption(option QColorDialog__ColorDialogOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QColorDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QColorDialog_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -14614,21 +14614,21 @@ func (ptr *QColumnView) DisconnectIsIndexHidden() {
 
 func (ptr *QColumnView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QColumnView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QColumnView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QColumnView) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QColumnView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QColumnView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QColumnView) ResizeGripsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QColumnView_ResizeGripsVisible(ptr.Pointer()) != 0
+		return int8(C.QColumnView_ResizeGripsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15857,21 +15857,21 @@ func (ptr *QComboBox) ItemData(index int, role int) *core.QVariant {
 
 func (ptr *QComboBox) DuplicatesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_DuplicatesEnabled(ptr.Pointer()) != 0
+		return int8(C.QComboBox_DuplicatesEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QComboBox) HasFrame() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_HasFrame(ptr.Pointer()) != 0
+		return int8(C.QComboBox_HasFrame(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QComboBox) IsEditable() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_IsEditable(ptr.Pointer()) != 0
+		return int8(C.QComboBox_IsEditable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16908,7 +16908,7 @@ func callbackQCompleter_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char {
 
 func (ptr *QCompleter) EventDefault(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCompleter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QCompleter_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
@@ -16924,14 +16924,14 @@ func callbackQCompleter_EventFilter(ptr unsafe.Pointer, o unsafe.Pointer, e unsa
 
 func (ptr *QCompleter) EventFilterDefault(o core.QObject_ITF, e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCompleter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e)) != 0
+		return int8(C.QCompleter_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(o), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QCompleter) SetCurrentRow(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QCompleter_SetCurrentRow(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QCompleter_SetCurrentRow(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
@@ -17541,7 +17541,7 @@ func (ptr *QCompleter) FilterMode() core.Qt__MatchFlag {
 
 func (ptr *QCompleter) WrapAround() bool {
 	if ptr.Pointer() != nil {
-		return C.QCompleter_WrapAround(ptr.Pointer()) != 0
+		return int8(C.QCompleter_WrapAround(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -17952,14 +17952,14 @@ func (ptr *QDataWidgetMapper) DisconnectSubmit() {
 
 func (ptr *QDataWidgetMapper) Submit() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataWidgetMapper_Submit(ptr.Pointer()) != 0
+		return int8(C.QDataWidgetMapper_Submit(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDataWidgetMapper) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataWidgetMapper_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QDataWidgetMapper_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -18606,7 +18606,7 @@ func callbackQDataWidgetMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QDataWidgetMapper) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDataWidgetMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDataWidgetMapper_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -18622,7 +18622,7 @@ func callbackQDataWidgetMapper_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QDataWidgetMapper) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDataWidgetMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDataWidgetMapper_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -19629,7 +19629,7 @@ func (ptr *QDateTimeEdit) TimeSpec() core.Qt__TimeSpec {
 
 func (ptr *QDateTimeEdit) CalendarPopup() bool {
 	if ptr.Pointer() != nil {
-		return C.QDateTimeEdit_CalendarPopup(ptr.Pointer()) != 0
+		return int8(C.QDateTimeEdit_CalendarPopup(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -19855,7 +19855,7 @@ func (ptr *QDesktopWidget) WorkAreaResized(screen int) {
 
 func (ptr *QDesktopWidget) IsVirtualDesktop() bool {
 	if ptr.Pointer() != nil {
-		return C.QDesktopWidget_IsVirtualDesktop(ptr.Pointer()) != 0
+		return int8(C.QDesktopWidget_IsVirtualDesktop(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20115,14 +20115,14 @@ func (ptr *QDial) DestroyQDialDefault() {
 
 func (ptr *QDial) NotchesVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QDial_NotchesVisible(ptr.Pointer()) != 0
+		return int8(C.QDial_NotchesVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDial) Wrapping() bool {
 	if ptr.Pointer() != nil {
-		return C.QDial_Wrapping(ptr.Pointer()) != 0
+		return int8(C.QDial_Wrapping(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -20640,7 +20640,7 @@ func (ptr *QDialog) DestroyQDialogDefault() {
 
 func (ptr *QDialog) IsSizeGripEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QDialog_IsSizeGripEnabled(ptr.Pointer()) != 0
+		return int8(C.QDialog_IsSizeGripEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -21101,7 +21101,7 @@ func (ptr *QDialogButtonBox) Orientation() core.Qt__Orientation {
 
 func (ptr *QDialogButtonBox) CenterButtons() bool {
 	if ptr.Pointer() != nil {
-		return C.QDialogButtonBox_CenterButtons(ptr.Pointer()) != 0
+		return int8(C.QDialogButtonBox_CenterButtons(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -21275,21 +21275,21 @@ func callbackQDirModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, act
 
 func (ptr *QDirModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) Remove(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_Remove(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QDirModel_Remove(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) Rmdir(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_Rmdir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QDirModel_Rmdir(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -21305,7 +21305,7 @@ func callbackQDirModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value u
 
 func (ptr *QDirModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QDirModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -21793,35 +21793,35 @@ func callbackQDirModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.
 
 func (ptr *QDirModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) IsDir(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_IsDir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QDirModel_IsDir(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QDirModel_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) LazyChildCount() bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_LazyChildCount(ptr.Pointer()) != 0
+		return int8(C.QDirModel_LazyChildCount(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QDirModel) ResolveSymlinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_ResolveSymlinks(ptr.Pointer()) != 0
+		return int8(C.QDirModel_ResolveSymlinks(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -22378,7 +22378,7 @@ func callbackQDirModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.i
 
 func (ptr *QDirModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22394,7 +22394,7 @@ func callbackQDirModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, pa
 
 func (ptr *QDirModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22410,7 +22410,7 @@ func callbackQDirModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Point
 
 func (ptr *QDirModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QDirModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -22426,7 +22426,7 @@ func callbackQDirModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer,
 
 func (ptr *QDirModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QDirModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -22442,7 +22442,7 @@ func callbackQDirModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.i
 
 func (ptr *QDirModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22458,7 +22458,7 @@ func callbackQDirModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, pa
 
 func (ptr *QDirModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22474,7 +22474,7 @@ func callbackQDirModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientat
 
 func (ptr *QDirModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QDirModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -22504,13 +22504,13 @@ func callbackQDirModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointer, rol
 
 func (ptr *QDirModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QDirModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQDirModelFromPointer(NewQDirModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -22526,7 +22526,7 @@ func callbackQDirModel_Submit(ptr unsafe.Pointer) C.char {
 
 func (ptr *QDirModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QDirModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -22927,7 +22927,7 @@ func callbackQDirModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, 
 
 func (ptr *QDirModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22943,7 +22943,7 @@ func callbackQDirModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C
 
 func (ptr *QDirModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QDirModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -22959,7 +22959,7 @@ func callbackQDirModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QDirModel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QDirModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -22975,7 +22975,7 @@ func callbackQDirModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QDirModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDirModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QDirModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -23482,14 +23482,14 @@ func (ptr *QDockWidget) AllowedAreas() core.Qt__DockWidgetArea {
 
 func (ptr *QDockWidget) IsAreaAllowed(area core.Qt__DockWidgetArea) bool {
 	if ptr.Pointer() != nil {
-		return C.QDockWidget_IsAreaAllowed(ptr.Pointer(), C.longlong(area)) != 0
+		return int8(C.QDockWidget_IsAreaAllowed(ptr.Pointer(), C.longlong(area))) != 0
 	}
 	return false
 }
 
 func (ptr *QDockWidget) IsFloating() bool {
 	if ptr.Pointer() != nil {
-		return C.QDockWidget_IsFloating(ptr.Pointer()) != 0
+		return int8(C.QDockWidget_IsFloating(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -24663,7 +24663,7 @@ func (ptr *QFileDialog) GetSaveFileUrl(parent QWidget_ITF, caption string, dir c
 
 func (ptr *QFileDialog) RestoreState(state core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state)) != 0
+		return int8(C.QFileDialog_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state))) != 0
 	}
 	return false
 }
@@ -25596,35 +25596,35 @@ func (ptr *QFileDialog) DirectoryUrl() *core.QUrl {
 
 func (ptr *QFileDialog) ConfirmOverwrite() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_ConfirmOverwrite(ptr.Pointer()) != 0
+		return int8(C.QFileDialog_ConfirmOverwrite(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDialog) IsNameFilterDetailsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_IsNameFilterDetailsVisible(ptr.Pointer()) != 0
+		return int8(C.QFileDialog_IsNameFilterDetailsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDialog) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QFileDialog_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDialog) ResolveSymlinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_ResolveSymlinks(ptr.Pointer()) != 0
+		return int8(C.QFileDialog_ResolveSymlinks(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDialog) TestOption(option QFileDialog__Option) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QFileDialog_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -26141,7 +26141,7 @@ func callbackQFileSystemModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Point
 
 func (ptr *QFileSystemModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -26157,21 +26157,21 @@ func callbackQFileSystemModel_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.
 
 func (ptr *QFileSystemModel) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QFileSystemModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) Remove(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_Remove(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QFileSystemModel_Remove(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) Rmdir(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_Rmdir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QFileSystemModel_Rmdir(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -26187,7 +26187,7 @@ func callbackQFileSystemModel_SetData(ptr unsafe.Pointer, idx unsafe.Pointer, va
 
 func (ptr *QFileSystemModel) SetDataDefault(idx core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(idx), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QFileSystemModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(idx), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -26851,7 +26851,7 @@ func callbackQFileSystemModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Poi
 
 func (ptr *QFileSystemModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -26867,35 +26867,35 @@ func callbackQFileSystemModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Poin
 
 func (ptr *QFileSystemModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) IsDir(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_IsDir(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QFileSystemModel_IsDir(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QFileSystemModel_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) NameFilterDisables() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_NameFilterDisables(ptr.Pointer()) != 0
+		return int8(C.QFileSystemModel_NameFilterDisables(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QFileSystemModel) ResolveSymlinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_ResolveSymlinks(ptr.Pointer()) != 0
+		return int8(C.QFileSystemModel_ResolveSymlinks(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -27459,7 +27459,7 @@ func callbackQFileSystemModel_InsertColumns(ptr unsafe.Pointer, column C.int, co
 
 func (ptr *QFileSystemModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -27475,7 +27475,7 @@ func callbackQFileSystemModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.
 
 func (ptr *QFileSystemModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -27491,7 +27491,7 @@ func callbackQFileSystemModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsaf
 
 func (ptr *QFileSystemModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QFileSystemModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -27507,7 +27507,7 @@ func callbackQFileSystemModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.P
 
 func (ptr *QFileSystemModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QFileSystemModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -27523,7 +27523,7 @@ func callbackQFileSystemModel_RemoveColumns(ptr unsafe.Pointer, column C.int, co
 
 func (ptr *QFileSystemModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -27539,7 +27539,7 @@ func callbackQFileSystemModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.
 
 func (ptr *QFileSystemModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -27555,7 +27555,7 @@ func callbackQFileSystemModel_SetHeaderData(ptr unsafe.Pointer, section C.int, o
 
 func (ptr *QFileSystemModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QFileSystemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -27585,13 +27585,13 @@ func callbackQFileSystemModel_SetItemData(ptr unsafe.Pointer, index unsafe.Point
 
 func (ptr *QFileSystemModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QFileSystemModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQFileSystemModelFromPointer(NewQFileSystemModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -27607,7 +27607,7 @@ func callbackQFileSystemModel_Submit(ptr unsafe.Pointer) C.char {
 
 func (ptr *QFileSystemModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QFileSystemModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -27975,7 +27975,7 @@ func callbackQFileSystemModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Po
 
 func (ptr *QFileSystemModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QFileSystemModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -27991,7 +27991,7 @@ func callbackQFileSystemModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 
 func (ptr *QFileSystemModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileSystemModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QFileSystemModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -28696,7 +28696,7 @@ func (ptr *QFontDialog) Options() QFontDialog__FontDialogOption {
 
 func (ptr *QFontDialog) TestOption(option QFontDialog__FontDialogOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QFontDialog_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -29664,7 +29664,7 @@ func (ptr *QGesture) GestureType() core.Qt__GestureType {
 
 func (ptr *QGesture) HasHotSpot() bool {
 	if ptr.Pointer() != nil {
-		return C.QGesture_HasHotSpot(ptr.Pointer()) != 0
+		return int8(C.QGesture_HasHotSpot(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -29799,7 +29799,7 @@ func callbackQGesture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QGesture) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGesture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -29815,7 +29815,7 @@ func callbackQGesture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, ev
 
 func (ptr *QGesture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGesture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -30133,14 +30133,14 @@ func (ptr *QGestureEvent) Widget() *QWidget {
 
 func (ptr *QGestureEvent) IsAccepted(gesture QGesture_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGestureEvent_IsAccepted(ptr.Pointer(), PointerFromQGesture(gesture)) != 0
+		return int8(C.QGestureEvent_IsAccepted(ptr.Pointer(), PointerFromQGesture(gesture))) != 0
 	}
 	return false
 }
 
 func (ptr *QGestureEvent) IsAccepted2(gestureType core.Qt__GestureType) bool {
 	if ptr.Pointer() != nil {
-		return C.QGestureEvent_IsAccepted2(ptr.Pointer(), C.longlong(gestureType)) != 0
+		return int8(C.QGestureEvent_IsAccepted2(ptr.Pointer(), C.longlong(gestureType))) != 0
 	}
 	return false
 }
@@ -30231,7 +30231,7 @@ func (ptr *QGestureEvent) __gestures_newList() unsafe.Pointer {
 
 func (ptr *QGestureEvent) __m_accepted_atList(v core.Qt__GestureType, i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QGestureEvent___m_accepted_atList(ptr.Pointer(), C.longlong(v), C.int(int32(i))) != 0
+		return int8(C.QGestureEvent___m_accepted_atList(ptr.Pointer(), C.longlong(v), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -30262,7 +30262,7 @@ func (ptr *QGestureEvent) __m_accepted_keyList() []core.Qt__GestureType {
 
 func (ptr *QGestureEvent) __setM_accepted__atList(v core.Qt__GestureType, i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QGestureEvent___setM_accepted__atList(ptr.Pointer(), C.longlong(v), C.int(int32(i))) != 0
+		return int8(C.QGestureEvent___setM_accepted__atList(ptr.Pointer(), C.longlong(v), C.int(int32(i)))) != 0
 	}
 	return false
 }
@@ -31021,7 +31021,7 @@ func callbackQGraphicsAnchor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QGraphicsAnchor) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsAnchor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGraphicsAnchor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -31037,7 +31037,7 @@ func callbackQGraphicsAnchor_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QGraphicsAnchor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsAnchor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsAnchor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -33158,14 +33158,14 @@ func (ptr *QGraphicsEffect) SourceBoundingRect(system core.Qt__CoordinateSystem)
 
 func (ptr *QGraphicsEffect) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsEffect_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QGraphicsEffect_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsEffect) SourceIsPixmap() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsEffect_SourceIsPixmap(ptr.Pointer()) != 0
+		return int8(C.QGraphicsEffect_SourceIsPixmap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -33300,7 +33300,7 @@ func callbackQGraphicsEffect_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QGraphicsEffect) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsEffect_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGraphicsEffect_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -33316,7 +33316,7 @@ func callbackQGraphicsEffect_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QGraphicsEffect) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsEffect_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -34368,14 +34368,14 @@ func (ptr *QGraphicsItem) DisconnectSceneEvent() {
 
 func (ptr *QGraphicsItem) SceneEvent(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_SceneEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsItem_SceneEvent(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) SceneEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsItem_SceneEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -34412,14 +34412,14 @@ func (ptr *QGraphicsItem) DisconnectSceneEventFilter() {
 
 func (ptr *QGraphicsItem) SceneEventFilter(watched QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_SceneEventFilter(ptr.Pointer(), PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsItem_SceneEventFilter(ptr.Pointer(), PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) SceneEventFilterDefault(watched QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_SceneEventFilterDefault(ptr.Pointer(), PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsItem_SceneEventFilterDefault(ptr.Pointer(), PointerFromQGraphicsItem(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -36571,21 +36571,21 @@ func (ptr *QGraphicsItem) AcceptedMouseButtons() core.Qt__MouseButton {
 
 func (ptr *QGraphicsItem) AcceptDrops() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_AcceptDrops(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_AcceptDrops(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) AcceptHoverEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_AcceptHoverEvents(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_AcceptHoverEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) AcceptTouchEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_AcceptTouchEvents(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_AcceptTouchEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -36622,14 +36622,14 @@ func (ptr *QGraphicsItem) DisconnectCollidesWithItem() {
 
 func (ptr *QGraphicsItem) CollidesWithItem(other QGraphicsItem_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_CollidesWithItem(ptr.Pointer(), PointerFromQGraphicsItem(other), C.longlong(mode)) != 0
+		return int8(C.QGraphicsItem_CollidesWithItem(ptr.Pointer(), PointerFromQGraphicsItem(other), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) CollidesWithItemDefault(other QGraphicsItem_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_CollidesWithItemDefault(ptr.Pointer(), PointerFromQGraphicsItem(other), C.longlong(mode)) != 0
+		return int8(C.QGraphicsItem_CollidesWithItemDefault(ptr.Pointer(), PointerFromQGraphicsItem(other), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -36666,14 +36666,14 @@ func (ptr *QGraphicsItem) DisconnectCollidesWithPath() {
 
 func (ptr *QGraphicsItem) CollidesWithPath(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_CollidesWithPath(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)) != 0
+		return int8(C.QGraphicsItem_CollidesWithPath(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) CollidesWithPathDefault(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode)) != 0
+		return int8(C.QGraphicsItem_CollidesWithPathDefault(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.longlong(mode))) != 0
 	}
 	return false
 }
@@ -36710,77 +36710,77 @@ func (ptr *QGraphicsItem) DisconnectContains() {
 
 func (ptr *QGraphicsItem) Contains(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QGraphicsItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) ContainsDefault(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QGraphicsItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) FiltersChildEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_FiltersChildEvents(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_FiltersChildEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) HasCursor() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_HasCursor(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_HasCursor(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) HasFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_HasFocus(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_HasFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsActive(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsAncestorOf(child QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsAncestorOf(ptr.Pointer(), PointerFromQGraphicsItem(child)) != 0
+		return int8(C.QGraphicsItem_IsAncestorOf(ptr.Pointer(), PointerFromQGraphicsItem(child))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsClipped() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsClipped(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsClipped(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsObscured(rect core.QRectF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsObscured(ptr.Pointer(), core.PointerFromQRectF(rect)) != 0
+		return int8(C.QGraphicsItem_IsObscured(ptr.Pointer(), core.PointerFromQRectF(rect))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsObscured2(x float64, y float64, w float64, h float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsObscured2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h)) != 0
+		return int8(C.QGraphicsItem_IsObscured2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))) != 0
 	}
 	return false
 }
@@ -36817,63 +36817,63 @@ func (ptr *QGraphicsItem) DisconnectIsObscuredBy() {
 
 func (ptr *QGraphicsItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
+		return int8(C.QGraphicsItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsObscuredByDefault(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsObscuredByDefault(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
+		return int8(C.QGraphicsItem_IsObscuredByDefault(ptr.Pointer(), PointerFromQGraphicsItem(item))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsPanel() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsPanel(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsPanel(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsSelected(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsSelected(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsUnderMouse() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsUnderMouse(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsUnderMouse(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsVisibleTo(parent QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsVisibleTo(ptr.Pointer(), PointerFromQGraphicsItem(parent)) != 0
+		return int8(C.QGraphicsItem_IsVisibleTo(ptr.Pointer(), PointerFromQGraphicsItem(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsWidget() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsWidget(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsWidget(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsItem) IsWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItem_IsWindow(ptr.Pointer()) != 0
+		return int8(C.QGraphicsItem_IsWindow(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -37619,7 +37619,7 @@ func callbackQGraphicsItemAnimation_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 
 func (ptr *QGraphicsItemAnimation) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItemAnimation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGraphicsItemAnimation_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -37635,7 +37635,7 @@ func callbackQGraphicsItemAnimation_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QGraphicsItemAnimation) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItemAnimation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsItemAnimation_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -38209,7 +38209,7 @@ func (ptr *QGraphicsLayout) ItemAt(i int) *QGraphicsLayoutItem {
 
 func (ptr *QGraphicsLayout) IsActivated() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsLayout_IsActivated(ptr.Pointer()) != 0
+		return int8(C.QGraphicsLayout_IsActivated(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -38669,14 +38669,14 @@ func (ptr *QGraphicsLayoutItem) SizePolicy() *QSizePolicy {
 
 func (ptr *QGraphicsLayoutItem) IsLayout() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsLayoutItem_IsLayout(ptr.Pointer()) != 0
+		return int8(C.QGraphicsLayoutItem_IsLayout(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsLayoutItem) OwnedByLayout() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsLayoutItem_OwnedByLayout(ptr.Pointer()) != 0
+		return int8(C.QGraphicsLayoutItem_OwnedByLayout(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -39498,14 +39498,14 @@ func (ptr *QGraphicsObject) DisconnectEvent() {
 
 func (ptr *QGraphicsObject) Event(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QGraphicsObject_Event(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsObject) EventDefault(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QGraphicsObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
@@ -40024,7 +40024,7 @@ func (ptr *QGraphicsObject) SetGraphicsEffect(effect QGraphicsEffect_ITF) {
 
 func (ptr *QGraphicsObject) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QGraphicsObject_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40123,7 +40123,7 @@ func (ptr *QGraphicsObject) SetTransformOriginPoint(transformOriginPoint core.QP
 
 func (ptr *QGraphicsObject) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QGraphicsObject_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -40287,14 +40287,14 @@ func callbackQGraphicsObject_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QGraphicsObject) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsObject_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsObject) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsObject_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -42847,7 +42847,7 @@ func callbackQGraphicsScene_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.ch
 
 func (ptr *QGraphicsScene) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsScene_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -42863,7 +42863,7 @@ func callbackQGraphicsScene_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 
 func (ptr *QGraphicsScene) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsScene_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -42900,21 +42900,21 @@ func (ptr *QGraphicsScene) DisconnectFocusNextPrevChild() {
 
 func (ptr *QGraphicsScene) FocusNextPrevChild(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QGraphicsScene_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QGraphicsScene_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) SendEvent(item QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_SendEvent(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsScene_SendEvent(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -44559,28 +44559,28 @@ func (ptr *QGraphicsScene) InputMethodQueryDefault(query core.Qt__InputMethodQue
 
 func (ptr *QGraphicsScene) HasFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_HasFocus(ptr.Pointer()) != 0
+		return int8(C.QGraphicsScene_HasFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_IsActive(ptr.Pointer()) != 0
+		return int8(C.QGraphicsScene_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) IsSortCacheEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_IsSortCacheEnabled(ptr.Pointer()) != 0
+		return int8(C.QGraphicsScene_IsSortCacheEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) StickyFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_StickyFocus(ptr.Pointer()) != 0
+		return int8(C.QGraphicsScene_StickyFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -46903,14 +46903,14 @@ func (ptr *QGraphicsTextItem) TextInteractionFlags() core.Qt__TextInteractionFla
 
 func (ptr *QGraphicsTextItem) OpenExternalLinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsTextItem_OpenExternalLinks(ptr.Pointer()) != 0
+		return int8(C.QGraphicsTextItem_OpenExternalLinks(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsTextItem) TabChangesFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsTextItem_TabChangesFocus(ptr.Pointer()) != 0
+		return int8(C.QGraphicsTextItem_TabChangesFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -47277,7 +47277,7 @@ func callbackQGraphicsTransform_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QGraphicsTransform) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsTransform_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QGraphicsTransform_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -47293,7 +47293,7 @@ func callbackQGraphicsTransform_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QGraphicsTransform) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsTransform_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsTransform_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -48451,14 +48451,14 @@ func (ptr *QGraphicsView) RubberBandSelectionMode() core.Qt__ItemSelectionMode {
 
 func (ptr *QGraphicsView) IsInteractive() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsView_IsInteractive(ptr.Pointer()) != 0
+		return int8(C.QGraphicsView_IsInteractive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsView) IsTransformed() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsView_IsTransformed(ptr.Pointer()) != 0
+		return int8(C.QGraphicsView_IsTransformed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -48691,14 +48691,14 @@ func (ptr *QGraphicsWidget) DisconnectClose() {
 
 func (ptr *QGraphicsWidget) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_Close(ptr.Pointer()) != 0
+		return int8(C.QGraphicsWidget_Close(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QGraphicsWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -48735,14 +48735,14 @@ func (ptr *QGraphicsWidget) DisconnectFocusNextPrevChild() {
 
 func (ptr *QGraphicsWidget) FocusNextPrevChild(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QGraphicsWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QGraphicsWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -48779,14 +48779,14 @@ func (ptr *QGraphicsWidget) DisconnectWindowFrameEvent() {
 
 func (ptr *QGraphicsWidget) WindowFrameEvent(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_WindowFrameEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsWidget_WindowFrameEvent(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) WindowFrameEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QGraphicsWidget_WindowFrameEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -49884,21 +49884,21 @@ func (ptr *QGraphicsWidget) WindowType() core.Qt__WindowType {
 
 func (ptr *QGraphicsWidget) AutoFillBackground() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_AutoFillBackground(ptr.Pointer()) != 0
+		return int8(C.QGraphicsWidget_AutoFillBackground(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) IsActiveWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_IsActiveWindow(ptr.Pointer()) != 0
+		return int8(C.QGraphicsWidget_IsActiveWindow(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) TestAttribute(attribute core.Qt__WidgetAttribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_TestAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
+		return int8(C.QGraphicsWidget_TestAttribute(ptr.Pointer(), C.longlong(attribute))) != 0
 	}
 	return false
 }
@@ -50832,21 +50832,21 @@ func (ptr *QGroupBox) Alignment() core.Qt__AlignmentFlag {
 
 func (ptr *QGroupBox) IsCheckable() bool {
 	if ptr.Pointer() != nil {
-		return C.QGroupBox_IsCheckable(ptr.Pointer()) != 0
+		return int8(C.QGroupBox_IsCheckable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGroupBox) IsChecked() bool {
 	if ptr.Pointer() != nil {
-		return C.QGroupBox_IsChecked(ptr.Pointer()) != 0
+		return int8(C.QGroupBox_IsChecked(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QGroupBox) IsFlat() bool {
 	if ptr.Pointer() != nil {
-		return C.QGroupBox_IsFlat(ptr.Pointer()) != 0
+		return int8(C.QGroupBox_IsFlat(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -51018,7 +51018,7 @@ func NewQHeaderView(orientation core.Qt__Orientation, parent QWidget_ITF) *QHead
 
 func (ptr *QHeaderView) RestoreState(state core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state)) != 0
+		return int8(C.QHeaderView_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state))) != 0
 	}
 	return false
 }
@@ -52146,70 +52146,70 @@ func (ptr *QHeaderView) SortIndicatorOrder() core.Qt__SortOrder {
 
 func (ptr *QHeaderView) CascadingSectionResizes() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_CascadingSectionResizes(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_CascadingSectionResizes(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) HighlightSections() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_HighlightSections(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_HighlightSections(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) IsFirstSectionMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_IsFirstSectionMovable(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_IsFirstSectionMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) IsSectionHidden(logicalIndex int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_IsSectionHidden(ptr.Pointer(), C.int(int32(logicalIndex))) != 0
+		return int8(C.QHeaderView_IsSectionHidden(ptr.Pointer(), C.int(int32(logicalIndex)))) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) IsSortIndicatorShown() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_IsSortIndicatorShown(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_IsSortIndicatorShown(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) SectionsClickable() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_SectionsClickable(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_SectionsClickable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) SectionsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_SectionsHidden(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_SectionsHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) SectionsMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_SectionsMovable(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_SectionsMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) SectionsMoved() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_SectionsMoved(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_SectionsMoved(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) StretchLastSection() bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_StretchLastSection(ptr.Pointer()) != 0
+		return int8(C.QHeaderView_StretchLastSection(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -52630,14 +52630,14 @@ func callbackQHeaderView_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Pointer)
 
 func (ptr *QHeaderView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QHeaderView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QHeaderView) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHeaderView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QHeaderView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -53450,14 +53450,14 @@ func (ptr *QInputDialog) ComboBoxItems() []string {
 
 func (ptr *QInputDialog) IsComboBoxEditable() bool {
 	if ptr.Pointer() != nil {
-		return C.QInputDialog_IsComboBoxEditable(ptr.Pointer()) != 0
+		return int8(C.QInputDialog_IsComboBoxEditable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QInputDialog) TestOption(option QInputDialog__InputDialogOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QInputDialog_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QInputDialog_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -53686,7 +53686,7 @@ func (ptr *QItemDelegate) SizeHintDefault(option QStyleOptionViewItem_ITF, index
 
 func (ptr *QItemDelegate) HasClipping() bool {
 	if ptr.Pointer() != nil {
-		return C.QItemDelegate_HasClipping(ptr.Pointer()) != 0
+		return int8(C.QItemDelegate_HasClipping(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -54555,7 +54555,7 @@ func callbackQKeyEventTransition_EventTest(ptr unsafe.Pointer, event unsafe.Poin
 
 func (ptr *QKeyEventTransition) EventTestDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QKeyEventTransition_EventTestDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QKeyEventTransition_EventTestDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -54840,7 +54840,7 @@ func callbackQKeyEventTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QKeyEventTransition) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QKeyEventTransition_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QKeyEventTransition_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -54880,7 +54880,7 @@ func callbackQKeyEventTransition_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QKeyEventTransition) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QKeyEventTransition_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QKeyEventTransition_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -55805,21 +55805,21 @@ func (ptr *QLCDNumber) SegmentStyle() QLCDNumber__SegmentStyle {
 
 func (ptr *QLCDNumber) CheckOverflow(num float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QLCDNumber_CheckOverflow(ptr.Pointer(), C.double(num)) != 0
+		return int8(C.QLCDNumber_CheckOverflow(ptr.Pointer(), C.double(num))) != 0
 	}
 	return false
 }
 
 func (ptr *QLCDNumber) CheckOverflow2(num int) bool {
 	if ptr.Pointer() != nil {
-		return C.QLCDNumber_CheckOverflow2(ptr.Pointer(), C.int(int32(num))) != 0
+		return int8(C.QLCDNumber_CheckOverflow2(ptr.Pointer(), C.int(int32(num)))) != 0
 	}
 	return false
 }
 
 func (ptr *QLCDNumber) SmallDecimalPoint() bool {
 	if ptr.Pointer() != nil {
-		return C.QLCDNumber_SmallDecimalPoint(ptr.Pointer()) != 0
+		return int8(C.QLCDNumber_SmallDecimalPoint(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -56461,28 +56461,28 @@ func (ptr *QLabel) TextInteractionFlags() core.Qt__TextInteractionFlag {
 
 func (ptr *QLabel) HasScaledContents() bool {
 	if ptr.Pointer() != nil {
-		return C.QLabel_HasScaledContents(ptr.Pointer()) != 0
+		return int8(C.QLabel_HasScaledContents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLabel) HasSelectedText() bool {
 	if ptr.Pointer() != nil {
-		return C.QLabel_HasSelectedText(ptr.Pointer()) != 0
+		return int8(C.QLabel_HasSelectedText(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLabel) OpenExternalLinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QLabel_OpenExternalLinks(ptr.Pointer()) != 0
+		return int8(C.QLabel_OpenExternalLinks(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLabel) WordWrap() bool {
 	if ptr.Pointer() != nil {
-		return C.QLabel_WordWrap(ptr.Pointer()) != 0
+		return int8(C.QLabel_WordWrap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -56707,21 +56707,21 @@ func (ptr *QLayout) TrUtf8(s string, c string, n int) string {
 
 func (ptr *QLayout) Activate() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_Activate(ptr.Pointer()) != 0
+		return int8(C.QLayout_Activate(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) SetAlignment2(l QLayout_ITF, alignment core.Qt__AlignmentFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_SetAlignment2(ptr.Pointer(), PointerFromQLayout(l), C.longlong(alignment)) != 0
+		return int8(C.QLayout_SetAlignment2(ptr.Pointer(), PointerFromQLayout(l), C.longlong(alignment))) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) SetAlignment(w QWidget_ITF, alignment core.Qt__AlignmentFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_SetAlignment(ptr.Pointer(), PointerFromQWidget(w), C.longlong(alignment)) != 0
+		return int8(C.QLayout_SetAlignment(ptr.Pointer(), PointerFromQWidget(w), C.longlong(alignment))) != 0
 	}
 	return false
 }
@@ -57230,21 +57230,21 @@ func (ptr *QLayout) DisconnectIsEmpty() {
 
 func (ptr *QLayout) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QLayout_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) IsEmptyDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_IsEmptyDefault(ptr.Pointer()) != 0
+		return int8(C.QLayout_IsEmptyDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QLayout_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -57501,14 +57501,14 @@ func callbackQLayout_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QLayout) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLayout_Event(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QLayout_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -57524,14 +57524,14 @@ func callbackQLayout_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QLayout) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLayout_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QLayout) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -58283,14 +58283,14 @@ func (ptr *QLayoutItem) DisconnectHasHeightForWidth() {
 
 func (ptr *QLayoutItem) HasHeightForWidth() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayoutItem_HasHeightForWidth(ptr.Pointer()) != 0
+		return int8(C.QLayoutItem_HasHeightForWidth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLayoutItem) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayoutItem_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QLayoutItem_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -58327,7 +58327,7 @@ func (ptr *QLayoutItem) DisconnectIsEmpty() {
 
 func (ptr *QLayoutItem) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QLayoutItem_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QLayoutItem_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -59406,63 +59406,63 @@ func (ptr *QLineEdit) CursorMoveStyle() core.Qt__CursorMoveStyle {
 
 func (ptr *QLineEdit) DragEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_DragEnabled(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_DragEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) HasAcceptableInput() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_HasAcceptableInput(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_HasAcceptableInput(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) HasFrame() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_HasFrame(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_HasFrame(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) HasSelectedText() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_HasSelectedText(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_HasSelectedText(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) IsClearButtonEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_IsClearButtonEnabled(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_IsClearButtonEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) IsModified() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_IsModified(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_IsModified(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) IsRedoAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_IsRedoAvailable(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_IsRedoAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QLineEdit) IsUndoAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QLineEdit_IsUndoAvailable(ptr.Pointer()) != 0
+		return int8(C.QLineEdit_IsUndoAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -60441,49 +60441,49 @@ func (ptr *QListView) DisconnectIsIndexHidden() {
 
 func (ptr *QListView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QListView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QListView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) IsRowHidden(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_IsRowHidden(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QListView_IsRowHidden(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) IsSelectionRectVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_IsSelectionRectVisible(ptr.Pointer()) != 0
+		return int8(C.QListView_IsSelectionRectVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) IsWrapping() bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_IsWrapping(ptr.Pointer()) != 0
+		return int8(C.QListView_IsWrapping(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) UniformItemSizes() bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_UniformItemSizes(ptr.Pointer()) != 0
+		return int8(C.QListView_UniformItemSizes(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QListView) WordWrap() bool {
 	if ptr.Pointer() != nil {
-		return C.QListView_WordWrap(ptr.Pointer()) != 0
+		return int8(C.QListView_WordWrap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -60701,14 +60701,14 @@ func (ptr *QListWidget) DisconnectDropMimeData() {
 
 func (ptr *QListWidget) DropMimeData(index int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidget_DropMimeData(ptr.Pointer(), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QListWidget_DropMimeData(ptr.Pointer(), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
 
 func (ptr *QListWidget) DropMimeDataDefault(index int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidget_DropMimeDataDefault(ptr.Pointer(), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QListWidget_DropMimeDataDefault(ptr.Pointer(), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
@@ -61634,14 +61634,14 @@ func (ptr *QListWidget) SupportedDropActionsDefault() core.Qt__DropAction {
 
 func (ptr *QListWidget) IsPersistentEditorOpen(item QListWidgetItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQListWidgetItem(item)) != 0
+		return int8(C.QListWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQListWidgetItem(item))) != 0
 	}
 	return false
 }
 
 func (ptr *QListWidget) IsSortingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidget_IsSortingEnabled(ptr.Pointer()) != 0
+		return int8(C.QListWidget_IsSortingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -62234,14 +62234,14 @@ func (ptr *QListWidgetItem) Flags() core.Qt__ItemFlag {
 
 func (ptr *QListWidgetItem) IsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidgetItem_IsHidden(ptr.Pointer()) != 0
+		return int8(C.QListWidgetItem_IsHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QListWidgetItem) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidgetItem_IsSelected(ptr.Pointer()) != 0
+		return int8(C.QListWidgetItem_IsSelected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -62647,14 +62647,14 @@ func (ptr *QMainWindow) TakeCentralWidget() *QWidget {
 
 func (ptr *QMainWindow) RestoreDockWidget(dockwidget QDockWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_RestoreDockWidget(ptr.Pointer(), PointerFromQDockWidget(dockwidget)) != 0
+		return int8(C.QMainWindow_RestoreDockWidget(ptr.Pointer(), PointerFromQDockWidget(dockwidget))) != 0
 	}
 	return false
 }
 
 func (ptr *QMainWindow) RestoreState(state core.QByteArray_ITF, version int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state), C.int(int32(version))) != 0
+		return int8(C.QMainWindow_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state), C.int(int32(version)))) != 0
 	}
 	return false
 }
@@ -63231,35 +63231,35 @@ func (ptr *QMainWindow) ToolButtonStyle() core.Qt__ToolButtonStyle {
 
 func (ptr *QMainWindow) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QMainWindow_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMainWindow) IsAnimated() bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_IsAnimated(ptr.Pointer()) != 0
+		return int8(C.QMainWindow_IsAnimated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMainWindow) IsDockNestingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_IsDockNestingEnabled(ptr.Pointer()) != 0
+		return int8(C.QMainWindow_IsDockNestingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMainWindow) ToolBarBreak(toolbar QToolBar_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_ToolBarBreak(ptr.Pointer(), PointerFromQToolBar(toolbar)) != 0
+		return int8(C.QMainWindow_ToolBarBreak(ptr.Pointer(), PointerFromQToolBar(toolbar))) != 0
 	}
 	return false
 }
 
 func (ptr *QMainWindow) UnifiedTitleAndToolBarOnMac() bool {
 	if ptr.Pointer() != nil {
-		return C.QMainWindow_UnifiedTitleAndToolBarOnMac(ptr.Pointer()) != 0
+		return int8(C.QMainWindow_UnifiedTitleAndToolBarOnMac(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -63964,28 +63964,28 @@ func (ptr *QMdiArea) TabShape() QTabWidget__TabShape {
 
 func (ptr *QMdiArea) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiArea_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QMdiArea_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiArea) TabsClosable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiArea_TabsClosable(ptr.Pointer()) != 0
+		return int8(C.QMdiArea_TabsClosable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiArea) TabsMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiArea_TabsMovable(ptr.Pointer()) != 0
+		return int8(C.QMdiArea_TabsMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiArea) TestOption(option QMdiArea__AreaOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiArea_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QMdiArea_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -64342,14 +64342,14 @@ func (ptr *QMdiSubWindow) Widget() *QWidget {
 
 func (ptr *QMdiSubWindow) IsShaded() bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiSubWindow_IsShaded(ptr.Pointer()) != 0
+		return int8(C.QMdiSubWindow_IsShaded(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiSubWindow) TestOption(option QMdiSubWindow__SubWindowOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiSubWindow_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QMdiSubWindow_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -65041,35 +65041,35 @@ func (ptr *QMenu) Title() string {
 
 func (ptr *QMenu) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QMenu_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) IsTearOffEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsTearOffEnabled(ptr.Pointer()) != 0
+		return int8(C.QMenu_IsTearOffEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) IsTearOffMenuVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsTearOffMenuVisible(ptr.Pointer()) != 0
+		return int8(C.QMenu_IsTearOffMenuVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) SeparatorsCollapsible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_SeparatorsCollapsible(ptr.Pointer()) != 0
+		return int8(C.QMenu_SeparatorsCollapsible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) ToolTipsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_ToolTipsVisible(ptr.Pointer()) != 0
+		return int8(C.QMenu_ToolTipsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -65465,14 +65465,14 @@ func (ptr *QMenuBar) CornerWidget(corner core.Qt__Corner) *QWidget {
 
 func (ptr *QMenuBar) IsDefaultUp() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenuBar_IsDefaultUp(ptr.Pointer()) != 0
+		return int8(C.QMenuBar_IsDefaultUp(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QMenuBar) IsNativeMenuBar() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenuBar_IsNativeMenuBar(ptr.Pointer()) != 0
+		return int8(C.QMenuBar_IsNativeMenuBar(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -66404,7 +66404,7 @@ func callbackQMouseEventTransition_EventTest(ptr unsafe.Pointer, event unsafe.Po
 
 func (ptr *QMouseEventTransition) EventTestDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMouseEventTransition_EventTestDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMouseEventTransition_EventTestDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -66704,7 +66704,7 @@ func callbackQMouseEventTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 
 func (ptr *QMouseEventTransition) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMouseEventTransition_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QMouseEventTransition_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -66744,7 +66744,7 @@ func callbackQMouseEventTransition_EventFilter(ptr unsafe.Pointer, watched unsaf
 
 func (ptr *QMouseEventTransition) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMouseEventTransition_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QMouseEventTransition_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -67323,7 +67323,7 @@ func (ptr *QOpenGLWidget) Format() *gui.QSurfaceFormat {
 
 func (ptr *QOpenGLWidget) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QOpenGLWidget_IsValid(ptr.Pointer()) != 0
+		return int8(C.QOpenGLWidget_IsValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -68404,7 +68404,7 @@ func callbackQPlainTextDocumentLayout_Event(ptr unsafe.Pointer, e unsafe.Pointer
 
 func (ptr *QPlainTextDocumentLayout) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextDocumentLayout_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QPlainTextDocumentLayout_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -68420,7 +68420,7 @@ func callbackQPlainTextDocumentLayout_EventFilter(ptr unsafe.Pointer, watched un
 
 func (ptr *QPlainTextDocumentLayout) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextDocumentLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QPlainTextDocumentLayout_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -68674,7 +68674,7 @@ func (ptr *QPlainTextEdit) LoadResourceDefault(ty int, name core.QUrl_ITF) *core
 
 func (ptr *QPlainTextEdit) Find2(exp core.QRegExp_ITF, options gui.QTextDocument__FindFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_Find2(ptr.Pointer(), core.PointerFromQRegExp(exp), C.longlong(options)) != 0
+		return int8(C.QPlainTextEdit_Find2(ptr.Pointer(), core.PointerFromQRegExp(exp), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -68686,7 +68686,7 @@ func (ptr *QPlainTextEdit) Find(exp string, options gui.QTextDocument__FindFlag)
 			expC = C.CString(exp)
 			defer C.free(unsafe.Pointer(expC))
 		}
-		return C.QPlainTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options)) != 0
+		return int8(C.QPlainTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options))) != 0
 	}
 	return false
 }
@@ -70098,7 +70098,7 @@ func (ptr *QPlainTextEdit) TextInteractionFlags() core.Qt__TextInteractionFlag {
 
 func (ptr *QPlainTextEdit) BackgroundVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_BackgroundVisible(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_BackgroundVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -70135,56 +70135,56 @@ func (ptr *QPlainTextEdit) DisconnectCanInsertFromMimeData() {
 
 func (ptr *QPlainTextEdit) CanInsertFromMimeData(source core.QMimeData_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_CanInsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source)) != 0
+		return int8(C.QPlainTextEdit_CanInsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) CanInsertFromMimeDataDefault(source core.QMimeData_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_CanInsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source)) != 0
+		return int8(C.QPlainTextEdit_CanInsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) CanPaste() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_CanPaste(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_CanPaste(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) CenterOnScroll() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_CenterOnScroll(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_CenterOnScroll(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) IsUndoRedoEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_IsUndoRedoEnabled(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_IsUndoRedoEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) OverwriteMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_OverwriteMode(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_OverwriteMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPlainTextEdit) TabChangesFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QPlainTextEdit_TabChangesFocus(ptr.Pointer()) != 0
+		return int8(C.QPlainTextEdit_TabChangesFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -70739,14 +70739,14 @@ func (ptr *QProgressBar) Orientation() core.Qt__Orientation {
 
 func (ptr *QProgressBar) InvertedAppearance() bool {
 	if ptr.Pointer() != nil {
-		return C.QProgressBar_InvertedAppearance(ptr.Pointer()) != 0
+		return int8(C.QProgressBar_InvertedAppearance(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QProgressBar) IsTextVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QProgressBar_IsTextVisible(ptr.Pointer()) != 0
+		return int8(C.QProgressBar_IsTextVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -71417,21 +71417,21 @@ func (ptr *QProgressDialog) LabelText() string {
 
 func (ptr *QProgressDialog) AutoClose() bool {
 	if ptr.Pointer() != nil {
-		return C.QProgressDialog_AutoClose(ptr.Pointer()) != 0
+		return int8(C.QProgressDialog_AutoClose(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QProgressDialog) AutoReset() bool {
 	if ptr.Pointer() != nil {
-		return C.QProgressDialog_AutoReset(ptr.Pointer()) != 0
+		return int8(C.QProgressDialog_AutoReset(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QProgressDialog) WasCanceled() bool {
 	if ptr.Pointer() != nil {
-		return C.QProgressDialog_WasCanceled(ptr.Pointer()) != 0
+		return int8(C.QProgressDialog_WasCanceled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -71873,21 +71873,21 @@ func (ptr *QPushButton) Menu() *QMenu {
 
 func (ptr *QPushButton) AutoDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPushButton_AutoDefault(ptr.Pointer()) != 0
+		return int8(C.QPushButton_AutoDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPushButton) IsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QPushButton_IsDefault(ptr.Pointer()) != 0
+		return int8(C.QPushButton_IsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QPushButton) IsFlat() bool {
 	if ptr.Pointer() != nil {
-		return C.QPushButton_IsFlat(ptr.Pointer()) != 0
+		return int8(C.QPushButton_IsFlat(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -72319,7 +72319,7 @@ func (ptr *QScrollArea) Alignment() core.Qt__AlignmentFlag {
 
 func (ptr *QScrollArea) WidgetResizable() bool {
 	if ptr.Pointer() != nil {
-		return C.QScrollArea_WidgetResizable(ptr.Pointer()) != 0
+		return int8(C.QScrollArea_WidgetResizable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -72613,17 +72613,17 @@ func (ptr *QScroller) GrabbedGesture(target core.QObject_ITF) core.Qt__GestureTy
 
 func (ptr *QScroller) HandleInput(input QScroller__Input, position core.QPointF_ITF, timestamp int64) bool {
 	if ptr.Pointer() != nil {
-		return C.QScroller_HandleInput(ptr.Pointer(), C.longlong(input), core.PointerFromQPointF(position), C.longlong(timestamp)) != 0
+		return int8(C.QScroller_HandleInput(ptr.Pointer(), C.longlong(input), core.PointerFromQPointF(position), C.longlong(timestamp))) != 0
 	}
 	return false
 }
 
 func QScroller_HasScroller(target core.QObject_ITF) bool {
-	return C.QScroller_QScroller_HasScroller(core.PointerFromQObject(target)) != 0
+	return int8(C.QScroller_QScroller_HasScroller(core.PointerFromQObject(target))) != 0
 }
 
 func (ptr *QScroller) HasScroller(target core.QObject_ITF) bool {
-	return C.QScroller_QScroller_HasScroller(core.PointerFromQObject(target)) != 0
+	return int8(C.QScroller_QScroller_HasScroller(core.PointerFromQObject(target))) != 0
 }
 
 func QScroller_Scroller2(target core.QObject_ITF) *QScroller {
@@ -73261,7 +73261,7 @@ func callbackQScroller_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QScroller) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScroller_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QScroller_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -73277,7 +73277,7 @@ func callbackQScroller_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QScroller) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScroller_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QScroller_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -73877,14 +73877,14 @@ func (ptr *QShortcut) Context() core.Qt__ShortcutContext {
 
 func (ptr *QShortcut) AutoRepeat() bool {
 	if ptr.Pointer() != nil {
-		return C.QShortcut_AutoRepeat(ptr.Pointer()) != 0
+		return int8(C.QShortcut_AutoRepeat(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QShortcut) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QShortcut_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QShortcut_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -74026,7 +74026,7 @@ func callbackQShortcut_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QShortcut) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QShortcut_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QShortcut_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -74042,7 +74042,7 @@ func callbackQShortcut_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QShortcut) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QShortcut_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QShortcut_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -74487,21 +74487,21 @@ func (ptr *QSizePolicy) ExpandingDirections() core.Qt__Orientation {
 
 func (ptr *QSizePolicy) HasHeightForWidth() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizePolicy_HasHeightForWidth(ptr.Pointer()) != 0
+		return int8(C.QSizePolicy_HasHeightForWidth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSizePolicy) HasWidthForHeight() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizePolicy_HasWidthForHeight(ptr.Pointer()) != 0
+		return int8(C.QSizePolicy_HasWidthForHeight(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSizePolicy) RetainSizeWhenHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QSizePolicy_RetainSizeWhenHidden(ptr.Pointer()) != 0
+		return int8(C.QSizePolicy_RetainSizeWhenHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -75079,14 +75079,14 @@ func (ptr *QSpacerItem) DisconnectIsEmpty() {
 
 func (ptr *QSpacerItem) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSpacerItem_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QSpacerItem_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSpacerItem) IsEmptyDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSpacerItem_IsEmptyDefault(ptr.Pointer()) != 0
+		return int8(C.QSpacerItem_IsEmptyDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -75948,7 +75948,7 @@ func (ptr *QSplitter) ReplaceWidget(index int, widget QWidget_ITF) *QWidget {
 
 func (ptr *QSplitter) RestoreState(state core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSplitter_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state)) != 0
+		return int8(C.QSplitter_RestoreState(ptr.Pointer(), core.PointerFromQByteArray(state))) != 0
 	}
 	return false
 }
@@ -76177,21 +76177,21 @@ func (ptr *QSplitter) Orientation() core.Qt__Orientation {
 
 func (ptr *QSplitter) ChildrenCollapsible() bool {
 	if ptr.Pointer() != nil {
-		return C.QSplitter_ChildrenCollapsible(ptr.Pointer()) != 0
+		return int8(C.QSplitter_ChildrenCollapsible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSplitter) IsCollapsible(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSplitter_IsCollapsible(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QSplitter_IsCollapsible(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
 
 func (ptr *QSplitter) OpaqueResize() bool {
 	if ptr.Pointer() != nil {
-		return C.QSplitter_OpaqueResize(ptr.Pointer()) != 0
+		return int8(C.QSplitter_OpaqueResize(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -76388,7 +76388,7 @@ func (ptr *QSplitterHandle) Orientation() core.Qt__Orientation {
 
 func (ptr *QSplitterHandle) OpaqueResize() bool {
 	if ptr.Pointer() != nil {
-		return C.QSplitterHandle_OpaqueResize(ptr.Pointer()) != 0
+		return int8(C.QSplitterHandle_OpaqueResize(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -77605,7 +77605,7 @@ func (ptr *QStatusBar) CurrentMessage() string {
 
 func (ptr *QStatusBar) IsSizeGripEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QStatusBar_IsSizeGripEnabled(ptr.Pointer()) != 0
+		return int8(C.QStatusBar_IsSizeGripEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -79549,7 +79549,7 @@ func callbackQStyle_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QStyle) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStyle_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QStyle_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -79565,7 +79565,7 @@ func callbackQStyle_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, even
 
 func (ptr *QStyle) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStyle_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QStyle_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -80573,7 +80573,7 @@ func (ptr *QStyleOptionComboBox) SetCurrentText(vqs string) {
 
 func (ptr *QStyleOptionComboBox) Editable() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionComboBox_Editable(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionComboBox_Editable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -80586,7 +80586,7 @@ func (ptr *QStyleOptionComboBox) SetEditable(vbo bool) {
 
 func (ptr *QStyleOptionComboBox) Frame() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionComboBox_Frame(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionComboBox_Frame(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -80805,7 +80805,7 @@ func NewQStyleOptionDockWidget2(other QStyleOptionDockWidget_ITF) *QStyleOptionD
 
 func (ptr *QStyleOptionDockWidget) Closable() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionDockWidget_Closable(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionDockWidget_Closable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -80818,7 +80818,7 @@ func (ptr *QStyleOptionDockWidget) SetClosable(vbo bool) {
 
 func (ptr *QStyleOptionDockWidget) Floatable() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionDockWidget_Floatable(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionDockWidget_Floatable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -80831,7 +80831,7 @@ func (ptr *QStyleOptionDockWidget) SetFloatable(vbo bool) {
 
 func (ptr *QStyleOptionDockWidget) Movable() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionDockWidget_Movable(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionDockWidget_Movable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -80862,7 +80862,7 @@ func (ptr *QStyleOptionDockWidget) SetTitle(vqs string) {
 
 func (ptr *QStyleOptionDockWidget) VerticalTitleBar() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionDockWidget_VerticalTitleBar(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionDockWidget_VerticalTitleBar(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -81704,7 +81704,7 @@ func (ptr *QStyleOptionMenuItem) SetCheckType(vqs QStyleOptionMenuItem__CheckTyp
 
 func (ptr *QStyleOptionMenuItem) Checked() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionMenuItem_Checked(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionMenuItem_Checked(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -81760,7 +81760,7 @@ func (ptr *QStyleOptionMenuItem) SetMaxIconWidth(vin int) {
 
 func (ptr *QStyleOptionMenuItem) MenuHasCheckableItems() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionMenuItem_MenuHasCheckableItems(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionMenuItem_MenuHasCheckableItems(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -81907,7 +81907,7 @@ func NewQStyleOptionProgressBar2(other QStyleOptionProgressBar_ITF) *QStyleOptio
 
 func (ptr *QStyleOptionProgressBar) BottomToTop() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionProgressBar_BottomToTop(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionProgressBar_BottomToTop(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -81920,7 +81920,7 @@ func (ptr *QStyleOptionProgressBar) SetBottomToTop(vbo bool) {
 
 func (ptr *QStyleOptionProgressBar) InvertedAppearance() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionProgressBar_InvertedAppearance(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionProgressBar_InvertedAppearance(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82003,7 +82003,7 @@ func (ptr *QStyleOptionProgressBar) SetTextAlignment(vqt core.Qt__AlignmentFlag)
 
 func (ptr *QStyleOptionProgressBar) TextVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionProgressBar_TextVisible(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionProgressBar_TextVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82091,7 +82091,7 @@ func NewQStyleOptionRubberBand2(other QStyleOptionRubberBand_ITF) *QStyleOptionR
 
 func (ptr *QStyleOptionRubberBand) Opaque() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionRubberBand_Opaque(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionRubberBand_Opaque(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82280,7 +82280,7 @@ func NewQStyleOptionSlider2(other QStyleOptionSlider_ITF) *QStyleOptionSlider {
 
 func (ptr *QStyleOptionSlider) DialWrapping() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionSlider_DialWrapping(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionSlider_DialWrapping(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82423,7 +82423,7 @@ func (ptr *QStyleOptionSlider) SetTickPosition(vqs QSlider__TickPosition) {
 
 func (ptr *QStyleOptionSlider) UpsideDown() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionSlider_UpsideDown(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionSlider_UpsideDown(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82524,7 +82524,7 @@ func (ptr *QStyleOptionSpinBox) SetButtonSymbols(vqa QAbstractSpinBox__ButtonSym
 
 func (ptr *QStyleOptionSpinBox) Frame() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionSpinBox_Frame(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionSpinBox_Frame(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82678,7 +82678,7 @@ func (ptr *QStyleOptionTab) SetCornerWidgets(vqs QStyleOptionTab__CornerWidget) 
 
 func (ptr *QStyleOptionTab) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionTab_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionTab_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -82909,7 +82909,7 @@ func NewQStyleOptionTabBarBase2(other QStyleOptionTabBarBase_ITF) *QStyleOptionT
 
 func (ptr *QStyleOptionTabBarBase) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionTabBarBase_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionTabBarBase_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -84087,7 +84087,7 @@ func (ptr *QStyleOptionViewItem) SetLocale(vql core.QLocale_ITF) {
 
 func (ptr *QStyleOptionViewItem) ShowDecorationSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleOptionViewItem_ShowDecorationSelected(ptr.Pointer()) != 0
+		return int8(C.QStyleOptionViewItem_ShowDecorationSelected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -84220,14 +84220,14 @@ func NewQStylePainter2(widget QWidget_ITF) *QStylePainter {
 
 func (ptr *QStylePainter) Begin2(pd gui.QPaintDevice_ITF, widget QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePainter_Begin2(ptr.Pointer(), gui.PointerFromQPaintDevice(pd), PointerFromQWidget(widget)) != 0
+		return int8(C.QStylePainter_Begin2(ptr.Pointer(), gui.PointerFromQPaintDevice(pd), PointerFromQWidget(widget))) != 0
 	}
 	return false
 }
 
 func (ptr *QStylePainter) Begin(widget QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePainter_Begin(ptr.Pointer(), PointerFromQWidget(widget)) != 0
+		return int8(C.QStylePainter_Begin(ptr.Pointer(), PointerFromQWidget(widget))) != 0
 	}
 	return false
 }
@@ -84716,7 +84716,7 @@ func callbackQStylePlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QStylePlugin) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QStylePlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -84732,7 +84732,7 @@ func callbackQStylePlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QStylePlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QStylePlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -85396,25 +85396,25 @@ func callbackQSystemTrayIcon_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QSystemTrayIcon) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSystemTrayIcon_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSystemTrayIcon_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func QSystemTrayIcon_IsSystemTrayAvailable() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
+	return int8(C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable()) != 0
 }
 
 func (ptr *QSystemTrayIcon) IsSystemTrayAvailable() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable() != 0
+	return int8(C.QSystemTrayIcon_QSystemTrayIcon_IsSystemTrayAvailable()) != 0
 }
 
 func QSystemTrayIcon_SupportsMessages() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages() != 0
+	return int8(C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages()) != 0
 }
 
 func (ptr *QSystemTrayIcon) SupportsMessages() bool {
-	return C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages() != 0
+	return int8(C.QSystemTrayIcon_QSystemTrayIcon_SupportsMessages()) != 0
 }
 
 //export callbackQSystemTrayIcon_Activated
@@ -85852,7 +85852,7 @@ func (ptr *QSystemTrayIcon) ToolTip() string {
 
 func (ptr *QSystemTrayIcon) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QSystemTrayIcon_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QSystemTrayIcon_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -85987,7 +85987,7 @@ func callbackQSystemTrayIcon_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QSystemTrayIcon) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSystemTrayIcon_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSystemTrayIcon_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -86999,63 +86999,63 @@ func (ptr *QTabBar) ElideMode() core.Qt__TextElideMode {
 
 func (ptr *QTabBar) AutoHide() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_AutoHide(ptr.Pointer()) != 0
+		return int8(C.QTabBar_AutoHide(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) ChangeCurrentOnDrag() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_ChangeCurrentOnDrag(ptr.Pointer()) != 0
+		return int8(C.QTabBar_ChangeCurrentOnDrag(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QTabBar_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) DrawBase() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_DrawBase(ptr.Pointer()) != 0
+		return int8(C.QTabBar_DrawBase(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) Expanding() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_Expanding(ptr.Pointer()) != 0
+		return int8(C.QTabBar_Expanding(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) IsMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_IsMovable(ptr.Pointer()) != 0
+		return int8(C.QTabBar_IsMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) IsTabEnabled(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_IsTabEnabled(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QTabBar_IsTabEnabled(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) TabsClosable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_TabsClosable(ptr.Pointer()) != 0
+		return int8(C.QTabBar_TabsClosable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabBar) UsesScrollButtons() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabBar_UsesScrollButtons(ptr.Pointer()) != 0
+		return int8(C.QTabBar_UsesScrollButtons(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -87801,42 +87801,42 @@ func (ptr *QTabWidget) ElideMode() core.Qt__TextElideMode {
 
 func (ptr *QTabWidget) DocumentMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_DocumentMode(ptr.Pointer()) != 0
+		return int8(C.QTabWidget_DocumentMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabWidget) IsMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_IsMovable(ptr.Pointer()) != 0
+		return int8(C.QTabWidget_IsMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabWidget) IsTabEnabled(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_IsTabEnabled(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QTabWidget_IsTabEnabled(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
 
 func (ptr *QTabWidget) TabBarAutoHide() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_TabBarAutoHide(ptr.Pointer()) != 0
+		return int8(C.QTabWidget_TabBarAutoHide(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabWidget) TabsClosable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_TabsClosable(ptr.Pointer()) != 0
+		return int8(C.QTabWidget_TabsClosable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTabWidget) UsesScrollButtons() bool {
 	if ptr.Pointer() != nil {
-		return C.QTabWidget_UsesScrollButtons(ptr.Pointer()) != 0
+		return int8(C.QTabWidget_UsesScrollButtons(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -89090,14 +89090,14 @@ func (ptr *QTableView) GridStyle() core.Qt__PenStyle {
 
 func (ptr *QTableView) IsColumnHidden(column int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsColumnHidden(ptr.Pointer(), C.int(int32(column))) != 0
+		return int8(C.QTableView_IsColumnHidden(ptr.Pointer(), C.int(int32(column)))) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) IsCornerButtonEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsCornerButtonEnabled(ptr.Pointer()) != 0
+		return int8(C.QTableView_IsCornerButtonEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -89134,42 +89134,42 @@ func (ptr *QTableView) DisconnectIsIndexHidden() {
 
 func (ptr *QTableView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QTableView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QTableView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) IsRowHidden(row int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsRowHidden(ptr.Pointer(), C.int(int32(row))) != 0
+		return int8(C.QTableView_IsRowHidden(ptr.Pointer(), C.int(int32(row)))) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) IsSortingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_IsSortingEnabled(ptr.Pointer()) != 0
+		return int8(C.QTableView_IsSortingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) ShowGrid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_ShowGrid(ptr.Pointer()) != 0
+		return int8(C.QTableView_ShowGrid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTableView) WordWrap() bool {
 	if ptr.Pointer() != nil {
-		return C.QTableView_WordWrap(ptr.Pointer()) != 0
+		return int8(C.QTableView_WordWrap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -89500,14 +89500,14 @@ func (ptr *QTableWidget) DisconnectDropMimeData() {
 
 func (ptr *QTableWidget) DropMimeData(row int, column int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableWidget_DropMimeData(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QTableWidget_DropMimeData(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
 
 func (ptr *QTableWidget) DropMimeDataDefault(row int, column int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableWidget_DropMimeDataDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QTableWidget_DropMimeDataDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
@@ -90863,7 +90863,7 @@ func (ptr *QTableWidget) SupportedDropActionsDefault() core.Qt__DropAction {
 
 func (ptr *QTableWidget) IsPersistentEditorOpen(item QTableWidgetItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTableWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTableWidgetItem(item)) != 0
+		return int8(C.QTableWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTableWidgetItem(item))) != 0
 	}
 	return false
 }
@@ -91511,7 +91511,7 @@ func (ptr *QTableWidgetItem) Flags() core.Qt__ItemFlag {
 
 func (ptr *QTableWidgetItem) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QTableWidgetItem_IsSelected(ptr.Pointer()) != 0
+		return int8(C.QTableWidgetItem_IsSelected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -92507,28 +92507,28 @@ func (ptr *QTextBrowser) Source() *core.QUrl {
 
 func (ptr *QTextBrowser) IsBackwardAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_IsBackwardAvailable(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_IsBackwardAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextBrowser) IsForwardAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_IsForwardAvailable(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_IsForwardAvailable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextBrowser) OpenExternalLinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_OpenExternalLinks(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_OpenExternalLinks(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextBrowser) OpenLinks() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_OpenLinks(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_OpenLinks(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -92549,7 +92549,7 @@ func (ptr *QTextBrowser) ForwardHistoryCount() int {
 
 func (ptr *QTextBrowser) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -92562,7 +92562,7 @@ func (ptr *QTextBrowser) SetReadOnly(readOnly bool) {
 
 func (ptr *QTextBrowser) IsUndoRedoEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextBrowser_IsUndoRedoEnabled(ptr.Pointer()) != 0
+		return int8(C.QTextBrowser_IsUndoRedoEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -92726,7 +92726,7 @@ func (ptr *QTextEdit) LoadResourceDefault(ty int, name core.QUrl_ITF) *core.QVar
 
 func (ptr *QTextEdit) Find2(exp core.QRegExp_ITF, options gui.QTextDocument__FindFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_Find2(ptr.Pointer(), core.PointerFromQRegExp(exp), C.longlong(options)) != 0
+		return int8(C.QTextEdit_Find2(ptr.Pointer(), core.PointerFromQRegExp(exp), C.longlong(options))) != 0
 	}
 	return false
 }
@@ -92738,7 +92738,7 @@ func (ptr *QTextEdit) Find(exp string, options gui.QTextDocument__FindFlag) bool
 			expC = C.CString(exp)
 			defer C.free(unsafe.Pointer(expC))
 		}
-		return C.QTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options)) != 0
+		return int8(C.QTextEdit_Find(ptr.Pointer(), C.struct_QtWidgets_PackedString{data: expC, len: C.longlong(len(exp))}, C.longlong(options))) != 0
 	}
 	return false
 }
@@ -94584,7 +94584,7 @@ func (ptr *QTextEdit) TextInteractionFlags() core.Qt__TextInteractionFlag {
 
 func (ptr *QTextEdit) AcceptRichText() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_AcceptRichText(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_AcceptRichText(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -94621,63 +94621,63 @@ func (ptr *QTextEdit) DisconnectCanInsertFromMimeData() {
 
 func (ptr *QTextEdit) CanInsertFromMimeData(source core.QMimeData_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_CanInsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source)) != 0
+		return int8(C.QTextEdit_CanInsertFromMimeData(ptr.Pointer(), core.PointerFromQMimeData(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) CanInsertFromMimeDataDefault(source core.QMimeData_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_CanInsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source)) != 0
+		return int8(C.QTextEdit_CanInsertFromMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(source))) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) CanPaste() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_CanPaste(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_CanPaste(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) FontItalic() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_FontItalic(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_FontItalic(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) FontUnderline() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_FontUnderline(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_FontUnderline(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_IsReadOnly(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_IsReadOnly(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) IsUndoRedoEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_IsUndoRedoEnabled(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_IsUndoRedoEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) OverwriteMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_OverwriteMode(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_OverwriteMode(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTextEdit) TabChangesFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextEdit_TabChangesFocus(ptr.Pointer()) != 0
+		return int8(C.QTextEdit_TabChangesFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -95639,28 +95639,28 @@ func (ptr *QToolBar) ToolButtonStyle() core.Qt__ToolButtonStyle {
 
 func (ptr *QToolBar) IsAreaAllowed(area core.Qt__ToolBarArea) bool {
 	if ptr.Pointer() != nil {
-		return C.QToolBar_IsAreaAllowed(ptr.Pointer(), C.longlong(area)) != 0
+		return int8(C.QToolBar_IsAreaAllowed(ptr.Pointer(), C.longlong(area))) != 0
 	}
 	return false
 }
 
 func (ptr *QToolBar) IsFloatable() bool {
 	if ptr.Pointer() != nil {
-		return C.QToolBar_IsFloatable(ptr.Pointer()) != 0
+		return int8(C.QToolBar_IsFloatable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QToolBar) IsFloating() bool {
 	if ptr.Pointer() != nil {
-		return C.QToolBar_IsFloating(ptr.Pointer()) != 0
+		return int8(C.QToolBar_IsFloating(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QToolBar) IsMovable() bool {
 	if ptr.Pointer() != nil {
-		return C.QToolBar_IsMovable(ptr.Pointer()) != 0
+		return int8(C.QToolBar_IsMovable(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -96099,7 +96099,7 @@ func (ptr *QToolBox) Widget(index int) *QWidget {
 
 func (ptr *QToolBox) IsItemEnabled(index int) bool {
 	if ptr.Pointer() != nil {
-		return C.QToolBox_IsItemEnabled(ptr.Pointer(), C.int(int32(index))) != 0
+		return int8(C.QToolBox_IsItemEnabled(ptr.Pointer(), C.int(int32(index)))) != 0
 	}
 	return false
 }
@@ -96504,7 +96504,7 @@ func (ptr *QToolButton) ToolButtonStyle() core.Qt__ToolButtonStyle {
 
 func (ptr *QToolButton) AutoRaise() bool {
 	if ptr.Pointer() != nil {
-		return C.QToolButton_AutoRaise(ptr.Pointer()) != 0
+		return int8(C.QToolButton_AutoRaise(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -96594,11 +96594,11 @@ func (ptr *QToolTip) Text() string {
 }
 
 func QToolTip_IsVisible() bool {
-	return C.QToolTip_QToolTip_IsVisible() != 0
+	return int8(C.QToolTip_QToolTip_IsVisible()) != 0
 }
 
 func (ptr *QToolTip) IsVisible() bool {
-	return C.QToolTip_QToolTip_IsVisible() != 0
+	return int8(C.QToolTip_QToolTip_IsVisible()) != 0
 }
 
 func QToolTip_HideText() {
@@ -98185,49 +98185,49 @@ func (ptr *QTreeView) VisualRegionForSelectionDefault(selection core.QItemSelect
 
 func (ptr *QTreeView) AllColumnsShowFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_AllColumnsShowFocus(ptr.Pointer()) != 0
+		return int8(C.QTreeView_AllColumnsShowFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) ExpandsOnDoubleClick() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_ExpandsOnDoubleClick(ptr.Pointer()) != 0
+		return int8(C.QTreeView_ExpandsOnDoubleClick(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsAnimated() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsAnimated(ptr.Pointer()) != 0
+		return int8(C.QTreeView_IsAnimated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsColumnHidden(column int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsColumnHidden(ptr.Pointer(), C.int(int32(column))) != 0
+		return int8(C.QTreeView_IsColumnHidden(ptr.Pointer(), C.int(int32(column)))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsExpanded(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsExpanded(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QTreeView_IsExpanded(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsFirstColumnSpanned(row int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsFirstColumnSpanned(ptr.Pointer(), C.int(int32(row)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QTreeView_IsFirstColumnSpanned(ptr.Pointer(), C.int(int32(row)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsHeaderHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsHeaderHidden(ptr.Pointer()) != 0
+		return int8(C.QTreeView_IsHeaderHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -98264,56 +98264,56 @@ func (ptr *QTreeView) DisconnectIsIndexHidden() {
 
 func (ptr *QTreeView) IsIndexHidden(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QTreeView_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QTreeView_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsRowHidden(row int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsRowHidden(ptr.Pointer(), C.int(int32(row)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QTreeView_IsRowHidden(ptr.Pointer(), C.int(int32(row)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) IsSortingEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_IsSortingEnabled(ptr.Pointer()) != 0
+		return int8(C.QTreeView_IsSortingEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) ItemsExpandable() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_ItemsExpandable(ptr.Pointer()) != 0
+		return int8(C.QTreeView_ItemsExpandable(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) RootIsDecorated() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_RootIsDecorated(ptr.Pointer()) != 0
+		return int8(C.QTreeView_RootIsDecorated(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) UniformRowHeights() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_UniformRowHeights(ptr.Pointer()) != 0
+		return int8(C.QTreeView_UniformRowHeights(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeView) WordWrap() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeView_WordWrap(ptr.Pointer()) != 0
+		return int8(C.QTreeView_WordWrap(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -98637,14 +98637,14 @@ func (ptr *QTreeWidget) DisconnectDropMimeData() {
 
 func (ptr *QTreeWidget) DropMimeData(parent QTreeWidgetItem_ITF, index int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidget_DropMimeData(ptr.Pointer(), PointerFromQTreeWidgetItem(parent), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QTreeWidget_DropMimeData(ptr.Pointer(), PointerFromQTreeWidgetItem(parent), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidget) DropMimeDataDefault(parent QTreeWidgetItem_ITF, index int, data core.QMimeData_ITF, action core.Qt__DropAction) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidget_DropMimeDataDefault(ptr.Pointer(), PointerFromQTreeWidgetItem(parent), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action)) != 0
+		return int8(C.QTreeWidget_DropMimeDataDefault(ptr.Pointer(), PointerFromQTreeWidgetItem(parent), C.int(int32(index)), core.PointerFromQMimeData(data), C.longlong(action))) != 0
 	}
 	return false
 }
@@ -99674,14 +99674,14 @@ func (ptr *QTreeWidget) SupportedDropActionsDefault() core.Qt__DropAction {
 
 func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidget_IsFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item)) != 0
+		return int8(C.QTreeWidget_IsFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item))) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidget) IsPersistentEditorOpen(item QTreeWidgetItem_ITF, column int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(int32(column))) != 0
+		return int8(C.QTreeWidget_IsPersistentEditorOpen(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(int32(column)))) != 0
 	}
 	return false
 }
@@ -100468,35 +100468,35 @@ func (ptr *QTreeWidgetItem) Flags() core.Qt__ItemFlag {
 
 func (ptr *QTreeWidgetItem) IsDisabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidgetItem_IsDisabled(ptr.Pointer()) != 0
+		return int8(C.QTreeWidgetItem_IsDisabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidgetItem) IsExpanded() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidgetItem_IsExpanded(ptr.Pointer()) != 0
+		return int8(C.QTreeWidgetItem_IsExpanded(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidgetItem) IsFirstColumnSpanned() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidgetItem_IsFirstColumnSpanned(ptr.Pointer()) != 0
+		return int8(C.QTreeWidgetItem_IsFirstColumnSpanned(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidgetItem) IsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidgetItem_IsHidden(ptr.Pointer()) != 0
+		return int8(C.QTreeWidgetItem_IsHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QTreeWidgetItem) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidgetItem_IsSelected(ptr.Pointer()) != 0
+		return int8(C.QTreeWidgetItem_IsSelected(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -100810,14 +100810,14 @@ func (ptr *QUndoCommand) DisconnectMergeWith() {
 
 func (ptr *QUndoCommand) MergeWith(command QUndoCommand_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoCommand_MergeWith(ptr.Pointer(), PointerFromQUndoCommand(command)) != 0
+		return int8(C.QUndoCommand_MergeWith(ptr.Pointer(), PointerFromQUndoCommand(command))) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoCommand) MergeWithDefault(command QUndoCommand_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoCommand_MergeWithDefault(ptr.Pointer(), PointerFromQUndoCommand(command)) != 0
+		return int8(C.QUndoCommand_MergeWithDefault(ptr.Pointer(), PointerFromQUndoCommand(command))) != 0
 	}
 	return false
 }
@@ -100983,7 +100983,7 @@ func (ptr *QUndoCommand) Text() string {
 
 func (ptr *QUndoCommand) IsObsolete() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoCommand_IsObsolete(ptr.Pointer()) != 0
+		return int8(C.QUndoCommand_IsObsolete(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -101688,21 +101688,21 @@ func (ptr *QUndoGroup) ActiveStack() *QUndoStack {
 
 func (ptr *QUndoGroup) CanRedo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoGroup_CanRedo(ptr.Pointer()) != 0
+		return int8(C.QUndoGroup_CanRedo(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoGroup) CanUndo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoGroup_CanUndo(ptr.Pointer()) != 0
+		return int8(C.QUndoGroup_CanUndo(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoGroup) IsClean() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoGroup_IsClean(ptr.Pointer()) != 0
+		return int8(C.QUndoGroup_IsClean(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -101858,7 +101858,7 @@ func callbackQUndoGroup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QUndoGroup) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QUndoGroup_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -101874,7 +101874,7 @@ func callbackQUndoGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QUndoGroup) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QUndoGroup_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -102721,28 +102721,28 @@ func (ptr *QUndoStack) UndoText() string {
 
 func (ptr *QUndoStack) CanRedo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_CanRedo(ptr.Pointer()) != 0
+		return int8(C.QUndoStack_CanRedo(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) CanUndo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_CanUndo(ptr.Pointer()) != 0
+		return int8(C.QUndoStack_CanUndo(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_IsActive(ptr.Pointer()) != 0
+		return int8(C.QUndoStack_IsActive(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) IsClean() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_IsClean(ptr.Pointer()) != 0
+		return int8(C.QUndoStack_IsClean(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -102912,7 +102912,7 @@ func callbackQUndoStack_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QUndoStack) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QUndoStack_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -102928,7 +102928,7 @@ func callbackQUndoStack_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QUndoStack) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QUndoStack_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -103451,11 +103451,11 @@ func (ptr *QWhatsThis) CreateAction(parent core.QObject_ITF) *QAction {
 }
 
 func QWhatsThis_InWhatsThisMode() bool {
-	return C.QWhatsThis_QWhatsThis_InWhatsThisMode() != 0
+	return int8(C.QWhatsThis_QWhatsThis_InWhatsThisMode()) != 0
 }
 
 func (ptr *QWhatsThis) InWhatsThisMode() bool {
-	return C.QWhatsThis_QWhatsThis_InWhatsThisMode() != 0
+	return int8(C.QWhatsThis_QWhatsThis_InWhatsThisMode()) != 0
 }
 
 func QWhatsThis_EnterWhatsThisMode() {
@@ -103721,14 +103721,14 @@ func (ptr *QWidget) DisconnectClose() {
 
 func (ptr *QWidget) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_Close(ptr.Pointer()) != 0
+		return int8(C.QWidget_Close(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -103765,21 +103765,21 @@ func (ptr *QWidget) DisconnectEvent() {
 
 func (ptr *QWidget) Event(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) FocusNextChild() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_FocusNextChild(ptr.Pointer()) != 0
+		return int8(C.QWidget_FocusNextChild(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -103816,28 +103816,28 @@ func (ptr *QWidget) DisconnectFocusNextPrevChild() {
 
 func (ptr *QWidget) FocusNextPrevChild(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) FocusPreviousChild() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_FocusPreviousChild(ptr.Pointer()) != 0
+		return int8(C.QWidget_FocusPreviousChild(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) RestoreGeometry(geometry core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_RestoreGeometry(ptr.Pointer(), core.PointerFromQByteArray(geometry)) != 0
+		return int8(C.QWidget_RestoreGeometry(ptr.Pointer(), core.PointerFromQByteArray(geometry))) != 0
 	}
 	return false
 }
@@ -107397,28 +107397,28 @@ func (ptr *QWidget) WinId() uintptr {
 
 func (ptr *QWidget) AcceptDrops() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_AcceptDrops(ptr.Pointer()) != 0
+		return int8(C.QWidget_AcceptDrops(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) AutoFillBackground() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_AutoFillBackground(ptr.Pointer()) != 0
+		return int8(C.QWidget_AutoFillBackground(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) HasEditFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasEditFocus(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasEditFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) HasFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasFocus(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -107455,140 +107455,140 @@ func (ptr *QWidget) DisconnectHasHeightForWidth() {
 
 func (ptr *QWidget) HasHeightForWidth() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasHeightForWidth(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasHeightForWidth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) HasMouseTracking() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasMouseTracking(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasMouseTracking(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) HasTabletTracking() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_HasTabletTracking(ptr.Pointer()) != 0
+		return int8(C.QWidget_HasTabletTracking(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsActiveWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsActiveWindow(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsActiveWindow(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsAncestorOf(child QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsAncestorOf(ptr.Pointer(), PointerFromQWidget(child)) != 0
+		return int8(C.QWidget_IsAncestorOf(ptr.Pointer(), PointerFromQWidget(child))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsEnabledTo(ancestor QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsEnabledTo(ptr.Pointer(), PointerFromQWidget(ancestor)) != 0
+		return int8(C.QWidget_IsEnabledTo(ptr.Pointer(), PointerFromQWidget(ancestor))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsFullScreen(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsFullScreen(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsHidden(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsHidden(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsMaximized() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsMaximized(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsMaximized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsMinimized() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsMinimized(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsMinimized(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsModal() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsModal(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsModal(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsVisibleTo(ancestor QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsVisibleTo(ptr.Pointer(), PointerFromQWidget(ancestor)) != 0
+		return int8(C.QWidget_IsVisibleTo(ptr.Pointer(), PointerFromQWidget(ancestor))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsWindow(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsWindow(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) IsWindowModified() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_IsWindowModified(ptr.Pointer()) != 0
+		return int8(C.QWidget_IsWindowModified(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) TestAttribute(attribute core.Qt__WidgetAttribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_TestAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
+		return int8(C.QWidget_TestAttribute(ptr.Pointer(), C.longlong(attribute))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) UnderMouse() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_UnderMouse(ptr.Pointer()) != 0
+		return int8(C.QWidget_UnderMouse(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) UpdatesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_UpdatesEnabled(ptr.Pointer()) != 0
+		return int8(C.QWidget_UpdatesEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -108047,14 +108047,14 @@ func callbackQWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 
 func (ptr *QWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -108859,14 +108859,14 @@ func (ptr *QWidgetItem) DisconnectIsEmpty() {
 
 func (ptr *QWidgetItem) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidgetItem_IsEmpty(ptr.Pointer()) != 0
+		return int8(C.QWidgetItem_IsEmpty(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWidgetItem) IsEmptyDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidgetItem_IsEmptyDefault(ptr.Pointer()) != 0
+		return int8(C.QWidgetItem_IsEmptyDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -109035,14 +109035,14 @@ func (ptr *QWizard) DisconnectValidateCurrentPage() {
 
 func (ptr *QWizard) ValidateCurrentPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizard_ValidateCurrentPage(ptr.Pointer()) != 0
+		return int8(C.QWizard_ValidateCurrentPage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWizard) ValidateCurrentPageDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizard_ValidateCurrentPageDefault(ptr.Pointer()) != 0
+		return int8(C.QWizard_ValidateCurrentPageDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -109788,14 +109788,14 @@ func (ptr *QWizard) TitleFormat() core.Qt__TextFormat {
 
 func (ptr *QWizard) HasVisitedPage(id int) bool {
 	if ptr.Pointer() != nil {
-		return C.QWizard_HasVisitedPage(ptr.Pointer(), C.int(int32(id))) != 0
+		return int8(C.QWizard_HasVisitedPage(ptr.Pointer(), C.int(int32(id)))) != 0
 	}
 	return false
 }
 
 func (ptr *QWizard) TestOption(option QWizard__WizardOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QWizard_TestOption(ptr.Pointer(), C.longlong(option)) != 0
+		return int8(C.QWizard_TestOption(ptr.Pointer(), C.longlong(option))) != 0
 	}
 	return false
 }
@@ -109970,14 +109970,14 @@ func (ptr *QWizardPage) DisconnectValidatePage() {
 
 func (ptr *QWizardPage) ValidatePage() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_ValidatePage(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_ValidatePage(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWizardPage) ValidatePageDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_ValidatePageDefault(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_ValidatePageDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -110291,7 +110291,7 @@ func (ptr *QWizardPage) Wizard() *QWizard {
 
 func (ptr *QWizardPage) IsCommitPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_IsCommitPage(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_IsCommitPage(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -110328,21 +110328,21 @@ func (ptr *QWizardPage) DisconnectIsComplete() {
 
 func (ptr *QWizardPage) IsComplete() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_IsComplete(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_IsComplete(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWizardPage) IsCompleteDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_IsCompleteDefault(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_IsCompleteDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QWizardPage) IsFinalPage() bool {
 	if ptr.Pointer() != nil {
-		return C.QWizardPage_IsFinalPage(ptr.Pointer()) != 0
+		return int8(C.QWizardPage_IsFinalPage(ptr.Pointer())) != 0
 	}
 	return false
 }

@@ -57,9 +57,7 @@
 #include <QCloseEvent>
 #include <QContextMenuEvent>
 #include <QCustomAudioRoleControl>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -76,7 +74,6 @@
 #include <QImage>
 #include <QImageEncoderControl>
 #include <QImageEncoderSettings>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QLayout>
@@ -139,8 +136,6 @@
 #include <QSoundEffect>
 #include <QString>
 #include <QTabletEvent>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>

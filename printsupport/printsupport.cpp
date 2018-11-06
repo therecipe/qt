@@ -13,7 +13,6 @@
 #include <QChildEvent>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
-#include <QDrag>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -22,7 +21,6 @@
 #include <QFocusEvent>
 #include <QHideEvent>
 #include <QIcon>
-#include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QMetaMethod>
@@ -44,7 +42,6 @@
 #include <QPrintPreviewWidget>
 #include <QPrinter>
 #include <QPrinterInfo>
-#include <QRect>
 #include <QRectF>
 #include <QResizeEvent>
 #include <QShowEvent>
@@ -52,8 +49,6 @@
 #include <QSizeF>
 #include <QString>
 #include <QTabletEvent>
-#include <QTime>
-#include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWheelEvent>

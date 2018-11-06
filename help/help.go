@@ -502,7 +502,7 @@ func (ptr *QHelpContentModel) DataDefault(index core.QModelIndex_ITF, role int) 
 
 func (ptr *QHelpContentModel) IsCreatingContents() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_IsCreatingContents(ptr.Pointer()) != 0
+		return int8(C.QHelpContentModel_IsCreatingContents(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1059,7 +1059,7 @@ func callbackQHelpContentModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Poin
 
 func (ptr *QHelpContentModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1075,7 +1075,7 @@ func callbackQHelpContentModel_InsertColumns(ptr unsafe.Pointer, column C.int, c
 
 func (ptr *QHelpContentModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1091,7 +1091,7 @@ func callbackQHelpContentModel_InsertRows(ptr unsafe.Pointer, row C.int, count C
 
 func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1107,7 +1107,7 @@ func callbackQHelpContentModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsa
 
 func (ptr *QHelpContentModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QHelpContentModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -1123,7 +1123,7 @@ func callbackQHelpContentModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.
 
 func (ptr *QHelpContentModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QHelpContentModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -1139,7 +1139,7 @@ func callbackQHelpContentModel_RemoveColumns(ptr unsafe.Pointer, column C.int, c
 
 func (ptr *QHelpContentModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1155,7 +1155,7 @@ func callbackQHelpContentModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C
 
 func (ptr *QHelpContentModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1171,7 +1171,7 @@ func callbackQHelpContentModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer,
 
 func (ptr *QHelpContentModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QHelpContentModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -1187,7 +1187,7 @@ func callbackQHelpContentModel_SetHeaderData(ptr unsafe.Pointer, section C.int, 
 
 func (ptr *QHelpContentModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QHelpContentModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -1217,13 +1217,13 @@ func callbackQHelpContentModel_SetItemData(ptr unsafe.Pointer, index unsafe.Poin
 
 func (ptr *QHelpContentModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QHelpContentModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQHelpContentModelFromPointer(NewQHelpContentModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -1239,7 +1239,7 @@ func callbackQHelpContentModel_Submit(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpContentModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpContentModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1762,7 +1762,7 @@ func callbackQHelpContentModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.P
 
 func (ptr *QHelpContentModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1778,7 +1778,7 @@ func callbackQHelpContentModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Po
 
 func (ptr *QHelpContentModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1794,7 +1794,7 @@ func callbackQHelpContentModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Poi
 
 func (ptr *QHelpContentModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpContentModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -1810,7 +1810,7 @@ func callbackQHelpContentModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QHelpContentModel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHelpContentModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1826,7 +1826,7 @@ func callbackQHelpContentModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QHelpContentModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpContentModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -2349,7 +2349,7 @@ func callbackQHelpContentWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.P
 
 func (ptr *QHelpContentWidget) ViewportEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpContentWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3003,7 +3003,7 @@ func callbackQHelpContentWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.P
 
 func (ptr *QHelpContentWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QHelpContentWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -3097,7 +3097,7 @@ func callbackQHelpContentWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, 
 
 func (ptr *QHelpContentWidget) Edit2Default(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpContentWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3113,7 +3113,7 @@ func callbackQHelpContentWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) 
 
 func (ptr *QHelpContentWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpContentWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3129,7 +3129,7 @@ func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, object unsafe.Po
 
 func (ptr *QHelpContentWidget) EventFilterDefault(object core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpContentWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -3145,7 +3145,7 @@ func callbackQHelpContentWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.ch
 
 func (ptr *QHelpContentWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QHelpContentWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -3636,7 +3636,7 @@ func callbackQHelpContentWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpContentWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpContentWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4107,7 +4107,7 @@ func callbackQHelpContentWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpContentWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpContentWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4608,7 +4608,7 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 		}
 		attributesC := C.CString(strings.Join(attributes, "|"))
 		defer C.free(unsafe.Pointer(attributesC))
-		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}, C.struct_QtHelp_PackedString{data: attributesC, len: C.longlong(len(strings.Join(attributes, "|")))}) != 0
+		return int8(C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}, C.struct_QtHelp_PackedString{data: attributesC, len: C.longlong(len(strings.Join(attributes, "|")))})) != 0
 	}
 	return false
 }
@@ -4620,7 +4620,7 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		return C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), C.struct_QtHelp_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+		return int8(C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), C.struct_QtHelp_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 	}
 	return false
 }
@@ -4632,7 +4632,7 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 			documentationFileNameC = C.CString(documentationFileName)
 			defer C.free(unsafe.Pointer(documentationFileNameC))
 		}
-		return C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))}) != 0
+		return int8(C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), C.struct_QtHelp_PackedString{data: documentationFileNameC, len: C.longlong(len(documentationFileName))})) != 0
 	}
 	return false
 }
@@ -4644,7 +4644,7 @@ func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 			filterNameC = C.CString(filterName)
 			defer C.free(unsafe.Pointer(filterNameC))
 		}
-		return C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))}) != 0
+		return int8(C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), C.struct_QtHelp_PackedString{data: filterNameC, len: C.longlong(len(filterName))})) != 0
 	}
 	return false
 }
@@ -4656,7 +4656,7 @@ func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}) != 0
+		return int8(C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
 	}
 	return false
 }
@@ -4668,14 +4668,14 @@ func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) 
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(value)) != 0
+		return int8(C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), C.struct_QtHelp_PackedString{data: keyC, len: C.longlong(len(key))}, core.PointerFromQVariant(value))) != 0
 	}
 	return false
 }
 
 func (ptr *QHelpEngineCore) SetupData() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_SetupData(ptr.Pointer()) != 0
+		return int8(C.QHelpEngineCore_SetupData(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -4687,7 +4687,7 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 			namespaceNameC = C.CString(namespaceName)
 			defer C.free(unsafe.Pointer(namespaceNameC))
 		}
-		return C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), C.struct_QtHelp_PackedString{data: namespaceNameC, len: C.longlong(len(namespaceName))}) != 0
+		return int8(C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), C.struct_QtHelp_PackedString{data: namespaceNameC, len: C.longlong(len(namespaceName))})) != 0
 	}
 	return false
 }
@@ -5097,7 +5097,7 @@ func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_I
 
 func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_AutoSaveFilter(ptr.Pointer()) != 0
+		return int8(C.QHelpEngineCore_AutoSaveFilter(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5400,7 +5400,7 @@ func callbackQHelpEngineCore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QHelpEngineCore) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHelpEngineCore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5416,7 +5416,7 @@ func callbackQHelpEngineCore_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QHelpEngineCore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpEngineCore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5733,7 +5733,7 @@ func (ptr *QHelpIndexModel) IndexCreationStarted() {
 
 func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer()) != 0
+		return int8(C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -6267,7 +6267,7 @@ func callbackQHelpIndexModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.i
 
 func (ptr *QHelpIndexModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -6283,7 +6283,7 @@ func callbackQHelpIndexModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.i
 
 func (ptr *QHelpIndexModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -6299,7 +6299,7 @@ func callbackQHelpIndexModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, v
 
 func (ptr *QHelpIndexModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QHelpIndexModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -6414,7 +6414,7 @@ func callbackQHelpIndexModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointe
 
 func (ptr *QHelpIndexModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -6448,7 +6448,7 @@ func callbackQHelpIndexModel_InsertColumns(ptr unsafe.Pointer, column C.int, cou
 
 func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -6464,7 +6464,7 @@ func callbackQHelpIndexModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe
 
 func (ptr *QHelpIndexModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QHelpIndexModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -6480,7 +6480,7 @@ func callbackQHelpIndexModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Po
 
 func (ptr *QHelpIndexModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
+		return int8(C.QHelpIndexModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild)))) != 0
 	}
 	return false
 }
@@ -6496,7 +6496,7 @@ func callbackQHelpIndexModel_RemoveColumns(ptr unsafe.Pointer, column C.int, cou
 
 func (ptr *QHelpIndexModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -6512,7 +6512,7 @@ func callbackQHelpIndexModel_SetHeaderData(ptr unsafe.Pointer, section C.int, or
 
 func (ptr *QHelpIndexModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+		return int8(C.QHelpIndexModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role)))) != 0
 	}
 	return false
 }
@@ -6542,13 +6542,13 @@ func callbackQHelpIndexModel_SetItemData(ptr unsafe.Pointer, index unsafe.Pointe
 
 func (ptr *QHelpIndexModel) SetItemDataDefault(index core.QModelIndex_ITF, roles map[int]*core.QVariant) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
+		return int8(C.QHelpIndexModel_SetItemDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), func() unsafe.Pointer {
 			tmpList := NewQHelpIndexModelFromPointer(NewQHelpIndexModelFromPointer(nil).__setItemData_roles_newList())
 			for k, v := range roles {
 				tmpList.__setItemData_roles_setList(k, v)
 			}
 			return tmpList.Pointer()
-		}()) != 0
+		}())) != 0
 	}
 	return false
 }
@@ -6564,7 +6564,7 @@ func callbackQHelpIndexModel_Submit(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpIndexModel) SubmitDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_SubmitDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpIndexModel_SubmitDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -7040,7 +7040,7 @@ func callbackQHelpIndexModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Poi
 
 func (ptr *QHelpIndexModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -7056,7 +7056,7 @@ func callbackQHelpIndexModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Poin
 
 func (ptr *QHelpIndexModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -7072,7 +7072,7 @@ func callbackQHelpIndexModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Point
 
 func (ptr *QHelpIndexModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+		return int8(C.QHelpIndexModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))) != 0
 	}
 	return false
 }
@@ -7104,7 +7104,7 @@ func callbackQHelpIndexModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 
 func (ptr *QHelpIndexModel) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHelpIndexModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -7120,7 +7120,7 @@ func callbackQHelpIndexModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 
 func (ptr *QHelpIndexModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpIndexModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -7884,7 +7884,7 @@ func callbackQHelpIndexWidget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 
 func (ptr *QHelpIndexWidget) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHelpIndexWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -8315,7 +8315,7 @@ func callbackQHelpIndexWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Poi
 
 func (ptr *QHelpIndexWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
+		return int8(C.QHelpIndexWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))) != 0
 	}
 	return false
 }
@@ -8363,7 +8363,7 @@ func callbackQHelpIndexWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, tr
 
 func (ptr *QHelpIndexWidget) Edit2Default(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpIndexWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8379,7 +8379,7 @@ func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, object unsafe.Poin
 
 func (ptr *QHelpIndexWidget) EventFilterDefault(object core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpIndexWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8395,7 +8395,7 @@ func callbackQHelpIndexWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char
 
 func (ptr *QHelpIndexWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QHelpIndexWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -8411,7 +8411,7 @@ func callbackQHelpIndexWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Poi
 
 func (ptr *QHelpIndexWidget) ViewportEventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpIndexWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8980,7 +8980,7 @@ func callbackQHelpIndexWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpIndexWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpIndexWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9451,7 +9451,7 @@ func callbackQHelpIndexWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpIndexWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpIndexWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10315,7 +10315,7 @@ func callbackQHelpSearchEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 
 func (ptr *QHelpSearchEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QHelpSearchEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10331,7 +10331,7 @@ func callbackQHelpSearchEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 
 func (ptr *QHelpSearchEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpSearchEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10772,7 +10772,7 @@ func (ptr *QHelpSearchQueryWidget) SearchInput() string {
 
 func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
+		return int8(C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11008,7 +11008,7 @@ func callbackQHelpSearchQueryWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpSearchQueryWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpSearchQueryWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11024,7 +11024,7 @@ func callbackQHelpSearchQueryWidget_Event(ptr unsafe.Pointer, event unsafe.Point
 
 func (ptr *QHelpSearchQueryWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpSearchQueryWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11040,7 +11040,7 @@ func callbackQHelpSearchQueryWidget_FocusNextPrevChild(ptr unsafe.Pointer, next 
 
 func (ptr *QHelpSearchQueryWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QHelpSearchQueryWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -11835,7 +11835,7 @@ func callbackQHelpSearchQueryWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char
 
 func (ptr *QHelpSearchQueryWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpSearchQueryWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11898,7 +11898,7 @@ func callbackQHelpSearchQueryWidget_EventFilter(ptr unsafe.Pointer, watched unsa
 
 func (ptr *QHelpSearchQueryWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpSearchQueryWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12488,7 +12488,7 @@ func callbackQHelpSearchResultWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QHelpSearchResultWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpSearchResultWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -12504,7 +12504,7 @@ func callbackQHelpSearchResultWidget_Event(ptr unsafe.Pointer, event unsafe.Poin
 
 func (ptr *QHelpSearchResultWidget) EventDefault(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpSearchResultWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -12520,7 +12520,7 @@ func callbackQHelpSearchResultWidget_FocusNextPrevChild(ptr unsafe.Pointer, next
 
 func (ptr *QHelpSearchResultWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QHelpSearchResultWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -13315,7 +13315,7 @@ func callbackQHelpSearchResultWidget_HasHeightForWidth(ptr unsafe.Pointer) C.cha
 
 func (ptr *QHelpSearchResultWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QHelpSearchResultWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -13378,7 +13378,7 @@ func callbackQHelpSearchResultWidget_EventFilter(ptr unsafe.Pointer, watched uns
 
 func (ptr *QHelpSearchResultWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QHelpSearchResultWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }

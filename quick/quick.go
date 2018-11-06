@@ -288,14 +288,14 @@ func (ptr *QQuickFramebufferObject) TextureFollowsItemSizeChanged(vbo bool) {
 
 func (ptr *QQuickFramebufferObject) MirrorVertically() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_MirrorVertically(ptr.Pointer()) != 0
+		return int8(C.QQuickFramebufferObject_MirrorVertically(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickFramebufferObject) TextureFollowsItemSize() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_TextureFollowsItemSize(ptr.Pointer()) != 0
+		return int8(C.QQuickFramebufferObject_TextureFollowsItemSize(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -1100,7 +1100,7 @@ func callbackQQuickImageResponse_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QQuickImageResponse) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickImageResponse_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickImageResponse_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -1116,7 +1116,7 @@ func callbackQQuickImageResponse_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QQuickImageResponse) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickImageResponse_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickImageResponse_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1433,14 +1433,14 @@ func (ptr *QQuickItem) DisconnectChildMouseEventFilter() {
 
 func (ptr *QQuickItem) ChildMouseEventFilter(item QQuickItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_ChildMouseEventFilter(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickItem_ChildMouseEventFilter(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) ChildMouseEventFilterDefault(item QQuickItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_ChildMouseEventFilterDefault(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickItem_ChildMouseEventFilterDefault(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -1477,14 +1477,14 @@ func (ptr *QQuickItem) DisconnectEvent() {
 
 func (ptr *QQuickItem) Event(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QQuickItem_Event(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) EventDefault(ev core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
+		return int8(C.QQuickItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))) != 0
 	}
 	return false
 }
@@ -3305,35 +3305,35 @@ func (ptr *QQuickItem) AcceptedMouseButtons() core.Qt__MouseButton {
 
 func (ptr *QQuickItem) AcceptHoverEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_AcceptHoverEvents(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_AcceptHoverEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) AcceptTouchEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_AcceptTouchEvents(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_AcceptTouchEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) ActiveFocusOnTab() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_ActiveFocusOnTab(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_ActiveFocusOnTab(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) Antialiasing() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_Antialiasing(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_Antialiasing(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) Clip() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_Clip(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_Clip(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3370,70 +3370,70 @@ func (ptr *QQuickItem) DisconnectContains() {
 
 func (ptr *QQuickItem) Contains(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QQuickItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) ContainsDefault(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
+		return int8(C.QQuickItem_ContainsDefault(ptr.Pointer(), core.PointerFromQPointF(point))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) FiltersChildMouseEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_FiltersChildMouseEvents(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_FiltersChildMouseEvents(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) HasActiveFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_HasActiveFocus(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_HasActiveFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) HasFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_HasFocus(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_HasFocus(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) HeightValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_HeightValid(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_HeightValid(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsAncestorOf(child QQuickItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsAncestorOf(ptr.Pointer(), PointerFromQQuickItem(child)) != 0
+		return int8(C.QQuickItem_IsAncestorOf(ptr.Pointer(), PointerFromQQuickItem(child))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsComponentComplete() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsComponentComplete(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsComponentComplete(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsEnabled(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsEnabled(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsFocusScope() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsFocusScope(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsFocusScope(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3470,49 +3470,49 @@ func (ptr *QQuickItem) DisconnectIsTextureProvider() {
 
 func (ptr *QQuickItem) IsTextureProvider() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsTextureProvider(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsTextureProvider(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsTextureProviderDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsTextureProviderDefault(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsTextureProviderDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) IsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_IsVisible(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_IsVisible(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) KeepMouseGrab() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_KeepMouseGrab(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_KeepMouseGrab(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) KeepTouchGrab() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_KeepTouchGrab(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_KeepTouchGrab(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) Smooth() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_Smooth(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_Smooth(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) WidthValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_WidthValid(ptr.Pointer()) != 0
+		return int8(C.QQuickItem_WidthValid(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3790,14 +3790,14 @@ func callbackQQuickItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QQuickItem) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickItem_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickItem) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4106,7 +4106,7 @@ func (ptr *QQuickItemGrabResult) SaveToFile(fileName string) bool {
 			fileNameC = C.CString(fileName)
 			defer C.free(unsafe.Pointer(fileNameC))
 		}
-		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.struct_QtQuick_PackedString{data: fileNameC, len: C.longlong(len(fileName))}) != 0
+		return int8(C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.struct_QtQuick_PackedString{data: fileNameC, len: C.longlong(len(fileName))})) != 0
 	}
 	return false
 }
@@ -4241,7 +4241,7 @@ func callbackQQuickItemGrabResult_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QQuickItemGrabResult) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItemGrabResult_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickItemGrabResult_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -4257,7 +4257,7 @@ func callbackQQuickItemGrabResult_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QQuickItemGrabResult) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickItemGrabResult_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickItemGrabResult_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -4814,14 +4814,14 @@ func (ptr *QQuickPaintedItem) TextureSize() *core.QSize {
 
 func (ptr *QQuickPaintedItem) Mipmap() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickPaintedItem_Mipmap(ptr.Pointer()) != 0
+		return int8(C.QQuickPaintedItem_Mipmap(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickPaintedItem) OpaquePainting() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickPaintedItem_OpaquePainting(ptr.Pointer()) != 0
+		return int8(C.QQuickPaintedItem_OpaquePainting(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5014,7 +5014,7 @@ func (ptr *QQuickRenderControl) RenderWindowFor(win QQuickWindow_ITF, offset cor
 
 func (ptr *QQuickRenderControl) Sync() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickRenderControl_Sync(ptr.Pointer()) != 0
+		return int8(C.QQuickRenderControl_Sync(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -5303,7 +5303,7 @@ func callbackQQuickRenderControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QQuickRenderControl) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickRenderControl_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickRenderControl_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5319,7 +5319,7 @@ func callbackQQuickRenderControl_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QQuickRenderControl) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickRenderControl_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickRenderControl_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -5675,7 +5675,7 @@ func callbackQQuickTextDocument_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QQuickTextDocument) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickTextDocument_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickTextDocument_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -5691,7 +5691,7 @@ func callbackQQuickTextDocument_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QQuickTextDocument) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickTextDocument_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickTextDocument_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6263,7 +6263,7 @@ func callbackQQuickTextureFactory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.
 
 func (ptr *QQuickTextureFactory) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickTextureFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickTextureFactory_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6279,7 +6279,7 @@ func callbackQQuickTextureFactory_EventFilter(ptr unsafe.Pointer, watched unsafe
 
 func (ptr *QQuickTextureFactory) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickTextureFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickTextureFactory_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -6856,7 +6856,7 @@ func callbackQQuickWidget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQuickWidget) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -6872,7 +6872,7 @@ func callbackQQuickWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.
 
 func (ptr *QQuickWidget) FocusNextPrevChildDefault(next bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
+		return int8(C.QQuickWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next))))) != 0
 	}
 	return false
 }
@@ -7626,7 +7626,7 @@ func callbackQQuickWidget_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QQuickWidget) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QQuickWidget_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8181,7 +8181,7 @@ func callbackQQuickWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
 func (ptr *QQuickWidget) HasHeightForWidthDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
+		return int8(C.QQuickWidget_HasHeightForWidthDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8244,7 +8244,7 @@ func callbackQQuickWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QQuickWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -8538,17 +8538,17 @@ func callbackQQuickWindow_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QQuickWindow) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QQuickWindow_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
 
 func QQuickWindow_HasDefaultAlphaBuffer() bool {
-	return C.QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer() != 0
+	return int8(C.QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer()) != 0
 }
 
 func (ptr *QQuickWindow) HasDefaultAlphaBuffer() bool {
-	return C.QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer() != 0
+	return int8(C.QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer()) != 0
 }
 
 //export callbackQQuickWindow_ActiveFocusItemChanged
@@ -9654,28 +9654,28 @@ func (ptr *QQuickWindow) RenderTargetSize() *core.QSize {
 
 func (ptr *QQuickWindow) ClearBeforeRendering() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_ClearBeforeRendering(ptr.Pointer()) != 0
+		return int8(C.QQuickWindow_ClearBeforeRendering(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) IsPersistentOpenGLContext() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsPersistentOpenGLContext(ptr.Pointer()) != 0
+		return int8(C.QQuickWindow_IsPersistentOpenGLContext(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) IsPersistentSceneGraph() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsPersistentSceneGraph(ptr.Pointer()) != 0
+		return int8(C.QQuickWindow_IsPersistentSceneGraph(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) IsSceneGraphInitialized() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsSceneGraphInitialized(ptr.Pointer()) != 0
+		return int8(C.QQuickWindow_IsSceneGraphInitialized(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -9824,7 +9824,7 @@ func callbackQQuickWindow_Close(ptr unsafe.Pointer) C.char {
 
 func (ptr *QQuickWindow) CloseDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_CloseDefault(ptr.Pointer()) != 0
+		return int8(C.QQuickWindow_CloseDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -10451,7 +10451,7 @@ func callbackQQuickWindow_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 
 func (ptr *QQuickWindow) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QQuickWindow_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -10964,7 +10964,7 @@ func callbackQSGAbstractRenderer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 
 func (ptr *QSGAbstractRenderer) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGAbstractRenderer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSGAbstractRenderer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -10980,7 +10980,7 @@ func callbackQSGAbstractRenderer_EventFilter(ptr unsafe.Pointer, watched unsafe.
 
 func (ptr *QSGAbstractRenderer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGAbstractRenderer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSGAbstractRenderer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -11361,7 +11361,7 @@ func (ptr *QSGClipNode) ClipRect() *core.QRectF {
 
 func (ptr *QSGClipNode) IsRectangular() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGClipNode_IsRectangular(ptr.Pointer()) != 0
+		return int8(C.QSGClipNode_IsRectangular(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11437,7 +11437,7 @@ func (ptr *QSGDynamicTexture) DisconnectUpdateTexture() {
 
 func (ptr *QSGDynamicTexture) UpdateTexture() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGDynamicTexture_UpdateTexture(ptr.Pointer()) != 0
+		return int8(C.QSGDynamicTexture_UpdateTexture(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11501,14 +11501,14 @@ func callbackQSGDynamicTexture_HasAlphaChannel(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSGDynamicTexture) HasAlphaChannel() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGDynamicTexture_HasAlphaChannel(ptr.Pointer()) != 0
+		return int8(C.QSGDynamicTexture_HasAlphaChannel(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSGDynamicTexture) HasAlphaChannelDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGDynamicTexture_HasAlphaChannelDefault(ptr.Pointer()) != 0
+		return int8(C.QSGDynamicTexture_HasAlphaChannelDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11524,14 +11524,14 @@ func callbackQSGDynamicTexture_HasMipmaps(ptr unsafe.Pointer) C.char {
 
 func (ptr *QSGDynamicTexture) HasMipmaps() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGDynamicTexture_HasMipmaps(ptr.Pointer()) != 0
+		return int8(C.QSGDynamicTexture_HasMipmaps(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSGDynamicTexture) HasMipmapsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGDynamicTexture_HasMipmapsDefault(ptr.Pointer()) != 0
+		return int8(C.QSGDynamicTexture_HasMipmapsDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -11915,7 +11915,7 @@ func callbackQSGEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSGEngine) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSGEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -11931,7 +11931,7 @@ func callbackQSGEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 
 func (ptr *QSGEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSGEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -13215,7 +13215,7 @@ func (ptr *QSGImageNode) DisconnectOwnsTexture() {
 
 func (ptr *QSGImageNode) OwnsTexture() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGImageNode_OwnsTexture(ptr.Pointer()) != 0
+		return int8(C.QSGImageNode_OwnsTexture(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -14103,14 +14103,14 @@ func (ptr *QSGNode) DisconnectIsSubtreeBlocked() {
 
 func (ptr *QSGNode) IsSubtreeBlocked() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGNode_IsSubtreeBlocked(ptr.Pointer()) != 0
+		return int8(C.QSGNode_IsSubtreeBlocked(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSGNode) IsSubtreeBlockedDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGNode_IsSubtreeBlockedDefault(ptr.Pointer()) != 0
+		return int8(C.QSGNode_IsSubtreeBlockedDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -15804,7 +15804,7 @@ func (ptr *QSGSimpleTextureNode) Filtering() QSGTexture__Filtering {
 
 func (ptr *QSGSimpleTextureNode) OwnsTexture() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGSimpleTextureNode_OwnsTexture(ptr.Pointer()) != 0
+		return int8(C.QSGSimpleTextureNode_OwnsTexture(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16276,7 +16276,7 @@ func (ptr *QSGTexture) DisconnectHasAlphaChannel() {
 
 func (ptr *QSGTexture) HasAlphaChannel() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_HasAlphaChannel(ptr.Pointer()) != 0
+		return int8(C.QSGTexture_HasAlphaChannel(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16313,7 +16313,7 @@ func (ptr *QSGTexture) DisconnectHasMipmaps() {
 
 func (ptr *QSGTexture) HasMipmaps() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_HasMipmaps(ptr.Pointer()) != 0
+		return int8(C.QSGTexture_HasMipmaps(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16350,14 +16350,14 @@ func (ptr *QSGTexture) DisconnectIsAtlasTexture() {
 
 func (ptr *QSGTexture) IsAtlasTexture() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_IsAtlasTexture(ptr.Pointer()) != 0
+		return int8(C.QSGTexture_IsAtlasTexture(ptr.Pointer())) != 0
 	}
 	return false
 }
 
 func (ptr *QSGTexture) IsAtlasTextureDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_IsAtlasTextureDefault(ptr.Pointer()) != 0
+		return int8(C.QSGTexture_IsAtlasTextureDefault(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -16529,7 +16529,7 @@ func callbackQSGTexture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
 func (ptr *QSGTexture) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSGTexture_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -16545,7 +16545,7 @@ func callbackQSGTexture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 
 func (ptr *QSGTexture) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTexture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSGTexture_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
@@ -17010,7 +17010,7 @@ func callbackQSGTextureProvider_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 
 func (ptr *QSGTextureProvider) EventDefault(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTextureProvider_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+		return int8(C.QSGTextureProvider_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e))) != 0
 	}
 	return false
 }
@@ -17026,7 +17026,7 @@ func callbackQSGTextureProvider_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 
 func (ptr *QSGTextureProvider) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QSGTextureProvider_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+		return int8(C.QSGTextureProvider_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event))) != 0
 	}
 	return false
 }
