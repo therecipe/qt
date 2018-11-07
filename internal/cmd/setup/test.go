@@ -107,6 +107,8 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			"sailfish": []string{"listview", "listview_variant"},
 
+			"showcases": []string{"sia"},
+
 			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"},
 
 			"uitools": []string{"calculator"},
@@ -146,7 +148,10 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			}
 
 			if (target == "js" || target == "wasm") &&
-				cat == "charts" || cat == "uitools" || cat == "sql" {
+				cat == "charts" || cat == "uitools" || cat == "sql" ||
+				cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
+				(cat == "widgets" && strings.HasPrefix(example, "treeview")) ||
+				example == "video_player" {
 				continue
 			}
 

@@ -1,0 +1,50 @@
+FROM ubuntu:16.04
+LABEL maintainer therecipe
+
+ENV USER user
+ENV HOME /home/$USER
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential git
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install python2.7 nodejs cmake default-jre
+RUN ln -s /usr/bin/python2.7 /usr/bin/python
+RUN git clone https://github.com/juj/emsdk.git $HOME/emsdk && cd $HOME/emsdk && ./emsdk install latest && ./emsdk activate latest
+
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtbase.git /opt/qtbase
+RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
+	&& cd /opt/qtbase && ./configure -xplatform wasm-emscripten -nomake tests -nomake examples -confirm-license -opensource && make && make install" > $HOME/build.sh \
+	&& chmod +x $HOME/build.sh && $HOME/build.sh
+
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtdeclarative.git /opt/qtdeclarative
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtwebsockets.git /opt/qtwebsockets
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtgraphicaleffects.git /opt/qtgraphicaleffects
+
+RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
+	&& cd /opt/qtdeclarative && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtwebsockets && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtgraphicaleffects && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install" > $HOME/build.sh \
+	&& chmod +x $HOME/build.sh && $HOME/build.sh
+
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtquickcontrols.git /opt/qtquickcontrols
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtquickcontrols2.git /opt/qtquickcontrols2
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtsvg.git /opt/qtsvg
+
+RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
+	&& cd /opt/qtquickcontrols && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtquickcontrols2 && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install\
+	&& cd /opt/qtsvg && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install" > $HOME/build.sh \
+	&& chmod +x $HOME/build.sh && $HOME/build.sh
+
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtcharts.git /opt/qtcharts
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtxmlpatterns.git /opt/qtxmlpatterns
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtcanvas3d.git /opt/qtcanvas3d
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtdatavis3d.git /opt/qtdatavis3d
+RUN git clone -b 5.12.0 https://code.qt.io/qt/qtmultimedia.git /opt/qtmultimedia
+
+RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
+	&& cd /opt/qtcharts && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtxmlpatterns && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtcanvas3d && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtdatavis3d && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install \
+	&& cd /opt/qtmultimedia && /usr/local/Qt-5.12.0/bin/qmake *.pro && make && make install" > $HOME/build.sh \
+	&& chmod +x $HOME/build.sh && $HOME/build.sh

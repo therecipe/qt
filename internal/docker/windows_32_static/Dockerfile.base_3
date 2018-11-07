@@ -1,4 +1,0 @@
-FROM therecipe/qt:windows_32_static_base_2
-LABEL maintainer therecipe
-
-RUN cd /usr/lib/mxe && make MXE_TARGETS='i686-w64-mingw32.static' qtbase

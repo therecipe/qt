@@ -1,6 +1,0 @@
-FROM therecipe/qt:windows_64_shared_base_6 as base
-
-RUN mv /usr/lib/mxe/src/qtwebkit.mk /usr/lib/mxe/src/exclude_qtwebkit.mk
-RUN cd /usr/lib/mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' qt5
-RUN mv /usr/lib/mxe/src/exclude_qtwebkit.mk /usr/lib/mxe/src/qtwebkit.mk
-RUN rm -rf /usr/lib/mxe/log && rm -rf /usr/lib/mxe/pkg
