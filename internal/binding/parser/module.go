@@ -34,6 +34,7 @@ func (m *Module) Prepare() error {
 	for _, c := range m.Namespace.Classes {
 		c.register(m)
 	}
+	m.add()
 
 	//register enums and functions from subnamespaces
 	for _, sns := range m.Namespace.SubNamespaces {

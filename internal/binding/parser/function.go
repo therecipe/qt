@@ -333,7 +333,7 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QListView::indexesMoved", f.Fullname == "QAudioInputSelectorControl::availableInputs", f.Fullname == "QScxmlStateMachine::initialValuesChanged",
 		f.Fullname == "QAudioOutputSelectorControl::availableOutputs", f.Fullname == "QQuickWebEngineProfile::downloadFinished",
-		f.Fullname == "QQuickWindow::closing", f.Fullname == "QQuickWebEngineProfile::downloadRequested", f.Fullname == "QWebEnginePage::fullScreenRequested",
+		f.Fullname == "QQuickWindow::closing", f.Fullname == "QQuickWebEngineProfile::downloadRequested",
 
 		f.Fullname == "QApplication::autoMaximizeThreshold", f.Fullname == "QApplication::setAutoMaximizeThreshold",
 
@@ -381,20 +381,25 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QtRemoteObjects::qt_getEnumMetaObject",
 
-		f.ClassName() == "QWebEnginePage" && (f.Name == "certificateError" ||
-			f.Name == "quotaRequested" || f.Name == "registerProtocolHandlerRequested"),
+		//WebEngine
+		f.Fullname == "QWebEnginePage::quotaRequested",
+		f.Fullname == "QWebEnginePage::registerProtocolHandlerRequested",
+		f.Fullname == "QWebEnginePage::save",
+		f.Fullname == "QWebEnginePage::fullScreenRequested",
 
 		f.Fullname == "QWebEngineScriptCollection::insert",
 		f.Fullname == "QWebEngineScriptCollection::findScript",
-		f.Fullname == "QWebEngineView::pageAction",
-		f.Fullname == "QWebEnginePage::save",
 		f.Fullname == "QWebEngineScriptCollection::remove",
 		f.Fullname == "QWebEngineScriptCollection::contains",
 		f.Fullname == "QWebEngineScriptCollection::findScripts",
 		f.Fullname == "QWebEngineScriptCollection::toList",
+
+		f.Fullname == "QWebEngineView::pageAction",
 		f.Fullname == "QWebEngineView::createWindow",
 		f.Fullname == "QWebEngineView::renderProcessTerminated",
 		f.Fullname == "QWebEngineView::triggerPageAction",
+		//
+
 		f.Fullname == "QCustom3DVolume::QCustom3DVolume" && f.OverloadNumber == "2",
 
 		strings.Contains(f.Access, "unsupported"):

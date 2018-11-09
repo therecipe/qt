@@ -41,7 +41,7 @@ func main() {
 
 	var button = widgets.NewQPushButton2("click me", nil)
 	button.ConnectClicked(func(checked bool) {
-		view.Page().RunJavaScript4(jsData)
+		view.Page().RunJavaScript(jsData)
 	})
 	centralWidget.Layout().AddWidget(button)
 

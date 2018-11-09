@@ -1804,6 +1804,104 @@ func (ptr *QQuickWebEngineScript) TimerEventDefault(event core.QTimerEvent_ITF) 
 	}
 }
 
+type QWebEngineCertificateError struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineCertificateError_ITF interface {
+	QWebEngineCertificateError_PTR() *QWebEngineCertificateError
+}
+
+func (ptr *QWebEngineCertificateError) QWebEngineCertificateError_PTR() *QWebEngineCertificateError {
+	return ptr
+}
+
+func (ptr *QWebEngineCertificateError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QWebEngineCertificateError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQWebEngineCertificateError(ptr QWebEngineCertificateError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineCertificateError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineCertificateErrorFromPointer(ptr unsafe.Pointer) (n *QWebEngineCertificateError) {
+	n = new(QWebEngineCertificateError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QWebEngineCertificateError__Error
+//QWebEngineCertificateError::Error
+type QWebEngineCertificateError__Error int64
+
+const (
+	QWebEngineCertificateError__SslPinnedKeyNotInCertificateChain  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-150)
+	QWebEngineCertificateError__CertificateCommonNameInvalid       QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-200)
+	QWebEngineCertificateError__CertificateDateInvalid             QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-201)
+	QWebEngineCertificateError__CertificateAuthorityInvalid        QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-202)
+	QWebEngineCertificateError__CertificateContainsErrors          QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-203)
+	QWebEngineCertificateError__CertificateNoRevocationMechanism   QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-204)
+	QWebEngineCertificateError__CertificateUnableToCheckRevocation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-205)
+	QWebEngineCertificateError__CertificateRevoked                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-206)
+	QWebEngineCertificateError__CertificateInvalid                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-207)
+	QWebEngineCertificateError__CertificateWeakSignatureAlgorithm  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-208)
+	QWebEngineCertificateError__CertificateNonUniqueName           QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-210)
+	QWebEngineCertificateError__CertificateWeakKey                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-211)
+	QWebEngineCertificateError__CertificateNameConstraintViolation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-212)
+	QWebEngineCertificateError__CertificateValidityTooLong         QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-213)
+	QWebEngineCertificateError__CertificateTransparencyRequired    QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-214)
+)
+
+func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
+	if ptr.Pointer() != nil {
+		return QWebEngineCertificateError__Error(C.QWebEngineCertificateError_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineCertificateError) ErrorDescription() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QWebEngineCertificateError_ErrorDescription(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineCertificateError) IsOverridable() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEngineCertificateError_IsOverridable(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
 type QWebEngineCookieStore struct {
 	core.QObject
 }
@@ -2987,6 +3085,50 @@ func (ptr *QWebEnginePage) AcceptNavigationRequest(url core.QUrl_ITF, ty QWebEng
 func (ptr *QWebEnginePage) AcceptNavigationRequestDefault(url core.QUrl_ITF, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QWebEnginePage_AcceptNavigationRequestDefault(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame))))) != 0
+	}
+	return false
+}
+
+//export callbackQWebEnginePage_CertificateError
+func callbackQWebEnginePage_CertificateError(ptr unsafe.Pointer, certificateError unsafe.Pointer) C.char {
+	if signal := qt.GetSignal(ptr, "certificateError"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QWebEngineCertificateError) bool)(NewQWebEngineCertificateErrorFromPointer(certificateError)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQWebEnginePageFromPointer(ptr).CertificateErrorDefault(NewQWebEngineCertificateErrorFromPointer(certificateError)))))
+}
+
+func (ptr *QWebEnginePage) ConnectCertificateError(f func(certificateError *QWebEngineCertificateError) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "certificateError"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "certificateError", func(certificateError *QWebEngineCertificateError) bool {
+				signal.(func(*QWebEngineCertificateError) bool)(certificateError)
+				return f(certificateError)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "certificateError", f)
+		}
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectCertificateError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "certificateError")
+	}
+}
+
+func (ptr *QWebEnginePage) CertificateError(certificateError QWebEngineCertificateError_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEnginePage_CertificateError(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError))) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEnginePage) CertificateErrorDefault(certificateError QWebEngineCertificateError_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWebEnginePage_CertificateErrorDefault(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError))) != 0
 	}
 	return false
 }

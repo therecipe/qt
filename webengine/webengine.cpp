@@ -67,6 +67,7 @@
 #include <QVariant>
 #include <QVector>
 #include <QWebChannel>
+#include <QWebEngineCertificateError>
 #include <QWebEngineCookieStore>
 #include <QWebEngineHttpRequest>
 #include <QWebEnginePage>
@@ -970,6 +971,26 @@ void QQuickWebEngineScript_TimerEventDefault(void* ptr, void* event)
 		static_cast<QQuickWebEngineScript*>(ptr)->QQuickWebEngineScript::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+long long QWebEngineCertificateError_Error(void* ptr)
+{
+	return static_cast<QWebEngineCertificateError*>(ptr)->error();
+}
+
+struct QtWebEngine_PackedString QWebEngineCertificateError_ErrorDescription(void* ptr)
+{
+	return ({ QByteArray t3bb4ec = static_cast<QWebEngineCertificateError*>(ptr)->errorDescription().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t3bb4ec.prepend("WHITESPACE").constData()+10), t3bb4ec.size()-10 }; });
+}
+
+char QWebEngineCertificateError_IsOverridable(void* ptr)
+{
+	return static_cast<QWebEngineCertificateError*>(ptr)->isOverridable();
+}
+
+void* QWebEngineCertificateError_Url(void* ptr)
+{
+	return new QUrl(static_cast<QWebEngineCertificateError*>(ptr)->url());
+}
+
 class MyQWebEngineCookieStore: public QWebEngineCookieStore
 {
 public:
@@ -1335,6 +1356,7 @@ public:
 	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { QByteArray t76015f = oldFiles.join("|").toUtf8(); QtWebEngine_PackedString oldFilesPacked = { const_cast<char*>(t76015f.prepend("WHITESPACE").constData()+10), t76015f.size()-10 };QByteArray t541092 = acceptedMimeTypes.join("|").toUtf8(); QtWebEngine_PackedString acceptedMimeTypesPacked = { const_cast<char*>(t541092.prepend("WHITESPACE").constData()+10), t541092.size()-10 };return ({ QtWebEngine_PackedString tempVal = callbackQWebEnginePage_ChooseFiles(this, mode, oldFilesPacked, acceptedMimeTypesPacked); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QWebEnginePage * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEnginePage*>(callbackQWebEnginePage_CreateWindow(this, ty)); };
 	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, const_cast<QUrl*>(&url), ty, isMainFrame) != 0; };
+	bool certificateError(const QWebEngineCertificateError & certificateError) { return callbackQWebEnginePage_CertificateError(this, const_cast<QWebEngineCertificateError*>(&certificateError)) != 0; };
 	bool event(QEvent * vqe) { return callbackQWebEnginePage_Event(this, vqe) != 0; };
 	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };return callbackQWebEnginePage_JavaScriptConfirm(this, const_cast<QUrl*>(&securityOrigin), msgPacked) != 0; };
 	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };QByteArray te940d2 = defaultValue.toUtf8(); QtWebEngine_PackedString defaultValuePacked = { const_cast<char*>(te940d2.prepend("WHITESPACE").constData()+10), te940d2.size()-10 };QByteArray t37a530 = result->toUtf8(); QtWebEngine_PackedString resultPacked = { const_cast<char*>(t37a530.prepend("WHITESPACE").constData()+10), t37a530.size()-10 };return callbackQWebEnginePage_JavaScriptPrompt(this, const_cast<QUrl*>(&securityOrigin), msgPacked, defaultValuePacked, resultPacked) != 0; };
@@ -1500,6 +1522,16 @@ char QWebEnginePage_AcceptNavigationRequest(void* ptr, void* url, long long ty, 
 char QWebEnginePage_AcceptNavigationRequestDefault(void* ptr, void* url, long long ty, char isMainFrame)
 {
 		return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::acceptNavigationRequest(*static_cast<QUrl*>(url), static_cast<QWebEnginePage::NavigationType>(ty), isMainFrame != 0);
+}
+
+char QWebEnginePage_CertificateError(void* ptr, void* certificateError)
+{
+	return static_cast<QWebEnginePage*>(ptr)->certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
+}
+
+char QWebEnginePage_CertificateErrorDefault(void* ptr, void* certificateError)
+{
+		return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
 }
 
 char QWebEnginePage_EventDefault(void* ptr, void* vqe)

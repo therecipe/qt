@@ -134,6 +134,11 @@ func (f *Function) fixGeneral_Version() {
 				}
 			}
 		}
+	case "QWebEnginePage::certificateError":
+		{
+			f.Signature = strings.Replace(f.Signature, "const int", "const QWebEngineCertificateError", -1)
+			f.Parameters[0].Value = strings.Replace(f.Parameters[0].Value, "const int", "const QWebEngineCertificateError", -1)
+		}
 	}
 }
 
