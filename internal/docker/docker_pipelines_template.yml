@@ -178,9 +178,7 @@ jobs:
     parameters:
       file: wine/Dockerfile.32_static
       tag: windows_32_static_msys2
-      dep: 
-        - wine_base
-        - windows_32_shared_msys2 #just to avoid rate limits from sourceforge
+      dep: wine_base
   -
     template: docker_job_template.yml
     parameters:
@@ -210,9 +208,7 @@ jobs:
     parameters:
       file: wine/Dockerfile.64_static
       tag: windows_64_static_msys2
-      dep: 
-        - wine_base
-        - windows_64_shared_msys2 #just to avoid rate limits from sourceforge
+      dep: wine_base
   -
     template: docker_job_template.yml
     parameters:

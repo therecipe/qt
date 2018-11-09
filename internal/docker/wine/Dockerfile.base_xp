@@ -7,18 +7,18 @@ ENV GOPATH $HOME/.wine/drive_c/gopath
 ENV WINEDEBUG -all
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git && apt-get -qq clean
-RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local && rm -f $GO
+RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local && rm -f $GO
 RUN GOOS=windows /usr/local/go/bin/go get -d github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install software-properties-common apt-transport-https && apt-get -qq clean
 RUN dpkg --add-architecture i386
-RUN curl -sL --retry 10 --retry-delay 10 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
+RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging xvfb cabextract && apt-get -qq clean
 RUN WINEDLLOVERRIDES="mscoree,mshtml=" xvfb-run wineboot && wineserver -w
-RUN curl -sL --retry 10 --retry-delay 10 -O https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && chmod +x winetricks && mv winetricks /usr/bin && xvfb-run winetricks -q vcrun2015 && rm -f winetricks
+RUN curl -sL --retry 10 --retry-delay 60 -O https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && chmod +x winetricks && mv winetricks /usr/bin && xvfb-run winetricks -q vcrun2015 && rm -f winetricks
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install unzip && apt-get -qq clean
-RUN GO=go1.10.4.windows-amd64.zip && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && unzip -qq $GO -d $HOME/.wine/drive_c && rm -f $GO
+RUN GO=go1.10.4.windows-amd64.zip && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && unzip -qq $GO -d $HOME/.wine/drive_c && rm -f $GO
 RUN GOPATH=C:\\gopath wine C:\\go\\bin\\go install github.com/therecipe/qt/cmd/...

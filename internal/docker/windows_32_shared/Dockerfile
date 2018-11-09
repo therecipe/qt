@@ -15,7 +15,7 @@ COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 COPY --from=therecipe/qt:linux /opt/Qt/5.11.1/gcc_64/include /opt/Qt/5.11.1/gcc_64/include
-COPY --from=therecipe/qt:windows_32_shared_base_7 /usr/lib/mxe /usr/lib/mxe
+COPY --from=therecipe/qt:windows_32_shared_base /usr/lib/mxe /usr/lib/mxe
 
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check windows

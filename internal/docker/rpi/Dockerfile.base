@@ -19,7 +19,7 @@ COPY --from=therecipe/qt:linux /opt/Qt/5.11.1/gcc_64/include /opt/Qt/5.11.1/gcc_
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git make unzip && apt-get -qq clean
 
-RUN SYSROOT=qtrpi-sysroot-minimal-latest.zip && curl -sL --retry 10 --retry-delay 10 -O http://www.qtrpi.com/downloads/sysroot/$SYSROOT && unzip -qq $SYSROOT -d /opt/qtrpi && rm -f $SYSROOT
+RUN SYSROOT=qtrpi-sysroot-minimal-latest.zip && curl -sL --retry 10 --retry-delay 60 -O http://www.qtrpi.com/downloads/sysroot/$SYSROOT && unzip -qq $SYSROOT -d /opt/qtrpi && rm -f $SYSROOT
 RUN ln -s /opt/qtrpi/raspbian/sysroot-minimal /opt/qtrpi/raspbian/sysroot
 
 RUN git clone -q --depth 1 https://github.com/raspberrypi/tools.git /opt/qtrpi/raspi/tools

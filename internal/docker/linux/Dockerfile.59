@@ -5,11 +5,11 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
-RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
+RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
-RUN QT=qt-unified-linux-x64-online.run && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/online_installers/$QT && chmod +x $QT && QT_QPA_PLATFORM=minimal ./$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true VERSION=596
+RUN QT=qt-unified-linux-x64-online.run && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/online_installers/$QT && chmod +x $QT && QT_QPA_PLATFORM=minimal ./$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true VERSION=596
 RUN find /opt/Qt/5.9.6 -type f -name "*.debug" -delete
 RUN find /opt/Qt/Docs -type f ! -name "*.index" -delete
 

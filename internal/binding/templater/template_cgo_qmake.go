@@ -307,6 +307,7 @@ func createMakefile(module, path, target string, mode int) {
 			}
 		}
 	case "js", "wasm":
+		cmd.Args = append(cmd.Args, []string{"-spec", "wasm-emscripten"}...)
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}

@@ -1,6 +1,6 @@
 FROM therecipe/qt:wine_base as base
 
-RUN QT=qt-opensource-windows-x86-5.11.1.exe && curl -sL --retry 10 --retry-delay 10 -O https://download.qt.io/official_releases/qt/5.11/5.11.1/$QT \
+RUN QT=qt-opensource-windows-x86-5.11.1.exe && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/qt/5.11/5.11.1/$QT \
 	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true && rm -f $QT
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.11.1/5.11.1/mingw53_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.11.1/5.11.1/mingw53_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
@@ -27,7 +27,7 @@ COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.11.1/Tools/mingw530_32 $HOME/.wine/d
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl software-properties-common apt-transport-https && apt-get -qq clean
 RUN dpkg --add-architecture i386
-RUN curl -sL --retry 10 --retry-delay 10 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
+RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging && apt-get -qq clean

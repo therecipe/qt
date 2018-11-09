@@ -6,14 +6,14 @@ ENV HOME /home/$USER
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl make openjdk-8-jdk perl unzip
 RUN mkdir -p $HOME
 
-RUN SDK=sdk-tools-linux-3859397.zip && curl -sL --retry 10 --retry-delay 10 -O https://dl.google.com/android/repository/$SDK && unzip -qq $SDK -d $HOME/android-sdk-linux
+RUN SDK=sdk-tools-linux-3859397.zip && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/android/repository/$SDK && unzip -qq $SDK -d $HOME/android-sdk-linux
 RUN $HOME/android-sdk-linux/tools/bin/sdkmanager --list --verbose
 RUN echo "y" | $HOME/android-sdk-linux/tools/bin/sdkmanager "platform-tools" "build-tools;28.0.2" "platforms;android-28"
 RUN $HOME/android-sdk-linux/tools/bin/sdkmanager --update
 
-RUN NDK=android-ndk-r14b-linux-x86_64.zip && curl -sL --retry 10 --retry-delay 10 -O https://dl.google.com/android/repository/$NDK && unzip -qq $NDK -d $HOME
+RUN NDK=android-ndk-r14b-linux-x86_64.zip && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/android/repository/$NDK && unzip -qq $NDK -d $HOME
 
-RUN OSSL=openssl-1.0.2o.tar.gz && curl -sL --retry 10 --retry-delay 10 -O https://www.openssl.org/source/$OSSL && tar -xzf $OSSL -C $HOME
+RUN OSSL=openssl-1.0.2o.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://www.openssl.org/source/$OSSL && tar -xzf $OSSL -C $HOME
 
 ENV CC $HOME/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc
 ENV AR $HOME/android-ndk-r14b/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar

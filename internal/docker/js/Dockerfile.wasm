@@ -3,7 +3,7 @@ FROM therecipe/qt:linux as base
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
 
 RUN mv /usr/local/go /usr/local/go_orig
-RUN git clone -b wasm-sync-callbacks https://github.com/neelance/go.git /usr/local/go
+RUN git clone -q --depth 1 -b wasm-sync-callbacks https://github.com/neelance/go.git /usr/local/go
 RUN cd /usr/local/go/src && GOROOT_BOOTSTRAP=/usr/local/go_orig ./make.bash
 
 

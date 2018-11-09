@@ -5,7 +5,7 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
-RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 10 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
+RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get github.com/therecipe/qt/cmd/...
 
 FROM ubuntu:18.04
