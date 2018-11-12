@@ -15611,16 +15611,14 @@ Q_DECLARE_METATYPE(MyQFontDialog*)
 
 int QFontDialog_QFontDialog_QRegisterMetaType(){qRegisterMetaType<QFontDialog*>(); return qRegisterMetaType<MyQFontDialog*>();}
 
-void* QFontDialog_QFontDialog_GetFont2(char ok, void* parent)
+void* QFontDialog_QFontDialog_GetFont2(char* ok, void* parent)
 {
-	Q_UNUSED(ok);
-		return new QFont(QFontDialog::getFont(NULL, static_cast<QWidget*>(parent)));
+		return new QFont(QFontDialog::getFont(reinterpret_cast<bool*>(ok), static_cast<QWidget*>(parent)));
 }
 
-void* QFontDialog_QFontDialog_GetFont(char ok, void* initial, void* parent, struct QtWidgets_PackedString title, long long options)
+void* QFontDialog_QFontDialog_GetFont(char* ok, void* initial, void* parent, struct QtWidgets_PackedString title, long long options)
 {
-	Q_UNUSED(ok);
-		return new QFont(QFontDialog::getFont(NULL, *static_cast<QFont*>(initial), static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), static_cast<QFontDialog::FontDialogOption>(options)));
+		return new QFont(QFontDialog::getFont(reinterpret_cast<bool*>(ok), *static_cast<QFont*>(initial), static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), static_cast<QFontDialog::FontDialogOption>(options)));
 }
 
 void* QFontDialog_NewQFontDialog(void* parent)
@@ -22001,32 +21999,31 @@ void* QGraphicsItem_DeviceTransform(void* ptr, void* viewportTransform)
 	}
 }
 
-void* QGraphicsItem_ItemTransform(void* ptr, void* other, char ok)
+void* QGraphicsItem_ItemTransform(void* ptr, void* other, char* ok)
 {
-	Q_UNUSED(ok);
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), reinterpret_cast<bool*>(ok)));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), reinterpret_cast<bool*>(ok)));
 		} else {
-			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsObject*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), reinterpret_cast<bool*>(ok)));
 		}
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), reinterpret_cast<bool*>(ok)));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), reinterpret_cast<bool*>(ok)));
 		} else {
-			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsWidget*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), reinterpret_cast<bool*>(ok)));
 		}
 	} else {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsObject*>(other), reinterpret_cast<bool*>(ok)));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(other))) {
-			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsWidget*>(other), reinterpret_cast<bool*>(ok)));
 		} else {
-			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), NULL));
+			return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), reinterpret_cast<bool*>(ok)));
 		}
 	}
 }
@@ -32052,40 +32049,34 @@ void* QInputDialog_NewQInputDialog(void* parent, long long flags)
 		return new MyQInputDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
-struct QtWidgets_PackedString QInputDialog_QInputDialog_GetItem(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString items, int current, char editable, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetItem(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString items, int current, char editable, char* ok, long long flags, long long inputMethodHints)
 {
-	Q_UNUSED(ok);
-		return ({ QByteArray t5266ad = QInputDialog::getItem(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(items.data, items.len).split("|", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5266ad.prepend("WHITESPACE").constData()+10), t5266ad.size()-10 }; });
+		return ({ QByteArray taf7dcc = QInputDialog::getItem(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(items.data, items.len).split("|", QString::SkipEmptyParts), current, editable != 0, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(taf7dcc.prepend("WHITESPACE").constData()+10), taf7dcc.size()-10 }; });
 }
 
-struct QtWidgets_PackedString QInputDialog_QInputDialog_GetMultiLineText(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString text, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetMultiLineText(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, struct QtWidgets_PackedString text, char* ok, long long flags, long long inputMethodHints)
 {
-	Q_UNUSED(ok);
-		return ({ QByteArray t2c6b02 = QInputDialog::getMultiLineText(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(text.data, text.len), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t2c6b02.prepend("WHITESPACE").constData()+10), t2c6b02.size()-10 }; });
+		return ({ QByteArray tb42699 = QInputDialog::getMultiLineText(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), QString::fromUtf8(text.data, text.len), reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb42699.prepend("WHITESPACE").constData()+10), tb42699.size()-10 }; });
 }
 
-struct QtWidgets_PackedString QInputDialog_QInputDialog_GetText(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, long long mode, struct QtWidgets_PackedString text, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetText(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, long long mode, struct QtWidgets_PackedString text, char* ok, long long flags, long long inputMethodHints)
 {
-	Q_UNUSED(ok);
-		return ({ QByteArray t4a6087 = QInputDialog::getText(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), static_cast<QLineEdit::EchoMode>(mode), QString::fromUtf8(text.data, text.len), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4a6087.prepend("WHITESPACE").constData()+10), t4a6087.size()-10 }; });
+		return ({ QByteArray t03d5ef = QInputDialog::getText(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), static_cast<QLineEdit::EchoMode>(mode), QString::fromUtf8(text.data, text.len), reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t03d5ef.prepend("WHITESPACE").constData()+10), t03d5ef.size()-10 }; });
 }
 
-double QInputDialog_QInputDialog_GetDouble(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, double value, double min, double max, int decimals, char ok, long long flags)
+double QInputDialog_QInputDialog_GetDouble(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, double value, double min, double max, int decimals, char* ok, long long flags)
 {
-	Q_UNUSED(ok);
-		return QInputDialog::getDouble(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, decimals, NULL, static_cast<Qt::WindowType>(flags));
+		return QInputDialog::getDouble(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, decimals, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags));
 }
 
-double QInputDialog_QInputDialog_GetDouble2(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, double value, double min, double max, int decimals, char ok, long long flags, double step)
+double QInputDialog_QInputDialog_GetDouble2(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, double value, double min, double max, int decimals, char* ok, long long flags, double step)
 {
-	Q_UNUSED(ok);
-		return QInputDialog::getDouble(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, decimals, NULL, static_cast<Qt::WindowType>(flags), step);
+		return QInputDialog::getDouble(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, decimals, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags), step);
 }
 
-int QInputDialog_QInputDialog_GetInt(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, int value, int min, int max, int step, char ok, long long flags)
+int QInputDialog_QInputDialog_GetInt(void* parent, struct QtWidgets_PackedString title, struct QtWidgets_PackedString label, int value, int min, int max, int step, char* ok, long long flags)
 {
-	Q_UNUSED(ok);
-		return QInputDialog::getInt(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, step, NULL, static_cast<Qt::WindowType>(flags));
+		return QInputDialog::getInt(static_cast<QWidget*>(parent), QString::fromUtf8(title.data, title.len), QString::fromUtf8(label.data, label.len), value, min, max, step, reinterpret_cast<bool*>(ok), static_cast<Qt::WindowType>(flags));
 }
 
 void QInputDialog_Done(void* ptr, int result)

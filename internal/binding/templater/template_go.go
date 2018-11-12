@@ -486,6 +486,18 @@ func (ptr *%[1]v) Destroy%[1]v() {
 			}
 		}
 
+		if parser.UseWasm() {
+			//TODO:
+		} else {
+			fmt.Fprint(bb, "var module *js.Object\n")
+			fmt.Fprintf(bb, "if m := js.Global.Get(\"%v\"); m == js.Undefined {\n", goModule(module))
+			fmt.Fprint(bb, "\tmodule = new(js.Object)\n")
+			fmt.Fprintf(bb, "\tjs.Global.Set(\"%v\", module)\n", goModule(module))
+			fmt.Fprint(bb, "} else {\n")
+			fmt.Fprint(bb, "\tmodule = m\n")
+			fmt.Fprint(bb, "}\n")
+		}
+
 		for _, c := range parser.SortedClassesForModule(module, true) {
 			for _, f := range c.Functions {
 				if f.Meta != parser.CONSTRUCTOR {
@@ -506,10 +518,23 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				if parser.UseWasm() {
 					out = "" //TODO: export classes for jsinterop example
 				} else {
-					out = fmt.Sprintf("qt.WASM.Set(\"%v\", func(%v) *js.Object { return js.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+					out = fmt.Sprintf("module.Set(\"%v\", func(%v) *js.Object { return qt.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
 				}
 				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
 					bb.WriteString(out)
+				}
+			}
+
+			for _, e := range c.Enums {
+				for _, v := range e.Values {
+					if v.Name == "ByteOrder" {
+						continue
+					}
+					if parser.UseWasm() {
+						//TODO:
+					} else {
+						fmt.Fprintf(bb, "module.Set(\"%v__%v\", int64(%v__%v))\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Split(e.Fullname, "::")[0], v.Name)
+					}
 				}
 			}
 		}

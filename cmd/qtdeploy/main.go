@@ -100,7 +100,7 @@ func main() {
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
-	if target != runtime.GOOS {
+	if !(target == runtime.GOOS || target == "js" || target == "wasm") {
 		fast = false
 	}
 

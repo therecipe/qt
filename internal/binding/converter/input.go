@@ -57,6 +57,9 @@ func GoInput(name, value string, f *parser.Function, p string) string {
 
 	case "bool", "GLboolean":
 		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(*%v)))", name)
+			}
 			return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(%v)))", name)
 		}
 
@@ -310,17 +313,17 @@ func cppInput(name, value string, f *parser.Function) string {
 			if strings.Count(vOld, "*") == 2 && !strings.Contains(vOld, "**") {
 				break
 			}
-			if parser.UseJs() {
-				if strings.Contains(vOld, "**") {
-					return fmt.Sprintf("&reinterpret_cast<void *>(%v)", name)
-				}
-				if strings.Contains(vOld, "*") {
-					return fmt.Sprintf("reinterpret_cast<void *>(%v)", name)
-				}
-			}
+
 			if strings.Contains(vOld, "**") {
 				return fmt.Sprintf("&%v", name)
 			}
+
+			if parser.UseJs() {
+				if strings.Contains(vOld, "*") {
+					return fmt.Sprintf("reinterpret_cast<void*>(%v)", name)
+				}
+			}
+
 			if strings.Contains(vOld, "*") {
 				return name
 			}
@@ -329,9 +332,11 @@ func cppInput(name, value string, f *parser.Function) string {
 	case "bool", "GLboolean":
 		{
 			if strings.Contains(vOld, "*") {
-				return "NULL"
+				if parser.UseJs() && f.SignalMode == parser.CALLBACK {
+					return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", value, name)
+				}
+				return fmt.Sprintf("reinterpret_cast<%v*>(%v)", value, name)
 			}
-
 			return fmt.Sprintf("%v != 0", name)
 		}
 
@@ -476,6 +481,9 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 				if parser.UseWasm() {
 					return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 				}
+				if f.SignalMode != parser.CALLBACK {
+					return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name)
+				}
 				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 			}
 
@@ -493,6 +501,9 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 		{
 			if parser.UseWasm() {
 				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
+			}
+			if f.SignalMode != parser.CALLBACK {
+				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name)
 			}
 			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 		}
@@ -595,15 +606,25 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 		{
 			if c, ok := parser.State.ClassMap[class(cppEnum(f, value, false))]; ok && module(c.Module) != module(f) && module(c.Module) != "" {
 				if _, ok := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; ok {
-					return fmt.Sprintf("int64(%v)", name)
+					if parser.UseWasm() || f.SignalMode == parser.CALLBACK {
+						return fmt.Sprintf("int64(%v)", name)
+					} else {
+						return fmt.Sprintf("func() int64 {\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\nreturn int64(js.InternalObject(%v).Int64())\n}\nreturn int64(%v)\n}()", name, name, name) //needed for pure js call
+					}
 				}
 				if parser.UseWasm() {
 					return fmt.Sprintf("int64(%v.%v(%v))", module(c.Module), goEnum(f, value), name)
+				}
+				if f.SignalMode != parser.CALLBACK {
+					return fmt.Sprintf("func() %[1]v.%[2]v {\nif js.InternalObject(%[3]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v.%[2]v(js.InternalObject(%[3]v).Int64())\n}\nreturn %[1]v.%[2]v(%[3]v)\n}()", module(c.Module), goEnum(f, value), name) //needed for pure js call
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
 			}
 			if parser.UseWasm() {
 				return fmt.Sprintf("int64(%v(%v))", goEnum(f, value), name)
+			}
+			if f.SignalMode != parser.CALLBACK {
+				return fmt.Sprintf("func() %[1]v {\nif js.InternalObject(%[2]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v(js.InternalObject(%[2]v).Int64())\n}\nreturn %[1]v(%[2]v)\n}()", goEnum(f, value), name) //needed for pure js call
 			}
 			return fmt.Sprintf("%v(%v)", goEnum(f, value), name)
 		}

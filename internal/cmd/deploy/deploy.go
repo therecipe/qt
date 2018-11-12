@@ -3,6 +3,7 @@ package deploy
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
@@ -63,12 +64,12 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 
 		build(mode, target, path, ldFlags, tags, name, depPath, fast, comply)
 
-		if !(fast || utils.QT_DEBUG_QML()) {
+		if !(fast || (utils.QT_DEBUG_QML() && target == runtime.GOOS)) {
 			bundle(mode, target, path, name, depPath, tags)
 		}
 	}
 
-	if mode == "run" || mode == "test" {
+	if (mode == "run" || mode == "test") && !(fast && (target == "js" || target == "wasm")) {
 		run(target, name, depPath, device)
 	}
 }

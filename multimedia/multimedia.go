@@ -7926,11 +7926,13 @@ func (ptr *QAudioEncoderSettingsControl) AudioSettings() *QAudioEncoderSettings 
 }
 
 //export callbackQAudioEncoderSettingsControl_SupportedSampleRates
-func callbackQAudioEncoderSettingsControl_SupportedSampleRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
+func callbackQAudioEncoderSettingsControl_SupportedSampleRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous *C.char) unsafe.Pointer {
+	continuousR := int8(*continuous) != 0
+	defer func() { *continuous = C.char(int8(qt.GoBoolToInt(continuousR))) }()
 	if signal := qt.GetSignal(ptr, "supportedSampleRates"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQAudioEncoderSettingsControlFromPointer(NewQAudioEncoderSettingsControlFromPointer(nil).__supportedSampleRates_newList())
-			for _, v := range signal.(func(*QAudioEncoderSettings, bool) []int)(NewQAudioEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
+			for _, v := range signal.(func(*QAudioEncoderSettings, *bool) []int)(NewQAudioEncoderSettingsFromPointer(settings), &continuousR) {
 				tmpList.__supportedSampleRates_setList(v)
 			}
 			return tmpList.Pointer()
@@ -7946,12 +7948,12 @@ func callbackQAudioEncoderSettingsControl_SupportedSampleRates(ptr unsafe.Pointe
 	}()
 }
 
-func (ptr *QAudioEncoderSettingsControl) ConnectSupportedSampleRates(f func(settings *QAudioEncoderSettings, continuous bool) []int) {
+func (ptr *QAudioEncoderSettingsControl) ConnectSupportedSampleRates(f func(settings *QAudioEncoderSettings, continuous *bool) []int) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedSampleRates"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "supportedSampleRates", func(settings *QAudioEncoderSettings, continuous bool) []int {
-				signal.(func(*QAudioEncoderSettings, bool) []int)(settings, continuous)
+			qt.ConnectSignal(ptr.Pointer(), "supportedSampleRates", func(settings *QAudioEncoderSettings, continuous *bool) []int {
+				signal.(func(*QAudioEncoderSettings, *bool) []int)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -7967,8 +7969,10 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectSupportedSampleRates() {
 	}
 }
 
-func (ptr *QAudioEncoderSettingsControl) SupportedSampleRates(settings QAudioEncoderSettings_ITF, continuous bool) []int {
+func (ptr *QAudioEncoderSettingsControl) SupportedSampleRates(settings QAudioEncoderSettings_ITF, continuous *bool) []int {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQAudioEncoderSettingsControlFromPointer(l.data)
@@ -7976,7 +7980,7 @@ func (ptr *QAudioEncoderSettingsControl) SupportedSampleRates(settings QAudioEnc
 				out[i] = tmpList.__supportedSampleRates_atList(i)
 			}
 			return out
-		}(C.QAudioEncoderSettingsControl_SupportedSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QAudioEncoderSettingsControl_SupportedSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), &continuousC))
 	}
 	return make([]int, 0)
 }
@@ -14882,8 +14886,10 @@ func (ptr *QCameraExposure) MeteringMode() QCameraExposure__MeteringMode {
 	return 0
 }
 
-func (ptr *QCameraExposure) SupportedIsoSensitivities(continuous bool) []int {
+func (ptr *QCameraExposure) SupportedIsoSensitivities(continuous *bool) []int {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQCameraExposureFromPointer(l.data)
@@ -14891,13 +14897,15 @@ func (ptr *QCameraExposure) SupportedIsoSensitivities(continuous bool) []int {
 				out[i] = tmpList.__supportedIsoSensitivities_atList(i)
 			}
 			return out
-		}(C.QCameraExposure_SupportedIsoSensitivities(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QCameraExposure_SupportedIsoSensitivities(ptr.Pointer(), &continuousC))
 	}
 	return make([]int, 0)
 }
 
-func (ptr *QCameraExposure) SupportedApertures(continuous bool) []float64 {
+func (ptr *QCameraExposure) SupportedApertures(continuous *bool) []float64 {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
 			tmpList := NewQCameraExposureFromPointer(l.data)
@@ -14905,13 +14913,15 @@ func (ptr *QCameraExposure) SupportedApertures(continuous bool) []float64 {
 				out[i] = tmpList.__supportedApertures_atList(i)
 			}
 			return out
-		}(C.QCameraExposure_SupportedApertures(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QCameraExposure_SupportedApertures(ptr.Pointer(), &continuousC))
 	}
 	return make([]float64, 0)
 }
 
-func (ptr *QCameraExposure) SupportedShutterSpeeds(continuous bool) []float64 {
+func (ptr *QCameraExposure) SupportedShutterSpeeds(continuous *bool) []float64 {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
 			tmpList := NewQCameraExposureFromPointer(l.data)
@@ -14919,7 +14929,7 @@ func (ptr *QCameraExposure) SupportedShutterSpeeds(continuous bool) []float64 {
 				out[i] = tmpList.__supportedShutterSpeeds_atList(i)
 			}
 			return out
-		}(C.QCameraExposure_SupportedShutterSpeeds(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QCameraExposure_SupportedShutterSpeeds(ptr.Pointer(), &continuousC))
 	}
 	return make([]float64, 0)
 }
@@ -15671,11 +15681,13 @@ func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureContr
 }
 
 //export callbackQCameraExposureControl_SupportedParameterRange
-func callbackQCameraExposureControl_SupportedParameterRange(ptr unsafe.Pointer, parameter C.longlong, continuous C.char) unsafe.Pointer {
+func callbackQCameraExposureControl_SupportedParameterRange(ptr unsafe.Pointer, parameter C.longlong, continuous *C.char) unsafe.Pointer {
+	continuousR := int8(*continuous) != 0
+	defer func() { *continuous = C.char(int8(qt.GoBoolToInt(continuousR))) }()
 	if signal := qt.GetSignal(ptr, "supportedParameterRange"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQCameraExposureControlFromPointer(NewQCameraExposureControlFromPointer(nil).__supportedParameterRange_newList())
-			for _, v := range signal.(func(QCameraExposureControl__ExposureParameter, bool) []*core.QVariant)(QCameraExposureControl__ExposureParameter(parameter), int8(continuous) != 0) {
+			for _, v := range signal.(func(QCameraExposureControl__ExposureParameter, *bool) []*core.QVariant)(QCameraExposureControl__ExposureParameter(parameter), &continuousR) {
 				tmpList.__supportedParameterRange_setList(v)
 			}
 			return tmpList.Pointer()
@@ -15691,12 +15703,12 @@ func callbackQCameraExposureControl_SupportedParameterRange(ptr unsafe.Pointer, 
 	}()
 }
 
-func (ptr *QCameraExposureControl) ConnectSupportedParameterRange(f func(parameter QCameraExposureControl__ExposureParameter, continuous bool) []*core.QVariant) {
+func (ptr *QCameraExposureControl) ConnectSupportedParameterRange(f func(parameter QCameraExposureControl__ExposureParameter, continuous *bool) []*core.QVariant) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedParameterRange"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "supportedParameterRange", func(parameter QCameraExposureControl__ExposureParameter, continuous bool) []*core.QVariant {
-				signal.(func(QCameraExposureControl__ExposureParameter, bool) []*core.QVariant)(parameter, continuous)
+			qt.ConnectSignal(ptr.Pointer(), "supportedParameterRange", func(parameter QCameraExposureControl__ExposureParameter, continuous *bool) []*core.QVariant {
+				signal.(func(QCameraExposureControl__ExposureParameter, *bool) []*core.QVariant)(parameter, continuous)
 				return f(parameter, continuous)
 			})
 		} else {
@@ -15712,8 +15724,10 @@ func (ptr *QCameraExposureControl) DisconnectSupportedParameterRange() {
 	}
 }
 
-func (ptr *QCameraExposureControl) SupportedParameterRange(parameter QCameraExposureControl__ExposureParameter, continuous bool) []*core.QVariant {
+func (ptr *QCameraExposureControl) SupportedParameterRange(parameter QCameraExposureControl__ExposureParameter, continuous *bool) []*core.QVariant {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QVariant {
 			out := make([]*core.QVariant, int(l.len))
 			tmpList := NewQCameraExposureControlFromPointer(l.data)
@@ -15721,7 +15735,7 @@ func (ptr *QCameraExposureControl) SupportedParameterRange(parameter QCameraExpo
 				out[i] = tmpList.__supportedParameterRange_atList(i)
 			}
 			return out
-		}(C.QCameraExposureControl_SupportedParameterRange(ptr.Pointer(), C.longlong(parameter), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QCameraExposureControl_SupportedParameterRange(ptr.Pointer(), C.longlong(parameter), &continuousC))
 	}
 	return make([]*core.QVariant, 0)
 }
@@ -18375,8 +18389,10 @@ func (ptr *QCameraImageCapture) EncodingSettings() *QImageEncoderSettings {
 	return nil
 }
 
-func (ptr *QCameraImageCapture) SupportedResolutions(settings QImageEncoderSettings_ITF, continuous bool) []*core.QSize {
+func (ptr *QCameraImageCapture) SupportedResolutions(settings QImageEncoderSettings_ITF, continuous *bool) []*core.QSize {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
 			tmpList := NewQCameraImageCaptureFromPointer(l.data)
@@ -18384,7 +18400,7 @@ func (ptr *QCameraImageCapture) SupportedResolutions(settings QImageEncoderSetti
 				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
-		}(C.QCameraImageCapture_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QCameraImageCapture_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), &continuousC))
 	}
 	return make([]*core.QSize, 0)
 }
@@ -22445,11 +22461,13 @@ func (ptr *QImageEncoderControl) ImageSettings() *QImageEncoderSettings {
 }
 
 //export callbackQImageEncoderControl_SupportedResolutions
-func callbackQImageEncoderControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
+func callbackQImageEncoderControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous *C.char) unsafe.Pointer {
+	continuousR := int8(*continuous) != 0
+	defer func() { *continuous = C.char(int8(qt.GoBoolToInt(continuousR))) }()
 	if signal := qt.GetSignal(ptr, "supportedResolutions"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQImageEncoderControlFromPointer(NewQImageEncoderControlFromPointer(nil).__supportedResolutions_newList())
-			for _, v := range signal.(func(*QImageEncoderSettings, bool) []*core.QSize)(NewQImageEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
+			for _, v := range signal.(func(*QImageEncoderSettings, *bool) []*core.QSize)(NewQImageEncoderSettingsFromPointer(settings), &continuousR) {
 				tmpList.__supportedResolutions_setList(v)
 			}
 			return tmpList.Pointer()
@@ -22465,12 +22483,12 @@ func callbackQImageEncoderControl_SupportedResolutions(ptr unsafe.Pointer, setti
 	}()
 }
 
-func (ptr *QImageEncoderControl) ConnectSupportedResolutions(f func(settings *QImageEncoderSettings, continuous bool) []*core.QSize) {
+func (ptr *QImageEncoderControl) ConnectSupportedResolutions(f func(settings *QImageEncoderSettings, continuous *bool) []*core.QSize) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedResolutions"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "supportedResolutions", func(settings *QImageEncoderSettings, continuous bool) []*core.QSize {
-				signal.(func(*QImageEncoderSettings, bool) []*core.QSize)(settings, continuous)
+			qt.ConnectSignal(ptr.Pointer(), "supportedResolutions", func(settings *QImageEncoderSettings, continuous *bool) []*core.QSize {
+				signal.(func(*QImageEncoderSettings, *bool) []*core.QSize)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -22486,8 +22504,10 @@ func (ptr *QImageEncoderControl) DisconnectSupportedResolutions() {
 	}
 }
 
-func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSettings_ITF, continuous bool) []*core.QSize {
+func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSettings_ITF, continuous *bool) []*core.QSize {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
 			tmpList := NewQImageEncoderControlFromPointer(l.data)
@@ -22495,7 +22515,7 @@ func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSett
 				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
-		}(C.QImageEncoderControl_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QImageEncoderControl_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), &continuousC))
 	}
 	return make([]*core.QSize, 0)
 }
@@ -31127,8 +31147,10 @@ func (ptr *QMediaRecorder) AudioSettings() *QAudioEncoderSettings {
 	return nil
 }
 
-func (ptr *QMediaRecorder) SupportedResolutions(settings QVideoEncoderSettings_ITF, continuous bool) []*core.QSize {
+func (ptr *QMediaRecorder) SupportedResolutions(settings QVideoEncoderSettings_ITF, continuous *bool) []*core.QSize {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
 			tmpList := NewQMediaRecorderFromPointer(l.data)
@@ -31136,13 +31158,15 @@ func (ptr *QMediaRecorder) SupportedResolutions(settings QVideoEncoderSettings_I
 				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
-		}(C.QMediaRecorder_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QMediaRecorder_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), &continuousC))
 	}
 	return make([]*core.QSize, 0)
 }
 
-func (ptr *QMediaRecorder) SupportedAudioSampleRates(settings QAudioEncoderSettings_ITF, continuous bool) []int {
+func (ptr *QMediaRecorder) SupportedAudioSampleRates(settings QAudioEncoderSettings_ITF, continuous *bool) []int {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []int {
 			out := make([]int, int(l.len))
 			tmpList := NewQMediaRecorderFromPointer(l.data)
@@ -31150,13 +31174,15 @@ func (ptr *QMediaRecorder) SupportedAudioSampleRates(settings QAudioEncoderSetti
 				out[i] = tmpList.__supportedAudioSampleRates_atList(i)
 			}
 			return out
-		}(C.QMediaRecorder_SupportedAudioSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QMediaRecorder_SupportedAudioSampleRates(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings), &continuousC))
 	}
 	return make([]int, 0)
 }
 
-func (ptr *QMediaRecorder) SupportedFrameRates(settings QVideoEncoderSettings_ITF, continuous bool) []float64 {
+func (ptr *QMediaRecorder) SupportedFrameRates(settings QVideoEncoderSettings_ITF, continuous *bool) []float64 {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
 			tmpList := NewQMediaRecorderFromPointer(l.data)
@@ -31164,7 +31190,7 @@ func (ptr *QMediaRecorder) SupportedFrameRates(settings QVideoEncoderSettings_IT
 				out[i] = tmpList.__supportedFrameRates_atList(i)
 			}
 			return out
-		}(C.QMediaRecorder_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QMediaRecorder_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), &continuousC))
 	}
 	return make([]float64, 0)
 }
@@ -43051,11 +43077,13 @@ func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefa
 }
 
 //export callbackQVideoEncoderSettingsControl_SupportedResolutions
-func callbackQVideoEncoderSettingsControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
+func callbackQVideoEncoderSettingsControl_SupportedResolutions(ptr unsafe.Pointer, settings unsafe.Pointer, continuous *C.char) unsafe.Pointer {
+	continuousR := int8(*continuous) != 0
+	defer func() { *continuous = C.char(int8(qt.GoBoolToInt(continuousR))) }()
 	if signal := qt.GetSignal(ptr, "supportedResolutions"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedResolutions_newList())
-			for _, v := range signal.(func(*QVideoEncoderSettings, bool) []*core.QSize)(NewQVideoEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
+			for _, v := range signal.(func(*QVideoEncoderSettings, *bool) []*core.QSize)(NewQVideoEncoderSettingsFromPointer(settings), &continuousR) {
 				tmpList.__supportedResolutions_setList(v)
 			}
 			return tmpList.Pointer()
@@ -43071,12 +43099,12 @@ func callbackQVideoEncoderSettingsControl_SupportedResolutions(ptr unsafe.Pointe
 	}()
 }
 
-func (ptr *QVideoEncoderSettingsControl) ConnectSupportedResolutions(f func(settings *QVideoEncoderSettings, continuous bool) []*core.QSize) {
+func (ptr *QVideoEncoderSettingsControl) ConnectSupportedResolutions(f func(settings *QVideoEncoderSettings, continuous *bool) []*core.QSize) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedResolutions"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "supportedResolutions", func(settings *QVideoEncoderSettings, continuous bool) []*core.QSize {
-				signal.(func(*QVideoEncoderSettings, bool) []*core.QSize)(settings, continuous)
+			qt.ConnectSignal(ptr.Pointer(), "supportedResolutions", func(settings *QVideoEncoderSettings, continuous *bool) []*core.QSize {
+				signal.(func(*QVideoEncoderSettings, *bool) []*core.QSize)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -43092,8 +43120,10 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectSupportedResolutions() {
 	}
 }
 
-func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEncoderSettings_ITF, continuous bool) []*core.QSize {
+func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEncoderSettings_ITF, continuous *bool) []*core.QSize {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
 			out := make([]*core.QSize, int(l.len))
 			tmpList := NewQVideoEncoderSettingsControlFromPointer(l.data)
@@ -43101,17 +43131,19 @@ func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEnc
 				out[i] = tmpList.__supportedResolutions_atList(i)
 			}
 			return out
-		}(C.QVideoEncoderSettingsControl_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QVideoEncoderSettingsControl_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), &continuousC))
 	}
 	return make([]*core.QSize, 0)
 }
 
 //export callbackQVideoEncoderSettingsControl_SupportedFrameRates
-func callbackQVideoEncoderSettingsControl_SupportedFrameRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous C.char) unsafe.Pointer {
+func callbackQVideoEncoderSettingsControl_SupportedFrameRates(ptr unsafe.Pointer, settings unsafe.Pointer, continuous *C.char) unsafe.Pointer {
+	continuousR := int8(*continuous) != 0
+	defer func() { *continuous = C.char(int8(qt.GoBoolToInt(continuousR))) }()
 	if signal := qt.GetSignal(ptr, "supportedFrameRates"); signal != nil {
 		return func() unsafe.Pointer {
 			tmpList := NewQVideoEncoderSettingsControlFromPointer(NewQVideoEncoderSettingsControlFromPointer(nil).__supportedFrameRates_newList())
-			for _, v := range signal.(func(*QVideoEncoderSettings, bool) []float64)(NewQVideoEncoderSettingsFromPointer(settings), int8(continuous) != 0) {
+			for _, v := range signal.(func(*QVideoEncoderSettings, *bool) []float64)(NewQVideoEncoderSettingsFromPointer(settings), &continuousR) {
 				tmpList.__supportedFrameRates_setList(v)
 			}
 			return tmpList.Pointer()
@@ -43127,12 +43159,12 @@ func callbackQVideoEncoderSettingsControl_SupportedFrameRates(ptr unsafe.Pointer
 	}()
 }
 
-func (ptr *QVideoEncoderSettingsControl) ConnectSupportedFrameRates(f func(settings *QVideoEncoderSettings, continuous bool) []float64) {
+func (ptr *QVideoEncoderSettingsControl) ConnectSupportedFrameRates(f func(settings *QVideoEncoderSettings, continuous *bool) []float64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "supportedFrameRates"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "supportedFrameRates", func(settings *QVideoEncoderSettings, continuous bool) []float64 {
-				signal.(func(*QVideoEncoderSettings, bool) []float64)(settings, continuous)
+			qt.ConnectSignal(ptr.Pointer(), "supportedFrameRates", func(settings *QVideoEncoderSettings, continuous *bool) []float64 {
+				signal.(func(*QVideoEncoderSettings, *bool) []float64)(settings, continuous)
 				return f(settings, continuous)
 			})
 		} else {
@@ -43148,8 +43180,10 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectSupportedFrameRates() {
 	}
 }
 
-func (ptr *QVideoEncoderSettingsControl) SupportedFrameRates(settings QVideoEncoderSettings_ITF, continuous bool) []float64 {
+func (ptr *QVideoEncoderSettingsControl) SupportedFrameRates(settings QVideoEncoderSettings_ITF, continuous *bool) []float64 {
 	if ptr.Pointer() != nil {
+		continuousC := C.char(int8(qt.GoBoolToInt(*continuous)))
+		defer func() { *continuous = int8(continuousC) != 0 }()
 		return func(l C.struct_QtMultimedia_PackedList) []float64 {
 			out := make([]float64, int(l.len))
 			tmpList := NewQVideoEncoderSettingsControlFromPointer(l.data)
@@ -43157,7 +43191,7 @@ func (ptr *QVideoEncoderSettingsControl) SupportedFrameRates(settings QVideoEnco
 				out[i] = tmpList.__supportedFrameRates_atList(i)
 			}
 			return out
-		}(C.QVideoEncoderSettingsControl_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+		}(C.QVideoEncoderSettingsControl_SupportedFrameRates(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), &continuousC))
 	}
 	return make([]float64, 0)
 }

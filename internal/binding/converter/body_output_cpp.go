@@ -85,9 +85,20 @@ func CppOutputTemplateJS(function *parser.Function) string {
 	switch out {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 		return "emscripten::val"
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		if function.BoundByEmscripten || function.SignalMode == parser.CALLBACK {
+			return "long"
+		}
+
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		if function.BoundByEmscripten || function.SignalMode == parser.CALLBACK {
+			return "unsigned long"
+		}
 	}
+
 	switch {
-	case isClass(out) || parser.IsPackedList(out) || parser.IsPackedMap(out) || cppType(function, function.Output) == "void*":
+	case isClass(out) || parser.IsPackedList(out) || parser.IsPackedMap(out) || cppType(function, function.Output) == "void*" || cppType(function, function.Output) == "uintptr_t":
 		return "uintptr_t"
 	case isEnum(function.ClassName(), out) && (function.BoundByEmscripten || function.SignalMode == parser.CALLBACK):
 		return "long"

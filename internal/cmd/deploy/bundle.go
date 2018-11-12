@@ -387,10 +387,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		compiler := env["CXX"]
 
 		wrapper := filepath.Join(depPath, "c_main_wrapper.cpp")
-		utils.Save(wrapper, "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
-		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm"), "-shared")
+		utils.Save(wrapper, "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(argc, argv); }")
+		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm"), "-shared")
 		if target == "android-emulator" {
-			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86"), "-shared")
+			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86"), "-shared")
 		}
 		cmd.Dir = depPath
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v on %v", target, runtime.GOOS))
@@ -442,9 +442,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 			"--android-platform", "android-28",
 			"--jdk", utils.JDK_DIR(),
 			"--gradle",
-			"--no-gdbserver",
 			"--verbose",
 		)
+		if !utils.QT_DEBUG_QML() {
+			dep.Args = append(dep.Args, "--no-gdbserver")
+		}
+
 		if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
 			dep.Args = append(dep.Args,
 				"--sign", filepath.Join(path, target, name+".jks"), strings.TrimSpace(utils.Load(filepath.Join(path, target, "jks_alias"))),
@@ -677,6 +680,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		*/
 		//<-
 
+		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
 		//TODO: pack js into wasm
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
 		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, "", depPath)...)

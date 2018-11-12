@@ -2291,7 +2291,7 @@ class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource
 {
 public:
 	MyQNmeaPositionInfoSource(QNmeaPositionInfoSource::UpdateMode updateMode, QObject *parent = Q_NULLPTR) : QNmeaPositionInfoSource(updateMode, parent) {QNmeaPositionInfoSource_QNmeaPositionInfoSource_QRegisterMetaType();};
-	bool parsePosInfoFromNmeaData(const char * data, int size, QGeoPositionInfo * posInfo, bool * hasFix) { QtPositioning_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(this, dataPacked, size, posInfo, *hasFix) != 0; };
+	bool parsePosInfoFromNmeaData(const char * data, int size, QGeoPositionInfo * posInfo, bool * hasFix) { QtPositioning_PackedString dataPacked = { const_cast<char*>(data), size };return callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(this, dataPacked, size, posInfo, reinterpret_cast<char*>(hasFix)) != 0; };
 	void requestUpdate(int msec) { callbackQNmeaPositionInfoSource_RequestUpdate(this, msec); };
 	void setUpdateInterval(int msec) { callbackQGeoPositionInfoSource_SetUpdateInterval(this, msec); };
 	void startUpdates() { callbackQNmeaPositionInfoSource_StartUpdates(this); };
@@ -2361,16 +2361,14 @@ void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(long long updateMode, v
 	}
 }
 
-char QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(void* ptr, char* data, int size, void* posInfo, char hasFix)
+char QNmeaPositionInfoSource_ParsePosInfoFromNmeaData(void* ptr, char* data, int size, void* posInfo, char* hasFix)
 {
-	Q_UNUSED(hasFix);
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), NULL);
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), reinterpret_cast<bool*>(hasFix));
 }
 
-char QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(void* ptr, char* data, int size, void* posInfo, char hasFix)
+char QNmeaPositionInfoSource_ParsePosInfoFromNmeaDataDefault(void* ptr, char* data, int size, void* posInfo, char* hasFix)
 {
-	Q_UNUSED(hasFix);
-		return static_cast<QNmeaPositionInfoSource*>(ptr)->QNmeaPositionInfoSource::parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), NULL);
+		return static_cast<QNmeaPositionInfoSource*>(ptr)->QNmeaPositionInfoSource::parsePosInfoFromNmeaData(const_cast<const char*>(data), size, static_cast<QGeoPositionInfo*>(posInfo), reinterpret_cast<bool*>(hasFix));
 }
 
 void QNmeaPositionInfoSource_RequestUpdate(void* ptr, int msec)

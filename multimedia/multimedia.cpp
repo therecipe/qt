@@ -3223,7 +3223,7 @@ public:
 	void setAudioSettings(const QAudioEncoderSettings & settings) { callbackQAudioEncoderSettingsControl_SetAudioSettings(this, const_cast<QAudioEncoderSettings*>(&settings)); };
 	 ~MyQAudioEncoderSettingsControl() { callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(this); };
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<int> supportedSampleRates(const QAudioEncoderSettings & settings, bool * continuous) const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAudioEncoderSettingsControl_SupportedSampleRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioEncoderSettings*>(&settings), *continuous)); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<int> supportedSampleRates(const QAudioEncoderSettings & settings, bool * continuous) const { return ({ QList<int>* tmpP = static_cast<QList<int>*>(callbackQAudioEncoderSettingsControl_SupportedSampleRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QAudioEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<int> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString codecDescription(const QString & codecName) const { QByteArray t06d49e = codecName.toUtf8(); QtMultimedia_PackedString codecNamePacked = { const_cast<char*>(t06d49e.prepend("WHITESPACE").constData()+10), t06d49e.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecNamePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedAudioCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3303,10 +3303,9 @@ void* QAudioEncoderSettingsControl_AudioSettings(void* ptr)
 	return new QAudioEncoderSettings(static_cast<QAudioEncoderSettingsControl*>(ptr)->audioSettings());
 }
 
-struct QtMultimedia_PackedList QAudioEncoderSettingsControl_SupportedSampleRates(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QAudioEncoderSettingsControl_SupportedSampleRates(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedSampleRates(*static_cast<QAudioEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedSampleRates(*static_cast<QAudioEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedString QAudioEncoderSettingsControl_CodecDescription(void* ptr, struct QtMultimedia_PackedString codecName)
@@ -6695,22 +6694,19 @@ long long QCameraExposure_MeteringMode(void* ptr)
 	return static_cast<QCameraExposure*>(ptr)->meteringMode();
 }
 
-struct QtMultimedia_PackedList QCameraExposure_SupportedIsoSensitivities(void* ptr, char continuous)
+struct QtMultimedia_PackedList QCameraExposure_SupportedIsoSensitivities(void* ptr, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QCameraExposure*>(ptr)->supportedIsoSensitivities(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<int>* tmpValue = new QList<int>(static_cast<QCameraExposure*>(ptr)->supportedIsoSensitivities(reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedList QCameraExposure_SupportedApertures(void* ptr, char continuous)
+struct QtMultimedia_PackedList QCameraExposure_SupportedApertures(void* ptr, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedApertures(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedApertures(reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedList QCameraExposure_SupportedShutterSpeeds(void* ptr, char continuous)
+struct QtMultimedia_PackedList QCameraExposure_SupportedShutterSpeeds(void* ptr, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedShutterSpeeds(NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QCameraExposure*>(ptr)->supportedShutterSpeeds(reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QCameraExposure_SpotMeteringPoint(void* ptr)
@@ -7022,7 +7018,7 @@ public:
 	 ~MyQCameraExposureControl() { callbackQCameraExposureControl_DestroyQCameraExposureControl(this); };
 	QVariant actualValue(QCameraExposureControl::ExposureParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraExposureControl_ActualValue(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
 	QVariant requestedValue(QCameraExposureControl::ExposureParameter parameter) const { return *static_cast<QVariant*>(callbackQCameraExposureControl_RequestedValue(const_cast<void*>(static_cast<const void*>(this)), parameter)); };
-	QList<QVariant> supportedParameterRange(QCameraExposureControl::ExposureParameter parameter, bool * continuous) const { return ({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(callbackQCameraExposureControl_SupportedParameterRange(const_cast<void*>(static_cast<const void*>(this)), parameter, *continuous)); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<QVariant> supportedParameterRange(QCameraExposureControl::ExposureParameter parameter, bool * continuous) const { return ({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(callbackQCameraExposureControl_SupportedParameterRange(const_cast<void*>(static_cast<const void*>(this)), parameter, reinterpret_cast<char*>(continuous))); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	bool isParameterSupported(QCameraExposureControl::ExposureParameter parameter) const { return callbackQCameraExposureControl_IsParameterSupported(const_cast<void*>(static_cast<const void*>(this)), parameter) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool event(QEvent * e) { return callbackQMediaControl_Event(this, e) != 0; };
@@ -7151,10 +7147,9 @@ void* QCameraExposureControl_RequestedValue(void* ptr, long long parameter)
 	return new QVariant(static_cast<QCameraExposureControl*>(ptr)->requestedValue(static_cast<QCameraExposureControl::ExposureParameter>(parameter)));
 }
 
-struct QtMultimedia_PackedList QCameraExposureControl_SupportedParameterRange(void* ptr, long long parameter, char continuous)
+struct QtMultimedia_PackedList QCameraExposureControl_SupportedParameterRange(void* ptr, long long parameter, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QCameraExposureControl*>(ptr)->supportedParameterRange(static_cast<QCameraExposureControl::ExposureParameter>(parameter), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QCameraExposureControl*>(ptr)->supportedParameterRange(static_cast<QCameraExposureControl::ExposureParameter>(parameter), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QCameraExposureControl_IsParameterSupported(void* ptr, long long parameter)
@@ -8189,10 +8184,9 @@ void* QCameraImageCapture_EncodingSettings(void* ptr)
 		return new QImageEncoderSettings(static_cast<QCameraImageCapture*>(ptr)->encodingSettings());
 }
 
-struct QtMultimedia_PackedList QCameraImageCapture_SupportedResolutions(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QCameraImageCapture_SupportedResolutions(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QCameraImageCapture*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QCameraImageCapture*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedList QCameraImageCapture_SupportedBufferFormats(void* ptr)
@@ -10018,7 +10012,7 @@ public:
 	void setImageSettings(const QImageEncoderSettings & settings) { callbackQImageEncoderControl_SetImageSettings(this, const_cast<QImageEncoderSettings*>(&settings)); };
 	 ~MyQImageEncoderControl() { callbackQImageEncoderControl_DestroyQImageEncoderControl(this); };
 	QImageEncoderSettings imageSettings() const { return *static_cast<QImageEncoderSettings*>(callbackQImageEncoderControl_ImageSettings(const_cast<void*>(static_cast<const void*>(this)))); };
-	QList<QSize> supportedResolutions(const QImageEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQImageEncoderControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QImageEncoderSettings*>(&settings), *continuous)); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<QSize> supportedResolutions(const QImageEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQImageEncoderControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QImageEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString imageCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_ImageCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedImageCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQImageEncoderControl_SupportedImageCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -10098,10 +10092,9 @@ void* QImageEncoderControl_ImageSettings(void* ptr)
 	return new QImageEncoderSettings(static_cast<QImageEncoderControl*>(ptr)->imageSettings());
 }
 
-struct QtMultimedia_PackedList QImageEncoderControl_SupportedResolutions(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QImageEncoderControl_SupportedResolutions(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QImageEncoderControl*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QImageEncoderControl*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedString QImageEncoderControl_ImageCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)
@@ -15308,22 +15301,19 @@ void* QMediaRecorder_AudioSettings(void* ptr)
 		return new QAudioEncoderSettings(static_cast<QMediaRecorder*>(ptr)->audioSettings());
 }
 
-struct QtMultimedia_PackedList QMediaRecorder_SupportedResolutions(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QMediaRecorder_SupportedResolutions(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QMediaRecorder*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QMediaRecorder*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedList QMediaRecorder_SupportedAudioSampleRates(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QMediaRecorder_SupportedAudioSampleRates(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-		return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMediaRecorder*>(ptr)->supportedAudioSampleRates(*static_cast<QAudioEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<int>* tmpValue = new QList<int>(static_cast<QMediaRecorder*>(ptr)->supportedAudioSampleRates(*static_cast<QAudioEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedList QMediaRecorder_SupportedFrameRates(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QMediaRecorder_SupportedFrameRates(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-		return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QMediaRecorder*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+		return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QMediaRecorder*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QMediaRecorder_MediaObject(void* ptr)
@@ -20331,8 +20321,8 @@ public:
 	MyQVideoEncoderSettingsControl(QObject *parent = Q_NULLPTR) : QVideoEncoderSettingsControl(parent) {QVideoEncoderSettingsControl_QVideoEncoderSettingsControl_QRegisterMetaType();};
 	void setVideoSettings(const QVideoEncoderSettings & settings) { callbackQVideoEncoderSettingsControl_SetVideoSettings(this, const_cast<QVideoEncoderSettings*>(&settings)); };
 	 ~MyQVideoEncoderSettingsControl() { callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(this); };
-	QList<QSize> supportedResolutions(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQVideoEncoderSettingsControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), *continuous)); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
-	QList<qreal> supportedFrameRates(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<qreal>* tmpP = static_cast<QList<qreal>*>(callbackQVideoEncoderSettingsControl_SupportedFrameRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), *continuous)); QList<qreal> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<QSize> supportedResolutions(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<QSize>* tmpP = static_cast<QList<QSize>*>(callbackQVideoEncoderSettingsControl_SupportedResolutions(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<QSize> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
+	QList<qreal> supportedFrameRates(const QVideoEncoderSettings & settings, bool * continuous) const { return ({ QList<qreal>* tmpP = static_cast<QList<qreal>*>(callbackQVideoEncoderSettingsControl_SupportedFrameRates(const_cast<void*>(static_cast<const void*>(this)), const_cast<QVideoEncoderSettings*>(&settings), reinterpret_cast<char*>(continuous))); QList<qreal> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString videoCodecDescription(const QString & codec) const { QByteArray td061f6 = codec.toUtf8(); QtMultimedia_PackedString codecPacked = { const_cast<char*>(td061f6.prepend("WHITESPACE").constData()+10), td061f6.size()-10 };return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<void*>(static_cast<const void*>(this)), codecPacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QStringList supportedVideoCodecs() const { return ({ QtMultimedia_PackedString tempVal = callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVideoEncoderSettings videoSettings() const { return *static_cast<QVideoEncoderSettings*>(callbackQVideoEncoderSettingsControl_VideoSettings(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -20408,16 +20398,14 @@ void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(voi
 
 }
 
-struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedResolutions(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedResolutions(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedFrameRates(void* ptr, void* settings, char continuous)
+struct QtMultimedia_PackedList QVideoEncoderSettingsControl_SupportedFrameRates(void* ptr, void* settings, char* continuous)
 {
-	Q_UNUSED(continuous);
-	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<qreal>* tmpValue = new QList<qreal>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedFrameRates(*static_cast<QVideoEncoderSettings*>(settings), reinterpret_cast<bool*>(continuous))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMultimedia_PackedString QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, struct QtMultimedia_PackedString codec)

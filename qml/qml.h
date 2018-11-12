@@ -319,7 +319,7 @@ void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, struct QtQml_Pa
 void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, void* parent);
 struct QtQml_PackedString QQmlExpression_QQmlExpression_Tr(char* s, char* c, int n);
 struct QtQml_PackedString QQmlExpression_QQmlExpression_TrUtf8(char* s, char* c, int n);
-void* QQmlExpression_Evaluate(void* ptr, char valueIsUndefined);
+void* QQmlExpression_Evaluate(void* ptr, char* valueIsUndefined);
 void QQmlExpression_ClearError(void* ptr);
 void QQmlExpression_SetExpression(void* ptr, struct QtQml_PackedString expression);
 void QQmlExpression_SetNotifyOnValueChanged(void* ptr, char notifyOnChange);
@@ -559,11 +559,11 @@ void QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(void* ptr);
 void* QQmlScriptString_NewQQmlScriptString();
 void* QQmlScriptString_NewQQmlScriptString2(void* other);
 struct QtQml_PackedString QQmlScriptString_StringLiteral(void* ptr);
-char QQmlScriptString_BooleanLiteral(void* ptr, char ok);
+char QQmlScriptString_BooleanLiteral(void* ptr, char* ok);
 char QQmlScriptString_IsEmpty(void* ptr);
 char QQmlScriptString_IsNullLiteral(void* ptr);
 char QQmlScriptString_IsUndefinedLiteral(void* ptr);
-double QQmlScriptString_NumberLiteral(void* ptr, char ok);
+double QQmlScriptString_NumberLiteral(void* ptr, char* ok);
 
 #ifdef __cplusplus
 }

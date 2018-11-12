@@ -528,8 +528,8 @@ struct QtBluetooth_PackedString QBluetoothUuid_QBluetoothUuid_ProtocolToString(l
 struct QtBluetooth_PackedString QBluetoothUuid_QBluetoothUuid_ServiceClassToString(long long uuid);
 void QBluetoothUuid_DestroyQBluetoothUuid(void* ptr);
 int QBluetoothUuid_MinimumSize(void* ptr);
-unsigned short QBluetoothUuid_ToUInt16(void* ptr, char ok);
-unsigned int QBluetoothUuid_ToUInt32(void* ptr, char ok);
+unsigned short QBluetoothUuid_ToUInt16(void* ptr, char* ok);
+unsigned int QBluetoothUuid_ToUInt32(void* ptr, char* ok);
 void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData();
 void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData2(void* other);
 unsigned short QLowEnergyAdvertisingData_QLowEnergyAdvertisingData_InvalidManufacturerId();

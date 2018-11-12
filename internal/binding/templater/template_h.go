@@ -24,8 +24,12 @@ func HTemplate(m string, mode int, tags string) []byte {
 
 	fmt.Fprint(bb, "#pragma once\n\n")
 
-	fmt.Fprintf(bb, "#ifndef GO_%v_H\n", strings.ToUpper(m))
-	fmt.Fprintf(bb, "#define GO_%v_H\n\n", strings.ToUpper(m))
+	var hash string
+	if m == parser.MOC {
+		hash = "_" + parser.SortedClassesForModule(m, true)[0].Hash() //TODO:
+	}
+	fmt.Fprintf(bb, "#ifndef GO_%v%v_H\n", strings.ToUpper(m), hash)
+	fmt.Fprintf(bb, "#define GO_%v%v_H\n\n", strings.ToUpper(m), hash)
 
 	fmt.Fprint(bb, "#include <stdint.h>\n\n")
 

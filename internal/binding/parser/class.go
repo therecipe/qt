@@ -244,14 +244,15 @@ func (c *Class) IsSupported() bool {
 	}
 
 	if UseJs() {
-		if strings.HasPrefix(c.Name, "QSG") {
+		if strings.HasPrefix(c.Name, "QOpenGLFunctions_") || strings.HasPrefix(c.Name, "QSsl") || strings.HasPrefix(c.Name, "QNetwork") {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
 		switch c.Name {
 		case "QThreadPool", "QSharedMemory", "QPluginLoader", "QSemaphore", "QSemaphoreReleaser",
 			"QSystemSemaphore", "QThread", "QWaitCondition", "QUnhandledException", "QFileSystemModel",
-			"QLibrary":
+			"QLibrary", "QUdpSocket", "QHttpMultiPart", "QHttpPart", "QOpenGLTimeMonitor", "QOpenGLTimerQuery",
+			"QRemoteObjectHost": //TODO: only block in 5.11 ?
 			{
 				c.Access = "unsupported_isBlockedClass"
 				return false
@@ -312,7 +313,7 @@ func (c *Class) IsSupported() bool {
 		}
 	}
 
-	if strings.HasPrefix(c.Name, "QOpenGL") && (os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" || UseJs() || (strings.HasPrefix(State.Target, "android") && utils.QT_FAT())) { //TODO: block indiv classes for fat android build instead
+	if strings.HasPrefix(c.Name, "QOpenGL") && (os.Getenv("DEB_TARGET_ARCH_CPU") == "arm" || (strings.HasPrefix(State.Target, "android") && utils.QT_FAT())) { //TODO: block indiv classes for fat android build instead
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}

@@ -10713,10 +10713,9 @@ void* QMatrix_Map6(void* ptr, void* line)
 	return ({ QLineF tmpValue = static_cast<QMatrix*>(ptr)->map(*static_cast<QLineF*>(line)); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
-void* QMatrix_Inverted(void* ptr, char invertible)
+void* QMatrix_Inverted(void* ptr, char* invertible)
 {
-	Q_UNUSED(invertible);
-	return new QMatrix(static_cast<QMatrix*>(ptr)->inverted(NULL));
+	return new QMatrix(static_cast<QMatrix*>(ptr)->inverted(reinterpret_cast<bool*>(invertible)));
 }
 
 void* QMatrix_Map10(void* ptr, void* path)
@@ -10969,10 +10968,9 @@ void* QMatrix4x4_ToAffine(void* ptr)
 	return new QMatrix(static_cast<QMatrix4x4*>(ptr)->toAffine());
 }
 
-void* QMatrix4x4_Inverted(void* ptr, char invertible)
+void* QMatrix4x4_Inverted(void* ptr, char* invertible)
 {
-	Q_UNUSED(invertible);
-	return new QMatrix4x4(static_cast<QMatrix4x4*>(ptr)->inverted(NULL));
+	return new QMatrix4x4(static_cast<QMatrix4x4*>(ptr)->inverted(reinterpret_cast<bool*>(invertible)));
 }
 
 void* QMatrix4x4_Transposed(void* ptr)
@@ -13989,10 +13987,9 @@ void QOpenGLExtraFunctions_GlGetActiveUniformsiv(void* ptr, unsigned int program
 	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetActiveUniformsiv(program, uniformCount, const_cast<const GLuint*>(&uniformIndices), pname, &params);
 }
 
-void QOpenGLExtraFunctions_GlGetBooleani_v(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLExtraFunctions_GlGetBooleani_v(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLExtraFunctions*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
 void QOpenGLExtraFunctions_GlGetBufferPointerv(void* ptr, unsigned int target, unsigned int pname, void* params)
@@ -15215,10 +15212,9 @@ void QOpenGLFunctions_GlGetAttachedShaders(void* ptr, unsigned int program, int 
 	static_cast<QOpenGLFunctions*>(ptr)->glGetAttachedShaders(program, maxcount, &count, &shaders);
 }
 
-void QOpenGLFunctions_GlGetBooleanv(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_GlGetBooleanv(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_GlGetBufferParameteriv(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -15889,10 +15885,9 @@ void QOpenGLFunctions_1_0_GlEdgeFlag2(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_1_0*>(ptr)->glEdgeFlag(flag != 0);
 }
 
-void QOpenGLFunctions_1_0_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_0_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_0*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_0*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_0_GlEnable2(void* ptr, unsigned int cap)
@@ -15990,10 +15985,9 @@ void QOpenGLFunctions_1_0_GlFrontFace2(void* ptr, unsigned int mode)
 	static_cast<QOpenGLFunctions_1_0*>(ptr)->glFrontFace(mode);
 }
 
-void QOpenGLFunctions_1_0_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_0_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_0*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_0*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_0_GlGetFloatv2(void* ptr, unsigned int pname, float params)
@@ -16875,10 +16869,9 @@ public:
 	 ~MyQOpenGLFunctions_1_1() { callbackQOpenGLFunctions_1_1_DestroyQOpenGLFunctions_1_12(this); };
 };
 
-char QOpenGLFunctions_1_1_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_1_1_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_1_1*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_1_1*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_1_1_GlIsEnabled2(void* ptr, unsigned int cap)
@@ -17226,10 +17219,9 @@ void QOpenGLFunctions_1_1_GlEdgeFlagPointer2(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_1_1*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_1_1_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_1_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_1*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_1*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_1_GlEnable2(void* ptr, unsigned int cap)
@@ -17337,10 +17329,9 @@ void QOpenGLFunctions_1_1_GlGenTextures2(void* ptr, int n, unsigned int textures
 	static_cast<QOpenGLFunctions_1_1*>(ptr)->glGenTextures(n, &textures);
 }
 
-void QOpenGLFunctions_1_1_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_1_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_1*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_1*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_1_GlGetFloatv2(void* ptr, unsigned int pname, float params)
@@ -18292,10 +18283,9 @@ public:
 	 ~MyQOpenGLFunctions_1_2() { callbackQOpenGLFunctions_1_2_DestroyQOpenGLFunctions_1_22(this); };
 };
 
-char QOpenGLFunctions_1_2_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_1_2_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_1_2*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_1_2*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_1_2_GlIsEnabled2(void* ptr, unsigned int cap)
@@ -18733,10 +18723,9 @@ void QOpenGLFunctions_1_2_GlEdgeFlagPointer2(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_1_2*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_1_2_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_2_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_2*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_2*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_2_GlEnable2(void* ptr, unsigned int cap)
@@ -18844,10 +18833,9 @@ void QOpenGLFunctions_1_2_GlGenTextures2(void* ptr, int n, unsigned int textures
 	static_cast<QOpenGLFunctions_1_2*>(ptr)->glGenTextures(n, &textures);
 }
 
-void QOpenGLFunctions_1_2_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_2_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_2*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_2*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_2_GlGetColorTable2(void* ptr, unsigned int target, unsigned int format, unsigned int ty, void* table)
@@ -19899,10 +19887,9 @@ public:
 	 ~MyQOpenGLFunctions_1_3() { callbackQOpenGLFunctions_1_3_DestroyQOpenGLFunctions_1_32(this); };
 };
 
-char QOpenGLFunctions_1_3_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_1_3_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_1_3*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_1_3*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_1_3_GlIsEnabled2(void* ptr, unsigned int cap)
@@ -20380,10 +20367,9 @@ void QOpenGLFunctions_1_3_GlEdgeFlagPointer2(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_1_3*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_1_3_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_3_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_3*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_3*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_3_GlEnable2(void* ptr, unsigned int cap)
@@ -20491,10 +20477,9 @@ void QOpenGLFunctions_1_3_GlGenTextures2(void* ptr, int n, unsigned int textures
 	static_cast<QOpenGLFunctions_1_3*>(ptr)->glGenTextures(n, &textures);
 }
 
-void QOpenGLFunctions_1_3_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_3_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_3*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_3*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_3_GlGetColorTable2(void* ptr, unsigned int target, unsigned int format, unsigned int ty, void* table)
@@ -21686,10 +21671,9 @@ public:
 	 ~MyQOpenGLFunctions_1_4() { callbackQOpenGLFunctions_1_4_DestroyQOpenGLFunctions_1_42(this); };
 };
 
-char QOpenGLFunctions_1_4_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_1_4_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_1_4*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_1_4*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_1_4_GlIsEnabled2(void* ptr, unsigned int cap)
@@ -22172,10 +22156,9 @@ void QOpenGLFunctions_1_4_GlEdgeFlagPointer2(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_1_4*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_1_4_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_4_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_4*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_4*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_4_GlEnable2(void* ptr, unsigned int cap)
@@ -22298,10 +22281,9 @@ void QOpenGLFunctions_1_4_GlGenTextures2(void* ptr, int n, unsigned int textures
 	static_cast<QOpenGLFunctions_1_4*>(ptr)->glGenTextures(n, &textures);
 }
 
-void QOpenGLFunctions_1_4_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_4_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_4*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_4*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_4_GlGetColorTable2(void* ptr, unsigned int target, unsigned int format, unsigned int ty, void* table)
@@ -23643,10 +23625,9 @@ public:
 	 ~MyQOpenGLFunctions_1_5() { callbackQOpenGLFunctions_1_5_DestroyQOpenGLFunctions_1_52(this); };
 };
 
-char QOpenGLFunctions_1_5_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_1_5_GlAreTexturesResident2(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_1_5*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_1_5*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_1_5_GlIsBuffer2(void* ptr, unsigned int buffer)
@@ -24169,10 +24150,9 @@ void QOpenGLFunctions_1_5_GlEdgeFlagPointer2(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_1_5*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_1_5_GlEdgeFlagv2(void* ptr, char flag)
+void QOpenGLFunctions_1_5_GlEdgeFlagv2(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_1_5*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_1_5*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_1_5_GlEnable2(void* ptr, unsigned int cap)
@@ -24310,10 +24290,9 @@ void QOpenGLFunctions_1_5_GlGenTextures2(void* ptr, int n, unsigned int textures
 	static_cast<QOpenGLFunctions_1_5*>(ptr)->glGenTextures(n, &textures);
 }
 
-void QOpenGLFunctions_1_5_GlGetBooleanv2(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_1_5_GlGetBooleanv2(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_1_5*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_1_5*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_1_5_GlGetBufferParameteriv2(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -25680,10 +25659,9 @@ public:
 	 ~MyQOpenGLFunctions_2_0() { callbackQOpenGLFunctions_2_0_DestroyQOpenGLFunctions_2_03(this); };
 };
 
-char QOpenGLFunctions_2_0_GlAreTexturesResident3(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_2_0_GlAreTexturesResident3(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_2_0*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_2_0*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_2_0_GlIsBuffer3(void* ptr, unsigned int buffer)
@@ -26266,10 +26244,9 @@ void QOpenGLFunctions_2_0_GlEdgeFlagPointer3(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_2_0*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_2_0_GlEdgeFlagv3(void* ptr, char flag)
+void QOpenGLFunctions_2_0_GlEdgeFlagv3(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_2_0*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_2_0*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_2_0_GlEnable3(void* ptr, unsigned int cap)
@@ -26417,10 +26394,9 @@ void QOpenGLFunctions_2_0_GlGetAttachedShaders3(void* ptr, unsigned int program,
 	static_cast<QOpenGLFunctions_2_0*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_2_0_GlGetBooleanv3(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_2_0_GlGetBooleanv3(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_2_0*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_2_0*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_2_0_GlGetBufferParameteriv3(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -28082,10 +28058,9 @@ public:
 	 ~MyQOpenGLFunctions_2_1() { callbackQOpenGLFunctions_2_1_DestroyQOpenGLFunctions_2_13(this); };
 };
 
-char QOpenGLFunctions_2_1_GlAreTexturesResident3(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_2_1_GlAreTexturesResident3(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_2_1*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_2_1*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_2_1_GlIsBuffer3(void* ptr, unsigned int buffer)
@@ -28668,10 +28643,9 @@ void QOpenGLFunctions_2_1_GlEdgeFlagPointer3(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_2_1*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_2_1_GlEdgeFlagv3(void* ptr, char flag)
+void QOpenGLFunctions_2_1_GlEdgeFlagv3(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_2_1*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_2_1*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_2_1_GlEnable3(void* ptr, unsigned int cap)
@@ -28819,10 +28793,9 @@ void QOpenGLFunctions_2_1_GlGetAttachedShaders3(void* ptr, unsigned int program,
 	static_cast<QOpenGLFunctions_2_1*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_2_1_GlGetBooleanv3(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_2_1_GlGetBooleanv3(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_2_1*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_2_1*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_2_1_GlGetBufferParameteriv3(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -30514,10 +30487,9 @@ public:
 	 ~MyQOpenGLFunctions_3_0() { callbackQOpenGLFunctions_3_0_DestroyQOpenGLFunctions_3_04(this); };
 };
 
-char QOpenGLFunctions_3_0_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_3_0_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_3_0*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_3_0*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_3_0_GlIsBuffer4(void* ptr, unsigned int buffer)
@@ -31215,10 +31187,9 @@ void QOpenGLFunctions_3_0_GlEdgeFlagPointer4(void* ptr, int stride, void* pointe
 	static_cast<QOpenGLFunctions_3_0*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_3_0_GlEdgeFlagv4(void* ptr, char flag)
+void QOpenGLFunctions_3_0_GlEdgeFlagv4(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_3_0*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_3_0*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_3_0_GlEnable4(void* ptr, unsigned int cap)
@@ -31426,16 +31397,14 @@ void QOpenGLFunctions_3_0_GlGetAttachedShaders4(void* ptr, unsigned int program,
 	static_cast<QOpenGLFunctions_3_0*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_0_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_0_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_0*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_0*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_0_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_0_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_0*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_0*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_0_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -33857,16 +33826,14 @@ void QOpenGLFunctions_3_1_GlGetAttachedShaders4(void* ptr, unsigned int program,
 	static_cast<QOpenGLFunctions_3_1*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_1_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_1_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_1*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_1*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_1_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_1_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_1*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_1*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_1_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -34438,10 +34405,9 @@ public:
 	 ~MyQOpenGLFunctions_3_2_Compatibility() { callbackQOpenGLFunctions_3_2_Compatibility_DestroyQOpenGLFunctions_3_2_Compatibility4(this); };
 };
 
-char QOpenGLFunctions_3_2_Compatibility_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_3_2_Compatibility_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_3_2_Compatibility_GlIsBuffer4(void* ptr, unsigned int buffer)
@@ -35164,10 +35130,9 @@ void QOpenGLFunctions_3_2_Compatibility_GlEdgeFlagPointer4(void* ptr, int stride
 	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_3_2_Compatibility_GlEdgeFlagv4(void* ptr, char flag)
+void QOpenGLFunctions_3_2_Compatibility_GlEdgeFlagv4(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_3_2_Compatibility_GlEnable4(void* ptr, unsigned int cap)
@@ -35390,16 +35355,14 @@ void QOpenGLFunctions_3_2_Compatibility_GlGetAttachedShaders4(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_2_Compatibility_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_2_Compatibility_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_2_Compatibility_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_2_Compatibility_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_2_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_2_Compatibility_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -37881,16 +37844,14 @@ void QOpenGLFunctions_3_2_Core_GlGetAttachedShaders4(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_3_2_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_2_Core_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_2_Core_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_2_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_2_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_2_Core_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_2_Core_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_2_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_2_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_2_Core_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -38487,10 +38448,9 @@ public:
 	 ~MyQOpenGLFunctions_3_3_Compatibility() { callbackQOpenGLFunctions_3_3_Compatibility_DestroyQOpenGLFunctions_3_3_Compatibility4(this); };
 };
 
-char QOpenGLFunctions_3_3_Compatibility_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_3_3_Compatibility_GlAreTexturesResident4(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_3_3_Compatibility_GlIsBuffer4(void* ptr, unsigned int buffer)
@@ -39248,10 +39208,9 @@ void QOpenGLFunctions_3_3_Compatibility_GlEdgeFlagPointer4(void* ptr, int stride
 	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_3_3_Compatibility_GlEdgeFlagv4(void* ptr, char flag)
+void QOpenGLFunctions_3_3_Compatibility_GlEdgeFlagv4(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_3_3_Compatibility_GlEnable4(void* ptr, unsigned int cap)
@@ -39479,16 +39438,14 @@ void QOpenGLFunctions_3_3_Compatibility_GlGetAttachedShaders4(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_3_Compatibility_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_3_Compatibility_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_3_Compatibility_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_3_Compatibility_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_3_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_3_Compatibility_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -42240,16 +42197,14 @@ void QOpenGLFunctions_3_3_Core_GlGetAttachedShaders4(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_3_3_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_3_3_Core_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_3_3_Core_GlGetBooleani_v4(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_3_3_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_3_3_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_3_3_Core_GlGetBooleanv4(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_3_3_Core_GlGetBooleanv4(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_3_3_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_3_3_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_3_3_Core_GlGetBufferParameteriv4(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -43076,10 +43031,9 @@ public:
 	 ~MyQOpenGLFunctions_4_0_Compatibility() { callbackQOpenGLFunctions_4_0_Compatibility_DestroyQOpenGLFunctions_4_0_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_0_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_0_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_0_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -43897,10 +43851,9 @@ void QOpenGLFunctions_4_0_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_0_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_0_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_0_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -44143,16 +44096,14 @@ void QOpenGLFunctions_4_0_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_0_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_0_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_0_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_0_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_0_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_0_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -47024,16 +46975,14 @@ void QOpenGLFunctions_4_0_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_0_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_0_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_0_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_0_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_0_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_0_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_0_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_0_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_0_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_0_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -47905,10 +47854,9 @@ public:
 	 ~MyQOpenGLFunctions_4_1_Compatibility() { callbackQOpenGLFunctions_4_1_Compatibility_DestroyQOpenGLFunctions_4_1_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_1_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_1_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_1_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -48756,10 +48704,9 @@ void QOpenGLFunctions_4_1_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_1_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_1_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_1_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -49007,16 +48954,14 @@ void QOpenGLFunctions_4_1_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_1_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_1_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_1_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_1_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_1_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -52173,16 +52118,14 @@ void QOpenGLFunctions_4_1_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_1_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_1_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_1_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_1_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_1_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -53304,10 +53247,9 @@ public:
 	 ~MyQOpenGLFunctions_4_2_Compatibility() { callbackQOpenGLFunctions_4_2_Compatibility_DestroyQOpenGLFunctions_4_2_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_2_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_2_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_2_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -54185,10 +54127,9 @@ void QOpenGLFunctions_4_2_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_2_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_2_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_2_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -54441,16 +54382,14 @@ void QOpenGLFunctions_4_2_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_2_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_2_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_2_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_2_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_2_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -57667,16 +57606,14 @@ void QOpenGLFunctions_4_2_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_2_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_2_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_2_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_2_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_2_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -58823,10 +58760,9 @@ public:
 	 ~MyQOpenGLFunctions_4_3_Compatibility() { callbackQOpenGLFunctions_4_3_Compatibility_DestroyQOpenGLFunctions_4_3_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_3_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_3_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_3_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -59719,10 +59655,9 @@ void QOpenGLFunctions_4_3_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_3_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_3_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_3_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -59980,16 +59915,14 @@ void QOpenGLFunctions_4_3_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_3_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_3_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_3_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_3_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_3_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -63321,16 +63254,14 @@ void QOpenGLFunctions_4_3_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &obj);
 }
 
-void QOpenGLFunctions_4_3_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_3_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_3_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char params)
+void QOpenGLFunctions_4_3_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* params)
 {
-	Q_UNUSED(params);
-	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(params));
 }
 
 void QOpenGLFunctions_4_3_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -64572,10 +64503,9 @@ public:
 	 ~MyQOpenGLFunctions_4_4_Compatibility() { callbackQOpenGLFunctions_4_4_Compatibility_DestroyQOpenGLFunctions_4_4_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_4_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_4_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_4_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -65503,10 +65433,9 @@ void QOpenGLFunctions_4_4_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_4_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_4_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_4_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -65764,16 +65693,14 @@ void QOpenGLFunctions_4_4_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &shaders);
 }
 
-void QOpenGLFunctions_4_4_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_4_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_4_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char data)
+void QOpenGLFunctions_4_4_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(data));
 }
 
 void QOpenGLFunctions_4_4_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -69125,16 +69052,14 @@ void QOpenGLFunctions_4_4_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &shaders);
 }
 
-void QOpenGLFunctions_4_4_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_4_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_4_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char data)
+void QOpenGLFunctions_4_4_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(data));
 }
 
 void QOpenGLFunctions_4_4_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -70461,10 +70386,9 @@ public:
 	 ~MyQOpenGLFunctions_4_5_Compatibility() { callbackQOpenGLFunctions_4_5_Compatibility_DestroyQOpenGLFunctions_4_5_Compatibility5(this); };
 };
 
-char QOpenGLFunctions_4_5_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char residences)
+char QOpenGLFunctions_4_5_Compatibility_GlAreTexturesResident5(void* ptr, int n, unsigned int textures, char* residences)
 {
-	Q_UNUSED(residences);
-	return static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), NULL);
+	return static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glAreTexturesResident(n, const_cast<const GLuint*>(&textures), reinterpret_cast<GLboolean*>(residences));
 }
 
 char QOpenGLFunctions_4_5_Compatibility_GlIsBuffer5(void* ptr, unsigned int buffer)
@@ -71532,10 +71456,9 @@ void QOpenGLFunctions_4_5_Compatibility_GlEdgeFlagPointer5(void* ptr, int stride
 	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glEdgeFlagPointer(stride, pointer);
 }
 
-void QOpenGLFunctions_4_5_Compatibility_GlEdgeFlagv5(void* ptr, char flag)
+void QOpenGLFunctions_4_5_Compatibility_GlEdgeFlagv5(void* ptr, char* flag)
 {
-	Q_UNUSED(flag);
-	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glEdgeFlagv(NULL);
+	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glEdgeFlagv(reinterpret_cast<GLboolean*>(flag));
 }
 
 void QOpenGLFunctions_4_5_Compatibility_GlEnable5(void* ptr, unsigned int cap)
@@ -71803,16 +71726,14 @@ void QOpenGLFunctions_4_5_Compatibility_GlGetAttachedShaders5(void* ptr, unsigne
 	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &shaders);
 }
 
-void QOpenGLFunctions_4_5_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_5_Compatibility_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_5_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char data)
+void QOpenGLFunctions_4_5_Compatibility_GlGetBooleanv5(void* ptr, unsigned int pname, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(data));
 }
 
 void QOpenGLFunctions_4_5_Compatibility_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -75679,16 +75600,14 @@ void QOpenGLFunctions_4_5_Core_GlGetAttachedShaders5(void* ptr, unsigned int pro
 	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glGetAttachedShaders(program, maxCount, &count, &shaders);
 }
 
-void QOpenGLFunctions_4_5_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char data)
+void QOpenGLFunctions_4_5_Core_GlGetBooleani_v5(void* ptr, unsigned int target, unsigned int index, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glGetBooleani_v(target, index, NULL);
+	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glGetBooleani_v(target, index, reinterpret_cast<GLboolean*>(data));
 }
 
-void QOpenGLFunctions_4_5_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char data)
+void QOpenGLFunctions_4_5_Core_GlGetBooleanv5(void* ptr, unsigned int pname, char* data)
 {
-	Q_UNUSED(data);
-	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glGetBooleanv(pname, NULL);
+	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glGetBooleanv(pname, reinterpret_cast<GLboolean*>(data));
 }
 
 void QOpenGLFunctions_4_5_Core_GlGetBufferParameteriv5(void* ptr, unsigned int target, unsigned int pname, int params)
@@ -96067,10 +95986,9 @@ void* QTransform_Adjoint(void* ptr)
 	return new QTransform(static_cast<QTransform*>(ptr)->adjoint());
 }
 
-void* QTransform_Inverted(void* ptr, char invertible)
+void* QTransform_Inverted(void* ptr, char* invertible)
 {
-	Q_UNUSED(invertible);
-	return new QTransform(static_cast<QTransform*>(ptr)->inverted(NULL));
+	return new QTransform(static_cast<QTransform*>(ptr)->inverted(reinterpret_cast<bool*>(invertible)));
 }
 
 void* QTransform_Transposed(void* ptr)

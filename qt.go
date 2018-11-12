@@ -126,7 +126,7 @@ func CountSignals() (c int) {
 	return
 }
 
-func GoBoolToInt(b bool) int {
+func GoBoolToInt(b bool) int8 {
 	if b {
 		return 1
 	}

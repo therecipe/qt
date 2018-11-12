@@ -275,6 +275,13 @@ func ShouldBuildForTarget(module, target string) bool {
 
 	case "js", "wasm":
 		{
+			switch module {
+			case "DBus", "Designer", "Positioning", "Help", "Location", "UiTools", "WebEngine", "SerialPort", "SerialBus", "Sql":
+				return false
+			}
+			if strings.HasSuffix(module, "Extras") {
+				return false
+			}
 			if !IsWhiteListedJsLib(module) && module != "build_static" {
 				return false
 			}
@@ -294,6 +301,7 @@ func IsWhiteListedSailfishLib(name string) bool {
 	}
 }
 
+//TODO: whitelist everything once dependency issue is resolved
 func IsWhiteListedJsLib(name string) bool {
 	switch name {
 	case "Core", "Gui", "Widgets", "PrintSupport", "Qml", "Quick", "QuickControls2", "Xml", "XmlPatterns", "WebSockets", "Svg", "Charts", "Multimedia":

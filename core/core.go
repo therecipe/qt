@@ -8717,16 +8717,20 @@ func (ptr *QByteArray) Data2() string {
 	return ""
 }
 
-func (ptr *QByteArray) ToDouble(ok bool) float64 {
+func (ptr *QByteArray) ToDouble(ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QByteArray_ToDouble(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QByteArray_ToDouble(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToFloat(ok bool) float32 {
+func (ptr *QByteArray) ToFloat(ok *bool) float32 {
 	if ptr.Pointer() != nil {
-		return float32(C.QByteArray_ToFloat(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QByteArray_ToFloat(ptr.Pointer(), &okC))
 	}
 	return 0
 }
@@ -8876,58 +8880,74 @@ func (ptr *QByteArray) Size() int {
 	return 0
 }
 
-func (ptr *QByteArray) ToInt(ok bool, base int) int {
+func (ptr *QByteArray) ToInt(ok *bool, base int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QByteArray_ToInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QByteArray_ToInt(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToLong(ok bool, base int) int {
+func (ptr *QByteArray) ToLong(ok *bool, base int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QByteArray_ToLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QByteArray_ToLong(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToLongLong(ok bool, base int) int64 {
+func (ptr *QByteArray) ToLongLong(ok *bool, base int) int64 {
 	if ptr.Pointer() != nil {
-		return int64(C.QByteArray_ToLongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QByteArray_ToLongLong(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToULongLong(ok bool, base int) uint64 {
+func (ptr *QByteArray) ToULongLong(ok *bool, base int) uint64 {
 	if ptr.Pointer() != nil {
-		return uint64(C.QByteArray_ToULongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QByteArray_ToULongLong(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToShort(ok bool, base int) int16 {
+func (ptr *QByteArray) ToShort(ok *bool, base int) int16 {
 	if ptr.Pointer() != nil {
-		return int16(C.QByteArray_ToShort(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int16(C.QByteArray_ToShort(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToUInt(ok bool, base int) uint {
+func (ptr *QByteArray) ToUInt(ok *bool, base int) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QByteArray_ToUInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QByteArray_ToUInt(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToULong(ok bool, base int) uint {
+func (ptr *QByteArray) ToULong(ok *bool, base int) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QByteArray_ToULong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QByteArray_ToULong(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QByteArray) ToUShort(ok bool, base int) uint16 {
+func (ptr *QByteArray) ToUShort(ok *bool, base int) uint16 {
 	if ptr.Pointer() != nil {
-		return uint16(C.QByteArray_ToUShort(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QByteArray_ToUShort(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
@@ -26059,210 +26079,258 @@ func (ptr *QLocale) TextDirection() Qt__LayoutDirection {
 	return 0
 }
 
-func (ptr *QLocale) ToDouble3(s QStringView_ITF, ok bool) float64 {
+func (ptr *QLocale) ToDouble3(s QStringView_ITF, ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QLocale_ToDouble3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QLocale_ToDouble3(ptr.Pointer(), PointerFromQStringView(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToDouble(s string, ok bool) float64 {
+func (ptr *QLocale) ToDouble(s string, ok *bool) float64 {
 	if ptr.Pointer() != nil {
 		var sC *C.char
 		if s != "" {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return float64(C.QLocale_ToDouble(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QLocale_ToDouble(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToDouble2(s QStringRef_ITF, ok bool) float64 {
+func (ptr *QLocale) ToDouble2(s QStringRef_ITF, ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QLocale_ToDouble2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QLocale_ToDouble2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToFloat3(s QStringView_ITF, ok bool) float32 {
+func (ptr *QLocale) ToFloat3(s QStringView_ITF, ok *bool) float32 {
 	if ptr.Pointer() != nil {
-		return float32(C.QLocale_ToFloat3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QLocale_ToFloat3(ptr.Pointer(), PointerFromQStringView(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToFloat(s string, ok bool) float32 {
-	if ptr.Pointer() != nil {
-		var sC *C.char
-		if s != "" {
-			sC = C.CString(s)
-			defer C.free(unsafe.Pointer(sC))
-		}
-		return float32(C.QLocale_ToFloat(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToFloat2(s QStringRef_ITF, ok bool) float32 {
-	if ptr.Pointer() != nil {
-		return float32(C.QLocale_ToFloat2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToInt3(s QStringView_ITF, ok bool) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QLocale_ToInt3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok))))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToInt(s string, ok bool) int {
+func (ptr *QLocale) ToFloat(s string, ok *bool) float32 {
 	if ptr.Pointer() != nil {
 		var sC *C.char
 		if s != "" {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return int(int32(C.QLocale_ToInt(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QLocale_ToFloat(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToInt2(s QStringRef_ITF, ok bool) int {
+func (ptr *QLocale) ToFloat2(s QStringRef_ITF, ok *bool) float32 {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QLocale_ToInt2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QLocale_ToFloat2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToLongLong3(s QStringView_ITF, ok bool) int64 {
+func (ptr *QLocale) ToInt3(s QStringView_ITF, ok *bool) int {
 	if ptr.Pointer() != nil {
-		return int64(C.QLocale_ToLongLong3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QLocale_ToInt3(ptr.Pointer(), PointerFromQStringView(s), &okC)))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToLongLong(s string, ok bool) int64 {
-	if ptr.Pointer() != nil {
-		var sC *C.char
-		if s != "" {
-			sC = C.CString(s)
-			defer C.free(unsafe.Pointer(sC))
-		}
-		return int64(C.QLocale_ToLongLong(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToLongLong2(s QStringRef_ITF, ok bool) int64 {
-	if ptr.Pointer() != nil {
-		return int64(C.QLocale_ToLongLong2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToULongLong3(s QStringView_ITF, ok bool) uint64 {
-	if ptr.Pointer() != nil {
-		return uint64(C.QLocale_ToULongLong3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToULongLong(s string, ok bool) uint64 {
+func (ptr *QLocale) ToInt(s string, ok *bool) int {
 	if ptr.Pointer() != nil {
 		var sC *C.char
 		if s != "" {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return uint64(C.QLocale_ToULongLong(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QLocale_ToInt(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC)))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToULongLong2(s QStringRef_ITF, ok bool) uint64 {
+func (ptr *QLocale) ToInt2(s QStringRef_ITF, ok *bool) int {
 	if ptr.Pointer() != nil {
-		return uint64(C.QLocale_ToULongLong2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QLocale_ToInt2(ptr.Pointer(), PointerFromQStringRef(s), &okC)))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToShort3(s QStringView_ITF, ok bool) int16 {
+func (ptr *QLocale) ToLongLong3(s QStringView_ITF, ok *bool) int64 {
 	if ptr.Pointer() != nil {
-		return int16(C.QLocale_ToShort3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QLocale_ToLongLong3(ptr.Pointer(), PointerFromQStringView(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToShort(s string, ok bool) int16 {
-	if ptr.Pointer() != nil {
-		var sC *C.char
-		if s != "" {
-			sC = C.CString(s)
-			defer C.free(unsafe.Pointer(sC))
-		}
-		return int16(C.QLocale_ToShort(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToShort2(s QStringRef_ITF, ok bool) int16 {
-	if ptr.Pointer() != nil {
-		return int16(C.QLocale_ToShort2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToUInt3(s QStringView_ITF, ok bool) uint {
-	if ptr.Pointer() != nil {
-		return uint(uint32(C.QLocale_ToUInt3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok))))))
-	}
-	return 0
-}
-
-func (ptr *QLocale) ToUInt(s string, ok bool) uint {
+func (ptr *QLocale) ToLongLong(s string, ok *bool) int64 {
 	if ptr.Pointer() != nil {
 		var sC *C.char
 		if s != "" {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return uint(uint32(C.QLocale_ToUInt(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QLocale_ToLongLong(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToUInt2(s QStringRef_ITF, ok bool) uint {
+func (ptr *QLocale) ToLongLong2(s QStringRef_ITF, ok *bool) int64 {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QLocale_ToUInt2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QLocale_ToLongLong2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToUShort3(s QStringView_ITF, ok bool) uint16 {
+func (ptr *QLocale) ToULongLong3(s QStringView_ITF, ok *bool) uint64 {
 	if ptr.Pointer() != nil {
-		return uint16(C.QLocale_ToUShort3(ptr.Pointer(), PointerFromQStringView(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QLocale_ToULongLong3(ptr.Pointer(), PointerFromQStringView(s), &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToUShort(s string, ok bool) uint16 {
+func (ptr *QLocale) ToULongLong(s string, ok *bool) uint64 {
 	if ptr.Pointer() != nil {
 		var sC *C.char
 		if s != "" {
 			sC = C.CString(s)
 			defer C.free(unsafe.Pointer(sC))
 		}
-		return uint16(C.QLocale_ToUShort(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QLocale_ToULongLong(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToUShort2(s QStringRef_ITF, ok bool) uint16 {
+func (ptr *QLocale) ToULongLong2(s QStringRef_ITF, ok *bool) uint64 {
 	if ptr.Pointer() != nil {
-		return uint16(C.QLocale_ToUShort2(ptr.Pointer(), PointerFromQStringRef(s), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QLocale_ToULongLong2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToShort3(s QStringView_ITF, ok *bool) int16 {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int16(C.QLocale_ToShort3(ptr.Pointer(), PointerFromQStringView(s), &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToShort(s string, ok *bool) int16 {
+	if ptr.Pointer() != nil {
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int16(C.QLocale_ToShort(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToShort2(s QStringRef_ITF, ok *bool) int16 {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int16(C.QLocale_ToShort2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUInt3(s QStringView_ITF, ok *bool) uint {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QLocale_ToUInt3(ptr.Pointer(), PointerFromQStringView(s), &okC)))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUInt(s string, ok *bool) uint {
+	if ptr.Pointer() != nil {
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QLocale_ToUInt(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC)))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUInt2(s QStringRef_ITF, ok *bool) uint {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QLocale_ToUInt2(ptr.Pointer(), PointerFromQStringRef(s), &okC)))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUShort3(s QStringView_ITF, ok *bool) uint16 {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QLocale_ToUShort3(ptr.Pointer(), PointerFromQStringView(s), &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUShort(s string, ok *bool) uint16 {
+	if ptr.Pointer() != nil {
+		var sC *C.char
+		if s != "" {
+			sC = C.CString(s)
+			defer C.free(unsafe.Pointer(sC))
+		}
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QLocale_ToUShort(ptr.Pointer(), C.struct_QtCore_PackedString{data: sC, len: C.longlong(len(s))}, &okC))
+	}
+	return 0
+}
+
+func (ptr *QLocale) ToUShort2(s QStringRef_ITF, ok *bool) uint16 {
+	if ptr.Pointer() != nil {
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QLocale_ToUShort2(ptr.Pointer(), PointerFromQStringRef(s), &okC))
 	}
 	return 0
 }
@@ -27425,26 +27493,30 @@ func (ptr *QMetaEnum) KeyCount() int {
 	return 0
 }
 
-func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
+func (ptr *QMetaEnum) KeyToValue(key string, ok *bool) int {
 	if ptr.Pointer() != nil {
 		var keyC *C.char
 		if key != "" {
 			keyC = C.CString(key)
 			defer C.free(unsafe.Pointer(keyC))
 		}
-		return int(int32(C.QMetaEnum_KeyToValue(ptr.Pointer(), keyC, C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QMetaEnum_KeyToValue(ptr.Pointer(), keyC, &okC)))
 	}
 	return 0
 }
 
-func (ptr *QMetaEnum) KeysToValue(keys string, ok bool) int {
+func (ptr *QMetaEnum) KeysToValue(keys string, ok *bool) int {
 	if ptr.Pointer() != nil {
 		var keysC *C.char
 		if keys != "" {
 			keysC = C.CString(keys)
 			defer C.free(unsafe.Pointer(keysC))
 		}
-		return int(int32(C.QMetaEnum_KeysToValue(ptr.Pointer(), keysC, C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QMetaEnum_KeysToValue(ptr.Pointer(), keysC, &okC)))
 	}
 	return 0
 }
@@ -42401,16 +42473,20 @@ func (ptr *QStringRef) String() string {
 	return ""
 }
 
-func (ptr *QStringRef) ToDouble(ok bool) float64 {
+func (ptr *QStringRef) ToDouble(ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QStringRef_ToDouble(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QStringRef_ToDouble(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToFloat(ok bool) float32 {
+func (ptr *QStringRef) ToFloat(ok *bool) float32 {
 	if ptr.Pointer() != nil {
-		return float32(C.QStringRef_ToFloat(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QStringRef_ToFloat(ptr.Pointer(), &okC))
 	}
 	return 0
 }
@@ -42587,58 +42663,74 @@ func (ptr *QStringRef) Size() int {
 	return 0
 }
 
-func (ptr *QStringRef) ToInt(ok bool, base int) int {
+func (ptr *QStringRef) ToInt(ok *bool, base int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QStringRef_ToInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QStringRef_ToInt(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToLong(ok bool, base int) int {
+func (ptr *QStringRef) ToLong(ok *bool, base int) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QStringRef_ToLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QStringRef_ToLong(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToLongLong(ok bool, base int) int64 {
+func (ptr *QStringRef) ToLongLong(ok *bool, base int) int64 {
 	if ptr.Pointer() != nil {
-		return int64(C.QStringRef_ToLongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QStringRef_ToLongLong(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToULongLong(ok bool, base int) uint64 {
+func (ptr *QStringRef) ToULongLong(ok *bool, base int) uint64 {
 	if ptr.Pointer() != nil {
-		return uint64(C.QStringRef_ToULongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QStringRef_ToULongLong(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToShort(ok bool, base int) int16 {
+func (ptr *QStringRef) ToShort(ok *bool, base int) int16 {
 	if ptr.Pointer() != nil {
-		return int16(C.QStringRef_ToShort(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int16(C.QStringRef_ToShort(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToUInt(ok bool, base int) uint {
+func (ptr *QStringRef) ToUInt(ok *bool, base int) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QStringRef_ToUInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QStringRef_ToUInt(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToULong(ok bool, base int) uint {
+func (ptr *QStringRef) ToULong(ok *bool, base int) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QStringRef_ToULong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QStringRef_ToULong(ptr.Pointer(), &okC, C.int(int32(base)))))
 	}
 	return 0
 }
 
-func (ptr *QStringRef) ToUShort(ok bool, base int) uint16 {
+func (ptr *QStringRef) ToUShort(ok *bool, base int) uint16 {
 	if ptr.Pointer() != nil {
-		return uint16(C.QStringRef_ToUShort(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))), C.int(int32(base))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QStringRef_ToUShort(ptr.Pointer(), &okC, C.int(int32(base))))
 	}
 	return 0
 }
@@ -50403,23 +50495,29 @@ func (ptr *QVariant) TypeName() string {
 	return ""
 }
 
-func (ptr *QVariant) ToDouble(ok bool) float64 {
+func (ptr *QVariant) ToDouble(ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QVariant_ToDouble(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QVariant_ToDouble(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QVariant) ToFloat(ok bool) float32 {
+func (ptr *QVariant) ToFloat(ok *bool) float32 {
 	if ptr.Pointer() != nil {
-		return float32(C.QVariant_ToFloat(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float32(C.QVariant_ToFloat(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QVariant) ToInt(ok bool) int {
+func (ptr *QVariant) ToInt(ok *bool) int {
 	if ptr.Pointer() != nil {
-		return int(int32(C.QVariant_ToInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int(int32(C.QVariant_ToInt(ptr.Pointer(), &okC)))
 	}
 	return 0
 }
@@ -50431,30 +50529,38 @@ func (ptr *QVariant) UserType() int {
 	return 0
 }
 
-func (ptr *QVariant) ToLongLong(ok bool) int64 {
+func (ptr *QVariant) ToLongLong(ok *bool) int64 {
 	if ptr.Pointer() != nil {
-		return int64(C.QVariant_ToLongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int64(C.QVariant_ToLongLong(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QVariant) ToReal(ok bool) float64 {
+func (ptr *QVariant) ToReal(ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QVariant_ToReal(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QVariant_ToReal(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QVariant) ToULongLong(ok bool) uint64 {
+func (ptr *QVariant) ToULongLong(ok *bool) uint64 {
 	if ptr.Pointer() != nil {
-		return uint64(C.QVariant_ToULongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint64(C.QVariant_ToULongLong(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QVariant) ToUInt(ok bool) uint {
+func (ptr *QVariant) ToUInt(ok *bool) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QVariant_ToUInt(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QVariant_ToUInt(ptr.Pointer(), &okC)))
 	}
 	return 0
 }

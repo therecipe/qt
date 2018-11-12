@@ -13,6 +13,7 @@ import (
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/sql"
 	"github.com/therecipe/qt/widgets"
+	"github.com/therecipe/qt/xml"
 
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub/subsub" //subsubcustom
@@ -1766,4 +1767,13 @@ func (*testStruct) errorStringTest13(map[string]error, map[error]string, map[err
 }
 
 func (*testStruct) errorStringTest14(map[error][]string, map[string][]string, map[error][]error, map[string][]error) {
+}
+
+func TestBoolPointer(t *testing.T) {
+	r := xml.NewQXmlSimpleReader()
+	r.ConnectFeature(func(name string, ok *bool) bool { *ok = true; return *ok })
+	var ok bool
+	if r := r.Feature("", &ok); r == false || ok == false {
+		t.Fatal()
+	}
 }

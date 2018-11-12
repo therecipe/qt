@@ -4480,9 +4480,11 @@ func (ptr *QHostAddress) ToIPv4Address() uint {
 	return 0
 }
 
-func (ptr *QHostAddress) ToIPv4Address2(ok bool) uint {
+func (ptr *QHostAddress) ToIPv4Address2(ok *bool) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QHostAddress_ToIPv4Address2(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QHostAddress_ToIPv4Address2(ptr.Pointer(), &okC)))
 	}
 	return 0
 }
@@ -5635,9 +5637,11 @@ func (ptr *QLocalServer) RemoveServer(name string) bool {
 	return int8(C.QLocalServer_QLocalServer_RemoveServer(C.struct_QtNetwork_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 }
 
-func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
+func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut *bool) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut))))) != 0
+		timedOutC := C.char(int8(qt.GoBoolToInt(*timedOut)))
+		defer func() { *timedOut = int8(timedOutC) != 0 }()
+		return int8(C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), &timedOutC)) != 0
 	}
 	return false
 }
@@ -19795,9 +19799,11 @@ func (ptr *QTcpServer) Listen(address QHostAddress_ITF, port uint16) bool {
 	return false
 }
 
-func (ptr *QTcpServer) WaitForNewConnection(msec int, timedOut bool) bool {
+func (ptr *QTcpServer) WaitForNewConnection(msec int, timedOut *bool) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QTcpServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), C.char(int8(qt.GoBoolToInt(timedOut))))) != 0
+		timedOutC := C.char(int8(qt.GoBoolToInt(*timedOut)))
+		defer func() { *timedOut = int8(timedOutC) != 0 }()
+		return int8(C.QTcpServer_WaitForNewConnection(ptr.Pointer(), C.int(int32(msec)), &timedOutC)) != 0
 	}
 	return false
 }

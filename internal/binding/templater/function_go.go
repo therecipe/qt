@@ -292,6 +292,8 @@ func goFunctionBody(function *parser.Function) string {
 							conv := converter.GoOutputJS(fmt.Sprintf("args[%v]", i+1), p.Value, function, function.PureGoOutput)
 							if strings.Contains(conv, "func(") {
 								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v]", i+1))
+							} else if converter.GoType(function, p.Value, p.PureGoType) == "*bool" {
+								fmt.Fprintf(bb, "%v := uintptr(args[%v].Int())\n", parser.CleanName(p.Name, p.Value), i+1)
 							} else {
 								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
 							}
@@ -318,6 +320,18 @@ func goFunctionBody(function *parser.Function) string {
 					}
 				}
 			}
+
+			for _, p := range function.Parameters {
+				if converter.GoType(function, p.Value, p.PureGoType) == "*bool" {
+					if UseJs() {
+						fmt.Fprintf(bb, "%vR := int8(qt.WASM.Call(\"getValue\", %v, \"i8\").Int()) != 0\ndefer func(){qt.WASM.Call(\"setValue\", %v, qt.GoBoolToInt(%vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value))
+					} else {
+						fmt.Fprintf(bb, "%vR := %v\ndefer func(){*%v = %v}()\n", parser.CleanName(p.Name, p.Value), converter.GoOutput("*"+parser.CleanName(p.Name, p.Value), p.Value, function, p.PureGoType), parser.CleanName(p.Name, p.Value), converter.GoInput(parser.CleanName(p.Name, p.Value)+"R", strings.Replace(p.Value, "*", "", -1), function, p.PureGoType))
+					}
+				}
+			}
+
+			//
 
 			if UseJs() {
 				fmt.Fprintf(bb, "if signal := qt.GetSignal(unsafe.Pointer(ptr), \"%v%v\"); signal != nil {\n",

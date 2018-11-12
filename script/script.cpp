@@ -1211,10 +1211,9 @@ char QScriptString_IsValid(void* ptr)
 	return static_cast<QScriptString*>(ptr)->isValid();
 }
 
-unsigned int QScriptString_ToArrayIndex(void* ptr, char ok)
+unsigned int QScriptString_ToArrayIndex(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QScriptString*>(ptr)->toArrayIndex(NULL);
+	return static_cast<QScriptString*>(ptr)->toArrayIndex(reinterpret_cast<bool*>(ok));
 }
 
 void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other)

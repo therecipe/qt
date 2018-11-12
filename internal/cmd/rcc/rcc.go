@@ -30,6 +30,7 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Rcc")
 
 	//TODO: cache non go asset (*.qml, ...) hashes in rcc.go files to indentify staled assets in cached go packages
+	//TODO: pure go.rcc for wasm/js targets
 
 	if root {
 		wg := new(sync.WaitGroup)

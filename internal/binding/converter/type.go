@@ -9,6 +9,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
+func GoType(f *parser.Function, value string, p string) string { return goType(f, value, p) }
 func goType(f *parser.Function, value string, p string) string {
 	var vOld = value
 
@@ -43,6 +44,9 @@ func goType(f *parser.Function, value string, p string) string {
 
 	case "bool", "GLboolean":
 		{
+			if strings.Contains(vOld, "*") {
+				return "*bool"
+			}
 			return "bool"
 		}
 
@@ -247,6 +251,9 @@ func cgoType(f *parser.Function, value string) string {
 
 	case "bool", "GLboolean":
 		{
+			if strings.Contains(vOld, "*") {
+				return "*C.char"
+			}
 			return "C.char"
 		}
 
@@ -368,7 +375,13 @@ func cppType(f *parser.Function, value string) string {
 		{
 			if strings.Contains(vOld, "*") {
 				if parser.UseJs() {
-					for _, p := range f.Parameters {
+					if f.SignalMode == parser.CALLBACK {
+						return "uintptr_t"
+					}
+					for _, p := range append(f.Parameters, &parser.Parameter{Value: f.Output}) {
+						if parser.IsPackedList(p.Value) || parser.IsPackedMap(p.Value) {
+							return "uintptr_t"
+						}
 						switch parser.CleanValue(p.Value) {
 						case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
 							return "uintptr_t"
@@ -383,6 +396,23 @@ func cppType(f *parser.Function, value string) string {
 
 	case "bool", "GLboolean":
 		{
+			if strings.Contains(vOld, "*") {
+				if parser.UseJs() {
+					if f.SignalMode == parser.CALLBACK {
+						return "uintptr_t"
+					}
+					for _, p := range append(f.Parameters, &parser.Parameter{Value: f.Output}) {
+						if parser.IsPackedList(p.Value) || parser.IsPackedMap(p.Value) {
+							return "uintptr_t"
+						}
+						switch parser.CleanValue(p.Value) {
+						case "char", "qint8", "uchar", "quint8", "GLubyte", "QString", "QStringList":
+							return "uintptr_t"
+						}
+					}
+				}
+				return "char*"
+			}
 			return "char"
 		}
 

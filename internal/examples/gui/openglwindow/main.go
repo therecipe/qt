@@ -2,22 +2,10 @@
 
 package main
 
-/*
-#include <stdint.h>
-float colors[] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f };
-float vertices[] = { 0.0f, 0.707f, -0.5f, -0.5f, 0.5f, -0.5f };
-*/
-import "C"
 import (
 	"os"
-	"unsafe"
 
 	"github.com/therecipe/qt/gui"
-)
-
-var (
-	colors   = unsafe.Pointer(&C.colors)
-	vertices = unsafe.Pointer(&C.vertices)
 )
 
 const (

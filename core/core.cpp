@@ -4367,16 +4367,14 @@ struct QtCore_PackedString QByteArray_Data2(void* ptr)
 	return QtCore_PackedString { const_cast<char*>(static_cast<QByteArray*>(ptr)->data()), static_cast<QByteArray*>(ptr)->size() };
 }
 
-double QByteArray_ToDouble(void* ptr, char ok)
+double QByteArray_ToDouble(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toDouble(NULL);
+	return static_cast<QByteArray*>(ptr)->toDouble(reinterpret_cast<bool*>(ok));
 }
 
-float QByteArray_ToFloat(void* ptr, char ok)
+float QByteArray_ToFloat(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toFloat(NULL);
+	return static_cast<QByteArray*>(ptr)->toFloat(reinterpret_cast<bool*>(ok));
 }
 
 int QByteArray_Capacity(void* ptr)
@@ -4454,52 +4452,44 @@ int QByteArray_Size(void* ptr)
 	return static_cast<QByteArray*>(ptr)->size();
 }
 
-int QByteArray_ToInt(void* ptr, char ok, int base)
+int QByteArray_ToInt(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toInt(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toInt(reinterpret_cast<bool*>(ok), base);
 }
 
-long QByteArray_ToLong(void* ptr, char ok, int base)
+long QByteArray_ToLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toLong(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toLong(reinterpret_cast<bool*>(ok), base);
 }
 
-long long QByteArray_ToLongLong(void* ptr, char ok, int base)
+long long QByteArray_ToLongLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toLongLong(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toLongLong(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned long long QByteArray_ToULongLong(void* ptr, char ok, int base)
+unsigned long long QByteArray_ToULongLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toULongLong(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toULongLong(reinterpret_cast<bool*>(ok), base);
 }
 
-short QByteArray_ToShort(void* ptr, char ok, int base)
+short QByteArray_ToShort(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toShort(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toShort(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned int QByteArray_ToUInt(void* ptr, char ok, int base)
+unsigned int QByteArray_ToUInt(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toUInt(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toUInt(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned long QByteArray_ToULong(void* ptr, char ok, int base)
+unsigned long QByteArray_ToULong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toULong(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toULong(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned short QByteArray_ToUShort(void* ptr, char ok, int base)
+unsigned short QByteArray_ToUShort(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QByteArray*>(ptr)->toUShort(NULL, base);
+	return static_cast<QByteArray*>(ptr)->toUShort(reinterpret_cast<bool*>(ok), base);
 }
 
 void* QByteArray___split_atList(void* ptr, int i)
@@ -11786,148 +11776,124 @@ long long QLocale_TextDirection(void* ptr)
 	return static_cast<QLocale*>(ptr)->textDirection();
 }
 
-double QLocale_ToDouble3(void* ptr, void* s, char ok)
+double QLocale_ToDouble3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toDouble(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toDouble(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-double QLocale_ToDouble(void* ptr, struct QtCore_PackedString s, char ok)
+double QLocale_ToDouble(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toDouble(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toDouble(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-double QLocale_ToDouble2(void* ptr, void* s, char ok)
+double QLocale_ToDouble2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toDouble(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toDouble(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-float QLocale_ToFloat3(void* ptr, void* s, char ok)
+float QLocale_ToFloat3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toFloat(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toFloat(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-float QLocale_ToFloat(void* ptr, struct QtCore_PackedString s, char ok)
+float QLocale_ToFloat(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toFloat(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toFloat(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-float QLocale_ToFloat2(void* ptr, void* s, char ok)
+float QLocale_ToFloat2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toFloat(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toFloat(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-int QLocale_ToInt3(void* ptr, void* s, char ok)
+int QLocale_ToInt3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toInt(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toInt(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-int QLocale_ToInt(void* ptr, struct QtCore_PackedString s, char ok)
+int QLocale_ToInt(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toInt(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toInt(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-int QLocale_ToInt2(void* ptr, void* s, char ok)
+int QLocale_ToInt2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toInt(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toInt(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-long long QLocale_ToLongLong3(void* ptr, void* s, char ok)
+long long QLocale_ToLongLong3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toLongLong(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toLongLong(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-long long QLocale_ToLongLong(void* ptr, struct QtCore_PackedString s, char ok)
+long long QLocale_ToLongLong(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toLongLong(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toLongLong(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-long long QLocale_ToLongLong2(void* ptr, void* s, char ok)
+long long QLocale_ToLongLong2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toLongLong(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toLongLong(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned long long QLocale_ToULongLong3(void* ptr, void* s, char ok)
+unsigned long long QLocale_ToULongLong3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toULongLong(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toULongLong(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned long long QLocale_ToULongLong(void* ptr, struct QtCore_PackedString s, char ok)
+unsigned long long QLocale_ToULongLong(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toULongLong(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toULongLong(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-unsigned long long QLocale_ToULongLong2(void* ptr, void* s, char ok)
+unsigned long long QLocale_ToULongLong2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toULongLong(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toULongLong(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-short QLocale_ToShort3(void* ptr, void* s, char ok)
+short QLocale_ToShort3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toShort(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toShort(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-short QLocale_ToShort(void* ptr, struct QtCore_PackedString s, char ok)
+short QLocale_ToShort(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toShort(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toShort(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-short QLocale_ToShort2(void* ptr, void* s, char ok)
+short QLocale_ToShort2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toShort(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toShort(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned int QLocale_ToUInt3(void* ptr, void* s, char ok)
+unsigned int QLocale_ToUInt3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUInt(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toUInt(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned int QLocale_ToUInt(void* ptr, struct QtCore_PackedString s, char ok)
+unsigned int QLocale_ToUInt(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUInt(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toUInt(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-unsigned int QLocale_ToUInt2(void* ptr, void* s, char ok)
+unsigned int QLocale_ToUInt2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUInt(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toUInt(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned short QLocale_ToUShort3(void* ptr, void* s, char ok)
+unsigned short QLocale_ToUShort3(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUShort(*static_cast<QStringView*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toUShort(*static_cast<QStringView*>(s), reinterpret_cast<bool*>(ok));
 }
 
-unsigned short QLocale_ToUShort(void* ptr, struct QtCore_PackedString s, char ok)
+unsigned short QLocale_ToUShort(void* ptr, struct QtCore_PackedString s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUShort(QString::fromUtf8(s.data, s.len), NULL);
+	return static_cast<QLocale*>(ptr)->toUShort(QString::fromUtf8(s.data, s.len), reinterpret_cast<bool*>(ok));
 }
 
-unsigned short QLocale_ToUShort2(void* ptr, void* s, char ok)
+unsigned short QLocale_ToUShort2(void* ptr, void* s, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QLocale*>(ptr)->toUShort(*static_cast<QStringRef*>(s), NULL);
+	return static_cast<QLocale*>(ptr)->toUShort(*static_cast<QStringRef*>(s), reinterpret_cast<bool*>(ok));
 }
 
 void* QLocale___matchingLocales_atList(void* ptr, int i)
@@ -12372,16 +12338,14 @@ int QMetaEnum_KeyCount(void* ptr)
 	return static_cast<QMetaEnum*>(ptr)->keyCount();
 }
 
-int QMetaEnum_KeyToValue(void* ptr, char* key, char ok)
+int QMetaEnum_KeyToValue(void* ptr, char* key, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QMetaEnum*>(ptr)->keyToValue(const_cast<const char*>(key), NULL);
+	return static_cast<QMetaEnum*>(ptr)->keyToValue(const_cast<const char*>(key), reinterpret_cast<bool*>(ok));
 }
 
-int QMetaEnum_KeysToValue(void* ptr, char* keys, char ok)
+int QMetaEnum_KeysToValue(void* ptr, char* keys, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QMetaEnum*>(ptr)->keysToValue(const_cast<const char*>(keys), NULL);
+	return static_cast<QMetaEnum*>(ptr)->keysToValue(const_cast<const char*>(keys), reinterpret_cast<bool*>(ok));
 }
 
 int QMetaEnum_Value(void* ptr, int index)
@@ -20350,16 +20314,14 @@ struct QtCore_PackedString QStringRef_String(void* ptr)
 	return ({ QByteArray t75a779 = static_cast<QStringRef*>(ptr)->string()->toUtf8(); QtCore_PackedString { const_cast<char*>(t75a779.prepend("WHITESPACE").constData()+10), t75a779.size()-10 }; });
 }
 
-double QStringRef_ToDouble(void* ptr, char ok)
+double QStringRef_ToDouble(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toDouble(NULL);
+	return static_cast<QStringRef*>(ptr)->toDouble(reinterpret_cast<bool*>(ok));
 }
 
-float QStringRef_ToFloat(void* ptr, char ok)
+float QStringRef_ToFloat(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toFloat(NULL);
+	return static_cast<QStringRef*>(ptr)->toFloat(reinterpret_cast<bool*>(ok));
 }
 
 int QStringRef_Compare3(void* ptr, void* other, long long cs)
@@ -20467,52 +20429,44 @@ int QStringRef_Size(void* ptr)
 	return static_cast<QStringRef*>(ptr)->size();
 }
 
-int QStringRef_ToInt(void* ptr, char ok, int base)
+int QStringRef_ToInt(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toInt(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toInt(reinterpret_cast<bool*>(ok), base);
 }
 
-long QStringRef_ToLong(void* ptr, char ok, int base)
+long QStringRef_ToLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toLong(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toLong(reinterpret_cast<bool*>(ok), base);
 }
 
-long long QStringRef_ToLongLong(void* ptr, char ok, int base)
+long long QStringRef_ToLongLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toLongLong(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toLongLong(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned long long QStringRef_ToULongLong(void* ptr, char ok, int base)
+unsigned long long QStringRef_ToULongLong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toULongLong(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toULongLong(reinterpret_cast<bool*>(ok), base);
 }
 
-short QStringRef_ToShort(void* ptr, char ok, int base)
+short QStringRef_ToShort(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toShort(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toShort(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned int QStringRef_ToUInt(void* ptr, char ok, int base)
+unsigned int QStringRef_ToUInt(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toUInt(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toUInt(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned long QStringRef_ToULong(void* ptr, char ok, int base)
+unsigned long QStringRef_ToULong(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toULong(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toULong(reinterpret_cast<bool*>(ok), base);
 }
 
-unsigned short QStringRef_ToUShort(void* ptr, char ok, int base)
+unsigned short QStringRef_ToUShort(void* ptr, char* ok, int base)
 {
-	Q_UNUSED(ok);
-	return static_cast<QStringRef*>(ptr)->toUShort(NULL, base);
+	return static_cast<QStringRef*>(ptr)->toUShort(reinterpret_cast<bool*>(ok), base);
 }
 
 void* QStringRef___split_atList2(void* ptr, int i)
@@ -24042,22 +23996,19 @@ struct QtCore_PackedString QVariant_TypeName(void* ptr)
 	return QtCore_PackedString { const_cast<char*>(static_cast<QVariant*>(ptr)->typeName()), -1 };
 }
 
-double QVariant_ToDouble(void* ptr, char ok)
+double QVariant_ToDouble(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toDouble(NULL);
+	return static_cast<QVariant*>(ptr)->toDouble(reinterpret_cast<bool*>(ok));
 }
 
-float QVariant_ToFloat(void* ptr, char ok)
+float QVariant_ToFloat(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toFloat(NULL);
+	return static_cast<QVariant*>(ptr)->toFloat(reinterpret_cast<bool*>(ok));
 }
 
-int QVariant_ToInt(void* ptr, char ok)
+int QVariant_ToInt(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toInt(NULL);
+	return static_cast<QVariant*>(ptr)->toInt(reinterpret_cast<bool*>(ok));
 }
 
 int QVariant_UserType(void* ptr)
@@ -24065,28 +24016,24 @@ int QVariant_UserType(void* ptr)
 	return static_cast<QVariant*>(ptr)->userType();
 }
 
-long long QVariant_ToLongLong(void* ptr, char ok)
+long long QVariant_ToLongLong(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toLongLong(NULL);
+	return static_cast<QVariant*>(ptr)->toLongLong(reinterpret_cast<bool*>(ok));
 }
 
-double QVariant_ToReal(void* ptr, char ok)
+double QVariant_ToReal(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toReal(NULL);
+	return static_cast<QVariant*>(ptr)->toReal(reinterpret_cast<bool*>(ok));
 }
 
-unsigned long long QVariant_ToULongLong(void* ptr, char ok)
+unsigned long long QVariant_ToULongLong(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toULongLong(NULL);
+	return static_cast<QVariant*>(ptr)->toULongLong(reinterpret_cast<bool*>(ok));
 }
 
-unsigned int QVariant_ToUInt(void* ptr, char ok)
+unsigned int QVariant_ToUInt(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QVariant*>(ptr)->toUInt(NULL);
+	return static_cast<QVariant*>(ptr)->toUInt(reinterpret_cast<bool*>(ok));
 }
 
 void* QVariant_ToColor(void* ptr)

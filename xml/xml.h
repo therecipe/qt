@@ -409,10 +409,10 @@ void* QXmlReader_DeclHandler(void* ptr);
 void* QXmlReader_EntityResolver(void* ptr);
 void* QXmlReader_ErrorHandler(void* ptr);
 void* QXmlReader_LexicalHandler(void* ptr);
-char QXmlReader_Feature(void* ptr, struct QtXml_PackedString name, char ok);
+char QXmlReader_Feature(void* ptr, struct QtXml_PackedString name, char* ok);
 char QXmlReader_HasFeature(void* ptr, struct QtXml_PackedString name);
 char QXmlReader_HasProperty(void* ptr, struct QtXml_PackedString name);
-void* QXmlReader_Property(void* ptr, struct QtXml_PackedString name, char ok);
+void* QXmlReader_Property(void* ptr, struct QtXml_PackedString name, char* ok);
 void* QXmlSimpleReader_NewQXmlSimpleReader();
 char QXmlSimpleReader_Parse(void* ptr, void* input);
 char QXmlSimpleReader_ParseDefault(void* ptr, void* input);
@@ -452,14 +452,14 @@ void* QXmlSimpleReader_ErrorHandler(void* ptr);
 void* QXmlSimpleReader_ErrorHandlerDefault(void* ptr);
 void* QXmlSimpleReader_LexicalHandler(void* ptr);
 void* QXmlSimpleReader_LexicalHandlerDefault(void* ptr);
-char QXmlSimpleReader_Feature(void* ptr, struct QtXml_PackedString name, char ok);
-char QXmlSimpleReader_FeatureDefault(void* ptr, struct QtXml_PackedString name, char ok);
+char QXmlSimpleReader_Feature(void* ptr, struct QtXml_PackedString name, char* ok);
+char QXmlSimpleReader_FeatureDefault(void* ptr, struct QtXml_PackedString name, char* ok);
 char QXmlSimpleReader_HasFeature(void* ptr, struct QtXml_PackedString name);
 char QXmlSimpleReader_HasFeatureDefault(void* ptr, struct QtXml_PackedString name);
 char QXmlSimpleReader_HasProperty(void* ptr, struct QtXml_PackedString name);
 char QXmlSimpleReader_HasPropertyDefault(void* ptr, struct QtXml_PackedString name);
-void* QXmlSimpleReader_Property(void* ptr, struct QtXml_PackedString name, char ok);
-void* QXmlSimpleReader_PropertyDefault(void* ptr, struct QtXml_PackedString name, char ok);
+void* QXmlSimpleReader_Property(void* ptr, struct QtXml_PackedString name, char* ok);
+void* QXmlSimpleReader_PropertyDefault(void* ptr, struct QtXml_PackedString name, char* ok);
 
 #ifdef __cplusplus
 }

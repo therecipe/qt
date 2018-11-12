@@ -7204,16 +7204,20 @@ func (ptr *QBluetoothUuid) MinimumSize() int {
 	return 0
 }
 
-func (ptr *QBluetoothUuid) ToUInt16(ok bool) uint16 {
+func (ptr *QBluetoothUuid) ToUInt16(ok *bool) uint16 {
 	if ptr.Pointer() != nil {
-		return uint16(C.QBluetoothUuid_ToUInt16(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint16(C.QBluetoothUuid_ToUInt16(ptr.Pointer(), &okC))
 	}
 	return 0
 }
 
-func (ptr *QBluetoothUuid) ToUInt32(ok bool) uint {
+func (ptr *QBluetoothUuid) ToUInt32(ok *bool) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QBluetoothUuid_ToUInt32(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QBluetoothUuid_ToUInt32(ptr.Pointer(), &okC)))
 	}
 	return 0
 }

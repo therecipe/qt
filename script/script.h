@@ -215,7 +215,7 @@ void* QScriptString_NewQScriptString2(void* other);
 void QScriptString_DestroyQScriptString(void* ptr);
 struct QtScript_PackedString QScriptString_ToString(void* ptr);
 char QScriptString_IsValid(void* ptr);
-unsigned int QScriptString_ToArrayIndex(void* ptr, char ok);
+unsigned int QScriptString_ToArrayIndex(void* ptr, char* ok);
 void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other);
 void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr);
 long long QScriptSyntaxCheckResult_State(void* ptr);

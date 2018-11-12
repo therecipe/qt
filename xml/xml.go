@@ -8140,20 +8140,22 @@ func (ptr *QXmlReader) LexicalHandler() *QXmlLexicalHandler {
 }
 
 //export callbackQXmlReader_Feature
-func callbackQXmlReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) C.char {
+func callbackQXmlReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok *C.char) C.char {
+	okR := int8(*ok) != 0
+	defer func() { *ok = C.char(int8(qt.GoBoolToInt(okR))) }()
 	if signal := qt.GetSignal(ptr, "feature"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, bool) bool)(cGoUnpackString(name), int8(ok) != 0))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *bool) bool)(cGoUnpackString(name), &okR))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
-func (ptr *QXmlReader) ConnectFeature(f func(name string, ok bool) bool) {
+func (ptr *QXmlReader) ConnectFeature(f func(name string, ok *bool) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "feature"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "feature", func(name string, ok bool) bool {
-				signal.(func(string, bool) bool)(name, ok)
+			qt.ConnectSignal(ptr.Pointer(), "feature", func(name string, ok *bool) bool {
+				signal.(func(string, *bool) bool)(name, ok)
 				return f(name, ok)
 			})
 		} else {
@@ -8169,14 +8171,16 @@ func (ptr *QXmlReader) DisconnectFeature() {
 	}
 }
 
-func (ptr *QXmlReader) Feature(name string, ok bool) bool {
+func (ptr *QXmlReader) Feature(name string, ok *bool) bool {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int8(C.QXmlReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int8(C.QXmlReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)) != 0
 	}
 	return false
 }
@@ -8266,20 +8270,22 @@ func (ptr *QXmlReader) HasProperty(name string) bool {
 }
 
 //export callbackQXmlReader_Property
-func callbackQXmlReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) unsafe.Pointer {
+func callbackQXmlReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok *C.char) unsafe.Pointer {
+	okR := int8(*ok) != 0
+	defer func() { *ok = C.char(int8(qt.GoBoolToInt(okR))) }()
 	if signal := qt.GetSignal(ptr, "property"); signal != nil {
-		return signal.(func(string, bool) unsafe.Pointer)(cGoUnpackString(name), int8(ok) != 0)
+		return signal.(func(string, *bool) unsafe.Pointer)(cGoUnpackString(name), &okR)
 	}
 
 	return nil
 }
 
-func (ptr *QXmlReader) ConnectProperty(f func(name string, ok bool) unsafe.Pointer) {
+func (ptr *QXmlReader) ConnectProperty(f func(name string, ok *bool) unsafe.Pointer) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "property"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "property", func(name string, ok bool) unsafe.Pointer {
-				signal.(func(string, bool) unsafe.Pointer)(name, ok)
+			qt.ConnectSignal(ptr.Pointer(), "property", func(name string, ok *bool) unsafe.Pointer {
+				signal.(func(string, *bool) unsafe.Pointer)(name, ok)
 				return f(name, ok)
 			})
 		} else {
@@ -8295,14 +8301,16 @@ func (ptr *QXmlReader) DisconnectProperty() {
 	}
 }
 
-func (ptr *QXmlReader) Property(name string, ok bool) unsafe.Pointer {
+func (ptr *QXmlReader) Property(name string, ok *bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return C.QXmlReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)
 	}
 	return nil
 }
@@ -9190,20 +9198,22 @@ func (ptr *QXmlSimpleReader) LexicalHandlerDefault() *QXmlLexicalHandler {
 }
 
 //export callbackQXmlSimpleReader_Feature
-func callbackQXmlSimpleReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) C.char {
+func callbackQXmlSimpleReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok *C.char) C.char {
+	okR := int8(*ok) != 0
+	defer func() { *ok = C.char(int8(qt.GoBoolToInt(okR))) }()
 	if signal := qt.GetSignal(ptr, "feature"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, bool) bool)(cGoUnpackString(name), int8(ok) != 0))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *bool) bool)(cGoUnpackString(name), &okR))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQXmlSimpleReaderFromPointer(ptr).FeatureDefault(cGoUnpackString(name), int8(ok) != 0))))
+	return C.char(int8(qt.GoBoolToInt(NewQXmlSimpleReaderFromPointer(ptr).FeatureDefault(cGoUnpackString(name), &okR))))
 }
 
-func (ptr *QXmlSimpleReader) ConnectFeature(f func(name string, ok bool) bool) {
+func (ptr *QXmlSimpleReader) ConnectFeature(f func(name string, ok *bool) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "feature"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "feature", func(name string, ok bool) bool {
-				signal.(func(string, bool) bool)(name, ok)
+			qt.ConnectSignal(ptr.Pointer(), "feature", func(name string, ok *bool) bool {
+				signal.(func(string, *bool) bool)(name, ok)
 				return f(name, ok)
 			})
 		} else {
@@ -9219,26 +9229,30 @@ func (ptr *QXmlSimpleReader) DisconnectFeature() {
 	}
 }
 
-func (ptr *QXmlSimpleReader) Feature(name string, ok bool) bool {
+func (ptr *QXmlSimpleReader) Feature(name string, ok *bool) bool {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int8(C.QXmlSimpleReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int8(C.QXmlSimpleReader_Feature(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlSimpleReader) FeatureDefault(name string, ok bool) bool {
+func (ptr *QXmlSimpleReader) FeatureDefault(name string, ok *bool) bool {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return int8(C.QXmlSimpleReader_FeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))) != 0
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int8(C.QXmlSimpleReader_FeatureDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)) != 0
 	}
 	return false
 }
@@ -9352,20 +9366,22 @@ func (ptr *QXmlSimpleReader) HasPropertyDefault(name string) bool {
 }
 
 //export callbackQXmlSimpleReader_Property
-func callbackQXmlSimpleReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) unsafe.Pointer {
+func callbackQXmlSimpleReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok *C.char) unsafe.Pointer {
+	okR := int8(*ok) != 0
+	defer func() { *ok = C.char(int8(qt.GoBoolToInt(okR))) }()
 	if signal := qt.GetSignal(ptr, "property"); signal != nil {
-		return signal.(func(string, bool) unsafe.Pointer)(cGoUnpackString(name), int8(ok) != 0)
+		return signal.(func(string, *bool) unsafe.Pointer)(cGoUnpackString(name), &okR)
 	}
 
-	return NewQXmlSimpleReaderFromPointer(ptr).PropertyDefault(cGoUnpackString(name), int8(ok) != 0)
+	return NewQXmlSimpleReaderFromPointer(ptr).PropertyDefault(cGoUnpackString(name), &okR)
 }
 
-func (ptr *QXmlSimpleReader) ConnectProperty(f func(name string, ok bool) unsafe.Pointer) {
+func (ptr *QXmlSimpleReader) ConnectProperty(f func(name string, ok *bool) unsafe.Pointer) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "property"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "property", func(name string, ok bool) unsafe.Pointer {
-				signal.(func(string, bool) unsafe.Pointer)(name, ok)
+			qt.ConnectSignal(ptr.Pointer(), "property", func(name string, ok *bool) unsafe.Pointer {
+				signal.(func(string, *bool) unsafe.Pointer)(name, ok)
 				return f(name, ok)
 			})
 		} else {
@@ -9381,26 +9397,30 @@ func (ptr *QXmlSimpleReader) DisconnectProperty() {
 	}
 }
 
-func (ptr *QXmlSimpleReader) Property(name string, ok bool) unsafe.Pointer {
+func (ptr *QXmlSimpleReader) Property(name string, ok *bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return C.QXmlSimpleReader_Property(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)
 	}
 	return nil
 }
 
-func (ptr *QXmlSimpleReader) PropertyDefault(name string, ok bool) unsafe.Pointer {
+func (ptr *QXmlSimpleReader) PropertyDefault(name string, ok *bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		var nameC *C.char
 		if name != "" {
 			nameC = C.CString(name)
 			defer C.free(unsafe.Pointer(nameC))
 		}
-		return C.QXmlSimpleReader_PropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, C.char(int8(qt.GoBoolToInt(ok))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return C.QXmlSimpleReader_PropertyDefault(ptr.Pointer(), C.struct_QtXml_PackedString{data: nameC, len: C.longlong(len(name))}, &okC)
 	}
 	return nil
 }

@@ -3198,9 +3198,11 @@ func (ptr *QScriptString) IsValid() bool {
 	return false
 }
 
-func (ptr *QScriptString) ToArrayIndex(ok bool) uint {
+func (ptr *QScriptString) ToArrayIndex(ok *bool) uint {
 	if ptr.Pointer() != nil {
-		return uint(uint32(C.QScriptString_ToArrayIndex(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return uint(uint32(C.QScriptString_ToArrayIndex(ptr.Pointer(), &okC)))
 	}
 	return 0
 }

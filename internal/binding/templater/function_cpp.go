@@ -296,21 +296,21 @@ func cppFunctionBody(function *parser.Function) string {
 		return out
 	}
 
-	var bb = new(bytes.Buffer)
+	bb := new(bytes.Buffer)
 	defer bb.Reset()
 
 	bb.WriteString("\t")
 
 	var deduce = func(input []string, polyName string, inner bool, body string) string {
-		var bb = new(bytes.Buffer)
-		defer bb.Reset()
+		bbi := new(bytes.Buffer)
+		defer bbi.Reset()
 		for _, polyType := range input {
 			if polyType == "QObject" || polyType == input[len(input)-1] {
 				continue
 			}
 
 			if strings.HasPrefix(polyType, "QMac") {
-				fmt.Fprint(bb, "\n\t#ifdef Q_OS_OSX\n\t\t")
+				fmt.Fprint(bbi, "\n\t#ifdef Q_OS_OSX\n\t\t")
 			}
 
 			base := input[len(input)-1]
@@ -318,16 +318,16 @@ func cppFunctionBody(function *parser.Function) string {
 				base = "QObject"
 			}
 
-			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, base, polyName)
+			fmt.Fprintf(bbi, "if (dynamic_cast<%v*>(static_cast<%v*>(%v))) {\n", polyType, base, polyName)
 
 			if strings.HasPrefix(polyType, "QMac") {
-				fmt.Fprint(bb, "\t#else\n\t\tif (false) {\n\t#endif\n")
+				fmt.Fprint(bbi, "\t#else\n\t\tif (false) {\n\t#endif\n")
 			}
 
-			fmt.Fprintf(bb, "\t%v\n", func() string {
+			fmt.Fprintf(bbi, "\t%v\n", func() string {
 				var ibody string
 				if function.Default && polyName == "ptr" {
-					if fakeDefault {
+					if fakeDefault && !inner {
 						ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<My"+polyType+"*>("+polyName+")->My"+polyType+"::", -1)
 
 						//TODO: only temporary until invoke works ->
@@ -357,7 +357,7 @@ func cppFunctionBody(function *parser.Function) string {
 				}
 				return ibody
 			}())
-			fmt.Fprint(bb, "\t} else ")
+			fmt.Fprint(bbi, "\t} else ")
 		}
 
 		if len(input) > 0 {
@@ -374,15 +374,11 @@ func cppFunctionBody(function *parser.Function) string {
 			}
 		}
 
-		if fakeDefault {
-			//TODO: cleanup ?
-			//body = strings.Replace(body, "static_cast<"+function.ClassName()+"*>(ptr)->"+function.ClassName()+"::", "static_cast<My"+function.ClassName()+"*>(ptr)->My"+function.ClassName()+"::", -1)
-		}
-		if bb.String() == "" {
+		if bbi.String() == "" {
 			return body
 		}
-		fmt.Fprintf(bb, "{\n\t%v\n\t}", func() string {
-			if fakeDefault {
+		fmt.Fprintf(bbi, "{\n\t%v\n\t}", func() string {
+			if fakeDefault && !inner {
 				body = strings.Replace(body, "static_cast<"+function.ClassName()+"*>(ptr)->"+function.ClassName()+"::", "static_cast<My"+function.ClassName()+"*>(ptr)->My"+function.ClassName()+"::", -1)
 			}
 			if strings.Count(body, "\n") > 1 {
@@ -390,7 +386,7 @@ func cppFunctionBody(function *parser.Function) string {
 			}
 			return body
 		}())
-		return bb.String()
+		return bbi.String()
 	}
 
 	if function.Static {

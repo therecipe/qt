@@ -3906,9 +3906,11 @@ func (ptr *QQmlExpression) TrUtf8(s string, c string, n int) string {
 	return cGoUnpackString(C.QQmlExpression_QQmlExpression_TrUtf8(sC, cC, C.int(int32(n))))
 }
 
-func (ptr *QQmlExpression) Evaluate(valueIsUndefined bool) *core.QVariant {
+func (ptr *QQmlExpression) Evaluate(valueIsUndefined *bool) *core.QVariant {
 	if ptr.Pointer() != nil {
-		tmpValue := core.NewQVariantFromPointer(C.QQmlExpression_Evaluate(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(valueIsUndefined)))))
+		valueIsUndefinedC := C.char(int8(qt.GoBoolToInt(*valueIsUndefined)))
+		defer func() { *valueIsUndefined = int8(valueIsUndefinedC) != 0 }()
+		tmpValue := core.NewQVariantFromPointer(C.QQmlExpression_Evaluate(ptr.Pointer(), &valueIsUndefinedC))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -7494,9 +7496,11 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 	return ""
 }
 
-func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
+func (ptr *QQmlScriptString) BooleanLiteral(ok *bool) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))) != 0
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return int8(C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), &okC)) != 0
 	}
 	return false
 }
@@ -7522,9 +7526,11 @@ func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
 	return false
 }
 
-func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
+func (ptr *QQmlScriptString) NumberLiteral(ok *bool) float64 {
 	if ptr.Pointer() != nil {
-		return float64(C.QQmlScriptString_NumberLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		return float64(C.QQmlScriptString_NumberLiteral(ptr.Pointer(), &okC))
 	}
 	return 0
 }

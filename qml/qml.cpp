@@ -2281,10 +2281,9 @@ struct QtQml_PackedString QQmlExpression_QQmlExpression_TrUtf8(char* s, char* c,
 	return ({ QByteArray tcd877f = QQmlExpression::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtQml_PackedString { const_cast<char*>(tcd877f.prepend("WHITESPACE").constData()+10), tcd877f.size()-10 }; });
 }
 
-void* QQmlExpression_Evaluate(void* ptr, char valueIsUndefined)
+void* QQmlExpression_Evaluate(void* ptr, char* valueIsUndefined)
 {
-	Q_UNUSED(valueIsUndefined);
-	return new QVariant(static_cast<QQmlExpression*>(ptr)->evaluate(NULL));
+	return new QVariant(static_cast<QQmlExpression*>(ptr)->evaluate(reinterpret_cast<bool*>(valueIsUndefined)));
 }
 
 void QQmlExpression_ClearError(void* ptr)
@@ -3962,10 +3961,9 @@ struct QtQml_PackedString QQmlScriptString_StringLiteral(void* ptr)
 	return ({ QByteArray t77944a = static_cast<QQmlScriptString*>(ptr)->stringLiteral().toUtf8(); QtQml_PackedString { const_cast<char*>(t77944a.prepend("WHITESPACE").constData()+10), t77944a.size()-10 }; });
 }
 
-char QQmlScriptString_BooleanLiteral(void* ptr, char ok)
+char QQmlScriptString_BooleanLiteral(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QQmlScriptString*>(ptr)->booleanLiteral(NULL);
+	return static_cast<QQmlScriptString*>(ptr)->booleanLiteral(reinterpret_cast<bool*>(ok));
 }
 
 char QQmlScriptString_IsEmpty(void* ptr)
@@ -3983,9 +3981,8 @@ char QQmlScriptString_IsUndefinedLiteral(void* ptr)
 	return static_cast<QQmlScriptString*>(ptr)->isUndefinedLiteral();
 }
 
-double QQmlScriptString_NumberLiteral(void* ptr, char ok)
+double QQmlScriptString_NumberLiteral(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QQmlScriptString*>(ptr)->numberLiteral(NULL);
+	return static_cast<QQmlScriptString*>(ptr)->numberLiteral(reinterpret_cast<bool*>(ok));
 }
 

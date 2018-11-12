@@ -177,7 +177,7 @@ func ios_c_main_wrapper() string {
 	for _, n := range rcc.ResourceNames {
 		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
 	}
-	bb.WriteString("go_main_wrapper();\n}")
+	bb.WriteString("go_main_wrapper(argc, argv);\n}")
 	return bb.String()
 }
 

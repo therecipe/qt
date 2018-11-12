@@ -2,6 +2,7 @@ package minimal
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -84,6 +85,21 @@ func Minimal(path, target, tags string) {
 				fileMutex.Lock()
 				files = append(files, file)
 				fileMutex.Unlock()
+			}
+			if target == "js" { //TODO: wasm as well
+				filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+					if err != nil || info.IsDir() {
+						return err
+					}
+					if filepath.Ext(path) == ".js" {
+						utils.Log.WithField("path", path).Debug("analyse js for minimal")
+						file := utils.Load(path)
+						fileMutex.Lock()
+						files = append(files, file)
+						fileMutex.Unlock()
+					}
+					return nil
+				})
 			}
 			<-wc
 			wg.Done()

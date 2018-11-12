@@ -3240,16 +3240,14 @@ int QBluetoothUuid_MinimumSize(void* ptr)
 	return static_cast<QBluetoothUuid*>(ptr)->minimumSize();
 }
 
-unsigned short QBluetoothUuid_ToUInt16(void* ptr, char ok)
+unsigned short QBluetoothUuid_ToUInt16(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QBluetoothUuid*>(ptr)->toUInt16(NULL);
+	return static_cast<QBluetoothUuid*>(ptr)->toUInt16(reinterpret_cast<bool*>(ok));
 }
 
-unsigned int QBluetoothUuid_ToUInt32(void* ptr, char ok)
+unsigned int QBluetoothUuid_ToUInt32(void* ptr, char* ok)
 {
-	Q_UNUSED(ok);
-	return static_cast<QBluetoothUuid*>(ptr)->toUInt32(NULL);
+	return static_cast<QBluetoothUuid*>(ptr)->toUInt32(reinterpret_cast<bool*>(ok));
 }
 
 void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData()

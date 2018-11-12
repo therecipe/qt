@@ -494,6 +494,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	case "ios-simulator":
 		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
+	case "js", "wasm":
+		fmt.Fprint(bb, "#cgo CFLAGS: -s EXTRA_EXPORTED_RUNTIME_METHODS=['getValue','setValue']\n")
 	}
 
 	fmt.Fprint(bb, "#cgo CFLAGS: -Wno-unused-parameter -Wno-unused-variable -Wno-return-type\n")
@@ -520,7 +522,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
 	case "android", "android-emulator":
-		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "", -1)
+		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "-Wl,-soname,libgo_base.so", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
 	case "js", "wasm":
 		tmp = strings.Replace(tmp, "\"", "", -1)

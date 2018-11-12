@@ -28470,36 +28470,44 @@ const (
 	QFontDialog__ProportionalFonts   QFontDialog__FontDialogOption = QFontDialog__FontDialogOption(0x00000020)
 )
 
-func QFontDialog_GetFont2(ok bool, parent QWidget_ITF) *gui.QFont {
-	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(C.char(int8(qt.GoBoolToInt(ok))), PointerFromQWidget(parent)))
+func QFontDialog_GetFont2(ok *bool, parent QWidget_ITF) *gui.QFont {
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(&okC, PointerFromQWidget(parent)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
-func (ptr *QFontDialog) GetFont2(ok bool, parent QWidget_ITF) *gui.QFont {
-	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(C.char(int8(qt.GoBoolToInt(ok))), PointerFromQWidget(parent)))
+func (ptr *QFontDialog) GetFont2(ok *bool, parent QWidget_ITF) *gui.QFont {
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont2(&okC, PointerFromQWidget(parent)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
-func QFontDialog_GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
+func QFontDialog_GetFont(ok *bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
+	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(&okC, gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
 
-func (ptr *QFontDialog) GetFont(ok bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
+func (ptr *QFontDialog) GetFont(ok *bool, initial gui.QFont_ITF, parent QWidget_ITF, title string, options QFontDialog__FontDialogOption) *gui.QFont {
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
 	}
-	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(C.char(int8(qt.GoBoolToInt(ok))), gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
+	tmpValue := gui.NewQFontFromPointer(C.QFontDialog_QFontDialog_GetFont(&okC, gui.PointerFromQFont(initial), PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.longlong(options)))
 	runtime.SetFinalizer(tmpValue, (*gui.QFont).DestroyQFont)
 	return tmpValue
 }
@@ -36471,9 +36479,11 @@ func (ptr *QGraphicsItem) DeviceTransform(viewportTransform gui.QTransform_ITF) 
 	return nil
 }
 
-func (ptr *QGraphicsItem) ItemTransform(other QGraphicsItem_ITF, ok bool) *gui.QTransform {
+func (ptr *QGraphicsItem) ItemTransform(other QGraphicsItem_ITF, ok *bool) *gui.QTransform {
 	if ptr.Pointer() != nil {
-		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_ItemTransform(ptr.Pointer(), PointerFromQGraphicsItem(other), C.char(int8(qt.GoBoolToInt(ok)))))
+		okC := C.char(int8(qt.GoBoolToInt(*ok)))
+		defer func() { *ok = int8(okC) != 0 }()
+		tmpValue := gui.NewQTransformFromPointer(C.QGraphicsItem_ItemTransform(ptr.Pointer(), PointerFromQGraphicsItem(other), &okC))
 		runtime.SetFinalizer(tmpValue, (*gui.QTransform).DestroyQTransform)
 		return tmpValue
 	}
@@ -52709,7 +52719,7 @@ func NewQInputDialog(parent QWidget_ITF, flags core.Qt__WindowType) *QInputDialo
 	return tmpValue
 }
 
-func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52722,10 +52732,12 @@ func QInputDialog_GetItem(parent QWidget_ITF, title string, label string, items 
 	}
 	itemsC := C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string, items []string, current int, editable bool, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52738,10 +52750,12 @@ func (ptr *QInputDialog) GetItem(parent QWidget_ITF, title string, label string,
 	}
 	itemsC := C.CString(strings.Join(items, "|"))
 	defer C.free(unsafe.Pointer(itemsC))
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetItem(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: itemsC, len: C.longlong(len(strings.Join(items, "|")))}, C.int(int32(current)), C.char(int8(qt.GoBoolToInt(editable))), &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52757,10 +52771,12 @@ func QInputDialog_GetMultiLineText(parent QWidget_ITF, title string, label strin
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, label string, text string, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52776,10 +52792,12 @@ func (ptr *QInputDialog) GetMultiLineText(parent QWidget_ITF, title string, labe
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetMultiLineText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52795,10 +52813,12 @@ func QInputDialog_GetText(parent QWidget_ITF, title string, label string, mode Q
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
+func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string, mode QLineEdit__EchoMode, text string, ok *bool, flags core.Qt__WindowType, inputMethodHints core.Qt__InputMethodHint) string {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52814,10 +52834,12 @@ func (ptr *QInputDialog) GetText(parent QWidget_ITF, title string, label string,
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.longlong(inputMethodHints)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return cGoUnpackString(C.QInputDialog_QInputDialog_GetText(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.longlong(mode), C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, &okC, C.longlong(flags), C.longlong(inputMethodHints)))
 }
 
-func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
+func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok *bool, flags core.Qt__WindowType) float64 {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52828,10 +52850,12 @@ func QInputDialog_GetDouble(parent QWidget_ITF, title string, label string, valu
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), &okC, C.longlong(flags)))
 }
 
-func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType) float64 {
+func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok *bool, flags core.Qt__WindowType) float64 {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52842,10 +52866,12 @@ func (ptr *QInputDialog) GetDouble(parent QWidget_ITF, title string, label strin
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return float64(C.QInputDialog_QInputDialog_GetDouble(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), &okC, C.longlong(flags)))
 }
 
-func QInputDialog_GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType, step float64) float64 {
+func QInputDialog_GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok *bool, flags core.Qt__WindowType, step float64) float64 {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52856,10 +52882,12 @@ func QInputDialog_GetDouble2(parent QWidget_ITF, title string, label string, val
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.double(step)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), &okC, C.longlong(flags), C.double(step)))
 }
 
-func (ptr *QInputDialog) GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok bool, flags core.Qt__WindowType, step float64) float64 {
+func (ptr *QInputDialog) GetDouble2(parent QWidget_ITF, title string, label string, value float64, min float64, max float64, decimals int, ok *bool, flags core.Qt__WindowType, step float64) float64 {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52870,10 +52898,12 @@ func (ptr *QInputDialog) GetDouble2(parent QWidget_ITF, title string, label stri
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags), C.double(step)))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return float64(C.QInputDialog_QInputDialog_GetDouble2(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.double(value), C.double(min), C.double(max), C.int(int32(decimals)), &okC, C.longlong(flags), C.double(step)))
 }
 
-func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
+func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok *bool, flags core.Qt__WindowType) int {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52884,10 +52914,12 @@ func QInputDialog_GetInt(parent QWidget_ITF, title string, label string, value i
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), &okC, C.longlong(flags))))
 }
 
-func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok bool, flags core.Qt__WindowType) int {
+func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, value int, min int, max int, step int, ok *bool, flags core.Qt__WindowType) int {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -52898,7 +52930,9 @@ func (ptr *QInputDialog) GetInt(parent QWidget_ITF, title string, label string, 
 		labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
 	}
-	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), C.char(int8(qt.GoBoolToInt(ok))), C.longlong(flags))))
+	okC := C.char(int8(qt.GoBoolToInt(*ok)))
+	defer func() { *ok = int8(okC) != 0 }()
+	return int(int32(C.QInputDialog_QInputDialog_GetInt(PointerFromQWidget(parent), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: labelC, len: C.longlong(len(label))}, C.int(int32(value)), C.int(int32(min)), C.int(int32(max)), C.int(int32(step)), &okC, C.longlong(flags))))
 }
 
 //export callbackQInputDialog_Done
