@@ -32,7 +32,7 @@ func run(target, name, depPath, device string) {
 		time.Sleep(1 * time.Second)
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "uninstall old app")
 		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "install new app")
-		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.yourcompany.%v", name)), "start app") //TODO: parse ident from plist
+		utils.RunCmdOptional(exec.Command("xcrun", "simctl", "launch", "booted", strings.Replace(name, "_", "", -1)), "start app") //TODO: parse ident from plist
 
 	case "darwin":
 		exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app", name))).Start()

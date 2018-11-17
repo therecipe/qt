@@ -140,7 +140,6 @@ func CleanName(name, value string) string {
 		"unsafe",
 		"log",
 		"runtime",
-		"errors",
 		"time",
 		"hex":
 		{

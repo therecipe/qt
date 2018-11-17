@@ -252,7 +252,7 @@ void QQmlContext_TimerEventDefault(void* ptr, void* event);
 void* QQmlEngine_QQmlEngine_ContextForObject(void* object);
 void* QQmlEngine_NewQQmlEngine(void* parent);
 long long QQmlEngine_QQmlEngine_ObjectOwnership(void* object);
-char QQmlEngine_ImportPlugin(void* ptr, struct QtQml_PackedString filePath, struct QtQml_PackedString uri, void* erro);
+char QQmlEngine_ImportPlugin(void* ptr, struct QtQml_PackedString filePath, struct QtQml_PackedString uri, void* errors);
 void QQmlEngine_AddImageProvider(void* ptr, struct QtQml_PackedString providerId, void* provider);
 void QQmlEngine_AddImportPath(void* ptr, struct QtQml_PackedString path);
 void QQmlEngine_AddPluginPath(void* ptr, struct QtQml_PackedString path);

@@ -507,13 +507,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		rcc.ResourceNames = make(map[string]string)
 		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
+		newArgs := templater.GetiOSClang(target, t, depPath)
 		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
 			cmd.Args = append(cmd.Args, target+"_qml_plugin_import.cpp")
 		}
 		cmd.Args = append(cmd.Args, "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
-
 		cmd.Dir = depPath
-		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
+		cmd.Args = append(cmd.Args, newArgs...)
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 
 		strip := exec.Command("strip", "main")
@@ -632,10 +632,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper(target))
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
 		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
+		newArgs := templater.GetiOSClang(target, "", depPath)
 		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
 			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
 		}
 		cmd.Dir = depPath
+		cmd.Args = append(cmd.Args, newArgs...)
 
 		for rccFile := range rcc.ResourceNames {
 			cmd.Args = append(cmd.Args, rccFile)
@@ -691,7 +693,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
-		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, "", depPath)...)
 
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))

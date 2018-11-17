@@ -16,48 +16,78 @@ func XCODE_DIR() string {
 	return filepath.Join("/Applications/Xcode.app")
 }
 
+var _MACOS_SDK_DIR string
+
 func MACOS_SDK_DIR() string {
+	if _MACOS_SDK_DIR != "" {
+		return _MACOS_SDK_DIR
+	}
 	if runtime.GOOS == "darwin" {
 		basePath := filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs")
-		for _, i := range []string{"15", "14", "13", "12", "11", "10"} {
-			if ExistsDir(filepath.Join(basePath, fmt.Sprintf("MacOSX10.%v.sdk", i))) {
-				return fmt.Sprintf("MacOSX10.%v.sdk", i)
+		for maj := 10; maj < 50; maj++ {
+			for min := 0; min < 25; min++ {
+				i := fmt.Sprintf("%v.%v", maj, min)
+				if ExistsDir(filepath.Join(basePath, fmt.Sprintf("MacOSX%v.sdk", i))) {
+					_MACOS_SDK_DIR = fmt.Sprintf("MacOSX%v.sdk", i)
+					return _MACOS_SDK_DIR
+				}
 			}
 		}
 		if ExistsDir(filepath.Join(basePath, "MacOSX.sdk")) {
-			return "MacOSX.sdk"
+			_MACOS_SDK_DIR = "MacOSX.sdk"
+			return _MACOS_SDK_DIR
 		}
 		Log.Errorf("failed to find MacOSX sdk in %v", basePath)
 	}
 	return ""
 }
 
+var _IPHONEOS_SDK_DIR string
+
 func IPHONEOS_SDK_DIR() string {
+	if _IPHONEOS_SDK_DIR != "" {
+		return _IPHONEOS_SDK_DIR
+	}
 	if runtime.GOOS == "darwin" {
 		basePath := filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs")
-		for _, i := range []string{"13.0", "12.0", "11.0", "10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
-			if ExistsDir(filepath.Join(basePath, fmt.Sprintf("iPhoneOS%v.sdk", i))) {
-				return fmt.Sprintf("iPhoneOS%v.sdk", i)
+		for maj := 10; maj < 50; maj++ {
+			for min := 0; min < 25; min++ {
+				i := fmt.Sprintf("%v.%v", maj, min)
+				if ExistsDir(filepath.Join(basePath, fmt.Sprintf("iPhoneOS%v.sdk", i))) {
+					_IPHONEOS_SDK_DIR = fmt.Sprintf("iPhoneOS%v.sdk", i)
+					return _IPHONEOS_SDK_DIR
+				}
 			}
 		}
 		if ExistsDir(filepath.Join(basePath, "iPhoneOS.sdk")) {
-			return "iPhoneOS.sdk"
+			_IPHONEOS_SDK_DIR = "iPhoneOS.sdk"
+			return _IPHONEOS_SDK_DIR
 		}
 		Log.Errorf("failed to find iPhoneOS sdk in %v", basePath)
 	}
 	return ""
 }
 
+var _IPHONESIMULATOR_SDK_DIR string
+
 func IPHONESIMULATOR_SDK_DIR() string {
+	if _IPHONESIMULATOR_SDK_DIR != "" {
+		return _IPHONESIMULATOR_SDK_DIR
+	}
 	if runtime.GOOS == "darwin" {
 		basePath := filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs")
-		for _, i := range []string{"13.0", "12.0", "11.0", "10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
-			if ExistsDir(filepath.Join(basePath, fmt.Sprintf("iPhoneSimulator%v.sdk", i))) {
-				return fmt.Sprintf("iPhoneSimulator%v.sdk", i)
+		for maj := 10; maj < 50; maj++ {
+			for min := 0; min < 25; min++ {
+				i := fmt.Sprintf("%v.%v", maj, min)
+				if ExistsDir(filepath.Join(basePath, fmt.Sprintf("iPhoneSimulator%v.sdk", i))) {
+					_IPHONESIMULATOR_SDK_DIR = fmt.Sprintf("iPhoneSimulator%v.sdk", i)
+					return _IPHONESIMULATOR_SDK_DIR
+				}
 			}
 		}
 		if ExistsDir(filepath.Join(basePath, "iPhoneSimulator.sdk")) {
-			return "iPhoneSimulator.sdk"
+			_IPHONESIMULATOR_SDK_DIR = "iPhoneSimulator.sdk"
+			return _IPHONESIMULATOR_SDK_DIR
 		}
 		Log.Errorf("failed to find iPhoneSimulator sdk in %v", basePath)
 	}

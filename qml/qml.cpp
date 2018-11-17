@@ -1846,9 +1846,9 @@ long long QQmlEngine_QQmlEngine_ObjectOwnership(void* object)
 	return QQmlEngine::objectOwnership(static_cast<QObject*>(object));
 }
 
-char QQmlEngine_ImportPlugin(void* ptr, struct QtQml_PackedString filePath, struct QtQml_PackedString uri, void* erro)
+char QQmlEngine_ImportPlugin(void* ptr, struct QtQml_PackedString filePath, struct QtQml_PackedString uri, void* errors)
 {
-	return static_cast<QQmlEngine*>(ptr)->importPlugin(QString::fromUtf8(filePath.data, filePath.len), QString::fromUtf8(uri.data, uri.len), static_cast<QList<QQmlError>*>(erro));
+	return static_cast<QQmlEngine*>(ptr)->importPlugin(QString::fromUtf8(filePath.data, filePath.len), QString::fromUtf8(uri.data, uri.len), static_cast<QList<QQmlError>*>(errors));
 }
 
 void QQmlEngine_AddImageProvider(void* ptr, struct QtQml_PackedString providerId, void* provider)
