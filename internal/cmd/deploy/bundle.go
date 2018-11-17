@@ -18,7 +18,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func bundle(mode, target, path, name, depPath string, tagsCustom string) {
+func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bool) {
 	copy := func(src, dst string) {
 		copy := "cp"
 
@@ -488,18 +488,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		utils.Save(filepath.Join(buildPath, "Info.plist"), ios_plist(name))
 		utils.Save(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset", "Contents.json"), ios_appicon())
 		utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), ios_launchscreen(name))
-		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), ios_xcodeproject(depPath))
+		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), ios_xcodeproject())
 		copy(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "ios", "mkspecs", "macx-ios-clang", "Default-568h@2x.png"), buildPath)
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
 		utils.MkdirAll(assets)
 		copy(assets+"/.", buildPath)
-
-		//add c_main_wrappers
-		if !utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
-			utils.Save(filepath.Join(depPath, target+"_qml_plugin_import.cpp"), "")
-		}
 
 		var t string
 		switch target {
@@ -511,7 +506,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		rcc.ResourceNames = make(map[string]string)
-		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp", target+"_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
+		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
+			cmd.Args = append(cmd.Args, target+"_qml_plugin_import.cpp")
+		}
+		cmd.Args = append(cmd.Args, "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+
 		cmd.Dir = depPath
 		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, t, depPath)...)
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
@@ -608,9 +608,16 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		}
 
 		//patch default assets
-		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(utils.Load(filepath.Join(depPath, "index.html")), "APPNAME", "main", -1))
+		index := utils.Load(filepath.Join(depPath, "index.html"))
+		index = strings.Replace(index, "APPNAME", "main", -1)
+		utils.Save(filepath.Join(depPath, "index.html"), strings.Replace(index, "  </body>", "    <script type=\"text/javascript\" src=\"go.js\"></script>\n  </body>", -1))
+
 		if parser.UseWasm() {
 			utils.Save(filepath.Join(depPath, "go.js"), strings.Replace(utils.Load(filepath.Join(depPath, "go.js")), "})();", wasm_js(), -1))
+		} else {
+			gojs := utils.Load(filepath.Join(depPath, "go.js"))
+			gojs = strings.Replace(gojs, "(function() {", "Module._goMain = function() {", -1)
+			utils.Save(filepath.Join(depPath, "go.js"), strings.Replace(gojs, "}).call(this);", "};", -1))
 		}
 
 		//copy custom assets
@@ -618,14 +625,16 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		utils.MkdirAll(assets)
 		copy(assets+"/.", depPath)
 
-		//add c_main_wrappers
-		if !utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
-			utils.Save(filepath.Join(depPath, target+".js_qml_plugin_import.cpp"), "")
+		if fast {
+			break
 		}
 
-		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper())
+		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper(target))
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
-		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp", target+".js_qml_plugin_import.cpp")
+		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
+		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
+			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
+		}
 		cmd.Dir = depPath
 
 		for rccFile := range rcc.ResourceNames {
@@ -681,7 +690,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		//<-
 
 		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
-		//TODO: pack js into wasm
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
 		cmd.Args = append(cmd.Args, templater.GetiOSClang(target, "", depPath)...)
 
@@ -693,7 +701,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string) {
 		utils.RemoveAll(filepath.Join(depPath, "c_main_wrapper_js.cpp"))
 		utils.RemoveAll(filepath.Join(depPath, target+".js_plugin_import.cpp"))
 		utils.RemoveAll(filepath.Join(depPath, target+".js_qml_plugin_import.cpp"))
-		//TODO: remove packed go.js
 		utils.RemoveAll(filepath.Join(depPath, "go.js.map"))
 	}
 

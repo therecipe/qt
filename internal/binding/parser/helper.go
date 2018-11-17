@@ -136,7 +136,13 @@ func CleanName(name, value string) string {
 		"ptr",
 		"register",
 		"forever",
-		"len":
+		"len",
+		"unsafe",
+		"log",
+		"runtime",
+		"errors",
+		"time",
+		"hex":
 		{
 			return name[:len(name)-2]
 		}
@@ -151,9 +157,9 @@ func CleanName(name, value string) string {
 			}
 		}
 
-	case "f", "fmt":
+	case "f", "fmt", "qt", "js":
 		{
-			return "fo"
+			return name + name
 		}
 	}
 

@@ -20,7 +20,7 @@ else
   QT=qt-unified-mac-x64-online
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/online_installers/$QT.dmg
   hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
-  QT=qt-unified-mac-x64-3.0.2-online
+  QT=qt-unified-mac-x64-3.0.5-online
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
   then
     /Volumes/$QT/$QT.app/Contents/MacOS/$QT -v --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs IOS=true

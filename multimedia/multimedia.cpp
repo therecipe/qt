@@ -512,7 +512,7 @@ public:
 	void reset() { callbackQAbstractAudioInput_Reset(this); };
 	void resume() { callbackQAbstractAudioInput_Resume(this); };
 	void setBufferSize(int value) { callbackQAbstractAudioInput_SetBufferSize(this, value); };
-	void setFormat(const QAudioFormat & fo) { callbackQAbstractAudioInput_SetFormat(this, const_cast<QAudioFormat*>(&fo)); };
+	void setFormat(const QAudioFormat & fmtfmt) { callbackQAbstractAudioInput_SetFormat(this, const_cast<QAudioFormat*>(&fmtfmt)); };
 	void setNotifyInterval(int ms) { callbackQAbstractAudioInput_SetNotifyInterval(this, ms); };
 	void setVolume(qreal vqr) { callbackQAbstractAudioInput_SetVolume(this, vqr); };
 	void start(QIODevice * device) { callbackQAbstractAudioInput_Start(this, device); };
@@ -607,9 +607,9 @@ void QAbstractAudioInput_SetBufferSize(void* ptr, int value)
 	static_cast<QAbstractAudioInput*>(ptr)->setBufferSize(value);
 }
 
-void QAbstractAudioInput_SetFormat(void* ptr, void* fo)
+void QAbstractAudioInput_SetFormat(void* ptr, void* fmtfmt)
 {
-	static_cast<QAbstractAudioInput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fo));
+	static_cast<QAbstractAudioInput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fmtfmt));
 }
 
 void QAbstractAudioInput_SetNotifyInterval(void* ptr, int ms)
@@ -898,7 +898,7 @@ public:
 	void resume() { callbackQAbstractAudioOutput_Resume(this); };
 	void setBufferSize(int value) { callbackQAbstractAudioOutput_SetBufferSize(this, value); };
 	void setCategory(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractAudioOutput_SetCategory(this, vqsPacked); };
-	void setFormat(const QAudioFormat & fo) { callbackQAbstractAudioOutput_SetFormat(this, const_cast<QAudioFormat*>(&fo)); };
+	void setFormat(const QAudioFormat & fmtfmt) { callbackQAbstractAudioOutput_SetFormat(this, const_cast<QAudioFormat*>(&fmtfmt)); };
 	void setNotifyInterval(int ms) { callbackQAbstractAudioOutput_SetNotifyInterval(this, ms); };
 	void setVolume(qreal volume) { callbackQAbstractAudioOutput_SetVolume(this, volume); };
 	void start(QIODevice * device) { callbackQAbstractAudioOutput_Start(this, device); };
@@ -1004,9 +1004,9 @@ void QAbstractAudioOutput_SetCategoryDefault(void* ptr, struct QtMultimedia_Pack
 		static_cast<QAbstractAudioOutput*>(ptr)->QAbstractAudioOutput::setCategory(QString::fromUtf8(vqs.data, vqs.len));
 }
 
-void QAbstractAudioOutput_SetFormat(void* ptr, void* fo)
+void QAbstractAudioOutput_SetFormat(void* ptr, void* fmtfmt)
 {
-	static_cast<QAbstractAudioOutput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fo));
+	static_cast<QAbstractAudioOutput*>(ptr)->setFormat(*static_cast<QAudioFormat*>(fmtfmt));
 }
 
 void QAbstractAudioOutput_SetNotifyInterval(void* ptr, int ms)
@@ -17077,9 +17077,9 @@ void* QMediaTimeInterval_Translated(void* ptr, long long offset)
 	return new QMediaTimeInterval(static_cast<QMediaTimeInterval*>(ptr)->translated(offset));
 }
 
-char QMediaTimeInterval_Contains(void* ptr, long long time)
+char QMediaTimeInterval_Contains(void* ptr, long long ti)
 {
-	return static_cast<QMediaTimeInterval*>(ptr)->contains(time);
+	return static_cast<QMediaTimeInterval*>(ptr)->contains(ti);
 }
 
 char QMediaTimeInterval_IsNormal(void* ptr)
@@ -17162,9 +17162,9 @@ struct QtMultimedia_PackedList QMediaTimeRange_Intervals(void* ptr)
 	return ({ QList<QMediaTimeInterval>* tmpValue = new QList<QMediaTimeInterval>(static_cast<QMediaTimeRange*>(ptr)->intervals()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-char QMediaTimeRange_Contains(void* ptr, long long time)
+char QMediaTimeRange_Contains(void* ptr, long long ti)
 {
-	return static_cast<QMediaTimeRange*>(ptr)->contains(time);
+	return static_cast<QMediaTimeRange*>(ptr)->contains(ti);
 }
 
 char QMediaTimeRange_IsContinuous(void* ptr)
@@ -20516,9 +20516,9 @@ struct QtMultimedia_PackedString QVideoFrame_Bits2(void* ptr, int plane)
 	return ({ char* t8420e9 = static_cast<char*>(static_cast<void*>(static_cast<QVideoFrame*>(ptr)->bits(plane))); QtMultimedia_PackedString { t8420e9, -1 }; });
 }
 
-void QVideoFrame_SetEndTime(void* ptr, long long time)
+void QVideoFrame_SetEndTime(void* ptr, long long ti)
 {
-	static_cast<QVideoFrame*>(ptr)->setEndTime(time);
+	static_cast<QVideoFrame*>(ptr)->setEndTime(ti);
 }
 
 void QVideoFrame_SetFieldType(void* ptr, long long field)
@@ -20531,9 +20531,9 @@ void QVideoFrame_SetMetaData(void* ptr, struct QtMultimedia_PackedString key, vo
 	static_cast<QVideoFrame*>(ptr)->setMetaData(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(value));
 }
 
-void QVideoFrame_SetStartTime(void* ptr, long long time)
+void QVideoFrame_SetStartTime(void* ptr, long long ti)
 {
-	static_cast<QVideoFrame*>(ptr)->setStartTime(time);
+	static_cast<QVideoFrame*>(ptr)->setStartTime(ti);
 }
 
 void QVideoFrame_Unmap(void* ptr)

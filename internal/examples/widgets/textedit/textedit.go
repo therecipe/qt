@@ -425,6 +425,7 @@ func (t *TextEdit) load(f string) bool {
 	if !file.Open(core.QIODevice__ReadOnly) {
 		return false
 	}
+	defer file.Close()
 
 	var (
 		data  = file.ReadAll()

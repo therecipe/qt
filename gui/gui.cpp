@@ -5417,9 +5417,9 @@ char QFont_FixedPitch(void* ptr)
 	return static_cast<QFont*>(ptr)->fixedPitch();
 }
 
-char QFont_IsCopyOf(void* ptr, void* fo)
+char QFont_IsCopyOf(void* ptr, void* ff)
 {
-	return static_cast<QFont*>(ptr)->isCopyOf(*static_cast<QFont*>(fo));
+	return static_cast<QFont*>(ptr)->isCopyOf(*static_cast<QFont*>(ff));
 }
 
 char QFont_Italic(void* ptr)
@@ -48589,9 +48589,9 @@ void QOpenGLFunctions_4_1_Compatibility_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_1_Compatibility_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_1_Compatibility_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_1_Compatibility*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_1_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -51873,9 +51873,9 @@ void QOpenGLFunctions_4_1_Core_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_1_Core_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_1_Core_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_1_Core*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_1_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -53987,9 +53987,9 @@ void QOpenGLFunctions_4_2_Compatibility_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_2_Compatibility_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_2_Compatibility_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_2_Compatibility*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_2_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -57331,9 +57331,9 @@ void QOpenGLFunctions_4_2_Core_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_2_Core_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_2_Core_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_2_Core*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_2_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -59510,9 +59510,9 @@ void QOpenGLFunctions_4_3_Compatibility_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_3_Compatibility_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_3_Compatibility_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_3_Compatibility*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_3_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -62969,9 +62969,9 @@ void QOpenGLFunctions_4_3_Core_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_3_Core_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_3_Core_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_3_Core*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_3_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -65288,9 +65288,9 @@ void QOpenGLFunctions_4_4_Compatibility_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_4_Compatibility_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_4_Compatibility_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_4_Compatibility*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_4_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -68767,9 +68767,9 @@ void QOpenGLFunctions_4_4_Core_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_4_Core_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_4_Core_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_4_Core*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_4_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -71306,9 +71306,9 @@ void QOpenGLFunctions_4_5_Compatibility_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_5_Compatibility_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_5_Compatibility_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_5_Compatibility*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_5_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -75300,9 +75300,9 @@ void QOpenGLFunctions_4_5_Core_GlDepthMask5(void* ptr, char flag)
 	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glDepthMask(flag != 0);
 }
 
-void QOpenGLFunctions_4_5_Core_GlDepthRangef5(void* ptr, float n, float fo)
+void QOpenGLFunctions_4_5_Core_GlDepthRangef5(void* ptr, float n, float ff)
 {
-	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glDepthRangef(n, fo);
+	static_cast<QOpenGLFunctions_4_5_Core*>(ptr)->glDepthRangef(n, ff);
 }
 
 void QOpenGLFunctions_4_5_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader)
@@ -93082,9 +93082,9 @@ void* QTextDocument_Object(void* ptr, int objectIndex)
 	return static_cast<QTextDocument*>(ptr)->object(objectIndex);
 }
 
-void* QTextDocument_ObjectForFormat(void* ptr, void* fo)
+void* QTextDocument_ObjectForFormat(void* ptr, void* ff)
 {
-	return static_cast<QTextDocument*>(ptr)->objectForFormat(*static_cast<QTextFormat*>(fo));
+	return static_cast<QTextDocument*>(ptr)->objectForFormat(*static_cast<QTextFormat*>(ff));
 }
 
 void* QTextDocument_DefaultTextOption(void* ptr)

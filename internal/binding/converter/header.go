@@ -185,7 +185,11 @@ func GoHeaderInput(f *parser.Function) string {
 								fmt.Fprintf(bb, ", %vP *js.Object", parser.CleanName(p.Name, p.Value))
 							}
 						} else {
-							fmt.Fprintf(bb, ", %v uintptr", parser.CleanName(p.Name, p.Value))
+							if f.FakeForJSCallback {
+								fmt.Fprintf(bb, ", %v *js.Object", parser.CleanName(p.Name, p.Value))
+							} else {
+								fmt.Fprintf(bb, ", %v uintptr", parser.CleanName(p.Name, p.Value))
+							}
 						}
 					} else {
 						if parser.IsPackedList(cv) || parser.IsPackedMap(cv) {

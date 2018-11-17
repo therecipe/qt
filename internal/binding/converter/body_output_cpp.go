@@ -98,12 +98,12 @@ func CppOutputTemplateJS(function *parser.Function) string {
 	}
 
 	switch {
+	case len(out) == 0:
+		return "void"
 	case isClass(out) || parser.IsPackedList(out) || parser.IsPackedMap(out) || cppType(function, function.Output) == "void*" || cppType(function, function.Output) == "uintptr_t":
 		return "uintptr_t"
 	case isEnum(function.ClassName(), out) && (function.BoundByEmscripten || function.SignalMode == parser.CALLBACK):
 		return "long"
-	case len(out) == 0:
-		return "void"
 	default:
 		return out
 	}

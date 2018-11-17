@@ -357,7 +357,7 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QAndroidBinder::onTransact", f.Fullname == "QtAndroid::checkPermission",
 
 		UseJs() &&
-			(strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" || f.Name == "metric" || f.Name == "moveCursor" ||
+			(strings.Contains(f.Name, "ibraryPath") || f.Fullname == "QLockFile::getLockInfo" ||
 				f.Name == "inputMethodEvent" || f.Name == "updateInputMethod" || f.Name == "inputMethodQuery" ||
 				f.Fullname == "QHeaderView::isFirstSectionMovable" || f.Fullname == "QXmlSimpleReader::property" || f.Fullname == "QXmlReader::property" ||
 				f.Fullname == "QWebSocket::ignoreSslErrors" || f.Fullname == "QWebSocket::preSharedKeyAuthenticationRequired" ||

@@ -164,7 +164,11 @@ func GoInputParametersForCallback(function *parser.Function) string {
 			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpackString") {
 				input[i] = "&retS"
 			} else if strings.Contains(goType(function, parameter.Value, parameter.PureGoType), "*bool") {
-				input[i] = fmt.Sprintf("&%vR", parser.CleanName(parameter.Name, parameter.Value))
+				if function.SignalMode != parser.CALLBACK {
+					input[i] = "nil" //TODO: make *bool usable from pure js
+				} else {
+					input[i] = fmt.Sprintf("&%vR", parser.CleanName(parameter.Name, parameter.Value))
+				}
 			} else {
 				input[i] = cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 			}

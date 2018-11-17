@@ -500,7 +500,10 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 		for _, c := range parser.SortedClassesForModule(module, true) {
 			for _, f := range c.Functions {
-				if f.Meta != parser.CONSTRUCTOR {
+				if f.Meta != parser.CONSTRUCTOR && !f.Static {
+					continue
+				}
+				if strings.Contains(f.Name, "RegisterMetaType") || strings.Contains(f.Name, "RegisterType") { //TODO:
 					continue
 				}
 				if !f.IsSupported() {
@@ -518,7 +521,11 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				if parser.UseWasm() {
 					out = "" //TODO: export classes for jsinterop example
 				} else {
-					out = fmt.Sprintf("module.Set(\"%v\", func(%v) *js.Object { return qt.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+					if converter.GoHeaderOutput(f) != "" {
+						out = fmt.Sprintf("module.Set(\"%v\", func(%v) *js.Object { return qt.MakeWrapper(%v(%v)); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+					} else {
+						out = fmt.Sprintf("module.Set(\"%v\", func(%v) { %v(%v); })\n", converter.GoHeaderName(f), ip, converter.GoHeaderName(f), converter.GoInputParametersForCallback(f))
+					}
 				}
 				if !strings.Contains(out, "unsupported_") && !strings.Contains(out, "C.") && strings.Contains(bb.String(), converter.GoHeaderName(f)+"(") {
 					bb.WriteString(out)

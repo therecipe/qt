@@ -837,7 +837,7 @@ struct QtGui_PackedString QFont_ToString(void* ptr);
 char QFont_Bold(void* ptr);
 char QFont_ExactMatch(void* ptr);
 char QFont_FixedPitch(void* ptr);
-char QFont_IsCopyOf(void* ptr, void* fo);
+char QFont_IsCopyOf(void* ptr, void* ff);
 char QFont_Italic(void* ptr);
 char QFont_Kerning(void* ptr);
 char QFont_Overline(void* ptr);
@@ -9149,7 +9149,7 @@ void QOpenGLFunctions_4_1_Compatibility_GlDeleteTransformFeedbacks5(void* ptr, i
 void QOpenGLFunctions_4_1_Compatibility_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_1_Compatibility_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_1_Compatibility_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_1_Compatibility_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_1_Compatibility_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_1_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_1_Compatibility_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_1_Compatibility_GlDisableClientState5(void* ptr, unsigned int array);
@@ -9804,7 +9804,7 @@ void QOpenGLFunctions_4_1_Core_GlDeleteTransformFeedbacks5(void* ptr, int n, uns
 void QOpenGLFunctions_4_1_Core_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_1_Core_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_1_Core_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_1_Core_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_1_Core_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_1_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_1_Core_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_1_Core_GlDisableVertexAttribArray5(void* ptr, unsigned int index);
@@ -10225,7 +10225,7 @@ void QOpenGLFunctions_4_2_Compatibility_GlDeleteTransformFeedbacks5(void* ptr, i
 void QOpenGLFunctions_4_2_Compatibility_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_2_Compatibility_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_2_Compatibility_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_2_Compatibility_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_2_Compatibility_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_2_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_2_Compatibility_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_2_Compatibility_GlDisableClientState5(void* ptr, unsigned int array);
@@ -10892,7 +10892,7 @@ void QOpenGLFunctions_4_2_Core_GlDeleteTransformFeedbacks5(void* ptr, int n, uns
 void QOpenGLFunctions_4_2_Core_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_2_Core_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_2_Core_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_2_Core_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_2_Core_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_2_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_2_Core_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_2_Core_GlDisableVertexAttribArray5(void* ptr, unsigned int index);
@@ -11326,7 +11326,7 @@ void QOpenGLFunctions_4_3_Compatibility_GlDeleteTransformFeedbacks5(void* ptr, i
 void QOpenGLFunctions_4_3_Compatibility_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_3_Compatibility_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_3_Compatibility_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_3_Compatibility_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_3_Compatibility_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_3_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_3_Compatibility_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_3_Compatibility_GlDisableClientState5(void* ptr, unsigned int array);
@@ -12016,7 +12016,7 @@ void QOpenGLFunctions_4_3_Core_GlDeleteTransformFeedbacks5(void* ptr, int n, uns
 void QOpenGLFunctions_4_3_Core_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_3_Core_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_3_Core_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_3_Core_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_3_Core_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_3_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_3_Core_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_3_Core_GlDisableVertexAttribArray5(void* ptr, unsigned int index);
@@ -12478,7 +12478,7 @@ void QOpenGLFunctions_4_4_Compatibility_GlDeleteTransformFeedbacks5(void* ptr, i
 void QOpenGLFunctions_4_4_Compatibility_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_4_Compatibility_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_4_Compatibility_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_4_Compatibility_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_4_Compatibility_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_4_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_4_Compatibility_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_4_Compatibility_GlDisableClientState5(void* ptr, unsigned int array);
@@ -13172,7 +13172,7 @@ void QOpenGLFunctions_4_4_Core_GlDeleteTransformFeedbacks5(void* ptr, int n, uns
 void QOpenGLFunctions_4_4_Core_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_4_Core_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_4_Core_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_4_Core_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_4_Core_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_4_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_4_Core_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_4_Core_GlDisableVertexAttribArray5(void* ptr, unsigned int index);
@@ -13678,7 +13678,7 @@ void QOpenGLFunctions_4_5_Compatibility_GlDeleteTransformFeedbacks5(void* ptr, i
 void QOpenGLFunctions_4_5_Compatibility_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_5_Compatibility_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_5_Compatibility_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_5_Compatibility_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_5_Compatibility_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_5_Compatibility_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_5_Compatibility_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_5_Compatibility_GlDisableClientState5(void* ptr, unsigned int array);
@@ -14475,7 +14475,7 @@ void QOpenGLFunctions_4_5_Core_GlDeleteTransformFeedbacks5(void* ptr, int n, uns
 void QOpenGLFunctions_4_5_Core_GlDeleteVertexArrays5(void* ptr, int n, unsigned int arrays);
 void QOpenGLFunctions_4_5_Core_GlDepthFunc5(void* ptr, unsigned int fu);
 void QOpenGLFunctions_4_5_Core_GlDepthMask5(void* ptr, char flag);
-void QOpenGLFunctions_4_5_Core_GlDepthRangef5(void* ptr, float n, float fo);
+void QOpenGLFunctions_4_5_Core_GlDepthRangef5(void* ptr, float n, float ff);
 void QOpenGLFunctions_4_5_Core_GlDetachShader5(void* ptr, unsigned int program, unsigned int shader);
 void QOpenGLFunctions_4_5_Core_GlDisable5(void* ptr, unsigned int cap);
 void QOpenGLFunctions_4_5_Core_GlDisableVertexArrayAttrib5(void* ptr, unsigned int vaobj, unsigned int index);
@@ -17485,7 +17485,7 @@ void* QTextDocument_Find2(void* ptr, struct QtGui_PackedString subString, int po
 void* QTextDocument_Clone(void* ptr, void* parent);
 void* QTextDocument_RootFrame(void* ptr);
 void* QTextDocument_Object(void* ptr, int objectIndex);
-void* QTextDocument_ObjectForFormat(void* ptr, void* fo);
+void* QTextDocument_ObjectForFormat(void* ptr, void* ff);
 void* QTextDocument_DefaultTextOption(void* ptr);
 void* QTextDocument_BaseUrl(void* ptr);
 void* QTextDocument_Resource(void* ptr, int ty, void* name);

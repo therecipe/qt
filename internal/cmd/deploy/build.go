@@ -22,9 +22,6 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	if ((!fast || utils.QT_STUB()) && !utils.QT_FAT()) || target == "js" || target == "wasm" {
 		tags = append(tags, "minimal")
 	}
-	if ldFlagsCustom != "" {
-		ldFlags = append(ldFlags, strings.Split(ldFlagsCustom, " ")...)
-	}
 	if tagsCustom != "" {
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
@@ -57,12 +54,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 
 	var extraLdFlag string
 	if utils.Log.Level == logrus.DebugLevel && target != "wasm" {
-		extraLdFlag = " \"-extldflags=-v\""
+		ldFlags = append(ldFlags, "-extldflags=-v")
 	}
 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 	if len(ldFlags) > 0 || len(extraLdFlag) > 0 {
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v\"%v\"%v", pattern, strings.Join(ldFlags, "\" \""), extraLdFlag))
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 	}
 	cmd.Args = append(cmd.Args, "-o", out+ending)
 

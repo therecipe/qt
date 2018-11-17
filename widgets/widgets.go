@@ -18914,8 +18914,8 @@ func NewQDateTimeEdit2(datetime core.QDateTime_ITF, parent QWidget_ITF) *QDateTi
 	return tmpValue
 }
 
-func NewQDateTimeEdit4(time core.QTime_ITF, parent QWidget_ITF) *QDateTimeEdit {
-	tmpValue := NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit4(core.PointerFromQTime(time), PointerFromQWidget(parent)))
+func NewQDateTimeEdit4(ti core.QTime_ITF, parent QWidget_ITF) *QDateTimeEdit {
+	tmpValue := NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit4(core.PointerFromQTime(ti), PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -19252,21 +19252,21 @@ func (ptr *QDateTimeEdit) SetSelectedSection(section QDateTimeEdit__Section) {
 }
 
 //export callbackQDateTimeEdit_SetTime
-func callbackQDateTimeEdit_SetTime(ptr unsafe.Pointer, time unsafe.Pointer) {
+func callbackQDateTimeEdit_SetTime(ptr unsafe.Pointer, ti unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setTime"); signal != nil {
-		signal.(func(*core.QTime))(core.NewQTimeFromPointer(time))
+		signal.(func(*core.QTime))(core.NewQTimeFromPointer(ti))
 	} else {
-		NewQDateTimeEditFromPointer(ptr).SetTimeDefault(core.NewQTimeFromPointer(time))
+		NewQDateTimeEditFromPointer(ptr).SetTimeDefault(core.NewQTimeFromPointer(ti))
 	}
 }
 
-func (ptr *QDateTimeEdit) ConnectSetTime(f func(time *core.QTime)) {
+func (ptr *QDateTimeEdit) ConnectSetTime(f func(ti *core.QTime)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setTime"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setTime", func(time *core.QTime) {
-				signal.(func(*core.QTime))(time)
-				f(time)
+			qt.ConnectSignal(ptr.Pointer(), "setTime", func(ti *core.QTime) {
+				signal.(func(*core.QTime))(ti)
+				f(ti)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setTime", f)
@@ -19281,15 +19281,15 @@ func (ptr *QDateTimeEdit) DisconnectSetTime() {
 	}
 }
 
-func (ptr *QDateTimeEdit) SetTime(time core.QTime_ITF) {
+func (ptr *QDateTimeEdit) SetTime(ti core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetTime(ptr.Pointer(), core.PointerFromQTime(time))
+		C.QDateTimeEdit_SetTime(ptr.Pointer(), core.PointerFromQTime(ti))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetTimeDefault(time core.QTime_ITF) {
+func (ptr *QDateTimeEdit) SetTimeDefault(ti core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetTimeDefault(ptr.Pointer(), core.PointerFromQTime(time))
+		C.QDateTimeEdit_SetTimeDefault(ptr.Pointer(), core.PointerFromQTime(ti))
 	}
 }
 
@@ -19306,14 +19306,14 @@ func (ptr *QDateTimeEdit) SetTimeSpec(spec core.Qt__TimeSpec) {
 }
 
 //export callbackQDateTimeEdit_TimeChanged
-func callbackQDateTimeEdit_TimeChanged(ptr unsafe.Pointer, time unsafe.Pointer) {
+func callbackQDateTimeEdit_TimeChanged(ptr unsafe.Pointer, ti unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timeChanged"); signal != nil {
-		signal.(func(*core.QTime))(core.NewQTimeFromPointer(time))
+		signal.(func(*core.QTime))(core.NewQTimeFromPointer(ti))
 	}
 
 }
 
-func (ptr *QDateTimeEdit) ConnectTimeChanged(f func(time *core.QTime)) {
+func (ptr *QDateTimeEdit) ConnectTimeChanged(f func(ti *core.QTime)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "timeChanged") {
@@ -19321,9 +19321,9 @@ func (ptr *QDateTimeEdit) ConnectTimeChanged(f func(time *core.QTime)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "timeChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "timeChanged", func(time *core.QTime) {
-				signal.(func(*core.QTime))(time)
-				f(time)
+			qt.ConnectSignal(ptr.Pointer(), "timeChanged", func(ti *core.QTime) {
+				signal.(func(*core.QTime))(ti)
+				f(ti)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "timeChanged", f)
@@ -19338,9 +19338,9 @@ func (ptr *QDateTimeEdit) DisconnectTimeChanged() {
 	}
 }
 
-func (ptr *QDateTimeEdit) TimeChanged(time core.QTime_ITF) {
+func (ptr *QDateTimeEdit) TimeChanged(ti core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_TimeChanged(ptr.Pointer(), core.PointerFromQTime(time))
+		C.QDateTimeEdit_TimeChanged(ptr.Pointer(), core.PointerFromQTime(ti))
 	}
 }
 
@@ -20195,8 +20195,8 @@ const (
 	QDialog__Accepted QDialog__DialogCode = QDialog__DialogCode(1)
 )
 
-func NewQDialog(parent QWidget_ITF, fo core.Qt__WindowType) *QDialog {
-	tmpValue := NewQDialogFromPointer(C.QDialog_NewQDialog(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQDialog(parent QWidget_ITF, ff core.Qt__WindowType) *QDialog {
+	tmpValue := NewQDialogFromPointer(C.QDialog_NewQDialog(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -28303,21 +28303,21 @@ func (ptr *QFontComboBox) CurrentFontChanged(font gui.QFont_ITF) {
 }
 
 //export callbackQFontComboBox_SetCurrentFont
-func callbackQFontComboBox_SetCurrentFont(ptr unsafe.Pointer, fo unsafe.Pointer) {
+func callbackQFontComboBox_SetCurrentFont(ptr unsafe.Pointer, ff unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setCurrentFont"); signal != nil {
-		signal.(func(*gui.QFont))(gui.NewQFontFromPointer(fo))
+		signal.(func(*gui.QFont))(gui.NewQFontFromPointer(ff))
 	} else {
-		NewQFontComboBoxFromPointer(ptr).SetCurrentFontDefault(gui.NewQFontFromPointer(fo))
+		NewQFontComboBoxFromPointer(ptr).SetCurrentFontDefault(gui.NewQFontFromPointer(ff))
 	}
 }
 
-func (ptr *QFontComboBox) ConnectSetCurrentFont(f func(fo *gui.QFont)) {
+func (ptr *QFontComboBox) ConnectSetCurrentFont(f func(ff *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setCurrentFont"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", func(fo *gui.QFont) {
-				signal.(func(*gui.QFont))(fo)
-				f(fo)
+			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", func(ff *gui.QFont) {
+				signal.(func(*gui.QFont))(ff)
+				f(ff)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", f)
@@ -28332,15 +28332,15 @@ func (ptr *QFontComboBox) DisconnectSetCurrentFont() {
 	}
 }
 
-func (ptr *QFontComboBox) SetCurrentFont(fo gui.QFont_ITF) {
+func (ptr *QFontComboBox) SetCurrentFont(ff gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QFontComboBox_SetCurrentFont(ptr.Pointer(), gui.PointerFromQFont(fo))
+		C.QFontComboBox_SetCurrentFont(ptr.Pointer(), gui.PointerFromQFont(ff))
 	}
 }
 
-func (ptr *QFontComboBox) SetCurrentFontDefault(fo gui.QFont_ITF) {
+func (ptr *QFontComboBox) SetCurrentFontDefault(ff gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QFontComboBox_SetCurrentFontDefault(ptr.Pointer(), gui.PointerFromQFont(fo))
+		C.QFontComboBox_SetCurrentFontDefault(ptr.Pointer(), gui.PointerFromQFont(ff))
 	}
 }
 
@@ -29317,8 +29317,8 @@ var (
 	QFrame__Shape_Mask  QFrame__StyleMask = QFrame__StyleMask(0x000f)
 )
 
-func NewQFrame(parent QWidget_ITF, fo core.Qt__WindowType) *QFrame {
-	tmpValue := NewQFrameFromPointer(C.QFrame_NewQFrame(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQFrame(parent QWidget_ITF, ff core.Qt__WindowType) *QFrame {
+	tmpValue := NewQFrameFromPointer(C.QFrame_NewQFrame(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -55917,21 +55917,21 @@ func NewQLabelFromPointer(ptr unsafe.Pointer) (n *QLabel) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQLabel(parent QWidget_ITF, fo core.Qt__WindowType) *QLabel {
-	tmpValue := NewQLabelFromPointer(C.QLabel_NewQLabel(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQLabel(parent QWidget_ITF, ff core.Qt__WindowType) *QLabel {
+	tmpValue := NewQLabelFromPointer(C.QLabel_NewQLabel(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-func NewQLabel2(text string, parent QWidget_ITF, fo core.Qt__WindowType) *QLabel {
+func NewQLabel2(text string, parent QWidget_ITF, ff core.Qt__WindowType) *QLabel {
 	var textC *C.char
 	if text != "" {
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	tmpValue := NewQLabelFromPointer(C.QLabel_NewQLabel2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent), C.longlong(fo)))
+	tmpValue := NewQLabelFromPointer(C.QLabel_NewQLabel2(C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -65620,7 +65620,7 @@ var (
 	QMessageBox__ButtonMask      QMessageBox__StandardButton = QMessageBox__StandardButton(C.QMessageBox_ButtonMask_Type())
 )
 
-func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons QMessageBox__StandardButton, parent QWidget_ITF, fo core.Qt__WindowType) *QMessageBox {
+func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons QMessageBox__StandardButton, parent QWidget_ITF, ff core.Qt__WindowType) *QMessageBox {
 	var titleC *C.char
 	if title != "" {
 		titleC = C.CString(title)
@@ -65631,7 +65631,7 @@ func NewQMessageBox2(icon QMessageBox__Icon, title string, text string, buttons 
 		textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
 	}
-	tmpValue := NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.longlong(icon), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), PointerFromQWidget(parent), C.longlong(fo)))
+	tmpValue := NewQMessageBoxFromPointer(C.QMessageBox_NewQMessageBox2(C.longlong(icon), C.struct_QtWidgets_PackedString{data: titleC, len: C.longlong(len(title))}, C.struct_QtWidgets_PackedString{data: textC, len: C.longlong(len(text))}, C.longlong(buttons), PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -66948,8 +66948,8 @@ func (ptr *QOpenGLWidget) GrabFramebuffer() *gui.QImage {
 	return nil
 }
 
-func NewQOpenGLWidget(parent QWidget_ITF, fo core.Qt__WindowType) *QOpenGLWidget {
-	tmpValue := NewQOpenGLWidgetFromPointer(C.QOpenGLWidget_NewQOpenGLWidget(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQOpenGLWidget(parent QWidget_ITF, ff core.Qt__WindowType) *QOpenGLWidget {
+	tmpValue := NewQOpenGLWidgetFromPointer(C.QOpenGLWidget_NewQOpenGLWidget(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -70850,15 +70850,15 @@ func NewQProgressDialogFromPointer(ptr unsafe.Pointer) (n *QProgressDialog) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQProgressDialog(parent QWidget_ITF, fo core.Qt__WindowType) *QProgressDialog {
-	tmpValue := NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQProgressDialog(parent QWidget_ITF, ff core.Qt__WindowType) *QProgressDialog {
+	tmpValue := NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget_ITF, fo core.Qt__WindowType) *QProgressDialog {
+func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget_ITF, ff core.Qt__WindowType) *QProgressDialog {
 	var labelTextC *C.char
 	if labelText != "" {
 		labelTextC = C.CString(labelText)
@@ -70869,7 +70869,7 @@ func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int,
 		cancelButtonTextC = C.CString(cancelButtonText)
 		defer C.free(unsafe.Pointer(cancelButtonTextC))
 	}
-	tmpValue := NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, C.struct_QtWidgets_PackedString{data: cancelButtonTextC, len: C.longlong(len(cancelButtonText))}, C.int(int32(minimum)), C.int(int32(maximum)), PointerFromQWidget(parent), C.longlong(fo)))
+	tmpValue := NewQProgressDialogFromPointer(C.QProgressDialog_NewQProgressDialog2(C.struct_QtWidgets_PackedString{data: labelTextC, len: C.longlong(len(labelText))}, C.struct_QtWidgets_PackedString{data: cancelButtonTextC, len: C.longlong(len(cancelButtonText))}, C.int(int32(minimum)), C.int(int32(maximum)), PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -75587,16 +75587,16 @@ func NewQSplashScreenFromPointer(ptr unsafe.Pointer) (n *QSplashScreen) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQSplashScreen2(parent QWidget_ITF, pixmap gui.QPixmap_ITF, fo core.Qt__WindowType) *QSplashScreen {
-	tmpValue := NewQSplashScreenFromPointer(C.QSplashScreen_NewQSplashScreen2(PointerFromQWidget(parent), gui.PointerFromQPixmap(pixmap), C.longlong(fo)))
+func NewQSplashScreen2(parent QWidget_ITF, pixmap gui.QPixmap_ITF, ff core.Qt__WindowType) *QSplashScreen {
+	tmpValue := NewQSplashScreenFromPointer(C.QSplashScreen_NewQSplashScreen2(PointerFromQWidget(parent), gui.PointerFromQPixmap(pixmap), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
 
-func NewQSplashScreen(pixmap gui.QPixmap_ITF, fo core.Qt__WindowType) *QSplashScreen {
-	tmpValue := NewQSplashScreenFromPointer(C.QSplashScreen_NewQSplashScreen(gui.PointerFromQPixmap(pixmap), C.longlong(fo)))
+func NewQSplashScreen(pixmap gui.QPixmap_ITF, ff core.Qt__WindowType) *QSplashScreen {
+	tmpValue := NewQSplashScreenFromPointer(C.QSplashScreen_NewQSplashScreen(gui.PointerFromQPixmap(pixmap), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -92953,14 +92953,14 @@ func (ptr *QTextEdit) CopyAvailable(yes bool) {
 }
 
 //export callbackQTextEdit_CurrentCharFormatChanged
-func callbackQTextEdit_CurrentCharFormatChanged(ptr unsafe.Pointer, fo unsafe.Pointer) {
+func callbackQTextEdit_CurrentCharFormatChanged(ptr unsafe.Pointer, ff unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "currentCharFormatChanged"); signal != nil {
-		signal.(func(*gui.QTextCharFormat))(gui.NewQTextCharFormatFromPointer(fo))
+		signal.(func(*gui.QTextCharFormat))(gui.NewQTextCharFormatFromPointer(ff))
 	}
 
 }
 
-func (ptr *QTextEdit) ConnectCurrentCharFormatChanged(f func(fo *gui.QTextCharFormat)) {
+func (ptr *QTextEdit) ConnectCurrentCharFormatChanged(f func(ff *gui.QTextCharFormat)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "currentCharFormatChanged") {
@@ -92968,9 +92968,9 @@ func (ptr *QTextEdit) ConnectCurrentCharFormatChanged(f func(fo *gui.QTextCharFo
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "currentCharFormatChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "currentCharFormatChanged", func(fo *gui.QTextCharFormat) {
-				signal.(func(*gui.QTextCharFormat))(fo)
-				f(fo)
+			qt.ConnectSignal(ptr.Pointer(), "currentCharFormatChanged", func(ff *gui.QTextCharFormat) {
+				signal.(func(*gui.QTextCharFormat))(ff)
+				f(ff)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "currentCharFormatChanged", f)
@@ -92985,9 +92985,9 @@ func (ptr *QTextEdit) DisconnectCurrentCharFormatChanged() {
 	}
 }
 
-func (ptr *QTextEdit) CurrentCharFormatChanged(fo gui.QTextCharFormat_ITF) {
+func (ptr *QTextEdit) CurrentCharFormatChanged(ff gui.QTextCharFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextEdit_CurrentCharFormatChanged(ptr.Pointer(), gui.PointerFromQTextCharFormat(fo))
+		C.QTextEdit_CurrentCharFormatChanged(ptr.Pointer(), gui.PointerFromQTextCharFormat(ff))
 	}
 }
 
@@ -93553,21 +93553,21 @@ func (ptr *QTextEdit) SetCurrentCharFormat(format gui.QTextCharFormat_ITF) {
 }
 
 //export callbackQTextEdit_SetCurrentFont
-func callbackQTextEdit_SetCurrentFont(ptr unsafe.Pointer, fo unsafe.Pointer) {
+func callbackQTextEdit_SetCurrentFont(ptr unsafe.Pointer, ff unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setCurrentFont"); signal != nil {
-		signal.(func(*gui.QFont))(gui.NewQFontFromPointer(fo))
+		signal.(func(*gui.QFont))(gui.NewQFontFromPointer(ff))
 	} else {
-		NewQTextEditFromPointer(ptr).SetCurrentFontDefault(gui.NewQFontFromPointer(fo))
+		NewQTextEditFromPointer(ptr).SetCurrentFontDefault(gui.NewQFontFromPointer(ff))
 	}
 }
 
-func (ptr *QTextEdit) ConnectSetCurrentFont(f func(fo *gui.QFont)) {
+func (ptr *QTextEdit) ConnectSetCurrentFont(f func(ff *gui.QFont)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setCurrentFont"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", func(fo *gui.QFont) {
-				signal.(func(*gui.QFont))(fo)
-				f(fo)
+			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", func(ff *gui.QFont) {
+				signal.(func(*gui.QFont))(ff)
+				f(ff)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setCurrentFont", f)
@@ -93582,15 +93582,15 @@ func (ptr *QTextEdit) DisconnectSetCurrentFont() {
 	}
 }
 
-func (ptr *QTextEdit) SetCurrentFont(fo gui.QFont_ITF) {
+func (ptr *QTextEdit) SetCurrentFont(ff gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextEdit_SetCurrentFont(ptr.Pointer(), gui.PointerFromQFont(fo))
+		C.QTextEdit_SetCurrentFont(ptr.Pointer(), gui.PointerFromQFont(ff))
 	}
 }
 
-func (ptr *QTextEdit) SetCurrentFontDefault(fo gui.QFont_ITF) {
+func (ptr *QTextEdit) SetCurrentFontDefault(ff gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextEdit_SetCurrentFontDefault(ptr.Pointer(), gui.PointerFromQFont(fo))
+		C.QTextEdit_SetCurrentFontDefault(ptr.Pointer(), gui.PointerFromQFont(ff))
 	}
 }
 
@@ -94894,8 +94894,8 @@ func NewQTimeEdit(parent QWidget_ITF) *QTimeEdit {
 	return tmpValue
 }
 
-func NewQTimeEdit2(time core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
-	tmpValue := NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit2(core.PointerFromQTime(time), PointerFromQWidget(parent)))
+func NewQTimeEdit2(ti core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
+	tmpValue := NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit2(core.PointerFromQTime(ti), PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -95737,8 +95737,8 @@ func NewQToolBoxFromPointer(ptr unsafe.Pointer) (n *QToolBox) {
 	n.SetPointer(ptr)
 	return
 }
-func NewQToolBox(parent QWidget_ITF, fo core.Qt__WindowType) *QToolBox {
-	tmpValue := NewQToolBoxFromPointer(C.QToolBox_NewQToolBox(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQToolBox(parent QWidget_ITF, ff core.Qt__WindowType) *QToolBox {
+	tmpValue := NewQToolBoxFromPointer(C.QToolBox_NewQToolBox(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -103715,8 +103715,8 @@ func (ptr *QWidget) MouseGrabber() *QWidget {
 	return tmpValue
 }
 
-func NewQWidget(parent QWidget_ITF, fo core.Qt__WindowType) *QWidget {
-	tmpValue := NewQWidgetFromPointer(C.QWidget_NewQWidget(PointerFromQWidget(parent), C.longlong(fo)))
+func NewQWidget(parent QWidget_ITF, ff core.Qt__WindowType) *QWidget {
+	tmpValue := NewQWidgetFromPointer(C.QWidget_NewQWidget(PointerFromQWidget(parent), C.longlong(ff)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -105678,9 +105678,9 @@ func (ptr *QWidget) SetParent(parent QWidget_ITF) {
 	}
 }
 
-func (ptr *QWidget) SetParent2(parent QWidget_ITF, fo core.Qt__WindowType) {
+func (ptr *QWidget) SetParent2(parent QWidget_ITF, ff core.Qt__WindowType) {
 	if ptr.Pointer() != nil {
-		C.QWidget_SetParent2(ptr.Pointer(), PointerFromQWidget(parent), C.longlong(fo))
+		C.QWidget_SetParent2(ptr.Pointer(), PointerFromQWidget(parent), C.longlong(ff))
 	}
 }
 

@@ -7977,28 +7977,28 @@ func (ptr *QByteArray) Replace2(pos int, l int, after string, alen int) *QByteAr
 	return nil
 }
 
-func (ptr *QByteArray) SetNum8(n float64, fo string, prec int) *QByteArray {
+func (ptr *QByteArray) SetNum8(n float64, ff string, prec int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var foC *C.char
-		if fo != "" {
-			foC = C.CString(fo)
-			defer C.free(unsafe.Pointer(foC))
+		var ffC *C.char
+		if ff != "" {
+			ffC = C.CString(ff)
+			defer C.free(unsafe.Pointer(ffC))
 		}
-		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum8(ptr.Pointer(), C.double(n), foC, C.int(int32(prec))))
+		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum8(ptr.Pointer(), C.double(n), ffC, C.int(int32(prec))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
 	return nil
 }
 
-func (ptr *QByteArray) SetNum7(n float32, fo string, prec int) *QByteArray {
+func (ptr *QByteArray) SetNum7(n float32, ff string, prec int) *QByteArray {
 	if ptr.Pointer() != nil {
-		var foC *C.char
-		if fo != "" {
-			foC = C.CString(fo)
-			defer C.free(unsafe.Pointer(foC))
+		var ffC *C.char
+		if ff != "" {
+			ffC = C.CString(ff)
+			defer C.free(unsafe.Pointer(ffC))
 		}
-		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum7(ptr.Pointer(), C.float(n), foC, C.int(int32(prec))))
+		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetNum7(ptr.Pointer(), C.float(n), ffC, C.int(int32(prec))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
@@ -8153,24 +8153,24 @@ func (ptr *QByteArray) FromRawData(data string, size int) *QByteArray {
 	return tmpValue
 }
 
-func QByteArray_Number5(n float64, fo string, prec int) *QByteArray {
-	var foC *C.char
-	if fo != "" {
-		foC = C.CString(fo)
-		defer C.free(unsafe.Pointer(foC))
+func QByteArray_Number5(n float64, ff string, prec int) *QByteArray {
+	var ffC *C.char
+	if ff != "" {
+		ffC = C.CString(ff)
+		defer C.free(unsafe.Pointer(ffC))
 	}
-	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), foC, C.int(int32(prec))))
+	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), ffC, C.int(int32(prec))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
-func (ptr *QByteArray) Number5(n float64, fo string, prec int) *QByteArray {
-	var foC *C.char
-	if fo != "" {
-		foC = C.CString(fo)
-		defer C.free(unsafe.Pointer(foC))
+func (ptr *QByteArray) Number5(n float64, ff string, prec int) *QByteArray {
+	var ffC *C.char
+	if ff != "" {
+		ffC = C.CString(ff)
+		defer C.free(unsafe.Pointer(ffC))
 	}
-	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), foC, C.int(int32(prec))))
+	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_Number5(C.double(n), ffC, C.int(int32(prec))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
@@ -12680,20 +12680,20 @@ func NewQDateTime2(date QDate_ITF) *QDateTime {
 	return tmpValue
 }
 
-func NewQDateTime3(date QDate_ITF, time QTime_ITF, spec Qt__TimeSpec) *QDateTime {
-	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime3(PointerFromQDate(date), PointerFromQTime(time), C.longlong(spec)))
+func NewQDateTime3(date QDate_ITF, ti QTime_ITF, spec Qt__TimeSpec) *QDateTime {
+	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime3(PointerFromQDate(date), PointerFromQTime(ti), C.longlong(spec)))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
-func NewQDateTime4(date QDate_ITF, time QTime_ITF, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
-	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime4(PointerFromQDate(date), PointerFromQTime(time), C.longlong(spec), C.int(int32(offsetSeconds))))
+func NewQDateTime4(date QDate_ITF, ti QTime_ITF, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
+	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime4(PointerFromQDate(date), PointerFromQTime(ti), C.longlong(spec), C.int(int32(offsetSeconds))))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
 
-func NewQDateTime5(date QDate_ITF, time QTime_ITF, timeZone QTimeZone_ITF) *QDateTime {
-	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime5(PointerFromQDate(date), PointerFromQTime(time), PointerFromQTimeZone(timeZone)))
+func NewQDateTime5(date QDate_ITF, ti QTime_ITF, timeZone QTimeZone_ITF) *QDateTime {
+	tmpValue := NewQDateTimeFromPointer(C.QDateTime_NewQDateTime5(PointerFromQDate(date), PointerFromQTime(ti), PointerFromQTimeZone(timeZone)))
 	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 	return tmpValue
 }
@@ -12744,9 +12744,9 @@ func (ptr *QDateTime) SetSecsSinceEpoch(secs int64) {
 	}
 }
 
-func (ptr *QDateTime) SetTime(time QTime_ITF) {
+func (ptr *QDateTime) SetTime(ti QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTime_SetTime(ptr.Pointer(), PointerFromQTime(time))
+		C.QDateTime_SetTime(ptr.Pointer(), PointerFromQTime(ti))
 	}
 }
 
@@ -16545,9 +16545,9 @@ func (ptr *QFileDevice) DestroyQFileDeviceDefault() {
 	}
 }
 
-func (ptr *QFileDevice) FileTime(time QFileDevice__FileTime) *QDateTime {
+func (ptr *QFileDevice) FileTime(ti QFileDevice__FileTime) *QDateTime {
 	if ptr.Pointer() != nil {
-		tmpValue := NewQDateTimeFromPointer(C.QFileDevice_FileTime(ptr.Pointer(), C.longlong(time)))
+		tmpValue := NewQDateTimeFromPointer(C.QFileDevice_FileTime(ptr.Pointer(), C.longlong(ti)))
 		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
 		return tmpValue
 	}
@@ -25921,52 +25921,52 @@ func (ptr *QLocale) ToString11(dateTime QDateTime_ITF, format string) string {
 	return ""
 }
 
-func (ptr *QLocale) ToString16(time QTime_ITF, format QLocale__FormatType) string {
+func (ptr *QLocale) ToString16(ti QTime_ITF, format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocale_ToString16(ptr.Pointer(), PointerFromQTime(time), C.longlong(format)))
+		return cGoUnpackString(C.QLocale_ToString16(ptr.Pointer(), PointerFromQTime(ti), C.longlong(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString13(time QTime_ITF, format QStringView_ITF) string {
+func (ptr *QLocale) ToString13(ti QTime_ITF, format QStringView_ITF) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QLocale_ToString13(ptr.Pointer(), PointerFromQTime(time), PointerFromQStringView(format)))
+		return cGoUnpackString(C.QLocale_ToString13(ptr.Pointer(), PointerFromQTime(ti), PointerFromQStringView(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString10(time QTime_ITF, format string) string {
+func (ptr *QLocale) ToString10(ti QTime_ITF, format string) string {
 	if ptr.Pointer() != nil {
 		var formatC *C.char
 		if format != "" {
 			formatC = C.CString(format)
 			defer C.free(unsafe.Pointer(formatC))
 		}
-		return cGoUnpackString(C.QLocale_ToString10(ptr.Pointer(), PointerFromQTime(time), C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
+		return cGoUnpackString(C.QLocale_ToString10(ptr.Pointer(), PointerFromQTime(ti), C.struct_QtCore_PackedString{data: formatC, len: C.longlong(len(format))}))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString7(i float64, fo string, prec int) string {
+func (ptr *QLocale) ToString7(i float64, ff string, prec int) string {
 	if ptr.Pointer() != nil {
-		var foC *C.char
-		if fo != "" {
-			foC = C.CString(fo)
-			defer C.free(unsafe.Pointer(foC))
+		var ffC *C.char
+		if ff != "" {
+			ffC = C.CString(ff)
+			defer C.free(unsafe.Pointer(ffC))
 		}
-		return cGoUnpackString(C.QLocale_ToString7(ptr.Pointer(), C.double(i), foC, C.int(int32(prec))))
+		return cGoUnpackString(C.QLocale_ToString7(ptr.Pointer(), C.double(i), ffC, C.int(int32(prec))))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString8(i float32, fo string, prec int) string {
+func (ptr *QLocale) ToString8(i float32, ff string, prec int) string {
 	if ptr.Pointer() != nil {
-		var foC *C.char
-		if fo != "" {
-			foC = C.CString(fo)
-			defer C.free(unsafe.Pointer(foC))
+		var ffC *C.char
+		if ff != "" {
+			ffC = C.CString(ff)
+			defer C.free(unsafe.Pointer(ffC))
 		}
-		return cGoUnpackString(C.QLocale_ToString8(ptr.Pointer(), C.float(i), foC, C.int(int32(prec))))
+		return cGoUnpackString(C.QLocale_ToString8(ptr.Pointer(), C.float(i), ffC, C.int(int32(prec))))
 	}
 	return ""
 }
@@ -45061,9 +45061,9 @@ func NewQThread(parent QObject_ITF) *QThread {
 	return tmpValue
 }
 
-func (ptr *QThread) Wait(time uint) bool {
+func (ptr *QThread) Wait(ti uint) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QThread_Wait(ptr.Pointer(), C.ulong(uint32(time)))) != 0
+		return int8(C.QThread_Wait(ptr.Pointer(), C.ulong(uint32(ti)))) != 0
 	}
 	return false
 }
@@ -51715,16 +51715,16 @@ func NewQWaitCondition() *QWaitCondition {
 	return tmpValue
 }
 
-func (ptr *QWaitCondition) Wait(lockedMutex QMutex_ITF, time uint) bool {
+func (ptr *QWaitCondition) Wait(lockedMutex QMutex_ITF, ti uint) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QWaitCondition_Wait(ptr.Pointer(), PointerFromQMutex(lockedMutex), C.ulong(uint32(time)))) != 0
+		return int8(C.QWaitCondition_Wait(ptr.Pointer(), PointerFromQMutex(lockedMutex), C.ulong(uint32(ti)))) != 0
 	}
 	return false
 }
 
-func (ptr *QWaitCondition) Wait2(lockedReadWriteLock QReadWriteLock_ITF, time uint) bool {
+func (ptr *QWaitCondition) Wait2(lockedReadWriteLock QReadWriteLock_ITF, ti uint) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(time)))) != 0
+		return int8(C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(ti)))) != 0
 	}
 	return false
 }

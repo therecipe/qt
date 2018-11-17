@@ -3604,7 +3604,7 @@ public:
 	void Signal_NetworkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessible) { callbackQNetworkAccessManager_NetworkAccessibleChanged(this, accessible); };
 	void Signal_PreSharedKeyAuthenticationRequired(QNetworkReply * reply, QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(this, reply, authenticator); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQNetworkAccessManager_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
-	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & errors) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & erro) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&erro); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQNetworkAccessManager() { callbackQNetworkAccessManager_DestroyQNetworkAccessManager(this); };
 	QStringList supportedSchemesImplementation() const { return ({ QtNetwork_PackedString tempVal = callbackQNetworkAccessManager_SupportedSchemesImplementation(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkAccessManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -3914,9 +3914,9 @@ void QNetworkAccessManager_DisconnectSslErrors(void* ptr)
 	QObject::disconnect(static_cast<QNetworkAccessManager*>(ptr), static_cast<void (QNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&QNetworkAccessManager::sslErrors), static_cast<MyQNetworkAccessManager*>(ptr), static_cast<void (MyQNetworkAccessManager::*)(QNetworkReply *, const QList<QSslError> &)>(&MyQNetworkAccessManager::Signal_SslErrors));
 }
 
-void QNetworkAccessManager_SslErrors(void* ptr, void* reply, void* errors)
+void QNetworkAccessManager_SslErrors(void* ptr, void* reply, void* erro)
 {
-	static_cast<QNetworkAccessManager*>(ptr)->sslErrors(static_cast<QNetworkReply*>(reply), *static_cast<QList<QSslError>*>(errors));
+	static_cast<QNetworkAccessManager*>(ptr)->sslErrors(static_cast<QNetworkReply*>(reply), *static_cast<QList<QSslError>*>(erro));
 }
 
 void QNetworkAccessManager_DestroyQNetworkAccessManager(void* ptr)
@@ -6066,14 +6066,14 @@ public:
 	void Signal_Error2(QNetworkReply::NetworkError code) { callbackQNetworkReply_Error2(this, code); };
 	void Signal_Finished() { callbackQNetworkReply_Finished(this); };
 	void ignoreSslErrors() { callbackQNetworkReply_IgnoreSslErrors(this); };
-	void ignoreSslErrorsImplementation(const QList<QSslError> & errors) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void ignoreSslErrorsImplementation(const QList<QSslError> & erro) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&erro); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_MetaDataChanged() { callbackQNetworkReply_MetaDataChanged(this); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkReply_PreSharedKeyAuthenticationRequired(this, authenticator); };
 	void Signal_RedirectAllowed() { callbackQNetworkReply_RedirectAllowed(this); };
 	void Signal_Redirected(const QUrl & url) { callbackQNetworkReply_Redirected(this, const_cast<QUrl*>(&url)); };
 	void setReadBufferSize(qint64 size) { callbackQNetworkReply_SetReadBufferSize(this, size); };
 	void setSslConfigurationImplementation(const QSslConfiguration & configuration) { callbackQNetworkReply_SetSslConfigurationImplementation(this, const_cast<QSslConfiguration*>(&configuration)); };
-	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors(const QList<QSslError> & erro) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&erro); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReply_UploadProgress(this, bytesSent, bytesTotal); };
 	 ~MyQNetworkReply() { callbackQNetworkReply_DestroyQNetworkReply(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -6245,19 +6245,19 @@ void QNetworkReply_IgnoreSslErrorsDefault(void* ptr)
 		static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrors();
 }
 
-void QNetworkReply_IgnoreSslErrors2(void* ptr, void* errors)
+void QNetworkReply_IgnoreSslErrors2(void* ptr, void* erro)
 {
-	static_cast<QNetworkReply*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(errors));
+	static_cast<QNetworkReply*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(erro));
 }
 
-void QNetworkReply_IgnoreSslErrorsImplementation(void* ptr, void* errors)
+void QNetworkReply_IgnoreSslErrorsImplementation(void* ptr, void* erro)
 {
-	static_cast<QNetworkReply*>(ptr)->ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
+	static_cast<QNetworkReply*>(ptr)->ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(erro));
 }
 
-void QNetworkReply_IgnoreSslErrorsImplementationDefault(void* ptr, void* errors)
+void QNetworkReply_IgnoreSslErrorsImplementationDefault(void* ptr, void* erro)
 {
-		static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(errors));
+		static_cast<QNetworkReply*>(ptr)->QNetworkReply::ignoreSslErrorsImplementation(*static_cast<QList<QSslError>*>(erro));
 }
 
 void QNetworkReply_ConnectMetaDataChanged(void* ptr)
@@ -6395,9 +6395,9 @@ void QNetworkReply_DisconnectSslErrors(void* ptr)
 	QObject::disconnect(static_cast<QNetworkReply*>(ptr), static_cast<void (QNetworkReply::*)(const QList<QSslError> &)>(&QNetworkReply::sslErrors), static_cast<MyQNetworkReply*>(ptr), static_cast<void (MyQNetworkReply::*)(const QList<QSslError> &)>(&MyQNetworkReply::Signal_SslErrors));
 }
 
-void QNetworkReply_SslErrors(void* ptr, void* errors)
+void QNetworkReply_SslErrors(void* ptr, void* erro)
 {
-	static_cast<QNetworkReply*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
+	static_cast<QNetworkReply*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(erro));
 }
 
 void QNetworkReply_ConnectUploadProgress(void* ptr)
@@ -8643,7 +8643,7 @@ public:
 	void resume() { callbackQAbstractSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	void Signal_SslErrors2(const QList<QSslError> & errors) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors2(const QList<QSslError> & erro) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&erro); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
 	void startServerEncryption() { callbackQSslSocket_StartServerEncryption(this); };
 	 ~MyQSslSocket() { callbackQSslSocket_DestroyQSslSocket(this); };
@@ -8839,9 +8839,9 @@ void QSslSocket_IgnoreSslErrorsDefault(void* ptr)
 		static_cast<QSslSocket*>(ptr)->QSslSocket::ignoreSslErrors();
 }
 
-void QSslSocket_IgnoreSslErrors2(void* ptr, void* errors)
+void QSslSocket_IgnoreSslErrors2(void* ptr, void* erro)
 {
-	static_cast<QSslSocket*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(errors));
+	static_cast<QSslSocket*>(ptr)->ignoreSslErrors(*static_cast<QList<QSslError>*>(erro));
 }
 
 void QSslSocket_ConnectModeChanged(void* ptr)
@@ -8949,9 +8949,9 @@ void QSslSocket_DisconnectSslErrors2(void* ptr)
 	QObject::disconnect(static_cast<QSslSocket*>(ptr), static_cast<void (QSslSocket::*)(const QList<QSslError> &)>(&QSslSocket::sslErrors), static_cast<MyQSslSocket*>(ptr), static_cast<void (MyQSslSocket::*)(const QList<QSslError> &)>(&MyQSslSocket::Signal_SslErrors2));
 }
 
-void QSslSocket_SslErrors2(void* ptr, void* errors)
+void QSslSocket_SslErrors2(void* ptr, void* erro)
 {
-	static_cast<QSslSocket*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(errors));
+	static_cast<QSslSocket*>(ptr)->sslErrors(*static_cast<QList<QSslError>*>(erro));
 }
 
 void QSslSocket_StartClientEncryption(void* ptr)

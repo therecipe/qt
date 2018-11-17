@@ -1216,20 +1216,20 @@ func (ptr *QAbstractAudioInput) SetBufferSize(value int) {
 }
 
 //export callbackQAbstractAudioInput_SetFormat
-func callbackQAbstractAudioInput_SetFormat(ptr unsafe.Pointer, fo unsafe.Pointer) {
+func callbackQAbstractAudioInput_SetFormat(ptr unsafe.Pointer, fmtfmt unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setFormat"); signal != nil {
-		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fo))
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fmtfmt))
 	}
 
 }
 
-func (ptr *QAbstractAudioInput) ConnectSetFormat(f func(fo *QAudioFormat)) {
+func (ptr *QAbstractAudioInput) ConnectSetFormat(f func(fmtfmt *QAudioFormat)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setFormat"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fo *QAudioFormat) {
-				signal.(func(*QAudioFormat))(fo)
-				f(fo)
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fmtfmt *QAudioFormat) {
+				signal.(func(*QAudioFormat))(fmtfmt)
+				f(fmtfmt)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setFormat", f)
@@ -1244,9 +1244,9 @@ func (ptr *QAbstractAudioInput) DisconnectSetFormat() {
 	}
 }
 
-func (ptr *QAbstractAudioInput) SetFormat(fo QAudioFormat_ITF) {
+func (ptr *QAbstractAudioInput) SetFormat(fmtfmt QAudioFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractAudioInput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fo))
+		C.QAbstractAudioInput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fmtfmt))
 	}
 }
 
@@ -2467,20 +2467,20 @@ func (ptr *QAbstractAudioOutput) SetCategoryDefault(vqs string) {
 }
 
 //export callbackQAbstractAudioOutput_SetFormat
-func callbackQAbstractAudioOutput_SetFormat(ptr unsafe.Pointer, fo unsafe.Pointer) {
+func callbackQAbstractAudioOutput_SetFormat(ptr unsafe.Pointer, fmtfmt unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setFormat"); signal != nil {
-		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fo))
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(fmtfmt))
 	}
 
 }
 
-func (ptr *QAbstractAudioOutput) ConnectSetFormat(f func(fo *QAudioFormat)) {
+func (ptr *QAbstractAudioOutput) ConnectSetFormat(f func(fmtfmt *QAudioFormat)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setFormat"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fo *QAudioFormat) {
-				signal.(func(*QAudioFormat))(fo)
-				f(fo)
+			qt.ConnectSignal(ptr.Pointer(), "setFormat", func(fmtfmt *QAudioFormat) {
+				signal.(func(*QAudioFormat))(fmtfmt)
+				f(fmtfmt)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setFormat", f)
@@ -2495,9 +2495,9 @@ func (ptr *QAbstractAudioOutput) DisconnectSetFormat() {
 	}
 }
 
-func (ptr *QAbstractAudioOutput) SetFormat(fo QAudioFormat_ITF) {
+func (ptr *QAbstractAudioOutput) SetFormat(fmtfmt QAudioFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractAudioOutput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fo))
+		C.QAbstractAudioOutput_SetFormat(ptr.Pointer(), PointerFromQAudioFormat(fmtfmt))
 	}
 }
 
@@ -35085,9 +35085,9 @@ func (ptr *QMediaTimeInterval) Translated(offset int64) *QMediaTimeInterval {
 	return nil
 }
 
-func (ptr *QMediaTimeInterval) Contains(time int64) bool {
+func (ptr *QMediaTimeInterval) Contains(ti int64) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QMediaTimeInterval_Contains(ptr.Pointer(), C.longlong(time))) != 0
+		return int8(C.QMediaTimeInterval_Contains(ptr.Pointer(), C.longlong(ti))) != 0
 	}
 	return false
 }
@@ -35238,9 +35238,9 @@ func (ptr *QMediaTimeRange) Intervals() []*QMediaTimeInterval {
 	return make([]*QMediaTimeInterval, 0)
 }
 
-func (ptr *QMediaTimeRange) Contains(time int64) bool {
+func (ptr *QMediaTimeRange) Contains(ti int64) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QMediaTimeRange_Contains(ptr.Pointer(), C.longlong(time))) != 0
+		return int8(C.QMediaTimeRange_Contains(ptr.Pointer(), C.longlong(ti))) != 0
 	}
 	return false
 }
@@ -43603,9 +43603,9 @@ func (ptr *QVideoFrame) Bits2(plane int) string {
 	return ""
 }
 
-func (ptr *QVideoFrame) SetEndTime(time int64) {
+func (ptr *QVideoFrame) SetEndTime(ti int64) {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_SetEndTime(ptr.Pointer(), C.longlong(time))
+		C.QVideoFrame_SetEndTime(ptr.Pointer(), C.longlong(ti))
 	}
 }
 
@@ -43626,9 +43626,9 @@ func (ptr *QVideoFrame) SetMetaData(key string, value core.QVariant_ITF) {
 	}
 }
 
-func (ptr *QVideoFrame) SetStartTime(time int64) {
+func (ptr *QVideoFrame) SetStartTime(ti int64) {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_SetStartTime(ptr.Pointer(), C.longlong(time))
+		C.QVideoFrame_SetStartTime(ptr.Pointer(), C.longlong(ti))
 	}
 }
 

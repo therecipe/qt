@@ -4,7 +4,8 @@ package qt
 
 import "github.com/gopherjs/gopherjs/js"
 
-var WASM = js.Global.Call("eval", "Module")
+var Global = js.Global
+var Module = Global.Call("eval", "Module")
 
 func MakeWrapper(i interface{}) *js.Object {
 	o := js.InternalObject(i)
@@ -22,3 +23,7 @@ func MakeWrapper(i interface{}) *js.Object {
 	}
 	return o
 }
+
+//
+
+var WASM = Module //TODO: remove

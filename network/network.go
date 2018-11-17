@@ -7891,21 +7891,21 @@ func (ptr *QNetworkAccessManager) SetStrictTransportSecurityEnabled(enabled bool
 }
 
 //export callbackQNetworkAccessManager_SslErrors
-func callbackQNetworkAccessManager_SslErrors(ptr unsafe.Pointer, reply unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
+func callbackQNetworkAccessManager_SslErrors(ptr unsafe.Pointer, reply unsafe.Pointer, erro C.struct_QtNetwork_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
 		signal.(func(*QNetworkReply, []*QSslError))(NewQNetworkReplyFromPointer(reply), func(l C.struct_QtNetwork_PackedList) []*QSslError {
 			out := make([]*QSslError, int(l.len))
 			tmpList := NewQNetworkAccessManagerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
+				out[i] = tmpList.__sslErrors_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 
 }
 
-func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, errors []*QSslError)) {
+func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, erro []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
@@ -7913,9 +7913,9 @@ func (ptr *QNetworkAccessManager) ConnectSslErrors(f func(reply *QNetworkReply, 
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(reply *QNetworkReply, errors []*QSslError) {
-				signal.(func(*QNetworkReply, []*QSslError))(reply, errors)
-				f(reply, errors)
+			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(reply *QNetworkReply, erro []*QSslError) {
+				signal.(func(*QNetworkReply, []*QSslError))(reply, erro)
+				f(reply, erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "sslErrors", f)
@@ -7930,12 +7930,12 @@ func (ptr *QNetworkAccessManager) DisconnectSslErrors() {
 	}
 }
 
-func (ptr *QNetworkAccessManager) SslErrors(reply QNetworkReply_ITF, errors []*QSslError) {
+func (ptr *QNetworkAccessManager) SslErrors(reply QNetworkReply_ITF, erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_SslErrors(ptr.Pointer(), PointerFromQNetworkReply(reply), func() unsafe.Pointer {
-			tmpList := NewQNetworkAccessManagerFromPointer(NewQNetworkAccessManagerFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
+			tmpList := NewQNetworkAccessManagerFromPointer(NewQNetworkAccessManagerFromPointer(nil).__sslErrors_erro_newList())
+			for _, v := range erro {
+				tmpList.__sslErrors_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -13043,12 +13043,12 @@ func (ptr *QNetworkReply) IgnoreSslErrorsDefault() {
 	}
 }
 
-func (ptr *QNetworkReply) IgnoreSslErrors2(errors []*QSslError) {
+func (ptr *QNetworkReply) IgnoreSslErrors2(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_IgnoreSslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrors_errors_setList2(v)
+			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrors_erro_newList2())
+			for _, v := range erro {
+				tmpList.__ignoreSslErrors_erro_setList2(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -13056,35 +13056,35 @@ func (ptr *QNetworkReply) IgnoreSslErrors2(errors []*QSslError) {
 }
 
 //export callbackQNetworkReply_IgnoreSslErrorsImplementation
-func callbackQNetworkReply_IgnoreSslErrorsImplementation(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
+func callbackQNetworkReply_IgnoreSslErrorsImplementation(ptr unsafe.Pointer, erro C.struct_QtNetwork_PackedList) {
 	if signal := qt.GetSignal(ptr, "ignoreSslErrorsImplementation"); signal != nil {
 		signal.(func([]*QSslError))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
 			out := make([]*QSslError, int(l.len))
 			tmpList := NewQNetworkReplyFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ignoreSslErrorsImplementation_errors_atList(i)
+				out[i] = tmpList.__ignoreSslErrorsImplementation_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).IgnoreSslErrorsImplementationDefault(func(l C.struct_QtNetwork_PackedList) []*QSslError {
 			out := make([]*QSslError, int(l.len))
 			tmpList := NewQNetworkReplyFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__ignoreSslErrorsImplementation_errors_atList(i)
+				out[i] = tmpList.__ignoreSslErrorsImplementation_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 }
 
-func (ptr *QNetworkReply) ConnectIgnoreSslErrorsImplementation(f func(errors []*QSslError)) {
+func (ptr *QNetworkReply) ConnectIgnoreSslErrorsImplementation(f func(erro []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "ignoreSslErrorsImplementation"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation", func(errors []*QSslError) {
-				signal.(func([]*QSslError))(errors)
-				f(errors)
+			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation", func(erro []*QSslError) {
+				signal.(func([]*QSslError))(erro)
+				f(erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "ignoreSslErrorsImplementation", f)
@@ -13099,24 +13099,24 @@ func (ptr *QNetworkReply) DisconnectIgnoreSslErrorsImplementation() {
 	}
 }
 
-func (ptr *QNetworkReply) IgnoreSslErrorsImplementation(errors []*QSslError) {
+func (ptr *QNetworkReply) IgnoreSslErrorsImplementation(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_IgnoreSslErrorsImplementation(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_errors_newList())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrorsImplementation_errors_setList(v)
+			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_erro_newList())
+			for _, v := range erro {
+				tmpList.__ignoreSslErrorsImplementation_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
 	}
 }
 
-func (ptr *QNetworkReply) IgnoreSslErrorsImplementationDefault(errors []*QSslError) {
+func (ptr *QNetworkReply) IgnoreSslErrorsImplementationDefault(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_IgnoreSslErrorsImplementationDefault(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_errors_newList())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrorsImplementation_errors_setList(v)
+			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__ignoreSslErrorsImplementation_erro_newList())
+			for _, v := range erro {
+				tmpList.__ignoreSslErrorsImplementation_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -13423,21 +13423,21 @@ func (ptr *QNetworkReply) SetUrl(url core.QUrl_ITF) {
 }
 
 //export callbackQNetworkReply_SslErrors
-func callbackQNetworkReply_SslErrors(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
+func callbackQNetworkReply_SslErrors(ptr unsafe.Pointer, erro C.struct_QtNetwork_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
 		signal.(func([]*QSslError))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
 			out := make([]*QSslError, int(l.len))
 			tmpList := NewQNetworkReplyFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
+				out[i] = tmpList.__sslErrors_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 
 }
 
-func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
+func (ptr *QNetworkReply) ConnectSslErrors(f func(erro []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
@@ -13445,9 +13445,9 @@ func (ptr *QNetworkReply) ConnectSslErrors(f func(errors []*QSslError)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(errors []*QSslError) {
-				signal.(func([]*QSslError))(errors)
-				f(errors)
+			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(erro []*QSslError) {
+				signal.(func([]*QSslError))(erro)
+				f(erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "sslErrors", f)
@@ -13462,12 +13462,12 @@ func (ptr *QNetworkReply) DisconnectSslErrors() {
 	}
 }
 
-func (ptr *QNetworkReply) SslErrors(errors []*QSslError) {
+func (ptr *QNetworkReply) SslErrors(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_SslErrors(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
+			tmpList := NewQNetworkReplyFromPointer(NewQNetworkReplyFromPointer(nil).__sslErrors_erro_newList())
+			for _, v := range erro {
+				tmpList.__sslErrors_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -18754,12 +18754,12 @@ func (ptr *QSslSocket) IgnoreSslErrorsDefault() {
 	}
 }
 
-func (ptr *QSslSocket) IgnoreSslErrors2(errors []*QSslError) {
+func (ptr *QSslSocket) IgnoreSslErrors2(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_IgnoreSslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__ignoreSslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrors_errors_setList2(v)
+			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__ignoreSslErrors_erro_newList2())
+			for _, v := range erro {
+				tmpList.__ignoreSslErrors_erro_setList2(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -18965,21 +18965,21 @@ func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) 
 }
 
 //export callbackQSslSocket_SslErrors2
-func callbackQSslSocket_SslErrors2(ptr unsafe.Pointer, errors C.struct_QtNetwork_PackedList) {
+func callbackQSslSocket_SslErrors2(ptr unsafe.Pointer, erro C.struct_QtNetwork_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors2"); signal != nil {
 		signal.(func([]*QSslError))(func(l C.struct_QtNetwork_PackedList) []*QSslError {
 			out := make([]*QSslError, int(l.len))
 			tmpList := NewQSslSocketFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList2(i)
+				out[i] = tmpList.__sslErrors_erro_atList2(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 
 }
 
-func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
+func (ptr *QSslSocket) ConnectSslErrors2(f func(erro []*QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors2") {
@@ -18987,9 +18987,9 @@ func (ptr *QSslSocket) ConnectSslErrors2(f func(errors []*QSslError)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors2", func(errors []*QSslError) {
-				signal.(func([]*QSslError))(errors)
-				f(errors)
+			qt.ConnectSignal(ptr.Pointer(), "sslErrors2", func(erro []*QSslError) {
+				signal.(func([]*QSslError))(erro)
+				f(erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "sslErrors2", f)
@@ -19004,12 +19004,12 @@ func (ptr *QSslSocket) DisconnectSslErrors2() {
 	}
 }
 
-func (ptr *QSslSocket) SslErrors2(errors []*QSslError) {
+func (ptr *QSslSocket) SslErrors2(erro []*QSslError) {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__sslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList2(v)
+			tmpList := NewQSslSocketFromPointer(NewQSslSocketFromPointer(nil).__sslErrors_erro_newList2())
+			for _, v := range erro {
+				tmpList.__sslErrors_erro_setList2(v)
 			}
 			return tmpList.Pointer()
 		}())

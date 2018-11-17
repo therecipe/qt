@@ -346,12 +346,8 @@ func goFunctionBody(function *parser.Function) string {
 			}
 
 			if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
-				if parser.UseWasm() {
-					//TODO: workaround for https://github.com/golang/go/issues/26045#issuecomment-400017599
-					fmt.Fprintf(bb, "go signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
-				} else {
-					fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
-				}
+				//TODO wasm: wait for fix to https://github.com/golang/go/issues/26045#issuecomment-400017599
+				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
 			} else {
 				if function.Name == "readData" && len(function.Parameters) == 2 {
 					if !UseJs() {

@@ -3080,7 +3080,7 @@ func (ptr *QQmlEngine) ObjectOwnership(object core.QObject_ITF) QQmlEngine__Obje
 	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
 }
 
-func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlError) bool {
+func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, erro []*QQmlError) bool {
 	if ptr.Pointer() != nil {
 		var filePathC *C.char
 		if filePath != "" {
@@ -3093,9 +3093,9 @@ func (ptr *QQmlEngine) ImportPlugin(filePath string, uri string, errors []*QQmlE
 			defer C.free(unsafe.Pointer(uriC))
 		}
 		return int8(C.QQmlEngine_ImportPlugin(ptr.Pointer(), C.struct_QtQml_PackedString{data: filePathC, len: C.longlong(len(filePath))}, C.struct_QtQml_PackedString{data: uriC, len: C.longlong(len(uri))}, func() unsafe.Pointer {
-			tmpList := NewQQmlEngineFromPointer(NewQQmlEngineFromPointer(nil).__importPlugin_errors_newList())
-			for _, v := range errors {
-				tmpList.__importPlugin_errors_setList(v)
+			tmpList := NewQQmlEngineFromPointer(NewQQmlEngineFromPointer(nil).__importPlugin_erro_newList())
+			for _, v := range erro {
+				tmpList.__importPlugin_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())) != 0

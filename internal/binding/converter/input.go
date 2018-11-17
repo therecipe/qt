@@ -482,7 +482,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 					return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 				}
 				if f.SignalMode != parser.CALLBACK {
-					return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name)
+					return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
 				}
 				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 			}
@@ -503,7 +503,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(strings.Join(%v, \"|\")))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)
 			}
 			if f.SignalMode != parser.CALLBACK {
-				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name)
+				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\ntmp.Set(\"data\", []byte(js.InternalObject(%v).Call(\"join\", \"|\").String()))\n} else {\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\n}\nreturn tmp\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
 			}
 			return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 		}
@@ -609,14 +609,14 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 					if parser.UseWasm() || f.SignalMode == parser.CALLBACK {
 						return fmt.Sprintf("int64(%v)", name)
 					} else {
-						return fmt.Sprintf("func() int64 {\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\nreturn int64(js.InternalObject(%v).Int64())\n}\nreturn int64(%v)\n}()", name, name, name) //needed for pure js call
+						return fmt.Sprintf("func() int64 {\nif js.InternalObject(%v).Get(\"$val\") == js.Undefined {\nreturn int64(js.InternalObject(%v).Int64())\n}\nreturn int64(%v)\n}()", name, name, name) //needed for indirect exported pure js call -> can be ommited if build without js support
 					}
 				}
 				if parser.UseWasm() {
 					return fmt.Sprintf("int64(%v.%v(%v))", module(c.Module), goEnum(f, value), name)
 				}
 				if f.SignalMode != parser.CALLBACK {
-					return fmt.Sprintf("func() %[1]v.%[2]v {\nif js.InternalObject(%[3]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v.%[2]v(js.InternalObject(%[3]v).Int64())\n}\nreturn %[1]v.%[2]v(%[3]v)\n}()", module(c.Module), goEnum(f, value), name) //needed for pure js call
+					return fmt.Sprintf("func() %[1]v.%[2]v {\nif js.InternalObject(%[3]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v.%[2]v(js.InternalObject(%[3]v).Int64())\n}\nreturn %[1]v.%[2]v(%[3]v)\n}()", module(c.Module), goEnum(f, value), name) //needed for indirect exported pure js call -> can be ommited if build without js support
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
 			}
@@ -624,7 +624,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 				return fmt.Sprintf("int64(%v(%v))", goEnum(f, value), name)
 			}
 			if f.SignalMode != parser.CALLBACK {
-				return fmt.Sprintf("func() %[1]v {\nif js.InternalObject(%[2]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v(js.InternalObject(%[2]v).Int64())\n}\nreturn %[1]v(%[2]v)\n}()", goEnum(f, value), name) //needed for pure js call
+				return fmt.Sprintf("func() %[1]v {\nif js.InternalObject(%[2]v).Get(\"$val\") == js.Undefined {\nreturn %[1]v(js.InternalObject(%[2]v).Int64())\n}\nreturn %[1]v(%[2]v)\n}()", goEnum(f, value), name) //needed for indirect exported pure js call -> can be ommited if build without js support
 			}
 			return fmt.Sprintf("%v(%v)", goEnum(f, value), name)
 		}

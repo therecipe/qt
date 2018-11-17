@@ -529,7 +529,6 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		if utils.QT_DEBUG() {
 			tmp = strings.Replace(tmp, "-s USE_FREETYPE=1", "-s USE_FREETYPE=1 -s ASSERTIONS=1", -1)
 		}
-		tmp = strings.Replace(tmp, "-s NO_EXIT_RUNTIME=0", "-s NO_EXIT_RUNTIME=1", -1) //TODO: block main instead
 	}
 
 	for _, variable := range []string{"DEFINES", "SUBLIBS", "EXPORT_QMAKE_XARCH_CFLAGS", "EXPORT_QMAKE_XARCH_LFLAGS", "EXPORT_ARCH_ARGS", "-fvisibility=hidden", "-fembed-bitcode"} {

@@ -11,20 +11,20 @@ jobs:
       file: js/Dockerfile
       tag: js
       dep:
-        - js_base
+#        - js_base
         - linux
-  -
-    template: docker_job_template.yml
-    parameters:
-      file: js/Dockerfile.base
-      tag: js_base
+#  -
+#    template: docker_job_template.yml
+#    parameters:
+#      file: js/Dockerfile.base
+#      tag: js_base
   -
     template: docker_job_template.yml
     parameters:
       file: js/Dockerfile.wasm
       tag: wasm
       dep:
-        - js_base
+#        - js_base
         - linux
   -
     template: docker_job_template.yml

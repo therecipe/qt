@@ -953,12 +953,12 @@ func (ptr *QWebSocket) IgnoreSslErrorsDefault() {
 	}
 }
 
-func (ptr *QWebSocket) IgnoreSslErrors2(errors []*network.QSslError) {
+func (ptr *QWebSocket) IgnoreSslErrors2(erro []*network.QSslError) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_IgnoreSslErrors2(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQWebSocketFromPointer(NewQWebSocketFromPointer(nil).__ignoreSslErrors_errors_newList2())
-			for _, v := range errors {
-				tmpList.__ignoreSslErrors_errors_setList2(v)
+			tmpList := NewQWebSocketFromPointer(NewQWebSocketFromPointer(nil).__ignoreSslErrors_erro_newList2())
+			for _, v := range erro {
+				tmpList.__ignoreSslErrors_erro_setList2(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -1284,21 +1284,21 @@ func (ptr *QWebSocket) SetSslConfiguration(sslConfiguration network.QSslConfigur
 }
 
 //export callbackQWebSocket_SslErrors
-func callbackQWebSocket_SslErrors(ptr unsafe.Pointer, errors C.struct_QtWebSockets_PackedList) {
+func callbackQWebSocket_SslErrors(ptr unsafe.Pointer, erro C.struct_QtWebSockets_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
 		signal.(func([]*network.QSslError))(func(l C.struct_QtWebSockets_PackedList) []*network.QSslError {
 			out := make([]*network.QSslError, int(l.len))
 			tmpList := NewQWebSocketFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
+				out[i] = tmpList.__sslErrors_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 
 }
 
-func (ptr *QWebSocket) ConnectSslErrors(f func(errors []*network.QSslError)) {
+func (ptr *QWebSocket) ConnectSslErrors(f func(erro []*network.QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
@@ -1306,9 +1306,9 @@ func (ptr *QWebSocket) ConnectSslErrors(f func(errors []*network.QSslError)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(errors []*network.QSslError) {
-				signal.(func([]*network.QSslError))(errors)
-				f(errors)
+			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(erro []*network.QSslError) {
+				signal.(func([]*network.QSslError))(erro)
+				f(erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "sslErrors", f)
@@ -1323,12 +1323,12 @@ func (ptr *QWebSocket) DisconnectSslErrors() {
 	}
 }
 
-func (ptr *QWebSocket) SslErrors(errors []*network.QSslError) {
+func (ptr *QWebSocket) SslErrors(erro []*network.QSslError) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SslErrors(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQWebSocketFromPointer(NewQWebSocketFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
+			tmpList := NewQWebSocketFromPointer(NewQWebSocketFromPointer(nil).__sslErrors_erro_newList())
+			for _, v := range erro {
+				tmpList.__sslErrors_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -2648,21 +2648,21 @@ func (ptr *QWebSocketServer) SetSslConfiguration(sslConfiguration network.QSslCo
 }
 
 //export callbackQWebSocketServer_SslErrors
-func callbackQWebSocketServer_SslErrors(ptr unsafe.Pointer, errors C.struct_QtWebSockets_PackedList) {
+func callbackQWebSocketServer_SslErrors(ptr unsafe.Pointer, erro C.struct_QtWebSockets_PackedList) {
 	if signal := qt.GetSignal(ptr, "sslErrors"); signal != nil {
 		signal.(func([]*network.QSslError))(func(l C.struct_QtWebSockets_PackedList) []*network.QSslError {
 			out := make([]*network.QSslError, int(l.len))
 			tmpList := NewQWebSocketServerFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
-				out[i] = tmpList.__sslErrors_errors_atList(i)
+				out[i] = tmpList.__sslErrors_erro_atList(i)
 			}
 			return out
-		}(errors))
+		}(erro))
 	}
 
 }
 
-func (ptr *QWebSocketServer) ConnectSslErrors(f func(errors []*network.QSslError)) {
+func (ptr *QWebSocketServer) ConnectSslErrors(f func(erro []*network.QSslError)) {
 	if ptr.Pointer() != nil {
 
 		if !qt.ExistsSignal(ptr.Pointer(), "sslErrors") {
@@ -2670,9 +2670,9 @@ func (ptr *QWebSocketServer) ConnectSslErrors(f func(errors []*network.QSslError
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "sslErrors"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(errors []*network.QSslError) {
-				signal.(func([]*network.QSslError))(errors)
-				f(errors)
+			qt.ConnectSignal(ptr.Pointer(), "sslErrors", func(erro []*network.QSslError) {
+				signal.(func([]*network.QSslError))(erro)
+				f(erro)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "sslErrors", f)
@@ -2687,12 +2687,12 @@ func (ptr *QWebSocketServer) DisconnectSslErrors() {
 	}
 }
 
-func (ptr *QWebSocketServer) SslErrors(errors []*network.QSslError) {
+func (ptr *QWebSocketServer) SslErrors(erro []*network.QSslError) {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_SslErrors(ptr.Pointer(), func() unsafe.Pointer {
-			tmpList := NewQWebSocketServerFromPointer(NewQWebSocketServerFromPointer(nil).__sslErrors_errors_newList())
-			for _, v := range errors {
-				tmpList.__sslErrors_errors_setList(v)
+			tmpList := NewQWebSocketServerFromPointer(NewQWebSocketServerFromPointer(nil).__sslErrors_erro_newList())
+			for _, v := range erro {
+				tmpList.__sslErrors_erro_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
