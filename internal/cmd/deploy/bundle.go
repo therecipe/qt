@@ -632,12 +632,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_js.cpp"), js_c_main_wrapper(target))
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
 		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
-		newArgs := templater.GetiOSClang(target, "", depPath)
-		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
-			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
-		}
 		cmd.Dir = depPath
-		cmd.Args = append(cmd.Args, newArgs...)
 
 		for rccFile := range rcc.ResourceNames {
 			cmd.Args = append(cmd.Args, rccFile)
@@ -692,8 +687,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		//<-
 
 		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
+		newArgs := templater.GetiOSClang(target, "", depPath)
+		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
+			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
+		}
+		cmd.Args = append(cmd.Args, newArgs...)
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
-
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
