@@ -1,19 +1,15 @@
 module github.com/therecipe/qt
 
 require (
-	github.com/boltdb/bolt v1.3.1
-	github.com/emirpasic/gods v1.12.0
-	github.com/fogleman/gg v1.1.0
-	github.com/fogleman/ln v0.0.0-20170223135521-12e6c6e74459
-	github.com/fogleman/pt v0.0.0-20170619012416-6fa0015c2178
-	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/golang/protobuf v1.2.0
-	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e
+	github.com/fsnotify/fsnotify v1.4.7 // indirect
+	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
+	github.com/kisielk/gotool v1.0.0 // indirect
+	github.com/neelance/astrewrite v0.0.0-20160511093645-99348263ae86 // indirect
+	github.com/neelance/sourcemap v0.0.0-20151028013722-8c68805598ab // indirect
+	github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371 // indirect
 	github.com/sirupsen/logrus v1.2.0
-	github.com/stretchr/testify v1.2.2
+	github.com/spf13/cobra v0.0.3 // indirect
+	github.com/spf13/pflag v1.0.3 // indirect
 	golang.org/x/crypto v0.0.0-20181112202954-3d3f9f413869
-	golang.org/x/image v0.0.0-20181115061151-d9c2484c482e // indirect
-	golang.org/x/net v0.0.0-20181114220301-adae6a3d119a
-	golang.org/x/tools v0.0.0-20181115011154-2a3f5192be2e
-	google.golang.org/grpc v1.16.0
+	golang.org/x/tools v0.0.0-20181117154741-2ddaf7f79a09
 )
