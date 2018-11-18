@@ -316,7 +316,7 @@ int QQmlError_Column(void* ptr);
 int QQmlError_Line(void* ptr);
 void* QQmlExpression_NewQQmlExpression();
 void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, struct QtQml_PackedString expression, void* parent);
-void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, void* parent);
+void* QQmlExpression_NewQQmlExpression3(void* scri, void* ctxt, void* scope, void* parent);
 struct QtQml_PackedString QQmlExpression_QQmlExpression_Tr(char* s, char* c, int n);
 struct QtQml_PackedString QQmlExpression_QQmlExpression_TrUtf8(char* s, char* c, int n);
 void* QQmlExpression_Evaluate(void* ptr, char* valueIsUndefined);

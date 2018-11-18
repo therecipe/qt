@@ -103,6 +103,9 @@ func main() {
 	if !(target == runtime.GOOS || target == "js" || target == "wasm") {
 		fast = false
 	}
+	if (docker || vagrant) && !(target == "js" || target == "wasm") {
+		fast = false
+	}
 
 	if !filepath.IsAbs(path) {
 		path, err = filepath.Abs(path)
@@ -116,5 +119,5 @@ func main() {
 	}
 
 	utils.CheckBuildTarget(target)
-	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast && !(docker || vagrant), device, vagrant, vagrant_system, comply)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast, device, vagrant, vagrant_system, comply)
 }

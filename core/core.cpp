@@ -11356,9 +11356,9 @@ double QLineF_Y2(void* ptr)
 	return static_cast<QLineF*>(ptr)->y2();
 }
 
-struct QtCore_PackedList QLocale_QLocale_MatchingLocales(long long language, long long script, long long country)
+struct QtCore_PackedList QLocale_QLocale_MatchingLocales(long long language, long long scri, long long country)
 {
-	return ({ QList<QLocale>* tmpValue = new QList<QLocale>(QLocale::matchingLocales(static_cast<QLocale::Language>(language), static_cast<QLocale::Script>(script), static_cast<QLocale::Country>(country))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	return ({ QList<QLocale>* tmpValue = new QList<QLocale>(QLocale::matchingLocales(static_cast<QLocale::Language>(language), static_cast<QLocale::Script>(scri), static_cast<QLocale::Country>(country))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QLocale_QLocale_C()
@@ -11381,9 +11381,9 @@ void* QLocale_NewQLocale3(long long language, long long country)
 	return new QLocale(static_cast<QLocale::Language>(language), static_cast<QLocale::Country>(country));
 }
 
-void* QLocale_NewQLocale4(long long language, long long script, long long country)
+void* QLocale_NewQLocale4(long long language, long long scri, long long country)
 {
-	return new QLocale(static_cast<QLocale::Language>(language), static_cast<QLocale::Script>(script), static_cast<QLocale::Country>(country));
+	return new QLocale(static_cast<QLocale::Language>(language), static_cast<QLocale::Script>(scri), static_cast<QLocale::Country>(country));
 }
 
 void* QLocale_NewQLocale5(void* other)
@@ -11411,9 +11411,9 @@ struct QtCore_PackedString QLocale_QLocale_LanguageToString(long long language)
 	return ({ QByteArray t29d017 = QLocale::languageToString(static_cast<QLocale::Language>(language)).toUtf8(); QtCore_PackedString { const_cast<char*>(t29d017.prepend("WHITESPACE").constData()+10), t29d017.size()-10 }; });
 }
 
-struct QtCore_PackedString QLocale_QLocale_ScriptToString(long long script)
+struct QtCore_PackedString QLocale_QLocale_ScriptToString(long long scri)
 {
-	return ({ QByteArray tfce283 = QLocale::scriptToString(static_cast<QLocale::Script>(script)).toUtf8(); QtCore_PackedString { const_cast<char*>(tfce283.prepend("WHITESPACE").constData()+10), tfce283.size()-10 }; });
+	return ({ QByteArray t535509 = QLocale::scriptToString(static_cast<QLocale::Script>(scri)).toUtf8(); QtCore_PackedString { const_cast<char*>(t535509.prepend("WHITESPACE").constData()+10), t535509.size()-10 }; });
 }
 
 void QLocale_QLocale_SetDefault(void* locale)

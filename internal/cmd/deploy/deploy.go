@@ -58,7 +58,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			moc.Moc(path, target, tags, false, false)
 		}
 
-		if (!fast || utils.QT_STUB()) && !utils.QT_FAT() {
+		if ((!fast || utils.QT_STUB()) || ((target == "js" || target == "wasm") && (utils.QT_DOCKER() || utils.QT_VAGRANT()))) && !utils.QT_FAT() {
 			minimal.Minimal(path, target, tags)
 		}
 

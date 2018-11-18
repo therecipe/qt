@@ -25293,7 +25293,7 @@ const (
 	QLocale__LastScript                  QLocale__Script = QLocale__Script(QLocale__JamoScript)
 )
 
-func QLocale_MatchingLocales(language QLocale__Language, script QLocale__Script, country QLocale__Country) []*QLocale {
+func QLocale_MatchingLocales(language QLocale__Language, scri QLocale__Script, country QLocale__Country) []*QLocale {
 	return func(l C.struct_QtCore_PackedList) []*QLocale {
 		out := make([]*QLocale, int(l.len))
 		tmpList := NewQLocaleFromPointer(l.data)
@@ -25301,10 +25301,10 @@ func QLocale_MatchingLocales(language QLocale__Language, script QLocale__Script,
 			out[i] = tmpList.__matchingLocales_atList(i)
 		}
 		return out
-	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(script), C.longlong(country)))
+	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(scri), C.longlong(country)))
 }
 
-func (ptr *QLocale) MatchingLocales(language QLocale__Language, script QLocale__Script, country QLocale__Country) []*QLocale {
+func (ptr *QLocale) MatchingLocales(language QLocale__Language, scri QLocale__Script, country QLocale__Country) []*QLocale {
 	return func(l C.struct_QtCore_PackedList) []*QLocale {
 		out := make([]*QLocale, int(l.len))
 		tmpList := NewQLocaleFromPointer(l.data)
@@ -25312,7 +25312,7 @@ func (ptr *QLocale) MatchingLocales(language QLocale__Language, script QLocale__
 			out[i] = tmpList.__matchingLocales_atList(i)
 		}
 		return out
-	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(script), C.longlong(country)))
+	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(scri), C.longlong(country)))
 }
 
 func QLocale_C() *QLocale {
@@ -25351,8 +25351,8 @@ func NewQLocale3(language QLocale__Language, country QLocale__Country) *QLocale 
 	return tmpValue
 }
 
-func NewQLocale4(language QLocale__Language, script QLocale__Script, country QLocale__Country) *QLocale {
-	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale4(C.longlong(language), C.longlong(script), C.longlong(country)))
+func NewQLocale4(language QLocale__Language, scri QLocale__Script, country QLocale__Country) *QLocale {
+	tmpValue := NewQLocaleFromPointer(C.QLocale_NewQLocale4(C.longlong(language), C.longlong(scri), C.longlong(country)))
 	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
 	return tmpValue
 }
@@ -25397,12 +25397,12 @@ func (ptr *QLocale) LanguageToString(language QLocale__Language) string {
 	return cGoUnpackString(C.QLocale_QLocale_LanguageToString(C.longlong(language)))
 }
 
-func QLocale_ScriptToString(script QLocale__Script) string {
-	return cGoUnpackString(C.QLocale_QLocale_ScriptToString(C.longlong(script)))
+func QLocale_ScriptToString(scri QLocale__Script) string {
+	return cGoUnpackString(C.QLocale_QLocale_ScriptToString(C.longlong(scri)))
 }
 
-func (ptr *QLocale) ScriptToString(script QLocale__Script) string {
-	return cGoUnpackString(C.QLocale_QLocale_ScriptToString(C.longlong(script)))
+func (ptr *QLocale) ScriptToString(scri QLocale__Script) string {
+	return cGoUnpackString(C.QLocale_QLocale_ScriptToString(C.longlong(scri)))
 }
 
 func QLocale_SetDefault(locale QLocale_ITF) {

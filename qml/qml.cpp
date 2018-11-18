@@ -2168,7 +2168,7 @@ class MyQQmlExpression: public QQmlExpression
 public:
 	MyQQmlExpression() : QQmlExpression() {QQmlExpression_QQmlExpression_QRegisterMetaType();};
 	MyQQmlExpression(QQmlContext *ctxt, QObject *scope, const QString &expression, QObject *parent = Q_NULLPTR) : QQmlExpression(ctxt, scope, expression, parent) {QQmlExpression_QQmlExpression_QRegisterMetaType();};
-	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt = Q_NULLPTR, QObject *scope = Q_NULLPTR, QObject *parent = Q_NULLPTR) : QQmlExpression(script, ctxt, scope, parent) {QQmlExpression_QQmlExpression_QRegisterMetaType();};
+	MyQQmlExpression(const QQmlScriptString &scri, QQmlContext *ctxt = Q_NULLPTR, QObject *scope = Q_NULLPTR, QObject *parent = Q_NULLPTR) : QQmlExpression(scri, ctxt, scope, parent) {QQmlExpression_QQmlExpression_QRegisterMetaType();};
 	void Signal_ValueChanged() { callbackQQmlExpression_ValueChanged(this); };
 	 ~MyQQmlExpression() { callbackQQmlExpression_DestroyQQmlExpression(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlExpression_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -2232,42 +2232,42 @@ void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, struct QtQml_Pa
 	}
 }
 
-void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, void* parent)
+void* QQmlExpression_NewQQmlExpression3(void* scri, void* ctxt, void* scope, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QCameraImageCapture*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QDBusPendingCallWatcher*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionFactory*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QExtensionManager*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsObject*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QGraphicsWidget*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QLayout*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QMediaPlaylist*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QMediaRecorder*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QOffscreenSurface*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QPaintDeviceWindow*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QPdfWriter*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QQuickItem*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QRadioData*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QWidget*>(scope), static_cast<QObject*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(scope))) {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QWindow*>(scope), static_cast<QObject*>(parent));
 	} else {
-		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), static_cast<QObject*>(parent));
+		return new MyQQmlExpression(*static_cast<QQmlScriptString*>(scri), static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), static_cast<QObject*>(parent));
 	}
 }
 
