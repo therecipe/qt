@@ -10,6 +10,9 @@ require (
 	github.com/sirupsen/logrus v1.2.0
 	github.com/spf13/cobra v0.0.3 // indirect
 	github.com/spf13/pflag v1.0.3 // indirect
+	github.com/stretchr/testify v1.2.2
 	golang.org/x/crypto v0.0.0-20181112202954-3d3f9f413869
+	golang.org/x/image v0.0.0-20181115061151-d9c2484c482e // indirect
+	golang.org/x/net v0.0.0-20181114220301-adae6a3d119a
 	golang.org/x/tools v0.0.0-20181117154741-2ddaf7f79a09
 )
