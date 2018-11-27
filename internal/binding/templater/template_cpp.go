@@ -665,6 +665,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 			if mode == MOC {
 				var found bool
+				parser.LibDepsMutex.Lock()
 				for _, m := range parser.LibDeps[parser.MOC] {
 					if m == strings.TrimPrefix(c.Module, "Qt") {
 						found = true
@@ -674,6 +675,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				if !found {
 					parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.TrimPrefix(c.Module, "Qt"))
 				}
+				parser.LibDepsMutex.Unlock()
 
 				if target == "js" || target == "wasm" {
 

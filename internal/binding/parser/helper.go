@@ -167,6 +167,7 @@ func CleanName(name, value string) string {
 }
 
 //TODO: remove global
+var LibDepsMutex = new(sync.Mutex)
 var LibDeps = map[string][]string{
 	"Core":          {"Widgets", "Gui", "Svg"}, //Widgets, Gui //Svg
 	"AndroidExtras": {"Core"},

@@ -7,7 +7,10 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 )
+
+var sdkMutex = new(sync.Mutex)
 
 func XCODE_DIR() string {
 	if dir, ok := os.LookupEnv("XCODE_DIR"); ok {
@@ -19,6 +22,8 @@ func XCODE_DIR() string {
 var _MACOS_SDK_DIR string
 
 func MACOS_SDK_DIR() string {
+	sdkMutex.Lock()
+	defer sdkMutex.Unlock()
 	if _MACOS_SDK_DIR != "" {
 		return _MACOS_SDK_DIR
 	}
@@ -45,6 +50,8 @@ func MACOS_SDK_DIR() string {
 var _IPHONEOS_SDK_DIR string
 
 func IPHONEOS_SDK_DIR() string {
+	sdkMutex.Lock()
+	defer sdkMutex.Unlock()
 	if _IPHONEOS_SDK_DIR != "" {
 		return _IPHONEOS_SDK_DIR
 	}
@@ -71,6 +78,8 @@ func IPHONEOS_SDK_DIR() string {
 var _IPHONESIMULATOR_SDK_DIR string
 
 func IPHONESIMULATOR_SDK_DIR() string {
+	sdkMutex.Lock()
+	defer sdkMutex.Unlock()
 	if _IPHONESIMULATOR_SDK_DIR != "" {
 		return _IPHONESIMULATOR_SDK_DIR
 	}

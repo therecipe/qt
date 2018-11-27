@@ -89,6 +89,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			}
 
 			allLibs := parser.GetLibs()
+			parser.LibDepsMutex.Lock()
 			for i := len(allLibs) - 1; i >= 0; i-- {
 				for _, dep := range append(libs, module) {
 					var broke bool
@@ -104,6 +105,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 					}
 				}
 			}
+			parser.LibDepsMutex.Unlock()
 
 			for _, dep := range allLibs {
 				if strings.Contains(strings.ToLower(file), "_"+strings.ToLower(dep)+"_") {
