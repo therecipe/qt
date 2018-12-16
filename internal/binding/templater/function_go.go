@@ -353,7 +353,7 @@ func goFunctionBody(function *parser.Function) string {
 					if !UseJs() {
 						fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
 						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
-						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
+						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))\n}\n")
 						fmt.Fprint(bb, "return ret")
 					} else {
 						fmt.Fprint(bb, "return 0")
@@ -423,7 +423,7 @@ func goFunctionBody(function *parser.Function) string {
 						if !UseJs() {
 							fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
 							fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
-							fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
+							fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))\n}\n")
 							fmt.Fprint(bb, "return ret")
 						} else {
 							fmt.Fprint(bb, "return 0")

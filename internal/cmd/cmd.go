@@ -13,6 +13,8 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"github.com/therecipe/qt/internal/utils"
+
+	_ "github.com/therecipe/qt/internal/binding/files/docs"
 )
 
 var buildVersion = "no build version"

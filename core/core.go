@@ -9,6 +9,7 @@ package core
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"reflect"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -7270,14 +7271,14 @@ func callbackQBuffer_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedStr
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(l)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQBufferFromPointer(ptr).ReadDataDefault(&retS, int64(l)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }
@@ -16373,14 +16374,14 @@ func callbackQFileDevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_Packe
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(l)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQFileDeviceFromPointer(ptr).ReadDataDefault(&retS, int64(l)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }
@@ -19029,7 +19030,7 @@ func callbackQIODevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedS
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}

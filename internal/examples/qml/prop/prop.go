@@ -17,9 +17,10 @@ func main() {
 		object    = component.Create(nil)
 	)
 
-	fmt.Println("Property value:", object.Property("someNumber").ToInt(false))
+	var someBool bool
+	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
 	object.SetProperty("someNumber", core.NewQVariant7(5000))
-	fmt.Println("Property value:", object.Property("someNumber").ToInt(false))
+	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
 	object.SetProperty("someNumber", core.NewQVariant7(200))
-	fmt.Println("Property value:", object.Property("someNumber").ToInt(false))
+	fmt.Println("Property value:", object.Property("someNumber").ToInt(&someBool), someBool)
 }

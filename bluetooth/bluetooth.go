@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
+	"reflect"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -4460,14 +4461,14 @@ func callbackQBluetoothSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtBluet
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQBluetoothSocketFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }

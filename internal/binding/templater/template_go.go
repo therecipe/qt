@@ -633,7 +633,7 @@ import "C"
 	}
 
 	fmt.Fprint(bb, "import (\n")
-	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex") {
+	for _, m := range append(parser.GetLibs(), "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors", "js", "time", "hex", "reflect") {
 		mlow := strings.ToLower(m)
 		if strings.Contains(inputString, fmt.Sprintf(" %v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("\t%v.", mlow)) ||
@@ -645,7 +645,7 @@ import "C"
 			strings.Contains(inputString, fmt.Sprintf(")%v.", mlow)) ||
 			strings.Contains(inputString, fmt.Sprintf("std_%v.", mlow)) {
 			switch mlow {
-			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time":
+			case "strings", "unsafe", "log", "runtime", "fmt", "errors", "time", "reflect":
 				fmt.Fprintf(bb, "\"%v\"\n", mlow)
 
 			case "hex":

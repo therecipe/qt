@@ -10,6 +10,7 @@ import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"reflect"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -1175,14 +1176,14 @@ func callbackQAbstractSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwor
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQAbstractSocketFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }
@@ -6350,14 +6351,14 @@ func callbackQLocalSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_P
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(c)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQLocalSocketFromPointer(ptr).ReadDataDefault(&retS, int64(c)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }
@@ -14003,14 +14004,14 @@ func callbackQNetworkReply_ReadData(ptr unsafe.Pointer, data C.struct_QtNetwork_
 		retS := cGoUnpackString(data)
 		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
 		if ret > 0 {
-			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
 		return ret
 	}
 	retS := cGoUnpackString(data)
 	ret := C.longlong(NewQNetworkReplyFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
 	if ret > 0 {
-		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 	}
 	return ret
 }
