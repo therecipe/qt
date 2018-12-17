@@ -8645,9 +8645,23 @@ func (ptr *QByteArray) IsEmpty() bool {
 	return false
 }
 
+func (ptr *QByteArray) IsLower() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QByteArray_IsLower(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 func (ptr *QByteArray) IsNull() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QByteArray_IsNull(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QByteArray) IsUpper() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QByteArray_IsUpper(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -8739,6 +8753,25 @@ func (ptr *QByteArray) ToFloat(ok *bool) float32 {
 func (ptr *QByteArray) Capacity() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QByteArray_Capacity(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QByteArray) Compare2(a QByteArray_ITF, cs Qt__CaseSensitivity) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QByteArray_Compare2(ptr.Pointer(), PointerFromQByteArray(a), C.longlong(cs))))
+	}
+	return 0
+}
+
+func (ptr *QByteArray) Compare(c string, cs Qt__CaseSensitivity) int {
+	if ptr.Pointer() != nil {
+		var cC *C.char
+		if c != "" {
+			cC = C.CString(c)
+			defer C.free(unsafe.Pointer(cC))
+		}
+		return int(int32(C.QByteArray_Compare(ptr.Pointer(), cC, C.longlong(cs))))
 	}
 	return 0
 }
@@ -9195,6 +9228,1196 @@ func NewQCacheFromPointer(ptr unsafe.Pointer) (n *QCache) {
 	n.SetPointer(ptr)
 	return
 }
+
+type QCborArray struct {
+	ptr unsafe.Pointer
+}
+
+type QCborArray_ITF interface {
+	QCborArray_PTR() *QCborArray
+}
+
+func (ptr *QCborArray) QCborArray_PTR() *QCborArray {
+	return ptr
+}
+
+func (ptr *QCborArray) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborArray) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborArray(ptr QCborArray_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborArray_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborArrayFromPointer(ptr unsafe.Pointer) (n *QCborArray) {
+	n = new(QCborArray)
+	n.SetPointer(ptr)
+	return
+}
+func QCborArray_FromJsonArray(array QJsonArray_ITF) *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromJsonArray(PointerFromQJsonArray(array)))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func (ptr *QCborArray) FromJsonArray(array QJsonArray_ITF) *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromJsonArray(PointerFromQJsonArray(array)))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func QCborArray_FromStringList(list []string) *QCborArray {
+	listC := C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func (ptr *QCborArray) FromStringList(list []string) *QCborArray {
+	listC := C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromStringList(C.struct_QtCore_PackedString{data: listC, len: C.longlong(len(strings.Join(list, "|")))}))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func QCborArray_FromVariantList(list []*QVariant) *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromVariantList(func() unsafe.Pointer {
+		tmpList := NewQCborArrayFromPointer(NewQCborArrayFromPointer(nil).__fromVariantList_list_newList())
+		for _, v := range list {
+			tmpList.__fromVariantList_list_setList(v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func (ptr *QCborArray) FromVariantList(list []*QVariant) *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_QCborArray_FromVariantList(func() unsafe.Pointer {
+		tmpList := NewQCborArrayFromPointer(NewQCborArrayFromPointer(nil).__fromVariantList_list_newList())
+		for _, v := range list {
+			tmpList.__fromVariantList_list_setList(v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func NewQCborArray() *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_NewQCborArray())
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func NewQCborArray2(other QCborArray_ITF) *QCborArray {
+	tmpValue := NewQCborArrayFromPointer(C.QCborArray_NewQCborArray2(PointerFromQCborArray(other)))
+	runtime.SetFinalizer(tmpValue, (*QCborArray).DestroyQCborArray)
+	return tmpValue
+}
+
+func (ptr *QCborArray) TakeFirst() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborArray_TakeFirst(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborArray) TakeLast() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborArray_TakeLast(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborArray) Append2(value QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Append2(ptr.Pointer(), PointerFromQCborValue(value))
+	}
+}
+
+func (ptr *QCborArray) Append(value QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Append(ptr.Pointer(), PointerFromQCborValue(value))
+	}
+}
+
+func (ptr *QCborArray) Clear() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborArray) Pop_back() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Pop_back(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborArray) Pop_front() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Pop_front(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborArray) Prepend2(value QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Prepend2(ptr.Pointer(), PointerFromQCborValue(value))
+	}
+}
+
+func (ptr *QCborArray) Prepend(value QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Prepend(ptr.Pointer(), PointerFromQCborValue(value))
+	}
+}
+
+func (ptr *QCborArray) Push_back(t QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Push_back(ptr.Pointer(), PointerFromQCborValue(t))
+	}
+}
+
+func (ptr *QCborArray) Push_front(t QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Push_front(ptr.Pointer(), PointerFromQCborValue(t))
+	}
+}
+
+func (ptr *QCborArray) RemoveFirst() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_RemoveFirst(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborArray) RemoveLast() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_RemoveLast(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborArray) Swap(other QCborArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray_Swap(ptr.Pointer(), PointerFromQCborArray(other))
+	}
+}
+
+func (ptr *QCborArray) DestroyQCborArray() {
+	if ptr.Pointer() != nil {
+		C.QCborArray_DestroyQCborArray(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QCborArray) First() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborArray_First(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborArray) Last() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborArray_Last(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborArray) ToCborValue() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborArray_ToCborValue(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborArray) ToJsonArray() *QJsonArray {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJsonArrayFromPointer(C.QCborArray_ToJsonArray(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborArray) ToVariantList() []*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QVariant {
+			out := make([]*QVariant, int(l.len))
+			tmpList := NewQCborArrayFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__toVariantList_atList(i)
+			}
+			return out
+		}(C.QCborArray_ToVariantList(ptr.Pointer()))
+	}
+	return make([]*QVariant, 0)
+}
+
+func (ptr *QCborArray) Contains(value QCborValue_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborArray_Contains(ptr.Pointer(), PointerFromQCborValue(value))) != 0
+	}
+	return false
+}
+
+func (ptr *QCborArray) Empty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborArray_Empty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QCborArray) IsEmpty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborArray_IsEmpty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QCborArray) Compare(other QCborArray_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCborArray_Compare(ptr.Pointer(), PointerFromQCborArray(other))))
+	}
+	return 0
+}
+
+func (ptr *QCborArray) __fromVariantList_list_atList(i int) *QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVariantFromPointer(C.QCborArray___fromVariantList_list_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborArray) __fromVariantList_list_setList(i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray___fromVariantList_list_setList(ptr.Pointer(), PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QCborArray) __fromVariantList_list_newList() unsafe.Pointer {
+	return C.QCborArray___fromVariantList_list_newList(ptr.Pointer())
+}
+
+func (ptr *QCborArray) __toVariantList_atList(i int) *QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQVariantFromPointer(C.QCborArray___toVariantList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborArray) __toVariantList_setList(i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborArray___toVariantList_setList(ptr.Pointer(), PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QCborArray) __toVariantList_newList() unsafe.Pointer {
+	return C.QCborArray___toVariantList_newList(ptr.Pointer())
+}
+
+type QCborError struct {
+	ptr unsafe.Pointer
+}
+
+type QCborError_ITF interface {
+	QCborError_PTR() *QCborError
+}
+
+func (ptr *QCborError) QCborError_PTR() *QCborError {
+	return ptr
+}
+
+func (ptr *QCborError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborError(ptr QCborError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborErrorFromPointer(ptr unsafe.Pointer) (n *QCborError) {
+	n = new(QCborError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QCborError) DestroyQCborError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QCborError__Code
+//QCborError::Code
+type QCborError__Code int64
+
+const (
+	QCborError__UnknownError      QCborError__Code = QCborError__Code(1)
+	QCborError__AdvancePastEnd    QCborError__Code = QCborError__Code(3)
+	QCborError__InputOutputError  QCborError__Code = QCborError__Code(4)
+	QCborError__GarbageAtEnd      QCborError__Code = QCborError__Code(256)
+	QCborError__EndOfFile         QCborError__Code = QCborError__Code(257)
+	QCborError__UnexpectedBreak   QCborError__Code = QCborError__Code(258)
+	QCborError__UnknownType       QCborError__Code = QCborError__Code(259)
+	QCborError__IllegalType       QCborError__Code = QCborError__Code(260)
+	QCborError__IllegalNumber     QCborError__Code = QCborError__Code(261)
+	QCborError__IllegalSimpleType QCborError__Code = QCborError__Code(262)
+	QCborError__InvalidUtf8String QCborError__Code = QCborError__Code(516)
+	QCborError__DataTooLarge      QCborError__Code = QCborError__Code(1024)
+	QCborError__NestingTooDeep    QCborError__Code = QCborError__Code(1025)
+	QCborError__UnsupportedType   QCborError__Code = QCborError__Code(1026)
+	QCborError__NoError           QCborError__Code = QCborError__Code(0)
+)
+
+func (ptr *QCborError) ToString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborError_ToString(ptr.Pointer()))
+	}
+	return ""
+}
+
+type QCborMap struct {
+	ptr unsafe.Pointer
+}
+
+type QCborMap_ITF interface {
+	QCborMap_PTR() *QCborMap
+}
+
+func (ptr *QCborMap) QCborMap_PTR() *QCborMap {
+	return ptr
+}
+
+func (ptr *QCborMap) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborMap) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborMap(ptr QCborMap_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborMap_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborMapFromPointer(ptr unsafe.Pointer) (n *QCborMap) {
+	n = new(QCborMap)
+	n.SetPointer(ptr)
+	return
+}
+func QCborMap_FromJsonObject(obj QJsonObject_ITF) *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromJsonObject(PointerFromQJsonObject(obj)))
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func (ptr *QCborMap) FromJsonObject(obj QJsonObject_ITF) *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromJsonObject(PointerFromQJsonObject(obj)))
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func QCborMap_FromVariantHash(hash map[string]*QVariant) *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromVariantHash(func() unsafe.Pointer {
+		tmpList := NewQCborMapFromPointer(NewQCborMapFromPointer(nil).__fromVariantHash_hash_newList())
+		for k, v := range hash {
+			tmpList.__fromVariantHash_hash_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func (ptr *QCborMap) FromVariantHash(hash map[string]*QVariant) *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_QCborMap_FromVariantHash(func() unsafe.Pointer {
+		tmpList := NewQCborMapFromPointer(NewQCborMapFromPointer(nil).__fromVariantHash_hash_newList())
+		for k, v := range hash {
+			tmpList.__fromVariantHash_hash_setList(k, v)
+		}
+		return tmpList.Pointer()
+	}()))
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func NewQCborMap() *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_NewQCborMap())
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func NewQCborMap2(other QCborMap_ITF) *QCborMap {
+	tmpValue := NewQCborMapFromPointer(C.QCborMap_NewQCborMap2(PointerFromQCborMap(other)))
+	runtime.SetFinalizer(tmpValue, (*QCborMap).DestroyQCborMap)
+	return tmpValue
+}
+
+func (ptr *QCborMap) Take2(key QLatin1String_ITF) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Take2(ptr.Pointer(), PointerFromQLatin1String(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Take4(key QCborValue_ITF) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Take4(ptr.Pointer(), PointerFromQCborValue(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Take3(key string) *QCborValue {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		return NewQCborValueFromPointer(C.QCborMap_Take3(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Take(key int64) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Take(ptr.Pointer(), C.longlong(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Clear() {
+	if ptr.Pointer() != nil {
+		C.QCborMap_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QCborMap) Remove2(key QLatin1String_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborMap_Remove2(ptr.Pointer(), PointerFromQLatin1String(key))
+	}
+}
+
+func (ptr *QCborMap) Remove4(key QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborMap_Remove4(ptr.Pointer(), PointerFromQCborValue(key))
+	}
+}
+
+func (ptr *QCborMap) Remove3(key string) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QCborMap_Remove3(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))})
+	}
+}
+
+func (ptr *QCborMap) Remove(key int64) {
+	if ptr.Pointer() != nil {
+		C.QCborMap_Remove(ptr.Pointer(), C.longlong(key))
+	}
+}
+
+func (ptr *QCborMap) Swap(other QCborMap_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborMap_Swap(ptr.Pointer(), PointerFromQCborMap(other))
+	}
+}
+
+func (ptr *QCborMap) DestroyQCborMap() {
+	if ptr.Pointer() != nil {
+		C.QCborMap_DestroyQCborMap(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QCborMap) ToCborValue() *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_ToCborValue(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Value2(key QLatin1String_ITF) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Value4(key QCborValue_ITF) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Value4(ptr.Pointer(), PointerFromQCborValue(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Value3(key string) *QCborValue {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		return NewQCborValueFromPointer(C.QCborMap_Value3(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) Value(key int64) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap_Value(ptr.Pointer(), C.longlong(key)))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) ToJsonObject() *QJsonObject {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQJsonObjectFromPointer(C.QCborMap_ToJsonObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborMap) ToVariantHash() map[string]*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) map[string]*QVariant {
+			out := make(map[string]*QVariant, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i, v := range tmpList.__toVariantHash_keyList() {
+				out[v] = tmpList.__toVariantHash_atList(v, i)
+			}
+			return out
+		}(C.QCborMap_ToVariantHash(ptr.Pointer()))
+	}
+	return make(map[string]*QVariant, 0)
+}
+
+func (ptr *QCborMap) ToVariantMap() map[string]*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) map[string]*QVariant {
+			out := make(map[string]*QVariant, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i, v := range tmpList.__toVariantMap_keyList() {
+				out[v] = tmpList.__toVariantMap_atList(v, i)
+			}
+			return out
+		}(C.QCborMap_ToVariantMap(ptr.Pointer()))
+	}
+	return make(map[string]*QVariant, 0)
+}
+
+func (ptr *QCborMap) Keys() []*QCborValue {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QCborValue {
+			out := make([]*QCborValue, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__keys_atList(i)
+			}
+			return out
+		}(C.QCborMap_Keys(ptr.Pointer()))
+	}
+	return make([]*QCborValue, 0)
+}
+
+func (ptr *QCborMap) Contains2(key QLatin1String_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborMap_Contains2(ptr.Pointer(), PointerFromQLatin1String(key))) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) Contains4(key QCborValue_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborMap_Contains4(ptr.Pointer(), PointerFromQCborValue(key))) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) Contains3(key string) bool {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		return int8(C.QCborMap_Contains3(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))})) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) Contains(key int64) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborMap_Contains(ptr.Pointer(), C.longlong(key))) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) Empty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborMap_Empty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) IsEmpty() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QCborMap_IsEmpty(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QCborMap) Compare(other QCborMap_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCborMap_Compare(ptr.Pointer(), PointerFromQCborMap(other))))
+	}
+	return 0
+}
+
+func (ptr *QCborMap) __fromVariantHash_hash_atList(v string, i int) *QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := NewQVariantFromPointer(C.QCborMap___fromVariantHash_hash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborMap) __fromVariantHash_hash_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QCborMap___fromVariantHash_hash_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QCborMap) __fromVariantHash_hash_newList() unsafe.Pointer {
+	return C.QCborMap___fromVariantHash_hash_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) __fromVariantHash_hash_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____fromVariantHash_hash_keyList_atList(i)
+			}
+			return out
+		}(C.QCborMap___fromVariantHash_hash_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QCborMap) __toVariantHash_atList(v string, i int) *QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := NewQVariantFromPointer(C.QCborMap___toVariantHash_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborMap) __toVariantHash_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QCborMap___toVariantHash_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QCborMap) __toVariantHash_newList() unsafe.Pointer {
+	return C.QCborMap___toVariantHash_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) __toVariantHash_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____toVariantHash_keyList_atList(i)
+			}
+			return out
+		}(C.QCborMap___toVariantHash_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QCborMap) __toVariantMap_atList(v string, i int) *QVariant {
+	if ptr.Pointer() != nil {
+		var vC *C.char
+		if v != "" {
+			vC = C.CString(v)
+			defer C.free(unsafe.Pointer(vC))
+		}
+		tmpValue := NewQVariantFromPointer(C.QCborMap___toVariantMap_atList(ptr.Pointer(), C.struct_QtCore_PackedString{data: vC, len: C.longlong(len(v))}, C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCborMap) __toVariantMap_setList(key string, i QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		var keyC *C.char
+		if key != "" {
+			keyC = C.CString(key)
+			defer C.free(unsafe.Pointer(keyC))
+		}
+		C.QCborMap___toVariantMap_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: keyC, len: C.longlong(len(key))}, PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QCborMap) __toVariantMap_newList() unsafe.Pointer {
+	return C.QCborMap___toVariantMap_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) __toVariantMap_keyList() []string {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []string {
+			out := make([]string, int(l.len))
+			tmpList := NewQCborMapFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.____toVariantMap_keyList_atList(i)
+			}
+			return out
+		}(C.QCborMap___toVariantMap_keyList(ptr.Pointer()))
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QCborMap) __keys_atList(i int) *QCborValue {
+	if ptr.Pointer() != nil {
+		return NewQCborValueFromPointer(C.QCborMap___keys_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QCborMap) __keys_setList(i QCborValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborMap___keys_setList(ptr.Pointer(), PointerFromQCborValue(i))
+	}
+}
+
+func (ptr *QCborMap) __keys_newList() unsafe.Pointer {
+	return C.QCborMap___keys_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) ____fromVariantHash_hash_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborMap_____fromVariantHash_hash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QCborMap) ____fromVariantHash_hash_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QCborMap_____fromVariantHash_hash_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+	}
+}
+
+func (ptr *QCborMap) ____fromVariantHash_hash_keyList_newList() unsafe.Pointer {
+	return C.QCborMap_____fromVariantHash_hash_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) ____fromVariantMap_map_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborMap_____fromVariantMap_map_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QCborMap) ____fromVariantMap_map_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QCborMap_____fromVariantMap_map_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+	}
+}
+
+func (ptr *QCborMap) ____fromVariantMap_map_keyList_newList() unsafe.Pointer {
+	return C.QCborMap_____fromVariantMap_map_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) ____toVariantHash_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborMap_____toVariantHash_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QCborMap) ____toVariantHash_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QCborMap_____toVariantHash_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+	}
+}
+
+func (ptr *QCborMap) ____toVariantHash_keyList_newList() unsafe.Pointer {
+	return C.QCborMap_____toVariantHash_keyList_newList(ptr.Pointer())
+}
+
+func (ptr *QCborMap) ____toVariantMap_keyList_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborMap_____toVariantMap_keyList_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
+func (ptr *QCborMap) ____toVariantMap_keyList_setList(i string) {
+	if ptr.Pointer() != nil {
+		var iC *C.char
+		if i != "" {
+			iC = C.CString(i)
+			defer C.free(unsafe.Pointer(iC))
+		}
+		C.QCborMap_____toVariantMap_keyList_setList(ptr.Pointer(), C.struct_QtCore_PackedString{data: iC, len: C.longlong(len(i))})
+	}
+}
+
+func (ptr *QCborMap) ____toVariantMap_keyList_newList() unsafe.Pointer {
+	return C.QCborMap_____toVariantMap_keyList_newList(ptr.Pointer())
+}
+
+type QCborParserError struct {
+	ptr unsafe.Pointer
+}
+
+type QCborParserError_ITF interface {
+	QCborParserError_PTR() *QCborParserError
+}
+
+func (ptr *QCborParserError) QCborParserError_PTR() *QCborParserError {
+	return ptr
+}
+
+func (ptr *QCborParserError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborParserError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborParserError(ptr QCborParserError_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborParserError_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborParserErrorFromPointer(ptr unsafe.Pointer) (n *QCborParserError) {
+	n = new(QCborParserError)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QCborParserError) DestroyQCborParserError() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QCborParserError) ErrorString() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QCborParserError_ErrorString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QCborParserError) SetError(vqc QCborError_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCborParserError_SetError(ptr.Pointer(), PointerFromQCborError(vqc))
+	}
+}
+
+func (ptr *QCborParserError) Offset() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QCborParserError_Offset(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCborParserError) SetOffset(vqi int64) {
+	if ptr.Pointer() != nil {
+		C.QCborParserError_SetOffset(ptr.Pointer(), C.longlong(vqi))
+	}
+}
+
+type QCborStreamReader struct {
+	ptr unsafe.Pointer
+}
+
+type QCborStreamReader_ITF interface {
+	QCborStreamReader_PTR() *QCborStreamReader
+}
+
+func (ptr *QCborStreamReader) QCborStreamReader_PTR() *QCborStreamReader {
+	return ptr
+}
+
+func (ptr *QCborStreamReader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborStreamReader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborStreamReader(ptr QCborStreamReader_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborStreamReader_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborStreamReaderFromPointer(ptr unsafe.Pointer) (n *QCborStreamReader) {
+	n = new(QCborStreamReader)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QCborStreamReader__StringResultCode
+//QCborStreamReader::StringResultCode
+type QCborStreamReader__StringResultCode int64
+
+const (
+	QCborStreamReader__EndOfString QCborStreamReader__StringResultCode = QCborStreamReader__StringResultCode(0)
+	QCborStreamReader__Ok          QCborStreamReader__StringResultCode = QCborStreamReader__StringResultCode(1)
+	QCborStreamReader__Error       QCborStreamReader__StringResultCode = QCborStreamReader__StringResultCode(-1)
+)
+
+//go:generate stringer -type=QCborStreamReader__Type
+//QCborStreamReader::Type
+type QCborStreamReader__Type int64
+
+const (
+	QCborStreamReader__UnsignedInteger QCborStreamReader__Type = QCborStreamReader__Type(0x00)
+	QCborStreamReader__NegativeInteger QCborStreamReader__Type = QCborStreamReader__Type(0x20)
+	QCborStreamReader__ByteString      QCborStreamReader__Type = QCborStreamReader__Type(0x40)
+	QCborStreamReader__ByteArray       QCborStreamReader__Type = QCborStreamReader__Type(QCborStreamReader__ByteString)
+	QCborStreamReader__TextString      QCborStreamReader__Type = QCborStreamReader__Type(0x60)
+	QCborStreamReader__String          QCborStreamReader__Type = QCborStreamReader__Type(QCborStreamReader__TextString)
+	QCborStreamReader__Array           QCborStreamReader__Type = QCborStreamReader__Type(0x80)
+	QCborStreamReader__Map             QCborStreamReader__Type = QCborStreamReader__Type(0xa0)
+	QCborStreamReader__Tag             QCborStreamReader__Type = QCborStreamReader__Type(0xc0)
+	QCborStreamReader__SimpleType      QCborStreamReader__Type = QCborStreamReader__Type(0xe0)
+	QCborStreamReader__HalfFloat       QCborStreamReader__Type = QCborStreamReader__Type(0xf9)
+	QCborStreamReader__Float16         QCborStreamReader__Type = QCborStreamReader__Type(QCborStreamReader__HalfFloat)
+	QCborStreamReader__Float           QCborStreamReader__Type = QCborStreamReader__Type(0xfa)
+	QCborStreamReader__Double          QCborStreamReader__Type = QCborStreamReader__Type(0xfb)
+	QCborStreamReader__Invalid         QCborStreamReader__Type = QCborStreamReader__Type(0xff)
+)
+
+type QCborStreamWriter struct {
+	ptr unsafe.Pointer
+}
+
+type QCborStreamWriter_ITF interface {
+	QCborStreamWriter_PTR() *QCborStreamWriter
+}
+
+func (ptr *QCborStreamWriter) QCborStreamWriter_PTR() *QCborStreamWriter {
+	return ptr
+}
+
+func (ptr *QCborStreamWriter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborStreamWriter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborStreamWriter(ptr QCborStreamWriter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborStreamWriter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborStreamWriterFromPointer(ptr unsafe.Pointer) (n *QCborStreamWriter) {
+	n = new(QCborStreamWriter)
+	n.SetPointer(ptr)
+	return
+}
+
+type QCborValue struct {
+	ptr unsafe.Pointer
+}
+
+type QCborValue_ITF interface {
+	QCborValue_PTR() *QCborValue
+}
+
+func (ptr *QCborValue) QCborValue_PTR() *QCborValue {
+	return ptr
+}
+
+func (ptr *QCborValue) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QCborValue) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQCborValue(ptr QCborValue_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCborValue_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCborValueFromPointer(ptr unsafe.Pointer) (n *QCborValue) {
+	n = new(QCborValue)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QCborValue__DiagnosticNotationOption
+//QCborValue::DiagnosticNotationOption
+type QCborValue__DiagnosticNotationOption int64
+
+const (
+	QCborValue__Compact        QCborValue__DiagnosticNotationOption = QCborValue__DiagnosticNotationOption(0x00)
+	QCborValue__LineWrapped    QCborValue__DiagnosticNotationOption = QCborValue__DiagnosticNotationOption(0x01)
+	QCborValue__ExtendedFormat QCborValue__DiagnosticNotationOption = QCborValue__DiagnosticNotationOption(0x02)
+)
+
+//go:generate stringer -type=QCborValue__EncodingOption
+//QCborValue::EncodingOption
+type QCborValue__EncodingOption int64
+
+const (
+	QCborValue__SortKeysInMaps   QCborValue__EncodingOption = QCborValue__EncodingOption(0x01)
+	QCborValue__UseFloat         QCborValue__EncodingOption = QCborValue__EncodingOption(0x02)
+	QCborValue__UseFloat16       QCborValue__EncodingOption = QCborValue__EncodingOption(QCborValue__UseFloat | 0x04)
+	QCborValue__UseIntegers      QCborValue__EncodingOption = QCborValue__EncodingOption(0x08)
+	QCborValue__NoTransformation QCborValue__EncodingOption = QCborValue__EncodingOption(0)
+)
+
+//go:generate stringer -type=QCborValue__Type
+//QCborValue::Type
+type QCborValue__Type int64
+
+var (
+	QCborValue__Integer           QCborValue__Type = QCborValue__Type(0x00)
+	QCborValue__ByteArray         QCborValue__Type = QCborValue__Type(0x40)
+	QCborValue__String            QCborValue__Type = QCborValue__Type(0x60)
+	QCborValue__Array             QCborValue__Type = QCborValue__Type(0x80)
+	QCborValue__Map               QCborValue__Type = QCborValue__Type(0xa0)
+	QCborValue__Tag               QCborValue__Type = QCborValue__Type(0xc0)
+	QCborValue__SimpleType        QCborValue__Type = QCborValue__Type(0x100)
+	QCborValue__False             QCborValue__Type = QCborValue__Type(C.QCborValue_False_Type())
+	QCborValue__True              QCborValue__Type = QCborValue__Type(C.QCborValue_True_Type())
+	QCborValue__Null              QCborValue__Type = QCborValue__Type(C.QCborValue_Null_Type())
+	QCborValue__Undefined         QCborValue__Type = QCborValue__Type(C.QCborValue_Undefined_Type())
+	QCborValue__Double            QCborValue__Type = QCborValue__Type(0x202)
+	QCborValue__DateTime          QCborValue__Type = QCborValue__Type(0x10000)
+	QCborValue__Url               QCborValue__Type = QCborValue__Type(0x10020)
+	QCborValue__RegularExpression QCborValue__Type = QCborValue__Type(0x10023)
+	QCborValue__Uuid              QCborValue__Type = QCborValue__Type(0x10025)
+	QCborValue__Invalid           QCborValue__Type = QCborValue__Type(-1)
+)
 
 type QChar struct {
 	ptr unsafe.Pointer
@@ -11864,6 +13087,14 @@ func (ptr *QCryptographicHash) AddData3(device QIODevice_ITF) bool {
 	return false
 }
 
+func QCryptographicHash_HashLength(method QCryptographicHash__Algorithm) int {
+	return int(int32(C.QCryptographicHash_QCryptographicHash_HashLength(C.longlong(method))))
+}
+
+func (ptr *QCryptographicHash) HashLength(method QCryptographicHash__Algorithm) int {
+	return int(int32(C.QCryptographicHash_QCryptographicHash_HashLength(C.longlong(method))))
+}
+
 func (ptr *QCryptographicHash) AddData2(data QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 		C.QCryptographicHash_AddData2(ptr.Pointer(), PointerFromQByteArray(data))
@@ -12004,7 +13235,8 @@ const (
 	QDataStream__Qt_5_9                    QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_8)
 	QDataStream__Qt_5_10                   QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_9)
 	QDataStream__Qt_5_11                   QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_10)
-	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_11)
+	QDataStream__Qt_5_12                   QDataStream__Version = QDataStream__Version(18)
+	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_12)
 )
 
 func NewQDataStream() *QDataStream {
@@ -24661,7 +25893,7 @@ const (
 	QLocale__Serbia                                 QLocale__Country = QLocale__Country(243)
 	QLocale__SaintBarthelemy                        QLocale__Country = QLocale__Country(244)
 	QLocale__SaintMartin                            QLocale__Country = QLocale__Country(245)
-	QLocale__LatinAmericaAndTheCaribbean            QLocale__Country = QLocale__Country(246)
+	QLocale__LatinAmerica                           QLocale__Country = QLocale__Country(246)
 	QLocale__AscensionIsland                        QLocale__Country = QLocale__Country(247)
 	QLocale__AlandIslands                           QLocale__Country = QLocale__Country(248)
 	QLocale__DiegoGarcia                            QLocale__Country = QLocale__Country(249)
@@ -24675,15 +25907,18 @@ const (
 	QLocale__Kosovo                                 QLocale__Country = QLocale__Country(257)
 	QLocale__EuropeanUnion                          QLocale__Country = QLocale__Country(258)
 	QLocale__OutlyingOceania                        QLocale__Country = QLocale__Country(259)
-	QLocale__Tokelau                                QLocale__Country = QLocale__Country(QLocale__TokelauCountry)
-	QLocale__Tuvalu                                 QLocale__Country = QLocale__Country(QLocale__TuvaluCountry)
+	QLocale__World                                  QLocale__Country = QLocale__Country(260)
+	QLocale__Europe                                 QLocale__Country = QLocale__Country(261)
 	QLocale__DemocraticRepublicOfCongo              QLocale__Country = QLocale__Country(QLocale__CongoKinshasa)
-	QLocale__PeoplesRepublicOfCongo                 QLocale__Country = QLocale__Country(QLocale__CongoBrazzaville)
 	QLocale__DemocraticRepublicOfKorea              QLocale__Country = QLocale__Country(QLocale__NorthKorea)
+	QLocale__LatinAmericaAndTheCaribbean            QLocale__Country = QLocale__Country(QLocale__LatinAmerica)
+	QLocale__PeoplesRepublicOfCongo                 QLocale__Country = QLocale__Country(QLocale__CongoBrazzaville)
 	QLocale__RepublicOfKorea                        QLocale__Country = QLocale__Country(QLocale__SouthKorea)
 	QLocale__RussianFederation                      QLocale__Country = QLocale__Country(QLocale__Russia)
 	QLocale__SyrianArabRepublic                     QLocale__Country = QLocale__Country(QLocale__Syria)
-	QLocale__LastCountry                            QLocale__Country = QLocale__Country(QLocale__OutlyingOceania)
+	QLocale__Tokelau                                QLocale__Country = QLocale__Country(QLocale__TokelauCountry)
+	QLocale__Tuvalu                                 QLocale__Country = QLocale__Country(QLocale__TuvaluCountry)
+	QLocale__LastCountry                            QLocale__Country = QLocale__Country(QLocale__Europe)
 )
 
 //go:generate stringer -type=QLocale__CurrencySymbolFormat
@@ -25091,19 +26326,19 @@ const (
 	QLocale__Cantonese                 QLocale__Language = QLocale__Language(357)
 	QLocale__Osage                     QLocale__Language = QLocale__Language(358)
 	QLocale__Tangut                    QLocale__Language = QLocale__Language(359)
-	QLocale__Norwegian                 QLocale__Language = QLocale__Language(QLocale__NorwegianBokmal)
+	QLocale__Afan                      QLocale__Language = QLocale__Language(QLocale__Oromo)
+	QLocale__Bhutani                   QLocale__Language = QLocale__Language(QLocale__Dzongkha)
+	QLocale__Byelorussian              QLocale__Language = QLocale__Language(QLocale__Belarusian)
+	QLocale__Cambodian                 QLocale__Language = QLocale__Language(QLocale__Khmer)
+	QLocale__Chewa                     QLocale__Language = QLocale__Language(QLocale__Nyanja)
+	QLocale__Frisian                   QLocale__Language = QLocale__Language(QLocale__WesternFrisian)
+	QLocale__Kurundi                   QLocale__Language = QLocale__Language(QLocale__Rundi)
 	QLocale__Moldavian                 QLocale__Language = QLocale__Language(QLocale__Romanian)
+	QLocale__Norwegian                 QLocale__Language = QLocale__Language(QLocale__NorwegianBokmal)
+	QLocale__RhaetoRomance             QLocale__Language = QLocale__Language(QLocale__Romansh)
 	QLocale__SerboCroatian             QLocale__Language = QLocale__Language(QLocale__Serbian)
 	QLocale__Tagalog                   QLocale__Language = QLocale__Language(QLocale__Filipino)
 	QLocale__Twi                       QLocale__Language = QLocale__Language(QLocale__Akan)
-	QLocale__Afan                      QLocale__Language = QLocale__Language(QLocale__Oromo)
-	QLocale__Byelorussian              QLocale__Language = QLocale__Language(QLocale__Belarusian)
-	QLocale__Bhutani                   QLocale__Language = QLocale__Language(QLocale__Dzongkha)
-	QLocale__Cambodian                 QLocale__Language = QLocale__Language(QLocale__Khmer)
-	QLocale__Kurundi                   QLocale__Language = QLocale__Language(QLocale__Rundi)
-	QLocale__RhaetoRomance             QLocale__Language = QLocale__Language(QLocale__Romansh)
-	QLocale__Chewa                     QLocale__Language = QLocale__Language(QLocale__Nyanja)
-	QLocale__Frisian                   QLocale__Language = QLocale__Language(QLocale__WesternFrisian)
 	QLocale__Uigur                     QLocale__Language = QLocale__Language(QLocale__Uighur)
 	QLocale__LastLanguage              QLocale__Language = QLocale__Language(QLocale__Tangut)
 )
@@ -27459,6 +28694,13 @@ func (ptr *QMetaEnum) IsValid() bool {
 	return false
 }
 
+func (ptr *QMetaEnum) EnumName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QMetaEnum_EnumName(ptr.Pointer()))
+	}
+	return ""
+}
+
 func (ptr *QMetaEnum) Key(index int) string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QMetaEnum_Key(ptr.Pointer(), C.int(int32(index))))
@@ -28531,6 +29773,10 @@ const (
 	QMetaType__QVariantMap           QMetaType__Type = QMetaType__Type(8)
 	QMetaType__QVariantList          QMetaType__Type = QMetaType__Type(9)
 	QMetaType__QVariantHash          QMetaType__Type = QMetaType__Type(28)
+	QMetaType__QCborSimpleType       QMetaType__Type = QMetaType__Type(52)
+	QMetaType__QCborValue            QMetaType__Type = QMetaType__Type(53)
+	QMetaType__QCborArray            QMetaType__Type = QMetaType__Type(54)
+	QMetaType__QCborMap              QMetaType__Type = QMetaType__Type(55)
 	QMetaType__QFont                 QMetaType__Type = QMetaType__Type(64)
 	QMetaType__QPixmap               QMetaType__Type = QMetaType__Type(65)
 	QMetaType__QBrush                QMetaType__Type = QMetaType__Type(66)
@@ -28555,7 +29801,7 @@ const (
 	QMetaType__QQuaternion           QMetaType__Type = QMetaType__Type(85)
 	QMetaType__QPolygonF             QMetaType__Type = QMetaType__Type(86)
 	QMetaType__QSizePolicy           QMetaType__Type = QMetaType__Type(121)
-	QMetaType__LastCoreType          QMetaType__Type = QMetaType__Type(QMetaType__Nullptr)
+	QMetaType__LastCoreType          QMetaType__Type = QMetaType__Type(QMetaType__QCborMap)
 	QMetaType__LastGuiType           QMetaType__Type = QMetaType__Type(QMetaType__QPolygonF)
 	QMetaType__User                  QMetaType__Type = QMetaType__Type(1024)
 )
@@ -31812,6 +33058,18 @@ func QOperatingSystemVersion_MacOSHighSierra() *QOperatingSystemVersion {
 
 func (ptr *QOperatingSystemVersion) MacOSHighSierra() *QOperatingSystemVersion {
 	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func QOperatingSystemVersion_MacOSMojave() *QOperatingSystemVersion {
+	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSMojave())
+	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
+	return tmpValue
+}
+
+func (ptr *QOperatingSystemVersion) MacOSMojave() *QOperatingSystemVersion {
+	tmpValue := NewQOperatingSystemVersionFromPointer(C.QOperatingSystemVersion_QOperatingSystemVersion_MacOSMojave())
 	runtime.SetFinalizer(tmpValue, (*QOperatingSystemVersion).DestroyQOperatingSystemVersion)
 	return tmpValue
 }
@@ -35123,6 +36381,24 @@ func NewQRegularExpression2(pattern string, options QRegularExpression__PatternO
 	return tmpValue
 }
 
+func QRegularExpression_AnchoredPattern(expression string) string {
+	var expressionC *C.char
+	if expression != "" {
+		expressionC = C.CString(expression)
+		defer C.free(unsafe.Pointer(expressionC))
+	}
+	return cGoUnpackString(C.QRegularExpression_QRegularExpression_AnchoredPattern(C.struct_QtCore_PackedString{data: expressionC, len: C.longlong(len(expression))}))
+}
+
+func (ptr *QRegularExpression) AnchoredPattern(expression string) string {
+	var expressionC *C.char
+	if expression != "" {
+		expressionC = C.CString(expression)
+		defer C.free(unsafe.Pointer(expressionC))
+	}
+	return cGoUnpackString(C.QRegularExpression_QRegularExpression_AnchoredPattern(C.struct_QtCore_PackedString{data: expressionC, len: C.longlong(len(expression))}))
+}
+
 func QRegularExpression_Escape(str string) string {
 	var strC *C.char
 	if str != "" {
@@ -35139,6 +36415,24 @@ func (ptr *QRegularExpression) Escape(str string) string {
 		defer C.free(unsafe.Pointer(strC))
 	}
 	return cGoUnpackString(C.QRegularExpression_QRegularExpression_Escape(C.struct_QtCore_PackedString{data: strC, len: C.longlong(len(str))}))
+}
+
+func QRegularExpression_WildcardToRegularExpression(pattern string) string {
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
+	return cGoUnpackString(C.QRegularExpression_QRegularExpression_WildcardToRegularExpression(C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))}))
+}
+
+func (ptr *QRegularExpression) WildcardToRegularExpression(pattern string) string {
+	var patternC *C.char
+	if pattern != "" {
+		patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+	}
+	return cGoUnpackString(C.QRegularExpression_QRegularExpression_WildcardToRegularExpression(C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))}))
 }
 
 func (ptr *QRegularExpression) SetPattern(pattern string) {
@@ -36134,6 +37428,44 @@ func (ptr *QSaveFile) DirectWriteFallback() bool {
 		return int8(C.QSaveFile_DirectWriteFallback(ptr.Pointer())) != 0
 	}
 	return false
+}
+
+type QScopeGuard struct {
+	ptr unsafe.Pointer
+}
+
+type QScopeGuard_ITF interface {
+	QScopeGuard_PTR() *QScopeGuard
+}
+
+func (ptr *QScopeGuard) QScopeGuard_PTR() *QScopeGuard {
+	return ptr
+}
+
+func (ptr *QScopeGuard) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QScopeGuard) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQScopeGuard(ptr QScopeGuard_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScopeGuard_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQScopeGuardFromPointer(ptr unsafe.Pointer) (n *QScopeGuard) {
+	n = new(QScopeGuard)
+	n.SetPointer(ptr)
+	return
 }
 
 type QScopedArrayPointer struct {
@@ -39326,9 +40658,45 @@ func (ptr *QSortFilterProxyModel) SetFilterKeyColumn(column int) {
 	}
 }
 
+//export callbackQSortFilterProxyModel_SetFilterRegExp
+func callbackQSortFilterProxyModel_SetFilterRegExp(ptr unsafe.Pointer, regExp unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setFilterRegExp"); signal != nil {
+		signal.(func(*QRegExp))(NewQRegExpFromPointer(regExp))
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetFilterRegExpDefault(NewQRegExpFromPointer(regExp))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) ConnectSetFilterRegExp(f func(regExp *QRegExp)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setFilterRegExp"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setFilterRegExp", func(regExp *QRegExp) {
+				signal.(func(*QRegExp))(regExp)
+				f(regExp)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setFilterRegExp", f)
+		}
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectSetFilterRegExp() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setFilterRegExp")
+	}
+}
+
 func (ptr *QSortFilterProxyModel) SetFilterRegExp(regExp QRegExp_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_SetFilterRegExp(ptr.Pointer(), PointerFromQRegExp(regExp))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SetFilterRegExpDefault(regExp QRegExp_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SetFilterRegExpDefault(ptr.Pointer(), PointerFromQRegExp(regExp))
 	}
 }
 
@@ -39381,6 +40749,48 @@ func (ptr *QSortFilterProxyModel) SetFilterRegExp2Default(pattern string) {
 			defer C.free(unsafe.Pointer(patternC))
 		}
 		C.QSortFilterProxyModel_SetFilterRegExp2Default(ptr.Pointer(), C.struct_QtCore_PackedString{data: patternC, len: C.longlong(len(pattern))})
+	}
+}
+
+//export callbackQSortFilterProxyModel_SetFilterRegularExpression
+func callbackQSortFilterProxyModel_SetFilterRegularExpression(ptr unsafe.Pointer, regularExpression unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setFilterRegularExpression"); signal != nil {
+		signal.(func(*QRegularExpression))(NewQRegularExpressionFromPointer(regularExpression))
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetFilterRegularExpressionDefault(NewQRegularExpressionFromPointer(regularExpression))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) ConnectSetFilterRegularExpression(f func(regularExpression *QRegularExpression)) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "setFilterRegularExpression"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "setFilterRegularExpression", func(regularExpression *QRegularExpression) {
+				signal.(func(*QRegularExpression))(regularExpression)
+				f(regularExpression)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "setFilterRegularExpression", f)
+		}
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectSetFilterRegularExpression() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "setFilterRegularExpression")
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SetFilterRegularExpression(regularExpression QRegularExpression_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SetFilterRegularExpression(ptr.Pointer(), PointerFromQRegularExpression(regularExpression))
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SetFilterRegularExpressionDefault(regularExpression QRegularExpression_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_SetFilterRegularExpressionDefault(ptr.Pointer(), PointerFromQRegularExpression(regularExpression))
 	}
 }
 
@@ -39708,6 +41118,15 @@ func (ptr *QSortFilterProxyModel) FilterRegExp() *QRegExp {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQRegExpFromPointer(C.QSortFilterProxyModel_FilterRegExp(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSortFilterProxyModel) FilterRegularExpression() *QRegularExpression {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQRegularExpressionFromPointer(C.QSortFilterProxyModel_FilterRegularExpression(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
 		return tmpValue
 	}
 	return nil
@@ -43037,6 +44456,13 @@ func (ptr *QStringView) StartsWith(str QStringView_ITF, cs Qt__CaseSensitivity) 
 	return false
 }
 
+func (ptr *QStringView) Compare(other QStringView_ITF, cs Qt__CaseSensitivity) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QStringView_Compare(ptr.Pointer(), PointerFromQStringView(other), C.longlong(cs))))
+	}
+	return 0
+}
+
 func (ptr *QStringView) Length() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QStringView_Length(ptr.Pointer())))
@@ -43666,6 +45092,162 @@ func (ptr *QTemporaryFile) AutoRemove() bool {
 	}
 	return false
 }
+
+type QTest struct {
+	ptr unsafe.Pointer
+}
+
+type QTest_ITF interface {
+	QTest_PTR() *QTest
+}
+
+func (ptr *QTest) QTest_PTR() *QTest {
+	return ptr
+}
+
+func (ptr *QTest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTest(ptr QTest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestFromPointer(ptr unsafe.Pointer) (n *QTest) {
+	n = new(QTest)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QTest) DestroyQTest() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+//go:generate stringer -type=QTest__KeyAction
+//QTest::KeyAction
+type QTest__KeyAction int64
+
+const (
+	QTest__Press    QTest__KeyAction = QTest__KeyAction(0)
+	QTest__Release  QTest__KeyAction = QTest__KeyAction(1)
+	QTest__Click    QTest__KeyAction = QTest__KeyAction(2)
+	QTest__Shortcut QTest__KeyAction = QTest__KeyAction(3)
+)
+
+//go:generate stringer -type=QTest__MouseAction
+//QTest::MouseAction
+type QTest__MouseAction int64
+
+const (
+	QTest__MousePress   QTest__MouseAction = QTest__MouseAction(0)
+	QTest__MouseRelease QTest__MouseAction = QTest__MouseAction(1)
+	QTest__MouseClick   QTest__MouseAction = QTest__MouseAction(2)
+	QTest__MouseDClick  QTest__MouseAction = QTest__MouseAction(3)
+	QTest__MouseMove    QTest__MouseAction = QTest__MouseAction(4)
+)
+
+//go:generate stringer -type=QTest__TestFailMode
+//QTest::TestFailMode
+type QTest__TestFailMode int64
+
+const (
+	QTest__Abort    QTest__TestFailMode = QTest__TestFailMode(1)
+	QTest__Continue QTest__TestFailMode = QTest__TestFailMode(2)
+)
+
+//go:generate stringer -type=QTest__AttributeIndex
+//QTest::AttributeIndex
+type QTest__AttributeIndex int64
+
+const (
+	QTest__AI_Undefined     QTest__AttributeIndex = QTest__AttributeIndex(-1)
+	QTest__AI_Name          QTest__AttributeIndex = QTest__AttributeIndex(0)
+	QTest__AI_Result        QTest__AttributeIndex = QTest__AttributeIndex(1)
+	QTest__AI_Tests         QTest__AttributeIndex = QTest__AttributeIndex(2)
+	QTest__AI_Failures      QTest__AttributeIndex = QTest__AttributeIndex(3)
+	QTest__AI_Errors        QTest__AttributeIndex = QTest__AttributeIndex(4)
+	QTest__AI_Type          QTest__AttributeIndex = QTest__AttributeIndex(5)
+	QTest__AI_Description   QTest__AttributeIndex = QTest__AttributeIndex(6)
+	QTest__AI_PropertyValue QTest__AttributeIndex = QTest__AttributeIndex(7)
+	QTest__AI_QTestVersion  QTest__AttributeIndex = QTest__AttributeIndex(8)
+	QTest__AI_QtVersion     QTest__AttributeIndex = QTest__AttributeIndex(9)
+	QTest__AI_File          QTest__AttributeIndex = QTest__AttributeIndex(10)
+	QTest__AI_Line          QTest__AttributeIndex = QTest__AttributeIndex(11)
+	QTest__AI_Metric        QTest__AttributeIndex = QTest__AttributeIndex(12)
+	QTest__AI_Tag           QTest__AttributeIndex = QTest__AttributeIndex(13)
+	QTest__AI_Value         QTest__AttributeIndex = QTest__AttributeIndex(14)
+	QTest__AI_Iterations    QTest__AttributeIndex = QTest__AttributeIndex(15)
+)
+
+//go:generate stringer -type=QTest__LogElementType
+//QTest::LogElementType
+type QTest__LogElementType int64
+
+const (
+	QTest__LET_Undefined   QTest__LogElementType = QTest__LogElementType(-1)
+	QTest__LET_Property    QTest__LogElementType = QTest__LogElementType(0)
+	QTest__LET_Properties  QTest__LogElementType = QTest__LogElementType(1)
+	QTest__LET_Failure     QTest__LogElementType = QTest__LogElementType(2)
+	QTest__LET_Error       QTest__LogElementType = QTest__LogElementType(3)
+	QTest__LET_TestCase    QTest__LogElementType = QTest__LogElementType(4)
+	QTest__LET_TestSuite   QTest__LogElementType = QTest__LogElementType(5)
+	QTest__LET_Benchmark   QTest__LogElementType = QTest__LogElementType(6)
+	QTest__LET_SystemError QTest__LogElementType = QTest__LogElementType(7)
+)
+
+//go:generate stringer -type=QTest__QBenchmarkMetric
+//QTest::QBenchmarkMetric
+type QTest__QBenchmarkMetric int64
+
+const (
+	QTest__FramesPerSecond      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(0)
+	QTest__BitsPerSecond        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(1)
+	QTest__BytesPerSecond       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(2)
+	QTest__WalltimeMilliseconds QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(3)
+	QTest__CPUTicks             QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(4)
+	QTest__InstructionReads     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(5)
+	QTest__Events               QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(6)
+	QTest__WalltimeNanoseconds  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(7)
+	QTest__BytesAllocated       QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(8)
+	QTest__CPUMigrations        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(9)
+	QTest__CPUCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(10)
+	QTest__BusCycles            QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(11)
+	QTest__StalledCycles        QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(12)
+	QTest__Instructions         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(13)
+	QTest__BranchInstructions   QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(14)
+	QTest__BranchMisses         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(15)
+	QTest__CacheReferences      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(16)
+	QTest__CacheReads           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(17)
+	QTest__CacheWrites          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(18)
+	QTest__CachePrefetches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(19)
+	QTest__CacheMisses          QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(20)
+	QTest__CacheReadMisses      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(21)
+	QTest__CacheWriteMisses     QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(22)
+	QTest__CachePrefetchMisses  QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(23)
+	QTest__ContextSwitches      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(24)
+	QTest__PageFaults           QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(25)
+	QTest__MinorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(26)
+	QTest__MajorPageFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(27)
+	QTest__AlignmentFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(28)
+	QTest__EmulationFaults      QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(29)
+	QTest__RefCPUCycles         QTest__QBenchmarkMetric = QTest__QBenchmarkMetric(30)
+)
 
 type QTextBoundaryFinder struct {
 	ptr unsafe.Pointer
@@ -51716,6 +53298,13 @@ func NewQWaitCondition() *QWaitCondition {
 	return tmpValue
 }
 
+func (ptr *QWaitCondition) Wait2(lockedMutex QMutex_ITF, deadline QDeadlineTimer_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQMutex(lockedMutex), PointerFromQDeadlineTimer(deadline))) != 0
+	}
+	return false
+}
+
 func (ptr *QWaitCondition) Wait(lockedMutex QMutex_ITF, ti uint) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QWaitCondition_Wait(ptr.Pointer(), PointerFromQMutex(lockedMutex), C.ulong(uint32(ti)))) != 0
@@ -51723,9 +53312,16 @@ func (ptr *QWaitCondition) Wait(lockedMutex QMutex_ITF, ti uint) bool {
 	return false
 }
 
-func (ptr *QWaitCondition) Wait2(lockedReadWriteLock QReadWriteLock_ITF, ti uint) bool {
+func (ptr *QWaitCondition) Wait4(lockedReadWriteLock QReadWriteLock_ITF, deadline QDeadlineTimer_ITF) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QWaitCondition_Wait2(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(ti)))) != 0
+		return int8(C.QWaitCondition_Wait4(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), PointerFromQDeadlineTimer(deadline))) != 0
+	}
+	return false
+}
+
+func (ptr *QWaitCondition) Wait3(lockedReadWriteLock QReadWriteLock_ITF, ti uint) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWaitCondition_Wait3(ptr.Pointer(), PointerFromQReadWriteLock(lockedReadWriteLock), C.ulong(uint32(ti)))) != 0
 	}
 	return false
 }
@@ -55005,10 +56601,11 @@ const (
 type Qt__ScrollPhase int64
 
 const (
-	Qt__NoScrollPhase Qt__ScrollPhase = Qt__ScrollPhase(0)
-	Qt__ScrollBegin   Qt__ScrollPhase = Qt__ScrollPhase(1)
-	Qt__ScrollUpdate  Qt__ScrollPhase = Qt__ScrollPhase(2)
-	Qt__ScrollEnd     Qt__ScrollPhase = Qt__ScrollPhase(3)
+	Qt__NoScrollPhase  Qt__ScrollPhase = Qt__ScrollPhase(0)
+	Qt__ScrollBegin    Qt__ScrollPhase = Qt__ScrollPhase(1)
+	Qt__ScrollUpdate   Qt__ScrollPhase = Qt__ScrollPhase(2)
+	Qt__ScrollEnd      Qt__ScrollPhase = Qt__ScrollPhase(3)
+	Qt__ScrollMomentum Qt__ScrollPhase = Qt__ScrollPhase(4)
 )
 
 //go:generate stringer -type=Qt__ShortcutContext
@@ -55340,7 +56937,8 @@ const (
 	Qt__WA_AlwaysStackOnTop                Qt__WidgetAttribute = Qt__WidgetAttribute(128)
 	Qt__WA_TabletTracking                  Qt__WidgetAttribute = Qt__WidgetAttribute(129)
 	Qt__WA_ContentsMarginsRespectsSafeArea Qt__WidgetAttribute = Qt__WidgetAttribute(130)
-	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(131)
+	Qt__WA_StyleSheetTarget                Qt__WidgetAttribute = Qt__WidgetAttribute(131)
+	Qt__WA_AttributeCount                  Qt__WidgetAttribute = Qt__WidgetAttribute(132)
 )
 
 //go:generate stringer -type=Qt__WindowFrameSection
@@ -55461,6 +57059,52 @@ func (ptr *Qt) MightBeRichText(text string) bool {
 		defer C.free(unsafe.Pointer(textC))
 	}
 	return int8(C.Qt_Qt_MightBeRichText(C.struct_QtCore_PackedString{data: textC, len: C.longlong(len(text))})) != 0
+}
+
+type QtCbor struct {
+	ptr unsafe.Pointer
+}
+
+type QtCbor_ITF interface {
+	QtCbor_PTR() *QtCbor
+}
+
+func (ptr *QtCbor) QtCbor_PTR() *QtCbor {
+	return ptr
+}
+
+func (ptr *QtCbor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QtCbor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQtCbor(ptr QtCbor_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtCbor_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtCborFromPointer(ptr unsafe.Pointer) (n *QtCbor) {
+	n = new(QtCbor)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QtCbor) DestroyQtCbor() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 type QtDummyFutex struct {

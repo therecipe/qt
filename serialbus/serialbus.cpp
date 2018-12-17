@@ -249,7 +249,7 @@ class MyQCanBusDevice: public QCanBusDevice
 {
 public:
 	MyQCanBusDevice(QObject *parent = Q_NULLPTR) : QCanBusDevice(parent) {QCanBusDevice_QCanBusDevice_QRegisterMetaType();};
-	QString interpretErrorFrame(const QCanBusFrame & errorFrame) { return ({ QtSerialBus_PackedString tempVal = callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&errorFrame)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
+	QString interpretErrorFrame(const QCanBusFrame & frame) { return ({ QtSerialBus_PackedString tempVal = callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame)); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
 	bool waitForFramesReceived(int msecs) { return callbackQCanBusDevice_WaitForFramesReceived(this, msecs) != 0; };
 	bool waitForFramesWritten(int msecs) { return callbackQCanBusDevice_WaitForFramesWritten(this, msecs) != 0; };
@@ -316,9 +316,9 @@ void* QCanBusDevice_NewQCanBusDevice(void* parent)
 	}
 }
 
-struct QtSerialBus_PackedString QCanBusDevice_InterpretErrorFrame(void* ptr, void* errorFrame)
+struct QtSerialBus_PackedString QCanBusDevice_InterpretErrorFrame(void* ptr, void* frame)
 {
-	return ({ QByteArray tb1b4cb = static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(errorFrame)).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(tb1b4cb.prepend("WHITESPACE").constData()+10), tb1b4cb.size()-10 }; });
+	return ({ QByteArray t5dc8ff = static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t5dc8ff.prepend("WHITESPACE").constData()+10), t5dc8ff.size()-10 }; });
 }
 
 struct QtSerialBus_PackedString QCanBusDevice_QCanBusDevice_Tr(char* s, char* c, int n)
@@ -364,6 +364,11 @@ char QCanBusDevice_WaitForFramesWrittenDefault(void* ptr, int msecs)
 char QCanBusDevice_WriteFrame(void* ptr, void* frame)
 {
 	return static_cast<QCanBusDevice*>(ptr)->writeFrame(*static_cast<QCanBusFrame*>(frame));
+}
+
+void QCanBusDevice_Clear(void* ptr, long long direction)
+{
+	static_cast<QCanBusDevice*>(ptr)->clear(static_cast<QCanBusDevice::Direction>(direction));
 }
 
 void QCanBusDevice_Close(void* ptr)

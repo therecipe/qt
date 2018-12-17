@@ -456,6 +456,18 @@ func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
 	return unsafe.Pointer(C.QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM())
 }
 
+func (ptr *QAndroidJniEnvironment) FindClass(className string) unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		var classNameC *C.char
+		if className != "" {
+			classNameC = C.CString(className)
+			defer C.free(unsafe.Pointer(classNameC))
+		}
+		return unsafe.Pointer(C.QAndroidJniEnvironment_FindClass(ptr.Pointer(), classNameC))
+	}
+	return nil
+}
+
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 	if ptr.Pointer() != nil {
 		C.QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(ptr.Pointer())

@@ -296,6 +296,11 @@ func (ptr *QAndroidJniEnvironment) JavaVM() unsafe.Pointer {
 	return nil
 }
 
+func (ptr *QAndroidJniEnvironment) FindClass(className string) unsafe.Pointer {
+
+	return nil
+}
+
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 
 }

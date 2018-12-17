@@ -52,7 +52,7 @@ func ANDROID_NDK_DIR() string {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
-		return windowsSystemDrive() + "\\android-ndk-r14b"
+		return windowsSystemDrive() + "\\android-ndk-r18b"
 	}
-	return filepath.Join(os.Getenv("HOME"), "android-ndk-r14b")
+	return filepath.Join(os.Getenv("HOME"), "android-ndk-r18b")
 }

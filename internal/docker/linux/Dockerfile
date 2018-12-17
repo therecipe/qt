@@ -5,12 +5,12 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
-RUN GO=go1.11.1.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
+RUN GO=go1.11.2.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://storage.googleapis.com/golang/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
 RUN QT=qt-unified-linux-x64-online.run && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/online_installers/$QT && chmod +x $QT && QT_QPA_PLATFORM=minimal ./$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true
-RUN find /opt/Qt/5.11.1 -type f -name "*.debug" -delete
+RUN find /opt/Qt/5.12.0 -type f -name "*.debug" -delete
 RUN find /opt/Qt/Docs -type f ! -name "*.index" -delete
 
 
@@ -28,7 +28,7 @@ ENV QT_DOCKER true
 COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
-COPY --from=base /opt/Qt/5.11.1 /opt/Qt/5.11.1
+COPY --from=base /opt/Qt/5.12.0 /opt/Qt/5.12.0
 COPY --from=base /opt/Qt/Docs /opt/Qt/Docs
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev \

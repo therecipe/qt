@@ -54,6 +54,7 @@
 #include <QTimerEvent>
 #include <QUuid>
 #include <QVariant>
+#include <QVector>
 #include <QWidget>
 #include <QWindow>
 
@@ -109,6 +110,7 @@ public:
 	MyQBluetoothDeviceDiscoveryAgent(const QBluetoothAddress &deviceAdapter, QObject *parent = Q_NULLPTR) : QBluetoothDeviceDiscoveryAgent(deviceAdapter, parent) {QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_QRegisterMetaType();};
 	void Signal_Canceled() { callbackQBluetoothDeviceDiscoveryAgent_Canceled(this); };
 	void Signal_DeviceDiscovered(const QBluetoothDeviceInfo & info) { callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered(this, const_cast<QBluetoothDeviceInfo*>(&info)); };
+	void Signal_DeviceUpdated(const QBluetoothDeviceInfo & info, QBluetoothDeviceInfo::Fields updatedFields) { callbackQBluetoothDeviceDiscoveryAgent_DeviceUpdated(this, const_cast<QBluetoothDeviceInfo*>(&info), updatedFields); };
 	void Signal_Error2(QBluetoothDeviceDiscoveryAgent::Error error) { callbackQBluetoothDeviceDiscoveryAgent_Error2(this, error); };
 	void Signal_Finished() { callbackQBluetoothDeviceDiscoveryAgent_Finished(this); };
 	void start() { callbackQBluetoothDeviceDiscoveryAgent_Start(this); };
@@ -253,6 +255,21 @@ void QBluetoothDeviceDiscoveryAgent_DisconnectDeviceDiscovered(void* ptr)
 void QBluetoothDeviceDiscoveryAgent_DeviceDiscovered(void* ptr, void* info)
 {
 	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->deviceDiscovered(*static_cast<QBluetoothDeviceInfo*>(info));
+}
+
+void QBluetoothDeviceDiscoveryAgent_ConnectDeviceUpdated(void* ptr)
+{
+	QObject::connect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)(const QBluetoothDeviceInfo &, QBluetoothDeviceInfo::Fields)>(&QBluetoothDeviceDiscoveryAgent::deviceUpdated), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)(const QBluetoothDeviceInfo &, QBluetoothDeviceInfo::Fields)>(&MyQBluetoothDeviceDiscoveryAgent::Signal_DeviceUpdated));
+}
+
+void QBluetoothDeviceDiscoveryAgent_DisconnectDeviceUpdated(void* ptr)
+{
+	QObject::disconnect(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (QBluetoothDeviceDiscoveryAgent::*)(const QBluetoothDeviceInfo &, QBluetoothDeviceInfo::Fields)>(&QBluetoothDeviceDiscoveryAgent::deviceUpdated), static_cast<MyQBluetoothDeviceDiscoveryAgent*>(ptr), static_cast<void (MyQBluetoothDeviceDiscoveryAgent::*)(const QBluetoothDeviceInfo &, QBluetoothDeviceInfo::Fields)>(&MyQBluetoothDeviceDiscoveryAgent::Signal_DeviceUpdated));
+}
+
+void QBluetoothDeviceDiscoveryAgent_DeviceUpdated(void* ptr, void* info, long long updatedFields)
+{
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->deviceUpdated(*static_cast<QBluetoothDeviceInfo*>(info), static_cast<QBluetoothDeviceInfo::Field>(updatedFields));
 }
 
 void QBluetoothDeviceDiscoveryAgent_ConnectError2(void* ptr)
@@ -529,6 +546,11 @@ void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo3(void* uuid, struct QtBluetoo
 	return new QBluetoothDeviceInfo(*static_cast<QBluetoothUuid*>(uuid), QString::fromUtf8(name.data, name.len), classOfDevice);
 }
 
+char QBluetoothDeviceInfo_SetManufacturerData(void* ptr, unsigned short manufacturerId, void* data)
+{
+	return static_cast<QBluetoothDeviceInfo*>(ptr)->setManufacturerData(manufacturerId, *static_cast<QByteArray*>(data));
+}
+
 void QBluetoothDeviceInfo_SetCached(void* ptr, char cached)
 {
 	static_cast<QBluetoothDeviceInfo*>(ptr)->setCached(cached != 0);
@@ -594,6 +616,11 @@ struct QtBluetooth_PackedString QBluetoothDeviceInfo_Name(void* ptr)
 	return ({ QByteArray t605955 = static_cast<QBluetoothDeviceInfo*>(ptr)->name().toUtf8(); QtBluetooth_PackedString { const_cast<char*>(t605955.prepend("WHITESPACE").constData()+10), t605955.size()-10 }; });
 }
 
+struct QtBluetooth_PackedList QBluetoothDeviceInfo_ManufacturerIds(void* ptr)
+{
+	return ({ QVector<quint16>* tmpValue = new QVector<quint16>(static_cast<QBluetoothDeviceInfo*>(ptr)->manufacturerIds()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QBluetoothDeviceInfo_IsCached(void* ptr)
 {
 	return static_cast<QBluetoothDeviceInfo*>(ptr)->isCached();
@@ -644,6 +671,38 @@ void* QBluetoothDeviceInfo___serviceUuids_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QBluetoothUuid>();
+}
+
+unsigned short QBluetoothDeviceInfo___manufacturerIds_atList(void* ptr, int i)
+{
+	return ({quint16 tmp = static_cast<QVector<quint16>*>(ptr)->at(i); if (i == static_cast<QVector<quint16>*>(ptr)->size()-1) { static_cast<QVector<quint16>*>(ptr)->~QVector(); free(ptr); }; tmp; });
+}
+
+void QBluetoothDeviceInfo___manufacturerIds_setList(void* ptr, unsigned short i)
+{
+	static_cast<QVector<quint16>*>(ptr)->append(i);
+}
+
+void* QBluetoothDeviceInfo___manufacturerIds_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<quint16>();
+}
+
+unsigned short QBluetoothDeviceInfo_____manufacturerData_keyList_atList2(void* ptr, int i)
+{
+	return ({quint16 tmp = static_cast<QList<quint16>*>(ptr)->at(i); if (i == static_cast<QList<quint16>*>(ptr)->size()-1) { static_cast<QList<quint16>*>(ptr)->~QList(); free(ptr); }; tmp; });
+}
+
+void QBluetoothDeviceInfo_____manufacturerData_keyList_setList2(void* ptr, unsigned short i)
+{
+	static_cast<QList<quint16>*>(ptr)->append(i);
+}
+
+void* QBluetoothDeviceInfo_____manufacturerData_keyList_newList2(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<quint16>();
 }
 
 void* QBluetoothHostInfo_NewQBluetoothHostInfo()
@@ -3303,11 +3362,6 @@ void QLowEnergyAdvertisingData_Swap(void* ptr, void* other)
 void QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(void* ptr)
 {
 	static_cast<QLowEnergyAdvertisingData*>(ptr)->~QLowEnergyAdvertisingData();
-}
-
-void* QLowEnergyAdvertisingData_ManufacturerData(void* ptr)
-{
-	return new QByteArray(static_cast<QLowEnergyAdvertisingData*>(ptr)->manufacturerData());
 }
 
 void* QLowEnergyAdvertisingData_RawData(void* ptr)

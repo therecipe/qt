@@ -2890,6 +2890,12 @@ func (ptr *QDBusMessage) SetAutoStartService(enable bool) {
 	}
 }
 
+func (ptr *QDBusMessage) SetInteractiveAuthorizationAllowed(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QDBusMessage_SetInteractiveAuthorizationAllowed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
 func (ptr *QDBusMessage) Swap(other QDBusMessage_ITF) {
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_Swap(ptr.Pointer(), PointerFromQDBusMessage(other))
@@ -3050,6 +3056,13 @@ func (ptr *QDBusMessage) AutoStartService() bool {
 func (ptr *QDBusMessage) IsDelayedReply() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QDBusMessage_IsDelayedReply(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QDBusMessage) IsInteractiveAuthorizationAllowed() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QDBusMessage_IsInteractiveAuthorizationAllowed(ptr.Pointer())) != 0
 	}
 	return false
 }
@@ -3963,12 +3976,12 @@ func (ptr *QDBusPendingReplyTypes) DestroyQDBusPendingReplyTypes() {
 	}
 }
 
-func QDBusPendingReplyTypes_MetaTypeFor2(vqv core.QVariant_ITF) int {
-	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(core.PointerFromQVariant(vqv))))
+func QDBusPendingReplyTypes_MetaTypeFor(vqv core.QVariant_ITF) int {
+	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor(core.PointerFromQVariant(vqv))))
 }
 
-func (ptr *QDBusPendingReplyTypes) MetaTypeFor2(vqv core.QVariant_ITF) int {
-	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(core.PointerFromQVariant(vqv))))
+func (ptr *QDBusPendingReplyTypes) MetaTypeFor(vqv core.QVariant_ITF) int {
+	return int(int32(C.QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor(core.PointerFromQVariant(vqv))))
 }
 
 type QDBusReply struct {

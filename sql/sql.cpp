@@ -2826,6 +2826,7 @@ public:
 	MyQSqlRelationalDelegate(QObject *parent = Q_NULLPTR) : QSqlRelationalDelegate(parent) {QSqlRelationalDelegate_QSqlRelationalDelegate_QRegisterMetaType();};
 	 ~MyQSqlRelationalDelegate() { callbackQSqlRelationalDelegate_DestroyQSqlRelationalDelegate(this); };
 	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQSqlRelationalDelegate_CreateEditor(const_cast<void*>(static_cast<const void*>(this)), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetEditorData(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QModelIndex*>(&index)); };
 	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetModelData(const_cast<void*>(static_cast<const void*>(this)), editor, model, const_cast<QModelIndex*>(&index)); };
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	bool eventFilter(QObject * editor, QEvent * event) { return callbackQSqlRelationalDelegate_EventFilter(this, editor, event) != 0; };
@@ -2836,7 +2837,6 @@ public:
 	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtSql_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSqlRelationalDelegate_DrawDisplay(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
 	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQSqlRelationalDelegate_DrawFocus(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
 	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_Paint(const_cast<void*>(static_cast<const void*>(this)), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
-	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetEditorData(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QModelIndex*>(&index)); };
 	void updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_UpdateEditorGeometry(const_cast<void*>(static_cast<const void*>(this)), editor, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_HelpEvent(this, event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	void Signal_CloseEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQSqlRelationalDelegate_CloseEditor(this, editor, hint); };
@@ -2911,6 +2911,11 @@ void QSqlRelationalDelegate_DestroyQSqlRelationalDelegateDefault(void* ptr)
 void* QSqlRelationalDelegate_CreateEditorDefault(void* ptr, void* parent, void* option, void* index)
 {
 		return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index)
+{
+		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
 void QSqlRelationalDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index)
@@ -3041,11 +3046,6 @@ void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* opt
 void QSqlRelationalDelegate_PaintDefault(void* ptr, void* painter, void* option, void* index)
 {
 		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::paint(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
-}
-
-void QSqlRelationalDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index)
-{
-		static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
 void QSqlRelationalDelegate_UpdateEditorGeometryDefault(void* ptr, void* editor, void* option, void* index)

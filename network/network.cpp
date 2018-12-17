@@ -7488,6 +7488,16 @@ void* QSslCertificate_PublicKey(void* ptr)
 	return new QSslKey(static_cast<QSslCertificate*>(ptr)->publicKey());
 }
 
+struct QtNetwork_PackedString QSslCertificate_IssuerDisplayName(void* ptr)
+{
+	return ({ QByteArray tad77ca = static_cast<QSslCertificate*>(ptr)->issuerDisplayName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tad77ca.prepend("WHITESPACE").constData()+10), tad77ca.size()-10 }; });
+}
+
+struct QtNetwork_PackedString QSslCertificate_SubjectDisplayName(void* ptr)
+{
+	return ({ QByteArray t65a96d = static_cast<QSslCertificate*>(ptr)->subjectDisplayName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t65a96d.prepend("WHITESPACE").constData()+10), t65a96d.size()-10 }; });
+}
+
 struct QtNetwork_PackedString QSslCertificate_ToText(void* ptr)
 {
 	return ({ QByteArray t52ef8a = static_cast<QSslCertificate*>(ptr)->toText().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t52ef8a.prepend("WHITESPACE").constData()+10), t52ef8a.size()-10 }; });

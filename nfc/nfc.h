@@ -118,6 +118,7 @@ void QNearFieldManager_DestroyQNearFieldManager(void* ptr);
 void QNearFieldManager_DestroyQNearFieldManagerDefault(void* ptr);
 long long QNearFieldManager_TargetAccessModes(void* ptr);
 char QNearFieldManager_IsAvailable(void* ptr);
+char QNearFieldManager_IsSupported(void* ptr);
 void* QNearFieldManager_MetaObjectDefault(void* ptr);
 void* QNearFieldManager___dynamicPropertyNames_atList(void* ptr, int i);
 void QNearFieldManager___dynamicPropertyNames_setList(void* ptr, void* i);

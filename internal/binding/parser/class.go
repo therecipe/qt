@@ -233,6 +233,13 @@ func (c *Class) IsSupported() bool {
 		return false
 	}
 
+	switch c.Name {
+	case "QCborStreamReader", "QCborStreamWriter", "QCborValue", "QScopeGuard", "QTest",
+		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier":
+		c.Access = "unsupported_isBlockedClass"
+		return false
+	}
+
 	if utils.QT_VERSION_NUM() >= 5080 {
 		switch c.Name {
 		case "QSctpServer", "QSctpSocket", "Http2", "QAbstractExtensionFactory":

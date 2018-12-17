@@ -1666,6 +1666,13 @@ func (ptr *QWebSocket) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+func (ptr *QWebSocket) BytesToWrite() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QWebSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QWebSocket) ReadBufferSize() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QWebSocket_ReadBufferSize(ptr.Pointer()))
@@ -2320,13 +2327,6 @@ func (ptr *QWebSocketServer) Listen(address network.QHostAddress_ITF, port uint1
 	return false
 }
 
-func (ptr *QWebSocketServer) SetSocketDescriptor(socketDescriptor int) bool {
-	if ptr.Pointer() != nil {
-		return int8(C.QWebSocketServer_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor)))) != 0
-	}
-	return false
-}
-
 //export callbackQWebSocketServer_AcceptError
 func callbackQWebSocketServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) {
 	if signal := qt.GetSignal(ptr, "acceptError"); signal != nil {
@@ -2856,13 +2856,6 @@ func (ptr *QWebSocketServer) MetaObjectDefault() *core.QMetaObject {
 func (ptr *QWebSocketServer) MaxPendingConnections() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebSocketServer_MaxPendingConnections(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QWebSocketServer) SocketDescriptor() int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QWebSocketServer_SocketDescriptor(ptr.Pointer())))
 	}
 	return 0
 }

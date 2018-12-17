@@ -16,7 +16,7 @@ extern "C" {
 struct QtMacExtras_PackedString { char* data; long long len; };
 struct QtMacExtras_PackedList { void* data; long long len; };
 struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, struct QtMacExtras_PackedString mime, void* data, struct QtMacExtras_PackedString flav);
-void* QMacPasteboardMime_NewQMacPasteboardMime(char* t);
+void* QMacPasteboardMime_NewQMacPasteboardMime(char* vch);
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr);
 struct QtMacExtras_PackedString QMacPasteboardMime_FlavorFor(void* ptr, struct QtMacExtras_PackedString mime);
 struct QtMacExtras_PackedString QMacPasteboardMime_MimeFor(void* ptr, struct QtMacExtras_PackedString flav);
@@ -37,7 +37,9 @@ struct QtMacExtras_PackedList QMacToolBar_Items(void* ptr);
 void* QMacToolBar_NewQMacToolBar(void* parent);
 void* QMacToolBar_NewQMacToolBar2(struct QtMacExtras_PackedString identifier, void* parent);
 void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, struct QtMacExtras_PackedString text);
+void* QMacToolBar_AddAllowedStandardItem(void* ptr, long long standardItem);
 void* QMacToolBar_AddItem(void* ptr, void* icon, struct QtMacExtras_PackedString text);
+void* QMacToolBar_AddStandardItem(void* ptr, long long standardItem);
 struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_Tr(char* s, char* c, int n);
 struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_TrUtf8(char* s, char* c, int n);
 void QMacToolBar_AddSeparator(void* ptr);

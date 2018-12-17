@@ -243,7 +243,7 @@ func ShouldBuildForTarget(module, target string) bool {
 
 	case "android", "android-emulator":
 		switch module {
-		case "DBus", "WebEngine", "Designer", "PrintSupport": //TODO: PrintSupport
+		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus", "PrintSupport": //TODO: PrintSupport
 			return false
 		}
 		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {

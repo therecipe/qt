@@ -668,6 +668,16 @@ const (
 	QCanBusDevice__UserKey        QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(30)
 )
 
+//go:generate stringer -type=QCanBusDevice__Direction
+//QCanBusDevice::Direction
+type QCanBusDevice__Direction int64
+
+const (
+	QCanBusDevice__Input         QCanBusDevice__Direction = QCanBusDevice__Direction(1)
+	QCanBusDevice__Output        QCanBusDevice__Direction = QCanBusDevice__Direction(2)
+	QCanBusDevice__AllDirections QCanBusDevice__Direction = QCanBusDevice__Direction(QCanBusDevice__Input | QCanBusDevice__Output)
+)
+
 func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
 	tmpValue := NewQCanBusDeviceFromPointer(C.QCanBusDevice_NewQCanBusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -677,22 +687,22 @@ func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
 }
 
 //export callbackQCanBusDevice_InterpretErrorFrame
-func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, errorFrame unsafe.Pointer) C.struct_QtSerialBus_PackedString {
+func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, frame unsafe.Pointer) C.struct_QtSerialBus_PackedString {
 	if signal := qt.GetSignal(ptr, "interpretErrorFrame"); signal != nil {
-		tempVal := signal.(func(*QCanBusFrame) string)(NewQCanBusFrameFromPointer(errorFrame))
+		tempVal := signal.(func(*QCanBusFrame) string)(NewQCanBusFrameFromPointer(frame))
 		return C.struct_QtSerialBus_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
 	return C.struct_QtSerialBus_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 }
 
-func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(errorFrame *QCanBusFrame) string) {
+func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(frame *QCanBusFrame) string) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "interpretErrorFrame"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "interpretErrorFrame", func(errorFrame *QCanBusFrame) string {
-				signal.(func(*QCanBusFrame) string)(errorFrame)
-				return f(errorFrame)
+			qt.ConnectSignal(ptr.Pointer(), "interpretErrorFrame", func(frame *QCanBusFrame) string {
+				signal.(func(*QCanBusFrame) string)(frame)
+				return f(frame)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "interpretErrorFrame", f)
@@ -707,9 +717,9 @@ func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame() {
 	}
 }
 
-func (ptr *QCanBusDevice) InterpretErrorFrame(errorFrame QCanBusFrame_ITF) string {
+func (ptr *QCanBusDevice) InterpretErrorFrame(frame QCanBusFrame_ITF) string {
 	if ptr.Pointer() != nil {
-		return cGoUnpackString(C.QCanBusDevice_InterpretErrorFrame(ptr.Pointer(), PointerFromQCanBusFrame(errorFrame)))
+		return cGoUnpackString(C.QCanBusDevice_InterpretErrorFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)))
 	}
 	return ""
 }
@@ -937,6 +947,12 @@ func (ptr *QCanBusDevice) WriteFrame(frame QCanBusFrame_ITF) bool {
 		return int8(C.QCanBusDevice_WriteFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame))) != 0
 	}
 	return false
+}
+
+func (ptr *QCanBusDevice) Clear(direction QCanBusDevice__Direction) {
+	if ptr.Pointer() != nil {
+		C.QCanBusDevice_Clear(ptr.Pointer(), C.longlong(direction))
+	}
 }
 
 //export callbackQCanBusDevice_Close

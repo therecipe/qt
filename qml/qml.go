@@ -108,9 +108,37 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 	return nil
 }
 
+func (ptr *QJSEngine) ImportModule(fileName string) *QJSValue {
+	if ptr.Pointer() != nil {
+		var fileNameC *C.char
+		if fileName != "" {
+			fileNameC = C.CString(fileName)
+			defer C.free(unsafe.Pointer(fileNameC))
+		}
+		tmpValue := NewQJSValueFromPointer(C.QJSEngine_ImportModule(ptr.Pointer(), C.struct_QtQml_PackedString{data: fileNameC, len: C.longlong(len(fileName))}))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QJSEngine) NewArray(length uint) *QJSValue {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewArray(ptr.Pointer(), C.uint(uint32(length))))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSEngine) NewErrorObject(errorType QJSValue__ErrorType, message string) *QJSValue {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		tmpValue := NewQJSValueFromPointer(C.QJSEngine_NewErrorObject(ptr.Pointer(), C.longlong(errorType), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))}))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 		return tmpValue
 	}
@@ -209,6 +237,28 @@ func (ptr *QJSEngine) CollectGarbage() {
 func (ptr *QJSEngine) InstallExtensions(extensions QJSEngine__Extension, object QJSValue_ITF) {
 	if ptr.Pointer() != nil {
 		C.QJSEngine_InstallExtensions(ptr.Pointer(), C.longlong(extensions), PointerFromQJSValue(object))
+	}
+}
+
+func (ptr *QJSEngine) ThrowError2(errorType QJSValue__ErrorType, message string) {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.QJSEngine_ThrowError2(ptr.Pointer(), C.longlong(errorType), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))})
+	}
+}
+
+func (ptr *QJSEngine) ThrowError(message string) {
+	if ptr.Pointer() != nil {
+		var messageC *C.char
+		if message != "" {
+			messageC = C.CString(message)
+			defer C.free(unsafe.Pointer(messageC))
+		}
+		C.QJSEngine_ThrowError(ptr.Pointer(), C.struct_QtQml_PackedString{data: messageC, len: C.longlong(len(message))})
 	}
 }
 
@@ -564,6 +614,21 @@ func NewQJSValueFromPointer(ptr unsafe.Pointer) (n *QJSValue) {
 	return
 }
 
+//go:generate stringer -type=QJSValue__ErrorType
+//QJSValue::ErrorType
+type QJSValue__ErrorType int64
+
+const (
+	QJSValue__NoError        QJSValue__ErrorType = QJSValue__ErrorType(0)
+	QJSValue__GenericError   QJSValue__ErrorType = QJSValue__ErrorType(1)
+	QJSValue__EvalError      QJSValue__ErrorType = QJSValue__ErrorType(2)
+	QJSValue__RangeError     QJSValue__ErrorType = QJSValue__ErrorType(3)
+	QJSValue__ReferenceError QJSValue__ErrorType = QJSValue__ErrorType(4)
+	QJSValue__SyntaxError    QJSValue__ErrorType = QJSValue__ErrorType(5)
+	QJSValue__TypeError      QJSValue__ErrorType = QJSValue__ErrorType(6)
+	QJSValue__URIError       QJSValue__ErrorType = QJSValue__ErrorType(7)
+)
+
 //go:generate stringer -type=QJSValue__SpecialValue
 //QJSValue::SpecialValue
 type QJSValue__SpecialValue int64
@@ -770,6 +835,13 @@ func (ptr *QJSValue) Prototype() *QJSValue {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QJSValue) ErrorType() QJSValue__ErrorType {
+	if ptr.Pointer() != nil {
+		return QJSValue__ErrorType(C.QJSValue_ErrorType(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QJSValue) ToQObject() *core.QObject {
@@ -2138,6 +2210,17 @@ func (ptr *QQmlComponent) Status() QQmlComponent__Status {
 func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQQmlContextFromPointer(C.QQmlComponent_CreationContext(ptr.Pointer()))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQmlComponent) Engine() *QQmlEngine {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQQmlEngineFromPointer(C.QQmlComponent_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -7580,6 +7663,59 @@ func (ptr *QV4) DestroyQV4() {
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
+
+//go:generate stringer -type=QV4__GeneratorState
+//QV4::GeneratorState
+type QV4__GeneratorState int64
+
+const (
+	QV4__Undefined      QV4__GeneratorState = QV4__GeneratorState(0)
+	QV4__SuspendedStart QV4__GeneratorState = QV4__GeneratorState(1)
+	QV4__SuspendedYield QV4__GeneratorState = QV4__GeneratorState(2)
+	QV4__Executing      QV4__GeneratorState = QV4__GeneratorState(3)
+	QV4__Completed      QV4__GeneratorState = QV4__GeneratorState(4)
+)
+
+//go:generate stringer -type=QV4__IteratorKind
+//QV4::IteratorKind
+type QV4__IteratorKind int64
+
+const (
+	QV4__KeyIteratorKind      QV4__IteratorKind = QV4__IteratorKind(0)
+	QV4__ValueIteratorKind    QV4__IteratorKind = QV4__IteratorKind(1)
+	QV4__KeyValueIteratorKind QV4__IteratorKind = QV4__IteratorKind(2)
+)
+
+//go:generate stringer -type=QV4__AtomicModifyOps
+//QV4::AtomicModifyOps
+type QV4__AtomicModifyOps int64
+
+const (
+	QV4__AtomicAdd        QV4__AtomicModifyOps = QV4__AtomicModifyOps(0)
+	QV4__AtomicAnd        QV4__AtomicModifyOps = QV4__AtomicModifyOps(1)
+	QV4__AtomicExchange   QV4__AtomicModifyOps = QV4__AtomicModifyOps(2)
+	QV4__AtomicOr         QV4__AtomicModifyOps = QV4__AtomicModifyOps(3)
+	QV4__AtomicSub        QV4__AtomicModifyOps = QV4__AtomicModifyOps(4)
+	QV4__AtomicXor        QV4__AtomicModifyOps = QV4__AtomicModifyOps(5)
+	QV4__NAtomicModifyOps QV4__AtomicModifyOps = QV4__AtomicModifyOps(6)
+)
+
+//go:generate stringer -type=QV4__TypedArrayType
+//QV4::TypedArrayType
+type QV4__TypedArrayType int64
+
+const (
+	QV4__Int8Array         QV4__TypedArrayType = QV4__TypedArrayType(0)
+	QV4__UInt8Array        QV4__TypedArrayType = QV4__TypedArrayType(1)
+	QV4__Int16Array        QV4__TypedArrayType = QV4__TypedArrayType(2)
+	QV4__UInt16Array       QV4__TypedArrayType = QV4__TypedArrayType(3)
+	QV4__Int32Array        QV4__TypedArrayType = QV4__TypedArrayType(4)
+	QV4__UInt32Array       QV4__TypedArrayType = QV4__TypedArrayType(5)
+	QV4__UInt8ClampedArray QV4__TypedArrayType = QV4__TypedArrayType(6)
+	QV4__Float32Array      QV4__TypedArrayType = QV4__TypedArrayType(7)
+	QV4__Float64Array      QV4__TypedArrayType = QV4__TypedArrayType(8)
+	QV4__NTypedArrayTypes  QV4__TypedArrayType = QV4__TypedArrayType(9)
+)
 
 //go:generate stringer -type=QV4__TypeHint
 //QV4::TypeHint

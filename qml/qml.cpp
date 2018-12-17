@@ -131,9 +131,19 @@ void* QJSEngine_Evaluate(void* ptr, struct QtQml_PackedString program, struct Qt
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->evaluate(QString::fromUtf8(program.data, program.len), QString::fromUtf8(fileName.data, fileName.len), lineNumber));
 }
 
+void* QJSEngine_ImportModule(void* ptr, struct QtQml_PackedString fileName)
+{
+	return new QJSValue(static_cast<QJSEngine*>(ptr)->importModule(QString::fromUtf8(fileName.data, fileName.len)));
+}
+
 void* QJSEngine_NewArray(void* ptr, unsigned int length)
 {
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->newArray(length));
+}
+
+void* QJSEngine_NewErrorObject(void* ptr, long long errorType, struct QtQml_PackedString message)
+{
+	return new QJSValue(static_cast<QJSEngine*>(ptr)->newErrorObject(static_cast<QJSValue::ErrorType>(errorType), QString::fromUtf8(message.data, message.len)));
 }
 
 void* QJSEngine_NewObject(void* ptr)
@@ -169,6 +179,16 @@ void QJSEngine_CollectGarbage(void* ptr)
 void QJSEngine_InstallExtensions(void* ptr, long long extensions, void* object)
 {
 	static_cast<QJSEngine*>(ptr)->installExtensions(static_cast<QJSEngine::Extension>(extensions), *static_cast<QJSValue*>(object));
+}
+
+void QJSEngine_ThrowError2(void* ptr, long long errorType, struct QtQml_PackedString message)
+{
+	static_cast<QJSEngine*>(ptr)->throwError(static_cast<QJSValue::ErrorType>(errorType), QString::fromUtf8(message.data, message.len));
+}
+
+void QJSEngine_ThrowError(void* ptr, struct QtQml_PackedString message)
+{
+	static_cast<QJSEngine*>(ptr)->throwError(QString::fromUtf8(message.data, message.len));
 }
 
 void QJSEngine_DestroyQJSEngine(void* ptr)
@@ -474,6 +494,11 @@ void* QJSValue_Property2(void* ptr, unsigned int arrayIndex)
 void* QJSValue_Prototype(void* ptr)
 {
 	return new QJSValue(static_cast<QJSValue*>(ptr)->prototype());
+}
+
+long long QJSValue_ErrorType(void* ptr)
+{
+	return static_cast<QJSValue*>(ptr)->errorType();
 }
 
 void* QJSValue_ToQObject(void* ptr)
@@ -1285,6 +1310,11 @@ long long QQmlComponent_Status(void* ptr)
 void* QQmlComponent_CreationContext(void* ptr)
 {
 	return static_cast<QQmlComponent*>(ptr)->creationContext();
+}
+
+void* QQmlComponent_Engine(void* ptr)
+{
+	return static_cast<QQmlComponent*>(ptr)->engine();
 }
 
 void* QQmlComponent_Url(void* ptr)

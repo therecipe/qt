@@ -17,6 +17,7 @@
 #include <QGeoManeuver>
 #include <QGeoRectangle>
 #include <QGeoRoute>
+#include <QGeoRouteLeg>
 #include <QGeoRouteReply>
 #include <QGeoRouteRequest>
 #include <QGeoRouteSegment>
@@ -37,6 +38,7 @@
 #include <QOffscreenSurface>
 #include <QPaintDeviceWindow>
 #include <QPdfWriter>
+#include <QQmlEngine>
 #include <QQuickItem>
 #include <QRadioData>
 #include <QString>
@@ -249,6 +251,11 @@ void QGeoRoute_SetRouteId(void* ptr, struct QtLocation_PackedString id)
 	static_cast<QGeoRoute*>(ptr)->setRouteId(QString::fromUtf8(id.data, id.len));
 }
 
+void QGeoRoute_SetRouteLegs(void* ptr, void* legs)
+{
+	static_cast<QGeoRoute*>(ptr)->setRouteLegs(*static_cast<QList<QGeoRouteLeg>*>(legs));
+}
+
 void QGeoRoute_SetTravelMode(void* ptr, long long mode)
 {
 	static_cast<QGeoRoute*>(ptr)->setTravelMode(static_cast<QGeoRouteRequest::TravelMode>(mode));
@@ -289,6 +296,11 @@ struct QtLocation_PackedList QGeoRoute_Path(void* ptr)
 	return ({ QList<QGeoCoordinate>* tmpValue = new QList<QGeoCoordinate>(static_cast<QGeoRoute*>(ptr)->path()); QtLocation_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtLocation_PackedList QGeoRoute_RouteLegs(void* ptr)
+{
+	return ({ QList<QGeoRouteLeg>* tmpValue = new QList<QGeoRouteLeg>(static_cast<QGeoRoute*>(ptr)->routeLegs()); QtLocation_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtLocation_PackedString QGeoRoute_RouteId(void* ptr)
 {
 	return ({ QByteArray t7492be = static_cast<QGeoRoute*>(ptr)->routeId().toUtf8(); QtLocation_PackedString { const_cast<char*>(t7492be.prepend("WHITESPACE").constData()+10), t7492be.size()-10 }; });
@@ -320,6 +332,22 @@ void* QGeoRoute___setPath_path_newList(void* ptr)
 	return new QList<QGeoCoordinate>();
 }
 
+void* QGeoRoute___setRouteLegs_legs_atList(void* ptr, int i)
+{
+	return new QGeoRouteLeg(({QGeoRouteLeg tmp = static_cast<QList<QGeoRouteLeg>*>(ptr)->at(i); if (i == static_cast<QList<QGeoRouteLeg>*>(ptr)->size()-1) { static_cast<QList<QGeoRouteLeg>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QGeoRoute___setRouteLegs_legs_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRouteLeg>*>(ptr)->append(*static_cast<QGeoRouteLeg*>(i));
+}
+
+void* QGeoRoute___setRouteLegs_legs_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QGeoRouteLeg>();
+}
+
 void* QGeoRoute___path_atList(void* ptr, int i)
 {
 	return new QGeoCoordinate(({QGeoCoordinate tmp = static_cast<QList<QGeoCoordinate>*>(ptr)->at(i); if (i == static_cast<QList<QGeoCoordinate>*>(ptr)->size()-1) { static_cast<QList<QGeoCoordinate>*>(ptr)->~QList(); free(ptr); }; tmp; }));
@@ -334,6 +362,57 @@ void* QGeoRoute___path_newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QList<QGeoCoordinate>();
+}
+
+void* QGeoRoute___routeLegs_atList(void* ptr, int i)
+{
+	return new QGeoRouteLeg(({QGeoRouteLeg tmp = static_cast<QList<QGeoRouteLeg>*>(ptr)->at(i); if (i == static_cast<QList<QGeoRouteLeg>*>(ptr)->size()-1) { static_cast<QList<QGeoRouteLeg>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QGeoRoute___routeLegs_setList(void* ptr, void* i)
+{
+	static_cast<QList<QGeoRouteLeg>*>(ptr)->append(*static_cast<QGeoRouteLeg*>(i));
+}
+
+void* QGeoRoute___routeLegs_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QGeoRouteLeg>();
+}
+
+void* QGeoRouteLeg_NewQGeoRouteLeg()
+{
+	return new QGeoRouteLeg();
+}
+
+void* QGeoRouteLeg_NewQGeoRouteLeg2(void* other)
+{
+	return new QGeoRouteLeg(*static_cast<QGeoRouteLeg*>(other));
+}
+
+void QGeoRouteLeg_SetLegIndex(void* ptr, int idx)
+{
+	static_cast<QGeoRouteLeg*>(ptr)->setLegIndex(idx);
+}
+
+void QGeoRouteLeg_SetOverallRoute(void* ptr, void* route)
+{
+	static_cast<QGeoRouteLeg*>(ptr)->setOverallRoute(*static_cast<QGeoRoute*>(route));
+}
+
+void QGeoRouteLeg_DestroyQGeoRouteLeg(void* ptr)
+{
+	static_cast<QGeoRouteLeg*>(ptr)->~QGeoRouteLeg();
+}
+
+void* QGeoRouteLeg_OverallRoute(void* ptr)
+{
+	return new QGeoRoute(static_cast<QGeoRouteLeg*>(ptr)->overallRoute());
+}
+
+int QGeoRouteLeg_LegIndex(void* ptr)
+{
+	return static_cast<QGeoRouteLeg*>(ptr)->legIndex();
 }
 
 class MyQGeoRouteReply: public QGeoRouteReply
@@ -1232,6 +1311,11 @@ void* QGeoRouteSegment_NextRouteSegment(void* ptr)
 struct QtLocation_PackedList QGeoRouteSegment_Path(void* ptr)
 {
 	return ({ QList<QGeoCoordinate>* tmpValue = new QList<QGeoCoordinate>(static_cast<QGeoRouteSegment*>(ptr)->path()); QtLocation_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QGeoRouteSegment_IsLegLastSegment(void* ptr)
+{
+	return static_cast<QGeoRouteSegment*>(ptr)->isLegLastSegment();
 }
 
 char QGeoRouteSegment_IsValid(void* ptr)
@@ -2143,6 +2227,11 @@ void QGeoServiceProvider_SetLocale(void* ptr, void* locale)
 void QGeoServiceProvider_SetParameters(void* ptr, void* parameters)
 {
 	static_cast<QGeoServiceProvider*>(ptr)->setParameters(({ QMap<QString, QVariant>* tmpP = static_cast<QMap<QString, QVariant>*>(parameters); QMap<QString, QVariant> tmpV = *tmpP; tmpP->~QMap(); free(tmpP); tmpV; }));
+}
+
+void QGeoServiceProvider_SetQmlEngine(void* ptr, void* engine)
+{
+	static_cast<QGeoServiceProvider*>(ptr)->setQmlEngine(static_cast<QQmlEngine*>(engine));
 }
 
 void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr)

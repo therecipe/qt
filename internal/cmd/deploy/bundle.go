@@ -324,12 +324,18 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		default:
 			paths := make([]string, 0)
 			// make windeployqt run correctly
-			path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
+			path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64", "bin")
+			if !utils.ExistsDir(path) {
+				path = strings.Replace(path, "mingw73_64", "mingw53_32", -1)
+			}
 			if !utils.ExistsDir(path) {
 				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
 			}
 			paths = append(paths, path)
-			path = filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin")
+			path = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
+			if !utils.ExistsDir(path) {
+				path = strings.Replace(path, "mingw730_64", "mingw530_32", -1)
+			}
 			if !utils.ExistsDir(path) {
 				path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
 			}
@@ -346,7 +352,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			copy(assets, depPath)
 
 			if utils.QT_WEBKIT() {
-				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin")
+				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64", "bin")
+				if !utils.ExistsDir(libraryPath) {
+					libraryPath = strings.Replace(libraryPath, "mingw73_64", "mingw53_32", -1)
+				}
 				if !utils.ExistsDir(libraryPath) {
 					libraryPath = strings.Replace(libraryPath, "mingw53_32", "mingw49_32", -1)
 				}
@@ -388,18 +397,18 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		wrapper := filepath.Join(depPath, "c_main_wrapper.cpp")
 		utils.Save(wrapper, "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(argc, argv); }")
-		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm"), "-shared")
+		cmd := exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "-shared")
 		if target == "android-emulator" {
-			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "--sysroot="+filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86"), "-shared")
+			cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", "-Wl,-soname,libgo.so", "-shared")
 		}
+		cmd.Args = append(cmd.Args, strings.Split(env["CGO_CPPFLAGS"], " ")...)
+		cmd.Args = append(cmd.Args, "-I"+filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include"))
+		cmd.Args = append(cmd.Args, strings.Split(env["CGO_LDFLAGS"], " ")...)
 		cmd.Dir = depPath
 		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v on %v", target, runtime.GOOS))
 		utils.RemoveAll(wrapper)
 
-		strip := exec.Command(filepath.Join(filepath.Dir(compiler), "arm-linux-androideabi-strip"), "libgo.so")
-		if target == "android-emulator" {
-			strip = exec.Command(filepath.Join(filepath.Dir(compiler), "i686-linux-android-strip"), "libgo.so")
-		}
+		strip := exec.Command(filepath.Join(filepath.Dir(compiler), "llvm-strip"), "--strip-all", "libgo.so")
 		strip.Dir = depPath
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 
@@ -467,15 +476,15 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		if utils.QT_VAGRANT() {
 			depPathUNC := strings.Replace(depPath, "C:\\media\\sf_GOPATH", "C:\\media\\UNC\\vboxsrv\\media_sf_GOPATH", -1)
 			if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
-				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
+				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "release", "build-release-signed.apk"), depPath)
 			} else {
-				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
+				copy(filepath.Join(depPathUNC, "build", "build", "outputs", "apk", "debug", "build-debug.apk"), depPath)
 			}
 		} else {
 			if utils.ExistsFile(filepath.Join(path, target, name+".jks")) {
-				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), depPath)
+				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "release", "build-release-signed.apk"), depPath)
 			} else {
-				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), depPath)
+				copy(filepath.Join(depPath, "build", "build", "outputs", "apk", "debug", "build-debug.apk"), depPath)
 			}
 		}
 

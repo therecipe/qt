@@ -61,6 +61,10 @@ func LoadModule(m string) *Module {
 		return sailfishModule()
 	}
 
+	if utils.QT_API_NUM(utils.QT_VERSION()) >= 5120 && m == "QuickControls2" {
+		m = "QuickControls"
+	}
+
 	module := new(Module)
 	var err error
 	switch {
@@ -68,13 +72,16 @@ func LoadModule(m string) *Module {
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.8.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_MXE():
-		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.11.1"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.12.0"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
-	case utils.QT_HOMEBREW(), utils.QT_MACPORTS(), utils.QT_NIX():
+	case utils.QT_HOMEBREW():
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.12.0"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+
+	case utils.QT_MACPORTS(), utils.QT_NIX():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.11.1"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_MSYS2():
-		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.11.1"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.12.0"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_UBPORTS_VERSION() == "xenial":
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_API("5.9.0"), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)

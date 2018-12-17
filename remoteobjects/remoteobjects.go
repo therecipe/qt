@@ -720,8 +720,8 @@ func NewQRemoteObjectHost3(address core.QUrl_ITF, parent core.QObject_ITF) *QRem
 	return tmpValue
 }
 
-func NewQRemoteObjectHost2(address core.QUrl_ITF, registryAddress core.QUrl_ITF, parent core.QObject_ITF) *QRemoteObjectHost {
-	tmpValue := NewQRemoteObjectHostFromPointer(C.QRemoteObjectHost_NewQRemoteObjectHost2(core.PointerFromQUrl(address), core.PointerFromQUrl(registryAddress), core.PointerFromQObject(parent)))
+func NewQRemoteObjectHost2(address core.QUrl_ITF, registryAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas, parent core.QObject_ITF) *QRemoteObjectHost {
+	tmpValue := NewQRemoteObjectHostFromPointer(C.QRemoteObjectHost_NewQRemoteObjectHost2(core.PointerFromQUrl(address), core.PointerFromQUrl(registryAddress), C.longlong(allowedSchemas), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -729,21 +729,21 @@ func NewQRemoteObjectHost2(address core.QUrl_ITF, registryAddress core.QUrl_ITF,
 }
 
 //export callbackQRemoteObjectHost_SetHostUrl
-func callbackQRemoteObjectHost_SetHostUrl(ptr unsafe.Pointer, hostAddress unsafe.Pointer) C.char {
+func callbackQRemoteObjectHost_SetHostUrl(ptr unsafe.Pointer, hostAddress unsafe.Pointer, allowedSchemas C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "setHostUrl"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl) bool)(core.NewQUrlFromPointer(hostAddress)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectHostFromPointer(ptr).SetHostUrlDefault(core.NewQUrlFromPointer(hostAddress)))))
+	return C.char(int8(qt.GoBoolToInt(NewQRemoteObjectHostFromPointer(ptr).SetHostUrlDefault(core.NewQUrlFromPointer(hostAddress), QRemoteObjectHostBase__AllowedSchemas(allowedSchemas)))))
 }
 
-func (ptr *QRemoteObjectHost) ConnectSetHostUrl(f func(hostAddress *core.QUrl) bool) {
+func (ptr *QRemoteObjectHost) ConnectSetHostUrl(f func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setHostUrl"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", func(hostAddress *core.QUrl) bool {
-				signal.(func(*core.QUrl) bool)(hostAddress)
-				return f(hostAddress)
+			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", func(hostAddress *core.QUrl, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
+				signal.(func(*core.QUrl, QRemoteObjectHostBase__AllowedSchemas) bool)(hostAddress, allowedSchemas)
+				return f(hostAddress, allowedSchemas)
 			})
 		} else {
 			qt.ConnectSignal(ptr.Pointer(), "setHostUrl", f)
@@ -758,16 +758,16 @@ func (ptr *QRemoteObjectHost) DisconnectSetHostUrl() {
 	}
 }
 
-func (ptr *QRemoteObjectHost) SetHostUrl(hostAddress core.QUrl_ITF) bool {
+func (ptr *QRemoteObjectHost) SetHostUrl(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress))) != 0
+		return int8(C.QRemoteObjectHost_SetHostUrl(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
 	}
 	return false
 }
 
-func (ptr *QRemoteObjectHost) SetHostUrlDefault(hostAddress core.QUrl_ITF) bool {
+func (ptr *QRemoteObjectHost) SetHostUrlDefault(hostAddress core.QUrl_ITF, allowedSchemas QRemoteObjectHostBase__AllowedSchemas) bool {
 	if ptr.Pointer() != nil {
-		return int8(C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress))) != 0
+		return int8(C.QRemoteObjectHost_SetHostUrlDefault(ptr.Pointer(), core.PointerFromQUrl(hostAddress), C.longlong(allowedSchemas))) != 0
 	}
 	return false
 }
@@ -904,6 +904,16 @@ func NewQRemoteObjectHostBaseFromPointer(ptr unsafe.Pointer) (n *QRemoteObjectHo
 	n.SetPointer(ptr)
 	return
 }
+
+//go:generate stringer -type=QRemoteObjectHostBase__AllowedSchemas
+//QRemoteObjectHostBase::AllowedSchemas
+type QRemoteObjectHostBase__AllowedSchemas int64
+
+const (
+	QRemoteObjectHostBase__BuiltInSchemasOnly        QRemoteObjectHostBase__AllowedSchemas = QRemoteObjectHostBase__AllowedSchemas(0)
+	QRemoteObjectHostBase__AllowExternalRegistration QRemoteObjectHostBase__AllowedSchemas = QRemoteObjectHostBase__AllowedSchemas(1)
+)
+
 func (ptr *QRemoteObjectHostBase) DisableRemoting(remoteObject core.QObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QRemoteObjectHostBase_DisableRemoting(ptr.Pointer(), core.PointerFromQObject(remoteObject))) != 0
@@ -939,6 +949,58 @@ func (ptr *QRemoteObjectHostBase) EnableRemoting2(object core.QObject_ITF, name 
 		return int8(C.QRemoteObjectHostBase_EnableRemoting2(ptr.Pointer(), core.PointerFromQObject(object), C.struct_QtRemoteObjects_PackedString{data: nameC, len: C.longlong(len(name))})) != 0
 	}
 	return false
+}
+
+func (ptr *QRemoteObjectHostBase) AddHostSideConnection(ioDevice core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectHostBase_AddHostSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
+	}
+}
+
+//export callbackQRemoteObjectHostBase_DestroyQRemoteObjectHostBase
+func callbackQRemoteObjectHostBase_DestroyQRemoteObjectHostBase(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "~QRemoteObjectHostBase"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQRemoteObjectHostBaseFromPointer(ptr).DestroyQRemoteObjectHostBaseDefault()
+	}
+}
+
+func (ptr *QRemoteObjectHostBase) ConnectDestroyQRemoteObjectHostBase(f func()) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "~QRemoteObjectHostBase"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase", f)
+		}
+	}
+}
+
+func (ptr *QRemoteObjectHostBase) DisconnectDestroyQRemoteObjectHostBase() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "~QRemoteObjectHostBase")
+	}
+}
+
+func (ptr *QRemoteObjectHostBase) DestroyQRemoteObjectHostBase() {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectHostBase_DestroyQRemoteObjectHostBase(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QRemoteObjectHostBase) DestroyQRemoteObjectHostBaseDefault() {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectHostBase_DestroyQRemoteObjectHostBaseDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
 }
 
 func (ptr *QRemoteObjectHostBase) __enableRemoting_roles_atList3(i int) int {
@@ -1013,6 +1075,7 @@ const (
 	QRemoteObjectNode__MissingObjectName             QRemoteObjectNode__ErrorCode = QRemoteObjectNode__ErrorCode(8)
 	QRemoteObjectNode__HostUrlInvalid                QRemoteObjectNode__ErrorCode = QRemoteObjectNode__ErrorCode(9)
 	QRemoteObjectNode__ProtocolMismatch              QRemoteObjectNode__ErrorCode = QRemoteObjectNode__ErrorCode(10)
+	QRemoteObjectNode__ListenFailed                  QRemoteObjectNode__ErrorCode = QRemoteObjectNode__ErrorCode(11)
 )
 
 func (ptr *QRemoteObjectNode) AcquireDynamic(name string) *QRemoteObjectDynamicReplica {
@@ -1159,6 +1222,12 @@ func (ptr *QRemoteObjectNode) WaitForRegistry(timeout int) bool {
 		return int8(C.QRemoteObjectNode_WaitForRegistry(ptr.Pointer(), C.int(int32(timeout)))) != 0
 	}
 	return false
+}
+
+func (ptr *QRemoteObjectNode) AddClientSideConnection(ioDevice core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRemoteObjectNode_AddClientSideConnection(ptr.Pointer(), core.PointerFromQIODevice(ioDevice))
+	}
 }
 
 //export callbackQRemoteObjectNode_Error
@@ -2641,6 +2710,14 @@ func (ptr *QRemoteObjectStringLiterals) MODEL() string {
 	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_MODEL())
 }
 
+func QRemoteObjectStringLiterals_QAIMADAPTER() string {
+	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_QAIMADAPTER())
+}
+
+func (ptr *QRemoteObjectStringLiterals) QAIMADAPTER() string {
+	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_QAIMADAPTER())
+}
+
 func QRemoteObjectStringLiterals_Local() string {
 	return cGoUnpackString(C.QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Local())
 }
@@ -2831,26 +2908,10 @@ func (ptr *QtRemoteObjects) Qt_getEnumName(vqt QtRemoteObjects__InitialAction) s
 	return cGoUnpackString(C.QtRemoteObjects_QtRemoteObjects_Qt_getEnumName(C.longlong(vqt)))
 }
 
-func QtRemoteObjects_CopyStoredProperties3(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties3(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
+func QtRemoteObjects_CopyStoredProperties(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
+	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
 }
 
-func (ptr *QtRemoteObjects) CopyStoredProperties3(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties3(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
-}
-
-func QtRemoteObjects_CopyStoredProperties2(mo core.QMetaObject_ITF, src unsafe.Pointer, dst core.QDataStream_ITF) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties2(core.PointerFromQMetaObject(mo), src, core.PointerFromQDataStream(dst))
-}
-
-func (ptr *QtRemoteObjects) CopyStoredProperties2(mo core.QMetaObject_ITF, src unsafe.Pointer, dst core.QDataStream_ITF) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties2(core.PointerFromQMetaObject(mo), src, core.PointerFromQDataStream(dst))
-}
-
-func QtRemoteObjects_CopyStoredProperties(mo core.QMetaObject_ITF, src unsafe.Pointer, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), src, dst)
-}
-
-func (ptr *QtRemoteObjects) CopyStoredProperties(mo core.QMetaObject_ITF, src unsafe.Pointer, dst unsafe.Pointer) {
-	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), src, dst)
+func (ptr *QtRemoteObjects) CopyStoredProperties(mo core.QMetaObject_ITF, src core.QDataStream_ITF, dst unsafe.Pointer) {
+	C.QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(core.PointerFromQMetaObject(mo), core.PointerFromQDataStream(src), dst)
 }

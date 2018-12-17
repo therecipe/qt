@@ -108,6 +108,7 @@ const (
 	OSXBluetooth__characteristicRead        OSXBluetooth__OperationTimeout = OSXBluetooth__OperationTimeout(4)
 	OSXBluetooth__descriptorsDiscovery      OSXBluetooth__OperationTimeout = OSXBluetooth__OperationTimeout(5)
 	OSXBluetooth__descriptorRead            OSXBluetooth__OperationTimeout = OSXBluetooth__OperationTimeout(6)
+	OSXBluetooth__characteristicWrite       OSXBluetooth__OperationTimeout = OSXBluetooth__OperationTimeout(7)
 )
 
 type QBluetooth struct {
@@ -506,6 +507,45 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectDeviceDiscovered() {
 func (ptr *QBluetoothDeviceDiscoveryAgent) DeviceDiscovered(info QBluetoothDeviceInfo_ITF) {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceDiscoveryAgent_DeviceDiscovered(ptr.Pointer(), PointerFromQBluetoothDeviceInfo(info))
+	}
+}
+
+//export callbackQBluetoothDeviceDiscoveryAgent_DeviceUpdated
+func callbackQBluetoothDeviceDiscoveryAgent_DeviceUpdated(ptr unsafe.Pointer, info unsafe.Pointer, updatedFields C.longlong) {
+	if signal := qt.GetSignal(ptr, "deviceUpdated"); signal != nil {
+		signal.(func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(NewQBluetoothDeviceInfoFromPointer(info), QBluetoothDeviceInfo__Field(updatedFields))
+	}
+
+}
+
+func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceUpdated(f func(info *QBluetoothDeviceInfo, updatedFields QBluetoothDeviceInfo__Field)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "deviceUpdated") {
+			C.QBluetoothDeviceDiscoveryAgent_ConnectDeviceUpdated(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "deviceUpdated"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", func(info *QBluetoothDeviceInfo, updatedFields QBluetoothDeviceInfo__Field) {
+				signal.(func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(info, updatedFields)
+				f(info, updatedFields)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", f)
+		}
+	}
+}
+
+func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectDeviceUpdated() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceDiscoveryAgent_DisconnectDeviceUpdated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "deviceUpdated")
+	}
+}
+
+func (ptr *QBluetoothDeviceDiscoveryAgent) DeviceUpdated(info QBluetoothDeviceInfo_ITF, updatedFields QBluetoothDeviceInfo__Field) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceDiscoveryAgent_DeviceUpdated(ptr.Pointer(), PointerFromQBluetoothDeviceInfo(info), C.longlong(updatedFields))
 	}
 }
 
@@ -1157,6 +1197,17 @@ const (
 	QBluetoothDeviceInfo__DataUnavailable QBluetoothDeviceInfo__DataCompleteness = QBluetoothDeviceInfo__DataCompleteness(2)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__Field
+//QBluetoothDeviceInfo::Field
+type QBluetoothDeviceInfo__Field int64
+
+const (
+	QBluetoothDeviceInfo__None             QBluetoothDeviceInfo__Field = QBluetoothDeviceInfo__Field(0x0000)
+	QBluetoothDeviceInfo__RSSI             QBluetoothDeviceInfo__Field = QBluetoothDeviceInfo__Field(0x0001)
+	QBluetoothDeviceInfo__ManufacturerData QBluetoothDeviceInfo__Field = QBluetoothDeviceInfo__Field(0x0002)
+	QBluetoothDeviceInfo__All              QBluetoothDeviceInfo__Field = QBluetoothDeviceInfo__Field(0x7fff)
+)
+
 //go:generate stringer -type=QBluetoothDeviceInfo__MajorDeviceClass
 //QBluetoothDeviceInfo::MajorDeviceClass
 type QBluetoothDeviceInfo__MajorDeviceClass int64
@@ -1370,6 +1421,13 @@ func NewQBluetoothDeviceInfo3(uuid QBluetoothUuid_ITF, name string, classOfDevic
 	return tmpValue
 }
 
+func (ptr *QBluetoothDeviceInfo) SetManufacturerData(manufacturerId uint16, data core.QByteArray_ITF) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QBluetoothDeviceInfo_SetManufacturerData(ptr.Pointer(), C.ushort(manufacturerId), core.PointerFromQByteArray(data))) != 0
+	}
+	return false
+}
+
 func (ptr *QBluetoothDeviceInfo) SetCached(cached bool) {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceInfo_SetCached(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(cached))))
@@ -1467,6 +1525,20 @@ func (ptr *QBluetoothDeviceInfo) Name() string {
 	return ""
 }
 
+func (ptr *QBluetoothDeviceInfo) ManufacturerIds() []uint16 {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtBluetooth_PackedList) []uint16 {
+			out := make([]uint16, int(l.len))
+			tmpList := NewQBluetoothDeviceInfoFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__manufacturerIds_atList(i)
+			}
+			return out
+		}(C.QBluetoothDeviceInfo_ManufacturerIds(ptr.Pointer()))
+	}
+	return make([]uint16, 0)
+}
+
 func (ptr *QBluetoothDeviceInfo) IsCached() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QBluetoothDeviceInfo_IsCached(ptr.Pointer())) != 0
@@ -1531,6 +1603,40 @@ func (ptr *QBluetoothDeviceInfo) __serviceUuids_setList(i QBluetoothUuid_ITF) {
 
 func (ptr *QBluetoothDeviceInfo) __serviceUuids_newList() unsafe.Pointer {
 	return C.QBluetoothDeviceInfo___serviceUuids_newList(ptr.Pointer())
+}
+
+func (ptr *QBluetoothDeviceInfo) __manufacturerIds_atList(i int) uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QBluetoothDeviceInfo___manufacturerIds_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QBluetoothDeviceInfo) __manufacturerIds_setList(i uint16) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceInfo___manufacturerIds_setList(ptr.Pointer(), C.ushort(i))
+	}
+}
+
+func (ptr *QBluetoothDeviceInfo) __manufacturerIds_newList() unsafe.Pointer {
+	return C.QBluetoothDeviceInfo___manufacturerIds_newList(ptr.Pointer())
+}
+
+func (ptr *QBluetoothDeviceInfo) ____manufacturerData_keyList_atList2(i int) uint16 {
+	if ptr.Pointer() != nil {
+		return uint16(C.QBluetoothDeviceInfo_____manufacturerData_keyList_atList2(ptr.Pointer(), C.int(int32(i))))
+	}
+	return 0
+}
+
+func (ptr *QBluetoothDeviceInfo) ____manufacturerData_keyList_setList2(i uint16) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceInfo_____manufacturerData_keyList_setList2(ptr.Pointer(), C.ushort(i))
+	}
+}
+
+func (ptr *QBluetoothDeviceInfo) ____manufacturerData_keyList_newList2() unsafe.Pointer {
+	return C.QBluetoothDeviceInfo_____manufacturerData_keyList_newList2(ptr.Pointer())
 }
 
 type QBluetoothHostInfo struct {
@@ -7350,15 +7456,6 @@ func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
-}
-
-func (ptr *QLowEnergyAdvertisingData) ManufacturerData() *core.QByteArray {
-	if ptr.Pointer() != nil {
-		tmpValue := core.NewQByteArrayFromPointer(C.QLowEnergyAdvertisingData_ManufacturerData(ptr.Pointer()))
-		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
-		return tmpValue
-	}
-	return nil
 }
 
 func (ptr *QLowEnergyAdvertisingData) RawData() *core.QByteArray {

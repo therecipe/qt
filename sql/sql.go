@@ -6347,6 +6347,21 @@ func (ptr *QSqlRelationalDelegate) CreateEditorDefault(parent widgets.QWidget_IT
 	return nil
 }
 
+//export callbackQSqlRelationalDelegate_SetEditorData
+func callbackQSqlRelationalDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "setEditorData"); signal != nil {
+		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_SetEditorDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
 //export callbackQSqlRelationalDelegate_SetModelData
 func callbackQSqlRelationalDelegate_SetModelData(ptr unsafe.Pointer, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setModelData"); signal != nil {
@@ -6608,21 +6623,6 @@ func callbackQSqlRelationalDelegate_Paint(ptr unsafe.Pointer, painter unsafe.Poi
 func (ptr *QSqlRelationalDelegate) PaintDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalDelegate_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
-	}
-}
-
-//export callbackQSqlRelationalDelegate_SetEditorData
-func callbackQSqlRelationalDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "setEditorData"); signal != nil {
-		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-	} else {
-		NewQSqlRelationalDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
-	}
-}
-
-func (ptr *QSqlRelationalDelegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalDelegate_SetEditorDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
 	}
 }
 

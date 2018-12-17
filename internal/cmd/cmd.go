@@ -325,12 +325,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARM":  "7",
 
 			"CGO_ENABLED": "1",
-			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
+			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			//TODO: move flags into template_cgo_qmake ?
-			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v -I %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm", "usr", "include"), filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "lib", "gcc", "arm-linux-androideabi", "4.9.x", "include")),
-			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
+			"CGO_CPPFLAGS": fmt.Sprintf("-D__ANDROID_API__=16 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v -isystem %v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "arm-linux-androideabi")),
+			"CGO_LDFLAGS": fmt.Sprintf("-D__ANDROID_API__=16 -target armv7-none-linux-androideabi -gcc-toolchain %v --sysroot=%v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-arm")),
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
@@ -350,12 +354,16 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOARCH": "386",
 
 			"CGO_ENABLED": "1",
-			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-gcc"),
-			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "i686-linux-android-g++"),
+			"CC":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang"),
+			"CXX":         filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "llvm", "prebuilt", runtime.GOOS+"-x86_64", "bin", "clang++"),
 
-			//TODO: move flags into template_cgo_qmake ?
-			"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v -I %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86", "usr", "include"), filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64", "lib", "gcc", "i686-linux-android", "4.9.x", "include")),
-			"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86")),
+			"CGO_CPPFLAGS": fmt.Sprintf("-D__ANDROID_API__=16 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v -isystem %v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "i686-linux-android")),
+			"CGO_LDFLAGS": fmt.Sprintf("-D__ANDROID_API__=16 -target i686-none-linux-android -mstackrealign -gcc-toolchain %v --sysroot=%v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "x86-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-16", "arch-x86")),
 		}
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
@@ -432,6 +440,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
+		if utils.QT_VERSION_NUM() >= 5120 {
+			env["GOARCH"] = "amd64"
+		}
+
 		if runtime.GOOS == target {
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
@@ -439,7 +451,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
 				// use gcc shipped with qt installation
-				path := filepath.Join(utils.QT_DIR(), "Tools", "mingw530_32", "bin")
+				path := filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
+				if !utils.ExistsDir(path) {
+					path = strings.Replace(path, "mingw730_64", "mingw530_32", -1)
+				}
 				if !utils.ExistsDir(path) {
 					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
 				}

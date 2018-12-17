@@ -608,6 +608,11 @@ char QNearFieldManager_IsAvailable(void* ptr)
 	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
 }
 
+char QNearFieldManager_IsSupported(void* ptr)
+{
+	return static_cast<QNearFieldManager*>(ptr)->isSupported();
+}
+
 void* QNearFieldManager_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::metaObject());

@@ -32,7 +32,7 @@ set PATH=%PATH%;C:\Progra~1\Git\bin
 
 
 ::install Go + pull repo
-set GO=go1.11.1.windows-amd64.msi
+set GO=go1.11.2.windows-amd64.msi
 curl -sL --retry 10 --retry-delay 10 -o %TMP%\%GO% https://storage.googleapis.com/golang/%GO%
 %TMP%\%GO% /passive /norestart
 del %TMP%\%GO% /Q
@@ -110,8 +110,8 @@ if "%QT_MSYS2%" == "true" (
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!QT! https://download.qt.io/official_releases/online_installers/!QT!
   %TMP%\!QT! -v --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs WINDOWS=true
   del %TMP%\!QT! /Q
-  setx /M PATH "%PATH%;C:\Qt\Tools\mingw530_32\bin"
-  set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
+  setx /M PATH "%PATH%;C:\Qt\Tools\mingw730_64\bin"
+  set PATH=%PATH%;C:\Qt\Tools\mingw730_64\bin
 )
 
 
@@ -153,7 +153,7 @@ if "%ANDROID%" == "true" (
 
 
   ::install Android NDK
-  set NDK=android-ndk-r14b-windows-x86_64.zip
+  set NDK=android-ndk-r18b-windows-x86_64.zip
   curl -sL --retry 10 --retry-delay 10 -o %TMP%\!NDK! https://dl.google.com/android/repository/!NDK!
   7z x %TMP%\!NDK! -oC:\
   del %TMP%\!NDK! /Q

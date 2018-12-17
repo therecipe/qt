@@ -12,7 +12,7 @@ ENV QT_QMAKE_DIR /usr/local/Qt-5.12.0/bin
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
-COPY --from=therecipe/qt:linux /opt/Qt/5.11.1/gcc_64/include /opt/Qt/5.11.1/gcc_64/include
+COPY --from=therecipe/qt:linux /opt/Qt/5.12.0/gcc_64/include /opt/Qt/5.12.0/gcc_64/include
 COPY --from=therecipe/qt:linux /opt/Qt/Docs /opt/Qt/Docs
 COPY --from=therecipe/qt:js_base $HOME/emsdk $HOME/emsdk
 COPY --from=therecipe/qt:js_base $HOME/.emscripten $HOME/.emscripten

@@ -80,6 +80,7 @@
 #include <QWebEngineUrlRequestInfo>
 #include <QWebEngineUrlRequestInterceptor>
 #include <QWebEngineUrlRequestJob>
+#include <QWebEngineUrlScheme>
 #include <QWebEngineUrlSchemeHandler>
 #include <QWebEngineView>
 #include <QWheelEvent>
@@ -1375,6 +1376,7 @@ public:
 	void Signal_LoadProgress(int progress) { callbackQWebEnginePage_LoadProgress(this, progress); };
 	void Signal_LoadStarted() { callbackQWebEnginePage_LoadStarted(this); };
 	void Signal_PdfPrintingFinished(const QString & filePath, bool success) { QByteArray t7df503 = filePath.toUtf8(); QtWebEngine_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };callbackQWebEnginePage_PdfPrintingFinished(this, filePathPacked, success); };
+	void Signal_PrintRequested() { callbackQWebEnginePage_PrintRequested(this); };
 	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { QByteArray teddfac = proxyHost.toUtf8(); QtWebEngine_PackedString proxyHostPacked = { const_cast<char*>(teddfac.prepend("WHITESPACE").constData()+10), teddfac.size()-10 };callbackQWebEnginePage_ProxyAuthenticationRequired(this, const_cast<QUrl*>(&requestUrl), authenticator, proxyHostPacked); };
 	void Signal_RecentlyAudibleChanged(bool recentlyAudible) { callbackQWebEnginePage_RecentlyAudibleChanged(this, recentlyAudible); };
 	void Signal_RenderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode) { callbackQWebEnginePage_RenderProcessTerminated(this, terminationStatus, exitCode); };
@@ -1787,6 +1789,21 @@ void QWebEnginePage_DisconnectPdfPrintingFinished(void* ptr)
 void QWebEnginePage_PdfPrintingFinished(void* ptr, struct QtWebEngine_PackedString filePath, char success)
 {
 	static_cast<QWebEnginePage*>(ptr)->pdfPrintingFinished(QString::fromUtf8(filePath.data, filePath.len), success != 0);
+}
+
+void QWebEnginePage_ConnectPrintRequested(void* ptr)
+{
+	QObject::connect(static_cast<QWebEnginePage*>(ptr), static_cast<void (QWebEnginePage::*)()>(&QWebEnginePage::printRequested), static_cast<MyQWebEnginePage*>(ptr), static_cast<void (MyQWebEnginePage::*)()>(&MyQWebEnginePage::Signal_PrintRequested));
+}
+
+void QWebEnginePage_DisconnectPrintRequested(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebEnginePage*>(ptr), static_cast<void (QWebEnginePage::*)()>(&QWebEnginePage::printRequested), static_cast<MyQWebEnginePage*>(ptr), static_cast<void (MyQWebEnginePage::*)()>(&MyQWebEnginePage::Signal_PrintRequested));
+}
+
+void QWebEnginePage_PrintRequested(void* ptr)
+{
+	static_cast<QWebEnginePage*>(ptr)->printRequested();
 }
 
 void QWebEnginePage_PrintToPdf(void* ptr, struct QtWebEngine_PackedString filePath, void* layout)
@@ -3307,6 +3324,76 @@ void QWebEngineUrlRequestJob_DisconnectNotifyDefault(void* ptr, void* sign)
 void QWebEngineUrlRequestJob_TimerEventDefault(void* ptr, void* event)
 {
 		static_cast<QWebEngineUrlRequestJob*>(ptr)->QWebEngineUrlRequestJob::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void* QWebEngineUrlScheme_QWebEngineUrlScheme_SchemeByName(void* name)
+{
+	return new QWebEngineUrlScheme(QWebEngineUrlScheme::schemeByName(*static_cast<QByteArray*>(name)));
+}
+
+void* QWebEngineUrlScheme_NewQWebEngineUrlScheme()
+{
+	return new QWebEngineUrlScheme();
+}
+
+void* QWebEngineUrlScheme_NewQWebEngineUrlScheme4(void* that)
+{
+	return new QWebEngineUrlScheme(*static_cast<QWebEngineUrlScheme*>(that));
+}
+
+void* QWebEngineUrlScheme_NewQWebEngineUrlScheme2(void* name)
+{
+	return new QWebEngineUrlScheme(*static_cast<QByteArray*>(name));
+}
+
+void* QWebEngineUrlScheme_NewQWebEngineUrlScheme3(void* that)
+{
+	return new QWebEngineUrlScheme(*static_cast<QWebEngineUrlScheme*>(that));
+}
+
+void QWebEngineUrlScheme_QWebEngineUrlScheme_RegisterScheme(void* scheme)
+{
+	QWebEngineUrlScheme::registerScheme(*static_cast<QWebEngineUrlScheme*>(scheme));
+}
+
+void QWebEngineUrlScheme_SetDefaultPort(void* ptr, int newValue)
+{
+	static_cast<QWebEngineUrlScheme*>(ptr)->setDefaultPort(newValue);
+}
+
+void QWebEngineUrlScheme_SetFlags(void* ptr, long long newValue)
+{
+	static_cast<QWebEngineUrlScheme*>(ptr)->setFlags(static_cast<QWebEngineUrlScheme::Flag>(newValue));
+}
+
+void QWebEngineUrlScheme_SetName(void* ptr, void* newValue)
+{
+	static_cast<QWebEngineUrlScheme*>(ptr)->setName(*static_cast<QByteArray*>(newValue));
+}
+
+void QWebEngineUrlScheme_SetSyntax(void* ptr, long long newValue)
+{
+	static_cast<QWebEngineUrlScheme*>(ptr)->setSyntax(static_cast<QWebEngineUrlScheme::Syntax>(newValue));
+}
+
+void QWebEngineUrlScheme_DestroyQWebEngineUrlScheme(void* ptr)
+{
+	static_cast<QWebEngineUrlScheme*>(ptr)->~QWebEngineUrlScheme();
+}
+
+void* QWebEngineUrlScheme_Name(void* ptr)
+{
+	return new QByteArray(static_cast<QWebEngineUrlScheme*>(ptr)->name());
+}
+
+long long QWebEngineUrlScheme_Flags(void* ptr)
+{
+	return static_cast<QWebEngineUrlScheme*>(ptr)->flags();
+}
+
+int QWebEngineUrlScheme_DefaultPort(void* ptr)
+{
+	return static_cast<QWebEngineUrlScheme*>(ptr)->defaultPort();
 }
 
 class MyQWebEngineUrlSchemeHandler: public QWebEngineUrlSchemeHandler

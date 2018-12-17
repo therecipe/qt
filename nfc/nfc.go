@@ -983,6 +983,17 @@ func NewQNearFieldManagerFromPointer(ptr unsafe.Pointer) (n *QNearFieldManager) 
 	return
 }
 
+//go:generate stringer -type=QNearFieldManager__AdapterState
+//QNearFieldManager::AdapterState
+type QNearFieldManager__AdapterState int64
+
+const (
+	QNearFieldManager__Offline    QNearFieldManager__AdapterState = QNearFieldManager__AdapterState(1)
+	QNearFieldManager__TurningOn  QNearFieldManager__AdapterState = QNearFieldManager__AdapterState(2)
+	QNearFieldManager__Online     QNearFieldManager__AdapterState = QNearFieldManager__AdapterState(3)
+	QNearFieldManager__TurningOff QNearFieldManager__AdapterState = QNearFieldManager__AdapterState(4)
+)
+
 //go:generate stringer -type=QNearFieldManager__TargetAccessMode
 //QNearFieldManager::TargetAccessMode
 type QNearFieldManager__TargetAccessMode int64
@@ -1254,6 +1265,13 @@ func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAcces
 func (ptr *QNearFieldManager) IsAvailable() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QNearFieldManager_IsAvailable(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+func (ptr *QNearFieldManager) IsSupported() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QNearFieldManager_IsSupported(ptr.Pointer())) != 0
 	}
 	return false
 }

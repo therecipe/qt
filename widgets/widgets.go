@@ -5620,6 +5620,15 @@ const (
 	QAbstractSpinBox__StepDownEnabled QAbstractSpinBox__StepEnabledFlag = QAbstractSpinBox__StepEnabledFlag(0x02)
 )
 
+//go:generate stringer -type=QAbstractSpinBox__StepType
+//QAbstractSpinBox::StepType
+type QAbstractSpinBox__StepType int64
+
+const (
+	QAbstractSpinBox__DefaultStepType         QAbstractSpinBox__StepType = QAbstractSpinBox__StepType(0)
+	QAbstractSpinBox__AdaptiveDecimalStepType QAbstractSpinBox__StepType = QAbstractSpinBox__StepType(1)
+)
+
 func NewQAbstractSpinBox(parent QWidget_ITF) *QAbstractSpinBox {
 	tmpValue := NewQAbstractSpinBoxFromPointer(C.QAbstractSpinBox_NewQAbstractSpinBox(PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -23587,6 +23596,12 @@ func (ptr *QDoubleSpinBox) SetSingleStep(val float64) {
 	}
 }
 
+func (ptr *QDoubleSpinBox) SetStepType(stepType QAbstractSpinBox__StepType) {
+	if ptr.Pointer() != nil {
+		C.QDoubleSpinBox_SetStepType(ptr.Pointer(), C.longlong(stepType))
+	}
+}
+
 func (ptr *QDoubleSpinBox) SetSuffix(suffix string) {
 	if ptr.Pointer() != nil {
 		var suffixC *C.char
@@ -23767,6 +23782,13 @@ func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBoxDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QDoubleSpinBox) StepType() QAbstractSpinBox__StepType {
+	if ptr.Pointer() != nil {
+		return QAbstractSpinBox__StepType(C.QDoubleSpinBox_StepType(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QDoubleSpinBox) CleanText() string {
@@ -44052,6 +44074,12 @@ func (ptr *QGraphicsScene) SetFocusItem(item QGraphicsItem_ITF, focusReason core
 	}
 }
 
+func (ptr *QGraphicsScene) SetFocusOnTouch(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_SetFocusOnTouch(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
 func (ptr *QGraphicsScene) SetFont(font gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsScene_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
@@ -44565,6 +44593,13 @@ func (ptr *QGraphicsScene) InputMethodQueryDefault(query core.Qt__InputMethodQue
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QGraphicsScene) FocusOnTouch() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGraphicsScene_FocusOnTouch(ptr.Pointer())) != 0
+	}
+	return false
 }
 
 func (ptr *QGraphicsScene) HasFocus() bool {
@@ -57364,6 +57399,13 @@ func (ptr *QLayout) Count() int {
 	return 0
 }
 
+func (ptr *QLayout) IndexOf2(layoutItem QLayoutItem_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QLayout_IndexOf2(ptr.Pointer(), PointerFromQLayoutItem(layoutItem))))
+	}
+	return 0
+}
+
 //export callbackQLayout_IndexOf
 func callbackQLayout_IndexOf(ptr unsafe.Pointer, widget unsafe.Pointer) C.int {
 	if signal := qt.GetSignal(ptr, "indexOf"); signal != nil {
@@ -58798,6 +58840,45 @@ func (ptr *QLineEdit) Home(mark bool) {
 	}
 }
 
+//export callbackQLineEdit_InputRejected
+func callbackQLineEdit_InputRejected(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "inputRejected"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QLineEdit) ConnectInputRejected(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "inputRejected") {
+			C.QLineEdit_ConnectInputRejected(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "inputRejected"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "inputRejected", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "inputRejected", f)
+		}
+	}
+}
+
+func (ptr *QLineEdit) DisconnectInputRejected() {
+	if ptr.Pointer() != nil {
+		C.QLineEdit_DisconnectInputRejected(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "inputRejected")
+	}
+}
+
+func (ptr *QLineEdit) InputRejected() {
+	if ptr.Pointer() != nil {
+		C.QLineEdit_InputRejected(ptr.Pointer())
+	}
+}
+
 func (ptr *QLineEdit) Insert(newText string) {
 	if ptr.Pointer() != nil {
 		var newTextC *C.char
@@ -60044,6 +60125,12 @@ func (ptr *QListView) SetGridSize(size core.QSize_ITF) {
 	}
 }
 
+func (ptr *QListView) SetItemAlignment(alignment core.Qt__AlignmentFlag) {
+	if ptr.Pointer() != nil {
+		C.QListView_SetItemAlignment(ptr.Pointer(), C.longlong(alignment))
+	}
+}
+
 func (ptr *QListView) SetLayoutMode(mode QListView__LayoutMode) {
 	if ptr.Pointer() != nil {
 		C.QListView_SetLayoutMode(ptr.Pointer(), C.longlong(mode))
@@ -60441,6 +60528,13 @@ func (ptr *QListView) GridSize() *core.QSize {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QListView) ItemAlignment() core.Qt__AlignmentFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__AlignmentFlag(C.QListView_ItemAlignment(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQListView_IsIndexHidden
@@ -62368,176 +62462,6 @@ func (ptr *QListWidgetItem) __setDummy__setList(i unsafe.Pointer) {
 
 func (ptr *QListWidgetItem) __setDummy__newList() unsafe.Pointer {
 	return C.QListWidgetItem___setDummy__newList(ptr.Pointer())
-}
-
-type QMacCocoaViewContainer struct {
-	QWidget
-}
-
-type QMacCocoaViewContainer_ITF interface {
-	QWidget_ITF
-	QMacCocoaViewContainer_PTR() *QMacCocoaViewContainer
-}
-
-func (ptr *QMacCocoaViewContainer) QMacCocoaViewContainer_PTR() *QMacCocoaViewContainer {
-	return ptr
-}
-
-func (ptr *QMacCocoaViewContainer) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWidget_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QMacCocoaViewContainer) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QWidget_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQMacCocoaViewContainer(ptr QMacCocoaViewContainer_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMacCocoaViewContainer_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQMacCocoaViewContainerFromPointer(ptr unsafe.Pointer) (n *QMacCocoaViewContainer) {
-	n = new(QMacCocoaViewContainer)
-	n.SetPointer(ptr)
-	return
-}
-
-//export callbackQMacCocoaViewContainer_DestroyQMacCocoaViewContainer
-func callbackQMacCocoaViewContainer_DestroyQMacCocoaViewContainer(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QMacCocoaViewContainer"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQMacCocoaViewContainerFromPointer(ptr).DestroyQMacCocoaViewContainerDefault()
-	}
-}
-
-func (ptr *QMacCocoaViewContainer) ConnectDestroyQMacCocoaViewContainer(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QMacCocoaViewContainer"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QMacCocoaViewContainer", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QMacCocoaViewContainer", f)
-		}
-	}
-}
-
-func (ptr *QMacCocoaViewContainer) DisconnectDestroyQMacCocoaViewContainer() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QMacCocoaViewContainer")
-	}
-}
-
-func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainer() {
-	if ptr.Pointer() != nil {
-		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainerDefault() {
-	if ptr.Pointer() != nil {
-		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainerDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-type QMacNativeWidget struct {
-	QWidget
-}
-
-type QMacNativeWidget_ITF interface {
-	QWidget_ITF
-	QMacNativeWidget_PTR() *QMacNativeWidget
-}
-
-func (ptr *QMacNativeWidget) QMacNativeWidget_PTR() *QMacNativeWidget {
-	return ptr
-}
-
-func (ptr *QMacNativeWidget) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWidget_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QMacNativeWidget) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QWidget_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQMacNativeWidget(ptr QMacNativeWidget_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMacNativeWidget_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) (n *QMacNativeWidget) {
-	n = new(QMacNativeWidget)
-	n.SetPointer(ptr)
-	return
-}
-
-//export callbackQMacNativeWidget_DestroyQMacNativeWidget
-func callbackQMacNativeWidget_DestroyQMacNativeWidget(ptr unsafe.Pointer) {
-	if signal := qt.GetSignal(ptr, "~QMacNativeWidget"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQMacNativeWidgetFromPointer(ptr).DestroyQMacNativeWidgetDefault()
-	}
-}
-
-func (ptr *QMacNativeWidget) ConnectDestroyQMacNativeWidget(f func()) {
-	if ptr.Pointer() != nil {
-
-		if signal := qt.LendSignal(ptr.Pointer(), "~QMacNativeWidget"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QMacNativeWidget", func() {
-				signal.(func())()
-				f()
-			})
-		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QMacNativeWidget", f)
-		}
-	}
-}
-
-func (ptr *QMacNativeWidget) DisconnectDestroyQMacNativeWidget() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.Pointer(), "~QMacNativeWidget")
-	}
-}
-
-func (ptr *QMacNativeWidget) DestroyQMacNativeWidget() {
-	if ptr.Pointer() != nil {
-		C.QMacNativeWidget_DestroyQMacNativeWidget(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
-}
-
-func (ptr *QMacNativeWidget) DestroyQMacNativeWidgetDefault() {
-	if ptr.Pointer() != nil {
-		C.QMacNativeWidget_DestroyQMacNativeWidgetDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
-		runtime.SetFinalizer(ptr, nil)
-	}
 }
 
 type QMainWindow struct {
@@ -64863,6 +64787,12 @@ func (ptr *QMenu) Popup(p core.QPoint_ITF, atAction QAction_ITF) {
 func (ptr *QMenu) SetActiveAction(act QAction_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMenu_SetActiveAction(ptr.Pointer(), PointerFromQAction(act))
+	}
+}
+
+func (ptr *QMenu) SetAsDockMenu() {
+	if ptr.Pointer() != nil {
+		C.QMenu_SetAsDockMenu(ptr.Pointer())
 	}
 }
 
@@ -75212,6 +75142,12 @@ func (ptr *QSpinBox) SetSingleStep(val int) {
 	}
 }
 
+func (ptr *QSpinBox) SetStepType(stepType QAbstractSpinBox__StepType) {
+	if ptr.Pointer() != nil {
+		C.QSpinBox_SetStepType(ptr.Pointer(), C.longlong(stepType))
+	}
+}
+
 func (ptr *QSpinBox) SetSuffix(suffix string) {
 	if ptr.Pointer() != nil {
 		var suffixC *C.char
@@ -75392,6 +75328,13 @@ func (ptr *QSpinBox) DestroyQSpinBoxDefault() {
 		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
+}
+
+func (ptr *QSpinBox) StepType() QAbstractSpinBox__StepType {
+	if ptr.Pointer() != nil {
+		return QAbstractSpinBox__StepType(C.QSpinBox_StepType(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSpinBox) CleanText() string {
@@ -78200,6 +78143,7 @@ var (
 	QStyle__SH_Widget_Animation_Duration                      QStyle__StyleHint = QStyle__StyleHint(114)
 	QStyle__SH_ComboBox_AllowWheelScrolling                   QStyle__StyleHint = QStyle__StyleHint(115)
 	QStyle__SH_SpinBox_ButtonsInsideFrame                     QStyle__StyleHint = QStyle__StyleHint(116)
+	QStyle__SH_SpinBox_StepModifier                           QStyle__StyleHint = QStyle__StyleHint(117)
 	QStyle__SH_CustomBase                                     QStyle__StyleHint = QStyle__StyleHint(0xf0000000)
 )
 

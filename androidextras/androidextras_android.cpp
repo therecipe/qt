@@ -146,6 +146,11 @@ void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM()
 	return QAndroidJniEnvironment::javaVM();
 }
 
+void* QAndroidJniEnvironment_FindClass(void* ptr, char* className)
+{
+	return static_cast<QAndroidJniEnvironment*>(ptr)->findClass(const_cast<const char*>(className));
+}
+
 void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr)
 {
 	static_cast<QAndroidJniEnvironment*>(ptr)->~QAndroidJniEnvironment();

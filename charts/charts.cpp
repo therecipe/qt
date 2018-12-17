@@ -1567,14 +1567,14 @@ long long QAbstractBarSeries_TypeDefault(void* ptr)
 		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::type();
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::type();
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::type();
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::type();
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::type();
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QBarSeries*>(ptr)->QBarSeries::type();
 	} else {
 	
 	}
@@ -1779,14 +1779,14 @@ void* QAbstractSeries_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::metaObject());
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::metaObject());
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QBarSeries*>(ptr)->QBarSeries::metaObject());
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::metaObject());
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::metaObject());
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::metaObject());
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QBarSeries*>(ptr)->QBarSeries::metaObject());
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::metaObject());
 	} else {
@@ -1917,14 +1917,14 @@ char QAbstractSeries_EventDefault(void* ptr, void* e)
 		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QBarSeries*>(ptr)->QBarSeries::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QBarSeries*>(ptr)->QBarSeries::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::event(static_cast<QEvent*>(e));
 	} else {
@@ -1954,14 +1954,14 @@ char QAbstractSeries_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QBarSeries*>(ptr)->QBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QBarSeries*>(ptr)->QBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else {
@@ -1991,14 +1991,14 @@ void QAbstractSeries_ChildEventDefault(void* ptr, void* event)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::childEvent(static_cast<QChildEvent*>(event));
 	} else {
@@ -2028,14 +2028,14 @@ void QAbstractSeries_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
@@ -2065,14 +2065,14 @@ void QAbstractSeries_CustomEventDefault(void* ptr, void* event)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::customEvent(static_cast<QEvent*>(event));
 	} else {
@@ -2102,14 +2102,14 @@ void QAbstractSeries_DeleteLaterDefault(void* ptr)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::deleteLater();
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::deleteLater();
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::deleteLater();
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::deleteLater();
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::deleteLater();
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::deleteLater();
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::deleteLater();
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::deleteLater();
 	} else {
@@ -2139,14 +2139,14 @@ void QAbstractSeries_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
@@ -2176,14 +2176,14 @@ void QAbstractSeries_TimerEventDefault(void* ptr, void* event)
 		static_cast<QStackedBarSeries*>(ptr)->QStackedBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPercentBarSeries*>(ptr)->QPercentBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
-		static_cast<QBarSeries*>(ptr)->QBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QHorizontalStackedBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalStackedBarSeries*>(ptr)->QHorizontalStackedBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QHorizontalPercentBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalPercentBarSeries*>(ptr)->QHorizontalPercentBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QHorizontalBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QHorizontalBarSeries*>(ptr)->QHorizontalBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QBarSeries*>(static_cast<QObject*>(ptr))) {
+		static_cast<QBarSeries*>(ptr)->QBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractBarSeries*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractBarSeries*>(ptr)->QAbstractBarSeries::timerEvent(static_cast<QTimerEvent*>(event));
 	} else {
@@ -6222,7 +6222,10 @@ public:
 	void Signal_MinChanged(qreal min) { callbackQValueAxis_MinChanged(this, min); };
 	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQValueAxis_MinorTickCountChanged(this, minorTickCount); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
+	void Signal_TickAnchorChanged(qreal anchor) { callbackQValueAxis_TickAnchorChanged(this, anchor); };
 	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
+	void Signal_TickIntervalChanged(qreal interval) { callbackQValueAxis_TickIntervalChanged(this, interval); };
+	void Signal_TickTypeChanged(QValueAxis::TickType ty) { callbackQValueAxis_TickTypeChanged(this, ty); };
 	void Signal_ColorChanged(QColor color) { callbackQAbstractAxis_ColorChanged(this, new QColor(color)); };
 	void Signal_GridLineColorChanged(const QColor & color) { callbackQAbstractAxis_GridLineColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_GridLinePenChanged(const QPen & pen) { callbackQAbstractAxis_GridLinePenChanged(this, const_cast<QPen*>(&pen)); };
@@ -6630,6 +6633,11 @@ void QChart_SetLocalizeNumbers(void* ptr, char localize)
 void QChart_SetMargins(void* ptr, void* margins)
 {
 	static_cast<QChart*>(ptr)->setMargins(*static_cast<QMargins*>(margins));
+}
+
+void QChart_SetPlotArea(void* ptr, void* rect)
+{
+	static_cast<QChart*>(ptr)->setPlotArea(*static_cast<QRectF*>(rect));
 }
 
 void QChart_SetPlotAreaBackgroundBrush(void* ptr, void* brush)
@@ -15358,7 +15366,10 @@ public:
 	void Signal_MinChanged(qreal min) { callbackQValueAxis_MinChanged(this, min); };
 	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQValueAxis_MinorTickCountChanged(this, minorTickCount); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
+	void Signal_TickAnchorChanged(qreal anchor) { callbackQValueAxis_TickAnchorChanged(this, anchor); };
 	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
+	void Signal_TickIntervalChanged(qreal interval) { callbackQValueAxis_TickIntervalChanged(this, interval); };
+	void Signal_TickTypeChanged(QValueAxis::TickType ty) { callbackQValueAxis_TickTypeChanged(this, ty); };
 	 ~MyQValueAxis() { callbackQValueAxis_DestroyQValueAxis(this); };
 	QAbstractAxis::AxisType type() const { return static_cast<QAbstractAxis::AxisType>(callbackQValueAxis_Type(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAxis_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -15556,9 +15567,39 @@ void QValueAxis_SetRange(void* ptr, double min, double max)
 	static_cast<QValueAxis*>(ptr)->setRange(min, max);
 }
 
+void QValueAxis_SetTickAnchor(void* ptr, double anchor)
+{
+	static_cast<QValueAxis*>(ptr)->setTickAnchor(anchor);
+}
+
 void QValueAxis_SetTickCount(void* ptr, int count)
 {
 	static_cast<QValueAxis*>(ptr)->setTickCount(count);
+}
+
+void QValueAxis_SetTickInterval(void* ptr, double insterval)
+{
+	static_cast<QValueAxis*>(ptr)->setTickInterval(insterval);
+}
+
+void QValueAxis_SetTickType(void* ptr, long long ty)
+{
+	static_cast<QValueAxis*>(ptr)->setTickType(static_cast<QValueAxis::TickType>(ty));
+}
+
+void QValueAxis_ConnectTickAnchorChanged(void* ptr)
+{
+	QObject::connect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(qreal)>(&QValueAxis::tickAnchorChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(qreal)>(&MyQValueAxis::Signal_TickAnchorChanged));
+}
+
+void QValueAxis_DisconnectTickAnchorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(qreal)>(&QValueAxis::tickAnchorChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(qreal)>(&MyQValueAxis::Signal_TickAnchorChanged));
+}
+
+void QValueAxis_TickAnchorChanged(void* ptr, double anchor)
+{
+	static_cast<QValueAxis*>(ptr)->tickAnchorChanged(anchor);
 }
 
 void QValueAxis_ConnectTickCountChanged(void* ptr)
@@ -15574,6 +15615,36 @@ void QValueAxis_DisconnectTickCountChanged(void* ptr)
 void QValueAxis_TickCountChanged(void* ptr, int tickCount)
 {
 	static_cast<QValueAxis*>(ptr)->tickCountChanged(tickCount);
+}
+
+void QValueAxis_ConnectTickIntervalChanged(void* ptr)
+{
+	QObject::connect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(qreal)>(&QValueAxis::tickIntervalChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(qreal)>(&MyQValueAxis::Signal_TickIntervalChanged));
+}
+
+void QValueAxis_DisconnectTickIntervalChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(qreal)>(&QValueAxis::tickIntervalChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(qreal)>(&MyQValueAxis::Signal_TickIntervalChanged));
+}
+
+void QValueAxis_TickIntervalChanged(void* ptr, double interval)
+{
+	static_cast<QValueAxis*>(ptr)->tickIntervalChanged(interval);
+}
+
+void QValueAxis_ConnectTickTypeChanged(void* ptr)
+{
+	QObject::connect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(QValueAxis::TickType)>(&QValueAxis::tickTypeChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(QValueAxis::TickType)>(&MyQValueAxis::Signal_TickTypeChanged));
+}
+
+void QValueAxis_DisconnectTickTypeChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QValueAxis*>(ptr), static_cast<void (QValueAxis::*)(QValueAxis::TickType)>(&QValueAxis::tickTypeChanged), static_cast<MyQValueAxis*>(ptr), static_cast<void (MyQValueAxis::*)(QValueAxis::TickType)>(&MyQValueAxis::Signal_TickTypeChanged));
+}
+
+void QValueAxis_TickTypeChanged(void* ptr, long long ty)
+{
+	static_cast<QValueAxis*>(ptr)->tickTypeChanged(static_cast<QValueAxis::TickType>(ty));
 }
 
 void QValueAxis_DestroyQValueAxis(void* ptr)
@@ -15606,6 +15677,11 @@ struct QtCharts_PackedString QValueAxis_LabelFormat(void* ptr)
 	return ({ QByteArray t607f3e = static_cast<QValueAxis*>(ptr)->labelFormat().toUtf8(); QtCharts_PackedString { const_cast<char*>(t607f3e.prepend("WHITESPACE").constData()+10), t607f3e.size()-10 }; });
 }
 
+long long QValueAxis_TickType(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->tickType();
+}
+
 int QValueAxis_MinorTickCount(void* ptr)
 {
 	return static_cast<QValueAxis*>(ptr)->minorTickCount();
@@ -15624,6 +15700,16 @@ double QValueAxis_Max(void* ptr)
 double QValueAxis_Min(void* ptr)
 {
 	return static_cast<QValueAxis*>(ptr)->min();
+}
+
+double QValueAxis_TickAnchor(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->tickAnchor();
+}
+
+double QValueAxis_TickInterval(void* ptr)
+{
+	return static_cast<QValueAxis*>(ptr)->tickInterval();
 }
 
 class MyQXYLegendMarker: public QXYLegendMarker

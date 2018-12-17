@@ -126,13 +126,13 @@ func (ptr *QMacPasteboardMime) ConvertFromMime(mime string, data core.QVariant_I
 	return make([]*core.QByteArray, 0)
 }
 
-func NewQMacPasteboardMime(t string) *QMacPasteboardMime {
-	var tC *C.char
-	if t != "" {
-		tC = C.CString(t)
-		defer C.free(unsafe.Pointer(tC))
+func NewQMacPasteboardMime(vch string) *QMacPasteboardMime {
+	var vchC *C.char
+	if vch != "" {
+		vchC = C.CString(vch)
+		defer C.free(unsafe.Pointer(vchC))
 	}
-	return NewQMacPasteboardMimeFromPointer(C.QMacPasteboardMime_NewQMacPasteboardMime(tC))
+	return NewQMacPasteboardMimeFromPointer(C.QMacPasteboardMime_NewQMacPasteboardMime(vchC))
 }
 
 //export callbackQMacPasteboardMime_ConvertorName
@@ -599,6 +599,17 @@ func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToo
 	return nil
 }
 
+func (ptr *QMacToolBar) AddAllowedStandardItem(standardItem QMacToolBarItem__StandardItem) *QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedStandardItem(ptr.Pointer(), C.longlong(standardItem)))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	if ptr.Pointer() != nil {
 		var textC *C.char
@@ -607,6 +618,17 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 			defer C.free(unsafe.Pointer(textC))
 		}
 		tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.struct_QtMacExtras_PackedString{data: textC, len: C.longlong(len(text))}))
+		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMacToolBar) AddStandardItem(standardItem QMacToolBarItem__StandardItem) *QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQMacToolBarItemFromPointer(C.QMacToolBar_AddStandardItem(ptr.Pointer(), C.longlong(standardItem)))
 		if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}

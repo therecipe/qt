@@ -11,6 +11,7 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/positioning"
+	"github.com/therecipe/qt/qml"
 	"runtime"
 	"strings"
 	"unsafe"
@@ -577,6 +578,18 @@ func (ptr *QGeoRoute) SetRouteId(id string) {
 	}
 }
 
+func (ptr *QGeoRoute) SetRouteLegs(legs []*QGeoRouteLeg) {
+	if ptr.Pointer() != nil {
+		C.QGeoRoute_SetRouteLegs(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQGeoRouteFromPointer(NewQGeoRouteFromPointer(nil).__setRouteLegs_legs_newList())
+			for _, v := range legs {
+				tmpList.__setRouteLegs_legs_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
 func (ptr *QGeoRoute) SetTravelMode(mode QGeoRouteRequest__TravelMode) {
 	if ptr.Pointer() != nil {
 		C.QGeoRoute_SetTravelMode(ptr.Pointer(), C.longlong(mode))
@@ -645,6 +658,20 @@ func (ptr *QGeoRoute) Path() []*positioning.QGeoCoordinate {
 	return make([]*positioning.QGeoCoordinate, 0)
 }
 
+func (ptr *QGeoRoute) RouteLegs() []*QGeoRouteLeg {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*QGeoRouteLeg {
+			out := make([]*QGeoRouteLeg, int(l.len))
+			tmpList := NewQGeoRouteFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__routeLegs_atList(i)
+			}
+			return out
+		}(C.QGeoRoute_RouteLegs(ptr.Pointer()))
+	}
+	return make([]*QGeoRouteLeg, 0)
+}
+
 func (ptr *QGeoRoute) RouteId() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QGeoRoute_RouteId(ptr.Pointer()))
@@ -685,6 +712,25 @@ func (ptr *QGeoRoute) __setPath_path_newList() unsafe.Pointer {
 	return C.QGeoRoute___setPath_path_newList(ptr.Pointer())
 }
 
+func (ptr *QGeoRoute) __setRouteLegs_legs_atList(i int) *QGeoRouteLeg {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoRouteLegFromPointer(C.QGeoRoute___setRouteLegs_legs_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteLeg).DestroyQGeoRouteLeg)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoRoute) __setRouteLegs_legs_setList(i QGeoRouteLeg_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoRoute___setRouteLegs_legs_setList(ptr.Pointer(), PointerFromQGeoRouteLeg(i))
+	}
+}
+
+func (ptr *QGeoRoute) __setRouteLegs_legs_newList() unsafe.Pointer {
+	return C.QGeoRoute___setRouteLegs_legs_newList(ptr.Pointer())
+}
+
 func (ptr *QGeoRoute) __path_atList(i int) *positioning.QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := positioning.NewQGeoCoordinateFromPointer(C.QGeoRoute___path_atList(ptr.Pointer(), C.int(int32(i))))
@@ -702,6 +748,111 @@ func (ptr *QGeoRoute) __path_setList(i positioning.QGeoCoordinate_ITF) {
 
 func (ptr *QGeoRoute) __path_newList() unsafe.Pointer {
 	return C.QGeoRoute___path_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoRoute) __routeLegs_atList(i int) *QGeoRouteLeg {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoRouteLegFromPointer(C.QGeoRoute___routeLegs_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteLeg).DestroyQGeoRouteLeg)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoRoute) __routeLegs_setList(i QGeoRouteLeg_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoRoute___routeLegs_setList(ptr.Pointer(), PointerFromQGeoRouteLeg(i))
+	}
+}
+
+func (ptr *QGeoRoute) __routeLegs_newList() unsafe.Pointer {
+	return C.QGeoRoute___routeLegs_newList(ptr.Pointer())
+}
+
+type QGeoRouteLeg struct {
+	QGeoRoute
+}
+
+type QGeoRouteLeg_ITF interface {
+	QGeoRoute_ITF
+	QGeoRouteLeg_PTR() *QGeoRouteLeg
+}
+
+func (ptr *QGeoRouteLeg) QGeoRouteLeg_PTR() *QGeoRouteLeg {
+	return ptr
+}
+
+func (ptr *QGeoRouteLeg) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoRoute_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QGeoRouteLeg) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoRoute_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQGeoRouteLeg(ptr QGeoRouteLeg_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoRouteLeg_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGeoRouteLegFromPointer(ptr unsafe.Pointer) (n *QGeoRouteLeg) {
+	n = new(QGeoRouteLeg)
+	n.SetPointer(ptr)
+	return
+}
+func NewQGeoRouteLeg() *QGeoRouteLeg {
+	tmpValue := NewQGeoRouteLegFromPointer(C.QGeoRouteLeg_NewQGeoRouteLeg())
+	runtime.SetFinalizer(tmpValue, (*QGeoRouteLeg).DestroyQGeoRouteLeg)
+	return tmpValue
+}
+
+func NewQGeoRouteLeg2(other QGeoRouteLeg_ITF) *QGeoRouteLeg {
+	tmpValue := NewQGeoRouteLegFromPointer(C.QGeoRouteLeg_NewQGeoRouteLeg2(PointerFromQGeoRouteLeg(other)))
+	runtime.SetFinalizer(tmpValue, (*QGeoRouteLeg).DestroyQGeoRouteLeg)
+	return tmpValue
+}
+
+func (ptr *QGeoRouteLeg) SetLegIndex(idx int) {
+	if ptr.Pointer() != nil {
+		C.QGeoRouteLeg_SetLegIndex(ptr.Pointer(), C.int(int32(idx)))
+	}
+}
+
+func (ptr *QGeoRouteLeg) SetOverallRoute(route QGeoRoute_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoRouteLeg_SetOverallRoute(ptr.Pointer(), PointerFromQGeoRoute(route))
+	}
+}
+
+func (ptr *QGeoRouteLeg) DestroyQGeoRouteLeg() {
+	if ptr.Pointer() != nil {
+		C.QGeoRouteLeg_DestroyQGeoRouteLeg(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QGeoRouteLeg) OverallRoute() *QGeoRoute {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoRouteFromPointer(C.QGeoRouteLeg_OverallRoute(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRoute).DestroyQGeoRoute)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoRouteLeg) LegIndex() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGeoRouteLeg_LegIndex(ptr.Pointer())))
+	}
+	return 0
 }
 
 type QGeoRouteReply struct {
@@ -2410,6 +2561,13 @@ func (ptr *QGeoRouteSegment) Path() []*positioning.QGeoCoordinate {
 	return make([]*positioning.QGeoCoordinate, 0)
 }
 
+func (ptr *QGeoRouteSegment) IsLegLastSegment() bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QGeoRouteSegment_IsLegLastSegment(ptr.Pointer())) != 0
+	}
+	return false
+}
+
 func (ptr *QGeoRouteSegment) IsValid() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QGeoRouteSegment_IsValid(ptr.Pointer())) != 0
@@ -4058,6 +4216,12 @@ func (ptr *QGeoServiceProvider) SetParameters(parameters map[string]*core.QVaria
 			}
 			return tmpList.Pointer()
 		}())
+	}
+}
+
+func (ptr *QGeoServiceProvider) SetQmlEngine(engine qml.QQmlEngine_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_SetQmlEngine(ptr.Pointer(), qml.PointerFromQQmlEngine(engine))
 	}
 }
 

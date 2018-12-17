@@ -1300,6 +1300,11 @@ void QDBusMessage_SetAutoStartService(void* ptr, char enable)
 	static_cast<QDBusMessage*>(ptr)->setAutoStartService(enable != 0);
 }
 
+void QDBusMessage_SetInteractiveAuthorizationAllowed(void* ptr, char enable)
+{
+	static_cast<QDBusMessage*>(ptr)->setInteractiveAuthorizationAllowed(enable != 0);
+}
+
 void QDBusMessage_Swap(void* ptr, void* other)
 {
 	static_cast<QDBusMessage*>(ptr)->swap(*static_cast<QDBusMessage*>(other));
@@ -1388,6 +1393,11 @@ char QDBusMessage_AutoStartService(void* ptr)
 char QDBusMessage_IsDelayedReply(void* ptr)
 {
 	return static_cast<QDBusMessage*>(ptr)->isDelayedReply();
+}
+
+char QDBusMessage_IsInteractiveAuthorizationAllowed(void* ptr)
+{
+	return static_cast<QDBusMessage*>(ptr)->isInteractiveAuthorizationAllowed();
 }
 
 char QDBusMessage_IsReplyRequired(void* ptr)
@@ -1793,7 +1803,7 @@ void QDBusPendingCallWatcher_TimerEventDefault(void* ptr, void* event)
 		static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor2(void* vqv)
+int QDBusPendingReplyTypes_QDBusPendingReplyTypes_MetaTypeFor(void* vqv)
 {
 	return QDBusPendingReplyTypes::metaTypeFor(static_cast<QVariant*>(vqv));
 }

@@ -75,7 +75,7 @@ if [ "$ANDROID" == "true" ]; then
   $HOME/android-sdk-linux/tools/bin/sdkmanager --update
 
   #download and install android ndk
-  NDK=android-ndk-r14b-linux-x86_64.zip
+  NDK=android-ndk-r18b-linux-x86_64.zip
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
   unzip -qq /tmp/$NDK -d $HOME
   rm -f /tmp/$NDK

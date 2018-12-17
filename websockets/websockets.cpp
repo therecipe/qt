@@ -783,6 +783,11 @@ void* QWebSocket_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QWebSocket*>(ptr)->QWebSocket::metaObject());
 }
 
+long long QWebSocket_BytesToWrite(void* ptr)
+{
+	return static_cast<QWebSocket*>(ptr)->bytesToWrite();
+}
+
 long long QWebSocket_ReadBufferSize(void* ptr)
 {
 	return static_cast<QWebSocket*>(ptr)->readBufferSize();
@@ -1085,11 +1090,6 @@ char QWebSocketServer_Listen(void* ptr, void* address, unsigned short port)
 	return static_cast<QWebSocketServer*>(ptr)->listen(*static_cast<QHostAddress*>(address), port);
 }
 
-char QWebSocketServer_SetSocketDescriptor(void* ptr, int socketDescriptor)
-{
-	return static_cast<QWebSocketServer*>(ptr)->setSocketDescriptor(socketDescriptor);
-}
-
 void QWebSocketServer_ConnectAcceptError(void* ptr)
 {
 	qRegisterMetaType<QAbstractSocket::SocketError>();
@@ -1320,11 +1320,6 @@ void* QWebSocketServer_MetaObjectDefault(void* ptr)
 int QWebSocketServer_MaxPendingConnections(void* ptr)
 {
 	return static_cast<QWebSocketServer*>(ptr)->maxPendingConnections();
-}
-
-int QWebSocketServer_SocketDescriptor(void* ptr)
-{
-	return static_cast<QWebSocketServer*>(ptr)->socketDescriptor();
 }
 
 unsigned short QWebSocketServer_ServerPort(void* ptr)

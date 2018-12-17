@@ -33,6 +33,7 @@ void QAndroidIntent_DestroyQAndroidIntentDefault(void* ptr);
 void* QAndroidIntent_Handle(void* ptr);
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment();
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM();
+void* QAndroidJniEnvironment_FindClass(void* ptr, char* className);
 void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr);
 char QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionCheck();
 void QAndroidJniEnvironment_QAndroidJniEnvironment_ExceptionDescribe();

@@ -25,6 +25,16 @@ struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_AvailableStyles()
 	return ({ QByteArray td4aa30 = QQuickStyle::availableStyles().join("|").toUtf8(); QtQuickControls2_PackedString { const_cast<char*>(td4aa30.prepend("WHITESPACE").constData()+10), td4aa30.size()-10 }; });
 }
 
+struct QtQuickControls2_PackedString QQuickStyle_QQuickStyle_StylePathList()
+{
+	return ({ QByteArray t05c2e3 = QQuickStyle::stylePathList().join("|").toUtf8(); QtQuickControls2_PackedString { const_cast<char*>(t05c2e3.prepend("WHITESPACE").constData()+10), t05c2e3.size()-10 }; });
+}
+
+void QQuickStyle_QQuickStyle_AddStylePath(struct QtQuickControls2_PackedString path)
+{
+	QQuickStyle::addStylePath(QString::fromUtf8(path.data, path.len));
+}
+
 void QQuickStyle_QQuickStyle_SetFallbackStyle(struct QtQuickControls2_PackedString style)
 {
 	QQuickStyle::setFallbackStyle(QString::fromUtf8(style.data, style.len));

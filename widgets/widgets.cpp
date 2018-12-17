@@ -155,8 +155,6 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QLocale>
-#include <QMacCocoaViewContainer>
-#include <QMacNativeWidget>
 #include <QMainWindow>
 #include <QMap>
 #include <QMargins>
@@ -3100,6 +3098,8 @@ char QAbstractScrollArea_ViewportEventDefault(void* ptr, void* event)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::viewportEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::viewportEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::viewportEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::viewportEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -3120,8 +3120,6 @@ char QAbstractScrollArea_ViewportEventDefault(void* ptr, void* event)
 		return static_cast<QColumnView*>(ptr)->QColumnView::viewportEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::viewportEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::viewportEvent(static_cast<QEvent*>(event));
 	} else {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::viewportEvent(static_cast<QEvent*>(event));
 	}
@@ -3149,6 +3147,8 @@ void QAbstractScrollArea_ScrollContentsByDefault(void* ptr, int dx, int dy)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::scrollContentsBy(dx, dy);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::scrollContentsBy(dx, dy);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::scrollContentsBy(dx, dy);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::scrollContentsBy(dx, dy);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -3169,8 +3169,6 @@ void QAbstractScrollArea_ScrollContentsByDefault(void* ptr, int dx, int dy)
 		static_cast<QColumnView*>(ptr)->QColumnView::scrollContentsBy(dx, dy);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::scrollContentsBy(dx, dy);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::scrollContentsBy(dx, dy);
 	} else {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::scrollContentsBy(dx, dy);
 	}
@@ -3238,6 +3236,8 @@ void QAbstractScrollArea_SetupViewportDefault(void* ptr, void* viewport)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setupViewport(static_cast<QWidget*>(viewport));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setupViewport(static_cast<QWidget*>(viewport));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setupViewport(static_cast<QWidget*>(viewport));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setupViewport(static_cast<QWidget*>(viewport));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -3258,8 +3258,6 @@ void QAbstractScrollArea_SetupViewportDefault(void* ptr, void* viewport)
 		static_cast<QColumnView*>(ptr)->QColumnView::setupViewport(static_cast<QWidget*>(viewport));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setupViewport(static_cast<QWidget*>(viewport));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setupViewport(static_cast<QWidget*>(viewport));
 	} else {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setupViewport(static_cast<QWidget*>(viewport));
 	}
@@ -3318,6 +3316,8 @@ void* QAbstractScrollArea_ViewportSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMdiArea*>(ptr)->QMdiArea::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QTreeWidget*>(ptr)->QTreeWidget::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -3338,8 +3338,6 @@ void* QAbstractScrollArea_ViewportSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QColumnView*>(ptr)->QColumnView::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else {
 		return ({ QSize tmpValue = static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	}
@@ -13258,6 +13256,11 @@ void QDoubleSpinBox_SetSingleStep(void* ptr, double val)
 	static_cast<QDoubleSpinBox*>(ptr)->setSingleStep(val);
 }
 
+void QDoubleSpinBox_SetStepType(void* ptr, long long stepType)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->setStepType(static_cast<QAbstractSpinBox::StepType>(stepType));
+}
+
 void QDoubleSpinBox_SetSuffix(void* ptr, struct QtWidgets_PackedString suffix)
 {
 	static_cast<QDoubleSpinBox*>(ptr)->setSuffix(QString::fromUtf8(suffix.data, suffix.len));
@@ -13312,6 +13315,11 @@ void QDoubleSpinBox_DestroyQDoubleSpinBoxDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+long long QDoubleSpinBox_StepType(void* ptr)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->stepType();
 }
 
 struct QtWidgets_PackedString QDoubleSpinBox_CleanText(void* ptr)
@@ -27331,6 +27339,11 @@ void QGraphicsScene_SetFocusItem(void* ptr, void* item, long long focusReason)
 	}
 }
 
+void QGraphicsScene_SetFocusOnTouch(void* ptr, char enabled)
+{
+	static_cast<QGraphicsScene*>(ptr)->setFocusOnTouch(enabled != 0);
+}
+
 void QGraphicsScene_SetFont(void* ptr, void* font)
 {
 	static_cast<QGraphicsScene*>(ptr)->setFont(*static_cast<QFont*>(font));
@@ -27566,6 +27579,11 @@ void* QGraphicsScene_InputMethodQuery(void* ptr, long long query)
 void* QGraphicsScene_InputMethodQueryDefault(void* ptr, long long query)
 {
 		return new QVariant(static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+char QGraphicsScene_FocusOnTouch(void* ptr)
+{
+	return static_cast<QGraphicsScene*>(ptr)->focusOnTouch();
 }
 
 char QGraphicsScene_HasFocus(void* ptr)
@@ -34252,6 +34270,15 @@ int QLayout_Count(void* ptr)
 		return static_cast<QLayout*>(ptr)->count();
 }
 
+int QLayout_IndexOf2(void* ptr, void* layoutItem)
+{
+	if (dynamic_cast<QLayout*>(static_cast<QObject*>(layoutItem))) {
+		return static_cast<QLayout*>(ptr)->indexOf(static_cast<QLayout*>(layoutItem));
+	} else {
+		return static_cast<QLayout*>(ptr)->indexOf(static_cast<QLayoutItem*>(layoutItem));
+	}
+}
+
 int QLayout_IndexOf(void* ptr, void* widget)
 {
 		return static_cast<QLayout*>(ptr)->indexOf(static_cast<QWidget*>(widget));
@@ -35107,6 +35134,7 @@ public:
 	void focusInEvent(QFocusEvent * e) { callbackQWidget_FocusInEvent(this, e); };
 	void focusOutEvent(QFocusEvent * e) { callbackQWidget_FocusOutEvent(this, e); };
 	void inputMethodEvent(QInputMethodEvent * e) { callbackQWidget_InputMethodEvent(this, e); };
+	void Signal_InputRejected() { callbackQLineEdit_InputRejected(this); };
 	void keyPressEvent(QKeyEvent * event) { callbackQWidget_KeyPressEvent(this, event); };
 	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQWidget_MouseDoubleClickEvent(this, e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
@@ -35306,6 +35334,21 @@ void QLineEdit_End(void* ptr, char mark)
 void QLineEdit_Home(void* ptr, char mark)
 {
 	static_cast<QLineEdit*>(ptr)->home(mark != 0);
+}
+
+void QLineEdit_ConnectInputRejected(void* ptr)
+{
+	QObject::connect(static_cast<QLineEdit*>(ptr), static_cast<void (QLineEdit::*)()>(&QLineEdit::inputRejected), static_cast<MyQLineEdit*>(ptr), static_cast<void (MyQLineEdit::*)()>(&MyQLineEdit::Signal_InputRejected));
+}
+
+void QLineEdit_DisconnectInputRejected(void* ptr)
+{
+	QObject::disconnect(static_cast<QLineEdit*>(ptr), static_cast<void (QLineEdit::*)()>(&QLineEdit::inputRejected), static_cast<MyQLineEdit*>(ptr), static_cast<void (MyQLineEdit::*)()>(&MyQLineEdit::Signal_InputRejected));
+}
+
+void QLineEdit_InputRejected(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->inputRejected();
 }
 
 void QLineEdit_Insert(void* ptr, struct QtWidgets_PackedString newText)
@@ -35933,6 +35976,11 @@ void QListView_SetGridSize(void* ptr, void* size)
 	static_cast<QListView*>(ptr)->setGridSize(*static_cast<QSize*>(size));
 }
 
+void QListView_SetItemAlignment(void* ptr, long long alignment)
+{
+	static_cast<QListView*>(ptr)->setItemAlignment(static_cast<Qt::AlignmentFlag>(alignment));
+}
+
 void QListView_SetLayoutMode(void* ptr, long long mode)
 {
 	static_cast<QListView*>(ptr)->setLayoutMode(static_cast<QListView::LayoutMode>(mode));
@@ -36117,6 +36165,11 @@ void* QListView_VisualRegionForSelectionDefault(void* ptr, void* selection)
 void* QListView_GridSize(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QListView*>(ptr)->gridSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+long long QListView_ItemAlignment(void* ptr)
+{
+	return static_cast<QListView*>(ptr)->itemAlignment();
 }
 
 char QListView_IsIndexHidden(void* ptr, void* index)
@@ -37103,202 +37156,6 @@ void* QListWidgetItem___setDummy__newList(void* ptr)
 {
 	Q_UNUSED(ptr);
 	return new QVector<void *>();
-}
-
-class MyQMacCocoaViewContainer: public QMacCocoaViewContainer
-{
-public:
-	 ~MyQMacCocoaViewContainer() { callbackQMacCocoaViewContainer_DestroyQMacCocoaViewContainer(this); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool close() { return callbackQWidget_Close(this) != 0; };
-	bool event(QEvent * event) { return callbackQWidget_Event(this, event) != 0; };
-	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
-	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
-	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
-	void closeEvent(QCloseEvent * event) { callbackQWidget_CloseEvent(this, event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
-	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackQWidget_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackQWidget_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQWidget_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQWidget_FocusOutEvent(this, event); };
-	void hide() { callbackQWidget_Hide(this); };
-	void hideEvent(QHideEvent * event) { callbackQWidget_HideEvent(this, event); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackQWidget_InputMethodEvent(this, event); };
-	void keyPressEvent(QKeyEvent * event) { callbackQWidget_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQWidget_KeyReleaseEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackQWidget_LeaveEvent(this, event); };
-	void lower() { callbackQWidget_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQWidget_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQWidget_MouseReleaseEvent(this, event); };
-	void moveEvent(QMoveEvent * event) { callbackQWidget_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
-	void raise() { callbackQWidget_Raise(this); };
-	void repaint() { callbackQWidget_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackQWidget_ResizeEvent(this, event); };
-	void setDisabled(bool disable) { callbackQWidget_SetDisabled(this, disable); };
-	void setEnabled(bool vbo) { callbackQWidget_SetEnabled(this, vbo); };
-	void setFocus() { callbackQWidget_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackQWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWidget_SetStyleSheet(this, styleSheetPacked); };
-	void setVisible(bool visible) { callbackQWidget_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackQWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWidget_SetWindowTitle(this, vqsPacked); };
-	void show() { callbackQWidget_Show(this); };
-	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
-	void showFullScreen() { callbackQWidget_ShowFullScreen(this); };
-	void showMaximized() { callbackQWidget_ShowMaximized(this); };
-	void showMinimized() { callbackQWidget_ShowMinimized(this); };
-	void showNormal() { callbackQWidget_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackQWidget_TabletEvent(this, event); };
-	void update() { callbackQWidget_Update(this); };
-	void updateMicroFocus() { callbackQWidget_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
-	void Signal_WindowIconChanged(const QIcon & icon) { callbackQWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWidget_WindowTitleChanged(this, titlePacked); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWidget_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQWidget_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
-	bool hasHeightForWidth() const { return callbackQWidget_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	int heightForWidth(int w) const { return callbackQWidget_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
-	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQWidget_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	void initPainter(QPainter * painter) const { callbackQWidget_InitPainter(const_cast<void*>(static_cast<const void*>(this)), painter); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWidget_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQWidget_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQWidget_CustomEvent(this, event); };
-	void deleteLater() { callbackQWidget_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackQWidget_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
-};
-
-Q_DECLARE_METATYPE(MyQMacCocoaViewContainer*)
-
-int QMacCocoaViewContainer_QMacCocoaViewContainer_QRegisterMetaType(){
-	#ifdef Q_OS_OSX
-		qRegisterMetaType<QMacCocoaViewContainer*>(); return qRegisterMetaType<MyQMacCocoaViewContainer*>();
-	#else
-		return 0;
-	#endif
-}
-
-void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
-{
-	static_cast<QMacCocoaViewContainer*>(ptr)->~QMacCocoaViewContainer();
-}
-
-void QMacCocoaViewContainer_DestroyQMacCocoaViewContainerDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-#ifdef Q_OS_OSX
-
-#endif
-}
-
-class MyQMacNativeWidget: public QMacNativeWidget
-{
-public:
-	bool event(QEvent * ev) { return callbackQWidget_Event(this, ev) != 0; };
-	 ~MyQMacNativeWidget() { callbackQMacNativeWidget_DestroyQMacNativeWidget(this); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
-	bool close() { return callbackQWidget_Close(this) != 0; };
-	bool focusNextPrevChild(bool next) { return callbackQWidget_FocusNextPrevChild(this, next) != 0; };
-	void actionEvent(QActionEvent * event) { callbackQWidget_ActionEvent(this, event); };
-	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
-	void closeEvent(QCloseEvent * event) { callbackQWidget_CloseEvent(this, event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackQWidget_ContextMenuEvent(this, event); };
-	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackQWidget_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackQWidget_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQWidget_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQWidget_FocusOutEvent(this, event); };
-	void hide() { callbackQWidget_Hide(this); };
-	void hideEvent(QHideEvent * event) { callbackQWidget_HideEvent(this, event); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackQWidget_InputMethodEvent(this, event); };
-	void keyPressEvent(QKeyEvent * event) { callbackQWidget_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQWidget_KeyReleaseEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackQWidget_LeaveEvent(this, event); };
-	void lower() { callbackQWidget_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQWidget_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQWidget_MouseReleaseEvent(this, event); };
-	void moveEvent(QMoveEvent * event) { callbackQWidget_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
-	void raise() { callbackQWidget_Raise(this); };
-	void repaint() { callbackQWidget_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackQWidget_ResizeEvent(this, event); };
-	void setDisabled(bool disable) { callbackQWidget_SetDisabled(this, disable); };
-	void setEnabled(bool vbo) { callbackQWidget_SetEnabled(this, vbo); };
-	void setFocus() { callbackQWidget_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackQWidget_SetHidden(this, hidden); };
-	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWidget_SetStyleSheet(this, styleSheetPacked); };
-	void setVisible(bool visible) { callbackQWidget_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackQWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWidget_SetWindowTitle(this, vqsPacked); };
-	void show() { callbackQWidget_Show(this); };
-	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
-	void showFullScreen() { callbackQWidget_ShowFullScreen(this); };
-	void showMaximized() { callbackQWidget_ShowMaximized(this); };
-	void showMinimized() { callbackQWidget_ShowMinimized(this); };
-	void showNormal() { callbackQWidget_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackQWidget_TabletEvent(this, event); };
-	void update() { callbackQWidget_Update(this); };
-	void updateMicroFocus() { callbackQWidget_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
-	void Signal_WindowIconChanged(const QIcon & icon) { callbackQWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWidget_WindowTitleChanged(this, titlePacked); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWidget_PaintEngine(const_cast<void*>(static_cast<const void*>(this)))); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWidget_MinimumSizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQWidget_InputMethodQuery(const_cast<void*>(static_cast<const void*>(this)), query)); };
-	bool hasHeightForWidth() const { return callbackQWidget_HasHeightForWidth(const_cast<void*>(static_cast<const void*>(this))) != 0; };
-	int heightForWidth(int w) const { return callbackQWidget_HeightForWidth(const_cast<void*>(static_cast<const void*>(this)), w); };
-	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQWidget_Metric(const_cast<void*>(static_cast<const void*>(this)), m); };
-	void initPainter(QPainter * painter) const { callbackQWidget_InitPainter(const_cast<void*>(static_cast<const void*>(this)), painter); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWidget_EventFilter(this, watched, event) != 0; };
-	void childEvent(QChildEvent * event) { callbackQWidget_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQWidget_CustomEvent(this, event); };
-	void deleteLater() { callbackQWidget_DeleteLater(this); };
-	void Signal_Destroyed(QObject * obj) { callbackQWidget_Destroyed(this, obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void Signal_ObjectNameChanged(const QString & objectName) { QByteArray taa2c4f = objectName.toUtf8(); QtWidgets_PackedString objectNamePacked = { const_cast<char*>(taa2c4f.prepend("WHITESPACE").constData()+10), taa2c4f.size()-10 };callbackQWidget_ObjectNameChanged(this, objectNamePacked); };
-	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
-};
-
-Q_DECLARE_METATYPE(MyQMacNativeWidget*)
-
-int QMacNativeWidget_QMacNativeWidget_QRegisterMetaType(){
-	#ifdef Q_OS_OSX
-		qRegisterMetaType<QMacNativeWidget*>(); return qRegisterMetaType<MyQMacNativeWidget*>();
-	#else
-		return 0;
-	#endif
-}
-
-void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr)
-{
-	static_cast<QMacNativeWidget*>(ptr)->~QMacNativeWidget();
-}
-
-void QMacNativeWidget_DestroyQMacNativeWidgetDefault(void* ptr)
-{
-	Q_UNUSED(ptr);
-#ifdef Q_OS_OSX
-
-#endif
 }
 
 class MyQMainWindow: public QMainWindow
@@ -38582,6 +38439,13 @@ void QMenu_Popup(void* ptr, void* p, void* atAction)
 void QMenu_SetActiveAction(void* ptr, void* act)
 {
 	static_cast<QMenu*>(ptr)->setActiveAction(static_cast<QAction*>(act));
+}
+
+void QMenu_SetAsDockMenu(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMenu*>(ptr)->setAsDockMenu();
+#endif
 }
 
 void QMenu_SetDefaultAction(void* ptr, void* act)
@@ -44076,6 +43940,11 @@ void QSpinBox_SetSingleStep(void* ptr, int val)
 	static_cast<QSpinBox*>(ptr)->setSingleStep(val);
 }
 
+void QSpinBox_SetStepType(void* ptr, long long stepType)
+{
+	static_cast<QSpinBox*>(ptr)->setStepType(static_cast<QAbstractSpinBox::StepType>(stepType));
+}
+
 void QSpinBox_SetSuffix(void* ptr, struct QtWidgets_PackedString suffix)
 {
 	static_cast<QSpinBox*>(ptr)->setSuffix(QString::fromUtf8(suffix.data, suffix.len));
@@ -44130,6 +43999,11 @@ void QSpinBox_DestroyQSpinBoxDefault(void* ptr)
 {
 	Q_UNUSED(ptr);
 
+}
+
+long long QSpinBox_StepType(void* ptr)
+{
+	return static_cast<QSpinBox*>(ptr)->stepType();
 }
 
 struct QtWidgets_PackedString QSpinBox_CleanText(void* ptr)
@@ -57691,44 +57565,8 @@ char QWidget_Close(void* ptr)
 
 char QWidget_CloseDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::close();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::close();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::close();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::close();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::close();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::close();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::close();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::close();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::close();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::close();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::close();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::close();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::close();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -57747,6 +57585,8 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::close();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::close();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::close();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::close();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -57767,10 +57607,10 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::close();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::close();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::close();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::close();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::close();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::close();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -57781,6 +57621,8 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::close();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::close();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::close();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::close();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -57801,8 +57643,6 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QColumnView*>(ptr)->QColumnView::close();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::close();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::close();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::close();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -57813,6 +57653,26 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::close();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::close();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::close();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::close();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::close();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::close();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::close();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::close();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::close();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::close();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::close();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::close();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::close();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -57851,10 +57711,6 @@ char QWidget_CloseDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::close();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::close();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::close();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::close();
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::close();
 	}
@@ -57867,44 +57723,8 @@ char QWidget_Event(void* ptr, void* event)
 
 char QWidget_EventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::event(static_cast<QEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::event(static_cast<QEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -57923,6 +57743,8 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -57943,10 +57765,10 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -57957,6 +57779,8 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -57977,8 +57801,6 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QColumnView*>(ptr)->QColumnView::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -57989,6 +57811,26 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::event(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58027,10 +57869,6 @@ char QWidget_EventDefault(void* ptr, void* event)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::event(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::event(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::event(static_cast<QEvent*>(event));
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::event(static_cast<QEvent*>(event));
 	}
@@ -58048,44 +57886,8 @@ char QWidget_FocusNextPrevChild(void* ptr, char next)
 
 char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusNextPrevChild(next != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusNextPrevChild(next != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -58104,6 +57906,8 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -58124,10 +57928,10 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -58138,6 +57942,8 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -58158,8 +57964,6 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QColumnView*>(ptr)->QColumnView::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -58170,6 +57974,26 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::focusNextPrevChild(next != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58208,10 +58032,6 @@ char QWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::focusNextPrevChild(next != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusNextPrevChild(next != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusNextPrevChild(next != 0);
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::focusNextPrevChild(next != 0);
 	}
@@ -58239,44 +58059,8 @@ void QWidget_ActionEvent(void* ptr, void* event)
 
 void QWidget_ActionEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::actionEvent(static_cast<QActionEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::actionEvent(static_cast<QActionEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -58295,6 +58079,8 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -58315,10 +58101,10 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -58329,6 +58115,8 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -58349,8 +58137,6 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -58361,6 +58147,26 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::actionEvent(static_cast<QActionEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58399,10 +58205,6 @@ void QWidget_ActionEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::actionEvent(static_cast<QActionEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::actionEvent(static_cast<QActionEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::actionEvent(static_cast<QActionEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::actionEvent(static_cast<QActionEvent*>(event));
 	}
@@ -58435,44 +58237,8 @@ void QWidget_ChangeEvent(void* ptr, void* event)
 
 void QWidget_ChangeEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::changeEvent(static_cast<QEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::changeEvent(static_cast<QEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -58491,6 +58257,8 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -58511,10 +58279,10 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -58525,6 +58293,8 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -58545,8 +58315,6 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -58557,6 +58325,26 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::changeEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58595,10 +58383,6 @@ void QWidget_ChangeEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::changeEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::changeEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::changeEvent(static_cast<QEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::changeEvent(static_cast<QEvent*>(event));
 	}
@@ -58621,44 +58405,8 @@ void QWidget_CloseEvent(void* ptr, void* event)
 
 void QWidget_CloseEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::closeEvent(static_cast<QCloseEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::closeEvent(static_cast<QCloseEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -58677,6 +58425,8 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -58697,10 +58447,10 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -58711,6 +58461,8 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -58731,8 +58483,6 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -58743,6 +58493,26 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::closeEvent(static_cast<QCloseEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58781,10 +58551,6 @@ void QWidget_CloseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::closeEvent(static_cast<QCloseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::closeEvent(static_cast<QCloseEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::closeEvent(static_cast<QCloseEvent*>(event));
 	}
@@ -58797,44 +58563,8 @@ void QWidget_ContextMenuEvent(void* ptr, void* event)
 
 void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -58853,6 +58583,8 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -58873,10 +58605,10 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -58887,6 +58619,8 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -58907,8 +58641,6 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -58919,6 +58651,26 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -58957,10 +58709,6 @@ void QWidget_ContextMenuEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 	}
@@ -58998,44 +58746,8 @@ void QWidget_DragEnterEvent(void* ptr, void* event)
 
 void QWidget_DragEnterEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59054,6 +58766,8 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59074,10 +58788,10 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59088,6 +58802,8 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59108,8 +58824,6 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -59120,6 +58834,26 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -59158,10 +58892,6 @@ void QWidget_DragEnterEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 	}
@@ -59174,44 +58904,8 @@ void QWidget_DragLeaveEvent(void* ptr, void* event)
 
 void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59230,6 +58924,8 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59250,10 +58946,10 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59264,6 +58960,8 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59284,8 +58982,6 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -59296,6 +58992,26 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -59334,10 +59050,6 @@ void QWidget_DragLeaveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
 	}
@@ -59350,44 +59062,8 @@ void QWidget_DragMoveEvent(void* ptr, void* event)
 
 void QWidget_DragMoveEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59406,6 +59082,8 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59426,10 +59104,10 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59440,6 +59118,8 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59460,8 +59140,6 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -59472,6 +59150,26 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -59510,10 +59208,6 @@ void QWidget_DragMoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 	}
@@ -59526,44 +59220,8 @@ void QWidget_DropEvent(void* ptr, void* event)
 
 void QWidget_DropEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::dropEvent(static_cast<QDropEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::dropEvent(static_cast<QDropEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59582,6 +59240,8 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59602,10 +59262,10 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59616,6 +59276,8 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59636,8 +59298,6 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -59648,6 +59308,26 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::dropEvent(static_cast<QDropEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -59686,10 +59366,6 @@ void QWidget_DropEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::dropEvent(static_cast<QDropEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::dropEvent(static_cast<QDropEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::dropEvent(static_cast<QDropEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::dropEvent(static_cast<QDropEvent*>(event));
 	}
@@ -59702,44 +59378,8 @@ void QWidget_EnterEvent(void* ptr, void* event)
 
 void QWidget_EnterEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::enterEvent(static_cast<QEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::enterEvent(static_cast<QEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59758,6 +59398,8 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59778,10 +59420,10 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59792,6 +59434,8 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59812,8 +59456,6 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -59824,6 +59466,26 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::enterEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -59862,10 +59524,6 @@ void QWidget_EnterEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::enterEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::enterEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::enterEvent(static_cast<QEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::enterEvent(static_cast<QEvent*>(event));
 	}
@@ -59878,44 +59536,8 @@ void QWidget_FocusInEvent(void* ptr, void* event)
 
 void QWidget_FocusInEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusInEvent(static_cast<QFocusEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusInEvent(static_cast<QFocusEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -59934,6 +59556,8 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -59954,10 +59578,10 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -59968,6 +59592,8 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -59988,8 +59614,6 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60000,6 +59624,26 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::focusInEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60038,10 +59682,6 @@ void QWidget_FocusInEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusInEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::focusInEvent(static_cast<QFocusEvent*>(event));
 	}
@@ -60054,44 +59694,8 @@ void QWidget_FocusOutEvent(void* ptr, void* event)
 
 void QWidget_FocusOutEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::focusOutEvent(static_cast<QFocusEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -60110,6 +59714,8 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -60130,10 +59736,10 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -60144,6 +59750,8 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -60164,8 +59772,6 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60176,6 +59782,26 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::focusOutEvent(static_cast<QFocusEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60214,10 +59840,6 @@ void QWidget_FocusOutEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
 	}
@@ -60250,44 +59872,8 @@ void QWidget_Hide(void* ptr)
 
 void QWidget_HideDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hide();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hide();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::hide();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::hide();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::hide();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::hide();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::hide();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::hide();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::hide();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::hide();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::hide();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::hide();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::hide();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -60306,6 +59892,8 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::hide();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::hide();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hide();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::hide();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -60326,10 +59914,10 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::hide();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::hide();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::hide();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::hide();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::hide();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::hide();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -60340,6 +59928,8 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::hide();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::hide();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::hide();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::hide();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -60360,8 +59950,6 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::hide();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::hide();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::hide();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::hide();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60372,6 +59960,26 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::hide();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::hide();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::hide();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::hide();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::hide();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::hide();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::hide();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::hide();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::hide();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::hide();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::hide();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hide();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::hide();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60410,10 +60018,6 @@ void QWidget_HideDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::hide();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::hide();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hide();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hide();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::hide();
 	}
@@ -60426,44 +60030,8 @@ void QWidget_HideEvent(void* ptr, void* event)
 
 void QWidget_HideEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hideEvent(static_cast<QHideEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hideEvent(static_cast<QHideEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -60482,6 +60050,8 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -60502,10 +60072,10 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -60516,6 +60086,8 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -60536,8 +60108,6 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60548,6 +60118,26 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::hideEvent(static_cast<QHideEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60586,10 +60176,6 @@ void QWidget_HideEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::hideEvent(static_cast<QHideEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hideEvent(static_cast<QHideEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hideEvent(static_cast<QHideEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::hideEvent(static_cast<QHideEvent*>(event));
 	}
@@ -60602,44 +60188,8 @@ void QWidget_InputMethodEvent(void* ptr, void* event)
 
 void QWidget_InputMethodEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -60658,6 +60208,8 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -60678,10 +60230,10 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -60692,6 +60244,8 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -60712,8 +60266,6 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60724,6 +60276,26 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60762,10 +60334,6 @@ void QWidget_InputMethodEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 	}
@@ -60788,44 +60356,8 @@ void QWidget_KeyPressEvent(void* ptr, void* event)
 
 void QWidget_KeyPressEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::keyPressEvent(static_cast<QKeyEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -60844,6 +60376,8 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -60864,10 +60398,10 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -60878,6 +60412,8 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -60898,8 +60434,6 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -60910,6 +60444,26 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::keyPressEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -60948,10 +60502,6 @@ void QWidget_KeyPressEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
 	}
@@ -60964,44 +60514,8 @@ void QWidget_KeyReleaseEvent(void* ptr, void* event)
 
 void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61020,6 +60534,8 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61040,10 +60556,10 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61054,6 +60570,8 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61074,8 +60592,6 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61086,6 +60602,26 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -61124,10 +60660,6 @@ void QWidget_KeyReleaseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 	}
@@ -61140,44 +60672,8 @@ void QWidget_LeaveEvent(void* ptr, void* event)
 
 void QWidget_LeaveEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::leaveEvent(static_cast<QEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::leaveEvent(static_cast<QEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61196,6 +60692,8 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61216,10 +60714,10 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61230,6 +60728,8 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61250,8 +60750,6 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61262,6 +60760,26 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::leaveEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -61300,10 +60818,6 @@ void QWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::leaveEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::leaveEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::leaveEvent(static_cast<QEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::leaveEvent(static_cast<QEvent*>(event));
 	}
@@ -61316,44 +60830,8 @@ void QWidget_Lower(void* ptr)
 
 void QWidget_LowerDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::lower();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::lower();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::lower();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::lower();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::lower();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::lower();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::lower();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::lower();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::lower();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::lower();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::lower();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::lower();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::lower();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61372,6 +60850,8 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::lower();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::lower();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::lower();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::lower();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61392,10 +60872,10 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::lower();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::lower();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::lower();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::lower();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::lower();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::lower();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61406,6 +60886,8 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::lower();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::lower();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::lower();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::lower();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61426,8 +60908,6 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::lower();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::lower();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::lower();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::lower();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61438,6 +60918,26 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::lower();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::lower();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::lower();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::lower();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::lower();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::lower();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::lower();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::lower();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::lower();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::lower();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::lower();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::lower();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::lower();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -61476,10 +60976,6 @@ void QWidget_LowerDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::lower();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::lower();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::lower();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::lower();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::lower();
 	}
@@ -61492,44 +60988,8 @@ void QWidget_MouseDoubleClickEvent(void* ptr, void* event)
 
 void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61548,6 +61008,8 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61568,10 +61030,10 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61582,6 +61044,8 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61602,8 +61066,6 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61614,6 +61076,26 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -61652,10 +61134,6 @@ void QWidget_MouseDoubleClickEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 	}
@@ -61668,44 +61146,8 @@ void QWidget_MouseMoveEvent(void* ptr, void* event)
 
 void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61724,6 +61166,8 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61744,10 +61188,10 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61758,6 +61202,8 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61778,8 +61224,6 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61790,6 +61234,26 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -61828,10 +61292,6 @@ void QWidget_MouseMoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 	}
@@ -61844,44 +61304,8 @@ void QWidget_MousePressEvent(void* ptr, void* event)
 
 void QWidget_MousePressEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mousePressEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -61900,6 +61324,8 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -61920,10 +61346,10 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -61934,6 +61360,8 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -61954,8 +61382,6 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -61966,6 +61392,26 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::mousePressEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62004,10 +61450,6 @@ void QWidget_MousePressEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
 	}
@@ -62020,44 +61462,8 @@ void QWidget_MouseReleaseEvent(void* ptr, void* event)
 
 void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -62076,6 +61482,8 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -62096,10 +61504,10 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -62110,6 +61518,8 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -62130,8 +61540,6 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -62142,6 +61550,26 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62180,10 +61608,6 @@ void QWidget_MouseReleaseEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 	}
@@ -62206,44 +61630,8 @@ void QWidget_MoveEvent(void* ptr, void* event)
 
 void QWidget_MoveEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::moveEvent(static_cast<QMoveEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::moveEvent(static_cast<QMoveEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -62262,6 +61650,8 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -62282,10 +61672,10 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -62296,6 +61686,8 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -62316,8 +61708,6 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -62328,6 +61718,26 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::moveEvent(static_cast<QMoveEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62366,10 +61776,6 @@ void QWidget_MoveEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::moveEvent(static_cast<QMoveEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::moveEvent(static_cast<QMoveEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::moveEvent(static_cast<QMoveEvent*>(event));
 	}
@@ -62387,44 +61793,8 @@ void QWidget_PaintEvent(void* ptr, void* event)
 
 void QWidget_PaintEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::paintEvent(static_cast<QPaintEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::paintEvent(static_cast<QPaintEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -62443,6 +61813,8 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -62463,10 +61835,10 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -62477,6 +61849,8 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -62497,8 +61871,6 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -62509,6 +61881,26 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::paintEvent(static_cast<QPaintEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62545,10 +61937,6 @@ void QWidget_PaintEventDefault(void* ptr, void* event)
 		static_cast<QPushButton*>(ptr)->QPushButton::paintEvent(static_cast<QPaintEvent*>(event));
 	} else if (dynamic_cast<QCheckBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QCheckBox*>(ptr)->QCheckBox::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEvent(static_cast<QPaintEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::paintEvent(static_cast<QPaintEvent*>(event));
 	}
@@ -62561,44 +61949,8 @@ void QWidget_Raise(void* ptr)
 
 void QWidget_RaiseDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::raise();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::raise();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::raise();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::raise();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::raise();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::raise();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::raise();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::raise();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::raise();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::raise();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::raise();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::raise();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::raise();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -62617,6 +61969,8 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::raise();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::raise();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::raise();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::raise();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -62637,10 +61991,10 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::raise();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::raise();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::raise();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::raise();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::raise();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::raise();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -62651,6 +62005,8 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::raise();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::raise();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::raise();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::raise();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -62671,8 +62027,6 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::raise();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::raise();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::raise();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::raise();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -62683,6 +62037,26 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::raise();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::raise();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::raise();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::raise();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::raise();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::raise();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::raise();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::raise();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::raise();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::raise();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::raise();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::raise();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::raise();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62721,10 +62095,6 @@ void QWidget_RaiseDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::raise();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::raise();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::raise();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::raise();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::raise();
 	}
@@ -62771,44 +62141,8 @@ void QWidget_Repaint(void* ptr)
 
 void QWidget_RepaintDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::repaint();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::repaint();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::repaint();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::repaint();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::repaint();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::repaint();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::repaint();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::repaint();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::repaint();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::repaint();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::repaint();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::repaint();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::repaint();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -62827,6 +62161,8 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::repaint();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::repaint();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::repaint();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::repaint();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -62847,10 +62183,10 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::repaint();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::repaint();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::repaint();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::repaint();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::repaint();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::repaint();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -62861,6 +62197,8 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::repaint();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::repaint();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::repaint();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::repaint();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -62881,8 +62219,6 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::repaint();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::repaint();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::repaint();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::repaint();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -62893,6 +62229,26 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::repaint();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::repaint();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::repaint();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::repaint();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::repaint();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::repaint();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::repaint();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::repaint();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::repaint();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::repaint();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::repaint();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::repaint();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::repaint();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -62931,10 +62287,6 @@ void QWidget_RepaintDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::repaint();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::repaint();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::repaint();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::repaint();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::repaint();
 	}
@@ -62972,44 +62324,8 @@ void QWidget_ResizeEvent(void* ptr, void* event)
 
 void QWidget_ResizeEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::resizeEvent(static_cast<QResizeEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::resizeEvent(static_cast<QResizeEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -63028,6 +62344,8 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -63048,10 +62366,10 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -63062,6 +62380,8 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -63082,8 +62402,6 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -63094,6 +62412,26 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::resizeEvent(static_cast<QResizeEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -63132,10 +62470,6 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::resizeEvent(static_cast<QResizeEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 	}
@@ -63218,44 +62552,8 @@ void QWidget_SetDisabled(void* ptr, char disable)
 
 void QWidget_SetDisabledDefault(void* ptr, char disable)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setDisabled(disable != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setDisabled(disable != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setDisabled(disable != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setDisabled(disable != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setDisabled(disable != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setDisabled(disable != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setDisabled(disable != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setDisabled(disable != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setDisabled(disable != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setDisabled(disable != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setDisabled(disable != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setDisabled(disable != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setDisabled(disable != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -63274,6 +62572,8 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setDisabled(disable != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setDisabled(disable != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setDisabled(disable != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -63294,10 +62594,10 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setDisabled(disable != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setDisabled(disable != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setDisabled(disable != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setDisabled(disable != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setDisabled(disable != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -63308,6 +62608,8 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setDisabled(disable != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setDisabled(disable != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setDisabled(disable != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -63328,8 +62630,6 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QColumnView*>(ptr)->QColumnView::setDisabled(disable != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setDisabled(disable != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setDisabled(disable != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setDisabled(disable != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -63340,6 +62640,26 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setDisabled(disable != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setDisabled(disable != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setDisabled(disable != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setDisabled(disable != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setDisabled(disable != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setDisabled(disable != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setDisabled(disable != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -63378,10 +62698,6 @@ void QWidget_SetDisabledDefault(void* ptr, char disable)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setDisabled(disable != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setDisabled(disable != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setDisabled(disable != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setDisabled(disable != 0);
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setDisabled(disable != 0);
 	}
@@ -63401,44 +62717,8 @@ void QWidget_SetEnabled(void* ptr, char vbo)
 
 void QWidget_SetEnabledDefault(void* ptr, char vbo)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setEnabled(vbo != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setEnabled(vbo != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -63457,6 +62737,8 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -63477,10 +62759,10 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -63491,6 +62773,8 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -63511,8 +62795,6 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QColumnView*>(ptr)->QColumnView::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -63523,6 +62805,26 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setEnabled(vbo != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -63561,10 +62863,6 @@ void QWidget_SetEnabledDefault(void* ptr, char vbo)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setEnabled(vbo != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setEnabled(vbo != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setEnabled(vbo != 0);
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setEnabled(vbo != 0);
 	}
@@ -63597,44 +62895,8 @@ void QWidget_SetFocus2(void* ptr)
 
 void QWidget_SetFocus2Default(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setFocus();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setFocus();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setFocus();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setFocus();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setFocus();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setFocus();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setFocus();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setFocus();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setFocus();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setFocus();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setFocus();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setFocus();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setFocus();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -63653,6 +62915,8 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setFocus();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setFocus();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setFocus();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setFocus();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -63673,10 +62937,10 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setFocus();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setFocus();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setFocus();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setFocus();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setFocus();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFocus();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -63687,6 +62951,8 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setFocus();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setFocus();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setFocus();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setFocus();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -63707,8 +62973,6 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::setFocus();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setFocus();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setFocus();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setFocus();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -63719,6 +62983,26 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setFocus();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setFocus();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setFocus();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setFocus();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setFocus();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setFocus();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setFocus();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setFocus();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setFocus();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setFocus();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setFocus();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setFocus();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setFocus();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -63757,10 +63041,6 @@ void QWidget_SetFocus2Default(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setFocus();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setFocus();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setFocus();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setFocus();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setFocus();
 	}
@@ -63813,44 +63093,8 @@ void QWidget_SetHidden(void* ptr, char hidden)
 
 void QWidget_SetHiddenDefault(void* ptr, char hidden)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setHidden(hidden != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setHidden(hidden != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setHidden(hidden != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setHidden(hidden != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setHidden(hidden != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setHidden(hidden != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setHidden(hidden != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setHidden(hidden != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setHidden(hidden != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setHidden(hidden != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setHidden(hidden != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setHidden(hidden != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setHidden(hidden != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -63869,6 +63113,8 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setHidden(hidden != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setHidden(hidden != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setHidden(hidden != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -63889,10 +63135,10 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setHidden(hidden != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setHidden(hidden != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setHidden(hidden != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setHidden(hidden != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setHidden(hidden != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -63903,6 +63149,8 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setHidden(hidden != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setHidden(hidden != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setHidden(hidden != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -63923,8 +63171,6 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QColumnView*>(ptr)->QColumnView::setHidden(hidden != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setHidden(hidden != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setHidden(hidden != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setHidden(hidden != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -63935,6 +63181,26 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setHidden(hidden != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setHidden(hidden != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setHidden(hidden != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setHidden(hidden != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setHidden(hidden != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setHidden(hidden != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setHidden(hidden != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -63973,10 +63239,6 @@ void QWidget_SetHiddenDefault(void* ptr, char hidden)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setHidden(hidden != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setHidden(hidden != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setHidden(hidden != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setHidden(hidden != 0);
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setHidden(hidden != 0);
 	}
@@ -64119,44 +63381,8 @@ void QWidget_SetStyleSheet(void* ptr, struct QtWidgets_PackedString styleSheet)
 
 void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString styleSheet)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -64175,6 +63401,8 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -64195,10 +63423,10 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -64209,6 +63437,8 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -64229,8 +63459,6 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QColumnView*>(ptr)->QColumnView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -64241,6 +63469,26 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -64279,10 +63527,6 @@ void QWidget_SetStyleSheetDefault(void* ptr, struct QtWidgets_PackedString style
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setStyleSheet(QString::fromUtf8(styleSheet.data, styleSheet.len));
 	}
@@ -64320,44 +63564,8 @@ void QWidget_SetVisible(void* ptr, char visible)
 
 void QWidget_SetVisibleDefault(void* ptr, char visible)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setVisible(visible != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setVisible(visible != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setVisible(visible != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setVisible(visible != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setVisible(visible != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setVisible(visible != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setVisible(visible != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setVisible(visible != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setVisible(visible != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setVisible(visible != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setVisible(visible != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setVisible(visible != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setVisible(visible != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -64376,6 +63584,8 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setVisible(visible != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setVisible(visible != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setVisible(visible != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -64396,10 +63606,10 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setVisible(visible != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setVisible(visible != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setVisible(visible != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setVisible(visible != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setVisible(visible != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -64410,6 +63620,8 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setVisible(visible != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setVisible(visible != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setVisible(visible != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -64430,8 +63642,6 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QColumnView*>(ptr)->QColumnView::setVisible(visible != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setVisible(visible != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setVisible(visible != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setVisible(visible != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -64442,6 +63652,26 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setVisible(visible != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setVisible(visible != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setVisible(visible != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setVisible(visible != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setVisible(visible != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setVisible(visible != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setVisible(visible != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -64480,10 +63710,6 @@ void QWidget_SetVisibleDefault(void* ptr, char visible)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setVisible(visible != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setVisible(visible != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setVisible(visible != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setVisible(visible != 0);
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setVisible(visible != 0);
 	}
@@ -64531,44 +63757,8 @@ void QWidget_SetWindowModified(void* ptr, char vbo)
 
 void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowModified(vbo != 0);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowModified(vbo != 0);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -64587,6 +63777,8 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -64607,10 +63799,10 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -64621,6 +63813,8 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -64641,8 +63835,6 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QColumnView*>(ptr)->QColumnView::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -64653,6 +63845,26 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setWindowModified(vbo != 0);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -64691,10 +63903,6 @@ void QWidget_SetWindowModifiedDefault(void* ptr, char vbo)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowModified(vbo != 0);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowModified(vbo != 0);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowModified(vbo != 0);
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setWindowModified(vbo != 0);
 	}
@@ -64722,44 +63930,8 @@ void QWidget_SetWindowTitle(void* ptr, struct QtWidgets_PackedString vqs)
 
 void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -64778,6 +63950,8 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -64798,10 +63972,10 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -64812,6 +63986,8 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -64832,8 +64008,6 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QColumnView*>(ptr)->QColumnView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -64844,6 +64018,26 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -64882,10 +64076,6 @@ void QWidget_SetWindowTitleDefault(void* ptr, struct QtWidgets_PackedString vqs)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::setWindowTitle(QString::fromUtf8(vqs.data, vqs.len));
 	}
@@ -64905,44 +64095,8 @@ void QWidget_Show(void* ptr)
 
 void QWidget_ShowDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::show();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::show();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::show();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::show();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::show();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::show();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::show();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::show();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::show();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::show();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::show();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::show();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::show();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -64961,6 +64115,8 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::show();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::show();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::show();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::show();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -64981,10 +64137,10 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::show();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::show();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::show();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::show();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::show();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::show();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -64995,6 +64151,8 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::show();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::show();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::show();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::show();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65015,8 +64173,6 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::show();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::show();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::show();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::show();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65027,6 +64183,26 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::show();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::show();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::show();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::show();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::show();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::show();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::show();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::show();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::show();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::show();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::show();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::show();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::show();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65065,10 +64241,6 @@ void QWidget_ShowDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::show();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::show();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::show();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::show();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::show();
 	}
@@ -65081,44 +64253,8 @@ void QWidget_ShowEvent(void* ptr, void* event)
 
 void QWidget_ShowEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showEvent(static_cast<QShowEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showEvent(static_cast<QShowEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -65137,6 +64273,8 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -65157,10 +64295,10 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -65171,6 +64309,8 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65191,8 +64331,6 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65203,6 +64341,26 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::showEvent(static_cast<QShowEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65241,10 +64399,6 @@ void QWidget_ShowEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showEvent(static_cast<QShowEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showEvent(static_cast<QShowEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showEvent(static_cast<QShowEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::showEvent(static_cast<QShowEvent*>(event));
 	}
@@ -65257,44 +64411,8 @@ void QWidget_ShowFullScreen(void* ptr)
 
 void QWidget_ShowFullScreenDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showFullScreen();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showFullScreen();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::showFullScreen();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::showFullScreen();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showFullScreen();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::showFullScreen();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::showFullScreen();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::showFullScreen();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::showFullScreen();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showFullScreen();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::showFullScreen();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::showFullScreen();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::showFullScreen();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -65313,6 +64431,8 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::showFullScreen();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::showFullScreen();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showFullScreen();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::showFullScreen();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -65333,10 +64453,10 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::showFullScreen();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::showFullScreen();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showFullScreen();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::showFullScreen();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showFullScreen();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::showFullScreen();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -65347,6 +64467,8 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showFullScreen();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::showFullScreen();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showFullScreen();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::showFullScreen();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65367,8 +64489,6 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::showFullScreen();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showFullScreen();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showFullScreen();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showFullScreen();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65379,6 +64499,26 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::showFullScreen();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showFullScreen();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::showFullScreen();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showFullScreen();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::showFullScreen();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::showFullScreen();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::showFullScreen();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::showFullScreen();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showFullScreen();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::showFullScreen();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::showFullScreen();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showFullScreen();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::showFullScreen();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65417,10 +64557,6 @@ void QWidget_ShowFullScreenDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showFullScreen();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showFullScreen();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showFullScreen();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showFullScreen();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::showFullScreen();
 	}
@@ -65433,44 +64569,8 @@ void QWidget_ShowMaximized(void* ptr)
 
 void QWidget_ShowMaximizedDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMaximized();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMaximized();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::showMaximized();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::showMaximized();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMaximized();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::showMaximized();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::showMaximized();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::showMaximized();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::showMaximized();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMaximized();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::showMaximized();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::showMaximized();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::showMaximized();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -65489,6 +64589,8 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::showMaximized();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::showMaximized();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMaximized();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::showMaximized();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -65509,10 +64611,10 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::showMaximized();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::showMaximized();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMaximized();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::showMaximized();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMaximized();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::showMaximized();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -65523,6 +64625,8 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showMaximized();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::showMaximized();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMaximized();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::showMaximized();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65543,8 +64647,6 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::showMaximized();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showMaximized();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMaximized();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showMaximized();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65555,6 +64657,26 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::showMaximized();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showMaximized();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::showMaximized();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMaximized();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::showMaximized();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::showMaximized();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::showMaximized();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::showMaximized();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMaximized();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::showMaximized();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::showMaximized();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMaximized();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::showMaximized();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65593,10 +64715,6 @@ void QWidget_ShowMaximizedDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showMaximized();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMaximized();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMaximized();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMaximized();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::showMaximized();
 	}
@@ -65609,44 +64727,8 @@ void QWidget_ShowMinimized(void* ptr)
 
 void QWidget_ShowMinimizedDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMinimized();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMinimized();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::showMinimized();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::showMinimized();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMinimized();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::showMinimized();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::showMinimized();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::showMinimized();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::showMinimized();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMinimized();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::showMinimized();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::showMinimized();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::showMinimized();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -65665,6 +64747,8 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::showMinimized();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::showMinimized();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMinimized();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::showMinimized();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -65685,10 +64769,10 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::showMinimized();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::showMinimized();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMinimized();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::showMinimized();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMinimized();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::showMinimized();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -65699,6 +64783,8 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showMinimized();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::showMinimized();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMinimized();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::showMinimized();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65719,8 +64805,6 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::showMinimized();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showMinimized();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMinimized();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showMinimized();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65731,6 +64815,26 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::showMinimized();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showMinimized();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::showMinimized();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMinimized();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::showMinimized();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::showMinimized();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::showMinimized();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::showMinimized();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMinimized();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::showMinimized();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::showMinimized();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMinimized();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::showMinimized();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65769,10 +64873,6 @@ void QWidget_ShowMinimizedDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showMinimized();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMinimized();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showMinimized();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMinimized();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::showMinimized();
 	}
@@ -65785,44 +64885,8 @@ void QWidget_ShowNormal(void* ptr)
 
 void QWidget_ShowNormalDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showNormal();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showNormal();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::showNormal();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::showNormal();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showNormal();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::showNormal();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::showNormal();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::showNormal();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::showNormal();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showNormal();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::showNormal();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::showNormal();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::showNormal();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -65841,6 +64905,8 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::showNormal();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::showNormal();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showNormal();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::showNormal();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -65861,10 +64927,10 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::showNormal();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::showNormal();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showNormal();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::showNormal();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::showNormal();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::showNormal();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -65875,6 +64941,8 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showNormal();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::showNormal();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showNormal();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::showNormal();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -65895,8 +64963,6 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::showNormal();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showNormal();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::showNormal();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showNormal();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -65907,6 +64973,26 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::showNormal();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showNormal();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::showNormal();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::showNormal();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::showNormal();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::showNormal();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::showNormal();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::showNormal();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::showNormal();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::showNormal();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::showNormal();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showNormal();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::showNormal();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -65945,10 +65031,6 @@ void QWidget_ShowNormalDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::showNormal();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::showNormal();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::showNormal();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showNormal();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::showNormal();
 	}
@@ -65966,44 +65048,8 @@ void QWidget_TabletEvent(void* ptr, void* event)
 
 void QWidget_TabletEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::tabletEvent(static_cast<QTabletEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::tabletEvent(static_cast<QTabletEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -66022,6 +65068,8 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -66042,10 +65090,10 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -66056,6 +65104,8 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -66076,8 +65126,6 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -66088,6 +65136,26 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::tabletEvent(static_cast<QTabletEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -66126,10 +65194,6 @@ void QWidget_TabletEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::tabletEvent(static_cast<QTabletEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::tabletEvent(static_cast<QTabletEvent*>(event));
 	}
@@ -66162,44 +65226,8 @@ void QWidget_Update(void* ptr)
 
 void QWidget_UpdateDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::update();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::update();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::update();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::update();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::update();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::update();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::update();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::update();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::update();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::update();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::update();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::update();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::update();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -66218,6 +65246,8 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::update();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::update();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::update();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::update();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -66238,10 +65268,10 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::update();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::update();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::update();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::update();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::update();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::update();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -66252,6 +65282,8 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::update();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::update();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::update();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::update();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -66272,8 +65304,6 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::update();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::update();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::update();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::update();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -66284,6 +65314,26 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::update();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::update();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::update();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::update();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::update();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::update();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::update();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::update();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::update();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::update();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::update();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::update();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::update();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -66322,10 +65372,6 @@ void QWidget_UpdateDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::update();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::update();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::update();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::update();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::update();
 	}
@@ -66358,44 +65404,8 @@ void QWidget_UpdateMicroFocus(void* ptr)
 
 void QWidget_UpdateMicroFocusDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::updateMicroFocus();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::updateMicroFocus();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::updateMicroFocus();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::updateMicroFocus();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::updateMicroFocus();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::updateMicroFocus();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::updateMicroFocus();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::updateMicroFocus();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::updateMicroFocus();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::updateMicroFocus();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::updateMicroFocus();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::updateMicroFocus();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::updateMicroFocus();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -66414,6 +65424,8 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::updateMicroFocus();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::updateMicroFocus();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::updateMicroFocus();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::updateMicroFocus();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -66434,10 +65446,10 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::updateMicroFocus();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::updateMicroFocus();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::updateMicroFocus();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::updateMicroFocus();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::updateMicroFocus();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::updateMicroFocus();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -66448,6 +65460,8 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::updateMicroFocus();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::updateMicroFocus();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::updateMicroFocus();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::updateMicroFocus();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -66468,8 +65482,6 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::updateMicroFocus();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::updateMicroFocus();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::updateMicroFocus();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::updateMicroFocus();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -66480,6 +65492,26 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::updateMicroFocus();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::updateMicroFocus();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::updateMicroFocus();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::updateMicroFocus();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::updateMicroFocus();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::updateMicroFocus();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::updateMicroFocus();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::updateMicroFocus();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::updateMicroFocus();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::updateMicroFocus();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::updateMicroFocus();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::updateMicroFocus();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::updateMicroFocus();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -66518,10 +65550,6 @@ void QWidget_UpdateMicroFocusDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::updateMicroFocus();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::updateMicroFocus();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::updateMicroFocus();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::updateMicroFocus();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::updateMicroFocus();
 	}
@@ -66534,44 +65562,8 @@ void QWidget_WheelEvent(void* ptr, void* event)
 
 void QWidget_WheelEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::wheelEvent(static_cast<QWheelEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::wheelEvent(static_cast<QWheelEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -66590,6 +65582,8 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -66610,10 +65604,10 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -66624,6 +65618,8 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -66644,8 +65640,6 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -66656,6 +65650,26 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::wheelEvent(static_cast<QWheelEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -66694,10 +65708,6 @@ void QWidget_WheelEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::wheelEvent(static_cast<QWheelEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::wheelEvent(static_cast<QWheelEvent*>(event));
 	}
@@ -66811,44 +65821,8 @@ void* QWidget_PaintEngine(void* ptr)
 
 void* QWidget_PaintEngineDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::paintEngine();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::paintEngine();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::paintEngine();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::paintEngine();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::paintEngine();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::paintEngine();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::paintEngine();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::paintEngine();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::paintEngine();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::paintEngine();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::paintEngine();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::paintEngine();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::paintEngine();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -66867,6 +65841,8 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::paintEngine();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::paintEngine();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEngine();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::paintEngine();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -66887,10 +65863,10 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::paintEngine();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::paintEngine();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::paintEngine();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::paintEngine();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::paintEngine();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::paintEngine();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -66901,6 +65877,8 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::paintEngine();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::paintEngine();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::paintEngine();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::paintEngine();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -66921,8 +65899,6 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QColumnView*>(ptr)->QColumnView::paintEngine();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::paintEngine();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::paintEngine();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::paintEngine();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -66933,6 +65909,26 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::paintEngine();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::paintEngine();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::paintEngine();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::paintEngine();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::paintEngine();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::paintEngine();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::paintEngine();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::paintEngine();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::paintEngine();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::paintEngine();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::paintEngine();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEngine();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::paintEngine();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -66971,10 +65967,6 @@ void* QWidget_PaintEngineDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::paintEngine();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::paintEngine();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::paintEngine();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEngine();
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::paintEngine();
 	}
@@ -67092,44 +66084,8 @@ void* QWidget_MinimumSizeHint(void* ptr)
 
 void* QWidget_MinimumSizeHintDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return ({ QSize tmpValue = static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return ({ QSize tmpValue = static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QWizardPage*>(ptr)->QWizardPage::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QWizard*>(ptr)->QWizard::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QProgressDialog*>(ptr)->QProgressDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QMessageBox*>(ptr)->QMessageBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QInputDialog*>(ptr)->QInputDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QFontDialog*>(ptr)->QFontDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QFileDialog*>(ptr)->QFileDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QErrorMessage*>(ptr)->QErrorMessage::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QColorDialog*>(ptr)->QColorDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QDialog*>(ptr)->QDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QToolBar*>(ptr)->QToolBar::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -67148,6 +66104,8 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QRubberBand*>(ptr)->QRubberBand::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QProgressBar*>(ptr)->QProgressBar::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMenuBar*>(ptr)->QMenuBar::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -67168,10 +66126,10 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QStackedWidget*>(ptr)->QStackedWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QSplitter*>(ptr)->QSplitter::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QLCDNumber*>(ptr)->QLCDNumber::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QLabel*>(ptr)->QLabel::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QLCDNumber*>(ptr)->QLCDNumber::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QTextBrowser*>(ptr)->QTextBrowser::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -67182,6 +66140,8 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMdiArea*>(ptr)->QMdiArea::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QTreeWidget*>(ptr)->QTreeWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -67202,8 +66162,6 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QColumnView*>(ptr)->QColumnView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -67214,6 +66172,26 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QDockWidget*>(ptr)->QDockWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QWizard*>(ptr)->QWizard::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QProgressDialog*>(ptr)->QProgressDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QMessageBox*>(ptr)->QMessageBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QInputDialog*>(ptr)->QInputDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QFontDialog*>(ptr)->QFontDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QFileDialog*>(ptr)->QFileDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QErrorMessage*>(ptr)->QErrorMessage::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QColorDialog*>(ptr)->QColorDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QDialog*>(ptr)->QDialog::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QFontComboBox*>(ptr)->QFontComboBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -67252,10 +66230,6 @@ void* QWidget_MinimumSizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QCheckBox*>(ptr)->QCheckBox::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractButton*>(ptr)->QAbstractButton::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else {
 		return ({ QSize tmpValue = static_cast<QWidget*>(ptr)->QWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	}
@@ -67273,44 +66247,8 @@ void* QWidget_SizeHint(void* ptr)
 
 void* QWidget_SizeHintDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return ({ QSize tmpValue = static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return ({ QSize tmpValue = static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QWizardPage*>(ptr)->QWizardPage::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QWizard*>(ptr)->QWizard::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QProgressDialog*>(ptr)->QProgressDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QMessageBox*>(ptr)->QMessageBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QInputDialog*>(ptr)->QInputDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QFontDialog*>(ptr)->QFontDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QFileDialog*>(ptr)->QFileDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QErrorMessage*>(ptr)->QErrorMessage::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QColorDialog*>(ptr)->QColorDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QDialog*>(ptr)->QDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QToolBar*>(ptr)->QToolBar::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -67329,6 +66267,8 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QRubberBand*>(ptr)->QRubberBand::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QProgressBar*>(ptr)->QProgressBar::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMenuBar*>(ptr)->QMenuBar::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -67349,10 +66289,10 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QStackedWidget*>(ptr)->QStackedWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QSplitter*>(ptr)->QSplitter::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QLCDNumber*>(ptr)->QLCDNumber::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QLabel*>(ptr)->QLabel::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QLCDNumber*>(ptr)->QLCDNumber::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QTextBrowser*>(ptr)->QTextBrowser::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -67363,6 +66303,8 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QMdiArea*>(ptr)->QMdiArea::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QTreeWidget*>(ptr)->QTreeWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -67383,8 +66325,6 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QColumnView*>(ptr)->QColumnView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QGraphicsView*>(ptr)->QGraphicsView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -67395,6 +66335,26 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QDockWidget*>(ptr)->QDockWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QWizard*>(ptr)->QWizard::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QProgressDialog*>(ptr)->QProgressDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QMessageBox*>(ptr)->QMessageBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QInputDialog*>(ptr)->QInputDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QFontDialog*>(ptr)->QFontDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QFileDialog*>(ptr)->QFileDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QErrorMessage*>(ptr)->QErrorMessage::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QColorDialog*>(ptr)->QColorDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QDialog*>(ptr)->QDialog::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QFontComboBox*>(ptr)->QFontComboBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -67433,10 +66393,6 @@ void* QWidget_SizeHintDefault(void* ptr)
 		return ({ QSize tmpValue = static_cast<QCheckBox*>(ptr)->QCheckBox::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractButton*>(ptr)->QAbstractButton::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else {
 		return ({ QSize tmpValue = static_cast<QWidget*>(ptr)->QWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 	}
@@ -67514,44 +66470,8 @@ void* QWidget_InputMethodQuery(void* ptr, long long query)
 
 void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return new QVariant(static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return new QVariant(static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QWizardPage*>(ptr)->QWizardPage::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QWizard*>(ptr)->QWizard::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QProgressDialog*>(ptr)->QProgressDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QMessageBox*>(ptr)->QMessageBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QInputDialog*>(ptr)->QInputDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QFontDialog*>(ptr)->QFontDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QFileDialog*>(ptr)->QFileDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QErrorMessage*>(ptr)->QErrorMessage::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QColorDialog*>(ptr)->QColorDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QDialog*>(ptr)->QDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QToolBar*>(ptr)->QToolBar::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -67570,6 +66490,8 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QRubberBand*>(ptr)->QRubberBand::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QProgressBar*>(ptr)->QProgressBar::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QMenuBar*>(ptr)->QMenuBar::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -67590,10 +66512,10 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QStackedWidget*>(ptr)->QStackedWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QSplitter*>(ptr)->QSplitter::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QLCDNumber*>(ptr)->QLCDNumber::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QLabel*>(ptr)->QLabel::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QLCDNumber*>(ptr)->QLCDNumber::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QTextBrowser*>(ptr)->QTextBrowser::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -67604,6 +66526,8 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QMdiArea*>(ptr)->QMdiArea::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QGraphicsView*>(ptr)->QGraphicsView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QTreeWidget*>(ptr)->QTreeWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -67624,8 +66548,6 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QColumnView*>(ptr)->QColumnView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QGraphicsView*>(ptr)->QGraphicsView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -67636,6 +66558,26 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QDockWidget*>(ptr)->QDockWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QWizard*>(ptr)->QWizard::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QProgressDialog*>(ptr)->QProgressDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QMessageBox*>(ptr)->QMessageBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QInputDialog*>(ptr)->QInputDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QFontDialog*>(ptr)->QFontDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QFileDialog*>(ptr)->QFileDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QErrorMessage*>(ptr)->QErrorMessage::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QColorDialog*>(ptr)->QColorDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QDialog*>(ptr)->QDialog::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QFontComboBox*>(ptr)->QFontComboBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -67674,10 +66616,6 @@ void* QWidget_InputMethodQueryDefault(void* ptr, long long query)
 		return new QVariant(static_cast<QCheckBox*>(ptr)->QCheckBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QAbstractButton*>(ptr)->QAbstractButton::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	} else {
 		return new QVariant(static_cast<QWidget*>(ptr)->QWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 	}
@@ -67814,44 +66752,8 @@ char QWidget_HasHeightForWidth(void* ptr)
 
 char QWidget_HasHeightForWidthDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hasHeightForWidth();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hasHeightForWidth();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::hasHeightForWidth();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::hasHeightForWidth();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::hasHeightForWidth();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::hasHeightForWidth();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::hasHeightForWidth();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::hasHeightForWidth();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::hasHeightForWidth();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::hasHeightForWidth();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::hasHeightForWidth();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::hasHeightForWidth();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::hasHeightForWidth();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -67870,6 +66772,8 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::hasHeightForWidth();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::hasHeightForWidth();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::hasHeightForWidth();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -67890,10 +66794,10 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::hasHeightForWidth();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::hasHeightForWidth();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::hasHeightForWidth();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::hasHeightForWidth();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::hasHeightForWidth();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -67904,6 +66808,8 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::hasHeightForWidth();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::hasHeightForWidth();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::hasHeightForWidth();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -67924,8 +66830,6 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QColumnView*>(ptr)->QColumnView::hasHeightForWidth();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::hasHeightForWidth();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::hasHeightForWidth();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::hasHeightForWidth();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -67936,6 +66840,26 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::hasHeightForWidth();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::hasHeightForWidth();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::hasHeightForWidth();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::hasHeightForWidth();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::hasHeightForWidth();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hasHeightForWidth();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::hasHeightForWidth();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -67974,10 +66898,6 @@ char QWidget_HasHeightForWidthDefault(void* ptr)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::hasHeightForWidth();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::hasHeightForWidth();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::hasHeightForWidth();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hasHeightForWidth();
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::hasHeightForWidth();
 	}
@@ -68085,44 +67005,8 @@ void* QWidget_MetaObject(void* ptr)
 
 void* QWidget_MetaObjectDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return const_cast<QMetaObject*>(static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::metaObject());
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return const_cast<QMetaObject*>(static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metaObject());
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QWizardPage*>(ptr)->QWizardPage::metaObject());
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QWizard*>(ptr)->QWizard::metaObject());
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QProgressDialog*>(ptr)->QProgressDialog::metaObject());
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QMessageBox*>(ptr)->QMessageBox::metaObject());
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QInputDialog*>(ptr)->QInputDialog::metaObject());
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QFontDialog*>(ptr)->QFontDialog::metaObject());
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QFileDialog*>(ptr)->QFileDialog::metaObject());
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QErrorMessage*>(ptr)->QErrorMessage::metaObject());
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QColorDialog*>(ptr)->QColorDialog::metaObject());
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QDialog*>(ptr)->QDialog::metaObject());
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QToolBar*>(ptr)->QToolBar::metaObject());
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -68141,6 +67025,8 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QRubberBand*>(ptr)->QRubberBand::metaObject());
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QProgressBar*>(ptr)->QProgressBar::metaObject());
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metaObject());
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QMenuBar*>(ptr)->QMenuBar::metaObject());
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -68161,10 +67047,10 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QStackedWidget*>(ptr)->QStackedWidget::metaObject());
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSplitter*>(ptr)->QSplitter::metaObject());
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLCDNumber*>(ptr)->QLCDNumber::metaObject());
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QLabel*>(ptr)->QLabel::metaObject());
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLCDNumber*>(ptr)->QLCDNumber::metaObject());
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QTextBrowser*>(ptr)->QTextBrowser::metaObject());
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -68175,6 +67061,8 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::metaObject());
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QMdiArea*>(ptr)->QMdiArea::metaObject());
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QGraphicsView*>(ptr)->QGraphicsView::metaObject());
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::metaObject());
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -68195,8 +67083,6 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QColumnView*>(ptr)->QColumnView::metaObject());
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::metaObject());
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QGraphicsView*>(ptr)->QGraphicsView::metaObject());
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::metaObject());
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -68207,6 +67093,26 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QDockWidget*>(ptr)->QDockWidget::metaObject());
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::metaObject());
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QWizard*>(ptr)->QWizard::metaObject());
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QProgressDialog*>(ptr)->QProgressDialog::metaObject());
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QMessageBox*>(ptr)->QMessageBox::metaObject());
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QInputDialog*>(ptr)->QInputDialog::metaObject());
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QFontDialog*>(ptr)->QFontDialog::metaObject());
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QFileDialog*>(ptr)->QFileDialog::metaObject());
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QErrorMessage*>(ptr)->QErrorMessage::metaObject());
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QColorDialog*>(ptr)->QColorDialog::metaObject());
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QDialog*>(ptr)->QDialog::metaObject());
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metaObject());
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QFontComboBox*>(ptr)->QFontComboBox::metaObject());
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -68245,10 +67151,6 @@ void* QWidget_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QCheckBox*>(ptr)->QCheckBox::metaObject());
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractButton*>(ptr)->QAbstractButton::metaObject());
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metaObject());
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metaObject());
 	} else {
 		return const_cast<QMetaObject*>(static_cast<QWidget*>(ptr)->QWidget::metaObject());
 	}
@@ -68276,44 +67178,8 @@ int QWidget_HeightForWidth(void* ptr, int w)
 
 int QWidget_HeightForWidthDefault(void* ptr, int w)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::heightForWidth(w);
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::heightForWidth(w);
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::heightForWidth(w);
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::heightForWidth(w);
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::heightForWidth(w);
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::heightForWidth(w);
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::heightForWidth(w);
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::heightForWidth(w);
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::heightForWidth(w);
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::heightForWidth(w);
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::heightForWidth(w);
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::heightForWidth(w);
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::heightForWidth(w);
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -68332,6 +67198,8 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::heightForWidth(w);
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::heightForWidth(w);
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::heightForWidth(w);
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::heightForWidth(w);
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -68352,10 +67220,10 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::heightForWidth(w);
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::heightForWidth(w);
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::heightForWidth(w);
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::heightForWidth(w);
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::heightForWidth(w);
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::heightForWidth(w);
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -68366,6 +67234,8 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::heightForWidth(w);
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::heightForWidth(w);
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::heightForWidth(w);
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::heightForWidth(w);
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -68386,8 +67256,6 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QColumnView*>(ptr)->QColumnView::heightForWidth(w);
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::heightForWidth(w);
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::heightForWidth(w);
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::heightForWidth(w);
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -68398,6 +67266,26 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::heightForWidth(w);
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::heightForWidth(w);
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::heightForWidth(w);
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::heightForWidth(w);
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::heightForWidth(w);
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::heightForWidth(w);
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::heightForWidth(w);
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::heightForWidth(w);
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::heightForWidth(w);
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::heightForWidth(w);
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::heightForWidth(w);
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::heightForWidth(w);
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::heightForWidth(w);
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -68436,10 +67324,6 @@ int QWidget_HeightForWidthDefault(void* ptr, int w)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::heightForWidth(w);
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::heightForWidth(w);
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::heightForWidth(w);
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::heightForWidth(w);
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::heightForWidth(w);
 	}
@@ -68462,44 +67346,8 @@ int QWidget_Metric(void* ptr, long long m)
 
 int QWidget_MetricDefault(void* ptr, long long m)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QWizardPage*>(ptr)->QWizardPage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QWizard*>(ptr)->QWizard::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QMessageBox*>(ptr)->QMessageBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QInputDialog*>(ptr)->QInputDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFontDialog*>(ptr)->QFontDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QFileDialog*>(ptr)->QFileDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QColorDialog*>(ptr)->QColorDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDialog*>(ptr)->QDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QToolBar*>(ptr)->QToolBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -68518,6 +67366,8 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QRubberBand*>(ptr)->QRubberBand::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QProgressBar*>(ptr)->QProgressBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMenuBar*>(ptr)->QMenuBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -68538,10 +67388,10 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QStackedWidget*>(ptr)->QStackedWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSplitter*>(ptr)->QSplitter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QLabel*>(ptr)->QLabel::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLCDNumber*>(ptr)->QLCDNumber::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTextBrowser*>(ptr)->QTextBrowser::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -68552,6 +67402,8 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMdiArea*>(ptr)->QMdiArea::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTreeWidget*>(ptr)->QTreeWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -68572,8 +67424,6 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QColumnView*>(ptr)->QColumnView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QGraphicsView*>(ptr)->QGraphicsView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -68584,6 +67434,26 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QDockWidget*>(ptr)->QDockWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWizard*>(ptr)->QWizard::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QProgressDialog*>(ptr)->QProgressDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QMessageBox*>(ptr)->QMessageBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QInputDialog*>(ptr)->QInputDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFontDialog*>(ptr)->QFontDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QFileDialog*>(ptr)->QFileDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QErrorMessage*>(ptr)->QErrorMessage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QColorDialog*>(ptr)->QColorDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDialog*>(ptr)->QDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFontComboBox*>(ptr)->QFontComboBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -68622,10 +67492,6 @@ int QWidget_MetricDefault(void* ptr, long long m)
 		return static_cast<QCheckBox*>(ptr)->QCheckBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractButton*>(ptr)->QAbstractButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	} else {
 		return static_cast<QWidget*>(ptr)->QWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 	}
@@ -68683,44 +67549,8 @@ void QWidget_InitPainter(void* ptr, void* painter)
 
 void QWidget_InitPainterDefault(void* ptr, void* painter)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::initPainter(static_cast<QPainter*>(painter));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::initPainter(static_cast<QPainter*>(painter));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -68739,6 +67569,8 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -68759,10 +67591,10 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -68773,6 +67605,8 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -68793,8 +67627,6 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QColumnView*>(ptr)->QColumnView::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -68805,6 +67637,26 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::initPainter(static_cast<QPainter*>(painter));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -68843,10 +67695,6 @@ void QWidget_InitPainterDefault(void* ptr, void* painter)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::initPainter(static_cast<QPainter*>(painter));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::initPainter(static_cast<QPainter*>(painter));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::initPainter(static_cast<QPainter*>(painter));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::initPainter(static_cast<QPainter*>(painter));
 	}
@@ -69037,45 +67885,7 @@ char QWidget_EventFilter(void* ptr, void* watched, void* event)
 
 char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QWizardPage*>(ptr)->QWizardPage::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
 		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
@@ -69086,114 +67896,6 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QWizardPage*>(ptr)->QWizardPage::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
 		} else {
 			return static_cast<QWizardPage*>(ptr)->QWizardPage::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
@@ -69302,6 +68004,18 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QProgressBar*>(ptr)->QProgressBar::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
 		} else {
 			return static_cast<QProgressBar*>(ptr)->QProgressBar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
@@ -69423,18 +68137,6 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QSplitter*>(ptr)->QSplitter::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QLabel*>(ptr)->QLabel::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -69446,6 +68148,18 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QLabel*>(ptr)->QLabel::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
 		} else {
 			return static_cast<QLabel*>(ptr)->QLabel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QLCDNumber*>(ptr)->QLCDNumber::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
@@ -69506,6 +68220,18 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QMdiArea*>(ptr)->QMdiArea::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
 		} else {
 			return static_cast<QMdiArea*>(ptr)->QMdiArea::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
@@ -69627,18 +68353,6 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QGraphicsView*>(ptr)->QGraphicsView::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -69698,6 +68412,126 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 			return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
 		} else {
 			return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QDialog*>(ptr)->QDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
+			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
@@ -69927,30 +68761,6 @@ char QWidget_EventFilterDefault(void* ptr, void* watched, void* event)
 		} else {
 			return static_cast<QAbstractButton*>(ptr)->QAbstractButton::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 		}
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QGraphicsWidget*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QLayout*>(watched), static_cast<QEvent*>(event));
-		} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(watched))) {
-			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QWidget*>(watched), static_cast<QEvent*>(event));
-		} else {
-			return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-		}
 	} else {
 		if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(watched))) {
 			return static_cast<QWidget*>(ptr)->QWidget::eventFilter(static_cast<QGraphicsObject*>(watched), static_cast<QEvent*>(event));
@@ -69973,44 +68783,8 @@ void QWidget_ChildEvent(void* ptr, void* event)
 
 void QWidget_ChildEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::childEvent(static_cast<QChildEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::childEvent(static_cast<QChildEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70029,6 +68803,8 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70049,10 +68825,10 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70063,6 +68839,8 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70083,8 +68861,6 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70095,6 +68871,26 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -70133,10 +68929,6 @@ void QWidget_ChildEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::childEvent(static_cast<QChildEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::childEvent(static_cast<QChildEvent*>(event));
 	}
@@ -70149,44 +68941,8 @@ void QWidget_ConnectNotify(void* ptr, void* sign)
 
 void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::connectNotify(*static_cast<QMetaMethod*>(sign));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70205,6 +68961,8 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70225,10 +68983,10 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70239,6 +68997,8 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70259,8 +69019,6 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QColumnView*>(ptr)->QColumnView::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70271,6 +69029,26 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -70309,10 +69087,6 @@ void QWidget_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
 	}
@@ -70325,44 +69099,8 @@ void QWidget_CustomEvent(void* ptr, void* event)
 
 void QWidget_CustomEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::customEvent(static_cast<QEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::customEvent(static_cast<QEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70381,6 +69119,8 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70401,10 +69141,10 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70415,6 +69155,8 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70435,8 +69177,6 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70447,6 +69187,26 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -70485,10 +69245,6 @@ void QWidget_CustomEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::customEvent(static_cast<QEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::customEvent(static_cast<QEvent*>(event));
 	}
@@ -70501,44 +69257,8 @@ void QWidget_DeleteLater(void* ptr)
 
 void QWidget_DeleteLaterDefault(void* ptr)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::deleteLater();
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::deleteLater();
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::deleteLater();
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::deleteLater();
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::deleteLater();
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::deleteLater();
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::deleteLater();
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::deleteLater();
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::deleteLater();
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::deleteLater();
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::deleteLater();
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::deleteLater();
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::deleteLater();
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70557,6 +69277,8 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::deleteLater();
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::deleteLater();
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::deleteLater();
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::deleteLater();
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70577,10 +69299,10 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::deleteLater();
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::deleteLater();
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::deleteLater();
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::deleteLater();
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::deleteLater();
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::deleteLater();
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70591,6 +69313,8 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::deleteLater();
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::deleteLater();
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::deleteLater();
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::deleteLater();
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70611,8 +69335,6 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QColumnView*>(ptr)->QColumnView::deleteLater();
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::deleteLater();
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::deleteLater();
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::deleteLater();
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70623,6 +69345,26 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::deleteLater();
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::deleteLater();
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::deleteLater();
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::deleteLater();
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::deleteLater();
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::deleteLater();
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::deleteLater();
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::deleteLater();
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::deleteLater();
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::deleteLater();
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::deleteLater();
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::deleteLater();
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::deleteLater();
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -70661,10 +69403,6 @@ void QWidget_DeleteLaterDefault(void* ptr)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::deleteLater();
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::deleteLater();
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::deleteLater();
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::deleteLater();
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::deleteLater();
 	}
@@ -70677,44 +69415,8 @@ void QWidget_DisconnectNotify(void* ptr, void* sign)
 
 void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70733,6 +69435,8 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70753,10 +69457,10 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70767,6 +69471,8 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70787,8 +69493,6 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QColumnView*>(ptr)->QColumnView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70799,6 +69503,26 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -70837,10 +69561,6 @@ void QWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	}
@@ -70853,44 +69573,8 @@ void QWidget_TimerEvent(void* ptr, void* event)
 
 void QWidget_TimerEventDefault(void* ptr, void* event)
 {
-	
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacNativeWidget*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::timerEvent(static_cast<QTimerEvent*>(event));
-		#endif
-	} else 
-	#ifdef Q_OS_OSX
-		if (dynamic_cast<QMacCocoaViewContainer*>(static_cast<QObject*>(ptr))) {
-	#else
-		if (false) {
-	#endif
-		#ifdef Q_OS_OSX
-			static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::timerEvent(static_cast<QTimerEvent*>(event));
-		#endif
-	} else if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QWizardPage*>(static_cast<QObject*>(ptr))) {
 		static_cast<QWizardPage*>(ptr)->QWizardPage::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
-		static_cast<QWizard*>(ptr)->QWizard::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QProgressDialog*>(ptr)->QProgressDialog::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
-		static_cast<QMessageBox*>(ptr)->QMessageBox::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QInputDialog*>(ptr)->QInputDialog::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFontDialog*>(ptr)->QFontDialog::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QFileDialog*>(ptr)->QFileDialog::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
-		static_cast<QErrorMessage*>(ptr)->QErrorMessage::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QColorDialog*>(ptr)->QColorDialog::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDialog*>(ptr)->QDialog::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QToolBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QToolBar*>(ptr)->QToolBar::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTabWidget*>(static_cast<QObject*>(ptr))) {
@@ -70909,6 +69593,8 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QRubberBand*>(ptr)->QRubberBand::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QProgressBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QProgressBar*>(ptr)->QProgressBar::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMenuBar*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMenuBar*>(ptr)->QMenuBar::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMenu*>(static_cast<QObject*>(ptr))) {
@@ -70929,10 +69615,10 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QStackedWidget*>(ptr)->QStackedWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSplitter*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSplitter*>(ptr)->QSplitter::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLCDNumber*>(ptr)->QLCDNumber::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QLabel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QLabel*>(ptr)->QLabel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QLCDNumber*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLCDNumber*>(ptr)->QLCDNumber::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTextBrowser*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTextBrowser*>(ptr)->QTextBrowser::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTextEdit*>(static_cast<QObject*>(ptr))) {
@@ -70943,6 +69629,8 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMdiArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMdiArea*>(ptr)->QMdiArea::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
+		static_cast<QGraphicsView*>(ptr)->QGraphicsView::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTreeWidget*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTreeWidget*>(ptr)->QTreeWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTreeView*>(static_cast<QObject*>(ptr))) {
@@ -70963,8 +69651,6 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QColumnView*>(ptr)->QColumnView::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractItemView*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QGraphicsView*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsView*>(ptr)->QGraphicsView::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractScrollArea*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QFrame*>(static_cast<QObject*>(ptr))) {
@@ -70975,6 +69661,26 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QDockWidget*>(ptr)->QDockWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QDialogButtonBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QWizard*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWizard*>(ptr)->QWizard::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QProgressDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QProgressDialog*>(ptr)->QProgressDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QMessageBox*>(static_cast<QObject*>(ptr))) {
+		static_cast<QMessageBox*>(ptr)->QMessageBox::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QInputDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QInputDialog*>(ptr)->QInputDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QFontDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFontDialog*>(ptr)->QFontDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QFileDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QFileDialog*>(ptr)->QFileDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QErrorMessage*>(static_cast<QObject*>(ptr))) {
+		static_cast<QErrorMessage*>(ptr)->QErrorMessage::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QColorDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QColorDialog*>(ptr)->QColorDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QDialog*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDialog*>(ptr)->QDialog::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
+		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QFontComboBox*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFontComboBox*>(ptr)->QFontComboBox::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QComboBox*>(static_cast<QObject*>(ptr))) {
@@ -71013,10 +69719,6 @@ void QWidget_TimerEventDefault(void* ptr, void* event)
 		static_cast<QCheckBox*>(ptr)->QCheckBox::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractButton*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractButton*>(ptr)->QAbstractButton::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QOpenGLWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QOpenGLWidget*>(ptr)->QOpenGLWidget::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QDesktopWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	} else {
 		static_cast<QWidget*>(ptr)->QWidget::timerEvent(static_cast<QTimerEvent*>(event));
 	}

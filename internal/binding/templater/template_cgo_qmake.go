@@ -272,7 +272,7 @@ func createMakefile(module, path, target string, mode int) {
 	case "ios-simulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "macx-ios-clang", "CONFIG+=iphonesimulator", "CONFIG+=simulator"}...)
 	case "android", "android-emulator":
-		cmd.Args = append(cmd.Args, []string{"-spec", "android-g++"}...)
+		cmd.Args = append(cmd.Args, []string{"-spec", "android-clang"}...)
 		cmd.Env = []string{fmt.Sprintf("ANDROID_NDK_ROOT=%v", utils.ANDROID_NDK_DIR())}
 	case "sailfish", "sailfish-emulator":
 		cmd.Args = append(cmd.Args, []string{"-spec", "linux-g++"}...)
@@ -460,8 +460,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 				pFix := []string{
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw49_32"),
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32"),
+					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64"),
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw49_32"),
 					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
+					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64"),
 					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
 					utils.QT_MSYS2_DIR(),
 				}
@@ -523,7 +525,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		tmp = strings.Replace(tmp, "$(EXPORT_ARCH_ARGS)", "-arch x86_64", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_CFLAGS)", "", -1)
 		tmp = strings.Replace(tmp, "$(EXPORT_QMAKE_XARCH_LFLAGS)", "", -1)
-	case "android", "android-emulator":
+	case "android", "android-emulator": //TODO:
 		tmp = strings.Replace(tmp, fmt.Sprintf("-Wl,-soname,lib%v.so", filepath.Base(path)), "-Wl,-soname,libgo_base.so", -1)
 		tmp = strings.Replace(tmp, "-shared", "", -1)
 	case "js", "wasm":
@@ -553,6 +555,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 
 	for _, file := range cgoFileNames(module, path, target, mode) {
 		switch target {
+		case "android", "android-emulator":
+			tmp = strings.Replace(tmp, "/opt/android/"+filepath.Base(utils.ANDROID_NDK_DIR()), utils.ANDROID_NDK_DIR(), -1)
 		case "darwin":
 			for _, lib := range []string{"WebKitWidgets", "WebKit"} {
 				tmp = strings.Replace(tmp, "-lQt5"+lib, "-framework Qt"+lib, -1)
@@ -612,7 +616,11 @@ func cgoFileNames(module, path, target string, mode int) []string {
 		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") {
 			sFixes = []string{"windows_amd64"}
 		} else {
-			sFixes = []string{"windows_386"}
+			if utils.QT_VERSION_NUM() >= 5120 {
+				sFixes = []string{"windows_amd64"}
+			} else {
+				sFixes = []string{"windows_386"}
+			}
 		}
 	case "android":
 		sFixes = []string{"linux_arm"}

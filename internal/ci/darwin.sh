@@ -47,11 +47,11 @@ then
   echo "y" | $HOME/android-sdk-macosx/tools/bin/sdkmanager --update
 
   #download and install android ndk
-  NDK=android-ndk-r14b-darwin-x86_64.zip
+  NDK=android-ndk-r18b-darwin-x86_64.zip
   curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
   unzip -qq /tmp/$NDK -d $HOME
   rm -f /tmp/$NDK
-  ln -s $HOME/android-ndk-r14b $HOME/Desktop
+  ln -s $HOME/android-ndk-r18b $HOME/Desktop
 fi
 
 #prepare env

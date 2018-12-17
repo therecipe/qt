@@ -2027,6 +2027,12 @@ func (ptr *QGeoPath) AddCoordinate(coordinate QGeoCoordinate_ITF) {
 	}
 }
 
+func (ptr *QGeoPath) ClearPath() {
+	if ptr.Pointer() != nil {
+		C.QGeoPath_ClearPath(ptr.Pointer())
+	}
+}
+
 func (ptr *QGeoPath) InsertCoordinate(index int, coordinate QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoPath_InsertCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
@@ -2312,6 +2318,24 @@ func (ptr *QGeoPolygon) AddCoordinate(coordinate QGeoCoordinate_ITF) {
 	}
 }
 
+func (ptr *QGeoPolygon) AddHole2(holePath []*QGeoCoordinate) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_AddHole2(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQGeoPolygonFromPointer(NewQGeoPolygonFromPointer(nil).__addHole_holePath_newList2())
+			for _, v := range holePath {
+				tmpList.__addHole_holePath_setList2(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QGeoPolygon) AddHole(holePath core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_AddHole(ptr.Pointer(), core.PointerFromQVariant(holePath))
+	}
+}
+
 func (ptr *QGeoPolygon) InsertCoordinate(index int, coordinate QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoPolygon_InsertCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
@@ -2330,6 +2354,12 @@ func (ptr *QGeoPolygon) RemoveCoordinate2(index int) {
 	}
 }
 
+func (ptr *QGeoPolygon) RemoveHole(index int) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_RemoveHole(ptr.Pointer(), C.int(int32(index)))
+	}
+}
+
 func (ptr *QGeoPolygon) ReplaceCoordinate(index int, coordinate QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoPolygon_ReplaceCoordinate(ptr.Pointer(), C.int(int32(index)), PointerFromQGeoCoordinate(coordinate))
@@ -2342,6 +2372,18 @@ func (ptr *QGeoPolygon) SetPath(path []*QGeoCoordinate) {
 			tmpList := NewQGeoPolygonFromPointer(NewQGeoPolygonFromPointer(nil).__setPath_path_newList())
 			for _, v := range path {
 				tmpList.__setPath_path_setList(v)
+			}
+			return tmpList.Pointer()
+		}())
+	}
+}
+
+func (ptr *QGeoPolygon) SetPerimeter(path []*core.QVariant) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon_SetPerimeter(ptr.Pointer(), func() unsafe.Pointer {
+			tmpList := NewQGeoPolygonFromPointer(NewQGeoPolygonFromPointer(nil).__setPerimeter_path_newList())
+			for _, v := range path {
+				tmpList.__setPerimeter_path_setList(v)
 			}
 			return tmpList.Pointer()
 		}())
@@ -2380,6 +2422,20 @@ func (ptr *QGeoPolygon) Translated(degreesLatitude float64, degreesLongitude flo
 	return nil
 }
 
+func (ptr *QGeoPolygon) Perimeter() []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQGeoPolygonFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__perimeter_atList(i)
+			}
+			return out
+		}(C.QGeoPolygon_Perimeter(ptr.Pointer()))
+	}
+	return make([]*core.QVariant, 0)
+}
+
 func (ptr *QGeoPolygon) ContainsCoordinate(coordinate QGeoCoordinate_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QGeoPolygon_ContainsCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))) != 0
@@ -2401,9 +2457,44 @@ func (ptr *QGeoPolygon) Path() []*QGeoCoordinate {
 	return make([]*QGeoCoordinate, 0)
 }
 
+func (ptr *QGeoPolygon) HolePath(index int) []*QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*QGeoCoordinate {
+			out := make([]*QGeoCoordinate, int(l.len))
+			tmpList := NewQGeoPolygonFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__holePath_atList(i)
+			}
+			return out
+		}(C.QGeoPolygon_HolePath(ptr.Pointer(), C.int(int32(index))))
+	}
+	return make([]*QGeoCoordinate, 0)
+}
+
+func (ptr *QGeoPolygon) Hole(index int) []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*core.QVariant {
+			out := make([]*core.QVariant, int(l.len))
+			tmpList := NewQGeoPolygonFromPointer(l.data)
+			for i := 0; i < len(out); i++ {
+				out[i] = tmpList.__hole_atList(i)
+			}
+			return out
+		}(C.QGeoPolygon_Hole(ptr.Pointer(), C.int(int32(index))))
+	}
+	return make([]*core.QVariant, 0)
+}
+
 func (ptr *QGeoPolygon) Length(indexFrom int, indexTo int) float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoPolygon_Length(ptr.Pointer(), C.int(int32(indexFrom)), C.int(int32(indexTo))))
+	}
+	return 0
+}
+
+func (ptr *QGeoPolygon) HolesCount() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QGeoPolygon_HolesCount(ptr.Pointer())))
 	}
 	return 0
 }
@@ -2434,6 +2525,25 @@ func (ptr *QGeoPolygon) __QGeoPolygon_path_newList2() unsafe.Pointer {
 	return C.QGeoPolygon___QGeoPolygon_path_newList2(ptr.Pointer())
 }
 
+func (ptr *QGeoPolygon) __addHole_holePath_atList2(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___addHole_holePath_atList2(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __addHole_holePath_setList2(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___addHole_holePath_setList2(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __addHole_holePath_newList2() unsafe.Pointer {
+	return C.QGeoPolygon___addHole_holePath_newList2(ptr.Pointer())
+}
+
 func (ptr *QGeoPolygon) __setPath_path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___setPath_path_atList(ptr.Pointer(), C.int(int32(i))))
@@ -2453,6 +2563,44 @@ func (ptr *QGeoPolygon) __setPath_path_newList() unsafe.Pointer {
 	return C.QGeoPolygon___setPath_path_newList(ptr.Pointer())
 }
 
+func (ptr *QGeoPolygon) __setPerimeter_path_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___setPerimeter_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __setPerimeter_path_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___setPerimeter_path_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __setPerimeter_path_newList() unsafe.Pointer {
+	return C.QGeoPolygon___setPerimeter_path_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoPolygon) __perimeter_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___perimeter_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __perimeter_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___perimeter_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __perimeter_newList() unsafe.Pointer {
+	return C.QGeoPolygon___perimeter_newList(ptr.Pointer())
+}
+
 func (ptr *QGeoPolygon) __path_atList(i int) *QGeoCoordinate {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___path_atList(ptr.Pointer(), C.int(int32(i))))
@@ -2470,6 +2618,44 @@ func (ptr *QGeoPolygon) __path_setList(i QGeoCoordinate_ITF) {
 
 func (ptr *QGeoPolygon) __path_newList() unsafe.Pointer {
 	return C.QGeoPolygon___path_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoPolygon) __holePath_atList(i int) *QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		tmpValue := NewQGeoCoordinateFromPointer(C.QGeoPolygon___holePath_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __holePath_setList(i QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___holePath_setList(ptr.Pointer(), PointerFromQGeoCoordinate(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __holePath_newList() unsafe.Pointer {
+	return C.QGeoPolygon___holePath_newList(ptr.Pointer())
+}
+
+func (ptr *QGeoPolygon) __hole_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQVariantFromPointer(C.QGeoPolygon___hole_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoPolygon) __hole_setList(i core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoPolygon___hole_setList(ptr.Pointer(), core.PointerFromQVariant(i))
+	}
+}
+
+func (ptr *QGeoPolygon) __hole_newList() unsafe.Pointer {
+	return C.QGeoPolygon___hole_newList(ptr.Pointer())
 }
 
 type QGeoPositionInfo struct {
@@ -3051,6 +3237,45 @@ func (ptr *QGeoPositionInfoSource) DisconnectStopUpdates() {
 func (ptr *QGeoPositionInfoSource) StopUpdates() {
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_StopUpdates(ptr.Pointer())
+	}
+}
+
+//export callbackQGeoPositionInfoSource_SupportedPositioningMethodsChanged
+func callbackQGeoPositionInfoSource_SupportedPositioningMethodsChanged(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "supportedPositioningMethodsChanged"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QGeoPositionInfoSource) ConnectSupportedPositioningMethodsChanged(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "supportedPositioningMethodsChanged") {
+			C.QGeoPositionInfoSource_ConnectSupportedPositioningMethodsChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "supportedPositioningMethodsChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "supportedPositioningMethodsChanged", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "supportedPositioningMethodsChanged", f)
+		}
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DisconnectSupportedPositioningMethodsChanged() {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_DisconnectSupportedPositioningMethodsChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "supportedPositioningMethodsChanged")
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) SupportedPositioningMethodsChanged() {
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_SupportedPositioningMethodsChanged(ptr.Pointer())
 	}
 }
 

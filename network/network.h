@@ -11,6 +11,8 @@
 int QAbstractNetworkCache_QAbstractNetworkCache_QRegisterMetaType();
 int QAbstractSocket_QAbstractSocket_QRegisterMetaType();
 int QDnsLookup_QDnsLookup_QRegisterMetaType();
+int QDtls_QDtls_QRegisterMetaType();
+int QDtlsClientVerifier_QDtlsClientVerifier_QRegisterMetaType();
 int QHttpMultiPart_QHttpMultiPart_QRegisterMetaType();
 int QLocalServer_QLocalServer_QRegisterMetaType();
 int QLocalSocket_QLocalSocket_QRegisterMetaType();
@@ -1237,6 +1239,8 @@ struct QtNetwork_PackedList QSslCertificate_SubjectInfoAttributes(void* ptr);
 struct QtNetwork_PackedList QSslCertificate_Extensions(void* ptr);
 struct QtNetwork_PackedList QSslCertificate_SubjectAlternativeNames(void* ptr);
 void* QSslCertificate_PublicKey(void* ptr);
+struct QtNetwork_PackedString QSslCertificate_IssuerDisplayName(void* ptr);
+struct QtNetwork_PackedString QSslCertificate_SubjectDisplayName(void* ptr);
 struct QtNetwork_PackedString QSslCertificate_ToText(void* ptr);
 struct QtNetwork_PackedString QSslCertificate_IssuerInfo(void* ptr, long long subject);
 struct QtNetwork_PackedString QSslCertificate_IssuerInfo2(void* ptr, void* attribute);

@@ -290,6 +290,8 @@ func (f *Function) IsSupported() bool {
 
 	switch {
 	case
+		f.ClassName() == "operator QCborError",
+
 		(f.ClassName() == "QAccessibleObject" || f.ClassName() == "QAccessibleInterface" || f.ClassName() == "QAccessibleWidget" || //QAccessible::State -> quint64
 			f.ClassName() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Name == "m_changedStates" || f.Name == "setM_changedStates" || f.Meta == CONSTRUCTOR),
 
@@ -402,6 +404,11 @@ func (f *Function) IsSupported() bool {
 
 		f.Fullname == "QCustom3DVolume::QCustom3DVolume" && f.OverloadNumber == "2",
 
+		f.Name == "defaultDtlsConfiguration", f.Name == "setDefaultDtlsConfiguration",
+		f.Name == "setDtlsCookieVerificationEnabled", f.Name == "dtlsCookieVerificationEnabled",
+		f.Fullname == "QNearFieldManager::adapterStateChanged", f.Name == "singletonInstance",
+		f.Fullname == "QWebEngineUrlScheme::syntax",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -432,7 +439,8 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "setTextureData") || strings.HasPrefix(genName, "textureData") ||
 		strings.HasPrefix(genName, "QCustom3DVolume_textureData") || strings.HasPrefix(genName, "createTextureData") ||
 		strings.Contains(genName, "alternateSubjectNames") || strings.HasPrefix(genName, "fromVariantMap") ||
-		strings.HasPrefix(genName, "QScxmlDataModel") {
+		strings.HasPrefix(genName, "QScxmlDataModel") || strings.HasPrefix(genName, "readAllFrames") ||
+		strings.HasPrefix(genName, "manufacturerData") {
 
 		if strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "tabs") {
 			return !strings.HasPrefix(f.Name, "__")

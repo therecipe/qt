@@ -459,6 +459,7 @@ void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent);
 void QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(void* ptr);
 void QSqlRelationalDelegate_DestroyQSqlRelationalDelegateDefault(void* ptr);
 void* QSqlRelationalDelegate_CreateEditorDefault(void* ptr, void* parent, void* option, void* index);
+void QSqlRelationalDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index);
 void QSqlRelationalDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index);
 void* QSqlRelationalDelegate___dynamicPropertyNames_atList(void* ptr, int i);
 void QSqlRelationalDelegate___dynamicPropertyNames_setList(void* ptr, void* i);
@@ -484,7 +485,6 @@ void QSqlRelationalDelegate_DrawDecorationDefault(void* ptr, void* painter, void
 void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, struct QtSql_PackedString text);
 void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect);
 void QSqlRelationalDelegate_PaintDefault(void* ptr, void* painter, void* option, void* index);
-void QSqlRelationalDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index);
 void QSqlRelationalDelegate_UpdateEditorGeometryDefault(void* ptr, void* editor, void* option, void* index);
 char QSqlRelationalDelegate_HelpEventDefault(void* ptr, void* event, void* view, void* option, void* index);
 void QSqlRelationalDelegate_DestroyEditorDefault(void* ptr, void* editor, void* index);

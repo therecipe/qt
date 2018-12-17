@@ -40,7 +40,7 @@
 class MyQMacPasteboardMime: public QMacPasteboardMime
 {
 public:
-	MyQMacPasteboardMime(char t) : QMacPasteboardMime(t) {};
+	MyQMacPasteboardMime(char vch) : QMacPasteboardMime(vch) {};
 	QList<QByteArray> convertFromMime(const QString & mime, QVariant data, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return ({ QList<QByteArray>* tmpP = static_cast<QList<QByteArray>*>(callbackQMacPasteboardMime_ConvertFromMime(this, mimePacked, new QVariant(data), flavPacked)); QList<QByteArray> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
 	QString convertorName() { return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_ConvertorName(this); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
 	QString flavorFor(const QString & mime) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };return ({ QtMacExtras_PackedString tempVal = callbackQMacPasteboardMime_FlavorFor(this, mimePacked); QString ret = QString::fromUtf8(tempVal.data, tempVal.len); free(tempVal.data); ret; }); };
@@ -56,9 +56,9 @@ struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, stru
 	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMacPasteboardMime*>(ptr)->convertFromMime(QString::fromUtf8(mime.data, mime.len), *static_cast<QVariant*>(data), QString::fromUtf8(flav.data, flav.len))); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-void* QMacPasteboardMime_NewQMacPasteboardMime(char* t)
+void* QMacPasteboardMime_NewQMacPasteboardMime(char* vch)
 {
-	return new MyQMacPasteboardMime(*t);
+	return new MyQMacPasteboardMime(*vch);
 }
 
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr)
@@ -255,9 +255,19 @@ void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, struct QtMacExtras_Packe
 	return static_cast<QMacToolBar*>(ptr)->addAllowedItem(*static_cast<QIcon*>(icon), QString::fromUtf8(text.data, text.len));
 }
 
+void* QMacToolBar_AddAllowedStandardItem(void* ptr, long long standardItem)
+{
+	return static_cast<QMacToolBar*>(ptr)->addAllowedStandardItem(static_cast<QMacToolBarItem::StandardItem>(standardItem));
+}
+
 void* QMacToolBar_AddItem(void* ptr, void* icon, struct QtMacExtras_PackedString text)
 {
 	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString::fromUtf8(text.data, text.len));
+}
+
+void* QMacToolBar_AddStandardItem(void* ptr, long long standardItem)
+{
+	return static_cast<QMacToolBar*>(ptr)->addStandardItem(static_cast<QMacToolBarItem::StandardItem>(standardItem));
 }
 
 struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_Tr(char* s, char* c, int n)

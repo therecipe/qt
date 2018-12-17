@@ -6484,10 +6484,10 @@ void QSGNode_Preprocess(void* ptr)
 
 void QSGNode_PreprocessDefault(void* ptr)
 {
-	if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
-		static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::preprocess();
-	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
+	if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::preprocess();
+	} else if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
+		static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::preprocess();
 	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::preprocess();
 	} else if (dynamic_cast<QSGSimpleTextureNode*>(static_cast<QSGNode*>(ptr))) {
@@ -6587,10 +6587,10 @@ char QSGNode_IsSubtreeBlocked(void* ptr)
 
 char QSGNode_IsSubtreeBlockedDefault(void* ptr)
 {
-	if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
-		return static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::isSubtreeBlocked();
-	} else if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
+	if (dynamic_cast<QSGTransformNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGTransformNode*>(ptr)->QSGTransformNode::isSubtreeBlocked();
+	} else if (dynamic_cast<QSGRenderNode*>(static_cast<QSGNode*>(ptr))) {
+		return static_cast<QSGRenderNode*>(ptr)->QSGRenderNode::isSubtreeBlocked();
 	} else if (dynamic_cast<QSGOpacityNode*>(static_cast<QSGNode*>(ptr))) {
 		return static_cast<QSGOpacityNode*>(ptr)->QSGOpacityNode::isSubtreeBlocked();
 	} else if (dynamic_cast<QSGSimpleTextureNode*>(static_cast<QSGNode*>(ptr))) {

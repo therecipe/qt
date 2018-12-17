@@ -3931,6 +3931,45 @@ func (ptr *QWebEnginePage) PdfPrintingFinished(filePath string, success bool) {
 	}
 }
 
+//export callbackQWebEnginePage_PrintRequested
+func callbackQWebEnginePage_PrintRequested(ptr unsafe.Pointer) {
+	if signal := qt.GetSignal(ptr, "printRequested"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectPrintRequested(f func()) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "printRequested") {
+			C.QWebEnginePage_ConnectPrintRequested(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "printRequested"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "printRequested", func() {
+				signal.(func())()
+				f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "printRequested", f)
+		}
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectPrintRequested() {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectPrintRequested(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "printRequested")
+	}
+}
+
+func (ptr *QWebEnginePage) PrintRequested() {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_PrintRequested(ptr.Pointer())
+	}
+}
+
 func (ptr *QWebEnginePage) PrintToPdf(filePath string, layout gui.QPageLayout_ITF) {
 	if ptr.Pointer() != nil {
 		var filePathC *C.char
@@ -6114,6 +6153,7 @@ const (
 	QWebEngineSettings__PlaybackRequiresUserGesture         QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(26)
 	QWebEngineSettings__WebRTCPublicInterfacesOnly          QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(27)
 	QWebEngineSettings__JavascriptCanPaste                  QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(28)
+	QWebEngineSettings__DnsPrefetchEnabled                  QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(29)
 )
 
 func QWebEngineSettings_DefaultSettings() *QWebEngineSettings {
@@ -7181,6 +7221,176 @@ func (ptr *QWebEngineUrlRequestJob) TimerEventDefault(event core.QTimerEvent_ITF
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
+}
+
+type QWebEngineUrlScheme struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineUrlScheme_ITF interface {
+	QWebEngineUrlScheme_PTR() *QWebEngineUrlScheme
+}
+
+func (ptr *QWebEngineUrlScheme) QWebEngineUrlScheme_PTR() *QWebEngineUrlScheme {
+	return ptr
+}
+
+func (ptr *QWebEngineUrlScheme) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlScheme) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQWebEngineUrlScheme(ptr QWebEngineUrlScheme_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineUrlScheme_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineUrlSchemeFromPointer(ptr unsafe.Pointer) (n *QWebEngineUrlScheme) {
+	n = new(QWebEngineUrlScheme)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QWebEngineUrlScheme__Flag
+//QWebEngineUrlScheme::Flag
+type QWebEngineUrlScheme__Flag int64
+
+const (
+	QWebEngineUrlScheme__SecureScheme                 QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x1)
+	QWebEngineUrlScheme__LocalScheme                  QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x2)
+	QWebEngineUrlScheme__LocalAccessAllowed           QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x4)
+	QWebEngineUrlScheme__NoAccessAllowed              QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x8)
+	QWebEngineUrlScheme__ServiceWorkersAllowed        QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x10)
+	QWebEngineUrlScheme__ViewSourceAllowed            QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x20)
+	QWebEngineUrlScheme__ContentSecurityPolicyIgnored QWebEngineUrlScheme__Flag = QWebEngineUrlScheme__Flag(0x40)
+)
+
+//go:generate stringer -type=QWebEngineUrlScheme__SpecialPort
+//QWebEngineUrlScheme::SpecialPort
+type QWebEngineUrlScheme__SpecialPort int64
+
+const (
+	QWebEngineUrlScheme__PortUnspecified QWebEngineUrlScheme__SpecialPort = QWebEngineUrlScheme__SpecialPort(-1)
+)
+
+//go:generate stringer -type=QWebEngineUrlScheme__Syntax
+//QWebEngineUrlScheme::Syntax
+type QWebEngineUrlScheme__Syntax int64
+
+const (
+	QWebEngineUrlScheme__HostPortAndUserInformation QWebEngineUrlScheme__Syntax = QWebEngineUrlScheme__Syntax(0)
+	QWebEngineUrlScheme__HostAndPort                QWebEngineUrlScheme__Syntax = QWebEngineUrlScheme__Syntax(1)
+	QWebEngineUrlScheme__Host                       QWebEngineUrlScheme__Syntax = QWebEngineUrlScheme__Syntax(2)
+	QWebEngineUrlScheme__Path                       QWebEngineUrlScheme__Syntax = QWebEngineUrlScheme__Syntax(3)
+)
+
+func QWebEngineUrlScheme_SchemeByName(name core.QByteArray_ITF) *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_QWebEngineUrlScheme_SchemeByName(core.PointerFromQByteArray(name)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func (ptr *QWebEngineUrlScheme) SchemeByName(name core.QByteArray_ITF) *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_QWebEngineUrlScheme_SchemeByName(core.PointerFromQByteArray(name)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func NewQWebEngineUrlScheme() *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme())
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func NewQWebEngineUrlScheme4(that QWebEngineUrlScheme_ITF) *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme4(PointerFromQWebEngineUrlScheme(that)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func NewQWebEngineUrlScheme2(name core.QByteArray_ITF) *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme2(core.PointerFromQByteArray(name)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func NewQWebEngineUrlScheme3(that QWebEngineUrlScheme_ITF) *QWebEngineUrlScheme {
+	tmpValue := NewQWebEngineUrlSchemeFromPointer(C.QWebEngineUrlScheme_NewQWebEngineUrlScheme3(PointerFromQWebEngineUrlScheme(that)))
+	runtime.SetFinalizer(tmpValue, (*QWebEngineUrlScheme).DestroyQWebEngineUrlScheme)
+	return tmpValue
+}
+
+func QWebEngineUrlScheme_RegisterScheme(scheme QWebEngineUrlScheme_ITF) {
+	C.QWebEngineUrlScheme_QWebEngineUrlScheme_RegisterScheme(PointerFromQWebEngineUrlScheme(scheme))
+}
+
+func (ptr *QWebEngineUrlScheme) RegisterScheme(scheme QWebEngineUrlScheme_ITF) {
+	C.QWebEngineUrlScheme_QWebEngineUrlScheme_RegisterScheme(PointerFromQWebEngineUrlScheme(scheme))
+}
+
+func (ptr *QWebEngineUrlScheme) SetDefaultPort(newValue int) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlScheme_SetDefaultPort(ptr.Pointer(), C.int(int32(newValue)))
+	}
+}
+
+func (ptr *QWebEngineUrlScheme) SetFlags(newValue QWebEngineUrlScheme__Flag) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlScheme_SetFlags(ptr.Pointer(), C.longlong(newValue))
+	}
+}
+
+func (ptr *QWebEngineUrlScheme) SetName(newValue core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlScheme_SetName(ptr.Pointer(), core.PointerFromQByteArray(newValue))
+	}
+}
+
+func (ptr *QWebEngineUrlScheme) SetSyntax(newValue QWebEngineUrlScheme__Syntax) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlScheme_SetSyntax(ptr.Pointer(), C.longlong(newValue))
+	}
+}
+
+func (ptr *QWebEngineUrlScheme) DestroyQWebEngineUrlScheme() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineUrlScheme_DestroyQWebEngineUrlScheme(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
+func (ptr *QWebEngineUrlScheme) Name() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		tmpValue := core.NewQByteArrayFromPointer(C.QWebEngineUrlScheme_Name(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineUrlScheme) Flags() QWebEngineUrlScheme__Flag {
+	if ptr.Pointer() != nil {
+		return QWebEngineUrlScheme__Flag(C.QWebEngineUrlScheme_Flags(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineUrlScheme) DefaultPort() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineUrlScheme_DefaultPort(ptr.Pointer())))
+	}
+	return 0
 }
 
 type QWebEngineUrlSchemeHandler struct {

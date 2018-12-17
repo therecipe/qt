@@ -12029,6 +12029,12 @@ func (ptr *QChart) SetMargins(margins core.QMargins_ITF) {
 	}
 }
 
+func (ptr *QChart) SetPlotArea(rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QChart_SetPlotArea(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
 func (ptr *QChart) SetPlotAreaBackgroundBrush(brush gui.QBrush_ITF) {
 	if ptr.Pointer() != nil {
 		C.QChart_SetPlotAreaBackgroundBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
@@ -28580,6 +28586,16 @@ func NewQValueAxisFromPointer(ptr unsafe.Pointer) (n *QValueAxis) {
 	n.SetPointer(ptr)
 	return
 }
+
+//go:generate stringer -type=QValueAxis__TickType
+//QValueAxis::TickType
+type QValueAxis__TickType int64
+
+const (
+	QValueAxis__TicksDynamic QValueAxis__TickType = QValueAxis__TickType(0)
+	QValueAxis__TicksFixed   QValueAxis__TickType = QValueAxis__TickType(1)
+)
+
 func NewQValueAxis(parent core.QObject_ITF) *QValueAxis {
 	tmpValue := NewQValueAxisFromPointer(C.QValueAxis_NewQValueAxis(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(tmpValue.Pointer(), "destroyed") {
@@ -28865,9 +28881,66 @@ func (ptr *QValueAxis) SetRange(min float64, max float64) {
 	}
 }
 
+func (ptr *QValueAxis) SetTickAnchor(anchor float64) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_SetTickAnchor(ptr.Pointer(), C.double(anchor))
+	}
+}
+
 func (ptr *QValueAxis) SetTickCount(count int) {
 	if ptr.Pointer() != nil {
 		C.QValueAxis_SetTickCount(ptr.Pointer(), C.int(int32(count)))
+	}
+}
+
+func (ptr *QValueAxis) SetTickInterval(insterval float64) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_SetTickInterval(ptr.Pointer(), C.double(insterval))
+	}
+}
+
+func (ptr *QValueAxis) SetTickType(ty QValueAxis__TickType) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_SetTickType(ptr.Pointer(), C.longlong(ty))
+	}
+}
+
+//export callbackQValueAxis_TickAnchorChanged
+func callbackQValueAxis_TickAnchorChanged(ptr unsafe.Pointer, anchor C.double) {
+	if signal := qt.GetSignal(ptr, "tickAnchorChanged"); signal != nil {
+		signal.(func(float64))(float64(anchor))
+	}
+
+}
+
+func (ptr *QValueAxis) ConnectTickAnchorChanged(f func(anchor float64)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "tickAnchorChanged") {
+			C.QValueAxis_ConnectTickAnchorChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "tickAnchorChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "tickAnchorChanged", func(anchor float64) {
+				signal.(func(float64))(anchor)
+				f(anchor)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "tickAnchorChanged", f)
+		}
+	}
+}
+
+func (ptr *QValueAxis) DisconnectTickAnchorChanged() {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_DisconnectTickAnchorChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "tickAnchorChanged")
+	}
+}
+
+func (ptr *QValueAxis) TickAnchorChanged(anchor float64) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_TickAnchorChanged(ptr.Pointer(), C.double(anchor))
 	}
 }
 
@@ -28907,6 +28980,84 @@ func (ptr *QValueAxis) DisconnectTickCountChanged() {
 func (ptr *QValueAxis) TickCountChanged(tickCount int) {
 	if ptr.Pointer() != nil {
 		C.QValueAxis_TickCountChanged(ptr.Pointer(), C.int(int32(tickCount)))
+	}
+}
+
+//export callbackQValueAxis_TickIntervalChanged
+func callbackQValueAxis_TickIntervalChanged(ptr unsafe.Pointer, interval C.double) {
+	if signal := qt.GetSignal(ptr, "tickIntervalChanged"); signal != nil {
+		signal.(func(float64))(float64(interval))
+	}
+
+}
+
+func (ptr *QValueAxis) ConnectTickIntervalChanged(f func(interval float64)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "tickIntervalChanged") {
+			C.QValueAxis_ConnectTickIntervalChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "tickIntervalChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "tickIntervalChanged", func(interval float64) {
+				signal.(func(float64))(interval)
+				f(interval)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "tickIntervalChanged", f)
+		}
+	}
+}
+
+func (ptr *QValueAxis) DisconnectTickIntervalChanged() {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_DisconnectTickIntervalChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "tickIntervalChanged")
+	}
+}
+
+func (ptr *QValueAxis) TickIntervalChanged(interval float64) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_TickIntervalChanged(ptr.Pointer(), C.double(interval))
+	}
+}
+
+//export callbackQValueAxis_TickTypeChanged
+func callbackQValueAxis_TickTypeChanged(ptr unsafe.Pointer, ty C.longlong) {
+	if signal := qt.GetSignal(ptr, "tickTypeChanged"); signal != nil {
+		signal.(func(QValueAxis__TickType))(QValueAxis__TickType(ty))
+	}
+
+}
+
+func (ptr *QValueAxis) ConnectTickTypeChanged(f func(ty QValueAxis__TickType)) {
+	if ptr.Pointer() != nil {
+
+		if !qt.ExistsSignal(ptr.Pointer(), "tickTypeChanged") {
+			C.QValueAxis_ConnectTickTypeChanged(ptr.Pointer())
+		}
+
+		if signal := qt.LendSignal(ptr.Pointer(), "tickTypeChanged"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "tickTypeChanged", func(ty QValueAxis__TickType) {
+				signal.(func(QValueAxis__TickType))(ty)
+				f(ty)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "tickTypeChanged", f)
+		}
+	}
+}
+
+func (ptr *QValueAxis) DisconnectTickTypeChanged() {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_DisconnectTickTypeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.Pointer(), "tickTypeChanged")
+	}
+}
+
+func (ptr *QValueAxis) TickTypeChanged(ty QValueAxis__TickType) {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_TickTypeChanged(ptr.Pointer(), C.longlong(ty))
 	}
 }
 
@@ -29007,6 +29158,13 @@ func (ptr *QValueAxis) LabelFormat() string {
 	return ""
 }
 
+func (ptr *QValueAxis) TickType() QValueAxis__TickType {
+	if ptr.Pointer() != nil {
+		return QValueAxis__TickType(C.QValueAxis_TickType(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QValueAxis) MinorTickCount() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QValueAxis_MinorTickCount(ptr.Pointer())))
@@ -29031,6 +29189,20 @@ func (ptr *QValueAxis) Max() float64 {
 func (ptr *QValueAxis) Min() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QValueAxis_Min(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QValueAxis) TickAnchor() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QValueAxis_TickAnchor(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QValueAxis) TickInterval() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QValueAxis_TickInterval(ptr.Pointer()))
 	}
 	return 0
 }

@@ -75,11 +75,12 @@ func android_config(target, path, depPath string) string {
 		AndroidExtraLibs              string `json:"android-extra-libs"`
 		AndroidPackageSourceDirectory string `json:"android-package-source-directory"`
 		Qmlrootpath                   string `json:"qml-root-path"`
+		StdcppPath                    string `json:"stdcpp-path"`
 		Applicationbinary             string `json:"application-binary"`
 	}{
 		Qt:                            filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
 		Sdk:                           utils.ANDROID_SDK_DIR(),
-		SdkBuildToolsRevision:         "28.0.2",
+		SdkBuildToolsRevision:         "28.0.3",
 		Ndk:                           utils.ANDROID_NDK_DIR(),
 		Toolchainprefix:               "arm-linux-androideabi",
 		Toolprefix:                    "arm-linux-androideabi",
@@ -89,6 +90,7 @@ func android_config(target, path, depPath string) string {
 		AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
 		AndroidPackageSourceDirectory: filepath.Join(path, target),
 		Qmlrootpath:                   path,
+		StdcppPath:                    filepath.Join(utils.ANDROID_NDK_DIR(), "sources", "cxx-stl", "llvm-libc++", "libs", "armeabi-v7a", "libc++_shared.so"),
 		Applicationbinary:             filepath.Join(depPath, "libgo.so"),
 	}
 
@@ -97,14 +99,15 @@ func android_config(target, path, depPath string) string {
 		jsonStruct.Toolchainprefix = "x86"
 		jsonStruct.Toolprefix = "i686-linux-android"
 		jsonStruct.Targetarchitecture = "x86"
+		jsonStruct.StdcppPath = filepath.Join(utils.ANDROID_NDK_DIR(), "sources", "cxx-stl", "llvm-libc++", "libs", jsonStruct.Targetarchitecture, "libc++_shared.so")
 	}
 
 	if utils.QT_DOCKER() {
 		switch target {
 		case "android":
-			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-arm", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-arm", "libssl.so")
+			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2q-arm", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2q-arm", "libssl.so")
 		case "android-emulator":
-			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-x86", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2o-x86", "libssl.so")
+			jsonStruct.AndroidExtraLibs += "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2q-x86", "libcrypto.so") + "," + filepath.Join(os.Getenv("HOME"), "openssl-1.0.2q-x86", "libssl.so")
 		}
 	}
 
@@ -739,8 +742,9 @@ func js_c_main_wrapper(target string) string {
 	}
 
 	//TODO: use emscripten_sync_run_in_main_runtime_thread once thread support is there ?
-	bb.WriteString("emscripten_run_script(\"Module._goMain()\");")
+	bb.WriteString("emscripten_run_script(\"Module._goMain()\");\n")
 
+	bb.WriteString("return 0;\n")
 	bb.WriteString("}")
 	return bb.String()
 }

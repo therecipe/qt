@@ -26,6 +26,11 @@
 #include <QByteArrayList>
 #include <QByteArrayMatcher>
 #include <QCameraImageCapture>
+#include <QCborArray>
+#include <QCborError>
+#include <QCborMap>
+#include <QCborParserError>
+#include <QCborValue>
 #include <QChar>
 #include <QChildEvent>
 #include <QCollator>
@@ -911,14 +916,14 @@ char QAbstractItemModel_DropMimeData(void* ptr, void* data, long long action, in
 
 char QAbstractItemModel_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -940,14 +945,14 @@ char QAbstractItemModel_InsertColumns(void* ptr, int column, int count, void* pa
 
 char QAbstractItemModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -969,14 +974,14 @@ char QAbstractItemModel_InsertRows(void* ptr, int row, int count, void* parent)
 
 char QAbstractItemModel_InsertRowsDefault(void* ptr, int row, int count, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -998,14 +1003,14 @@ char QAbstractItemModel_MoveColumns(void* ptr, void* sourceParent, int sourceCol
 
 char QAbstractItemModel_MoveColumnsDefault(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::moveColumns(*static_cast<QModelIndex*>(sourceParent), sourceColumn, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1027,14 +1032,14 @@ char QAbstractItemModel_MoveRows(void* ptr, void* sourceParent, int sourceRow, i
 
 char QAbstractItemModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow, int count, void* destinationParent, int destinationChild)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1056,14 +1061,14 @@ char QAbstractItemModel_RemoveColumns(void* ptr, int column, int count, void* pa
 
 char QAbstractItemModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1085,14 +1090,14 @@ char QAbstractItemModel_RemoveRows(void* ptr, int row, int count, void* parent)
 
 char QAbstractItemModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1109,14 +1114,14 @@ char QAbstractItemModel_SetData(void* ptr, void* index, void* value, int role)
 
 char QAbstractItemModel_SetDataDefault(void* ptr, void* index, void* value, int role)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1133,14 +1138,14 @@ char QAbstractItemModel_SetHeaderData(void* ptr, int section, long long orientat
 
 char QAbstractItemModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1157,14 +1162,14 @@ char QAbstractItemModel_SetItemData(void* ptr, void* index, void* roles)
 
 char QAbstractItemModel_SetItemDataDefault(void* ptr, void* index, void* roles)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::setItemData(*static_cast<QModelIndex*>(index), *static_cast<QMap<int, QVariant>*>(roles));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1183,14 +1188,14 @@ char QAbstractItemModel_Submit(void* ptr)
 
 char QAbstractItemModel_SubmitDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::submit();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::submit();
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::submit();
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::submit();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::submit();
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::submit();
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1352,14 +1357,14 @@ void QAbstractItemModel_FetchMore(void* ptr, void* parent)
 
 void QAbstractItemModel_FetchMoreDefault(void* ptr, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QStringListModel*>(ptr)->QStringListModel::fetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1444,14 +1449,14 @@ void QAbstractItemModel_ResetInternalData(void* ptr)
 
 void QAbstractItemModel_ResetInternalDataDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::resetInternalData();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::resetInternalData();
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::resetInternalData();
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::resetInternalData();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::resetInternalData();
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QStringListModel*>(ptr)->QStringListModel::resetInternalData();
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1468,14 +1473,14 @@ void QAbstractItemModel_Revert(void* ptr)
 
 void QAbstractItemModel_RevertDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::revert();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::revert();
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::revert();
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::revert();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::revert();
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QStringListModel*>(ptr)->QStringListModel::revert();
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1552,14 +1557,14 @@ void QAbstractItemModel_Sort(void* ptr, int column, long long order)
 
 void QAbstractItemModel_SortDefault(void* ptr, int column, long long order)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::sort(column, static_cast<Qt::SortOrder>(order));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::sort(column, static_cast<Qt::SortOrder>(order));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::sort(column, static_cast<Qt::SortOrder>(order));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::sort(column, static_cast<Qt::SortOrder>(order));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::sort(column, static_cast<Qt::SortOrder>(order));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		static_cast<QStringListModel*>(ptr)->QStringListModel::sort(column, static_cast<Qt::SortOrder>(order));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1587,14 +1592,14 @@ struct QtCore_PackedList QAbstractItemModel_RoleNames(void* ptr)
 
 struct QtCore_PackedList QAbstractItemModel_RoleNamesDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QHash<int, QByteArray>* tmpValue = new QHash<int, QByteArray>(static_cast<QStringListModel*>(ptr)->QStringListModel::roleNames()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1611,14 +1616,14 @@ struct QtCore_PackedList QAbstractItemModel_ItemData(void* ptr, void* index)
 
 struct QtCore_PackedList QAbstractItemModel_ItemDataDefault(void* ptr, void* index)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(static_cast<QStringListModel*>(ptr)->QStringListModel::itemData(*static_cast<QModelIndex*>(index))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1635,14 +1640,14 @@ void* QAbstractItemModel_MimeData(void* ptr, void* indexes)
 
 void* QAbstractItemModel_MimeDataDefault(void* ptr, void* indexes)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::mimeData(({ QList<QModelIndex>* tmpP = static_cast<QList<QModelIndex>*>(indexes); QList<QModelIndex> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1659,14 +1664,14 @@ void* QAbstractItemModel_Buddy(void* ptr, void* index)
 
 void* QAbstractItemModel_BuddyDefault(void* ptr, void* index)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::buddy(*static_cast<QModelIndex*>(index)));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::buddy(*static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::buddy(*static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::buddy(*static_cast<QModelIndex*>(index)));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::buddy(*static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QStringListModel*>(ptr)->QStringListModel::buddy(*static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1703,14 +1708,14 @@ void* QAbstractItemModel_Sibling(void* ptr, int row, int column, void* index)
 
 void* QAbstractItemModel_SiblingDefault(void* ptr, int row, int column, void* index)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return new QModelIndex(static_cast<QStringListModel*>(ptr)->QStringListModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1727,14 +1732,14 @@ struct QtCore_PackedList QAbstractItemModel_Match(void* ptr, void* start, int ro
 
 struct QtCore_PackedList QAbstractItemModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QStringListModel*>(ptr)->QStringListModel::match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1756,14 +1761,14 @@ void* QAbstractItemModel_Span(void* ptr, void* index)
 
 void* QAbstractItemModel_SpanDefault(void* ptr, void* index)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QSize tmpValue = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QSize tmpValue = static_cast<QStringListModel*>(ptr)->QStringListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1780,14 +1785,14 @@ struct QtCore_PackedString QAbstractItemModel_MimeTypes(void* ptr)
 
 struct QtCore_PackedString QAbstractItemModel_MimeTypesDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray tf2dad9 = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QByteArray tf2dad9 = static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QByteArray tf2dad9 = static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QByteArray tf2dad9 = static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return ({ QByteArray tf2dad9 = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return ({ QByteArray tf2dad9 = static_cast<QStringListModel*>(ptr)->QStringListModel::mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf2dad9.prepend("WHITESPACE").constData()+10), tf2dad9.size()-10 }; });
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1809,14 +1814,14 @@ void* QAbstractItemModel_HeaderData(void* ptr, int section, long long orientatio
 
 void* QAbstractItemModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return new QVariant(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return new QVariant(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return new QVariant(static_cast<QStringListModel*>(ptr)->QStringListModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1833,14 +1838,14 @@ long long QAbstractItemModel_SupportedDragActions(void* ptr)
 
 long long QAbstractItemModel_SupportedDragActionsDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::supportedDragActions();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::supportedDragActions();
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::supportedDragActions();
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::supportedDragActions();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::supportedDragActions();
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::supportedDragActions();
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1857,14 +1862,14 @@ long long QAbstractItemModel_SupportedDropActions(void* ptr)
 
 long long QAbstractItemModel_SupportedDropActionsDefault(void* ptr)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::supportedDropActions();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::supportedDropActions();
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::supportedDropActions();
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::supportedDropActions();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::supportedDropActions();
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::supportedDropActions();
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1881,14 +1886,14 @@ long long QAbstractItemModel_Flags(void* ptr, void* index)
 
 long long QAbstractItemModel_FlagsDefault(void* ptr, void* index)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::flags(*static_cast<QModelIndex*>(index));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::flags(*static_cast<QModelIndex*>(index));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::flags(*static_cast<QModelIndex*>(index));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::flags(*static_cast<QModelIndex*>(index));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::flags(*static_cast<QModelIndex*>(index));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::flags(*static_cast<QModelIndex*>(index));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1905,14 +1910,14 @@ char QAbstractItemModel_CanDropMimeData(void* ptr, void* data, long long action,
 
 char QAbstractItemModel_CanDropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1929,14 +1934,14 @@ char QAbstractItemModel_CanFetchMore(void* ptr, void* parent)
 
 char QAbstractItemModel_CanFetchMoreDefault(void* ptr, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::canFetchMore(*static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -1958,14 +1963,14 @@ char QAbstractItemModel_HasChildren(void* ptr, void* parent)
 
 char QAbstractItemModel_HasChildrenDefault(void* ptr, void* parent)
 {
-	if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+	if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::hasChildren(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::hasChildren(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::hasChildren(*static_cast<QModelIndex*>(parent));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QStringListModel*>(ptr)->QStringListModel::hasChildren(*static_cast<QModelIndex*>(parent));
 	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
@@ -4322,9 +4327,19 @@ char QByteArray_IsEmpty(void* ptr)
 	return static_cast<QByteArray*>(ptr)->isEmpty();
 }
 
+char QByteArray_IsLower(void* ptr)
+{
+	return static_cast<QByteArray*>(ptr)->isLower();
+}
+
 char QByteArray_IsNull(void* ptr)
 {
 	return static_cast<QByteArray*>(ptr)->isNull();
+}
+
+char QByteArray_IsUpper(void* ptr)
+{
+	return static_cast<QByteArray*>(ptr)->isUpper();
 }
 
 char QByteArray_StartsWith2(void* ptr, char* ch)
@@ -4380,6 +4395,16 @@ float QByteArray_ToFloat(void* ptr, char* ok)
 int QByteArray_Capacity(void* ptr)
 {
 	return static_cast<QByteArray*>(ptr)->capacity();
+}
+
+int QByteArray_Compare2(void* ptr, void* a, long long cs)
+{
+	return static_cast<QByteArray*>(ptr)->compare(*static_cast<QByteArray*>(a), static_cast<Qt::CaseSensitivity>(cs));
+}
+
+int QByteArray_Compare(void* ptr, char* c, long long cs)
+{
+	return static_cast<QByteArray*>(ptr)->compare(const_cast<const char*>(c), static_cast<Qt::CaseSensitivity>(cs));
 }
 
 int QByteArray_Count4(void* ptr)
@@ -4566,6 +4591,526 @@ int QByteArrayMatcher_IndexIn(void* ptr, void* ba, int from)
 int QByteArrayMatcher_IndexIn2(void* ptr, char* str, int l, int from)
 {
 	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(const_cast<const char*>(str), l, from);
+}
+
+void* QCborArray_QCborArray_FromJsonArray(void* array)
+{
+	return new QCborArray(QCborArray::fromJsonArray(*static_cast<QJsonArray*>(array)));
+}
+
+void* QCborArray_QCborArray_FromStringList(struct QtCore_PackedString list)
+{
+	return new QCborArray(QCborArray::fromStringList(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts)));
+}
+
+void* QCborArray_QCborArray_FromVariantList(void* list)
+{
+	return new QCborArray(QCborArray::fromVariantList(({ QList<QVariant>* tmpP = static_cast<QList<QVariant>*>(list); QList<QVariant> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; })));
+}
+
+void* QCborArray_NewQCborArray()
+{
+	return new QCborArray();
+}
+
+void* QCborArray_NewQCborArray2(void* other)
+{
+	return new QCborArray(*static_cast<QCborArray*>(other));
+}
+
+void* QCborArray_TakeFirst(void* ptr)
+{
+	return new QCborValue(static_cast<QCborArray*>(ptr)->takeFirst());
+}
+
+void* QCborArray_TakeLast(void* ptr)
+{
+	return new QCborValue(static_cast<QCborArray*>(ptr)->takeLast());
+}
+
+void QCborArray_Append2(void* ptr, void* value)
+{
+	static_cast<QCborArray*>(ptr)->append(*static_cast<QCborValue*>(value));
+}
+
+void QCborArray_Append(void* ptr, void* value)
+{
+	static_cast<QCborArray*>(ptr)->append(*static_cast<QCborValue*>(value));
+}
+
+void QCborArray_Clear(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->clear();
+}
+
+void QCborArray_Pop_back(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->pop_back();
+}
+
+void QCborArray_Pop_front(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->pop_front();
+}
+
+void QCborArray_Prepend2(void* ptr, void* value)
+{
+	static_cast<QCborArray*>(ptr)->prepend(*static_cast<QCborValue*>(value));
+}
+
+void QCborArray_Prepend(void* ptr, void* value)
+{
+	static_cast<QCborArray*>(ptr)->prepend(*static_cast<QCborValue*>(value));
+}
+
+void QCborArray_Push_back(void* ptr, void* t)
+{
+	static_cast<QCborArray*>(ptr)->push_back(*static_cast<QCborValue*>(t));
+}
+
+void QCborArray_Push_front(void* ptr, void* t)
+{
+	static_cast<QCborArray*>(ptr)->push_front(*static_cast<QCborValue*>(t));
+}
+
+void QCborArray_RemoveFirst(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->removeFirst();
+}
+
+void QCborArray_RemoveLast(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->removeLast();
+}
+
+void QCborArray_Swap(void* ptr, void* other)
+{
+	static_cast<QCborArray*>(ptr)->swap(*static_cast<QCborArray*>(other));
+}
+
+void QCborArray_DestroyQCborArray(void* ptr)
+{
+	static_cast<QCborArray*>(ptr)->~QCborArray();
+}
+
+void* QCborArray_First(void* ptr)
+{
+	return new QCborValue(static_cast<QCborArray*>(ptr)->first());
+}
+
+void* QCborArray_Last(void* ptr)
+{
+	return new QCborValue(static_cast<QCborArray*>(ptr)->last());
+}
+
+void* QCborArray_ToCborValue(void* ptr)
+{
+	return new QCborValue(static_cast<QCborArray*>(ptr)->toCborValue());
+}
+
+void* QCborArray_ToJsonArray(void* ptr)
+{
+	return new QJsonArray(static_cast<QCborArray*>(ptr)->toJsonArray());
+}
+
+struct QtCore_PackedList QCborArray_ToVariantList(void* ptr)
+{
+	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QCborArray*>(ptr)->toVariantList()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QCborArray_Contains(void* ptr, void* value)
+{
+	return static_cast<QCborArray*>(ptr)->contains(*static_cast<QCborValue*>(value));
+}
+
+char QCborArray_Empty(void* ptr)
+{
+	return static_cast<QCborArray*>(ptr)->empty();
+}
+
+char QCborArray_IsEmpty(void* ptr)
+{
+	return static_cast<QCborArray*>(ptr)->isEmpty();
+}
+
+int QCborArray_Compare(void* ptr, void* other)
+{
+	return static_cast<QCborArray*>(ptr)->compare(*static_cast<QCborArray*>(other));
+}
+
+void* QCborArray___fromVariantList_list_atList(void* ptr, int i)
+{
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(ptr)->at(i); if (i == static_cast<QList<QVariant>*>(ptr)->size()-1) { static_cast<QList<QVariant>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QCborArray___fromVariantList_list_setList(void* ptr, void* i)
+{
+	static_cast<QList<QVariant>*>(ptr)->append(*static_cast<QVariant*>(i));
+}
+
+void* QCborArray___fromVariantList_list_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QVariant>();
+}
+
+void* QCborArray___toVariantList_atList(void* ptr, int i)
+{
+	return new QVariant(({QVariant tmp = static_cast<QList<QVariant>*>(ptr)->at(i); if (i == static_cast<QList<QVariant>*>(ptr)->size()-1) { static_cast<QList<QVariant>*>(ptr)->~QList(); free(ptr); }; tmp; }));
+}
+
+void QCborArray___toVariantList_setList(void* ptr, void* i)
+{
+	static_cast<QList<QVariant>*>(ptr)->append(*static_cast<QVariant*>(i));
+}
+
+void* QCborArray___toVariantList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QVariant>();
+}
+
+struct QtCore_PackedString QCborError_ToString(void* ptr)
+{
+	return ({ QByteArray t344b49 = static_cast<QCborError*>(ptr)->toString().toUtf8(); QtCore_PackedString { const_cast<char*>(t344b49.prepend("WHITESPACE").constData()+10), t344b49.size()-10 }; });
+}
+
+void* QCborMap_QCborMap_FromJsonObject(void* obj)
+{
+	return new QCborMap(QCborMap::fromJsonObject(*static_cast<QJsonObject*>(obj)));
+}
+
+void* QCborMap_QCborMap_FromVariantHash(void* hash)
+{
+	return new QCborMap(QCborMap::fromVariantHash(({ QHash<QString, QVariant>* tmpP = static_cast<QHash<QString, QVariant>*>(hash); QHash<QString, QVariant> tmpV = *tmpP; tmpP->~QHash(); free(tmpP); tmpV; })));
+}
+
+void* QCborMap_NewQCborMap()
+{
+	return new QCborMap();
+}
+
+void* QCborMap_NewQCborMap2(void* other)
+{
+	return new QCborMap(*static_cast<QCborMap*>(other));
+}
+
+void* QCborMap_Take2(void* ptr, void* key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->take(*static_cast<QLatin1String*>(key)));
+}
+
+void* QCborMap_Take4(void* ptr, void* key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->take(*static_cast<QCborValue*>(key)));
+}
+
+void* QCborMap_Take3(void* ptr, struct QtCore_PackedString key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->take(QString::fromUtf8(key.data, key.len)));
+}
+
+void* QCborMap_Take(void* ptr, long long key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->take(key));
+}
+
+void QCborMap_Clear(void* ptr)
+{
+	static_cast<QCborMap*>(ptr)->clear();
+}
+
+void QCborMap_Remove2(void* ptr, void* key)
+{
+	static_cast<QCborMap*>(ptr)->remove(*static_cast<QLatin1String*>(key));
+}
+
+void QCborMap_Remove4(void* ptr, void* key)
+{
+	static_cast<QCborMap*>(ptr)->remove(*static_cast<QCborValue*>(key));
+}
+
+void QCborMap_Remove3(void* ptr, struct QtCore_PackedString key)
+{
+	static_cast<QCborMap*>(ptr)->remove(QString::fromUtf8(key.data, key.len));
+}
+
+void QCborMap_Remove(void* ptr, long long key)
+{
+	static_cast<QCborMap*>(ptr)->remove(key);
+}
+
+void QCborMap_Swap(void* ptr, void* other)
+{
+	static_cast<QCborMap*>(ptr)->swap(*static_cast<QCborMap*>(other));
+}
+
+void QCborMap_DestroyQCborMap(void* ptr)
+{
+	static_cast<QCborMap*>(ptr)->~QCborMap();
+}
+
+void* QCborMap_ToCborValue(void* ptr)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->toCborValue());
+}
+
+void* QCborMap_Value2(void* ptr, void* key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->value(*static_cast<QLatin1String*>(key)));
+}
+
+void* QCborMap_Value4(void* ptr, void* key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->value(*static_cast<QCborValue*>(key)));
+}
+
+void* QCborMap_Value3(void* ptr, struct QtCore_PackedString key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->value(QString::fromUtf8(key.data, key.len)));
+}
+
+void* QCborMap_Value(void* ptr, long long key)
+{
+	return new QCborValue(static_cast<QCborMap*>(ptr)->value(key));
+}
+
+void* QCborMap_ToJsonObject(void* ptr)
+{
+	return new QJsonObject(static_cast<QCborMap*>(ptr)->toJsonObject());
+}
+
+struct QtCore_PackedList QCborMap_ToVariantHash(void* ptr)
+{
+	return ({ QHash<QString, QVariant>* tmpValue = new QHash<QString, QVariant>(static_cast<QCborMap*>(ptr)->toVariantHash()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCore_PackedList QCborMap_ToVariantMap(void* ptr)
+{
+	return ({ QMap<QString, QVariant>* tmpValue = new QMap<QString, QVariant>(static_cast<QCborMap*>(ptr)->toVariantMap()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtCore_PackedList QCborMap_Keys(void* ptr)
+{
+	return ({ QVector<QCborValue>* tmpValue = new QVector<QCborValue>(static_cast<QCborMap*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QCborMap_Contains2(void* ptr, void* key)
+{
+	return static_cast<QCborMap*>(ptr)->contains(*static_cast<QLatin1String*>(key));
+}
+
+char QCborMap_Contains4(void* ptr, void* key)
+{
+	return static_cast<QCborMap*>(ptr)->contains(*static_cast<QCborValue*>(key));
+}
+
+char QCborMap_Contains3(void* ptr, struct QtCore_PackedString key)
+{
+	return static_cast<QCborMap*>(ptr)->contains(QString::fromUtf8(key.data, key.len));
+}
+
+char QCborMap_Contains(void* ptr, long long key)
+{
+	return static_cast<QCborMap*>(ptr)->contains(key);
+}
+
+char QCborMap_Empty(void* ptr)
+{
+	return static_cast<QCborMap*>(ptr)->empty();
+}
+
+char QCborMap_IsEmpty(void* ptr)
+{
+	return static_cast<QCborMap*>(ptr)->isEmpty();
+}
+
+int QCborMap_Compare(void* ptr, void* other)
+{
+	return static_cast<QCborMap*>(ptr)->compare(*static_cast<QCborMap*>(other));
+}
+
+void* QCborMap___fromVariantHash_hash_atList(void* ptr, struct QtCore_PackedString v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QHash<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QHash<QString, QVariant>*>(ptr)->size()-1) { static_cast<QHash<QString, QVariant>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
+}
+
+void QCborMap___fromVariantHash_hash_setList(void* ptr, struct QtCore_PackedString key, void* i)
+{
+	static_cast<QHash<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+}
+
+void* QCborMap___fromVariantHash_hash_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QHash<QString, QVariant>();
+}
+
+struct QtCore_PackedList QCborMap___fromVariantHash_hash_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QCborMap___toVariantHash_atList(void* ptr, struct QtCore_PackedString v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QHash<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QHash<QString, QVariant>*>(ptr)->size()-1) { static_cast<QHash<QString, QVariant>*>(ptr)->~QHash(); free(ptr); }; tmp; }));
+}
+
+void QCborMap___toVariantHash_setList(void* ptr, struct QtCore_PackedString key, void* i)
+{
+	static_cast<QHash<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+}
+
+void* QCborMap___toVariantHash_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QHash<QString, QVariant>();
+}
+
+struct QtCore_PackedList QCborMap___toVariantHash_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QHash<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QCborMap___toVariantMap_atList(void* ptr, struct QtCore_PackedString v, int i)
+{
+	return new QVariant(({ QVariant tmp = static_cast<QMap<QString, QVariant>*>(ptr)->value(QString::fromUtf8(v.data, v.len)); if (i == static_cast<QMap<QString, QVariant>*>(ptr)->size()-1) { static_cast<QMap<QString, QVariant>*>(ptr)->~QMap(); free(ptr); }; tmp; }));
+}
+
+void QCborMap___toVariantMap_setList(void* ptr, struct QtCore_PackedString key, void* i)
+{
+	static_cast<QMap<QString, QVariant>*>(ptr)->insert(QString::fromUtf8(key.data, key.len), *static_cast<QVariant*>(i));
+}
+
+void* QCborMap___toVariantMap_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QMap<QString, QVariant>();
+}
+
+struct QtCore_PackedList QCborMap___toVariantMap_keyList(void* ptr)
+{
+	return ({ QList<QString>* tmpValue = new QList<QString>(static_cast<QMap<QString, QVariant>*>(ptr)->keys()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QCborMap___keys_atList(void* ptr, int i)
+{
+	return new QCborValue(({QCborValue tmp = static_cast<QVector<QCborValue>*>(ptr)->at(i); if (i == static_cast<QVector<QCborValue>*>(ptr)->size()-1) { static_cast<QVector<QCborValue>*>(ptr)->~QVector(); free(ptr); }; tmp; }));
+}
+
+void QCborMap___keys_setList(void* ptr, void* i)
+{
+	static_cast<QVector<QCborValue>*>(ptr)->append(*static_cast<QCborValue*>(i));
+}
+
+void* QCborMap___keys_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<QCborValue>();
+}
+
+struct QtCore_PackedString QCborMap_____fromVariantHash_hash_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+}
+
+void QCborMap_____fromVariantHash_hash_keyList_setList(void* ptr, struct QtCore_PackedString i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
+}
+
+void* QCborMap_____fromVariantHash_hash_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QString>();
+}
+
+struct QtCore_PackedString QCborMap_____fromVariantMap_map_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+}
+
+void QCborMap_____fromVariantMap_map_keyList_setList(void* ptr, struct QtCore_PackedString i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
+}
+
+void* QCborMap_____fromVariantMap_map_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QString>();
+}
+
+struct QtCore_PackedString QCborMap_____toVariantHash_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+}
+
+void QCborMap_____toVariantHash_keyList_setList(void* ptr, struct QtCore_PackedString i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
+}
+
+void* QCborMap_____toVariantHash_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QString>();
+}
+
+struct QtCore_PackedString QCborMap_____toVariantMap_keyList_atList(void* ptr, int i)
+{
+	return ({ QByteArray t94aa5e = ({QString tmp = static_cast<QList<QString>*>(ptr)->at(i); if (i == static_cast<QList<QString>*>(ptr)->size()-1) { static_cast<QList<QString>*>(ptr)->~QList(); free(ptr); }; tmp; }).toUtf8(); QtCore_PackedString { const_cast<char*>(t94aa5e.prepend("WHITESPACE").constData()+10), t94aa5e.size()-10 }; });
+}
+
+void QCborMap_____toVariantMap_keyList_setList(void* ptr, struct QtCore_PackedString i)
+{
+	static_cast<QList<QString>*>(ptr)->append(QString::fromUtf8(i.data, i.len));
+}
+
+void* QCborMap_____toVariantMap_keyList_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QList<QString>();
+}
+
+struct QtCore_PackedString QCborParserError_ErrorString(void* ptr)
+{
+	return ({ QByteArray t4aa98b = static_cast<QCborParserError*>(ptr)->errorString().toUtf8(); QtCore_PackedString { const_cast<char*>(t4aa98b.prepend("WHITESPACE").constData()+10), t4aa98b.size()-10 }; });
+}
+
+void QCborParserError_SetError(void* ptr, void* vqc)
+{
+	static_cast<QCborParserError*>(ptr)->error = *static_cast<QCborError*>(vqc);
+}
+
+long long QCborParserError_Offset(void* ptr)
+{
+	return static_cast<QCborParserError*>(ptr)->offset;
+}
+
+void QCborParserError_SetOffset(void* ptr, long long vqi)
+{
+	static_cast<QCborParserError*>(ptr)->offset = vqi;
+}
+
+int QCborValue_False_Type()
+{
+	return QCborValue::False;
+}
+
+int QCborValue_True_Type()
+{
+	return QCborValue::True;
+}
+
+int QCborValue_Null_Type()
+{
+	return QCborValue::Null;
+}
+
+int QCborValue_Undefined_Type()
+{
+	return QCborValue::Undefined;
 }
 
 void* QChar_QChar_FromLatin1(char* c)
@@ -5699,6 +6244,11 @@ void* QCryptographicHash_NewQCryptographicHash(long long method)
 char QCryptographicHash_AddData3(void* ptr, void* device)
 {
 	return static_cast<QCryptographicHash*>(ptr)->addData(static_cast<QIODevice*>(device));
+}
+
+int QCryptographicHash_QCryptographicHash_HashLength(long long method)
+{
+	return QCryptographicHash::hashLength(static_cast<QCryptographicHash::Algorithm>(method));
 }
 
 void QCryptographicHash_AddData2(void* ptr, void* data)
@@ -12313,6 +12863,11 @@ char QMetaEnum_IsValid(void* ptr)
 	return static_cast<QMetaEnum*>(ptr)->isValid();
 }
 
+struct QtCore_PackedString QMetaEnum_EnumName(void* ptr)
+{
+	return QtCore_PackedString { const_cast<char*>(static_cast<QMetaEnum*>(ptr)->enumName()), -1 };
+}
+
 struct QtCore_PackedString QMetaEnum_Key(void* ptr, int index)
 {
 	return QtCore_PackedString { const_cast<char*>(static_cast<QMetaEnum*>(ptr)->key(index)), index };
@@ -13479,6 +14034,8 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QThreadPool*>(ptr)->QThreadPool::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QThread*>(ptr)->QThread::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPluginLoader*>(ptr)->QPluginLoader::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSignalTransition*>(ptr)->QSignalTransition::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -13495,10 +14052,6 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QFinalState*>(ptr)->QFinalState::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractState*>(ptr)->QAbstractState::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPluginLoader*>(ptr)->QPluginLoader::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLibrary*>(ptr)->QLibrary::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTranslator*>(ptr)->QTranslator::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -13513,30 +14066,12 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMimeData*>(ptr)->QMimeData::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QEventLoop*>(ptr)->QEventLoop::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QStringListModel*>(ptr)->QStringListModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::event(static_cast<QEvent*>(e));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLibrary*>(ptr)->QLibrary::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSettings*>(ptr)->QSettings::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -13553,6 +14088,26 @@ char QObject_EventDefault(void* ptr, void* e)
 		return static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFileSelector*>(ptr)->QFileSelector::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QEventLoop*>(ptr)->QEventLoop::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QStringListModel*>(ptr)->QStringListModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::event(static_cast<QEvent*>(e));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::event(static_cast<QEvent*>(e));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -13585,6 +14140,8 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QThreadPool*>(ptr)->QThreadPool::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QThread*>(ptr)->QThread::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPluginLoader*>(ptr)->QPluginLoader::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSignalTransition*>(ptr)->QSignalTransition::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -13601,10 +14158,6 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QFinalState*>(ptr)->QFinalState::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QAbstractState*>(ptr)->QAbstractState::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPluginLoader*>(ptr)->QPluginLoader::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QLibrary*>(ptr)->QLibrary::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QTranslator*>(ptr)->QTranslator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -13619,30 +14172,12 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QMimeData*>(ptr)->QMimeData::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QEventLoop*>(ptr)->QEventLoop::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QStringListModel*>(ptr)->QStringListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QLibrary*>(ptr)->QLibrary::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSettings*>(ptr)->QSettings::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QSaveFile*>(ptr)->QSaveFile::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -13659,6 +14194,26 @@ char QObject_EventFilterDefault(void* ptr, void* watched, void* event)
 		return static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QFileSelector*>(ptr)->QFileSelector::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QEventLoop*>(ptr)->QEventLoop::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QCoreApplication*>(ptr)->QCoreApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QStringListModel*>(ptr)->QStringListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		return static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -13701,6 +14256,8 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -13717,10 +14274,6 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QFinalState*>(ptr)->QFinalState::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -13735,30 +14288,12 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::childEvent(static_cast<QChildEvent*>(event));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -13775,6 +14310,26 @@ void QObject_ChildEventDefault(void* ptr, void* event)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::childEvent(static_cast<QChildEvent*>(event));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::childEvent(static_cast<QChildEvent*>(event));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -13807,6 +14362,8 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -13823,10 +14380,6 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFinalState*>(ptr)->QFinalState::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -13841,30 +14394,12 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -13881,6 +14416,26 @@ void QObject_ConnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::connectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -13913,6 +14468,8 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -13929,10 +14486,6 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QFinalState*>(ptr)->QFinalState::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -13947,30 +14500,12 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::customEvent(static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -13987,6 +14522,26 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::customEvent(static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::customEvent(static_cast<QEvent*>(event));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -14019,6 +14574,8 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::deleteLater();
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::deleteLater();
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::deleteLater();
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::deleteLater();
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -14035,10 +14592,6 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QFinalState*>(ptr)->QFinalState::deleteLater();
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::deleteLater();
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::deleteLater();
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::deleteLater();
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::deleteLater();
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -14053,30 +14606,12 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::deleteLater();
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::deleteLater();
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::deleteLater();
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::deleteLater();
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::deleteLater();
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::deleteLater();
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::deleteLater();
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::deleteLater();
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::deleteLater();
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::deleteLater();
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::deleteLater();
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::deleteLater();
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::deleteLater();
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::deleteLater();
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::deleteLater();
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::deleteLater();
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::deleteLater();
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14093,6 +14628,26 @@ void QObject_DeleteLaterDefault(void* ptr)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::deleteLater();
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::deleteLater();
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::deleteLater();
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::deleteLater();
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::deleteLater();
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::deleteLater();
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::deleteLater();
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::deleteLater();
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::deleteLater();
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::deleteLater();
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::deleteLater();
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::deleteLater();
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::deleteLater();
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -14140,6 +14695,8 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -14156,10 +14713,6 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFinalState*>(ptr)->QFinalState::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -14174,30 +14727,12 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14214,6 +14749,26 @@ void QObject_DisconnectNotifyDefault(void* ptr, void* sign)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -14286,6 +14841,8 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QThreadPool*>(ptr)->QThreadPool::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		static_cast<QThread*>(ptr)->QThread::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPluginLoader*>(ptr)->QPluginLoader::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSignalTransition*>(ptr)->QSignalTransition::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -14302,10 +14859,6 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QFinalState*>(ptr)->QFinalState::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		static_cast<QAbstractState*>(ptr)->QAbstractState::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		static_cast<QPluginLoader*>(ptr)->QPluginLoader::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		static_cast<QLibrary*>(ptr)->QLibrary::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		static_cast<QTranslator*>(ptr)->QTranslator::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -14320,30 +14873,12 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		static_cast<QMimeData*>(ptr)->QMimeData::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		static_cast<QEventLoop*>(ptr)->QEventLoop::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		static_cast<QCoreApplication*>(ptr)->QCoreApplication::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QStringListModel*>(ptr)->QStringListModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::timerEvent(static_cast<QTimerEvent*>(event));
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		static_cast<QLibrary*>(ptr)->QLibrary::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSettings*>(ptr)->QSettings::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		static_cast<QSaveFile*>(ptr)->QSaveFile::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14360,6 +14895,26 @@ void QObject_TimerEventDefault(void* ptr, void* event)
 		static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		static_cast<QFileSelector*>(ptr)->QFileSelector::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		static_cast<QEventLoop*>(ptr)->QEventLoop::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		static_cast<QCoreApplication*>(ptr)->QCoreApplication::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QStringListModel*>(ptr)->QStringListModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::timerEvent(static_cast<QTimerEvent*>(event));
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::timerEvent(static_cast<QTimerEvent*>(event));
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -14488,6 +15043,8 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QThreadPool*>(ptr)->QThreadPool::metaObject());
 	} else if (dynamic_cast<QThread*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QThread*>(ptr)->QThread::metaObject());
+	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPluginLoader*>(ptr)->QPluginLoader::metaObject());
 	} else if (dynamic_cast<QSignalTransition*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSignalTransition*>(ptr)->QSignalTransition::metaObject());
 	} else if (dynamic_cast<QEventTransition*>(static_cast<QObject*>(ptr))) {
@@ -14504,10 +15061,6 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QFinalState*>(ptr)->QFinalState::metaObject());
 	} else if (dynamic_cast<QAbstractState*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QAbstractState*>(ptr)->QAbstractState::metaObject());
-	} else if (dynamic_cast<QPluginLoader*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QPluginLoader*>(ptr)->QPluginLoader::metaObject());
-	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QLibrary*>(ptr)->QLibrary::metaObject());
 	} else if (dynamic_cast<QTranslator*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QTranslator*>(ptr)->QTranslator::metaObject());
 	} else if (dynamic_cast<QTimer*>(static_cast<QObject*>(ptr))) {
@@ -14522,30 +15075,12 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::metaObject());
 	} else if (dynamic_cast<QMimeData*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QMimeData*>(ptr)->QMimeData::metaObject());
-	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QEventLoop*>(ptr)->QEventLoop::metaObject());
-	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QCoreApplication*>(ptr)->QCoreApplication::metaObject());
-	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::metaObject());
-	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::metaObject());
-	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::metaObject());
-	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::metaObject());
-	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::metaObject());
-	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::metaObject());
-	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QStringListModel*>(ptr)->QStringListModel::metaObject());
-	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::metaObject());
-	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
-		return const_cast<QMetaObject*>(static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::metaObject());
+	} else if (dynamic_cast<QLibrary*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QLibrary*>(ptr)->QLibrary::metaObject());
 	} else if (dynamic_cast<QSettings*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSettings*>(ptr)->QSettings::metaObject());
+	} else if (dynamic_cast<QItemSelectionModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::metaObject());
 	} else if (dynamic_cast<QSaveFile*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QSaveFile*>(ptr)->QSaveFile::metaObject());
 	} else if (dynamic_cast<QTemporaryFile*>(static_cast<QObject*>(ptr))) {
@@ -14562,6 +15097,26 @@ void* QObject_MetaObjectDefault(void* ptr)
 		return const_cast<QMetaObject*>(static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::metaObject());
 	} else if (dynamic_cast<QFileSelector*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QFileSelector*>(ptr)->QFileSelector::metaObject());
+	} else if (dynamic_cast<QEventLoop*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QEventLoop*>(ptr)->QEventLoop::metaObject());
+	} else if (dynamic_cast<QCoreApplication*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QCoreApplication*>(ptr)->QCoreApplication::metaObject());
+	} else if (dynamic_cast<QAbstractTableModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::metaObject());
+	} else if (dynamic_cast<QSortFilterProxyModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::metaObject());
+	} else if (dynamic_cast<QIdentityProxyModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::metaObject());
+	} else if (dynamic_cast<QAbstractProxyModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::metaObject());
+	} else if (dynamic_cast<QStringListModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QStringListModel*>(ptr)->QStringListModel::metaObject());
+	} else if (dynamic_cast<QAbstractListModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::metaObject());
+	} else if (dynamic_cast<QAbstractItemModel*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::metaObject());
+	} else if (dynamic_cast<QAbstractEventDispatcher*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::metaObject());
 	} else if (dynamic_cast<QPropertyAnimation*>(static_cast<QObject*>(ptr))) {
 		return const_cast<QMetaObject*>(static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::metaObject());
 	} else if (dynamic_cast<QVariantAnimation*>(static_cast<QObject*>(ptr))) {
@@ -14884,6 +15439,11 @@ void* QOperatingSystemVersion_QOperatingSystemVersion_AndroidOreo()
 void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSHighSierra()
 {
 	return new QOperatingSystemVersion(QOperatingSystemVersion::MacOSHighSierra);
+}
+
+void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSMojave()
+{
+	return new QOperatingSystemVersion(QOperatingSystemVersion::MacOSMojave);
 }
 
 void* QOperatingSystemVersion_QOperatingSystemVersion_MacOSSierra()
@@ -16681,9 +17241,19 @@ void* QRegularExpression_NewQRegularExpression2(struct QtCore_PackedString patte
 	return new QRegularExpression(QString::fromUtf8(pattern.data, pattern.len), static_cast<QRegularExpression::PatternOption>(options));
 }
 
+struct QtCore_PackedString QRegularExpression_QRegularExpression_AnchoredPattern(struct QtCore_PackedString expression)
+{
+	return ({ QByteArray t32c726 = QRegularExpression::anchoredPattern(QString::fromUtf8(expression.data, expression.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(t32c726.prepend("WHITESPACE").constData()+10), t32c726.size()-10 }; });
+}
+
 struct QtCore_PackedString QRegularExpression_QRegularExpression_Escape(struct QtCore_PackedString str)
 {
 	return ({ QByteArray tf551fc = QRegularExpression::escape(QString::fromUtf8(str.data, str.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(tf551fc.prepend("WHITESPACE").constData()+10), tf551fc.size()-10 }; });
+}
+
+struct QtCore_PackedString QRegularExpression_QRegularExpression_WildcardToRegularExpression(struct QtCore_PackedString pattern)
+{
+	return ({ QByteArray ta3cf94 = QRegularExpression::wildcardToRegularExpression(QString::fromUtf8(pattern.data, pattern.len)).toUtf8(); QtCore_PackedString { const_cast<char*>(ta3cf94.prepend("WHITESPACE").constData()+10), ta3cf94.size()-10 }; });
 }
 
 void QRegularExpression_SetPattern(void* ptr, struct QtCore_PackedString pattern)
@@ -18779,7 +19349,9 @@ public:
 	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	void invalidate() { callbackQSortFilterProxyModel_Invalidate(this); };
 	void setFilterFixedString(const QString & pattern) { QByteArray t91cc2e = pattern.toUtf8(); QtCore_PackedString patternPacked = { const_cast<char*>(t91cc2e.prepend("WHITESPACE").constData()+10), t91cc2e.size()-10 };callbackQSortFilterProxyModel_SetFilterFixedString(this, patternPacked); };
+	void setFilterRegExp(const QRegExp & regExp) { callbackQSortFilterProxyModel_SetFilterRegExp(this, const_cast<QRegExp*>(&regExp)); };
 	void setFilterRegExp(const QString & pattern) { QByteArray t91cc2e = pattern.toUtf8(); QtCore_PackedString patternPacked = { const_cast<char*>(t91cc2e.prepend("WHITESPACE").constData()+10), t91cc2e.size()-10 };callbackQSortFilterProxyModel_SetFilterRegExp2(this, patternPacked); };
+	void setFilterRegularExpression(const QRegularExpression & regularExpression) { callbackQSortFilterProxyModel_SetFilterRegularExpression(this, const_cast<QRegularExpression*>(&regularExpression)); };
 	void setFilterWildcard(const QString & pattern) { QByteArray t91cc2e = pattern.toUtf8(); QtCore_PackedString patternPacked = { const_cast<char*>(t91cc2e.prepend("WHITESPACE").constData()+10), t91cc2e.size()-10 };callbackQSortFilterProxyModel_SetFilterWildcard(this, patternPacked); };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQAbstractProxyModel_SetSourceModel(this, sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractItemModel_Sort(this, column, order); };
@@ -18934,7 +19506,12 @@ void QSortFilterProxyModel_SetFilterKeyColumn(void* ptr, int column)
 
 void QSortFilterProxyModel_SetFilterRegExp(void* ptr, void* regExp)
 {
-	static_cast<QSortFilterProxyModel*>(ptr)->setFilterRegExp(*static_cast<QRegExp*>(regExp));
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterRegExp", Q_ARG(const QRegExp, *static_cast<QRegExp*>(regExp)));
+}
+
+void QSortFilterProxyModel_SetFilterRegExpDefault(void* ptr, void* regExp)
+{
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterRegExp(*static_cast<QRegExp*>(regExp));
 }
 
 void QSortFilterProxyModel_SetFilterRegExp2(void* ptr, struct QtCore_PackedString pattern)
@@ -18945,6 +19522,16 @@ void QSortFilterProxyModel_SetFilterRegExp2(void* ptr, struct QtCore_PackedStrin
 void QSortFilterProxyModel_SetFilterRegExp2Default(void* ptr, struct QtCore_PackedString pattern)
 {
 		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterRegExp(QString::fromUtf8(pattern.data, pattern.len));
+}
+
+void QSortFilterProxyModel_SetFilterRegularExpression(void* ptr, void* regularExpression)
+{
+	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterRegularExpression", Q_ARG(const QRegularExpression, *static_cast<QRegularExpression*>(regularExpression)));
+}
+
+void QSortFilterProxyModel_SetFilterRegularExpressionDefault(void* ptr, void* regularExpression)
+{
+		static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterRegularExpression(*static_cast<QRegularExpression*>(regularExpression));
 }
 
 void QSortFilterProxyModel_SetFilterRole(void* ptr, int role)
@@ -19036,6 +19623,11 @@ void* QSortFilterProxyModel_ParentDefault(void* ptr, void* child)
 void* QSortFilterProxyModel_FilterRegExp(void* ptr)
 {
 	return new QRegExp(static_cast<QSortFilterProxyModel*>(ptr)->filterRegExp());
+}
+
+void* QSortFilterProxyModel_FilterRegularExpression(void* ptr)
+{
+	return new QRegularExpression(static_cast<QSortFilterProxyModel*>(ptr)->filterRegularExpression());
 }
 
 long long QSortFilterProxyModel_FilterCaseSensitivity(void* ptr)
@@ -20640,6 +21232,11 @@ char QStringView_StartsWith2(void* ptr, void* l1, long long cs)
 char QStringView_StartsWith(void* ptr, void* str, long long cs)
 {
 	return static_cast<QStringView*>(ptr)->startsWith(*static_cast<QStringView*>(str), static_cast<Qt::CaseSensitivity>(cs));
+}
+
+int QStringView_Compare(void* ptr, void* other, long long cs)
+{
+	return static_cast<QStringView*>(ptr)->compare(*static_cast<QStringView*>(other), static_cast<Qt::CaseSensitivity>(cs));
 }
 
 int QStringView_Length(void* ptr)
@@ -24619,12 +25216,22 @@ void* QWaitCondition_NewQWaitCondition()
 	return new QWaitCondition();
 }
 
+char QWaitCondition_Wait2(void* ptr, void* lockedMutex, void* deadline)
+{
+	return static_cast<QWaitCondition*>(ptr)->wait(static_cast<QMutex*>(lockedMutex), *static_cast<QDeadlineTimer*>(deadline));
+}
+
 char QWaitCondition_Wait(void* ptr, void* lockedMutex, unsigned long ti)
 {
 	return static_cast<QWaitCondition*>(ptr)->wait(static_cast<QMutex*>(lockedMutex), ti);
 }
 
-char QWaitCondition_Wait2(void* ptr, void* lockedReadWriteLock, unsigned long ti)
+char QWaitCondition_Wait4(void* ptr, void* lockedReadWriteLock, void* deadline)
+{
+	return static_cast<QWaitCondition*>(ptr)->wait(static_cast<QReadWriteLock*>(lockedReadWriteLock), *static_cast<QDeadlineTimer*>(deadline));
+}
+
+char QWaitCondition_Wait3(void* ptr, void* lockedReadWriteLock, unsigned long ti)
 {
 	return static_cast<QWaitCondition*>(ptr)->wait(static_cast<QReadWriteLock*>(lockedReadWriteLock), ti);
 }

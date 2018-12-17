@@ -246,9 +246,12 @@ func (c *Class) fixBases() {
 					prefixPath = filepath.Join(prefixPath, "qt5-static")
 				}
 			} else {
-				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32")
+				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64")
 				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32")
+					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64")
+				}
+				if !utils.ExistsDir(prefixPath) {
+					prefixPath = strings.Replace(prefixPath, "mingw73_64", "mingw53_32", -1)
 				}
 				if !utils.ExistsDir(prefixPath) {
 					prefixPath = strings.Replace(prefixPath, "mingw53_32", "mingw49_32", -1)
@@ -408,7 +411,10 @@ func getBasesFromHeader(f string, n string, m string) string {
 	for i, l := range strings.Split(f, "\n") {
 
 		//TODO: reduce
-		if strings.Contains(l, "class "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT "+n) || strings.Contains(l, "class  "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT  "+n) {
+		if strings.Contains(l, "class "+n) ||
+			strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) ||
+			strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"CORE_EXPORT "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"CORE_EXPORT "+n) ||
+			strings.Contains(l, "class QDESIGNER_SDK_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT "+n) || strings.Contains(l, "class  "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT  "+n) {
 
 			if strings.Contains(l, n+" ") || strings.Contains(l, n+":") || strings.HasSuffix(l, n) {
 

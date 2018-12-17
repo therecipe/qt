@@ -34,7 +34,7 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function()
 {
-  var version = "qt5.5111";
+  var version = "qt5.5120";
   if (installer.value("VERSION") != "")
   {
     version = installer.value("VERSION");
@@ -54,6 +54,7 @@ Controller.prototype.ComponentSelectionPageCallback = function()
   {
     gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw49");
     gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw53");
+    gui.currentPageWidget().selectComponent("qt."+version+".win64_mingw73");
   }
 
   if (installer.value("LINUX") == "true")
@@ -81,6 +82,7 @@ Controller.prototype.ComponentSelectionPageCallback = function()
 
   gui.currentPageWidget().selectComponent("qt."+version+".android_armv7");
   gui.currentPageWidget().selectComponent("qt."+version+".android_x86");
+  gui.currentPageWidget().selectComponent("qt."+version+".android_arm64_v8a");
 
   gui.clickButton(buttons.NextButton);
 }

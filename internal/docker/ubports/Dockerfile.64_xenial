@@ -11,7 +11,7 @@ ENV QT_UBPORTS true
 ENV QT_UBPORTS_ARCH amd64
 ENV QT_UBPORTS_VERSION xenial
 
-RUN rm -rf /usr/local/go | true
+RUN rm -rf /usr/local/go || true
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt

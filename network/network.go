@@ -4184,6 +4184,95 @@ func (ptr *QDnsTextRecord) __values_newList() unsafe.Pointer {
 	return C.QDnsTextRecord___values_newList(ptr.Pointer())
 }
 
+type QDtls struct {
+	core.QObject
+}
+
+type QDtls_ITF interface {
+	core.QObject_ITF
+	QDtls_PTR() *QDtls
+}
+
+func (ptr *QDtls) QDtls_PTR() *QDtls {
+	return ptr
+}
+
+func (ptr *QDtls) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QDtls) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQDtls(ptr QDtls_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDtls_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDtlsFromPointer(ptr unsafe.Pointer) (n *QDtls) {
+	n = new(QDtls)
+	n.SetPointer(ptr)
+	return
+}
+
+//go:generate stringer -type=QDtls__HandshakeState
+//QDtls::HandshakeState
+type QDtls__HandshakeState int64
+
+const (
+	QDtls__HandshakeNotStarted    QDtls__HandshakeState = QDtls__HandshakeState(0)
+	QDtls__HandshakeInProgress    QDtls__HandshakeState = QDtls__HandshakeState(1)
+	QDtls__PeerVerificationFailed QDtls__HandshakeState = QDtls__HandshakeState(2)
+	QDtls__HandshakeComplete      QDtls__HandshakeState = QDtls__HandshakeState(3)
+)
+
+type QDtlsClientVerifier struct {
+	core.QObject
+}
+
+type QDtlsClientVerifier_ITF interface {
+	core.QObject_ITF
+	QDtlsClientVerifier_PTR() *QDtlsClientVerifier
+}
+
+func (ptr *QDtlsClientVerifier) QDtlsClientVerifier_PTR() *QDtlsClientVerifier {
+	return ptr
+}
+
+func (ptr *QDtlsClientVerifier) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QDtlsClientVerifier) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQDtlsClientVerifier(ptr QDtlsClientVerifier_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDtlsClientVerifier_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDtlsClientVerifierFromPointer(ptr unsafe.Pointer) (n *QDtlsClientVerifier) {
+	n = new(QDtlsClientVerifier)
+	n.SetPointer(ptr)
+	return
+}
+
 type QHostAddress struct {
 	ptr unsafe.Pointer
 }
@@ -14496,6 +14585,10 @@ const (
 	QNetworkRequest__ContentDispositionHeader QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(6)
 	QNetworkRequest__UserAgentHeader          QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(7)
 	QNetworkRequest__ServerHeader             QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(8)
+	QNetworkRequest__IfModifiedSinceHeader    QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(9)
+	QNetworkRequest__ETagHeader               QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(10)
+	QNetworkRequest__IfMatchHeader            QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(11)
+	QNetworkRequest__IfNoneMatchHeader        QNetworkRequest__KnownHeaders = QNetworkRequest__KnownHeaders(12)
 )
 
 //go:generate stringer -type=QNetworkRequest__LoadControl
@@ -15828,6 +15921,52 @@ func (ptr *QNetworkSession) TimerEventDefault(event core.QTimerEvent_ITF) {
 	}
 }
 
+type QPasswordDigestor struct {
+	ptr unsafe.Pointer
+}
+
+type QPasswordDigestor_ITF interface {
+	QPasswordDigestor_PTR() *QPasswordDigestor
+}
+
+func (ptr *QPasswordDigestor) QPasswordDigestor_PTR() *QPasswordDigestor {
+	return ptr
+}
+
+func (ptr *QPasswordDigestor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPasswordDigestor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPasswordDigestor(ptr QPasswordDigestor_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPasswordDigestor_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPasswordDigestorFromPointer(ptr unsafe.Pointer) (n *QPasswordDigestor) {
+	n = new(QPasswordDigestor)
+	n.SetPointer(ptr)
+	return
+}
+
+func (ptr *QPasswordDigestor) DestroyQPasswordDigestor() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+		runtime.SetFinalizer(ptr, nil)
+	}
+}
+
 type QSctpServer struct {
 	QTcpServer
 }
@@ -16022,6 +16161,12 @@ const (
 	QSsl__TlsV1_0OrLater  QSsl__SslProtocol = QSsl__SslProtocol(8)
 	QSsl__TlsV1_1OrLater  QSsl__SslProtocol = QSsl__SslProtocol(9)
 	QSsl__TlsV1_2OrLater  QSsl__SslProtocol = QSsl__SslProtocol(10)
+	QSsl__DtlsV1_0        QSsl__SslProtocol = QSsl__SslProtocol(11)
+	QSsl__DtlsV1_0OrLater QSsl__SslProtocol = QSsl__SslProtocol(12)
+	QSsl__DtlsV1_2        QSsl__SslProtocol = QSsl__SslProtocol(13)
+	QSsl__DtlsV1_2OrLater QSsl__SslProtocol = QSsl__SslProtocol(14)
+	QSsl__TlsV1_3         QSsl__SslProtocol = QSsl__SslProtocol(15)
+	QSsl__TlsV1_3OrLater  QSsl__SslProtocol = QSsl__SslProtocol(16)
 	QSsl__UnknownProtocol QSsl__SslProtocol = QSsl__SslProtocol(-1)
 )
 
@@ -16383,6 +16528,20 @@ func (ptr *QSslCertificate) PublicKey() *QSslKey {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSslCertificate) IssuerDisplayName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSslCertificate_IssuerDisplayName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QSslCertificate) SubjectDisplayName() string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QSslCertificate_SubjectDisplayName(ptr.Pointer()))
+	}
+	return ""
 }
 
 func (ptr *QSslCertificate) ToText() string {

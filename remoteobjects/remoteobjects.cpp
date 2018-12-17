@@ -17,6 +17,7 @@
 #include <QExtensionManager>
 #include <QGraphicsObject>
 #include <QGraphicsWidget>
+#include <QIODevice>
 #include <QItemSelectionModel>
 #include <QLayout>
 #include <QMediaPlaylist>
@@ -337,8 +338,8 @@ class MyQRemoteObjectHost: public QRemoteObjectHost
 public:
 	MyQRemoteObjectHost(QObject *parent = Q_NULLPTR) : QRemoteObjectHost(parent) {QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType();};
 	MyQRemoteObjectHost(const QUrl &address, QObject *parent) : QRemoteObjectHost(address, parent) {QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType();};
-	MyQRemoteObjectHost(const QUrl &address, const QUrl &registryAddress = QUrl(), QObject *parent = Q_NULLPTR) : QRemoteObjectHost(address, registryAddress, parent) {QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType();};
-	bool setHostUrl(const QUrl & hostAddress) { return callbackQRemoteObjectHost_SetHostUrl(this, const_cast<QUrl*>(&hostAddress)) != 0; };
+	MyQRemoteObjectHost(const QUrl &address, const QUrl &registryAddress = QUrl(), QRemoteObjectHostBase::AllowedSchemas allowedSchemas = BuiltInSchemasOnly, QObject *parent = Q_NULLPTR) : QRemoteObjectHost(address, registryAddress, allowedSchemas, parent) {QRemoteObjectHost_QRemoteObjectHost_QRegisterMetaType();};
+	bool setHostUrl(const QUrl & hostAddress, QRemoteObjectHostBase::AllowedSchemas allowedSchemas) { return callbackQRemoteObjectHost_SetHostUrl(this, const_cast<QUrl*>(&hostAddress), allowedSchemas) != 0; };
 	 ~MyQRemoteObjectHost() { callbackQRemoteObjectHost_DestroyQRemoteObjectHost(this); };
 	QUrl hostUrl() const { return *static_cast<QUrl*>(callbackQRemoteObjectHost_HostUrl(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -440,53 +441,53 @@ void* QRemoteObjectHost_NewQRemoteObjectHost3(void* address, void* parent)
 	}
 }
 
-void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddress, void* parent)
+void* QRemoteObjectHost_NewQRemoteObjectHost2(void* address, void* registryAddress, long long allowedSchemas, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QCameraImageCapture*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QCameraImageCapture*>(parent));
 	} else if (dynamic_cast<QDBusPendingCallWatcher*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QDBusPendingCallWatcher*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QDBusPendingCallWatcher*>(parent));
 	} else if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QExtensionFactory*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QExtensionFactory*>(parent));
 	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QExtensionManager*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QExtensionManager*>(parent));
 	} else if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QGraphicsObject*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QGraphicsObject*>(parent));
 	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QGraphicsWidget*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QGraphicsWidget*>(parent));
 	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QLayout*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QLayout*>(parent));
 	} else if (dynamic_cast<QMediaPlaylist*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QMediaPlaylist*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QMediaPlaylist*>(parent));
 	} else if (dynamic_cast<QMediaRecorder*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QMediaRecorder*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QMediaRecorder*>(parent));
 	} else if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QOffscreenSurface*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QOffscreenSurface*>(parent));
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QPaintDeviceWindow*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QPaintDeviceWindow*>(parent));
 	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QPdfWriter*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QPdfWriter*>(parent));
 	} else if (dynamic_cast<QQuickItem*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QQuickItem*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QQuickItem*>(parent));
 	} else if (dynamic_cast<QRadioData*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRadioData*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QRadioData*>(parent));
 	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QWidget*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QWidget*>(parent));
 	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QWindow*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QWindow*>(parent));
 	} else {
-		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QObject*>(parent));
+		return new MyQRemoteObjectHost(*static_cast<QUrl*>(address), *static_cast<QUrl*>(registryAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas), static_cast<QObject*>(parent));
 	}
 }
 
-char QRemoteObjectHost_SetHostUrl(void* ptr, void* hostAddress)
+char QRemoteObjectHost_SetHostUrl(void* ptr, void* hostAddress, long long allowedSchemas)
 {
-	return static_cast<QRemoteObjectHost*>(ptr)->setHostUrl(*static_cast<QUrl*>(hostAddress));
+	return static_cast<QRemoteObjectHost*>(ptr)->setHostUrl(*static_cast<QUrl*>(hostAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas));
 }
 
-char QRemoteObjectHost_SetHostUrlDefault(void* ptr, void* hostAddress)
+char QRemoteObjectHost_SetHostUrlDefault(void* ptr, void* hostAddress, long long allowedSchemas)
 {
-		return static_cast<QRemoteObjectHost*>(ptr)->QRemoteObjectHost::setHostUrl(*static_cast<QUrl*>(hostAddress));
+		return static_cast<QRemoteObjectHost*>(ptr)->QRemoteObjectHost::setHostUrl(*static_cast<QUrl*>(hostAddress), static_cast<QRemoteObjectHostBase::AllowedSchemas>(allowedSchemas));
 }
 
 void QRemoteObjectHost_DestroyQRemoteObjectHost(void* ptr)
@@ -514,6 +515,7 @@ class MyQRemoteObjectHostBase: public QRemoteObjectHostBase
 {
 public:
 	void setName(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtRemoteObjects_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQRemoteObjectNode_SetName(this, namePacked); };
+	 ~MyQRemoteObjectHostBase() { callbackQRemoteObjectHostBase_DestroyQRemoteObjectHostBase(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRemoteObjectNode_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool setRegistryUrl(const QUrl & registryAddress) { return callbackQRemoteObjectNode_SetRegistryUrl(this, const_cast<QUrl*>(&registryAddress)) != 0; };
 	void Signal_Error(QRemoteObjectNode::ErrorCode errorCode) { callbackQRemoteObjectNode_Error(this, errorCode); };
@@ -547,6 +549,22 @@ char QRemoteObjectHostBase_EnableRemoting3(void* ptr, void* model, struct QtRemo
 char QRemoteObjectHostBase_EnableRemoting2(void* ptr, void* object, struct QtRemoteObjects_PackedString name)
 {
 	return static_cast<QRemoteObjectHostBase*>(ptr)->enableRemoting(static_cast<QObject*>(object), QString::fromUtf8(name.data, name.len));
+}
+
+void QRemoteObjectHostBase_AddHostSideConnection(void* ptr, void* ioDevice)
+{
+	static_cast<QRemoteObjectHostBase*>(ptr)->addHostSideConnection(static_cast<QIODevice*>(ioDevice));
+}
+
+void QRemoteObjectHostBase_DestroyQRemoteObjectHostBase(void* ptr)
+{
+	static_cast<QRemoteObjectHostBase*>(ptr)->~QRemoteObjectHostBase();
+}
+
+void QRemoteObjectHostBase_DestroyQRemoteObjectHostBaseDefault(void* ptr)
+{
+	Q_UNUSED(ptr);
+
 }
 
 int QRemoteObjectHostBase___enableRemoting_roles_atList3(void* ptr, int i)
@@ -711,6 +729,11 @@ char QRemoteObjectNode_SetRegistryUrlDefault(void* ptr, void* registryAddress)
 char QRemoteObjectNode_WaitForRegistry(void* ptr, int timeout)
 {
 	return static_cast<QRemoteObjectNode*>(ptr)->waitForRegistry(timeout);
+}
+
+void QRemoteObjectNode_AddClientSideConnection(void* ptr, void* ioDevice)
+{
+	static_cast<QRemoteObjectNode*>(ptr)->addClientSideConnection(static_cast<QIODevice*>(ioDevice));
 }
 
 void QRemoteObjectNode_ConnectError(void* ptr)
@@ -1549,6 +1572,11 @@ struct QtRemoteObjects_PackedString QRemoteObjectStringLiterals_QRemoteObjectStr
 	return ({ QByteArray t3880b4 = QRemoteObjectStringLiterals::MODEL().toUtf8(); QtRemoteObjects_PackedString { const_cast<char*>(t3880b4.prepend("WHITESPACE").constData()+10), t3880b4.size()-10 }; });
 }
 
+struct QtRemoteObjects_PackedString QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_QAIMADAPTER()
+{
+	return ({ QByteArray t31d435 = QRemoteObjectStringLiterals::QAIMADAPTER().toUtf8(); QtRemoteObjects_PackedString { const_cast<char*>(t31d435.prepend("WHITESPACE").constData()+10), t31d435.size()-10 }; });
+}
+
 struct QtRemoteObjects_PackedString QRemoteObjectStringLiterals_QRemoteObjectStringLiterals_Local()
 {
 	return ({ QByteArray t4c3a40 = QRemoteObjectStringLiterals::local().toUtf8(); QtRemoteObjects_PackedString { const_cast<char*>(t4c3a40.prepend("WHITESPACE").constData()+10), t4c3a40.size()-10 }; });
@@ -1564,18 +1592,8 @@ struct QtRemoteObjects_PackedString QtRemoteObjects_QtRemoteObjects_Qt_getEnumNa
 	return QtRemoteObjects_PackedString { const_cast<char*>(QtRemoteObjects::qt_getEnumName(static_cast<QtRemoteObjects::InitialAction>(vqt))), -1 };
 }
 
-void QtRemoteObjects_QtRemoteObjects_CopyStoredProperties3(void* mo, void* src, void* dst)
-{
-	QtRemoteObjects::copyStoredProperties(static_cast<QMetaObject*>(mo), *static_cast<QDataStream*>(src), dst);
-}
-
-void QtRemoteObjects_QtRemoteObjects_CopyStoredProperties2(void* mo, void* src, void* dst)
-{
-	QtRemoteObjects::copyStoredProperties(static_cast<QMetaObject*>(mo), src, *static_cast<QDataStream*>(dst));
-}
-
 void QtRemoteObjects_QtRemoteObjects_CopyStoredProperties(void* mo, void* src, void* dst)
 {
-	QtRemoteObjects::copyStoredProperties(static_cast<QMetaObject*>(mo), src, dst);
+	QtRemoteObjects::copyStoredProperties(static_cast<QMetaObject*>(mo), *static_cast<QDataStream*>(src), dst);
 }
 
