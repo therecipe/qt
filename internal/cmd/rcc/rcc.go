@@ -23,6 +23,14 @@ var (
 )
 
 func Rcc(path, target, tagsCustom, output_dir string) {
+	if utils.UseGOMOD(path) {
+		if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+			cmd := exec.Command("go", "mod", "vendor")
+			cmd.Dir = path
+			utils.RunCmd(cmd, "go mod vendor")
+		}
+	}
+
 	rcc(path, target, tagsCustom, output_dir, true)
 }
 

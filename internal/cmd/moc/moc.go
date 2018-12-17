@@ -51,6 +51,14 @@ var (
 )
 
 func Moc(path, target, tags string, fast, slow bool) {
+	if utils.UseGOMOD(path) {
+		if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+			cmd := exec.Command("go", "mod", "vendor")
+			cmd.Dir = path
+			utils.RunCmd(cmd, "go mod vendor")
+		}
+	}
+
 	moc(path, target, tags, fast, slow, true, -1, false)
 }
 

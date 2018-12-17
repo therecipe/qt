@@ -28,6 +28,9 @@ func MustGoPath() string {
 	mustGoPathMutex.Lock()
 	if len(mustGoPath) == 0 {
 		mustGoPath = strings.TrimSpace(RunCmd(exec.Command("go", "list", "-f", "{{.Root}}", "github.com/therecipe/qt"), "get list gopath"))
+		if len(mustGoPath) == 0 {
+			mustGoPath = GOPATH()
+		}
 	}
 	mustGoPathMutex.Unlock()
 	return mustGoPath

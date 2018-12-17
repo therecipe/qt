@@ -1,7 +1,7 @@
 FROM therecipe/qt:wine_base as base
 
 RUN QT=qt-opensource-windows-x86-5.9.7.exe && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/qt/5.9/5.9.7/$QT \
-	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=596 && rm -f $QT
+	&& QT_QPA_PLATFORM=minimal xvfb-run wine Z:\\$QT --script=C:\\gopath\\src\\github.com\\therecipe\\qt\\internal\\ci\\iscript.qs WINDOWS=true VERSION=597 && rm -f $QT
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.9.7/5.9.7/mingw53_32 -name "*d.a" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.9.7/5.9.7/mingw53_32 -name "*d.dll" -exec grep -l "gnu_debug" {} \+)
 RUN rm -f $(find $HOME/.wine/drive_c/Qt/Qt5.9.7/5.9.7/mingw53_32 -name "*d.dll.a" -exec grep -l "gnu_debug" {} \+)

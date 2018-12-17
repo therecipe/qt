@@ -623,6 +623,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 	env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
 	env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
 
+	if flags := utils.GOFLAGS(); len(flags) != 0 {
+		env["GOFLAGS"] = flags
+	}
+
 	for _, e := range os.Environ() {
 		es := strings.Split(e, "=")
 		if _, ok := env[es[0]]; !ok {

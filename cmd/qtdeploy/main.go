@@ -114,7 +114,7 @@ func main() {
 		}
 	}
 
-	if target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") {
+	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
 		os.Setenv("GOCACHE", "off")
 	}
 

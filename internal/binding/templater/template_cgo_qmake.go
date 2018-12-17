@@ -613,14 +613,11 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	case "linux":
 		sFixes = []string{"linux_" + utils.GOARCH()}
 	case "windows":
-		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") {
+		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") ||
+			(!utils.QT_MXE() && !utils.QT_MSYS2() && utils.QT_VERSION_NUM() >= 5120) {
 			sFixes = []string{"windows_amd64"}
 		} else {
-			if utils.QT_VERSION_NUM() >= 5120 {
-				sFixes = []string{"windows_amd64"}
-			} else {
-				sFixes = []string{"windows_386"}
-			}
+			sFixes = []string{"windows_386"}
 		}
 	case "android":
 		sFixes = []string{"linux_arm"}

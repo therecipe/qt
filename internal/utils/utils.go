@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -83,8 +84,24 @@ func LoadOptional(name string) string {
 	return string(out)
 }
 
-func GoQtPkgPath(s ...string) string {
-	return filepath.Join(MustGoPath(), "src", "github.com", "therecipe", "qt", filepath.Join(s...))
+var (
+	goQtPkgPath      string
+	goQtPkgPathMutex = new(sync.Mutex)
+)
+
+func GoQtPkgPath(s ...string) (r string) {
+	goQtPkgPathMutex.Lock()
+	if len(goQtPkgPath) == 0 {
+		cmd := exec.Command("go", "list")
+		if UseGOMOD("") {
+			cmd.Args = append(cmd.Args, GOFLAGS())
+		}
+		cmd.Args = append(cmd.Args, "-f", "{{.Dir}}", packageName)
+		goQtPkgPath = strings.TrimSpace(RunCmd(cmd, "utils.GoQtPkgPath"))
+	}
+	r = goQtPkgPath
+	goQtPkgPathMutex.Unlock()
+	return filepath.Join(r, filepath.Join(s...))
 }
 
 //TODO: export error

@@ -2,6 +2,7 @@ package deploy
 
 import (
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 
@@ -46,6 +47,14 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			err := os.RemoveAll(depPath)
 			if err != nil {
 				utils.Log.WithError(err).Panic("failed to remove deploy folder")
+			}
+
+			if utils.UseGOMOD(path) {
+				if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+					cmd := exec.Command("go", "mod", "vendor")
+					cmd.Dir = path
+					utils.RunCmd(cmd, "go mod vendor")
+				}
 			}
 		}
 

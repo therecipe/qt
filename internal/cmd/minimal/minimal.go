@@ -20,6 +20,13 @@ import (
 )
 
 func Minimal(path, target, tags string) {
+	if utils.UseGOMOD(path) {
+		if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+			cmd := exec.Command("go", "mod", "vendor")
+			cmd.Dir = path
+			utils.RunCmd(cmd, "go mod vendor")
+		}
+	}
 
 	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 	scmd := exec.Command("go", "list")
@@ -247,6 +254,10 @@ func Minimal(path, target, tags string) {
 		if !parser.ShouldBuildForTarget(m, target) ||
 			m == "AndroidExtras" || m == "Sailfish" {
 			continue
+		}
+
+		if utils.UseGOMOD("") {
+			utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 		}
 
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), templater.CppTemplate(m, templater.MINIMAL, target, ""))

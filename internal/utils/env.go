@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 var qT_VERSION_CACHE string
@@ -249,4 +250,38 @@ func GOARCH() string {
 
 func QT_DYNAMIC_SETUP() bool {
 	return os.Getenv("QT_DYNAMIC_SETUP") == "true"
+}
+
+func GOFLAGS() string {
+	if flags, ok := os.LookupEnv("GOFLAGS"); ok {
+		return flags
+	}
+	if (strings.Contains(runtime.Version(), "1.11") || strings.Contains(runtime.Version(), "devel")) && UseGOMOD("") {
+		return "-mod=vendor"
+	}
+	return ""
+}
+
+func GOMOD(path string) string {
+	if mod, ok := os.LookupEnv("GOMOD"); ok {
+		return mod
+	}
+	cmd := exec.Command("go", "env", "GOMOD")
+	cmd.Dir = path
+	return strings.TrimSpace(RunCmd(cmd, "GOMOD"))
+}
+
+var (
+	useGOMOD      bool
+	useGOMODMutex = new(sync.Mutex)
+)
+
+func UseGOMOD(path string) (r bool) {
+	useGOMODMutex.Lock()
+	if !useGOMOD && len(GOMOD(path)) != 0 {
+		useGOMOD = true
+	}
+	r = useGOMOD
+	useGOMODMutex.Unlock()
+	return
 }
