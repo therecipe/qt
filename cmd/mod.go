@@ -3,6 +3,8 @@
 package cmd
 
 import (
+	_ "github.com/therecipe/qt/internal"
+
 	_ "github.com/therecipe/qt/cmd/qtdeploy"
 	_ "github.com/therecipe/qt/cmd/qtminimal"
 	_ "github.com/therecipe/qt/cmd/qtmoc"

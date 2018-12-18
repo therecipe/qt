@@ -5,29 +5,30 @@ Introduction
 
 [Go](https://en.wikipedia.org/wiki/Go_(programming_language)) (often referred to as golang) is a programming language created at Google.
 
-This package allows you to write Qt applications entirely in Go.
+This package allows you to write Qt applications entirely in Go and makes deploying them later very easy.
 
 [Gallery](https://github.com/therecipe/qt/wiki/Gallery) of applications making use of this package.
+
+[WebAssembly Demo](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
 
 Status
 ------
 
-**WIP**
+Almost all Qt functions and classes are accessible from Go and you should be able to find everything you need to build fully featured applications.
 
-Most Qt functions are accessible from Go.
-
-The package should already contain everything you need to build fully featured applications, the webengine/webview packages don't work on Windows though.
-
-Please pin the repo to a commit that is known to work for you, because there have been no releases so far.
+(A special exception are the WebEngine/WebView packages, these aren't available for Windows yet.)
 
 Resources
 ---------
 
--	[Wiki](https://github.com/therecipe/qt/wiki)
--	[FAQ](https://github.com/therecipe/qt/wiki/FAQ)
--	[Installation](https://github.com/therecipe/qt/wiki/Installation)
+-	[Installation on Windows](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
+-	[Installation on macOS](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
+-	[Installation on Linux](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
+-	[General Installation](https://github.com/therecipe/qt/wiki/Installation)
 -	[Getting Started](https://github.com/therecipe/qt/wiki/Getting-Started)
+-	[Wiki](https://github.com/therecipe/qt/wiki)
 -	[Qt Documentation](https://doc.qt.io/qt-5/classes.html)
+-	[FAQ](https://github.com/therecipe/qt/wiki/FAQ)
 -	[#qt-binding](https://gophers.slack.com/messages/qt-binding/details) Slack channel ([invite](https://invite.slack.golangbridge.org)\)
 
 Deployment Targets
