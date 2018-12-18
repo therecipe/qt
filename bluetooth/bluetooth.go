@@ -23,6 +23,12 @@ func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
+func cGoUnpackBytes(s C.struct_QtBluetooth_PackedString) []byte {
+	if int(s.len) == -1 {
+		return []byte(C.GoString(s.data))
+	}
+	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
 
 type OSXBluetooth struct {
 	ptr unsafe.Pointer
@@ -4629,18 +4635,18 @@ func (ptr *QBluetoothSocket) ReadDataDefault(data *string, maxSize int64) int64 
 //export callbackQBluetoothSocket_WriteData
 func callbackQBluetoothSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
-	return C.longlong(NewQBluetoothSocketFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(maxSize)))
+	return C.longlong(NewQBluetoothSocketFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(maxSize)))
 }
 
-func (ptr *QBluetoothSocket) ConnectWriteData(f func(data string, maxSize int64) int64) {
+func (ptr *QBluetoothSocket) ConnectWriteData(f func(data []byte, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64) int64)(data, maxSize)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, maxSize int64) int64 {
+				signal.(func([]byte, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -4656,24 +4662,22 @@ func (ptr *QBluetoothSocket) DisconnectWriteData() {
 	}
 }
 
-func (ptr *QBluetoothSocket) WriteData(data string, maxSize int64) int64 {
+func (ptr *QBluetoothSocket) WriteData(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QBluetoothSocket_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
 
-func (ptr *QBluetoothSocket) WriteDataDefault(data string, maxSize int64) int64 {
+func (ptr *QBluetoothSocket) WriteDataDefault(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QBluetoothSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -5298,18 +5302,17 @@ func (ptr *QBluetoothSocket) WaitForReadyReadDefault(msecs int) bool {
 //export callbackQBluetoothSocket_ReadLineData
 func callbackQBluetoothSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
-	return C.longlong(NewQBluetoothSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+	return C.longlong(NewQBluetoothSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
 }
 
-func (ptr *QBluetoothSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
+func (ptr *QBluetoothSocket) ReadLineDataDefault(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QBluetoothSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}

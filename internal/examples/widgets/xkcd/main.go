@@ -93,7 +93,9 @@ func main() {
 				defer resp.Body.Close()
 				data, _ := ioutil.ReadAll(resp.Body)
 
-				widgets.NewQLabelFromPointer(widgetmap[name+"_label"].Pointer()).SetPixmap(gui.QPixmap_FromImage(gui.QImage_FromData(string(data), len(data), ""), 0).Scaled2(400, 400, core.Qt__KeepAspectRatio, core.Qt__SmoothTransformation))
+				pix := gui.NewQPixmap()
+				pix.LoadFromData(data, uint(len(data)), "", 0)
+				widgets.NewQLabelFromPointer(widgetmap[name+"_label"].Pointer()).SetPixmap(pix.Scaled2(400, 400, core.Qt__KeepAspectRatio, core.Qt__SmoothTransformation))
 			}
 		}
 	})

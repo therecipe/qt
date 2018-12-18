@@ -22,6 +22,12 @@ func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
+func cGoUnpackBytes(s C.struct_QtSerialPort_PackedString) []byte {
+	if int(s.len) == -1 {
+		return []byte(C.GoString(s.data))
+	}
+	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
 
 type QSerialPort struct {
 	core.QIODevice
@@ -473,18 +479,17 @@ func (ptr *QSerialPort) ReadDataDefault(data *string, maxSize int64) int64 {
 //export callbackQSerialPort_ReadLineData
 func callbackQSerialPort_ReadLineData(ptr unsafe.Pointer, data C.struct_QtSerialPort_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
-	return C.longlong(NewQSerialPortFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+	return C.longlong(NewQSerialPortFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
 }
 
-func (ptr *QSerialPort) ReadLineDataDefault(data string, maxSize int64) int64 {
+func (ptr *QSerialPort) ReadLineDataDefault(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QSerialPort_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -494,18 +499,18 @@ func (ptr *QSerialPort) ReadLineDataDefault(data string, maxSize int64) int64 {
 //export callbackQSerialPort_WriteData
 func callbackQSerialPort_WriteData(ptr unsafe.Pointer, data C.struct_QtSerialPort_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
-	return C.longlong(NewQSerialPortFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(maxSize)))
+	return C.longlong(NewQSerialPortFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(maxSize)))
 }
 
-func (ptr *QSerialPort) ConnectWriteData(f func(data string, maxSize int64) int64) {
+func (ptr *QSerialPort) ConnectWriteData(f func(data []byte, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64) int64)(data, maxSize)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, maxSize int64) int64 {
+				signal.(func([]byte, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -521,24 +526,22 @@ func (ptr *QSerialPort) DisconnectWriteData() {
 	}
 }
 
-func (ptr *QSerialPort) WriteData(data string, maxSize int64) int64 {
+func (ptr *QSerialPort) WriteData(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QSerialPort_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
 
-func (ptr *QSerialPort) WriteDataDefault(data string, maxSize int64) int64 {
+func (ptr *QSerialPort) WriteDataDefault(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QSerialPort_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}

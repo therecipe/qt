@@ -21,6 +21,12 @@ func cGoUnpackString(s C.struct_QtCore_PackedString) string {
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
+func cGoUnpackBytes(s C.struct_QtCore_PackedString) []byte {
+	if int(s.len) == -1 {
+		return []byte(C.GoString(s.data))
+	}
+	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
 
 type QAbstractAnimation struct {
 	QObject
@@ -7333,18 +7339,18 @@ func (ptr *QBuffer) ReadDataDefault(data *string, l int64) int64 {
 //export callbackQBuffer_WriteData
 func callbackQBuffer_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, l C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(l)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(l)))
 	}
 
-	return C.longlong(NewQBufferFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(l)))
+	return C.longlong(NewQBufferFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(l)))
 }
 
-func (ptr *QBuffer) ConnectWriteData(f func(data string, l int64) int64) {
+func (ptr *QBuffer) ConnectWriteData(f func(data []byte, l int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data string, l int64) int64 {
-				signal.(func(string, int64) int64)(data, l)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, l int64) int64 {
+				signal.(func([]byte, int64) int64)(data, l)
 				return f(data, l)
 			})
 		} else {
@@ -7360,24 +7366,22 @@ func (ptr *QBuffer) DisconnectWriteData() {
 	}
 }
 
-func (ptr *QBuffer) WriteData(data string, l int64) int64 {
+func (ptr *QBuffer) WriteData(data []byte, l int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QBuffer_WriteData(ptr.Pointer(), dataC, C.longlong(l)))
 	}
 	return 0
 }
 
-func (ptr *QBuffer) WriteDataDefault(data string, l int64) int64 {
+func (ptr *QBuffer) WriteDataDefault(data []byte, l int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QBuffer_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(l)))
 	}
@@ -7396,12 +7400,11 @@ func (ptr *QBuffer) SetData(data QByteArray_ITF) {
 	}
 }
 
-func (ptr *QBuffer) SetData2(data string, size int) {
+func (ptr *QBuffer) SetData2(data []byte, size int) {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		C.QBuffer_SetData2(ptr.Pointer(), dataC, C.int(int32(size)))
 	}
@@ -8060,12 +8063,11 @@ func (ptr *QByteArray) SetNum2(n uint16, base int) *QByteArray {
 	return nil
 }
 
-func (ptr *QByteArray) SetRawData(data string, size uint) *QByteArray {
+func (ptr *QByteArray) SetRawData(data []byte, size uint) *QByteArray {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		tmpValue := NewQByteArrayFromPointer(C.QByteArray_SetRawData(ptr.Pointer(), dataC, C.uint(uint32(size))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
@@ -8132,22 +8134,20 @@ func (ptr *QByteArray) FromPercentEncoding(input QByteArray_ITF, percent string)
 	return tmpValue
 }
 
-func QByteArray_FromRawData(data string, size int) *QByteArray {
+func QByteArray_FromRawData(data []byte, size int) *QByteArray {
 	var dataC *C.char
-	if data != "" {
-		dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+	if len(data) != 0 {
+		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
 
-func (ptr *QByteArray) FromRawData(data string, size int) *QByteArray {
+func (ptr *QByteArray) FromRawData(data []byte, size int) *QByteArray {
 	var dataC *C.char
-	if data != "" {
-		dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+	if len(data) != 0 {
+		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_QByteArray_FromRawData(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
@@ -8260,16 +8260,6 @@ func NewQByteArray3(size int, ch string) *QByteArray {
 		defer C.free(unsafe.Pointer(chC))
 	}
 	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray3(C.int(int32(size)), chC))
-	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
-	return tmpValue
-}
-
-func NewQByteArray4(data []byte, size int) *QByteArray {
-	var dataC *C.char
-	if len(data) != 0 {
-		dataC = (*C.char)(unsafe.Pointer(&data[0]))
-	}
-	tmpValue := NewQByteArrayFromPointer(C.QByteArray_NewQByteArray2(dataC, C.int(int32(size))))
 	runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 	return tmpValue
 }
@@ -13101,12 +13091,11 @@ func (ptr *QCryptographicHash) AddData2(data QByteArray_ITF) {
 	}
 }
 
-func (ptr *QCryptographicHash) AddData(data string, length int) {
+func (ptr *QCryptographicHash) AddData(data []byte, length int) {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		C.QCryptographicHash_AddData(ptr.Pointer(), dataC, C.int(int32(length)))
 	}
@@ -13270,12 +13259,11 @@ func (ptr *QDataStream) CommitTransaction() bool {
 	return false
 }
 
-func (ptr *QDataStream) ReadRawData(s string, l int) int {
+func (ptr *QDataStream) ReadRawData(s []byte, l int) int {
 	if ptr.Pointer() != nil {
 		var sC *C.char
-		if s != "" {
-			sC = C.CString(s)
-			defer C.free(unsafe.Pointer(sC))
+		if len(s) != 0 {
+			sC = (*C.char)(unsafe.Pointer(&s[0]))
 		}
 		return int(int32(C.QDataStream_ReadRawData(ptr.Pointer(), sC, C.int(int32(l)))))
 	}
@@ -13289,12 +13277,11 @@ func (ptr *QDataStream) SkipRawData(l int) int {
 	return 0
 }
 
-func (ptr *QDataStream) WriteRawData(s string, l int) int {
+func (ptr *QDataStream) WriteRawData(s []byte, l int) int {
 	if ptr.Pointer() != nil {
 		var sC *C.char
-		if s != "" {
-			sC = C.CString(s)
-			defer C.free(unsafe.Pointer(sC))
+		if len(s) != 0 {
+			sC = (*C.char)(unsafe.Pointer(&s[0]))
 		}
 		return int(int32(C.QDataStream_WriteRawData(ptr.Pointer(), sC, C.int(int32(l)))))
 	}
@@ -17668,18 +17655,18 @@ func (ptr *QFileDevice) ReadDataDefault(data *string, l int64) int64 {
 //export callbackQFileDevice_WriteData
 func callbackQFileDevice_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, l C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(l)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(l)))
 	}
 
-	return C.longlong(NewQFileDeviceFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(l)))
+	return C.longlong(NewQFileDeviceFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(l)))
 }
 
-func (ptr *QFileDevice) ConnectWriteData(f func(data string, l int64) int64) {
+func (ptr *QFileDevice) ConnectWriteData(f func(data []byte, l int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data string, l int64) int64 {
-				signal.(func(string, int64) int64)(data, l)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, l int64) int64 {
+				signal.(func([]byte, int64) int64)(data, l)
 				return f(data, l)
 			})
 		} else {
@@ -17695,24 +17682,22 @@ func (ptr *QFileDevice) DisconnectWriteData() {
 	}
 }
 
-func (ptr *QFileDevice) WriteData(data string, l int64) int64 {
+func (ptr *QFileDevice) WriteData(data []byte, l int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QFileDevice_WriteData(ptr.Pointer(), dataC, C.longlong(l)))
 	}
 	return 0
 }
 
-func (ptr *QFileDevice) WriteDataDefault(data string, l int64) int64 {
+func (ptr *QFileDevice) WriteDataDefault(data []byte, l int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QFileDevice_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(l)))
 	}
@@ -20244,12 +20229,11 @@ func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 	return 0
 }
 
-func (ptr *QIODevice) Read(data string, maxSize int64) int64 {
+func (ptr *QIODevice) Read(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_Read(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -20304,12 +20288,11 @@ func (ptr *QIODevice) ReadData(data *string, maxSize int64) int64 {
 	return 0
 }
 
-func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
+func (ptr *QIODevice) ReadLine(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_ReadLine(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -20319,18 +20302,18 @@ func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
 //export callbackQIODevice_ReadLineData
 func callbackQIODevice_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
-	return C.longlong(NewQIODeviceFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+	return C.longlong(NewQIODeviceFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
 }
 
-func (ptr *QIODevice) ConnectReadLineData(f func(data string, maxSize int64) int64) {
+func (ptr *QIODevice) ConnectReadLineData(f func(data []byte, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readLineData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "readLineData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64) int64)(data, maxSize)
+			qt.ConnectSignal(ptr.Pointer(), "readLineData", func(data []byte, maxSize int64) int64 {
+				signal.(func([]byte, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -20346,24 +20329,22 @@ func (ptr *QIODevice) DisconnectReadLineData() {
 	}
 }
 
-func (ptr *QIODevice) ReadLineData(data string, maxSize int64) int64 {
+func (ptr *QIODevice) ReadLineData(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
 
-func (ptr *QIODevice) ReadLineDataDefault(data string, maxSize int64) int64 {
+func (ptr *QIODevice) ReadLineDataDefault(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -20396,12 +20377,11 @@ func (ptr *QIODevice) Write2(data string) int64 {
 	return 0
 }
 
-func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
+func (ptr *QIODevice) Write(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_Write(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -20411,18 +20391,18 @@ func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
 //export callbackQIODevice_WriteData
 func callbackQIODevice_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
 	return C.longlong(0)
 }
 
-func (ptr *QIODevice) ConnectWriteData(f func(data string, maxSize int64) int64) {
+func (ptr *QIODevice) ConnectWriteData(f func(data []byte, maxSize int64) int64) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data string, maxSize int64) int64 {
-				signal.(func(string, int64) int64)(data, maxSize)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, maxSize int64) int64 {
+				signal.(func([]byte, int64) int64)(data, maxSize)
 				return f(data, maxSize)
 			})
 		} else {
@@ -20438,12 +20418,11 @@ func (ptr *QIODevice) DisconnectWriteData() {
 	}
 }
 
-func (ptr *QIODevice) WriteData(data string, maxSize int64) int64 {
+func (ptr *QIODevice) WriteData(data []byte, maxSize int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		return int64(C.QIODevice_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
@@ -23153,22 +23132,20 @@ func (ptr *QJsonDocument) FromJson(json QByteArray_ITF, error QJsonParseError_IT
 	return tmpValue
 }
 
-func QJsonDocument_FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
+func QJsonDocument_FromRawData(data []byte, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
 	var dataC *C.char
-	if data != "" {
-		dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+	if len(data) != 0 {
+		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
 	return tmpValue
 }
 
-func (ptr *QJsonDocument) FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
+func (ptr *QJsonDocument) FromRawData(data []byte, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
 	var dataC *C.char
-	if data != "" {
-		dataC = C.CString(data)
-		defer C.free(unsafe.Pointer(dataC))
+	if len(data) != 0 {
+		dataC = (*C.char)(unsafe.Pointer(&data[0]))
 	}
 	tmpValue := NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(int32(size)), C.longlong(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -28264,12 +28241,11 @@ func (ptr *QMessageAuthenticationCode) AddData2(data QByteArray_ITF) {
 	}
 }
 
-func (ptr *QMessageAuthenticationCode) AddData(data string, length int) {
+func (ptr *QMessageAuthenticationCode) AddData(data []byte, length int) {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		C.QMessageAuthenticationCode_AddData(ptr.Pointer(), dataC, C.int(int32(length)))
 	}

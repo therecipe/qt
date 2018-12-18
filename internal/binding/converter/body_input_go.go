@@ -27,7 +27,7 @@ func GoInputParametersForC(function *parser.Function) string {
 					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 			} else {
 				var alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
-				if strings.Contains(alloc, "C.CString") || strings.Contains(alloc, "qt.GoBoolToInt(*") {
+				if strings.Contains(alloc, "C.CString") || strings.Contains(alloc, "qt.GoBoolToInt(*") || strings.Contains(alloc, "*C.char") {
 					if parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList" {
 						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{data: %vC, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
@@ -137,6 +137,11 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 					input = append(input, fmt.Sprintf("var %v *C.char\nif %v != \"\" {\n%v = %v\ndefer C.free(unsafe.Pointer(%v))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
 				}
 
+			case "[]byte":
+				{
+					input = append(input, fmt.Sprintf("var %v *C.char\nif len(%v) != 0 {\n%v = %v\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc))
+				}
+
 			case "*string", "[]string", "error":
 				{
 					input = append(input, fmt.Sprintf("%v := %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))
@@ -161,7 +166,7 @@ func GoInputParametersForCallback(function *parser.Function) string {
 		if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
 			input[i] = fmt.Sprintf("%vD", parser.CleanName(parameter.Name, parameter.Value))
 		} else {
-			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpackString") {
+			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpack") {
 				input[i] = "&retS"
 			} else if strings.Contains(goType(function, parameter.Value, parameter.PureGoType), "*bool") {
 				if function.SignalMode != parser.CALLBACK {

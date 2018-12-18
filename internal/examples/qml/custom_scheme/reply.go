@@ -24,11 +24,11 @@ func NewCustomReply(op network.QNetworkAccessManager__Operation, req *network.QN
 
 	println("requested:", req.Url().ToString(0))
 
-	var content string
+	var content []byte
 	if req.Url().FileName(0) == "qmldir" {
-		content = "SomeClass myfile.qml"
+		content = []byte("SomeClass myfile.qml")
 	} else {
-		content = `import QtQuick 2.0
+		content = []byte(`import QtQuick 2.0
 
     Rectangle {
         id: page
@@ -42,7 +42,7 @@ func NewCustomReply(op network.QNetworkAccessManager__Operation, req *network.QN
             anchors.horizontalCenter: page.horizontalCenter
             font.pointSize: 24; font.bold: true
         }
-    }`
+    }`)
 	}
 
 	//in case of multiple customReply::ReadData calls for a single reply, an offset is used
@@ -60,7 +60,7 @@ func NewCustomReply(op network.QNetworkAccessManager__Operation, req *network.QN
 			return b
 		}(maxSize, int64(len(content))-offset)
 
-		*data = string([]byte(content)[offset : offset+number])
+		*data = string(content[offset : offset+number])
 		offset += number
 
 		customReply.SetAttribute(network.QNetworkRequest__HttpStatusCodeAttribute, core.NewQVariant7(200))

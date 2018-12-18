@@ -25,7 +25,7 @@ func (d *XYSeriesIODevice) readData(data *string, maxSize int64) int64 {
 	return -1
 }
 
-func (d *XYSeriesIODevice) writeData(data string, maxSize int64) int64 {
+func (d *XYSeriesIODevice) writeData(data []byte, maxSize int64) int64 {
 	var rang = 2000
 	var oldPoints = d.m_series.PointsVector()
 	var points []*core.QPointF
@@ -41,7 +41,7 @@ func (d *XYSeriesIODevice) writeData(data string, maxSize int64) int64 {
 
 	var size = int64(len(points))
 	for k := int64(0); k < int64(maxSize/resolution); k++ {
-		var y = float64([]byte(data)[resolution*k]-128) / 128.0
+		var y = float64(data[resolution*k]-128) / 128.0
 		if y > 1 {
 			y -= 2
 		}

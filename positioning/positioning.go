@@ -21,6 +21,12 @@ func cGoUnpackString(s C.struct_QtPositioning_PackedString) string {
 	}
 	return C.GoStringN(s.data, C.int(s.len))
 }
+func cGoUnpackBytes(s C.struct_QtPositioning_PackedString) []byte {
+	if int(s.len) == -1 {
+		return []byte(C.GoString(s.data))
+	}
+	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
+}
 
 type QGeoAddress struct {
 	ptr unsafe.Pointer
@@ -5492,18 +5498,18 @@ func callbackQNmeaPositionInfoSource_ParsePosInfoFromNmeaData(ptr unsafe.Pointer
 	hasFixR := int8(*hasFix) != 0
 	defer func() { *hasFix = C.char(int8(qt.GoBoolToInt(hasFixR))) }()
 	if signal := qt.GetSignal(ptr, "parsePosInfoFromNmeaData"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, int, *QGeoPositionInfo, *bool) bool)(cGoUnpackString(data), int(int32(size)), NewQGeoPositionInfoFromPointer(posInfo), &hasFixR))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func([]byte, int, *QGeoPositionInfo, *bool) bool)(cGoUnpackBytes(data), int(int32(size)), NewQGeoPositionInfoFromPointer(posInfo), &hasFixR))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQNmeaPositionInfoSourceFromPointer(ptr).ParsePosInfoFromNmeaDataDefault(cGoUnpackString(data), int(int32(size)), NewQGeoPositionInfoFromPointer(posInfo), &hasFixR))))
+	return C.char(int8(qt.GoBoolToInt(NewQNmeaPositionInfoSourceFromPointer(ptr).ParsePosInfoFromNmeaDataDefault(cGoUnpackBytes(data), int(int32(size)), NewQGeoPositionInfoFromPointer(posInfo), &hasFixR))))
 }
 
-func (ptr *QNmeaPositionInfoSource) ConnectParsePosInfoFromNmeaData(f func(data string, size int, posInfo *QGeoPositionInfo, hasFix *bool) bool) {
+func (ptr *QNmeaPositionInfoSource) ConnectParsePosInfoFromNmeaData(f func(data []byte, size int, posInfo *QGeoPositionInfo, hasFix *bool) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "parsePosInfoFromNmeaData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "parsePosInfoFromNmeaData", func(data string, size int, posInfo *QGeoPositionInfo, hasFix *bool) bool {
-				signal.(func(string, int, *QGeoPositionInfo, *bool) bool)(data, size, posInfo, hasFix)
+			qt.ConnectSignal(ptr.Pointer(), "parsePosInfoFromNmeaData", func(data []byte, size int, posInfo *QGeoPositionInfo, hasFix *bool) bool {
+				signal.(func([]byte, int, *QGeoPositionInfo, *bool) bool)(data, size, posInfo, hasFix)
 				return f(data, size, posInfo, hasFix)
 			})
 		} else {
@@ -5519,12 +5525,11 @@ func (ptr *QNmeaPositionInfoSource) DisconnectParsePosInfoFromNmeaData() {
 	}
 }
 
-func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size int, posInfo QGeoPositionInfo_ITF, hasFix *bool) bool {
+func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data []byte, size int, posInfo QGeoPositionInfo_ITF, hasFix *bool) bool {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		hasFixC := C.char(int8(qt.GoBoolToInt(*hasFix)))
 		defer func() { *hasFix = int8(hasFixC) != 0 }()
@@ -5533,12 +5538,11 @@ func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaData(data string, size i
 	return false
 }
 
-func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaDataDefault(data string, size int, posInfo QGeoPositionInfo_ITF, hasFix *bool) bool {
+func (ptr *QNmeaPositionInfoSource) ParsePosInfoFromNmeaDataDefault(data []byte, size int, posInfo QGeoPositionInfo_ITF, hasFix *bool) bool {
 	if ptr.Pointer() != nil {
 		var dataC *C.char
-		if data != "" {
-			dataC = C.CString(data)
-			defer C.free(unsafe.Pointer(dataC))
+		if len(data) != 0 {
+			dataC = (*C.char)(unsafe.Pointer(&data[0]))
 		}
 		hasFixC := C.char(int8(qt.GoBoolToInt(*hasFix)))
 		defer func() { *hasFix = int8(hasFixC) != 0 }()

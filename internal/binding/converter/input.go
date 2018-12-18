@@ -30,11 +30,39 @@ func GoInput(name, value string, f *parser.Function, p string) string {
 				return fmt.Sprintf("C.CString(strings.Repeat(\"0\", int(%v)))", parser.CleanName(f.Parameters[1].Name, f.Parameters[1].Value))
 			}
 
+			switch value {
+			case "char", "qint8":
+				if len(f.Parameters) <= 4 &&
+					(strings.Contains(strings.ToLower(f.Name), "read") ||
+						strings.Contains(strings.ToLower(f.Name), "write") ||
+						strings.Contains(strings.ToLower(f.Name), "data")) {
+					for _, p := range f.Parameters {
+						if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+							return fmt.Sprintf("(*C.char)(unsafe.Pointer(&%v[0]))", name)
+						}
+					}
+				}
+			}
+
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
 
 	case "uchar", "quint8", "GLubyte", "QString":
 		{
+			switch value {
+			case "uchar", "quint8", "GLubyte":
+				if len(f.Parameters) <= 4 &&
+					(strings.Contains(strings.ToLower(f.Name), "read") ||
+						strings.Contains(strings.ToLower(f.Name), "write") ||
+						strings.Contains(strings.ToLower(f.Name), "data")) {
+					for _, p := range f.Parameters {
+						if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+							return fmt.Sprintf("(*C.char)(unsafe.Pointer(&%v[0]))", name)
+						}
+					}
+				}
+			}
+
 			return fmt.Sprintf("C.CString(%v)", func() string {
 				if strings.Contains(p, "error") {
 					return fmt.Sprintf("func() string { tmp := %v\n if tmp != nil { return tmp.Error() }\n return \"\" }()", name)

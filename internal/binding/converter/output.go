@@ -15,6 +15,7 @@ func GoOutput(name, value string, f *parser.Function, p string) string {
 	return goOutput(name, value, f, p)
 }
 func goOutput(name, value string, f *parser.Function, p string) string {
+	vOld := value
 
 	name = parser.CleanName(name, value)
 	value = parser.CleanValue(value)
@@ -22,6 +23,22 @@ func goOutput(name, value string, f *parser.Function, p string) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
+			if !parser.UseJs() { //TODO: support []byte in js as well
+				switch value {
+				case "char", "qint8", "uchar", "quint8", "GLubyte":
+					if len(f.Parameters) <= 4 &&
+						(strings.Contains(strings.ToLower(f.Name), "read") ||
+							strings.Contains(strings.ToLower(f.Name), "write") ||
+							strings.Contains(strings.ToLower(f.Name), "data")) {
+						for _, p := range f.Parameters {
+							if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+								return fmt.Sprintf("cGoUnpackBytes(%v)", name)
+							}
+						}
+					}
+				}
+			}
+
 			return func() string {
 				var out = fmt.Sprintf("cGoUnpackString(%v)", name)
 				if strings.Contains(p, "error") {
@@ -278,6 +295,7 @@ func goOutputFailed(value string, f *parser.Function, p string) string {
 }
 
 func cgoOutput(name, value string, f *parser.Function, p string) string {
+	vOld := value
 
 	name = parser.CleanName(name, value)
 	value = parser.CleanValue(value)
@@ -285,6 +303,22 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "GLubyte", "QString":
 		{
+			if !parser.UseJs() { //TODO: support []byte in js as well
+				switch value {
+				case "char", "qint8", "uchar", "quint8", "GLubyte":
+					if len(f.Parameters) <= 4 &&
+						(strings.Contains(strings.ToLower(f.Name), "read") ||
+							strings.Contains(strings.ToLower(f.Name), "write") ||
+							strings.Contains(strings.ToLower(f.Name), "data")) {
+						for _, p := range f.Parameters {
+							if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+								return fmt.Sprintf("cGoUnpackBytes(%v)", name)
+							}
+						}
+					}
+				}
+			}
+
 			out := fmt.Sprintf("cGoUnpackString(%v)", name)
 			if parser.UseJs() {
 				out = name

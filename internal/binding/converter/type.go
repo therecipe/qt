@@ -30,6 +30,22 @@ func goType(f *parser.Function, value string, p string) string {
 				return "*string"
 			}
 
+			if !parser.UseJs() { //TODO: support []byte in js as well
+				switch value {
+				case "char", "qint8", "uchar", "quint8", "GLubyte":
+					if len(f.Parameters) <= 4 &&
+						(strings.Contains(strings.ToLower(f.Name), "read") ||
+							strings.Contains(strings.ToLower(f.Name), "write") ||
+							strings.Contains(strings.ToLower(f.Name), "data")) {
+						for _, p := range f.Parameters {
+							if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+								return "[]byte"
+							}
+						}
+					}
+				}
+			}
+
 			return "string"
 		}
 
