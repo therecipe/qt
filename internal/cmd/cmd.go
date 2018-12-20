@@ -8,6 +8,7 @@ import (
 	"os/user"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 
 	"github.com/sirupsen/logrus"
@@ -50,6 +51,56 @@ func ParseFlags() bool {
 	if *version {
 		println(buildVersion)
 		os.Exit(0)
+	}
+
+	if !utils.ExistsDir(utils.QT_DIR()) {
+		*qt_dir = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]), "get env dir"))
+
+		switch runtime.GOOS {
+		case "linux", "darwin":
+			os.Setenv("QT_DIR", *qt_dir)
+			if api := *qt_api; api == "" {
+				os.Setenv("QT_API", utils.QT_VERSION())
+			}
+		}
+
+		var err error
+		switch runtime.GOOS {
+		case "linux":
+			link := filepath.Join("/usr", "local", ".env_linux_amd64")
+			utils.RemoveAll(link)
+			err = os.Symlink(*qt_dir, link)
+		case "darwin":
+			link := filepath.Join("/Applications", ".env_darwin_amd64")
+			utils.RemoveAll(link)
+			err = os.Symlink(*qt_dir, link)
+		}
+		if err != nil {
+			utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\nplease open an issue)")
+			cmd := exec.Command("go", "run", "patch.go", *qt_dir)
+			cmd.Dir = *qt_dir
+			_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
+			if err != nil {
+				utils.Log.Warn("failed to patch binaries (do you use go modules?)\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\nplease open an issue")
+			}
+		}
+
+		var webenginearchive string
+		switch runtime.GOOS {
+		case "linux":
+			webenginearchive = filepath.Join(*qt_dir, utils.QT_VERSION(), "gcc_64", "lib", "libQt5WebEngineCore.so."+utils.QT_VERSION()+".gz")
+		case "darwin":
+			webenginearchive = filepath.Join(*qt_dir, utils.QT_VERSION(), "clang_64", "lib", "QtWebEngineCore.framework", "Versions", "Current", "QtWebEngineCore.gz")
+		}
+
+		if utils.ExistsFile(webenginearchive) {
+			_, err := utils.RunCmdOptionalError(exec.Command("gzip", "-d", webenginearchive), "uncompress webengine")
+			if err != nil {
+				utils.Log.WithError(err).Warn("failed to uncompress webengine, (do you use go modules?)")
+			} else {
+				utils.RemoveAll(webenginearchive)
+			}
+		}
 	}
 
 	return help != nil && *help

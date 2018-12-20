@@ -86,6 +86,20 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
 	case "linux", "rpi1", "rpi2", "rpi3":
+		defer func() {
+			filepath.Walk(depPath, func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+				if info.IsDir() {
+					return nil
+				}
+				if strings.HasPrefix(filepath.Base(path), "lib") {
+					utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
+				}
+				return nil
+			})
+		}()
 
 		//copy default assets
 		utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
@@ -179,7 +193,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				if info.IsDir() {
 					return nil
 				}
-				if filepath.Ext(info.Name()) == ".debug" || filepath.Ext(info.Name()) == ".qmlc" {
+				if filepath.Ext(info.Name()) == ".debug" || filepath.Ext(info.Name()) == ".qmlc" || filepath.Ext(info.Name()) == ".jsc" {
 					utils.RemoveAll(path)
 				}
 				return nil

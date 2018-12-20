@@ -2,6 +2,7 @@ package setup
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"runtime"
 	"strings"
@@ -22,21 +23,25 @@ func Generate(target string, docker, vagrant bool) {
 
 	parser.LoadModules()
 
+	mode := "full"
+	switch {
+	case target == "js", target == "wasm":
+
+	case target != runtime.GOOS:
+		mode = "cgo"
+
+	case utils.QT_STUB():
+		mode = "stub"
+	}
+
+	if target == "windows" && runtime.GOOS == target {
+		os.Setenv("QT_DEBUG_CONSOLE", "true")
+	}
+
 	for _, module := range parser.GetLibs() {
 		if !parser.ShouldBuildForTarget(module, target) {
 			utils.Log.Debugf("skipping generation of %v for %v", module, target)
 			continue
-		}
-
-		mode := "full"
-		switch {
-		case target == "js", target == "wasm":
-
-		case target != runtime.GOOS:
-			mode = "cgo"
-
-		case utils.QT_STUB():
-			mode = "stub"
 		}
 		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))
 
