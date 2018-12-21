@@ -72,6 +72,7 @@ func main() {
 		target = runtime.GOOS
 	}
 	utils.CheckBuildTarget(target)
+	cmd.InitEnv(target)
 
 	if !filepath.IsAbs(path) {
 		oPath := path

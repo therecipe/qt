@@ -82,8 +82,8 @@ func main() {
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
-
 	utils.CheckBuildTarget(target)
+	cmd.InitEnv(target)
 
 	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
