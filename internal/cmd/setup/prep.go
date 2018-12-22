@@ -3,7 +3,6 @@ package setup
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 
@@ -34,8 +33,11 @@ func Prep() {
 				continue
 			}
 			utils.RemoveAll(dPath)
-			//TODO: use os.Link to create a hardlink on windows
-			utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", dPath, sPath), fmt.Sprintf(errString, app, dPath, sPath))
+			if err := os.Link(sPath, dPath); err == nil {
+				utils.Log.Infof(sucString, app, dPath)
+			} else {
+				utils.Log.Warnf(errString, app, dPath, sPath)
+			}
 			continue
 		} else {
 			var suc bool

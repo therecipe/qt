@@ -19,6 +19,9 @@ import (
 var buildVersion = "no build version"
 
 func ParseFlags() bool {
+	if runtime.GOOS == "windows" {
+		utils.Log.SetFormatter(&logrus.TextFormatter{DisableColors: true})
+	}
 	var (
 		debug      = flag.Bool("debug", false, "print debug logs")
 		help       = flag.Bool("help", false, "print help")
@@ -57,7 +60,7 @@ func ParseFlags() bool {
 }
 
 func InitEnv(target string) {
-	if target != runtime.GOOS {
+	if target != runtime.GOOS || runtime.GOARCH != "amd64" {
 		return
 	}
 
@@ -71,7 +74,9 @@ func InitEnv(target string) {
 			return
 		}
 	case "windows":
-		return
+		if utils.QT_MSYS2() {
+			return
+		}
 	default:
 		return
 	}
@@ -80,7 +85,7 @@ func InitEnv(target string) {
 		qt_dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]), "get env dir"))
 
 		switch runtime.GOOS {
-		case "linux", "darwin":
+		case "linux", "darwin", "windows":
 			os.Setenv("QT_DIR", qt_dir)
 			if api := utils.QT_API(""); api == "" {
 				os.Setenv("QT_API", utils.QT_VERSION())
@@ -95,6 +100,10 @@ func InitEnv(target string) {
 			err = os.Symlink(qt_dir, link)
 		case "darwin":
 			link := filepath.Join("/Applications", ".env_darwin_amd64")
+			utils.RemoveAll(link)
+			err = os.Symlink(qt_dir, link)
+		case "windows":
+			link := filepath.Join("C:\\", "Program Files", "env_windows_amd64")
 			utils.RemoveAll(link)
 			err = os.Symlink(qt_dir, link)
 		}
@@ -114,6 +123,26 @@ func InitEnv(target string) {
 			webenginearchive = filepath.Join(qt_dir, utils.QT_VERSION(), "gcc_64", "lib", "libQt5WebEngineCore.so."+utils.QT_VERSION()+".gz")
 		case "darwin":
 			webenginearchive = filepath.Join(qt_dir, utils.QT_VERSION(), "clang_64", "lib", "QtWebEngineCore.framework", "Versions", "Current", "QtWebEngineCore.gz")
+		case "windows":
+			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
+				sPath := filepath.Join(qt_dir, "5.12.0", "mingw73_64", "bin", "qtenv2.bat")
+				existed := utils.ExistsFile(dPath)
+				if existed {
+					utils.RemoveAll(dPath)
+				}
+				err := os.Link(sPath, dPath)
+				if i != 0 {
+					continue
+				}
+				if err == nil {
+					if !existed {
+						utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+					}
+				} else {
+					utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+				}
+			}
+			return
 		}
 
 		if utils.ExistsFile(webenginearchive) {

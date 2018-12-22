@@ -23,6 +23,7 @@ COPY --from=base $HOME/.wine/drive_c/gopath/bin $HOME/.wine/drive_c/gopath/bin
 COPY --from=base $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt $HOME/.wine/drive_c/gopath/src/github.com/therecipe/qt
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.0/5.12.0/mingw73_64 $HOME/.wine/drive_c/Qt/Qt5.12.0/5.12.0/mingw73_64
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.0/Docs $HOME/.wine/drive_c/Qt/Qt5.12.0/Docs
+COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.0/Licenses $HOME/.wine/drive_c/Qt/Qt5.12.0/Licenses
 COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.0/Tools/mingw730_64 $HOME/.wine/drive_c/Qt/Qt5.12.0/Tools/mingw730_64
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl software-properties-common apt-transport-https && apt-get -qq clean

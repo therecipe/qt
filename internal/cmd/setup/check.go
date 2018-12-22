@@ -69,7 +69,7 @@ func Check(target string, docker, vagrant bool) {
 		}...)
 
 		if _, err := exec.LookPath("clang++"); err != nil {
-			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?")
+			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?; please run: xcode-select --install")
 		}
 
 	case "linux", "ubports":
@@ -104,7 +104,7 @@ func Check(target string, docker, vagrant bool) {
 			}
 
 			if _, err := exec.LookPath("g++"); err != nil && !utils.QT_MSYS2() {
-				utils.Log.WithError(err).Panic("failed to find g++, did you add the directory that contains g++ to your PATH?")
+				utils.Log.WithError(err).Panic("failed to find g++, did you start the MinGW shell?")
 			}
 		} else {
 			vars = append(vars, [][]string{

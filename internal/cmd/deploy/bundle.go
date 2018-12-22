@@ -94,7 +94,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				if info.IsDir() {
 					return nil
 				}
-				if strings.HasPrefix(filepath.Base(path), "lib") {
+				if strings.HasPrefix(filepath.Base(path), "lib") { //TODO: also strip (qml)plugins
 					utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
 				}
 				return nil
@@ -102,7 +102,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		}()
 
 		//copy default assets
-		utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
+		utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name)) //TODO: patch QtCore instead
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
@@ -266,16 +266,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			paths = append(paths, os.Getenv("PATH"))
 			os.Setenv("PATH", strings.Join(paths, ";"))
 
-			var copyCmd = "xcopy"
+			copyCmd := "xcopy"
 			if utils.MSYSTEM() != "" {
 				copyCmd = "cp"
 			}
 
-			var deploy = exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "windeployqt"))
-			deploy.Args = append(deploy.Args,
-				filepath.Join(depPath, name+".exe"),
-				fmt.Sprintf("-qmldir=%v", path),
-				"-force")
+			deploy := exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "windeployqt"))
+			deploy.Args = append(deploy.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path), filepath.Join(depPath, name+".exe"))
 			utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", target, runtime.GOOS))
 
 			var libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
@@ -336,24 +333,18 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			filepath.Walk(depPath, walkFn)
 
 		default:
-			paths := make([]string, 0)
 			// make windeployqt run correctly
-			path := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64", "bin")
-			if !utils.ExistsDir(path) {
-				path = strings.Replace(path, "mingw73_64", "mingw53_32", -1)
+			paths := make([]string, 0)
+			pathEnv := filepath.Dir(utils.ToolPath("qmake", target))
+			paths = append(paths, pathEnv)
+			pathEnv = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
+			if !utils.ExistsDir(pathEnv) {
+				pathEnv = strings.Replace(pathEnv, "mingw730_64", "mingw530_32", -1)
 			}
-			if !utils.ExistsDir(path) {
-				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)
+			if !utils.ExistsDir(pathEnv) {
+				pathEnv = strings.Replace(pathEnv, "mingw530_32", "mingw492_32", -1)
 			}
-			paths = append(paths, path)
-			path = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
-			if !utils.ExistsDir(path) {
-				path = strings.Replace(path, "mingw730_64", "mingw530_32", -1)
-			}
-			if !utils.ExistsDir(path) {
-				path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)
-			}
-			paths = append(paths, path)
+			paths = append(paths, pathEnv)
 			paths = append(paths, os.Getenv("PATH"))
 			os.Setenv("PATH", strings.Join(paths, ";"))
 
@@ -366,13 +357,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			copy(assets, depPath)
 
 			if utils.QT_WEBKIT() {
-				libraryPath := filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64", "bin")
-				if !utils.ExistsDir(libraryPath) {
-					libraryPath = strings.Replace(libraryPath, "mingw73_64", "mingw53_32", -1)
-				}
-				if !utils.ExistsDir(libraryPath) {
-					libraryPath = strings.Replace(libraryPath, "mingw53_32", "mingw49_32", -1)
-				}
+				libraryPath := filepath.Dir(utils.ToolPath("qmake", target))
 				output := utils.RunCmd(exec.Command(filepath.Join("objdump"), "-x", filepath.Join(depPath, name+".exe")), fmt.Sprintf("objdump binary for %v on %v", target, runtime.GOOS))
 				for lib, deps := range parser.LibDeps {
 					if strings.Contains(output, lib) && lib == "WebKit" {
@@ -393,7 +378,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 
 			dep := exec.Command(utils.ToolPath("windeployqt", target))
-			dep.Args = append(dep.Args, filepath.Join(depPath, name+".exe"), "-qmldir="+path)
+			dep.Args = append(dep.Args, "--verbose=2", "--force", fmt.Sprintf("--qmldir=%v", path), filepath.Join(depPath, name+".exe"))
 			utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 		}
 		//<--

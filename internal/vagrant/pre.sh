@@ -37,7 +37,7 @@ if [[ "$QT_MXE" == "true" ]]; then
   echo "export QT_MXE_STATIC="$QT_MXE_STATIC >> $HOME/$PROF
 fi
 
-curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://storage.googleapis.com/golang/$GO && tar -xzf /tmp/$GO -C $HOME && rm -f /tmp/$GO
+curl -sL --retry 10 --retry-delay 10 -o /tmp/$GO https://dl.google.com/go/$GO && tar -xzf /tmp/$GO -C $HOME && rm -f /tmp/$GO
 
 echo "export PATH=$PATH:$HOME/go/bin" >> $HOME/$PROF
 echo "export GOROOT=$HOME/go" >> $HOME/$PROF
