@@ -1,4 +1,4 @@
-// +build darwin,amd64
+// +build !no_env,darwin,amd64
 
 package env
 

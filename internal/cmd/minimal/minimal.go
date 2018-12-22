@@ -256,10 +256,7 @@ func Minimal(path, target, tags string) {
 			continue
 		}
 
-		if utils.UseGOMOD("") {
-			utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
-		}
-
+		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), templater.CppTemplate(m, templater.MINIMAL, target, ""))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), templater.HTemplate(m, templater.MINIMAL, ""))
 		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), templater.GoTemplate(m, false, templater.MINIMAL, m, target, ""))

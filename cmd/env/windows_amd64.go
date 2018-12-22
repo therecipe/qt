@@ -1,4 +1,4 @@
-// +build windows,amd64
+// +build !no_env,windows,amd64
 
 package env
 

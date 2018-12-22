@@ -28,7 +28,7 @@ COPY --from=base $HOME/.wine/drive_c/Qt/Qt5.12.0/Tools/mingw730_64 $HOME/.wine/d
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl software-properties-common apt-transport-https && apt-get -qq clean
 RUN dpkg --add-architecture i386
-RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/Release.key | apt-key add -
+RUN curl -sL --retry 10 --retry-delay 60 https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 RUN apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install winehq-staging && apt-get -qq clean

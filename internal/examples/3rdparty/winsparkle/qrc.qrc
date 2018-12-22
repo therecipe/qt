@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/WinSparkle">
+<file>dsa_pub.pem</file>
+</qresource>
+</RCC>

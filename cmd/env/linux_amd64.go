@@ -1,4 +1,4 @@
-// +build linux,amd64
+// +build !no_env,linux,amd64
 
 package env
 

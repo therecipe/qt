@@ -93,27 +93,30 @@ func InitEnv(target string) {
 		}
 
 		var err error
+		var link string
 		switch runtime.GOOS {
 		case "linux":
-			link := filepath.Join("/usr", "local", ".env_linux_amd64")
+			link = filepath.Join("/usr", "local", ".env_linux_amd64")
 			utils.RemoveAll(link)
 			err = os.Symlink(qt_dir, link)
 		case "darwin":
-			link := filepath.Join("/Applications", ".env_darwin_amd64")
+			link = filepath.Join("/Applications", ".env_darwin_amd64")
 			utils.RemoveAll(link)
 			err = os.Symlink(qt_dir, link)
 		case "windows":
-			link := filepath.Join("C:\\", "Program Files", "env_windows_amd64")
+			link = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64")
 			utils.RemoveAll(link)
-			err = os.Symlink(qt_dir, link)
+			_, err = utils.RunCmdOptionalError(exec.Command("cmd", "/C", "mklink", "/J", link, qt_dir), "create symlink for env")
 		}
 		if err != nil {
-			utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\nplease open an issue)")
-			cmd := exec.Command("go", "run", "patch.go", qt_dir)
-			cmd.Dir = qt_dir
-			_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
-			if err != nil {
-				utils.Log.Warn("failed to patch binaries (do you use go modules?)\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\nplease open an issue")
+			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
+				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue)")
+				cmd := exec.Command("go", "run", "patch.go", qt_dir)
+				cmd.Dir = qt_dir
+				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
+				if err != nil {
+					utils.Log.Warn("failed to patch binaries (do you use go modules?)\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\r\nplease open an issue")
+				}
 			}
 		}
 

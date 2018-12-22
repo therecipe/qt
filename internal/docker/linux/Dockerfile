@@ -6,7 +6,7 @@ ENV GOPATH $HOME/work
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl git
 RUN GO=go1.11.2.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
-RUN /usr/local/go/bin/go get github.com/therecipe/qt/cmd/...
+RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
 RUN QT=qt-unified-linux-x64-online.run && curl -sL --retry 10 --retry-delay 60 -O https://download.qt.io/official_releases/online_installers/$QT && chmod +x $QT && QT_QPA_PLATFORM=minimal ./$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs LINUX=true
