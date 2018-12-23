@@ -77,6 +77,35 @@ func InitEnv(target string) {
 		if utils.QT_MSYS2() {
 			return
 		}
+
+		defer func() {
+			qtenvPath := filepath.Join(filepath.Dir(utils.ToolPath("qmake", target)), "qtenv2.bat")
+			for _, s := range strings.Split(utils.Load(qtenvPath), "\r\n") {
+				if strings.HasPrefix(s, "set PATH") {
+					os.Setenv("PATH", strings.TrimPrefix(strings.Replace(s, "%PATH%", os.Getenv("PATH"), -1), "set PATH="))
+					break
+				}
+			}
+
+			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
+				sPath := qtenvPath
+				existed := utils.ExistsFile(dPath)
+				if existed {
+					utils.RemoveAll(dPath)
+				}
+				err := os.Link(sPath, dPath)
+				if i != 0 {
+					continue
+				}
+				if err == nil {
+					if !existed {
+						utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
+					}
+				} else {
+					utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
+				}
+			}
+		}()
 	default:
 		return
 	}
@@ -127,24 +156,6 @@ func InitEnv(target string) {
 		case "darwin":
 			webenginearchive = filepath.Join(qt_dir, utils.QT_VERSION(), "clang_64", "lib", "QtWebEngineCore.framework", "Versions", "Current", "QtWebEngineCore.gz")
 		case "windows":
-			for i, dPath := range []string{filepath.Join(runtime.GOROOT(), "bin", "qtenv.bat"), filepath.Join(utils.GOBIN(), "qtenv.bat")} {
-				sPath := filepath.Join(qt_dir, "5.12.0", "mingw73_64", "bin", "qtenv2.bat")
-				existed := utils.ExistsFile(dPath)
-				if existed {
-					utils.RemoveAll(dPath)
-				}
-				err := os.Link(sPath, dPath)
-				if i != 0 {
-					continue
-				}
-				if err == nil {
-					if !existed {
-						utils.Log.Infof("successfully created %v symlink in your PATH (%v)", filepath.Base(dPath), dPath)
-					}
-				} else {
-					utils.Log.Warnf("failed to create %v symlink in your PATH (%v); please use %v instead", filepath.Base(dPath), dPath, sPath)
-				}
-			}
 			return
 		}
 
