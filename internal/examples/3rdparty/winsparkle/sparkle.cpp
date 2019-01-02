@@ -1,8 +1,6 @@
-
 #include "sparkle.h"
 
 #include "winsparkle.h"
-
 #include <QResource>
 
 void sparkle_checkUpdates()

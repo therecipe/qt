@@ -38,7 +38,7 @@ func run(target, name, depPath, device string) {
 		exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app", name))).Start()
 
 	case "linux":
-		exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", name))).Start()
+		exec.Command(filepath.Join(depPath, name)).Start()
 
 	case "windows":
 		if runtime.GOOS == target {

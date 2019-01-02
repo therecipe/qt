@@ -25,7 +25,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
-	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: split test for windows ?
+	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: test on windows
 		utils.Log.Infof("running setup/test %v CI", target)
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
@@ -39,24 +39,8 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		}
 
 		cmd := exec.Command("go", "test", "-v", "-tags=minimal", fmt.Sprintf("-ldflags=%v\"-s\"", pattern))
+		cmd.Env = append(os.Environ(), "GODEBUG=cgocheck=2")
 		cmd.Dir = path
-		if runtime.GOOS == "windows" {
-			for key, value := range map[string]string{
-				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
-				"GOROOT": runtime.GOROOT(),
-
-				"TMP":  os.Getenv("TMP"),
-				"TEMP": os.Getenv("TEMP"),
-
-				"GOOS":   "windows",
-				"GOARCH": "386",
-
-				"CGO_ENABLED": "1",
-			} {
-				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
-			}
-		}
 		utils.RunCmd(cmd, "run \"go test\"")
 	}
 

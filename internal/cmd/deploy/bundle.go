@@ -1,6 +1,7 @@
 package deploy
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -94,7 +95,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				if info.IsDir() {
 					return nil
 				}
-				if strings.HasPrefix(filepath.Base(path), "lib") { //TODO: also strip (qml)plugins
+				if strings.HasPrefix(filepath.Base(path), "lib") {
 					utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
 				}
 				return nil
@@ -102,7 +103,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		}()
 
 		//copy default assets
-		utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name)) //TODO: patch QtCore instead
+		if target != "linux" || name == "lib" {
+			utils.SaveExec(filepath.Join(depPath, fmt.Sprintf("%v.sh", name)), linux_sh(target, name))
+		}
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
@@ -209,6 +212,41 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "resources", file.Name()), depPath), fmt.Sprintf("copy resource %v for %v on %v", file.Name(), target, runtime.GOOS))
 				}
 				utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "translations/qtwebengine_locales/"), depPath), fmt.Sprintf("copy qtwebengine_locales dir for %v on %v", target, runtime.GOOS))
+			}
+
+			//patch QtCore path
+			pPath := "."
+			fn := filepath.Join(depPath, "/lib/", "libQt5Core.so.5")
+			data, err := ioutil.ReadFile(fn)
+			if err != nil {
+				utils.Log.WithError(err).Warn("couldn't find", fn)
+				break
+			}
+
+			prefPath := "qt_prfxpath="
+
+			start := bytes.Index(data, []byte(prefPath))
+			if start == -1 {
+				break
+			}
+
+			end := bytes.IndexByte(data[start:], byte(0))
+			if end == -1 {
+				break
+			}
+
+			rep := append([]byte(prefPath), []byte(pPath)...)
+			if lendiff := end - len(rep); lendiff < 0 {
+				end -= lendiff
+			} else {
+				rep = append(rep, bytes.Repeat([]byte{0}, lendiff)...)
+			}
+			data = bytes.Replace(data, data[start:start+end], rep, -1)
+
+			if err := ioutil.WriteFile(fn, data, 0644); err != nil {
+				utils.Log.WithError(err).Warn("couldn't patch", fn)
+			} else {
+				utils.Log.Debug("patched", fn)
 			}
 		}
 		//<--
@@ -333,21 +371,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			filepath.Walk(depPath, walkFn)
 
 		default:
-			// make windeployqt run correctly
-			paths := make([]string, 0)
-			pathEnv := filepath.Dir(utils.ToolPath("qmake", target))
-			paths = append(paths, pathEnv)
-			pathEnv = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
-			if !utils.ExistsDir(pathEnv) {
-				pathEnv = strings.Replace(pathEnv, "mingw730_64", "mingw530_32", -1)
-			}
-			if !utils.ExistsDir(pathEnv) {
-				pathEnv = strings.Replace(pathEnv, "mingw530_32", "mingw492_32", -1)
-			}
-			paths = append(paths, pathEnv)
-			paths = append(paths, os.Getenv("PATH"))
-			os.Setenv("PATH", strings.Join(paths, ";"))
-
 			//copy default assets
 			//TODO: windres icon
 

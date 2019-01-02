@@ -45,6 +45,10 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		return
 	case "wasm":
 		ending = ".wasm"
+	case "linux":
+		if fast {
+			delete(env, "CGO_LDFLAGS")
+		}
 	}
 
 	var pattern string

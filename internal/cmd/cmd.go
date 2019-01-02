@@ -125,7 +125,7 @@ func InitEnv(target string) {
 		var link string
 		switch runtime.GOOS {
 		case "linux":
-			link = filepath.Join("/usr", "local", ".env_linux_amd64")
+			link = filepath.Join("/var", "tmp", ".env_linux_amd64")
 			utils.RemoveAll(link)
 			err = os.Symlink(qt_dir, link)
 		case "darwin":
@@ -139,7 +139,7 @@ func InitEnv(target string) {
 		}
 		if err != nil {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {
-				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue)")
+				utils.Log.WithError(err).Warn("failed to create env symlink; fallback to patching binaries instead (this won't work for go modules)\r\nplease open an issue")
 				cmd := exec.Command("go", "run", "patch.go", qt_dir)
 				cmd.Dir = qt_dir
 				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
@@ -555,6 +555,9 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		if utils.QT_VERSION_NUM() >= 5120 {
 			env["GOARCH"] = "amd64"
+			if strings.Contains(utils.QT_DIR(), "env_windows_amd64") {
+				env["CGO_LDFLAGS"] = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
+			}
 		}
 
 		if runtime.GOOS == target {
@@ -621,6 +624,10 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 					env["CXX"] = "arm-linux-gnueabihf-g++"
 				}
 			}
+		}
+
+		if target == "linux" {
+			env["CGO_LDFLAGS"] = "-Wl,-rpath,./lib"
 		}
 
 	case "rpi1", "rpi2", "rpi3":
@@ -732,9 +739,11 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		env["PATH"] = env["PATH"] + ":" + env["EMSDK"] + ":" + env["LLVM_ROOT"] + ":" + env["NODE_JS"] + ":" + env["EMSCRIPTEN"]
 	}
 
-	env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
-	env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
-	env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
+	if runtime.GOOS != target || strings.Contains(runtime.Version(), "1.10") {
+		env["CGO_CFLAGS_ALLOW"] = utils.CGO_CFLAGS_ALLOW()
+		env["CGO_CXXFLAGS_ALLOW"] = utils.CGO_CXXFLAGS_ALLOW()
+		env["CGO_LDFLAGS_ALLOW"] = utils.CGO_LDFLAGS_ALLOW()
+	}
 
 	if flags := utils.GOFLAGS(); len(flags) != 0 {
 		env["GOFLAGS"] = flags

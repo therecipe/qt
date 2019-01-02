@@ -561,6 +561,7 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			for _, lib := range []string{"WebKitWidgets", "WebKit"} {
 				tmp = strings.Replace(tmp, "-lQt5"+lib, "-framework Qt"+lib, -1)
 			}
+			tmp = strings.Replace(tmp, "-Wl,-rpath,@executable_path/Frameworks", "", -1)
 		case "windows":
 			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)
@@ -568,7 +569,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)
 			}
-			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" {
+			if (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") || utils.QT_MXE_ARCH() == "amd64" ||
+				(!utils.QT_MXE() && !utils.QT_MSYS2() && utils.QT_VERSION_NUM() >= 5120) {
 				tmp = strings.Replace(tmp, " -Wl,-s ", " ", -1)
 			}
 			if utils.QT_DEBUG_CONSOLE() { //TODO: necessary at all?
@@ -588,6 +590,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			if mode == RCC {
 				utils.Save(filepath.Join(path, strings.Replace(file, "_cgo_", "_stub_", -1)), "package "+pkg+"\n")
 			}
+		case "linux":
+			tmp = strings.Replace(tmp, "-Wl,-O1", "-O1", -1)
 		}
 		utils.Save(filepath.Join(path, file), tmp)
 	}
