@@ -68,6 +68,19 @@ func main() {
 					}
 				}
 
+			case "application/x-qt-image":
+				{
+					image := gui.NewQImageFromPointer(mimeData.ImageData().ToImage())
+					ba := core.NewQByteArray()
+					buffer := core.NewQBuffer2(ba, nil)
+					buffer.Open(core.QIODevice__WriteOnly)
+					image.Save2(buffer, "PNG", -1)
+					buffer.Close()
+
+					var data = []byte(ba.ConstData())
+					text = fmt.Sprintf("len %v: %v", len(data), data)
+				}
+
 			default:
 				{
 					var data = []byte(mimeData.Data(format).ConstData())

@@ -556,7 +556,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if utils.QT_VERSION_NUM() >= 5120 {
 			env["GOARCH"] = "amd64"
 			if strings.Contains(utils.QT_DIR(), "env_windows_amd64") {
-				env["CGO_LDFLAGS"] = filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
+				env["CGO_LDFLAGS"] = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64", "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
 			}
 		}
 

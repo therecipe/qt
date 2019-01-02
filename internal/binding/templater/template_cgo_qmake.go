@@ -565,6 +565,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 		case "windows":
 			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)
+				if utils.QT_MSYS2_STATIC() {
+					tmp = strings.Replace(tmp, "-ffunction-sections", "", -1)
+				}
 			}
 			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)
