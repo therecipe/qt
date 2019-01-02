@@ -2185,6 +2185,8 @@ void* QMimeData_Data(void* ptr, struct QtCore_PackedString mimeType);
 struct QtCore_PackedList QMimeData_Urls(void* ptr);
 struct QtCore_PackedString QMimeData_Html(void* ptr);
 struct QtCore_PackedString QMimeData_Text(void* ptr);
+struct QtCore_PackedString QMimeData_Formats(void* ptr);
+struct QtCore_PackedString QMimeData_FormatsDefault(void* ptr);
 void* QMimeData_ColorData(void* ptr);
 void* QMimeData_ImageData(void* ptr);
 void* QMimeData_RetrieveData(void* ptr, struct QtCore_PackedString mimeType, long long ty);

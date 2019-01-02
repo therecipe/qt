@@ -94624,6 +94624,12 @@ void* QTextLayout___glyphRuns_newList(void* ptr)
 	return new QList<QGlyphRun>();
 }
 
+void* QTextLayout___formats_newList(void* ptr)
+{
+	Q_UNUSED(ptr);
+	return new QVector<QTextLayout::FormatRange>();
+}
+
 void* QTextLength_NewQTextLength()
 {
 	return new QTextLength();

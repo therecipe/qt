@@ -30257,6 +30257,51 @@ func (ptr *QMimeData) Text() string {
 	return ""
 }
 
+//export callbackQMimeData_Formats
+func callbackQMimeData_Formats(ptr unsafe.Pointer) C.struct_QtCore_PackedString {
+	if signal := qt.GetSignal(ptr, "formats"); signal != nil {
+		tempVal := signal.(func() []string)()
+		return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+	}
+	tempVal := NewQMimeDataFromPointer(ptr).FormatsDefault()
+	return C.struct_QtCore_PackedString{data: C.CString(strings.Join(tempVal, "|")), len: C.longlong(len(strings.Join(tempVal, "|")))}
+}
+
+func (ptr *QMimeData) ConnectFormats(f func() []string) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "formats"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "formats", func() []string {
+				signal.(func() []string)()
+				return f()
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "formats", f)
+		}
+	}
+}
+
+func (ptr *QMimeData) DisconnectFormats() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "formats")
+	}
+}
+
+func (ptr *QMimeData) Formats() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QMimeData_Formats(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QMimeData) FormatsDefault() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QMimeData_FormatsDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
 func (ptr *QMimeData) ColorData() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QMimeData_ColorData(ptr.Pointer()))

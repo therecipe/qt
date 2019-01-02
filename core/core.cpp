@@ -13475,6 +13475,7 @@ class MyQMimeData: public QMimeData
 public:
 	MyQMimeData() : QMimeData() {QMimeData_QMimeData_QRegisterMetaType();};
 	 ~MyQMimeData() { callbackQMimeData_DestroyQMimeData(this); };
+	QStringList formats() const { return ({ QtCore_PackedString tempVal = callbackQMimeData_Formats(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	QVariant retrieveData(const QString & mimeType, QVariant::Type ty) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return *static_cast<QVariant*>(callbackQMimeData_RetrieveData(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked, ty)); };
 	bool hasFormat(const QString & mimeType) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return callbackQMimeData_HasFormat(const_cast<void*>(static_cast<const void*>(this)), mimeTypePacked) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -13573,6 +13574,16 @@ struct QtCore_PackedString QMimeData_Html(void* ptr)
 struct QtCore_PackedString QMimeData_Text(void* ptr)
 {
 	return ({ QByteArray t2355ec = static_cast<QMimeData*>(ptr)->text().toUtf8(); QtCore_PackedString { const_cast<char*>(t2355ec.prepend("WHITESPACE").constData()+10), t2355ec.size()-10 }; });
+}
+
+struct QtCore_PackedString QMimeData_Formats(void* ptr)
+{
+	return ({ QByteArray t353e58 = static_cast<QMimeData*>(ptr)->formats().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t353e58.prepend("WHITESPACE").constData()+10), t353e58.size()-10 }; });
+}
+
+struct QtCore_PackedString QMimeData_FormatsDefault(void* ptr)
+{
+		return ({ QByteArray td5c1b6 = static_cast<QMimeData*>(ptr)->QMimeData::formats().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(td5c1b6.prepend("WHITESPACE").constData()+10), td5c1b6.size()-10 }; });
 }
 
 void* QMimeData_ColorData(void* ptr)

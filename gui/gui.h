@@ -17773,6 +17773,7 @@ void QTextLayout_DrawCursor(void* ptr, void* painter, void* position, int cursor
 void* QTextLayout___glyphRuns_atList(void* ptr, int i);
 void QTextLayout___glyphRuns_setList(void* ptr, void* i);
 void* QTextLayout___glyphRuns_newList(void* ptr);
+void* QTextLayout___formats_newList(void* ptr);
 void* QTextLength_NewQTextLength();
 void* QTextLength_NewQTextLength2(long long ty, double value);
 long long QTextLength_Type(void* ptr);

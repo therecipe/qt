@@ -430,7 +430,7 @@ func (f *Function) IsSupported() bool {
 		strings.HasPrefix(genName, "attributes") || strings.HasPrefix(genName, "additionalFormats") ||
 		strings.HasPrefix(genName, "rawHeaderPairs") || strings.HasPrefix(genName, "tabs") ||
 		strings.HasPrefix(genName, "QInputMethodEvent_attributes") || strings.HasPrefix(genName, "selections") || strings.HasPrefix(genName, "setSelections") ||
-		strings.HasPrefix(genName, "formats") || strings.HasPrefix(genName, "setAdditionalFormats") || strings.HasPrefix(genName, "setFormats") ||
+		strings.HasPrefix(genName, "setAdditionalFormats") || strings.HasPrefix(genName, "setFormats") ||
 		strings.HasPrefix(genName, "setTabs") || strings.HasPrefix(genName, "extraSelections") ||
 		strings.HasPrefix(genName, "setExtraSelections") || strings.HasPrefix(genName, "setButtonLayout") ||
 		strings.HasPrefix(genName, "setWhiteList") || strings.HasPrefix(genName, "whiteList") ||
