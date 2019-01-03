@@ -108,6 +108,9 @@ func Install(target string, docker, vagrant bool) {
 		if target == "js" {
 			cmd.Args = append(cmd.Args, "-v")
 		} else {
+			if target == "linux" {
+				delete(env, "CGO_LDFLAGS")
+			}
 			for key, value := range env {
 				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 			}
