@@ -17,6 +17,13 @@ import (
 func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool) {
 	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).WithField("comply", comply).Debug("running Deploy")
 	name := filepath.Base(path)
+	switch name {
+	case "lib", "plugins", "qml",
+		"audio", "bearer", "iconengines", "imageformats", "mediaservice",
+		"platforminputcontexts", "platforms", "playlistformats", "qmltooling",
+		"qt", "Qt", "QT", "styles", "translations":
+		name += "_project"
+	}
 	depPath := filepath.Join(path, "deploy", target)
 
 	switch mode {
