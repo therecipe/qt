@@ -368,10 +368,11 @@ func GetLibs() []string {
 		"Scxml",
 		"Gamepad",
 
-		"Purchasing",        //GPLv3 & LGPLv3
+		"Purchasing",
 		"DataVisualization", //GPLv3
 		"Charts",            //GPLv3
-		//"Quick2DRenderer",   //GPLv3
+		//"Quick2DRenderer", //GPLv3
+		//"VirtualKeyboard", //GPLv3
 
 		"Speech",
 		"QuickControls2",

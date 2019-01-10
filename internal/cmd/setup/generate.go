@@ -43,7 +43,13 @@ func Generate(target string, docker, vagrant bool) {
 			utils.Log.Debugf("skipping generation of %v for %v", module, target)
 			continue
 		}
-		utils.Log.Infof("generating %v qt/%v", mode, strings.ToLower(module))
+
+		var license string
+		switch module {
+		case "Charts", "DataVisualization":
+			license = strings.Repeat(" ", 20-len(module)) + "[GPLv3]"
+		}
+		utils.Log.Infof("generating %v qt/%v %v", mode, strings.ToLower(module), license)
 
 		if target == runtime.GOOS || utils.QT_FAT() || (mode == "full" && (target == "js" || target == "wasm")) { //TODO: REVIEW
 			templater.GenModule(module, target, templater.NONE)

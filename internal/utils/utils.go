@@ -123,8 +123,10 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	Log.WithFields(fields).Debug("Execute")
 	out, err := runCmdHelper(cmd)
 	if err != nil && !strings.Contains(string(out), "No template (-t) specified") {
-		Log.WithError(err).WithFields(fields).Error("failed to run command")
-		println(string(out))
+		Log.WithError(err).WithFields(fields).Debug("failed to run command")
+		if Log.Level == logrus.DebugLevel {
+			println(string(out))
+		}
 	}
 	return string(out)
 }
@@ -134,8 +136,10 @@ func RunCmdOptionalError(cmd *exec.Cmd, name string) (string, error) {
 	Log.WithFields(fields).Debug("Execute")
 	out, err := runCmdHelper(cmd)
 	if err != nil {
-		Log.WithError(err).WithFields(fields).Error("failed to run command")
-		println(string(out))
+		Log.WithError(err).WithFields(fields).Debug("failed to run command")
+		if Log.Level == logrus.DebugLevel {
+			println(string(out))
+		}
 	}
 	return string(out), err
 }

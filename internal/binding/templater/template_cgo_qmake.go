@@ -447,43 +447,46 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	if target == "windows" {
 		file += ".Release"
 	}
-	content := utils.Load(filepath.Join(path, file))
+	var content string
+	if utils.ExistsFile(filepath.Join(path, file)) {
+		content = utils.Load(filepath.Join(path, file))
 
-	for _, l := range strings.Split(content, "\n") {
-		switch {
-		case strings.HasPrefix(l, "CFLAGS"):
-			fmt.Fprintf(bb, "#cgo CFLAGS: %v\n", strings.Split(l, " = ")[1])
-		case strings.HasPrefix(l, "CXXFLAGS"), strings.HasPrefix(l, "INCPATH"):
-			fmt.Fprintf(bb, "#cgo CXXFLAGS: %v\n", strings.Split(l, " = ")[1])
-		case strings.HasPrefix(l, "LFLAGS"), strings.HasPrefix(l, "LIBS"):
-			if target == "windows" && !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
-				pFix := []string{
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw49_32"),
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32"),
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64"),
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw49_32"),
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
-					filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64"),
-					filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
-					utils.QT_MSYS2_DIR(),
-				}
-				for _, pFix := range pFix {
-					pFix = strings.Replace(filepath.Join(pFix, "lib", "lib"), "\\", "/", -1)
-					if strings.Contains(l, pFix) {
-						var cleaned []string
-						for _, s := range strings.Split(l, " ") {
-							if strings.HasPrefix(s, pFix) && (strings.HasSuffix(s, ".a") || strings.HasSuffix(s, ".dll")) {
-								s = strings.Replace(s, pFix, "-l", -1)
-								s = strings.TrimSuffix(s, ".a")
-								s = strings.TrimSuffix(s, ".dll")
+		for _, l := range strings.Split(content, "\n") {
+			switch {
+			case strings.HasPrefix(l, "CFLAGS"):
+				fmt.Fprintf(bb, "#cgo CFLAGS: %v\n", strings.Split(l, " = ")[1])
+			case strings.HasPrefix(l, "CXXFLAGS"), strings.HasPrefix(l, "INCPATH"):
+				fmt.Fprintf(bb, "#cgo CXXFLAGS: %v\n", strings.Split(l, " = ")[1])
+			case strings.HasPrefix(l, "LFLAGS"), strings.HasPrefix(l, "LIBS"):
+				if target == "windows" && !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) {
+					pFix := []string{
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw49_32"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw49_32"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64"),
+						filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
+						utils.QT_MSYS2_DIR(),
+					}
+					for _, pFix := range pFix {
+						pFix = strings.Replace(filepath.Join(pFix, "lib", "lib"), "\\", "/", -1)
+						if strings.Contains(l, pFix) {
+							var cleaned []string
+							for _, s := range strings.Split(l, " ") {
+								if strings.HasPrefix(s, pFix) && (strings.HasSuffix(s, ".a") || strings.HasSuffix(s, ".dll")) {
+									s = strings.Replace(s, pFix, "-l", -1)
+									s = strings.TrimSuffix(s, ".a")
+									s = strings.TrimSuffix(s, ".dll")
+								}
+								cleaned = append(cleaned, s)
 							}
-							cleaned = append(cleaned, s)
+							l = strings.Join(cleaned, " ")
 						}
-						l = strings.Join(cleaned, " ")
 					}
 				}
+				fmt.Fprintf(bb, "#cgo LDFLAGS: %v\n", strings.Split(l, " = ")[1])
 			}
-			fmt.Fprintf(bb, "#cgo LDFLAGS: %v\n", strings.Split(l, " = ")[1])
 		}
 	}
 

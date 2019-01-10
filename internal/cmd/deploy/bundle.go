@@ -350,7 +350,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				}
 			}
 
-			deps := []string{"Qt5OpenGL"}
+			deps := []string{"Qt5OpenGL", "Qt5Quick", "Qt5QuickControls2", "Qt5QuickTemplates2"}
 			if utils.QT_WEBKIT() {
 				deps = append(deps, []string{"libjpeg-8", "libsqlite3-0", "libwebp-7", "libxml2-2", "liblzma-5", "libxslt-1"}...)
 			}
