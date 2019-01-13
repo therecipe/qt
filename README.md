@@ -21,19 +21,19 @@ Almost all Qt functions and classes are accessible from Go and you should be abl
 Installation
 ------------
 
-#####Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
+##### Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
 
 ```powershell
 go get -u -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup
 ```
 
-#####macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
+##### macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
 
 ```bash
 xcode-select --install; go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup
 ```
 
-#####Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
+##### Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
 
 ```bash
 go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup
