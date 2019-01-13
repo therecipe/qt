@@ -7,7 +7,7 @@ Introduction
 
 This package allows you to write Qt applications entirely in Go and makes deploying them later very easy.
 
-[Gallery](https://github.com/therecipe/qt/wiki/Gallery) of applications making use of this package.
+[Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications making use of this package.
 
 [WebAssembly Demo](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
 
@@ -18,12 +18,30 @@ Almost all Qt functions and classes are accessible from Go and you should be abl
 
 (A special exception are the WebEngine/WebView packages, these aren't available for Windows yet.)
 
+Installation
+------------
+
+#####Windows [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
+
+```powershell
+go get -u -v github.com/therecipe/qt/cmd/... && for /f %v in ('go env GOPATH') do %v\bin\qtsetup test && %v\bin\qtsetup
+```
+
+#####macOS [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
+
+```bash
+xcode-select --install; go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup
+```
+
+#####Linux [(more info)](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
+
+```bash
+go get -u -v github.com/therecipe/qt/cmd/... && $(go env GOPATH)/bin/qtsetup test && $(go env GOPATH)/bin/qtsetup
+```
+
 Resources
 ---------
 
--	[Installation on Windows](https://github.com/therecipe/qt/wiki/Installation-on-Windows)
--	[Installation on macOS](https://github.com/therecipe/qt/wiki/Installation-on-macOS)
--	[Installation on Linux](https://github.com/therecipe/qt/wiki/Installation-on-Linux)
 -	[General Installation](https://github.com/therecipe/qt/wiki/Installation)
 -	[Getting Started](https://github.com/therecipe/qt/wiki/Getting-Started)
 -	[Wiki](https://github.com/therecipe/qt/wiki)
