@@ -12,6 +12,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/network"
+	"github.com/therecipe/qt/printsupport"
 	"github.com/therecipe/qt/webchannel"
 	"github.com/therecipe/qt/widgets"
 	"runtime"
@@ -3934,6 +3935,12 @@ func (ptr *QWebEnginePage) PdfPrintingFinished(filePath string, success bool) {
 			defer C.free(unsafe.Pointer(filePathC))
 		}
 		C.QWebEnginePage_PdfPrintingFinished(ptr.Pointer(), C.struct_QtWebEngine_PackedString{data: filePathC, len: C.longlong(len(filePath))}, C.char(int8(qt.GoBoolToInt(success))))
+	}
+}
+
+func (ptr *QWebEnginePage) Print(printer printsupport.QPrinter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_Print(ptr.Pointer(), printsupport.PointerFromQPrinter(printer))
 	}
 }
 

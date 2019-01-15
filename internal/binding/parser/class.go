@@ -335,6 +335,11 @@ func (c *Class) IsSupported() bool {
 		}
 	}
 
+	if strings.HasPrefix(c.Name, "QOpenGLFunctions_") && !utils.QT_GEN_OPENGL() {
+		c.Access = "unsupported_isBlockedClass"
+		return false
+	}
+
 	if State.Minimal {
 		return c.Export
 	}

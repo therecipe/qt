@@ -304,6 +304,7 @@ void QWebEnginePage_LoadStarted(void* ptr);
 void QWebEnginePage_ConnectPdfPrintingFinished(void* ptr);
 void QWebEnginePage_DisconnectPdfPrintingFinished(void* ptr);
 void QWebEnginePage_PdfPrintingFinished(void* ptr, struct QtWebEngine_PackedString filePath, char success);
+void QWebEnginePage_Print(void* ptr, void* printer);
 void QWebEnginePage_ConnectPrintRequested(void* ptr);
 void QWebEnginePage_DisconnectPrintRequested(void* ptr);
 void QWebEnginePage_PrintRequested(void* ptr);

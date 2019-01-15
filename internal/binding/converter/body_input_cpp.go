@@ -18,6 +18,10 @@ func CppInputParameters(function *parser.Function) string {
 		input[i] = CppInput(parameter.Name, parameter.Value, function)
 	}
 
+	if function.Fullname == "QWebEnginePage::print" {
+		input = append(input, "[](bool){}")
+	}
+
 	return strings.Join(input, ", ")
 }
 

@@ -51,6 +51,7 @@
 #include <QPdfWriter>
 #include <QPoint>
 #include <QPointF>
+#include <QPrinter>
 #include <QQuickItem>
 #include <QQuickWebEngineProfile>
 #include <QQuickWebEngineScript>
@@ -1789,6 +1790,11 @@ void QWebEnginePage_DisconnectPdfPrintingFinished(void* ptr)
 void QWebEnginePage_PdfPrintingFinished(void* ptr, struct QtWebEngine_PackedString filePath, char success)
 {
 	static_cast<QWebEnginePage*>(ptr)->pdfPrintingFinished(QString::fromUtf8(filePath.data, filePath.len), success != 0);
+}
+
+void QWebEnginePage_Print(void* ptr, void* printer)
+{
+	static_cast<QWebEnginePage*>(ptr)->print(static_cast<QPrinter*>(printer), [](bool){});
 }
 
 void QWebEnginePage_ConnectPrintRequested(void* ptr)

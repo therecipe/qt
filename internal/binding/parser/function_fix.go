@@ -143,6 +143,10 @@ func (f *Function) fixGeneral_Version() {
 		{
 			f.Output = "QVector<QTextLayout::FormatRange>"
 		}
+	case "QWebEnginePage::print":
+		{
+			f.Parameters = append(f.Parameters[:len(f.Parameters)-1], f.Parameters[len(f.Parameters):]...)
+		}
 	}
 }
 

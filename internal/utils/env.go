@@ -285,3 +285,7 @@ func UseGOMOD(path string) (r bool) {
 	useGOMODMutex.Unlock()
 	return
 }
+
+func QT_GEN_OPENGL() bool {
+	return os.Getenv("QT_GEN_OPENGL") == "true"
+}

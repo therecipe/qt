@@ -150,11 +150,14 @@ func InitEnv(target string) {
 		}
 
 		var webenginearchive string
+		var bindir string
 		switch runtime.GOOS {
 		case "linux":
 			webenginearchive = filepath.Join(qt_dir, utils.QT_VERSION(), "gcc_64", "lib", "libQt5WebEngineCore.so."+utils.QT_VERSION()+".gz")
+			bindir = filepath.Join(qt_dir, utils.QT_VERSION(), "gcc_64", "bin")
 		case "darwin":
 			webenginearchive = filepath.Join(qt_dir, utils.QT_VERSION(), "clang_64", "lib", "QtWebEngineCore.framework", "Versions", "Current", "QtWebEngineCore.gz")
+			bindir = filepath.Join(qt_dir, utils.QT_VERSION(), "clang_64", "bin")
 		case "windows":
 			return
 		}
@@ -166,6 +169,18 @@ func InitEnv(target string) {
 			} else {
 				utils.RemoveAll(webenginearchive)
 			}
+		}
+
+		if len(bindir) != 0 && utils.UseGOMOD("") && strings.Contains(qt_dir, "@") {
+			filepath.Walk(bindir, func(path string, info os.FileInfo, err error) error {
+				if err != nil || info.IsDir() {
+					return err
+				}
+				if filepath.Ext(info.Name()) != ".conf" {
+					utils.RunCmd(exec.Command("chmod", "+x", path), "restore exec permission")
+				}
+				return nil
+			})
 		}
 	}
 }
