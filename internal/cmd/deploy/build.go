@@ -56,13 +56,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 		pattern = "all="
 	}
 
-	var extraLdFlag string
 	if utils.Log.Level == logrus.DebugLevel && target != "wasm" {
 		ldFlags = append(ldFlags, "-extldflags=-v")
 	}
 
 	cmd := exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
-	if len(ldFlags) > 0 || len(extraLdFlag) > 0 {
+	if len(ldFlags) > 0 {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("-ldflags=%v%v", pattern, escapeFlags(ldFlags, ldFlagsCustom)))
 	}
 	cmd.Args = append(cmd.Args, "-o", out+ending)

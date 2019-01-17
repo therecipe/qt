@@ -642,7 +642,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		}
 
 		if target == "linux" {
-			env["CGO_LDFLAGS"] = "-Wl,-rpath,./lib"
+			env["CGO_LDFLAGS"] = "-Wl,-rpath,./lib -Wl,--disable-new-dtags"
 		}
 
 	case "rpi1", "rpi2", "rpi3":
