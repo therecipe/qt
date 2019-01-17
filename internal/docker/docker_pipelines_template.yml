@@ -104,13 +104,13 @@ jobs:
       file: windows_32_static/Dockerfile
       tag: windows_32_static
       dep:
-#        - windows_32_static_base
+        - windows_32_static_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_32_static/Dockerfile.base
-#      tag: windows_32_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_32_static/Dockerfile.base
+      tag: windows_32_static_base
   -
     template: docker_job_template.yml
     parameters:
@@ -130,13 +130,13 @@ jobs:
       file: windows_64_static/Dockerfile
       tag: windows_64_static
       dep:
-#        - windows_64_static_base
+        - windows_64_static_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_64_static/Dockerfile.base
-#      tag: windows_64_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_64_static/Dockerfile.base
+      tag: windows_64_static_base
 #  -
 #    template: docker_job_template.yml
 #    parameters:
