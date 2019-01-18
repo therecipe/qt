@@ -3,7 +3,6 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"os/exec"
 	"runtime"
 	"sort"
 	"strings"
@@ -443,7 +442,7 @@ func GetCustomLibs(target, tags string) map[string]string {
 				getCustomLibsCacheMutex.Unlock()
 
 				if !ok {
-					cmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
+					cmd := utils.GoList("{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
 					cmd.Dir = c.Pkg
 
 					/*TODO: cycle dep of cmd.BuildEnv

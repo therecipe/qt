@@ -111,7 +111,7 @@ func InitEnv(target string) {
 	}
 
 	if !utils.ExistsDir(utils.QT_DIR()) {
-		qt_dir := strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-f", "{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]), "get env dir"))
+		qt_dir := strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]), "get env dir"))
 
 		switch runtime.GOOS {
 		case "linux", "darwin", "windows":
@@ -642,7 +642,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		}
 
 		if target == "linux" {
-			env["CGO_LDFLAGS"] = "-Wl,-rpath,./lib -Wl,--disable-new-dtags"
+			env["CGO_LDFLAGS"] = "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags"
 		}
 
 	case "rpi1", "rpi2", "rpi3":

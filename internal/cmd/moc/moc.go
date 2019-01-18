@@ -67,7 +67,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	if !dirty {
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := exec.Command("go", "list")
+		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
 		scmd.Dir = path
 
 		if !fast && !utils.QT_FAT() {
@@ -85,8 +85,6 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		for key, value := range env {
 			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
-
-		scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
 
 		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
 			utils.Log.WithField("path", path).Debug("skipping already cached moc")
@@ -334,7 +332,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	ResourceNamesMutex.Unlock()
 
 	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-	scmd := exec.Command("go", "list")
+	scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
 	scmd.Dir = path
 
 	if !fast && !utils.QT_FAT() {
@@ -352,8 +350,6 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	for key, value := range env {
 		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
 	}
-
-	scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
 
 	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
 		utils.Log.WithField("path", path).Debug("skipping already cached moc")
@@ -540,7 +536,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if n, ok := goNameCache[imp.Path.Value]; ok {
 											name = n
 										} else {
-											name = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
 											goNameCache[imp.Path.Value] = name
 										}
 										goNameCacheMutex.Unlock()
@@ -550,7 +546,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if d, ok := goDirCache[imp.Path.Value]; ok {
 											dir = d
 										} else {
-											dir = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
 											goDirCache[imp.Path.Value] = dir
 										}
 										goDirCacheMutex.Unlock()
@@ -580,7 +576,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if n, ok := goNameCache[imp.Path.Value]; ok {
 											name = n
 										} else {
-											name = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
 											goNameCache[imp.Path.Value] = name
 										}
 										goNameCacheMutex.Unlock()
@@ -594,7 +590,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if d, ok := goDirCache[imp.Path.Value]; ok {
 											dir = d
 										} else {
-											dir = strings.TrimSpace(utils.RunCmd(exec.Command("go", "list", "-e", "-f", "{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
 											goDirCache[imp.Path.Value] = dir
 										}
 										goDirCacheMutex.Unlock()

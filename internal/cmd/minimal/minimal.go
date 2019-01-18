@@ -29,7 +29,7 @@ func Minimal(path, target, tags string) {
 	}
 
 	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-	scmd := exec.Command("go", "list")
+	scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
 	scmd.Dir = path
 
 	tagsEnv = append(tagsEnv, "minimal")
@@ -46,8 +46,6 @@ func Minimal(path, target, tags string) {
 	for key, value := range env {
 		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
 	}
-
-	scmd.Args = append(scmd.Args, "-f", "'{{.Stale}}':'{{.StaleReason}}'")
 
 	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
 		utils.Log.WithField("path", path).Debug("skipping already cached minimal")

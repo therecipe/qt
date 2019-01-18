@@ -85,7 +85,7 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 		tags = append(tags, strings.Split(tagsCustom, " ")...)
 	}
 
-	pkgCmd := exec.Command("go", "list", "-e", "-f", "{{.Name}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	pkgCmd := utils.GoList("{{.Name}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	pkgCmd.Dir = path
 	for k, v := range env {
 		pkgCmd.Env = append(pkgCmd.Env, fmt.Sprintf("%v=%v", k, v))
@@ -129,7 +129,7 @@ func rcc(path, target, tagsCustom, output_dir string, root bool) {
 		}
 	}
 
-	nameCmd := exec.Command("go", "list", "-e", "-f", "{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	nameCmd := utils.GoList("{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	nameCmd.Dir = path
 	for k, v := range env {
 		nameCmd.Env = append(nameCmd.Env, fmt.Sprintf("%v=%v", k, v))

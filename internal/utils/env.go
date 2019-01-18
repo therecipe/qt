@@ -256,7 +256,7 @@ func GOFLAGS() string {
 	if flags, ok := os.LookupEnv("GOFLAGS"); ok {
 		return flags
 	}
-	if (strings.Contains(runtime.Version(), "1.11") || strings.Contains(runtime.Version(), "devel")) && UseGOMOD("") {
+	if UseGOMOD("") {
 		return "-mod=vendor"
 	}
 	return ""
@@ -288,4 +288,16 @@ func UseGOMOD(path string) (r bool) {
 
 func QT_GEN_OPENGL() bool {
 	return os.Getenv("QT_GEN_OPENGL") == "true"
+}
+
+func GoList(args ...string) *exec.Cmd {
+	cmd := exec.Command("go", "list")
+	if UseGOMOD("") {
+		if !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/env_"+runtime.GOOS+"_amd64") {
+			cmd.Args = append(cmd.Args, GOFLAGS())
+		}
+	}
+	cmd.Args = append(cmd.Args, "-e", "-f")
+	cmd.Args = append(cmd.Args, args...)
+	return cmd
 }

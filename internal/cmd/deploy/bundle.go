@@ -701,7 +701,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			if tagsCustom != "" {
 				tags = append(tags, strings.Split(tagsCustom, " ")...)
 			}
-			lcmd := exec.Command("go", "list", "-e", "-f", "{{ join .Deps \"|\" }}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+			lcmd := utils.GoList("{{ join .Deps \"|\" }}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 			lcmd.Dir = path
 			for k, v := range env {
 				lcmd.Env = append(lcmd.Env, fmt.Sprintf("%v=%v", k, v))
