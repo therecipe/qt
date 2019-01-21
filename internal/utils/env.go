@@ -293,11 +293,15 @@ func QT_GEN_OPENGL() bool {
 func GoList(args ...string) *exec.Cmd {
 	cmd := exec.Command("go", "list")
 	if UseGOMOD("") {
-		if !strings.Contains(strings.Join(args, "|"), "github.com/therecipe/env_"+runtime.GOOS+"_amd64") {
+		if /*strings.Contains(strings.Join(args, "|"), "github.com/therecipe/env_"+runtime.GOOS+"_amd64") ||*/ strings.Contains(strings.Join(args, "|"), "github.com/therecipe/qt/internal") {
+			//TODO: make env readonly if it can't be found inside ./vendor ...
+			cmd.Args = append(cmd.Args, "-mod=readonly")
+		} else {
 			cmd.Args = append(cmd.Args, GOFLAGS())
 		}
 	}
 	cmd.Args = append(cmd.Args, "-e", "-f")
 	cmd.Args = append(cmd.Args, args...)
+	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0", "GOPROXY=disallow"}...)
 	return cmd
 }

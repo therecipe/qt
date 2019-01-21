@@ -77,7 +77,7 @@ func main() {
 		if err != nil || !utils.ExistsDir(path) {
 			utils.Log.WithError(err).WithField("path", path).Debug("can't resolve absolute path")
 			dirFunc := func() (string, error) {
-				out, err := utils.RunCmdOptionalError(exec.Command("go", "list", "-f", "{{.Dir}}", oPath), "get pkg dir")
+				out, err := utils.RunCmdOptionalError(utils.GoList("{{.Dir}}", oPath), "get pkg dir")
 				return strings.TrimSpace(out), err
 			}
 			if dir, err := dirFunc(); err != nil {

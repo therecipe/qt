@@ -157,7 +157,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 					}
 
 					if utils.ExistsFile(filepath.Join(libraryPath, libName)) {
-						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-L", strings.TrimSuffix(filepath.Join(libraryPath, libName), ".5"), filepath.Join(depPath, libDir, libName)), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 					}
 
 					if strings.Contains(dep, "WebEngine") || strings.Contains(dep, "WebView") {
@@ -177,8 +177,8 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 				libs = append(libs, []string{"WebEngine", "WebEngineCore", "WebChannel", "Positioning"}...)
 			}
 			for _, libName := range libs {
-				if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
-					utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, libDir, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
+				if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so", libName))) {
+					utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so", libName)), filepath.Join(depPath, libDir, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, target, runtime.GOOS))
 				}
 			}
 			if utils.ExistsFile(filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0")) {

@@ -136,6 +136,12 @@ func InitEnv(target string) {
 			link = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64")
 			utils.RemoveAll(link)
 			_, err = utils.RunCmdOptionalError(exec.Command("cmd", "/C", "mklink", "/J", link, qt_dir), "create symlink for env")
+
+			if err == nil {
+				link = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64_Tools")
+				utils.RemoveAll(link)
+				_, err = utils.RunCmdOptionalError(exec.Command("cmd", "/C", "mklink", "/J", link, strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", "github.com/therecipe/env_"+runtime.GOOS+"_amd64_"+strconv.Itoa(utils.QT_VERSION_NUM())[:3]+"/Tools"), "get env dir"))), "create symlink for env")
+			}
 		}
 		if err != nil {
 			if !(utils.ExistsFile(link) || utils.ExistsDir(link)) {

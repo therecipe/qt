@@ -46,7 +46,7 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	case "wasm":
 		ending = ".wasm"
 	case "linux":
-		if fast {
+		if fast || utils.QT_PKG_CONFIG() {
 			delete(env, "CGO_LDFLAGS")
 		}
 	}
