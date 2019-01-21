@@ -302,6 +302,6 @@ func GoList(args ...string) *exec.Cmd {
 	}
 	cmd.Args = append(cmd.Args, "-e", "-f")
 	cmd.Args = append(cmd.Args, args...)
-	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0", "GOPROXY=disallow"}...)
+	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0"}...)
 	return cmd
 }
