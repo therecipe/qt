@@ -7637,6 +7637,22 @@ func (ptr *QQuickWidget) CloseDefault() bool {
 	return false
 }
 
+//export callbackQQuickWidget_NativeEvent
+func callbackQQuickWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QQuickWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QQuickWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
 //export callbackQQuickWidget_ActionEvent
 func callbackQQuickWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {
@@ -9831,6 +9847,22 @@ func callbackQQuickWindow_Close(ptr unsafe.Pointer) C.char {
 func (ptr *QQuickWindow) CloseDefault() bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QQuickWindow_CloseDefault(ptr.Pointer())) != 0
+	}
+	return false
+}
+
+//export callbackQQuickWindow_NativeEvent
+func callbackQQuickWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QQuickWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QQuickWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
 	}
 	return false
 }

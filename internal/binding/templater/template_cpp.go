@@ -602,6 +602,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				"QStringList",
 				"QtDwmApiDll",
 				"content",
+				"net",
 				"QStringView":
 				{
 					continue

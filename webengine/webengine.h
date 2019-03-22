@@ -707,6 +707,7 @@ void QWebEngineView___children_setList(void* ptr, void* i);
 void* QWebEngineView___children_newList(void* ptr);
 char QWebEngineView_CloseDefault(void* ptr);
 char QWebEngineView_FocusNextPrevChildDefault(void* ptr, char next);
+char QWebEngineView_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 void QWebEngineView_ActionEventDefault(void* ptr, void* event);
 void QWebEngineView_ChangeEventDefault(void* ptr, void* event);
 void QWebEngineView_CloseEventDefault(void* ptr, void* event);

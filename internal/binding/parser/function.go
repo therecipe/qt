@@ -449,12 +449,6 @@ func (f *Function) IsSupported() bool {
 		return false
 	}
 
-	//TODO:
-	if f.Name == "nativeEvent" {
-		f.Access = "unsupported_isBlockedFunction"
-		return false
-	}
-
 	//TODO: blocked for small
 	if f.Fullname == "QTemporaryFile::open" && f.OverloadNumber == "2" ||
 		f.Fullname == "QXmlEntityResolver::resolveEntity" ||

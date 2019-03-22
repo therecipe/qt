@@ -5928,6 +5928,8 @@ char QWindow_Close(void* ptr);
 char QWindow_CloseDefault(void* ptr);
 char QWindow_Event(void* ptr, void* ev);
 char QWindow_EventDefault(void* ptr, void* ev);
+char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long result);
+char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 char QWindow_SetKeyboardGrabEnabled(void* ptr, char grab);
 char QWindow_SetMouseGrabEnabled(void* ptr, char grab);
 void QWindow_ConnectActiveChanged(void* ptr);

@@ -103819,6 +103819,50 @@ func (ptr *QWidget) FocusPreviousChild() bool {
 	return false
 }
 
+//export callbackQWidget_NativeEvent
+func callbackQWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "nativeEvent"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool {
+				signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(eventType, message, result)
+				return f(eventType, message, result)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", f)
+		}
+	}
+}
+
+func (ptr *QWidget) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "nativeEvent")
+	}
+}
+
+func (ptr *QWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
+func (ptr *QWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
 func (ptr *QWidget) RestoreGeometry(geometry core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QWidget_RestoreGeometry(ptr.Pointer(), core.PointerFromQByteArray(geometry))) != 0

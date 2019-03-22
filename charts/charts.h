@@ -1254,6 +1254,7 @@ void* QChartView_MinimumSizeHintDefault(void* ptr);
 void* QChartView_ViewportSizeHintDefault(void* ptr);
 void QChartView_ChangeEventDefault(void* ptr, void* ev);
 char QChartView_CloseDefault(void* ptr);
+char QChartView_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 void QChartView_ActionEventDefault(void* ptr, void* event);
 void QChartView_CloseEventDefault(void* ptr, void* event);
 void QChartView_EnterEventDefault(void* ptr, void* event);

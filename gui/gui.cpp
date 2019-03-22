@@ -18563,6 +18563,7 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -19513,6 +19514,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -24605,6 +24607,7 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -35651,6 +35654,7 @@ public:
 	MyQWindow(QWindow *parent) : QWindow(parent) {QWindow_QWindow_QRegisterMetaType();};
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -35799,6 +35803,28 @@ char QWindow_EventDefault(void* ptr, void* ev)
 		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::event(static_cast<QEvent*>(ev));
 	} else {
 		return static_cast<QWindow*>(ptr)->QWindow::event(static_cast<QEvent*>(ev));
+	}
+}
+
+char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	}
+}
+
+char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+	if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else if (dynamic_cast<QOpenGLWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	}
 }
 

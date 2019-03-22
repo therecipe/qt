@@ -2918,6 +2918,8 @@ char QVideoWidget_Close(void* ptr);
 char QVideoWidget_CloseDefault(void* ptr);
 char QVideoWidget_FocusNextPrevChild(void* ptr, char next);
 char QVideoWidget_FocusNextPrevChildDefault(void* ptr, char next);
+char QVideoWidget_NativeEvent(void* ptr, void* eventType, void* message, long result);
+char QVideoWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 void QVideoWidget_ActionEvent(void* ptr, void* event);
 void QVideoWidget_ActionEventDefault(void* ptr, void* event);
 void QVideoWidget_ChangeEvent(void* ptr, void* event);

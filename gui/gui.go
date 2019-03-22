@@ -70067,6 +70067,50 @@ func (ptr *QWindow) EventDefault(ev core.QEvent_ITF) bool {
 	return false
 }
 
+//export callbackQWindow_NativeEvent
+func callbackQWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QWindow) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
+	if ptr.Pointer() != nil {
+
+		if signal := qt.LendSignal(ptr.Pointer(), "nativeEvent"); signal != nil {
+			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool {
+				signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(eventType, message, result)
+				return f(eventType, message, result)
+			})
+		} else {
+			qt.ConnectSignal(ptr.Pointer(), "nativeEvent", f)
+		}
+	}
+}
+
+func (ptr *QWindow) DisconnectNativeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.Pointer(), "nativeEvent")
+	}
+}
+
+func (ptr *QWindow) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWindow_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
+func (ptr *QWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
 func (ptr *QWindow) SetKeyboardGrabEnabled(grab bool) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QWindow_SetKeyboardGrabEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(grab))))) != 0

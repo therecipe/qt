@@ -186,7 +186,7 @@ func (c *Class) HasFunctionWithName(n string) bool {
 
 func (c *Class) HasFunctionWithNameAndOverloadNumber(n string, num string) bool {
 	for _, f := range c.Functions {
-		if strings.ToLower(f.Name) == strings.ToLower(n) && f.OverloadNumber == num {
+		if f.Name == n && f.OverloadNumber == num {
 			return true
 		}
 	}

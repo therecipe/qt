@@ -129,6 +129,9 @@ func CppInputParametersForCallbackBody(function *parser.Function) string {
 
 	for i, parameter := range function.Parameters {
 		input[i+1] = cppOutputPacked(parameter.Name, parameter.Value, function)
+		if input[i+1] == "*result" && strings.Contains(function.Name, "nativeEvent") { //TODO: make long* usable instead
+			input[i+1] = "result ? *result : 0"
+		}
 	}
 
 	return strings.Join(input, ", ")

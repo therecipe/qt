@@ -14837,6 +14837,22 @@ func (ptr *QChartView) CloseDefault() bool {
 	return false
 }
 
+//export callbackQChartView_NativeEvent
+func callbackQChartView_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
+	if signal := qt.GetSignal(ptr, "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQChartViewFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
+}
+
+func (ptr *QChartView) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
+	if ptr.Pointer() != nil {
+		return int8(C.QChartView_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result)))) != 0
+	}
+	return false
+}
+
 //export callbackQChartView_ActionEvent
 func callbackQChartView_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "actionEvent"); signal != nil {

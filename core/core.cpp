@@ -2523,7 +2523,7 @@ class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter
 {
 public:
 	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {};
-	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
+	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	 ~MyQAbstractNativeEventFilter() { callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(this); };
 };
 

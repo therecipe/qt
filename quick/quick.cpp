@@ -3209,6 +3209,7 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQQuickWindow_WheelEvent(this, event); };
 	QAccessibleInterface * accessibleRoot() const { return static_cast<QAccessibleInterface*>(callbackQQuickWindow_AccessibleRoot(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQQuickWindow_Close(this) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQQuickWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQQuickWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQQuickWindow_ContentOrientationChanged(this, orientation); };
@@ -3427,6 +3428,7 @@ public:
 	 ~MyQQuickWidget() { callbackQQuickWidget_DestroyQQuickWidget(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQQuickWidget_Close(this) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQQuickWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQQuickWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQQuickWidget_CloseEvent(this, event); };
@@ -3890,6 +3892,11 @@ char QQuickWidget_CloseDefault(void* ptr)
 		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::close();
 }
 
+char QQuickWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QQuickWidget*>(ptr)->QQuickWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+}
+
 void QQuickWidget_ActionEventDefault(void* ptr, void* event)
 {
 		static_cast<QQuickWidget*>(ptr)->QQuickWidget::actionEvent(static_cast<QActionEvent*>(event));
@@ -4151,6 +4158,7 @@ public:
 	QAccessibleInterface * accessibleRoot() const { return static_cast<QAccessibleInterface*>(callbackQQuickWindow_AccessibleRoot(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQQuickWindow_Close(this) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void Signal_ActiveChanged() { callbackQQuickWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQQuickWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQQuickWindow_ContentOrientationChanged(this, orientation); };
@@ -4899,6 +4907,15 @@ char QQuickWindow_CloseDefault(void* ptr)
 		return static_cast<QQuickView*>(ptr)->QQuickView::close();
 	} else {
 		return static_cast<QQuickWindow*>(ptr)->QQuickWindow::close();
+	}
+}
+
+char QQuickWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+	if (dynamic_cast<QQuickView*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QQuickView*>(ptr)->QQuickView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QQuickWindow*>(ptr)->QQuickWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	}
 }
 

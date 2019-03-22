@@ -86,7 +86,7 @@ func main() {
 				out, err := utils.RunCmdOptionalError(utils.GoList("{{.Dir}}", oPath), "get pkg dir")
 				return strings.TrimSpace(out), err
 			}
-			if dir, err := dirFunc(); err != nil {
+			if dir, err := dirFunc(); err != nil || len(dir) == 0 {
 				utils.RunCmd(exec.Command("go", "get", "-d", "-v", oPath), "go get pkg")
 				path, _ = dirFunc()
 			} else {

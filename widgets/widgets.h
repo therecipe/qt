@@ -7563,6 +7563,8 @@ char QWidget_FocusNextChild(void* ptr);
 char QWidget_FocusNextPrevChild(void* ptr, char next);
 char QWidget_FocusNextPrevChildDefault(void* ptr, char next);
 char QWidget_FocusPreviousChild(void* ptr);
+char QWidget_NativeEvent(void* ptr, void* eventType, void* message, long result);
+char QWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result);
 char QWidget_RestoreGeometry(void* ptr, void* geometry);
 int QWidget_GrabShortcut(void* ptr, void* key, long long context);
 void QWidget_ActionEvent(void* ptr, void* event);

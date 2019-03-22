@@ -79,6 +79,7 @@ public:
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQAbstractPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQAbstractPrintDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQAbstractPrintDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -505,6 +506,15 @@ char QAbstractPrintDialog_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPrintDialog*>(ptr)->QPrintDialog::focusNextPrevChild(next != 0);
 	} else {
 		return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::focusNextPrevChild(next != 0);
+	}
+}
+
+char QAbstractPrintDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPrintDialog*>(ptr)->QPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 	}
 }
 
@@ -993,6 +1003,7 @@ public:
 	bool close() { return callbackQPageSetupDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPageSetupDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPageSetupDialog_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPageSetupDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPageSetupDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPageSetupDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQPageSetupDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1316,6 +1327,11 @@ char QPageSetupDialog_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::focusNextPrevChild(next != 0);
 }
 
+char QPageSetupDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+}
+
 void QPageSetupDialog_ActionEventDefault(void* ptr, void* event)
 {
 		static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::actionEvent(static_cast<QActionEvent*>(event));
@@ -1597,6 +1613,7 @@ public:
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQAbstractPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQAbstractPrintDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQAbstractPrintDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1830,6 +1847,7 @@ public:
 	bool close() { return callbackQPrintPreviewDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPrintPreviewDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewDialog_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPrintPreviewDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQPrintPreviewDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -2163,6 +2181,11 @@ char QPrintPreviewDialog_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::focusNextPrevChild(next != 0);
 }
 
+char QPrintPreviewDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+}
+
 void QPrintPreviewDialog_ActionEventDefault(void* ptr, void* event)
 {
 		static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::actionEvent(static_cast<QActionEvent*>(event));
@@ -2447,6 +2470,7 @@ public:
 	bool close() { return callbackQPrintPreviewWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPrintPreviewWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewWidget_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPrintPreviewWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQPrintPreviewWidget_CloseEvent(this, event); };
@@ -2924,6 +2948,11 @@ char QPrintPreviewWidget_EventDefault(void* ptr, void* event)
 char QPrintPreviewWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::focusNextPrevChild(next != 0);
+}
+
+char QPrintPreviewWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QPrintPreviewWidget_ActionEventDefault(void* ptr, void* event)

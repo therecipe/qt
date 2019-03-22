@@ -1171,6 +1171,7 @@ public:
 	bool close() { return callbackQSvgWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQSvgWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQSvgWidget_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQSvgWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQSvgWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQSvgWidget_CloseEvent(this, event); };
@@ -1452,6 +1453,11 @@ char QSvgWidget_EventDefault(void* ptr, void* event)
 char QSvgWidget_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QSvgWidget*>(ptr)->QSvgWidget::focusNextPrevChild(next != 0);
+}
+
+char QSvgWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QSvgWidget*>(ptr)->QSvgWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSvgWidget_ActionEventDefault(void* ptr, void* event)

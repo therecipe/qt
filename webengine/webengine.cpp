@@ -3644,6 +3644,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQWebEngineView_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWebEngineView_FocusNextPrevChild(this, next) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQWebEngineView_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQWebEngineView_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQWebEngineView_CloseEvent(this, event); };
@@ -4159,6 +4160,11 @@ char QWebEngineView_CloseDefault(void* ptr)
 char QWebEngineView_FocusNextPrevChildDefault(void* ptr, char next)
 {
 		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::focusNextPrevChild(next != 0);
+}
+
+char QWebEngineView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+{
+		return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QWebEngineView_ActionEventDefault(void* ptr, void* event)
