@@ -186,7 +186,9 @@ func (c *Class) HasFunctionWithName(n string) bool {
 
 func (c *Class) HasFunctionWithNameAndOverloadNumber(n string, num string) bool {
 	for _, f := range c.Functions {
-		if f.Name == n && f.OverloadNumber == num {
+		if ((strings.ToLower(f.Name) == strings.ToLower(n) && c.Module != MOC) ||
+			(f.Name == n && c.Module == MOC)) &&
+			f.OverloadNumber == num {
 			return true
 		}
 	}
@@ -235,7 +237,7 @@ func (c *Class) IsSupported() bool {
 
 	switch c.Name {
 	case "QCborStreamReader", "QCborStreamWriter", "QCborValue", "QScopeGuard", "QTest",
-		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier":
+		"QImageReaderWriterHelpers", "QPasswordDigestor", "QDtls", "QDtlsClientVerifier", "QGeoJson":
 		c.Access = "unsupported_isBlockedClass"
 		return false
 	}

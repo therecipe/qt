@@ -25,6 +25,7 @@ type Function struct {
 	Parameters        []*Parameter `xml:"parameter"`
 	Brief             string       `xml:"brief,attr"`
 	Since             string       `xml:"since,attr"`
+	Related           string       `xml:"related,attr"`
 	SignalMode        string
 	TemplateModeJNI   string
 	Default           bool
@@ -288,8 +289,15 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
+	if f.Related == "true" {
+		f.Access = "unsupported_isBlockedFunction"
+		return false
+	}
+
 	switch {
 	case
+		f.Fullname == "QOcspResponse::certificateStatus", f.Fullname == "QOcspResponse::revocationReason",
+
 		f.ClassName() == "operator QCborError",
 
 		(f.ClassName() == "QAccessibleObject" || f.ClassName() == "QAccessibleInterface" || f.ClassName() == "QAccessibleWidget" || //QAccessible::State -> quint64

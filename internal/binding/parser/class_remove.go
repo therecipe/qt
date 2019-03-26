@@ -22,7 +22,7 @@ func (c *Class) removeFunctions() {
 		case (f.Status == "obsolete" || f.Status == "compat") ||
 			!(f.Access == "public" || f.Access == "protected") ||
 			strings.ContainsAny(f.Name, "&<>=/!()[]{}^|*+-") ||
-			strings.Contains(f.Name, "Operator"):
+			strings.Contains(f.Name, "Operator") || strings.Contains(f.Name, "qHash"):
 			{
 				c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
 			}
@@ -66,7 +66,7 @@ func (c *Class) removeEnums() {
 func (c *Class) removeEnums_Version() {
 	for i := len(c.Enums) - 1; i >= 0; i-- {
 		switch c.Enums[i].ClassName() {
-		case "QCss", "QScript", "Http2":
+		case "QCss", "QScript", "Http2", "QDBusPendingReply":
 			{
 				c.Enums = append(c.Enums[:i], c.Enums[i+1:]...)
 				continue

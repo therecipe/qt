@@ -23,7 +23,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 	copy := func(src, dst string) {
 		copy := "cp"
 
-		if runtime.GOOS == "windows" {
+		if runtime.GOOS == "windows" && utils.MSYSTEM() == "" {
 			copy = "xcopy"
 
 			//TODO: -->
@@ -37,14 +37,14 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		var args []string
 		if _, err := ioutil.ReadDir(src); err == nil {
-			if runtime.GOOS != "windows" {
+			if runtime.GOOS != "windows" || utils.MSYSTEM() != "" {
 				args = append(args, "-R")
 			}
 		}
 
 		var suffix string
 		if _, err := ioutil.ReadDir(dst); err != nil {
-			if runtime.GOOS == "windows" {
+			if runtime.GOOS == "windows" && utils.MSYSTEM() == "" {
 				suffix = "*"
 			}
 		}
@@ -253,6 +253,14 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 	case "windows":
 
+		//copy default assets
+		//TODO: windres icon
+
+		//copy custom assets
+		assets := filepath.Join(path, target)
+		utils.MkdirAll(assets)
+		copy(assets+string(filepath.Separator)+".", depPath)
+
 		//TODO: -->
 		switch {
 		case runtime.GOOS != target:
@@ -371,13 +379,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			filepath.Walk(depPath, walkFn)
 
 		default:
-			//copy default assets
-			//TODO: windres icon
-
-			//copy custom assets
-			assets := filepath.Join(path, target)
-			utils.MkdirAll(assets)
-			copy(assets, depPath)
 
 			if utils.QT_WEBKIT() {
 				libraryPath := filepath.Dir(utils.ToolPath("qmake", target))

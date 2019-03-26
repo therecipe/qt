@@ -565,6 +565,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 				tmp = strings.Replace(tmp, "-lQt5"+lib, "-framework Qt"+lib, -1)
 			}
 			tmp = strings.Replace(tmp, "-Wl,-rpath,@executable_path/Frameworks", "", -1)
+			tmp = strings.Replace(tmp, "-Wl,-rpath,@executable_path/../Frameworks", "", -1)
+			tmp = strings.Replace(tmp, "-weak_framework XCTest", "", -1)
 		case "windows":
 			if utils.QT_MSYS2() {
 				tmp = strings.Replace(tmp, ",--relax,--gc-sections", "", -1)

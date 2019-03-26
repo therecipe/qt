@@ -3928,14 +3928,6 @@ func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	}
 }
 
-//go:generate stringer -type=QDBusPendingReply__anonymous
-//QDBusPendingReply::anonymous
-type QDBusPendingReply__anonymous int64
-
-const (
-	QDBusPendingReply__Count QDBusPendingReply__anonymous = QDBusPendingReply__anonymous(0)
-)
-
 type QDBusPendingReplyTypes struct {
 	ptr unsafe.Pointer
 }
