@@ -1,4 +1,4 @@
-FROM base/archlinux as base
+FROM archlinux/base as base
 
 ENV USER user
 ENV HOME /home/$USER
@@ -8,7 +8,7 @@ RUN pacman -Syyu --quiet && pacman -S --noconfirm --needed --noprogressbar --qui
 RUN GO=go1.11.2.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
-FROM base/archlinux
+FROM archlinux/base
 LABEL maintainer therecipe
 
 ENV USER user
