@@ -26,7 +26,7 @@ func run(target, name, depPath, device string) {
 		if device == "" {
 			out, _ := exec.Command("xcrun", "instruments", "-s").Output()
 			lines := strings.Split(string(out), "iPhone")
-			device = strings.Split(strings.Split(string(out), "iPhone 8 ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+") [")[1], "]")[0]
+			device = strings.Split(strings.Split(string(out), "iPhone Xʀ ("+strings.Split(strings.Split(lines[len(lines)-1], "(")[1], ")")[0]+") [")[1], "]")[0]
 		}
 		go utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", device), "start simulator")
 		time.Sleep(1 * time.Second)

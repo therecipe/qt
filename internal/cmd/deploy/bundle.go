@@ -516,11 +516,13 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		//copy default assets
 		buildPath := filepath.Join(depPath, "build")
 		utils.MkdirAll(filepath.Join(buildPath, "project.xcodeproj"))
+		utils.MkdirAll(filepath.Join(buildPath, "project.xcodeproj", "project.xcworkspace", "xcshareddata"))
 		utils.MkdirAll(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset"))
 		utils.Save(filepath.Join(buildPath, "Info.plist"), ios_plist(name))
 		utils.Save(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset", "Contents.json"), ios_appicon())
 		utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), ios_launchscreen(name))
 		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), ios_xcodeproject())
+		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.xcworkspace", "xcshareddata", "WorkspaceSettings.xcsettings"), ios_xcsettings())
 		copy(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "ios", "mkspecs", "macx-ios-clang", "Default-568h@2x.png"), buildPath)
 
 		//copy custom assets

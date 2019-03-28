@@ -80,7 +80,8 @@ func (d *Dialog) findArtistId(artist string) int {
 	for row := 0; row < artistModel.RowCount(core.NewQModelIndex()); row++ {
 		record := artistModel.Record(row)
 		if record.Value2("artist").ToString() == artist {
-			return record.Value2("id").ToInt(true)
+			var b bool
+			return record.Value2("id").ToInt(&b)
 		}
 	}
 	return d.addNewArtist(artist)
@@ -174,7 +175,8 @@ func (d *Dialog) increaseAlbumCount(artistIndex *core.QModelIndex) {
 
 	albumCountIndex := artistIndex.Sibling(artistIndex.Row(), 2)
 
-	albumCount := albumCountIndex.Data(0).ToInt(true)
+	var b bool
+	albumCount := albumCountIndex.Data(0).ToInt(&b)
 	artistModel.SetData(albumCountIndex, core.NewQVariant7(albumCount+1), 0)
 }
 

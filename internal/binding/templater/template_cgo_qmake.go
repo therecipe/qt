@@ -496,11 +496,11 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 	case "windows":
 		fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,--allow-multiple-definition\n")
 	case "ios":
-		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
-		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/%v -miphoneos-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONEOS_SDK_DIR())
 	case "ios-simulator":
-		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
-		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=10.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo CXXFLAGS: -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
+		fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=11.0\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 	case "js", "wasm":
 		fmt.Fprint(bb, "#cgo CFLAGS: -s EXTRA_EXPORTED_RUNTIME_METHODS=['getValue','setValue']\n")
 	}

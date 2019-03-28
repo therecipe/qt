@@ -174,7 +174,8 @@ func (w *MainWindow) deleteAlbum() {
 
 	if len(selection) != 0 {
 		idIndex := selection[0]
-		id := idIndex.Data(0).ToInt(true)
+		var b bool
+		id := idIndex.Data(0).ToInt(&b)
 		title := idIndex.Sibling(idIndex.Row(), 1).Data(0).ToString()
 		artist := idIndex.Sibling(idIndex.Row(), 2).Data(0).ToString()
 
@@ -229,7 +230,8 @@ func (w *MainWindow) removeAlbumFromDatabase(index *core.QModelIndex) {
 func (w *MainWindow) decreaseAlbumCount(artistIndex *core.QModelIndex) {
 	row := artistIndex.Row()
 	albumCountIndex := artistIndex.Sibling(row, 2)
-	albumCount := albumCountIndex.Data(0).ToInt(true)
+	var b bool
+	albumCount := albumCountIndex.Data(0).ToInt(&b)
 
 	artists := w.model.RelationModel(2)
 

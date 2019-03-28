@@ -522,6 +522,20 @@ func ios_xcodeproject() string {
 `
 }
 
+func ios_xcsettings() string {
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildSystemType</key>
+	<string>Original</string>
+	<key>IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded</key>
+	<false/>
+</dict>
+</plist>
+`
+}
+
 //sailfish
 
 func sailfish_spec(name string) string {
