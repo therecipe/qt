@@ -4,7 +4,8 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 
-RUN pacman -Syyu --quiet && pacman -S --noconfirm --needed --noprogressbar --quiet ca-certificates curl git
+RUN pacman -Syyu --quiet || true
+RUN pacman -S --noconfirm --needed --noprogressbar --quiet ca-certificates curl git tar
 RUN GO=go1.11.2.linux-amd64.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://dl.google.com/go/$GO && tar -xzf $GO -C /usr/local
 RUN /usr/local/go/bin/go get -tags=no_env github.com/therecipe/qt/cmd/...
 
@@ -23,8 +24,9 @@ COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 
-RUN pacman -Syyu --quiet && pacman -S --noconfirm --needed --noprogressbar --quiet base-devel pkg-config && pacman -Scc --noconfirm --noprogressbar --quiet
-RUN pacman -Syyu --quiet && pacman -S --noconfirm --needed --noprogressbar --quiet qt5 && pacman -Scc --noconfirm --noprogressbar --quiet
+RUN pacman -Syyu --quiet || true
+RUN pacman -S --noconfirm --needed --noprogressbar --quiet base-devel pkg-config && pacman -Scc --noconfirm --noprogressbar --quiet
+RUN pacman -S --noconfirm --needed --noprogressbar --quiet qt5 && pacman -Scc --noconfirm --noprogressbar --quiet
 
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check
