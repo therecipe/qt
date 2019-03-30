@@ -54,7 +54,14 @@ Controller.prototype.ComponentSelectionPageCallback = function()
   {
     gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw49");
     gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw53");
-    gui.currentPageWidget().selectComponent("qt."+version+".win64_mingw73");
+    if (installer.value("ARCH") == "32")
+    {
+      gui.currentPageWidget().selectComponent("qt."+version+".win32_mingw73");
+    }
+    else
+    {
+      gui.currentPageWidget().selectComponent("qt."+version+".win64_mingw73");
+    }
   }
 
   if (installer.value("LINUX") == "true")

@@ -137,30 +137,36 @@ jobs:
 #    parameters:
 #      file: windows_64_static/Dockerfile.base
 #      tag: windows_64_static_base
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_legacy/Dockerfile.32_shared
-#      tag: windows_32_shared_legacy
-#      dep: linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_legacy/Dockerfile.32_static
-#      tag: windows_32_static_legacy
-#      dep: linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_legacy/Dockerfile.64_shared
-#      tag: windows_64_shared_legacy
-#      dep: linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: windows_legacy/Dockerfile.64_static
-#      tag: windows_64_static_legacy
-#      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_legacy/Dockerfile.32_shared
+      tag: windows_32_shared_legacy
+      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_legacy/Dockerfile.32_static
+      tag: windows_32_static_legacy
+      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_legacy/Dockerfile.64_shared
+      tag: windows_64_shared_legacy
+      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: windows_legacy/Dockerfile.64_static
+      tag: windows_64_static_legacy
+      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: wine/Dockerfile.32
+      tag: windows_32_shared_wine
+      dep: wine_base
   -
     template: docker_job_template.yml
     parameters:
