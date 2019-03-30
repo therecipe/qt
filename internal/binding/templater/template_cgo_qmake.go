@@ -629,7 +629,11 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	case "windows":
 		if utils.QT_MXE_ARCH() == "amd64" || (utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64") ||
 			(!utils.QT_MXE() && !utils.QT_MSYS2() && utils.QT_VERSION_NUM() >= 5120) {
-			sFixes = []string{"windows_amd64"}
+			if utils.QT_VERSION_NUM() >= 5122 {
+				sFixes = []string{"windows_" + utils.GOARCH()}
+			} else {
+				sFixes = []string{"windows_amd64"}
+			}
 		} else {
 			sFixes = []string{"windows_386"}
 		}
