@@ -246,12 +246,12 @@ func (c *Class) fixBases() {
 					prefixPath = filepath.Join(prefixPath, "qt5-static")
 				}
 			} else {
-				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64")
+				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.MINGWDIR())
 				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64")
+					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), utils.MINGWDIR())
 				}
 				if !utils.ExistsDir(prefixPath) {
-					prefixPath = strings.Replace(prefixPath, "mingw73_64", "mingw53_32", -1)
+					prefixPath = strings.Replace(prefixPath, utils.MINGWDIR(), "mingw53_32", -1)
 				}
 				if !utils.ExistsDir(prefixPath) {
 					prefixPath = strings.Replace(prefixPath, "mingw53_32", "mingw49_32", -1)

@@ -176,12 +176,12 @@ func ToolPath(tool, target string) string {
 				}
 				return filepath.Join(QT_MSYS2_DIR(), "bin", tool)
 			}
-			path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "mingw73_64", "bin", tool)
+			path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), MINGWDIR(), "bin", tool)
 			if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
-				path = filepath.Join(QT_DIR(), QT_VERSION(), "mingw73_64", "bin", tool)
+				path = filepath.Join(QT_DIR(), QT_VERSION(), MINGWDIR(), "bin", tool)
 			}
 			if !ExistsFile(path + ".exe") {
-				path = strings.Replace(path, "mingw73_64", "mingw53_32", -1)
+				path = strings.Replace(path, MINGWDIR(), "mingw53_32", -1)
 			}
 			if !ExistsFile(path + ".exe") {
 				path = strings.Replace(path, "mingw53_32", "mingw49_32", -1)

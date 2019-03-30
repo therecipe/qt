@@ -69,3 +69,21 @@ func windowsSystemDrive() string {
 	}
 	return "C:"
 }
+
+func MINGWDIR() string {
+	if QT_VERSION_NUM() >= 5122 {
+		if GOARCH() == "386" {
+			return "mingw73_32"
+		}
+	}
+	return "mingw73_64"
+}
+
+func MINGWTOOLSDIR() string {
+	if QT_VERSION_NUM() >= 5122 {
+		if GOARCH() == "386" {
+			return "mingw730_32"
+		}
+	}
+	return "mingw730_64"
+}

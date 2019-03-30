@@ -576,6 +576,12 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 		if utils.QT_VERSION_NUM() >= 5120 {
 			env["GOARCH"] = "amd64"
+
+			if utils.QT_VERSION_NUM() >= 5122 {
+				env["GOARCH"] = utils.GOARCH()
+			}
+
+			//TODO: support 32 and 64 bit support; fix InitEnv as well
 			if strings.Contains(utils.QT_DIR(), "env_windows_amd64") {
 				env["CGO_LDFLAGS"] = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64", "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
 			}
@@ -588,9 +594,9 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 				env["PATH"] = filepath.Join(utils.QT_MSYS2_DIR(), "bin") + ";" + env["PATH"]
 			} else {
 				// use gcc shipped with qt installation
-				path := filepath.Join(utils.QT_DIR(), "Tools", "mingw730_64", "bin")
+				path := filepath.Join(utils.QT_DIR(), "Tools", utils.MINGWTOOLSDIR(), "bin")
 				if !utils.ExistsDir(path) {
-					path = strings.Replace(path, "mingw730_64", "mingw530_32", -1)
+					path = strings.Replace(path, utils.MINGWTOOLSDIR(), "mingw530_32", -1)
 				}
 				if !utils.ExistsDir(path) {
 					path = strings.Replace(path, "mingw530_32", "mingw492_32", -1)

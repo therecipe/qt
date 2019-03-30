@@ -462,10 +462,10 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 					pFix := []string{
 						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw49_32"),
 						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw53_32"),
-						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "mingw73_64"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), utils.MINGWDIR()),
 						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw49_32"),
 						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32"),
-						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw73_64"),
+						filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.MINGWDIR()),
 						filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "qt5"),
 						utils.QT_MSYS2_DIR(),
 					}
