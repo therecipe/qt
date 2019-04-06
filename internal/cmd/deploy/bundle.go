@@ -112,6 +112,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.MkdirAll(assets)
 		copy(assets+"/.", depPath)
 
+		if utils.QT_STATIC() {
+			break
+		}
+
 		//TODO: -->
 		{
 			if utils.QT_PKG_CONFIG() {

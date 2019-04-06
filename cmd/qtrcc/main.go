@@ -71,7 +71,7 @@ func main() {
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
-	utils.CheckBuildTarget(target)
+	utils.CheckBuildTarget(target, docker)
 	cmd.InitEnv(target)
 
 	if !filepath.IsAbs(path) {

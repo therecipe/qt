@@ -292,6 +292,11 @@ func ShouldBuildForTarget(module, target string) bool {
 				return false
 			}
 		}
+
+	case "linux":
+		if utils.QT_STATIC() && module == "WebEngine" {
+			return false
+		}
 	}
 
 	return true

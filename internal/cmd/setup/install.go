@@ -17,7 +17,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Install(target string, docker, vagrant bool) {
+func Install(target string, docker, vagrant, failfast bool) {
 	utils.Log.Infof("running: 'qtsetup install %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
 	if strings.HasPrefix(target, "sailfish") && !utils.QT_SAILFISH() {
@@ -125,6 +125,9 @@ func Install(target string, docker, vagrant bool) {
 		if msg, err := utils.RunCmdOptionalError(cmd, fmt.Sprintf("install %v", strings.ToLower(module))); err != nil {
 			println(msg)
 			failed = append(failed, strings.ToLower(module))
+			if strings.ToLower(module) == "core" || failfast {
+				os.Exit(1)
+			}
 		}
 	}
 

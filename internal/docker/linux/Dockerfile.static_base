@@ -1,0 +1,10 @@
+FROM ubuntu:16.04
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install dbus fontconfig libx11-6 libx11-xcb1
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev \
+	&& apt-get --no-install-recommends -qq -y install fontconfig libasound2 libegl1-mesa libnss3 libpci3 libxcomposite1 libxcursor1 libxi6 libxrandr2 libxtst6
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libdbus-1-dev libssl-dev
+
+RUN git clone -q --depth 1 -b 5.12 --recursive https://code.qt.io/qt/qt5.git /opt/qt5
+RUN cd /opt/qt5 && ./configure -prefix /opt/Qt/5.12.0/gcc_64 -confirm-license -opensource -static -qt-zlib -qt-libpng -qt-libjpeg -dbus -opengl -optimize-size -skip qtwebengine -skip qtfeedback -nomake tests -nomake examples && make && make install

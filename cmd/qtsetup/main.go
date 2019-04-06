@@ -55,6 +55,9 @@ func main() {
 		flag.BoolVar(&dynamic, "dynamic", false, "create and use semi-dynamic libraries during the generation and installation process (experimental; no real replacement for dynamic linking)")
 	}
 
+	var failfast bool
+	flag.BoolVar(&failfast, "failfast", false, "exit the setup upon the first error encountered during the installation step")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -82,7 +85,7 @@ func main() {
 	if target == "desktop" {
 		target = runtime.GOOS
 	}
-	utils.CheckBuildTarget(target)
+	utils.CheckBuildTarget(target, docker)
 	cmd.InitEnv(target)
 
 	if dynamic && (target == runtime.GOOS || target == "js" || target == "wasm") {
@@ -101,14 +104,14 @@ func main() {
 	case "generate":
 		setup.Generate(target, docker, vagrant)
 	case "install":
-		setup.Install(target, docker, vagrant)
+		setup.Install(target, docker, vagrant, failfast)
 	case "test":
 		setup.Test(target, docker, vagrant, vagrant_system)
 	case "full":
 		setup.Prep()
 		setup.Check(target, docker, vagrant)
 		setup.Generate(target, docker, vagrant)
-		setup.Install(target, docker, vagrant)
+		setup.Install(target, docker, vagrant, failfast)
 		setup.Test(target, docker, vagrant, vagrant_system)
 	case "update":
 		setup.Update()

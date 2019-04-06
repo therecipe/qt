@@ -105,7 +105,7 @@ func QT_DEBUG_CONSOLE() bool {
 	return os.Getenv("QT_DEBUG_CONSOLE") == "true"
 }
 
-func CheckBuildTarget(buildTarget string) {
+func CheckBuildTarget(buildTarget string, docker bool) {
 	switch buildTarget {
 	case "android", "android-emulator",
 		"ios", "ios-simulator",
@@ -119,7 +119,7 @@ func CheckBuildTarget(buildTarget string) {
 			Log.Panicf("failed to recognize build target %v", buildTarget)
 		}
 	}
-	if buildTarget != runtime.GOOS && !strings.Contains(buildTarget, "_") {
+	if !docker && buildTarget != runtime.GOOS && !strings.Contains(buildTarget, "_") {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
@@ -304,4 +304,8 @@ func GoList(args ...string) *exec.Cmd {
 	cmd.Args = append(cmd.Args, args...)
 	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0"}...)
 	return cmd
+}
+
+func QT_STATIC() bool {
+	return os.Getenv("QT_STATIC") == "true"
 }

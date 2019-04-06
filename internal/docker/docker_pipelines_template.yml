@@ -49,6 +49,19 @@ jobs:
   -
     template: docker_job_template.yml
     parameters:
+      file: linux/Dockerfile.static_base
+      tag: linux_static_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.static
+      tag: linux_static
+      dep:
+        - linux_static_base
+        - linux
+  -
+    template: docker_job_template.yml
+    parameters:
       file: linux/Dockerfile.ubuntu_16_04
       tag: linux_ubuntu_16_04
   -

@@ -602,6 +602,9 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 			}
 		case "linux":
 			tmp = strings.Replace(tmp, "-Wl,-O1", "-O1", -1)
+			tmp = strings.Replace(tmp, "-ffunction-sections", "", -1)
+			tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
+			tmp = strings.Replace(tmp, "-Wl,--gc-sections", "", -1)
 		}
 		utils.Save(filepath.Join(path, file), tmp)
 	}
