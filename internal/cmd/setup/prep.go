@@ -43,7 +43,7 @@ func Prep() {
 			var suc bool
 			sPath := filepath.Join(utils.GOBIN(), app)
 			var dPath string
-			for _, pdPath := range filepath.SplitList("/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:" + filepath.Join(filepath.Join(runtime.GOROOT(), "bin"))) {
+			for _, pdPath := range filepath.SplitList("/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin") {
 				dPath = filepath.Join(pdPath, app)
 				if sPath == dPath {
 					continue

@@ -43,6 +43,19 @@ func ParseFlags() bool {
 		os.Setenv("QT_API", api)
 	}
 
+	if api := utils.QT_API(""); api != "" {
+		if utils.RunCmdOptional(utils.GoList("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api), "get doc dir") == "" {
+			utils.Log.Errorf("invalid api version provided: '%v'", api)
+			fmt.Println("valid api versions are:")
+			if o := utils.RunCmdOptional(utils.GoList("'{{ join .Imports \"|\" }}'", "github.com/therecipe/qt/internal/binding/files/docs"), "get doc dir"); o != "" {
+				for _, v := range strings.Split(o, "|") {
+					fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/therecipe/qt/internal/binding/files/docs/"))
+				}
+			}
+			os.Exit(1)
+		}
+	}
+
 	if dir := *qt_dir; dir != utils.QT_DIR() {
 		os.Setenv("QT_DIR", dir)
 	}
@@ -238,7 +251,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		switch system {
 		case "darwin":
 		case "linux":
-			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports")) && strings.Contains(target, "_") {
+			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports") || strings.HasPrefix(target, "linux")) && strings.Contains(target, "_") {
 				image = target
 			} else if docker && strings.Contains(target, "_") {
 				utils.Log.Fatalf("%v is currently not supported", target)
@@ -395,6 +408,9 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			}
 			if strings.HasPrefix(args[i], "ubports_") {
 				args[i] = "ubports"
+			}
+			if strings.HasPrefix(args[i], "linux_") {
+				args[i] = "linux"
 			}
 		}
 

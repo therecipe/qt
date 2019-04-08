@@ -126,6 +126,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 			println(msg)
 			failed = append(failed, strings.ToLower(module))
 			if strings.ToLower(module) == "core" || failfast {
+				utils.Log.Errorf("failed to install '%v'; aborting setup", strings.ToLower(module))
 				os.Exit(1)
 			}
 		}
