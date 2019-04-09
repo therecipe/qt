@@ -575,6 +575,8 @@ func createCgo(module, path, target string, mode int, ipkg, tags string) string 
 					tmp = strings.Replace(tmp, "-fdata-sections", "", -1)
 					tmp = strings.Replace(tmp, "-Wl,--gc-sections", "", -1)
 				}
+				tmp = strings.Replace(tmp, " -lwinmm ", " ", -1)
+				tmp = strings.Replace(tmp, " -lkernel32 ", " -lwinmm -lkernel32 ", -1)
 			}
 			if utils.QT_MSYS2() && utils.QT_MSYS2_ARCH() == "amd64" {
 				tmp = strings.Replace(tmp, " -Wa,-mbig-obj ", " ", -1)

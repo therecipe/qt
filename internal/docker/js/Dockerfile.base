@@ -1,5 +1,4 @@
-FROM ubuntu:16.04
-LABEL maintainer therecipe
+FROM ubuntu:16.04 as base
 
 ENV USER user
 ENV HOME /home/$USER
@@ -15,3 +14,11 @@ RUN git clone -q --depth 1 -b 5.12.0 --recursive https://code.qt.io/qt/qt5.git /
 RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
 	&& cd /opt/qt5 && ./configure -xplatform wasm-emscripten -optimize-size -nomake tests -nomake examples -skip qtpim -skip qtfeedback -skip qtwinextras -skip qttools -confirm-license -opensource && make && make install" > $HOME/build.sh \
 	&& chmod +x $HOME/build.sh && $HOME/build.sh
+
+
+FROM ubuntu:16.04
+LABEL maintainer therecipe
+
+COPY --from=base $HOME/emsdk $HOME/emsdk
+COPY --from=base $HOME/.emscripten $HOME/.emscripten
+COPY --from=base /usr/local/Qt-5.12.0 /usr/local/Qt-5.12.0

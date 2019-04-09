@@ -1,5 +1,4 @@
-FROM ubuntu:16.04
-LABEL maintainer therecipe
+FROM ubuntu:16.04 as base
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
 RUN git clone -q --depth 1 https://github.com/mxe/mxe.git /usr/lib/mxe
@@ -9,3 +8,9 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install curl
 RUN curl -sL --retry 10 --retry-delay 60 https://github.com/qt/qtbase/commit/826b09f0c507fe5321a8534054a4f0b7bdd2699b.patch > /usr/lib/mxe/src/qtbase-2-fixes.patch
 
 RUN cd /usr/lib/mxe && make MXE_TARGETS='i686-w64-mingw32.static' qt5 && rm -rf /usr/lib/mxe/log && rm -rf /usr/lib/mxe/pkg
+
+
+FROM ubuntu:16.04
+LABEL maintainer therecipe
+
+COPY --from=base /usr/lib/mxe /usr/lib/mxe
