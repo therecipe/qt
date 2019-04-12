@@ -272,16 +272,20 @@ func GOMOD(path string) string {
 }
 
 var (
-	useGOMOD      bool
+	useGOMOD      int
 	useGOMODMutex = new(sync.Mutex)
 )
 
 func UseGOMOD(path string) (r bool) {
 	useGOMODMutex.Lock()
-	if !useGOMOD && len(GOMOD(path)) != 0 {
-		useGOMOD = true
+	if useGOMOD == 0 {
+		if len(GOMOD(path)) != 0 {
+			useGOMOD = 1
+		} else {
+			useGOMOD = -1
+		}
 	}
-	r = useGOMOD
+	r = useGOMOD == 1
 	useGOMODMutex.Unlock()
 	return
 }
@@ -304,6 +308,21 @@ func GoList(args ...string) *exec.Cmd {
 	cmd.Args = append(cmd.Args, args...)
 	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0"}...)
 	return cmd
+}
+
+var (
+	goListCache      = make(map[string]string)
+	goListCacheMutex = new(sync.Mutex)
+)
+
+func GoListOptional(args ...string) (r string) {
+	goListCacheMutex.Lock()
+	if _, ok := goListCache[strings.Join(args, "|")]; !ok {
+		goListCache[strings.Join(args, "|")] = RunCmdOptional(GoList(args[:2]...), args[2])
+	}
+	r = goListCache[strings.Join(args, "|")]
+	goListCacheMutex.Unlock()
+	return r
 }
 
 func QT_STATIC() bool {

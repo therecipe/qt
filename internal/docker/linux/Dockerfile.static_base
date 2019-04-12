@@ -10,7 +10,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libfont
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxkbcommon-dev
 
 RUN git clone -q --depth 1 -b 5.12 --recursive https://code.qt.io/qt/qt5.git /opt/qt5
-RUN cd /opt/qt5 && ./configure -prefix /opt/Qt/5.12.0/gcc_64 -confirm-license -opensource -static -qt-zlib -qt-libpng -qt-libjpeg -xcb -dbus-runtime -openssl-runtime -opengl -optimize-size -skip qtwebengine -skip qtfeedback -nomake tests -nomake examples && make && make install
+RUN cd /opt/qt5 && ./configure -prefix /opt/Qt/5.12.0/gcc_64 -confirm-license -opensource -static -qt-zlib -qt-libpng -qt-libjpeg -qpa xcb -dbus-runtime -openssl-runtime -opengl -optimize-size -skip qtwebengine -skip qtfeedback -nomake tests -nomake examples && make && make install
 
 
 FROM ubuntu:16.04

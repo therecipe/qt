@@ -2,6 +2,7 @@ package utils
 
 import (
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -26,7 +27,9 @@ func GOBIN() string {
 func MustGoPath() string {
 	mustGoPathMutex.Lock()
 	if len(mustGoPath) == 0 {
-		mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", "github.com/therecipe/qt"), "get list gopath"))
+		if _, err := exec.LookPath("go"); err == nil {
+			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", "github.com/therecipe/qt"), "get list gopath"))
+		}
 		if len(mustGoPath) == 0 {
 			mustGoPath = GOPATH()
 		}

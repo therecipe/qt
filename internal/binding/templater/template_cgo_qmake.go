@@ -350,7 +350,7 @@ func createMakefile(module, path, target string, mode int) {
 					utils.Save(pPath, "// +build windows\r\n"+content)
 				}
 			}
-			if mode == MOC || mode == RCC || !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) || (!strings.HasPrefix(module, "Q") && strings.Contains(pPath, "_qml_")) {
+			if mode == MOC || mode == RCC || !(utils.QT_MXE_STATIC() || utils.QT_MSYS2_STATIC()) || (module != "Qml" && strings.Contains(pPath, "_qml_")) {
 				utils.RemoveAll(pPath)
 			}
 		}
@@ -358,6 +358,17 @@ func createMakefile(module, path, target string, mode int) {
 			utils.RemoveAll(filepath.Join(path, n))
 		}
 	case "linux":
+		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
+			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
+			if (utils.QT_STATIC()) && utils.ExistsFile(pPath) {
+				if content := utils.Load(pPath); !strings.Contains(content, "+build linux") {
+					utils.Save(pPath, "// +build linux\r\n"+content)
+				}
+			}
+			if mode == MOC || mode == RCC || !utils.QT_STATIC() || (module != "Qml" && strings.Contains(pPath, "_qml_")) {
+				utils.RemoveAll(pPath)
+			}
+		}
 	case "ios", "ios-simulator":
 		for _, suf := range []string{"_plugin_import", "_qml_plugin_import"} {
 			pPath := filepath.Join(path, fmt.Sprintf("%v%v.cpp", filepath.Base(path), suf))
@@ -368,7 +379,7 @@ func createMakefile(module, path, target string, mode int) {
 				}
 			}
 			*/
-			if module != "build_static" /*TODO when shared builds are available: utils.QT_VERSION_MAJOR() != "5.9"*/ || mode == MOC || mode == RCC {
+			if module != "build_static" || mode == MOC || mode == RCC /*TODO when shared builds are available: utils.QT_VERSION_MAJOR() != "5.9"*/ {
 				utils.RemoveAll(pPath)
 			}
 		}

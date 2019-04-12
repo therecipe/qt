@@ -44,10 +44,10 @@ func ParseFlags() bool {
 	}
 
 	if api := utils.QT_API(""); api != "" {
-		if utils.RunCmdOptional(utils.GoList("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api), "get doc dir") == "" {
+		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:")
-			if o := utils.RunCmdOptional(utils.GoList("'{{ join .Imports \"|\" }}'", "github.com/therecipe/qt/internal/binding/files/docs"), "get doc dir"); o != "" {
+			if o := utils.GoListOptional("'{{ join .Imports \"|\" }}'", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
 				for _, v := range strings.Split(o, "|") {
 					fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/therecipe/qt/internal/binding/files/docs/"))
 				}
@@ -669,7 +669,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			}
 		}
 
-		if target == "linux" {
+		if target == "linux" && !utils.QT_STATIC() {
 			env["CGO_LDFLAGS"] = "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags"
 		}
 
