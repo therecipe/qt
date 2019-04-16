@@ -116,6 +116,10 @@ func QT_NIX() bool {
 	return ok
 }
 
+func QT_FELGO() bool {
+	return os.Getenv("QT_FELGO") == "true"
+}
+
 func isHomeBrewQtDir() bool {
 	return ExistsFile(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
 }
@@ -131,6 +135,9 @@ func QT_DARWIN_DIR() string {
 var qt_darwin_dir_nix string
 
 func qT_DARWIN_DIR() string {
+	if QT_FELGO() {
+		return filepath.Join(QT_DIR(), "Felgo/clang_64")
+	}
 	if QT_HOMEBREW() {
 		if isHomeBrewQtDir() {
 			return QT_DIR()

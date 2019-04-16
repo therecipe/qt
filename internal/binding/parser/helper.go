@@ -325,7 +325,7 @@ func IsWhiteListedJsLib(name string) bool {
 
 func IsWhiteListedRaspberryLib(name string) bool {
 	switch name {
-	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Svg", "SerialPort":
+	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Svg", "SerialPort", "Multimedia":
 		return true
 
 	default:
@@ -408,6 +408,9 @@ func GetLibs() []string {
 			libs = append(libs[:i], libs[i+1:]...)
 
 		case (utils.QT_MSYS2() || utils.QT_PKG_CONFIG()) && libs[i] == "Purchasing":
+			libs = append(libs[:i], libs[i+1:]...)
+
+		case utils.QT_FELGO() && strings.HasPrefix(libs[i], "Script"):
 			libs = append(libs[:i], libs[i+1:]...)
 		}
 	}

@@ -11,20 +11,20 @@ jobs:
       file: js/Dockerfile
       tag: js
       dep:
-#        - js_base
+        - js_base
         - linux
-#  -
-#    template: docker_job_template.yml
-#    parameters:
-#      file: js/Dockerfile.base
-#      tag: js_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: js/Dockerfile.base
+      tag: js_base
   -
     template: docker_job_template.yml
     parameters:
       file: js/Dockerfile.wasm
       tag: wasm
       dep:
-#        - js_base
+        - js_base
         - linux
   -
     template: docker_job_template.yml
@@ -69,6 +69,30 @@ jobs:
     parameters:
       file: linux/Dockerfile.ubuntu_18_04
       tag: linux_ubuntu_18_04
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: rpi/Dockerfile.base
+      tag: rpi_base
+      dep: linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: rpi/Dockerfile.rpi1
+      tag: rpi1
+      dep: rpi_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: rpi/Dockerfile.rpi2
+      tag: rpi2
+      dep: rpi_base
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: rpi/Dockerfile.rpi3
+      tag: rpi3
+      dep: rpi_base
   -
     template: docker_job_template.yml
     parameters:

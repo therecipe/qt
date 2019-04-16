@@ -34,6 +34,22 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function()
 {
+  var cBoxes = ["Archive", "LTS", "Latest releases", "Preview"];
+  for (var i in cBoxes)
+  {
+    var box = gui.currentPageWidget().findChild(cBoxes[i]);
+    if (box)
+    {
+      box.checked = true;
+    }
+  }
+
+  var refButton = gui.currentPageWidget().findChild("FetchCategoryButton");
+  if (refButton)
+  {
+    refButton.click();
+  }
+
   var version = "qt5.5120";
   if (installer.value("VERSION") != "")
   {

@@ -77,7 +77,7 @@ func LoadModule(m string) *Module {
 	case utils.QT_HOMEBREW():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.12.0"), "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
-	case utils.QT_MACPORTS(), utils.QT_NIX():
+	case utils.QT_MACPORTS(), utils.QT_NIX(), utils.QT_FELGO():
 		err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.11.1"), "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 
 	case utils.QT_MSYS2():
@@ -107,7 +107,10 @@ func LoadModule(m string) *Module {
 			if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), "Docs", fmt.Sprintf("Qt-%v", utils.QT_VERSION_MAJOR()))) {
 				path = filepath.Join(utils.QT_DIR(), "Docs", fmt.Sprintf("Qt-%v", utils.QT_VERSION()), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m)))
 			}
-			err = xml.Unmarshal([]byte(utils.Load(path)), &module)
+			err = xml.Unmarshal([]byte(utils.LoadOptional(path)), &module)
+			if err != nil {
+				err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()), "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			}
 		}
 	}
 	if err != nil {

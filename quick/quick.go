@@ -26,7 +26,8 @@ func cGoUnpackString(s C.struct_QtQuick_PackedString) string {
 }
 func cGoUnpackBytes(s C.struct_QtQuick_PackedString) []byte {
 	if int(s.len) == -1 {
-		return []byte(C.GoString(s.data))
+		gs := C.GoString(s.data)
+		return *(*[]byte)(unsafe.Pointer(&gs))
 	}
 	return C.GoBytes(unsafe.Pointer(s.data), C.int(s.len))
 }

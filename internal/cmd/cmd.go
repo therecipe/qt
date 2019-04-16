@@ -83,7 +83,7 @@ func InitEnv(target string) {
 			return
 		}
 	case "darwin":
-		if utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() {
+		if utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() {
 			return
 		}
 	case "windows":
@@ -129,9 +129,6 @@ func InitEnv(target string) {
 		switch runtime.GOOS {
 		case "linux", "darwin", "windows":
 			os.Setenv("QT_DIR", qt_dir)
-			if api := utils.QT_API(""); api == "" {
-				os.Setenv("QT_API", utils.QT_VERSION())
-			}
 		}
 
 		var err error
@@ -590,20 +587,20 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"CGO_ENABLED": "1",
 		}
 
-		if utils.QT_VERSION_NUM() >= 5120 {
-			env["GOARCH"] = "amd64"
-
-			if utils.QT_VERSION_NUM() >= 5122 {
-				env["GOARCH"] = utils.GOARCH()
-			}
-
-			//TODO: support 32 and 64 bit support; fix InitEnv as well
-			if strings.Contains(utils.QT_DIR(), "env_windows_amd64") {
-				env["CGO_LDFLAGS"] = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64", "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
-			}
-		}
-
 		if runtime.GOOS == target {
+			if utils.QT_VERSION_NUM() >= 5120 {
+				env["GOARCH"] = "amd64"
+
+				if utils.QT_VERSION_NUM() >= 5122 {
+					env["GOARCH"] = utils.GOARCH()
+				}
+
+				//TODO: support 32 and 64 bit support; fix InitEnv as well
+				if strings.Contains(utils.QT_DIR(), "env_windows_amd64") {
+					env["CGO_LDFLAGS"] = filepath.Join("C:\\", "Users", "Public", "env_windows_amd64", "Tools", "mingw730_64", "x86_64-w64-mingw32", "lib", "libmsvcrt.a")
+				}
+			}
+
 			if utils.QT_MSYS2() {
 				env["GOARCH"] = utils.QT_MSYS2_ARCH()
 				// use gcc shipped with msys2

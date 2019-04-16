@@ -65,6 +65,10 @@ func Moc(path, target, tags string, fast, slow bool) {
 func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
+	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
+		dirty = true
+	}
+
 	if !dirty {
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
@@ -331,27 +335,31 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	ResourceNames[filepath.Join(path, "moc.cpp")] = ""
 	ResourceNamesMutex.Unlock()
 
-	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-	scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
-	scmd.Dir = path
+	var staleCheck string
+	if !(target == "js" || target == "wasm") { //TODO: remove for module support + resolve dependencies
+		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
+		scmd.Dir = path
 
-	if !fast && !utils.QT_FAT() {
-		tagsEnv = append(tagsEnv, "minimal")
-	}
-	if tags != "" {
-		tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
-	}
-	scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+		if !fast && !utils.QT_FAT() {
+			tagsEnv = append(tagsEnv, "minimal")
+		}
+		if tags != "" {
+			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+		}
+		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
 
-	if target != runtime.GOOS {
-		scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		if target != runtime.GOOS {
+			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
+
+		for key, value := range env {
+			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+		}
+		staleCheck = utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS))
 	}
 
-	for key, value := range env {
-		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
-	}
-
-	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+	if strings.Contains(staleCheck, "but available in build cache") || strings.Contains(staleCheck, "false") {
 		utils.Log.WithField("path", path).Debug("skipping already cached moc")
 	} else {
 		if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
@@ -503,7 +511,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 					}
 
 					//TODO: sync, async, lazy, ...
-					//TODO: whole class shims
+					//TODO: whole class shims (generation of skeletons?)
 					//TODO: multi targets
 					//TODO: private
 					//TODO: qml register tag

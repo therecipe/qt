@@ -230,9 +230,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				if utils.QT_HOMEBREW() || utils.QT_MACPORTS() {
-					fData = utils.LoadOptional(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
-				} else if utils.QT_NIX() {
+				if utils.QT_NIX() {
 					for _, qmakepath := range strings.Split(os.Getenv("QMAKEPATH"), string(filepath.ListSeparator)) {
 						if strings.Contains(qmakepath, "qtbase") {
 							fData = utils.Load(filepath.Join(qmakepath, "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))

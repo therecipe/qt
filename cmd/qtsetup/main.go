@@ -92,10 +92,6 @@ func main() {
 		os.Setenv("QT_DYNAMIC_SETUP", "true")
 	}
 
-	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
-		os.Setenv("GOCACHE", "off")
-	}
-
 	switch mode {
 	case "prep":
 		setup.Prep()

@@ -1,9 +1,17 @@
 FROM therecipe/qt:rpi_base
 LABEL maintainer therecipe
 
-RUN QT=qtrpi-rpi1_qt-5.7.0.zip && curl -sL --retry 10 --retry-delay 60 -O http://www.qtrpi.com/downloads/qtrpi/rpi1/$QT && unzip -qq $QT -d /opt/qtrpi && rm -f $QT
+
+RUN QT=qtrpi-rpi1_qt-5.7.0.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https://github.com/therecipe/files/releases/download/v0.0.0/$QT && tar -xzf $QT -C / && rm -f $QT
+#TODO: remove and replace with proper include dir lookup
+RUN mkdir -p /opt/Qt/5.7.0/ && ln -s /opt/qtrpi/raspi/qt5pi/ /opt/Qt/5.7.0/gcc_64
+
 RUN git clone -q --depth 1 -b 5.7 https://code.qt.io/qt/qtvirtualkeyboard.git /opt/qtrpi/raspi/qtvirtualkeyboard && cd /opt/qtrpi/raspi/qtvirtualkeyboard && ../qt5/bin/qmake qtvirtualkeyboard.pro CONFIG+=lang-all && make && make install && rm -rf /opt/qtrpi/raspi/qtvirtualkeyboard
 
+RUN git clone -q --depth 1 -b 5.7 https://code.qt.io/qt/qtmultimedia.git /opt/qtrpi/raspi/qtmultimedia && cd /opt/qtrpi/raspi/qtmultimedia && ../qt5/bin/qmake qtmultimedia.pro && make && make install && rm -rf /opt/qtrpi/raspi/qtmultimedia
+
+
+RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check rpi1
 RUN $GOPATH/bin/qtsetup generate rpi1
 RUN $GOPATH/bin/qtsetup install rpi1

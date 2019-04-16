@@ -144,6 +144,8 @@ func render(scene *widgets.QGraphicsScene) []byte {
 	return renderWith(scene, sliderX.Value(), sliderY.Value(), sliderZ.Value())
 }
 
+var pix *gui.QPixmap
+
 func renderWith(scene *widgets.QGraphicsScene, frameX, frameY, frameZ int) []byte {
 	scene.Clear()
 
@@ -175,7 +177,9 @@ func renderWith(scene *widgets.QGraphicsScene, frameX, frameY, frameZ int) []byt
 		}
 	}
 
-	var pix = gui.NewQPixmap()
+	if pix == nil {
+		pix = gui.NewQPixmap()
+	}
 	pix.LoadFromData(data, uint(len(data)), "", 0)
 
 	scene.AddPixmap(pix)

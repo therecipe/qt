@@ -129,9 +129,5 @@ func main() {
 		fast = false
 	}
 
-	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
-		os.Setenv("GOCACHE", "off")
-	}
-
 	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast, device, vagrant, vagrant_system, comply)
 }

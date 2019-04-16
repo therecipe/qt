@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	WASM.Set("_callbackReleaseTypedArray", js.NewCallback(func(_ js.Value, args []js.Value) interface{} {
+	WASM.Set("_callbackReleaseTypedArray", js.FuncOf(func(_ js.Value, args []js.Value) interface{} {
 		(*js.TypedArray)(unsafe.Pointer(uintptr(args[0].Int()))).Release()
 		return nil
 	}))

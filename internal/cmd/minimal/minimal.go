@@ -28,28 +28,30 @@ func Minimal(path, target, tags string) {
 		}
 	}
 
-	env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-	scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
-	scmd.Dir = path
+	if !(target == "js" || target == "wasm") { //TODO: remove for module support + resolve dependencies
+		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
+		scmd.Dir = path
 
-	tagsEnv = append(tagsEnv, "minimal")
+		tagsEnv = append(tagsEnv, "minimal")
 
-	if tags != "" {
-		tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
-	}
-	scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+		if tags != "" {
+			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+		}
+		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
 
-	if target != runtime.GOOS {
-		scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
-	}
+		if target != runtime.GOOS {
+			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
 
-	for key, value := range env {
-		scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
-	}
+		for key, value := range env {
+			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+		}
 
-	if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
-		utils.Log.WithField("path", path).Debug("skipping already cached minimal")
-		return
+		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+			utils.Log.WithField("path", path).Debug("skipping already cached minimal")
+			return
+		}
 	}
 
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Minimal")

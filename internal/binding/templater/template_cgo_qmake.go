@@ -173,7 +173,7 @@ func isAlreadyCached(module, path, target string, mode int, libs []string) bool 
 			case "darwin", "linux", "windows", "ubports":
 				//TODO: msys pkg-config mxe brew
 				switch {
-				case utils.QT_HOMEBREW(), utils.QT_MACPORTS(), utils.QT_NIX():
+				case utils.QT_HOMEBREW(), utils.QT_MACPORTS(), utils.QT_NIX(), utils.QT_FELGO():
 					return containsPath(file, utils.QT_DARWIN_DIR())
 				case utils.QT_MSYS2():
 					return containsPath(file, utils.QT_MSYS2_DIR())

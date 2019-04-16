@@ -87,6 +87,12 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.RunCmd(dep, fmt.Sprintf("deploy for %v on %v", target, runtime.GOOS))
 
 	case "linux", "rpi1", "rpi2", "rpi3":
+		var rpiToolPath string
+		if strings.HasPrefix(target, "rpi") {
+			env, _, _, _ := cmd.BuildEnv(target, "", "")
+			rpiToolPath = strings.TrimSuffix(env["CC"], "gcc")
+		}
+
 		defer func() {
 			filepath.Walk(depPath, func(path string, info os.FileInfo, err error) error {
 				if err != nil {
@@ -96,7 +102,11 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 					return nil
 				}
 				if strings.HasPrefix(filepath.Base(path), "lib") {
-					utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
+					if strings.HasPrefix(target, "rpi") {
+						utils.RunCmd(exec.Command(rpiToolPath+"strip", "-s", path), "strip binaries on linux")
+					} else {
+						utils.RunCmd(exec.Command("strip", "-s", path), "strip binaries on linux")
+					}
 				}
 				return nil
 			})
@@ -130,20 +140,15 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 			var (
 				libraryPath   = strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS)))
-				lddPath       = "ldd"
-				lddExtra      string
 				lddOutput     string
 				usesWebEngine bool
 				usesQml       bool
 			)
 
 			if strings.HasPrefix(target, "rpi") {
-				//libraryPath = fmt.Sprintf("%v/%v/%v/lib/", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), target)
-				lddPath = fmt.Sprintf("%v/arm-bcm2708/%v/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR(), utils.RPI_COMPILER())
-				lddExtra = "--root=/"
-				lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, name)), fmt.Sprintf("ldd binary for %v on %v", target, runtime.GOOS))
+				lddOutput = utils.RunCmd(exec.Command(rpiToolPath+"ldd", "--root=/", filepath.Join(depPath, name)), fmt.Sprintf("ldd binary for %v on %v", target, runtime.GOOS))
 			} else {
-				lddOutput = utils.RunCmd(exec.Command(lddPath, filepath.Join(depPath, name)), fmt.Sprintf("ldd binary for %v on %v", target, runtime.GOOS))
+				lddOutput = utils.RunCmd(exec.Command("ldd", filepath.Join(depPath, name)), fmt.Sprintf("ldd binary for %v on %v", target, runtime.GOOS))
 			}
 
 			for _, dep := range strings.Split(lddOutput, "\n") {
@@ -419,7 +424,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		copy(assets+string(filepath.Separator)+".", filepath.Join(depPath, "build"))
 
 		//wrap exported go main inside c main
-		env, _, _, _ := cmd.BuildEnv(target, name, depPath)
+		env, _, _, _ := cmd.BuildEnv(target, "", "")
 		compiler := env["CXX"]
 
 		wrapper := filepath.Join(depPath, "c_main_wrapper.cpp")
@@ -683,7 +688,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		moc.ResourceNames = make(map[string]string)
 
 		//TODO: use "go list" deps instead ? and get rid of "build_static" ->
-		//also re-enable GOCACHE support once done
+		//also remove GOCACHE stale trickery once done
 		for _, l := range parser.LibDeps["build_static"] {
 			for _, ml := range parser.GetLibs() {
 				if strings.ToLower(l) == strings.ToLower(ml) {

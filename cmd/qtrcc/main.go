@@ -98,10 +98,6 @@ func main() {
 		}
 	}
 
-	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
-		os.Setenv("GOCACHE", "off")
-	}
-
 	switch {
 	case docker:
 		cmd.Docker([]string{"qtrcc", "-debug"}, target, path, false)

@@ -10,17 +10,30 @@ import (
 	"sync"
 )
 
-var qT_VERSION_CACHE string
+var (
+	qtVersionCache      string
+	qtVersionCacheMutex = new(sync.Mutex)
+)
 
 func QT_VERSION() string {
 	if version, ok := os.LookupEnv("QT_VERSION"); ok {
 		return version
 	}
 	if QT_PKG_CONFIG() {
-		if qT_VERSION_CACHE == "" {
-			qT_VERSION_CACHE = strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
+		var r string
+		qtVersionCacheMutex.Lock()
+		if qtVersionCache == "" {
+			qtVersionCache = strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
 		}
-		return qT_VERSION_CACHE
+		r = qtVersionCache
+		qtVersionCacheMutex.Unlock()
+		return r
+	}
+
+	//TODO: proper def version for macports, mxe, msys, homebrew, ...
+
+	if QT_FELGO() {
+		return "5.11.1"
 	}
 	return "5.12.0"
 }
@@ -74,6 +87,10 @@ func qT_DIR() string {
 		prefix = windowsSystemDrive() + "\\"
 	}
 
+	if QT_FELGO() {
+		return filepath.Join(prefix, "Felgo")
+	}
+
 	if dir := filepath.Join(prefix, "Qt", "Qt"+QT_VERSION()); ExistsDir(dir) {
 		return dir
 	}
@@ -123,7 +140,7 @@ func CheckBuildTarget(buildTarget string, docker bool) {
 		switch {
 		case QT_MSYS2():
 			Log.Fatalf("%v is not supported as a deploy target on %v with MSYS2 -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
-		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX():
+		case QT_HOMEBREW(), QT_MACPORTS(), QT_NIX(), QT_FELGO():
 			Log.Fatalf("%v is not supported as a deploy target on %v with HomeBrew/MacPorts/Nix -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)
 		case QT_PKG_CONFIG() && !QT_UBPORTS():
 			Log.Fatalf("%v is not supported as a deploy target on %v with PkgConfig -> install the official Qt version instead and try again", buildTarget, runtime.GOOS)

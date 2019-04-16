@@ -294,13 +294,6 @@ func (f *Function) IsSupported() bool {
 		return false
 	}
 
-	//https://github.com/therecipe/qt/issues/451
-	if strings.Contains(State.Target, "ios") &&
-		(f.Fullname == "QLayoutItem::widget" || (strings.Contains(f.ClassName(), "Layout") && (f.Name == "itemAt" || f.Name == "geometry"))) {
-		f.Access = "unsupported_isBlockedFunction"
-		return false
-	}
-
 	switch {
 	case
 		f.Fullname == "QOcspResponse::certificateStatus", f.Fullname == "QOcspResponse::revocationReason",
