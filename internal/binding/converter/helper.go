@@ -3,9 +3,7 @@ package converter
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -227,7 +225,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 			fPath = strings.Replace(fPath, "_win.h", ".h", -1)
 		}
 
-		switch runtime.GOOS {
+		switch target := parser.State.Target; target {
 		case "darwin":
 			{
 				if utils.QT_NIX() {
@@ -238,27 +236,18 @@ func IsPrivateSignal(f *parser.Function) bool {
 						}
 					}
 				} else {
-					fData = utils.LoadOptional(filepath.Join(utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
-					if len(fData) == 0 {
-						fData = utils.LoadOptional(filepath.Join(utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Headers", fPath))
+					fData = utils.LoadOptional(filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
+					if fData == "" {
+						fData = utils.LoadOptional(filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Headers", fPath))
 					}
 				}
 			}
-
-		case "windows":
+		default:
 			{
-				fData = utils.Load(filepath.Join(utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
-			}
-
-		case "linux":
-			{
-				switch {
-				case utils.QT_PKG_CONFIG():
-					fData = utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
-				case utils.QT_SAILFISH():
+				if utils.QT_SAILFISH() {
 					fData = utils.LoadOptional(filepath.Join("/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/include/qt5", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
-				default:
-					fData = utils.Load(filepath.Join(utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+				} else {
+					fData = utils.Load(filepath.Join(utils.QT_INSTALL_PREFIX(target), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}
 			}
 		}

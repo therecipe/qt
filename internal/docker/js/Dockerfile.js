@@ -5,6 +5,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
+ENV QT_API 5.12.0
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
@@ -12,8 +13,6 @@ ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 COPY --from=therecipe/qt:linux /usr/local/go /usr/local/go
 COPY --from=therecipe/qt:linux $GOPATH/bin $GOPATH/bin
 COPY --from=therecipe/qt:linux $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
-COPY --from=therecipe/qt:linux /opt/Qt/5.12.0/gcc_64/include /opt/Qt/5.12.0/gcc_64/include
-COPY --from=therecipe/qt:linux /opt/Qt/Docs /opt/Qt/Docs
 COPY --from=therecipe/qt:js_base $HOME/emsdk $HOME/emsdk
 COPY --from=therecipe/qt:js_base $HOME/.emscripten $HOME/.emscripten
 COPY --from=therecipe/qt:js_base /usr/local/Qt-5.13.0 /usr/local/Qt-5.13.0

@@ -83,12 +83,10 @@ var (
 	qtInstallPrefixCacheMutex = new(sync.Mutex)
 )
 
-func QT_INSTALL_PREFIX(target string) string              { return qT_INSTALL_PREFIX(target, false) }
-func QT_INSTALL_PREFIX_IGNORE_QMAKE(target string) string { return qT_INSTALL_PREFIX(target, true) }
-func qT_INSTALL_PREFIX(target string, ignoreQmake bool) (r string) {
+func QT_INSTALL_PREFIX(target string) (r string) {
 	qtInstallPrefixCacheMutex.Lock()
-	if _, ok := qtInstallPrefixCache[target]; !ok || ignoreQmake {
-		qtInstallPrefixCache[target] = strings.TrimSpace(RunCmd(exec.Command(toolPath("qmake", target, ignoreQmake), "-query", "QT_INSTALL_PREFIX"), fmt.Sprintf("query install prefix path for %v on %v", target, runtime.GOOS)))
+	if _, ok := qtInstallPrefixCache[target]; !ok {
+		qtInstallPrefixCache[target] = strings.TrimSpace(RunCmd(exec.Command(ToolPath("qmake", target), "-query", "QT_INSTALL_PREFIX"), fmt.Sprintf("query install prefix path for %v on %v", target, runtime.GOOS)))
 	}
 	r = qtInstallPrefixCache[target]
 	qtInstallPrefixCacheMutex.Unlock()
@@ -190,12 +188,9 @@ func QT_VAGRANT() bool {
 }
 
 //TODO: use qmake props
-func ToolPath(tool, target string) string { return toolPath(tool, target, false) }
-func toolPath(tool, target string, ignoreQmake bool) string {
-	if !ignoreQmake {
-		if dir := QT_QMAKE_DIR(); dir != "" {
-			return filepath.Join(dir, tool)
-		}
+func ToolPath(tool, target string) string {
+	if dir := QT_QMAKE_DIR(); dir != "" {
+		return filepath.Join(dir, tool)
 	}
 
 	if strings.HasPrefix(target, "sailfish") && !QT_SAILFISH() {
@@ -309,7 +304,9 @@ func GOMOD(path string) string {
 		return mod
 	}
 	cmd := exec.Command("go", "env", "GOMOD")
-	cmd.Dir = path
+	if path != "" {
+		cmd.Dir = path
+	}
 	return strings.TrimSpace(RunCmd(cmd, "GOMOD"))
 }
 
@@ -324,7 +321,9 @@ func UseGOMOD(path string) (r bool) {
 		if len(GOMOD(path)) != 0 {
 			useGOMOD = 1
 		} else {
-			useGOMOD = -1
+			if path != "" {
+				useGOMOD = -1
+			}
 		}
 	}
 	r = useGOMOD == 1

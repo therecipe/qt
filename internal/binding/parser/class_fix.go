@@ -4,9 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -232,22 +230,15 @@ func (c *Class) fixBases() {
 	//}
 
 	var (
-		prefixPath string
+		prefixPath = utils.QT_INSTALL_PREFIX(State.Target)
 		infixPath  = "include"
 		suffixPath = string(filepath.Separator)
 	)
 
-	switch runtime.GOOS {
-	case "windows":
-		{
-			prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
-		}
-
+	switch State.Target {
 	case "darwin":
 		{
 			if utils.QT_NIX() {
-				infixPath = "include"
-				suffixPath = string(filepath.Separator)
 				for _, qmakepath := range strings.Split(os.Getenv("QMAKEPATH"), string(filepath.ListSeparator)) {
 					if utils.ExistsFile(filepath.Join(qmakepath, infixPath, c.DocModule+suffixPath+c.Name)) {
 						prefixPath = qmakepath
@@ -255,25 +246,16 @@ func (c *Class) fixBases() {
 					}
 				}
 			} else {
-				prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
 				infixPath = "lib"
 				suffixPath = ".framework/Headers/"
 			}
 		}
 
-	case "linux":
+	default:
 		{
-			switch {
-			case utils.QT_PKG_CONFIG():
-				if pkgConfigIncludeDir == "" {
-					pkgConfigIncludeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
-				}
-				prefixPath = pkgConfigIncludeDir
-			case utils.QT_SAILFISH():
+			if utils.QT_SAILFISH() {
 				prefixPath = "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include/qt5"
 				infixPath = ""
-			default:
-				prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
 			}
 		}
 	}

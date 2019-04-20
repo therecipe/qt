@@ -10,6 +10,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/sirupsen/logrus"
 
@@ -47,10 +48,27 @@ func ParseFlags() bool {
 		if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+api, "get doc dir") == "" {
 			utils.Log.Errorf("invalid api version provided: '%v'", api)
 			fmt.Println("valid api versions are:")
-			if o := utils.GoListOptional("'{{ join .Imports \"|\" }}'", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
-				for _, v := range strings.Split(o, "|") {
-					fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/therecipe/qt/internal/binding/files/docs/"))
+			if !utils.UseGOMOD("") {
+				if o := utils.GoListOptional("'{{ join .Imports \"|\" }}'", "github.com/therecipe/qt/internal/binding/files/docs", "get doc dir"); o != "" {
+					for _, v := range strings.Split(o, "|") {
+						fmt.Println(strings.TrimPrefix(strings.TrimSpace(strings.Replace(v, "'", "", -1)), "github.com/therecipe/qt/internal/binding/files/docs/"))
+					}
 				}
+			} else {
+				wg := new(sync.WaitGroup)
+				for mid := 5; mid <= 15; mid++ {
+					for min := 0; min <= 5; min++ {
+						wg.Add(1)
+						go func(mid, min int) {
+							v := fmt.Sprintf("5.%v.%v", mid, min)
+							if utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+v, "get doc dir") != "" {
+								fmt.Println(v)
+							}
+							wg.Done()
+						}(mid, min)
+					}
+				}
+				wg.Wait()
 			}
 			os.Exit(1)
 		}

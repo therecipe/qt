@@ -16,6 +16,7 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
+ENV QT_API 5.12.0
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_STATIC true
@@ -26,8 +27,6 @@ COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 COPY --from=therecipe/qt:linux_static_base /opt/Qt/5.12.0 /opt/Qt/5.12.0
-COPY --from=therecipe/qt:linux /opt/Qt/Docs /opt/Qt/Docs
-COPY --from=therecipe/qt:linux /opt/Qt/Licenses /opt/Qt/Licenses
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install build-essential libglib2.0-dev libglu1-mesa-dev libpulse-dev \
 	&& apt-get --no-install-recommends -qq -y install fontconfig libasound2 libegl1-mesa libnss3 libpci3 libxcomposite1 libxcursor1 libxi6 libxrandr2 libxtst6 && apt-get -qq clean

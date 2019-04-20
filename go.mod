@@ -1,13 +1,13 @@
 module github.com/therecipe/qt
 
-require github.com/gopherjs/gopherjs v0.0.0-20190309154008-847fc94819f9
+require github.com/gopherjs/gopherjs v0.0.0-20190411002643-bd77b112433e
 
-replace golang.org/x/crypto => github.com/golang/crypto v0.0.0-20190325154230-a5d413f7728c
+replace golang.org/x/crypto => github.com/golang/crypto v0.0.0-20190418165655-df01cb2cc480
 
-replace golang.org/x/net => github.com/golang/net v0.0.0-20190326090315-15845e8f865b
+replace golang.org/x/net => github.com/golang/net v0.0.0-20190420063019-afa5a82059c6
 
-replace golang.org/x/sys => github.com/golang/sys v0.0.0-20190322080309-f49334f85ddc
+replace golang.org/x/sys => github.com/golang/sys v0.0.0-20190419153524-e8e3143a4f4a
 
-replace golang.org/x/tools => github.com/golang/tools v0.0.0-20190327011446-79af862e6737
+replace golang.org/x/tools => github.com/golang/tools v0.0.0-20190420181800-aa740d480789
 
-replace golang.org/x/text => github.com/golang/text v0.3.1-0.20190321115727-fe223c5a2583
+replace golang.org/x/text => github.com/golang/text v0.3.1-0.20190410012825-f4905fbd45b6
