@@ -17,7 +17,6 @@ struct QtTestLib_PackedList { void* data; long long len; };
 void* QAbstractItemModelTester_NewQAbstractItemModelTester2(void* model, long long mode, void* parent);
 void* QAbstractItemModelTester_NewQAbstractItemModelTester(void* model, void* parent);
 struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_Tr(char* s, char* c, int n);
-struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(char* s, char* c, int n);
 void* QAbstractItemModelTester_Model(void* ptr);
 void* QAbstractItemModelTester_MetaObject(void* ptr);
 void* QAbstractItemModelTester_MetaObjectDefault(void* ptr);

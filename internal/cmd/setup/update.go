@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -36,7 +37,7 @@ func Update() {
 
 	utils.RunCmd(exec.Command("go", "install", "-v", fmt.Sprintf("-ldflags=\"-X=github.com/therecipe/qt/internal/cmd.buildVersion=%v\"", hash), fmt.Sprintf("github.com/therecipe/qt/cmd/...")), "run \"go install\"")
 
-	Prep()
+	Prep(runtime.GOOS)
 }
 
 func Upgrade() {

@@ -84,11 +84,6 @@ struct QtSerialBus_PackedString QCanBus_QCanBus_Tr(char* s, char* c, int n)
 	return ({ QByteArray t5b76af = QCanBus::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t5b76af.prepend("WHITESPACE").constData()+10), t5b76af.size()-10 }; });
 }
 
-struct QtSerialBus_PackedString QCanBus_QCanBus_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7e44ce = QCanBus::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t7e44ce.prepend("WHITESPACE").constData()+10), t7e44ce.size()-10 }; });
-}
-
 void* QCanBus_CreateDevice(void* ptr, struct QtSerialBus_PackedString plugin, struct QtSerialBus_PackedString interfaceName, struct QtSerialBus_PackedString errorMessage)
 {
 	return static_cast<QCanBus*>(ptr)->createDevice(QString::fromUtf8(plugin.data, plugin.len), QString::fromUtf8(interfaceName.data, interfaceName.len), new QString(QString::fromUtf8(errorMessage.data, errorMessage.len)));
@@ -324,11 +319,6 @@ struct QtSerialBus_PackedString QCanBusDevice_InterpretErrorFrame(void* ptr, voi
 struct QtSerialBus_PackedString QCanBusDevice_QCanBusDevice_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t35b006 = QCanBusDevice::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t35b006.prepend("WHITESPACE").constData()+10), t35b006.size()-10 }; });
-}
-
-struct QtSerialBus_PackedString QCanBusDevice_QCanBusDevice_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6bb7f3 = QCanBusDevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t6bb7f3.prepend("WHITESPACE").constData()+10), t6bb7f3.size()-10 }; });
 }
 
 char QCanBusDevice_ConnectDevice(void* ptr)
@@ -1325,11 +1315,6 @@ struct QtSerialBus_PackedString QModbusDevice_QModbusDevice_Tr(char* s, char* c,
 	return ({ QByteArray t649e94 = QModbusDevice::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t649e94.prepend("WHITESPACE").constData()+10), t649e94.size()-10 }; });
 }
 
-struct QtSerialBus_PackedString QModbusDevice_QModbusDevice_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7a6550 = QModbusDevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t7a6550.prepend("WHITESPACE").constData()+10), t7a6550.size()-10 }; });
-}
-
 char QModbusDevice_ConnectDevice(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->connectDevice();
@@ -2028,11 +2013,6 @@ void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent
 struct QtSerialBus_PackedString QModbusReply_QModbusReply_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t57f2b7 = QModbusReply::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t57f2b7.prepend("WHITESPACE").constData()+10), t57f2b7.size()-10 }; });
-}
-
-struct QtSerialBus_PackedString QModbusReply_QModbusReply_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t3b005d = QModbusReply::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialBus_PackedString { const_cast<char*>(t3b005d.prepend("WHITESPACE").constData()+10), t3b005d.size()-10 }; });
 }
 
 void QModbusReply_ConnectErrorOccurred(void* ptr)

@@ -16,7 +16,6 @@ extern "C" {
 struct QtXmlPatterns_PackedString { char* data; long long len; };
 struct QtXmlPatterns_PackedList { void* data; long long len; };
 struct QtXmlPatterns_PackedString QAbstractMessageHandler_QAbstractMessageHandler_Tr(char* s, char* c, int n);
-struct QtXmlPatterns_PackedString QAbstractMessageHandler_QAbstractMessageHandler_TrUtf8(char* s, char* c, int n);
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr);
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr);
 void* QAbstractMessageHandler_MetaObjectDefault(void* ptr);
@@ -45,7 +44,6 @@ void QAbstractMessageHandler_DisconnectNotifyDefault(void* ptr, void* sign);
 void QAbstractMessageHandler_TimerEventDefault(void* ptr, void* event);
 void* QAbstractUriResolver_NewQAbstractUriResolver(void* parent);
 struct QtXmlPatterns_PackedString QAbstractUriResolver_QAbstractUriResolver_Tr(char* s, char* c, int n);
-struct QtXmlPatterns_PackedString QAbstractUriResolver_QAbstractUriResolver_TrUtf8(char* s, char* c, int n);
 void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr);
 void QAbstractUriResolver_DestroyQAbstractUriResolverDefault(void* ptr);
 void* QAbstractUriResolver_Resolve(void* ptr, void* relative, void* baseURI);

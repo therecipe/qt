@@ -125,15 +125,18 @@ func goFunctionBody(function *parser.Function) string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for i, p := range function.Parameters {
 					if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
-						if UseJs() {
-							if parser.UseWasm() {
-								fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i) //TODO: use real pointer for wasm instead ?
-							} else {
-								fmt.Fprintf(bb, "%vTID := time.Now().UnixNano()+%v\n", parser.CleanName(p.Name, p.Value), i)
-							}
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[1]vTID)), %[1]v)\n", parser.CleanName(p.Name, p.Value))
+						if UseJs() && !parser.UseWasm() {
+							fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[2]vTID)), unsafe.Pointer(%[1]v%[2]v))\n",
+								func() string {
+									if !strings.HasPrefix(p.PureGoType, "*") {
+										return "&"
+									}
+									return ""
+								}(),
+								parser.CleanName(p.Name, p.Value))
 						} else {
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), %[2]v)\n",
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]v%[2]v), unsafe.Pointer(%[1]v%[2]v))\n",
 								func() string {
 									if !strings.HasPrefix(p.PureGoType, "*") {
 										return "&"
@@ -150,7 +153,7 @@ func goFunctionBody(function *parser.Function) string {
 					defer bb.Reset()
 					fmt.Fprintf(bb, "oP := unsafe.Pointer(%v)\n", body)
 					fmt.Fprint(bb, "if oI, ok := qt.ReceiveTemp(oP); ok {\n")
-					fmt.Fprintf(bb, "oD := oI.(%v)\n", function.PureGoOutput)
+					fmt.Fprintf(bb, "oD := (*(*%v)(oI))\n", function.PureGoOutput)
 					if !function.IsMocProperty {
 						fmt.Fprint(bb, "qt.UnregisterTemp(oP)\n")
 					}
@@ -165,7 +168,7 @@ func goFunctionBody(function *parser.Function) string {
 			}
 
 			switch {
-			case function.NeedsFinalizer && parser.State.ClassMap[parser.CleanValue(function.Output)].IsSupported() || function.Meta == parser.CONSTRUCTOR && !(parser.State.ClassMap[function.Name].HasCallbackFunctions() || parser.State.ClassMap[function.Name].IsSubClassOfQObject()):
+			case function.NeedsFinalizer && parser.State.ClassMap[parser.CleanValue(function.Output)].IsSupported() || function.Meta == parser.CONSTRUCTOR && !(parser.State.ClassMap[function.Name].HasCallbackFunctionsBesideTheDestructor() || parser.State.ClassMap[function.Name].IsSubClassOfQObject()):
 				{
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
@@ -292,7 +295,7 @@ func goFunctionBody(function *parser.Function) string {
 							conv := converter.GoOutputJS(fmt.Sprintf("args[%v]", i+1), p.Value, function, function.PureGoOutput)
 							if strings.Contains(conv, "func(") {
 								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), fmt.Sprintf("args[%v]", i+1))
-							} else if converter.GoType(function, p.Value, p.PureGoType) == "*bool" {
+							} else if gType := converter.GoType(function, p.Value, p.PureGoType); gType == "*bool" || gType == "*int" {
 								fmt.Fprintf(bb, "%v := uintptr(args[%v].Int())\n", parser.CleanName(p.Name, p.Value), i+1)
 							} else {
 								fmt.Fprintf(bb, "%v := %v\n", parser.CleanName(p.Name, p.Value), conv)
@@ -315,18 +318,26 @@ func goFunctionBody(function *parser.Function) string {
 						if !strings.HasSuffix(function.Name, "Changed") { //TODO: check if property instead
 							fmt.Fprintf(bb, "qt.UnregisterTemp(unsafe.Pointer(uintptr(%v)))\n", parser.CleanName(p.Name, p.Value))
 						}
-						fmt.Fprintf(bb, "%[1]vD = %[1]vI.(%v)\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
+						fmt.Fprintf(bb, "%[1]vD = (*(*%v)(%[1]vI))\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
 						fmt.Fprint(bb, "}\n")
 					}
 				}
 			}
 
 			for _, p := range function.Parameters {
-				if converter.GoType(function, p.Value, p.PureGoType) == "*bool" {
+				if pType := converter.GoType(function, p.Value, p.PureGoType); pType == "*bool" || pType == "*int" {
 					if UseJs() {
-						fmt.Fprintf(bb, "%vR := int8(qt.WASM.Call(\"getValue\", %v, \"i8\").Int()) != 0\ndefer func(){qt.WASM.Call(\"setValue\", %v, qt.GoBoolToInt(%vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value))
+						if pType == "*int" {
+							fmt.Fprintf(bb, "var %[1]vR int\nif %[1]v != 0 {\n%[1]vR = int(int32(qt.WASM.Call(\"getValue\", %[1]v, \"i32\").Int()))\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, %[1]vR, \"i32\")}()\n}\n", parser.CleanName(p.Name, p.Value))
+						} else { //TODO: make empty *bool callbacks safe?
+							fmt.Fprintf(bb, "%[1]vR := int8(qt.WASM.Call(\"getValue\", %[1]v, \"i8\").Int()) != 0\ndefer func(){qt.WASM.Call(\"setValue\", %[1]v, qt.GoBoolToInt(%[1]vR), \"i8\")}()\n", parser.CleanName(p.Name, p.Value))
+						}
 					} else {
-						fmt.Fprintf(bb, "%vR := %v\ndefer func(){*%v = %v}()\n", parser.CleanName(p.Name, p.Value), converter.GoOutput("*"+parser.CleanName(p.Name, p.Value), p.Value, function, p.PureGoType), parser.CleanName(p.Name, p.Value), converter.GoInput(parser.CleanName(p.Name, p.Value)+"R", strings.Replace(p.Value, "*", "", -1), function, p.PureGoType))
+						if pType == "*int" {
+							fmt.Fprintf(bb, "var %vR int\nif %v != nil {\n%vR = %v\ndefer func(){*%v = %v}()\n}\n", parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), parser.CleanName(p.Name, p.Value), converter.GoOutput("*"+parser.CleanName(p.Name, p.Value), p.Value, function, p.PureGoType), parser.CleanName(p.Name, p.Value), converter.GoInput(parser.CleanName(p.Name, p.Value)+"R", strings.Replace(p.Value, "*", "", -1), function, p.PureGoType))
+						} else { //TODO: make empty *bool callbacks safe?
+							fmt.Fprintf(bb, "%vR := %v\ndefer func(){*%v = %v}()\n", parser.CleanName(p.Name, p.Value), converter.GoOutput("*"+parser.CleanName(p.Name, p.Value), p.Value, function, p.PureGoType), parser.CleanName(p.Name, p.Value), converter.GoInput(parser.CleanName(p.Name, p.Value)+"R", strings.Replace(p.Value, "*", "", -1), function, p.PureGoType))
+						}
 					}
 				}
 			}
@@ -347,12 +358,12 @@ func goFunctionBody(function *parser.Function) string {
 
 			if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
 				//TODO wasm: wait for fix to https://github.com/golang/go/issues/26045#issuecomment-400017599
-				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+				fmt.Fprintf(bb, "(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
 			} else {
 				if function.Name == "readData" && len(function.Parameters) == 2 {
 					if !UseJs() {
 						fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
-						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
+						fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))\n}\n")
 						fmt.Fprint(bb, "return ret")
 					} else {
@@ -360,22 +371,34 @@ func goFunctionBody(function *parser.Function) string {
 					}
 				} else {
 					if function.IsMocFunction && function.PureGoOutput != "" && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
-						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
-						fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%voP), oP)\n", func() string {
-							if !strings.HasPrefix(function.PureGoOutput, "*") {
-								return "&"
-							}
-							return ""
-						}())
-						fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
-							if !strings.HasPrefix(function.PureGoOutput, "*") {
-								return "&"
-							}
-							return ""
-						}()), function.Output, function, function.PureGoOutput))
+						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
+						if UseJs() && !parser.UseWasm() {
+							fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
+								func() string {
+									if !strings.HasPrefix(function.PureGoOutput, "*") {
+										return "&"
+									}
+									return ""
+								}())
+							fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
+						} else {
+							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]voP), unsafe.Pointer(%[1]voP))\n", func() string {
+								if !strings.HasPrefix(function.PureGoOutput, "*") {
+									return "&"
+								}
+								return ""
+							}())
+							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
+								if !strings.HasPrefix(function.PureGoOutput, "*") {
+									return "&"
+								}
+								return ""
+							}()), function.Output, function, function.PureGoOutput))
+						}
 					} else {
 						if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
-							fmt.Fprintf(bb, "tempVal := signal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+							fmt.Fprintf(bb, "tempVal := (*(*%v)(signal))(%v)\n", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
 							fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function, function.PureGoOutput),
 								func() string {
 									if parser.IsBlackListedPureGoType(function.PureGoOutput) {
@@ -387,7 +410,7 @@ func goFunctionBody(function *parser.Function) string {
 									return "C.longlong(len(tempVal))"
 								}())
 						} else {
-							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
+							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 						}
 					}
 				}
@@ -435,18 +458,30 @@ func goFunctionBody(function *parser.Function) string {
 							} else {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							}
-							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%voP), oP)\n", func() string {
-								if !strings.HasPrefix(function.PureGoOutput, "*") {
-									return "&"
-								}
-								return ""
-							}())
-							fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
-								if !strings.HasPrefix(function.PureGoOutput, "*") {
-									return "&"
-								}
-								return ""
-							}()), function.Output, function, function.PureGoOutput))
+							if UseJs() && !parser.UseWasm() {
+								fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
+								fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(rTID)), unsafe.Pointer(%voP))\n",
+									func() string {
+										if !strings.HasPrefix(function.PureGoOutput, "*") {
+											return "&"
+										}
+										return ""
+									}())
+								fmt.Fprintf(bb, "return %v", converter.GoInput("rTID", function.Output, function, function.PureGoOutput))
+							} else {
+								fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(%[1]voP), unsafe.Pointer(%[1]voP))\n", func() string {
+									if !strings.HasPrefix(function.PureGoOutput, "*") {
+										return "&"
+									}
+									return ""
+								}())
+								fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("uintptr(unsafe.Pointer(%voP))", func() string {
+									if !strings.HasPrefix(function.PureGoOutput, "*") {
+										return "&"
+									}
+									return ""
+								}()), function.Output, function, function.PureGoOutput))
+							}
 						} else {
 							if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
 								if UseJs() {
@@ -543,6 +578,14 @@ func goFunctionBody(function *parser.Function) string {
 				}(),
 			)
 
+			if function.Name == "destroyed" && (class.Module == parser.MOC || class.Name == "QObject") {
+				if UseJs() {
+					fmt.Fprint(bb, "qt.Unregister(unsafe.Pointer(ptr))\n")
+				} else {
+					fmt.Fprint(bb, "qt.Unregister(ptr)\n")
+				}
+			}
+
 			if parser.UseWasm() {
 				if converter.GoHeaderOutput(&headerOutputFakeFunc) == "" {
 					bb.WriteString("\nreturn nil")
@@ -557,10 +600,7 @@ func goFunctionBody(function *parser.Function) string {
 				function.OverloadNumber,
 			)
 
-			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", %v)",
-				function.SignalMode,
-				function.Name,
-				function.OverloadNumber,
+			fmt.Fprintf(bb, "\tf := %v\n",
 				func() string {
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
@@ -570,7 +610,7 @@ func goFunctionBody(function *parser.Function) string {
 					var f = *function
 					f.SignalMode = ""
 
-					fmt.Fprintf(bb, "signal.(%v%v)(%v)\n",
+					fmt.Fprintf(bb, "(*(*%v%v)(signal))(%v)\n",
 						converter.GoHeaderInputSignalFunction(&f),
 						converter.GoHeaderOutput(&f),
 						converter.GoGoInput(&f),
@@ -588,41 +628,31 @@ func goFunctionBody(function *parser.Function) string {
 
 					return bb.String()
 				}())
-
-			fmt.Fprintf(bb, "} else {\n")
-			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\"%v)",
+			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", unsafe.Pointer(&f))",
 				function.SignalMode,
 				function.Name,
-				function.OverloadNumber,
-				func() string {
-					if function.SignalMode == parser.CONNECT {
-						return ", f"
-					}
-					return ""
-				}(),
-			)
-
+				function.OverloadNumber)
+			fmt.Fprintf(bb, "} else {\n")
+			fmt.Fprintf(bb, "\tqt.%vSignal(ptr.Pointer(), \"%v%v\", unsafe.Pointer(&f))",
+				function.SignalMode,
+				function.Name,
+				function.OverloadNumber)
 			fmt.Fprintf(bb, "}")
 		}
 
 	case parser.DISCONNECT:
 		{
-			fmt.Fprintf(bb, "\nqt.%vSignal(ptr.Pointer(), \"%v%v\"%v)",
+			fmt.Fprintf(bb, "\nqt.%vSignal(ptr.Pointer(), \"%v%v\")",
 				function.SignalMode,
 				function.Name,
-				function.OverloadNumber,
-				func() string {
-					if function.SignalMode == parser.CONNECT {
-						return ", f"
-					}
-					return ""
-				}(),
-			)
+				function.OverloadNumber)
 		}
 	}
 
 	if (function.Name == "deleteLater" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
-		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
+		if function.Name != "deleteLater" {
+			fmt.Fprint(bb, "\nptr.SetPointer(nil)")
+		}
 		if class.HasFinalizer {
 			fmt.Fprint(bb, "\nruntime.SetFinalizer(ptr, nil)")
 		}

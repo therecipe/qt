@@ -320,11 +320,6 @@ struct QtGui_PackedString QAbstractTextDocumentLayout_QAbstractTextDocumentLayou
 	return ({ QByteArray tf1d2ba = QAbstractTextDocumentLayout::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tf1d2ba.prepend("WHITESPACE").constData()+10), tf1d2ba.size()-10 }; });
 }
 
-struct QtGui_PackedString QAbstractTextDocumentLayout_QAbstractTextDocumentLayout_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tcf3bd1 = QAbstractTextDocumentLayout::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tcf3bd1.prepend("WHITESPACE").constData()+10), tcf3bd1.size()-10 }; });
-}
-
 void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
 {
 	return new QTextCharFormat(static_cast<QAbstractTextDocumentLayout*>(ptr)->format(position));
@@ -785,11 +780,6 @@ struct QtGui_PackedString QAccessibleActionInterface_QAccessibleActionInterface_
 struct QtGui_PackedString QAccessibleActionInterface_QAccessibleActionInterface_Tr(char* sourceText, char* disambiguation, int n)
 {
 	return ({ QByteArray ta97743 = QAccessibleActionInterface::tr(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(ta97743.prepend("WHITESPACE").constData()+10), ta97743.size()-10 }; });
-}
-
-struct QtGui_PackedString QAccessibleActionInterface_QAccessibleActionInterface_TrUtf8(char* sourceText, char* disambiguation, int n)
-{
-	return ({ QByteArray t8052cc = QAccessibleActionInterface::trUtf8(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t8052cc.prepend("WHITESPACE").constData()+10), t8052cc.size()-10 }; });
 }
 
 struct QtGui_PackedString QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction()
@@ -1454,11 +1444,6 @@ void* QAccessiblePlugin_NewQAccessiblePlugin(void* parent)
 struct QtGui_PackedString QAccessiblePlugin_QAccessiblePlugin_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t95c25d = QAccessiblePlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t95c25d.prepend("WHITESPACE").constData()+10), t95c25d.size()-10 }; });
-}
-
-struct QtGui_PackedString QAccessiblePlugin_QAccessiblePlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf5d3c7 = QAccessiblePlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tf5d3c7.prepend("WHITESPACE").constData()+10), tf5d3c7.size()-10 }; });
 }
 
 void QAccessiblePlugin_DestroyQAccessiblePlugin(void* ptr)
@@ -3124,11 +3109,6 @@ struct QtGui_PackedString QClipboard_QClipboard_Tr(char* s, char* c, int n)
 	return ({ QByteArray t659255 = QClipboard::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t659255.prepend("WHITESPACE").constData()+10), t659255.size()-10 }; });
 }
 
-struct QtGui_PackedString QClipboard_QClipboard_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tfa2a05 = QClipboard::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tfa2a05.prepend("WHITESPACE").constData()+10), tfa2a05.size()-10 }; });
-}
-
 void QClipboard_ConnectChanged(void* ptr)
 {
 	QObject::connect(static_cast<QClipboard*>(ptr), static_cast<void (QClipboard::*)(QClipboard::Mode)>(&QClipboard::changed), static_cast<MyQClipboard*>(ptr), static_cast<void (MyQClipboard::*)(QClipboard::Mode)>(&MyQClipboard::Signal_Changed));
@@ -4465,11 +4445,6 @@ void* QDrag_NewQDrag(void* dragSource)
 struct QtGui_PackedString QDrag_QDrag_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tf69c2d = QDrag::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tf69c2d.prepend("WHITESPACE").constData()+10), tf69c2d.size()-10 }; });
-}
-
-struct QtGui_PackedString QDrag_QDrag_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t1ae729 = QDrag::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t1ae729.prepend("WHITESPACE").constData()+10), t1ae729.size()-10 }; });
 }
 
 long long QDrag_Exec(void* ptr, long long supportedActions)
@@ -6127,11 +6102,6 @@ struct QtGui_PackedString QGenericPlugin_QGenericPlugin_Tr(char* s, char* c, int
 	return ({ QByteArray tc6abe3 = QGenericPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tc6abe3.prepend("WHITESPACE").constData()+10), tc6abe3.size()-10 }; });
 }
 
-struct QtGui_PackedString QGenericPlugin_QGenericPlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t55297b = QGenericPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t55297b.prepend("WHITESPACE").constData()+10), t55297b.size()-10 }; });
-}
-
 void QGenericPlugin_DestroyQGenericPlugin(void* ptr)
 {
 	static_cast<QGenericPlugin*>(ptr)->~QGenericPlugin();
@@ -6675,11 +6645,6 @@ struct QtGui_PackedString QGuiApplication_QGuiApplication_PlatformName()
 struct QtGui_PackedString QGuiApplication_QGuiApplication_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t2b085a = QGuiApplication::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t2b085a.prepend("WHITESPACE").constData()+10), t2b085a.size()-10 }; });
-}
-
-struct QtGui_PackedString QGuiApplication_QGuiApplication_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t735009 = QGuiApplication::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t735009.prepend("WHITESPACE").constData()+10), t735009.size()-10 }; });
 }
 
 void* QGuiApplication_QGuiApplication_StyleHints()
@@ -7841,11 +7806,6 @@ struct QtGui_PackedString QIconEnginePlugin_QIconEnginePlugin_Tr(char* s, char* 
 	return ({ QByteArray t5dd8f4 = QIconEnginePlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t5dd8f4.prepend("WHITESPACE").constData()+10), t5dd8f4.size()-10 }; });
 }
 
-struct QtGui_PackedString QIconEnginePlugin_QIconEnginePlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tc85ff8 = QIconEnginePlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tc85ff8.prepend("WHITESPACE").constData()+10), tc85ff8.size()-10 }; });
-}
-
 void QIconEnginePlugin_DestroyQIconEnginePlugin(void* ptr)
 {
 	static_cast<QIconEnginePlugin*>(ptr)->~QIconEnginePlugin();
@@ -8833,11 +8793,6 @@ struct QtGui_PackedString QImageIOPlugin_QImageIOPlugin_Tr(char* s, char* c, int
 	return ({ QByteArray t879a9d = QImageIOPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t879a9d.prepend("WHITESPACE").constData()+10), t879a9d.size()-10 }; });
 }
 
-struct QtGui_PackedString QImageIOPlugin_QImageIOPlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t655f48 = QImageIOPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t655f48.prepend("WHITESPACE").constData()+10), t655f48.size()-10 }; });
-}
-
 void QImageIOPlugin_DestroyQImageIOPlugin(void* ptr)
 {
 	static_cast<QImageIOPlugin*>(ptr)->~QImageIOPlugin();
@@ -9082,11 +9037,6 @@ struct QtGui_PackedList QImageReader_QImageReader_SupportedMimeTypes()
 struct QtGui_PackedString QImageReader_QImageReader_Tr(char* sourceText, char* disambiguation, int n)
 {
 	return ({ QByteArray t5d3881 = QImageReader::tr(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t5d3881.prepend("WHITESPACE").constData()+10), t5d3881.size()-10 }; });
-}
-
-struct QtGui_PackedString QImageReader_QImageReader_TrUtf8(char* sourceText, char* disambiguation, int n)
-{
-	return ({ QByteArray t4648a6 = QImageReader::trUtf8(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t4648a6.prepend("WHITESPACE").constData()+10), t4648a6.size()-10 }; });
 }
 
 char QImageReader_JumpToImage(void* ptr, int imageNumber)
@@ -9413,11 +9363,6 @@ struct QtGui_PackedString QImageWriter_QImageWriter_Tr(char* sourceText, char* d
 	return ({ QByteArray tacd619 = QImageWriter::tr(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tacd619.prepend("WHITESPACE").constData()+10), tacd619.size()-10 }; });
 }
 
-struct QtGui_PackedString QImageWriter_QImageWriter_TrUtf8(char* sourceText, char* disambiguation, int n)
-{
-	return ({ QByteArray t55d8ed = QImageWriter::trUtf8(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t55d8ed.prepend("WHITESPACE").constData()+10), t55d8ed.size()-10 }; });
-}
-
 char QImageWriter_Write(void* ptr, void* image)
 {
 	return static_cast<QImageWriter*>(ptr)->write(*static_cast<QImage*>(image));
@@ -9694,11 +9639,6 @@ int QInputMethod_QInputMethod_QRegisterMetaType(){qRegisterMetaType<QInputMethod
 struct QtGui_PackedString QInputMethod_QInputMethod_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t9feb78 = QInputMethod::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t9feb78.prepend("WHITESPACE").constData()+10), t9feb78.size()-10 }; });
-}
-
-struct QtGui_PackedString QInputMethod_QInputMethod_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7ab78b = QInputMethod::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t7ab78b.prepend("WHITESPACE").constData()+10), t7ab78b.size()-10 }; });
 }
 
 void* QInputMethod_QInputMethod_QueryFocusObject(long long query, void* argument)
@@ -11472,11 +11412,6 @@ struct QtGui_PackedString QMovie_QMovie_Tr(char* s, char* c, int n)
 	return ({ QByteArray t36e6fa = QMovie::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t36e6fa.prepend("WHITESPACE").constData()+10), t36e6fa.size()-10 }; });
 }
 
-struct QtGui_PackedString QMovie_QMovie_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t75522a = QMovie::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t75522a.prepend("WHITESPACE").constData()+10), t75522a.size()-10 }; });
-}
-
 char QMovie_JumpToFrame(void* ptr, int frameNumber)
 {
 	return static_cast<QMovie*>(ptr)->jumpToFrame(frameNumber);
@@ -12132,11 +12067,6 @@ struct QtGui_PackedString QOffscreenSurface_QOffscreenSurface_Tr(char* s, char* 
 		return ({ QByteArray t442f01 = QOffscreenSurface::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t442f01.prepend("WHITESPACE").constData()+10), t442f01.size()-10 }; });
 }
 
-struct QtGui_PackedString QOffscreenSurface_QOffscreenSurface_TrUtf8(char* s, char* c, int n)
-{
-		return ({ QByteArray t0b1a83 = QOffscreenSurface::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t0b1a83.prepend("WHITESPACE").constData()+10), t0b1a83.size()-10 }; });
-}
-
 void QOffscreenSurface_Create(void* ptr)
 {
 		static_cast<QOffscreenSurface*>(ptr)->create();
@@ -12660,11 +12590,6 @@ struct QtGui_PackedString QOpenGLContext_QOpenGLContext_Tr(char* s, char* c, int
 	return ({ QByteArray t7cf95d = QOpenGLContext::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t7cf95d.prepend("WHITESPACE").constData()+10), t7cf95d.size()-10 }; });
 }
 
-struct QtGui_PackedString QOpenGLContext_QOpenGLContext_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t677775 = QOpenGLContext::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t677775.prepend("WHITESPACE").constData()+10), t677775.size()-10 }; });
-}
-
 char QOpenGLContext_QOpenGLContext_AreSharing(void* first, void* second)
 {
 	return QOpenGLContext::areSharing(static_cast<QOpenGLContext*>(first), static_cast<QOpenGLContext*>(second));
@@ -13032,11 +12957,6 @@ struct QtGui_PackedString QOpenGLContextGroup_QOpenGLContextGroup_Tr(char* s, ch
 	return ({ QByteArray t572cea = QOpenGLContextGroup::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t572cea.prepend("WHITESPACE").constData()+10), t572cea.size()-10 }; });
 }
 
-struct QtGui_PackedString QOpenGLContextGroup_QOpenGLContextGroup_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf747b1 = QOpenGLContextGroup::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tf747b1.prepend("WHITESPACE").constData()+10), tf747b1.size()-10 }; });
-}
-
 struct QtGui_PackedList QOpenGLContextGroup_Shares(void* ptr)
 {
 	return ({ QList<QOpenGLContext *>* tmpValue = new QList<QOpenGLContext *>(static_cast<QOpenGLContextGroup*>(ptr)->shares()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
@@ -13301,11 +13221,6 @@ void* QOpenGLDebugLogger_NewQOpenGLDebugLogger(void* parent)
 struct QtGui_PackedString QOpenGLDebugLogger_QOpenGLDebugLogger_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t098dc5 = QOpenGLDebugLogger::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t098dc5.prepend("WHITESPACE").constData()+10), t098dc5.size()-10 }; });
-}
-
-struct QtGui_PackedString QOpenGLDebugLogger_QOpenGLDebugLogger_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t584e57 = QOpenGLDebugLogger::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t584e57.prepend("WHITESPACE").constData()+10), t584e57.size()-10 }; });
 }
 
 char QOpenGLDebugLogger_Initialize(void* ptr)
@@ -15897,11 +15812,6 @@ struct QtGui_PackedString QOpenGLShader_QOpenGLShader_Tr(char* s, char* c, int n
 	return ({ QByteArray tfeb2d7 = QOpenGLShader::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tfeb2d7.prepend("WHITESPACE").constData()+10), tfeb2d7.size()-10 }; });
 }
 
-struct QtGui_PackedString QOpenGLShader_QOpenGLShader_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7759d6 = QOpenGLShader::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t7759d6.prepend("WHITESPACE").constData()+10), t7759d6.size()-10 }; });
-}
-
 char QOpenGLShader_CompileSourceCode2(void* ptr, void* source)
 {
 	return static_cast<QOpenGLShader*>(ptr)->compileSourceCode(*static_cast<QByteArray*>(source));
@@ -16203,11 +16113,6 @@ void* QOpenGLShaderProgram_NewQOpenGLShaderProgram(void* parent)
 struct QtGui_PackedString QOpenGLShaderProgram_QOpenGLShaderProgram_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray te4d9a4 = QOpenGLShaderProgram::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(te4d9a4.prepend("WHITESPACE").constData()+10), te4d9a4.size()-10 }; });
-}
-
-struct QtGui_PackedString QOpenGLShaderProgram_QOpenGLShaderProgram_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tab432f = QOpenGLShaderProgram::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tab432f.prepend("WHITESPACE").constData()+10), tab432f.size()-10 }; });
 }
 
 char QOpenGLShaderProgram_AddCacheableShaderFromSourceCode2(void* ptr, long long ty, void* source)
@@ -17647,11 +17552,6 @@ struct QtGui_PackedString QOpenGLTimeMonitor_QOpenGLTimeMonitor_Tr(char* s, char
 	return ({ QByteArray tca25e9 = QOpenGLTimeMonitor::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tca25e9.prepend("WHITESPACE").constData()+10), tca25e9.size()-10 }; });
 }
 
-struct QtGui_PackedString QOpenGLTimeMonitor_QOpenGLTimeMonitor_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tbb13c4 = QOpenGLTimeMonitor::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tbb13c4.prepend("WHITESPACE").constData()+10), tbb13c4.size()-10 }; });
-}
-
 char QOpenGLTimeMonitor_Create(void* ptr)
 {
 	return static_cast<QOpenGLTimeMonitor*>(ptr)->create();
@@ -17975,11 +17875,6 @@ void* QOpenGLTimerQuery_NewQOpenGLTimerQuery(void* parent)
 struct QtGui_PackedString QOpenGLTimerQuery_QOpenGLTimerQuery_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tfff934 = QOpenGLTimerQuery::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tfff934.prepend("WHITESPACE").constData()+10), tfff934.size()-10 }; });
-}
-
-struct QtGui_PackedString QOpenGLTimerQuery_QOpenGLTimerQuery_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tb3b15d = QOpenGLTimerQuery::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tb3b15d.prepend("WHITESPACE").constData()+10), tb3b15d.size()-10 }; });
 }
 
 char QOpenGLTimerQuery_Create(void* ptr)
@@ -18324,11 +18219,6 @@ struct QtGui_PackedString QOpenGLVertexArrayObject_QOpenGLVertexArrayObject_Tr(c
 	return ({ QByteArray t7b08be = QOpenGLVertexArrayObject::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t7b08be.prepend("WHITESPACE").constData()+10), t7b08be.size()-10 }; });
 }
 
-struct QtGui_PackedString QOpenGLVertexArrayObject_QOpenGLVertexArrayObject_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t98a7ac = QOpenGLVertexArrayObject::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t98a7ac.prepend("WHITESPACE").constData()+10), t98a7ac.size()-10 }; });
-}
-
 char QOpenGLVertexArrayObject_Create(void* ptr)
 {
 	return static_cast<QOpenGLVertexArrayObject*>(ptr)->create();
@@ -18563,7 +18453,7 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -19514,7 +19404,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWindow_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -21945,11 +21835,6 @@ struct QtGui_PackedString QPdfWriter_QPdfWriter_Tr(char* s, char* c, int n)
 		return ({ QByteArray tc3b60c = QPdfWriter::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tc3b60c.prepend("WHITESPACE").constData()+10), tc3b60c.size()-10 }; });
 }
 
-struct QtGui_PackedString QPdfWriter_QPdfWriter_TrUtf8(char* s, char* c, int n)
-{
-		return ({ QByteArray t3ab033 = QPdfWriter::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t3ab033.prepend("WHITESPACE").constData()+10), t3ab033.size()-10 }; });
-}
-
 char QPdfWriter_NewPage(void* ptr)
 {
 		return static_cast<QPdfWriter*>(ptr)->newPage();
@@ -22644,11 +22529,6 @@ void* QPictureFormatPlugin_NewQPictureFormatPlugin(void* parent)
 struct QtGui_PackedString QPictureFormatPlugin_QPictureFormatPlugin_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t7a788b = QPictureFormatPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t7a788b.prepend("WHITESPACE").constData()+10), t7a788b.size()-10 }; });
-}
-
-struct QtGui_PackedString QPictureFormatPlugin_QPictureFormatPlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t956923 = QPictureFormatPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t956923.prepend("WHITESPACE").constData()+10), t956923.size()-10 }; });
 }
 
 char QPictureFormatPlugin_InstallIOHandler(void* ptr, struct QtGui_PackedString format)
@@ -24607,7 +24487,7 @@ public:
 	void update() { callbackQPaintDeviceWindow_Update3(this); };
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -25641,11 +25521,6 @@ struct QtGui_PackedString QScreen_QScreen_Tr(char* s, char* c, int n)
 	return ({ QByteArray t3d32c2 = QScreen::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t3d32c2.prepend("WHITESPACE").constData()+10), t3d32c2.size()-10 }; });
 }
 
-struct QtGui_PackedString QScreen_QScreen_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tc52969 = QScreen::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tc52969.prepend("WHITESPACE").constData()+10), tc52969.size()-10 }; });
-}
-
 void QScreen_ConnectAvailableGeometryChanged(void* ptr)
 {
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QRect &)>(&QScreen::availableGeometryChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QRect &)>(&MyQScreen::Signal_AvailableGeometryChanged));
@@ -26271,11 +26146,6 @@ int QSessionManager_QSessionManager_QRegisterMetaType(){qRegisterMetaType<QSessi
 struct QtGui_PackedString QSessionManager_QSessionManager_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t6fbc5e = QSessionManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t6fbc5e.prepend("WHITESPACE").constData()+10), t6fbc5e.size()-10 }; });
-}
-
-struct QtGui_PackedString QSessionManager_QSessionManager_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf5c1ae = QSessionManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tf5c1ae.prepend("WHITESPACE").constData()+10), tf5c1ae.size()-10 }; });
 }
 
 char QSessionManager_AllowsErrorInteraction(void* ptr)
@@ -27423,11 +27293,6 @@ struct QtGui_PackedString QStandardItemModel_QStandardItemModel_Tr(char* s, char
 	return ({ QByteArray td4ff8c = QStandardItemModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(td4ff8c.prepend("WHITESPACE").constData()+10), td4ff8c.size()-10 }; });
 }
 
-struct QtGui_PackedString QStandardItemModel_QStandardItemModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta85b5b = QStandardItemModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(ta85b5b.prepend("WHITESPACE").constData()+10), ta85b5b.size()-10 }; });
-}
-
 char QStandardItemModel_ClearItemData(void* ptr, void* index)
 {
 	return static_cast<QStandardItemModel*>(ptr)->clearItemData(*static_cast<QModelIndex*>(index));
@@ -28525,11 +28390,6 @@ struct QtGui_PackedString QStyleHints_QStyleHints_Tr(char* s, char* c, int n)
 	return ({ QByteArray t98e56f = QStyleHints::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t98e56f.prepend("WHITESPACE").constData()+10), t98e56f.size()-10 }; });
 }
 
-struct QtGui_PackedString QStyleHints_QStyleHints_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t706781 = QStyleHints::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t706781.prepend("WHITESPACE").constData()+10), t706781.size()-10 }; });
-}
-
 void QStyleHints_ConnectCursorFlashTimeChanged(void* ptr)
 {
 	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::cursorFlashTimeChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_CursorFlashTimeChanged));
@@ -29316,11 +29176,6 @@ int QSyntaxHighlighter_QSyntaxHighlighter_QRegisterMetaType(){qRegisterMetaType<
 struct QtGui_PackedString QSyntaxHighlighter_QSyntaxHighlighter_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t5766ed = QSyntaxHighlighter::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t5766ed.prepend("WHITESPACE").constData()+10), t5766ed.size()-10 }; });
-}
-
-struct QtGui_PackedString QSyntaxHighlighter_QSyntaxHighlighter_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t4a56b9 = QSyntaxHighlighter::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t4a56b9.prepend("WHITESPACE").constData()+10), t4a56b9.size()-10 }; });
 }
 
 void* QSyntaxHighlighter_NewQSyntaxHighlighter(void* parent)
@@ -30955,11 +30810,6 @@ int QTextDocument_QTextDocument_QRegisterMetaType(){qRegisterMetaType<QTextDocum
 struct QtGui_PackedString QTextDocument_QTextDocument_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t4e8cfa = QTextDocument::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t4e8cfa.prepend("WHITESPACE").constData()+10), t4e8cfa.size()-10 }; });
-}
-
-struct QtGui_PackedString QTextDocument_QTextDocument_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t2af0b3 = QTextDocument::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t2af0b3.prepend("WHITESPACE").constData()+10), t2af0b3.size()-10 }; });
 }
 
 void* QTextDocument_NewQTextDocument(void* parent)
@@ -33284,11 +33134,6 @@ struct QtGui_PackedString QTextObject_QTextObject_Tr(char* s, char* c, int n)
 	return ({ QByteArray t93b5f6 = QTextObject::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t93b5f6.prepend("WHITESPACE").constData()+10), t93b5f6.size()-10 }; });
 }
 
-struct QtGui_PackedString QTextObject_QTextObject_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t13c192 = QTextObject::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t13c192.prepend("WHITESPACE").constData()+10), t13c192.size()-10 }; });
-}
-
 void* QTextObject_NewQTextObject(void* document)
 {
 	return new MyQTextObject(static_cast<QTextDocument*>(document));
@@ -34586,11 +34431,6 @@ struct QtGui_PackedString QValidator_QValidator_Tr(char* s, char* c, int n)
 	return ({ QByteArray tb7ce9e = QValidator::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tb7ce9e.prepend("WHITESPACE").constData()+10), tb7ce9e.size()-10 }; });
 }
 
-struct QtGui_PackedString QValidator_QValidator_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t11aa72 = QValidator::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t11aa72.prepend("WHITESPACE").constData()+10), t11aa72.size()-10 }; });
-}
-
 void* QValidator_NewQValidator(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -35654,7 +35494,7 @@ public:
 	MyQWindow(QWindow *parent) : QWindow(parent) {QWindow_QWindow_QRegisterMetaType();};
 	bool close() { return callbackQWindow_Close(this) != 0; };
 	bool event(QEvent * ev) { return callbackQWindow_Event(this, ev) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void Signal_ActiveChanged() { callbackQWindow_ActiveChanged(this); };
 	void alert(int msec) { callbackQWindow_Alert(this, msec); };
 	void Signal_ContentOrientationChanged(Qt::ScreenOrientation orientation) { callbackQWindow_ContentOrientationChanged(this, orientation); };
@@ -35738,11 +35578,6 @@ struct QtGui_PackedString QWindow_QWindow_Tr(char* s, char* c, int n)
 		return ({ QByteArray tdca59e = QWindow::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(tdca59e.prepend("WHITESPACE").constData()+10), tdca59e.size()-10 }; });
 }
 
-struct QtGui_PackedString QWindow_QWindow_TrUtf8(char* s, char* c, int n)
-{
-		return ({ QByteArray t82c68d = QWindow::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGui_PackedString { const_cast<char*>(t82c68d.prepend("WHITESPACE").constData()+10), t82c68d.size()-10 }; });
-}
-
 void* QWindow_QWindow_FromWinId(uintptr_t id)
 {
 		return QWindow::fromWinId(id);
@@ -35806,25 +35641,25 @@ char QWindow_EventDefault(void* ptr, void* ev)
 	}
 }
 
-char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
+char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long* result)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	} else {
-		return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	}
 }
 
-char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
 	if (dynamic_cast<QRasterWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	} else if (dynamic_cast<QOpenGLWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QOpenGLWindow*>(ptr)->QOpenGLWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	} else {
-		return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	}
 }
 

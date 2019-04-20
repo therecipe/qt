@@ -33,7 +33,9 @@ func linux_sh(target, name string) string {
 
 	if strings.HasPrefix(target, "rpi") {
 		fmt.Fprint(bb, "export DISPLAY=\":0\"\n")
-		fmt.Fprint(bb, "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n")
+		if !utils.QT_RPI() {
+			fmt.Fprint(bb, "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n")
+		}
 	}
 
 	if utils.QT_PKG_CONFIG() {
@@ -78,7 +80,7 @@ func android_config(target, path, depPath string) string {
 		StdcppPath                    string `json:"stdcpp-path"`
 		Applicationbinary             string `json:"application-binary"`
 	}{
-		Qt:                            filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
+		Qt:                            utils.QT_INSTALL_PREFIX(target),
 		Sdk:                           utils.ANDROID_SDK_DIR(),
 		SdkBuildToolsRevision:         "28.0.3",
 		Ndk:                           utils.ANDROID_NDK_DIR(),
@@ -95,7 +97,7 @@ func android_config(target, path, depPath string) string {
 	}
 
 	if target == "android-emulator" {
-		jsonStruct.Qt = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86")
+		jsonStruct.Qt = utils.QT_INSTALL_PREFIX(target)
 		jsonStruct.Toolchainprefix = "x86"
 		jsonStruct.Toolprefix = "i686-linux-android"
 		jsonStruct.Targetarchitecture = "x86"

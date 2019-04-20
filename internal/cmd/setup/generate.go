@@ -21,7 +21,7 @@ func Generate(target string, docker, vagrant bool) {
 		return
 	}
 
-	parser.LoadModules()
+	parser.LoadModules(target)
 
 	mode := "full"
 	switch {
@@ -46,7 +46,7 @@ func Generate(target string, docker, vagrant bool) {
 
 		var license string
 		switch module {
-		case "Charts", "DataVisualization":
+		case "Charts", "DataVisualization", "VirtualKeyboard":
 			license = strings.Repeat(" ", 21-len(module)) + "[GPLv3]"
 		}
 		utils.Log.Infof("generating %v qt/%v%v", mode, strings.ToLower(module), license)

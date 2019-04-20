@@ -139,7 +139,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			utils.MkdirAll(filepath.Join(depPath, libDir))
 
 			var (
-				libraryPath   = strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("qmake", target), "-query", "QT_INSTALL_LIBS"), fmt.Sprintf("query lib path for %v on %v", target, runtime.GOOS)))
+				libraryPath   = filepath.Join(utils.QT_INSTALL_PREFIX(target), "lib")
 				lddOutput     string
 				usesWebEngine bool
 				usesQml       bool
@@ -469,12 +469,8 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), android_config(target, path, depPath))
 
-		dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin", "androiddeployqt"))
-		dep.Dir = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin")
-		if target == "android-emulator" {
-			dep := exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86", "bin", "androiddeployqt"))
-			dep.Dir = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_x86", "bin")
-		}
+		dep := exec.Command(filepath.Join(utils.QT_INSTALL_PREFIX(target), "bin", "androiddeployqt"))
+		dep.Dir = filepath.Join(utils.QT_INSTALL_PREFIX(target), "bin")
 		dep.Env = append(dep.Env, "JAVA_HOME="+utils.JDK_DIR())
 		dep.Args = append(dep.Args,
 			"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
@@ -532,7 +528,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), ios_launchscreen(name))
 		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), ios_xcodeproject())
 		utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.xcworkspace", "xcshareddata", "WorkspaceSettings.xcsettings"), ios_xcsettings())
-		copy(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "ios", "mkspecs", "macx-ios-clang", "Default-568h@2x.png"), buildPath)
+		copy(filepath.Join(utils.QT_INSTALL_PREFIX(target), "mkspecs", "macx-ios-clang", "Default-568h@2x.png"), buildPath)
 
 		//copy custom assets
 		assets := filepath.Join(path, target)
@@ -643,9 +639,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 	case "js", "wasm":
 
 		//copy default assets
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "wasm_shell.html"), filepath.Join(depPath, "index.html"))
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "qtloader.js"), depPath)
-		copy(filepath.Join(utils.QT_QMAKE_DIR(), "..", "plugins", "platforms", "qtlogo.svg"), depPath)
+		copy(filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforms", "wasm_shell.html"), filepath.Join(depPath, "index.html"))
+		copy(filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforms", "qtloader.js"), depPath)
+		copy(filepath.Join(utils.QT_INSTALL_PREFIX(target), "plugins", "platforms", "qtlogo.svg"), depPath)
 		if parser.UseWasm() {
 			copy(filepath.Join(runtime.GOROOT(), "misc", "wasm", "wasm_exec.js"), filepath.Join(depPath, "go.js"))
 		}

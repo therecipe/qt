@@ -301,11 +301,6 @@ struct QtWebSockets_PackedString QWebSocket_QWebSocket_Tr(char* s, char* c, int 
 	return ({ QByteArray t2e2041 = QWebSocket::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t2e2041.prepend("WHITESPACE").constData()+10), t2e2041.size()-10 }; });
 }
 
-struct QtWebSockets_PackedString QWebSocket_QWebSocket_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t41d947 = QWebSocket::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t41d947.prepend("WHITESPACE").constData()+10), t41d947.size()-10 }; });
-}
-
 void* QWebSocket_NewQWebSocket(struct QtWebSockets_PackedString origin, long long version, void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -1029,11 +1024,6 @@ int QWebSocketServer_QWebSocketServer_QRegisterMetaType(){qRegisterMetaType<QWeb
 struct QtWebSockets_PackedString QWebSocketServer_QWebSocketServer_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tda0dc0 = QWebSocketServer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tda0dc0.prepend("WHITESPACE").constData()+10), tda0dc0.size()-10 }; });
-}
-
-struct QtWebSockets_PackedString QWebSocketServer_QWebSocketServer_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t9813c0 = QWebSocketServer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t9813c0.prepend("WHITESPACE").constData()+10), t9813c0.size()-10 }; });
 }
 
 void* QWebSocketServer_NextPendingConnection(void* ptr)

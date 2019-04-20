@@ -216,11 +216,6 @@ struct QtSerialPort_PackedString QSerialPort_QSerialPort_Tr(char* s, char* c, in
 	return ({ QByteArray t3f56fa = QSerialPort::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialPort_PackedString { const_cast<char*>(t3f56fa.prepend("WHITESPACE").constData()+10), t3f56fa.size()-10 }; });
 }
 
-struct QtSerialPort_PackedString QSerialPort_QSerialPort_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray te313f4 = QSerialPort::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSerialPort_PackedString { const_cast<char*>(te313f4.prepend("WHITESPACE").constData()+10), te313f4.size()-10 }; });
-}
-
 char QSerialPort_Clear(void* ptr, long long directions)
 {
 	return static_cast<QSerialPort*>(ptr)->clear(static_cast<QSerialPort::Direction>(directions));

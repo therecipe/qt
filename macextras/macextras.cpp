@@ -275,11 +275,6 @@ struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_Tr(char* s, char* c, int
 	return ({ QByteArray t32182e = QMacToolBar::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t32182e.prepend("WHITESPACE").constData()+10), t32182e.size()-10 }; });
 }
 
-struct QtMacExtras_PackedString QMacToolBar_QMacToolBar_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t51abe5 = QMacToolBar::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(t51abe5.prepend("WHITESPACE").constData()+10), t51abe5.size()-10 }; });
-}
-
 void QMacToolBar_AddSeparator(void* ptr)
 {
 	static_cast<QMacToolBar*>(ptr)->addSeparator();
@@ -570,11 +565,6 @@ void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
 struct QtMacExtras_PackedString QMacToolBarItem_QMacToolBarItem_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray td13d23 = QMacToolBarItem::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(td13d23.prepend("WHITESPACE").constData()+10), td13d23.size()-10 }; });
-}
-
-struct QtMacExtras_PackedString QMacToolBarItem_QMacToolBarItem_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tfc3adf = QMacToolBarItem::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtMacExtras_PackedString { const_cast<char*>(tfc3adf.prepend("WHITESPACE").constData()+10), tfc3adf.size()-10 }; });
 }
 
 void QMacToolBarItem_ConnectActivated(void* ptr)

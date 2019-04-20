@@ -34,7 +34,7 @@ func (m *EditableSqlModel) setData(index *core.QModelIndex, value *core.QVariant
 	}
 
 	var primaryKeyIndex = m.Index(index.Row(), 0, core.NewQModelIndex())
-	var id = m.Data(primaryKeyIndex, 0).ToInt(true)
+	var id = m.Data(primaryKeyIndex, 0).ToInt(nil)
 
 	m.Clear()
 

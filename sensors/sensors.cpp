@@ -3888,11 +3888,6 @@ struct QtSensors_PackedString QSensor_QSensor_Tr(char* s, char* c, int n)
 	return ({ QByteArray ta3bdcb = QSensor::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(ta3bdcb.prepend("WHITESPACE").constData()+10), ta3bdcb.size()-10 }; });
 }
 
-struct QtSensors_PackedString QSensor_QSensor_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tbc271c = QSensor::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(tbc271c.prepend("WHITESPACE").constData()+10), tbc271c.size()-10 }; });
-}
-
 char QSensor_ConnectToBackend(void* ptr)
 {
 	return static_cast<QSensor*>(ptr)->connectToBackend();
@@ -4952,11 +4947,6 @@ struct QtSensors_PackedString QSensorBackend_QSensorBackend_Tr(char* s, char* c,
 	return ({ QByteArray te7eec4 = QSensorBackend::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(te7eec4.prepend("WHITESPACE").constData()+10), te7eec4.size()-10 }; });
 }
 
-struct QtSensors_PackedString QSensorBackend_QSensorBackend_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t447d4f = QSensorBackend::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t447d4f.prepend("WHITESPACE").constData()+10), t447d4f.size()-10 }; });
-}
-
 void QSensorBackend_AddDataRate(void* ptr, double min, double max)
 {
 	static_cast<QSensorBackend*>(ptr)->addDataRate(min, max);
@@ -5530,11 +5520,6 @@ struct QtSensors_PackedString QSensorGestureManager_QSensorGestureManager_Tr(cha
 	return ({ QByteArray td8495b = QSensorGestureManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(td8495b.prepend("WHITESPACE").constData()+10), td8495b.size()-10 }; });
 }
 
-struct QtSensors_PackedString QSensorGestureManager_QSensorGestureManager_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7f6055 = QSensorGestureManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t7f6055.prepend("WHITESPACE").constData()+10), t7f6055.size()-10 }; });
-}
-
 char QSensorGestureManager_RegisterSensorGestureRecognizer(void* ptr, void* recognizer)
 {
 	return static_cast<QSensorGestureManager*>(ptr)->registerSensorGestureRecognizer(static_cast<QSensorGestureRecognizer*>(recognizer));
@@ -5830,11 +5815,6 @@ struct QtSensors_PackedString QSensorGestureRecognizer_QSensorGestureRecognizer_
 	return ({ QByteArray t98616c = QSensorGestureRecognizer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t98616c.prepend("WHITESPACE").constData()+10), t98616c.size()-10 }; });
 }
 
-struct QtSensors_PackedString QSensorGestureRecognizer_QSensorGestureRecognizer_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tc3d5ae = QSensorGestureRecognizer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(tc3d5ae.prepend("WHITESPACE").constData()+10), tc3d5ae.size()-10 }; });
-}
-
 char QSensorGestureRecognizer_IsActive(void* ptr)
 {
 	return static_cast<QSensorGestureRecognizer*>(ptr)->isActive();
@@ -6090,11 +6070,6 @@ int QSensorReading_QSensorReading_QRegisterMetaType(){qRegisterMetaType<QSensorR
 struct QtSensors_PackedString QSensorReading_QSensorReading_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t620e4f = QSensorReading::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t620e4f.prepend("WHITESPACE").constData()+10), t620e4f.size()-10 }; });
-}
-
-struct QtSensors_PackedString QSensorReading_QSensorReading_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t435db7 = QSensorReading::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSensors_PackedString { const_cast<char*>(t435db7.prepend("WHITESPACE").constData()+10), t435db7.size()-10 }; });
 }
 
 void QSensorReading_SetTimestamp(void* ptr, unsigned long long timestamp)

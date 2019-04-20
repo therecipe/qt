@@ -206,7 +206,7 @@ func GoHeaderInput(f *parser.Function) string {
 									fmt.Fprintf(bb, ", %vP *js.Object", parser.CleanName(p.Name, p.Value))
 								}
 							} else {
-								if v == "*bool" {
+								if v == "*bool" || v == "*int" || v == "unsafe.Pointer" {
 									fmt.Fprintf(bb, ", %v uintptr", parser.CleanName(p.Name, p.Value))
 								} else {
 									fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)

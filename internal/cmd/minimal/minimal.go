@@ -28,7 +28,7 @@ func Minimal(path, target, tags string) {
 		}
 	}
 
-	if !(target == "js" || target == "wasm") { //TODO: remove for module support + resolve dependencies
+	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
 		scmd.Dir = path
@@ -121,7 +121,7 @@ func Minimal(path, target, tags string) {
 	}
 
 	if _, ok := parser.State.ClassMap["QObject"]; !ok {
-		parser.LoadModules()
+		parser.LoadModules(target)
 	} else {
 		utils.Log.Debug("modules already cached")
 	}

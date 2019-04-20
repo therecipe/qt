@@ -23,7 +23,6 @@ struct QtRemoteObjects_PackedString { char* data; long long len; };
 struct QtRemoteObjects_PackedList { void* data; long long len; };
 void* QRemoteObjectAbstractPersistedStore_NewQRemoteObjectAbstractPersistedStore(void* parent);
 struct QtRemoteObjects_PackedString QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_Tr(char* s, char* c, int n);
-struct QtRemoteObjects_PackedString QRemoteObjectAbstractPersistedStore_QRemoteObjectAbstractPersistedStore_TrUtf8(char* s, char* c, int n);
 struct QtRemoteObjects_PackedList QRemoteObjectAbstractPersistedStore_RestoreProperties(void* ptr, struct QtRemoteObjects_PackedString repName, void* repSig);
 void QRemoteObjectAbstractPersistedStore_SaveProperties(void* ptr, struct QtRemoteObjects_PackedString repName, void* repSig, void* values);
 void QRemoteObjectAbstractPersistedStore_DestroyQRemoteObjectAbstractPersistedStore(void* ptr);
@@ -82,7 +81,6 @@ void* QRemoteObjectNode_AcquireDynamic(void* ptr, struct QtRemoteObjects_PackedS
 void* QRemoteObjectNode_NewQRemoteObjectNode(void* parent);
 void* QRemoteObjectNode_NewQRemoteObjectNode2(void* registryAddress, void* parent);
 struct QtRemoteObjects_PackedString QRemoteObjectNode_QRemoteObjectNode_Tr(char* s, char* c, int n);
-struct QtRemoteObjects_PackedString QRemoteObjectNode_QRemoteObjectNode_TrUtf8(char* s, char* c, int n);
 char QRemoteObjectNode_ConnectToNode(void* ptr, void* address);
 char QRemoteObjectNode_SetRegistryUrl(void* ptr, void* registryAddress);
 char QRemoteObjectNode_SetRegistryUrlDefault(void* ptr, void* registryAddress);
@@ -146,7 +144,6 @@ void* QRemoteObjectRegistryHost_NewQRemoteObjectRegistryHost(void* registryAddre
 void QRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHost(void* ptr);
 void QRemoteObjectRegistryHost_DestroyQRemoteObjectRegistryHostDefault(void* ptr);
 struct QtRemoteObjects_PackedString QRemoteObjectReplica_QRemoteObjectReplica_Tr(char* s, char* c, int n);
-struct QtRemoteObjects_PackedString QRemoteObjectReplica_QRemoteObjectReplica_TrUtf8(char* s, char* c, int n);
 char QRemoteObjectReplica_WaitForSource(void* ptr, int timeout);
 void QRemoteObjectReplica_ConnectInitialized(void* ptr);
 void QRemoteObjectReplica_DisconnectInitialized(void* ptr);

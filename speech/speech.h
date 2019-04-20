@@ -16,7 +16,6 @@ extern "C" {
 struct QtSpeech_PackedString { char* data; long long len; };
 struct QtSpeech_PackedList { void* data; long long len; };
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_Tr(char* s, char* c, int n);
-struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_TrUtf8(char* s, char* c, int n);
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines();
 void* QTextToSpeech_NewQTextToSpeech(void* parent);
 void* QTextToSpeech_NewQTextToSpeech2(struct QtSpeech_PackedString engine, void* parent);
@@ -92,7 +91,6 @@ void QTextToSpeech_DeleteLaterDefault(void* ptr);
 void QTextToSpeech_DisconnectNotifyDefault(void* ptr, void* sign);
 void QTextToSpeech_TimerEventDefault(void* ptr, void* event);
 struct QtSpeech_PackedString QTextToSpeechEngine_QTextToSpeechEngine_Tr(char* s, char* c, int n);
-struct QtSpeech_PackedString QTextToSpeechEngine_QTextToSpeechEngine_TrUtf8(char* s, char* c, int n);
 void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent);
 void* QTextToSpeechEngine_QTextToSpeechEngine_VoiceData(void* voice);
 void* QTextToSpeechEngine_QTextToSpeechEngine_CreateVoice(struct QtSpeech_PackedString name, long long gender, long long age, void* data);

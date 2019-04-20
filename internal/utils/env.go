@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -77,6 +78,23 @@ func QT_DIR() string {
 	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
 }
 
+var (
+	qtInstallPrefixCache      = make(map[string]string)
+	qtInstallPrefixCacheMutex = new(sync.Mutex)
+)
+
+func QT_INSTALL_PREFIX(target string) string              { return qT_INSTALL_PREFIX(target, false) }
+func QT_INSTALL_PREFIX_IGNORE_QMAKE(target string) string { return qT_INSTALL_PREFIX(target, true) }
+func qT_INSTALL_PREFIX(target string, ignoreQmake bool) (r string) {
+	qtInstallPrefixCacheMutex.Lock()
+	if _, ok := qtInstallPrefixCache[target]; !ok || ignoreQmake {
+		qtInstallPrefixCache[target] = strings.TrimSpace(RunCmd(exec.Command(toolPath("qmake", target, ignoreQmake), "-query", "QT_INSTALL_PREFIX"), fmt.Sprintf("query install prefix path for %v on %v", target, runtime.GOOS)))
+	}
+	r = qtInstallPrefixCache[target]
+	qtInstallPrefixCacheMutex.Unlock()
+	return
+}
+
 func qT_DIR() string {
 	if dir, ok := os.LookupEnv("QT_DIR"); ok {
 		return filepath.Clean(dir)
@@ -112,6 +130,10 @@ func QT_STUB() bool {
 
 func QT_DEBUG() bool {
 	return os.Getenv("QT_DEBUG") == "true"
+}
+
+func QT_DEBUG_CPP() bool {
+	return os.Getenv("QT_DEBUG_CPP") == "true"
 }
 
 func QT_DEBUG_QML() bool {
@@ -168,9 +190,12 @@ func QT_VAGRANT() bool {
 }
 
 //TODO: use qmake props
-func ToolPath(tool, target string) string {
-	if dir := QT_QMAKE_DIR(); dir != "" {
-		return filepath.Join(dir, tool)
+func ToolPath(tool, target string) string { return toolPath(tool, target, false) }
+func toolPath(tool, target string, ignoreQmake bool) string {
+	if !ignoreQmake {
+		if dir := QT_QMAKE_DIR(); dir != "" {
+			return filepath.Join(dir, tool)
+		}
 	}
 
 	if strings.HasPrefix(target, "sailfish") && !QT_SAILFISH() {
@@ -344,4 +369,8 @@ func GoListOptional(args ...string) (r string) {
 
 func QT_STATIC() bool {
 	return os.Getenv("QT_STATIC") == "true"
+}
+
+func QT_NOT_CACHED() bool {
+	return os.Getenv("QT_NOT_CACHED") == "true"
 }

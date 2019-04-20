@@ -507,11 +507,6 @@ struct QtScript_PackedString QScriptEngine_QScriptEngine_Tr(char* s, char* c, in
 	return ({ QByteArray ta94df5 = QScriptEngine::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(ta94df5.prepend("WHITESPACE").constData()+10), ta94df5.size()-10 }; });
 }
 
-struct QtScript_PackedString QScriptEngine_QScriptEngine_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t469d12 = QScriptEngine::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t469d12.prepend("WHITESPACE").constData()+10), t469d12.size()-10 }; });
-}
-
 void QScriptEngine_AbortEvaluation(void* ptr, void* result)
 {
 	static_cast<QScriptEngine*>(ptr)->abortEvaluation(*static_cast<QScriptValue*>(result));
@@ -988,11 +983,6 @@ void* QScriptExtensionPlugin_NewQScriptExtensionPlugin(void* parent)
 struct QtScript_PackedString QScriptExtensionPlugin_QScriptExtensionPlugin_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t2a245f = QScriptExtensionPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t2a245f.prepend("WHITESPACE").constData()+10), t2a245f.size()-10 }; });
-}
-
-struct QtScript_PackedString QScriptExtensionPlugin_QScriptExtensionPlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t94b9b2 = QScriptExtensionPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScript_PackedString { const_cast<char*>(t94b9b2.prepend("WHITESPACE").constData()+10), t94b9b2.size()-10 }; });
 }
 
 void QScriptExtensionPlugin_Initialize(void* ptr, struct QtScript_PackedString key, void* engine)

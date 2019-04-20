@@ -16,7 +16,6 @@ extern "C" {
 struct QtWebChannel_PackedString { char* data; long long len; };
 struct QtWebChannel_PackedList { void* data; long long len; };
 struct QtWebChannel_PackedString QWebChannel_QWebChannel_Tr(char* s, char* c, int n);
-struct QtWebChannel_PackedString QWebChannel_QWebChannel_TrUtf8(char* s, char* c, int n);
 void* QWebChannel_NewQWebChannel(void* parent);
 void QWebChannel_ConnectBlockUpdatesChanged(void* ptr);
 void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr);
@@ -72,7 +71,6 @@ void QWebChannel_DeleteLaterDefault(void* ptr);
 void QWebChannel_DisconnectNotifyDefault(void* ptr, void* sign);
 void QWebChannel_TimerEventDefault(void* ptr, void* event);
 struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_Tr(char* s, char* c, int n);
-struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_TrUtf8(char* s, char* c, int n);
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent);
 void QWebChannelAbstractTransport_ConnectMessageReceived(void* ptr);
 void QWebChannelAbstractTransport_DisconnectMessageReceived(void* ptr);

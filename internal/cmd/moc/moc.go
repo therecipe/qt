@@ -65,7 +65,7 @@ func Moc(path, target, tags string, fast, slow bool) {
 func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	utils.Log.WithField("path", path).WithField("target", target).Debug("start Moc")
 
-	if target == "js" || target == "wasm" { //TODO: remove for module support + resolve dependencies
+	if target == "js" || target == "wasm" || utils.QT_NOT_CACHED() { //TODO: remove for module support + resolve dependencies
 		dirty = true
 	}
 
@@ -191,7 +191,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	}
 
 	if _, ok := parser.State.ClassMap["QObject"]; !ok {
-		parser.LoadModules()
+		parser.LoadModules(target)
 	} else {
 		utils.Log.Debug("modules already cached")
 	}
@@ -336,7 +336,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	ResourceNamesMutex.Unlock()
 
 	var staleCheck string
-	if !(target == "js" || target == "wasm") { //TODO: remove for module support + resolve dependencies
+	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
 		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
 		scmd.Dir = path

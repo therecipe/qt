@@ -74,7 +74,6 @@ void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* pare
 void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(struct QtPositioning_PackedString sourceName, void* parent);
 void* QGeoAreaMonitorSource_NewQGeoAreaMonitorSource(void* parent);
 struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_Tr(char* s, char* c, int n);
-struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_TrUtf8(char* s, char* c, int n);
 struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources();
 char QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* sign);
 char QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor);
@@ -263,7 +262,6 @@ void* QGeoPositionInfoSource_QGeoPositionInfoSource_CreateDefaultSource(void* pa
 void* QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(struct QtPositioning_PackedString sourceName, void* parent);
 void* QGeoPositionInfoSource_NewQGeoPositionInfoSource(void* parent);
 struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_Tr(char* s, char* c, int n);
-struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_TrUtf8(char* s, char* c, int n);
 struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources();
 void QGeoPositionInfoSource_ConnectError2(void* ptr);
 void QGeoPositionInfoSource_DisconnectError2(void* ptr);
@@ -368,7 +366,6 @@ void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* 
 void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(struct QtPositioning_PackedString sourceName, void* parent);
 void* QGeoSatelliteInfoSource_NewQGeoSatelliteInfoSource(void* parent);
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_Tr(char* s, char* c, int n);
-struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_TrUtf8(char* s, char* c, int n);
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources();
 void QGeoSatelliteInfoSource_ConnectError2(void* ptr);
 void QGeoSatelliteInfoSource_DisconnectError2(void* ptr);

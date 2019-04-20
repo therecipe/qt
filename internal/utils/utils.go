@@ -13,12 +13,12 @@ import (
 )
 
 func ExistsFile(name string) bool {
-	_, err := ioutil.ReadFile(name)
+	_, err := os.Stat(name)
 	return err == nil
 }
 
 func ExistsDir(name string) bool {
-	_, err := ioutil.ReadDir(name)
+	_, err := os.Stat(name)
 	return err == nil
 }
 

@@ -144,6 +144,16 @@ func (c *Class) removeEnums_Version() {
 				}
 				continue
 			}
+		case "QVirtualKeyboardSelectionListModel::Role":
+			{
+				for iv := len(e.Values) - 1; iv >= 0; iv-- {
+					if e.Values[iv].Name == "WordCompletionLength" ||
+						e.Values[iv].Name == "WordCompletionLengthRole" {
+						c.Enums[i].Values = append(c.Enums[i].Values[:iv], c.Enums[i].Values[iv+1:]...)
+					}
+				}
+				continue
+			}
 		}
 	}
 }

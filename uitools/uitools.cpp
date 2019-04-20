@@ -97,11 +97,6 @@ struct QtUiTools_PackedString QUiLoader_QUiLoader_Tr(char* s, char* c, int n)
 	return ({ QByteArray t4760af = QUiLoader::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtUiTools_PackedString { const_cast<char*>(t4760af.prepend("WHITESPACE").constData()+10), t4760af.size()-10 }; });
 }
 
-struct QtUiTools_PackedString QUiLoader_QUiLoader_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t19a35d = QUiLoader::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtUiTools_PackedString { const_cast<char*>(t19a35d.prepend("WHITESPACE").constData()+10), t19a35d.size()-10 }; });
-}
-
 void* QUiLoader_NewQUiLoader(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {

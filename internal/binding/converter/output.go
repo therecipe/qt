@@ -339,6 +339,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 
 	case "void", "GLvoid", "":
 		{
+			if parser.UseJs() {
+				return fmt.Sprintf("unsafe.Pointer(%v)", name)
+			}
 			return name
 		}
 
@@ -372,6 +375,9 @@ func cgoOutput(name, value string, f *parser.Function, p string) string {
 
 	case "long":
 		{
+			if parser.UseJs() {
+				return name
+			}
 			return fmt.Sprintf("int(int32(%v))", name)
 		}
 
@@ -733,7 +739,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 		"uintptr_t", "uintptr", "quintptr", "WId":
 		{
 			if strings.Contains(vOld, "*") {
-				if value == "bool" || value == "GLboolean" {
+				if value == "bool" || value == "GLboolean" || (value == "long" && parser.UseJs()) {
 					if parser.UseJs() {
 						if f.SignalMode == parser.CALLBACK {
 							return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", name)
@@ -750,7 +756,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 					}
 					return fmt.Sprintf("reinterpret_cast<char*>(%v)", name)
 				}
-				return fmt.Sprintf("*%v", name)
+				if value != "long" {
+					return fmt.Sprintf("*%v", name)
+				}
 			}
 
 			return name
@@ -761,8 +769,13 @@ func cppOutput(name, value string, f *parser.Function) string {
 	case "void", "GLvoid", "", "T", "JavaVM", "jclass", "jobject":
 		{
 			if value == "void" || value == "T" {
-				if strings.Contains(vOld, "*") && strings.Contains(vOld, "const") {
-					return fmt.Sprintf("const_cast<void*>(%v)", name)
+				if strings.Contains(vOld, "*") {
+					if strings.Contains(vOld, "const") {
+						return fmt.Sprintf("const_cast<void*>(%v)", name)
+					}
+					if parser.UseJs() && f.SignalMode == parser.CALLBACK {
+						return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", name)
+					}
 				}
 			}
 
@@ -775,6 +788,8 @@ func cppOutput(name, value string, f *parser.Function) string {
 		{
 			if parser.UseJs() {
 				return fmt.Sprintf("enum_cast<long>(%v)", name)
+			} else if strings.HasPrefix(f.ClassName(), "QVirtualKeyboard") {
+				return fmt.Sprintf("static_cast<qint64>(%v)", name)
 			}
 			return name
 		}
@@ -967,7 +982,7 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 
 	case "bool", "GLboolean":
 		{
-			if parser.UseWasm() && f.SignalMode != parser.CALLBACK { //callback arguments for wasm are proper bools, this would panic otherwise: https://github.com/golang/go/blob/master/src/syscall/js/js.go#L361
+			if parser.UseWasm() && f.SignalMode != parser.CALLBACK { //callback arguments for wasm are proper bools, this would panic otherwise: https://github.com/golang/go/blob/2bd767b1022dd3254bcec469f0ee164024726486/src/syscall/js/js.go#L392-L403
 				return fmt.Sprintf("int8(%v.Int()) != 0", name)
 			}
 			return fmt.Sprintf("%v.Bool()", name)

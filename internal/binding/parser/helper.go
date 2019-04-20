@@ -209,6 +209,7 @@ var LibDeps = map[string][]string{
 	"DataVisualization": {"Gui", "Core"},
 	"Charts":            {"Widgets", "Gui", "Core"},
 	//"Quick2DRenderer":   {}, //TODO: uncomment
+	"VirtualKeyboard": {"Quick", "Gui", "Qml", "Network", "Core"},
 
 	"Speech":         {"Core"},
 	"QuickControls2": {"Quick", "QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //Quick, QuickWidgets, Widgets, Network, Qml, Gui (needed for static linking ios)
@@ -242,7 +243,7 @@ func ShouldBuildForTarget(module, target string) bool {
 
 	case "android", "android-emulator":
 		switch module {
-		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus", "PrintSupport": //TODO: PrintSupport
+		case "DBus", "WebEngine", "Designer", "SerialPort", "SerialBus", "PrintSupport", "VirtualKeyboard": //TODO: PrintSupport
 			return false
 		}
 		if strings.HasSuffix(module, "Extras") && module != "AndroidExtras" {
@@ -251,7 +252,7 @@ func ShouldBuildForTarget(module, target string) bool {
 
 	case "ios", "ios-simulator":
 		switch module {
-		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport": //TODO: PrintSupport
+		case "DBus", "WebEngine", "SerialPort", "SerialBus", "Designer", "PrintSupport", "VirtualKeyboard": //TODO: PrintSupport
 			return false
 		}
 		if strings.HasSuffix(module, "Extras") {
@@ -315,7 +316,7 @@ func IsWhiteListedSailfishLib(name string) bool {
 //TODO: whitelist everything once dependency issue is resolved
 func IsWhiteListedJsLib(name string) bool {
 	switch name {
-	case "Core", "Gui", "Widgets", "PrintSupport", "Qml", "Quick", "QuickControls2", "Xml", "XmlPatterns", "WebSockets", "Svg", "Charts", "Multimedia":
+	case "Core", "Gui", "Widgets", "PrintSupport", "Qml", "Quick", "QuickControls2", "Xml", "XmlPatterns", "WebSockets", "Svg", "Charts", "Multimedia", "VirtualKeyboard":
 		return true
 
 	default:
@@ -325,7 +326,7 @@ func IsWhiteListedJsLib(name string) bool {
 
 func IsWhiteListedRaspberryLib(name string) bool {
 	switch name {
-	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Svg", "SerialPort", "Multimedia":
+	case "Core", "Gui", "Widgets", "PrintSupport", "Sql", "Qml", "Quick", "QuickControls2", "Svg", "SerialPort", "Multimedia", "VirtualKeyboard":
 		return true
 
 	default:
@@ -376,7 +377,7 @@ func GetLibs() []string {
 		"DataVisualization", //GPLv3
 		"Charts",            //GPLv3
 		//"Quick2DRenderer", //GPLv3
-		//"VirtualKeyboard", //GPLv3
+		"VirtualKeyboard", //GPLv3
 
 		"Speech",
 		"QuickControls2",

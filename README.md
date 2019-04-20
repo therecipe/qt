@@ -9,7 +9,7 @@ This package allows you to write Qt applications entirely in Go and makes deploy
 
 [Gallery](https://github.com/therecipe/qt/wiki/Gallery) of example applications making use of this package.
 
-[WebAssembly Demo](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
+[WebAssembly Live Demo](https://therecipe.github.io/widgets_playground) | *[repo](https://github.com/therecipe/widgets_playground)*
 
 Status
 ------
@@ -52,22 +52,22 @@ Resources
 Deployment Targets
 ------------------
 
-| Target                   | Arch     | Linkage          | Docker Deployment | Host OS |
-|:------------------------:|:--------:|:----------------:|:-----------------:|:-------:|
-|         Windows          | 32 / 64  | dynamic / static |        Yes        |   Any   |
-|          Linux           |    64    | dynamic / system |        Yes        |   Any   |
-|     Android (+Wear)      |   arm    |     dynamic      |        Yes        |   Any   |
-| Android-Emulator (+Wear) |    32    |     dynamic      |        Yes        |   Any   |
-|   Raspberry Pi (1/2/3)   |   arm    | dynamic / system |        Yes        |   Any   |
-|        SailfishOS        |   arm    |      system      |        Yes        |   Any   |
-|   SailfishOS-Emulator    |    32    |      system      |        Yes        |   Any   |
-|       Ubuntu Touch       | arm / 64 |      system      |        Yes        |   Any   |
-|        JavaScript        |    32    |      static      |        Yes        |   Any   |
-|       WebAssembly        |    32    |      static      |        Yes        |   Any   |
-|          macOS           |    64    |     dynamic      |        No         |  macOS  |
-|           iOS            |  arm64   |      static      |        No         |  macOS  |
-|      iOS-Simulator       |    64    |      static      |        No         |  macOS  |
-|        AsteroidOS        |   arm    |      system      |        No         |  Linux  |
+| Target                   | Arch     | Linkage                   | Docker Deployment | Host OS |
+|:------------------------:|:--------:|:-------------------------:|:-----------------:|:-------:|
+|         Windows          | 32 / 64  |     dynamic / static      |        Yes        |   Any   |
+|          Linux           |    64    | dynamic / static / system |        Yes        |   Any   |
+|     Android (+Wear)      |   arm    |          dynamic          |        Yes        |   Any   |
+| Android-Emulator (+Wear) |    32    |          dynamic          |        Yes        |   Any   |
+|   Raspberry Pi (1/2/3)   |   arm    |     dynamic / system      |        Yes        |   Any   |
+|        SailfishOS        |   arm    |          system           |        Yes        |   Any   |
+|   SailfishOS-Emulator    |    32    |          system           |        Yes        |   Any   |
+|       Ubuntu Touch       | arm / 64 |          system           |        Yes        |   Any   |
+|        JavaScript        |    32    |          static           |        Yes        |   Any   |
+|       WebAssembly        |    32    |          static           |        Yes        |   Any   |
+|          macOS           |    64    |          dynamic          |        No         |  macOS  |
+|           iOS            |  arm64   |          static           |        No         |  macOS  |
+|      iOS-Simulator       |    64    |          static           |        No         |  macOS  |
+|        AsteroidOS        |   arm    |          system           |        No         |  Linux  |
 
 License
 -------

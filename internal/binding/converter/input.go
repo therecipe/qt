@@ -113,6 +113,9 @@ func GoInput(name, value string, f *parser.Function, p string) string {
 
 	case "long":
 		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("C.long(int32(*%v))", name)
+			}
 			return fmt.Sprintf("C.long(int32(%v))", name)
 		}
 
@@ -403,7 +406,18 @@ func cppInput(name, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("const_cast<const %v*>(&%v)", value, name)
 				}
-				return fmt.Sprintf("&%v", name)
+				switch value {
+				case "long":
+					if parser.UseJs() {
+						if f.SignalMode == parser.CALLBACK {
+							return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", value, name)
+						}
+						return fmt.Sprintf("reinterpret_cast<%v*>(%v)", value, name)
+					}
+					return fmt.Sprintf("%v", name)
+				default:
+					return fmt.Sprintf("&%v", name)
+				}
 			}
 
 			return name
@@ -571,6 +585,9 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 
 	case "long":
 		{
+			if strings.Contains(vOld, "*") {
+				return name
+			}
 			return fmt.Sprintf("int(int32(%v))", name)
 		}
 

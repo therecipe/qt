@@ -94,7 +94,7 @@ func main() {
 
 	switch mode {
 	case "prep":
-		setup.Prep()
+		setup.Prep(target)
 	case "check":
 		setup.Check(target, docker, vagrant)
 	case "generate":
@@ -104,7 +104,7 @@ func main() {
 	case "test":
 		setup.Test(target, docker, vagrant, vagrant_system)
 	case "full":
-		setup.Prep()
+		setup.Prep(target)
 		setup.Check(target, docker, vagrant)
 		setup.Generate(target, docker, vagrant)
 		setup.Install(target, docker, vagrant, failfast)

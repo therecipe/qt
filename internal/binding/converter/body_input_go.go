@@ -27,7 +27,7 @@ func GoInputParametersForC(function *parser.Function) string {
 					}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
 			} else {
 				var alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
-				if strings.Contains(alloc, "C.CString") || strings.Contains(alloc, "qt.GoBoolToInt(*") || strings.Contains(alloc, "*C.char") {
+				if strings.Contains(alloc, "C.CString") || strings.Contains(alloc, "qt.GoBoolToInt(*") || strings.Contains(alloc, "*C.char") || strings.Contains(alloc, "C.long(int32(*") {
 					if parser.CleanValue(parameter.Value) == "QString" || parser.CleanValue(parameter.Value) == "QStringList" {
 						input = append(input, fmt.Sprintf("C.struct_%v_PackedString{data: %vC, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), parser.CleanName(parameter.Name, parameter.Value),
 							func() string {
@@ -40,7 +40,7 @@ func GoInputParametersForC(function *parser.Function) string {
 								return fmt.Sprintf("C.longlong(len(%v))", parser.CleanName(parameter.Name, parameter.Value))
 							}()))
 					} else {
-						if strings.Contains(alloc, "qt.GoBoolToInt(*") {
+						if strings.Contains(alloc, "qt.GoBoolToInt(*") || strings.Contains(alloc, "C.long(int32(*") {
 							input = append(input, fmt.Sprintf("&%vC", parser.CleanName(parameter.Name, parameter.Value)))
 						} else {
 							input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
@@ -67,10 +67,24 @@ func GoInputParametersForJS(function *parser.Function) string {
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
 			if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
-				input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
+				if parser.UseWasm() {
+					if parameter.PureGoType != "" && !parser.IsBlackListedPureGoType(parameter.PureGoType) {
+						input = append(input, GoInput(fmt.Sprintf("unsafe.Pointer(%v%v)",
+							func() string {
+								if !strings.HasPrefix(parameter.PureGoType, "*") {
+									return "&"
+								}
+								return ""
+							}(), parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
+					} else {
+						input = append(input, GoInputJS(parser.CleanName(parameter.Name, parameter.Value), parameter.Value, function, parameter.PureGoType))
+					}
+				} else {
+					input = append(input, GoInputJS(fmt.Sprintf("%vTID", parser.CleanName(parameter.Name, parameter.Value)), parameter.Value, function, parameter.PureGoType))
+				}
 			} else {
 				alloc := GoInputJS(parameter.Name, parameter.Value, function, parameter.PureGoType)
-				if (parser.UseWasm() && strings.Contains(alloc, "js.TypedArrayOf(")) || GoType(function, parameter.Value, parameter.PureGoType) == "*bool" {
+				if gType := GoType(function, parameter.Value, parameter.PureGoType); (parser.UseWasm() && strings.Contains(alloc, "js.TypedArrayOf(")) || gType == "*bool" || gType == "*int" {
 					input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
 				} else {
 					input = append(input, alloc)
@@ -112,7 +126,23 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 
 			case "*bool":
 				{
-					input = append(input, fmt.Sprintf("%v := qt.WASM.Call(\"_malloc\", 1)\nqt.WASM.Call(\"setValue\", %v, qt.GoBoolToInt(*%v), \"i8\")\ndefer func(){*%v = int8(qt.WASM.Call(\"getValue\", %v, \"i8\").Int()) != 0\nqt.WASM.Call(\"_free\", %v)\n}()\n", name, name, parser.CleanName(parameter.Name, parameter.Value), parser.CleanName(parameter.Name, parameter.Value), name, name))
+					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.WASM.Call(\"_malloc\", 1)\nqt.WASM.Call(\"setValue\", %v, qt.GoBoolToInt(*%v), \"i8\")\ndefer func(){*%v = int8(qt.WASM.Call(\"getValue\", %v, \"i8\").Int()) != 0\nqt.WASM.Call(\"_free\", %v)\n}()\n}\n", name, func() string {
+						if parser.UseWasm() {
+							return "js.Value"
+						}
+						return "*js.Object"
+					}(), strings.TrimSuffix(name, "C"), name, name, parser.CleanName(parameter.Name, parameter.Value), parser.CleanName(parameter.Name, parameter.Value), name, name))
+				}
+
+			case "*int":
+				{
+					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = qt.WASM.Call(\"_malloc\", 4)\nqt.WASM.Call(\"setValue\", %v, *%v, \"i32\")\ndefer func(){*%v = int(int32(qt.WASM.Call(\"getValue\", %v, \"i32\").Int()))\nqt.WASM.Call(\"_free\", %v)\n}()\n}\n", name,
+						func() string {
+							if parser.UseWasm() {
+								return "js.Value"
+							}
+							return "*js.Object"
+						}(), strings.TrimSuffix(name, "C"), name, name, parser.CleanName(parameter.Name, parameter.Value), parser.CleanName(parameter.Name, parameter.Value), name, name))
 				}
 			}
 		}
@@ -131,7 +161,7 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 				alloc = GoInput(parameter.Name, parameter.Value, function, parameter.PureGoType)
 				name  = fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value))
 			)
-			switch goType(function, parameter.Value, parameter.PureGoType) {
+			switch gType := goType(function, parameter.Value, parameter.PureGoType); gType {
 			case "string":
 				{
 					input = append(input, fmt.Sprintf("var %v *C.char\nif %v != \"\" {\n%v = %v\ndefer C.free(unsafe.Pointer(%v))\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
@@ -147,9 +177,9 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 					input = append(input, fmt.Sprintf("%v := %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))
 				}
 
-			case "*bool":
+			case "*bool", "*int":
 				{
-					input = append(input, fmt.Sprintf("%v := %v\ndefer func(){*%v = %v}()\n", name, alloc, parser.CleanName(parameter.Name, parameter.Value), goOutput(name, parameter.Value, function, parameter.PureGoType)))
+					input = append(input, fmt.Sprintf("var %v %v\nif %v != nil {\n%v = %v\ndefer func(){*%v = %v}()\n}\n", name, strings.TrimPrefix(cgoType(function, parameter.Value), "*"), strings.TrimSuffix(name, "C"), name, alloc, parser.CleanName(parameter.Name, parameter.Value), goOutput(name, parameter.Value, function, parameter.PureGoType)))
 				}
 			}
 		}
@@ -168,9 +198,9 @@ func GoInputParametersForCallback(function *parser.Function) string {
 		} else {
 			if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function, parameter.PureGoType), "cGoUnpack") {
 				input[i] = "&retS"
-			} else if strings.Contains(goType(function, parameter.Value, parameter.PureGoType), "*bool") {
+			} else if pType := goType(function, parameter.Value, parameter.PureGoType); strings.Contains(pType, "*bool") || strings.Contains(pType, "*int") {
 				if function.SignalMode != parser.CALLBACK {
-					input[i] = "nil" //TODO: make *bool usable from pure js
+					input[i] = "nil" //TODO: make *bool and *int usable from pure js
 				} else {
 					input[i] = fmt.Sprintf("&%vR", parser.CleanName(parameter.Name, parameter.Value))
 				}

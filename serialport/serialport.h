@@ -19,7 +19,6 @@ void* QSerialPort_NewQSerialPort3(void* serialPortInfo, void* parent);
 void* QSerialPort_NewQSerialPort2(struct QtSerialPort_PackedString name, void* parent);
 long long QSerialPort_PinoutSignals(void* ptr);
 struct QtSerialPort_PackedString QSerialPort_QSerialPort_Tr(char* s, char* c, int n);
-struct QtSerialPort_PackedString QSerialPort_QSerialPort_TrUtf8(char* s, char* c, int n);
 char QSerialPort_Clear(void* ptr, long long directions);
 char QSerialPort_Flush(void* ptr);
 char QSerialPort_IsDataTerminalReady(void* ptr);

@@ -21,7 +21,6 @@ void* QUiLoader_CreateActionGroupDefault(void* ptr, void* parent, struct QtUiToo
 void* QUiLoader_CreateLayout(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_CreateLayoutDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 struct QtUiTools_PackedString QUiLoader_QUiLoader_Tr(char* s, char* c, int n);
-struct QtUiTools_PackedString QUiLoader_QUiLoader_TrUtf8(char* s, char* c, int n);
 void* QUiLoader_NewQUiLoader(void* parent);
 void* QUiLoader_CreateWidget(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);
 void* QUiLoader_CreateWidgetDefault(void* ptr, struct QtUiTools_PackedString className, void* parent, struct QtUiTools_PackedString name);

@@ -17,7 +17,6 @@ struct QtScriptTools_PackedList { void* data; long long len; };
 void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent);
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent);
 struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_Tr(char* s, char* c, int n);
-struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_TrUtf8(char* s, char* c, int n);
 void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent);
 void QScriptEngineDebugger_AttachTo(void* ptr, void* engine);
 void QScriptEngineDebugger_Detach(void* ptr);

@@ -205,11 +205,6 @@ struct QtHelp_PackedString QHelpContentModel_QHelpContentModel_Tr(char* s, char*
 	return ({ QByteArray t065235 = QHelpContentModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t065235.prepend("WHITESPACE").constData()+10), t065235.size()-10 }; });
 }
 
-struct QtHelp_PackedString QHelpContentModel_QHelpContentModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7b85dc = QHelpContentModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t7b85dc.prepend("WHITESPACE").constData()+10), t7b85dc.size()-10 }; });
-}
-
 void QHelpContentModel_ConnectContentsCreated(void* ptr)
 {
 	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));
@@ -955,7 +950,7 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQHelpContentWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQHelpContentWidget_ChangeEvent(this, ev); };
 	bool close() { return callbackQHelpContentWidget_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpContentWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpContentWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpContentWidget_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpContentWidget_CloseEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQHelpContentWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1012,11 +1007,6 @@ void* QHelpContentWidget_IndexOf(void* ptr, void* link)
 struct QtHelp_PackedString QHelpContentWidget_QHelpContentWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tada04a = QHelpContentWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(tada04a.prepend("WHITESPACE").constData()+10), tada04a.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpContentWidget_QHelpContentWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta9fc7c = QHelpContentWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(ta9fc7c.prepend("WHITESPACE").constData()+10), ta9fc7c.size()-10 }; });
 }
 
 void QHelpContentWidget_ConnectLinkActivated(void* ptr)
@@ -1612,9 +1602,9 @@ char QHelpContentWidget_CloseDefault(void* ptr)
 		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::close();
 }
 
-char QHelpContentWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QHelpContentWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QHelpContentWidget_ActionEventDefault(void* ptr, void* event)
@@ -1988,11 +1978,6 @@ struct QtHelp_PackedString QHelpEngineCore_QHelpEngineCore_NamespaceName(struct 
 struct QtHelp_PackedString QHelpEngineCore_QHelpEngineCore_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t2ad2f0 = QHelpEngineCore::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t2ad2f0.prepend("WHITESPACE").constData()+10), t2ad2f0.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpEngineCore_QHelpEngineCore_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t1427c5 = QHelpEngineCore::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t1427c5.prepend("WHITESPACE").constData()+10), t1427c5.size()-10 }; });
 }
 
 void* QHelpEngineCore_QHelpEngineCore_MetaData(struct QtHelp_PackedString documentationFileName, struct QtHelp_PackedString name)
@@ -2556,11 +2541,6 @@ void* QHelpIndexModel_Filter(void* ptr, struct QtHelp_PackedString filter, struc
 struct QtHelp_PackedString QHelpIndexModel_QHelpIndexModel_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tca9c69 = QHelpIndexModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(tca9c69.prepend("WHITESPACE").constData()+10), tca9c69.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpIndexModel_QHelpIndexModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t83ad48 = QHelpIndexModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t83ad48.prepend("WHITESPACE").constData()+10), t83ad48.size()-10 }; });
 }
 
 void QHelpIndexModel_CreateIndex(void* ptr, struct QtHelp_PackedString customFilterName)
@@ -3292,7 +3272,7 @@ public:
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQHelpIndexWidget_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };
 	void changeEvent(QEvent * ev) { callbackQHelpIndexWidget_ChangeEvent(this, ev); };
 	bool close() { return callbackQHelpIndexWidget_Close(this) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpIndexWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpIndexWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpIndexWidget_ActionEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpIndexWidget_CloseEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQHelpIndexWidget_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -3344,11 +3324,6 @@ int QHelpIndexWidget_QHelpIndexWidget_QRegisterMetaType(){qRegisterMetaType<QHel
 struct QtHelp_PackedString QHelpIndexWidget_QHelpIndexWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t85beb4 = QHelpIndexWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t85beb4.prepend("WHITESPACE").constData()+10), t85beb4.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpIndexWidget_QHelpIndexWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t033646 = QHelpIndexWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t033646.prepend("WHITESPACE").constData()+10), t033646.size()-10 }; });
 }
 
 void QHelpIndexWidget_ActivateCurrentItem(void* ptr)
@@ -3965,9 +3940,9 @@ char QHelpIndexWidget_CloseDefault(void* ptr)
 		return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::close();
 }
 
-char QHelpIndexWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QHelpIndexWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QHelpIndexWidget_ActionEventDefault(void* ptr, void* event)
@@ -4237,11 +4212,6 @@ void* QHelpSearchEngine_ResultWidget(void* ptr)
 struct QtHelp_PackedString QHelpSearchEngine_QHelpSearchEngine_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t1bf550 = QHelpSearchEngine::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t1bf550.prepend("WHITESPACE").constData()+10), t1bf550.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpSearchEngine_QHelpSearchEngine_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t379287 = QHelpSearchEngine::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t379287.prepend("WHITESPACE").constData()+10), t379287.size()-10 }; });
 }
 
 void QHelpSearchEngine_CancelIndexing(void* ptr)
@@ -4569,7 +4539,7 @@ public:
 	bool close() { return callbackQHelpSearchQueryWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQHelpSearchQueryWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchQueryWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchQueryWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchQueryWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpSearchQueryWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQHelpSearchQueryWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchQueryWidget_CloseEvent(this, event); };
@@ -4649,11 +4619,6 @@ void* QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(void* parent)
 struct QtHelp_PackedString QHelpSearchQueryWidget_QHelpSearchQueryWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tb78512 = QHelpSearchQueryWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(tb78512.prepend("WHITESPACE").constData()+10), tb78512.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpSearchQueryWidget_QHelpSearchQueryWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tca4cd6 = QHelpSearchQueryWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(tca4cd6.prepend("WHITESPACE").constData()+10), tca4cd6.size()-10 }; });
 }
 
 void QHelpSearchQueryWidget_CollapseExtendedSearch(void* ptr)
@@ -4897,9 +4862,9 @@ char QHelpSearchQueryWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::focusNextPrevChild(next != 0);
 }
 
-char QHelpSearchQueryWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QHelpSearchQueryWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QHelpSearchQueryWidget_ActionEventDefault(void* ptr, void* event)
@@ -5246,7 +5211,7 @@ public:
 	bool close() { return callbackQHelpSearchResultWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQHelpSearchResultWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchResultWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchResultWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchResultWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQHelpSearchResultWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQHelpSearchResultWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchResultWidget_CloseEvent(this, event); };
@@ -5321,11 +5286,6 @@ int QHelpSearchResultWidget_QHelpSearchResultWidget_QRegisterMetaType(){qRegiste
 struct QtHelp_PackedString QHelpSearchResultWidget_QHelpSearchResultWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t4a1d70 = QHelpSearchResultWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t4a1d70.prepend("WHITESPACE").constData()+10), t4a1d70.size()-10 }; });
-}
-
-struct QtHelp_PackedString QHelpSearchResultWidget_QHelpSearchResultWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t2a2f47 = QHelpSearchResultWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtHelp_PackedString { const_cast<char*>(t2a2f47.prepend("WHITESPACE").constData()+10), t2a2f47.size()-10 }; });
 }
 
 void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
@@ -5507,9 +5467,9 @@ char QHelpSearchResultWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::focusNextPrevChild(next != 0);
 }
 
-char QHelpSearchResultWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QHelpSearchResultWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QHelpSearchResultWidget_ActionEventDefault(void* ptr, void* event)

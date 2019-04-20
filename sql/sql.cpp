@@ -388,11 +388,6 @@ struct QtSql_PackedString QSqlDriver_QSqlDriver_Tr(char* s, char* c, int n)
 	return ({ QByteArray t3ae513 = QSqlDriver::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t3ae513.prepend("WHITESPACE").constData()+10), t3ae513.size()-10 }; });
 }
 
-struct QtSql_PackedString QSqlDriver_QSqlDriver_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tededeb = QSqlDriver::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tededeb.prepend("WHITESPACE").constData()+10), tededeb.size()-10 }; });
-}
-
 char QSqlDriver_BeginTransaction(void* ptr)
 {
 	return static_cast<QSqlDriver*>(ptr)->beginTransaction();
@@ -882,11 +877,6 @@ void* QSqlDriverPlugin_NewQSqlDriverPlugin(void* parent)
 struct QtSql_PackedString QSqlDriverPlugin_QSqlDriverPlugin_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tf86c07 = QSqlDriverPlugin::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tf86c07.prepend("WHITESPACE").constData()+10), tf86c07.size()-10 }; });
-}
-
-struct QtSql_PackedString QSqlDriverPlugin_QSqlDriverPlugin_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tb59155 = QSqlDriverPlugin::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(tb59155.prepend("WHITESPACE").constData()+10), tb59155.size()-10 }; });
 }
 
 void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr)
@@ -1689,11 +1679,6 @@ void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 struct QtSql_PackedString QSqlQueryModel_QSqlQueryModel_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t5980ae = QSqlQueryModel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t5980ae.prepend("WHITESPACE").constData()+10), t5980ae.size()-10 }; });
-}
-
-struct QtSql_PackedString QSqlQueryModel_QSqlQueryModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t013540 = QSqlQueryModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSql_PackedString { const_cast<char*>(t013540.prepend("WHITESPACE").constData()+10), t013540.size()-10 }; });
 }
 
 char QSqlQueryModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)

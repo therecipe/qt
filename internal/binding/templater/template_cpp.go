@@ -506,7 +506,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 #define private public
 
 #include "%v.h"
-%v
+%v%v
 
 `,
 		buildTags(module, false, mode, tags),
@@ -551,6 +551,13 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				}
 				return "#include \"_cgo_export.h\""
 			}
+		}(),
+
+		func() string {
+			if utils.QT_DEBUG_CPP() {
+				return "\n#include <QDebug>\n"
+			}
+			return ""
 		}(),
 	)
 

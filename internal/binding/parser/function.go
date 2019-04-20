@@ -417,6 +417,9 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QNearFieldManager::adapterStateChanged", f.Name == "singletonInstance",
 		f.Fullname == "QWebEngineUrlScheme::syntax",
 
+		f.Fullname == "QVirtualKeyboardSelectionListModel::setCount",
+		f.Name == "trUtf8",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {

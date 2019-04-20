@@ -126,11 +126,6 @@ struct QtGamepad_PackedString QGamepad_QGamepad_Tr(char* s, char* c, int n)
 	return ({ QByteArray t602467 = QGamepad::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t602467.prepend("WHITESPACE").constData()+10), t602467.size()-10 }; });
 }
 
-struct QtGamepad_PackedString QGamepad_QGamepad_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t8e5055 = QGamepad::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t8e5055.prepend("WHITESPACE").constData()+10), t8e5055.size()-10 }; });
-}
-
 void QGamepad_ConnectAxisLeftXChanged(void* ptr)
 {
 	QObject::connect(static_cast<QGamepad*>(ptr), static_cast<void (QGamepad::*)(double)>(&QGamepad::axisLeftXChanged), static_cast<MyQGamepad*>(ptr), static_cast<void (MyQGamepad::*)(double)>(&MyQGamepad::Signal_AxisLeftXChanged));
@@ -878,11 +873,6 @@ void* QGamepadKeyNavigation_NewQGamepadKeyNavigation(void* parent)
 struct QtGamepad_PackedString QGamepadKeyNavigation_QGamepadKeyNavigation_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tbfc475 = QGamepadKeyNavigation::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tbfc475.prepend("WHITESPACE").constData()+10), tbfc475.size()-10 }; });
-}
-
-struct QtGamepad_PackedString QGamepadKeyNavigation_QGamepadKeyNavigation_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t7f46cf = QGamepadKeyNavigation::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t7f46cf.prepend("WHITESPACE").constData()+10), t7f46cf.size()-10 }; });
 }
 
 void QGamepadKeyNavigation_ConnectActiveChanged(void* ptr)
@@ -1658,11 +1648,6 @@ void* QGamepadManager_QGamepadManager_Instance()
 struct QtGamepad_PackedString QGamepadManager_QGamepadManager_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t0c7aa3 = QGamepadManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(t0c7aa3.prepend("WHITESPACE").constData()+10), t0c7aa3.size()-10 }; });
-}
-
-struct QtGamepad_PackedString QGamepadManager_QGamepadManager_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tfbf117 = QGamepadManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtGamepad_PackedString { const_cast<char*>(tfbf117.prepend("WHITESPACE").constData()+10), tfbf117.size()-10 }; });
 }
 
 char QGamepadManager_ConfigureAxis(void* ptr, int deviceId, long long axis)

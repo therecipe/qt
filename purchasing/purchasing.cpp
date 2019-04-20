@@ -61,11 +61,6 @@ struct QtPurchasing_PackedString QInAppProduct_QInAppProduct_Tr(char* s, char* c
 	return ({ QByteArray t5260d1 = QInAppProduct::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t5260d1.prepend("WHITESPACE").constData()+10), t5260d1.size()-10 }; });
 }
 
-struct QtPurchasing_PackedString QInAppProduct_QInAppProduct_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t9f0564 = QInAppProduct::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t9f0564.prepend("WHITESPACE").constData()+10), t9f0564.size()-10 }; });
-}
-
 void QInAppProduct_Purchase(void* ptr)
 {
 	static_cast<QInAppProduct*>(ptr)->purchase();
@@ -288,11 +283,6 @@ void* QInAppStore_NewQInAppStore(void* parent)
 struct QtPurchasing_PackedString QInAppStore_QInAppStore_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t3aa640 = QInAppStore::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t3aa640.prepend("WHITESPACE").constData()+10), t3aa640.size()-10 }; });
-}
-
-struct QtPurchasing_PackedString QInAppStore_QInAppStore_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t3f110d = QInAppStore::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t3f110d.prepend("WHITESPACE").constData()+10), t3f110d.size()-10 }; });
 }
 
 void QInAppStore_ConnectProductRegistered(void* ptr)
@@ -525,11 +515,6 @@ int QInAppTransaction_QInAppTransaction_QRegisterMetaType(){qRegisterMetaType<QI
 struct QtPurchasing_PackedString QInAppTransaction_QInAppTransaction_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tf04aca = QInAppTransaction::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tf04aca.prepend("WHITESPACE").constData()+10), tf04aca.size()-10 }; });
-}
-
-struct QtPurchasing_PackedString QInAppTransaction_QInAppTransaction_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t17789e = QInAppTransaction::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t17789e.prepend("WHITESPACE").constData()+10), t17789e.size()-10 }; });
 }
 
 void QInAppTransaction_Finalize(void* ptr)

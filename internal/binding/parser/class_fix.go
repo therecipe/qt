@@ -240,23 +240,7 @@ func (c *Class) fixBases() {
 	switch runtime.GOOS {
 	case "windows":
 		{
-			if utils.QT_MSYS2() {
-				prefixPath = utils.QT_MSYS2_DIR()
-				if utils.QT_MSYS2_STATIC() {
-					prefixPath = filepath.Join(prefixPath, "qt5-static")
-				}
-			} else {
-				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.MINGWDIR())
-				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), utils.MINGWDIR())
-				}
-				if !utils.ExistsDir(prefixPath) {
-					prefixPath = strings.Replace(prefixPath, utils.MINGWDIR(), "mingw53_32", -1)
-				}
-				if !utils.ExistsDir(prefixPath) {
-					prefixPath = strings.Replace(prefixPath, "mingw53_32", "mingw49_32", -1)
-				}
-			}
+			prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
 		}
 
 	case "darwin":
@@ -271,7 +255,7 @@ func (c *Class) fixBases() {
 					}
 				}
 			} else {
-				prefixPath = utils.QT_DARWIN_DIR()
+				prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
 				infixPath = "lib"
 				suffixPath = ".framework/Headers/"
 			}
@@ -289,10 +273,7 @@ func (c *Class) fixBases() {
 				prefixPath = "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include/qt5"
 				infixPath = ""
 			default:
-				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
-				if !utils.ExistsDir(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR())) {
-					prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION(), "gcc_64")
-				}
+				prefixPath = utils.QT_INSTALL_PREFIX_IGNORE_QMAKE(runtime.GOOS)
 			}
 		}
 	}

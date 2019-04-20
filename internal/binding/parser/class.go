@@ -230,6 +230,21 @@ func (c *Class) HasCallbackFunctions() bool {
 	return false
 }
 
+func (c *Class) HasCallbackFunctionsBesideTheDestructor() bool {
+	for _, bcn := range append([]string{c.Name}, c.GetAllBases()...) {
+		var bc, ok = State.ClassMap[bcn]
+		if !ok {
+			continue
+		}
+		for _, f := range bc.Functions {
+			if (f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT) && f.Meta != DESTRUCTOR {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func (c *Class) IsSupported() bool {
 	if c == nil {
 		return false

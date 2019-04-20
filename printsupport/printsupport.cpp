@@ -79,7 +79,7 @@ public:
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQAbstractPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQAbstractPrintDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQAbstractPrintDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -150,11 +150,6 @@ void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent)
 struct QtPrintSupport_PackedString QAbstractPrintDialog_QAbstractPrintDialog_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t54c3d5 = QAbstractPrintDialog::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t54c3d5.prepend("WHITESPACE").constData()+10), t54c3d5.size()-10 }; });
-}
-
-struct QtPrintSupport_PackedString QAbstractPrintDialog_QAbstractPrintDialog_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t08a946 = QAbstractPrintDialog::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t08a946.prepend("WHITESPACE").constData()+10), t08a946.size()-10 }; });
 }
 
 int QAbstractPrintDialog_Exec(void* ptr)
@@ -509,12 +504,12 @@ char QAbstractPrintDialog_FocusNextPrevChildDefault(void* ptr, char next)
 	}
 }
 
-char QAbstractPrintDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QAbstractPrintDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
 	if (dynamic_cast<QPrintDialog*>(static_cast<QObject*>(ptr))) {
-		return static_cast<QPrintDialog*>(ptr)->QPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPrintDialog*>(ptr)->QPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	} else {
-		return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 	}
 }
 
@@ -1003,7 +998,7 @@ public:
 	bool close() { return callbackQPageSetupDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPageSetupDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPageSetupDialog_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPageSetupDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPageSetupDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPageSetupDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPageSetupDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQPageSetupDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1084,11 +1079,6 @@ void* QPageSetupDialog_Printer(void* ptr)
 struct QtPrintSupport_PackedString QPageSetupDialog_QPageSetupDialog_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t7c8143 = QPageSetupDialog::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t7c8143.prepend("WHITESPACE").constData()+10), t7c8143.size()-10 }; });
-}
-
-struct QtPrintSupport_PackedString QPageSetupDialog_QPageSetupDialog_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tef0d95 = QPageSetupDialog::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(tef0d95.prepend("WHITESPACE").constData()+10), tef0d95.size()-10 }; });
 }
 
 int QPageSetupDialog_Exec(void* ptr)
@@ -1327,9 +1317,9 @@ char QPageSetupDialog_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::focusNextPrevChild(next != 0);
 }
 
-char QPageSetupDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QPageSetupDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QPageSetupDialog_ActionEventDefault(void* ptr, void* event)
@@ -1613,7 +1603,7 @@ public:
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQAbstractPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQAbstractPrintDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQAbstractPrintDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1847,7 +1837,7 @@ public:
 	bool close() { return callbackQPrintPreviewDialog_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPrintPreviewDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewDialog_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPrintPreviewDialog_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewDialog_ChangeEvent(this, event); };
 	void Signal_CustomContextMenuRequested(const QPoint & pos) { callbackQPrintPreviewDialog_CustomContextMenuRequested(this, const_cast<QPoint*>(&pos)); };
@@ -1928,11 +1918,6 @@ void* QPrintPreviewDialog_Printer(void* ptr)
 struct QtPrintSupport_PackedString QPrintPreviewDialog_QPrintPreviewDialog_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t7eb9f9 = QPrintPreviewDialog::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t7eb9f9.prepend("WHITESPACE").constData()+10), t7eb9f9.size()-10 }; });
-}
-
-struct QtPrintSupport_PackedString QPrintPreviewDialog_QPrintPreviewDialog_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6cdb68 = QPrintPreviewDialog::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t6cdb68.prepend("WHITESPACE").constData()+10), t6cdb68.size()-10 }; });
 }
 
 void QPrintPreviewDialog_Done(void* ptr, int result)
@@ -2181,9 +2166,9 @@ char QPrintPreviewDialog_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::focusNextPrevChild(next != 0);
 }
 
-char QPrintPreviewDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QPrintPreviewDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QPrintPreviewDialog_ActionEventDefault(void* ptr, void* event)
@@ -2470,7 +2455,7 @@ public:
 	bool close() { return callbackQPrintPreviewWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQPrintPreviewWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQPrintPreviewWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQPrintPreviewWidget_CloseEvent(this, event); };
@@ -2554,11 +2539,6 @@ void* QPrintPreviewWidget_NewQPrintPreviewWidget2(void* parent, long long flags)
 struct QtPrintSupport_PackedString QPrintPreviewWidget_QPrintPreviewWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t9a24f1 = QPrintPreviewWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t9a24f1.prepend("WHITESPACE").constData()+10), t9a24f1.size()-10 }; });
-}
-
-struct QtPrintSupport_PackedString QPrintPreviewWidget_QPrintPreviewWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6e81aa = QPrintPreviewWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(t6e81aa.prepend("WHITESPACE").constData()+10), t6e81aa.size()-10 }; });
 }
 
 void QPrintPreviewWidget_FitInView(void* ptr)
@@ -2950,9 +2930,9 @@ char QPrintPreviewWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::focusNextPrevChild(next != 0);
 }
 
-char QPrintPreviewWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QPrintPreviewWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QPrintPreviewWidget_ActionEventDefault(void* ptr, void* event)

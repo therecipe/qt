@@ -155,7 +155,7 @@ func (c *Controller) getTrackList(album *xml.QDomElement) []string {
 }
 
 func (c *Controller) deleteAlbum(index *core.QModelIndex) {
-	c.removeAlbumFromFile(index.Data(int(core.Qt__UserRole) + 1).ToInt(true))
+	c.removeAlbumFromFile(index.Data(int(core.Qt__UserRole) + 1).ToInt(nil))
 	c.removeAlbumFromDatabase(index)
 }
 
@@ -194,7 +194,7 @@ func (c *Controller) removeAlbumFromDatabase(index *core.QModelIndex) {
 
 	//model.SortFilterModel.BeginRemoveRows(core.NewQModelIndex(), index.Row(), index.Row())
 	model.SortFilterModel.BeginResetModel()
-	model.DeleteAlbum(index.Data(int(core.Qt__UserRole) + 1).ToInt(true))
+	model.DeleteAlbum(index.Data(int(core.Qt__UserRole) + 1).ToInt(nil))
 	model.SortFilterModel.EndResetModel()
 	//model.SortFilterModel.EndRemoveRows()
 

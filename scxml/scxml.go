@@ -184,7 +184,7 @@ func NewQScxmlCppDataModelFromPointer(ptr unsafe.Pointer) (n *QScxmlCppDataModel
 //export callbackQScxmlCppDataModel_SetScxmlProperty
 func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
@@ -194,12 +194,13 @@ func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
+			f := func(name string, value *core.QVariant, context string) bool {
+				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
 				return f(name, value, context)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -248,7 +249,7 @@ func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.Q
 //export callbackQScxmlCppDataModel_Setup
 func callbackQScxmlCppDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
+		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlCppDataModelFromPointer(l.data)
 			for i, v := range tmpList.__setup_initialDataValues_keyList() {
@@ -272,12 +273,13 @@ func (ptr *QScxmlCppDataModel) ConnectSetup(f func(initialDataValues map[string]
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
+			f := func(initialDataValues map[string]*core.QVariant) bool {
+				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
 				return f(initialDataValues)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", f)
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -324,7 +326,7 @@ func (ptr *QScxmlCppDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
 //export callbackQScxmlCppDataModel_ScxmlProperty
 func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
+		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
 	}
 
 	return core.PointerFromQVariant(NewQScxmlCppDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
@@ -334,12 +336,13 @@ func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QV
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string) *core.QVariant)(name)
+			f := func(name string) *core.QVariant {
+				(*(*func(string) *core.QVariant)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -382,7 +385,7 @@ func (ptr *QScxmlCppDataModel) ScxmlPropertyDefault(name string) *core.QVariant 
 //export callbackQScxmlCppDataModel_HasScxmlProperty
 func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
@@ -392,12 +395,13 @@ func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool)
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string) bool)(name)
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -518,38 +522,10 @@ func (ptr *QScxmlDataModel) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QScxmlDataModel_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QScxmlDataModel) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlDataModel_QScxmlDataModel_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQScxmlDataModel_SetScxmlProperty
 func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -559,12 +535,13 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *c
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
+			f := func(name string, value *core.QVariant, context string) bool {
+				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
 				return f(name, value, context)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -596,7 +573,7 @@ func (ptr *QScxmlDataModel) SetScxmlProperty(name string, value core.QVariant_IT
 //export callbackQScxmlDataModel_Setup
 func callbackQScxmlDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
+		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlDataModelFromPointer(l.data)
 			for i, v := range tmpList.__setup_initialDataValues_keyList() {
@@ -613,12 +590,13 @@ func (ptr *QScxmlDataModel) ConnectSetup(f func(initialDataValues map[string]*co
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
+			f := func(initialDataValues map[string]*core.QVariant) bool {
+				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
 				return f(initialDataValues)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", f)
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -652,7 +630,7 @@ func (ptr *QScxmlDataModel) SetStateMachine(stateMachine QScxmlStateMachine_ITF)
 //export callbackQScxmlDataModel_StateMachineChanged
 func callbackQScxmlDataModel_StateMachineChanged(ptr unsafe.Pointer, stateMachine unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "stateMachineChanged"); signal != nil {
-		signal.(func(*QScxmlStateMachine))(NewQScxmlStateMachineFromPointer(stateMachine))
+		(*(*func(*QScxmlStateMachine))(signal))(NewQScxmlStateMachineFromPointer(stateMachine))
 	}
 
 }
@@ -665,12 +643,13 @@ func (ptr *QScxmlDataModel) ConnectStateMachineChanged(f func(stateMachine *QScx
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateMachineChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", func(stateMachine *QScxmlStateMachine) {
-				signal.(func(*QScxmlStateMachine))(stateMachine)
+			f := func(stateMachine *QScxmlStateMachine) {
+				(*(*func(*QScxmlStateMachine))(signal))(stateMachine)
 				f(stateMachine)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "stateMachineChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -702,7 +681,7 @@ func (ptr *QScxmlDataModel) StateMachine() *QScxmlStateMachine {
 //export callbackQScxmlDataModel_ScxmlProperty
 func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
+		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
 	}
 
 	return core.PointerFromQVariant(core.NewQVariant())
@@ -712,12 +691,13 @@ func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVari
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string) *core.QVariant)(name)
+			f := func(name string) *core.QVariant {
+				(*(*func(string) *core.QVariant)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -746,7 +726,7 @@ func (ptr *QScxmlDataModel) ScxmlProperty(name string) *core.QVariant {
 //export callbackQScxmlDataModel_HasScxmlProperty
 func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -756,12 +736,13 @@ func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string) bool)(name)
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -788,7 +769,7 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 //export callbackQScxmlDataModel_MetaObject
 func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQScxmlDataModelFromPointer(ptr).MetaObjectDefault())
@@ -972,7 +953,7 @@ func (ptr *QScxmlDataModel) __children_newList() unsafe.Pointer {
 //export callbackQScxmlDataModel_Event
 func callbackQScxmlDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlDataModelFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -988,7 +969,7 @@ func (ptr *QScxmlDataModel) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQScxmlDataModel_EventFilter
 func callbackQScxmlDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlDataModelFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1004,7 +985,7 @@ func (ptr *QScxmlDataModel) EventFilterDefault(watched core.QObject_ITF, event c
 //export callbackQScxmlDataModel_ChildEvent
 func callbackQScxmlDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -1019,7 +1000,7 @@ func (ptr *QScxmlDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQScxmlDataModel_ConnectNotify
 func callbackQScxmlDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -1034,7 +1015,7 @@ func (ptr *QScxmlDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQScxmlDataModel_CustomEvent
 func callbackQScxmlDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -1049,7 +1030,7 @@ func (ptr *QScxmlDataModel) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQScxmlDataModel_DeleteLater
 func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -1058,7 +1039,6 @@ func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -1066,7 +1046,7 @@ func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 //export callbackQScxmlDataModel_Destroyed
 func callbackQScxmlDataModel_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -1074,7 +1054,7 @@ func callbackQScxmlDataModel_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 //export callbackQScxmlDataModel_DisconnectNotify
 func callbackQScxmlDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -1089,7 +1069,7 @@ func (ptr *QScxmlDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQScxmlDataModel_ObjectNameChanged
 func callbackQScxmlDataModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -1097,7 +1077,7 @@ func callbackQScxmlDataModel_ObjectNameChanged(ptr unsafe.Pointer, objectName C.
 //export callbackQScxmlDataModel_TimerEvent
 func callbackQScxmlDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQScxmlDataModelFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -1151,7 +1131,7 @@ func NewQScxmlDynamicScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScx
 //export callbackQScxmlDynamicScxmlServiceFactory_Invoke
 func callbackQScxmlDynamicScxmlServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService(signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(NewQScxmlStateMachineFromPointer(parentStateMachine)))
+		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
 	}
 
 	return PointerFromQScxmlInvokableService(NewQScxmlDynamicScxmlServiceFactoryFromPointer(ptr).InvokeDefault(NewQScxmlStateMachineFromPointer(parentStateMachine)))
@@ -1161,12 +1141,13 @@ func (ptr *QScxmlDynamicScxmlServiceFactory) ConnectInvoke(f func(parentStateMac
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
+			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
+				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
 				return f(parentStateMachine)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", f)
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1257,7 +1238,7 @@ func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptData
 //export callbackQScxmlEcmaScriptDataModel_SetScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
@@ -1267,12 +1248,13 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
+			f := func(name string, value *core.QVariant, context string) bool {
+				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
 				return f(name, value, context)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1321,7 +1303,7 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value
 //export callbackQScxmlEcmaScriptDataModel_Setup
 func callbackQScxmlEcmaScriptDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
+		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlEcmaScriptDataModelFromPointer(l.data)
 			for i, v := range tmpList.__setup_initialDataValues_keyList() {
@@ -1345,12 +1327,13 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetup(f func(initialDataValues map[
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
+			f := func(initialDataValues map[string]*core.QVariant) bool {
+				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
 				return f(initialDataValues)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", f)
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1391,7 +1374,7 @@ func (ptr *QScxmlEcmaScriptDataModel) SetupDefault(initialDataValues map[string]
 //export callbackQScxmlEcmaScriptDataModel_SetScxmlEvent
 func callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setScxmlEvent"); signal != nil {
-		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
+		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
 	} else {
 		NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlEventDefault(NewQScxmlEventFromPointer(event))
 	}
@@ -1401,12 +1384,13 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlEvent(f func(event *QScxmlE
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlEvent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", func(event *QScxmlEvent) {
-				signal.(func(*QScxmlEvent))(event)
+			f := func(event *QScxmlEvent) {
+				(*(*func(*QScxmlEvent))(signal))(event)
 				f(event)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1433,7 +1417,7 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF
 //export callbackQScxmlEcmaScriptDataModel_ScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
+		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
 	}
 
 	return core.PointerFromQVariant(NewQScxmlEcmaScriptDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
@@ -1443,12 +1427,13 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string) *core.QVariant)(name)
+			f := func(name string) *core.QVariant {
+				(*(*func(string) *core.QVariant)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1491,7 +1476,7 @@ func (ptr *QScxmlEcmaScriptDataModel) ScxmlPropertyDefault(name string) *core.QV
 //export callbackQScxmlEcmaScriptDataModel_HasScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
@@ -1501,12 +1486,13 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string) bool)(name)
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1968,38 +1954,10 @@ func (ptr *QScxmlInvokableService) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QScxmlInvokableService_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QScxmlInvokableService) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlInvokableService_QScxmlInvokableService_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQScxmlInvokableService_Start
 func callbackQScxmlInvokableService_Start(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -2009,12 +1967,13 @@ func (ptr *QScxmlInvokableService) ConnectStart(f func() bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "start", func() bool {
-				signal.(func() bool)()
+			f := func() bool {
+				(*(*func() bool)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", f)
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2036,7 +1995,7 @@ func (ptr *QScxmlInvokableService) Start() bool {
 //export callbackQScxmlInvokableService_PostEvent
 func callbackQScxmlInvokableService_PostEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "postEvent"); signal != nil {
-		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
+		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
 	}
 
 }
@@ -2045,12 +2004,13 @@ func (ptr *QScxmlInvokableService) ConnectPostEvent(f func(event *QScxmlEvent)) 
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "postEvent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "postEvent", func(event *QScxmlEvent) {
-				signal.(func(*QScxmlEvent))(event)
+			f := func(event *QScxmlEvent) {
+				(*(*func(*QScxmlEvent))(signal))(event)
 				f(event)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "postEvent", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "postEvent", f)
+			qt.ConnectSignal(ptr.Pointer(), "postEvent", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2082,7 +2042,7 @@ func (ptr *QScxmlInvokableService) ParentStateMachine() *QScxmlStateMachine {
 //export callbackQScxmlInvokableService_Id
 func callbackQScxmlInvokableService_Id(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
 	if signal := qt.GetSignal(ptr, "id"); signal != nil {
-		tempVal := signal.(func() string)()
+		tempVal := (*(*func() string)(signal))()
 		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
@@ -2093,12 +2053,13 @@ func (ptr *QScxmlInvokableService) ConnectId(f func() string) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "id"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "id", func() string {
-				signal.(func() string)()
+			f := func() string {
+				(*(*func() string)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "id", f)
+			qt.ConnectSignal(ptr.Pointer(), "id", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2120,7 +2081,7 @@ func (ptr *QScxmlInvokableService) Id() string {
 //export callbackQScxmlInvokableService_Name
 func callbackQScxmlInvokableService_Name(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
 	if signal := qt.GetSignal(ptr, "name"); signal != nil {
-		tempVal := signal.(func() string)()
+		tempVal := (*(*func() string)(signal))()
 		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
@@ -2131,12 +2092,13 @@ func (ptr *QScxmlInvokableService) ConnectName(f func() string) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "name"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "name", func() string {
-				signal.(func() string)()
+			f := func() string {
+				(*(*func() string)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "name", f)
+			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2158,7 +2120,7 @@ func (ptr *QScxmlInvokableService) Name() string {
 //export callbackQScxmlInvokableService_MetaObject
 func callbackQScxmlInvokableService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFromPointer(ptr).MetaObjectDefault())
@@ -2277,7 +2239,7 @@ func (ptr *QScxmlInvokableService) __children_newList() unsafe.Pointer {
 //export callbackQScxmlInvokableService_Event
 func callbackQScxmlInvokableService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -2293,7 +2255,7 @@ func (ptr *QScxmlInvokableService) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQScxmlInvokableService_EventFilter
 func callbackQScxmlInvokableService_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2309,7 +2271,7 @@ func (ptr *QScxmlInvokableService) EventFilterDefault(watched core.QObject_ITF, 
 //export callbackQScxmlInvokableService_ChildEvent
 func callbackQScxmlInvokableService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -2324,7 +2286,7 @@ func (ptr *QScxmlInvokableService) ChildEventDefault(event core.QChildEvent_ITF)
 //export callbackQScxmlInvokableService_ConnectNotify
 func callbackQScxmlInvokableService_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2339,7 +2301,7 @@ func (ptr *QScxmlInvokableService) ConnectNotifyDefault(sign core.QMetaMethod_IT
 //export callbackQScxmlInvokableService_CustomEvent
 func callbackQScxmlInvokableService_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -2354,7 +2316,7 @@ func (ptr *QScxmlInvokableService) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQScxmlInvokableService_DeleteLater
 func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -2363,7 +2325,6 @@ func callbackQScxmlInvokableService_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableService_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -2371,7 +2332,7 @@ func (ptr *QScxmlInvokableService) DeleteLaterDefault() {
 //export callbackQScxmlInvokableService_Destroyed
 func callbackQScxmlInvokableService_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -2379,7 +2340,7 @@ func callbackQScxmlInvokableService_Destroyed(ptr unsafe.Pointer, obj unsafe.Poi
 //export callbackQScxmlInvokableService_DisconnectNotify
 func callbackQScxmlInvokableService_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2394,7 +2355,7 @@ func (ptr *QScxmlInvokableService) DisconnectNotifyDefault(sign core.QMetaMethod
 //export callbackQScxmlInvokableService_ObjectNameChanged
 func callbackQScxmlInvokableService_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -2402,7 +2363,7 @@ func callbackQScxmlInvokableService_ObjectNameChanged(ptr unsafe.Pointer, object
 //export callbackQScxmlInvokableService_TimerEvent
 func callbackQScxmlInvokableService_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -2456,7 +2417,7 @@ func NewQScxmlInvokableServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScxmlI
 //export callbackQScxmlInvokableServiceFactory_Invoke
 func callbackQScxmlInvokableServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService(signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(NewQScxmlStateMachineFromPointer(parentStateMachine)))
+		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
 	}
 
 	return PointerFromQScxmlInvokableService(nil)
@@ -2466,12 +2427,13 @@ func (ptr *QScxmlInvokableServiceFactory) ConnectInvoke(f func(parentStateMachin
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
+			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
+				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
 				return f(parentStateMachine)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", f)
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2522,38 +2484,10 @@ func (ptr *QScxmlInvokableServiceFactory) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QScxmlInvokableServiceFactory_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QScxmlInvokableServiceFactory) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlInvokableServiceFactory_QScxmlInvokableServiceFactory_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQScxmlInvokableServiceFactory_MetaObject
 func callbackQScxmlInvokableServiceFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQScxmlInvokableServiceFactoryFromPointer(ptr).MetaObjectDefault())
@@ -2688,7 +2622,7 @@ func (ptr *QScxmlInvokableServiceFactory) __children_newList() unsafe.Pointer {
 //export callbackQScxmlInvokableServiceFactory_Event
 func callbackQScxmlInvokableServiceFactory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFactoryFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -2704,7 +2638,7 @@ func (ptr *QScxmlInvokableServiceFactory) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQScxmlInvokableServiceFactory_EventFilter
 func callbackQScxmlInvokableServiceFactory_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlInvokableServiceFactoryFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2720,7 +2654,7 @@ func (ptr *QScxmlInvokableServiceFactory) EventFilterDefault(watched core.QObjec
 //export callbackQScxmlInvokableServiceFactory_ChildEvent
 func callbackQScxmlInvokableServiceFactory_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -2735,7 +2669,7 @@ func (ptr *QScxmlInvokableServiceFactory) ChildEventDefault(event core.QChildEve
 //export callbackQScxmlInvokableServiceFactory_ConnectNotify
 func callbackQScxmlInvokableServiceFactory_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2750,7 +2684,7 @@ func (ptr *QScxmlInvokableServiceFactory) ConnectNotifyDefault(sign core.QMetaMe
 //export callbackQScxmlInvokableServiceFactory_CustomEvent
 func callbackQScxmlInvokableServiceFactory_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -2765,7 +2699,7 @@ func (ptr *QScxmlInvokableServiceFactory) CustomEventDefault(event core.QEvent_I
 //export callbackQScxmlInvokableServiceFactory_DeleteLater
 func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -2774,7 +2708,6 @@ func callbackQScxmlInvokableServiceFactory_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlInvokableServiceFactory_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -2782,7 +2715,7 @@ func (ptr *QScxmlInvokableServiceFactory) DeleteLaterDefault() {
 //export callbackQScxmlInvokableServiceFactory_Destroyed
 func callbackQScxmlInvokableServiceFactory_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -2790,7 +2723,7 @@ func callbackQScxmlInvokableServiceFactory_Destroyed(ptr unsafe.Pointer, obj uns
 //export callbackQScxmlInvokableServiceFactory_DisconnectNotify
 func callbackQScxmlInvokableServiceFactory_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2805,7 +2738,7 @@ func (ptr *QScxmlInvokableServiceFactory) DisconnectNotifyDefault(sign core.QMet
 //export callbackQScxmlInvokableServiceFactory_ObjectNameChanged
 func callbackQScxmlInvokableServiceFactory_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -2813,7 +2746,7 @@ func callbackQScxmlInvokableServiceFactory_ObjectNameChanged(ptr unsafe.Pointer,
 //export callbackQScxmlInvokableServiceFactory_TimerEvent
 func callbackQScxmlInvokableServiceFactory_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQScxmlInvokableServiceFactoryFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -2874,7 +2807,7 @@ func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
 //export callbackQScxmlNullDataModel_SetScxmlProperty
 func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string, *core.QVariant, string) bool)(signal))(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
@@ -2884,12 +2817,13 @@ func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, valu
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", func(name string, value *core.QVariant, context string) bool {
-				signal.(func(string, *core.QVariant, string) bool)(name, value, context)
+			f := func(name string, value *core.QVariant, context string) bool {
+				(*(*func(string, *core.QVariant, string) bool)(signal))(name, value, context)
 				return f(name, value, context)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2938,7 +2872,7 @@ func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.
 //export callbackQScxmlNullDataModel_Setup
 func callbackQScxmlNullDataModel_Setup(ptr unsafe.Pointer, initialDataValues C.struct_QtScxml_PackedList) C.char {
 	if signal := qt.GetSignal(ptr, "setup"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(map[string]*core.QVariant) bool)(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
+		return C.char(int8(qt.GoBoolToInt((*(*func(map[string]*core.QVariant) bool)(signal))(func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
 			out := make(map[string]*core.QVariant, int(l.len))
 			tmpList := NewQScxmlNullDataModelFromPointer(l.data)
 			for i, v := range tmpList.__setup_initialDataValues_keyList() {
@@ -2962,12 +2896,13 @@ func (ptr *QScxmlNullDataModel) ConnectSetup(f func(initialDataValues map[string
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setup"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setup", func(initialDataValues map[string]*core.QVariant) bool {
-				signal.(func(map[string]*core.QVariant) bool)(initialDataValues)
+			f := func(initialDataValues map[string]*core.QVariant) bool {
+				(*(*func(map[string]*core.QVariant) bool)(signal))(initialDataValues)
 				return f(initialDataValues)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setup", f)
+			qt.ConnectSignal(ptr.Pointer(), "setup", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3008,7 +2943,7 @@ func (ptr *QScxmlNullDataModel) SetupDefault(initialDataValues map[string]*core.
 //export callbackQScxmlNullDataModel_SetScxmlEvent
 func callbackQScxmlNullDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "setScxmlEvent"); signal != nil {
-		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
+		(*(*func(*QScxmlEvent))(signal))(NewQScxmlEventFromPointer(event))
 	} else {
 		NewQScxmlNullDataModelFromPointer(ptr).SetScxmlEventDefault(NewQScxmlEventFromPointer(event))
 	}
@@ -3018,12 +2953,13 @@ func (ptr *QScxmlNullDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent))
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "setScxmlEvent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", func(event *QScxmlEvent) {
-				signal.(func(*QScxmlEvent))(event)
+			f := func(event *QScxmlEvent) {
+				(*(*func(*QScxmlEvent))(signal))(event)
 				f(event)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", f)
+			qt.ConnectSignal(ptr.Pointer(), "setScxmlEvent", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3050,7 +2986,7 @@ func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
 //export callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel
 func callbackQScxmlNullDataModel_DestroyQScxmlNullDataModel(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QScxmlNullDataModel"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlNullDataModelFromPointer(ptr).DestroyQScxmlNullDataModelDefault()
 	}
@@ -3060,12 +2996,13 @@ func (ptr *QScxmlNullDataModel) ConnectDestroyQScxmlNullDataModel(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QScxmlNullDataModel"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlNullDataModel", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3096,7 +3033,7 @@ func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModelDefault() {
 //export callbackQScxmlNullDataModel_ScxmlProperty
 func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
+		return core.PointerFromQVariant((*(*func(string) *core.QVariant)(signal))(cGoUnpackString(name)))
 	}
 
 	return core.PointerFromQVariant(NewQScxmlNullDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
@@ -3106,12 +3043,13 @@ func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.Q
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "scxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", func(name string) *core.QVariant {
-				signal.(func(string) *core.QVariant)(name)
+			f := func(name string) *core.QVariant {
+				(*(*func(string) *core.QVariant)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "scxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3154,7 +3092,7 @@ func (ptr *QScxmlNullDataModel) ScxmlPropertyDefault(name string) *core.QVariant
 //export callbackQScxmlNullDataModel_HasScxmlProperty
 func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 	if signal := qt.GetSignal(ptr, "hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(string) bool)(signal))(cGoUnpackString(name)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
@@ -3164,12 +3102,13 @@ func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hasScxmlProperty"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", func(name string) bool {
-				signal.(func(string) bool)(name)
+			f := func(name string) bool {
+				(*(*func(string) bool)(signal))(name)
 				return f(name)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", f)
+			qt.ConnectSignal(ptr.Pointer(), "hasScxmlProperty", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3331,34 +3270,6 @@ func (ptr *QScxmlStateMachine) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QScxmlStateMachine_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QScxmlStateMachine) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QScxmlStateMachine) InitialValues() map[string]*core.QVariant {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtScxml_PackedList) map[string]*core.QVariant {
@@ -3376,7 +3287,7 @@ func (ptr *QScxmlStateMachine) InitialValues() map[string]*core.QVariant {
 //export callbackQScxmlStateMachine_Init
 func callbackQScxmlStateMachine_Init(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "init"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).InitDefault())))
@@ -3386,12 +3297,13 @@ func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "init"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "init", func() bool {
-				signal.(func() bool)()
+			f := func() bool {
+				(*(*func() bool)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "init", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "init", f)
+			qt.ConnectSignal(ptr.Pointer(), "init", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3431,7 +3343,7 @@ func (ptr *QScxmlStateMachine) CancelDelayedEvent(sendId string) {
 //export callbackQScxmlStateMachine_DataModelChanged
 func callbackQScxmlStateMachine_DataModelChanged(ptr unsafe.Pointer, model unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "dataModelChanged"); signal != nil {
-		signal.(func(*QScxmlDataModel))(NewQScxmlDataModelFromPointer(model))
+		(*(*func(*QScxmlDataModel))(signal))(NewQScxmlDataModelFromPointer(model))
 	}
 
 }
@@ -3444,12 +3356,13 @@ func (ptr *QScxmlStateMachine) ConnectDataModelChanged(f func(model *QScxmlDataM
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "dataModelChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", func(model *QScxmlDataModel) {
-				signal.(func(*QScxmlDataModel))(model)
+			f := func(model *QScxmlDataModel) {
+				(*(*func(*QScxmlDataModel))(signal))(model)
 				f(model)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "dataModelChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3470,7 +3383,7 @@ func (ptr *QScxmlStateMachine) DataModelChanged(model QScxmlDataModel_ITF) {
 //export callbackQScxmlStateMachine_Finished
 func callbackQScxmlStateMachine_Finished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -3483,12 +3396,13 @@ func (ptr *QScxmlStateMachine) ConnectFinished(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3509,7 +3423,7 @@ func (ptr *QScxmlStateMachine) Finished() {
 //export callbackQScxmlStateMachine_InitializedChanged
 func callbackQScxmlStateMachine_InitializedChanged(ptr unsafe.Pointer, initialized C.char) {
 	if signal := qt.GetSignal(ptr, "initializedChanged"); signal != nil {
-		signal.(func(bool))(int8(initialized) != 0)
+		(*(*func(bool))(signal))(int8(initialized) != 0)
 	}
 
 }
@@ -3522,12 +3436,13 @@ func (ptr *QScxmlStateMachine) ConnectInitializedChanged(f func(initialized bool
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "initializedChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", func(initialized bool) {
-				signal.(func(bool))(initialized)
+			f := func(initialized bool) {
+				(*(*func(bool))(signal))(initialized)
 				f(initialized)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "initializedChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3548,7 +3463,7 @@ func (ptr *QScxmlStateMachine) InitializedChanged(initialized bool) {
 //export callbackQScxmlStateMachine_InvokedServicesChanged
 func callbackQScxmlStateMachine_InvokedServicesChanged(ptr unsafe.Pointer, invokedServices C.struct_QtScxml_PackedList) {
 	if signal := qt.GetSignal(ptr, "invokedServicesChanged"); signal != nil {
-		signal.(func([]*QScxmlInvokableService))(func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
+		(*(*func([]*QScxmlInvokableService))(signal))(func(l C.struct_QtScxml_PackedList) []*QScxmlInvokableService {
 			out := make([]*QScxmlInvokableService, int(l.len))
 			tmpList := NewQScxmlStateMachineFromPointer(l.data)
 			for i := 0; i < len(out); i++ {
@@ -3568,12 +3483,13 @@ func (ptr *QScxmlStateMachine) ConnectInvokedServicesChanged(f func(invokedServi
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "invokedServicesChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", func(invokedServices []*QScxmlInvokableService) {
-				signal.(func([]*QScxmlInvokableService))(invokedServices)
+			f := func(invokedServices []*QScxmlInvokableService) {
+				(*(*func([]*QScxmlInvokableService))(signal))(invokedServices)
 				f(invokedServices)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "invokedServicesChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3600,7 +3516,7 @@ func (ptr *QScxmlStateMachine) InvokedServicesChanged(invokedServices []*QScxmlI
 //export callbackQScxmlStateMachine_Log
 func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label C.struct_QtScxml_PackedString, msg C.struct_QtScxml_PackedString) {
 	if signal := qt.GetSignal(ptr, "log"); signal != nil {
-		signal.(func(string, string))(cGoUnpackString(label), cGoUnpackString(msg))
+		(*(*func(string, string))(signal))(cGoUnpackString(label), cGoUnpackString(msg))
 	}
 
 }
@@ -3613,12 +3529,13 @@ func (ptr *QScxmlStateMachine) ConnectLog(f func(label string, msg string)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "log"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "log", func(label string, msg string) {
-				signal.(func(string, string))(label, msg)
+			f := func(label string, msg string) {
+				(*(*func(string, string))(signal))(label, msg)
 				f(label, msg)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "log", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "log", f)
+			qt.ConnectSignal(ptr.Pointer(), "log", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3649,7 +3566,7 @@ func (ptr *QScxmlStateMachine) Log(label string, msg string) {
 //export callbackQScxmlStateMachine_ReachedStableState
 func callbackQScxmlStateMachine_ReachedStableState(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "reachedStableState"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -3662,12 +3579,13 @@ func (ptr *QScxmlStateMachine) ConnectReachedStableState(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "reachedStableState"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", f)
+			qt.ConnectSignal(ptr.Pointer(), "reachedStableState", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3688,7 +3606,7 @@ func (ptr *QScxmlStateMachine) ReachedStableState() {
 //export callbackQScxmlStateMachine_RunningChanged
 func callbackQScxmlStateMachine_RunningChanged(ptr unsafe.Pointer, running C.char) {
 	if signal := qt.GetSignal(ptr, "runningChanged"); signal != nil {
-		signal.(func(bool))(int8(running) != 0)
+		(*(*func(bool))(signal))(int8(running) != 0)
 	}
 
 }
@@ -3701,12 +3619,13 @@ func (ptr *QScxmlStateMachine) ConnectRunningChanged(f func(running bool)) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "runningChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "runningChanged", func(running bool) {
-				signal.(func(bool))(running)
+			f := func(running bool) {
+				(*(*func(bool))(signal))(running)
 				f(running)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "runningChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "runningChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "runningChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3757,7 +3676,7 @@ func (ptr *QScxmlStateMachine) SetTableData(tableData QScxmlTableData_ITF) {
 //export callbackQScxmlStateMachine_Start
 func callbackQScxmlStateMachine_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).StartDefault()
 	}
@@ -3767,12 +3686,13 @@ func (ptr *QScxmlStateMachine) ConnectStart(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "start", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", f)
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3799,7 +3719,7 @@ func (ptr *QScxmlStateMachine) StartDefault() {
 //export callbackQScxmlStateMachine_Stop
 func callbackQScxmlStateMachine_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).StopDefault()
 	}
@@ -3809,12 +3729,13 @@ func (ptr *QScxmlStateMachine) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stop", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", f)
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3869,7 +3790,7 @@ func (ptr *QScxmlStateMachine) SubmitEvent3(eventName string, data core.QVariant
 //export callbackQScxmlStateMachine_TableDataChanged
 func callbackQScxmlStateMachine_TableDataChanged(ptr unsafe.Pointer, tableData unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "tableDataChanged"); signal != nil {
-		signal.(func(*QScxmlTableData))(NewQScxmlTableDataFromPointer(tableData))
+		(*(*func(*QScxmlTableData))(signal))(NewQScxmlTableDataFromPointer(tableData))
 	}
 
 }
@@ -3882,12 +3803,13 @@ func (ptr *QScxmlStateMachine) ConnectTableDataChanged(f func(tableData *QScxmlT
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "tableDataChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", func(tableData *QScxmlTableData) {
-				signal.(func(*QScxmlTableData))(tableData)
+			f := func(tableData *QScxmlTableData) {
+				(*(*func(*QScxmlTableData))(signal))(tableData)
 				f(tableData)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "tableDataChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4034,7 +3956,7 @@ func (ptr *QScxmlStateMachine) IsRunning() bool {
 //export callbackQScxmlStateMachine_MetaObject
 func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQScxmlStateMachineFromPointer(ptr).MetaObjectDefault())
@@ -4409,7 +4331,7 @@ func (ptr *QScxmlStateMachine) __children_newList() unsafe.Pointer {
 //export callbackQScxmlStateMachine_Event
 func callbackQScxmlStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -4425,7 +4347,7 @@ func (ptr *QScxmlStateMachine) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQScxmlStateMachine_EventFilter
 func callbackQScxmlStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -4441,7 +4363,7 @@ func (ptr *QScxmlStateMachine) EventFilterDefault(watched core.QObject_ITF, even
 //export callbackQScxmlStateMachine_ChildEvent
 func callbackQScxmlStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -4456,7 +4378,7 @@ func (ptr *QScxmlStateMachine) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQScxmlStateMachine_ConnectNotify
 func callbackQScxmlStateMachine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -4471,7 +4393,7 @@ func (ptr *QScxmlStateMachine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQScxmlStateMachine_CustomEvent
 func callbackQScxmlStateMachine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -4486,7 +4408,7 @@ func (ptr *QScxmlStateMachine) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQScxmlStateMachine_DeleteLater
 func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -4495,7 +4417,6 @@ func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -4503,7 +4424,7 @@ func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 //export callbackQScxmlStateMachine_Destroyed
 func callbackQScxmlStateMachine_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -4511,7 +4432,7 @@ func callbackQScxmlStateMachine_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer
 //export callbackQScxmlStateMachine_DisconnectNotify
 func callbackQScxmlStateMachine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -4526,7 +4447,7 @@ func (ptr *QScxmlStateMachine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 //export callbackQScxmlStateMachine_ObjectNameChanged
 func callbackQScxmlStateMachine_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtScxml_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -4534,7 +4455,7 @@ func callbackQScxmlStateMachine_ObjectNameChanged(ptr unsafe.Pointer, objectName
 //export callbackQScxmlStateMachine_TimerEvent
 func callbackQScxmlStateMachine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQScxmlStateMachineFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -4588,7 +4509,7 @@ func NewQScxmlStaticScxmlServiceFactoryFromPointer(ptr unsafe.Pointer) (n *QScxm
 //export callbackQScxmlStaticScxmlServiceFactory_Invoke
 func callbackQScxmlStaticScxmlServiceFactory_Invoke(ptr unsafe.Pointer, parentStateMachine unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "invoke"); signal != nil {
-		return PointerFromQScxmlInvokableService(signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(NewQScxmlStateMachineFromPointer(parentStateMachine)))
+		return PointerFromQScxmlInvokableService((*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(NewQScxmlStateMachineFromPointer(parentStateMachine)))
 	}
 
 	return PointerFromQScxmlInvokableService(NewQScxmlStaticScxmlServiceFactoryFromPointer(ptr).InvokeDefault(NewQScxmlStateMachineFromPointer(parentStateMachine)))
@@ -4598,12 +4519,13 @@ func (ptr *QScxmlStaticScxmlServiceFactory) ConnectInvoke(f func(parentStateMach
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "invoke"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
-				signal.(func(*QScxmlStateMachine) *QScxmlInvokableService)(parentStateMachine)
+			f := func(parentStateMachine *QScxmlStateMachine) *QScxmlInvokableService {
+				(*(*func(*QScxmlStateMachine) *QScxmlInvokableService)(signal))(parentStateMachine)
 				return f(parentStateMachine)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "invoke", f)
+			qt.ConnectSignal(ptr.Pointer(), "invoke", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4686,7 +4608,7 @@ func NewQScxmlTableDataFromPointer(ptr unsafe.Pointer) (n *QScxmlTableData) {
 //export callbackQScxmlTableData_DestroyQScxmlTableData
 func callbackQScxmlTableData_DestroyQScxmlTableData(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QScxmlTableData"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQScxmlTableDataFromPointer(ptr).DestroyQScxmlTableDataDefault()
 	}
@@ -4696,12 +4618,13 @@ func (ptr *QScxmlTableData) ConnectDestroyQScxmlTableData(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QScxmlTableData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QScxmlTableData", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4730,7 +4653,7 @@ func (ptr *QScxmlTableData) DestroyQScxmlTableDataDefault() {
 //export callbackQScxmlTableData_ServiceFactory
 func callbackQScxmlTableData_ServiceFactory(ptr unsafe.Pointer, id C.int) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "serviceFactory"); signal != nil {
-		return PointerFromQScxmlInvokableServiceFactory(signal.(func(int) *QScxmlInvokableServiceFactory)(int(int32(id))))
+		return PointerFromQScxmlInvokableServiceFactory((*(*func(int) *QScxmlInvokableServiceFactory)(signal))(int(int32(id))))
 	}
 
 	return PointerFromQScxmlInvokableServiceFactory(nil)
@@ -4740,12 +4663,13 @@ func (ptr *QScxmlTableData) ConnectServiceFactory(f func(id int) *QScxmlInvokabl
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceFactory"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", func(id int) *QScxmlInvokableServiceFactory {
-				signal.(func(int) *QScxmlInvokableServiceFactory)(id)
+			f := func(id int) *QScxmlInvokableServiceFactory {
+				(*(*func(int) *QScxmlInvokableServiceFactory)(signal))(id)
 				return f(id)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", f)
+			qt.ConnectSignal(ptr.Pointer(), "serviceFactory", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4771,7 +4695,7 @@ func (ptr *QScxmlTableData) ServiceFactory(id int) *QScxmlInvokableServiceFactor
 //export callbackQScxmlTableData_Name
 func callbackQScxmlTableData_Name(ptr unsafe.Pointer) C.struct_QtScxml_PackedString {
 	if signal := qt.GetSignal(ptr, "name"); signal != nil {
-		tempVal := signal.(func() string)()
+		tempVal := (*(*func() string)(signal))()
 		return C.struct_QtScxml_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
@@ -4782,12 +4706,13 @@ func (ptr *QScxmlTableData) ConnectName(f func() string) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "name"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "name", func() string {
-				signal.(func() string)()
+			f := func() string {
+				(*(*func() string)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "name", f)
+			qt.ConnectSignal(ptr.Pointer(), "name", unsafe.Pointer(&f))
 		}
 	}
 }

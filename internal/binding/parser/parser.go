@@ -24,7 +24,9 @@ var State = &struct {
 	MocImports: make(map[string]struct{}),
 }
 
-func LoadModules() {
+func LoadModules(target string) {
+	State.Target = target
+
 	libs := GetLibs()
 	modules := make([]*Module, len(libs))
 	modulesMutex := new(sync.Mutex)

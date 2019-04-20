@@ -128,11 +128,6 @@ struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_
 	return ({ QByteArray t7bf525 = QAbstractItemModelTester::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtTestLib_PackedString { const_cast<char*>(t7bf525.prepend("WHITESPACE").constData()+10), t7bf525.size()-10 }; });
 }
 
-struct QtTestLib_PackedString QAbstractItemModelTester_QAbstractItemModelTester_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t1e3f75 = QAbstractItemModelTester::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtTestLib_PackedString { const_cast<char*>(t1e3f75.prepend("WHITESPACE").constData()+10), t1e3f75.size()-10 }; });
-}
-
 void* QAbstractItemModelTester_Model(void* ptr)
 {
 	return static_cast<QAbstractItemModelTester*>(ptr)->model();

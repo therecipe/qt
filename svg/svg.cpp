@@ -167,11 +167,6 @@ struct QtSvg_PackedString QGraphicsSvgItem_QGraphicsSvgItem_Tr(char* s, char* c,
 	return ({ QByteArray t00c24c = QGraphicsSvgItem::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(t00c24c.prepend("WHITESPACE").constData()+10), t00c24c.size()-10 }; });
 }
 
-struct QtSvg_PackedString QGraphicsSvgItem_QGraphicsSvgItem_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf09750 = QGraphicsSvgItem::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(tf09750.prepend("WHITESPACE").constData()+10), tf09750.size()-10 }; });
-}
-
 void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget)
 {
 	static_cast<QGraphicsSvgItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
@@ -719,11 +714,6 @@ struct QtSvg_PackedString QSvgRenderer_QSvgRenderer_Tr(char* s, char* c, int n)
 	return ({ QByteArray t4fd0c0 = QSvgRenderer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(t4fd0c0.prepend("WHITESPACE").constData()+10), t4fd0c0.size()-10 }; });
 }
 
-struct QtSvg_PackedString QSvgRenderer_QSvgRenderer_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t4256fd = QSvgRenderer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(t4256fd.prepend("WHITESPACE").constData()+10), t4256fd.size()-10 }; });
-}
-
 void* QSvgRenderer_NewQSvgRenderer(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -1171,7 +1161,7 @@ public:
 	bool close() { return callbackQSvgWidget_Close(this) != 0; };
 	bool event(QEvent * event) { return callbackQSvgWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQSvgWidget_FocusNextPrevChild(this, next) != 0; };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	void actionEvent(QActionEvent * event) { callbackQSvgWidget_ActionEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQSvgWidget_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQSvgWidget_CloseEvent(this, event); };
@@ -1244,11 +1234,6 @@ int QSvgWidget_QSvgWidget_QRegisterMetaType(){qRegisterMetaType<QSvgWidget*>(); 
 struct QtSvg_PackedString QSvgWidget_QSvgWidget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t26cef3 = QSvgWidget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(t26cef3.prepend("WHITESPACE").constData()+10), t26cef3.size()-10 }; });
-}
-
-struct QtSvg_PackedString QSvgWidget_QSvgWidget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t02669e = QSvgWidget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSvg_PackedString { const_cast<char*>(t02669e.prepend("WHITESPACE").constData()+10), t02669e.size()-10 }; });
 }
 
 void* QSvgWidget_NewQSvgWidget(void* parent)
@@ -1455,9 +1440,9 @@ char QSvgWidget_FocusNextPrevChildDefault(void* ptr, char next)
 		return static_cast<QSvgWidget*>(ptr)->QSvgWidget::focusNextPrevChild(next != 0);
 }
 
-char QSvgWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
+char QSvgWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long* result)
 {
-		return static_cast<QSvgWidget*>(ptr)->QSvgWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QSvgWidget*>(ptr)->QSvgWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QSvgWidget_ActionEventDefault(void* ptr, void* event)

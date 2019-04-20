@@ -27,7 +27,7 @@ func (p *Runnable) SetPointer(ptr *androidextras.QAndroidJniObject) {
 func (ptr *Runnable) ConnectRun(f func()) {
 	if ptr.Pointer() != nil && ptr.Pointer().IsValid() {
 
-		qt.ConnectSignal(ptr.Pointer().ToString(), "Runnable::run", f)
+		qt.ConnectSignal(ptr.Pointer().ToString(), "Runnable::run", unsafe.Pointer(&f))
 	}
 }
 
@@ -41,7 +41,7 @@ func (ptr *Runnable) DisconnectRun() {
 //export Java_qt_java_lang_Runnable_qtrun
 func Java_qt_java_lang_Runnable_qtrun(_, _, this unsafe.Pointer) {
 	if signal := qt.GetSignal(androidextras.NewQAndroidJniObject6(this).ToString(), "Runnable::run"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }

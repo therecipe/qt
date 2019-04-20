@@ -3,7 +3,6 @@ package utils
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -132,8 +131,6 @@ func QT_DARWIN_DIR() string {
 	return strings.Replace(path, QT_VERSION_MAJOR(), QT_VERSION(), -1)
 }
 
-var qt_darwin_dir_nix string
-
 func qT_DARWIN_DIR() string {
 	if QT_FELGO() {
 		return filepath.Join(QT_DIR(), "Felgo/clang_64")
@@ -148,10 +145,7 @@ func qT_DARWIN_DIR() string {
 		return "/opt/local/libexec/qt5"
 	}
 	if QT_NIX() {
-		if len(qt_darwin_dir_nix) == 0 {
-			qt_darwin_dir_nix = strings.TrimSpace(RunCmd(exec.Command(ToolPath("qmake", "darwin"), "-query", "QT_INSTALL_PREFIX"), "nix qt dir"))
-		}
-		return qt_darwin_dir_nix
+		return QT_INSTALL_PREFIX("darwin")
 	}
 	return filepath.Join(QT_DIR(), fmt.Sprintf("%v/clang_64", QT_VERSION_MAJOR()))
 }

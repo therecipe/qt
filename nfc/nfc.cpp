@@ -517,11 +517,6 @@ struct QtNfc_PackedString QNearFieldManager_QNearFieldManager_Tr(char* s, char* 
 	return ({ QByteArray t9661e6 = QNearFieldManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t9661e6.prepend("WHITESPACE").constData()+10), t9661e6.size()-10 }; });
 }
 
-struct QtNfc_PackedString QNearFieldManager_QNearFieldManager_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t0e7de3 = QNearFieldManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t0e7de3.prepend("WHITESPACE").constData()+10), t0e7de3.size()-10 }; });
-}
-
 char QNearFieldManager_StartTargetDetection(void* ptr)
 {
 	return static_cast<QNearFieldManager*>(ptr)->startTargetDetection();
@@ -812,11 +807,6 @@ struct QtNfc_PackedString QNearFieldShareManager_QNearFieldShareManager_Tr(char*
 	return ({ QByteArray t891e6c = QNearFieldShareManager::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t891e6c.prepend("WHITESPACE").constData()+10), t891e6c.size()-10 }; });
 }
 
-struct QtNfc_PackedString QNearFieldShareManager_QNearFieldShareManager_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray taafa97 = QNearFieldShareManager::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(taafa97.prepend("WHITESPACE").constData()+10), taafa97.size()-10 }; });
-}
-
 void QNearFieldShareManager_ConnectError(void* ptr)
 {
 	qRegisterMetaType<QNearFieldShareManager::ShareError>();
@@ -1040,11 +1030,6 @@ int QNearFieldShareTarget_QNearFieldShareTarget_QRegisterMetaType(){qRegisterMet
 struct QtNfc_PackedString QNearFieldShareTarget_QNearFieldShareTarget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray te76c4f = QNearFieldShareTarget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(te76c4f.prepend("WHITESPACE").constData()+10), te76c4f.size()-10 }; });
-}
-
-struct QtNfc_PackedString QNearFieldShareTarget_QNearFieldShareTarget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t939e17 = QNearFieldShareTarget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t939e17.prepend("WHITESPACE").constData()+10), t939e17.size()-10 }; });
 }
 
 char QNearFieldShareTarget_Share2(void* ptr, void* files)
@@ -1332,11 +1317,6 @@ void* QNearFieldTarget_NewQNearFieldTarget(void* parent)
 struct QtNfc_PackedString QNearFieldTarget_QNearFieldTarget_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t6b5b27 = QNearFieldTarget::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t6b5b27.prepend("WHITESPACE").constData()+10), t6b5b27.size()-10 }; });
-}
-
-struct QtNfc_PackedString QNearFieldTarget_QNearFieldTarget_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray td71f90 = QNearFieldTarget::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(td71f90.prepend("WHITESPACE").constData()+10), td71f90.size()-10 }; });
 }
 
 char QNearFieldTarget_Disconnect(void* ptr)
@@ -1719,11 +1699,6 @@ void* QQmlNdefRecord_NewQQmlNdefRecord2(void* record, void* parent)
 struct QtNfc_PackedString QQmlNdefRecord_QQmlNdefRecord_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t6484f5 = QQmlNdefRecord::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(t6484f5.prepend("WHITESPACE").constData()+10), t6484f5.size()-10 }; });
-}
-
-struct QtNfc_PackedString QQmlNdefRecord_QQmlNdefRecord_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf336ee = QQmlNdefRecord::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtNfc_PackedString { const_cast<char*>(tf336ee.prepend("WHITESPACE").constData()+10), tf336ee.size()-10 }; });
 }
 
 void QQmlNdefRecord_ConnectRecordChanged(void* ptr)

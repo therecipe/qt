@@ -66,7 +66,7 @@ func Install(target string, docker, vagrant, failfast bool) {
 
 		var license string
 		switch module {
-		case "Charts", "DataVisualization":
+		case "Charts", "DataVisualization", "VirtualKeyboard":
 			license = strings.Repeat(" ", 20-len(module)) + "[GPLv3]"
 		}
 		utils.Log.Infof("installing %v qt/%v %v", mode, strings.ToLower(module), license)
@@ -86,14 +86,11 @@ func Install(target string, docker, vagrant, failfast bool) {
 				}
 				utils.RunCmdOptional(cmd, fmt.Sprintf("failed to create dynamic lib for %v (%v) on %v", target, strings.ToLower(module), runtime.GOOS))
 
-				if target == "js" || target == "wasm" {
-					continue
+				if !(target == "js" || target == "wasm") {
+					utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), strings.ToLower(module)+".cpp"))
+					utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), "_obj"))
+					templater.ReplaceCgo(strings.ToLower(module), target)
 				}
-
-				utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), strings.ToLower(module)+".cpp"))
-				utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(module), "_obj"))
-
-				templater.ReplaceCgo(strings.ToLower(module), target)
 			}
 		}
 

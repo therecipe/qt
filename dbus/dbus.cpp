@@ -116,11 +116,6 @@ struct QtDBus_PackedString QDBusAbstractAdaptor_QDBusAbstractAdaptor_Tr(char* s,
 	return ({ QByteArray t214e4a = QDBusAbstractAdaptor::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t214e4a.prepend("WHITESPACE").constData()+10), t214e4a.size()-10 }; });
 }
 
-struct QtDBus_PackedString QDBusAbstractAdaptor_QDBusAbstractAdaptor_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t72bb99 = QDBusAbstractAdaptor::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t72bb99.prepend("WHITESPACE").constData()+10), t72bb99.size()-10 }; });
-}
-
 void QDBusAbstractAdaptor_SetAutoRelaySignals(void* ptr, char enable)
 {
 	static_cast<QDBusAbstractAdaptor*>(ptr)->setAutoRelaySignals(enable != 0);
@@ -336,11 +331,6 @@ void* QDBusAbstractInterface_AsyncCallWithArgumentList(void* ptr, struct QtDBus_
 struct QtDBus_PackedString QDBusAbstractInterface_QDBusAbstractInterface_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray te8209d = QDBusAbstractInterface::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(te8209d.prepend("WHITESPACE").constData()+10), te8209d.size()-10 }; });
-}
-
-struct QtDBus_PackedString QDBusAbstractInterface_QDBusAbstractInterface_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta2bd11 = QDBusAbstractInterface::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(ta2bd11.prepend("WHITESPACE").constData()+10), ta2bd11.size()-10 }; });
 }
 
 char QDBusAbstractInterface_CallWithCallback(void* ptr, struct QtDBus_PackedString method, void* args, void* receiver, char* returnMethod, char* errorMethod)
@@ -1568,11 +1558,6 @@ struct QtDBus_PackedString QDBusPendingCallWatcher_QDBusPendingCallWatcher_Tr(ch
 		return ({ QByteArray tb2812b = QDBusPendingCallWatcher::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(tb2812b.prepend("WHITESPACE").constData()+10), tb2812b.size()-10 }; });
 }
 
-struct QtDBus_PackedString QDBusPendingCallWatcher_QDBusPendingCallWatcher_TrUtf8(char* s, char* c, int n)
-{
-		return ({ QByteArray tdf2fe0 = QDBusPendingCallWatcher::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(tdf2fe0.prepend("WHITESPACE").constData()+10), tdf2fe0.size()-10 }; });
-}
-
 void QDBusPendingCallWatcher_ConnectFinished(void* ptr)
 {
 	QObject::connect(static_cast<QDBusPendingCallWatcher*>(ptr), static_cast<void (QDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&QDBusPendingCallWatcher::finished), static_cast<MyQDBusPendingCallWatcher*>(ptr), static_cast<void (MyQDBusPendingCallWatcher::*)(QDBusPendingCallWatcher *)>(&MyQDBusPendingCallWatcher::Signal_Finished));
@@ -1915,11 +1900,6 @@ struct QtDBus_PackedString QDBusServer_QDBusServer_Tr(char* s, char* c, int n)
 	return ({ QByteArray tec51ac = QDBusServer::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(tec51ac.prepend("WHITESPACE").constData()+10), tec51ac.size()-10 }; });
 }
 
-struct QtDBus_PackedString QDBusServer_QDBusServer_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t184241 = QDBusServer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t184241.prepend("WHITESPACE").constData()+10), t184241.size()-10 }; });
-}
-
 void QDBusServer_ConnectNewConnection(void* ptr)
 {
 	QObject::connect(static_cast<QDBusServer*>(ptr), static_cast<void (QDBusServer::*)(const QDBusConnection &)>(&QDBusServer::newConnection), static_cast<MyQDBusServer*>(ptr), static_cast<void (MyQDBusServer::*)(const QDBusConnection &)>(&MyQDBusServer::Signal_NewConnection));
@@ -2223,11 +2203,6 @@ void* QDBusServiceWatcher_NewQDBusServiceWatcher2(struct QtDBus_PackedString ser
 struct QtDBus_PackedString QDBusServiceWatcher_QDBusServiceWatcher_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t7d2a09 = QDBusServiceWatcher::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t7d2a09.prepend("WHITESPACE").constData()+10), t7d2a09.size()-10 }; });
-}
-
-struct QtDBus_PackedString QDBusServiceWatcher_QDBusServiceWatcher_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t07f36f = QDBusServiceWatcher::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t07f36f.prepend("WHITESPACE").constData()+10), t07f36f.size()-10 }; });
 }
 
 char QDBusServiceWatcher_RemoveWatchedService(void* ptr, struct QtDBus_PackedString service)
@@ -2652,11 +2627,6 @@ void* QDBusVirtualObject_NewQDBusVirtualObject(void* parent)
 struct QtDBus_PackedString QDBusVirtualObject_QDBusVirtualObject_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t1c33c1 = QDBusVirtualObject::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t1c33c1.prepend("WHITESPACE").constData()+10), t1c33c1.size()-10 }; });
-}
-
-struct QtDBus_PackedString QDBusVirtualObject_QDBusVirtualObject_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t9109d7 = QDBusVirtualObject::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtDBus_PackedString { const_cast<char*>(t9109d7.prepend("WHITESPACE").constData()+10), t9109d7.size()-10 }; });
 }
 
 char QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection)

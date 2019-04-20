@@ -79,11 +79,6 @@ struct QtXmlPatterns_PackedString QAbstractMessageHandler_QAbstractMessageHandle
 	return ({ QByteArray t93c659 = QAbstractMessageHandler::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t93c659.prepend("WHITESPACE").constData()+10), t93c659.size()-10 }; });
 }
 
-struct QtXmlPatterns_PackedString QAbstractMessageHandler_QAbstractMessageHandler_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t132749 = QAbstractMessageHandler::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t132749.prepend("WHITESPACE").constData()+10), t132749.size()-10 }; });
-}
-
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 {
 	static_cast<QAbstractMessageHandler*>(ptr)->~QAbstractMessageHandler();
@@ -285,11 +280,6 @@ void* QAbstractUriResolver_NewQAbstractUriResolver(void* parent)
 struct QtXmlPatterns_PackedString QAbstractUriResolver_QAbstractUriResolver_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t51e1e7 = QAbstractUriResolver::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t51e1e7.prepend("WHITESPACE").constData()+10), t51e1e7.size()-10 }; });
-}
-
-struct QtXmlPatterns_PackedString QAbstractUriResolver_QAbstractUriResolver_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray td50b3a = QAbstractUriResolver::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(td50b3a.prepend("WHITESPACE").constData()+10), td50b3a.size()-10 }; });
 }
 
 void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr)

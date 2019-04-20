@@ -65,11 +65,6 @@ struct QtWebChannel_PackedString QWebChannel_QWebChannel_Tr(char* s, char* c, in
 	return ({ QByteArray t6b827f = QWebChannel::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t6b827f.prepend("WHITESPACE").constData()+10), t6b827f.size()-10 }; });
 }
 
-struct QtWebChannel_PackedString QWebChannel_QWebChannel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray te85c9d = QWebChannel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(te85c9d.prepend("WHITESPACE").constData()+10), te85c9d.size()-10 }; });
-}
-
 void* QWebChannel_NewQWebChannel(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -411,11 +406,6 @@ int QWebChannelAbstractTransport_QWebChannelAbstractTransport_QRegisterMetaType(
 struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t41c0a4 = QWebChannelAbstractTransport::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t41c0a4.prepend("WHITESPACE").constData()+10), t41c0a4.size()-10 }; });
-}
-
-struct QtWebChannel_PackedString QWebChannelAbstractTransport_QWebChannelAbstractTransport_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t241435 = QWebChannelAbstractTransport::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtWebChannel_PackedString { const_cast<char*>(t241435.prepend("WHITESPACE").constData()+10), t241435.size()-10 }; });
 }
 
 void* QWebChannelAbstractTransport_NewQWebChannelAbstractTransport(void* parent)

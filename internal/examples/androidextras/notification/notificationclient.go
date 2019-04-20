@@ -8,18 +8,10 @@ import (
 type NotificationClient struct {
 	core.QObject
 
-	_ func() `constructor:"init"`
-
-	_ string `property:"notification"`
-
-	_ func(string) `slot:"updateAndroidNotification"`
+	_ string `property:"notification,auto,changed"`
 }
 
-func (c *NotificationClient) init() {
-	c.ConnectNotificationChanged(c.updateAndroidNotification)
-}
-
-func (c *NotificationClient) updateAndroidNotification(n string) {
+func (c *NotificationClient) notificationChanged(n string) {
 
 	var err = androidextras.QAndroidJniObject_CallStaticMethodVoid2Caught(
 		"org/qtproject/example/notification/NotificationClient",

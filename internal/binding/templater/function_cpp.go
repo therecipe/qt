@@ -9,10 +9,17 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func cppFunctionCallback(function *parser.Function) string {
-	var output = fmt.Sprintf("%v { %v };", cppFunctionCallbackHeader(function), cppFunctionCallbackBody(function))
+	var output = fmt.Sprintf("%v { %v%v };", cppFunctionCallbackHeader(function),
+		func() string {
+			if utils.QT_DEBUG_CPP() {
+				return fmt.Sprintf("qDebug() << \"callback\" << \"%v\";\n", function.Fullname)
+			}
+			return ""
+		}(), cppFunctionCallbackBody(function))
 	if function.IsSupported() {
 		return cppFunctionCallbackWithGuards(function, output)
 	}
@@ -113,7 +120,13 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 }
 
 func cppFunction(function *parser.Function) string {
-	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionUnused(function, cppFunctionBodyWithGuards(function)))
+	var output = fmt.Sprintf("%v\n{\n%v%v\n}", cppFunctionHeader(function),
+		func() string {
+			if utils.QT_DEBUG_CPP() {
+				return fmt.Sprintf("qDebug() << \"function\" << \"%v\";\n", function.Fullname)
+			}
+			return ""
+		}(), cppFunctionUnused(function, cppFunctionBodyWithGuards(function)))
 	if UseJs() {
 		if !strings.Contains(output, "_Packed") && !strings.Contains(output, "emscripten::val") {
 			output = strings.Replace(output, converter.CppHeaderName(function), "_KEEPALIVE_"+converter.CppHeaderName(function), -1)

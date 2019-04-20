@@ -411,38 +411,10 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Tr(s string, c string, n int) string 
 	return cGoUnpackString(C.QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothDeviceDiscoveryAgent_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothDeviceDiscoveryAgent) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothDeviceDiscoveryAgent_QBluetoothDeviceDiscoveryAgent_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQBluetoothDeviceDiscoveryAgent_Canceled
 func callbackQBluetoothDeviceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "canceled"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -455,12 +427,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectCanceled(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "canceled"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "canceled", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "canceled", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "canceled", f)
+			qt.ConnectSignal(ptr.Pointer(), "canceled", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -481,7 +454,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Canceled() {
 //export callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered
 func callbackQBluetoothDeviceDiscoveryAgent_DeviceDiscovered(ptr unsafe.Pointer, info unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deviceDiscovered"); signal != nil {
-		signal.(func(*QBluetoothDeviceInfo))(NewQBluetoothDeviceInfoFromPointer(info))
+		(*(*func(*QBluetoothDeviceInfo))(signal))(NewQBluetoothDeviceInfoFromPointer(info))
 	}
 
 }
@@ -494,12 +467,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceDiscovered(f func(info *
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceDiscovered"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "deviceDiscovered", func(info *QBluetoothDeviceInfo) {
-				signal.(func(*QBluetoothDeviceInfo))(info)
+			f := func(info *QBluetoothDeviceInfo) {
+				(*(*func(*QBluetoothDeviceInfo))(signal))(info)
 				f(info)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deviceDiscovered", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deviceDiscovered", f)
+			qt.ConnectSignal(ptr.Pointer(), "deviceDiscovered", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -520,7 +494,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeviceDiscovered(info QBluetoothDevic
 //export callbackQBluetoothDeviceDiscoveryAgent_DeviceUpdated
 func callbackQBluetoothDeviceDiscoveryAgent_DeviceUpdated(ptr unsafe.Pointer, info unsafe.Pointer, updatedFields C.longlong) {
 	if signal := qt.GetSignal(ptr, "deviceUpdated"); signal != nil {
-		signal.(func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(NewQBluetoothDeviceInfoFromPointer(info), QBluetoothDeviceInfo__Field(updatedFields))
+		(*(*func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(signal))(NewQBluetoothDeviceInfoFromPointer(info), QBluetoothDeviceInfo__Field(updatedFields))
 	}
 
 }
@@ -533,12 +507,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDeviceUpdated(f func(info *QBl
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceUpdated"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", func(info *QBluetoothDeviceInfo, updatedFields QBluetoothDeviceInfo__Field) {
-				signal.(func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(info, updatedFields)
+			f := func(info *QBluetoothDeviceInfo, updatedFields QBluetoothDeviceInfo__Field) {
+				(*(*func(*QBluetoothDeviceInfo, QBluetoothDeviceInfo__Field))(signal))(info, updatedFields)
 				f(info, updatedFields)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", f)
+			qt.ConnectSignal(ptr.Pointer(), "deviceUpdated", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -559,7 +534,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeviceUpdated(info QBluetoothDeviceIn
 //export callbackQBluetoothDeviceDiscoveryAgent_Error2
 func callbackQBluetoothDeviceDiscoveryAgent_Error2(ptr unsafe.Pointer, error C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QBluetoothDeviceDiscoveryAgent__Error))(QBluetoothDeviceDiscoveryAgent__Error(error))
+		(*(*func(QBluetoothDeviceDiscoveryAgent__Error))(signal))(QBluetoothDeviceDiscoveryAgent__Error(error))
 	}
 
 }
@@ -572,12 +547,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectError2(f func(error QBluetooth
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(error QBluetoothDeviceDiscoveryAgent__Error) {
-				signal.(func(QBluetoothDeviceDiscoveryAgent__Error))(error)
+			f := func(error QBluetoothDeviceDiscoveryAgent__Error) {
+				(*(*func(QBluetoothDeviceDiscoveryAgent__Error))(signal))(error)
 				f(error)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -598,7 +574,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Error2(error QBluetoothDeviceDiscover
 //export callbackQBluetoothDeviceDiscoveryAgent_Finished
 func callbackQBluetoothDeviceDiscoveryAgent_Finished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -611,12 +587,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectFinished(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -649,7 +626,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) SetLowEnergyDiscoveryTimeout(timeout 
 //export callbackQBluetoothDeviceDiscoveryAgent_Start
 func callbackQBluetoothDeviceDiscoveryAgent_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).StartDefault()
 	}
@@ -659,12 +636,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStart(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "start", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", f)
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -691,7 +669,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) StartDefault() {
 //export callbackQBluetoothDeviceDiscoveryAgent_Start2
 func callbackQBluetoothDeviceDiscoveryAgent_Start2(ptr unsafe.Pointer, methods C.longlong) {
 	if signal := qt.GetSignal(ptr, "start2"); signal != nil {
-		signal.(func(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod))(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod(methods))
+		(*(*func(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod))(signal))(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod(methods))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).Start2Default(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod(methods))
 	}
@@ -701,12 +679,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStart2(f func(methods QBluetoo
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "start2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "start2", func(methods QBluetoothDeviceDiscoveryAgent__DiscoveryMethod) {
-				signal.(func(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod))(methods)
+			f := func(methods QBluetoothDeviceDiscoveryAgent__DiscoveryMethod) {
+				(*(*func(QBluetoothDeviceDiscoveryAgent__DiscoveryMethod))(signal))(methods)
 				f(methods)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "start2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start2", f)
+			qt.ConnectSignal(ptr.Pointer(), "start2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -733,7 +712,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Start2Default(methods QBluetoothDevic
 //export callbackQBluetoothDeviceDiscoveryAgent_Stop
 func callbackQBluetoothDeviceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).StopDefault()
 	}
@@ -743,12 +722,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stop", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", f)
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -775,7 +755,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) StopDefault() {
 //export callbackQBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent
 func callbackQBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothDeviceDiscoveryAgent"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).DestroyQBluetoothDeviceDiscoveryAgentDefault()
 	}
@@ -785,12 +765,13 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectDestroyQBluetoothDeviceDiscove
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothDeviceDiscoveryAgent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothDeviceDiscoveryAgent", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothDeviceDiscoveryAgent", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothDeviceDiscoveryAgent", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothDeviceDiscoveryAgent", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -863,7 +844,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) IsActive() bool {
 //export callbackQBluetoothDeviceDiscoveryAgent_MetaObject
 func callbackQBluetoothDeviceDiscoveryAgent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).MetaObjectDefault())
@@ -1008,7 +989,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothDeviceDiscoveryAgent_Event
 func callbackQBluetoothDeviceDiscoveryAgent_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -1024,7 +1005,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) EventDefault(e core.QEvent_ITF) bool 
 //export callbackQBluetoothDeviceDiscoveryAgent_EventFilter
 func callbackQBluetoothDeviceDiscoveryAgent_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1040,7 +1021,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) EventFilterDefault(watched core.QObje
 //export callbackQBluetoothDeviceDiscoveryAgent_ChildEvent
 func callbackQBluetoothDeviceDiscoveryAgent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -1055,7 +1036,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ChildEventDefault(event core.QChildEv
 //export callbackQBluetoothDeviceDiscoveryAgent_ConnectNotify
 func callbackQBluetoothDeviceDiscoveryAgent_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -1070,7 +1051,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectNotifyDefault(sign core.QMetaM
 //export callbackQBluetoothDeviceDiscoveryAgent_CustomEvent
 func callbackQBluetoothDeviceDiscoveryAgent_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -1085,7 +1066,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) CustomEventDefault(event core.QEvent_
 //export callbackQBluetoothDeviceDiscoveryAgent_DeleteLater
 func callbackQBluetoothDeviceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -1094,7 +1075,6 @@ func callbackQBluetoothDeviceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -1102,7 +1082,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 //export callbackQBluetoothDeviceDiscoveryAgent_Destroyed
 func callbackQBluetoothDeviceDiscoveryAgent_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -1110,7 +1090,7 @@ func callbackQBluetoothDeviceDiscoveryAgent_Destroyed(ptr unsafe.Pointer, obj un
 //export callbackQBluetoothDeviceDiscoveryAgent_DisconnectNotify
 func callbackQBluetoothDeviceDiscoveryAgent_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -1125,7 +1105,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectNotifyDefault(sign core.QMe
 //export callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged
 func callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -1133,7 +1113,7 @@ func callbackQBluetoothDeviceDiscoveryAgent_ObjectNameChanged(ptr unsafe.Pointer
 //export callbackQBluetoothDeviceDiscoveryAgent_TimerEvent
 func callbackQBluetoothDeviceDiscoveryAgent_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -1872,38 +1852,10 @@ func (ptr *QBluetoothLocalDevice) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QBluetoothLocalDevice_QBluetoothLocalDevice_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothLocalDevice_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothLocalDevice_QBluetoothLocalDevice_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothLocalDevice) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothLocalDevice_QBluetoothLocalDevice_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQBluetoothLocalDevice_DeviceConnected
 func callbackQBluetoothLocalDevice_DeviceConnected(ptr unsafe.Pointer, address unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deviceConnected"); signal != nil {
-		signal.(func(*QBluetoothAddress))(NewQBluetoothAddressFromPointer(address))
+		(*(*func(*QBluetoothAddress))(signal))(NewQBluetoothAddressFromPointer(address))
 	}
 
 }
@@ -1916,12 +1868,13 @@ func (ptr *QBluetoothLocalDevice) ConnectDeviceConnected(f func(address *QBlueto
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceConnected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "deviceConnected", func(address *QBluetoothAddress) {
-				signal.(func(*QBluetoothAddress))(address)
+			f := func(address *QBluetoothAddress) {
+				(*(*func(*QBluetoothAddress))(signal))(address)
 				f(address)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deviceConnected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deviceConnected", f)
+			qt.ConnectSignal(ptr.Pointer(), "deviceConnected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1942,7 +1895,7 @@ func (ptr *QBluetoothLocalDevice) DeviceConnected(address QBluetoothAddress_ITF)
 //export callbackQBluetoothLocalDevice_DeviceDisconnected
 func callbackQBluetoothLocalDevice_DeviceDisconnected(ptr unsafe.Pointer, address unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deviceDisconnected"); signal != nil {
-		signal.(func(*QBluetoothAddress))(NewQBluetoothAddressFromPointer(address))
+		(*(*func(*QBluetoothAddress))(signal))(NewQBluetoothAddressFromPointer(address))
 	}
 
 }
@@ -1955,12 +1908,13 @@ func (ptr *QBluetoothLocalDevice) ConnectDeviceDisconnected(f func(address *QBlu
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "deviceDisconnected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "deviceDisconnected", func(address *QBluetoothAddress) {
-				signal.(func(*QBluetoothAddress))(address)
+			f := func(address *QBluetoothAddress) {
+				(*(*func(*QBluetoothAddress))(signal))(address)
 				f(address)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "deviceDisconnected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "deviceDisconnected", f)
+			qt.ConnectSignal(ptr.Pointer(), "deviceDisconnected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -1981,7 +1935,7 @@ func (ptr *QBluetoothLocalDevice) DeviceDisconnected(address QBluetoothAddress_I
 //export callbackQBluetoothLocalDevice_Error
 func callbackQBluetoothLocalDevice_Error(ptr unsafe.Pointer, error C.longlong) {
 	if signal := qt.GetSignal(ptr, "error"); signal != nil {
-		signal.(func(QBluetoothLocalDevice__Error))(QBluetoothLocalDevice__Error(error))
+		(*(*func(QBluetoothLocalDevice__Error))(signal))(QBluetoothLocalDevice__Error(error))
 	}
 
 }
@@ -1994,12 +1948,13 @@ func (ptr *QBluetoothLocalDevice) ConnectError(f func(error QBluetoothLocalDevic
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error", func(error QBluetoothLocalDevice__Error) {
-				signal.(func(QBluetoothLocalDevice__Error))(error)
+			f := func(error QBluetoothLocalDevice__Error) {
+				(*(*func(QBluetoothLocalDevice__Error))(signal))(error)
 				f(error)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error", f)
+			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2020,7 +1975,7 @@ func (ptr *QBluetoothLocalDevice) Error(error QBluetoothLocalDevice__Error) {
 //export callbackQBluetoothLocalDevice_HostModeStateChanged
 func callbackQBluetoothLocalDevice_HostModeStateChanged(ptr unsafe.Pointer, state C.longlong) {
 	if signal := qt.GetSignal(ptr, "hostModeStateChanged"); signal != nil {
-		signal.(func(QBluetoothLocalDevice__HostMode))(QBluetoothLocalDevice__HostMode(state))
+		(*(*func(QBluetoothLocalDevice__HostMode))(signal))(QBluetoothLocalDevice__HostMode(state))
 	}
 
 }
@@ -2033,12 +1988,13 @@ func (ptr *QBluetoothLocalDevice) ConnectHostModeStateChanged(f func(state QBlue
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "hostModeStateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "hostModeStateChanged", func(state QBluetoothLocalDevice__HostMode) {
-				signal.(func(QBluetoothLocalDevice__HostMode))(state)
+			f := func(state QBluetoothLocalDevice__HostMode) {
+				(*(*func(QBluetoothLocalDevice__HostMode))(signal))(state)
 				f(state)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "hostModeStateChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "hostModeStateChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "hostModeStateChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2059,7 +2015,7 @@ func (ptr *QBluetoothLocalDevice) HostModeStateChanged(state QBluetoothLocalDevi
 //export callbackQBluetoothLocalDevice_PairingConfirmation
 func callbackQBluetoothLocalDevice_PairingConfirmation(ptr unsafe.Pointer, confirmation C.char) {
 	if signal := qt.GetSignal(ptr, "pairingConfirmation"); signal != nil {
-		signal.(func(bool))(int8(confirmation) != 0)
+		(*(*func(bool))(signal))(int8(confirmation) != 0)
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).PairingConfirmationDefault(int8(confirmation) != 0)
 	}
@@ -2069,12 +2025,13 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingConfirmation(f func(confirmation
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingConfirmation"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "pairingConfirmation", func(confirmation bool) {
-				signal.(func(bool))(confirmation)
+			f := func(confirmation bool) {
+				(*(*func(bool))(signal))(confirmation)
 				f(confirmation)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "pairingConfirmation", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "pairingConfirmation", f)
+			qt.ConnectSignal(ptr.Pointer(), "pairingConfirmation", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2101,7 +2058,7 @@ func (ptr *QBluetoothLocalDevice) PairingConfirmationDefault(confirmation bool) 
 //export callbackQBluetoothLocalDevice_PairingDisplayConfirmation
 func callbackQBluetoothLocalDevice_PairingDisplayConfirmation(ptr unsafe.Pointer, address unsafe.Pointer, pin C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "pairingDisplayConfirmation"); signal != nil {
-		signal.(func(*QBluetoothAddress, string))(NewQBluetoothAddressFromPointer(address), cGoUnpackString(pin))
+		(*(*func(*QBluetoothAddress, string))(signal))(NewQBluetoothAddressFromPointer(address), cGoUnpackString(pin))
 	}
 
 }
@@ -2114,12 +2071,13 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayConfirmation(f func(addre
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingDisplayConfirmation"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayConfirmation", func(address *QBluetoothAddress, pin string) {
-				signal.(func(*QBluetoothAddress, string))(address, pin)
+			f := func(address *QBluetoothAddress, pin string) {
+				(*(*func(*QBluetoothAddress, string))(signal))(address, pin)
 				f(address, pin)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayConfirmation", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayConfirmation", f)
+			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayConfirmation", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2145,7 +2103,7 @@ func (ptr *QBluetoothLocalDevice) PairingDisplayConfirmation(address QBluetoothA
 //export callbackQBluetoothLocalDevice_PairingDisplayPinCode
 func callbackQBluetoothLocalDevice_PairingDisplayPinCode(ptr unsafe.Pointer, address unsafe.Pointer, pin C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "pairingDisplayPinCode"); signal != nil {
-		signal.(func(*QBluetoothAddress, string))(NewQBluetoothAddressFromPointer(address), cGoUnpackString(pin))
+		(*(*func(*QBluetoothAddress, string))(signal))(NewQBluetoothAddressFromPointer(address), cGoUnpackString(pin))
 	}
 
 }
@@ -2158,12 +2116,13 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingDisplayPinCode(f func(address *Q
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingDisplayPinCode"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayPinCode", func(address *QBluetoothAddress, pin string) {
-				signal.(func(*QBluetoothAddress, string))(address, pin)
+			f := func(address *QBluetoothAddress, pin string) {
+				(*(*func(*QBluetoothAddress, string))(signal))(address, pin)
 				f(address, pin)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayPinCode", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayPinCode", f)
+			qt.ConnectSignal(ptr.Pointer(), "pairingDisplayPinCode", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2189,7 +2148,7 @@ func (ptr *QBluetoothLocalDevice) PairingDisplayPinCode(address QBluetoothAddres
 //export callbackQBluetoothLocalDevice_PairingFinished
 func callbackQBluetoothLocalDevice_PairingFinished(ptr unsafe.Pointer, address unsafe.Pointer, pairing C.longlong) {
 	if signal := qt.GetSignal(ptr, "pairingFinished"); signal != nil {
-		signal.(func(*QBluetoothAddress, QBluetoothLocalDevice__Pairing))(NewQBluetoothAddressFromPointer(address), QBluetoothLocalDevice__Pairing(pairing))
+		(*(*func(*QBluetoothAddress, QBluetoothLocalDevice__Pairing))(signal))(NewQBluetoothAddressFromPointer(address), QBluetoothLocalDevice__Pairing(pairing))
 	}
 
 }
@@ -2202,12 +2161,13 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingFinished(f func(address *QBlueto
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "pairingFinished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "pairingFinished", func(address *QBluetoothAddress, pairing QBluetoothLocalDevice__Pairing) {
-				signal.(func(*QBluetoothAddress, QBluetoothLocalDevice__Pairing))(address, pairing)
+			f := func(address *QBluetoothAddress, pairing QBluetoothLocalDevice__Pairing) {
+				(*(*func(*QBluetoothAddress, QBluetoothLocalDevice__Pairing))(signal))(address, pairing)
 				f(address, pairing)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "pairingFinished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "pairingFinished", f)
+			qt.ConnectSignal(ptr.Pointer(), "pairingFinished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2246,7 +2206,7 @@ func (ptr *QBluetoothLocalDevice) SetHostMode(mode QBluetoothLocalDevice__HostMo
 //export callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice
 func callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothLocalDevice"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).DestroyQBluetoothLocalDeviceDefault()
 	}
@@ -2256,12 +2216,13 @@ func (ptr *QBluetoothLocalDevice) ConnectDestroyQBluetoothLocalDevice(f func()) 
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothLocalDevice"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothLocalDevice", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothLocalDevice", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothLocalDevice", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothLocalDevice", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2343,7 +2304,7 @@ func (ptr *QBluetoothLocalDevice) IsValid() bool {
 //export callbackQBluetoothLocalDevice_MetaObject
 func callbackQBluetoothLocalDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothLocalDeviceFromPointer(ptr).MetaObjectDefault())
@@ -2500,7 +2461,7 @@ func (ptr *QBluetoothLocalDevice) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothLocalDevice_Event
 func callbackQBluetoothLocalDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothLocalDeviceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -2516,7 +2477,7 @@ func (ptr *QBluetoothLocalDevice) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQBluetoothLocalDevice_EventFilter
 func callbackQBluetoothLocalDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothLocalDeviceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2532,7 +2493,7 @@ func (ptr *QBluetoothLocalDevice) EventFilterDefault(watched core.QObject_ITF, e
 //export callbackQBluetoothLocalDevice_ChildEvent
 func callbackQBluetoothLocalDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -2547,7 +2508,7 @@ func (ptr *QBluetoothLocalDevice) ChildEventDefault(event core.QChildEvent_ITF) 
 //export callbackQBluetoothLocalDevice_ConnectNotify
 func callbackQBluetoothLocalDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2562,7 +2523,7 @@ func (ptr *QBluetoothLocalDevice) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 //export callbackQBluetoothLocalDevice_CustomEvent
 func callbackQBluetoothLocalDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -2577,7 +2538,7 @@ func (ptr *QBluetoothLocalDevice) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQBluetoothLocalDevice_DeleteLater
 func callbackQBluetoothLocalDevice_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -2586,7 +2547,6 @@ func callbackQBluetoothLocalDevice_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -2594,7 +2554,7 @@ func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 //export callbackQBluetoothLocalDevice_Destroyed
 func callbackQBluetoothLocalDevice_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -2602,7 +2562,7 @@ func callbackQBluetoothLocalDevice_Destroyed(ptr unsafe.Pointer, obj unsafe.Poin
 //export callbackQBluetoothLocalDevice_DisconnectNotify
 func callbackQBluetoothLocalDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -2617,7 +2577,7 @@ func (ptr *QBluetoothLocalDevice) DisconnectNotifyDefault(sign core.QMetaMethod_
 //export callbackQBluetoothLocalDevice_ObjectNameChanged
 func callbackQBluetoothLocalDevice_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -2625,7 +2585,7 @@ func callbackQBluetoothLocalDevice_ObjectNameChanged(ptr unsafe.Pointer, objectN
 //export callbackQBluetoothLocalDevice_TimerEvent
 func callbackQBluetoothLocalDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothLocalDeviceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -2750,34 +2710,6 @@ func (ptr *QBluetoothServer) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QBluetoothServer_QBluetoothServer_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothServer_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothServer_QBluetoothServer_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothServer) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothServer_QBluetoothServer_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QBluetoothServer) Listen(address QBluetoothAddress_ITF, port uint16) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QBluetoothServer_Listen(ptr.Pointer(), PointerFromQBluetoothAddress(address), C.ushort(port))) != 0
@@ -2794,7 +2726,7 @@ func (ptr *QBluetoothServer) Close() {
 //export callbackQBluetoothServer_Error2
 func callbackQBluetoothServer_Error2(ptr unsafe.Pointer, error C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QBluetoothServer__Error))(QBluetoothServer__Error(error))
+		(*(*func(QBluetoothServer__Error))(signal))(QBluetoothServer__Error(error))
 	}
 
 }
@@ -2807,12 +2739,13 @@ func (ptr *QBluetoothServer) ConnectError2(f func(error QBluetoothServer__Error)
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(error QBluetoothServer__Error) {
-				signal.(func(QBluetoothServer__Error))(error)
+			f := func(error QBluetoothServer__Error) {
+				(*(*func(QBluetoothServer__Error))(signal))(error)
 				f(error)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2833,7 +2766,7 @@ func (ptr *QBluetoothServer) Error2(error QBluetoothServer__Error) {
 //export callbackQBluetoothServer_NewConnection
 func callbackQBluetoothServer_NewConnection(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "newConnection"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -2846,12 +2779,13 @@ func (ptr *QBluetoothServer) ConnectNewConnection(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "newConnection"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "newConnection", f)
+			qt.ConnectSignal(ptr.Pointer(), "newConnection", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2884,7 +2818,7 @@ func (ptr *QBluetoothServer) SetSecurityFlags(security QBluetooth__Security) {
 //export callbackQBluetoothServer_DestroyQBluetoothServer
 func callbackQBluetoothServer_DestroyQBluetoothServer(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothServer"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServerFromPointer(ptr).DestroyQBluetoothServerDefault()
 	}
@@ -2894,12 +2828,13 @@ func (ptr *QBluetoothServer) ConnectDestroyQBluetoothServer(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothServer"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServer", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServer", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServer", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServer", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -2974,7 +2909,7 @@ func (ptr *QBluetoothServer) IsListening() bool {
 //export callbackQBluetoothServer_MetaObject
 func callbackQBluetoothServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothServerFromPointer(ptr).MetaObjectDefault())
@@ -3107,7 +3042,7 @@ func (ptr *QBluetoothServer) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothServer_Event
 func callbackQBluetoothServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothServerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -3123,7 +3058,7 @@ func (ptr *QBluetoothServer) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQBluetoothServer_EventFilter
 func callbackQBluetoothServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothServerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -3139,7 +3074,7 @@ func (ptr *QBluetoothServer) EventFilterDefault(watched core.QObject_ITF, event 
 //export callbackQBluetoothServer_ChildEvent
 func callbackQBluetoothServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -3154,7 +3089,7 @@ func (ptr *QBluetoothServer) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQBluetoothServer_ConnectNotify
 func callbackQBluetoothServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -3169,7 +3104,7 @@ func (ptr *QBluetoothServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQBluetoothServer_CustomEvent
 func callbackQBluetoothServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -3184,7 +3119,7 @@ func (ptr *QBluetoothServer) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQBluetoothServer_DeleteLater
 func callbackQBluetoothServer_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServerFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -3193,7 +3128,6 @@ func callbackQBluetoothServer_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothServer) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -3201,7 +3135,7 @@ func (ptr *QBluetoothServer) DeleteLaterDefault() {
 //export callbackQBluetoothServer_Destroyed
 func callbackQBluetoothServer_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -3209,7 +3143,7 @@ func callbackQBluetoothServer_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) 
 //export callbackQBluetoothServer_DisconnectNotify
 func callbackQBluetoothServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -3224,7 +3158,7 @@ func (ptr *QBluetoothServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 //export callbackQBluetoothServer_ObjectNameChanged
 func callbackQBluetoothServer_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -3232,7 +3166,7 @@ func callbackQBluetoothServer_ObjectNameChanged(ptr unsafe.Pointer, objectName C
 //export callbackQBluetoothServer_TimerEvent
 func callbackQBluetoothServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -3348,34 +3282,6 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Tr(s string, c string, n int) string
 	return cGoUnpackString(C.QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothServiceDiscoveryAgent_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothServiceDiscoveryAgent) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothServiceDiscoveryAgent_QBluetoothServiceDiscoveryAgent_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QBluetoothServiceDiscoveryAgent) SetRemoteAddress(address QBluetoothAddress_ITF) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QBluetoothServiceDiscoveryAgent_SetRemoteAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address))) != 0
@@ -3386,7 +3292,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) SetRemoteAddress(address QBluetoothA
 //export callbackQBluetoothServiceDiscoveryAgent_Canceled
 func callbackQBluetoothServiceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "canceled"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -3399,12 +3305,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectCanceled(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "canceled"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "canceled", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "canceled", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "canceled", f)
+			qt.ConnectSignal(ptr.Pointer(), "canceled", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3425,7 +3332,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Canceled() {
 //export callbackQBluetoothServiceDiscoveryAgent_Clear
 func callbackQBluetoothServiceDiscoveryAgent_Clear(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "clear"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).ClearDefault()
 	}
@@ -3435,12 +3342,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectClear(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "clear"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "clear", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "clear", f)
+			qt.ConnectSignal(ptr.Pointer(), "clear", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3467,7 +3375,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ClearDefault() {
 //export callbackQBluetoothServiceDiscoveryAgent_Error2
 func callbackQBluetoothServiceDiscoveryAgent_Error2(ptr unsafe.Pointer, error C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QBluetoothServiceDiscoveryAgent__Error))(QBluetoothServiceDiscoveryAgent__Error(error))
+		(*(*func(QBluetoothServiceDiscoveryAgent__Error))(signal))(QBluetoothServiceDiscoveryAgent__Error(error))
 	}
 
 }
@@ -3480,12 +3388,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectError2(f func(error QBluetoot
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(error QBluetoothServiceDiscoveryAgent__Error) {
-				signal.(func(QBluetoothServiceDiscoveryAgent__Error))(error)
+			f := func(error QBluetoothServiceDiscoveryAgent__Error) {
+				(*(*func(QBluetoothServiceDiscoveryAgent__Error))(signal))(error)
 				f(error)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3506,7 +3415,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Error2(error QBluetoothServiceDiscov
 //export callbackQBluetoothServiceDiscoveryAgent_Finished
 func callbackQBluetoothServiceDiscoveryAgent_Finished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -3519,12 +3428,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectFinished(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3545,7 +3455,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Finished() {
 //export callbackQBluetoothServiceDiscoveryAgent_ServiceDiscovered
 func callbackQBluetoothServiceDiscoveryAgent_ServiceDiscovered(ptr unsafe.Pointer, info unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "serviceDiscovered"); signal != nil {
-		signal.(func(*QBluetoothServiceInfo))(NewQBluetoothServiceInfoFromPointer(info))
+		(*(*func(*QBluetoothServiceInfo))(signal))(NewQBluetoothServiceInfoFromPointer(info))
 	}
 
 }
@@ -3558,12 +3468,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectServiceDiscovered(f func(info
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceDiscovered"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", func(info *QBluetoothServiceInfo) {
-				signal.(func(*QBluetoothServiceInfo))(info)
+			f := func(info *QBluetoothServiceInfo) {
+				(*(*func(*QBluetoothServiceInfo))(signal))(info)
 				f(info)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", f)
+			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3602,7 +3513,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) SetUuidFilter(uuids []*QBluetoothUui
 //export callbackQBluetoothServiceDiscoveryAgent_Start
 func callbackQBluetoothServiceDiscoveryAgent_Start(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(ptr, "start"); signal != nil {
-		signal.(func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(QBluetoothServiceDiscoveryAgent__DiscoveryMode(mode))
+		(*(*func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(signal))(QBluetoothServiceDiscoveryAgent__DiscoveryMode(mode))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).StartDefault(QBluetoothServiceDiscoveryAgent__DiscoveryMode(mode))
 	}
@@ -3612,12 +3523,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStart(f func(mode QBluetoothS
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "start"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "start", func(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
-				signal.(func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(mode)
+			f := func(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
+				(*(*func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(signal))(mode)
 				f(mode)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "start", f)
+			qt.ConnectSignal(ptr.Pointer(), "start", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3644,7 +3556,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) StartDefault(mode QBluetoothServiceD
 //export callbackQBluetoothServiceDiscoveryAgent_Stop
 func callbackQBluetoothServiceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "stop"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).StopDefault()
 	}
@@ -3654,12 +3566,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStop(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stop"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stop", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stop", f)
+			qt.ConnectSignal(ptr.Pointer(), "stop", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3686,7 +3599,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) StopDefault() {
 //export callbackQBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent
 func callbackQBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothServiceDiscoveryAgent"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).DestroyQBluetoothServiceDiscoveryAgentDefault()
 	}
@@ -3696,12 +3609,13 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectDestroyQBluetoothServiceDisco
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothServiceDiscoveryAgent"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServiceDiscoveryAgent", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServiceDiscoveryAgent", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServiceDiscoveryAgent", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothServiceDiscoveryAgent", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -3790,7 +3704,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) IsActive() bool {
 //export callbackQBluetoothServiceDiscoveryAgent_MetaObject
 func callbackQBluetoothServiceDiscoveryAgent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).MetaObjectDefault())
@@ -3966,7 +3880,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) __children_newList() unsafe.Pointer 
 //export callbackQBluetoothServiceDiscoveryAgent_Event
 func callbackQBluetoothServiceDiscoveryAgent_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -3982,7 +3896,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) EventDefault(e core.QEvent_ITF) bool
 //export callbackQBluetoothServiceDiscoveryAgent_EventFilter
 func callbackQBluetoothServiceDiscoveryAgent_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -3998,7 +3912,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) EventFilterDefault(watched core.QObj
 //export callbackQBluetoothServiceDiscoveryAgent_ChildEvent
 func callbackQBluetoothServiceDiscoveryAgent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -4013,7 +3927,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ChildEventDefault(event core.QChildE
 //export callbackQBluetoothServiceDiscoveryAgent_ConnectNotify
 func callbackQBluetoothServiceDiscoveryAgent_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -4028,7 +3942,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectNotifyDefault(sign core.QMeta
 //export callbackQBluetoothServiceDiscoveryAgent_CustomEvent
 func callbackQBluetoothServiceDiscoveryAgent_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -4043,7 +3957,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) CustomEventDefault(event core.QEvent
 //export callbackQBluetoothServiceDiscoveryAgent_DeleteLater
 func callbackQBluetoothServiceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -4052,7 +3966,6 @@ func callbackQBluetoothServiceDiscoveryAgent_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -4060,7 +3973,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 //export callbackQBluetoothServiceDiscoveryAgent_Destroyed
 func callbackQBluetoothServiceDiscoveryAgent_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -4068,7 +3981,7 @@ func callbackQBluetoothServiceDiscoveryAgent_Destroyed(ptr unsafe.Pointer, obj u
 //export callbackQBluetoothServiceDiscoveryAgent_DisconnectNotify
 func callbackQBluetoothServiceDiscoveryAgent_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -4083,7 +3996,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectNotifyDefault(sign core.QM
 //export callbackQBluetoothServiceDiscoveryAgent_ObjectNameChanged
 func callbackQBluetoothServiceDiscoveryAgent_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -4091,7 +4004,7 @@ func callbackQBluetoothServiceDiscoveryAgent_ObjectNameChanged(ptr unsafe.Pointe
 //export callbackQBluetoothServiceDiscoveryAgent_TimerEvent
 func callbackQBluetoothServiceDiscoveryAgent_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -4533,34 +4446,6 @@ func (ptr *QBluetoothSocket) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QBluetoothSocket_QBluetoothSocket_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothSocket_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothSocket_QBluetoothSocket_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothSocket) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothSocket_QBluetoothSocket_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketType QBluetoothServiceInfo__Protocol, socketState QBluetoothSocket__SocketState, openMode core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
 		return int8(C.QBluetoothSocket_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor)), C.longlong(socketType), C.longlong(socketState), C.longlong(openMode))) != 0
@@ -4572,7 +4457,7 @@ func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketTyp
 func callbackQBluetoothSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readData"); signal != nil {
 		retS := cGoUnpackString(data)
-		ret := C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
+		ret := C.longlong((*(*func(*string, int64) int64)(signal))(&retS, int64(maxSize)))
 		if ret > 0 {
 			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))
 		}
@@ -4590,12 +4475,13 @@ func (ptr *QBluetoothSocket) ConnectReadData(f func(data *string, maxSize int64)
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "readData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "readData", func(data *string, maxSize int64) int64 {
-				signal.(func(*string, int64) int64)(data, maxSize)
+			f := func(data *string, maxSize int64) int64 {
+				(*(*func(*string, int64) int64)(signal))(data, maxSize)
 				return f(data, maxSize)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "readData", f)
+			qt.ConnectSignal(ptr.Pointer(), "readData", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4636,7 +4522,7 @@ func (ptr *QBluetoothSocket) ReadDataDefault(data *string, maxSize int64) int64 
 //export callbackQBluetoothSocket_WriteData
 func callbackQBluetoothSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "writeData"); signal != nil {
-		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
+		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).WriteDataDefault(cGoUnpackBytes(data), int64(maxSize)))
@@ -4646,12 +4532,13 @@ func (ptr *QBluetoothSocket) ConnectWriteData(f func(data []byte, maxSize int64)
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "writeData"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", func(data []byte, maxSize int64) int64 {
-				signal.(func([]byte, int64) int64)(data, maxSize)
+			f := func(data []byte, maxSize int64) int64 {
+				(*(*func([]byte, int64) int64)(signal))(data, maxSize)
 				return f(data, maxSize)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "writeData", f)
+			qt.ConnectSignal(ptr.Pointer(), "writeData", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4694,7 +4581,7 @@ func (ptr *QBluetoothSocket) Abort() {
 //export callbackQBluetoothSocket_Close
 func callbackQBluetoothSocket_Close(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "close"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).CloseDefault()
 	}
@@ -4727,7 +4614,7 @@ func (ptr *QBluetoothSocket) ConnectToService(service QBluetoothServiceInfo_ITF,
 //export callbackQBluetoothSocket_Connected
 func callbackQBluetoothSocket_Connected(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connected"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -4740,12 +4627,13 @@ func (ptr *QBluetoothSocket) ConnectConnected(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "connected", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connected", f)
+			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4772,7 +4660,7 @@ func (ptr *QBluetoothSocket) DisconnectFromService() {
 //export callbackQBluetoothSocket_Disconnected
 func callbackQBluetoothSocket_Disconnected(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -4785,12 +4673,13 @@ func (ptr *QBluetoothSocket) ConnectDisconnected(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", f)
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4817,7 +4706,7 @@ func (ptr *QBluetoothSocket) DoDeviceDiscovery(service QBluetoothServiceInfo_ITF
 //export callbackQBluetoothSocket_Error2
 func callbackQBluetoothSocket_Error2(ptr unsafe.Pointer, error C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QBluetoothSocket__SocketError))(QBluetoothSocket__SocketError(error))
+		(*(*func(QBluetoothSocket__SocketError))(signal))(QBluetoothSocket__SocketError(error))
 	}
 
 }
@@ -4830,12 +4719,13 @@ func (ptr *QBluetoothSocket) ConnectError2(f func(error QBluetoothSocket__Socket
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(error QBluetoothSocket__SocketError) {
-				signal.(func(QBluetoothSocket__SocketError))(error)
+			f := func(error QBluetoothSocket__SocketError) {
+				(*(*func(QBluetoothSocket__SocketError))(signal))(error)
 				f(error)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4874,7 +4764,7 @@ func (ptr *QBluetoothSocket) SetSocketState(state QBluetoothSocket__SocketState)
 //export callbackQBluetoothSocket_StateChanged
 func callbackQBluetoothSocket_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		signal.(func(QBluetoothSocket__SocketState))(QBluetoothSocket__SocketState(state))
+		(*(*func(QBluetoothSocket__SocketState))(signal))(QBluetoothSocket__SocketState(state))
 	}
 
 }
@@ -4887,12 +4777,13 @@ func (ptr *QBluetoothSocket) ConnectStateChanged(f func(state QBluetoothSocket__
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(state QBluetoothSocket__SocketState) {
-				signal.(func(QBluetoothSocket__SocketState))(state)
+			f := func(state QBluetoothSocket__SocketState) {
+				(*(*func(QBluetoothSocket__SocketState))(signal))(state)
 				f(state)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -4913,7 +4804,7 @@ func (ptr *QBluetoothSocket) StateChanged(state QBluetoothSocket__SocketState) {
 //export callbackQBluetoothSocket_DestroyQBluetoothSocket
 func callbackQBluetoothSocket_DestroyQBluetoothSocket(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothSocket"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).DestroyQBluetoothSocketDefault()
 	}
@@ -4923,12 +4814,13 @@ func (ptr *QBluetoothSocket) ConnectDestroyQBluetoothSocket(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothSocket"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothSocket", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothSocket", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothSocket", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothSocket", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -5019,7 +4911,7 @@ func (ptr *QBluetoothSocket) PeerName() string {
 //export callbackQBluetoothSocket_CanReadLine
 func callbackQBluetoothSocket_CanReadLine(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "canReadLine"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).CanReadLineDefault())))
@@ -5035,7 +4927,7 @@ func (ptr *QBluetoothSocket) CanReadLineDefault() bool {
 //export callbackQBluetoothSocket_IsSequential
 func callbackQBluetoothSocket_IsSequential(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "isSequential"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).IsSequentialDefault())))
@@ -5051,7 +4943,7 @@ func (ptr *QBluetoothSocket) IsSequentialDefault() bool {
 //export callbackQBluetoothSocket_MetaObject
 func callbackQBluetoothSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothSocketFromPointer(ptr).MetaObjectDefault())
@@ -5074,7 +4966,7 @@ func (ptr *QBluetoothSocket) SocketDescriptor() int {
 //export callbackQBluetoothSocket_BytesAvailable
 func callbackQBluetoothSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "bytesAvailable"); signal != nil {
-		return C.longlong(signal.(func() int64)())
+		return C.longlong((*(*func() int64)(signal))())
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).BytesAvailableDefault())
@@ -5090,7 +4982,7 @@ func (ptr *QBluetoothSocket) BytesAvailableDefault() int64 {
 //export callbackQBluetoothSocket_BytesToWrite
 func callbackQBluetoothSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "bytesToWrite"); signal != nil {
-		return C.longlong(signal.(func() int64)())
+		return C.longlong((*(*func() int64)(signal))())
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).BytesToWriteDefault())
@@ -5223,7 +5115,7 @@ func (ptr *QBluetoothSocket) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothSocket_Open
 func callbackQBluetoothSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(core.QIODevice__OpenModeFlag) bool)(signal))(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).OpenDefault(core.QIODevice__OpenModeFlag(mode)))))
@@ -5239,7 +5131,7 @@ func (ptr *QBluetoothSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool
 //export callbackQBluetoothSocket_Reset
 func callbackQBluetoothSocket_Reset(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "reset"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).ResetDefault())))
@@ -5255,7 +5147,7 @@ func (ptr *QBluetoothSocket) ResetDefault() bool {
 //export callbackQBluetoothSocket_Seek
 func callbackQBluetoothSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	if signal := qt.GetSignal(ptr, "seek"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(int64) bool)(signal))(int64(pos)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).SeekDefault(int64(pos)))))
@@ -5271,7 +5163,7 @@ func (ptr *QBluetoothSocket) SeekDefault(pos int64) bool {
 //export callbackQBluetoothSocket_WaitForBytesWritten
 func callbackQBluetoothSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
 	if signal := qt.GetSignal(ptr, "waitForBytesWritten"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
@@ -5287,7 +5179,7 @@ func (ptr *QBluetoothSocket) WaitForBytesWrittenDefault(msecs int) bool {
 //export callbackQBluetoothSocket_WaitForReadyRead
 func callbackQBluetoothSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
 	if signal := qt.GetSignal(ptr, "waitForReadyRead"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(int) bool)(signal))(int(int32(msecs))))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
@@ -5303,7 +5195,7 @@ func (ptr *QBluetoothSocket) WaitForReadyReadDefault(msecs int) bool {
 //export callbackQBluetoothSocket_ReadLineData
 func callbackQBluetoothSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
 	if signal := qt.GetSignal(ptr, "readLineData"); signal != nil {
-		return C.longlong(signal.(func([]byte, int64) int64)(cGoUnpackBytes(data), int64(maxSize)))
+		return C.longlong((*(*func([]byte, int64) int64)(signal))(cGoUnpackBytes(data), int64(maxSize)))
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackBytes(data), int64(maxSize)))
@@ -5323,7 +5215,7 @@ func (ptr *QBluetoothSocket) ReadLineDataDefault(data []byte, maxSize int64) int
 //export callbackQBluetoothSocket_AboutToClose
 func callbackQBluetoothSocket_AboutToClose(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "aboutToClose"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -5331,7 +5223,7 @@ func callbackQBluetoothSocket_AboutToClose(ptr unsafe.Pointer) {
 //export callbackQBluetoothSocket_BytesWritten
 func callbackQBluetoothSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
 	if signal := qt.GetSignal(ptr, "bytesWritten"); signal != nil {
-		signal.(func(int64))(int64(bytes))
+		(*(*func(int64))(signal))(int64(bytes))
 	}
 
 }
@@ -5339,7 +5231,7 @@ func callbackQBluetoothSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong)
 //export callbackQBluetoothSocket_ChannelBytesWritten
 func callbackQBluetoothSocket_ChannelBytesWritten(ptr unsafe.Pointer, channel C.int, bytes C.longlong) {
 	if signal := qt.GetSignal(ptr, "channelBytesWritten"); signal != nil {
-		signal.(func(int, int64))(int(int32(channel)), int64(bytes))
+		(*(*func(int, int64))(signal))(int(int32(channel)), int64(bytes))
 	}
 
 }
@@ -5347,7 +5239,7 @@ func callbackQBluetoothSocket_ChannelBytesWritten(ptr unsafe.Pointer, channel C.
 //export callbackQBluetoothSocket_ChannelReadyRead
 func callbackQBluetoothSocket_ChannelReadyRead(ptr unsafe.Pointer, channel C.int) {
 	if signal := qt.GetSignal(ptr, "channelReadyRead"); signal != nil {
-		signal.(func(int))(int(int32(channel)))
+		(*(*func(int))(signal))(int(int32(channel)))
 	}
 
 }
@@ -5355,7 +5247,7 @@ func callbackQBluetoothSocket_ChannelReadyRead(ptr unsafe.Pointer, channel C.int
 //export callbackQBluetoothSocket_ReadChannelFinished
 func callbackQBluetoothSocket_ReadChannelFinished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "readChannelFinished"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -5363,7 +5255,7 @@ func callbackQBluetoothSocket_ReadChannelFinished(ptr unsafe.Pointer) {
 //export callbackQBluetoothSocket_ReadyRead
 func callbackQBluetoothSocket_ReadyRead(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "readyRead"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -5371,7 +5263,7 @@ func callbackQBluetoothSocket_ReadyRead(ptr unsafe.Pointer) {
 //export callbackQBluetoothSocket_AtEnd
 func callbackQBluetoothSocket_AtEnd(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "atEnd"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).AtEndDefault())))
@@ -5387,7 +5279,7 @@ func (ptr *QBluetoothSocket) AtEndDefault() bool {
 //export callbackQBluetoothSocket_Pos
 func callbackQBluetoothSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "pos"); signal != nil {
-		return C.longlong(signal.(func() int64)())
+		return C.longlong((*(*func() int64)(signal))())
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).PosDefault())
@@ -5403,7 +5295,7 @@ func (ptr *QBluetoothSocket) PosDefault() int64 {
 //export callbackQBluetoothSocket_Size
 func callbackQBluetoothSocket_Size(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "size"); signal != nil {
-		return C.longlong(signal.(func() int64)())
+		return C.longlong((*(*func() int64)(signal))())
 	}
 
 	return C.longlong(NewQBluetoothSocketFromPointer(ptr).SizeDefault())
@@ -5419,7 +5311,7 @@ func (ptr *QBluetoothSocket) SizeDefault() int64 {
 //export callbackQBluetoothSocket_Event
 func callbackQBluetoothSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -5435,7 +5327,7 @@ func (ptr *QBluetoothSocket) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQBluetoothSocket_EventFilter
 func callbackQBluetoothSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5451,7 +5343,7 @@ func (ptr *QBluetoothSocket) EventFilterDefault(watched core.QObject_ITF, event 
 //export callbackQBluetoothSocket_ChildEvent
 func callbackQBluetoothSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -5466,7 +5358,7 @@ func (ptr *QBluetoothSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQBluetoothSocket_ConnectNotify
 func callbackQBluetoothSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -5481,7 +5373,7 @@ func (ptr *QBluetoothSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQBluetoothSocket_CustomEvent
 func callbackQBluetoothSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -5496,7 +5388,7 @@ func (ptr *QBluetoothSocket) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQBluetoothSocket_DeleteLater
 func callbackQBluetoothSocket_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -5505,7 +5397,6 @@ func callbackQBluetoothSocket_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -5513,7 +5404,7 @@ func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 //export callbackQBluetoothSocket_Destroyed
 func callbackQBluetoothSocket_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -5521,7 +5412,7 @@ func callbackQBluetoothSocket_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) 
 //export callbackQBluetoothSocket_DisconnectNotify
 func callbackQBluetoothSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -5536,7 +5427,7 @@ func (ptr *QBluetoothSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 //export callbackQBluetoothSocket_ObjectNameChanged
 func callbackQBluetoothSocket_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -5544,7 +5435,7 @@ func callbackQBluetoothSocket_ObjectNameChanged(ptr unsafe.Pointer, objectName C
 //export callbackQBluetoothSocket_TimerEvent
 func callbackQBluetoothSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -5641,38 +5532,10 @@ func (ptr *QBluetoothTransferManager) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QBluetoothTransferManager_QBluetoothTransferManager_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothTransferManager_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothTransferManager_QBluetoothTransferManager_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothTransferManager) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothTransferManager_QBluetoothTransferManager_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQBluetoothTransferManager_Finished
 func callbackQBluetoothTransferManager_Finished(ptr unsafe.Pointer, reply unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
+		(*(*func(*QBluetoothTransferReply))(signal))(NewQBluetoothTransferReplyFromPointer(reply))
 	}
 
 }
@@ -5685,12 +5548,13 @@ func (ptr *QBluetoothTransferManager) ConnectFinished(f func(reply *QBluetoothTr
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func(reply *QBluetoothTransferReply) {
-				signal.(func(*QBluetoothTransferReply))(reply)
+			f := func(reply *QBluetoothTransferReply) {
+				(*(*func(*QBluetoothTransferReply))(signal))(reply)
 				f(reply)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -5711,7 +5575,7 @@ func (ptr *QBluetoothTransferManager) Finished(reply QBluetoothTransferReply_ITF
 //export callbackQBluetoothTransferManager_DestroyQBluetoothTransferManager
 func callbackQBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothTransferManager"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).DestroyQBluetoothTransferManagerDefault()
 	}
@@ -5721,12 +5585,13 @@ func (ptr *QBluetoothTransferManager) ConnectDestroyQBluetoothTransferManager(f 
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothTransferManager"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferManager", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferManager", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferManager", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferManager", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -5757,7 +5622,7 @@ func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManagerDefault() 
 //export callbackQBluetoothTransferManager_MetaObject
 func callbackQBluetoothTransferManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothTransferManagerFromPointer(ptr).MetaObjectDefault())
@@ -5876,7 +5741,7 @@ func (ptr *QBluetoothTransferManager) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothTransferManager_Event
 func callbackQBluetoothTransferManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothTransferManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -5892,7 +5757,7 @@ func (ptr *QBluetoothTransferManager) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQBluetoothTransferManager_EventFilter
 func callbackQBluetoothTransferManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothTransferManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5908,7 +5773,7 @@ func (ptr *QBluetoothTransferManager) EventFilterDefault(watched core.QObject_IT
 //export callbackQBluetoothTransferManager_ChildEvent
 func callbackQBluetoothTransferManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -5923,7 +5788,7 @@ func (ptr *QBluetoothTransferManager) ChildEventDefault(event core.QChildEvent_I
 //export callbackQBluetoothTransferManager_ConnectNotify
 func callbackQBluetoothTransferManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -5938,7 +5803,7 @@ func (ptr *QBluetoothTransferManager) ConnectNotifyDefault(sign core.QMetaMethod
 //export callbackQBluetoothTransferManager_CustomEvent
 func callbackQBluetoothTransferManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -5953,7 +5818,7 @@ func (ptr *QBluetoothTransferManager) CustomEventDefault(event core.QEvent_ITF) 
 //export callbackQBluetoothTransferManager_DeleteLater
 func callbackQBluetoothTransferManager_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -5962,7 +5827,6 @@ func callbackQBluetoothTransferManager_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -5970,7 +5834,7 @@ func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 //export callbackQBluetoothTransferManager_Destroyed
 func callbackQBluetoothTransferManager_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -5978,7 +5842,7 @@ func callbackQBluetoothTransferManager_Destroyed(ptr unsafe.Pointer, obj unsafe.
 //export callbackQBluetoothTransferManager_DisconnectNotify
 func callbackQBluetoothTransferManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -5993,7 +5857,7 @@ func (ptr *QBluetoothTransferManager) DisconnectNotifyDefault(sign core.QMetaMet
 //export callbackQBluetoothTransferManager_ObjectNameChanged
 func callbackQBluetoothTransferManager_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -6001,7 +5865,7 @@ func callbackQBluetoothTransferManager_ObjectNameChanged(ptr unsafe.Pointer, obj
 //export callbackQBluetoothTransferManager_TimerEvent
 func callbackQBluetoothTransferManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -6103,38 +5967,10 @@ func (ptr *QBluetoothTransferReply) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QBluetoothTransferReply_QBluetoothTransferReply_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QBluetoothTransferReply_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothTransferReply_QBluetoothTransferReply_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QBluetoothTransferReply) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QBluetoothTransferReply_QBluetoothTransferReply_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQBluetoothTransferReply_Abort
 func callbackQBluetoothTransferReply_Abort(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "abort"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).AbortDefault()
 	}
@@ -6144,12 +5980,13 @@ func (ptr *QBluetoothTransferReply) ConnectAbort(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "abort"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "abort", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "abort", f)
+			qt.ConnectSignal(ptr.Pointer(), "abort", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6176,7 +6013,7 @@ func (ptr *QBluetoothTransferReply) AbortDefault() {
 //export callbackQBluetoothTransferReply_Error2
 func callbackQBluetoothTransferReply_Error2(ptr unsafe.Pointer, errorType C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QBluetoothTransferReply__TransferError))(QBluetoothTransferReply__TransferError(errorType))
+		(*(*func(QBluetoothTransferReply__TransferError))(signal))(QBluetoothTransferReply__TransferError(errorType))
 	}
 
 }
@@ -6189,12 +6026,13 @@ func (ptr *QBluetoothTransferReply) ConnectError2(f func(errorType QBluetoothTra
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(errorType QBluetoothTransferReply__TransferError) {
-				signal.(func(QBluetoothTransferReply__TransferError))(errorType)
+			f := func(errorType QBluetoothTransferReply__TransferError) {
+				(*(*func(QBluetoothTransferReply__TransferError))(signal))(errorType)
 				f(errorType)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6215,7 +6053,7 @@ func (ptr *QBluetoothTransferReply) Error2(errorType QBluetoothTransferReply__Tr
 //export callbackQBluetoothTransferReply_Finished
 func callbackQBluetoothTransferReply_Finished(ptr unsafe.Pointer, reply unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "finished"); signal != nil {
-		signal.(func(*QBluetoothTransferReply))(NewQBluetoothTransferReplyFromPointer(reply))
+		(*(*func(*QBluetoothTransferReply))(signal))(NewQBluetoothTransferReplyFromPointer(reply))
 	}
 
 }
@@ -6228,12 +6066,13 @@ func (ptr *QBluetoothTransferReply) ConnectFinished(f func(reply *QBluetoothTran
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "finished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "finished", func(reply *QBluetoothTransferReply) {
-				signal.(func(*QBluetoothTransferReply))(reply)
+			f := func(reply *QBluetoothTransferReply) {
+				(*(*func(*QBluetoothTransferReply))(signal))(reply)
 				f(reply)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "finished", f)
+			qt.ConnectSignal(ptr.Pointer(), "finished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6266,7 +6105,7 @@ func (ptr *QBluetoothTransferReply) SetRequest(request QBluetoothTransferRequest
 //export callbackQBluetoothTransferReply_TransferProgress
 func callbackQBluetoothTransferReply_TransferProgress(ptr unsafe.Pointer, bytesTransferred C.longlong, bytesTotal C.longlong) {
 	if signal := qt.GetSignal(ptr, "transferProgress"); signal != nil {
-		signal.(func(int64, int64))(int64(bytesTransferred), int64(bytesTotal))
+		(*(*func(int64, int64))(signal))(int64(bytesTransferred), int64(bytesTotal))
 	}
 
 }
@@ -6279,12 +6118,13 @@ func (ptr *QBluetoothTransferReply) ConnectTransferProgress(f func(bytesTransfer
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "transferProgress"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "transferProgress", func(bytesTransferred int64, bytesTotal int64) {
-				signal.(func(int64, int64))(bytesTransferred, bytesTotal)
+			f := func(bytesTransferred int64, bytesTotal int64) {
+				(*(*func(int64, int64))(signal))(bytesTransferred, bytesTotal)
 				f(bytesTransferred, bytesTotal)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "transferProgress", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "transferProgress", f)
+			qt.ConnectSignal(ptr.Pointer(), "transferProgress", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6305,7 +6145,7 @@ func (ptr *QBluetoothTransferReply) TransferProgress(bytesTransferred int64, byt
 //export callbackQBluetoothTransferReply_DestroyQBluetoothTransferReply
 func callbackQBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QBluetoothTransferReply"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).DestroyQBluetoothTransferReplyDefault()
 	}
@@ -6315,12 +6155,13 @@ func (ptr *QBluetoothTransferReply) ConnectDestroyQBluetoothTransferReply(f func
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QBluetoothTransferReply"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferReply", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferReply", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferReply", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QBluetoothTransferReply", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6362,7 +6203,7 @@ func (ptr *QBluetoothTransferReply) Manager() *QBluetoothTransferManager {
 //export callbackQBluetoothTransferReply_Error
 func callbackQBluetoothTransferReply_Error(ptr unsafe.Pointer) C.longlong {
 	if signal := qt.GetSignal(ptr, "error"); signal != nil {
-		return C.longlong(signal.(func() QBluetoothTransferReply__TransferError)())
+		return C.longlong((*(*func() QBluetoothTransferReply__TransferError)(signal))())
 	}
 
 	return C.longlong(0)
@@ -6372,12 +6213,13 @@ func (ptr *QBluetoothTransferReply) ConnectError(f func() QBluetoothTransferRepl
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error", func() QBluetoothTransferReply__TransferError {
-				signal.(func() QBluetoothTransferReply__TransferError)()
+			f := func() QBluetoothTransferReply__TransferError {
+				(*(*func() QBluetoothTransferReply__TransferError)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error", f)
+			qt.ConnectSignal(ptr.Pointer(), "error", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6408,7 +6250,7 @@ func (ptr *QBluetoothTransferReply) Request() *QBluetoothTransferRequest {
 //export callbackQBluetoothTransferReply_ErrorString
 func callbackQBluetoothTransferReply_ErrorString(ptr unsafe.Pointer) C.struct_QtBluetooth_PackedString {
 	if signal := qt.GetSignal(ptr, "errorString"); signal != nil {
-		tempVal := signal.(func() string)()
+		tempVal := (*(*func() string)(signal))()
 		return C.struct_QtBluetooth_PackedString{data: C.CString(tempVal), len: C.longlong(len(tempVal))}
 	}
 	tempVal := ""
@@ -6419,12 +6261,13 @@ func (ptr *QBluetoothTransferReply) ConnectErrorString(f func() string) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "errorString"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "errorString", func() string {
-				signal.(func() string)()
+			f := func() string {
+				(*(*func() string)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "errorString", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "errorString", f)
+			qt.ConnectSignal(ptr.Pointer(), "errorString", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6446,7 +6289,7 @@ func (ptr *QBluetoothTransferReply) ErrorString() string {
 //export callbackQBluetoothTransferReply_IsFinished
 func callbackQBluetoothTransferReply_IsFinished(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "isFinished"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -6456,12 +6299,13 @@ func (ptr *QBluetoothTransferReply) ConnectIsFinished(f func() bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "isFinished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "isFinished", func() bool {
-				signal.(func() bool)()
+			f := func() bool {
+				(*(*func() bool)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "isFinished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isFinished", f)
+			qt.ConnectSignal(ptr.Pointer(), "isFinished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6483,7 +6327,7 @@ func (ptr *QBluetoothTransferReply) IsFinished() bool {
 //export callbackQBluetoothTransferReply_IsRunning
 func callbackQBluetoothTransferReply_IsRunning(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "isRunning"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+		return C.char(int8(qt.GoBoolToInt((*(*func() bool)(signal))())))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -6493,12 +6337,13 @@ func (ptr *QBluetoothTransferReply) ConnectIsRunning(f func() bool) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "isRunning"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "isRunning", func() bool {
-				signal.(func() bool)()
+			f := func() bool {
+				(*(*func() bool)(signal))()
 				return f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "isRunning", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "isRunning", f)
+			qt.ConnectSignal(ptr.Pointer(), "isRunning", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -6520,7 +6365,7 @@ func (ptr *QBluetoothTransferReply) IsRunning() bool {
 //export callbackQBluetoothTransferReply_MetaObject
 func callbackQBluetoothTransferReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQBluetoothTransferReplyFromPointer(ptr).MetaObjectDefault())
@@ -6639,7 +6484,7 @@ func (ptr *QBluetoothTransferReply) __children_newList() unsafe.Pointer {
 //export callbackQBluetoothTransferReply_Event
 func callbackQBluetoothTransferReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothTransferReplyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -6655,7 +6500,7 @@ func (ptr *QBluetoothTransferReply) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQBluetoothTransferReply_EventFilter
 func callbackQBluetoothTransferReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQBluetoothTransferReplyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -6671,7 +6516,7 @@ func (ptr *QBluetoothTransferReply) EventFilterDefault(watched core.QObject_ITF,
 //export callbackQBluetoothTransferReply_ChildEvent
 func callbackQBluetoothTransferReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -6686,7 +6531,7 @@ func (ptr *QBluetoothTransferReply) ChildEventDefault(event core.QChildEvent_ITF
 //export callbackQBluetoothTransferReply_ConnectNotify
 func callbackQBluetoothTransferReply_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -6701,7 +6546,7 @@ func (ptr *QBluetoothTransferReply) ConnectNotifyDefault(sign core.QMetaMethod_I
 //export callbackQBluetoothTransferReply_CustomEvent
 func callbackQBluetoothTransferReply_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -6716,7 +6561,7 @@ func (ptr *QBluetoothTransferReply) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQBluetoothTransferReply_DeleteLater
 func callbackQBluetoothTransferReply_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -6725,7 +6570,6 @@ func callbackQBluetoothTransferReply_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -6733,7 +6577,7 @@ func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 //export callbackQBluetoothTransferReply_Destroyed
 func callbackQBluetoothTransferReply_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -6741,7 +6585,7 @@ func callbackQBluetoothTransferReply_Destroyed(ptr unsafe.Pointer, obj unsafe.Po
 //export callbackQBluetoothTransferReply_DisconnectNotify
 func callbackQBluetoothTransferReply_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -6756,7 +6600,7 @@ func (ptr *QBluetoothTransferReply) DisconnectNotifyDefault(sign core.QMetaMetho
 //export callbackQBluetoothTransferReply_ObjectNameChanged
 func callbackQBluetoothTransferReply_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -6764,7 +6608,7 @@ func callbackQBluetoothTransferReply_ObjectNameChanged(ptr unsafe.Pointer, objec
 //export callbackQBluetoothTransferReply_TimerEvent
 func callbackQBluetoothTransferReply_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQBluetoothTransferReplyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -7317,8 +7161,11 @@ func (ptr *QBluetoothUuid) MinimumSize() int {
 
 func (ptr *QBluetoothUuid) ToUInt16(ok *bool) uint16 {
 	if ptr.Pointer() != nil {
-		okC := C.char(int8(qt.GoBoolToInt(*ok)))
-		defer func() { *ok = int8(okC) != 0 }()
+		var okC C.char
+		if ok != nil {
+			okC = C.char(int8(qt.GoBoolToInt(*ok)))
+			defer func() { *ok = int8(okC) != 0 }()
+		}
 		return uint16(C.QBluetoothUuid_ToUInt16(ptr.Pointer(), &okC))
 	}
 	return 0
@@ -7326,8 +7173,11 @@ func (ptr *QBluetoothUuid) ToUInt16(ok *bool) uint16 {
 
 func (ptr *QBluetoothUuid) ToUInt32(ok *bool) uint {
 	if ptr.Pointer() != nil {
-		okC := C.char(int8(qt.GoBoolToInt(*ok)))
-		defer func() { *ok = int8(okC) != 0 }()
+		var okC C.char
+		if ok != nil {
+			okC = C.char(int8(qt.GoBoolToInt(*ok)))
+			defer func() { *ok = int8(okC) != 0 }()
+		}
 		return uint(uint32(C.QBluetoothUuid_ToUInt32(ptr.Pointer(), &okC)))
 	}
 	return 0
@@ -8337,34 +8187,6 @@ func (ptr *QLowEnergyController) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QLowEnergyController_QLowEnergyController_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QLowEnergyController_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QLowEnergyController_QLowEnergyController_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QLowEnergyController) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QLowEnergyController_QLowEnergyController_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 func (ptr *QLowEnergyController) ConnectToDevice() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectToDevice(ptr.Pointer())
@@ -8374,7 +8196,7 @@ func (ptr *QLowEnergyController) ConnectToDevice() {
 //export callbackQLowEnergyController_Connected
 func callbackQLowEnergyController_Connected(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connected"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -8387,12 +8209,13 @@ func (ptr *QLowEnergyController) ConnectConnected(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "connected", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connected", f)
+			qt.ConnectSignal(ptr.Pointer(), "connected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8413,7 +8236,7 @@ func (ptr *QLowEnergyController) Connected() {
 //export callbackQLowEnergyController_ConnectionUpdated
 func callbackQLowEnergyController_ConnectionUpdated(ptr unsafe.Pointer, newParameters unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectionUpdated"); signal != nil {
-		signal.(func(*QLowEnergyConnectionParameters))(NewQLowEnergyConnectionParametersFromPointer(newParameters))
+		(*(*func(*QLowEnergyConnectionParameters))(signal))(NewQLowEnergyConnectionParametersFromPointer(newParameters))
 	}
 
 }
@@ -8426,12 +8249,13 @@ func (ptr *QLowEnergyController) ConnectConnectionUpdated(f func(newParameters *
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "connectionUpdated"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "connectionUpdated", func(newParameters *QLowEnergyConnectionParameters) {
-				signal.(func(*QLowEnergyConnectionParameters))(newParameters)
+			f := func(newParameters *QLowEnergyConnectionParameters) {
+				(*(*func(*QLowEnergyConnectionParameters))(signal))(newParameters)
 				f(newParameters)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "connectionUpdated", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "connectionUpdated", f)
+			qt.ConnectSignal(ptr.Pointer(), "connectionUpdated", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8458,7 +8282,7 @@ func (ptr *QLowEnergyController) DisconnectFromDevice() {
 //export callbackQLowEnergyController_Disconnected
 func callbackQLowEnergyController_Disconnected(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnected"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -8471,12 +8295,13 @@ func (ptr *QLowEnergyController) ConnectDisconnected(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "disconnected"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "disconnected", f)
+			qt.ConnectSignal(ptr.Pointer(), "disconnected", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8503,7 +8328,7 @@ func (ptr *QLowEnergyController) DiscoverServices() {
 //export callbackQLowEnergyController_DiscoveryFinished
 func callbackQLowEnergyController_DiscoveryFinished(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "discoveryFinished"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	}
 
 }
@@ -8516,12 +8341,13 @@ func (ptr *QLowEnergyController) ConnectDiscoveryFinished(f func()) {
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "discoveryFinished"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "discoveryFinished", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "discoveryFinished", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "discoveryFinished", f)
+			qt.ConnectSignal(ptr.Pointer(), "discoveryFinished", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8542,7 +8368,7 @@ func (ptr *QLowEnergyController) DiscoveryFinished() {
 //export callbackQLowEnergyController_Error2
 func callbackQLowEnergyController_Error2(ptr unsafe.Pointer, newError C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QLowEnergyController__Error))(QLowEnergyController__Error(newError))
+		(*(*func(QLowEnergyController__Error))(signal))(QLowEnergyController__Error(newError))
 	}
 
 }
@@ -8555,12 +8381,13 @@ func (ptr *QLowEnergyController) ConnectError2(f func(newError QLowEnergyControl
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(newError QLowEnergyController__Error) {
-				signal.(func(QLowEnergyController__Error))(newError)
+			f := func(newError QLowEnergyController__Error) {
+				(*(*func(QLowEnergyController__Error))(signal))(newError)
 				f(newError)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8587,7 +8414,7 @@ func (ptr *QLowEnergyController) RequestConnectionUpdate(parameters QLowEnergyCo
 //export callbackQLowEnergyController_ServiceDiscovered
 func callbackQLowEnergyController_ServiceDiscovered(ptr unsafe.Pointer, newService unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "serviceDiscovered"); signal != nil {
-		signal.(func(*QBluetoothUuid))(NewQBluetoothUuidFromPointer(newService))
+		(*(*func(*QBluetoothUuid))(signal))(NewQBluetoothUuidFromPointer(newService))
 	}
 
 }
@@ -8600,12 +8427,13 @@ func (ptr *QLowEnergyController) ConnectServiceDiscovered(f func(newService *QBl
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "serviceDiscovered"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", func(newService *QBluetoothUuid) {
-				signal.(func(*QBluetoothUuid))(newService)
+			f := func(newService *QBluetoothUuid) {
+				(*(*func(*QBluetoothUuid))(signal))(newService)
 				f(newService)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", f)
+			qt.ConnectSignal(ptr.Pointer(), "serviceDiscovered", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8638,7 +8466,7 @@ func (ptr *QLowEnergyController) StartAdvertising(parameters QLowEnergyAdvertisi
 //export callbackQLowEnergyController_StateChanged
 func callbackQLowEnergyController_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		signal.(func(QLowEnergyController__ControllerState))(QLowEnergyController__ControllerState(state))
+		(*(*func(QLowEnergyController__ControllerState))(signal))(QLowEnergyController__ControllerState(state))
 	}
 
 }
@@ -8651,12 +8479,13 @@ func (ptr *QLowEnergyController) ConnectStateChanged(f func(state QLowEnergyCont
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(state QLowEnergyController__ControllerState) {
-				signal.(func(QLowEnergyController__ControllerState))(state)
+			f := func(state QLowEnergyController__ControllerState) {
+				(*(*func(QLowEnergyController__ControllerState))(signal))(state)
 				f(state)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8683,7 +8512,7 @@ func (ptr *QLowEnergyController) StopAdvertising() {
 //export callbackQLowEnergyController_DestroyQLowEnergyController
 func callbackQLowEnergyController_DestroyQLowEnergyController(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QLowEnergyController"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).DestroyQLowEnergyControllerDefault()
 	}
@@ -8693,12 +8522,13 @@ func (ptr *QLowEnergyController) ConnectDestroyQLowEnergyController(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QLowEnergyController"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyController", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyController", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyController", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyController", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -8812,7 +8642,7 @@ func (ptr *QLowEnergyController) RemoteName() string {
 //export callbackQLowEnergyController_MetaObject
 func callbackQLowEnergyController_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQLowEnergyControllerFromPointer(ptr).MetaObjectDefault())
@@ -8950,7 +8780,7 @@ func (ptr *QLowEnergyController) __children_newList() unsafe.Pointer {
 //export callbackQLowEnergyController_Event
 func callbackQLowEnergyController_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQLowEnergyControllerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -8966,7 +8796,7 @@ func (ptr *QLowEnergyController) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQLowEnergyController_EventFilter
 func callbackQLowEnergyController_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQLowEnergyControllerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -8982,7 +8812,7 @@ func (ptr *QLowEnergyController) EventFilterDefault(watched core.QObject_ITF, ev
 //export callbackQLowEnergyController_ChildEvent
 func callbackQLowEnergyController_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -8997,7 +8827,7 @@ func (ptr *QLowEnergyController) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQLowEnergyController_ConnectNotify
 func callbackQLowEnergyController_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -9012,7 +8842,7 @@ func (ptr *QLowEnergyController) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 //export callbackQLowEnergyController_CustomEvent
 func callbackQLowEnergyController_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -9027,7 +8857,7 @@ func (ptr *QLowEnergyController) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQLowEnergyController_DeleteLater
 func callbackQLowEnergyController_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -9036,7 +8866,6 @@ func callbackQLowEnergyController_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QLowEnergyController) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -9044,7 +8873,7 @@ func (ptr *QLowEnergyController) DeleteLaterDefault() {
 //export callbackQLowEnergyController_Destroyed
 func callbackQLowEnergyController_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -9052,7 +8881,7 @@ func callbackQLowEnergyController_Destroyed(ptr unsafe.Pointer, obj unsafe.Point
 //export callbackQLowEnergyController_DisconnectNotify
 func callbackQLowEnergyController_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -9067,7 +8896,7 @@ func (ptr *QLowEnergyController) DisconnectNotifyDefault(sign core.QMetaMethod_I
 //export callbackQLowEnergyController_ObjectNameChanged
 func callbackQLowEnergyController_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -9075,7 +8904,7 @@ func callbackQLowEnergyController_ObjectNameChanged(ptr unsafe.Pointer, objectNa
 //export callbackQLowEnergyController_TimerEvent
 func callbackQLowEnergyController_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQLowEnergyControllerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}
@@ -9441,38 +9270,10 @@ func (ptr *QLowEnergyService) Tr(s string, c string, n int) string {
 	return cGoUnpackString(C.QLowEnergyService_QLowEnergyService_Tr(sC, cC, C.int(int32(n))))
 }
 
-func QLowEnergyService_TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QLowEnergyService_QLowEnergyService_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
-func (ptr *QLowEnergyService) TrUtf8(s string, c string, n int) string {
-	var sC *C.char
-	if s != "" {
-		sC = C.CString(s)
-		defer C.free(unsafe.Pointer(sC))
-	}
-	var cC *C.char
-	if c != "" {
-		cC = C.CString(c)
-		defer C.free(unsafe.Pointer(cC))
-	}
-	return cGoUnpackString(C.QLowEnergyService_QLowEnergyService_TrUtf8(sC, cC, C.int(int32(n))))
-}
-
 //export callbackQLowEnergyService_CharacteristicChanged
 func callbackQLowEnergyService_CharacteristicChanged(ptr unsafe.Pointer, characteristic unsafe.Pointer, newValue unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "characteristicChanged"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(newValue))
+		(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(newValue))
 	}
 
 }
@@ -9485,12 +9286,13 @@ func (ptr *QLowEnergyService) ConnectCharacteristicChanged(f func(characteristic
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicChanged", func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
-				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, newValue)
+			f := func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
+				(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(characteristic, newValue)
 				f(characteristic, newValue)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "characteristicChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "characteristicChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9511,7 +9313,7 @@ func (ptr *QLowEnergyService) CharacteristicChanged(characteristic QLowEnergyCha
 //export callbackQLowEnergyService_CharacteristicRead
 func callbackQLowEnergyService_CharacteristicRead(ptr unsafe.Pointer, characteristic unsafe.Pointer, value unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "characteristicRead"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(value))
+		(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(value))
 	}
 
 }
@@ -9524,12 +9326,13 @@ func (ptr *QLowEnergyService) ConnectCharacteristicRead(f func(characteristic *Q
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicRead"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicRead", func(characteristic *QLowEnergyCharacteristic, value *core.QByteArray) {
-				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, value)
+			f := func(characteristic *QLowEnergyCharacteristic, value *core.QByteArray) {
+				(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(characteristic, value)
 				f(characteristic, value)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "characteristicRead", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicRead", f)
+			qt.ConnectSignal(ptr.Pointer(), "characteristicRead", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9550,7 +9353,7 @@ func (ptr *QLowEnergyService) CharacteristicRead(characteristic QLowEnergyCharac
 //export callbackQLowEnergyService_CharacteristicWritten
 func callbackQLowEnergyService_CharacteristicWritten(ptr unsafe.Pointer, characteristic unsafe.Pointer, newValue unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "characteristicWritten"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(newValue))
+		(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(NewQLowEnergyCharacteristicFromPointer(characteristic), core.NewQByteArrayFromPointer(newValue))
 	}
 
 }
@@ -9563,12 +9366,13 @@ func (ptr *QLowEnergyService) ConnectCharacteristicWritten(f func(characteristic
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "characteristicWritten"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicWritten", func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
-				signal.(func(*QLowEnergyCharacteristic, *core.QByteArray))(characteristic, newValue)
+			f := func(characteristic *QLowEnergyCharacteristic, newValue *core.QByteArray) {
+				(*(*func(*QLowEnergyCharacteristic, *core.QByteArray))(signal))(characteristic, newValue)
 				f(characteristic, newValue)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "characteristicWritten", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "characteristicWritten", f)
+			qt.ConnectSignal(ptr.Pointer(), "characteristicWritten", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9589,7 +9393,7 @@ func (ptr *QLowEnergyService) CharacteristicWritten(characteristic QLowEnergyCha
 //export callbackQLowEnergyService_DescriptorRead
 func callbackQLowEnergyService_DescriptorRead(ptr unsafe.Pointer, descriptor unsafe.Pointer, value unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "descriptorRead"); signal != nil {
-		signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(NewQLowEnergyDescriptorFromPointer(descriptor), core.NewQByteArrayFromPointer(value))
+		(*(*func(*QLowEnergyDescriptor, *core.QByteArray))(signal))(NewQLowEnergyDescriptorFromPointer(descriptor), core.NewQByteArrayFromPointer(value))
 	}
 
 }
@@ -9602,12 +9406,13 @@ func (ptr *QLowEnergyService) ConnectDescriptorRead(f func(descriptor *QLowEnerg
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "descriptorRead"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "descriptorRead", func(descriptor *QLowEnergyDescriptor, value *core.QByteArray) {
-				signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(descriptor, value)
+			f := func(descriptor *QLowEnergyDescriptor, value *core.QByteArray) {
+				(*(*func(*QLowEnergyDescriptor, *core.QByteArray))(signal))(descriptor, value)
 				f(descriptor, value)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "descriptorRead", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "descriptorRead", f)
+			qt.ConnectSignal(ptr.Pointer(), "descriptorRead", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9628,7 +9433,7 @@ func (ptr *QLowEnergyService) DescriptorRead(descriptor QLowEnergyDescriptor_ITF
 //export callbackQLowEnergyService_DescriptorWritten
 func callbackQLowEnergyService_DescriptorWritten(ptr unsafe.Pointer, descriptor unsafe.Pointer, newValue unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "descriptorWritten"); signal != nil {
-		signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(NewQLowEnergyDescriptorFromPointer(descriptor), core.NewQByteArrayFromPointer(newValue))
+		(*(*func(*QLowEnergyDescriptor, *core.QByteArray))(signal))(NewQLowEnergyDescriptorFromPointer(descriptor), core.NewQByteArrayFromPointer(newValue))
 	}
 
 }
@@ -9641,12 +9446,13 @@ func (ptr *QLowEnergyService) ConnectDescriptorWritten(f func(descriptor *QLowEn
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "descriptorWritten"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "descriptorWritten", func(descriptor *QLowEnergyDescriptor, newValue *core.QByteArray) {
-				signal.(func(*QLowEnergyDescriptor, *core.QByteArray))(descriptor, newValue)
+			f := func(descriptor *QLowEnergyDescriptor, newValue *core.QByteArray) {
+				(*(*func(*QLowEnergyDescriptor, *core.QByteArray))(signal))(descriptor, newValue)
 				f(descriptor, newValue)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "descriptorWritten", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "descriptorWritten", f)
+			qt.ConnectSignal(ptr.Pointer(), "descriptorWritten", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9673,7 +9479,7 @@ func (ptr *QLowEnergyService) DiscoverDetails() {
 //export callbackQLowEnergyService_Error2
 func callbackQLowEnergyService_Error2(ptr unsafe.Pointer, newError C.longlong) {
 	if signal := qt.GetSignal(ptr, "error2"); signal != nil {
-		signal.(func(QLowEnergyService__ServiceError))(QLowEnergyService__ServiceError(newError))
+		(*(*func(QLowEnergyService__ServiceError))(signal))(QLowEnergyService__ServiceError(newError))
 	}
 
 }
@@ -9686,12 +9492,13 @@ func (ptr *QLowEnergyService) ConnectError2(f func(newError QLowEnergyService__S
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "error2"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "error2", func(newError QLowEnergyService__ServiceError) {
-				signal.(func(QLowEnergyService__ServiceError))(newError)
+			f := func(newError QLowEnergyService__ServiceError) {
+				(*(*func(QLowEnergyService__ServiceError))(signal))(newError)
 				f(newError)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "error2", f)
+			qt.ConnectSignal(ptr.Pointer(), "error2", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9724,7 +9531,7 @@ func (ptr *QLowEnergyService) ReadDescriptor(descriptor QLowEnergyDescriptor_ITF
 //export callbackQLowEnergyService_StateChanged
 func callbackQLowEnergyService_StateChanged(ptr unsafe.Pointer, newState C.longlong) {
 	if signal := qt.GetSignal(ptr, "stateChanged"); signal != nil {
-		signal.(func(QLowEnergyService__ServiceState))(QLowEnergyService__ServiceState(newState))
+		(*(*func(QLowEnergyService__ServiceState))(signal))(QLowEnergyService__ServiceState(newState))
 	}
 
 }
@@ -9737,12 +9544,13 @@ func (ptr *QLowEnergyService) ConnectStateChanged(f func(newState QLowEnergyServ
 		}
 
 		if signal := qt.LendSignal(ptr.Pointer(), "stateChanged"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", func(newState QLowEnergyService__ServiceState) {
-				signal.(func(QLowEnergyService__ServiceState))(newState)
+			f := func(newState QLowEnergyService__ServiceState) {
+				(*(*func(QLowEnergyService__ServiceState))(signal))(newState)
 				f(newState)
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "stateChanged", f)
+			qt.ConnectSignal(ptr.Pointer(), "stateChanged", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9775,7 +9583,7 @@ func (ptr *QLowEnergyService) WriteDescriptor(descriptor QLowEnergyDescriptor_IT
 //export callbackQLowEnergyService_DestroyQLowEnergyService
 func callbackQLowEnergyService_DestroyQLowEnergyService(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "~QLowEnergyService"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).DestroyQLowEnergyServiceDefault()
 	}
@@ -9785,12 +9593,13 @@ func (ptr *QLowEnergyService) ConnectDestroyQLowEnergyService(f func()) {
 	if ptr.Pointer() != nil {
 
 		if signal := qt.LendSignal(ptr.Pointer(), "~QLowEnergyService"); signal != nil {
-			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyService", func() {
-				signal.(func())()
+			f := func() {
+				(*(*func())(signal))()
 				f()
-			})
+			}
+			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyService", unsafe.Pointer(&f))
 		} else {
-			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyService", f)
+			qt.ConnectSignal(ptr.Pointer(), "~QLowEnergyService", unsafe.Pointer(&f))
 		}
 	}
 }
@@ -9909,7 +9718,7 @@ func (ptr *QLowEnergyService) Contains2(descriptor QLowEnergyDescriptor_ITF) boo
 //export callbackQLowEnergyService_MetaObject
 func callbackQLowEnergyService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	if signal := qt.GetSignal(ptr, "metaObject"); signal != nil {
-		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+		return core.PointerFromQMetaObject((*(*func() *core.QMetaObject)(signal))())
 	}
 
 	return core.PointerFromQMetaObject(NewQLowEnergyServiceFromPointer(ptr).MetaObjectDefault())
@@ -10066,7 +9875,7 @@ func (ptr *QLowEnergyService) __children_newList() unsafe.Pointer {
 //export callbackQLowEnergyService_Event
 func callbackQLowEnergyService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QEvent) bool)(signal))(core.NewQEventFromPointer(e)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQLowEnergyServiceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
@@ -10082,7 +9891,7 @@ func (ptr *QLowEnergyService) EventDefault(e core.QEvent_ITF) bool {
 //export callbackQLowEnergyService_EventFilter
 func callbackQLowEnergyService_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(ptr, "eventFilter"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
+		return C.char(int8(qt.GoBoolToInt((*(*func(*core.QObject, *core.QEvent) bool)(signal))(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(NewQLowEnergyServiceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -10098,7 +9907,7 @@ func (ptr *QLowEnergyService) EventFilterDefault(watched core.QObject_ITF, event
 //export callbackQLowEnergyService_ChildEvent
 func callbackQLowEnergyService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "childEvent"); signal != nil {
-		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+		(*(*func(*core.QChildEvent))(signal))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
 	}
@@ -10113,7 +9922,7 @@ func (ptr *QLowEnergyService) ChildEventDefault(event core.QChildEvent_ITF) {
 //export callbackQLowEnergyService_ConnectNotify
 func callbackQLowEnergyService_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "connectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -10128,7 +9937,7 @@ func (ptr *QLowEnergyService) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 //export callbackQLowEnergyService_CustomEvent
 func callbackQLowEnergyService_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "customEvent"); signal != nil {
-		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+		(*(*func(*core.QEvent))(signal))(core.NewQEventFromPointer(event))
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
 	}
@@ -10143,7 +9952,7 @@ func (ptr *QLowEnergyService) CustomEventDefault(event core.QEvent_ITF) {
 //export callbackQLowEnergyService_DeleteLater
 func callbackQLowEnergyService_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "deleteLater"); signal != nil {
-		signal.(func())()
+		(*(*func())(signal))()
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).DeleteLaterDefault()
 	}
@@ -10152,7 +9961,6 @@ func callbackQLowEnergyService_DeleteLater(ptr unsafe.Pointer) {
 func (ptr *QLowEnergyService) DeleteLaterDefault() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
-		ptr.SetPointer(nil)
 		runtime.SetFinalizer(ptr, nil)
 	}
 }
@@ -10160,7 +9968,7 @@ func (ptr *QLowEnergyService) DeleteLaterDefault() {
 //export callbackQLowEnergyService_Destroyed
 func callbackQLowEnergyService_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "destroyed"); signal != nil {
-		signal.(func(*core.QObject))(core.NewQObjectFromPointer(obj))
+		(*(*func(*core.QObject))(signal))(core.NewQObjectFromPointer(obj))
 	}
 
 }
@@ -10168,7 +9976,7 @@ func callbackQLowEnergyService_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer)
 //export callbackQLowEnergyService_DisconnectNotify
 func callbackQLowEnergyService_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "disconnectNotify"); signal != nil {
-		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+		(*(*func(*core.QMetaMethod))(signal))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
 	}
@@ -10183,7 +9991,7 @@ func (ptr *QLowEnergyService) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 //export callbackQLowEnergyService_ObjectNameChanged
 func callbackQLowEnergyService_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtBluetooth_PackedString) {
 	if signal := qt.GetSignal(ptr, "objectNameChanged"); signal != nil {
-		signal.(func(string))(cGoUnpackString(objectName))
+		(*(*func(string))(signal))(cGoUnpackString(objectName))
 	}
 
 }
@@ -10191,7 +9999,7 @@ func callbackQLowEnergyService_ObjectNameChanged(ptr unsafe.Pointer, objectName 
 //export callbackQLowEnergyService_TimerEvent
 func callbackQLowEnergyService_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	if signal := qt.GetSignal(ptr, "timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+		(*(*func(*core.QTimerEvent))(signal))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQLowEnergyServiceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
 	}

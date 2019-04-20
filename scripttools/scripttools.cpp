@@ -106,11 +106,6 @@ struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_Tr
 	return ({ QByteArray tcf93f8 = QScriptEngineDebugger::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScriptTools_PackedString { const_cast<char*>(tcf93f8.prepend("WHITESPACE").constData()+10), tcf93f8.size()-10 }; });
 }
 
-struct QtScriptTools_PackedString QScriptEngineDebugger_QScriptEngineDebugger_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6bf1a8 = QScriptEngineDebugger::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtScriptTools_PackedString { const_cast<char*>(t6bf1a8.prepend("WHITESPACE").constData()+10), t6bf1a8.size()-10 }; });
-}
-
 void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardToolBar(static_cast<QWidget*>(parent));

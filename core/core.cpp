@@ -279,11 +279,6 @@ void* QAbstractAnimation_NewQAbstractAnimation(void* parent)
 	}
 }
 
-struct QtCore_PackedString QAbstractAnimation_QAbstractAnimation_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tce7dc8 = QAbstractAnimation::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(tce7dc8.prepend("WHITESPACE").constData()+10), tce7dc8.size()-10 }; });
-}
-
 void QAbstractAnimation_ConnectCurrentLoopChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractAnimation*>(ptr), static_cast<void (QAbstractAnimation::*)(int)>(&QAbstractAnimation::currentLoopChanged), static_cast<MyQAbstractAnimation*>(ptr), static_cast<void (MyQAbstractAnimation::*)(int)>(&MyQAbstractAnimation::Signal_CurrentLoopChanged));
@@ -653,14 +648,9 @@ void* QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(void* thread)
 	return QAbstractEventDispatcher::instance(static_cast<QThread*>(thread));
 }
 
-struct QtCore_PackedString QAbstractEventDispatcher_QAbstractEventDispatcher_TrUtf8(char* s, char* c, int n)
+char QAbstractEventDispatcher_FilterNativeEvent(void* ptr, void* eventType, void* message, long* result)
 {
-	return ({ QByteArray te6939c = QAbstractEventDispatcher::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(te6939c.prepend("WHITESPACE").constData()+10), te6939c.size()-10 }; });
-}
-
-char QAbstractEventDispatcher_FilterNativeEvent(void* ptr, void* eventType, void* message, long result)
-{
-	return static_cast<QAbstractEventDispatcher*>(ptr)->filterNativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	return static_cast<QAbstractEventDispatcher*>(ptr)->filterNativeEvent(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 char QAbstractEventDispatcher_ProcessEvents(void* ptr, long long flags)
@@ -892,11 +882,6 @@ void* QAbstractItemModel_NewQAbstractItemModel(void* parent)
 	} else {
 		return new MyQAbstractItemModel(static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QAbstractItemModel_QAbstractItemModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta8bb1b = QAbstractItemModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(ta8bb1b.prepend("WHITESPACE").constData()+10), ta8bb1b.size()-10 }; });
 }
 
 char QAbstractItemModel_BeginMoveColumns(void* ptr, void* sourceParent, int sourceFirst, int sourceLast, void* destinationParent, int destinationChild)
@@ -2523,7 +2508,7 @@ class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter
 {
 public:
 	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {};
-	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<QByteArray*>(&eventType), message, result ? *result : 0) != 0; };
+	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<QByteArray*>(&eventType), message, result) != 0; };
 	 ~MyQAbstractNativeEventFilter() { callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(this); };
 };
 
@@ -2532,9 +2517,9 @@ void* QAbstractNativeEventFilter_NewQAbstractNativeEventFilter()
 	return new MyQAbstractNativeEventFilter();
 }
 
-char QAbstractNativeEventFilter_NativeEventFilter(void* ptr, void* eventType, void* message, long result)
+char QAbstractNativeEventFilter_NativeEventFilter(void* ptr, void* eventType, void* message, long* result)
 {
-	return static_cast<QAbstractNativeEventFilter*>(ptr)->nativeEventFilter(*static_cast<QByteArray*>(eventType), message, &result);
+	return static_cast<QAbstractNativeEventFilter*>(ptr)->nativeEventFilter(*static_cast<QByteArray*>(eventType), message, result);
 }
 
 void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr)
@@ -2896,11 +2881,6 @@ void* QAbstractState_NewQAbstractState(void* parent)
 	return new MyQAbstractState(static_cast<QState*>(parent));
 }
 
-struct QtCore_PackedString QAbstractState_QAbstractState_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6abf50 = QAbstractState::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t6abf50.prepend("WHITESPACE").constData()+10), t6abf50.size()-10 }; });
-}
-
 void QAbstractState_ConnectActiveChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAbstractState*>(ptr), static_cast<void (QAbstractState::*)(bool)>(&QAbstractState::activeChanged), static_cast<MyQAbstractState*>(ptr), static_cast<void (MyQAbstractState::*)(bool)>(&MyQAbstractState::Signal_ActiveChanged));
@@ -3184,11 +3164,6 @@ int QAbstractTransition_QAbstractTransition_QRegisterMetaType(){qRegisterMetaTyp
 void* QAbstractTransition_NewQAbstractTransition(void* sourceState)
 {
 	return new MyQAbstractTransition(static_cast<QState*>(sourceState));
-}
-
-struct QtCore_PackedString QAbstractTransition_QAbstractTransition_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray te130d9 = QAbstractTransition::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(te130d9.prepend("WHITESPACE").constData()+10), te130d9.size()-10 }; });
 }
 
 char QAbstractTransition_EventTest(void* ptr, void* event)
@@ -5813,11 +5788,6 @@ struct QtCore_PackedString QCommandLineParser_QCommandLineParser_Tr(char* source
 	return ({ QByteArray t903525 = QCommandLineParser::tr(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t903525.prepend("WHITESPACE").constData()+10), t903525.size()-10 }; });
 }
 
-struct QtCore_PackedString QCommandLineParser_QCommandLineParser_TrUtf8(char* sourceText, char* disambiguation, int n)
-{
-	return ({ QByteArray t177ae6 = QCommandLineParser::trUtf8(const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t177ae6.prepend("WHITESPACE").constData()+10), t177ae6.size()-10 }; });
-}
-
 char QCommandLineParser_AddOption(void* ptr, void* option)
 {
 	return static_cast<QCommandLineParser*>(ptr)->addOption(*static_cast<QCommandLineOption*>(option));
@@ -6033,11 +6003,6 @@ struct QtCore_PackedString QCoreApplication_QCoreApplication_OrganizationDomain(
 struct QtCore_PackedString QCoreApplication_QCoreApplication_OrganizationName()
 {
 	return ({ QByteArray t6f3f58 = QCoreApplication::organizationName().toUtf8(); QtCore_PackedString { const_cast<char*>(t6f3f58.prepend("WHITESPACE").constData()+10), t6f3f58.size()-10 }; });
-}
-
-struct QtCore_PackedString QCoreApplication_QCoreApplication_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t3eb294 = QCoreApplication::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t3eb294.prepend("WHITESPACE").constData()+10), t3eb294.size()-10 }; });
 }
 
 struct QtCore_PackedString QCoreApplication_QCoreApplication_Translate(char* context, char* sourceText, char* disambiguation, int n)
@@ -7672,11 +7637,6 @@ void* QEventLoop_NewQEventLoop(void* parent)
 	}
 }
 
-struct QtCore_PackedString QEventLoop_QEventLoop_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t16ff50 = QEventLoop::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t16ff50.prepend("WHITESPACE").constData()+10), t16ff50.size()-10 }; });
-}
-
 char QEventLoop_ProcessEvents(void* ptr, long long flags)
 {
 	return static_cast<QEventLoop*>(ptr)->processEvents(static_cast<QEventLoop::ProcessEventsFlag>(flags));
@@ -8648,11 +8608,6 @@ void* QFileSelector_NewQFileSelector(void* parent)
 	}
 }
 
-struct QtCore_PackedString QFileSelector_QFileSelector_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t5790be = QFileSelector::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t5790be.prepend("WHITESPACE").constData()+10), t5790be.size()-10 }; });
-}
-
 void QFileSelector_SetExtraSelectors(void* ptr, struct QtCore_PackedString list)
 {
 	static_cast<QFileSelector*>(ptr)->setExtraSelectors(QString::fromUtf8(list.data, list.len).split("|", QString::SkipEmptyParts));
@@ -8790,11 +8745,6 @@ void* QFileSystemWatcher_NewQFileSystemWatcher2(struct QtCore_PackedString paths
 	} else {
 		return new MyQFileSystemWatcher(QString::fromUtf8(paths.data, paths.len).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QFileSystemWatcher_QFileSystemWatcher_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t8564c7 = QFileSystemWatcher::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t8564c7.prepend("WHITESPACE").constData()+10), t8564c7.size()-10 }; });
 }
 
 struct QtCore_PackedString QFileSystemWatcher_AddPaths(void* ptr, struct QtCore_PackedString paths)
@@ -9200,11 +9150,6 @@ void* QIODevice_NewQIODevice2(void* parent)
 	} else {
 		return new MyQIODevice(static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QIODevice_QIODevice_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta6f8f8 = QIODevice::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(ta6f8f8.prepend("WHITESPACE").constData()+10), ta6f8f8.size()-10 }; });
 }
 
 char QIODevice_GetChar(void* ptr, char* c)
@@ -10095,11 +10040,6 @@ void* QItemSelectionModel_NewQItemSelectionModel2(void* model, void* parent)
 	} else {
 		return new MyQItemSelectionModel(static_cast<QAbstractItemModel*>(model), static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QItemSelectionModel_QItemSelectionModel_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf1167b = QItemSelectionModel::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(tf1167b.prepend("WHITESPACE").constData()+10), tf1167b.size()-10 }; });
 }
 
 void QItemSelectionModel_Clear(void* ptr)
@@ -11548,11 +11488,6 @@ void* QLibrary_NewQLibrary3(struct QtCore_PackedString fileName, int verNum, voi
 	} else {
 		return new MyQLibrary(QString::fromUtf8(fileName.data, fileName.len), verNum, static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QLibrary_QLibrary_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tfb31cc = QLibrary::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(tfb31cc.prepend("WHITESPACE").constData()+10), tfb31cc.size()-10 }; });
 }
 
 char QLibrary_QLibrary_IsLibrary(struct QtCore_PackedString fileName)
@@ -13500,11 +13435,6 @@ void* QMimeData_NewQMimeData()
 	return new MyQMimeData();
 }
 
-struct QtCore_PackedString QMimeData_QMimeData_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tefaac4 = QMimeData::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(tefaac4.prepend("WHITESPACE").constData()+10), tefaac4.size()-10 }; });
-}
-
 void QMimeData_Clear(void* ptr)
 {
 	static_cast<QMimeData*>(ptr)->clear();
@@ -15289,11 +15219,6 @@ void* QObjectCleanupHandler_NewQObjectCleanupHandler()
 	return new MyQObjectCleanupHandler();
 }
 
-struct QtCore_PackedString QObjectCleanupHandler_QObjectCleanupHandler_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t8625c9 = QObjectCleanupHandler::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t8625c9.prepend("WHITESPACE").constData()+10), t8625c9.size()-10 }; });
-}
-
 void QObjectCleanupHandler_Clear(void* ptr)
 {
 	static_cast<QObjectCleanupHandler*>(ptr)->clear();
@@ -15928,11 +15853,6 @@ void* QPluginLoader_NewQPluginLoader2(struct QtCore_PackedString fileName, void*
 	} else {
 		return new MyQPluginLoader(QString::fromUtf8(fileName.data, fileName.len), static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QPluginLoader_QPluginLoader_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t1792e9 = QPluginLoader::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t1792e9.prepend("WHITESPACE").constData()+10), t1792e9.size()-10 }; });
 }
 
 char QPluginLoader_Load(void* ptr)
@@ -18243,11 +18163,6 @@ long long QSettings_QSettings_DefaultFormat()
 	return QSettings::defaultFormat();
 }
 
-struct QtCore_PackedString QSettings_QSettings_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t2e8f08 = QSettings::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t2e8f08.prepend("WHITESPACE").constData()+10), t2e8f08.size()-10 }; });
-}
-
 int QSettings_BeginReadArray(void* ptr, struct QtCore_PackedString prefix)
 {
 	return static_cast<QSettings*>(ptr)->beginReadArray(QString::fromUtf8(prefix.data, prefix.len));
@@ -18535,11 +18450,6 @@ void* QSharedMemory_NewQSharedMemory(struct QtCore_PackedString key, void* paren
 	}
 }
 
-struct QtCore_PackedString QSharedMemory_QSharedMemory_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tf1242d = QSharedMemory::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(tf1242d.prepend("WHITESPACE").constData()+10), tf1242d.size()-10 }; });
-}
-
 char QSharedMemory_Attach(void* ptr, long long mode)
 {
 	return static_cast<QSharedMemory*>(ptr)->attach(static_cast<QSharedMemory::AccessMode>(mode));
@@ -18789,11 +18699,6 @@ void* QSignalMapper_NewQSignalMapper(void* parent)
 	} else {
 		return new MyQSignalMapper(static_cast<QObject*>(parent));
 	}
-}
-
-struct QtCore_PackedString QSignalMapper_QSignalMapper_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t3a0a39 = QSignalMapper::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t3a0a39.prepend("WHITESPACE").constData()+10), t3a0a39.size()-10 }; });
 }
 
 void QSignalMapper_Map(void* ptr)
@@ -19299,11 +19204,6 @@ public:
 Q_DECLARE_METATYPE(MyQSocketNotifier*)
 
 int QSocketNotifier_QSocketNotifier_QRegisterMetaType(){qRegisterMetaType<QSocketNotifier*>(); return qRegisterMetaType<MyQSocketNotifier*>();}
-
-struct QtCore_PackedString QSocketNotifier_QSocketNotifier_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t41591f = QSocketNotifier::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t41591f.prepend("WHITESPACE").constData()+10), t41591f.size()-10 }; });
-}
 
 void QSocketNotifier_ConnectActivated(void* ptr)
 {
@@ -22203,11 +22103,6 @@ Q_DECLARE_METATYPE(MyQThread*)
 
 int QThread_QThread_QRegisterMetaType(){qRegisterMetaType<QThread*>(); return qRegisterMetaType<MyQThread*>();}
 
-struct QtCore_PackedString QThread_QThread_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t6f8d8b = QThread::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t6f8d8b.prepend("WHITESPACE").constData()+10), t6f8d8b.size()-10 }; });
-}
-
 void* QThread_QThread_CurrentThread()
 {
 	return QThread::currentThread();
@@ -22444,11 +22339,6 @@ public:
 Q_DECLARE_METATYPE(MyQThreadPool*)
 
 int QThreadPool_QThreadPool_QRegisterMetaType(){qRegisterMetaType<QThreadPool*>(); return qRegisterMetaType<MyQThreadPool*>();}
-
-struct QtCore_PackedString QThreadPool_QThreadPool_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta10883 = QThreadPool::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(ta10883.prepend("WHITESPACE").constData()+10), ta10883.size()-10 }; });
-}
 
 void* QThreadPool_QThreadPool_GlobalInstance()
 {
@@ -22732,11 +22622,6 @@ public:
 Q_DECLARE_METATYPE(MyQTimeLine*)
 
 int QTimeLine_QTimeLine_QRegisterMetaType(){qRegisterMetaType<QTimeLine*>(); return qRegisterMetaType<MyQTimeLine*>();}
-
-struct QtCore_PackedString QTimeLine_QTimeLine_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray ta63aa4 = QTimeLine::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(ta63aa4.prepend("WHITESPACE").constData()+10), ta63aa4.size()-10 }; });
-}
 
 void* QTimeLine_NewQTimeLine(int duration, void* parent)
 {
@@ -23274,11 +23159,6 @@ Q_DECLARE_METATYPE(MyQTimer*)
 
 int QTimer_QTimer_QRegisterMetaType(){qRegisterMetaType<QTimer*>(); return qRegisterMetaType<MyQTimer*>();}
 
-struct QtCore_PackedString QTimer_QTimer_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t5c735f = QTimer::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t5c735f.prepend("WHITESPACE").constData()+10), t5c735f.size()-10 }; });
-}
-
 void* QTimer_NewQTimer(void* parent)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(parent))) {
@@ -23473,11 +23353,6 @@ public:
 Q_DECLARE_METATYPE(MyQTranslator*)
 
 int QTranslator_QTranslator_QRegisterMetaType(){qRegisterMetaType<QTranslator*>(); return qRegisterMetaType<MyQTranslator*>();}
-
-struct QtCore_PackedString QTranslator_QTranslator_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t0e3247 = QTranslator::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtCore_PackedString { const_cast<char*>(t0e3247.prepend("WHITESPACE").constData()+10), t0e3247.size()-10 }; });
-}
 
 void* QTranslator_NewQTranslator(void* parent)
 {

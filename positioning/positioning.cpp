@@ -408,11 +408,6 @@ struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_Tr
 	return ({ QByteArray t0d0aae = QGeoAreaMonitorSource::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t0d0aae.prepend("WHITESPACE").constData()+10), t0d0aae.size()-10 }; });
 }
 
-struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t9898d6 = QGeoAreaMonitorSource::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t9898d6.prepend("WHITESPACE").constData()+10), t9898d6.size()-10 }; });
-}
-
 struct QtPositioning_PackedString QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()
 {
 	return ({ QByteArray t3a05b8 = QGeoAreaMonitorSource::availableSources().join("|").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t3a05b8.prepend("WHITESPACE").constData()+10), t3a05b8.size()-10 }; });
@@ -1443,11 +1438,6 @@ struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_
 	return ({ QByteArray t87fe70 = QGeoPositionInfoSource::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t87fe70.prepend("WHITESPACE").constData()+10), t87fe70.size()-10 }; });
 }
 
-struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray tcd97a8 = QGeoPositionInfoSource::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(tcd97a8.prepend("WHITESPACE").constData()+10), tcd97a8.size()-10 }; });
-}
-
 struct QtPositioning_PackedString QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()
 {
 	return ({ QByteArray t547e22 = QGeoPositionInfoSource::availableSources().join("|").toUtf8(); QtPositioning_PackedString { const_cast<char*>(t547e22.prepend("WHITESPACE").constData()+10), t547e22.size()-10 }; });
@@ -2093,11 +2083,6 @@ void* QGeoSatelliteInfoSource_NewQGeoSatelliteInfoSource(void* parent)
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray t7435c8 = QGeoSatelliteInfoSource::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t7435c8.prepend("WHITESPACE").constData()+10), t7435c8.size()-10 }; });
-}
-
-struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t66bd78 = QGeoSatelliteInfoSource::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtPositioning_PackedString { const_cast<char*>(t66bd78.prepend("WHITESPACE").constData()+10), t66bd78.size()-10 }; });
 }
 
 struct QtPositioning_PackedString QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources()

@@ -12,14 +12,14 @@ import (
 var (
 	Logger = log.New(os.Stderr, "", log.Ltime)
 
-	signals      = make(map[unsafe.Pointer]map[string]interface{})
-	signalsJNI   = make(map[string]map[string]interface{})
+	signals      = make(map[unsafe.Pointer]map[string]unsafe.Pointer)
+	signalsJNI   = make(map[string]map[string]unsafe.Pointer)
 	signalsMutex = new(sync.Mutex)
 
 	objects      = make(map[unsafe.Pointer]interface{})
 	objectsMutex = new(sync.Mutex)
 
-	objectsTemp      = make(map[unsafe.Pointer]interface{})
+	objectsTemp      = make(map[unsafe.Pointer]unsafe.Pointer)
 	objectsTempMutex = new(sync.Mutex)
 )
 
@@ -32,21 +32,21 @@ func ExistsSignal(cPtr unsafe.Pointer, signal string) (exists bool) {
 	return
 }
 
-func LendSignal(cPtr unsafe.Pointer, signal string) (s interface{}) {
+func LendSignal(cPtr unsafe.Pointer, signal string) (s unsafe.Pointer) {
 	signalsMutex.Lock()
 	s = signals[cPtr][signal]
 	signalsMutex.Unlock()
 	return
 }
 
-func lendSignalJNI(cPtr, signal string) (s interface{}) {
+func lendSignalJNI(cPtr, signal string) (s unsafe.Pointer) {
 	signalsMutex.Lock()
 	s = signalsJNI[cPtr][signal]
 	signalsMutex.Unlock()
 	return
 }
 
-func GetSignal(cPtr interface{}, signal string) interface{} {
+func GetSignal(cPtr interface{}, signal string) unsafe.Pointer {
 	if dcPtr, ok := cPtr.(unsafe.Pointer); ok {
 		if signal == "destroyed" || strings.HasPrefix(signal, "~") {
 			defer DisconnectAllSignals(dcPtr, signal)
@@ -56,11 +56,11 @@ func GetSignal(cPtr interface{}, signal string) interface{} {
 	return lendSignalJNI(cPtr.(string), signal)
 }
 
-func ConnectSignal(cPtr interface{}, signal string, function interface{}) {
+func ConnectSignal(cPtr interface{}, signal string, function unsafe.Pointer) {
 	if dcPtr, ok := cPtr.(unsafe.Pointer); ok {
 		signalsMutex.Lock()
 		if s, exists := signals[dcPtr]; !exists {
-			signals[dcPtr] = map[string]interface{}{signal: function}
+			signals[dcPtr] = map[string]unsafe.Pointer{signal: function}
 		} else {
 			s[signal] = function
 		}
@@ -70,10 +70,10 @@ func ConnectSignal(cPtr interface{}, signal string, function interface{}) {
 	}
 }
 
-func connectSignalJNI(cPtr, signal string, function interface{}) {
+func connectSignalJNI(cPtr, signal string, function unsafe.Pointer) {
 	signalsMutex.Lock()
 	if s, exists := signalsJNI[cPtr]; !exists {
-		signalsJNI[cPtr] = map[string]interface{}{signal: function}
+		signalsJNI[cPtr] = map[string]unsafe.Pointer{signal: function}
 	} else {
 		s[signal] = function
 	}
@@ -99,24 +99,41 @@ func disconnectSignalJNI(cPtr, signal string) {
 func DisconnectAllSignals(cPtr unsafe.Pointer, signal string) {
 	signalsMutex.Lock()
 	if s, exists := signals[cPtr]["destroyed"]; signal != "destroyed" && exists {
-		signals[cPtr] = map[string]interface{}{"destroyed": s}
+		signals[cPtr] = map[string]unsafe.Pointer{"destroyed": s}
 	} else {
 		delete(signals, cPtr)
 	}
 	signalsMutex.Unlock()
-	if signal == "destroyed" {
-		Unregister(cPtr)
-	}
 }
 
 func DumpSignals() {
-	Debug("##############################\tSIGNALSTABLE_START\t##############################")
+	Debug("##############################\tSIGNALS_TABLE_START\t##############################")
 	signalsMutex.Lock()
 	for cPtr, entry := range signals {
 		Debug(cPtr, entry)
 	}
 	signalsMutex.Unlock()
-	Debug("##############################\tSIGNALSTABLE_END\t##############################")
+	Debug("##############################\tSIGNALS_TABLE_END\t##############################")
+}
+
+func DumpObjects() {
+	Debug("##############################\tOBJECTS_TABLE_START\t##############################")
+	objectsMutex.Lock()
+	for cPtr, entry := range objects {
+		Debug(cPtr, entry)
+	}
+	objectsMutex.Unlock()
+	Debug("##############################\tOBJECTS_TABLE_END\t##############################")
+}
+
+func DumpTempObjects() {
+	Debug("##############################\tTMP_OBJECTS_TABLE_START\t##############################")
+	objectsTempMutex.Lock()
+	for cPtr, entry := range objectsTemp {
+		Debug(cPtr, entry)
+	}
+	objectsTempMutex.Unlock()
+	Debug("##############################\tTMP_OBJECTS_TABLE_END\t##############################")
 }
 
 func CountSignals() (c int) {
@@ -147,7 +164,7 @@ func Debug(fn ...interface{}) {
 
 func ClearSignals() {
 	signalsMutex.Lock()
-	signals = make(map[unsafe.Pointer]map[string]interface{})
+	signals = make(map[unsafe.Pointer]map[string]unsafe.Pointer)
 	signalsMutex.Unlock()
 }
 
@@ -170,13 +187,13 @@ func Unregister(cPtr unsafe.Pointer) {
 	objectsMutex.Unlock()
 }
 
-func RegisterTemp(cPtr unsafe.Pointer, gPtr interface{}) {
+func RegisterTemp(cPtr unsafe.Pointer, gPtr unsafe.Pointer) {
 	objectsTempMutex.Lock()
 	objectsTemp[cPtr] = gPtr
 	objectsTempMutex.Unlock()
 }
 
-func ReceiveTemp(cPtr unsafe.Pointer) (o interface{}, ok bool) {
+func ReceiveTemp(cPtr unsafe.Pointer) (o unsafe.Pointer, ok bool) {
 	objectsTempMutex.Lock()
 	o, ok = objectsTemp[cPtr]
 	objectsTempMutex.Unlock()

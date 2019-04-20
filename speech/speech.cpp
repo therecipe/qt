@@ -80,11 +80,6 @@ struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_Tr(char* s, char* c, in
 	return ({ QByteArray t8ada10 = QTextToSpeech::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t8ada10.prepend("WHITESPACE").constData()+10), t8ada10.size()-10 }; });
 }
 
-struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t270c60 = QTextToSpeech::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t270c60.prepend("WHITESPACE").constData()+10), t270c60.size()-10 }; });
-}
-
 struct QtSpeech_PackedString QTextToSpeech_QTextToSpeech_AvailableEngines()
 {
 	return ({ QByteArray tb1cc61 = QTextToSpeech::availableEngines().join("|").toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb1cc61.prepend("WHITESPACE").constData()+10), tb1cc61.size()-10 }; });
@@ -574,11 +569,6 @@ int QTextToSpeechEngine_QTextToSpeechEngine_QRegisterMetaType(){qRegisterMetaTyp
 struct QtSpeech_PackedString QTextToSpeechEngine_QTextToSpeechEngine_Tr(char* s, char* c, int n)
 {
 	return ({ QByteArray tb876bc = QTextToSpeechEngine::tr(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSpeech_PackedString { const_cast<char*>(tb876bc.prepend("WHITESPACE").constData()+10), tb876bc.size()-10 }; });
-}
-
-struct QtSpeech_PackedString QTextToSpeechEngine_QTextToSpeechEngine_TrUtf8(char* s, char* c, int n)
-{
-	return ({ QByteArray t4326a6 = QTextToSpeechEngine::trUtf8(const_cast<const char*>(s), const_cast<const char*>(c), n).toUtf8(); QtSpeech_PackedString { const_cast<char*>(t4326a6.prepend("WHITESPACE").constData()+10), t4326a6.size()-10 }; });
 }
 
 void* QTextToSpeechEngine_NewQTextToSpeechEngine(void* parent)
