@@ -20,7 +20,6 @@ ENV QT_API 5.12.0
 ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_STATIC true
-ENV QT_QMAKE_DIR /opt/Qt/5.12.0/gcc_64/bin
 
 
 COPY --from=base /usr/local/go /usr/local/go

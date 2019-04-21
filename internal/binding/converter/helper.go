@@ -246,6 +246,8 @@ func IsPrivateSignal(f *parser.Function) bool {
 			{
 				if utils.QT_SAILFISH() {
 					fData = utils.LoadOptional(filepath.Join("/srv/mer/targets/SailfishOS-"+utils.QT_SAILFISH_VERSION()+"-i486/usr/include/qt5", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+				} else if utils.QT_PKG_CONFIG() {
+					fData = utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_INSTALL_PREFIX(target), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}

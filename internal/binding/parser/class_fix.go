@@ -194,7 +194,10 @@ func (c *Class) fixLinkage() {
 	}
 }
 
-var pkgConfigIncludeDir string
+var (
+	pkgConfigIncludeDir      string
+	pkgConfigIncludeDirMutex = new(sync.Mutex)
+)
 
 func (c *Class) fixBases() {
 	if c.Module == MOC || c.Pkg != "" {
@@ -256,6 +259,13 @@ func (c *Class) fixBases() {
 			if utils.QT_SAILFISH() {
 				prefixPath = "/srv/mer/targets/SailfishOS-" + utils.QT_SAILFISH_VERSION() + "-i486/usr/include/qt5"
 				infixPath = ""
+			} else if utils.QT_PKG_CONFIG() {
+				pkgConfigIncludeDirMutex.Lock()
+				if pkgConfigIncludeDir == "" {
+					pkgConfigIncludeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
+				}
+				prefixPath = pkgConfigIncludeDir
+				pkgConfigIncludeDirMutex.Unlock()
 			}
 		}
 	}

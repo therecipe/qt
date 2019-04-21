@@ -5,7 +5,6 @@ ENV USER user
 ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/lib/mxe/usr/bin:/usr/local/go/bin:$PATH
-ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_MXE true
 ENV QT_MXE_ARCH amd64

@@ -6,7 +6,6 @@ ENV HOME /home/$USER
 ENV GOPATH $HOME/work
 ENV PATH /usr/local/go/bin:$PATH
 ENV QT_API 5.12.0
-ENV QT_DIR /opt/Qt
 ENV QT_DOCKER true
 ENV QT_QMAKE_DIR /usr/local/Qt-5.13.0/bin
 
