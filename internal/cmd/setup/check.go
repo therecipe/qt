@@ -146,7 +146,7 @@ func Check(target string, docker, vagrant bool) {
 		if !strings.HasSuffix(v[0], "_DIR") {
 			continue
 		}
-		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER()) {
+		if v[0] == "QT_DIR" && (utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() || utils.QT_MSYS2() || utils.QT_PKG_CONFIG() || utils.MSYS_DOCKER() || utils.QT_DOCKER()) {
 			continue
 		}
 		if _, err := ioutil.ReadDir(v[1]); err != nil && v[1] != "" {
