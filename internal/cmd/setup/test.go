@@ -18,11 +18,6 @@ import (
 )
 
 func Test(target string, docker, vagrant bool, vagrantsystem string) {
-	if docker && target == "darwin" {
-		utils.Log.Warn("darwin is currently not supported as a deploy target with docker; testing the linux deployment instead")
-		target = "linux"
-	}
-
 	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
 	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: test on windows

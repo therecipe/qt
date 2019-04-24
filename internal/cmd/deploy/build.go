@@ -100,7 +100,12 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", target, runtime.GOOS))
 
 	if target == "darwin" && !fast {
-		strip := exec.Command("strip", "-x", out) //TODO: -u -r
+		var strip *exec.Cmd
+		if runtime.GOOS == target {
+			strip = exec.Command("strip", "-x", out) //TODO: -u -r
+		} else {
+			strip = exec.Command(strings.TrimSuffix(env["CC"], "clang")+"strip", "-x", out) //TODO: -u -r
+		}
 		strip.Dir = path
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 	}

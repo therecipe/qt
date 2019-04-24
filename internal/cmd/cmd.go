@@ -97,7 +97,7 @@ func InitEnv(target string) {
 
 	switch runtime.GOOS {
 	case "linux":
-		if utils.QT_PKG_CONFIG() {
+		if utils.QT_PKG_CONFIG() || utils.QT_MXE() {
 			return
 		}
 	case "darwin":
@@ -253,7 +253,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			image = target
 		}
 
-	case "linux", "rpi1", "rpi2", "rpi3", "js", "wasm":
+	case "linux", "rpi1", "rpi2", "rpi3", "js", "wasm", "darwin":
 		image = target
 
 	case "android", "android-emulator":
@@ -266,7 +266,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		switch system {
 		case "darwin":
 		case "linux":
-			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports") || strings.HasPrefix(target, "linux")) && strings.Contains(target, "_") {
+			if (strings.HasPrefix(target, "windows") || strings.HasPrefix(target, "ubports") || strings.HasPrefix(target, "linux") || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) && strings.Contains(target, "_") {
 				image = target
 			} else if docker && strings.Contains(target, "_") {
 				utils.Log.Fatalf("%v is currently not supported", target)
@@ -334,7 +334,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	gpath := strings.Join(paths, pathseperator)
 	if writeCacheToHost {
 		gpath += pathseperator + gpfs
-		args = append(args, []string{"-e", "QT_STUB=true"}...) //TODO: won't work with wine images atm
+		args = append(args, []string{"-e", "QT_STUB=true"}...)
 	} else {
 		gpath = gpfs + pathseperator + gpath
 	}
@@ -361,6 +361,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.QT_WEBKIT() {
 		args = append(args, []string{"-e", "QT_WEBKIT=true"}...) //TODO: won't work with wine images atm
+	}
+
+	if utils.QT_NOT_CACHED() {
+		args = append(args, []string{"-e", "QT_NOT_CACHED=true"}...) //TODO: won't work with wine images atm
 	}
 
 	//TODO: flag for shared GOCACHE
@@ -426,6 +430,12 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			}
 			if strings.HasPrefix(args[i], "linux_") {
 				args[i] = "linux"
+			}
+			if strings.HasPrefix(args[i], "js_") {
+				args[i] = "js"
+			}
+			if strings.HasPrefix(args[i], "wasm_") {
+				args[i] = "wasm"
 			}
 		}
 

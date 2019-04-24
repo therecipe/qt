@@ -5,6 +5,11 @@ jobs:
       file: android/Dockerfile
       tag: android
       dep: linux
+  -
+    template: docker_darwin_job_template.yml
+    parameters:
+      file: darwin/Dockerfile
+      tag: darwin
 #  -
 #    template: docker_job_template.yml
 #    parameters:

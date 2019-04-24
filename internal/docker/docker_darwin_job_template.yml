@@ -1,0 +1,18 @@
+jobs:
+  -
+    job: '${{ parameters.tag }}'
+    timeoutInMinutes: 0
+    pool:
+      vmImage: macOS-10.14
+    dependsOn: '${{ parameters.dep }}'
+    steps:
+      -
+        script: brew cask install docker
+      -
+        script: "sudo /Applications/Docker.app/Contents/MacOS/Docker --quit-after-install --unattended"
+      -
+        script: "nohup /Applications/Docker.app/Contents/MacOS/Docker --unattended &"
+      -
+        script: 'while ! docker ps 2>/dev/null; do sleep 5; echo "waiting for docker to come up"; done'
+      -
+        script: cd internal/docker/darwin && ./build.sh && ./save.sh

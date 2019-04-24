@@ -9,7 +9,7 @@ RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install python2
 RUN ln -s /usr/bin/python2.7 /usr/bin/python
 RUN git clone -q --depth 1 https://github.com/juj/emsdk.git $HOME/emsdk && cd $HOME/emsdk && ./emsdk install latest && ./emsdk activate latest
 
-RUN git clone -q --depth 1 -b 5.13 --recursive https://code.qt.io/qt/qt5.git /opt/qt5
+RUN git clone -q --depth 1 -b 5.13 --recursive https://github.com/qt/qt5.git /opt/qt5
 RUN cd /opt/qt5/qtbase && git fetch https://codereview.qt-project.org/qt/qtbase refs/changes/20/258520/2 && git checkout FETCH_HEAD
 RUN sed -i -e 's/Q_VKB_IMPORT_PLUGIN(QmlFolderListModelPlugin)//g' /opt/qt5/qtvirtualkeyboard/src/import/qtquickvirtualkeyboardplugin.cpp
 
