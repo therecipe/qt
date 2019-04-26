@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("kirigami"); err == nil {
+	if _, err := os.Stat("kirigami"); err == nil {
 		println("kirigami already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/KDE/kirigami.git").CombinedOutput(); err != nil {

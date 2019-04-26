@@ -8,6 +8,7 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -725,7 +726,11 @@ import "C"
 	}
 
 	if mode == MOC {
-		for custom, m := range parser.GetCustomLibs(target, tags) {
+		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+		if tags != "" {
+			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+		}
+		for custom, m := range parser.GetCustomLibs(target, env, tagsEnv) {
 			switch {
 			case strings.Contains(m, "/vendor/"):
 				fmt.Fprintf(bb, "\"%v\"\n", custom)

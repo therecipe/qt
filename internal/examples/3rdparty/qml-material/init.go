@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("qml-material"); err == nil {
+	if _, err := os.Stat("qml-material"); err == nil {
 		println("qml-material already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/papyros/qml-material.git").CombinedOutput(); err != nil {

@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("qzxing"); err == nil {
+	if _, err := os.Stat("qzxing"); err == nil {
 		println("qzxing already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/ftylitak/qzxing.git").CombinedOutput(); err != nil {

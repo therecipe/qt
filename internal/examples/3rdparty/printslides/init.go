@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("qml-presentation-system"); err == nil {
+	if _, err := os.Stat("qml-presentation-system"); err == nil {
 		println("qml-presentation-system already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/qt-labs/qml-presentation-system.git").CombinedOutput(); err != nil {

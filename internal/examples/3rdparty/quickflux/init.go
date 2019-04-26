@@ -23,7 +23,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("quickflux"); err == nil {
+	if _, err := os.Stat("quickflux"); err == nil {
 		println("quickflux already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/benlau/quickflux.git").CombinedOutput(); err != nil {

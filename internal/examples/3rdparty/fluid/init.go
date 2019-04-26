@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("fluid"); err == nil {
+	if _, err := os.Stat("fluid"); err == nil {
 		println("fluid already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/lirios/fluid.git").CombinedOutput(); err != nil {

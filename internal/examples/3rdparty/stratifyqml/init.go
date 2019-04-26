@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("StratifyQML"); err == nil {
+	if _, err := os.Stat("StratifyQML"); err == nil {
 		println("StratifyQML already cloned")
 	} else {
 		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/StratifyLabs/StratifyQML.git").CombinedOutput(); err != nil {

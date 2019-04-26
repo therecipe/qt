@@ -423,15 +423,7 @@ var (
 	getCustomLibsCacheMutex = new(sync.Mutex)
 )
 
-func GetCustomLibs(target, tags string) map[string]string {
-
-	/*TODO: cycle dep of cmd.BuildEnv
-	env, tags, _, _ := cmd.BuildEnv(target, "", "")
-	if tagsCustom != "" {
-		tags = append(tags, strings.Split(tagsCustom, " ")...)
-	}
-	*/
-
+func GetCustomLibs(target string, env map[string]string, tags []string) map[string]string {
 	wg := new(sync.WaitGroup)
 	wc := make(chan bool, 50)
 	out := make(map[string]string)
@@ -451,14 +443,11 @@ func GetCustomLibs(target, tags string) map[string]string {
 				getCustomLibsCacheMutex.Unlock()
 
 				if !ok {
-					cmd := utils.GoList("{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", tags))
+					cmd := utils.GoList("{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 					cmd.Dir = c.Pkg
-
-					/*TODO: cycle dep of cmd.BuildEnv
 					for k, v := range env {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 					}
-					*/
 
 					path = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
 					getCustomLibsCacheMutex.Lock()
