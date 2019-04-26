@@ -8,5 +8,5 @@ void sparkle_checkUpdates()
 		updater = [[SUUpdater sharedUpdater] retain];
 
 	[updater setUpdateCheckInterval:3600];
-	[updater checkForUpdatesInBackground];
+	[updater checkForUpdates:updater];
 }

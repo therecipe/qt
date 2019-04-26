@@ -28,6 +28,7 @@ RUN cd /osxcross && ./target/bin/o64-clang++-libc++ -o osxcross ./oclang/test_li
 
 
 FROM ubuntu:16.04
+LABEL maintainer therecipe
 
 ENV USER user
 ENV HOME /home/$USER

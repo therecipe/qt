@@ -72,19 +72,29 @@ jobs:
     parameters:
       file: linux/Dockerfile.arch
       tag: linux_arch
-  -
-    template: docker_job_template.yml
-    parameters:
-      file: linux/Dockerfile.static_base
-      tag: linux_static_base
+#  -
+#    template: docker_job_template.yml
+#    parameters:
+#      file: linux/Dockerfile.static_base
+#      tag: linux_static_base
   -
     template: docker_job_template.yml
     parameters:
       file: linux/Dockerfile.static
       tag: linux_static
       dep:
-        - linux_static_base
+#        - linux_static_base
         - linux
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.suse_leap
+      tag: linux_suse_leap
+  -
+    template: docker_job_template.yml
+    parameters:
+      file: linux/Dockerfile.suse_tumbleweed
+      tag: linux_suse_tumbleweed
   -
     template: docker_job_template.yml
     parameters:

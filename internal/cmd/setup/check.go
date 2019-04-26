@@ -152,6 +152,9 @@ func Check(target string, docker, vagrant bool) {
 		if v[0] == "XCODE_DIR" && runtime.GOOS != "darwin" {
 			continue
 		}
+		if _, ok := os.LookupEnv("QT_API"); v[0] == "QT_DOC_DIR" && ok {
+			continue
+		}
 		if _, err := ioutil.ReadDir(v[1]); err != nil && v[1] != "" {
 			utils.Log.WithError(err).Panicf("failed to find %v (%v)", v[0], v[1])
 		}

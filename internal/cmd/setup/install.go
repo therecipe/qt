@@ -67,9 +67,9 @@ func Install(target string, docker, vagrant, failfast bool) {
 		var license string
 		switch module {
 		case "Charts", "DataVisualization", "VirtualKeyboard":
-			license = strings.Repeat(" ", 20-len(module)) + "[GPLv3]"
+			license = strings.Repeat(" ", 21-len(module)) + "[GPLv3]"
 		}
-		utils.Log.Infof("installing %v qt/%v %v", mode, strings.ToLower(module), license)
+		utils.Log.Infof("installing %v qt/%v%v", mode, strings.ToLower(module), license)
 
 		if utils.QT_DYNAMIC_SETUP() && mode == "full" {
 			cc, com := templater.ParseCgo(strings.ToLower(module), target)

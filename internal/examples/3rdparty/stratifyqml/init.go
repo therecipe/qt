@@ -16,26 +16,32 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("StratifyQML"); err == nil {
-		println("StratifyQML already cloned")
-		os.Exit(1)
-	}
-
-	if out, err := exec.Command("git", "clone", "https://github.com/StratifyLabs/StratifyQML.git").CombinedOutput(); err != nil {
-		println("failed to clone StratifyQML", err.Error())
-		println(string(out))
-		os.Exit(1)
-	}
-	println("cloned StratifyQML")
-
 	pwd, pwdErr := os.Getwd()
 	if pwdErr != nil {
 		println("failed to get PWD", pwdErr.Error())
 		os.Exit(1)
 	}
 
+	if _, err := ioutil.ReadDir("StratifyQML"); err == nil {
+		println("StratifyQML already cloned")
+	} else {
+		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/StratifyLabs/StratifyQML.git").CombinedOutput(); err != nil {
+			println("failed to clone StratifyQML", err.Error())
+			println(string(out))
+			os.Exit(1)
+		}
+		println("cloned StratifyQML")
+	}
+
 	for _, target := range []string{runtime.GOOS, "android"} {
 		os.MkdirAll(filepath.Join(pwd, "StratifyQML", target), 0755)
+
+		if target == "android" {
+			if _, ok := os.LookupEnv("ANDROID_NDK_DIR"); !ok {
+				println("please export ANDROID_NDK_DIR")
+				os.Exit(1)
+			}
+		}
 
 		var qmake string
 		switch target {

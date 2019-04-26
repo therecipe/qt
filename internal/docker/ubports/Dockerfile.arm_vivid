@@ -23,5 +23,5 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/qt5/bin/moc /usr/lib/arm-linux-gnueabihf/qt5
 
 RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check ubports
-RUN $GOPATH/bin/qtsetup generate ubports
+RUN $GOPATH/bin/qtsetup generate ubports || true
 RUN $GOPATH/bin/qtsetup install ubports

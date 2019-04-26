@@ -22,19 +22,22 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir("qml-presentation-system"); err == nil {
-		println("qml-presentation-system already cloned")
+	if _, err := ioutil.ReadDir("qzxing"); err == nil {
+		println("qzxing already cloned")
 	} else {
-		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/qt-labs/qml-presentation-system.git").CombinedOutput(); err != nil {
-			println("failed to clone qml-presentation-system", err.Error())
+		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/ftylitak/qzxing.git").CombinedOutput(); err != nil {
+			println("failed to clone qzxing", err.Error())
 			println(string(out))
 			os.Exit(1)
 		}
-		println("cloned qml-presentation-system")
+		println("cloned qzxing")
 	}
 
-	for _, target := range []string{runtime.GOOS, "android"} {
-		os.MkdirAll(filepath.Join(pwd, "qml-presentation-system", target), 0755)
+	//patch *.pro to build a static lib
+	exec.Command("sed", "-i", "''", "-e", "s/# CONFIG/CONFIG/g", filepath.Join(pwd, "qzxing", "src", "QZXing.pro")).CombinedOutput()
+
+	for _, target := range []string{runtime.GOOS, "android", "android_emulator", "ios"} {
+		os.MkdirAll(filepath.Join(pwd, "qzxing", "src", target), 0755)
 
 		if target == "android" {
 			if _, ok := os.LookupEnv("ANDROID_NDK_DIR"); !ok {
@@ -53,12 +56,21 @@ func main() {
 
 		case "android":
 			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "android_armv7", "bin", "qmake")
+
+		case "android_emulator":
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "android_x86", "bin", "qmake")
+
+		case "ios":
+			if runtime.GOOS != "darwin" {
+				return
+			}
+			qmake = filepath.Join(os.Getenv("QT_DIR"), "5.12.0", "ios", "bin", "qmake")
 		}
 
 		ndkPATH, ndkOK := os.LookupEnv("ANDROID_NDK_DIR")
 
-		qCmd := exec.Command(qmake, "../presentation.pro")
-		qCmd.Dir = filepath.Join(pwd, "qml-presentation-system", target)
+		qCmd := exec.Command(qmake, "../QZXing.pro", "CONFIG+=qzxing_multimedia")
+		qCmd.Dir = filepath.Join(pwd, "qzxing", "src", target)
 		if ndkOK {
 			qCmd.Env = append(qCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)
 		}
@@ -69,16 +81,16 @@ func main() {
 		}
 		println("generated makefile for", target)
 
-		iCmd := exec.Command("make", "install")
-		iCmd.Dir = filepath.Join(pwd, "qml-presentation-system", target)
+		iCmd := exec.Command("make")
+		iCmd.Dir = filepath.Join(pwd, "qzxing", "src", target)
 		if ndkOK {
 			iCmd.Env = append(iCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)
 		}
 		if out, err := iCmd.CombinedOutput(); err != nil {
-			println("failed to install qml-presentation-system for", target)
+			println("failed to make qzxing for", target)
 			println(string(out))
 			os.Exit(1)
 		}
-		println("installed qml-presentation-system for", target)
+		println("built qzxing for", target)
 	}
 }
