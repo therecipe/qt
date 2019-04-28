@@ -359,7 +359,7 @@ var (
 func GoListOptional(args ...string) (r string) {
 	goListCacheMutex.Lock()
 	if _, ok := goListCache[strings.Join(args, "|")]; !ok {
-		goListCache[strings.Join(args, "|")] = RunCmdOptional(GoList(args[:2]...), args[2])
+		goListCache[strings.Join(args, "|")] = RunCmdOptional(GoList(args[:len(args)-1]...), args[len(args)-1])
 	}
 	r = goListCache[strings.Join(args, "|")]
 	goListCacheMutex.Unlock()

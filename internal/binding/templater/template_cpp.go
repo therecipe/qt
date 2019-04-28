@@ -439,7 +439,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 	defer bb.Reset()
 
 	if mode == MOC {
-		libsm := make(map[string]struct{}, 0)
+		libsm := make(map[string]struct{})
 		for _, c := range parser.State.ClassMap {
 			if c.Pkg != "" && c.IsSubClassOfQObject() {
 				libsm[c.Module] = struct{}{}
@@ -779,7 +779,7 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 	if mode == MOC {
 		pre := bb.String()
 		bb.Reset()
-		libsm := make(map[string]struct{}, 0)
+		libsm := make(map[string]struct{})
 		for _, c := range parser.State.ClassMap {
 			if c.Pkg != "" && c.IsSubClassOfQObject() {
 				libsm[c.Module] = struct{}{}

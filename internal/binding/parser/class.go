@@ -99,9 +99,7 @@ func (c *Class) GetAllBasesRecursiveCheckFailed(i int) ([]string, bool) {
 		if isRecursive {
 			return input, true
 		}
-		for _, sbc := range bs {
-			input = append(input, sbc)
-		}
+		input = append(input, bs...)
 	}
 
 	return input, false
@@ -137,10 +135,7 @@ func (c *Class) GetAllDerivations() []string {
 			continue
 		}
 
-		input = append(input, b)
-		for _, sbc := range bc.GetAllDerivations() {
-			input = append(input, sbc)
-		}
+		input = append(append(input, b), bc.GetAllDerivations()...)
 	}
 
 	return input

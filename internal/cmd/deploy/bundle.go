@@ -572,15 +572,42 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		rcc.ResourceNames = make(map[string]string)
-		cmd := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
+		cmdC := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
 		newArgs := templater.GetiOSClang(target, t, depPath)
-		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
-			cmd.Args = append(cmd.Args, target+"_qml_plugin_import.cpp")
+
+		env, tags, _, _ := cmd.BuildEnv(target, "", "")
+		if (!fast || utils.QT_STUB()) && !utils.QT_FAT() {
+			tags = append(tags, "minimal")
 		}
-		cmd.Args = append(cmd.Args, "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
-		cmd.Dir = depPath
-		cmd.Args = append(cmd.Args, newArgs...)
-		utils.RunCmd(cmd, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
+		if tagsCustom != "" {
+			tags = append(tags, strings.Split(tagsCustom, " ")...)
+		}
+		cmdF := utils.GoList("{{if not .Standard}}|{{join .CgoCPPFLAGS \"|\"}}|{{join .CgoCFLAGS \"|\"}}|{{join .CgoCXXFLAGS \"|\"}}|{{join .CgoLDFLAGS \"|\"}}|{{end}}", "-deps", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+		cmdF.Dir = path
+		for k, v := range env {
+			cmdF.Env = append(cmdF.Env, fmt.Sprintf("%v=%v", k, v))
+		}
+		for _, f := range strings.Split(strings.TrimSpace(utils.RunCmd(cmdF, "go list flags")), "|") {
+			f = strings.TrimSpace(f)
+			var found bool
+			for _, n := range newArgs {
+				if f == n {
+					found = true
+					break
+				}
+			}
+			if !found {
+				newArgs = append(newArgs, f)
+			}
+		}
+
+		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
+			cmdC.Args = append(cmdC.Args, target+"_qml_plugin_import.cpp")
+		}
+		cmdC.Args = append(cmdC.Args, "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+		cmdC.Dir = depPath
+		cmdC.Args = append(cmdC.Args, newArgs...)
+		utils.RunCmd(cmdC, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 
 		strip := exec.Command("strip", "main")
 		strip.Dir = filepath.Join(depPath, "build")

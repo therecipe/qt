@@ -762,7 +762,7 @@ import "C"
 	//TODO: regexp
 	if mode == MOC {
 		pre := string(out)
-		libsm := make(map[string]struct{}, 0)
+		libsm := make(map[string]struct{})
 		for _, c := range parser.State.ClassMap {
 			if c.Pkg != "" && c.IsSubClassOfQObject() {
 				libsm[c.Module] = struct{}{}

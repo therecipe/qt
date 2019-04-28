@@ -274,13 +274,9 @@ func goOutputFailed(value string, f *parser.Function, p string) string {
 
 	case isClass(value):
 		{
-			if strings.Contains(value, ".") {
-				value = strings.Split(value, ".")[1]
-			}
 			if f.TemplateModeJNI == "String" {
 				return "\"\""
 			}
-
 			return "nil"
 		}
 

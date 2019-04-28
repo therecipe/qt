@@ -593,12 +593,14 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 									}
 									return fmt.Sprintf("%v<%v>", parser.CleanValue(function.Container), strings.TrimPrefix(function.Parameters[0].Value, "const "))
 								}
-								if strings.HasSuffix(function.Name, "_newList") {
-									//will be overriden
-								}
-								if strings.HasSuffix(function.Name, "_keyList") {
-									//will be overriden
-								}
+								/*
+									if strings.HasSuffix(function.Name, "_newList") {
+										//will be overriden
+									}
+									if strings.HasSuffix(function.Name, "_keyList") {
+										//will be overriden
+									}
+								*/
 								return function.ClassName()
 							}(),
 						)

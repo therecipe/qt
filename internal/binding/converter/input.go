@@ -364,7 +364,7 @@ func cppInput(name, value string, f *parser.Function) string {
 		{
 			if strings.Contains(vOld, "*") {
 				if parser.UseJs() && f.SignalMode == parser.CALLBACK {
-					return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", value, name)
+					return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", name)
 				}
 				return fmt.Sprintf("reinterpret_cast<%v*>(%v)", value, name)
 			}
@@ -410,7 +410,7 @@ func cppInput(name, value string, f *parser.Function) string {
 				case "long":
 					if parser.UseJs() {
 						if f.SignalMode == parser.CALLBACK {
-							return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", value, name)
+							return fmt.Sprintf("reinterpret_cast<uintptr_t>(%v)", name)
 						}
 						return fmt.Sprintf("reinterpret_cast<%v*>(%v)", value, name)
 					}
@@ -529,9 +529,7 @@ func GoInputJS(name, value string, f *parser.Function, p string) string {
 				return fmt.Sprintf("func() *js.Object {\ntmp := new(js.Object)\ntmp.Set(\"data\", []byte(strings.Join(%v, \"|\")))\nreturn tmp\n}()", name)
 			}
 
-			if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {
-				//TODO:
-			}
+			/* TODO: if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {} */
 
 			if parser.UseWasm() {
 				return fmt.Sprintf("func() js.Value {\ntmp := js.TypedArrayOf([]byte(%v))\nreturn js.ValueOf(map[string]interface{}{\"data\": tmp, \"data_ptr\": unsafe.Pointer(&tmp)})\n}()", name)

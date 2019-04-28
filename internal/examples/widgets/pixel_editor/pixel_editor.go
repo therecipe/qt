@@ -15,7 +15,6 @@ var (
 	Scene     *widgets.QGraphicsScene
 	View      *widgets.QGraphicsView
 	Item      *widgets.QGraphicsPixmapItem
-	r, g, b   int
 	statusbar *widgets.QStatusBar
 	mp        bool
 )

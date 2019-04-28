@@ -560,10 +560,7 @@ func (f *Function) IsDerivedFromVirtual() bool {
 		return true
 	}
 
-	var class, ok = f.Class()
-	if !ok {
-		//return false
-	}
+	var class, _ = f.Class()
 
 	for _, bc := range class.GetAllBases() {
 		if bclass, ok := State.ClassMap[bc]; ok {
@@ -598,10 +595,7 @@ func (f *Function) IsDerivedFromImpure() bool {
 		return false
 	}
 
-	var class, ok = f.Class()
-	if !ok {
-		//return false
-	}
+	var class, _ = f.Class()
 
 	if f.Virtual == IMPURE {
 		return true
@@ -635,10 +629,7 @@ func (f *Function) IsDerivedFromImpure() bool {
 }
 
 func (f *Function) IsDerivedFromPure() bool {
-	var class, ok = f.Class()
-	if !ok {
-		//return false
-	}
+	var class, _ = f.Class()
 
 	if f.Virtual == PURE {
 		return true
