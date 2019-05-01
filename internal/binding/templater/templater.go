@@ -48,7 +48,7 @@ func GenModule(m, target string, mode int) {
 	}
 
 	if m == "AndroidExtras" {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "get files dir")), "/binding/files/utils-androidextras_android.go")))
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal", "-find", "get files dir")), "/binding/files/utils-androidextras_android.go")))
 	}
 
 	if !UseStub(false, "Qt"+m, mode) {

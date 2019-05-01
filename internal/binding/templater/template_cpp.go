@@ -563,15 +563,15 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 
 	var classes = make([]string, 0)
 	for _, class := range parser.State.ClassMap {
-		if (strings.Contains(string(input), class.Name+";") ||
-			strings.Contains(string(input), class.Name+":") ||
-			strings.Contains(string(input), class.Name+"*") ||
-			strings.Contains(string(input), class.Name+" ") ||
-			strings.Contains(string(input), class.Name+"<") ||
-			strings.Contains(string(input), class.Name+">") ||
-			strings.Contains(string(input), class.Name+"(") ||
-			strings.Contains(string(input), class.Name+")") ||
-			strings.Contains(string(input), class.Name+"_")) && class.Module != parser.MOC {
+		if (bytes.Contains(input, []byte(class.Name+";")) ||
+			bytes.Contains(input, []byte(class.Name+":")) ||
+			bytes.Contains(input, []byte(class.Name+"*")) ||
+			bytes.Contains(input, []byte(class.Name+" ")) ||
+			bytes.Contains(input, []byte(class.Name+"<")) ||
+			bytes.Contains(input, []byte(class.Name+">")) ||
+			bytes.Contains(input, []byte(class.Name+"(")) ||
+			bytes.Contains(input, []byte(class.Name+")")) ||
+			bytes.Contains(input, []byte(class.Name+"_"))) && class.Module != parser.MOC {
 			classes = append(classes, class.Name)
 		}
 	}
@@ -763,6 +763,10 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 		if !strings.Contains(bb.String(), "QStringList") {
 			fmt.Fprint(bb, "#include <QStringList>\n")
 		}
+	}
+
+	if mode == MOC {
+		fmt.Fprint(bb, "\n#ifdef QT_QML_LIB\n\t#include <QQmlEngine>\n#endif\n")
 	}
 
 	fmt.Fprint(bb, "\n")

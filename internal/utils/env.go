@@ -345,6 +345,15 @@ func GoList(args ...string) *exec.Cmd {
 			cmd.Args = append(cmd.Args, GOFLAGS())
 		}
 	}
+
+	for i := len(args) - 1; i >= 0; i-- {
+		a := args[i]
+		if strings.HasPrefix(a, "-") {
+			args = append(args[:i], args[i+1:]...)
+			cmd.Args = append(cmd.Args, a)
+		}
+	}
+
 	cmd.Args = append(cmd.Args, "-e", "-f")
 	cmd.Args = append(cmd.Args, args...)
 	cmd.Env = append(os.Environ(), []string{"CGO_ENABLED=0"}...)

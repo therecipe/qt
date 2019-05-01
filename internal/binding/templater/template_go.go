@@ -292,12 +292,6 @@ func (ptr *%[1]v) Destroy%[1]v() {
 									if f.Target == "" {
 										fmt.Fprintf(bb, "this.Connect%v(this.%v)\n", strings.Title(name), name)
 									} else {
-										t := f.Target
-										if strings.Count(t, ".") != 2 {
-											if !(len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
-												t = f.Target + "." + name
-											}
-										}
 										tUpper := strings.Split(f.Target, ".")
 										tUpper[len(tUpper)-1] = strings.Title(tUpper[len(tUpper)-1])
 
@@ -309,12 +303,6 @@ func (ptr *%[1]v) Destroy%[1]v() {
 									}
 								} else {
 									if f.Target != "" {
-										t := f.Target
-										if strings.Count(t, ".") != 2 {
-											if !(len(strings.Split(f.Target, ".")) == 2 && strings.Split(f.Target, ".")[0] != "this" && strings.Split(f.Target, ".")[1][:1] == strings.ToLower(strings.Split(f.Target, ".")[1][:1])) {
-												t = f.Target + "." + name
-											}
-										}
 										tCon := strings.Split(f.Target, ".")
 										tCon[len(tCon)-1] = "Connect" + strings.Title(tCon[len(tCon)-1])
 

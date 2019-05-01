@@ -201,9 +201,7 @@ func createProject(module, path, target string, mode int, libs []string) {
 	var out []string
 
 	switch {
-	case mode == RCC:
-		out = []string{"Core"}
-	case mode == MOC, module == "build_static":
+	case mode == RCC, mode == MOC, module == "build_static":
 		out = libs
 	case mode == MINIMAL, mode == NONE:
 		out = append([]string{module}, libs...)

@@ -8,29 +8,32 @@ import (
 	"github.com/therecipe/qt/qml"
 )
 
-type Application struct {
+var Application *application
+
+type application struct {
 	core.QObject
 
 	_ func() `constructor:"init"`
 
-	_ func() `slot:"initializeQML,auto"`
-
-	_ func() `signal:"onPermissionsGranted,auto(this.Application_PTR().initializeQML)"`
-	_ func() `signal:"onPermissionsDenied,auto(this.Application_PTR().initializeQML)"`
+	_ func() `signal:"onPermissionsGranted"`
+	_ func() `signal:"onPermissionsDenied"`
 
 	engine *qml.QQmlApplicationEngine
 }
 
-func (a *Application) init() {
-	NativeHelper.registerApplicationInstance(a.QObject_PTR())
+func (a *application) init() {
+	Application = a
+
 	a.engine = qml.NewQQmlApplicationEngine(nil)
+	a.ConnectOnPermissionsGranted(a.initializeQML)
+	a.ConnectOnPermissionsDenied(a.initializeQML)
 }
 
-func (a *Application) initializeQML() {
+func (a *application) initializeQML() {
 	a.engine.Load(core.NewQUrl3("qrc:/main.qml", 0))
 }
 
-func (a *Application) checkPermissions() {
+func (a *application) checkPermissions() {
 	if runtime.GOOS == "android" {
 		//intentionally called in the C++ thread since it is blocking and will continue after the check
 		println("About to request permissions")

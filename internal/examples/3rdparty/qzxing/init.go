@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 )
 
 func main() {
@@ -80,7 +81,7 @@ func main() {
 		}
 		println("generated makefile for", target)
 
-		iCmd := exec.Command("make")
+		iCmd := exec.Command("make", "-j", strconv.Itoa(runtime.NumCPU()))
 		iCmd.Dir = filepath.Join(pwd, "qzxing", "src", target)
 		if ndkOK {
 			iCmd.Env = append(iCmd.Env, "ANDROID_NDK_ROOT="+ndkPATH)

@@ -71,7 +71,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	if !dirty {
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
+		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
 		scmd.Dir = path
 
 		if !fast && !utils.QT_FAT() {
@@ -338,7 +338,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	var staleCheck string
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
+		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
 		scmd.Dir = path
 
 		if !fast && !utils.QT_FAT() {
@@ -374,17 +374,11 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		rootWg.Add(1)
 		go func() {
 			defer rootWg.Done()
-
-			var fix []byte
-			var err error
-			for i := 0; i < 5; i++ {
-				fix, err = imports.Process("moc.go", fixR, nil)
-				if err != nil {
-					utils.Log.WithError(err).Error("failed to fix go imports")
-					fix = fixR
-				}
+			fix, err := imports.Process("moc.go", fixR, nil)
+			if err != nil {
+				utils.Log.WithError(err).Error("failed to fix go imports")
+				fix = fixR
 			}
-
 			if err := utils.SaveBytes(filepath.Join(path, "moc.go"), fix); err != nil {
 				return
 			}
@@ -544,7 +538,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if n, ok := goNameCache[imp.Path.Value]; ok {
 											name = n
 										} else {
-											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1), "-find"), "get import name"))
 											goNameCache[imp.Path.Value] = name
 										}
 										goNameCacheMutex.Unlock()
@@ -554,7 +548,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if d, ok := goDirCache[imp.Path.Value]; ok {
 											dir = d
 										} else {
-											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1), "-find"), "get import dir"))
 											goDirCache[imp.Path.Value] = dir
 										}
 										goDirCacheMutex.Unlock()
@@ -584,7 +578,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if n, ok := goNameCache[imp.Path.Value]; ok {
 											name = n
 										} else {
-											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import name"))
+											name = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Name}}", strings.Replace(imp.Path.Value, "\"", "", -1), "-find"), "get import name"))
 											goNameCache[imp.Path.Value] = name
 										}
 										goNameCacheMutex.Unlock()
@@ -598,7 +592,7 @@ func parse(path string) ([]*parser.Class, string, error) {
 										if d, ok := goDirCache[imp.Path.Value]; ok {
 											dir = d
 										} else {
-											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1)), "get import dir"))
+											dir = strings.TrimSpace(utils.RunCmd(utils.GoList("{{.Dir}}", strings.Replace(imp.Path.Value, "\"", "", -1), "-find"), "get import dir"))
 											goDirCache[imp.Path.Value] = dir
 										}
 										goDirCacheMutex.Unlock()

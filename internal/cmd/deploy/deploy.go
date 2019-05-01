@@ -14,7 +14,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool) {
+func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool, quickcompiler bool) {
 	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).WithField("comply", comply).Debug("running Deploy")
 	name := filepath.Base(path)
 	switch name {
@@ -69,7 +69,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			utils.RemoveAll(depPath + "_obj")
 		}
 
-		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"))
+		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), quickcompiler)
 		if !fast {
 			moc.Moc(path, target, tags, false, false)
 		}

@@ -176,11 +176,15 @@ func ios_c_main_wrapper() string {
 	bb := new(bytes.Buffer)
 	bb.WriteString("#include \"libgo.h\"\n")
 	for _, n := range rcc.ResourceNames {
-		fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+		for _, n = range strings.Split(n, "|") {
+			fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+		}
 	}
 	bb.WriteString("int main(int argc, char *argv[]) {\n")
 	for _, n := range rcc.ResourceNames {
-		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+		for _, n = range strings.Split(n, "|") {
+			fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+		}
 	}
 	bb.WriteString("go_main_wrapper(argc, argv);\n}")
 	return bb.String()
@@ -750,11 +754,15 @@ func js_c_main_wrapper(target string) string {
 	bb := new(bytes.Buffer)
 	bb.WriteString("#include <emscripten.h>\n")
 	for _, n := range rcc.ResourceNames {
-		fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+		for _, n = range strings.Split(n, "|") {
+			fmt.Fprintf(bb, "extern int qInitResources_%v();\n", n)
+		}
 	}
 	bb.WriteString("int main(int argc, char *argv[]) {\n")
 	for _, n := range rcc.ResourceNames {
-		fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+		for _, n = range strings.Split(n, "|") {
+			fmt.Fprintf(bb, "qInitResources_%v();\n", n)
+		}
 	}
 
 	//TODO: use emscripten_sync_run_in_main_runtime_thread once thread support is there ?

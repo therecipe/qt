@@ -424,51 +424,42 @@ var (
 )
 
 func GetCustomLibs(target string, env map[string]string, tags []string) map[string]string {
-	wg := new(sync.WaitGroup)
-	wc := make(chan bool, 50)
-	out := make(map[string]string)
-	outMutex := new(sync.Mutex)
+	getCustomLibsCacheMutex.Lock()
+	defer getCustomLibsCacheMutex.Unlock()
 
-	lookup := func(lm map[string]*Class) {
+	out := make(map[string]string)
+	var modules []string
+	var pkgs []string
+	for _, lm := range []map[string]*Class{State.ClassMap, State.GoClassMap} {
 		for _, c := range lm {
 			if c.Pkg == "" {
 				continue
 			}
-
-			wg.Add(1)
-			wc <- true
-			go func(c *Class) {
-				getCustomLibsCacheMutex.Lock()
-				path, ok := getCustomLibsCache[c.Pkg]
-				getCustomLibsCacheMutex.Unlock()
-
-				if !ok {
-					cmd := utils.GoList("{{.ImportPath}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
-					cmd.Dir = c.Pkg
-					for k, v := range env {
-						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
-					}
-
-					path = strings.TrimSpace(utils.RunCmd(cmd, "get import path"))
-					getCustomLibsCacheMutex.Lock()
-					getCustomLibsCache[c.Pkg] = path
-					getCustomLibsCacheMutex.Unlock()
+			if path, ok := getCustomLibsCache[c.Pkg]; !ok {
+				if _, ok = out[c.Module]; !ok {
+					out[c.Module] = c.Pkg
+					modules = append(modules, c.Module)
+					pkgs = append(pkgs, c.Pkg)
 				}
-
-				outMutex.Lock()
+			} else {
 				out[c.Module] = path
-				outMutex.Unlock()
-
-				<-wc
-				wg.Done()
-			}(c)
+			}
 		}
 	}
 
-	lookup(State.ClassMap)
-	lookup(State.GoClassMap)
+	if len(modules) > 0 {
+		cmd := utils.GoList(append([]string{"{{.ImportPath}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \""))}, pkgs...)...)
+		for k, v := range env {
+			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
+		}
 
-	wg.Wait()
+		for i, path := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "get import path")), "\n") {
+			path = strings.TrimSpace(path)
+
+			getCustomLibsCache[pkgs[i]] = path
+			out[modules[i]] = path
+		}
+	}
 
 	return out
 }

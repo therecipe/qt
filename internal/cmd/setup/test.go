@@ -136,7 +136,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			example := filepath.Join(cat, example)
 
-			path := filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/examples", "get doc dir")), example)
+			path := filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/examples", "-find", "get doc dir")), example)
 			utils.Log.Infof("testing %v", example)
 			deploy.Deploy(
 				mode,
@@ -149,6 +149,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				"",
 				vagrant,
 				vagrantsystem,
+				false,
 				false,
 			)
 			templater.CleanupDepsForCI()

@@ -57,17 +57,13 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("'{{ join .TestImports \"|\" }}':'{{ join .XTestImports \"|\" }}':'{{ join ."+imp+" \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	cmd := utils.GoList("{{join .TestImports \"|\"}}|{{join .XTestImports \"|\"}}|{{join ."+imp+" \"|\"}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
 
-	out := strings.TrimSpace(utils.RunCmd(cmd, "go list deps"))
-	out = strings.Replace(out, "'", "", -1)
-	out = strings.Replace(out, ":", "|", -1)
-	libs := strings.Split(out, "|")
-
+	libs := strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list deps")), "|")
 	for i := len(libs) - 1; i >= 0; i-- {
 		if strings.TrimSpace(libs[i]) == "" {
 			libs = append(libs[:i], libs[i+1:]...)
@@ -106,7 +102,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 				return
 			}
 
-			cmd := utils.GoList("{{.Dir}}", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
+			cmd := utils.GoList("{{.Dir}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")), l)
 			for k, v := range env {
 				cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 			}
@@ -140,18 +136,14 @@ func GetGoFiles(path, target, tagsCustom string) []string {
 	}
 
 	//TODO: cache
-	cmd := utils.GoList("'{{ join .GoFiles \"|\" }}':'{{ join .CgoFiles \"|\" }}':'{{ join .TestGoFiles \"|\" }}':'{{ join .XTestGoFiles \"|\" }}'", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
+	cmd := utils.GoList("{{join .GoFiles \"|\"}}|{{join .CgoFiles \"|\"}}|{{join .TestGoFiles \"|\"}}|{{join .XTestGoFiles \"|\"}}", "-find", fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))
 	cmd.Dir = path
 	for k, v := range env {
 		cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", k, v))
 	}
 
-	out := strings.TrimSpace(utils.RunCmd(cmd, "go list gofiles"))
-	out = strings.Replace(out, "'", "", -1)
-	out = strings.Replace(out, ":", "|", -1)
-
 	importMap := make(map[string]struct{})
-	for _, v := range strings.Split(out, "|") {
+	for _, v := range strings.Split(strings.TrimSpace(utils.RunCmd(cmd, "go list gofiles")), "|") {
 		if strings.TrimSpace(v) != "" {
 			importMap[v] = struct{}{}
 		}

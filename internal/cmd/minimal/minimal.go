@@ -30,7 +30,7 @@ func Minimal(path, target, tags string) {
 
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("'{{.Stale}}':'{{.StaleReason}}'")
+		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
 		scmd.Dir = path
 
 		tagsEnv = append(tagsEnv, "minimal")
@@ -195,6 +195,7 @@ func Minimal(path, target, tags string) {
 				delete(parser.State.ClassMap, bl)
 			}
 		}
+		parser.State.ClassMap["QSvgWidget"].Export = true
 
 	case "rpi1", "rpi2", "rpi3":
 		if !utils.QT_RPI() {
@@ -229,6 +230,9 @@ func Minimal(path, target, tags string) {
 			}
 		}
 	case "js", "wasm":
+		parser.State.ClassMap["QSvgWidget"].Export = true
+	}
+	if utils.QT_STATIC() {
 		parser.State.ClassMap["QSvgWidget"].Export = true
 	}
 
