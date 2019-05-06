@@ -65,6 +65,9 @@ func main() {
 	var quickcompiler bool
 	flag.BoolVar(&quickcompiler, "quickcompiler", false, "use the quickcompiler")
 
+	var uic bool
+	flag.BoolVar(&uic, "uic", true, "use the uic")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -125,12 +128,12 @@ func main() {
 		}
 	}
 
-	if !(target == runtime.GOOS || target == "js" || target == "wasm") {
+	if !(target == runtime.GOOS || strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) {
 		fast = false
 	}
-	if (docker || vagrant) && !(target == "js" || target == "wasm") {
+	if (docker || vagrant) && !(strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm")) {
 		fast = false
 	}
 
-	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast, device, vagrant, vagrant_system, comply, quickcompiler)
+	deploy.Deploy(mode, target, path, docker, ldFlags, tags, fast, device, vagrant, vagrant_system, comply, uic, quickcompiler)
 }

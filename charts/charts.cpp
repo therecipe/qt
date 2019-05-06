@@ -5080,8 +5080,8 @@ public:
 	void Signal_BodyOutlineVisibilityChanged() { callbackQCandlestickSeries_BodyOutlineVisibilityChanged(this); };
 	void Signal_BodyWidthChanged() { callbackQCandlestickSeries_BodyWidthChanged(this); };
 	void Signal_BrushChanged() { callbackQCandlestickSeries_BrushChanged(this); };
-	void Signal_CandlestickSetsAdded(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsAdded(this, ({ QList<QCandlestickSet *>* tmpValue = const_cast<QList<QCandlestickSet *>*>(&sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_CandlestickSetsRemoved(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsRemoved(this, ({ QList<QCandlestickSet *>* tmpValue = const_cast<QList<QCandlestickSet *>*>(&sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_CandlestickSetsAdded(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsAdded(this, ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_CandlestickSetsRemoved(const QList<QCandlestickSet *> & sets) { callbackQCandlestickSeries_CandlestickSetsRemoved(this, ({ QList<QCandlestickSet *>* tmpValue = new QList<QCandlestickSet *>(sets); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_CapsVisibilityChanged() { callbackQCandlestickSeries_CapsVisibilityChanged(this); };
 	void Signal_CapsWidthChanged() { callbackQCandlestickSeries_CapsWidthChanged(this); };
 	void Signal_Clicked(QCandlestickSet * set) { callbackQCandlestickSeries_Clicked(this, set); };
@@ -7625,7 +7625,7 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQChartView_ScrollContentsBy(this, dx, dy); };
 	void setupViewport(QWidget * widget) { callbackQChartView_SetupViewport(this, widget); };
 	void showEvent(QShowEvent * event) { callbackQChartView_ShowEvent(this, event); };
-	void updateScene(const QList<QRectF> & rects) { callbackQChartView_UpdateScene(this, ({ QList<QRectF>* tmpValue = const_cast<QList<QRectF>*>(&rects); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
+	void updateScene(const QList<QRectF> & rects) { callbackQChartView_UpdateScene(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(rects); QtCharts_PackedList { tmpValue, tmpValue->size() }; })); };
 	void updateSceneRect(const QRectF & rect) { callbackQChartView_UpdateSceneRect(this, const_cast<QRectF*>(&rect)); };
 	void wheelEvent(QWheelEvent * event) { callbackQChartView_WheelEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQChartView_SizeHint(const_cast<void*>(static_cast<const void*>(this)))); };

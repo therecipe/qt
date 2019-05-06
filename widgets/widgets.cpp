@@ -1439,7 +1439,7 @@ public:
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQAbstractItemView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -7982,7 +7982,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -11937,7 +11937,7 @@ public:
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQDirModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQDirModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQDirModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQDirModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQDirModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	bool submit() { return callbackQDirModel_Submit(this) != 0; };
 	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQDirModel_ColumnsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
@@ -11945,11 +11945,11 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQDirModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQDirModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQDirModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQDirModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQDirModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQDirModel_HeaderDataChanged(this, orientation, first, last); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQDirModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
 	void Signal_ModelAboutToBeReset() { callbackQDirModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQDirModel_ModelReset(this); };
 	void resetInternalData() { callbackQDirModel_ResetInternalData(this); };
@@ -13520,7 +13520,7 @@ public:
 	void Signal_FilterSelected(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtWidgets_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQFileDialog_FilterSelected(this, filterPacked); };
 	void setVisible(bool visible) { callbackQDialog_SetVisible(this, visible); };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialog_UrlSelected(this, const_cast<QUrl*>(&url)); };
-	void Signal_UrlsSelected(const QList<QUrl> & urls) { callbackQFileDialog_UrlsSelected(this, ({ QList<QUrl>* tmpValue = const_cast<QList<QUrl>*>(&urls); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_UrlsSelected(const QList<QUrl> & urls) { callbackQFileDialog_UrlsSelected(this, ({ QList<QUrl>* tmpValue = new QList<QUrl>(urls); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQFileDialog() { callbackQFileDialog_DestroyQFileDialog(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool eventFilter(QObject * o, QEvent * e) { return callbackQWidget_EventFilter(this, o, e) != 0; };
@@ -14293,7 +14293,7 @@ public:
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQFileSystemModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQFileSystemModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQFileSystemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQFileSystemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQFileSystemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	bool submit() { return callbackQFileSystemModel_Submit(this) != 0; };
 	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_ColumnsAboutToBeInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQFileSystemModel_ColumnsAboutToBeMoved(this, const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
@@ -14301,10 +14301,10 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQFileSystemModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQFileSystemModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQFileSystemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQFileSystemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQFileSystemModel_HeaderDataChanged(this, orientation, first, last); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQFileSystemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtWidgets_PackedList { tmpValue, tmpValue->size() }; }), hint); };
 	void Signal_ModelAboutToBeReset() { callbackQFileSystemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQFileSystemModel_ModelReset(this); };
 	void resetInternalData() { callbackQFileSystemModel_ResetInternalData(this); };
@@ -26655,7 +26655,7 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsScene_EventFilter(this, watched, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsScene_FocusNextPrevChild(this, next) != 0; };
 	void advance() { callbackQGraphicsScene_Advance(this); };
-	void Signal_Changed(const QList<QRectF> & region) { callbackQGraphicsScene_Changed(this, ({ QList<QRectF>* tmpValue = const_cast<QList<QRectF>*>(&region); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Changed(const QList<QRectF> & region) { callbackQGraphicsScene_Changed(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(region); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void clear() { callbackQGraphicsScene_Clear(this); };
 	void clearSelection() { callbackQGraphicsScene_ClearSelection(this); };
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * contextMenuEvent) { callbackQGraphicsScene_ContextMenuEvent(this, contextMenuEvent); };
@@ -29134,7 +29134,7 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQAbstractScrollArea_ScrollContentsBy(this, dx, dy); };
 	void setupViewport(QWidget * widget) { callbackQGraphicsView_SetupViewport(this, widget); };
 	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
-	void updateScene(const QList<QRectF> & rects) { callbackQGraphicsView_UpdateScene(this, ({ QList<QRectF>* tmpValue = const_cast<QList<QRectF>*>(&rects); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void updateScene(const QList<QRectF> & rects) { callbackQGraphicsView_UpdateScene(this, ({ QList<QRectF>* tmpValue = new QList<QRectF>(rects); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void updateSceneRect(const QRectF & rect) { callbackQGraphicsView_UpdateSceneRect(this, const_cast<QRectF*>(&rect)); };
 	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
 	 ~MyQGraphicsView() { callbackQGraphicsView_DestroyQGraphicsView(this); };
@@ -31141,7 +31141,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -35662,7 +35662,7 @@ public:
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
 	bool event(QEvent * e) { return callbackQWidget_Event(this, e) != 0; };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQWidget_DropEvent(this, e); };
@@ -36247,7 +36247,7 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWidget_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQWidget_MouseMoveEvent(this, e); };
@@ -49569,7 +49569,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -50328,7 +50328,7 @@ public:
 	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemView_Clicked(this, const_cast<QModelIndex*>(&index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemView_CloseEditor(this, editor, hint); };
 	void commitData(QWidget * editor) { callbackQAbstractItemView_CommitData(this, editor); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQAbstractItemView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemView_DoubleClicked(this, const_cast<QModelIndex*>(&index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQWidget_DragLeaveEvent(this, event); };
@@ -53914,7 +53914,7 @@ public:
 	void columnMoved() { callbackQTreeView_ColumnMoved(this); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQTreeView_ColumnResized(this, column, oldSize, newSize); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
 	void expand(const QModelIndex & index) { callbackQTreeView_Expand(this, const_cast<QModelIndex*>(&index)); };
 	void expandAll() { callbackQTreeView_ExpandAll(this); };
@@ -54800,7 +54800,7 @@ public:
 	void columnMoved() { callbackQTreeView_ColumnMoved(this); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQTreeView_ColumnResized(this, column, oldSize, newSize); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQTreeView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQTreeView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQWidget_DragMoveEvent(this, event); };
 	void expand(const QModelIndex & index) { callbackQTreeView_Expand(this, const_cast<QModelIndex*>(&index)); };
 	void expandAll() { callbackQTreeView_ExpandAll(this); };
@@ -57073,7 +57073,7 @@ public:
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQListView_MoveCursor(this, cursorAction, modifiers)); };
 	bool event(QEvent * e) { return callbackQWidget_Event(this, e) != 0; };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListView_CurrentChanged(this, const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
-	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
+	void dataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQListView_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtWidgets_PackedList { tmpValue, tmpValue->size() }; })); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQWidget_DropEvent(this, e); };

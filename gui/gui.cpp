@@ -27120,7 +27120,7 @@ public:
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStandardItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStandardItemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
-	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQStandardItemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = const_cast<QMap<int, QVariant>*>(&roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
+	bool setItemData(const QModelIndex & index, const QMap<int, QVariant> & roles) { return callbackQStandardItemModel_SetItemData(this, const_cast<QModelIndex*>(&index), ({ QMap<int, QVariant>* tmpValue = new QMap<int, QVariant>(roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
 	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModel_Sort(this, column, order); };
 	 ~MyQStandardItemModel() { callbackQStandardItemModel_DestroyQStandardItemModel(this); };
@@ -27147,11 +27147,11 @@ public:
 	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_ColumnsInserted(this, const_cast<QModelIndex*>(&parent), first, last); };
 	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQStandardItemModel_ColumnsMoved(this, const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
 	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQStandardItemModel_ColumnsRemoved(this, const_cast<QModelIndex*>(&parent), first, last); };
-	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQStandardItemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = const_cast<QVector<int>*>(&roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_DataChanged(const QModelIndex & topLeft, const QModelIndex & bottomRight, const QVector<int> & roles) { callbackQStandardItemModel_DataChanged(this, const_cast<QModelIndex*>(&topLeft), const_cast<QModelIndex*>(&bottomRight), ({ QVector<int>* tmpValue = new QVector<int>(roles); QtGui_PackedList { tmpValue, tmpValue->size() }; })); };
 	void fetchMore(const QModelIndex & parent) { callbackQStandardItemModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQStandardItemModel_HeaderDataChanged(this, orientation, first, last); };
-	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
-	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = const_cast<QList<QPersistentModelIndex>*>(&parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutAboutToBeChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutAboutToBeChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
+	void Signal_LayoutChanged(const QList<QPersistentModelIndex> & parents, QAbstractItemModel::LayoutChangeHint hint) { callbackQStandardItemModel_LayoutChanged(this, ({ QList<QPersistentModelIndex>* tmpValue = new QList<QPersistentModelIndex>(parents); QtGui_PackedList { tmpValue, tmpValue->size() }; }), hint); };
 	void Signal_ModelAboutToBeReset() { callbackQStandardItemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQStandardItemModel_ModelReset(this); };
 	void resetInternalData() { callbackQStandardItemModel_ResetInternalData(this); };

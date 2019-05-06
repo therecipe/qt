@@ -395,4 +395,10 @@ func exportFunction(f *parser.Function, files []string) {
 			}
 		}
 	}
+
+	for _, ff := range parser.State.ClassMap[f.ClassName()].Functions {
+		if f.Name == ff.Name && f.OverloadNumber != ff.OverloadNumber {
+			exportFunction(ff, files)
+		}
+	}
 }

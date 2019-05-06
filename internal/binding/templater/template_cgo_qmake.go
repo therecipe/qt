@@ -207,7 +207,12 @@ func createProject(module, path, target string, mode int, libs []string) {
 		out = append([]string{module}, libs...)
 	}
 
+	var hasVirtualKeyboard bool
 	for i, v := range out {
+		if v == "VirtualKeyboard" {
+			hasVirtualKeyboard = true
+		}
+
 		if v == "Speech" {
 			out[i] = "TextToSpeech"
 		}
@@ -225,7 +230,11 @@ func createProject(module, path, target string, mode int, libs []string) {
 		proPath = filepath.Join("/home", "user", proPath)
 	}
 
-	utils.Save(proPath, fmt.Sprintf("QT += %v", strings.Join(out, " ")))
+	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
+		utils.Save(proPath, fmt.Sprintf("QT += %v\nQTPLUGIN += qtvirtualkeyboardplugin", strings.Join(out, " ")))
+	} else {
+		utils.Save(proPath, fmt.Sprintf("QT += %v", strings.Join(out, " ")))
+	}
 }
 
 func createMakefile(module, path, target string, mode int) {

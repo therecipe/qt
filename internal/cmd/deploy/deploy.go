@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
@@ -14,8 +15,11 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool, quickcompiler bool) {
-	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).WithField("ldFlags", ldFlags).WithField("fast", fast).WithField("comply", comply).Debug("running Deploy")
+func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast bool, device string, vagrant bool, vagrantsystem string, comply bool, useuic bool, quickcompiler bool) {
+	utils.Log.WithField("mode", mode).WithField("target", target).WithField("path", path).WithField("docker", docker).
+		WithField("ldFlags", ldFlags).WithField("fast", fast).WithField("comply", comply).
+		WithField("useuic", useuic).WithField("quickcompiler", quickcompiler).Debug("running Deploy")
+
 	name := filepath.Base(path)
 	switch name {
 	case "lib", "plugins", "qml",
@@ -37,6 +41,13 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			if comply {
 				args = append(args, "-comply")
 			}
+			if !useuic {
+				args = append(args, "-uic=false")
+			}
+			if quickcompiler {
+				args = append(args, "-quickcompiler")
+			}
+
 			if vagrantsystem == "docker" {
 				args = append(args, "-docker")
 			}
@@ -69,7 +80,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			utils.RemoveAll(depPath + "_obj")
 		}
 
-		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), quickcompiler)
+		rcc.Rcc(path, target, tags, os.Getenv("QTRCC_OUTPUT_DIR"), useuic, quickcompiler)
 		if !fast {
 			moc.Moc(path, target, tags, false, false)
 		}
@@ -92,7 +103,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 		}
 	}
 
-	if (mode == "run" || mode == "test") && !(fast && (target == "js" || target == "wasm")) {
+	if (mode == "run" || mode == "test") && !(fast && (strings.HasPrefix(target, "js") || strings.HasPrefix(target, "wasm"))) {
 		run(target, name, depPath, device)
 	}
 }

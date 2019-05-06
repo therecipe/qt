@@ -12261,7 +12261,7 @@ class MyQMediaNetworkAccessControl: public QMediaNetworkAccessControl
 {
 public:
 	void Signal_ConfigurationChanged(const QNetworkConfiguration & configuration) { callbackQMediaNetworkAccessControl_ConfigurationChanged(this, const_cast<QNetworkConfiguration*>(&configuration)); };
-	void setConfigurations(const QList<QNetworkConfiguration> & configurations) { callbackQMediaNetworkAccessControl_SetConfigurations(this, ({ QList<QNetworkConfiguration>* tmpValue = const_cast<QList<QNetworkConfiguration>*>(&configurations); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; })); };
+	void setConfigurations(const QList<QNetworkConfiguration> & configurations) { callbackQMediaNetworkAccessControl_SetConfigurations(this, ({ QList<QNetworkConfiguration>* tmpValue = new QList<QNetworkConfiguration>(configurations); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQMediaNetworkAccessControl() { callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(this); };
 	QNetworkConfiguration currentConfiguration() const { return *static_cast<QNetworkConfiguration*>(callbackQMediaNetworkAccessControl_CurrentConfiguration(const_cast<void*>(static_cast<const void*>(this)))); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMediaControl_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -13136,7 +13136,7 @@ public:
 	void Signal_SeekableChanged(bool seekable) { callbackQMediaPlayer_SeekableChanged(this, seekable); };
 	void setMedia(const QMediaContent & media, QIODevice * stream) { callbackQMediaPlayer_SetMedia(this, const_cast<QMediaContent*>(&media), stream); };
 	void setMuted(bool muted) { callbackQMediaPlayer_SetMuted(this, muted); };
-	void setNetworkConfigurations(const QList<QNetworkConfiguration> & configurations) { callbackQMediaPlayer_SetNetworkConfigurations(this, ({ QList<QNetworkConfiguration>* tmpValue = const_cast<QList<QNetworkConfiguration>*>(&configurations); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; })); };
+	void setNetworkConfigurations(const QList<QNetworkConfiguration> & configurations) { callbackQMediaPlayer_SetNetworkConfigurations(this, ({ QList<QNetworkConfiguration>* tmpValue = new QList<QNetworkConfiguration>(configurations); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; })); };
 	void setPlaybackRate(qreal rate) { callbackQMediaPlayer_SetPlaybackRate(this, rate); };
 	void setPlaylist(QMediaPlaylist * playlist) { callbackQMediaPlayer_SetPlaylist(this, playlist); };
 	void setPosition(qint64 position) { callbackQMediaPlayer_SetPosition(this, position); };

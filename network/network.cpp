@@ -3574,7 +3574,7 @@ public:
 	void Signal_NetworkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessible) { callbackQNetworkAccessManager_NetworkAccessibleChanged(this, accessible); };
 	void Signal_PreSharedKeyAuthenticationRequired(QNetworkReply * reply, QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(this, reply, authenticator); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQNetworkAccessManager_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
-	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & errors) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors(QNetworkReply * reply, const QList<QSslError> & errors) { callbackQNetworkAccessManager_SslErrors(this, reply, ({ QList<QSslError>* tmpValue = new QList<QSslError>(errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQNetworkAccessManager() { callbackQNetworkAccessManager_DestroyQNetworkAccessManager(this); };
 	QStringList supportedSchemesImplementation() const { return ({ QtNetwork_PackedString tempVal = callbackQNetworkAccessManager_SupportedSchemesImplementation(const_cast<void*>(static_cast<const void*>(this))); QStringList ret = QString::fromUtf8(tempVal.data, tempVal.len).split("|", QString::SkipEmptyParts); free(tempVal.data); ret; }); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkAccessManager_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -4872,7 +4872,7 @@ public:
 	MyQNetworkCookieJar(QObject *parent = Q_NULLPTR) : QNetworkCookieJar(parent) {QNetworkCookieJar_QNetworkCookieJar_QRegisterMetaType();};
 	bool deleteCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_DeleteCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool insertCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_InsertCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
-	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url) { return callbackQNetworkCookieJar_SetCookiesFromUrl(this, ({ QList<QNetworkCookie>* tmpValue = const_cast<QList<QNetworkCookie>*>(&cookieList); QtNetwork_PackedList { tmpValue, tmpValue->size() }; }), const_cast<QUrl*>(&url)) != 0; };
+	bool setCookiesFromUrl(const QList<QNetworkCookie> & cookieList, const QUrl & url) { return callbackQNetworkCookieJar_SetCookiesFromUrl(this, ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(cookieList); QtNetwork_PackedList { tmpValue, tmpValue->size() }; }), const_cast<QUrl*>(&url)) != 0; };
 	bool updateCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_UpdateCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	 ~MyQNetworkCookieJar() { callbackQNetworkCookieJar_DestroyQNetworkCookieJar(this); };
 	QList<QNetworkCookie> cookiesForUrl(const QUrl & url) const { return ({ QList<QNetworkCookie>* tmpP = static_cast<QList<QNetworkCookie>*>(callbackQNetworkCookieJar_CookiesForUrl(const_cast<void*>(static_cast<const void*>(this)), const_cast<QUrl*>(&url))); QList<QNetworkCookie> tmpV = *tmpP; tmpP->~QList(); free(tmpP); tmpV; }); };
@@ -6021,14 +6021,14 @@ public:
 	void Signal_Error2(QNetworkReply::NetworkError code) { callbackQNetworkReply_Error2(this, code); };
 	void Signal_Finished() { callbackQNetworkReply_Finished(this); };
 	void ignoreSslErrors() { callbackQNetworkReply_IgnoreSslErrors(this); };
-	void ignoreSslErrorsImplementation(const QList<QSslError> & errors) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void ignoreSslErrorsImplementation(const QList<QSslError> & errors) { callbackQNetworkReply_IgnoreSslErrorsImplementation(this, ({ QList<QSslError>* tmpValue = new QList<QSslError>(errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_MetaDataChanged() { callbackQNetworkReply_MetaDataChanged(this); };
 	void Signal_PreSharedKeyAuthenticationRequired(QSslPreSharedKeyAuthenticator * authenticator) { callbackQNetworkReply_PreSharedKeyAuthenticationRequired(this, authenticator); };
 	void Signal_RedirectAllowed() { callbackQNetworkReply_RedirectAllowed(this); };
 	void Signal_Redirected(const QUrl & url) { callbackQNetworkReply_Redirected(this, const_cast<QUrl*>(&url)); };
 	void setReadBufferSize(qint64 size) { callbackQNetworkReply_SetReadBufferSize(this, size); };
 	void setSslConfigurationImplementation(const QSslConfiguration & configuration) { callbackQNetworkReply_SetSslConfigurationImplementation(this, const_cast<QSslConfiguration*>(&configuration)); };
-	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors(const QList<QSslError> & errors) { callbackQNetworkReply_SslErrors(this, ({ QList<QSslError>* tmpValue = new QList<QSslError>(errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_UploadProgress(qint64 bytesSent, qint64 bytesTotal) { callbackQNetworkReply_UploadProgress(this, bytesSent, bytesTotal); };
 	 ~MyQNetworkReply() { callbackQNetworkReply_DestroyQNetworkReply(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQNetworkReply_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
@@ -8598,7 +8598,7 @@ public:
 	void resume() { callbackQAbstractSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	void Signal_SslErrors2(const QList<QSslError> & errors) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = const_cast<QList<QSslError>*>(&errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SslErrors2(const QList<QSslError> & errors) { callbackQSslSocket_SslErrors2(this, ({ QList<QSslError>* tmpValue = new QList<QSslError>(errors); QtNetwork_PackedList { tmpValue, tmpValue->size() }; })); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
 	void startServerEncryption() { callbackQSslSocket_StartServerEncryption(this); };
 	 ~MyQSslSocket() { callbackQSslSocket_DestroyQSslSocket(this); };

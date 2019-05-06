@@ -2006,8 +2006,8 @@ public:
 	void Signal_Error2(QGeoSatelliteInfoSource::Error satelliteError) { callbackQGeoSatelliteInfoSource_Error2(this, satelliteError); };
 	void Signal_RequestTimeout() { callbackQGeoSatelliteInfoSource_RequestTimeout(this); };
 	void requestUpdate(int timeout) { callbackQGeoSatelliteInfoSource_RequestUpdate(this, timeout); };
-	void Signal_SatellitesInUseUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = const_cast<QList<QGeoSatelliteInfo>*>(&satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_SatellitesInViewUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = const_cast<QList<QGeoSatelliteInfo>*>(&satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SatellitesInUseUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInUseUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_SatellitesInViewUpdated(const QList<QGeoSatelliteInfo> & satellites) { callbackQGeoSatelliteInfoSource_SatellitesInViewUpdated(this, ({ QList<QGeoSatelliteInfo>* tmpValue = new QList<QGeoSatelliteInfo>(satellites); QtPositioning_PackedList { tmpValue, tmpValue->size() }; })); };
 	void setUpdateInterval(int msec) { callbackQGeoSatelliteInfoSource_SetUpdateInterval(this, msec); };
 	void startUpdates() { callbackQGeoSatelliteInfoSource_StartUpdates(this); };
 	void stopUpdates() { callbackQGeoSatelliteInfoSource_StopUpdates(this); };

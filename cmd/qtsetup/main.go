@@ -58,6 +58,9 @@ func main() {
 	var failfast bool
 	flag.BoolVar(&failfast, "failfast", false, "exit the setup upon the first error encountered during the installation step")
 
+	var test bool
+	flag.BoolVar(&test, "test", true, "build and run example applications on the end of the setup")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -102,12 +105,18 @@ func main() {
 	case "install":
 		setup.Install(target, docker, vagrant, failfast)
 	case "test":
+		if !test {
+			return
+		}
 		setup.Test(target, docker, vagrant, vagrant_system)
 	case "full":
 		setup.Prep(target)
 		setup.Check(target, docker, vagrant)
 		setup.Generate(target, docker, vagrant)
 		setup.Install(target, docker, vagrant, failfast)
+		if !test {
+			return
+		}
 		setup.Test(target, docker, vagrant, vagrant_system)
 	case "update":
 		setup.Update()

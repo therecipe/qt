@@ -2033,8 +2033,8 @@ public:
 	void Signal_AmbientLightStrengthChanged(float strength) { callbackQ3DTheme_AmbientLightStrengthChanged(this, strength); };
 	void Signal_BackgroundColorChanged(const QColor & color) { callbackQ3DTheme_BackgroundColorChanged(this, const_cast<QColor*>(&color)); };
 	void Signal_BackgroundEnabledChanged(bool enabled) { callbackQ3DTheme_BackgroundEnabledChanged(this, enabled); };
-	void Signal_BaseColorsChanged(const QList<QColor> & colors) { callbackQ3DTheme_BaseColorsChanged(this, ({ QList<QColor>* tmpValue = const_cast<QList<QColor>*>(&colors); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
-	void Signal_BaseGradientsChanged(const QList<QLinearGradient> & gradients) { callbackQ3DTheme_BaseGradientsChanged(this, ({ QList<QLinearGradient>* tmpValue = const_cast<QList<QLinearGradient>*>(&gradients); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BaseColorsChanged(const QList<QColor> & colors) { callbackQ3DTheme_BaseColorsChanged(this, ({ QList<QColor>* tmpValue = new QList<QColor>(colors); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_BaseGradientsChanged(const QList<QLinearGradient> & gradients) { callbackQ3DTheme_BaseGradientsChanged(this, ({ QList<QLinearGradient>* tmpValue = new QList<QLinearGradient>(gradients); QtDataVisualization_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_ColorStyleChanged(Q3DTheme::ColorStyle style) { callbackQ3DTheme_ColorStyleChanged(this, style); };
 	void Signal_FontChanged(const QFont & font) { callbackQ3DTheme_FontChanged(this, const_cast<QFont*>(&font)); };
 	void Signal_GridEnabledChanged(bool enabled) { callbackQ3DTheme_GridEnabledChanged(this, enabled); };

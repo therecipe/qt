@@ -150,6 +150,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrant,
 				vagrantsystem,
 				false,
+				true,
 				false,
 			)
 			templater.CleanupDepsForCI()

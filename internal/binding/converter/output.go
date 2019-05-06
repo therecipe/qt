@@ -910,6 +910,13 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 			if strings.HasSuffix(vOld, "&") {
 				if strings.Contains(vOld, "const") {
+					if f.SignalMode == parser.CALLBACK {
+						if parser.UseJs() {
+							return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
+						}
+						return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", value, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
+					}
+
 					if parser.UseJs() {
 						return fmt.Sprintf("({ %v* tmpValue = const_cast<%v*>(&%v); %v ret; })", value, value, name, cppOutputPackingListForJs())
 					}

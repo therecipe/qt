@@ -719,7 +719,7 @@ public:
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
 	void retranslate() { callbackQQmlEngine_Retranslate(this); };
-	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = const_cast<QList<QQmlError>*>(&warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
 	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1794,7 +1794,7 @@ public:
 	void Signal_Exit(int retCode) { callbackQQmlEngine_Exit(this, retCode); };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
 	void retranslate() { callbackQQmlEngine_Retranslate(this); };
-	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = const_cast<QList<QQmlError>*>(&warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_Warnings(const QList<QQmlError> & warnings) { callbackQQmlEngine_Warnings(this, ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(warnings); QtQml_PackedList { tmpValue, tmpValue->size() }; })); };
 	 ~MyQQmlEngine() { callbackQQmlEngine_DestroyQQmlEngine(this); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<void*>(static_cast<const void*>(this)))); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };

@@ -279,6 +279,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 			var libraryPath = filepath.Join(utils.QT_MXE_DIR(), "usr", utils.QT_MXE_TRIPLET(), "bin")
 			for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64"} {
+				if utils.QT_MXE_ARCH() == "386" {
+					d = strings.TrimSuffix(d, "-x64")
+				}
 				utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, target, runtime.GOOS))
 			}
 			for _, icu := range []string{"icudt", "icuin", "icuuc"} {
@@ -341,6 +344,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 			var libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
 			for _, d := range []string{"libbz2-1", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libgraphite2", "libeay32", "ssleay32", "libcrypto-1_1-x64", "libpcre2-16-0", "libssl-1_1-x64"} {
+				if utils.QT_MSYS2_ARCH() == "386" {
+					d = strings.TrimSuffix(d, "-x64")
+				}
 				utils.RunCmdOptional(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, target, runtime.GOOS))
 			}
 			for _, icu := range []string{"icudt", "icuin", "icuuc"} {
@@ -573,7 +579,11 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		rcc.ResourceNames = make(map[string]string)
 		cmdC := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
+		cmdC.Dir = depPath
 		newArgs := templater.GetiOSClang(target, t, depPath)
+		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
+			cmdC.Args = append(cmdC.Args, target+"_qml_plugin_import.cpp")
+		}
 
 		env, tags, _, _ := cmd.BuildEnv(target, "", "")
 		if (!fast || utils.QT_STUB()) && !utils.QT_FAT() {
@@ -601,11 +611,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 			}
 		}
 
-		if utils.ExistsFile(filepath.Join(depPath, target+"_qml_plugin_import.cpp")) {
-			cmdC.Args = append(cmdC.Args, target+"_qml_plugin_import.cpp")
-		}
 		cmdC.Args = append(cmdC.Args, "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
-		cmdC.Dir = depPath
 		cmdC.Args = append(cmdC.Args, newArgs...)
 		utils.RunCmd(cmdC, fmt.Sprintf("compile wrapper for %v (%v) on %v", target, t, runtime.GOOS))
 
@@ -726,6 +732,10 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		env, _, _, _ := cmd.BuildEnv(target, "", "")
 		cmd := exec.Command(filepath.Join(env["EMSCRIPTEN"], "em++"), "c_main_wrapper_js.cpp", target+".js_plugin_import.cpp")
 		cmd.Dir = depPath
+		newArgs := templater.GetiOSClang(target, "", depPath)
+		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
+			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
+		}
 
 		for rccFile := range rcc.ResourceNames {
 			cmd.Args = append(cmd.Args, rccFile)
@@ -780,10 +790,6 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		//<-
 
 		//TODO: check if minimal packages are stale and skip main.js rebuild this if they aren't
-		newArgs := templater.GetiOSClang(target, "", depPath)
-		if utils.ExistsFile(filepath.Join(depPath, target+".js_qml_plugin_import.cpp")) {
-			cmd.Args = append(cmd.Args, target+".js_qml_plugin_import.cpp")
-		}
 		cmd.Args = append(cmd.Args, newArgs...)
 		cmd.Args = append(cmd.Args, []string{"-o", "main.js"}...)
 		for key, value := range env {

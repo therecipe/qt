@@ -1368,7 +1368,7 @@ public:
 	void Signal_DataModelChanged(QScxmlDataModel * model) { callbackQScxmlStateMachine_DataModelChanged(this, model); };
 	void Signal_Finished() { callbackQScxmlStateMachine_Finished(this); };
 	void Signal_InitializedChanged(bool initialized) { callbackQScxmlStateMachine_InitializedChanged(this, initialized); };
-	void Signal_InvokedServicesChanged(const QVector<QScxmlInvokableService *> & invokedServices) { callbackQScxmlStateMachine_InvokedServicesChanged(this, ({ QVector<QScxmlInvokableService *>* tmpValue = const_cast<QVector<QScxmlInvokableService *>*>(&invokedServices); QtScxml_PackedList { tmpValue, tmpValue->size() }; })); };
+	void Signal_InvokedServicesChanged(const QVector<QScxmlInvokableService *> & invokedServices) { callbackQScxmlStateMachine_InvokedServicesChanged(this, ({ QVector<QScxmlInvokableService *>* tmpValue = new QVector<QScxmlInvokableService *>(invokedServices); QtScxml_PackedList { tmpValue, tmpValue->size() }; })); };
 	void Signal_Log(const QString & label, const QString & msg) { QByteArray t64c653 = label.toUtf8(); QtScxml_PackedString labelPacked = { const_cast<char*>(t64c653.prepend("WHITESPACE").constData()+10), t64c653.size()-10 };QByteArray t19f34e = msg.toUtf8(); QtScxml_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };callbackQScxmlStateMachine_Log(this, labelPacked, msgPacked); };
 	void Signal_ReachedStableState() { callbackQScxmlStateMachine_ReachedStableState(this); };
 	void Signal_RunningChanged(bool running) { callbackQScxmlStateMachine_RunningChanged(this, running); };

@@ -44,6 +44,9 @@ func main() {
 	var quickcompiler bool
 	flag.BoolVar(&quickcompiler, "quickcompiler", false, "use the quickcompiler")
 
+	var uic bool
+	flag.BoolVar(&uic, "uic", true, "use the uic")
+
 	if cmd.ParseFlags() {
 		flag.Usage()
 	}
@@ -101,12 +104,20 @@ func main() {
 		}
 	}
 
+	dockerArgs := []string{"qtrcc", "-debug"}
+	if !uic {
+		dockerArgs = append(dockerArgs, "-uic=false")
+	}
+	if quickcompiler {
+		dockerArgs = append(dockerArgs, "-quickcompiler")
+	}
+
 	switch {
 	case docker:
-		cmd.Docker([]string{"qtrcc", "-debug"}, target, path, false)
+		cmd.Docker(dockerArgs, target, path, false)
 	case vagrant:
-		cmd.Vagrant([]string{"qtrcc", "-debug"}, target, path, false, vagrant_system)
+		cmd.Vagrant(dockerArgs, target, path, false, vagrant_system)
 	default:
-		rcc.Rcc(path, target, tags, output, quickcompiler)
+		rcc.Rcc(path, target, tags, output, uic, quickcompiler)
 	}
 }

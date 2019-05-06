@@ -21,3 +21,4 @@ Mfile*
 /internal/examples/**/deploy
 /internal/examples/**/moc*
 /internal/examples/**/rcc*
+/internal/examples/**/uic*

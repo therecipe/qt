@@ -24,14 +24,16 @@ COPY --from=base /usr/local/go /usr/local/go
 COPY --from=base $GOPATH/bin $GOPATH/bin
 COPY --from=base $GOPATH/src/github.com/therecipe/qt $GOPATH/src/github.com/therecipe/qt
 
-RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl && apt-get -qq clean
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates curl p7zip-full && apt-get -qq clean
 RUN apt-get -qq update && apt-get -y -qq purge python && apt-get -qq clean
 
-RUN SF_SDK_TOOLING=Jolla-latest-Sailfish_SDK_Tooling-i486.tar.bz2 && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/latest/$SF_SDK_TOOLING && tar --numeric-owner -p -xjf $SF_SDK_TOOLING -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
+RUN SF_SDK_TOOLING=Sailfish_OS-latest-Sailfish_SDK_Tooling-i486.tar.7z && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TOOLING && 7z x -so $SF_SDK_TOOLING | tar --numeric-owner -p -xf - -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
 
-RUN SF_SDK_TARGET=Jolla-latest-Sailfish_SDK_Target-i486.tar.bz2 && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-i486 && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/latest/$SF_SDK_TARGET && tar --numeric-owner -p -xjf $SF_SDK_TARGET -C /srv/mer/targets/SailfishOS-2.2.1.18-i486 && rm -f $SF_SDK_TARGET
+RUN SF_SDK_TOOLING=Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2 && mkdir -p $SF_SDK_TOOLING_DIR && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/installers/latest/$SF_SDK_TOOLING && tar --numeric-owner -p -xjf $SF_SDK_TOOLING -C $SF_SDK_TOOLING_DIR && rm -f $SF_SDK_TOOLING
 
-RUN SF_SDK_TARGET=Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2 && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/latest/$SF_SDK_TARGET && tar --numeric-owner -p -xjf $SF_SDK_TARGET -C /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && rm -f $SF_SDK_TARGET
+RUN SF_SDK_TARGET=Sailfish_OS-latest-Sailfish_SDK_Target-i486.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-i486 && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-i486 && rm -f $SF_SDK_TARGET
+
+RUN SF_SDK_TARGET=Sailfish_OS-latest-Sailfish_SDK_Target-armv7hl.tar.7z && mkdir -p /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && curl -sL --retry 10 --retry-delay 60 -O https://releases.sailfishos.org/sdk/targets/$SF_SDK_TARGET && 7z x -so $SF_SDK_TARGET | tar --numeric-owner -p -xf - -C /srv/mer/targets/SailfishOS-2.2.1.18-armv7hl && rm -f $SF_SDK_TARGET
 
 ENV PATH $SF_SDK_TOOLING_DIR/usr/bin/:$PATH
 

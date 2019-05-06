@@ -1,0 +1,303 @@
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>CalculatorForm</class>
+ <widget class="QWidget" name="CalculatorForm" >
+  <property name="objectName" >
+   <string notr="true" >CalculatorForm</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>276</width>
+    <height>98</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>5</hsizetype>
+    <vsizetype>5</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle" >
+   <string>Calculator Builder</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="objectName" >
+    <string notr="true" />
+   </property>
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
+    <layout class="QHBoxLayout" >
+     <property name="objectName" >
+      <string notr="true" />
+     </property>
+     <property name="margin" >
+      <number>1</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="objectName" >
+        <string notr="true" />
+       </property>
+       <property name="margin" >
+        <number>1</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label" >
+         <property name="objectName" >
+          <string notr="true" >label</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>1</y>
+           <width>45</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Input 1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="inputSpinBox1" >
+         <property name="objectName" >
+          <string notr="true" >inputSpinBox1</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>26</y>
+           <width>45</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="mouseTracking" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3" >
+       <property name="objectName" >
+        <string notr="true" >label_3</string>
+       </property>
+       <property name="geometry" >
+        <rect>
+         <x>54</x>
+         <y>1</y>
+         <width>7</width>
+         <height>52</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>+</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="objectName" >
+        <string notr="true" />
+       </property>
+       <property name="margin" >
+        <number>1</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_2" >
+         <property name="objectName" >
+          <string notr="true" >label_2</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>1</y>
+           <width>45</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Input 2</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="inputSpinBox2" >
+         <property name="objectName" >
+          <string notr="true" >inputSpinBox2</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>26</y>
+           <width>45</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="mouseTracking" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3_2" >
+       <property name="objectName" >
+        <string notr="true" >label_3_2</string>
+       </property>
+       <property name="geometry" >
+        <rect>
+         <x>120</x>
+         <y>1</y>
+         <width>7</width>
+         <height>52</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>=</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" >
+       <property name="objectName" >
+        <string notr="true" />
+       </property>
+       <property name="margin" >
+        <number>1</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_2_2_2" >
+         <property name="objectName" >
+          <string notr="true" >label_2_2_2</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>1</y>
+           <width>37</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Output</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="outputWidget" >
+         <property name="objectName" >
+          <string notr="true" >outputWidget</string>
+         </property>
+         <property name="geometry" >
+          <rect>
+           <x>1</x>
+           <y>24</y>
+           <width>37</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="frameShape" >
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="text" >
+          <string>0</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignAbsolute|Qt::AlignBottom|Qt::AlignCenter|Qt::AlignHCenter|Qt::AlignHorizontal_Mask|Qt::AlignJustify|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing|Qt::AlignVCenter|Qt::AlignVertical_Mask</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" >
+    <spacer>
+     <property name="objectName" >
+      <string notr="true" >verticalSpacer</string>
+     </property>
+     <property name="geometry" >
+      <rect>
+       <x>85</x>
+       <y>69</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1" >
+    <spacer>
+     <property name="objectName" >
+      <string notr="true" >horizontalSpacer</string>
+     </property>
+     <property name="geometry" >
+      <rect>
+       <x>188</x>
+       <y>26</y>
+       <width>79</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections/>
+</ui>
