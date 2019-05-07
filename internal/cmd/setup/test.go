@@ -20,7 +20,7 @@ import (
 func Test(target string, docker, vagrant bool, vagrantsystem string) {
 	utils.Log.Infof("running: 'qtsetup test %v' [docker=%v] [vagrant=%v]", target, docker, vagrant)
 
-	if utils.CI() && target == runtime.GOOS && runtime.GOOS != "windows" { //TODO: test on windows
+	if utils.CI() && target == runtime.GOOS && !(runtime.GOOS == "windows" || utils.QT_STATIC()) { //TODO: test on windows
 		utils.Log.Infof("running setup/test %v CI", target)
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
@@ -53,7 +53,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				filepath.Join("threejs", "planets"),
 			},
 
-			"charts": []string{"audio"},
+			"charts": []string{"audio", "dynamicspline"},
 
 			"common": []string{"qml_demo", "widgets_demo"},
 
@@ -63,7 +63,9 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 			//opengl: []string{"2dpainting"},
 
-			"qml": []string{"adding", "application", "drawer_nav_x",
+			"qml": []string{"adding", "application",
+				"custom_scheme", "drawer_nav_x",
+
 				filepath.Join("extending", "chapter1-basics"),
 				filepath.Join("extending", "chapter2-methods"),
 				filepath.Join("extending", "chapter3-bindings"),
@@ -76,27 +78,33 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				filepath.Join("extending", "components", "test_qml"),
 				filepath.Join("extending", "components", "test_qml_go"),
 				"gallery", "material",
-				//filepath.Join("printslides", "cmd", "printslides"),
-				"prop", "prop2" /*"quickflux", "webview"*/},
+				"prop", "prop2" /*"webview"*/},
 
 			"qt3d": []string{"audio-visualizer-qml"},
 
-			"quick": []string{"bridge", "bridge2", "calc", "dialog", "dynamic",
-				"hotreload", "listview", "sailfish", "tableview", "translate", "view"},
+			"quick": []string{"bridge", "bridge2", "calc" /*"cookies"*/, "dialog", "dynamic",
+				"hotreload", "listview", "photoviewer", "sailfish", "tableview", "translate", "view"},
 
 			"sailfish": []string{"listview", "listview_variant"},
 
-			"showcases": []string{"sia"},
+			"sensors": []string{"accelbubble"},
+
+			"showcases": []string{"wallet"},
 
 			"sql": []string{"masterdetail", "masterdetail_qml", "querymodel"},
 
-			"uitools": []string{"calculator"},
+			"uitools": []string{"calculator", "calculator_manual"},
+
+			"virtualkeyboard": []string{"qml", "widgets", "widgets_embedded"},
 
 			"webchannel": []string{"chatserver-go" /*"standalone" "webview"*/},
 
+			//"webkit": []string{"browser"},
+
 			"widgets": []string{"bridge2" /*"dropsite"*/, "graphicsscene", "line_edits", "pixel_editor",
-				/*"renderer"*/ "share", "systray" /*"table"*/, "textedit", filepath.Join("treeview", "treeview_dual"),
-				filepath.Join("treeview", "treeview_filelist"), "video_player" /*"webengine"*/, "xkcd"},
+				/*"renderer"*/ "share", "systray" /*"table"*/, "textedit",
+				filepath.Join("treeview", "treeview_dual"), filepath.Join("treeview", "treeview_filelist"),
+				"video_player" /*"webengine"*/, "xkcd"},
 		}
 	} else {
 		if strings.HasPrefix(target, "sailfish") {
@@ -107,11 +115,13 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 			}
 		} else {
 			examples = map[string][]string{
-				"qml": []string{"application", "drawer_nav_x", "gallery"},
+				"showcases": []string{"wallet"},
+
+				"qml": []string{"gallery"},
 
 				"quick": []string{"calc"},
 
-				"widgets": []string{"line_edits", "pixel_editor", "textedit"},
+				"widgets": []string{"textedit"},
 			}
 		}
 	}
@@ -151,7 +161,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				vagrantsystem,
 				false,
 				true,
-				false,
+				true,
 			)
 			templater.CleanupDepsForCI()
 			templater.CleanupDepsForCI = func() {}

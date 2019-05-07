@@ -26,7 +26,7 @@ var (
 
 func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler bool) {
 	if utils.UseGOMOD(path) {
-		if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")
@@ -497,6 +497,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 						l = strings.Replace(l, "QMetaObject::connectSlotsByName(", "core.QMetaObject_ConnectSlotsByName(", -1)
 						l = strings.Replace(l, "QWidget::setTabOrder(", "widgets.QWidget_SetTabOrder(", -1)
 						l = strings.Replace(l, "QCoreApplication::translate(", "core.QCoreApplication_Translate(", -1)
+						l = strings.Replace(l, "QApplication::translate(", "widgets.QApplication_Translate(", -1)
 
 						//
 

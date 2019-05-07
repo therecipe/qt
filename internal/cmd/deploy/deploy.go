@@ -68,7 +68,7 @@ func Deploy(mode, target, path string, docker bool, ldFlags, tags string, fast b
 			}
 
 			if utils.UseGOMOD(path) {
-				if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+				if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 					cmd := exec.Command("go", "mod", "vendor")
 					cmd.Dir = path
 					utils.RunCmd(cmd, "go mod vendor")

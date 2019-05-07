@@ -21,7 +21,7 @@ import (
 
 func Minimal(path, target, tags string) {
 	if utils.UseGOMOD(path) {
-		if !utils.ExistsDir(filepath.Join(path, "vendor")) {
+		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
 			cmd.Dir = path
 			utils.RunCmd(cmd, "go mod vendor")

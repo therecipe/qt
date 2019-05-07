@@ -350,7 +350,9 @@ func GoList(args ...string) *exec.Cmd {
 		a := args[i]
 		if strings.HasPrefix(a, "-") {
 			args = append(args[:i], args[i+1:]...)
-			cmd.Args = append(cmd.Args, a)
+			if !strings.Contains(runtime.Version(), "1.10") { //TODO: also for Go <= 1.10
+				cmd.Args = append(cmd.Args, a)
+			}
 		}
 	}
 

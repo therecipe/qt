@@ -627,9 +627,17 @@ func cgoFileNames(module, path, target string, mode int) []string {
 	var pFix string
 	switch mode {
 	case RCC:
-		pFix = "rcc_"
+		if utils.QT_STATIC() { //TODO: fix wrong order issue in LDFLAGS instead
+			pFix = "moc_"
+		} else {
+			pFix = "rcc_"
+		}
 	case MOC:
-		pFix = "moc_"
+		if utils.QT_STATIC() { //TODO: fix wrong order issue in LDFLAGS instead
+			pFix = "rcc_"
+		} else {
+			pFix = "moc_"
+		}
 	case MINIMAL:
 		pFix = "minimal_"
 	}

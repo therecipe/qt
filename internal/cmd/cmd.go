@@ -336,7 +336,11 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		gpath += pathseperator + gpfs
 		args = append(args, []string{"-e", "QT_STUB=true"}...)
 	} else {
-		gpath = gpfs + pathseperator + gpath
+		if strings.Contains(path, "github.com/therecipe/qt/internal/examples") {
+			gpath += pathseperator + gpfs
+		} else {
+			gpath = gpfs + pathseperator + gpath
+		}
 	}
 
 	if utils.QT_DEBUG() {
