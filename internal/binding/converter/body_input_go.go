@@ -116,6 +116,15 @@ func GoInputParametersForJSAlloc(function *parser.Function) []string {
 					input = append(input, fmt.Sprintf("var %v js.Value\nif %v != \"\" || true {\n%v = %v\ndefer (*js.TypedArray)(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int()))).Release()\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
 				}
 
+			case "[]byte":
+				{
+					if !parser.UseWasm() {
+						continue
+					}
+					//TODO: make it possible to pass nil []bytes; fix this on C side instead
+					input = append(input, fmt.Sprintf("var %v js.Value\nif len(%v) != 0 || true {\n%v = %v\ndefer (*js.TypedArray)(unsafe.Pointer(uintptr(%v.Get(\"data_ptr\").Int()))).Release()\n}\n", name, parser.CleanName(parameter.Name, parameter.Value), name, alloc, name))
+				}
+
 			case "*string", "[]string", "error":
 				{
 					if !parser.UseWasm() {

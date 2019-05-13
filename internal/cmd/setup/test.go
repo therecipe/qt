@@ -8,11 +8,13 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 
 	"github.com/therecipe/qt/internal/cmd/deploy"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
+	"github.com/therecipe/qt/internal/cmd/rcc"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -25,7 +27,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 		path := utils.GoQtPkgPath("internal", "cmd", "moc", "test")
 
-		moc.Moc(path, target, "", false, false)
+		moc.Moc(path, target, "", false, false, false)
 		minimal.Minimal(path, target, "")
 
 		var pattern string
@@ -37,6 +39,10 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 		cmd.Env = append(os.Environ(), "GODEBUG=cgocheck=2")
 		cmd.Dir = path
 		utils.RunCmd(cmd, "run \"go test\"")
+
+		parser.State.ClassMap = make(map[string]*parser.Class)
+		rcc.ResourceNames = make(map[string]string)
+		moc.ResourceNames = make(map[string]string)
 	}
 
 	mode := "test"
@@ -132,7 +138,10 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 
 	for cat, list := range examples {
 		for _, example := range list {
-			if target != runtime.GOOS && example == "textedit" {
+			if target != runtime.GOOS && (example == "textedit" || example == "wallet") {
+				continue
+			}
+			if cat == "virtualkeyboard" && (strings.Contains(target, "ios") || strings.Contains(target, "android")) {
 				continue
 			}
 
@@ -140,7 +149,7 @@ func Test(target string, docker, vagrant bool, vagrantsystem string) {
 				cat == "charts" || cat == "uitools" || cat == "sql" ||
 				cat == "androidextras" || cat == "qt3d" || cat == "webchannel" ||
 				(cat == "widgets" && strings.HasPrefix(example, "treeview")) ||
-				example == "video_player" {
+				example == "video_player" || example == "custom_scheme" {
 				continue
 			}
 

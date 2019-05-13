@@ -24,7 +24,7 @@ func QT_VERSION() string {
 		var r string
 		qtVersionCacheMutex.Lock()
 		if qtVersionCache == "" {
-			qtVersionCache = strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "cgo.LinuxPkgConfig_modVersion"))
+			qtVersionCache = strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--modversion", "Qt5Core"), "utils.PKG_CONFIG_modVersion"))
 		}
 		r = qtVersionCache
 		qtVersionCacheMutex.Unlock()
@@ -199,6 +199,9 @@ func ToolPath(tool, target string) string {
 
 	switch target {
 	case "darwin":
+		if QT_PKG_CONFIG() {
+			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "utils.PKG_CONFIG_hostBins")), tool)
+		}
 		if QT_NIX() {
 			path, _ := exec.LookPath(tool)
 			path, _ = filepath.Abs(path)
@@ -228,7 +231,7 @@ func ToolPath(tool, target string) string {
 		return filepath.Join(QT_MXE_DIR(), "usr", QT_MXE_TRIPLET(), "qt5", "bin", tool)
 	case "linux", "ubports":
 		if QT_PKG_CONFIG() {
-			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), tool)
+			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "utils.PKG_CONFIG_hostBins")), tool)
 		}
 		path := filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "gcc_64", "bin", tool)
 		if !ExistsDir(filepath.Join(QT_DIR(), QT_VERSION_MAJOR())) {
@@ -238,6 +241,9 @@ func ToolPath(tool, target string) string {
 	case "ios", "ios-simulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "ios", "bin", tool)
 	case "android":
+		if GOARCH() == "arm64" {
+			return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_arm64_v8a", "bin", tool)
+		}
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_armv7", "bin", tool)
 	case "android-emulator":
 		return filepath.Join(QT_DIR(), QT_VERSION_MAJOR(), "android_x86", "bin", tool)
@@ -300,6 +306,9 @@ func GOFLAGS() string {
 }
 
 func GOMOD(path string) string {
+	if useGOMODPath != "" {
+		return useGOMODPath
+	}
 	if mod, ok := os.LookupEnv("GOMOD"); ok {
 		return mod
 	}
@@ -312,14 +321,16 @@ func GOMOD(path string) string {
 
 var (
 	useGOMOD      int
+	useGOMODPath  string
 	useGOMODMutex = new(sync.Mutex)
 )
 
 func UseGOMOD(path string) (r bool) {
 	useGOMODMutex.Lock()
 	if useGOMOD == 0 {
-		if len(GOMOD(path)) != 0 {
+		if gm := GOMOD(path); len(gm) != 0 {
 			useGOMOD = 1
+			useGOMODPath = gm
 		} else {
 			if path != "" {
 				useGOMOD = -1
@@ -346,11 +357,19 @@ func GoList(args ...string) *exec.Cmd {
 		}
 	}
 
+	var skip bool
+	for i := 5; i <= 10; i++ {
+		if v := runtime.Version(); strings.Contains(v, fmt.Sprintf("go1.%v.", i)) || strings.HasSuffix(v, fmt.Sprintf("go1.%v", i)) {
+			skip = true
+			break
+		}
+	}
+
 	for i := len(args) - 1; i >= 0; i-- {
 		a := args[i]
 		if strings.HasPrefix(a, "-") {
 			args = append(args[:i], args[i+1:]...)
-			if !strings.Contains(runtime.Version(), "1.10") { //TODO: also for Go <= 1.10
+			if !skip {
 				cmd.Args = append(cmd.Args, a)
 			}
 		}

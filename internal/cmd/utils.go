@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 
@@ -16,6 +17,9 @@ var (
 
 	imported      = make(map[string]string)
 	importedMutex = new(sync.Mutex)
+
+	importedStd      = make(map[string]struct{})
+	importedStdMutex = new(sync.Mutex)
 )
 
 func IsStdPkg(pkg string) bool {
@@ -34,7 +38,7 @@ func IsStdPkg(pkg string) bool {
 	return false
 }
 
-func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool) []string {
+func GetImports(path, target, tagsCustom string, level int, onlyDirect bool) []string {
 	utils.Log.WithField("path", path).WithField("level", level).Debug("get imports")
 
 	env, tags, _, _ := BuildEnv(target, "", "")
@@ -88,7 +92,7 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 	}
 
 	wg := new(sync.WaitGroup)
-	wc := make(chan bool, 50)
+	wc := make(chan bool, runtime.NumCPU()*2)
 	wg.Add(len(libs))
 	for _, l := range libs {
 		wc <- true
@@ -99,6 +103,11 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 			}()
 
 			if strings.Contains(l, "github.com/therecipe/qt") && !strings.Contains(l, "qt/internal") {
+				if strings.Contains(l, "github.com/therecipe/qt/") {
+					importedStdMutex.Lock()
+					importedStd[l] = struct{}{}
+					importedStdMutex.Unlock()
+				}
 				return
 			}
 
@@ -125,6 +134,13 @@ func GetImports(path, target, tagsCustom string, level int, onlyDirect, moc bool
 		imports = append(imports, k)
 	}
 	return imports
+}
+
+func GetQtStdImports() (o []string) {
+	for k := range importedStd {
+		o = append(o, strings.TrimPrefix(k, "github.com/therecipe/qt/"))
+	}
+	return
 }
 
 func GetGoFiles(path, target, tagsCustom string) []string {

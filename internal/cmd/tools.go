@@ -1,8 +1,4 @@
 package cmd
 
-import (
-	//only needed for module support ->
-	_ "github.com/gopherjs/gopherjs/js"
-	_ "github.com/therecipe/qt/internal/binding/files/docs"
-	//<-
-)
+//only needed for module support
+import _ "github.com/therecipe/qt/internal/binding/files/docs"

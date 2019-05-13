@@ -30,6 +30,7 @@ func GoTemplate(module string, stub bool, mode int, pkg, target, tags string) []
 
 	if UseJs() {
 		fmt.Fprint(bb, "func jsGoUnpackString(s string) string { dec, _ := hex.DecodeString(s)\n return string(dec)\n }\n") //TODO: calling it cGoUnpackString won't work, bug in go wasm ?
+		fmt.Fprint(bb, "func jsGoUnpackBytes(s string) []byte { dec, _ := hex.DecodeString(s)\n return dec\n }\n")
 	}
 
 	if module == "QtAndroidExtras" && utils.QT_VERSION_NUM() >= 5060 {

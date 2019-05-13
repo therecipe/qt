@@ -562,25 +562,46 @@ func CppOutput(name, value string, f *parser.Function) string {
 }
 
 func cppOutputPack(name, value string, f *parser.Function) string {
-	var out = CppOutput(name, value, f)
+	out := CppOutput(name, value, f)
 
-	if strings.Contains(out, "_PackedString") {
-		var out = strings.Replace(out, "({ ", "", -1)
-		out = strings.Replace(out, " })", "", -1)
-		if !strings.HasSuffix(out, ";") {
-			out = fmt.Sprintf("%v;", out)
+	if parser.UseJs() {
+		if strings.Contains(out, "emscripten::val::object") {
+			out = strings.Replace(out, "({ ", "", -1)
+			out = strings.Replace(out, " })", "", -1)
+			if strings.HasPrefix(out, "reinterpret_cast<uintptr_t>(") {
+				out = strings.TrimPrefix(out, "reinterpret_cast<uintptr_t>(")
+				out = strings.TrimSuffix(out, ")")
+			}
+			if !strings.HasSuffix(out, ";") {
+				out = fmt.Sprintf("%v;", out)
+			}
+			out = strings.TrimSuffix(out, "ret;")
+			out = strings.Replace(out, " ret ", fmt.Sprintf(" %vPacked ", parser.CleanName(name, value)), -1)
+			out = strings.Replace(out, "ret.", fmt.Sprintf("%vPacked.", parser.CleanName(name, value)), -1)
+			return out
 		}
-		return strings.Replace(out, "_PackedString", fmt.Sprintf("_PackedString %vPacked =", parser.CleanName(name, value)), -1)
+	} else {
+		if strings.Contains(out, "_PackedString") {
+			out = strings.Replace(out, "({ ", "", -1)
+			out = strings.Replace(out, " })", "", -1)
+			if !strings.HasSuffix(out, ";") {
+				out = fmt.Sprintf("%v;", out)
+			}
+			return strings.Replace(out, "_PackedString", fmt.Sprintf("_PackedString %vPacked =", parser.CleanName(name, value)), -1)
+		}
 	}
 
 	return ""
 }
 
 func cppOutputPacked(name, value string, f *parser.Function) string {
-	var out = CppOutput(name, value, f)
+	out := CppOutput(name, value, f)
 
 	if parser.UseJs() {
-		if isClass(parser.CleanValue(value)) && !strings.Contains(out, "emscripten::val::object()") {
+		if isClass(parser.CleanValue(value)) {
+			if strings.Contains(out, "emscripten::val::object") {
+				return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
+			}
 			return "reinterpret_cast<uintptr_t>(" + out + ")"
 		}
 	} else {
@@ -588,7 +609,6 @@ func cppOutputPacked(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
 		}
 	}
-
 	return out
 }
 
@@ -957,6 +977,21 @@ func goOutputJS(name, value string, f *parser.Function, p string) string {
 		{
 			return func() string {
 				var out = fmt.Sprintf("jsGoUnpackString(%v.Get(\"data\").String())", name)
+
+				switch value {
+				case "char", "qint8", "uchar", "quint8", "GLubyte":
+					if len(f.Parameters) <= 4 &&
+						(strings.Contains(strings.ToLower(f.Name), "read") ||
+							strings.Contains(strings.ToLower(f.Name), "write") ||
+							strings.Contains(strings.ToLower(f.Name), "data")) {
+						for _, p := range f.Parameters {
+							if strings.Contains(p.Value, "int") && f.Parameters[0].Value == vOld {
+								return fmt.Sprintf("jsGoUnpackBytes(%v.Get(\"data\").String())", name)
+							}
+						}
+					}
+				}
+
 				if strings.Contains(p, "error") {
 					return fmt.Sprintf("errors.New(%v)", out)
 				}

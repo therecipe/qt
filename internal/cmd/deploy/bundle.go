@@ -478,6 +478,9 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", target, runtime.GOOS))
 
 		libPath := filepath.Join(depPath, "build", "libs", "armeabi-v7a")
+		if target == "android" && utils.GOARCH() == "arm64" {
+			libPath = filepath.Join(depPath, "build", "libs", "arm64-v8a")
+		}
 		if target == "android-emulator" {
 			libPath = filepath.Join(depPath, "build", "libs", "x86")
 		}
@@ -578,6 +581,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 
 		utils.Save(filepath.Join(depPath, "c_main_wrapper_"+t+".cpp"), ios_c_main_wrapper())
 		rcc.ResourceNames = make(map[string]string)
+		moc.ResourceNames = make(map[string]string)
 		cmdC := exec.Command("xcrun", "clang++", "c_main_wrapper_"+t+".cpp", target+"_plugin_import.cpp")
 		cmdC.Dir = depPath
 		newArgs := templater.GetiOSClang(target, t, depPath)
@@ -597,6 +601,7 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 		for k, v := range env {
 			cmdF.Env = append(cmdF.Env, fmt.Sprintf("%v=%v", k, v))
 		}
+		var nextNeedsFramework bool
 		for _, f := range strings.Split(strings.TrimSpace(utils.RunCmd(cmdF, "go list flags")), "|") {
 			f = strings.TrimSpace(f)
 			var found bool
@@ -606,8 +611,17 @@ func bundle(mode, target, path, name, depPath string, tagsCustom string, fast bo
 					break
 				}
 			}
-			if !found {
-				newArgs = append(newArgs, f)
+			if f == "-framework" {
+				nextNeedsFramework = true
+			} else {
+				if !found {
+					if nextNeedsFramework {
+						newArgs = append(newArgs, []string{"-framework", f}...)
+					} else {
+						newArgs = append(newArgs, f)
+					}
+				}
+				nextNeedsFramework = false
 			}
 		}
 

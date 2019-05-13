@@ -344,10 +344,12 @@ func cppFunctionBody(function *parser.Function) string {
 						ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")->"+input[len(input)-1]+"::", "static_cast<My"+polyType+"*>("+polyName+")->My"+polyType+"::", -1)
 
 						//TODO: only temporary until invoke works ->
-						for _, s := range append(parser.State.ClassMap["QAbstractItemView"].GetAllDerivations(), "QAbstractItemView") {
-							if strings.Contains(ibody, "static_cast<My"+s+"*>(ptr)->My"+s+"::update()") {
-								ibody = ""
-								break
+						if c, ok := parser.State.ClassMap["QAbstractItemView"]; ok {
+							for _, s := range append(c.GetAllDerivations(), "QAbstractItemView") {
+								if strings.Contains(ibody, "static_cast<My"+s+"*>(ptr)->My"+s+"::update()") {
+									ibody = ""
+									break
+								}
 							}
 						}
 						//<-

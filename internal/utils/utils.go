@@ -92,7 +92,11 @@ var (
 func GoQtPkgPath(s ...string) (r string) {
 	goQtPkgPathMutex.Lock()
 	if len(goQtPkgPath) == 0 {
-		goQtPkgPath = strings.TrimSpace(RunCmd(GoList("{{.Dir}}", packageName, "-find"), "utils.GoQtPkgPath"))
+		cmd := GoList("{{.Dir}}", packageName, "-find")
+		if UseGOMOD("") {
+			cmd.Dir = filepath.Dir(GOMOD(""))
+		}
+		goQtPkgPath = strings.TrimSpace(RunCmd(cmd, "utils.GoQtPkgPath"))
 	}
 	r = goQtPkgPath
 	goQtPkgPathMutex.Unlock()

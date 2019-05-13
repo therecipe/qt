@@ -30,7 +30,7 @@ func Minimal(path, target, tags string) {
 
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
 		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
+		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
 		scmd.Dir = path
 
 		tagsEnv = append(tagsEnv, "minimal")
@@ -48,7 +48,7 @@ func Minimal(path, target, tags string) {
 			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 
-		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
+		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false|") {
 			utils.Log.WithField("path", path).Debug("skipping already cached minimal")
 			return
 		}
@@ -73,12 +73,12 @@ func Minimal(path, target, tags string) {
 	//<--
 
 	wg := new(sync.WaitGroup)
-	wc := make(chan bool, 50)
+	wc := make(chan bool, runtime.NumCPU()*2)
 
 	var files []string
 	fileMutex := new(sync.Mutex)
 
-	allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false, false)...)
+	allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
 	wg.Add(len(allImports))
 	for _, path := range allImports {
 		wc <- true
@@ -121,7 +121,7 @@ func Minimal(path, target, tags string) {
 	}
 
 	if _, ok := parser.State.ClassMap["QObject"]; !ok {
-		parser.LoadModules(target)
+		parser.LoadModulesM(target)
 	} else {
 		utils.Log.Debug("modules already cached")
 	}
@@ -255,7 +255,7 @@ func Minimal(path, target, tags string) {
 	//TODO: cleanup state
 	parser.State.Minimal = true
 	for _, m := range parser.GetLibs() {
-		if !parser.ShouldBuildForTarget(m, target) ||
+		if !parser.ShouldBuildForTargetM(m, target) ||
 			m == "AndroidExtras" || m == "Sailfish" {
 			continue
 		}
@@ -267,7 +267,7 @@ func Minimal(path, target, tags string) {
 	}
 
 	for _, m := range parser.GetLibs() {
-		if !parser.ShouldBuildForTarget(m, target) ||
+		if !parser.ShouldBuildForTargetM(m, target) ||
 			m == "AndroidExtras" || m == "Sailfish" {
 			continue
 		}

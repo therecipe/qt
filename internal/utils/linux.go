@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -27,6 +28,8 @@ func QT_DOC_DIR() string {
 		return "/usr/share/qt5/doc"
 	case "gentoo":
 		return "/usr/share/doc/qt-" + QT_VERSION()
+	case "darwin":
+		return ""
 	default:
 		Log.Error("failed to detect the Linux distro")
 		return ""
@@ -38,15 +41,18 @@ func QT_MISC_DIR() string {
 		return filepath.Clean(dir)
 	}
 	if QT_DISTRO() == "arch" {
-		return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
+		return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "utils.PKG_CONFIG_libDir")), "qt")
 	}
-	//fedora, suse, ubuntu, gentoo
-	return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
+	//fedora, suse, ubuntu, gentoo, darwin
+	return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "utils.PKG_CONFIG_hostBins")), "/bin")
 }
 
 func QT_DISTRO() string {
 	if distro, ok := os.LookupEnv("QT_DISTRO"); ok {
 		return distro
+	}
+	if runtime.GOOS == "darwin" {
+		return "darwin"
 	}
 	if _, err := exec.LookPath("pacman"); err == nil {
 		return "arch"

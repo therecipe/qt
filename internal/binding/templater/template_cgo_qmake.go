@@ -264,7 +264,7 @@ func createMakefile(module, path, target string, mode int) {
 		relProPath = proPath
 	}
 	env, _, _, _ := cmd.BuildEnv(target, "", "")
-	cmd := exec.Command(utils.ToolPath("qmake", target), "-o", mPath, relProPath)
+	cmd := exec.Command(utils.ToolPath("qmake", target), "-nocache", "-nodepend", "-nomoc", "-norecursive", "-o", mPath, relProPath)
 	cmd.Dir = path
 	switch target {
 	case "darwin":
@@ -660,7 +660,11 @@ func cgoFileNames(module, path, target string, mode int) []string {
 			sFixes = []string{"windows_386"}
 		}
 	case "android":
-		sFixes = []string{"linux_arm"}
+		if utils.GOARCH() == "arm64" {
+			sFixes = []string{"linux_arm64"}
+		} else {
+			sFixes = []string{"linux_arm"}
+		}
 	case "android-emulator":
 		sFixes = []string{"linux_386"}
 	case "ios":

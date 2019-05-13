@@ -50,7 +50,7 @@ var (
 	goDirCacheMutex = new(sync.Mutex)
 )
 
-func Moc(path, target, tags string, fast, slow bool) {
+func Moc(path, target, tags string, fast, slow, deploying bool) {
 	if utils.UseGOMOD(path) {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
@@ -60,6 +60,12 @@ func Moc(path, target, tags string, fast, slow bool) {
 	}
 
 	moc(path, target, tags, fast, slow, true, -1, false)
+
+	if !deploying && utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+		}
+	}
 }
 
 func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
@@ -70,29 +76,31 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	}
 
 	if !dirty {
-		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
-		scmd.Dir = path
+		for _, f := range []bool{false, true} {
+			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+			scmd.Dir = path
 
-		if !fast && !utils.QT_FAT() {
-			tagsEnv = append(tagsEnv, "minimal")
-		}
-		if tags != "" {
-			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
-		}
-		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
+				tagsEnv = append(tagsEnv, "minimal")
+			}
+			if tags != "" {
+				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+			}
+			scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
 
-		if target != runtime.GOOS {
-			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
-		}
+			if target != runtime.GOOS {
+				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+			}
 
-		for key, value := range env {
-			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
-		}
+			for key, value := range env {
+				scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+			}
 
-		if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false") {
-			utils.Log.WithField("path", path).Debug("skipping already cached moc")
-			return
+			if out := utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)); strings.Contains(out, "but available in build cache") || strings.Contains(out, "false|") {
+				utils.Log.WithField("path", path).Debug("skipping already cached moc")
+				return
+			}
 		}
 		dirty = true
 	}
@@ -106,14 +114,14 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	//fmt.Println(l, strings.Repeat(" ", l)+strings.Replace(path, utils.MustGoPath()+"/src/", "", -1))
 
 	if root {
-		ngr := 50
+		ngr := runtime.NumCPU() * 2
 		if slow {
 			ngr = 1
 		}
 		defer rootWg.Wait()
 		wg := new(sync.WaitGroup)
 		wc := make(chan bool, ngr)
-		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false, true)...)
+		allImports := append([]string{path}, cmd.GetImports(path, target, tags, 0, false)...)
 
 		wg.Add(len(allImports) * 2)
 		for _, path := range allImports {
@@ -129,7 +137,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 			wc <- true
 			go func(path string) {
-				imports := cmd.GetImports(path, target, tags, 0, true, true)
+				imports := cmd.GetImports(path, target, tags, 0, true)
 				goImportsCacheMutex.Lock()
 				goImportsCache[path] = imports
 				goImportsCacheMutex.Unlock()
@@ -191,7 +199,7 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 	}
 
 	if _, ok := parser.State.ClassMap["QObject"]; !ok {
-		parser.LoadModules(target)
+		parser.LoadModulesM(target)
 	} else {
 		utils.Log.Debug("modules already cached")
 	}
@@ -337,29 +345,31 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	var staleCheck string
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
-		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-		scmd := utils.GoList("{{.Stale}}{{.StaleReason}}")
-		scmd.Dir = path
+		for _, f := range []bool{false, true} {
+			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+			scmd.Dir = path
 
-		if !fast && !utils.QT_FAT() {
-			tagsEnv = append(tagsEnv, "minimal")
-		}
-		if tags != "" {
-			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
-		}
-		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
+				tagsEnv = append(tagsEnv, "minimal")
+			}
+			if tags != "" {
+				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+			}
+			scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
 
-		if target != runtime.GOOS {
-			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
-		}
+			if target != runtime.GOOS {
+				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+			}
 
-		for key, value := range env {
-			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+			for key, value := range env {
+				scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+			}
+			staleCheck += utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)) + "|"
 		}
-		staleCheck = utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS))
 	}
 
-	if strings.Contains(staleCheck, "but available in build cache") || strings.Contains(staleCheck, "false") {
+	if strings.Contains(staleCheck, "but available in build cache") || strings.Contains(staleCheck, "false|") {
 		utils.Log.WithField("path", path).Debug("skipping already cached moc")
 	} else {
 		if err := utils.SaveBytes(filepath.Join(path, "moc.cpp"), templater.CppTemplate(parser.MOC, templater.MOC, target, tags)); err != nil {
@@ -389,6 +399,10 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 		libs = parser.LibDeps[parser.MOC]
 		parser.LibDepsMutex.Unlock()
 
+		if parser.ShouldBuildForTargetM("Qml", target) {
+			libs = append(libs, "Qml")
+		}
+
 		rootWg.Add(1)
 		go func() {
 			templater.CgoTemplateSafe(parser.MOC, path, target, templater.MOC, pkg, tags, libs)
@@ -400,12 +414,6 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 			utils.RunCmd(exec.Command(utils.ToolPath("moc", target), filepath.Join(path, "moc.cpp"), "-o", filepath.Join(path, "moc_moc.h")), "run moc")
 			if tags != "" {
 				utils.Save(filepath.Join(path, "moc_moc.h"), "// +build "+tags+"\n\n"+utils.Load(filepath.Join(path, "moc_moc.h")))
-			}
-
-			if utils.QT_DOCKER() {
-				if idug, ok := os.LookupEnv("IDUG"); ok {
-					utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
-				}
 			}
 			rootWg.Done()
 		}()
@@ -880,7 +888,7 @@ func parseNonMocDeps(files []string) {
 	utils.Log.Debug("parseNonMocDeps")
 
 	wg := new(sync.WaitGroup)
-	wc := make(chan bool, 50)
+	wc := make(chan bool, runtime.NumCPU()*2)
 
 	for _, fpath := range files {
 		if base := filepath.Base(fpath); strings.HasPrefix(base, "rcc") || strings.HasPrefix(base, "moc") {

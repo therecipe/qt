@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -227,6 +228,21 @@ var LibDeps = map[string][]string{
 }
 
 func ShouldBuildForTarget(module, target string) bool {
+	return shouldBuildForTarget(module, target, false)
+}
+func ShouldBuildForTargetM(module, target string) bool {
+	return shouldBuildForTarget(module, target, true)
+}
+func shouldBuildForTarget(module, target string, min bool) bool {
+	if State.Minimal == true || min {
+		for _, m := range cmd.GetQtStdImports() {
+			if strings.ToLower(module) == strings.ToLower(m) ||
+				(strings.ToLower(module) == "svg" && (target == "js" || target == "wasm" || strings.HasPrefix(target, "ios") || utils.QT_STATIC())) {
+				return true
+			}
+		}
+		return false
+	}
 
 	switch target {
 	case "windows":

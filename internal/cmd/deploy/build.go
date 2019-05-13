@@ -41,9 +41,11 @@ func build(mode, target, path, ldFlagsCustom, tagsCustom, name, depPath string, 
 			return
 		}
 	case "js":
+		env["CGO_ENABLED"] = "0"
 		build_js(target, path, env, tags, out)
 		return
 	case "wasm":
+		env["CGO_ENABLED"] = "0"
 		ending = ".wasm"
 	case "linux":
 		if fast || utils.QT_PKG_CONFIG() {

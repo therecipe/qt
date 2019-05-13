@@ -118,6 +118,6 @@ func main() {
 	case vagrant:
 		cmd.Vagrant(dockerArgs, target, path, false, vagrant_system)
 	default:
-		rcc.Rcc(path, target, tags, output, uic, quickcompiler)
+		rcc.Rcc(path, target, tags, output, uic, quickcompiler, false)
 	}
 }

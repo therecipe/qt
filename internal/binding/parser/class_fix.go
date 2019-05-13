@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 
@@ -300,7 +301,7 @@ func (c *Class) fixBases() {
 
 	case "QUiLoader", "QEGLNativeContext", "QWGLNativeContext", "QGLXNativeContext", "QEglFSFunctions", "QWindowsWindowFunctions", "QCocoaNativeContext", "QXcbWindowFunctions", "QCocoaWindowFunctions":
 		{
-			if utils.QT_PKG_CONFIG() {
+			if utils.QT_PKG_CONFIG() && runtime.GOOS != "darwin" {
 				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, "include", c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
@@ -310,7 +311,7 @@ func (c *Class) fixBases() {
 
 	case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 		{
-			if utils.QT_PKG_CONFIG() {
+			if utils.QT_PKG_CONFIG() && runtime.GOOS != "darwin" {
 				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, utils.QT_VERSION(), c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, infixPath, c.Module+suffixPath+utils.QT_VERSION(), "QtGui", "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
@@ -322,7 +323,7 @@ func (c *Class) fixBases() {
 		{
 			for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
 				m = fmt.Sprintf("Qt%v", m)
-				if utils.QT_PKG_CONFIG() {
+				if utils.QT_PKG_CONFIG() && runtime.GOOS != "darwin" {
 					if utils.ExistsFile(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")) {
 						c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 						return
@@ -348,7 +349,7 @@ func (c *Class) fixBases() {
 	var found bool
 	for _, m := range libs {
 		m = fmt.Sprintf("Qt%v", m)
-		if utils.QT_PKG_CONFIG() {
+		if utils.QT_PKG_CONFIG() && runtime.GOOS != "darwin" {
 			if utils.ExistsFile(filepath.Join(prefixPath, m, c.Name)) {
 
 				var f = utils.LoadOptional(filepath.Join(prefixPath, m, c.Name))

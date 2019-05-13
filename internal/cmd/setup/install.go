@@ -94,6 +94,10 @@ func Install(target string, docker, vagrant, failfast bool) {
 			}
 		}
 
+		if target == "js" || target == "wasm" {
+			env["CGO_ENABLED"] = "0"
+		}
+
 		cmd := exec.Command("go", "install", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 		if len(tags) > 0 {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tags, "\" \"")))

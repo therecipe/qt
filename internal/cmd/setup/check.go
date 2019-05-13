@@ -66,9 +66,17 @@ func Check(target string, docker, vagrant bool) {
 			{"QT_NIX", fmt.Sprint(utils.QT_NIX())},
 			{"QT_FELGO", fmt.Sprint(utils.QT_FELGO())},
 			{"XCODE_DIR", utils.XCODE_DIR()},
+			{"QT_PKG_CONFIG", fmt.Sprint(utils.QT_PKG_CONFIG())},
 			//{"IPHONEOS_SDK_DIR", utils.IPHONEOS_SDK_DIR()},               //TODO: re-add with absolute path
 			//{"IPHONESIMULATOR_SDK_DIR", utils.IPHONESIMULATOR_SDK_DIR()}, //TODO: re-add with absolute path
 		}...)
+
+		if utils.QT_PKG_CONFIG() {
+			vars = append(vars, [][]string{
+				{"QT_DOC_DIR", utils.QT_DOC_DIR()},
+				{"QT_MISC_DIR", utils.QT_MISC_DIR()},
+			}...)
+		}
 
 		if _, err := exec.LookPath("clang++"); err != nil {
 			utils.Log.WithError(err).Panic("failed to find clang++, did you install Xcode?; please run: xcode-select --install")

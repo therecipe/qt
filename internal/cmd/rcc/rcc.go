@@ -24,7 +24,7 @@ var (
 	ResourceNamesMutex = new(sync.Mutex)
 )
 
-func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler bool) {
+func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler, deploying bool) {
 	if utils.UseGOMOD(path) {
 		if !utils.ExistsDir(filepath.Join(filepath.Dir(utils.GOMOD(path)), "vendor")) {
 			cmd := exec.Command("go", "mod", "vendor")
@@ -34,6 +34,12 @@ func Rcc(path, target, tagsCustom, output_dir string, useuic, quickcompiler bool
 	}
 
 	rcc(path, target, tagsCustom, output_dir, quickcompiler, useuic, true)
+
+	if !deploying && utils.QT_DOCKER() {
+		if idug, ok := os.LookupEnv("IDUG"); ok {
+			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
+		}
+	}
 }
 
 func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic bool, root bool) {
@@ -45,7 +51,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 	if root {
 		wg := new(sync.WaitGroup)
 		defer wg.Wait()
-		allImports := cmd.GetImports(path, target, tagsCustom, 0, false, false)
+		allImports := cmd.GetImports(path, target, tagsCustom, 0, false)
 		wg.Add(len(allImports))
 		for _, path := range allImports {
 			go func(path string) {
@@ -778,14 +784,14 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		var pureFiles []string
 
 		for _, f := range fileList {
-			newName := filepath.Join(filepath.Dir(f), name+"_"+strings.TrimSuffix(filepath.Base(f), ".qrc")+"_qml_cache.qrc")
+			newName := filepath.Join(filepath.Dir(f), name+"_"+strings.TrimSuffix(strings.Replace(filepath.Base(f), "-", "_", -1), ".qrc")+"_qml_cache.qrc")
 
 			utils.RunCmd(exec.Command(cachgen, "--filter-resource-file", "-o", newName, f), fmt.Sprintf("execute qmlcachegen filter on %v for %v", runtime.GOOS, target))
 
 			for _, tBC := range strings.Split(strings.TrimSpace(utils.RunCmd(exec.Command(utils.ToolPath("rcc", target), "-list", f), "execute rcc")), "\n") {
 				tBC = strings.TrimSpace(tBC)
 				if strings.HasSuffix(tBC, ".qml") || strings.HasSuffix(tBC, ".js") {
-					tBCT := strings.Replace(tBC, ".", "_", -1)
+					tBCT := strings.Replace(strings.Replace(tBC, ".", "_", -1), "-", "_", -1)
 
 					cmd := exec.Command(cachgen)
 
@@ -796,12 +802,16 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 					*/
 					cmd.Args = append(cmd.Args, []string{"--resource", f}...)
 
-					cmd.Args = append(cmd.Args, []string{"-o", filepath.Join(filepath.Dir(f), "rcc_"+strings.TrimSuffix(filepath.Base(f), ".qrc")+"_"+filepath.Base(filepath.Dir(tBCT))+"_"+filepath.Base(tBCT+"_qml_cache.cpp")), tBC}...)
+					of := filepath.Join(filepath.Dir(f), "rcc_"+strings.TrimSuffix(strings.Replace(filepath.Base(f), "-", "_", -1), ".qrc")+"_"+filepath.Base(strings.Replace(filepath.Dir(tBCT), "-", "_", -1))+"_"+filepath.Base(tBCT+"_qml_cache.cpp"))
+					ResourceNamesMutex.Lock()
+					ResourceNames[of] = ""
+					ResourceNamesMutex.Unlock()
+					cmd.Args = append(cmd.Args, []string{"-o", of, tBC}...)
 					utils.RunCmd(cmd, fmt.Sprintf("execute qmlcachegen cache on %v for %v", runtime.GOOS, target))
 				}
 			}
 
-			tmpName := filepath.Join(filepath.Dir(f), name+"_"+filepath.Base(f))
+			tmpName := filepath.Join(filepath.Dir(f), name+"_"+strings.Replace(filepath.Base(f), "-", "_", -1))
 
 			if utils.ExistsFile(newName) {
 				filteredFiles = append(filteredFiles, newName)
@@ -836,7 +846,7 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 			var initNameList []string
 			for _, f := range append(possibleMixedFiles, pureFiles...) {
-				initNameList = append(initNameList, strings.TrimSuffix(filepath.Base(f), ".qrc"))
+				initNameList = append(initNameList, strings.TrimSuffix(strings.Replace(filepath.Base(f), "-", "_", -1), ".qrc"))
 			}
 			ResourceNamesMutex.Lock()
 			ResourceNames[filepath.Join(path, "rcc_qmlcache_loader.cpp")] = strings.Join(initNameList, "|")
@@ -846,13 +856,13 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 		}
 
 		for _, f := range filteredFiles {
-			rcc := exec.Command(utils.ToolPath("rcc", target), "-name", strings.TrimSuffix(filepath.Base(f), ".qrc"), "-o", strings.Replace(filepath.Base(strings.TrimSuffix(f, ".qrc")), name, "rcc", -1)+".cpp")
+			rcc := exec.Command(utils.ToolPath("rcc", target), "-name", strings.TrimSuffix(strings.Replace(filepath.Base(f), "-", "_", -1), ".qrc"), "-o", strings.Replace(filepath.Base(strings.TrimSuffix(f, ".qrc")), name, "rcc", -1)+".cpp")
 			rcc.Dir = path
 			rcc.Args = append(rcc.Args, f)
 			utils.RunCmd(rcc, fmt.Sprintf("execute per file rcc *.cpp on %v for %v", runtime.GOOS, target))
 
 			ResourceNamesMutex.Lock()
-			ResourceNames[f+".cpp"] = strings.TrimSuffix(filepath.Base(f), ".qrc")
+			ResourceNames[strings.Replace(strings.TrimSuffix(f, ".qrc"), name, "rcc", -1)+".cpp"] = strings.TrimSuffix(strings.Replace(filepath.Base(f), "-", "_", -1), ".qrc")
 			ResourceNamesMutex.Unlock()
 		}
 
@@ -868,11 +878,5 @@ func rcc(path, target, tagsCustom, output_dir string, quickcompiler bool, useuic
 
 	if utils.QT_DEBUG_QML() {
 		utils.Save("debug.pro", fmt.Sprintf("RESOURCES += %v", strings.Join(fileList, " ")))
-	}
-
-	if utils.QT_DOCKER() {
-		if idug, ok := os.LookupEnv("IDUG"); ok {
-			utils.RunCmd(exec.Command("chown", "-R", idug, path), "chown files to user")
-		}
 	}
 }

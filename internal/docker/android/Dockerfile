@@ -18,8 +18,8 @@ RUN OSSL=openssl-1.0.2q.tar.gz && curl -sL --retry 10 --retry-delay 60 -O https:
 ENV CC $HOME/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc
 ENV AR $HOME/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-ar
 ENV ANDROID_DEV $HOME/android-ndk-r15c/platforms/android-16/arch-arm/usr
-RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/' $HOME/openssl-1.0.2q/Makefile
-RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/' $HOME/openssl-1.0.2q/Makefile
+RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/g' $HOME/openssl-1.0.2q/Makefile
+RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/g' $HOME/openssl-1.0.2q/Makefile
 RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-armv7 && make build_libs $HOME/openssl-1.0.2q
 RUN mkdir -p $HOME/openssl-1.0.2q-arm && mv $HOME/openssl-1.0.2q/*.so* $HOME/openssl-1.0.2q-arm
 
@@ -28,8 +28,8 @@ RUN rm -rf $HOME/openssl-1.0.2q && tar -xzf openssl-1.0.2q.tar.gz -C $HOME
 ENV CC $HOME/android-ndk-r15c/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-gcc
 ENV AR $HOME/android-ndk-r15c/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-linux-android-ar
 ENV ANDROID_DEV $HOME/android-ndk-r15c/platforms/android-16/arch-x86/usr
-RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/' $HOME/openssl-1.0.2q/Makefile
-RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/' $HOME/openssl-1.0.2q/Makefile
+RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/g' $HOME/openssl-1.0.2q/Makefile
+RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/g' $HOME/openssl-1.0.2q/Makefile
 RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-x86 && make build_libs $HOME/openssl-1.0.2q
 RUN mkdir -p $HOME/openssl-1.0.2q-x86 && mv $HOME/openssl-1.0.2q/*.so* $HOME/openssl-1.0.2q-x86
 

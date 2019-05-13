@@ -1,36 +1,32 @@
 package utils
 
 import (
+	"go/build"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"sync"
 )
 
 const packageName = "github.com/therecipe/qt"
 
-var mustGoPath string
-var mustGoPathMutex = new(sync.Mutex)
+var (
+	mustGoPath      string
+	mustGoPathMutex = new(sync.Mutex)
+)
 
-//GOBIN returns the general GOBIN string
-func GOBIN() string {
-	if dir, ok := os.LookupEnv("GOBIN"); ok {
-		return filepath.Clean(dir)
-	}
-	return filepath.Join(MustGoPath(), "bin")
-}
+func GOBIN() string  { return envOr("GOBIN", filepath.Join(MustGoPath(), "bin")) }
+func GOPATH() string { return envOr("GOPATH", build.Default.GOPATH) }
 
 // MustGoPath returns the GOPATH that holds this package
-// it exits if any error occurres and also caches the result
 func MustGoPath() string {
 	mustGoPathMutex.Lock()
-	if len(mustGoPath) == 0 {
+	if mustGoPath == "" {
 		if _, err := exec.LookPath("go"); err == nil {
-			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", "github.com/therecipe/qt", "-find"), "get list gopath"))
+			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", packageName, "-find"), "get list gopath"))
 		}
-		if len(mustGoPath) == 0 {
+		if mustGoPath == "" {
 			mustGoPath = GOPATH()
 		}
 	}
@@ -38,19 +34,10 @@ func MustGoPath() string {
 	return mustGoPath
 }
 
-// GOPATH returns the general GOPATH string
-func GOPATH() string {
-	if dir, ok := os.LookupEnv("GOPATH"); ok {
-		return dir
+func envOr(name, def string) string {
+	s := os.Getenv(name)
+	if s == "" {
+		return def
 	}
-
-	home := "HOME"
-	if runtime.GOOS == "windows" {
-		home = "USERPROFILE"
-	}
-	if dir, ok := os.LookupEnv(home); ok {
-		return filepath.Join(dir, "go")
-	}
-
-	return ""
+	return s
 }

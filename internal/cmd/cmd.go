@@ -101,7 +101,7 @@ func InitEnv(target string) {
 			return
 		}
 	case "darwin":
-		if utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() {
+		if utils.QT_PKG_CONFIG() || utils.QT_HOMEBREW() || utils.QT_MACPORTS() || utils.QT_NIX() || utils.QT_FELGO() {
 			return
 		}
 	case "windows":
@@ -256,7 +256,7 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	case "linux", "rpi1", "rpi2", "rpi3", "js", "wasm", "darwin":
 		image = target
 
-	case "android", "android-emulator":
+	case "android", "android-emulator", "android_arm64":
 		image = "android"
 
 	case "sailfish", "sailfish-emulator":
@@ -296,6 +296,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 	}
 
 	paths := make([]string, 0)
+
+	if utils.UseGOMOD(path) {
+		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/%v", filepath.Dir(utils.GOMOD(path)), filepath.Base(filepath.Dir(utils.GOMOD(path))))}...)
+	}
 
 	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
 		if runtime.GOOS == "windows" {
@@ -371,6 +375,10 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 		args = append(args, []string{"-e", "QT_NOT_CACHED=true"}...) //TODO: won't work with wine images atm
 	}
 
+	if target == "android" && utils.GOARCH() == "arm64" {
+		args = append(args, []string{"-e", "GOARCH=arm64"}...)
+	}
+
 	//TODO: flag for shared GOCACHE
 
 	if docker {
@@ -406,22 +414,30 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	args = append(args, arg...)
 
-	var found bool
-	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
-		gp = filepath.Clean(gp)
-		if strings.HasPrefix(path, gp) {
-			if !docker && system == "windows" && strings.Contains(target, "_") {
-				args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("C:/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
-			} else {
-				args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
-			}
-			found = true
-			break
+	if utils.UseGOMOD(path) {
+		if docker {
+			args = append(args, strings.Replace(path, filepath.Dir(filepath.Dir(utils.GOMOD(path))), "/media", -1))
+		} else {
+			//TODO: vagrant
 		}
-	}
+	} else {
+		var found bool
+		for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
+			gp = filepath.Clean(gp)
+			if strings.HasPrefix(path, gp) {
+				if !docker && system == "windows" && strings.Contains(target, "_") {
+					args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("C:/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+				} else {
+					args = append(args, strings.Replace(strings.Replace(path, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
+				}
+				found = true
+				break
+			}
+		}
 
-	if !found && path != "" {
-		utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
+		if !found && path != "" {
+			utils.Log.Panicln("Project needs to be inside GOPATH", path, utils.GOPATH())
+		}
 	}
 
 	if docker {
@@ -440,6 +456,9 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 			}
 			if strings.HasPrefix(args[i], "wasm_") {
 				args[i] = "wasm"
+			}
+			if strings.HasPrefix(args[i], "android_") {
+				args[i] = "android"
 			}
 		}
 
@@ -518,6 +537,18 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 		if runtime.GOOS == "windows" {
 			env["TMP"] = os.Getenv("TMP")
 			env["TEMP"] = os.Getenv("TEMP")
+		}
+
+		if utils.GOARCH() == "arm64" {
+			env["GOARCH"] = "arm64"
+
+			env["CGO_CPPFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v -isystem %v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "sysroot", "usr", "include", "aarch64-linux-android"))
+			env["CGO_LDFLAGS"] = fmt.Sprintf("-Wno-unused-command-line-argument -D__ANDROID_API__=21 -target aarch64-none-linux-android -gcc-toolchain %v --sysroot=%v",
+				filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "aarch64-linux-android-4.9", "prebuilt", runtime.GOOS+"-x86_64"),
+				filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-21", "arch-arm64"))
 		}
 
 	case "android-emulator":
@@ -698,7 +729,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			}
 		}
 
-		if target == "linux" && !utils.QT_STATIC() {
+		if target == "linux" && !(utils.QT_STATIC() || utils.QT_PKG_CONFIG()) {
 			env["CGO_LDFLAGS"] = "-Wl,-rpath,$ORIGIN/lib -Wl,--disable-new-dtags"
 		}
 
@@ -776,6 +807,9 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 
 	case "js", "wasm":
 		tags = []string{target}
+		if target == "wasm" {
+			ldFlags = []string{"-s", "-w"}
+		}
 		out = filepath.Join(depPath, "go")
 		env = map[string]string{
 			"PATH":   os.Getenv("PATH"),
@@ -785,7 +819,7 @@ func BuildEnv(target, name, depPath string) (map[string]string, []string, []stri
 			"GOOS":   runtime.GOOS,
 			"GOARCH": runtime.GOARCH,
 
-			"CGO_ENABLED": "0",
+			"CGO_ENABLED": "1",
 		}
 
 		if target == "wasm" {

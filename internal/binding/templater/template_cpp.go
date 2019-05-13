@@ -582,7 +582,9 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 			fmt.Fprint(bb, "#include <sailfishapp.h>\n")
 		} else {
 			var c, _ = parser.State.ClassMap[class]
-			if strings.HasPrefix(c.Module, "custom_") {
+			if strings.HasPrefix(c.Module, "custom_") ||
+				strings.ToLower(c.Module) == c.Module ||
+				!strings.HasPrefix(class, "Q") {
 				continue
 			}
 			switch c.Name {
@@ -598,18 +600,13 @@ func preambleCpp(module string, input []byte, mode int, target, tags string) []b
 				"QSql",
 				"QTest",
 				"QWebSocketProtocol",
-				"OSXBluetooth",
 				"QBluetooth",
-				"PaintContext",
 				"QPlatformGraphicsBuffer",
 				"QDBusPendingReplyTypes",
 				"QRemoteObjectPackets",
 				"QRemoteObjectStringLiterals",
-				"ui",
 				"QStringList",
 				"QtDwmApiDll",
-				"content",
-				"net",
 				"QStringView":
 				{
 					continue

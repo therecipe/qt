@@ -52,6 +52,40 @@ func LoadModules(target string) {
 	}
 }
 
+func LoadModulesM(target string) {
+	State.Target = target
+
+	libs := GetLibs()
+	modules := make([]*Module, len(libs))
+	modulesMutex := new(sync.Mutex)
+	wg := new(sync.WaitGroup)
+
+	var i int
+	for _, m := range libs {
+		if !ShouldBuildForTargetM(m, target) {
+			continue
+		}
+
+		wg.Add(1)
+		go func(i int, m string) {
+			mod := LoadModule(m)
+
+			modulesMutex.Lock()
+			modules[i] = mod
+			modulesMutex.Unlock()
+			wg.Done()
+		}(i, m)
+		i++
+	}
+	wg.Wait()
+
+	for _, m := range modules {
+		if m != nil {
+			m.Prepare()
+		}
+	}
+}
+
 func LoadModule(m string) *Module {
 	var (
 		logName   = "parser.LoadModule"
@@ -99,6 +133,10 @@ func LoadModule(m string) *Module {
 			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		} else {
 			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			if err != nil {
+				utils.Log.WithFields(logFields).Debug("falling back to bundled *.index files")
+				err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API("5.12.0"), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			}
 		}
 
 	default:
@@ -111,6 +149,7 @@ func LoadModule(m string) *Module {
 			}
 			err = xml.Unmarshal([]byte(utils.LoadOptional(path)), &module)
 			if err != nil {
+				utils.Log.WithFields(logFields).Debug("falling back to bundled *.index files")
 				err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.GoListOptional("{{.Dir}}", "github.com/therecipe/qt/internal/binding/files/docs/"+utils.QT_API(utils.QT_VERSION()), "-find", "get doc dir")), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 			}
 		}
