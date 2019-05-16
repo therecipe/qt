@@ -9,7 +9,7 @@ import (
 	"sync"
 )
 
-const packageName = "github.com/therecipe/qt"
+const PackageName = "github.com/therecipe/qt"
 
 var (
 	mustGoPath      string
@@ -24,7 +24,7 @@ func MustGoPath() string {
 	mustGoPathMutex.Lock()
 	if mustGoPath == "" {
 		if _, err := exec.LookPath("go"); err == nil {
-			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", packageName, "-find"), "get list gopath"))
+			mustGoPath = strings.TrimSpace(RunCmd(GoList("{{.Root}}", PackageName, "-find"), "get list gopath"))
 		}
 		if mustGoPath == "" {
 			mustGoPath = GOPATH()

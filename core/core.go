@@ -51125,6 +51125,184 @@ func NewQVariantFromPointer(ptr unsafe.Pointer) (n *QVariant) {
 	return
 }
 
+type qVariant_ITF interface{ ToVariant() *QVariant }
+
+func NewQVariant1(i interface{}) *QVariant {
+	switch d := i.(type) {
+	case *QVariant:
+		return d
+	case string:
+		return NewQVariant14(d)
+	case map[string]*QVariant:
+		return NewQVariant25(d)
+	case *QChar:
+		return NewQVariant20(d)
+	case *QDataStream:
+		return NewQVariant6(d)
+	case *QLatin1String:
+		return NewQVariant18(d)
+	case QVariant__Type:
+		return NewQVariant2(d)
+	case bool:
+		return NewQVariant11(d)
+	case *QBitArray:
+		return NewQVariant16(d)
+	case *QByteArray:
+		return NewQVariant15(d)
+	case *QDate:
+		return NewQVariant21(d)
+	case *QDateTime:
+		return NewQVariant23(d)
+	case *QEasingCurve:
+		return NewQVariant39(d)
+	case *QJsonArray:
+		return NewQVariant43(d)
+	case *QJsonDocument:
+		return NewQVariant44(d)
+	case *QJsonObject:
+		return NewQVariant42(d)
+	case *QJsonValue:
+		return NewQVariant41(d)
+	case *QLine:
+		return NewQVariant31(d)
+	case *QLineF:
+		return NewQVariant32(d)
+	case []*QVariant:
+		return NewQVariant24(d)
+	case *QLocale:
+		return NewQVariant35(d)
+	case *QModelIndex:
+		return NewQVariant45(d)
+	case *QPersistentModelIndex:
+		return NewQVariant46(d)
+	case *QPoint:
+		return NewQVariant29(d)
+	case *QPointF:
+		return NewQVariant30(d)
+	case *QRect:
+		return NewQVariant33(d)
+	case *QRectF:
+		return NewQVariant34(d)
+	case *QRegExp:
+		return NewQVariant36(d)
+	case *QRegularExpression:
+		return NewQVariant37(d)
+	case *QSize:
+		return NewQVariant27(d)
+	case *QSizeF:
+		return NewQVariant28(d)
+	case []string:
+		return NewQVariant19(d)
+	case *QTime:
+		return NewQVariant22(d)
+	case *QUrl:
+		return NewQVariant38(d)
+	case *QUuid:
+		return NewQVariant40(d)
+	case float64:
+		return NewQVariant12(d)
+	case float32:
+		return NewQVariant13(d)
+	case int:
+		return NewQVariant7(d)
+	case int64:
+		return NewQVariant9(d)
+	case uint64:
+		return NewQVariant10(d)
+	case uint:
+		return NewQVariant8(d)
+	case qVariant_ITF:
+		return d.ToVariant()
+	default:
+		return NewQVariant()
+
+	}
+
+}
+func (v *QVariant) ToInterface() interface{} {
+	switch v.Type() {
+	case QVariant__Bool:
+		return v.ToBool()
+	case QVariant__Int:
+		return v.ToInt(nil)
+	case QVariant__UInt:
+		return v.ToUInt(nil)
+	case QVariant__LongLong:
+		return v.ToLongLong(nil)
+	case QVariant__ULongLong:
+		return v.ToULongLong(nil)
+	case QVariant__Double:
+		return v.ToDouble(nil)
+	case QVariant__Char:
+		return v.ToChar()
+	case QVariant__Map:
+		return v.ToMap()
+	case QVariant__List:
+		return v.ToList()
+	case QVariant__String:
+		return v.ToString()
+	case QVariant__StringList:
+		return v.ToStringList()
+	case QVariant__ByteArray:
+		return v.ToByteArray()
+	case QVariant__BitArray:
+		return v.ToBitArray()
+	case QVariant__Date:
+		return v.ToDate()
+	case QVariant__Time:
+		return v.ToTime()
+	case QVariant__DateTime:
+		return v.ToDateTime()
+	case QVariant__Url:
+		return v.ToUrl()
+	case QVariant__Locale:
+		return v.ToLocale()
+	case QVariant__Rect:
+		return v.ToRect()
+	case QVariant__RectF:
+		return v.ToRectF()
+	case QVariant__Size:
+		return v.ToSize()
+	case QVariant__SizeF:
+		return v.ToSizeF()
+	case QVariant__Line:
+		return v.ToLine()
+	case QVariant__LineF:
+		return v.ToLineF()
+	case QVariant__Point:
+		return v.ToPoint()
+	case QVariant__PointF:
+		return v.ToPointF()
+	case QVariant__RegExp:
+		return v.ToRegExp()
+	case QVariant__RegularExpression:
+		return v.ToRegularExpression()
+	case QVariant__Hash:
+		return v.ToHash()
+	case QVariant__EasingCurve:
+		return v.ToEasingCurve()
+	case QVariant__Uuid:
+		return v.ToUuid()
+	case QVariant__ModelIndex:
+		return v.ToModelIndex()
+	case QVariant__PersistentModelIndex:
+		return v.ToPersistentModelIndex()
+	case QVariant__Font:
+		return v.ToFont()
+	case QVariant__Brush:
+		return v.ToBrush()
+	case QVariant__Color:
+		return v.ToColor()
+	case QVariant__Image:
+		return v.ToImage()
+	case QVariant__Icon:
+		return v.ToIcon()
+
+	}
+	return v
+
+}
+
 //go:generate stringer -type=QVariant__Type
 //QVariant::Type
 type QVariant__Type int64

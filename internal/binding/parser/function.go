@@ -420,6 +420,7 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QWebEngineUrlScheme::syntax",
 
 		f.Fullname == "QVirtualKeyboardSelectionListModel::setCount",
+		f.Fullname == "QtVirtualKeyboard::qlcVirtualKeyboard",
 		f.Name == "trUtf8",
 
 		strings.Contains(f.Access, "unsupported"):

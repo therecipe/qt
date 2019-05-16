@@ -20,7 +20,7 @@ ENV AR $HOME/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linu
 ENV ANDROID_DEV $HOME/android-ndk-r15c/platforms/android-16/arch-arm/usr
 RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/g' $HOME/openssl-1.0.2q/Makefile
 RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/g' $HOME/openssl-1.0.2q/Makefile
-RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-armv7 && make build_libs $HOME/openssl-1.0.2q
+RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-armv7 && make -j $(grep -c ^processor /proc/cpuinfo) build_libs $HOME/openssl-1.0.2q
 RUN mkdir -p $HOME/openssl-1.0.2q-arm && mv $HOME/openssl-1.0.2q/*.so* $HOME/openssl-1.0.2q-arm
 
 RUN rm -rf $HOME/openssl-1.0.2q && tar -xzf openssl-1.0.2q.tar.gz -C $HOME
@@ -30,7 +30,7 @@ ENV AR $HOME/android-ndk-r15c/toolchains/x86-4.9/prebuilt/linux-x86_64/bin/i686-
 ENV ANDROID_DEV $HOME/android-ndk-r15c/platforms/android-16/arch-x86/usr
 RUN sed -i 's/LIBCOMPATVERSIONS=/#LIBCOMPATVERSIONS=/g' $HOME/openssl-1.0.2q/Makefile
 RUN sed -i 's/LIBVERSION=/\\ #LIBVERSION=/g' $HOME/openssl-1.0.2q/Makefile
-RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-x86 && make build_libs $HOME/openssl-1.0.2q
+RUN cd $HOME/openssl-1.0.2q && ./Configure shared android-x86 && make -j $(grep -c ^processor /proc/cpuinfo) build_libs $HOME/openssl-1.0.2q
 RUN mkdir -p $HOME/openssl-1.0.2q-x86 && mv $HOME/openssl-1.0.2q/*.so* $HOME/openssl-1.0.2q-x86
 
 
@@ -45,10 +45,10 @@ RUN NDK=android-ndk-r18b-linux-x86_64.zip && curl -sL --retry 10 --retry-delay 6
 #ENV ANDROID_NDK $HOME/android-ndk-r18b
 #ENV PATH=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
 
-#RUN cd $HOME/openssl-1.1.1a && ./Configure -D__ANDROID_API__=16 android-arm && make SHLIB_VERSION_NUMBER= SHLIB_EXT=.so build_libs $HOME/openssl-1.1.1a
+#RUN cd $HOME/openssl-1.1.1a && ./Configure -D__ANDROID_API__=16 android-arm && make -j $(grep -c ^processor /proc/cpuinfo) SHLIB_VERSION_NUMBER= SHLIB_EXT=.so build_libs $HOME/openssl-1.1.1a
 #RUN mkdir -p $HOME/openssl-1.1.1a-arm && mv $HOME/openssl-1.1.1a/*.so* $HOME/openssl-1.1.1a-arm
 #RUN rm -rf $HOME/openssl-1.1.1a && tar -xzf openssl-1.1.1a.tar.gz -C $HOME
-#RUN cd $HOME/openssl-1.1.1a && ./Configure -D__ANDROID_API__=16 android-x86 && make SHLIB_VERSION_NUMBER= SHLIB_EXT=.so build_libs $HOME/openssl-1.1.1a
+#RUN cd $HOME/openssl-1.1.1a && ./Configure -D__ANDROID_API__=16 android-x86 && make -j $(grep -c ^processor /proc/cpuinfo) SHLIB_VERSION_NUMBER= SHLIB_EXT=.so build_libs $HOME/openssl-1.1.1a
 #RUN mkdir -p $HOME/openssl-1.1.1a-x86 && mv $HOME/openssl-1.1.1a/*.so* $HOME/openssl-1.1.1a-x86
 #RUN find $HOME/openssl-1.1.1a-* -type f -exec llvm-strip --strip-all {} \;
 

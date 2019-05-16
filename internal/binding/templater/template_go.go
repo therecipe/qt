@@ -460,8 +460,69 @@ func (ptr *%[1]v) Destroy%[1]v() {
 
 				fmt.Fprint(bb, "}\n\n")
 			}
-		}
 
+			if class.Name == "QVariant" {
+				fmt.Fprint(bb, "type qVariant_ITF interface { ToVariant() *QVariant }\n")
+				fmt.Fprint(bb, "func NewQVariant1(i interface{}) *QVariant {\n")
+				fmt.Fprint(bb, "switch d:= i.(type) {\n")
+
+				has := make(map[string]struct{})
+				fmt.Fprint(bb, "case *QVariant:\nreturn d\n")
+				has["QVariant"] = struct{}{}
+				fmt.Fprint(bb, "case string:\nreturn NewQVariant14(d)\n")
+				has["string"] = struct{}{}
+				fmt.Fprint(bb, "case map[string]*QVariant:\nreturn NewQVariant25(d)\n")
+				has["map[string]*QVariant"] = struct{}{}
+
+				for _, f := range class.Functions {
+					if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 {
+						v := f.Parameters[0].Value
+						gt := converter.GoType(f, v, f.Parameters[0].PureGoType)
+						if _, ok := has[gt]; ok {
+							continue
+						}
+						has[gt] = struct{}{}
+
+						if c, ok := parser.IsClass(parser.CleanValue(v)); ok && parser.State.ClassMap[c].IsSupported() {
+							fmt.Fprintf(bb, "case *%v:\n", gt)
+						} else {
+							fmt.Fprintf(bb, "case %v:\n", gt)
+						}
+						fmt.Fprintf(bb, "return NewQVariant%v(d)\n", f.OverloadNumber)
+					}
+				}
+				fmt.Fprint(bb, "case qVariant_ITF:\nreturn d.ToVariant()\n")
+				fmt.Fprint(bb, "default:\nreturn NewQVariant()\n")
+				fmt.Fprint(bb, "\n}\n}\n")
+
+				//
+
+				fmt.Fprint(bb, "func (v *QVariant) ToInterface() interface{} {\n")
+				fmt.Fprint(bb, "switch v.Type() {\n")
+
+				for _, v := range class.Enums[0].Values {
+					if c, ok := parser.IsClass("Q" + v.Name); ok {
+						if !parser.State.ClassMap[c].IsSupported() &&
+							!(v.Name == "Map" ||
+								v.Name == "String" ||
+								v.Name == "StringList" ||
+								v.Name == "Hash") {
+							continue
+						}
+					}
+
+					if f := class.GetFunction("to" + v.Name); f != nil && f.IsSupported() {
+						fmt.Fprintf(bb, "case QVariant__%v:\n", v.Name)
+						if len(f.Parameters) == 0 {
+							fmt.Fprintf(bb, "return v.To%v()\n", v.Name)
+						} else {
+							fmt.Fprintf(bb, "return v.To%v(nil)\n", v.Name)
+						}
+					}
+				}
+				fmt.Fprint(bb, "\n}\nreturn v\n}\n")
+			}
+		}
 		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 

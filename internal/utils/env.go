@@ -355,6 +355,7 @@ func GoList(args ...string) *exec.Cmd {
 		} else {
 			cmd.Args = append(cmd.Args, GOFLAGS())
 		}
+		cmd.Dir = filepath.Dir(GOMOD(""))
 	}
 
 	var skip bool

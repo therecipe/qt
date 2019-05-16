@@ -85,7 +85,18 @@ func UnpackedGoMapDirty(v string) []string {
 	if !strings.Contains(v, "]") { //TODO: multidimensional array and nested maps
 		return make([]string, 2)
 	}
-	return strings.Split(v, "]")
+
+	var ms []string
+	if strings.Contains(v, "][") {
+		ms = strings.Split(v, "][")
+		ms[1] = "[" + ms[1]
+	} else if strings.Contains(v, "]map[") {
+		ms = strings.Split(v, "]map[")
+		ms[1] = "map[" + ms[1]
+	} else {
+		ms = strings.Split(v, "]")
+	}
+	return ms
 }
 
 func CleanValue(v string) string {

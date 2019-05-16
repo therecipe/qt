@@ -332,18 +332,24 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 						fmt.Fprintf(bb, "int %[1]v_%[1]v_QRegisterMetaType(){qRegisterMetaType<%[1]v*>(); return qRegisterMetaType<My%[1]v*>();}\n\n", class.Name)
 					}
 				} else {
-					var typeMap = make(map[string]string)
+					typeMap := make(map[string]string)
 					for _, f := range class.Functions {
 						if parser.IsPackedMap(f.Output) {
 							var tHash = sha1.New()
 							tHash.Write([]byte(f.Output))
 							typeMap[f.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
 						}
+						if parser.IsPackedList(f.Output) {
+							typeMap[f.Output] = "QList<QObject*>"
+						}
 						for _, p := range f.Parameters {
 							if parser.IsPackedMap(p.Value) {
 								var tHash = sha1.New()
 								tHash.Write([]byte(p.Value))
 								typeMap[p.Value] = hex.EncodeToString(tHash.Sum(nil)[:3])
+							}
+							if parser.IsPackedList(p.Value) {
+								typeMap[p.Value] = "QList<QObject*>"
 							}
 						}
 					}
@@ -354,6 +360,9 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							var tHash = sha1.New()
 							tHash.Write([]byte(p.Output))
 							typeMap[p.Output] = hex.EncodeToString(tHash.Sum(nil)[:3])
+						}
+						if parser.IsPackedList(p.Output) {
+							typeMap[p.Output] = "QList<QObject*>"
 						}
 						if o := converter.CppRegisterMetaTypeProp(p); o != "" {
 							propTypes[o] = struct{}{}
@@ -366,15 +375,23 @@ func CppTemplate(module string, mode int, target, tags string) []byte {
 							hash == "d01680" || //QHash<qint32, QByteArray>
 							hash == "d15f9e" || //QMap<quintptr, quintptr>
 							hash == "cc064b" || //QMap<qint32, quintptr>
-							hash == "378cdd" { //QMap<qint32, QByteArray>
+							hash == "378cdd" || //QMap<qint32, QByteArray>
+							hash == "424d06" || //QMap<QString, QVariant>
+							hash == "QList<QObject*>" {
 							continue
 						}
 						fmt.Fprintf(bb, "Q_DECLARE_METATYPE(type%v)\n", hash)
 					}
 
 					fmt.Fprintf(bb, "\nvoid %[1]v_%[1]v_QRegisterMetaTypes() {\n", class.Name)
-					for _, hash := range typeMap {
-						fmt.Fprintf(bb, "\tqRegisterMetaType<type%v>(\"type%v\");\n", hash, hash)
+					for out, hash := range typeMap {
+						if parser.IsPackedList(out) {
+							if up := parser.UnpackedList(out); parser.State.ClassMap[up].IsSubClassOfQObject() && up != "QObject" {
+								fmt.Fprintf(bb, "\tqRegisterMetaType<%v>(\"%v\");\n", hash, out)
+							}
+						} else {
+							fmt.Fprintf(bb, "\tqRegisterMetaType<type%[1]v>(\"type%[1]v\");\n", hash)
+						}
 					}
 					for t := range propTypes {
 						fmt.Fprintf(bb, "\tqRegisterMetaType<%v>();\n", t)

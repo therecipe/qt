@@ -13,7 +13,7 @@ RUN git clone -q --depth 1 -b 5.13 --recursive https://code.qt.io/qt/qt5.git /op
 RUN sed -i -e 's/Q_VKB_IMPORT_PLUGIN(QmlFolderListModelPlugin)//g' /opt/qt5/qtvirtualkeyboard/src/import/qtquickvirtualkeyboardplugin.cpp
 
 RUN echo "#!/bin/bash\nsource $HOME/emsdk/emsdk_env.sh \
-	&& cd /opt/qt5 && ./configure -xplatform wasm-emscripten -feature-thread -optimize-size -nomake tests -nomake examples -skip qtpim -skip qtfeedback -skip qtwinextras -skip qttools -confirm-license -opensource && make && make install" > $HOME/build.sh \
+	&& cd /opt/qt5 && ./configure -xplatform wasm-emscripten -feature-thread -optimize-size -nomake tests -nomake examples -skip qtpim -skip qtfeedback -skip qtwinextras -skip qttools -confirm-license -opensource && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)" > $HOME/build.sh \
 	&& chmod +x $HOME/build.sh && $HOME/build.sh
 
 

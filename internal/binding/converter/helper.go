@@ -276,3 +276,42 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 	return false
 }
+
+func variantWrapper(f *parser.Function, value string, p string) (string, string, string) {
+	if !((value == "QList<QVariant>" || value == "QMap<QString, QVariant>") && p != "") {
+		return goType(f, value, p), "", ""
+	}
+
+	vs := parser.UnpackedGoMapDirty(p)
+	v := parser.CleanValue(vs[1])
+
+	if strings.Contains(vs[1], ".") {
+		v = strings.Split(vs[1], ".")[1]
+	}
+	if strings.HasPrefix(vs[1], "[]") {
+		v = "[]" + v
+	}
+	if strings.HasPrefix(vs[1], "map[string]") {
+		v = "map[string]" + v
+	}
+
+	if v == "QVariant" {
+		return p, "", ""
+	}
+
+	if v == "QObject" {
+		return p, "", fmt.Sprintf(".ToObject()")
+	}
+
+	if isClass(v) && parser.State.ClassMap[v].IsSubClassOfQObject() {
+		var pp string
+		if m := module(parser.State.ClassMap[v].Module); m != module(f) {
+			pp = fmt.Sprintf("%v.New%vFromPointer(", m, v)
+		} else {
+			pp = fmt.Sprintf("New%vFromPointer(", v)
+		}
+		return p, pp, fmt.Sprintf(".ToObject().Pointer())")
+	}
+
+	return p, "", fmt.Sprintf(".ToInterface().(%v)", strings.TrimSpace(vs[1]))
+}

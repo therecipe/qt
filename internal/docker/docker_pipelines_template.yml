@@ -10,23 +10,23 @@ jobs:
     parameters:
       file: darwin/Dockerfile
       tag: darwin
-  -
-    template: docker_job_template.yml
-    parameters:
-      file: js/Dockerfile.base
-      tag: js_base
-  -
-    template: docker_job_template.yml
-    parameters:
-      file: js/Dockerfile.base_thread
-      tag: js_base_thread
+#  -
+#    template: docker_job_template.yml
+#    parameters:
+#      file: js/Dockerfile.base
+#      tag: js_base
+#  -
+#    template: docker_job_template.yml
+#    parameters:
+#      file: js/Dockerfile.base_thread
+#      tag: js_base_thread
   -
     template: docker_job_template.yml
     parameters:
       file: js/Dockerfile.js
       tag: js
       dep:
-        - js_base
+#        - js_base
         - linux
   -
     template: docker_job_template.yml
@@ -34,7 +34,7 @@ jobs:
       file: js/Dockerfile.js_thread
       tag: js_thread
       dep:
-        - js_base_thread
+#        - js_base_thread
         - linux
   -
     template: docker_job_template.yml
@@ -42,7 +42,7 @@ jobs:
       file: js/Dockerfile.wasm
       tag: wasm
       dep:
-        - js_base
+#        - js_base
         - linux
   -
     template: docker_job_template.yml
@@ -50,7 +50,7 @@ jobs:
       file: js/Dockerfile.wasm_thread
       tag: wasm_thread
       dep:
-        - js_base_thread
+#        - js_base_thread
         - linux
   -
     template: docker_job_template.yml

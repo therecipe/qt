@@ -345,28 +345,26 @@ func moc(path, target, tags string, fast, slow, root bool, l int, dirty bool) {
 
 	var staleCheck string
 	if !(target == "js" || target == "wasm" || utils.QT_NOT_CACHED()) { //TODO: remove for module support + resolve dependencies
-		for _, f := range []bool{false, true} {
-			env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
-			scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
-			scmd.Dir = path
+		env, tagsEnv, _, _ := cmd.BuildEnv(target, "", "")
+		scmd := utils.GoList("{{.Stale}}|{{.StaleReason}}")
+		scmd.Dir = path
 
-			if ((!fast && !utils.QT_FAT()) || f) && !((!fast && !utils.QT_FAT()) && f) {
-				tagsEnv = append(tagsEnv, "minimal")
-			}
-			if tags != "" {
-				tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
-			}
-			scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
-
-			if target != runtime.GOOS {
-				scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
-			}
-
-			for key, value := range env {
-				scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
-			}
-			staleCheck += utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)) + "|"
+		if !fast && !utils.QT_FAT() {
+			tagsEnv = append(tagsEnv, "minimal")
 		}
+		if tags != "" {
+			tagsEnv = append(tagsEnv, strings.Split(tags, " ")...)
+		}
+		scmd.Args = append(scmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagsEnv, "\" \"")))
+
+		if target != runtime.GOOS {
+			scmd.Args = append(scmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", strings.Replace(target, "-", "_", -1), env["GOOS"], env["GOARCH"]))}...)
+		}
+
+		for key, value := range env {
+			scmd.Env = append(scmd.Env, fmt.Sprintf("%v=%v", key, value))
+		}
+		staleCheck = utils.RunCmdOptional(scmd, fmt.Sprintf("go check stale for %v on %v", target, runtime.GOOS)) + "|"
 	}
 
 	if strings.Contains(staleCheck, "but available in build cache") || strings.Contains(staleCheck, "false|") {
@@ -769,8 +767,9 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 	tOld := t //TODO: also for differentiation of QVariant and *QVariant
 	//t = strings.TrimPrefix(t, "*")
 
+	//TODO: multidimensional array and nested maps
+
 	if strings.Count(t, "[") == 1 || strings.HasSuffix(t, "][]string") {
-		//TODO: multidimensional array and nested maps
 		if strings.HasPrefix(t, "[]") && t != "[]string" {
 			o, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)
 			if pureGoType == "" {
@@ -778,17 +777,41 @@ func cppTypeFromGoType(f *parser.Function, t string, class *parser.Class) (strin
 			} else if strings.Contains(pureGoType, "error") {
 				return fmt.Sprintf("QList<%v>", o), t
 			}
-		}
-		if strings.HasPrefix(t, "map[") {
-			var head = fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+		} else if strings.HasPrefix(t, "map[") {
+			head := fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
 			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0], class)
 			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head), class)
-			if pureGoType1 == "" && pureGoType2 == "" {
+			if pureGoType1 == "" && pureGoType2 == "" && o1 == "QString" {
+				return "QMap<QString, QVariant>", t
+			} else if pureGoType1 == "" && pureGoType2 == "" {
 				return fmt.Sprintf("QMap<%v, %v>", o1, o2), ""
 			} else if strings.Contains(pureGoType1, "error") || strings.Contains(pureGoType2, "error") {
 				return fmt.Sprintf("QMap<%v, %v>", o1, o2), t
 			}
 		}
+	}
+
+	if strings.Count(t, "[") >= 2 {
+		if !strings.HasSuffix(t, "QVariant") || strings.Count(t, "[") > 2 {
+			return "quintptr", tOld
+		}
+
+		if strings.HasPrefix(t, "[]") {
+			_, pureGoType := cppTypeFromGoType(f, strings.TrimPrefix(t, "[]"), class)
+			if pureGoType == "" || (strings.HasPrefix(pureGoType, "map[string]") && strings.HasSuffix(pureGoType, "QVariant")) {
+				return "QList<QVariant>", t
+			}
+		} else if strings.HasPrefix(t, "map[") {
+			head := fmt.Sprintf("map[%v]", strings.Split(strings.TrimPrefix(t, "map["), "]")[0])
+			o1, pureGoType1 := cppTypeFromGoType(f, strings.Split(strings.TrimPrefix(t, "map["), "]")[0], class)
+			o2, pureGoType2 := cppTypeFromGoType(f, strings.TrimPrefix(t, head), class)
+
+			if pureGoType1 == "" && (pureGoType2 == "" || (strings.HasPrefix(pureGoType2, "map[string]") && strings.HasSuffix(pureGoType2, "QVariant"))) &&
+				o1 == "QString" && (o2 == "QList<QVariant>" || o2 == "QMap<QString, QVariant>") {
+				return "QMap<QString, QVariant>", t
+			}
+		}
+		return "quintptr", tOld
 	}
 
 	switch t {

@@ -124,7 +124,7 @@ func goFunctionBody(function *parser.Function) string {
 		fmt.Fprint(bb, func() string {
 			if function.IsMocFunction && function.SignalMode == "" {
 				for i, p := range function.Parameters {
-					if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
+					if p.PureGoType != "" && !(p.Value == "QMap<QString, QVariant>" || p.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(p.PureGoType) {
 						if UseJs() && !parser.UseWasm() {
 							fmt.Fprintf(bb, "%vTID := (time.Now().UnixNano()+(%v*1e10))/1e9\n", parser.CleanName(p.Name, p.Value), i)
 							fmt.Fprintf(bb, "qt.RegisterTemp(unsafe.Pointer(uintptr(%[2]vTID)), unsafe.Pointer(%[1]v%[2]v))\n",
@@ -148,7 +148,7 @@ func goFunctionBody(function *parser.Function) string {
 					}
 				}
 
-				if function.PureGoOutput != "" && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
+				if function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 					bb := new(bytes.Buffer)
 					defer bb.Reset()
 					fmt.Fprintf(bb, "oP := unsafe.Pointer(%v)\n", body)
@@ -312,7 +312,7 @@ func goFunctionBody(function *parser.Function) string {
 
 			if function.IsMocFunction {
 				for _, p := range function.Parameters {
-					if p.PureGoType != "" && !parser.IsBlackListedPureGoType(p.PureGoType) {
+					if p.PureGoType != "" && !(p.Value == "QMap<QString, QVariant>" || p.Value == "QList<QVariant>") && !parser.IsBlackListedPureGoType(p.PureGoType) {
 						fmt.Fprintf(bb, "var %vD %v\n", parser.CleanName(p.Name, p.Value), p.PureGoType)
 						fmt.Fprintf(bb, "if  %[1]vI, ok := qt.ReceiveTemp(unsafe.Pointer(uintptr(%[1]v))); ok {\n", parser.CleanName(p.Name, p.Value))
 						if !strings.HasSuffix(function.Name, "Changed") { //TODO: check if property instead
@@ -370,7 +370,7 @@ func goFunctionBody(function *parser.Function) string {
 						fmt.Fprint(bb, "return 0")
 					}
 				} else {
-					if function.IsMocFunction && function.PureGoOutput != "" && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
+					if function.IsMocFunction && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 						fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("(*(*%v)(signal))(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)))
 						if UseJs() && !parser.UseWasm() {
 							fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
@@ -452,7 +452,7 @@ func goFunctionBody(function *parser.Function) string {
 							fmt.Fprint(bb, "return 0")
 						}
 					} else {
-						if function.IsMocFunction && function.IsMocProperty && function.PureGoOutput != "" && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
+						if function.IsMocFunction && function.IsMocProperty && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 							if UseJs() {
 								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							} else {

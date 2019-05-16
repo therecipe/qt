@@ -230,6 +230,10 @@ func createProject(module, path, target string, mode int, libs []string) {
 		proPath = filepath.Join("/home", "user", proPath)
 	}
 
+	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
+	}
+
 	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
 		utils.Save(proPath, fmt.Sprintf("QT += %v\nQTPLUGIN += qtvirtualkeyboardplugin", strings.Join(out, " ")))
 	} else {
@@ -246,17 +250,22 @@ func createMakefile(module, path, target string, mode int) {
 		}
 	}
 
+	mPath := "Mfile"
 	proPath := filepath.Join(path, "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
+
 	if module == "build_static" {
 		proPath = filepath.Join(path, "..", "..", fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
-	mPath := "Mfile"
 	if utils.QT_UBPORTS() {
 		proPath = strings.Replace(proPath, "/../", "/", -1)
 		proPath = strings.Replace(proPath, "/", "_", -1)
 		proPath = filepath.Join("/home", "user", proPath)
 		mPath = proPath + mPath
+	}
+
+	if utils.UseGOMOD(path) && (mode == NONE || mode == MINIMAL) {
+		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
 	relProPath, err := filepath.Rel(path, proPath)

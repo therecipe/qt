@@ -299,22 +299,22 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	if utils.UseGOMOD(path) {
 		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/%v", filepath.Dir(utils.GOMOD(path)), filepath.Base(filepath.Dir(utils.GOMOD(path))))}...)
-	}
+	} else {
+		for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
+			if runtime.GOOS == "windows" {
+				gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
+			}
+			gp = strings.Replace(gp, "\\", "/", -1)
+			gp = strings.Replace(gp, ":", "", -1)
 
-	for i, gp := range strings.Split(utils.GOPATH(), string(filepath.ListSeparator)) {
-		if runtime.GOOS == "windows" {
-			gp = "//" + strings.ToLower(gp[:1]) + gp[1:]
+			var pathprefix string
+			if docker {
+				args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
+			} else if system == "windows" {
+				pathprefix = "C:"
+			}
+			paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
 		}
-		gp = strings.Replace(gp, "\\", "/", -1)
-		gp = strings.Replace(gp, ":", "", -1)
-
-		var pathprefix string
-		if docker {
-			args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-		} else if system == "windows" {
-			pathprefix = "C:"
-		}
-		paths = append(paths, fmt.Sprintf(pathprefix+"/media/sf_GOPATH%v", i))
 	}
 
 	var gpfs string
@@ -381,11 +381,13 @@ func virtual(arg []string, target, path string, writeCacheToHost bool, docker bo
 
 	//TODO: flag for shared GOCACHE
 
-	if docker {
-		args = append(args, []string{"-e", "GOPATH=" + gpath}...)
-	} else {
-		args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
-		args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
+	if !utils.UseGOMOD(path) {
+		if docker {
+			args = append(args, []string{"-e", "GOPATH=" + gpath}...)
+		} else {
+			args = append(args, []string{"-e", "QT_VAGRANT=true"}...) //TODO: won't work with wine images atm
+			args = append(args, []string{"-e", "GOPATH='" + gpath + "'"}...)
+		}
 	}
 
 	if docker {

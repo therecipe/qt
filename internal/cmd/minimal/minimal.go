@@ -195,7 +195,7 @@ func Minimal(path, target, tags string) {
 				delete(parser.State.ClassMap, bl)
 			}
 		}
-		parser.State.ClassMap["QSvgWidget"].Export = true
+		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 
 	case "rpi1", "rpi2", "rpi3":
 		if !utils.QT_RPI() {
@@ -230,10 +230,10 @@ func Minimal(path, target, tags string) {
 			}
 		}
 	case "js", "wasm":
-		parser.State.ClassMap["QSvgWidget"].Export = true
+		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 	}
 	if utils.QT_STATIC() {
-		parser.State.ClassMap["QSvgWidget"].Export = true
+		exportClass(parser.State.ClassMap["QSvgWidget"], files)
 	}
 
 	wg.Add(len(files))
@@ -241,7 +241,7 @@ func Minimal(path, target, tags string) {
 		go func(f string) {
 			for _, c := range parser.State.ClassMap {
 				if strings.Contains(f, c.Name) &&
-					strings.Contains(f, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(strings.TrimPrefix(c.Module, "Qt")))) {
+					strings.Contains(f, fmt.Sprintf("%v/%v", utils.PackageName, strings.ToLower(strings.TrimPrefix(c.Module, "Qt")))) {
 					exportClass(c, files)
 				}
 			}
@@ -250,7 +250,20 @@ func Minimal(path, target, tags string) {
 	}
 	wg.Wait()
 
-	parser.State.ClassMap["QVariant"].Export = true
+	exportClass(parser.State.ClassMap["QVariant"], files)
+	exportFunction(parser.State.ClassMap["QVariant"].GetFunction("type"), files)
+
+	for _, v := range parser.State.ClassMap["QVariant"].Enums[0].Values {
+		if f := parser.State.ClassMap["QVariant"].GetFunction("to" + v.Name); f != nil {
+			if _, ok := parser.IsClass("Q" + v.Name); !ok ||
+				(v.Name == "Map" ||
+					v.Name == "String" ||
+					v.Name == "StringList" ||
+					v.Name == "Hash") {
+				exportFunction(f, files)
+			}
+		}
+	}
 
 	//TODO: cleanup state
 	parser.State.Minimal = true
@@ -334,6 +347,9 @@ func exportClass(c *parser.Class, files []string) {
 				exportFunction(f, files)
 			}
 
+			if f.Name == "toVariant" {
+				exportFunction(f, files)
+			}
 		}
 	}
 
