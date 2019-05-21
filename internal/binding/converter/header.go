@@ -69,6 +69,9 @@ func GoHeaderName(f *parser.Function) string {
 	}
 
 	if f.Default {
+		if bytes.HasSuffix(bb.Bytes(), []byte("z__")) {
+			bb.Truncate(len(bb.Bytes()) - 3)
+		}
 		fmt.Fprint(bb, "Default")
 	}
 
@@ -81,7 +84,7 @@ func GoHeaderName(f *parser.Function) string {
 		return f.Access
 	}
 
-	return strings.Replace(bb.String(), parser.TILDE, "", -1)
+	return strings.Replace(strings.TrimSuffix(strings.Replace(bb.String(), parser.TILDE, "", -1), "z__"), "z__Changed", "Changed", -1)
 }
 
 func CppHeaderName(f *parser.Function) string {

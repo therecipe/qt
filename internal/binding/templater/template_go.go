@@ -230,6 +230,13 @@ func (ptr *%[1]v) Destroy%[1]v() {
 			}
 
 			if mode == MOC {
+
+				if len(class.Constructors) > 0 {
+					if strings.ToLower(class.Constructors[0])[0] == class.Constructors[0][0] {
+						fmt.Fprintf(bb, "func (this *%v) %v() { this.%v() }\n", class.Name, strings.Title(class.Constructors[0]), class.Constructors[0])
+					}
+				}
+
 				if UseJs() {
 					if parser.UseWasm() {
 						fmt.Fprintf(bb, "//export callback%[1]v_Constructor\nfunc callback%[1]v_Constructor(_ js.Value, args []js.Value) interface{} {", class.Name)
@@ -247,9 +254,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				for _, bcn := range class.GetAllBases() {
 					if bc := parser.State.ClassMap[bcn]; bc.Module != class.Module {
 						if len(bc.Constructors) > 0 && lastModule != bc.Module {
-							if strings.ToLower(bc.Constructors[0])[0] != bc.Constructors[0][0] {
-								fmt.Fprintf(bb, "this.%v.%v()\n", strings.Title(bc.Name), bc.Constructors[0])
-							}
+							fmt.Fprintf(bb, "this.%v.%v()\n", strings.Title(bc.Name), strings.Title(bc.Constructors[0]))
 						}
 						lastModule = bc.Module
 					}
@@ -332,6 +337,7 @@ func (ptr *%[1]v) Destroy%[1]v() {
 								if p.Inbound {
 									name = strings.Title(name)
 								}
+								name = strings.TrimSuffix(name, "z__")
 
 								if p.Connect == 1 {
 									if p.Target == "" {
@@ -469,16 +475,18 @@ func (ptr *%[1]v) Destroy%[1]v() {
 				has := make(map[string]struct{})
 				fmt.Fprint(bb, "case *QVariant:\nreturn d\n")
 				has["QVariant"] = struct{}{}
-				fmt.Fprint(bb, "case string:\nreturn NewQVariant14(d)\n")
-				has["string"] = struct{}{}
-				fmt.Fprint(bb, "case map[string]*QVariant:\nreturn NewQVariant25(d)\n")
-				has["map[string]*QVariant"] = struct{}{}
 
 				for _, f := range class.Functions {
-					if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 {
+					if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 && f.IsSupported() {
 						v := f.Parameters[0].Value
 						gt := converter.GoType(f, v, f.Parameters[0].PureGoType)
 						if _, ok := has[gt]; ok {
+							continue
+						}
+						if gt == "string" && !strings.Contains(f.Parameters[0].Value, "const char") {
+							continue
+						}
+						if gt == "map[string]*QVariant" && !strings.Contains(f.Parameters[0].Value, "const QMap<") {
 							continue
 						}
 						has[gt] = struct{}{}

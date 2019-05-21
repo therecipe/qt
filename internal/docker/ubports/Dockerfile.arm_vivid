@@ -25,3 +25,5 @@ RUN $GOPATH/bin/qtsetup prep
 RUN $GOPATH/bin/qtsetup check ubports
 RUN $GOPATH/bin/qtsetup generate ubports || true
 RUN $GOPATH/bin/qtsetup install ubports
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git

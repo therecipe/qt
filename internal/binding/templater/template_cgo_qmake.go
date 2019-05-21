@@ -234,11 +234,15 @@ func createProject(module, path, target string, mode int, libs []string) {
 		proPath = filepath.Join(filepath.Dir(utils.GOMOD(path)), fmt.Sprintf("%v.pro", filepath.Base(path)))
 	}
 
-	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
-		utils.Save(proPath, fmt.Sprintf("QT += %v\nQTPLUGIN += qtvirtualkeyboardplugin", strings.Join(out, " ")))
-	} else {
-		utils.Save(proPath, fmt.Sprintf("QT += %v", strings.Join(out, " ")))
+	bb := new(bytes.Buffer)
+	defer bb.Reset()
+	for _, o := range out {
+		fmt.Fprintf(bb, "qtHaveModule(%[1]v) { QT+=%[1]v }\n", o)
 	}
+	if hasVirtualKeyboard && (utils.QT_STATIC() || target == "js" || target == "wasm") {
+		fmt.Fprintf(bb, "QTPLUGIN += qtvirtualkeyboardplugin\n")
+	}
+	utils.SaveBytes(proPath, bb.Bytes())
 }
 
 func createMakefile(module, path, target string, mode int) {

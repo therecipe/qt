@@ -2312,6 +2312,7 @@ int QObject_Receivers(void* ptr, char* sign);
 int QObject_SenderSignalIndex(void* ptr);
 void QObject_DumpObjectInfo(void* ptr);
 void QObject_DumpObjectTree(void* ptr);
+void* QObject_InvokeMethod(void* ptr, char* name, void* arg);
 void* QObject_ToVariant(void* ptr);
 void* QObject___dynamicPropertyNames_atList(void* ptr, int i);
 void QObject___dynamicPropertyNames_setList(void* ptr, void* i);

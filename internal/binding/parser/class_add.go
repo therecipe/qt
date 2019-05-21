@@ -17,6 +17,20 @@ func (c *Class) addGeneralFuncs() {
 	switch c.Name {
 	case "QColor", "QFont", "QImage", "QObject", "QIcon", "QBrush":
 		{
+			if c.Name == "QObject" {
+				c.Functions = append(c.Functions, &Function{
+					Name:       "invokeMethod",
+					Fullname:   fmt.Sprintf("%v::invokeMethod", c.Name),
+					Access:     "public",
+					Virtual:    "non",
+					Meta:       PLAIN,
+					Static:     false,
+					Output:     "QVariant",
+					Parameters: []*Parameter{{Name: "name", Value: "const char*"}, {Name: "arg", Value: "QVariant"}},
+					Signature:  "()",
+				})
+			}
+
 			c.Functions = append(c.Functions, &Function{
 				Name:       "toVariant",
 				Fullname:   fmt.Sprintf("%v::toVariant", c.Name),

@@ -432,12 +432,12 @@ func goFunctionBody(function *parser.Function) string {
 					if UseJs() {
 						if parser.UseWasm() {
 							//TODO: workaround for https://github.com/golang/go/issues/26045#issuecomment-400017599
-							fmt.Fprintf(bb, "go New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+							fmt.Fprintf(bb, "go New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 						} else {
-							fmt.Fprintf(bb, "New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+							fmt.Fprintf(bb, "New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 						}
 					} else {
-						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 					}
 				}
 			} else {
@@ -445,7 +445,7 @@ func goFunctionBody(function *parser.Function) string {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
 						if !UseJs() {
 							fmt.Fprint(bb, "retS := cGoUnpackString(data)\n")
-							fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
+							fmt.Fprintf(bb, "ret := %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 							fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer((*reflect.StringHeader)(unsafe.Pointer(&retS)).Data), C.size_t(ret))\n}\n")
 							fmt.Fprint(bb, "return ret")
 						} else {
@@ -454,9 +454,9 @@ func goFunctionBody(function *parser.Function) string {
 					} else {
 						if function.IsMocFunction && function.IsMocProperty && function.PureGoOutput != "" && !(function.Output == "QMap<QString, QVariant>" || function.Output == "QList<QVariant>") && !parser.IsBlackListedPureGoType(function.PureGoOutput) {
 							if UseJs() {
-								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
+								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							} else {
-								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
+								fmt.Fprintf(bb, "oP := %v\n", fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)))
 							}
 							if UseJs() && !parser.UseWasm() {
 								fmt.Fprintf(bb, "rTID := (time.Now().UnixNano()+(1*1e10))/1e9\n")
@@ -485,9 +485,9 @@ func goFunctionBody(function *parser.Function) string {
 						} else {
 							if (parser.CleanValue(function.Output) == "QString" || parser.CleanValue(function.Output) == "QStringList") && !parser.UseJs() {
 								if UseJs() {
-									fmt.Fprintf(bb, "tempVal := New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)\n", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+									fmt.Fprintf(bb, "tempVal := New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)\n", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 								} else {
-									fmt.Fprintf(bb, "tempVal := New%vFromPointer(ptr).%v%vDefault(%v)\n", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+									fmt.Fprintf(bb, "tempVal := New%vFromPointer(ptr).%v%vDefault(%v)\n", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 								}
 								fmt.Fprintf(bb, "return C.struct_%v_PackedString{data: %v, len: %v}", strings.Title(parser.State.ClassMap[function.ClassName()].Module), converter.GoInput("tempVal", function.Output, function, function.PureGoOutput),
 									func() string {
@@ -501,9 +501,9 @@ func goFunctionBody(function *parser.Function) string {
 									}())
 							} else {
 								if UseJs() {
-									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
+									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(unsafe.Pointer(ptr)).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 								} else {
-									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
+									fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(class.Name), strings.TrimSuffix(strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), "z__"), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function, function.PureGoOutput))
 								}
 							}
 						}

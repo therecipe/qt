@@ -91,13 +91,13 @@ func ParseFlags() bool {
 }
 
 func InitEnv(target string) {
-	if target != runtime.GOOS || runtime.GOARCH != "amd64" {
+	if target != runtime.GOOS || runtime.GOARCH != "amd64" || utils.GOARCH() != "amd64" {
 		return
 	}
 
 	switch runtime.GOOS {
 	case "linux":
-		if utils.QT_PKG_CONFIG() || utils.QT_MXE() {
+		if utils.QT_PKG_CONFIG() || utils.QT_MXE() || utils.QT_STATIC() {
 			return
 		}
 	case "darwin":
@@ -178,7 +178,7 @@ func InitEnv(target string) {
 				cmd.Dir = qt_dir
 				_, err = utils.RunCmdOptionalError(cmd, "patch env binaries")
 				if err != nil {
-					utils.Log.Warn("failed to patch binaries (do you use go modules?)\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\r\nplease open an issue")
+					utils.Log.WithError(err).Warn("failed to patch binaries (do you use go modules?)\r\nyou won't be able to simply \"go build/run\" your application, but qtdeploy-ing applications should work nevertheless\r\nplease open an issue")
 				}
 			}
 		}

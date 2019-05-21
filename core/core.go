@@ -32461,6 +32461,18 @@ func (ptr *QObject) DumpObjectTree() {
 	}
 }
 
+func (ptr *QObject) InvokeMethod(name string, arg QVariant_ITF) *QVariant {
+	if ptr.Pointer() != nil {
+		var nameC *C.char
+		if name != "" {
+			nameC = C.CString(name)
+			defer C.free(unsafe.Pointer(nameC))
+		}
+		return NewQVariantFromPointer(C.QObject_InvokeMethod(ptr.Pointer(), nameC, PointerFromQVariant(arg)))
+	}
+	return nil
+}
+
 func (ptr *QObject) ToVariant() *QVariant {
 	if ptr.Pointer() != nil {
 		tmpValue := NewQVariantFromPointer(C.QObject_ToVariant(ptr.Pointer()))
@@ -51131,10 +51143,6 @@ func NewQVariant1(i interface{}) *QVariant {
 	switch d := i.(type) {
 	case *QVariant:
 		return d
-	case string:
-		return NewQVariant14(d)
-	case map[string]*QVariant:
-		return NewQVariant25(d)
 	case *QChar:
 		return NewQVariant20(d)
 	case *QDataStream:
@@ -51171,6 +51179,8 @@ func NewQVariant1(i interface{}) *QVariant {
 		return NewQVariant24(d)
 	case *QLocale:
 		return NewQVariant35(d)
+	case map[string]*QVariant:
+		return NewQVariant25(d)
 	case *QModelIndex:
 		return NewQVariant45(d)
 	case *QPersistentModelIndex:
@@ -51199,6 +51209,8 @@ func NewQVariant1(i interface{}) *QVariant {
 		return NewQVariant38(d)
 	case *QUuid:
 		return NewQVariant40(d)
+	case string:
+		return NewQVariant14(d)
 	case float64:
 		return NewQVariant12(d)
 	case float32:
@@ -51217,7 +51229,6 @@ func NewQVariant1(i interface{}) *QVariant {
 		return NewQVariant()
 
 	}
-
 }
 func (v *QVariant) ToInterface() interface{} {
 	switch v.Type() {
@@ -51300,7 +51311,6 @@ func (v *QVariant) ToInterface() interface{} {
 
 	}
 	return v
-
 }
 
 //go:generate stringer -type=QVariant__Type

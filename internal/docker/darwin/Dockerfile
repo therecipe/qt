@@ -11,11 +11,11 @@ RUN sed -i -e 's,/usr/include/c++/v1,/usr/include/c++,g' /osxcross/wrapper/targe
 RUN sed -i -e 's,test_compiler o,#test_compiler o,g' -e 's,-f "have,true || -f "have,g' /osxcross/build.sh
 
 RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install automake libxml2-dev libssl-dev
-RUN git clone -q --depth 1 https://github.com/mackyle/xar.git && cd /xar/xar && ./autogen.sh --prefix=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo) && ./autogen.sh --prefix=/usr && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo
+RUN git clone -q --depth 1 https://github.com/mackyle/xar.git && cd /xar/xar && ./autogen.sh --prefix=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo) && ./autogen.sh --prefix=/usr && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 ENV LD_LIBRARY_PATH=/osxcross/target/lib
 RUN git clone -q --depth 1 -b 2.0.0 https://github.com/tpoechtrager/apple-libtapi.git && cd /apple-libtapi && INSTALLPREFIX=/osxcross/target ./build.sh && ./install.sh
-RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo
+RUN git clone -q --depth 1 https://github.com/tpoechtrager/cctools-port.git && cd /cctools-port/cctools && ./configure --prefix=/osxcross/target --target=x86_64-apple-darwin18 --with-libtapi=/osxcross/target && make -j $(grep -c ^processor /proc/cpuinfo) && make install -j $(grep -c ^processor /proc/cpuinfo)
 
 
 #RUN curl -sL --retry 10 --retry-delay 60 -o /osxcross/tarballs/MacOSX10.14.sdk.tar.xz https://.../MacOSX10.14.sdk.tar.xz
@@ -75,3 +75,5 @@ RUN $GOPATH/bin/qtsetup prep darwin
 RUN $GOPATH/bin/qtsetup check darwin
 RUN $GOPATH/bin/qtsetup generate darwin
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build darwin && rm -rf ./deploy
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git

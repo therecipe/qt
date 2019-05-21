@@ -52,22 +52,22 @@ Resources
 Deployment Targets
 ------------------
 
-| Target                   | Arch     | Linkage                   | Docker Deployment | Host OS |
-|:------------------------:|:--------:|:-------------------------:|:-----------------:|:-------:|
-|         Windows          | 32 / 64  |     dynamic / static      |        Yes        |   Any   |
-|          macOS           |    64    |          dynamic          |        Yes        |   Any   |
-|          Linux           |    64    | dynamic / static / system |        Yes        |   Any   |
-|     Android (+Wear)      |   arm    |          dynamic          |        Yes        |   Any   |
-| Android-Emulator (+Wear) |    32    |          dynamic          |        Yes        |   Any   |
-|        SailfishOS        |   arm    |          system           |        Yes        |   Any   |
-|   SailfishOS-Emulator    |    32    |          system           |        Yes        |   Any   |
-|   Raspberry Pi (1/2/3)   |   arm    |     dynamic / system      |        Yes        |   Any   |
-|       Ubuntu Touch       | arm / 64 |          system           |        Yes        |   Any   |
-|        JavaScript        |    32    |          static           |        Yes        |   Any   |
-|       WebAssembly        |    32    |          static           |        Yes        |   Any   |
-|           iOS            |  arm64   |          static           |        No         |  macOS  |
-|      iOS-Simulator       |    64    |          static           |        No         |  macOS  |
-|        AsteroidOS        |   arm    |          system           |        No         |  Linux  |
+| Target                   | Arch        | Linkage                   | Docker Deployment | Host OS |
+|:------------------------:|:-----------:|:-------------------------:|:-----------------:|:-------:|
+|         Windows          |   32 / 64   |     dynamic / static      |        Yes        |   Any   |
+|          macOS           |     64      |          dynamic          |        Yes        |   Any   |
+|          Linux           |     64      | dynamic / static / system |        Yes        |   Any   |
+|     Android (+Wear)      | arm / arm64 |          dynamic          |        Yes        |   Any   |
+| Android-Emulator (+Wear) |     32      |          dynamic          |        Yes        |   Any   |
+|        SailfishOS        |     arm     |          system           |        Yes        |   Any   |
+|   SailfishOS-Emulator    |     32      |          system           |        Yes        |   Any   |
+|   Raspberry Pi (1/2/3)   |     arm     |     dynamic / system      |        Yes        |   Any   |
+|       Ubuntu Touch       |  arm / 64   |          system           |        Yes        |   Any   |
+|        JavaScript        |     32      |          static           |        Yes        |   Any   |
+|       WebAssembly        |     32      |          static           |        Yes        |   Any   |
+|           iOS            |    arm64    |          static           |        No         |  macOS  |
+|      iOS-Simulator       |     64      |          static           |        No         |  macOS  |
+|        AsteroidOS        |     arm     |          system           |        No         |  Linux  |
 
 License
 -------

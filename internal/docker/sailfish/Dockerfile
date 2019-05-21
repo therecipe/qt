@@ -43,11 +43,11 @@ RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libgmp.so.10 /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libpthread_nonshared.a /usr/lib/
 RUN ln -s $SF_SDK_TOOLING_DIR/usr/lib/libc_nonshared.a /usr/lib/
 
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.9.4/as
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.9.4/ld
 
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/as
-RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/ld
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-as $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.9.4/as
+RUN ln -s $SF_SDK_TOOLING_DIR/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld $SF_SDK_TOOLING_DIR/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.9.4/ld
 
 RUN cd /srv/mer/targets/SailfishOS-2.2.1.18-i486/ && $SF_SDK_TOOLING_DIR/usr/bin/sb2-init -L "--sysroot=/" -C "--sysroot=/" -n -N -t / i486-meego-linux-gnu $SF_SDK_TOOLING_DIR/opt/cross/bin/i486-meego-linux-gnu-gcc
 
@@ -81,3 +81,5 @@ RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/sailfish/listview &
 RUN $GOPATH/bin/qtsetup generate sailfish-emulator
 RUN $GOPATH/bin/qtsetup install sailfish-emulator
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/sailfish/listview && $GOPATH/bin/qtdeploy build sailfish-emulator && rm -rf ./deploy
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git

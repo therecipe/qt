@@ -27,3 +27,5 @@ RUN QT_STUB=true $GOPATH/bin/qtsetup generate
 RUN $GOPATH/bin/qtsetup generate js
 RUN $GOPATH/bin/qtsetup install js
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build js && rm -rf ./deploy
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git

@@ -628,6 +628,11 @@ func parse(path string) ([]*parser.Class, string, error) {
 						name = strings.ToLower(name[:1]) + strings.TrimPrefix(name[1:], name[:1])
 					}
 
+					if name == class.Name {
+						name += "z__"
+						tag += "z__"
+					}
+
 					typ := string(src[field.Type.Pos()-1 : field.Type.End()-1])
 					switch meta {
 					case parser.SIGNAL, parser.SLOT:

@@ -19,7 +19,7 @@ import (
 type SubTestStruct struct {
 	subsubcustom.SubSubTestStruct
 
-	_ func() `constructor:"Init"`
+	_ func() `constructor:"init"`
 
 	_ func(string)        `signal:"someSignal"`
 	_ func(string) string `slot:"someSlot"`
@@ -69,7 +69,7 @@ type SubTestStructNotUsed struct {
 	_ func(*ago.StructSubGoAGo) `signal:"vendorSignal3R"`
 }
 
-func (s *SubTestStruct) Init() {
+func (s *SubTestStruct) init() {
 	s.SubSubConstructorProperty++
 }
 

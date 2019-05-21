@@ -20,3 +20,5 @@ RUN $GOPATH/bin/qtsetup check windows
 RUN $GOPATH/bin/qtsetup generate windows
 RUN $GOPATH/bin/qtsetup install windows
 RUN cd $GOPATH/src/github.com/therecipe/qt/internal/examples/widgets/line_edits && $GOPATH/bin/qtdeploy build windows && rm -rf ./deploy
+
+RUN apt-get -qq update && apt-get --no-install-recommends -qq -y install ca-certificates git
